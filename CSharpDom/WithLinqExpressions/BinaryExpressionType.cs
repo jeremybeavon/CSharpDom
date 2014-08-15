@@ -1,0 +1,36 @@
+﻿namespace CSharpDom.WithLinqExpressions
+{
+    public enum BinaryExpressionType
+    {
+        Add,
+        Subtract,
+        Multiply,
+        Modulo,
+        Divide,
+        EqualTo,
+        NotEqualTo,
+        LessThan,
+        LessThanOrEqualTo,
+        GreaterThan,
+        GreaterThanOrEqualTo,
+        LogicalAnd,
+        LogicalOr,
+        Coalesce,
+        BitwiseAnd,
+        BitwiseOr,
+        BitwiseXor,
+        LeftShift,
+        RightShift,
+        Assign,
+        AddAssign,
+        SubtractAssign,
+        MultiplyAssign,
+        ModuloAssign,
+        DivideAssign,
+        BitwiseAndAssign,
+        BitwiseOrAssign,
+        BitwiseXorAssign,
+        LeftShiftAssign,
+        RightShiftAssign
+    }
+}
