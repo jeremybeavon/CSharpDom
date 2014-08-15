@@ -1,0 +1,439 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EAA58A34-7E4B-4E20-BE3C-8D7AAC4B261B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CSharpDom</RootNamespace>
+    <AssemblyName>CSharpDom</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>72bf7aaf</NuGetPackageImportStamp>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeAnalysis">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.0.7.4052301-beta\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.0.7.4052301-beta\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Workspaces.0.7.4052301-beta\lib\net45\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.Common.0.7.4052301-beta\lib\net45\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Collections.Immutable">
+      <HintPath>..\packages\Microsoft.Bcl.Immutable.1.1.20-beta\lib\portable-net45+win8\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Reflection.Metadata">
+      <HintPath>..\packages\Microsoft.Bcl.Metadata.1.0.11-alpha\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AbstractAsyncNode.cs" />
+    <Compile Include="AbstractBasicMemberNode.cs" />
+    <Compile Include="AbstractMemberNode.cs" />
+    <Compile Include="AbstractNode.cs" />
+    <Compile Include="AbstractNode.generic.cs" />
+    <Compile Include="BasicTypeNode.cs" />
+    <Compile Include="IHasSyntaxNode.cs" />
+    <Compile Include="IMemberModifier.cs" />
+    <Compile Include="IMethodModifier.cs" />
+    <Compile Include="IPropertyModifier.cs" />
+    <Compile Include="ITypeModifier.cs" />
+    <Compile Include="IWrapper.cs" />
+    <Compile Include="WithSymbols\AbstractAsyncSymbolNode.cs" />
+    <Compile Include="WithSymbols\AbstractAsyncSymbolNode.generic.cs" />
+    <Compile Include="WithSymbols\AbstractSymbolNode.cs" />
+    <Compile Include="WithSymbols\AbstractSymbolNode.generic.cs" />
+    <Compile Include="WithSyntax\AbstractAsyncSyntaxNode.generic.cs" />
+    <Compile Include="WithSyntax\AbstractSyntaxNode.generic.cs" />
+    <Compile Include="WithSyntax\ChangeFinder.cs" />
+    <Compile Include="ClassDeclarationNode.cs" />
+    <Compile Include="Common\ICanBeGeneric.cs" />
+    <Compile Include="Common\IClass.cs" />
+    <Compile Include="Common\IClassWithSymbol.cs" />
+    <Compile Include="Common\IConstructor.cs" />
+    <Compile Include="Common\IDelegateWithSymbol.cs" />
+    <Compile Include="Common\IEnumMember.cs" />
+    <Compile Include="Common\IEventPropertyWithSymbol.cs" />
+    <Compile Include="Common\IEventWithSymbol.cs" />
+    <Compile Include="Common\IFieldWithSymbol.cs" />
+    <Compile Include="Common\IHasAssembly.cs" />
+    <Compile Include="Common\IHasConstructorInfo.cs" />
+    <Compile Include="Common\IHasEnumMembers.cs" />
+    <Compile Include="Common\IHasEventInfo.cs" />
+    <Compile Include="Common\IHasFieldInfo.cs" />
+    <Compile Include="Common\IHasLocation.cs" />
+    <Compile Include="Common\IHasMethodInfo.cs" />
+    <Compile Include="Common\IHasPropertyInfo.cs" />
+    <Compile Include="Common\IHasReflection.cs" />
+    <Compile Include="Common\IHasSymbols.cs" />
+    <Compile Include="Common\IHasCompositeType.cs" />
+    <Compile Include="Common\IIndexerWithSymbol.cs" />
+    <Compile Include="Common\IInterfaceWithSymbol.cs" />
+    <Compile Include="Common\IMethodWithSymbol.cs" />
+    <Compile Include="Common\IOperatorOverloadWithSymbol.cs" />
+    <Compile Include="Common\IDestructorWithSymbol.cs" />
+    <Compile Include="Common\IConversionOperatorWithSymbol.cs" />
+    <Compile Include="Common\IConstructorWithSymbol.cs" />
+    <Compile Include="Common\IConversionOperator.cs" />
+    <Compile Include="Common\IHasDeclaringType.cs" />
+    <Compile Include="Common\IDelegate.cs" />
+    <Compile Include="Common\IDestructor.cs" />
+    <Compile Include="Common\IDocument.cs" />
+    <Compile Include="Common\IEnum.cs" />
+    <Compile Include="Common\IEvent.cs" />
+    <Compile Include="Common\IEventProperty.cs" />
+    <Compile Include="Common\IField.cs" />
+    <Compile Include="Common\IHasClasses.cs" />
+    <Compile Include="Common\IHasConstructors.cs" />
+    <Compile Include="Common\IHasConversionOperators.cs" />
+    <Compile Include="Common\IHasDeclaration.cs" />
+    <Compile Include="Common\IHasDeclarations.cs" />
+    <Compile Include="Common\IHasDelegates.cs" />
+    <Compile Include="Common\IHasDestructor.cs" />
+    <Compile Include="Common\IHasDocument.cs" />
+    <Compile Include="Common\IHasEnums.cs" />
+    <Compile Include="Common\IHasEventProperties.cs" />
+    <Compile Include="Common\IHasEvents.cs" />
+    <Compile Include="Common\IHasFields.cs" />
+    <Compile Include="Common\IHasIndexers.cs" />
+    <Compile Include="Common\IHasInterfaces.cs" />
+    <Compile Include="Common\IHasMethods.cs" />
+    <Compile Include="Common\IHasName.cs" />
+    <Compile Include="Common\IHasNamespace.cs" />
+    <Compile Include="Common\IHasOperatorOverloads.cs" />
+    <Compile Include="Common\IHasProject.cs" />
+    <Compile Include="Common\IHasProperties.cs" />
+    <Compile Include="Common\IHasSolution.cs" />
+    <Compile Include="Common\IHasStructs.cs" />
+    <Compile Include="Common\IHasSymbol.cs" />
+    <Compile Include="Common\IHasSyntax.cs" />
+    <Compile Include="Common\IHasType.cs" />
+    <Compile Include="Common\IIndexer.cs" />
+    <Compile Include="Common\IInterface.cs" />
+    <Compile Include="Common\IMethod.cs" />
+    <Compile Include="Common\INamespace.cs" />
+    <Compile Include="Common\IOperatorOverload.cs" />
+    <Compile Include="Common\IProject.cs" />
+    <Compile Include="Common\IProperty.cs" />
+    <Compile Include="Common\IPropertyWithSymbol.cs" />
+    <Compile Include="Common\ISolution.cs" />
+    <Compile Include="Common\IStruct.cs" />
+    <Compile Include="Common\IStructWithSymbol.cs" />
+    <Compile Include="Common\LineHelper.cs" />
+    <Compile Include="ConstructorNode.cs" />
+    <Compile Include="ConversionOperatorNode.cs" />
+    <Compile Include="DestructorNode.cs" />
+    <Compile Include="EnumMemberNode.cs" />
+    <Compile Include="EventPropertyNode.cs" />
+    <Compile Include="Common\IAsyncEnumerable.cs" />
+    <Compile Include="IBasicMemberContainer.cs" />
+    <Compile Include="ICompositeType.cs" />
+    <Compile Include="IHasBasicCompositeType.cs" />
+    <Compile Include="IHasCompositeType.cs" />
+    <Compile Include="IMemberContainer.cs" />
+    <Compile Include="IndexerNode.cs" />
+    <Compile Include="InterfaceDeclarationNode.cs" />
+    <Compile Include="Internal\AnalyzedDocument.cs" />
+    <Compile Include="INodeFactory.cs" />
+    <Compile Include="Builder\InterfaceContainer.cs" />
+    <Compile Include="Builder\StructContainer.cs" />
+    <Compile Include="Builder\ClassContainer.cs" />
+    <Compile Include="Internal\AsyncEnumerable.cs" />
+    <Compile Include="Internal\InternalAsyncEnumerable.cs" />
+    <Compile Include="Internal\InternalLazyLoadedEnumerable.cs" />
+    <Compile Include="Internal\AsyncLazyLoadedEnumerable.cs" />
+    <Compile Include="Builder\NamespaceContainer.cs" />
+    <Compile Include="Builder\SyntaxBuilder.cs" />
+    <Compile Include="Internal\LazyLoadedEnumerable.cs" />
+    <Compile Include="ClassNode.cs" />
+    <Compile Include="DelegateNode.cs" />
+    <Compile Include="DocumentNode.cs" />
+    <Compile Include="EnumNode.cs" />
+    <Compile Include="EventNode.cs" />
+    <Compile Include="FieldNode.cs" />
+    <Compile Include="Internal\DocumentNodeAsyncEnumerable.cs" />
+    <Compile Include="IBasicCompositeType.cs" />
+    <Compile Include="ITypeName.cs" />
+    <Compile Include="NodeVisitor.cs" />
+    <Compile Include="OperatorOverloadNode.cs" />
+    <Compile Include="ReadOnlyAggregateCollection.cs" />
+    <Compile Include="ReadOnlyNodeCollection.cs" />
+    <Compile Include="StructDeclarationNode.cs" />
+    <Compile Include="TypeContainer.cs" />
+    <Compile Include="ITypeContainer.cs" />
+    <Compile Include="InterfaceNode.cs" />
+    <Compile Include="BasicMemberContainer.cs" />
+    <Compile Include="MemberContainer.cs" />
+    <Compile Include="MethodNode.cs" />
+    <Compile Include="StructNode.cs" />
+    <Compile Include="NamespaceNode.cs" />
+    <Compile Include="ProjectNode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyNode.cs" />
+    <Compile Include="SolutionNode.cs" />
+    <Compile Include="TypeNameNode.cs" />
+    <Compile Include="TypeNode.cs" />
+    <Compile Include="WithSymbols\BasicTypeWithSymbols.cs" />
+    <Compile Include="WithSymbols\ClassDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\ClassWithSymbols.cs" />
+    <Compile Include="WithSymbols\ConstructorWithSymbols.cs" />
+    <Compile Include="WithSymbols\ConversionOperatorWithSymbols.cs" />
+    <Compile Include="WithSymbols\DelegateWithSymbols.cs" />
+    <Compile Include="WithSymbols\DestructorWithSymbols.cs" />
+    <Compile Include="WithSymbols\DocumentWithSymbols.cs" />
+    <Compile Include="WithSymbols\EnumMemberWithSymbols.cs" />
+    <Compile Include="WithSymbols\EnumWithSymbols.cs" />
+    <Compile Include="WithSymbols\EventPropertyWithSymbols.cs" />
+    <Compile Include="WithSymbols\EventWithSymbols.cs" />
+    <Compile Include="WithSymbols\FieldWithSymbols.cs" />
+    <Compile Include="WithSymbols\IBasicTypeWithSymbols.cs" />
+    <Compile Include="WithSymbols\IClassDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\IClassWithSymbols.cs" />
+    <Compile Include="WithSymbols\IConstructorWithSymbols.cs" />
+    <Compile Include="WithSymbols\IConversionOperatorWithSymbols.cs" />
+    <Compile Include="WithSymbols\IDelegateWithSymbols.cs" />
+    <Compile Include="WithSymbols\IDestructorWithSymbols.cs" />
+    <Compile Include="WithSymbols\IDocumentWithSymbols.cs" />
+    <Compile Include="WithSymbols\IEnumMemberWithSymbols.cs" />
+    <Compile Include="WithSymbols\IEnumWithSymbols.cs" />
+    <Compile Include="WithSymbols\IEventPropertyWithSymbols.cs" />
+    <Compile Include="WithSymbols\IEventWithSymbols.cs" />
+    <Compile Include="WithSymbols\IFieldWithSymbols.cs" />
+    <Compile Include="WithSymbols\IIndexerWithSymbols.cs" />
+    <Compile Include="WithSymbols\IInterfaceDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\IInterfaceWithSymbols.cs" />
+    <Compile Include="WithSymbols\IMethodWithSymbols.cs" />
+    <Compile Include="WithSymbols\INamespaceWithSymbols.cs" />
+    <Compile Include="WithSymbols\IndexerWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedClassDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedClassWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedDelegateWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedDestructorWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedEnumMemberWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedEnumWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedInterfaceDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedInterfaceWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedStructDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\INestedStructWithSymbols.cs" />
+    <Compile Include="WithSymbols\InterfaceDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\InterfaceWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\AsyncEnumerableWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\ClassDeclarationNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\ClassNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\ConstructorNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\ConversionOperatorNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\DelegateNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\DestructorNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\DocumentNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\EnumMemberNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\EnumNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\EventNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\EventPropertyNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\FieldNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\IndexerNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\InterfaceDeclarationNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\InterfaceNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\MethodNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\NamespaceNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\OperatorOverloadNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\ProjectNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\PropertyNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\SolutionNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\StructDeclarationNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\StructNodeWithSymbols.cs" />
+    <Compile Include="WithSymbols\Internal\SymbolNodeFactory.cs" />
+    <Compile Include="WithSymbols\Internal\SymbolsNodeVisitor.cs" />
+    <Compile Include="WithSymbols\Internal\SymbolsVisitorMapping.cs" />
+    <Compile Include="WithSymbols\IOperatorOverloadWithSymbols.cs" />
+    <Compile Include="WithSymbols\IProjectWithSymbols.cs" />
+    <Compile Include="WithSymbols\IPropertyWithSymbols.cs" />
+    <Compile Include="WithSymbols\ISolutionWithSymbols.cs" />
+    <Compile Include="WithSymbols\IStructDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\IStructWithSymbols.cs" />
+    <Compile Include="WithSymbols\ISymbolContainer.cs" />
+    <Compile Include="WithSymbols\ISymbolsVisitor.cs" />
+    <Compile Include="WithSymbols\ITypeWithSymbols.cs" />
+    <Compile Include="WithSymbols\MethodWithSymbols.cs" />
+    <Compile Include="WithSymbols\NamespaceWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedClassDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedClassWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedDelegateWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedDestructorWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedEnumMemberWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedEnumWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedInterfaceDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedInterfaceWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedStructDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\NestedStructWithSymbols.cs" />
+    <Compile Include="WithSymbols\OperatorOverloadWithSymbols.cs" />
+    <Compile Include="WithSymbols\ProjectWithSymbols.cs" />
+    <Compile Include="WithSymbols\PropertyWithSymbols.cs" />
+    <Compile Include="WithSymbols\SolutionWithSymbols.cs" />
+    <Compile Include="WithSymbols\StructDeclarationWithSymbols.cs" />
+    <Compile Include="WithSymbols\StructWithSymbols.cs" />
+    <Compile Include="WithSymbols\SymbolFactory.cs" />
+    <Compile Include="WithSymbols\SymbolsVisitor.cs" />
+    <Compile Include="WithSymbols\TypeWithSymbols.cs" />
+    <Compile Include="WithSyntax\AbstractAsyncSyntaxNode.cs" />
+    <Compile Include="WithSyntax\AbstractSyntaxNode.cs" />
+    <Compile Include="WithSyntax\BasicTypeWithSyntax.cs" />
+    <Compile Include="WithSyntax\ClassDeclarationWithSyntax.cs" />
+    <Compile Include="WithSyntax\ClassWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\MemberFinder.cs" />
+    <Compile Include="WithSyntax\ConstructorWithSyntax.cs" />
+    <Compile Include="WithSyntax\ConversionOperatorWithSyntax.cs" />
+    <Compile Include="WithSyntax\DelegateWithSyntax.cs" />
+    <Compile Include="WithSyntax\DestructorWithSyntax.cs" />
+    <Compile Include="WithSyntax\DocumentWithSyntax.cs" />
+    <Compile Include="WithSyntax\EnumMemberWithSyntax.cs" />
+    <Compile Include="WithSyntax\EnumWithSyntax.cs" />
+    <Compile Include="WithSyntax\EventPropertyWithSyntax.cs" />
+    <Compile Include="WithSyntax\EventWithSyntax.cs" />
+    <Compile Include="WithSyntax\FieldWithSyntax.cs" />
+    <Compile Include="WithSyntax\IBasicTypeSyntax.cs" />
+    <Compile Include="WithSyntax\IClassDeclarationSyntax.cs" />
+    <Compile Include="WithSyntax\IClassSyntax.cs" />
+    <Compile Include="WithSyntax\IConstructorSyntax.cs" />
+    <Compile Include="WithSyntax\IConversionOperatorSyntax.cs" />
+    <Compile Include="WithSyntax\IDelegateSyntax.cs" />
+    <Compile Include="WithSyntax\IDestructorSyntax.cs" />
+    <Compile Include="WithSyntax\IDocumentSyntax.cs" />
+    <Compile Include="WithSyntax\IEnumMemberSyntax.cs" />
+    <Compile Include="WithSyntax\IEnumSyntax.cs" />
+    <Compile Include="WithSyntax\IEventPropertySyntax.cs" />
+    <Compile Include="WithSyntax\IEventSyntax.cs" />
+    <Compile Include="WithSyntax\IFieldSyntax.cs" />
+    <Compile Include="WithSyntax\IIndexerSyntax.cs" />
+    <Compile Include="WithSyntax\IInterfaceDeclarationSyntax.cs" />
+    <Compile Include="WithSyntax\IInterfaceSyntax.cs" />
+    <Compile Include="WithSyntax\IMethodSyntax.cs" />
+    <Compile Include="WithSyntax\INamespaceSyntax.cs" />
+    <Compile Include="WithSyntax\IndexerWithSyntax.cs" />
+    <Compile Include="WithSyntax\INestedClassDeclarationSyntax.cs" />
+    <Compile Include="WithSyntax\INestedClassSyntax.cs" />
+    <Compile Include="WithSyntax\INestedDelegateSyntax.cs" />
+    <Compile Include="WithSyntax\INestedDestructorSyntax.cs" />
+    <Compile Include="WithSyntax\INestedEnumMemberSyntax.cs" />
+    <Compile Include="WithSyntax\INestedEnumSyntax.cs" />
+    <Compile Include="WithSyntax\INestedInterfaceDeclarationSyntax.cs" />
+    <Compile Include="WithSyntax\INestedInterfaceSyntax.cs" />
+    <Compile Include="WithSyntax\INestedStructDeclarationSyntax.cs" />
+    <Compile Include="WithSyntax\INestedStructSyntax.cs" />
+    <Compile Include="WithSyntax\InterfaceDeclarationWithSyntax.cs" />
+    <Compile Include="WithSyntax\InterfaceWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\AsyncEnumerableWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\InterfaceDeclarationNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\SyntaxNodeVisitor.cs" />
+    <Compile Include="WithSyntax\Internal\StructDeclarationNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\ClassDeclarationNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\ClassNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\ConstructorNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\ConversionOperatorNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\DelegateNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\DestructorNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\DocumentNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\EnumMemberNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\EnumNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\EventNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\EventPropertyNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\FieldNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\IndexerNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\InterfaceNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\MethodNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\NamespaceNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\OperatorOverloadNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\ProjectNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\PropertyNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\SolutionNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\StructNodeWithSyntax.cs" />
+    <Compile Include="WithSyntax\Internal\SyntaxNodeFactory.cs" />
+    <Compile Include="WithSyntax\Internal\SyntaxVisitorMapping.cs" />
+    <Compile Include="WithSyntax\IOperatorOverloadSyntax.cs" />
+    <Compile Include="WithSyntax\IProjectSyntax.cs" />
+    <Compile Include="WithSyntax\IPropertySyntax.cs" />
+    <Compile Include="WithSyntax\ISolutionSyntax.cs" />
+    <Compile Include="WithSyntax\IStructDeclarationSyntax.cs" />
+    <Compile Include="WithSyntax\IStructSyntax.cs" />
+    <Compile Include="WithSyntax\ISyntaxContainer.cs" />
+    <Compile Include="WithSyntax\ISyntaxVisitor.cs" />
+    <Compile Include="WithSyntax\ITypeSyntax.cs" />
+    <Compile Include="WithSyntax\MethodWithSyntax.cs" />
+    <Compile Include="WithSyntax\NamespaceWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedClassDeclarationWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedClassWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedDelegateWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedDestructorWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedEnumMemberWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedEnumWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedInterfaceDeclarationWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedInterfaceWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedStructDeclarationWithSyntax.cs" />
+    <Compile Include="WithSyntax\NestedStructWithSyntax.cs" />
+    <Compile Include="WithSyntax\OperatorOverloadWithSyntax.cs" />
+    <Compile Include="WithSyntax\ProjectWithSyntax.cs" />
+    <Compile Include="WithSyntax\PropertyWithSyntax.cs" />
+    <Compile Include="WithSyntax\SolutionWithSyntax.cs" />
+    <Compile Include="WithSyntax\StructDeclarationWithSyntax.cs" />
+    <Compile Include="WithSyntax\StructWithSyntax.cs" />
+    <Compile Include="WithSyntax\SyntaxFactory.cs" />
+    <Compile Include="WithSyntax\SyntaxVisitor.cs" />
+    <Compile Include="WithSyntax\TypeWithSyntax.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets" Condition="Exists('..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\StyleCop.MSBuild.4.7.49.0\build\StyleCop.MSBuild.Targets'))" />
+    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
+  </Target>
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
