@@ -35,6 +35,21 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Build">
+      <HintPath>..\Microsoft.Build.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Engine">
+      <HintPath>..\Microsoft.Build.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Framework">
+      <HintPath>..\Microsoft.Build.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Tasks.Core">
+      <HintPath>..\Microsoft.Build.Tasks.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Build.Utilities.Core">
+      <HintPath>..\Microsoft.Build.Utilities.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeAnalysis">
       <HintPath>..\packages\Microsoft.CodeAnalysis.Common.1.0.0-beta1-20141031-01\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
     </Reference>
@@ -63,6 +78,21 @@
     <Reference Include="System.Collections.Immutable">
       <HintPath>..\packages\System.Collections.Immutable.1.1.32-beta\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
     </Reference>
+    <Reference Include="System.Composition.AttributedModel">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
     <Reference Include="System.Reflection.Metadata">
       <HintPath>..\packages\System.Reflection.Metadata.1.0.17-beta\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
@@ -86,6 +116,113 @@
     <Compile Include="IPropertyModifier.cs" />
     <Compile Include="ITypeModifier.cs" />
     <Compile Include="IWrapper.cs" />
+    <Compile Include="WithReflection\BasicTypeWithReflection.cs" />
+    <Compile Include="WithReflection\ClassDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\ClassWithReflection.cs" />
+    <Compile Include="WithReflection\ConstructorWithReflection.cs" />
+    <Compile Include="WithReflection\ConversionOperatorWithReflection.cs" />
+    <Compile Include="WithReflection\DelegateWithReflection.cs" />
+    <Compile Include="WithReflection\DestructorWithReflection.cs" />
+    <Compile Include="WithReflection\DocumentWithReflection.cs" />
+    <Compile Include="WithReflection\EnumMemberWithReflection.cs" />
+    <Compile Include="WithReflection\EnumWithReflection.cs" />
+    <Compile Include="WithReflection\EventPropertyWithReflection.cs" />
+    <Compile Include="WithReflection\EventWithReflection.cs" />
+    <Compile Include="WithReflection\FieldWithReflection.cs" />
+    <Compile Include="WithReflection\IBasicTypeWithReflection.cs" />
+    <Compile Include="WithReflection\IClassDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\IClassWithReflection.cs" />
+    <Compile Include="WithReflection\IConstructorWithReflection.cs" />
+    <Compile Include="WithReflection\IConversionOperatorWithReflection.cs" />
+    <Compile Include="WithReflection\IDelegateWithReflection.cs" />
+    <Compile Include="WithReflection\IDestructorWithReflection.cs" />
+    <Compile Include="WithReflection\IDocumentWithReflection.cs" />
+    <Compile Include="WithReflection\IEnumMemberWithReflection.cs" />
+    <Compile Include="WithReflection\IEnumWithReflection.cs" />
+    <Compile Include="WithReflection\IEventPropertyWithReflection.cs" />
+    <Compile Include="WithReflection\IEventWithReflection.cs" />
+    <Compile Include="WithReflection\IFieldWithReflection.cs" />
+    <Compile Include="WithReflection\IIndexerWithReflection.cs" />
+    <Compile Include="WithReflection\IInterfaceDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\IInterfaceWithReflection.cs" />
+    <Compile Include="WithReflection\IMethodWithReflection.cs" />
+    <Compile Include="WithReflection\INamespaceWithReflection.cs" />
+    <Compile Include="WithReflection\IndexerWithReflection.cs" />
+    <Compile Include="WithReflection\INestedClassDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\INestedClassWithReflection.cs" />
+    <Compile Include="WithReflection\INestedDelegateWithReflection.cs" />
+    <Compile Include="WithReflection\INestedDestructorWithReflection.cs" />
+    <Compile Include="WithReflection\INestedEnumMemberWithReflection.cs" />
+    <Compile Include="WithReflection\INestedEnumWithReflection.cs" />
+    <Compile Include="WithReflection\INestedInterfaceDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\INestedInterfaceWithReflection.cs" />
+    <Compile Include="WithReflection\INestedStructDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\INestedStructWithReflection.cs" />
+    <Compile Include="WithReflection\InterfaceDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\InterfaceWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\AppDomainAssemblyLoader.cs" />
+    <Compile Include="WithReflection\Internal\AsyncEnumerableWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\ClassDeclarationNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\ClassNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\ConstructorNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\ConversionOperatorNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\DelegateNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\DestructorNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\DirectoryAssemblyLoader.cs" />
+    <Compile Include="WithReflection\Internal\DocumentNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\EnumMemberNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\EnumNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\EventNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\EventPropertyNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\FieldNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\IAssemblyLoader.cs" />
+    <Compile Include="WithReflection\Internal\IndexerNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\InterfaceDeclarationNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\InterfaceNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\MethodNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\NamespaceNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\OperatorOverloadNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\ProjectNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\PropertyNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\ReflectionHelper.cs" />
+    <Compile Include="WithReflection\Internal\ReflectionMemberHelper.cs" />
+    <Compile Include="WithReflection\Internal\ReflectionNodeFactory.cs" />
+    <Compile Include="WithReflection\Internal\ReflectionNodeVisitor.cs" />
+    <Compile Include="WithReflection\Internal\ReflectionVisitorMapping.cs" />
+    <Compile Include="WithReflection\Internal\SolutionNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\StructDeclarationNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\StructNodeWithReflection.cs" />
+    <Compile Include="WithReflection\Internal\TypeReference.cs" />
+    <Compile Include="WithReflection\IOperatorOverloadWithReflection.cs" />
+    <Compile Include="WithReflection\IProjectWithReflection.cs" />
+    <Compile Include="WithReflection\IPropertyWithReflection.cs" />
+    <Compile Include="WithReflection\IReflectionContainer.cs" />
+    <Compile Include="WithReflection\IReflectionVisitor.cs" />
+    <Compile Include="WithReflection\ISolutionWithReflection.cs" />
+    <Compile Include="WithReflection\IStructDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\IStructWithReflection.cs" />
+    <Compile Include="WithReflection\ITypeWithReflection.cs" />
+    <Compile Include="WithReflection\MethodWithReflection.cs" />
+    <Compile Include="WithReflection\NamespaceWithReflection.cs" />
+    <Compile Include="WithReflection\NestedClassDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\NestedClassWithReflection.cs" />
+    <Compile Include="WithReflection\NestedDelegateWithReflection.cs" />
+    <Compile Include="WithReflection\NestedDestructorWithReflection.cs" />
+    <Compile Include="WithReflection\NestedEnumMemberWithReflection.cs" />
+    <Compile Include="WithReflection\NestedEnumWithReflection.cs" />
+    <Compile Include="WithReflection\NestedInterfaceDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\NestedInterfaceWithReflection.cs" />
+    <Compile Include="WithReflection\NestedStructDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\NestedStructWithReflection.cs" />
+    <Compile Include="WithReflection\OperatorOverloadWithReflection.cs" />
+    <Compile Include="WithReflection\ProjectWithReflection.cs" />
+    <Compile Include="WithReflection\PropertyWithReflection.cs" />
+    <Compile Include="WithReflection\ReflectionFactory.cs" />
+    <Compile Include="WithReflection\ReflectionVisitor.cs" />
+    <Compile Include="WithReflection\SolutionWithReflection.cs" />
+    <Compile Include="WithReflection\StructDeclarationWithReflection.cs" />
+    <Compile Include="WithReflection\StructWithReflection.cs" />
+    <Compile Include="WithReflection\TypeWithReflection.cs" />
     <Compile Include="WithSymbols\AbstractAsyncSymbolNode.cs" />
     <Compile Include="WithSymbols\AbstractAsyncSymbolNode.generic.cs" />
     <Compile Include="WithSymbols\AbstractSymbolNode.cs" />

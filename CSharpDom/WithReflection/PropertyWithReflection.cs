@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using CSharpDom.WithReflection.Internal;
@@ -16,6 +17,11 @@ namespace CSharpDom.WithReflection
         public PropertyWithReflection(IPropertyWithReflection property)
         {
             this.property = property;
+        }
+
+        public PropertyInfo PropertyInfo
+        {
+            get { return property.PropertyInfo; }
         }
 
         public PropertyDeclarationSyntax Declaration

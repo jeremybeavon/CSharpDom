@@ -37,6 +37,16 @@ namespace CSharpDom.WithReflection
             return solution == null ? null : new SolutionWithReflection(solution);
         }
 
+        public static async Task<SolutionWithReflection> OpenSolutionAsync(string solutionFile)
+        {
+            return GetSolution(await ReflectionFactory.OpenSolutionAsync(solutionFile));
+        }
+
+        public static async Task<SolutionWithReflection> OpenSolutionAsync(string solutionFile, string assemblyDirectory)
+        {
+            return GetSolution(await ReflectionFactory.OpenSolutionAsync(solutionFile, assemblyDirectory));
+        }
+
         public Task AcceptAsync(ReflectionVisitor visitor)
         {
             return solution.AcceptAsync(new ReflectionVisitorMapping(visitor));
