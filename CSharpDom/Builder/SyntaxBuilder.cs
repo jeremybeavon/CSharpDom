@@ -116,6 +116,12 @@ namespace CSharpDom.Builder
             container.EventProperties.Add(NodeFactory.CreateEventPropertyNode(node, container));
         }
 
+        public override void VisitFieldDeclaration(FieldDeclarationSyntax node)
+        {
+            IMemberContainer container = MemberContainer.Peek();
+            container.Fields.Add(NodeFactory.CreateFieldNode(node, container));
+        }
+
         public override void VisitIndexerDeclaration(IndexerDeclarationSyntax node)
         {
             IBasicMemberContainer container = BasicMemberContainer.Peek();

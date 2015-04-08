@@ -34,19 +34,32 @@ namespace CSharpDom.WithSyntax
             SyntaxTree newTree = await newDocument.Document.GetSyntaxTreeAsync();
             SyntaxNode root = await newTree.GetRootAsync();
             IDictionary<SyntaxNode, AbstractSyntaxNode> matchedNodes = new Dictionary<SyntaxNode, AbstractSyntaxNode>();
-            foreach (TextChange change in newTree.GetChanges(oldTree))
+            IList<TextChange> changes = newTree.GetChanges(oldTree);
+            foreach (TextChange change in changes)
             {
-                SyntaxNode changedMember = root.DescendantNodes(change.Span, node => !(node is BlockSyntax)).Last();
-                if (changedMember is BlockSyntax)
+                TextSpan changeSpan = change.Span;
+                if (changeSpan.Length == 0)
+                {
+                    changeSpan = new TextSpan(changeSpan.Start, 1);
+                }
+
+                SyntaxNode changedMember = root.DescendantNodes(changeSpan, node => !(node is BlockSyntax)).LastOrDefault();
+                while (changedMember != null && !(changedMember is MemberDeclarationSyntax))
                 {
                     changedMember = changedMember.Parent;
                 }
 
-                if (!matchedNodes.ContainsKey(changedMember))
+                if (changedMember != null && !matchedNodes.ContainsKey(changedMember))
                 {
                     MemberFinder memberFinder = new MemberFinder(changedMember);
                     await newDocument.Project.AcceptAsync(memberFinder);
-                    matchedNodes.Add(changedMember, memberFinder.MatchedNode.CreateNode());
+                    if (memberFinder.MatchedNode != null)
+                    {
+                        matchedNodes.Add(changedMember, memberFinder.MatchedNode.CreateNode());
+                    }
+                    else
+                    {
+                    }
                 }
             }
 

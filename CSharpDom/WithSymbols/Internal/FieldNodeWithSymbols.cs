@@ -24,7 +24,7 @@ namespace CSharpDom.WithSymbols.Internal
 
         public IFieldSymbol Symbol
         {
-            get { return symbol ?? (symbol = (IFieldSymbol)semanticModel.GetDeclaredSymbol(Declaration)); }
+            get { return symbol ?? (symbol = (IFieldSymbol)semanticModel.GetDeclaredSymbol(Declaration.Declaration.Variables[0])); }
         }
 
         public IFieldSyntax Syntax

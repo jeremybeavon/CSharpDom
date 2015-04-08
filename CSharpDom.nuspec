@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+    <metadata>
+        <id>CSharpDom</id>
+        <version>0.1.0-pre</version>
+        <authors>Jeremy Beavon</authors>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Provides a DOM for C#.</description>
+        <dependencies>
+            <dependency id="Microsoft.CodeAnalysis.CSharp.Workspaces" version="1.0.0-beta1-20141031-01" />
+        </dependencies>
+    </metadata>
+    <files>
+        <file src="CSharpDom\bin\Release\CSharpDom.dll" target="lib\net45\CSharpDom.dll" />
+    </files>
+</package>
