@@ -13,5 +13,6 @@ namespace CSharpDom.WithLinqExpressions
         IHasSymbols<IDelegateWithSymbols>,
         IHasReflection<IDelegateWithReflection>
     {
+        void Accept(ILinqExpressionsVisitor visitor);
     }
 }

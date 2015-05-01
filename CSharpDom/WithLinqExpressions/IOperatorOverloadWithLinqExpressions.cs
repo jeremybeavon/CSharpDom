@@ -11,5 +11,6 @@ namespace CSharpDom.WithLinqExpressions
         IHasSymbols<IOperatorOverloadWithSymbols>,
         IHasReflection<IOperatorOverloadWithReflection>
     {
+        void Accept(ILinqExpressionsVisitor visitor);
     }
 }

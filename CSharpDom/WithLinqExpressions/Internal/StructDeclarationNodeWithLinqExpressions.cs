@@ -132,5 +132,10 @@ namespace CSharpDom.WithLinqExpressions.Internal
         {
             get { return new ReadOnlyNodeCollection<INestedStructWithLinqExpressions, StructNode>(Structs); }
         }
+
+        public void Accept(ILinqExpressionsVisitor visitor)
+        {
+            Accept(new LinqExpressionsNodeVisitor(visitor));
+        }
     }
 }

@@ -6,10 +6,11 @@ using CSharpDom.WithSyntax;
 namespace CSharpDom.WithLinqExpressions
 {
     public interface IDestructorWithLinqExpressions : IDestructorWithSymbol, IHasMethodInfo,
-        IHasDeclaringType<IClassWithLinqExpressions>,
+        IHasDeclaringType<IClassDeclarationWithLinqExpressions>,
         IHasSyntax<IDestructorSyntax>,
         IHasSymbols<IDestructorWithSymbols>,
         IHasReflection<IDestructorWithReflection>
     {
+        void Accept(ILinqExpressionsVisitor visitor);
     }
 }

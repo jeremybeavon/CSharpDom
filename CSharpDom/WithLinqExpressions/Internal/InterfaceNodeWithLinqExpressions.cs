@@ -25,6 +25,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
             get { return new ReadOnlyNodeCollection<IInterfaceDeclarationWithLinqExpressions, InterfaceDeclarationNode>(Declarations); }
         }
 
+        IReadOnlyCollection<INestedInterfaceDeclarationWithLinqExpressions> IHasDeclarations<INestedInterfaceDeclarationWithLinqExpressions>.Declarations
+        {
+            get { return new ReadOnlyNodeCollection<INestedInterfaceDeclarationWithLinqExpressions, InterfaceDeclarationNode>(Declarations); }
+        }
+
         ITypeWithLinqExpressions IHasDeclaringType<ITypeWithLinqExpressions>.DeclaringType
         {
             get { return (ITypeWithLinqExpressions)DeclaringType; }
@@ -68,6 +73,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
         ISolutionWithLinqExpressions IHasSolution<ISolutionWithLinqExpressions>.Solution
         {
             get { return (ISolutionWithLinqExpressions)Solution; }
+        }
+
+        public void Accept(ILinqExpressionsVisitor visitor)
+        {
+            Accept(new LinqExpressionsNodeVisitor(visitor));
         }
     }
 }

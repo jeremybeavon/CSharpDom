@@ -11,5 +11,6 @@ namespace CSharpDom.WithLinqExpressions
         IHasSymbols<IEventWithSymbols>,
         IHasReflection<IEventWithReflection>
     {
+        void Accept(ILinqExpressionsVisitor visitor);
     }
 }

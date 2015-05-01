@@ -14,5 +14,6 @@ namespace CSharpDom.WithLinqExpressions
         IHasSymbols<INestedStructDeclarationWithSymbols>,
         IHasReflection<INestedStructDeclarationWithReflection>
     {
+        void Accept(ILinqExpressionsVisitor visitor);
     }
 }

@@ -12,5 +12,7 @@ namespace CSharpDom.WithLinqExpressions
         IHasReflection<IMethodWithReflection>
     {
         IImplementation Implementation { get; }
+
+        void Accept(ILinqExpressionsVisitor visitor);
     }
 }

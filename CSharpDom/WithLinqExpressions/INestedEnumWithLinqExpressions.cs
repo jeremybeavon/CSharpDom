@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CSharpDom.Common;
+using CSharpDom.WithSymbols;
+using CSharpDom.WithSyntax;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.WithLinqExpressions
 {
-    public interface INestedEnumWithLinqExpressions
+    public interface INestedEnumWithLinqExpressions : IEnum, IHasDeclaringType<ITypeWithLinqExpressions>,
+        IHasEnumMembers<INestedEnumMemberWithLinqExpressions>,
+        IHasSymbol<INamedTypeSymbol>,
+        IHasSyntax<INestedEnumSyntax>,
+        IHasSymbols<INestedEnumWithSymbols>
     {
+        void Accept(ILinqExpressionsVisitor visitor);
     }
 }

@@ -79,5 +79,10 @@ namespace CSharpDom.WithLinqExpressions.Internal
         {
             get { return (ISolutionWithLinqExpressions)Solution; }
         }
+
+        public void Accept(ILinqExpressionsVisitor visitor)
+        {
+            Accept(new LinqExpressionsNodeVisitor(visitor));
+        }
     }
 }

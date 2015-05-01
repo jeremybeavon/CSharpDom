@@ -61,6 +61,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
             get { return new AsyncEnumerable<IStructWithLinqExpressions, StructNode, IDocumentWithLinqExpressions>(Structs); }
         }
 
+        public Task AcceptAsync(ILinqExpressionsVisitor visitor)
+        {
+            return AcceptAsync(new LinqExpressionsNodeVisitor(visitor));
+        }
+
         protected override INodeFactory GetNodeFactory(SemanticModel semanticModel)
         {
             return new LinqExpressionNodeFactory(semanticModel);

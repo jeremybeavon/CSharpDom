@@ -22,9 +22,14 @@ namespace CSharpDom.WithLinqExpressions.Internal
             get { return this; }
         }
 
-        IClassWithLinqExpressions IHasDeclaringType<IClassWithLinqExpressions>.DeclaringType
+        IClassDeclarationWithLinqExpressions IHasDeclaringType<IClassDeclarationWithLinqExpressions>.DeclaringType
         {
-            get { return (IClassWithLinqExpressions)DeclaringType; }
+            get { return (IClassDeclarationWithLinqExpressions)DeclaringType; }
+        }
+
+        public void Accept(ILinqExpressionsVisitor visitor)
+        {
+            Accept(new LinqExpressionsNodeVisitor(visitor));
         }
     }
 }

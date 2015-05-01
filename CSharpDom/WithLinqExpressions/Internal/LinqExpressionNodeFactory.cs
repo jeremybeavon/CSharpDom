@@ -61,12 +61,12 @@ namespace CSharpDom.WithLinqExpressions.Internal
 
         public EnumMemberNode CreateEnumMemberNode(EnumMemberDeclarationSyntax declaration, EnumNode container)
         {
-            return new EnumMemberNodeWithLinqExpressions(declaration, container);
+            return new EnumMemberNodeWithLinqExpressions(declaration, container, semanticModel);
         }
 
         public EnumNode CreateEnumNode(EnumDeclarationSyntax declaration, ITypeContainer container)
         {
-            return new EnumNodeWithLinqExpressions(declaration, container);
+            return new EnumNodeWithLinqExpressions(declaration, container, semanticModel);
         }
 
         public EventNode CreateEventNode(EventFieldDeclarationSyntax declaration, IBasicMemberContainer container)

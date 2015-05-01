@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using CSharpDom.Common;
 using CSharpDom.WithReflection;
 using CSharpDom.WithReflection.Internal;
@@ -22,6 +23,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
         IReadOnlyCollection<IProjectWithLinqExpressions> ISolution<IProjectWithLinqExpressions>.Projects
         {
             get { return new ReadOnlyNodeCollection<IProjectWithLinqExpressions, ProjectNode>(Projects); }
+        }
+
+        public Task AcceptAsync(ILinqExpressionsVisitor visitor)
+        {
+            return AcceptAsync(new LinqExpressionsNodeVisitor(visitor));
         }
     }
 }

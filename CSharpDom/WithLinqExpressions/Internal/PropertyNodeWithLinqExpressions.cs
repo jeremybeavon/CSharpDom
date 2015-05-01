@@ -27,5 +27,10 @@ namespace CSharpDom.WithLinqExpressions.Internal
         {
             get { return (IBasicTypeWithLinqExpressions)DeclaringType; }
         }
+
+        public void Accept(ILinqExpressionsVisitor visitor)
+        {
+            Accept(new LinqExpressionsNodeVisitor(visitor));
+        }
     }
 }

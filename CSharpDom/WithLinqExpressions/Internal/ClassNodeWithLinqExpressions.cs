@@ -42,6 +42,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
             get { return new ReadOnlyNodeCollection<IClassDeclarationWithLinqExpressions, ClassDeclarationNode>(Declarations); }
         }
 
+        IReadOnlyCollection<INestedClassDeclarationWithLinqExpressions> IHasDeclarations<INestedClassDeclarationWithLinqExpressions>.Declarations
+        {
+            get { return new ReadOnlyNodeCollection<INestedClassDeclarationWithLinqExpressions, ClassDeclarationNode>(Declarations); }
+        }
+
         ITypeWithLinqExpressions IHasDeclaringType<ITypeWithLinqExpressions>.DeclaringType
         {
             get { return (ITypeWithLinqExpressions)DeclaringType; }
@@ -55,6 +60,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
         IDestructorWithLinqExpressions IHasDestructor<IDestructorWithLinqExpressions>.Destructor
         {
             get { return (IDestructorWithLinqExpressions)Destructor; }
+        }
+
+        INestedDestructorWithLinqExpressions IHasDestructor<INestedDestructorWithLinqExpressions>.Destructor
+        {
+            get { return (INestedDestructorWithLinqExpressions)Destructor; }
         }
 
         IReadOnlyCollection<INestedEnumWithLinqExpressions> IHasEnums<INestedEnumWithLinqExpressions>.Enums
@@ -125,6 +135,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
         IReadOnlyCollection<INestedStructWithLinqExpressions> IHasStructs<INestedStructWithLinqExpressions>.Structs
         {
             get { return new ReadOnlyNodeCollection<INestedStructWithLinqExpressions, StructNode>(Structs); }
+        }
+
+        public void Accept(ILinqExpressionsVisitor visitor)
+        {
+            Accept(new LinqExpressionsNodeVisitor(visitor));
         }
     }
 }

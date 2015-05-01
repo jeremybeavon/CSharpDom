@@ -1,4 +1,5 @@
-﻿using CSharpDom.Common;
+﻿using System.Threading.Tasks;
+using CSharpDom.Common;
 using CSharpDom.WithReflection;
 using CSharpDom.WithSymbols;
 using CSharpDom.WithSyntax;
@@ -9,5 +10,6 @@ namespace CSharpDom.WithLinqExpressions
         IHasSymbols<ISolutionWithSymbols>,
         IHasReflection<ISolutionWithReflection>
     {
+        Task AcceptAsync(ILinqExpressionsVisitor visitor);
     }
 }

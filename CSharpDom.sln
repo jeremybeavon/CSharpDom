@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom", "CSharpDom\CSha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.Tests", "CSharpDom.Tests\CSharpDom.Tests.csproj", "{7AF198D4-97EF-436E-8A5D-508E0625B2B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.TestLibrary", "CSharpDom.TestLibrary\CSharpDom.TestLibrary.csproj", "{DBAEB8C6-A08E-4C4A-AA99-451775CA6815}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{7AF198D4-97EF-436E-8A5D-508E0625B2B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AF198D4-97EF-436E-8A5D-508E0625B2B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AF198D4-97EF-436E-8A5D-508E0625B2B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBAEB8C6-A08E-4C4A-AA99-451775CA6815}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBAEB8C6-A08E-4C4A-AA99-451775CA6815}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBAEB8C6-A08E-4C4A-AA99-451775CA6815}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBAEB8C6-A08E-4C4A-AA99-451775CA6815}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
