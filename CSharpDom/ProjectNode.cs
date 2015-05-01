@@ -73,6 +73,7 @@ namespace CSharpDom
 
         private IAsyncEnumerable<T, DocumentNode> CreateAsyncEnumerable<T>(
             Func<AnalyzedDocument, IEnumerable<T>> selectFunc)
+            where T : class
         {
             return new DocumentNodeAsyncEnumerable<T>(analyzedDocuments, selectFunc);
         }

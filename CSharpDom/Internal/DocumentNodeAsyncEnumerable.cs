@@ -7,6 +7,7 @@ using CSharpDom.Common;
 namespace CSharpDom.Internal
 {
     internal sealed class DocumentNodeAsyncEnumerable<T> : IAsyncEnumerable<T, DocumentNode>
+        where T : class
     {
         private readonly AsyncLazyLoadedEnumerable<DocumentNode, AnalyzedDocument> analyzedDocuments;
         private readonly Func<AnalyzedDocument, IEnumerable<T>> selectFunc;
@@ -33,7 +34,8 @@ namespace CSharpDom.Internal
 
         public async Task<T> GetSingle(Func<DocumentNode, bool> documentPredicate, Func<T, bool> predicate)
         {
-            return selectFunc(await analyzedDocuments.GetItemAsync(documentPredicate)).FirstOrDefault(predicate);
+            AnalyzedDocument document = await analyzedDocuments.GetItemAsync(documentPredicate);
+            return document == null ? null : selectFunc(document).FirstOrDefault(predicate);
         }
     }
 }

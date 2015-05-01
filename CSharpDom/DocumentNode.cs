@@ -19,10 +19,7 @@ namespace CSharpDom
 
         public string FullFilePath
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return Document.FilePath; }
         }
 
         public ProjectNode Project { get; private set; }

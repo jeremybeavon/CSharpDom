@@ -32,14 +32,14 @@ namespace CSharpDom.Internal
         {
             Func<TInternalDocument, bool> internalDocumentPredicate = GetDocumentPredicate(documentPredicate);
             Func<TInternal, bool> internalPredicate = GetPredicate(predicate);
-            return (await asyncEnumerable.GetMultiple(internalDocumentPredicate, internalPredicate)).Cast<T>();
+            return (await asyncEnumerable.GetMultiple(internalDocumentPredicate, internalPredicate)).Select(fromInternal);
         }
 
         public async Task<T> GetSingle(Func<TDocument, bool> documentPredicate, Func<T, bool> predicate)
         {
             Func<TInternalDocument, bool> internalDocumentPredicate = GetDocumentPredicate(documentPredicate);
             Func<TInternal, bool> internalPredicate = GetPredicate(predicate);
-            return (T)(object)(await asyncEnumerable.GetSingle(internalDocumentPredicate, internalPredicate));
+            return fromInternal(await asyncEnumerable.GetSingle(internalDocumentPredicate, internalPredicate));
         }
 
         private Func<TInternalDocument, bool> GetDocumentPredicate(Func<TDocument, bool> documentPredicate)
