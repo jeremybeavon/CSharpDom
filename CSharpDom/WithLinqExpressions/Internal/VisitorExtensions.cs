@@ -11,11 +11,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
 {
     internal static class VisitorExtensions
     {
-        public static ILinqExpressionMapping Accept(
+        public static IEnumerable<ILinqExpressionMapping> Accept(
             this SeparatedSyntaxList<ExpressionSyntax> node,
             CSharpSyntaxVisitor<ILinqExpressionMapping> visitor)
         {
-            return null;
+            return node.Select(childNode => childNode.Accept(visitor));
         }
     }
 }

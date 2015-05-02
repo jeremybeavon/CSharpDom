@@ -37,6 +37,11 @@ namespace CSharpDom.WithLinqExpressions
             get { return method.GenericParameterCount; }
         }
 
+        public IImplementation Implementation
+        {
+            get { return method.Implementation; }
+        }
+
         public bool IsGeneric
         {
             get { return method.IsGeneric; }

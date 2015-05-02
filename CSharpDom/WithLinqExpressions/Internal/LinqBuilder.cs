@@ -11,13 +11,15 @@ namespace CSharpDom.WithLinqExpressions.Internal
     {
         private readonly SemanticModel semanticModel;
         private readonly IDictionary<string, ParameterExpression> parameters;
-        private readonly IDictionary<string, ParameterExpression> localVariables;
+        private readonly LocalVariables localVariables;
+        private readonly LabelTargets labelTargets;
 
         public LinqBuilder(SemanticModel semanticModel)
         {
             this.semanticModel = semanticModel;
             parameters = new Dictionary<string, ParameterExpression>();
-            localVariables = new Dictionary<string, ParameterExpression>();
+            localVariables = new LocalVariables();
+            labelTargets = new LabelTargets();
         }
 
         public override ILinqExpressionMapping DefaultVisit(SyntaxNode node)

@@ -15,9 +15,12 @@ namespace CSharpDom.WithLinqExpressions.Internal
 
         public override ILinqExpressionMapping VisitBlock(BlockSyntax node)
         {
+            localVariables.StartBlock();
             IReadOnlyList<ILinqExpressionMapping> statements =
                 node.Statements.Select(statement => statement.Accept(this)).ToArray();
-            BlockExpression expression = Expression.Block(statements.Select(statement => statement.Expression));
+            IEnumerable<Expression> expressions = statements.SelectMany(statement => statement.Expressions);
+            BlockExpression expression = Expression.Block(localVariables.CurrentLocalVariables, expressions);
+            localVariables.EndBlock();
             return new BlockStatement(expression, node, statements);
         }
 
@@ -38,7 +41,21 @@ namespace CSharpDom.WithLinqExpressions.Internal
 
         public override ILinqExpressionMapping VisitDoStatement(DoStatementSyntax node)
         {
-            return base.VisitDoStatement(node);
+            LabelTarget previousBreakTarget = breakTarget;
+            LabelTarget previousContinueTarget = continueTarget;
+            breakTarget = Expression.Label();
+            continueTarget = Expression.Label();
+            ILinqExpressionMapping condition = node.Condition.Accept(this);
+            ILinqExpressionMapping statement = node.Statement.Accept(this);
+            Expression exit = Expression.IfThen(Expression.Not(condition.Expressions.Single()), Expression.Break(breakTarget));
+            LoopExpression loop = Expression.Loop(Expression.Block(statement.Expressions.Single(), exit), breakTarget, continueTarget);
+            breakTarget = previousBreakTarget;
+            continueTarget = previousContinueTarget;
+            return new DoStatement(loop, node)
+            {
+                Condition = condition,
+                Statement = statement
+            };
         }
 
         public override ILinqExpressionMapping VisitExpressionStatement(ExpressionStatementSyntax node)
@@ -52,14 +69,25 @@ namespace CSharpDom.WithLinqExpressions.Internal
             LabelTarget previousContinueTarget = continueTarget;
             breakTarget = Expression.Label();
             continueTarget = Expression.Label();
-            ILinqExpressionMapping initializers = node.Initializers.Accept(this);
+            localVariables.StartBlock();
+            IEnumerable<ILinqExpressionMapping> initializers = node.Initializers.Accept(this);
             ILinqExpressionMapping condition = node.Condition.Accept(this);
-            ILinqExpressionMapping incrementors = node.Incrementors.Accept(this);
+            IEnumerable<ILinqExpressionMapping> incrementors = node.Incrementors.Accept(this);
             ILinqExpressionMapping statement = node.Statement.Accept(this);
-            
+            Expression exit = Expression.IfThen(Expression.Not(condition.Expressions.Single()), Expression.Break(breakTarget));
+            Expression loop = Expression.Loop(Expression.Block(exit, statement.Expressions.Single()), breakTarget, continueTarget);
+            IEnumerable<Expression> expressions = initializers.SelectMany(initializer => initializer.Expressions).Concat(new[] { loop });
+            BlockExpression forLoop = Expression.Block(localVariables.CurrentLocalVariables, expressions);
+            localVariables.EndBlock();
             breakTarget = previousBreakTarget;
             continueTarget = previousContinueTarget;
-            return base.VisitForStatement(node);
+            return new ForStatement(forLoop, node)
+            {
+                Initializers = initializers,
+                Condition = condition,
+                Incrementors = incrementors,
+                Statement = statement
+            };
         }
 
         public override ILinqExpressionMapping VisitForEachStatement(ForEachStatementSyntax node)
@@ -69,7 +97,8 @@ namespace CSharpDom.WithLinqExpressions.Internal
 
         public override ILinqExpressionMapping VisitGotoStatement(GotoStatementSyntax node)
         {
-            return base.VisitGotoStatement(node);
+            string labelName = ((IdentifierNameSyntax)node.Expression).Identifier.Text;
+            return new GotoStatement(Expression.Goto(labelTargets.GetLabelTarget(labelName)), node);
         }
 
         public override ILinqExpressionMapping VisitIfStatement(IfStatementSyntax node)
@@ -78,8 +107,8 @@ namespace CSharpDom.WithLinqExpressions.Internal
             ILinqExpressionMapping whenTrue = node.Statement.Accept(this);
             ILinqExpressionMapping whenFalse = node.Else == null ? null : node.Else.Accept(this);
             ConditionalExpression expression = node.Else == null ?
-                Expression.IfThen(condition.Expression, whenTrue.Expression) :
-                Expression.IfThenElse(condition.Expression, whenTrue.Expression, whenFalse.Expression);
+                Expression.IfThen(condition.Expressions.Single(), whenTrue.Expressions.Single()) :
+                Expression.IfThenElse(condition.Expressions.Single(), whenTrue.Expressions.Single(), whenFalse.Expressions.Single());
             return new IfStatement(expression, node)
             {
                 Condition = condition,
@@ -90,7 +119,9 @@ namespace CSharpDom.WithLinqExpressions.Internal
 
         public override ILinqExpressionMapping VisitLabeledStatement(LabeledStatementSyntax node)
         {
-            return base.VisitLabeledStatement(node);
+            LabelExpression label = Expression.Label(labelTargets.GetLabelTarget(node.Identifier.Text));
+            ILinqExpressionMapping statement = node.Statement.Accept(this);
+            return new LabelStatement(label, statement, node);
         }
 
         public override ILinqExpressionMapping VisitLocalDeclarationStatement(LocalDeclarationStatementSyntax node)
@@ -105,8 +136,7 @@ namespace CSharpDom.WithLinqExpressions.Internal
 
         public override ILinqExpressionMapping VisitReturnStatement(ReturnStatementSyntax node)
         {
-            node.Expression.Accept(this);
-            return base.VisitReturnStatement(node);
+            return new ReturnStatement(node.Expression.Accept(this), node);
         }
 
         public override ILinqExpressionMapping VisitSwitchStatement(SwitchStatementSyntax node)
@@ -116,7 +146,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
 
         public override ILinqExpressionMapping VisitThrowStatement(ThrowStatementSyntax node)
         {
-            return base.VisitThrowStatement(node);
+            ILinqExpressionMapping expression = node.Expression.Accept(this);
+            return new ThrowStatement(Expression.Throw(expression.Expressions.Single()), node)
+            {
+                ThrowExpression = expression
+            };
         }
 
         public override ILinqExpressionMapping VisitTryStatement(TryStatementSyntax node)
@@ -131,7 +165,21 @@ namespace CSharpDom.WithLinqExpressions.Internal
 
         public override ILinqExpressionMapping VisitWhileStatement(WhileStatementSyntax node)
         {
-            return base.VisitWhileStatement(node);
+            LabelTarget previousBreakTarget = breakTarget;
+            LabelTarget previousContinueTarget = continueTarget;
+            breakTarget = Expression.Label();
+            continueTarget = Expression.Label();
+            ILinqExpressionMapping condition = node.Condition.Accept(this);
+            ILinqExpressionMapping statement = node.Statement.Accept(this);
+            Expression exit = Expression.IfThen(Expression.Not(condition.Expressions.Single()), Expression.Break(breakTarget));
+            LoopExpression loop = Expression.Loop(Expression.Block(exit, statement.Expressions.Single()), breakTarget, continueTarget);
+            breakTarget = previousBreakTarget;
+            continueTarget = previousContinueTarget;
+            return new WhileStatement(loop, node)
+            {
+                Condition = condition,
+                Statement = statement
+            };
         }
 
         public override ILinqExpressionMapping VisitYieldStatement(YieldStatementSyntax node)

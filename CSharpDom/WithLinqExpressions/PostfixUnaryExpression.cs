@@ -30,7 +30,7 @@ namespace CSharpDom.WithLinqExpressions
             ILinqExpressionMapping operand,
             UnaryExpressionBuilder builder,
             PostfixUnaryExpressionSyntax syntax)
-            : base(builder.LinqExpressionBuilder(operand.Expression), syntax)
+            : base(builder.LinqExpressionBuilder(operand.Expressions.Single()), syntax)
         {
             Operand = operand;
             ExpressionType = builder.ExpressionType;

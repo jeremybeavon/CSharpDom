@@ -10,8 +10,11 @@ namespace CSharpDom.WithLinqExpressions
         public MemberImplementation(LambdaExpression expression, TSyntax syntax, BlockStatement body)
             : base(expression, syntax)
         {
+            Expression = expression;
             Body = body;
         }
+
+        public LambdaExpression Expression { get; private set; }
 
         public BlockStatement Body { get; private set; }
     }

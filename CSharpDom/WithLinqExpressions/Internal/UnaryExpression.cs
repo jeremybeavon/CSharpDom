@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -30,7 +31,7 @@ namespace CSharpDom.WithLinqExpressions.Internal
             ILinqExpressionMapping operand,
             UnaryExpressionBuilder builder,
             PrefixUnaryExpressionSyntax syntax)
-            : base(builder.LinqExpressionBuilder(operand.Expression), syntax)
+            : base(builder.LinqExpressionBuilder(operand.Expressions.Single()), syntax)
         {
             Operand = operand;
             ExpressionType = builder.ExpressionType;

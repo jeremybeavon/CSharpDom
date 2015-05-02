@@ -9,18 +9,23 @@ namespace CSharpDom.WithLinqExpressions
         where TSyntax : SyntaxNode
     {
         protected LinqExpressionMapping(TExpression expression, TSyntax syntax)
+            : this(new[] { expression }, syntax)
         {
-            Expression = expression;
+        }
+
+        protected LinqExpressionMapping(IReadOnlyCollection<TExpression> expressions, TSyntax syntax)
+        {
+            Expressions = expressions;
             Syntax = syntax;
         }
 
-        public TExpression Expression { get; private set; }
+        public IReadOnlyCollection<TExpression> Expressions { get; private set; }
 
         public TSyntax Syntax { get; private set; }
 
-        Expression ILinqExpressionMapping.Expression
+        IReadOnlyCollection<Expression> ILinqExpressionMapping.Expressions
         {
-            get { return Expression; }
+            get { return Expressions; }
         }
 
         SyntaxNode ILinqExpressionMapping.Syntax

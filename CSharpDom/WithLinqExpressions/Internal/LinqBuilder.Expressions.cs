@@ -21,7 +21,7 @@ namespace CSharpDom.WithLinqExpressions.Internal
             switch (symbolInfo.Symbol.Kind)
             {
                 case SymbolKind.Local:
-                    return new LocalVariableReferenceExpression(localVariables[name], node);
+                    return new LocalVariableReferenceExpression(localVariables.GetLocalVariable(name), node);
                 case SymbolKind.Parameter:
                     return new ParameterReferenceExpression(parameters[name], node);
                 case SymbolKind.NamedType:

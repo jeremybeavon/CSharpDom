@@ -1,4 +1,5 @@
-﻿using System.Linq.Expressions;
+﻿using System.Collections.Generic;
+using System.Linq.Expressions;
 using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.WithLinqExpressions
@@ -7,7 +8,7 @@ namespace CSharpDom.WithLinqExpressions
         where TExpression : Expression
         where TSyntax : SyntaxNode
     {
-        new TExpression Expression { get; }
+        new IReadOnlyCollection<TExpression> Expressions { get; }
 
         new TSyntax Syntax { get; }
     }

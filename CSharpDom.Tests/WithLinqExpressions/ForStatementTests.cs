@@ -15,16 +15,18 @@ namespace CSharpDom.Tests.WithLinqExpressions
         private static readonly string solutionFile =
             Path.GetFullPath(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, @"..\..\..\CSharpDom.sln"));
 
+        [TestMethod]
         public async Task TestForStatement()
         {
             try
             {
-                SolutionWithLinqExpressions solution = await SolutionWithReflection.OpenSolutionAsync(solutionFile);
-                ProjectWithReflection project = solution.Projects.Single(proj => proj.Project.Name == "CSharpDom");
-                ClassWithReflection methodNodeClass = await project.Classes.GetSingle(
-                    document => Path.GetFileName(document.FullFilePath) == "PropertyWithReflection.cs",
+                SolutionWithLinqExpressions solution = await SolutionWithLinqExpressions.OpenSolutionAsync(solutionFile);
+                ProjectWithLinqExpressions project = solution.Projects.Single(proj => proj.Project.Name == "CSharpDom.TestLibrary");
+                ClassWithLinqExpressions forLoopsClass = await project.Classes.GetSingle(
+                    document => Path.GetFileName(document.FullFilePath) == "ForLoops.cs",
                     @class => true);
-                PropertyWithReflection property = methodNodeClass.Properties.Single(prop => prop.Name == "Name");
+                MethodWithLinqExpressions method = forLoopsClass.Methods.Single(prop => prop.Name == "Sum");
+                IImplementation implementation = method.Implementation;
             }
             catch (Exception ex)
             {

@@ -7,18 +7,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.WithLinqExpressions
 {
-    public sealed class ForStatement : LinqExpressionMapping<BlockExpression, ForStatementSyntax>
+    public sealed class DoStatement : LinqExpressionMapping<LoopExpression, DoStatementSyntax>
     {
-        public ForStatement(BlockExpression expression, ForStatementSyntax syntax)
+        public DoStatement(LoopExpression expression, DoStatementSyntax syntax)
             : base(expression, syntax)
         {
         }
 
-        public IEnumerable<ILinqExpressionMapping> Initializers { get; internal set; }
-
         public ILinqExpressionMapping Condition { get; internal set; }
-
-        public IEnumerable<ILinqExpressionMapping> Incrementors { get; internal set; }
 
         public ILinqExpressionMapping Statement { get; internal set; }
     }

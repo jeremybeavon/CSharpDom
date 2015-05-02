@@ -136,6 +136,7 @@
     <Compile Include="WithLinqExpressions\ExpressionList.cs" />
     <Compile Include="WithLinqExpressions\FieldWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\ForStatement.cs" />
+    <Compile Include="WithLinqExpressions\GotoStatement.cs" />
     <Compile Include="WithLinqExpressions\IBasicTypeWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\IBinaryExpression.cs" />
     <Compile Include="WithLinqExpressions\IClassDeclarationWithLinqExpressions.cs" />
@@ -194,11 +195,13 @@
     <Compile Include="WithLinqExpressions\Internal\IndexerNodeWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\Internal\InterfaceDeclarationNodeWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\Internal\InterfaceNodeWithLinqExpressions.cs" />
+    <Compile Include="WithLinqExpressions\Internal\LabelTargets.cs" />
     <Compile Include="WithLinqExpressions\Internal\LinqBuilder.cs" />
     <Compile Include="WithLinqExpressions\Internal\LinqBuilder.Declarations.cs" />
     <Compile Include="WithLinqExpressions\Internal\LinqBuilder.Expressions.cs" />
     <Compile Include="WithLinqExpressions\Internal\LinqBuilder.Statements.cs" />
     <Compile Include="WithLinqExpressions\Internal\LinqExpressionNodeFactory.cs" />
+    <Compile Include="WithLinqExpressions\Internal\LocalVariables.cs" />
     <Compile Include="WithLinqExpressions\Internal\MemberImplementation.cs" />
     <Compile Include="WithLinqExpressions\Internal\MethodNodeWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\Internal\NamespaceNodeWithLinqExpressions.cs" />
@@ -223,6 +226,7 @@
     <Compile Include="WithLinqExpressions\IStructWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\ITypeWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\IUnaryExpression.cs" />
+    <Compile Include="WithLinqExpressions\LabelStatement.cs" />
     <Compile Include="WithLinqExpressions\LinqExpressionFactory.cs" />
     <Compile Include="WithLinqExpressions\LinqExpressionMapping.cs" />
     <Compile Include="WithLinqExpressions\LocalVariableReferenceExpression.cs" />
@@ -244,12 +248,16 @@
     <Compile Include="WithLinqExpressions\ProjectWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\PropertyWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\LinqExpressionsVisitor.cs" />
+    <Compile Include="WithLinqExpressions\ReturnStatement.cs" />
     <Compile Include="WithLinqExpressions\SolutionWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\StructDeclarationWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\StructWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\ThrowStatement.cs" />
     <Compile Include="WithLinqExpressions\TypeWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\UnaryExpressionType.cs" />
+    <Compile Include="WithLinqExpressions\DoStatement.cs" />
+    <Compile Include="WithLinqExpressions\VariableDeclarationStatement.cs" />
+    <Compile Include="WithLinqExpressions\WhileStatement.cs" />
     <Compile Include="WithReflection\BasicTypeWithReflection.cs" />
     <Compile Include="WithReflection\ClassDeclarationWithReflection.cs" />
     <Compile Include="WithReflection\ClassWithReflection.cs" />

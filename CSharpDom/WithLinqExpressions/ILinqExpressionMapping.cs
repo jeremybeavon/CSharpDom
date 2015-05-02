@@ -6,7 +6,7 @@ namespace CSharpDom.WithLinqExpressions
 {
     public interface ILinqExpressionMapping
     {
-        Expression Expression { get; }
+        IReadOnlyCollection<Expression> Expressions { get; }
 
         SyntaxNode Syntax { get; }
 

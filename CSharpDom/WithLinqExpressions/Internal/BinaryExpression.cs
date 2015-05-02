@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -59,7 +60,7 @@ namespace CSharpDom.WithLinqExpressions.Internal
             ILinqExpressionMapping right,
             BinaryExpressionBuilder builder,
             BinaryExpressionSyntax syntax)
-            : base(builder.LinqExpressionBuilder(left.Expression, right.Expression), syntax)
+            : base(builder.LinqExpressionBuilder(left.Expressions.Single(), right.Expressions.Single()), syntax)
         {
             Left = left;
             Right = right;
