@@ -39,7 +39,6 @@ namespace CSharpDom.WithLinqExpressions.Internal
         public override ILinqExpressionMapping VisitMemberAccessExpression(MemberAccessExpressionSyntax node)
         {
             ILinqExpressionMapping expression = node.Expression.Accept(this);
-            
             return base.VisitMemberAccessExpression(node);
         }
 

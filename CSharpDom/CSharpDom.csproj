@@ -213,6 +213,7 @@
     <Compile Include="WithLinqExpressions\Internal\SolutionNodeWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\Internal\StructDeclarationNodeWithLinqExpressions.cs" />
     <Compile Include="WithLinqExpressions\Internal\StructNodeWithLinqExpressions.cs" />
+    <Compile Include="WithLinqExpressions\Internal\TypeResolver.cs" />
     <Compile Include="WithLinqExpressions\Internal\UnaryExpression.cs" />
     <Compile Include="WithLinqExpressions\Internal\UnaryExpressionBuilder.cs" />
     <Compile Include="WithLinqExpressions\Internal\UnaryExpressionBuilderList.cs" />

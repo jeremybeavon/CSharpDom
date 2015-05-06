@@ -10,6 +10,7 @@ namespace CSharpDom.WithLinqExpressions.Internal
     internal sealed partial class LinqBuilder : CSharpSyntaxVisitor<ILinqExpressionMapping>
     {
         private readonly SemanticModel semanticModel;
+        private readonly TypeResolver typeResolver;
         private readonly IDictionary<string, ParameterExpression> parameters;
         private readonly LocalVariables localVariables;
         private readonly LabelTargets labelTargets;
@@ -17,6 +18,7 @@ namespace CSharpDom.WithLinqExpressions.Internal
         public LinqBuilder(SemanticModel semanticModel)
         {
             this.semanticModel = semanticModel;
+            typeResolver = new TypeResolver(semanticModel);
             parameters = new Dictionary<string, ParameterExpression>();
             localVariables = new LocalVariables();
             labelTargets = new LabelTargets();
@@ -24,7 +26,7 @@ namespace CSharpDom.WithLinqExpressions.Internal
 
         public override ILinqExpressionMapping DefaultVisit(SyntaxNode node)
         {
-            SymbolInfo test = semanticModel.GetSymbolInfo(node);
+            ////SymbolInfo test = semanticModel.GetSymbolInfo(node);
             throw new NotSupportedException();
         }
     }

@@ -12,6 +12,11 @@ namespace CSharpDom.WithLinqExpressions.Internal
     {
         public override ILinqExpressionMapping VisitMethodDeclaration(MethodDeclarationSyntax node)
         {
+            foreach (ParameterSyntax parameter in node.ParameterList.Parameters)
+            {
+                Type type = typeResolver.GetType(parameter.Type);
+            }
+
             BlockStatement body = (BlockStatement)node.Body.Accept(this);
             return new MemberImplementation<MethodDeclarationSyntax>(Expression.Lambda(body.Expressions.Single()), node, body);
         }
