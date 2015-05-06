@@ -33,7 +33,7 @@ namespace CSharpDom.WithSyntax
             ProjectInfo projectInfo = ProjectInfo.Create(projectId, version, "ProjectName", "AssemblyName", "C#");
             projectInfo = projectInfo.WithDocuments(new DocumentInfo[] { documentInfo });
             SolutionInfo solutionInfo = SolutionInfo.Create(solutionId, version, projects: new ProjectInfo[] { projectInfo });
-            CustomWorkspace workspace = new CustomWorkspace();
+            AdhocWorkspace workspace = new AdhocWorkspace();
             workspace.AddSolution(solutionInfo);
             return new SolutionNodeWithSyntax(workspace.CurrentSolution);
         }
