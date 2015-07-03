@@ -2,12 +2,12 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
     <metadata>
         <id>CSharpDom</id>
-        <version>0.1.0-pre</version>
+        <version>0.2.0-pre</version>
         <authors>Jeremy Beavon</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Provides a DOM for C#.</description>
         <dependencies>
-            <dependency id="Microsoft.CodeAnalysis.CSharp.Workspaces" version="1.0.0-beta1-20141031-01" />
+            <dependency id="Microsoft.CodeAnalysis.CSharp.Workspaces" version="1.0.0-rc2" />
         </dependencies>
     </metadata>
     <files>

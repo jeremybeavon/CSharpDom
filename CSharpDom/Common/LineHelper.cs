@@ -25,7 +25,7 @@ namespace CSharpDom.Common
 
         private static bool IsXmlDocumentation(SyntaxTrivia? trivia)
         {
-            return trivia.Value.CSharpKind() == SyntaxKind.SingleLineDocumentationCommentTrivia;
+            return trivia.Value.Kind() == SyntaxKind.SingleLineDocumentationCommentTrivia;
         }
     }
 }
