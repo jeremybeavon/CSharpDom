@@ -22,7 +22,7 @@ namespace CSharpDom.WithLinqExpressions
         };
 
         internal PostfixUnaryExpression(ILinqExpressionMapping operand, PostfixUnaryExpressionSyntax syntax)
-            : this(operand, ExpressionBuilders[syntax.OperatorToken.CSharpKind()], syntax)
+            : this(operand, ExpressionBuilders[syntax.OperatorToken.Kind()], syntax)
         {
         }
 

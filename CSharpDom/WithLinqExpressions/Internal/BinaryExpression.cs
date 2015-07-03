@@ -51,7 +51,7 @@ namespace CSharpDom.WithLinqExpressions.Internal
             ILinqExpressionMapping left,
             ILinqExpressionMapping right,
             BinaryExpressionSyntax syntax)
-            : this(left, right, expresionBuilders[syntax.OperatorToken.CSharpKind()], syntax)
+            : this(left, right, expresionBuilders[syntax.OperatorToken.Kind()], syntax)
         {
         }
 

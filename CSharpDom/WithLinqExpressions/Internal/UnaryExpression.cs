@@ -23,7 +23,7 @@ namespace CSharpDom.WithLinqExpressions.Internal
         };
 
         public UnaryExpression(ILinqExpressionMapping operand, PrefixUnaryExpressionSyntax syntax)
-            : this(operand, ExpressionBuilders[syntax.OperatorToken.CSharpKind()], syntax)
+            : this(operand, ExpressionBuilders[syntax.OperatorToken.Kind()], syntax)
         {
         }
 
