@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/10/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <metadata>
         <id>CSharpDom</id>
-        <version>0.3.0-pre</version>
+        <version>1.0.0</version>
         <authors>Jeremy Beavon</authors>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Provides a DOM for C#.</description>
         <dependencies>
-            <dependency id="Microsoft.CodeAnalysis.CSharp.Workspaces" version="1.0.0-rc3" />
+            <dependency id="Microsoft.CodeAnalysis.CSharp.Workspaces" version="1.0.0" />
         </dependencies>
     </metadata>
     <files>
