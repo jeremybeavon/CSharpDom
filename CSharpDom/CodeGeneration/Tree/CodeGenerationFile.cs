@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class CodeGenerationFile
+    public sealed class CodeGenerationFile : CodeGenerationNode
     {
         public CodeGenerationFile()
         {
@@ -15,5 +15,10 @@ namespace CSharpDom.CodeGeneration.Tree
         }
 
         public Collection<Namespace> Namespaces { get; set; }
+
+        public override void Accept(CodeGenerationVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class Delegate
+    public sealed class Delegate : CodeGenerationNode
     {
+        public override void Accept(CodeGenerationVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class EnumField
+    public sealed class EnumField : CodeGenerationNode
     {
         public EnumField(string name)
         {
@@ -16,5 +16,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public string Name { get; set; }
 
         public string RawInitialValue { get; set; }
+
+        public override void Accept(CodeGenerationVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

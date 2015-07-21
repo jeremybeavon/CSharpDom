@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public abstract class TypeContainer
+    public abstract class TypeContainer : CodeGenerationNode
     {
         protected TypeContainer()
         {

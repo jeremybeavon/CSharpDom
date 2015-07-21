@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class Interface
+    public sealed class Interface : Statement
     {
+        public override void Accept(CodeGenerationVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

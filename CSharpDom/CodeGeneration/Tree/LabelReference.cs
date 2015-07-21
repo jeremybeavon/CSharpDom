@@ -1,20 +1,13 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class Namespace : TypeContainer
+    public sealed class LabelReference : CodeGenerationNode
     {
-        public Namespace()
-        {
-            Namespaces = new Collection<Namespace>();
-        }
-
-        public Collection<Namespace> Namespaces { get; set; }
-
         public override void Accept(CodeGenerationVisitor visitor)
         {
             throw new NotImplementedException();

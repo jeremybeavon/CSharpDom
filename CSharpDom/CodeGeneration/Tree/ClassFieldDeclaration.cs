@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassFieldDeclaration
+    public sealed class ClassFieldDeclaration : CodeGenerationNode
     {
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
@@ -17,5 +17,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public TypeReference Type { get; set; }
 
         public Collection<Field> Fields { get; set; }
+
+        public override void Accept(CodeGenerationVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

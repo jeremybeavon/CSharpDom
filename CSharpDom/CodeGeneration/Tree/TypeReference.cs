@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public class TypeReference
+    public class TypeReference : CodeGenerationNode
     {
         public TypeReference(Type type)
         {
@@ -18,6 +18,11 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public TypeReference(string type)
         {
+        }
+
+        public override void Accept(CodeGenerationVisitor visitor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

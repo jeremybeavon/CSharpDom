@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class Namespace : TypeContainer
+    public sealed class FinallyStatement : CodeGenerationNode
     {
-        public Namespace()
+        public FinallyStatement()
         {
-            Namespaces = new Collection<Namespace>();
+            Statements = new Collection<Statement>();
         }
 
-        public Collection<Namespace> Namespaces { get; set; }
+        public Collection<Statement> Statements { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

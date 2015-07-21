@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassBody
+    public sealed class ClassBody : CodeGenerationNode
     {
         public ClassBody()
         {
@@ -16,5 +16,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<ClassFieldDeclaration> Fields { get; set; }
 
         public Collection<ClassMethod> Methods { get; set; }
+
+        public override void Accept(CodeGenerationVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

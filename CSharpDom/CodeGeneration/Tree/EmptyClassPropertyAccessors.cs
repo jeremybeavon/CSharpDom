@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class EmptyClassPropertyAccessors
+    public sealed class EmptyClassPropertyAccessors : CodeGenerationNode
     {
         public EmptyClassPropertyAccessors()
         {
@@ -23,5 +23,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public ClassPropertyAccessorVisibilityModifier GetAccessorVisibility { get; set; }
 
         public ClassPropertyAccessorVisibilityModifier SetAccessorVisibility { get; set; }
+
+        public override void Accept(CodeGenerationVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

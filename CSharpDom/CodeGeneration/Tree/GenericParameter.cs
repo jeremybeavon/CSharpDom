@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class GenericParameter
+    public sealed class GenericParameter : CodeGenerationNode
     {
         public GenericParameter(string name)
         {
@@ -26,5 +26,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<InterfaceReference> InterfaceConstraints { get; set; }
 
         public bool HasEmptyConstructorConstraint { get; set; }
+
+        public override void Accept(CodeGenerationVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

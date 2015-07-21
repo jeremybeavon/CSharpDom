@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class Namespace : TypeContainer
+    public sealed class UsingStatement : Statement
     {
-        public Namespace()
-        {
-            Namespaces = new Collection<Namespace>();
-        }
+        public IExpressionStatement Expression { get; set; }
 
-        public Collection<Namespace> Namespaces { get; set; }
+        public Statement Statement { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
