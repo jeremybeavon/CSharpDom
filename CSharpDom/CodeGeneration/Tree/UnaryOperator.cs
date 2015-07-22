@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassPropertyAccessor : CodeGenerationNode
+    public sealed class UnaryOperator : CodeGenerationNode
     {
-        public ClassPropertyAccessor()
+        public UnaryOperator(UnaryOperatorType unaryOperatorType)
         {
+            OperatorType = unaryOperatorType;
             Body = new Collection<Statement>();
         }
 
-        public ClassPropertyAccessorVisibilityModifier Visibility { get; set; }
+        public UnaryOperatorType OperatorType { get; set; }
 
         public Collection<Statement> Body { get; set; }
 

@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassPropertyAccessor : CodeGenerationNode
+    public sealed class ConversionOperator : CodeGenerationNode
     {
-        public ClassPropertyAccessor()
+        public ConversionOperator()
         {
             Body = new Collection<Statement>();
         }
 
-        public ClassPropertyAccessorVisibilityModifier Visibility { get; set; }
+        public ConversionOperatorType OperatorType { get; set; }
+
+        public TypeReference InputType { get; set; }
+
+        public TypeReference OutputType { get; set; }
 
         public Collection<Statement> Body { get; set; }
 

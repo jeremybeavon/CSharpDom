@@ -24,6 +24,8 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public MemberInheritanceModifier InheritanceModifier { get; set; }
 
+        public TypeReference Type { get; set; }
+
         public EmptyClassPropertyAccessors EmptyAccessors
         {
             get

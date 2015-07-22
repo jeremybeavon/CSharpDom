@@ -10,10 +10,8 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
-        public bool IsStatic { get; set; }
-
-        public bool IsReadOnly { get; set; }
-
+        public FieldModifier Modifier { get; set; }
+        
         public TypeReference Type { get; set; }
 
         public Collection<Field> Fields { get; set; }

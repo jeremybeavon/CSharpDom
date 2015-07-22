@@ -7,22 +7,21 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class Delegate : CodeGenerationNode
+    public sealed class ClassNestedEnum : CodeGenerationNode
     {
-        public Delegate(string name)
+        public ClassNestedEnum(string name)
         {
             Name = name;
-            GenericParameters = new Collection<GenericParameter>();
-            Parameters = new Collection<MethodParameter>();
+            Fields = new Collection<EnumField>();
         }
 
-        public TypeVisibilityModifier Visibility { get; set; }
+        public ClassMemberVisibilityModifier Visibility { get; set; }
 
         public string Name { get; set; }
 
-        public Collection<GenericParameter> GenericParameters { get; set; }
+        public EnumBaseType BaseType { get; set; }
 
-        public Collection<MethodParameter> Parameters { get; set; }
+        public Collection<EnumField> Fields { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

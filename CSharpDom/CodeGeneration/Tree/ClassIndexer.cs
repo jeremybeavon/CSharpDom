@@ -6,28 +6,25 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassMethod : CodeGenerationNode
+    public sealed class ClassIndexer : CodeGenerationNode
     {
-        public ClassMethod(string name)
+        public ClassIndexer(string name)
         {
             Name = name;
             Parameters = new Collection<MethodParameter>();
-            Body = new Collection<Statement>();
         }
 
         public string Name { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
-        public bool IsAsync { get; set; }
-
         public MemberInheritanceModifier InheritanceModifier { get; set; }
-
-        public Collection<GenericParameter> GenericParameters { get; set; }
 
         public Collection<MethodParameter> Parameters { get; set; }
 
-        public Collection<Statement> Body { get; set; }
+        public ClassPropertyAccessor GetAccessor { get; set; }
+
+        public ClassPropertyAccessor SetAccessor { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

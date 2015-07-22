@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassPropertyAccessor : CodeGenerationNode
+    public sealed class EventAccessors : CodeGenerationNode
     {
-        public ClassPropertyAccessor()
+        public EventAccessors()
         {
-            Body = new Collection<Statement>();
+            AddBody = new Collection<Statement>();
+            RemoveBody = new Collection<Statement>();
         }
 
-        public ClassPropertyAccessorVisibilityModifier Visibility { get; set; }
+        public Collection<Statement> AddBody { get; set; }
 
-        public Collection<Statement> Body { get; set; }
+        public Collection<Statement> RemoveBody { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

@@ -6,16 +6,14 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public enum MemberInheritanceModifier
+    public enum FieldModifier
     {
         None,
+        Const,
         Static,
-        Abstract,
-        Virtual,
-        Override,
-        SealedOverride,
-        New,
-        NewStatic,
-        NewVirtual
+        ReadOnly,
+        StaticReadOnly,
+        Volatile,
+        StaticVolatile
     }
 }

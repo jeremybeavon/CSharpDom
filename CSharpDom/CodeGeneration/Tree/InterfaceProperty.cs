@@ -1,26 +1,24 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class Enum : CodeGenerationNode
+    public sealed class InterfaceProperty : CodeGenerationNode
     {
-        public Enum(string name)
+        public InterfaceProperty(string name, InterfacePropertyAccessors accessors)
         {
             Name = name;
-            Fields = new Collection<EnumField>();
+            Accessors = accessors;
         }
-
-        public TypeVisibilityModifier Visibility { get; set; }
 
         public string Name { get; set; }
 
-        public EnumBaseType BaseType { get; set; }
+        public bool IsNew { get; set; }
 
-        public Collection<EnumField> Fields { get; set; }
+        public InterfacePropertyAccessors Accessors { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
