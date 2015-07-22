@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassFieldDeclaration : CodeGenerationNode
+    public sealed class StructFieldDeclaration : CodeGenerationNode
     {
-        public ClassFieldDeclaration()
+        public StructFieldDeclaration()
         {
             Fields = new Collection<Field>();
         }
 
-        public ClassMemberVisibilityModifier Visibility { get; set; }
+        public StructMemberVisibilityModifier Visibility { get; set; }
 
         public FieldModifier Modifier { get; set; }
         

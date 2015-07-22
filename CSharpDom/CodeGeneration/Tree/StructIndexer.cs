@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
@@ -7,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassNestedDelegate : CodeGenerationNode
+    public sealed class StructIndexer : CodeGenerationNode
     {
-        public ClassNestedDelegate(string name)
+        public StructIndexer(string name)
         {
             Name = name;
-            GenericParameters = new Collection<GenericParameter>();
             Parameters = new Collection<MethodParameter>();
         }
 
-        public ClassMemberVisibilityModifier Visibility { get; set; }
-
         public string Name { get; set; }
 
-        public Collection<GenericParameter> GenericParameters { get; set; }
+        public StructMemberVisibilityModifier Visibility { get; set; }
 
         public Collection<MethodParameter> Parameters { get; set; }
+
+        public ClassPropertyAccessor GetAccessor { get; set; }
+
+        public ClassPropertyAccessor SetAccessor { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

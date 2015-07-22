@@ -21,6 +21,8 @@ namespace CSharpDom.CodeGeneration.Tree
             NestedClasses = new Collection<ClassNestedClass>();
             NestedDelegates = new Collection<ClassNestedDelegate>();
             NestedEnums = new Collection<ClassNestedEnum>();
+            NestedInterfaces = new Collection<ClassNestedInterface>();
+            NestedStructs = new Collection<ClassNestedStruct>();
         }
 
         public Collection<ClassFieldDeclaration> Fields { get; set; }
@@ -44,6 +46,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<ClassNestedDelegate> NestedDelegates { get; set; }
 
         public Collection<ClassNestedEnum> NestedEnums { get; set; }
+
+        public Collection<ClassNestedInterface> NestedInterfaces { get; set; }
+
+        public Collection<ClassNestedStruct> NestedStructs { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

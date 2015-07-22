@@ -14,6 +14,7 @@ namespace CSharpDom.CodeGeneration.Tree
             Name = name;
             GenericParameters = new Collection<GenericParameter>();
             Interfaces = new Collection<InterfaceReference>();
+            Body = new InterfaceBody();
         }
 
         public string Name { get; set; }
@@ -28,7 +29,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public Collection<InterfaceReference> Interfaces { get; set; }
 
-        public ClassBody Body { get; set; }
+        public InterfaceBody Body { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

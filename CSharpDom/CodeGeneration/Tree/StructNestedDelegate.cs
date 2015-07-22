@@ -7,16 +7,16 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassNestedDelegate : CodeGenerationNode
+    public sealed class StructNestedDelegate : CodeGenerationNode
     {
-        public ClassNestedDelegate(string name)
+        public StructNestedDelegate(string name)
         {
             Name = name;
             GenericParameters = new Collection<GenericParameter>();
             Parameters = new Collection<MethodParameter>();
         }
 
-        public ClassMemberVisibilityModifier Visibility { get; set; }
+        public StructMemberVisibilityModifier Visibility { get; set; }
 
         public string Name { get; set; }
 

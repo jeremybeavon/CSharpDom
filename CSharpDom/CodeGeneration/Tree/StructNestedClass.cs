@@ -7,22 +7,31 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassNestedDelegate : CodeGenerationNode
+    public sealed class StructNestedClass : CodeGenerationNode
     {
-        public ClassNestedDelegate(string name)
+        public StructNestedClass(string name)
         {
             Name = name;
             GenericParameters = new Collection<GenericParameter>();
-            Parameters = new Collection<MethodParameter>();
+            Interfaces = new Collection<InterfaceReference>();
+            Body = new ClassBody();
         }
-
-        public ClassMemberVisibilityModifier Visibility { get; set; }
 
         public string Name { get; set; }
 
+        public StructMemberVisibilityModifier Visibility { get; set; }
+
+        public TypeInheritanceModifier InheritanceModifier { get; set; }
+
+        public bool IsPartial { get; set; }
+
         public Collection<GenericParameter> GenericParameters { get; set; }
 
-        public Collection<MethodParameter> Parameters { get; set; }
+        public ClassReference BaseClass { get; set; }
+
+        public Collection<InterfaceReference> Interfaces { get; set; }
+
+        public ClassBody Body { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
