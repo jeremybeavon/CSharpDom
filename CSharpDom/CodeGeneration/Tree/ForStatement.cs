@@ -20,7 +20,19 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
-            throw new NotImplementedException();
+            if (visitor != null)
+            {
+                visitor.Visit(this);
+            }
+        }
+
+        public override void AcceptChildren(CodeGenerationVisitor visitor)
+        {
+            InitialValueExpression.AcceptIfNotNull(visitor);
+            InitialValueStatement.AcceptIfNotNull(visitor);
+            Condition.AcceptIfNotNull(visitor);
+            Increment.AcceptIfNotNull(visitor);
+            Statement.AcceptIfNotNull(visitor);
         }
     }
 }

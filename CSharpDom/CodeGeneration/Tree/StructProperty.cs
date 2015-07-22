@@ -8,14 +8,14 @@ namespace CSharpDom.CodeGeneration.Tree
 {
     public sealed class StructProperty : CodeGenerationNode
     {
-        private EmptyClassPropertyAccessors emptyAccessors;
-        private ClassPropertyAccessor getAccessor;
-        private ClassPropertyAccessor setAccessor;
+        private EmptyStructPropertyAccessors emptyAccessors;
+        private StructPropertyAccessor getAccessor;
+        private StructPropertyAccessor setAccessor;
 
         public StructProperty(string name)
         {
             Name = name;
-            emptyAccessors = new EmptyClassPropertyAccessors();
+            emptyAccessors = new EmptyStructPropertyAccessors();
         }
 
         public string Name { get; set; }
@@ -26,7 +26,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public TypeReference Type { get; set; }
 
-        public EmptyClassPropertyAccessors EmptyAccessors
+        public EmptyStructPropertyAccessors EmptyAccessors
         {
             get
             {
@@ -44,7 +44,7 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
-        public ClassPropertyAccessor GetAccessor
+        public StructPropertyAccessor GetAccessor
         {
             get
             {
@@ -61,7 +61,7 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
-        public ClassPropertyAccessor SetAccessor
+        public StructPropertyAccessor SetAccessor
         {
             get
             {
@@ -80,7 +80,18 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
-            throw new NotImplementedException();
+            if (visitor != null)
+            {
+                visitor.Visit(this);
+            }
+        }
+
+        public override void AcceptChildren(CodeGenerationVisitor visitor)
+        {
+            Type.AcceptIfNotNull(visitor);
+            EmptyAccessors.AcceptIfNotNull(visitor);
+            GetAccessor.AcceptIfNotNull(visitor);
+            SetAccessor.AcceptIfNotNull(visitor);
         }
     }
 }

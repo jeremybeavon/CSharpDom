@@ -1,18 +1,19 @@
 ﻿using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class SwitchStatement : Statement
+    public sealed class UsingDeclaration : CodeGenerationNode
     {
-        public IExpressionStatement Expression { get; set; }
+        public UsingDeclaration(string @namespace)
+        {
+            Namespace = @namespace;
+        }
 
-        public Collection<SwitchCaseStatement> Cases { get; set; }
-
-        public Collection<Statement> DefaultCase { get; set; }
+        public string Namespace { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
@@ -24,9 +25,6 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void AcceptChildren(CodeGenerationVisitor visitor)
         {
-            Expression.AcceptIfNotNull(visitor);
-            Cases.AcceptIfNotNull(visitor);
-            DefaultCase.AcceptIfNotNull(visitor);
         }
     }
 }

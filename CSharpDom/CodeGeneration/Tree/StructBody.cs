@@ -54,7 +54,27 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
-            throw new NotImplementedException();
+            if (visitor != null)
+            {
+                visitor.Visit(this);
+            }
+        }
+
+        public override void AcceptChildren(CodeGenerationVisitor visitor)
+        {
+            Fields.AcceptIfNotNull(visitor);
+            Events.AcceptIfNotNull(visitor);
+            Properties.AcceptIfNotNull(visitor);
+            Indexers.AcceptIfNotNull(visitor);
+            Methods.AcceptIfNotNull(visitor);
+            UnaryOperators.AcceptIfNotNull(visitor);
+            BinaryOperators.AcceptIfNotNull(visitor);
+            ConversionOperators.AcceptIfNotNull(visitor);
+            NestedClasses.AcceptIfNotNull(visitor);
+            NestedDelegates.AcceptIfNotNull(visitor);
+            NestedEnums.AcceptIfNotNull(visitor);
+            NestedInterfaces.AcceptIfNotNull(visitor);
+            NestedStructs.AcceptIfNotNull(visitor);
         }
     }
 }

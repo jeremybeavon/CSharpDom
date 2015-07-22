@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class EmptyClassPropertyAccessors : CodeGenerationNode
+    public sealed class EmptyStructPropertyAccessors : CodeGenerationNode
     {
-        public EmptyClassPropertyAccessors()
+        public EmptyStructPropertyAccessors()
         {
         }
 
-        public EmptyClassPropertyAccessors(
-            ClassPropertyAccessorVisibilityModifier getAccessorVisibility,
-            ClassPropertyAccessorVisibilityModifier setAccessorVisibility)
+        public EmptyStructPropertyAccessors(
+            StructPropertyAccessorVisibilityModifier getAccessorVisibility,
+            StructPropertyAccessorVisibilityModifier setAccessorVisibility)
         {
             getAccessorVisibility = GetAccessorVisibility;
             SetAccessorVisibility = setAccessorVisibility;
         }
 
-        public ClassPropertyAccessorVisibilityModifier GetAccessorVisibility { get; set; }
+        public StructPropertyAccessorVisibilityModifier GetAccessorVisibility { get; set; }
 
-        public ClassPropertyAccessorVisibilityModifier SetAccessorVisibility { get; set; }
+        public StructPropertyAccessorVisibilityModifier SetAccessorVisibility { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
