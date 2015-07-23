@@ -10,10 +10,10 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public Namespace()
         {
-            Namespaces = new Collection<Namespace>();
+            Namespaces = new CodeGenerationCollection<Namespace>();
         }
 
-        public Collection<Namespace> Namespaces { get; set; }
+        public CodeGenerationCollection<Namespace> Namespaces { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

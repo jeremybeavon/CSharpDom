@@ -10,13 +10,13 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public EventAccessors()
         {
-            AddBody = new Collection<Statement>();
-            RemoveBody = new Collection<Statement>();
+            AddBody = new CodeGenerationCollection<Statement>();
+            RemoveBody = new CodeGenerationCollection<Statement>();
         }
 
-        public Collection<Statement> AddBody { get; set; }
+        public CodeGenerationCollection<Statement> AddBody { get; set; }
 
-        public Collection<Statement> RemoveBody { get; set; }
+        public CodeGenerationCollection<Statement> RemoveBody { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

@@ -10,46 +10,46 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public ClassBody()
         {
-            Fields = new Collection<ClassFieldDeclaration>();
-            Events = new Collection<ClassEvent>();
-            Properties = new Collection<ClassProperty>();
-            Indexers = new Collection<ClassIndexer>();
-            Methods = new Collection<ClassMethod>();
-            UnaryOperators = new Collection<UnaryOperator>();
-            BinaryOperators = new Collection<BinaryOperator>();
-            ConversionOperators = new Collection<ConversionOperator>();
-            NestedClasses = new Collection<ClassNestedClass>();
-            NestedDelegates = new Collection<ClassNestedDelegate>();
-            NestedEnums = new Collection<ClassNestedEnum>();
-            NestedInterfaces = new Collection<ClassNestedInterface>();
-            NestedStructs = new Collection<ClassNestedStruct>();
+            Fields = new CodeGenerationCollection<ClassFieldDeclaration>();
+            Events = new CodeGenerationCollection<ClassEvent>();
+            Properties = new CodeGenerationCollection<ClassProperty>();
+            Indexers = new CodeGenerationCollection<ClassIndexer>();
+            Methods = new CodeGenerationCollection<ClassMethod>();
+            UnaryOperators = new CodeGenerationCollection<UnaryOperator>();
+            BinaryOperators = new CodeGenerationCollection<BinaryOperator>();
+            ConversionOperators = new CodeGenerationCollection<ConversionOperator>();
+            NestedClasses = new CodeGenerationCollection<ClassNestedClass>();
+            NestedDelegates = new CodeGenerationCollection<ClassNestedDelegate>();
+            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>();
+            NestedInterfaces = new CodeGenerationCollection<ClassNestedInterface>();
+            NestedStructs = new CodeGenerationCollection<ClassNestedStruct>();
         }
 
-        public Collection<ClassFieldDeclaration> Fields { get; set; }
+        public CodeGenerationCollection<ClassFieldDeclaration> Fields { get; set; }
 
-        public Collection<ClassEvent> Events { get; set; }
+        public CodeGenerationCollection<ClassEvent> Events { get; set; }
 
-        public Collection<ClassProperty> Properties { get; set; }
+        public CodeGenerationCollection<ClassProperty> Properties { get; set; }
 
-        public Collection<ClassIndexer> Indexers { get; set; }
+        public CodeGenerationCollection<ClassIndexer> Indexers { get; set; }
 
-        public Collection<ClassMethod> Methods { get; set; }
+        public CodeGenerationCollection<ClassMethod> Methods { get; set; }
 
-        public Collection<UnaryOperator> UnaryOperators { get; set; }
+        public CodeGenerationCollection<UnaryOperator> UnaryOperators { get; set; }
 
-        public Collection<BinaryOperator> BinaryOperators { get; set; }
+        public CodeGenerationCollection<BinaryOperator> BinaryOperators { get; set; }
 
-        public Collection<ConversionOperator> ConversionOperators { get; set; }
+        public CodeGenerationCollection<ConversionOperator> ConversionOperators { get; set; }
 
-        public Collection<ClassNestedClass> NestedClasses { get; set; }
+        public CodeGenerationCollection<ClassNestedClass> NestedClasses { get; set; }
 
-        public Collection<ClassNestedDelegate> NestedDelegates { get; set; }
+        public CodeGenerationCollection<ClassNestedDelegate> NestedDelegates { get; set; }
 
-        public Collection<ClassNestedEnum> NestedEnums { get; set; }
+        public CodeGenerationCollection<ClassNestedEnum> NestedEnums { get; set; }
 
-        public Collection<ClassNestedInterface> NestedInterfaces { get; set; }
+        public CodeGenerationCollection<ClassNestedInterface> NestedInterfaces { get; set; }
 
-        public Collection<ClassNestedStruct> NestedStructs { get; set; }
+        public CodeGenerationCollection<ClassNestedStruct> NestedStructs { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

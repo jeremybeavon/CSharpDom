@@ -11,7 +11,7 @@ namespace CSharpDom.CodeGeneration.Tree
         public ClassIndexer(string name)
         {
             Name = name;
-            Parameters = new Collection<MethodParameter>();
+            Parameters = new CodeGenerationCollection<MethodParameter>();
         }
 
         public string Name { get; set; }
@@ -20,7 +20,9 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public MemberInheritanceModifier InheritanceModifier { get; set; }
 
-        public Collection<MethodParameter> Parameters { get; set; }
+        public TypeReference Type { get; set; }
+
+        public CodeGenerationCollection<MethodParameter> Parameters { get; set; }
 
         public ClassPropertyAccessor GetAccessor { get; set; }
 
@@ -36,6 +38,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void AcceptChildren(CodeGenerationVisitor visitor)
         {
+            Type.AcceptIfNotNull(visitor);
             Parameters.AcceptIfNotNull(visitor);
             GetAccessor.AcceptIfNotNull(visitor);
             SetAccessor.AcceptIfNotNull(visitor);

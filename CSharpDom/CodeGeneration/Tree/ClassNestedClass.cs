@@ -12,8 +12,8 @@ namespace CSharpDom.CodeGeneration.Tree
         public ClassNestedClass(string name)
         {
             Name = name;
-            GenericParameters = new Collection<GenericParameter>();
-            Interfaces = new Collection<InterfaceReference>();
+            GenericParameters = new CodeGenerationCollection<GenericParameter>();
+            Interfaces = new CodeGenerationCollection<InterfaceReference>();
             Body = new ClassBody();
         }
 
@@ -25,11 +25,11 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public bool IsPartial { get; set; }
 
-        public Collection<GenericParameter> GenericParameters { get; set; }
+        public CodeGenerationCollection<GenericParameter> GenericParameters { get; set; }
 
         public ClassReference BaseClass { get; set; }
 
-        public Collection<InterfaceReference> Interfaces { get; set; }
+        public CodeGenerationCollection<InterfaceReference> Interfaces { get; set; }
 
         public ClassBody Body { get; set; }
 

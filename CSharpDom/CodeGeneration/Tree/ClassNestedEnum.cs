@@ -12,7 +12,7 @@ namespace CSharpDom.CodeGeneration.Tree
         public ClassNestedEnum(string name)
         {
             Name = name;
-            Fields = new Collection<EnumField>();
+            Fields = new CodeGenerationCollection<EnumField>();
         }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
@@ -21,7 +21,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public EnumBaseType BaseType { get; set; }
 
-        public Collection<EnumField> Fields { get; set; }
+        public CodeGenerationCollection<EnumField> Fields { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

@@ -10,13 +10,13 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public TryStatement()
         {
-            TryStatements = new Collection<Statement>();
-            CatchStatements = new Collection<CatchStatement>();
+            TryStatements = new CodeGenerationCollection<Statement>();
+            CatchStatements = new CodeGenerationCollection<CatchStatement>();
         }
 
-        public Collection<Statement> TryStatements { get; set; }
+        public CodeGenerationCollection<Statement> TryStatements { get; set; }
 
-        public Collection<CatchStatement> CatchStatements { get; set; }
+        public CodeGenerationCollection<CatchStatement> CatchStatements { get; set; }
 
         public FinallyStatement FinallyStatement { get; set; }
 

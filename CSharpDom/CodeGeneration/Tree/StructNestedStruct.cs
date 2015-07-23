@@ -22,9 +22,9 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public bool IsPartial { get; set; }
 
-        public Collection<GenericParameter> GenericParameters { get; set; }
+        public CodeGenerationCollection<GenericParameter> GenericParameters { get; set; }
 
-        public Collection<InterfaceReference> Interfaces { get; set; }
+        public CodeGenerationCollection<InterfaceReference> Interfaces { get; set; }
 
         public StructBody Body { get; set; }
 

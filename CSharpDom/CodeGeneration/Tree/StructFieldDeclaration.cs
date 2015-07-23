@@ -10,7 +10,7 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public StructFieldDeclaration()
         {
-            Fields = new Collection<Field>();
+            Fields = new CodeGenerationCollection<Field>();
         }
 
         public StructMemberVisibilityModifier Visibility { get; set; }
@@ -19,7 +19,7 @@ namespace CSharpDom.CodeGeneration.Tree
         
         public TypeReference Type { get; set; }
 
-        public Collection<Field> Fields { get; set; }
+        public CodeGenerationCollection<Field> Fields { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

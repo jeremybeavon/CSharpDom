@@ -10,9 +10,9 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public IExpressionStatement Expression { get; set; }
 
-        public Collection<SwitchCaseStatement> Cases { get; set; }
+        public CodeGenerationCollection<SwitchCaseStatement> Cases { get; set; }
 
-        public Collection<Statement> DefaultCase { get; set; }
+        public CodeGenerationCollection<Statement> DefaultCase { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

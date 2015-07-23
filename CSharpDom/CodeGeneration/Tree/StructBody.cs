@@ -11,46 +11,46 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public StructBody()
         {
-            Fields = new Collection<StructFieldDeclaration>();
-            Events = new Collection<StructEvent>();
-            Properties = new Collection<StructProperty>();
-            Indexers = new Collection<StructIndexer>();
-            Methods = new Collection<StructMethod>();
-            UnaryOperators = new Collection<UnaryOperator>();
-            BinaryOperators = new Collection<BinaryOperator>();
-            ConversionOperators = new Collection<ConversionOperator>();
-            NestedClasses = new Collection<StructNestedClass>();
-            NestedDelegates = new Collection<StructNestedDelegate>();
-            NestedEnums = new Collection<StructNestedEnum>();
-            NestedInterfaces = new Collection<StructNestedInterface>();
-            NestedStructs = new Collection<StructNestedStruct>();
+            Fields = new CodeGenerationCollection<StructFieldDeclaration>();
+            Events = new CodeGenerationCollection<StructEvent>();
+            Properties = new CodeGenerationCollection<StructProperty>();
+            Indexers = new CodeGenerationCollection<StructIndexer>();
+            Methods = new CodeGenerationCollection<StructMethod>();
+            UnaryOperators = new CodeGenerationCollection<UnaryOperator>();
+            BinaryOperators = new CodeGenerationCollection<BinaryOperator>();
+            ConversionOperators = new CodeGenerationCollection<ConversionOperator>();
+            NestedClasses = new CodeGenerationCollection<StructNestedClass>();
+            NestedDelegates = new CodeGenerationCollection<StructNestedDelegate>();
+            NestedEnums = new CodeGenerationCollection<StructNestedEnum>();
+            NestedInterfaces = new CodeGenerationCollection<StructNestedInterface>();
+            NestedStructs = new CodeGenerationCollection<StructNestedStruct>();
         }
 
-        public Collection<StructFieldDeclaration> Fields { get; set; }
+        public CodeGenerationCollection<StructFieldDeclaration> Fields { get; set; }
 
-        public Collection<StructEvent> Events { get; set; }
+        public CodeGenerationCollection<StructEvent> Events { get; set; }
 
-        public Collection<StructProperty> Properties { get; set; }
+        public CodeGenerationCollection<StructProperty> Properties { get; set; }
 
-        public Collection<StructIndexer> Indexers { get; set; }
+        public CodeGenerationCollection<StructIndexer> Indexers { get; set; }
 
-        public Collection<StructMethod> Methods { get; set; }
+        public CodeGenerationCollection<StructMethod> Methods { get; set; }
 
-        public Collection<UnaryOperator> UnaryOperators { get; set; }
+        public CodeGenerationCollection<UnaryOperator> UnaryOperators { get; set; }
 
-        public Collection<BinaryOperator> BinaryOperators { get; set; }
+        public CodeGenerationCollection<BinaryOperator> BinaryOperators { get; set; }
 
-        public Collection<ConversionOperator> ConversionOperators { get; set; }
+        public CodeGenerationCollection<ConversionOperator> ConversionOperators { get; set; }
 
-        public Collection<StructNestedClass> NestedClasses { get; set; }
+        public CodeGenerationCollection<StructNestedClass> NestedClasses { get; set; }
 
-        public Collection<StructNestedDelegate> NestedDelegates { get; set; }
+        public CodeGenerationCollection<StructNestedDelegate> NestedDelegates { get; set; }
 
-        public Collection<StructNestedEnum> NestedEnums { get; set; }
+        public CodeGenerationCollection<StructNestedEnum> NestedEnums { get; set; }
 
-        public Collection<StructNestedInterface> NestedInterfaces { get; set; }
+        public CodeGenerationCollection<StructNestedInterface> NestedInterfaces { get; set; }
 
-        public Collection<StructNestedStruct> NestedStructs { get; set; }
+        public CodeGenerationCollection<StructNestedStruct> NestedStructs { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

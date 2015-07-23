@@ -10,12 +10,12 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public StructPropertyAccessor()
         {
-            Body = new Collection<Statement>();
+            Body = new CodeGenerationCollection<Statement>();
         }
 
         public StructPropertyAccessorVisibilityModifier Visibility { get; set; }
 
-        public Collection<Statement> Body { get; set; }
+        public CodeGenerationCollection<Statement> Body { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

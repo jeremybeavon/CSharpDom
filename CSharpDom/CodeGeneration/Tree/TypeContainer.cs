@@ -10,21 +10,21 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         protected TypeContainer()
         {
-            Classes = new Collection<Class>();
-            Delegates = new Collection<Delegate>();
-            Enums = new Collection<Enum>();
-            Interfaces = new Collection<Interface>();
-            Structs = new Collection<Struct>();
+            Classes = new CodeGenerationCollection<Class>();
+            Delegates = new CodeGenerationCollection<Delegate>();
+            Enums = new CodeGenerationCollection<Enum>();
+            Interfaces = new CodeGenerationCollection<Interface>();
+            Structs = new CodeGenerationCollection<Struct>();
         }
 
-        public Collection<Class> Classes { get; set; }
+        public CodeGenerationCollection<Class> Classes { get; set; }
 
-        public Collection<Delegate> Delegates { get; set; }
+        public CodeGenerationCollection<Delegate> Delegates { get; set; }
 
-        public Collection<Enum> Enums { get; set; }
+        public CodeGenerationCollection<Enum> Enums { get; set; }
 
-        public Collection<Interface> Interfaces { get; set; }
+        public CodeGenerationCollection<Interface> Interfaces { get; set; }
 
-        public Collection<Struct> Structs { get; set; }
+        public CodeGenerationCollection<Struct> Structs { get; set; }
     }
 }

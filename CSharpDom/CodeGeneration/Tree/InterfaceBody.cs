@@ -10,16 +10,16 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public InterfaceBody()
         {
-            Events = new Collection<InterfaceEvent>();
-            Properties = new Collection<InterfaceProperty>();
-            Methods = new Collection<InterfaceMethod>();
+            Events = new CodeGenerationCollection<InterfaceEvent>();
+            Properties = new CodeGenerationCollection<InterfaceProperty>();
+            Methods = new CodeGenerationCollection<InterfaceMethod>();
         }
 
-        public Collection<InterfaceEvent> Events { get; set; }
+        public CodeGenerationCollection<InterfaceEvent> Events { get; set; }
 
-        public Collection<InterfaceProperty> Properties { get; set; }
+        public CodeGenerationCollection<InterfaceProperty> Properties { get; set; }
 
-        public Collection<InterfaceMethod> Methods { get; set; }
+        public CodeGenerationCollection<InterfaceMethod> Methods { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

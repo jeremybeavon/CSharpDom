@@ -10,10 +10,10 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public FinallyStatement()
         {
-            Statements = new Collection<Statement>();
+            Statements = new CodeGenerationCollection<Statement>();
         }
 
-        public Collection<Statement> Statements { get; set; }
+        public CodeGenerationCollection<Statement> Statements { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

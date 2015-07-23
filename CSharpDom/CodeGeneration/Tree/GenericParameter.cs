@@ -11,8 +11,8 @@ namespace CSharpDom.CodeGeneration.Tree
         public GenericParameter(string name)
         {
             Name = name;
-            GenericParameterConstraints = new Collection<GenericParameterReference>();
-            InterfaceConstraints = new Collection<InterfaceReference>();
+            GenericParameterConstraints = new CodeGenerationCollection<GenericParameterReference>();
+            InterfaceConstraints = new CodeGenerationCollection<InterfaceReference>();
         }
 
         public string Name { get; set; }
@@ -21,9 +21,9 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public ClassReference BaseClassConstraint { get; set; }
 
-        public Collection<GenericParameterReference> GenericParameterConstraints { get; set; }
+        public CodeGenerationCollection<GenericParameterReference> GenericParameterConstraints { get; set; }
 
-        public Collection<InterfaceReference> InterfaceConstraints { get; set; }
+        public CodeGenerationCollection<InterfaceReference> InterfaceConstraints { get; set; }
 
         public bool HasEmptyConstructorConstraint { get; set; }
 

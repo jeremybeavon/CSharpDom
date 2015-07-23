@@ -11,8 +11,8 @@ namespace CSharpDom.CodeGeneration.Tree
         public StructMethod(string name)
         {
             Name = name;
-            Parameters = new Collection<MethodParameter>();
-            Body = new Collection<Statement>();
+            Parameters = new CodeGenerationCollection<MethodParameter>();
+            Body = new CodeGenerationCollection<Statement>();
         }
 
         public string Name { get; set; }
@@ -21,11 +21,11 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public bool IsAsync { get; set; }
 
-        public Collection<GenericParameter> GenericParameters { get; set; }
+        public CodeGenerationCollection<GenericParameter> GenericParameters { get; set; }
 
-        public Collection<MethodParameter> Parameters { get; set; }
+        public CodeGenerationCollection<MethodParameter> Parameters { get; set; }
 
-        public Collection<Statement> Body { get; set; }
+        public CodeGenerationCollection<Statement> Body { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

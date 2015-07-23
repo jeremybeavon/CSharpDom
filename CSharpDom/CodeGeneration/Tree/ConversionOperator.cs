@@ -10,7 +10,7 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public ConversionOperator()
         {
-            Body = new Collection<Statement>();
+            Body = new CodeGenerationCollection<Statement>();
         }
 
         public ConversionOperatorType OperatorType { get; set; }
@@ -19,7 +19,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public TypeReference OutputType { get; set; }
 
-        public Collection<Statement> Body { get; set; }
+        public CodeGenerationCollection<Statement> Body { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

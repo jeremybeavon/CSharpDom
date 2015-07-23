@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public interface IExpressionStatement : ICodeGenerationNode
+    public interface ICodeGenerationNode
     {
+        void Accept(CodeGenerationVisitor visitor);
     }
 }

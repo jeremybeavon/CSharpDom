@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    internal static class CodeGenerationNodeExtensions
+    public static class CodeGenerationNodeExtensions
     {
         public static void AcceptIfNotNull(this CodeGenerationNode node, CodeGenerationVisitor visitor)
         {

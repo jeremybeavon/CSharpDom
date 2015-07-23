@@ -10,14 +10,14 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public CatchStatement()
         {
-            Statements = new Collection<Statement>();
+            Statements = new CodeGenerationCollection<Statement>();
         }
 
         public TypeReference Type { get; set; }
 
         public string Name { get; set; }
 
-        public Collection<Statement> Statements { get; set; }
+        public CodeGenerationCollection<Statement> Statements { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

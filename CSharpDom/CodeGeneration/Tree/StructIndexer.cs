@@ -11,14 +11,14 @@ namespace CSharpDom.CodeGeneration.Tree
         public StructIndexer(string name)
         {
             Name = name;
-            Parameters = new Collection<MethodParameter>();
+            Parameters = new CodeGenerationCollection<MethodParameter>();
         }
 
         public string Name { get; set; }
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 
-        public Collection<MethodParameter> Parameters { get; set; }
+        public CodeGenerationCollection<MethodParameter> Parameters { get; set; }
 
         public ClassPropertyAccessor GetAccessor { get; set; }
 

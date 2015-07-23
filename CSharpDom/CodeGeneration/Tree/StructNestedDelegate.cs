@@ -12,17 +12,17 @@ namespace CSharpDom.CodeGeneration.Tree
         public StructNestedDelegate(string name)
         {
             Name = name;
-            GenericParameters = new Collection<GenericParameter>();
-            Parameters = new Collection<MethodParameter>();
+            GenericParameters = new CodeGenerationCollection<GenericParameter>();
+            Parameters = new CodeGenerationCollection<MethodParameter>();
         }
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 
         public string Name { get; set; }
 
-        public Collection<GenericParameter> GenericParameters { get; set; }
+        public CodeGenerationCollection<GenericParameter> GenericParameters { get; set; }
 
-        public Collection<MethodParameter> Parameters { get; set; }
+        public CodeGenerationCollection<MethodParameter> Parameters { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

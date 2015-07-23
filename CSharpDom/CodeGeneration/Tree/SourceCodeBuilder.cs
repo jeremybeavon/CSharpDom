@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public interface IExpressionStatement : ICodeGenerationNode
+    public static class SourceCodeBuilder
     {
     }
 }

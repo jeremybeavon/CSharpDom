@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    internal static class ExpressionStatementExtensions
+    public static class ExpressionStatementExtensions
     {
         public static void AcceptIfNotNull(this IExpressionStatement node, CodeGenerationVisitor visitor)
         {

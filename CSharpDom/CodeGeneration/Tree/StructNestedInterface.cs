@@ -12,8 +12,8 @@ namespace CSharpDom.CodeGeneration.Tree
         public StructNestedInterface(string name)
         {
             Name = name;
-            GenericParameters = new Collection<GenericParameter>();
-            Interfaces = new Collection<InterfaceReference>();
+            GenericParameters = new CodeGenerationCollection<GenericParameter>();
+            Interfaces = new CodeGenerationCollection<InterfaceReference>();
             Body = new InterfaceBody();
         }
 
@@ -23,9 +23,9 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public bool IsPartial { get; set; }
 
-        public Collection<GenericParameter> GenericParameters { get; set; }
+        public CodeGenerationCollection<GenericParameter> GenericParameters { get; set; }
 
-        public Collection<InterfaceReference> Interfaces { get; set; }
+        public CodeGenerationCollection<InterfaceReference> Interfaces { get; set; }
 
         public InterfaceBody Body { get; set; }
 
