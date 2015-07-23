@@ -106,10 +106,12 @@
     <Compile Include="CodeGeneration\Tree\CatchStatement.cs" />
     <Compile Include="CodeGeneration\Tree\Class.cs" />
     <Compile Include="CodeGeneration\Tree\ClassBody.cs" />
+    <Compile Include="CodeGeneration\Tree\CodeGenerationCollection.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationNodeExtensions.cs" />
-    <Compile Include="CodeGeneration\Tree\CollectionExtensions.cs" />
+    <Compile Include="CodeGeneration\Tree\CodeGenerationCollectionExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\EmptyStructPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\ExpressionStatementExtensions.cs" />
+    <Compile Include="CodeGeneration\Tree\ICodeGenerationNode.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilder.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeTextBuilder.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeVisitor.cs" />

@@ -36,6 +36,16 @@ namespace CSharpDom.CodeGeneration.Tree
         public const string ReadOnlyText = "readonly ";
         public const string VolatileText = "volatile ";
 
+        // Enum base type text
+        public const string ByteText = " : byte";
+        public const string SByteText = " : sbyte";
+        public const string ShortText = " : short";
+        public const string UShortText = " : ushort";
+        public const string IntText = " : int";
+        public const string UIntText = " : uint";
+        public const string LongText = " : long";
+        public const string ULongText = " : ulong";
+
         private readonly SourceCodeTextBuilder textBuilder;
 
         public SourceCodeVisitor()
@@ -151,6 +161,33 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
+        public static string ToString(EnumBaseType enumBaseType)
+        {
+            switch (enumBaseType)
+            {
+                case EnumBaseType.None:
+                    return string.Empty;
+                case EnumBaseType.Byte:
+                    return ByteText;
+                case EnumBaseType.SByte:
+                    return SByteText;
+                case EnumBaseType.Short:
+                    return ShortText;
+                case EnumBaseType.UShort:
+                    return UShortText;
+                case EnumBaseType.Int:
+                    return IntText;
+                case EnumBaseType.UInt:
+                    return UIntText;
+                case EnumBaseType.Long:
+                    return LongText;
+                case EnumBaseType.ULong:
+                    return ULongText;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
         public override void Visit(AssignStatement node)
         {
             AppendIndent();
@@ -161,7 +198,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(BinaryOperator node)
         {
-            AppendWithIndent("public static ");
+            AppendWithIndent(PublicText + StaticText);
             throw new NotImplementedException();
         }
 
@@ -199,27 +236,15 @@ namespace CSharpDom.CodeGeneration.Tree
             }
 
             Append(node.Name);
-            if (node.GenericParameters != null && node.GenericParameters.Count != 0)
-            {
-                Append("<" + string.Join(", ", node.GenericParameters.Select(parameter => parameter.Name)) + ">");
-            }
-
+            AppendGenericParameters(node.GenericParameters);
             if (node.BaseClass != null)
             {
                 Append(" : ");
                 node.BaseClass.Accept(this);
             }
 
-            if (node.Interfaces != null && node.Interfaces.Count != 0)
-            {
-                AppendCommaSeparatedCollection(node.Interfaces, node.BaseClass == null ? string.Empty : ", ");
-            }
-
-            if (node.GenericParameters != null && node.GenericParameters.Count != 0)
-            {
-                node.GenericParameters.AcceptIfNotNull(this);
-            }
-
+            AppendCommaSeparatedCollection(node.Interfaces, node.BaseClass == null ? " : " : ", ");
+            node.GenericParameters.AcceptIfNotNull(this);
             AppendBlock(node.Body);
         }
 
@@ -251,7 +276,87 @@ namespace CSharpDom.CodeGeneration.Tree
             Append("this[");
             AppendCommaSeparatedCollection(node.Parameters, string.Empty);
             Append("]");
-            
+            AppendWithIndent("{");
+            using (IncrementIndent())
+            {
+                if (node.GetAccessor != null)
+                {
+                    node.GetAccessor.Accept(this);
+                }
+
+                if (node.SetAccessor != null)
+                {
+                    node.SetAccessor.Accept(this);
+                }
+            }
+
+            AppendWithIndent("}");
+        }
+
+        public override void Visit(ClassMethod node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(ToString(node.InheritanceModifier));
+            if (node.IsAsync)
+            {
+                Append("async ");
+            }
+
+            node.ReturnType.Accept(this);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            Append("(");
+            AppendCommaSeparatedCollection(node.Parameters, string.Empty);
+            Append(")");
+            node.GenericParameters.AcceptIfNotNull(this);
+            AppendBlock(node.Body);
+        }
+
+        public override void Visit(ClassNestedClass node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(ToString(node.InheritanceModifier));
+            if (node.IsPartial)
+            {
+                Append("partial ");
+            }
+
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            if (node.BaseClass != null)
+            {
+                Append(" : ");
+                node.BaseClass.Accept(this);
+            }
+
+            AppendCommaSeparatedCollection(node.Interfaces, node.BaseClass == null ? " : " : ", ");
+            node.GenericParameters.AcceptIfNotNull(this);
+            AppendBlock(node.Body);
+        }
+
+        public override void Visit(ClassNestedDelegate node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(DelegateText);
+            node.ReturnType.Accept(this);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            Append("(");
+            AppendCommaSeparatedCollection(node.Parameters, string.Empty);
+            Append(")");
+            node.GenericParameters.AcceptIfNotNull(this);
+        }
+
+        public override void Visit(ClassNestedEnum node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(EnumText);
+            Append(node.Name);
+            Append(ToString(node.BaseType));
+            using (IncrementIndent())
+            {
+                node.Fields.Accept(this);
+            }
         }
 
         public override void Visit(GenericParameter node)
@@ -329,6 +434,11 @@ namespace CSharpDom.CodeGeneration.Tree
         private void AppendCommaSeparatedCollection<T>(CodeGenerationCollection<T> collection, string initialCommaText)
             where T : CodeGenerationNode
         {
+            if (collection == null)
+            {
+                return;
+            }
+
             string comma = initialCommaText;
             foreach (T item in collection)
             {
@@ -347,6 +457,14 @@ namespace CSharpDom.CodeGeneration.Tree
             }
 
             AppendWithIndent("}");
+        }
+
+        private void AppendGenericParameters(CodeGenerationCollection<GenericParameter> genericParameters)
+        {
+            if (genericParameters != null && genericParameters.Count != 0)
+            {
+                Append("<" + string.Join(", ", genericParameters.Select(parameter => parameter.Name)) + ">");
+            }
         }
     }
 }
