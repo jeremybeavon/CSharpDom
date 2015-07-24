@@ -11,13 +11,16 @@ namespace CSharpDom.CodeGeneration.Tree
         public ConversionOperator()
         {
             Body = new CodeGenerationCollection<Statement>();
+            ParameterName = "parameter";
         }
 
         public ConversionOperatorType OperatorType { get; set; }
 
-        public TypeReference InputType { get; set; }
+        public TypeReference ReturnType { get; set; }
 
-        public TypeReference OutputType { get; set; }
+        public TypeReference ParameterType { get; set; }
+
+        public string ParameterName { get; set; }
 
         public CodeGenerationCollection<Statement> Body { get; set; }
 
@@ -31,8 +34,8 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void AcceptChildren(CodeGenerationVisitor visitor)
         {
-            InputType.AcceptIfNotNull(visitor);
-            OutputType.AcceptIfNotNull(visitor);
+            ReturnType.AcceptIfNotNull(visitor);
+            ParameterType.AcceptIfNotNull(visitor);
             Body.AcceptIfNotNull(visitor);
         }
     }

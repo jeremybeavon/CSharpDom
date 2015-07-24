@@ -18,8 +18,6 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
-        public TypeInheritanceModifier InheritanceModifier { get; set; }
-
         public bool IsPartial { get; set; }
 
         public CodeGenerationCollection<GenericParameter> GenericParameters { get; set; }

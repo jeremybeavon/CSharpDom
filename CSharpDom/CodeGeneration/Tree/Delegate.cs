@@ -20,6 +20,8 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public string Name { get; set; }
 
+        public TypeReference ReturnType { get; set; }
+
         public CodeGenerationCollection<GenericParameter> GenericParameters { get; set; }
 
         public CodeGenerationCollection<MethodParameter> Parameters { get; set; }

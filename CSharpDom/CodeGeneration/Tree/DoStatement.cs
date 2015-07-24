@@ -10,7 +10,7 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public IExpressionStatement Condition { get; set; }
 
-        public Statement Statement { get; set; }
+        public CodeGenerationCollection<Statement> Block { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
@@ -23,7 +23,7 @@ namespace CSharpDom.CodeGeneration.Tree
         public override void AcceptChildren(CodeGenerationVisitor visitor)
         {
             Condition.AcceptIfNotNull(visitor);
-            Statement.AcceptIfNotNull(visitor);
+            Block.AcceptIfNotNull(visitor);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         Plus,
         Minus,
-        Multiple,
+        Multiply,
         Divide,
         Modulo,
         And,
@@ -19,10 +19,10 @@ namespace CSharpDom.CodeGeneration.Tree
         LeftShift,
         RightShift,
         Equal,
-        NotEqul,
+        NotEqual,
         GreaterThan,
         GreaterThanOrEqual,
-        LessThen,
-        LessThenOrEqual
+        LessThan,
+        LessThanOrEqual
     }
 }

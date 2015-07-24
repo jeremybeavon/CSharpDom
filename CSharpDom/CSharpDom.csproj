@@ -112,9 +112,9 @@
     <Compile Include="CodeGeneration\Tree\EmptyStructPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\ExpressionStatementExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\ICodeGenerationNode.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilder.cs" />
+    <Compile Include="CodeGeneration\Tree\PropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeTextBuilder.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeVisitor.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilder.cs" />
     <Compile Include="CodeGeneration\Tree\StructEvent.cs" />
     <Compile Include="CodeGeneration\Tree\ClassEvent.cs" />
     <Compile Include="CodeGeneration\Tree\StructFieldDeclaration.cs" />

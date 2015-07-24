@@ -11,15 +11,23 @@ namespace CSharpDom.CodeGeneration.Tree
         public BinaryOperator(BinaryOperatorType operatorType)
         {
             OperatorType = operatorType;
+            Parameter1Name = "parameter1";
+            Parameter2Name = "parameter2";
         }
 
         public BinaryOperatorType OperatorType { get; set; }
 
-        public TypeReference Parameter1 { get; set; }
+        public TypeReference ReturnType { get; set; }
 
-        public TypeReference Parameter2 { get; set; }
+        public TypeReference Parameter1Type { get; set; }
 
-        public TypeReference Output { get; set; }
+        public string Parameter1Name { get; set; }
+
+        public TypeReference Parameter2Type { get; set; }
+
+        public string Parameter2Name { get; set; }
+
+        public CodeGenerationCollection<Statement> Body { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
@@ -31,9 +39,10 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void AcceptChildren(CodeGenerationVisitor visitor)
         {
-            Parameter1.AcceptIfNotNull(visitor);
-            Parameter2.AcceptIfNotNull(visitor);
-            Output.AcceptIfNotNull(visitor);
+            ReturnType.AcceptIfNotNull(visitor);
+            Parameter1Type.AcceptIfNotNull(visitor);
+            Parameter2Type.AcceptIfNotNull(visitor);
+            Body.AcceptIfNotNull(visitor);
         }
     }
 }
