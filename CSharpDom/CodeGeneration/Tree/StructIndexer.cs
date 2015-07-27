@@ -18,6 +18,8 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 
+        public TypeReference Type { get; set; }
+
         public CodeGenerationCollection<MethodParameter> Parameters { get; set; }
 
         public ClassPropertyAccessor GetAccessor { get; set; }
@@ -34,6 +36,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void AcceptChildren(CodeGenerationVisitor visitor)
         {
+            Type.AcceptIfNotNull(visitor);
             Parameters.AcceptIfNotNull(visitor);
             GetAccessor.AcceptIfNotNull(visitor);
             SetAccessor.AcceptIfNotNull(visitor);

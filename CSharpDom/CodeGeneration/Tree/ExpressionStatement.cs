@@ -10,6 +10,8 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public Expression<Func<object>> Expression { get; set; }
 
+        public string RawExpression { get; set; }
+
         public override void Accept(CodeGenerationVisitor visitor)
         {
             if (visitor != null)

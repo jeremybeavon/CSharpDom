@@ -18,6 +18,8 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public bool IsNew { get; set; }
 
+        public TypeReference Type { get; set; }
+
         public InterfacePropertyAccessors Accessors { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
@@ -30,6 +32,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void AcceptChildren(CodeGenerationVisitor visitor)
         {
+            Type.AcceptIfNotNull(visitor);
         }
     }
 }

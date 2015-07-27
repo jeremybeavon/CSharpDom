@@ -74,9 +74,17 @@ namespace CSharpDom.CodeGeneration.Tree
         public const string LessThanText = "<";
         public const string LessThanOrEqualText = "<=";
 
+        // Parameter modifier text
+        public const string RefText = "ref ";
+        public const string OutText = "out ";
+        public const string ParamsText = "params ";
+        public const string ThisText = "this ";
+
         private readonly SourceCodeTextBuilder textBuilder;
         private TypeReference currentType;
         private ClassPropertyAccessor currentClassPropertyGetAccessor;
+        private string fieldComma;
+        private StructPropertyAccessor currentStructPropertyGetAccessor;
 
         public SourceCodeBuilder()
         {
@@ -306,6 +314,42 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
+        public static string ToString(MethodParameterModifier modifier)
+        {
+            switch (modifier)
+            {
+                case MethodParameterModifier.None:
+                    return string.Empty;
+                case MethodParameterModifier.Out:
+                    return OutText;
+                case MethodParameterModifier.Ref:
+                    return RefText;
+                case MethodParameterModifier.Params:
+                    return ParamsText;
+                case MethodParameterModifier.This:
+                    return ThisText;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
+        public static string ToString(StructMemberVisibilityModifier modifier)
+        {
+            switch (modifier)
+            {
+                case StructMemberVisibilityModifier.None:
+                    return string.Empty;
+                case StructMemberVisibilityModifier.Public:
+                    return PublicText;
+                case StructMemberVisibilityModifier.Internal:
+                    return InternalText;
+                case StructMemberVisibilityModifier.Private:
+                    return PrivateText;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
         public static bool IsBooleanOperator(BinaryOperatorType operatorType)
         {
             return operatorType == BinaryOperatorType.Equal ||
@@ -369,6 +413,7 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             AppendPartial(node.IsPartial);
+            Append(ClassText);
             Append(node.Name);
             AppendGenericParameters(node.GenericParameters);
             if (node.BaseClass != null)
@@ -439,9 +484,7 @@ namespace CSharpDom.CodeGeneration.Tree
             node.ReturnType.Accept(this);
             Append(node.Name);
             AppendGenericParameters(node.GenericParameters);
-            Append("(");
-            AppendCommaSeparatedCollection(node.Parameters, string.Empty);
-            Append(")");
+            AppendMethodParameters(node.Parameters);
             AppendGenericParameterConstraints(node.GenericParameters);
             AppendBlock(node.Body);
         }
@@ -487,6 +530,7 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent("{");
             using (IncrementIndent())
             {
+                fieldComma = string.Empty;
                 node.Fields.Accept(this);
             }
 
@@ -622,10 +666,111 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent("{");
             using (IncrementIndent())
             {
+                fieldComma = string.Empty;
                 node.Fields.Accept(this);
             }
 
             AppendWithIndent("}");
+        }
+
+        public override void Visit(EnumField node)
+        {
+            Append(fieldComma);
+            AppendWithIndent(node.Name);
+            if (!string.IsNullOrWhiteSpace(node.RawInitialValue))
+            {
+                Append(" = ");
+                Append(node.RawInitialValue);
+            }
+
+            fieldComma = ",";
+        }
+
+        public override void Visit(EventAccessors node)
+        {
+            AppendWithIndent("add");
+            if (node.AddBody.Count == 1)
+            {
+                Append(" {");
+                node.AddBody[0].Accept(this);
+                Append("}");
+            }
+            else
+            {
+                AppendBlock(node.AddBody);
+            }
+
+            if (node.RemoveBody.Count == 1)
+            {
+                Append(" {");
+                node.RemoveBody[0].Accept(this);
+                Append("}");
+            }
+            else
+            {
+                AppendBlock(node.RemoveBody);
+            }
+        }
+
+        public override void Visit(ExpressionStatement node)
+        {
+            if (string.IsNullOrWhiteSpace(node.RawExpression))
+            {
+                throw new NotSupportedException();
+            }
+
+            AppendWithIndent(node.RawExpression);
+            Append(";");
+        }
+
+        public override void Visit(Field node)
+        {
+            Append(node.Name);
+            if (!string.IsNullOrWhiteSpace(node.RawInitialValue))
+            {
+                Append(" = ");
+                Append(node.RawInitialValue);
+            }
+            else if (node.InitialValue != null)
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        public override void Visit(FinallyStatement node)
+        {
+            AppendWithIndent("finally");
+            AppendBlock(node.Statements);
+        }
+
+        public override void Visit(ForeachStatement node)
+        {
+            AppendWithIndent("foreach (");
+            node.Type.Accept(this);
+            Append(node.VariableName);
+            Append(" in ");
+            node.Iterator.Accept(this);
+            Append(")");
+            using (IncrementIndent())
+            {
+                node.Statement.Accept(this);
+            }
+        }
+
+        public override void Visit(ForStatement node)
+        {
+            AppendWithIndent("for (");
+            node.InitialValueExpression.AcceptIfNotNull(this);
+            node.InitialValueStatement.AcceptIfNotNull(this);
+            Append(" ");
+            node.Condition.AcceptIfNotNull(this);
+            Append(" ");
+            node.Increment.AcceptIfNotNull(this);
+            Append(")");
+            using (IncrementIndent())
+            {
+                node.Statement.Accept(this);
+            }
         }
 
         public override void Visit(GenericParameter node)
@@ -665,6 +810,321 @@ namespace CSharpDom.CodeGeneration.Tree
                     AppendWhereOrComma(hasWhere);
                     Append("new()");
                 }
+            }
+        }
+
+        public override void Visit(GotoStatement node)
+        {
+            AppendWithIndent("goto ");
+            node.Label.Accept(this);
+        }
+
+        public override void Visit(IfStatement node)
+        {
+            AppendWithIndent("if (");
+            node.Condition.Accept(this);
+            Append("(");
+            using (IncrementIndent())
+            {
+                node.ThenStatement.Accept(this);
+            }
+
+            if (node.ElseStatement != null)
+            {
+                AppendWithIndent("else");
+                using (IncrementIndent())
+                {
+                    node.ElseStatement.Accept(this);
+                }
+            }
+        }
+
+        public override void Visit(Interface node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(ToString(node.InheritanceModifier));
+            AppendPartial(node.IsPartial);
+            Append(InterfaceText);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            AppendCommaSeparatedCollection(node.Interfaces, " : ");
+            AppendGenericParameterConstraints(node.GenericParameters);
+            AppendBlock(node.Body);
+        }
+
+        public override void Visit(InterfaceEvent node)
+        {
+            AppendIndent();
+            if (node.IsNew)
+            {
+                Append("new ");
+            }
+
+            node.Type.Accept(this);
+            Append(node.Name);
+            Append(";");
+        }
+
+        public override void Visit(InterfaceMethod node)
+        {
+            AppendIndent();
+            if (node.IsNew)
+            {
+                Append("new ");
+            }
+
+            node.ReturnType.Accept(this);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            AppendMethodParameters(node.Parameters);
+            AppendGenericParameterConstraints(node.GenericParameters);
+            Append(";");
+        }
+
+        public override void Visit(InterfaceProperty node)
+        {
+            AppendIndent();
+            if (node.IsNew)
+            {
+                Append("new ");
+            }
+
+            node.Type.Accept(this);
+            Append(" { ");
+            switch (node.Accessors)
+            {
+                case InterfacePropertyAccessors.Get:
+                    Append("get;");
+                    break;
+                case InterfacePropertyAccessors.Set:
+                    Append("set;");
+                    break;
+                case InterfacePropertyAccessors.GetAndSet:
+                    Append("get; set;");
+                    break;
+            }
+
+            Append(" } ");
+        }
+
+        public override void Visit(LabelReference node)
+        {
+            Append(node.Label);
+        }
+
+        public override void Visit(LabelStatement node)
+        {
+            AppendIndent();
+            node.Label.Accept(this);
+            Append(":");
+        }
+
+        public override void Visit(LockStatement node)
+        {
+            AppendWithIndent("lock (");
+            node.Expression.Accept(this);
+            Append(")");
+            node.Statement.Accept(this);
+        }
+
+        public override void Visit(MethodParameter node)
+        {
+            AppendWithIndent(ToString(node.Modifier));
+            node.Type.Accept(this);
+            Append(node.Name);
+        }
+
+        public override void Visit(MultiLineComment node)
+        {
+            AppendWithIndent("/*");
+            Append(node.Comment);
+            Append("*/");
+        }
+
+        public override void Visit(RawStatement node)
+        {
+            AppendWithIndent(node.Statement);
+        }
+
+        public override void Visit(SingleLineComment node)
+        {
+            AppendWithIndent("// ");
+            Append(node.Comment);
+        }
+
+        public override void Visit(Struct node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            AppendPartial(node.IsPartial);
+            Append(StructText);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            AppendCommaSeparatedCollection(node.Interfaces, " : ");
+            AppendGenericParameterConstraints(node.GenericParameters);
+            AppendBlock(node.Body);
+        }
+
+        public override void Visit(StructEvent node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            node.Type.Accept(this);
+            Append(node.Name);
+            if (node.Accessors != null)
+            {
+                node.Accessors.Accept(this);
+            }
+        }
+
+        public override void Visit(StructFieldDeclaration node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(ToString(node.Modifier));
+            node.Type.Accept(this);
+            AppendCommaSeparatedCollection(node.Fields, string.Empty);
+        }
+
+        public override void Visit(StructIndexer node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            node.Type.Accept(this);
+            Append("this[");
+            AppendCommaSeparatedCollection(node.Parameters, string.Empty);
+            Append("]");
+            AppendWithIndent("{");
+            using (IncrementIndent())
+            {
+                if (node.GetAccessor != null)
+                {
+                    node.GetAccessor.Accept(this);
+                }
+
+                if (node.SetAccessor != null)
+                {
+                    node.SetAccessor.Accept(this);
+                }
+            }
+
+            AppendWithIndent("}");
+        }
+
+        public override void Visit(StructMethod node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            if (node.IsAsync)
+            {
+                Append("async ");
+            }
+
+            node.ReturnType.Accept(this);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            AppendMethodParameters(node.Parameters);
+            AppendGenericParameterConstraints(node.GenericParameters);
+            AppendBlock(node.Body);
+        }
+
+        public override void Visit(StructNestedClass node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(ToString(node.InheritanceModifier));
+            AppendPartial(node.IsPartial);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            if (node.BaseClass != null)
+            {
+                Append(" : ");
+                node.BaseClass.Accept(this);
+            }
+
+            AppendCommaSeparatedCollection(node.Interfaces, node.BaseClass == null ? " : " : ", ");
+            AppendGenericParameterConstraints(node.GenericParameters);
+            AppendTypeBody(node.Body, new TypeReference(node));
+        }
+
+        public override void Visit(StructNestedDelegate node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(DelegateText);
+            node.ReturnType.Accept(this);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            Append("(");
+            AppendCommaSeparatedCollection(node.Parameters, string.Empty);
+            Append(")");
+            node.GenericParameters.AcceptIfNotNull(this);
+            Append(";");
+        }
+
+        public override void Visit(StructNestedEnum node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(EnumText);
+            Append(node.Name);
+            Append(ToString(node.BaseType));
+            AppendWithIndent("{");
+            using (IncrementIndent())
+            {
+                fieldComma = string.Empty;
+                node.Fields.Accept(this);
+            }
+
+            AppendWithIndent("}");
+        }
+
+        public override void Visit(StructNestedInterface node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            AppendPartial(node.IsPartial);
+            Append(InterfaceText);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            AppendCommaSeparatedCollection(node.Interfaces, " : ");
+            AppendGenericParameterConstraints(node.GenericParameters);
+            AppendBlock(node.Body);
+        }
+
+        public override void Visit(StructNestedStruct node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            AppendPartial(node.IsPartial);
+            Append(node.Name);
+            AppendGenericParameters(node.GenericParameters);
+            AppendCommaSeparatedCollection(node.Interfaces, " : ");
+            AppendGenericParameterConstraints(node.GenericParameters);
+            AppendTypeBody(node.Body, new TypeReference(node));
+        }
+
+        public override void Visit(StructProperty node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(ToString(node.InheritanceModifier));
+            node.Type.Accept(this);
+            Append(node.Name);
+            if (node.EmptyAccessors == null)
+            {
+                currentStructPropertyGetAccessor = node.GetAccessor;
+                AppendBlock(new PropertyAccessors<StructPropertyAccessor>(node.GetAccessor, node.SetAccessor));
+                currentStructPropertyGetAccessor = null;
+            }
+            else
+            {
+                node.EmptyAccessors.Accept(this);
+            }
+        }
+
+        public override void Visit(StructPropertyAccessor node)
+        {
+            AppendWithIndent(ToString(node.Visibility));
+            Append(currentStructPropertyGetAccessor == node ? GetText : SetText);
+            if (node.Body.Count == 1)
+            {
+                Append(" {");
+                node.Body[0].Accept(this);
+                Append(" }");
+            }
+            else
+            {
+                AppendBlock(node.Body);
             }
         }
 
@@ -739,6 +1199,13 @@ namespace CSharpDom.CodeGeneration.Tree
         private void AppendGenericParameterConstraints(CodeGenerationCollection<GenericParameter> genericParameters)
         {
             genericParameters.AcceptIfNotNull(this);
+        }
+
+        private void AppendMethodParameters(CodeGenerationCollection<MethodParameter> parameters)
+        {
+            Append("(");
+            AppendCommaSeparatedCollection(parameters, string.Empty);
+            Append(")");
         }
 
         private void AppendPartial(bool isPartial)

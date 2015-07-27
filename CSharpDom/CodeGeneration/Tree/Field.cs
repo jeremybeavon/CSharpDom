@@ -17,6 +17,8 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public Expression<Func<object>> InitialValue { get; set; }
 
+        public string RawInitialValue { get; set; }
+
         public override void Accept(CodeGenerationVisitor visitor)
         {
             if (visitor != null)
