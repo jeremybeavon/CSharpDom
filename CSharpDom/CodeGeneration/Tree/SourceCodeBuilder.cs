@@ -56,7 +56,7 @@ namespace CSharpDom.CodeGeneration.Tree
         public const string LongText = " : long";
         public const string ULongText = " : ulong";
 
-        // Operator text
+        // Binary operator text
         public const string PlusText = "+";
         public const string MinusText = "-";
         public const string MultiplyText = "*";
@@ -73,6 +73,14 @@ namespace CSharpDom.CodeGeneration.Tree
         public const string GreaterThanOrEqualText = ">=";
         public const string LessThanText = "<";
         public const string LessThanOrEqualText = "<=";
+
+        // Unary operator text
+        public const string IncrementText = "++";
+        public const string DecrementText = "--";
+        public const string LogicalNotText = "!";
+        public const string BitwiseNotText = "~";
+        public const string TrueText = "true";
+        public const string FalseText = "false";
 
         // Parameter modifier text
         public const string RefText = "ref ";
@@ -314,6 +322,31 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
+        public static string ToString(UnaryOperatorType operatorType)
+        {
+            switch (operatorType)
+            {
+                case UnaryOperatorType.Plus:
+                    return PlusText;
+                case UnaryOperatorType.Minus:
+                    return MinusText;
+                case UnaryOperatorType.Increment:
+                    return IncrementText;
+                case UnaryOperatorType.Decrement:
+                    return DecrementText;
+                case UnaryOperatorType.LogicalNot:
+                    return LogicalNotText;
+                case UnaryOperatorType.BitwiseNot:
+                    return BitwiseNotText;
+                case UnaryOperatorType.True:
+                    return TrueText;
+                case UnaryOperatorType.False:
+                    return FalseText;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
         public static string ToString(MethodParameterModifier modifier)
         {
             switch (modifier)
@@ -358,6 +391,13 @@ namespace CSharpDom.CodeGeneration.Tree
                 operatorType == BinaryOperatorType.GreaterThanOrEqual ||
                 operatorType == BinaryOperatorType.LessThan ||
                 operatorType == BinaryOperatorType.LessThanOrEqual;
+        }
+
+        public static bool IsBooleanOperator(UnaryOperatorType operatorType)
+        {
+            return operatorType == UnaryOperatorType.LogicalNot ||
+                operatorType == UnaryOperatorType.True ||
+                operatorType == UnaryOperatorType.False;
         }
 
         public override void Visit(AssignStatement node)
@@ -594,6 +634,41 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
+        public override void Visit(ClassReference node)
+        {
+            if (node.Type != null)
+            {
+                Append(node.Type.Name);
+            }
+            else if (node.Class != null)
+            {
+                Append(node.Class.Name);
+            }
+            else if (node.ClassNestedClass != null)
+            {
+                throw new NotSupportedException();
+            }
+            else if (node.StructNestedClass != null)
+            {
+                throw new NotSupportedException();
+            }
+            else if (node.TypeText != null)
+            {
+                Append(node.TypeText);
+            }
+
+            Append("<");
+            AppendCommaSeparatedCollection(node.GenericParameters, string.Empty);
+            Append(">");
+        }
+
+        public override void Visit(CodeGenerationFile node)
+        {
+            node.Usings.AcceptIfNotNull(this);
+            node.Namespaces.AcceptIfNotNull(this);
+            AppendTypeContainer(node);
+        }
+
         public override void Visit(ConversionOperator node)
         {
             AppendWithIndent(PublicText + StaticText);
@@ -621,6 +696,34 @@ namespace CSharpDom.CodeGeneration.Tree
             Append(";");
         }
 
+        public override void Visit(DelegateReference node)
+        {
+            if (node.Type != null)
+            {
+                Append(node.Type.Name);
+            }
+            else if (node.Delegate != null)
+            {
+                Append(node.Delegate.Name);
+            }
+            else if (node.ClassNestedDelegate != null)
+            {
+                throw new NotSupportedException();
+            }
+            else if (node.StructNestedDelegate != null)
+            {
+                throw new NotSupportedException();
+            }
+            else if (node.TypeText != null)
+            {
+                Append(node.TypeText);
+            }
+
+            Append("<");
+            AppendCommaSeparatedCollection(node.GenericParameters, string.Empty);
+            Append(">");
+        }
+
         public override void Visit(DocumentationComment node)
         {
             AppendWithIndent("/// ");
@@ -645,6 +748,11 @@ namespace CSharpDom.CodeGeneration.Tree
             Append(ToString(node.SetAccessorVisibility));
             Append(SetText);
             Append(";");
+        }
+
+        public override void Visit(EmptyStatement node)
+        {
+            AppendWithIndent(";");
         }
 
         public override void Visit(EmptyStructPropertyAccessors node)
@@ -813,6 +921,22 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
+        public override void Visit(GenericParameterReference node)
+        {
+            if (node.Type != null)
+            {
+                Append(node.Type.Name);
+            }
+            else if (node.GenericParameter != null)
+            {
+                Append(node.GenericParameter.Name);
+            }
+            else if (node.TypeText != null)
+            {
+                Append(node.TypeText);
+            }
+        }
+
         public override void Visit(GotoStatement node)
         {
             AppendWithIndent("goto ");
@@ -850,6 +974,34 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendCommaSeparatedCollection(node.Interfaces, " : ");
             AppendGenericParameterConstraints(node.GenericParameters);
             AppendBlock(node.Body);
+        }
+
+        public override void Visit(InterfaceReference node)
+        {
+            if (node.Type != null)
+            {
+                Append(node.Type.Name);
+            }
+            else if (node.Interface != null)
+            {
+                Append(node.Interface.Name);
+            }
+            else if (node.ClassNestedInterface != null)
+            {
+                throw new NotSupportedException();
+            }
+            else if (node.StructNestedInterface != null)
+            {
+                throw new NotSupportedException();
+            }
+            else if (node.TypeText != null)
+            {
+                Append(node.TypeText);
+            }
+
+            Append("<");
+            AppendCommaSeparatedCollection(node.GenericParameters, string.Empty);
+            Append(">");
         }
 
         public override void Visit(InterfaceEvent node)
@@ -939,6 +1091,21 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent("/*");
             Append(node.Comment);
             Append("*/");
+        }
+
+        public override void Visit(Namespace node)
+        {
+            AppendWithIndent("namespace ");
+            Append(node.Name);
+            AppendWithIndent("{");
+            using (IncrementIndent())
+            {
+                node.Usings.AcceptIfNotNull(this);
+                node.Namespaces.AcceptIfNotNull(this);
+                AppendTypeContainer(node);
+            }
+
+            AppendWithIndent("}");
         }
 
         public override void Visit(RawStatement node)
@@ -1128,6 +1295,99 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
+        public override void Visit(SwitchCaseStatement node)
+        {
+            AppendWithIndent("case ");
+            node.Match.Accept(this);
+            Append(":");
+            using (IncrementIndent())
+            {
+                node.Statements.AcceptIfNotNull(this);
+            }
+        }
+
+        public override void Visit(SwitchStatement node)
+        {
+            AppendWithIndent("switch (");
+            node.Expression.Accept(this);
+            Append(")");
+            AppendWithIndent("{");
+            using (IncrementIndent())
+            {
+                node.Cases.AcceptIfNotNull(this);
+                if (node.DefaultCase != null && node.DefaultCase.Count != 0)
+                {
+                    AppendWithIndent("default:");
+                    using (IncrementIndent())
+                    {
+                        node.DefaultCase.Accept(this);
+                    }
+                }
+            }
+
+            AppendWithIndent("}");
+        }
+
+        public override void Visit(TryStatement node)
+        {
+            AppendWithIndent("try");
+            AppendBlock(node.TryStatements);
+            node.CatchStatements.AcceptIfNotNull(this);
+            node.FinallyStatement.AcceptIfNotNull(this);
+        }
+
+        public override void Visit(UnaryOperator node)
+        {
+            AppendWithIndent(PublicText + StaticText);
+            AppendUnaryOperatorTypeReference(node.ReturnType, node.OperatorType);
+            Append(OperatorText);
+            Append(ToString(node.OperatorType));
+            Append("(");
+            AppendUnaryOperatorTypeReference(node.ParameterType, node.OperatorType);
+            Append(")");
+            AppendBlock(node.Body);
+        }
+
+        public override void Visit(UsingDeclaration node)
+        {
+            AppendWithIndent("using ");
+            Append(node.Namespace);
+            Append(";");
+        }
+
+        public override void Visit(UsingStatement node)
+        {
+            AppendWithIndent("using (");
+            node.Expression.Accept(this);
+            Append(")");
+            node.Statement.Accept(this);
+        }
+
+        public override void Visit(VariableDeclaration node)
+        {
+            Append(node.Name);
+            if (node.InitialValue != null)
+            {
+                Append(" = ");
+                node.InitialValue.Accept(this);
+            }
+        }
+
+        public override void Visit(VariableDeclarationStatement node)
+        {
+            AppendIndent();
+            node.Type.Accept(this);
+            AppendCommaSeparatedCollection(node.VariableDeclarations, string.Empty);
+        }
+
+        public override void Visit(WhileStatement node)
+        {
+            AppendWithIndent("while (");
+            node.Condition.Accept(this);
+            Append(")");
+            node.Statement.Accept(this);
+        }
+
         protected void Append(string text)
         {
             textBuilder.Append(text);
@@ -1146,6 +1406,15 @@ namespace CSharpDom.CodeGeneration.Tree
         protected IDisposable IncrementIndent()
         {
             return textBuilder.IncrementIndent();
+        }
+
+        private void AppendTypeContainer(TypeContainer node)
+        {
+            node.Delegates.AcceptIfNotNull(this);
+            node.Enums.AcceptIfNotNull(this);
+            node.Interfaces.AcceptIfNotNull(this);
+            node.Structs.AcceptIfNotNull(this);
+            node.Classes.AcceptIfNotNull(this);
         }
 
         private void AppendWhereOrComma(bool hasWhere)
@@ -1225,6 +1494,18 @@ namespace CSharpDom.CodeGeneration.Tree
         }
 
         private void AppendBinaryOperatorTypeReference(TypeReference reference, BinaryOperatorType operatorType)
+        {
+            if (reference == null && IsBooleanOperator(operatorType))
+            {
+                Append("bool");
+            }
+            else
+            {
+                AppendReference(reference);
+            }
+        }
+
+        private void AppendUnaryOperatorTypeReference(TypeReference reference, UnaryOperatorType operatorType)
         {
             if (reference == null && IsBooleanOperator(operatorType))
             {

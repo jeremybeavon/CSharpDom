@@ -109,6 +109,7 @@
     <Compile Include="CodeGeneration\Tree\CodeGenerationCollection.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationNodeExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationCollectionExtensions.cs" />
+    <Compile Include="CodeGeneration\Tree\EmptyStatement.cs" />
     <Compile Include="CodeGeneration\Tree\EmptyStructPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\ExpressionStatementExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\ICodeGenerationNode.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="CodeGeneration\Tree\UnaryOperatorType.cs" />
     <Compile Include="CodeGeneration\Tree\UsingDeclaration.cs" />
     <Compile Include="CodeGeneration\Tree\UsingStatement.cs" />
+    <Compile Include="CodeGeneration\Tree\VariableDeclaration.cs" />
     <Compile Include="CodeGeneration\Tree\VariableDeclarationStatement.cs" />
     <Compile Include="CodeGeneration\Tree\WhileStatement.cs" />
     <Compile Include="IHasSyntaxNode.cs" />

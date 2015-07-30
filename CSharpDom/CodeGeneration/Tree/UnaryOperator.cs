@@ -16,6 +16,10 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public UnaryOperatorType OperatorType { get; set; }
 
+        public TypeReference ReturnType { get; set; }
+
+        public TypeReference ParameterType { get; set; }
+
         public CodeGenerationCollection<Statement> Body { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)

@@ -133,6 +133,11 @@ namespace CSharpDom.CodeGeneration.Tree
             node.AcceptChildren(this);
         }
 
+        public virtual void Visit(EmptyStatement node)
+        {
+            node.AcceptChildren(this);
+        }
+
         public virtual void Visit(EmptyStructPropertyAccessors node)
         {
             node.AcceptChildren(this);
@@ -364,6 +369,11 @@ namespace CSharpDom.CodeGeneration.Tree
         }
 
         public virtual void Visit(UsingStatement node)
+        {
+            node.AcceptChildren(this);
+        }
+
+        public virtual void Visit(VariableDeclaration node)
         {
             node.AcceptChildren(this);
         }

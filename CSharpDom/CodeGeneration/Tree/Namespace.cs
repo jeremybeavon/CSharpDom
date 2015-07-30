@@ -8,10 +8,16 @@ namespace CSharpDom.CodeGeneration.Tree
 {
     public sealed class Namespace : TypeContainer
     {
-        public Namespace()
+        public Namespace(string name)
         {
+            Name = name;
+            Usings = new CodeGenerationCollection<UsingDeclaration>();
             Namespaces = new CodeGenerationCollection<Namespace>();
         }
+
+        public CodeGenerationCollection<UsingDeclaration> Usings { get; set; }
+
+        public string Name { get; set; }
 
         public CodeGenerationCollection<Namespace> Namespaces { get; set; }
 
@@ -25,6 +31,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void AcceptChildren(CodeGenerationVisitor visitor)
         {
+            Usings.AcceptIfNotNull(visitor);
             Namespaces.AcceptIfNotNull(visitor);
         }
     }
