@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom

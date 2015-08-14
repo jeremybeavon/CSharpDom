@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.WithSyntax;
 using CSharpDom.WithSyntax.Internal;

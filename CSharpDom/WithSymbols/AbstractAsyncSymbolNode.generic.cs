@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace CSharpDom.WithSymbols
+﻿namespace CSharpDom.WithSymbols
 {
     public abstract class AbstractAsyncSymbolNode<T> : AbstractAsyncSymbolNode, IWrapper<T>
         where T : class

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.Common;
 using CSharpDom.WithSyntax;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;

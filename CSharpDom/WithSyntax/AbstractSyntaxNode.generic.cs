@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpDom.WithSyntax
+﻿namespace CSharpDom.WithSyntax
 {
     public abstract class AbstractSyntaxNode<T> : AbstractSyntaxNode, IWrapper<T>
         where T : class

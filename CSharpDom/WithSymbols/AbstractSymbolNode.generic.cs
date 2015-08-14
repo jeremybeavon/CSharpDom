@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpDom.WithSymbols
+﻿namespace CSharpDom.WithSymbols
 {
     public abstract class AbstractSymbolNode<T> : AbstractSymbolNode, IWrapper<T>
         where T : class

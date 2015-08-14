@@ -1,5 +1,4 @@
-﻿using System;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
 using CSharpDom.WithSyntax;
 using CSharpDom.WithSyntax.Internal;
 using Microsoft.CodeAnalysis;

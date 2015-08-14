@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace CSharpDom.WithSyntax
+﻿namespace CSharpDom.WithSyntax
 {
     public abstract class AbstractAsyncSyntaxNode<T> : AbstractAsyncSyntaxNode, IWrapper<T>
         where T : class
