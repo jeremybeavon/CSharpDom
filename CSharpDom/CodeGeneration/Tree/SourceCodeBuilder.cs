@@ -396,6 +396,11 @@ namespace CSharpDom.CodeGeneration.Tree
                 operatorType == UnaryOperatorType.False;
         }
 
+        public override string ToString()
+        {
+            return textBuilder.ToString();
+        }
+
         public override void Visit(AssignStatement node)
         {
             AppendIndent();
@@ -480,7 +485,8 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent(ToString(node.Visibility));
             Append(ToString(node.Modifier));
             node.Type.Accept(this);
-            AppendCommaSeparatedCollection(node.Fields, string.Empty);
+            AppendCommaSeparatedCollection(node.Fields, " ");
+            Append(";");
         }
 
         public override void Visit(ClassIndexer node)
@@ -653,9 +659,12 @@ namespace CSharpDom.CodeGeneration.Tree
                 Append(node.TypeText);
             }
 
-            Append("<");
-            AppendCommaSeparatedCollection(node.GenericParameters, string.Empty);
-            Append(">");
+            if (node.GenericParameters.Count != 0)
+            {
+                Append("<");
+                AppendCommaSeparatedCollection(node.GenericParameters, string.Empty);
+                Append(">");
+            }
         }
 
         public override void Visit(CodeGenerationFile node)
@@ -884,34 +893,34 @@ namespace CSharpDom.CodeGeneration.Tree
                 bool hasWhere = false;
                 if (node.BaseClassConstraint != null)
                 {
-                    AppendWithIndent("where ");
+                    AppendWithIndent("where " + node.Name + " : ");
                     hasWhere = true;
                     node.BaseClassConstraint.Accept(this);
                 }
                 else if (node.TypeConstraint != GenericParameteTypeConstraintModifier.None)
                 {
-                    AppendWithIndent("where ");
+                    AppendWithIndent("where " + node.Name + " : ");
                     hasWhere = true;
                     Append(node.TypeConstraint == GenericParameteTypeConstraintModifier.Class ? "class" : "struct");
                 }
 
                 if (node.GenericParameterConstraints != null && node.GenericParameterConstraints.Count != 0)
                 {
-                    AppendWhereOrComma(hasWhere);
+                    AppendWhereOrComma(hasWhere, node);
                     hasWhere = true;
                     AppendCommaSeparatedCollection(node.GenericParameterConstraints, string.Empty);
                 }
 
                 if (node.InterfaceConstraints != null && node.InterfaceConstraints.Count != 0)
                 {
-                    AppendWhereOrComma(hasWhere);
+                    AppendWhereOrComma(hasWhere, node);
                     hasWhere = true;
                     AppendCommaSeparatedCollection(node.InterfaceConstraints, string.Empty);
                 }
 
                 if (node.HasEmptyConstructorConstraint)
                 {
-                    AppendWhereOrComma(hasWhere);
+                    AppendWhereOrComma(hasWhere, node);
                     Append("new()");
                 }
             }
@@ -995,9 +1004,12 @@ namespace CSharpDom.CodeGeneration.Tree
                 Append(node.TypeText);
             }
 
-            Append("<");
-            AppendCommaSeparatedCollection(node.GenericParameters, string.Empty);
-            Append(">");
+            if (node.GenericParameters != null && node.GenericParameters.Count != 0)
+            {
+                Append("<");
+                AppendCommaSeparatedCollection(node.GenericParameters, string.Empty);
+                Append(">");
+            }
         }
 
         public override void Visit(InterfaceEvent node)
@@ -1091,6 +1103,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(Namespace node)
         {
+            AppendIndent();
             AppendWithIndent("namespace ");
             Append(node.Name);
             AppendWithIndent("{");
@@ -1324,6 +1337,37 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent("}");
         }
 
+        public override void Visit(TypeReference node)
+        {
+            if (node.Type != null)
+            {
+                Append(node.Type.Name);
+            }
+            else if (node.Class != null)
+            {
+                Append(node.Class.Name);
+            }
+            else if (node.ClassNestedClass != null)
+            {
+                throw new NotSupportedException();
+            }
+            else if (node.StructNestedClass != null)
+            {
+                throw new NotSupportedException();
+            }
+            else if (node.TypeText != null)
+            {
+                Append(node.TypeText);
+            }
+
+            if (node.GenericParameters != null && node.GenericParameters.Count != 0)
+            {
+                Append("<");
+                AppendCommaSeparatedCollection(node.GenericParameters, string.Empty);
+                Append(">");
+            }
+        }
+
         public override void Visit(TryStatement node)
         {
             AppendWithIndent("try");
@@ -1413,7 +1457,7 @@ namespace CSharpDom.CodeGeneration.Tree
             node.Classes.AcceptIfNotNull(this);
         }
 
-        private void AppendWhereOrComma(bool hasWhere)
+        private void AppendWhereOrComma(bool hasWhere, GenericParameter node)
         {
             if (hasWhere)
             {
@@ -1421,7 +1465,7 @@ namespace CSharpDom.CodeGeneration.Tree
             }
             else
             {
-                AppendWithIndent("where ");
+                AppendWithIndent("where " + node.Name + " : ");
             }
         }
 

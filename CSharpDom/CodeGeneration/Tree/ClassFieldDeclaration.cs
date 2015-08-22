@@ -2,8 +2,9 @@
 {
     public sealed class ClassFieldDeclaration : CodeGenerationNode
     {
-        public ClassFieldDeclaration()
+        public ClassFieldDeclaration(TypeReference type)
         {
+            Type = type;
             Fields = new CodeGenerationCollection<Field>();
         }
 

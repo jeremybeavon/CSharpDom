@@ -6,27 +6,37 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         private object reference;
 
+        public ClassReference()
+        {
+            GenericParameters = new CodeGenerationCollection<TypeReference>();
+        }
+
         public ClassReference(Type type)
+            : this()
         {
             reference = type;
         }
 
         public ClassReference(Class @class)
+            : this()
         {
             reference = @class;
         }
 
         public ClassReference(ClassNestedClass @class)
+            : this()
         {
             reference = @class;
         }
 
         public ClassReference(StructNestedClass @class)
+            : this()
         {
             reference = @class;
         }
 
         public ClassReference(string type)
+            : this()
         {
             reference = type;
         }

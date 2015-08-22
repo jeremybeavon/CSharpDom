@@ -7,11 +7,13 @@ namespace CSharpDom.CodeGeneration.Tree
     public sealed class SourceCodeTextBuilder
     {
         private readonly StringBuilder textBuilder;
+        private bool isFirstIndent;
 
         public SourceCodeTextBuilder()
         {
             textBuilder = new StringBuilder();
             IndentText = string.Empty.PadLeft(4);
+            isFirstIndent = true;
         }
 
         public string IndentText { get; set; }
@@ -25,6 +27,12 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public void AppendIndent()
         {
+            if (isFirstIndent)
+            {
+                isFirstIndent = false;
+                return;
+            }
+
             textBuilder.AppendLine();
             foreach (string indent in Enumerable.Repeat(IndentText, Indent))
             {
@@ -42,6 +50,11 @@ namespace CSharpDom.CodeGeneration.Tree
         {
             Indent++;
             return new DisposableIndent(this);
+        }
+
+        public override string ToString()
+        {
+            return textBuilder.ToString();
         }
 
         private sealed class DisposableIndent : IDisposable

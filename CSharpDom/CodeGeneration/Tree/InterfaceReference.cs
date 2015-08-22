@@ -6,27 +6,37 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         private object reference;
 
+        public InterfaceReference()
+        {
+            GenericParameters = new CodeGenerationCollection<TypeReference>();
+        }
+
         public InterfaceReference(Type type)
+            : this()
         {
             reference = type;
         }
 
         public InterfaceReference(Interface @interface)
+            : this()
         {
             reference = @interface;
         }
 
         public InterfaceReference(ClassNestedInterface @interface)
+            : this()
         {
             reference = @interface;
         }
 
         public InterfaceReference(StructNestedInterface @interface)
+            : this()
         {
             reference = @interface;
         }
 
         public InterfaceReference(string type)
+            : this()
         {
             reference = type;
         }
