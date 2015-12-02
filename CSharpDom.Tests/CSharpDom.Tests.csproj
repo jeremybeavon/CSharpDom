@@ -87,6 +87,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.BinaryOperator.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Struct.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Interface.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Delegate.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ConversionOperator.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.UnaryOperator.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassMethod.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassEvent.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassIndexer.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassProperty.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassField.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Class.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

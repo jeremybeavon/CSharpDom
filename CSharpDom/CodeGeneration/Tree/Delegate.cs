@@ -6,7 +6,7 @@
         {
             Name = name;
             GenericParameters = new CodeGenerationCollection<GenericParameter>();
-            Parameters = new CodeGenerationCollection<MethodParameter>();
+            Parameters = new CodeGenerationCollection<DelegateParameter>();
         }
 
         public TypeVisibilityModifier Visibility { get; set; }
@@ -17,7 +17,7 @@
 
         public CodeGenerationCollection<GenericParameter> GenericParameters { get; set; }
 
-        public CodeGenerationCollection<MethodParameter> Parameters { get; set; }
+        public CodeGenerationCollection<DelegateParameter> Parameters { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

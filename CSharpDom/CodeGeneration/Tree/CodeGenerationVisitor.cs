@@ -107,6 +107,11 @@
             node.AcceptChildren(this);
         }
 
+        public virtual void Visit(DelegateParameter node)
+        {
+            node.AcceptChildren(this);
+        }
+
         public virtual void Visit(DelegateReference node)
         {
             node.AcceptChildren(this);
@@ -258,6 +263,11 @@
         }
 
         public virtual void Visit(RawStatement node)
+        {
+            node.AcceptChildren(this);
+        }
+
+        public virtual void Visit(ReturnStatement node)
         {
             node.AcceptChildren(this);
         }

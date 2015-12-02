@@ -12,6 +12,8 @@
 
         public TypeReference ReturnType { get; set; }
 
+        public string ParameterName { get; set; }
+
         public TypeReference ParameterType { get; set; }
 
         public CodeGenerationCollection<Statement> Body { get; set; }

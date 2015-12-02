@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.CodeGeneration.Tree
 {
-    public enum GenericParameteTypeConstraintModifier
+    public enum GenericParameterTypeConstraintModifier
     {
         None,
         Class,

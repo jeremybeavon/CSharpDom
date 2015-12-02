@@ -11,7 +11,7 @@
 
         public string Name { get; set; }
 
-        public GenericParameteTypeConstraintModifier TypeConstraint { get; set; }
+        public GenericParameterTypeConstraintModifier TypeConstraint { get; set; }
 
         public ClassReference BaseClassConstraint { get; set; }
 

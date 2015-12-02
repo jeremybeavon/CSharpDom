@@ -2,6 +2,14 @@
 {
     public sealed class Struct : CodeGenerationNode
     {
+        public Struct(string name)
+        {
+            Name = name;
+            GenericParameters = new CodeGenerationCollection<GenericParameter>();
+            Interfaces = new CodeGenerationCollection<InterfaceReference>();
+            Body = new StructBody();
+        }
+
         public string Name { get; set; }
 
         public TypeVisibilityModifier Visibility { get; set; }

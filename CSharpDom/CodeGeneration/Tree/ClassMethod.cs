@@ -15,6 +15,8 @@
 
         public bool IsAsync { get; set; }
 
+        public bool IsPartial { get; set; }
+
         public MemberInheritanceModifier InheritanceModifier { get; set; }
 
         public TypeReference ReturnType { get; set; }

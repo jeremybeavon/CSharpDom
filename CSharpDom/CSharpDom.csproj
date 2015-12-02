@@ -111,8 +111,12 @@
     <Compile Include="CodeGeneration\Tree\CodeGenerationCollectionExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\EmptyStatement.cs" />
     <Compile Include="CodeGeneration\Tree\EmptyStructPropertyAccessors.cs" />
+    <Compile Include="CodeGeneration\Tree\DelegateParameter.cs" />
+    <Compile Include="CodeGeneration\Tree\DelegateParameterModifier.cs" />
+    <Compile Include="CodeGeneration\Tree\ReturnStatement.cs" />
     <Compile Include="CodeGeneration\Tree\ExpressionStatementExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\ICodeGenerationNode.cs" />
+    <Compile Include="CodeGeneration\Tree\IndexerInheritanceModifier.cs" />
     <Compile Include="CodeGeneration\Tree\PropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeTextBuilder.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilder.cs" />
@@ -161,7 +165,7 @@
     <Compile Include="CodeGeneration\Tree\ForStatement.cs" />
     <Compile Include="CodeGeneration\Tree\GenericParameter.cs" />
     <Compile Include="CodeGeneration\Tree\GenericParameterReference.cs" />
-    <Compile Include="CodeGeneration\Tree\GenericParameteTypeConstraintModifier.cs" />
+    <Compile Include="CodeGeneration\Tree\GenericParameterTypeConstraintModifier.cs" />
     <Compile Include="CodeGeneration\Tree\GotoStatement.cs" />
     <Compile Include="CodeGeneration\Tree\IExpressionStatement.cs" />
     <Compile Include="CodeGeneration\Tree\IfStatement.cs" />

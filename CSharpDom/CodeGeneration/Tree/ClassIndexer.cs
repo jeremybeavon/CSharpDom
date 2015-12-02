@@ -2,25 +2,74 @@
 {
     public sealed class ClassIndexer : CodeGenerationNode
     {
-        public ClassIndexer(string name)
+        private EmptyClassPropertyAccessors emptyAccessors;
+        private ClassPropertyAccessor getAccessor;
+        private ClassPropertyAccessor setAccessor;
+
+        public ClassIndexer()
         {
-            Name = name;
             Parameters = new CodeGenerationCollection<MethodParameter>();
         }
-
-        public string Name { get; set; }
-
+        
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
-        public MemberInheritanceModifier InheritanceModifier { get; set; }
+        public IndexerInheritanceModifier InheritanceModifier { get; set; }
 
         public TypeReference Type { get; set; }
 
         public CodeGenerationCollection<MethodParameter> Parameters { get; set; }
 
-        public ClassPropertyAccessor GetAccessor { get; set; }
+        public EmptyClassPropertyAccessors EmptyAccessors
+        {
+            get
+            {
+                return emptyAccessors;
+            }
 
-        public ClassPropertyAccessor SetAccessor { get; set; }
+            set
+            {
+                emptyAccessors = value;
+                if (value != null)
+                {
+                    getAccessor = null;
+                    setAccessor = null;
+                }
+            }
+        }
+
+        public ClassPropertyAccessor GetAccessor
+        {
+            get
+            {
+                return getAccessor;
+            }
+
+            set
+            {
+                getAccessor = value;
+                if (value != null)
+                {
+                    emptyAccessors = null;
+                }
+            }
+        }
+
+        public ClassPropertyAccessor SetAccessor
+        {
+            get
+            {
+                return setAccessor;
+            }
+
+            set
+            {
+                setAccessor = value;
+                if (value != null)
+                {
+                    emptyAccessors = null;
+                }
+            }
+        }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {
@@ -34,6 +83,7 @@
         {
             Type.AcceptIfNotNull(visitor);
             Parameters.AcceptIfNotNull(visitor);
+            EmptyAccessors.AcceptIfNotNull(visitor);
             GetAccessor.AcceptIfNotNull(visitor);
             SetAccessor.AcceptIfNotNull(visitor);
         }
