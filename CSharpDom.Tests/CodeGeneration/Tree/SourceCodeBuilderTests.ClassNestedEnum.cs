@@ -1,5 +1,4 @@
-﻿using System;
-using CSharpDom.CodeGeneration.Tree;
+﻿using CSharpDom.CodeGeneration.Tree;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -8,23 +7,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
     public sealed partial class SourceCodeBuilderTests
     {
         [TestMethod]
-        public void TestClassWithEvent()
+        public void TestClassNestedEnum()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Classes = new CodeGenerationCollection<Class>()
                 {
                     new Class("TestClass")
                     {
                         Body = new ClassBody()
                         {
-                            Events = new CodeGenerationCollection<ClassEvent>()
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
                             {
-                                new ClassEvent("event1")
-                                {
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
+                                new ClassNestedEnum("TestClassNestedEnum")
                             }
                         }
                     }
@@ -32,452 +28,425 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             }).Accept(builder);
             const string expectedText = @"class TestClass
 {
-    event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithInternalEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Internal,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    internal event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithProtectedInternalEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.ProtectedInternal,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    protected internal event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithProtectedEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Protected,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    protected event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPrivateEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Private,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    private event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicAbstractEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Abstract,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public abstract event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicNewEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.New,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public new event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicNewStaticEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.NewStatic,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public new static event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicNewVirtualEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.NewVirtual,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public new virtual event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicOverrideEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Override,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public override event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicSealedOverrideEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.SealedOverride,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public sealed override event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicStaticEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Static,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicVirtualEvent()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Virtual,
-                                    Type = new DelegateReference(typeof(EventHandler))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public virtual event EventHandler event1;
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithEventWithAccessorsWithNoStatements()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Events = new CodeGenerationCollection<ClassEvent>()
-                            {
-                                new ClassEvent("event1")
-                                {
-                                    Type = new DelegateReference(typeof(EventHandler)),
-                                    Accessors = new EventAccessors()
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    event EventHandler event1
+    enum TestClassNestedEnum
     {
-        add { }
-        remove { }
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestPublicClassNestedEnum()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    Visibility = ClassMemberVisibilityModifier.Public
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    public enum TestClassNestedEnum
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestInternalClassNestedEnum()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    Visibility = ClassMemberVisibilityModifier.Internal
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    internal enum TestClassNestedEnum
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestProtectedInternalClassNestedEnum()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    Visibility = ClassMemberVisibilityModifier.ProtectedInternal
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    protected internal enum TestClassNestedEnum
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestProtectedClassNestedEnum()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    Visibility = ClassMemberVisibilityModifier.Protected
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    protected enum TestClassNestedEnum
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestPrivateClassNestedEnum()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    Visibility = ClassMemberVisibilityModifier.Private
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    private enum TestClassNestedEnum
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassNestedEnumWithByteBaseType()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    BaseType = EnumBaseType.Byte
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    enum TestClassNestedEnum : byte
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassNestedEnumWithSByteBaseType()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    BaseType = EnumBaseType.SByte
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    enum TestClassNestedEnum : sbyte
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassNestedEnumWithShortBaseType()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    BaseType = EnumBaseType.Short
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    enum TestClassNestedEnum : short
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassNestedEnumWithUShortBaseType()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    BaseType = EnumBaseType.UShort
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    enum TestClassNestedEnum : ushort
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassNestedEnumWithIntBaseType()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    BaseType = EnumBaseType.Int
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    enum TestClassNestedEnum : int
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassNestedEnumWithUIntBaseType()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    BaseType = EnumBaseType.UInt
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    enum TestClassNestedEnum : uint
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassNestedEnumWithLongBaseType()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    BaseType = EnumBaseType.Long
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    enum TestClassNestedEnum : long
+    {
+    }
+}";
+            builder.ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassNestedEnumWithULongBaseType()
+        {
+            SourceCodeBuilder builder = new SourceCodeBuilder();
+            (new CodeGenerationFile()
+            {
+                Classes = new CodeGenerationCollection<Class>()
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            NestedEnums = new CodeGenerationCollection<ClassNestedEnum>()
+                            {
+                                new ClassNestedEnum("TestClassNestedEnum")
+                                {
+                                    BaseType = EnumBaseType.ULong
+                                }
+                            }
+                        }
+                    }
+                }
+            }).Accept(builder);
+            const string expectedText = @"class TestClass
+{
+    enum TestClassNestedEnum : ulong
+    {
     }
 }";
             builder.ToString().Should().Be(expectedText);

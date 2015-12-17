@@ -111,8 +111,9 @@
     <Compile Include="CodeGeneration\Tree\CodeGenerationCollectionExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\EmptyStatement.cs" />
     <Compile Include="CodeGeneration\Tree\EmptyStructPropertyAccessors.cs" />
-    <Compile Include="CodeGeneration\Tree\DelegateParameter.cs" />
-    <Compile Include="CodeGeneration\Tree\DelegateParameterModifier.cs" />
+    <Compile Include="CodeGeneration\Tree\ClassMethodParameter.cs" />
+    <Compile Include="CodeGeneration\Tree\ClassMethodParameterModifier.cs" />
+    <Compile Include="CodeGeneration\Tree\StructMethodInheritanceModifier.cs" />
     <Compile Include="CodeGeneration\Tree\ReturnStatement.cs" />
     <Compile Include="CodeGeneration\Tree\ExpressionStatementExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\ICodeGenerationNode.cs" />
@@ -178,7 +179,7 @@
     <Compile Include="CodeGeneration\Tree\LabelReference.cs" />
     <Compile Include="CodeGeneration\Tree\LabelStatement.cs" />
     <Compile Include="CodeGeneration\Tree\LockStatement.cs" />
-    <Compile Include="CodeGeneration\Tree\MemberInheritanceModifier.cs" />
+    <Compile Include="CodeGeneration\Tree\ClassMemberInheritanceModifier.cs" />
     <Compile Include="CodeGeneration\Tree\ClassPropertyAccessor.cs" />
     <Compile Include="CodeGeneration\Tree\ClassPropertyAccessorVisibilityModifier.cs" />
     <Compile Include="CodeGeneration\Tree\ClassMemberVisibilityModifier.cs" />

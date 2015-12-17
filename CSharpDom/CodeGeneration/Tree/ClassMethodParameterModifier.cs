@@ -1,8 +1,9 @@
 ﻿namespace CSharpDom.CodeGeneration.Tree
 {
-    public enum DelegateParameterModifier
+    public enum ClassMethodParameterModifier
     {
         None,
+        This,
         Params,
         Ref,
         Out

@@ -2,13 +2,10 @@
 {
     public sealed class StructIndexer : CodeGenerationNode
     {
-        public StructIndexer(string name)
+        public StructIndexer()
         {
-            Name = name;
             Parameters = new CodeGenerationCollection<MethodParameter>();
         }
-
-        public string Name { get; set; }
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 
@@ -16,9 +13,9 @@
 
         public CodeGenerationCollection<MethodParameter> Parameters { get; set; }
 
-        public ClassPropertyAccessor GetAccessor { get; set; }
+        public StructPropertyAccessor GetAccessor { get; set; }
 
-        public ClassPropertyAccessor SetAccessor { get; set; }
+        public StructPropertyAccessor SetAccessor { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

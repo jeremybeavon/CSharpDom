@@ -6,7 +6,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
 {
     public sealed partial class SourceCodeBuilderTests
     {
-        /*[TestMethod]
+        [TestMethod]
         public void TestClassWithIndexer()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
@@ -291,7 +291,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             builder.ToString().Should().Be(expectedText);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestClassWithPublicAbstractIndexer()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
@@ -326,7 +326,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
     public abstract string this[int parameter1] { set; }
 }";
             builder.ToString().Should().Be(expectedText);
-        }
+        }*/
 
         [TestMethod]
         public void TestClassWithPublicNewIndexer()
@@ -367,47 +367,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
 }";
             builder.ToString().Should().Be(expectedText);
         }
-
-        [TestMethod]
-        public void TestClassWithPublicNewStaticIndexer()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Indexers = new CodeGenerationCollection<ClassIndexer>()
-                            {
-                                new ClassIndexer()
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = IndexerInheritanceModifier.NewStatic,
-                                    Type = new TypeReference("string"),
-                                    Parameters = new CodeGenerationCollection<MethodParameter>()
-                                    {
-                                        new MethodParameter("parameter1", new TypeReference(typeof(int)))
-                                    },
-                                    SetAccessor = new ClassPropertyAccessor()
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public new static string this[int parameter1]
-    {
-        set { }
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
+        
         [TestMethod]
         public void TestClassWithPublicNewVirtualIndexer()
         {
@@ -566,6 +526,6 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
     }
 }";
             builder.ToString().Should().Be(expectedText);
-        }*/
+        }
     }
 }

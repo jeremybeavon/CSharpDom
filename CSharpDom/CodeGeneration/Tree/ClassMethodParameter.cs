@@ -1,13 +1,13 @@
 ﻿namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class DelegateParameter : CodeGenerationNode
+    public sealed class ClassMethodParameter : CodeGenerationNode
     {
-        public DelegateParameter(string name)
+        public ClassMethodParameter(string name)
         {
             Name = name;
         }
 
-        public DelegateParameter(string name, TypeReference type)
+        public ClassMethodParameter(string name, TypeReference type)
         {
             Name = name;
             Type = type;
@@ -15,7 +15,7 @@
 
         public string Name { get; set; }
 
-        public DelegateParameterModifier Modifier { get; set; }
+        public ClassMethodParameterModifier Modifier { get; set; }
 
         public TypeReference Type { get; set; }
 

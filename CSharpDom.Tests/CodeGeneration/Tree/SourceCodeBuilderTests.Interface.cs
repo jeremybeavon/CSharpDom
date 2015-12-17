@@ -14,10 +14,10 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface
+            const string expectedText = @"interface ITestInterface
 {
 }";
             builder.ToString().Should().Be(expectedText);
@@ -31,13 +31,13 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         Visibility = TypeVisibilityModifier.Public
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"public interface TestInterface
+            const string expectedText = @"public interface ITestInterface
 {
 }";
             builder.ToString().Should().Be(expectedText);
@@ -51,13 +51,13 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         Visibility = TypeVisibilityModifier.Internal
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"internal interface TestInterface
+            const string expectedText = @"internal interface ITestInterface
 {
 }";
             builder.ToString().Should().Be(expectedText);
@@ -71,7 +71,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -80,7 +80,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<T>
+            const string expectedText = @"interface ITestInterface<T>
 {
 }";
             builder.ToString().Should().Be(expectedText);
@@ -94,7 +94,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -104,7 +104,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<TKey, TValue>
+            const string expectedText = @"interface ITestInterface<TKey, TValue>
 {
 }";
             builder.ToString().Should().Be(expectedText);
@@ -118,7 +118,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -130,7 +130,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<T>
+            const string expectedText = @"interface ITestInterface<T>
     where T : class
 {
 }";
@@ -145,7 +145,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -157,7 +157,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<T>
+            const string expectedText = @"interface ITestInterface<T>
     where T : struct
 {
 }";
@@ -172,7 +172,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -184,7 +184,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<T>
+            const string expectedText = @"interface ITestInterface<T>
     where T : new()
 {
 }";
@@ -199,7 +199,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -211,7 +211,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<T>
+            const string expectedText = @"interface ITestInterface<T>
     where T : BaseClass
 {
 }";
@@ -226,7 +226,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -241,7 +241,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<T>
+            const string expectedText = @"interface ITestInterface<T>
     where T : ITestInterface
 {
 }";
@@ -256,7 +256,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -272,7 +272,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<T>
+            const string expectedText = @"interface ITestInterface<T>
     where T : ITestInterface, ITestInterface2
 {
 }";
@@ -287,7 +287,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -303,7 +303,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<TParent, TChild>
+            const string expectedText = @"interface ITestInterface<TParent, TChild>
     where TChild : TParent
 {
 }";
@@ -318,7 +318,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -336,7 +336,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<TGrandparent, TParent, TChild>
+            const string expectedText = @"interface ITestInterface<TGrandparent, TParent, TChild>
     where TChild : TGrandparent, TParent
 {
 }";
@@ -351,7 +351,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -368,7 +368,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<T>
+            const string expectedText = @"interface ITestInterface<T>
     where T : class, ITestInterface, new()
 {
 }";
@@ -383,7 +383,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         GenericParameters =
                         {
@@ -405,7 +405,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface<TKey, TValue>
+            const string expectedText = @"interface ITestInterface<TKey, TValue>
     where TKey : ITestInterface
     where TValue : TKey
 {
@@ -421,7 +421,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         Interfaces =
                         {
@@ -430,7 +430,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface : ITestInterface
+            const string expectedText = @"interface ITestInterface : ITestInterface
 {
 }";
             builder.ToString().Should().Be(expectedText);
@@ -444,7 +444,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         Interfaces =
                         {
@@ -454,7 +454,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"interface TestInterface : ITestInterface, ITestInterface2
+            const string expectedText = @"interface ITestInterface : ITestInterface, ITestInterface2
 {
 }";
             builder.ToString().Should().Be(expectedText);
@@ -468,13 +468,13 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             {
                 Interfaces =
                 {
-                    new Interface("TestInterface")
+                    new Interface("ITestInterface")
                     {
                         IsPartial = true
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"partial interface TestInterface
+            const string expectedText = @"partial interface ITestInterface
 {
 }";
             builder.ToString().Should().Be(expectedText);

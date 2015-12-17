@@ -3,7 +3,6 @@
     public enum MethodParameterModifier
     {
         None,
-        This,
         Params,
         Ref,
         Out

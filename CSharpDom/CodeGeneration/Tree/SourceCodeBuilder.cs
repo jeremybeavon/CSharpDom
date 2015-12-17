@@ -29,6 +29,7 @@ namespace CSharpDom.CodeGeneration.Tree
         public const string VirtualText = "virtual ";
 
         // Miscellaneous modifier text
+        public const string AsyncText = "async ";
         public const string ExplicitText = "explicit ";
         public const string ImplicitText = "implicit ";
         public const string OperatorText = "operator ";
@@ -87,6 +88,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         private static readonly IDictionary<Type, string> SpecialTypes = new Dictionary<Type, string>()
         {
+            { typeof(bool), "bool" },
             { typeof(byte), "byte" },
             { typeof(sbyte), "sbyte" },
             { typeof(short), "short" },
@@ -211,28 +213,47 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
-        public static string ToString(MemberInheritanceModifier inheritanceModifier)
+        public static string ToString(ClassMemberInheritanceModifier inheritanceModifier)
         {
             switch (inheritanceModifier)
             {
-                case MemberInheritanceModifier.None:
+                case ClassMemberInheritanceModifier.None:
                     return string.Empty;
-                case MemberInheritanceModifier.Abstract:
+                case ClassMemberInheritanceModifier.Abstract:
                     return AbstractText;
-                case MemberInheritanceModifier.New:
+                case ClassMemberInheritanceModifier.New:
                     return NewText;
-                case MemberInheritanceModifier.NewStatic:
+                case ClassMemberInheritanceModifier.NewStatic:
                     return NewText + StaticText;
-                case MemberInheritanceModifier.NewVirtual:
+                case ClassMemberInheritanceModifier.NewVirtual:
                     return NewText + VirtualText;
-                case MemberInheritanceModifier.Override:
+                case ClassMemberInheritanceModifier.Override:
                     return OverrideText;
-                case MemberInheritanceModifier.SealedOverride:
+                case ClassMemberInheritanceModifier.SealedOverride:
                     return SealedText + OverrideText;
-                case MemberInheritanceModifier.Static:
+                case ClassMemberInheritanceModifier.Static:
                     return StaticText;
-                case MemberInheritanceModifier.Virtual:
+                case ClassMemberInheritanceModifier.Virtual:
                     return VirtualText;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
+        public static string ToString(StructMethodInheritanceModifier inheritanceModifier)
+        {
+            switch (inheritanceModifier)
+            {
+                case StructMethodInheritanceModifier.None:
+                    return string.Empty;
+                case StructMethodInheritanceModifier.New:
+                    return NewText;
+                case StructMethodInheritanceModifier.NewStatic:
+                    return NewText + StaticText;
+                case StructMethodInheritanceModifier.Override:
+                    return OverrideText;
+                case StructMethodInheritanceModifier.Static:
+                    return StaticText;
                 default:
                     throw new NotSupportedException();
             }
@@ -390,23 +411,6 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
-        public static string ToString(DelegateParameterModifier modifier)
-        {
-            switch (modifier)
-            {
-                case DelegateParameterModifier.None:
-                    return string.Empty;
-                case DelegateParameterModifier.Out:
-                    return OutText;
-                case DelegateParameterModifier.Ref:
-                    return RefText;
-                case DelegateParameterModifier.Params:
-                    return ParamsText;
-                default:
-                    throw new NotSupportedException();
-            }
-        }
-
         public static string ToString(MethodParameterModifier modifier)
         {
             switch (modifier)
@@ -419,7 +423,24 @@ namespace CSharpDom.CodeGeneration.Tree
                     return RefText;
                 case MethodParameterModifier.Params:
                     return ParamsText;
-                case MethodParameterModifier.This:
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
+        public static string ToString(ClassMethodParameterModifier modifier)
+        {
+            switch (modifier)
+            {
+                case ClassMethodParameterModifier.None:
+                    return string.Empty;
+                case ClassMethodParameterModifier.Out:
+                    return OutText;
+                case ClassMethodParameterModifier.Ref:
+                    return RefText;
+                case ClassMethodParameterModifier.Params:
+                    return ParamsText;
+                case ClassMethodParameterModifier.This:
                     return ThisText;
                 default:
                     throw new NotSupportedException();
@@ -572,13 +593,14 @@ namespace CSharpDom.CodeGeneration.Tree
             Append("]");
             if (node.EmptyAccessors == null)
             {
+                AppendWithIndent("{");
                 using (IncrementIndent())
                 {
-                    AppendWithIndent("{");
                     node.GetAccessor.AcceptIfNotNull(this);
                     node.SetAccessor.AcceptIfNotNull(this);
-                    AppendWithIndent("}");
                 }
+
+                AppendWithIndent("}");
             }
             else
             {
@@ -594,12 +616,12 @@ namespace CSharpDom.CodeGeneration.Tree
             Append(ToString(node.InheritanceModifier));
             if (node.IsAsync)
             {
-                Append("async ");
+                Append(AsyncText);
             }
 
             if (node.IsPartial)
             {
-                Append("partial ");
+                Append(PartialText);
             }
 
             node.ReturnType.Accept(this);
@@ -611,11 +633,20 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendBlock(node.Body);
         }
 
+        public override void Visit(ClassMethodParameter node)
+        {
+            Append(ToString(node.Modifier));
+            node.Type.Accept(this);
+            Append(" ");
+            Append(node.Name);
+        }
+
         public override void Visit(ClassNestedClass node)
         {
             AppendWithIndent(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             AppendPartial(node.IsPartial);
+            Append(ClassText);
             Append(node.Name);
             AppendGenericParameters(node.GenericParameters);
             if (node.BaseClass != null)
@@ -634,6 +665,7 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent(ToString(node.Visibility));
             Append(DelegateText);
             node.ReturnType.Accept(this);
+            Append(" ");
             Append(node.Name);
             AppendGenericParameters(node.GenericParameters);
             Append("(");
@@ -707,15 +739,19 @@ namespace CSharpDom.CodeGeneration.Tree
         {
             AppendWithIndent(ToString(node.Visibility));
             Append(currentClassPropertyGetAccessor == node ? GetText : SetText);
-            if (node.Body.Count == 1)
+            switch (node.Body.Count)
             {
-                Append(" {");
-                node.Body[0].Accept(this);
-                Append(" }");
-            }
-            else
-            {
-                AppendBlock(node.Body);
+                case 0:
+                    Append(" { }");
+                    break;
+                case 1:
+                    Append(" {");
+                    node.Body[0].Accept(this);
+                    Append(" }");
+                    break;
+                default:
+                    AppendBlock(node.Body);
+                    break;
             }
         }
 
@@ -784,14 +820,6 @@ namespace CSharpDom.CodeGeneration.Tree
             Append(")");
             node.GenericParameters.AcceptIfNotNull(this);
             Append(";");
-        }
-
-        public override void Visit(DelegateParameter node)
-        {
-            Append(ToString(node.Modifier));
-            node.Type.Accept(this);
-            Append(" ");
-            Append(node.Name);
         }
 
         public override void Visit(DelegateReference node)
@@ -1260,11 +1288,22 @@ namespace CSharpDom.CodeGeneration.Tree
         public override void Visit(StructEvent node)
         {
             AppendWithIndent(ToString(node.Visibility));
-            node.Type.Accept(this);
-            Append(node.Name);
-            if (node.Accessors != null)
+            if (node.IsStatic)
             {
-                node.Accessors.Accept(this);
+                Append(StaticText);
+            }
+
+            Append("event ");
+            node.Type.Accept(this);
+            Append(" ");
+            Append(node.Name);
+            if (node.Accessors == null)
+            {
+                Append(";");
+            }
+            else
+            {
+                AppendBlock(node.Accessors);
             }
         }
 
@@ -1273,28 +1312,23 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent(ToString(node.Visibility));
             Append(ToString(node.Modifier));
             node.Type.Accept(this);
+            Append(" ");
             AppendCommaSeparatedCollection(node.Fields, string.Empty);
+            Append(";");
         }
 
         public override void Visit(StructIndexer node)
         {
             AppendWithIndent(ToString(node.Visibility));
             node.Type.Accept(this);
-            Append("this[");
+            Append(" this[");
             AppendCommaSeparatedCollection(node.Parameters, string.Empty);
             Append("]");
             AppendWithIndent("{");
             using (IncrementIndent())
             {
-                if (node.GetAccessor != null)
-                {
-                    node.GetAccessor.Accept(this);
-                }
-
-                if (node.SetAccessor != null)
-                {
-                    node.SetAccessor.Accept(this);
-                }
+                node.GetAccessor.AcceptIfNotNull(this);
+                node.SetAccessor.AcceptIfNotNull(this);
             }
 
             AppendWithIndent("}");
@@ -1303,12 +1337,19 @@ namespace CSharpDom.CodeGeneration.Tree
         public override void Visit(StructMethod node)
         {
             AppendWithIndent(ToString(node.Visibility));
+            Append(ToString(node.InheritanceModifier));
             if (node.IsAsync)
             {
-                Append("async ");
+                Append(AsyncText);
+            }
+
+            if (node.IsPartial)
+            {
+                Append(PartialText);
             }
 
             node.ReturnType.Accept(this);
+            Append(" ");
             Append(node.Name);
             AppendGenericParameters(node.GenericParameters);
             AppendMethodParameters(node.Parameters);
@@ -1321,6 +1362,7 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             AppendPartial(node.IsPartial);
+            Append(ClassText);
             Append(node.Name);
             AppendGenericParameters(node.GenericParameters);
             if (node.BaseClass != null)
@@ -1339,6 +1381,7 @@ namespace CSharpDom.CodeGeneration.Tree
             AppendWithIndent(ToString(node.Visibility));
             Append(DelegateText);
             node.ReturnType.Accept(this);
+            Append(" ");
             Append(node.Name);
             AppendGenericParameters(node.GenericParameters);
             Append("(");
@@ -1390,8 +1433,13 @@ namespace CSharpDom.CodeGeneration.Tree
         public override void Visit(StructProperty node)
         {
             AppendWithIndent(ToString(node.Visibility));
-            Append(ToString(node.InheritanceModifier));
+            if (node.IsStatic)
+            {
+                Append(StaticText);
+            }
+
             node.Type.Accept(this);
+            Append(" ");
             Append(node.Name);
             if (node.EmptyAccessors == null)
             {
@@ -1401,7 +1449,9 @@ namespace CSharpDom.CodeGeneration.Tree
             }
             else
             {
+                Append(" { ");
                 node.EmptyAccessors.Accept(this);
+                Append(" }");
             }
         }
 
@@ -1409,15 +1459,19 @@ namespace CSharpDom.CodeGeneration.Tree
         {
             AppendWithIndent(ToString(node.Visibility));
             Append(currentStructPropertyGetAccessor == node ? GetText : SetText);
-            if (node.Body.Count == 1)
+            switch (node.Body.Count)
             {
-                Append(" {");
-                node.Body[0].Accept(this);
-                Append(" }");
-            }
-            else
-            {
-                AppendBlock(node.Body);
+                case 0:
+                    Append(" { }");
+                    break;
+                case 1:
+                    Append(" {");
+                    node.Body[0].Accept(this);
+                    Append(" }");
+                    break;
+                default:
+                    AppendBlock(node.Body);
+                    break;
             }
         }
 
@@ -1631,6 +1685,13 @@ namespace CSharpDom.CodeGeneration.Tree
         }
 
         private void AppendMethodParameters(CodeGenerationCollection<MethodParameter> parameters)
+        {
+            Append("(");
+            AppendCommaSeparatedCollection(parameters, string.Empty);
+            Append(")");
+        }
+
+        private void AppendMethodParameters(CodeGenerationCollection<ClassMethodParameter> parameters)
         {
             Append("(");
             AppendCommaSeparatedCollection(parameters, string.Empty);

@@ -16,7 +16,7 @@
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 
-        public MemberInheritanceModifier InheritanceModifier { get; set; }
+        public bool IsStatic { get; set; }
 
         public TypeReference Type { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.CodeGeneration.Tree
 {
-    public enum MemberInheritanceModifier
+    public enum ClassMemberInheritanceModifier
     {
         None,
         Static,

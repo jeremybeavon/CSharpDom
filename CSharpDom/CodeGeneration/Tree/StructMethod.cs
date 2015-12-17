@@ -13,7 +13,11 @@
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 
+        public StructMethodInheritanceModifier InheritanceModifier { get; set; }
+
         public bool IsAsync { get; set; }
+
+        public bool IsPartial { get; set; }
 
         public TypeReference ReturnType { get; set; }
 

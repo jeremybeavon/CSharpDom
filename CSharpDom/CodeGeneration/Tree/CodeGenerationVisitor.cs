@@ -52,6 +52,11 @@
             node.AcceptChildren(this);
         }
 
+        public virtual void Visit(ClassMethodParameter node)
+        {
+            node.AcceptChildren(this);
+        }
+
         public virtual void Visit(ClassNestedClass node)
         {
             node.AcceptChildren(this);
@@ -103,11 +108,6 @@
         }
 
         public virtual void Visit(Delegate node)
-        {
-            node.AcceptChildren(this);
-        }
-
-        public virtual void Visit(DelegateParameter node)
         {
             node.AcceptChildren(this);
         }

@@ -11,7 +11,7 @@
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
-        public MemberInheritanceModifier InheritanceModifier { get; set; }
+        public ClassMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public DelegateReference Type { get; set; }
 

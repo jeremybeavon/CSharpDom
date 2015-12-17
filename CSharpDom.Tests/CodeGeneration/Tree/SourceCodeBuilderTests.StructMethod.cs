@@ -8,20 +8,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
     public sealed partial class SourceCodeBuilderTests
     {
         [TestMethod]
-        public void TestClassWithMethod()
+        public void TestStructWithMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void))
                                 }
@@ -30,7 +30,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1()
     {
@@ -40,22 +40,22 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithPublicMethod()
+        public void TestStructWithPublicMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
+                                    Visibility = StructMemberVisibilityModifier.Public,
                                     ReturnType = new TypeReference(typeof(void))
                                 }
                             }
@@ -63,7 +63,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     public void Method1()
     {
@@ -73,22 +73,22 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithInternalMethod()
+        public void TestStructWithInternalMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
-                                    Visibility = ClassMemberVisibilityModifier.Internal,
+                                    Visibility = StructMemberVisibilityModifier.Internal,
                                     ReturnType = new TypeReference(typeof(void))
                                 }
                             }
@@ -96,7 +96,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     internal void Method1()
     {
@@ -104,24 +104,24 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
 }";
             builder.ToString().Should().Be(expectedText);
         }
-
+        
         [TestMethod]
-        public void TestClassWithProtectedInternalMethod()
+        public void TestStructWithPrivateMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
-                                    Visibility = ClassMemberVisibilityModifier.ProtectedInternal,
+                                    Visibility = StructMemberVisibilityModifier.Private,
                                     ReturnType = new TypeReference(typeof(void))
                                 }
                             }
@@ -129,73 +129,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    protected internal void Method1()
-    {
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithProtectedMethod()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
-                            {
-                                new ClassMethod("Method1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Protected,
-                                    ReturnType = new TypeReference(typeof(void))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    protected void Method1()
-    {
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPrivateMethod()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
-                            {
-                                new ClassMethod("Method1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Private,
-                                    ReturnType = new TypeReference(typeof(void))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     private void Method1()
     {
@@ -203,35 +137,35 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
 }";
             builder.ToString().Should().Be(expectedText);
         }
-
+        
         [TestMethod]
-        public void TestClassWithPublicAbstractMethod()
+        public void TestStructWithPublicNewMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("GetHashCode")
                                 {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Abstract,
-                                    ReturnType = new TypeReference(typeof(void))
+                                    Visibility = StructMemberVisibilityModifier.Public,
+                                    InheritanceModifier = StructMethodInheritanceModifier.New,
+                                    ReturnType = new TypeReference(typeof(int))
                                 }
                             }
                         }
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
-    public abstract void Method1()
+    public new int GetHashCode()
     {
     }
 }";
@@ -239,91 +173,91 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithPublicNewMethod()
+        public void TestStructWithPublicNewStaticMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Equals")
                                 {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.New,
-                                    ReturnType = new TypeReference(typeof(void))
+                                    Visibility = StructMemberVisibilityModifier.Public,
+                                    InheritanceModifier = StructMethodInheritanceModifier.NewStatic,
+                                    ReturnType = new TypeReference(typeof(bool))
                                 }
                             }
                         }
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
-    public new void Method1()
+    public new static bool Equals()
     {
     }
 }";
             builder.ToString().Should().Be(expectedText);
         }
-
+        
         [TestMethod]
-        public void TestClassWithPublicNewStaticMethod()
+        public void TestStructWithPublicOverrideMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("GetHashCode")
                                 {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.NewStatic,
-                                    ReturnType = new TypeReference(typeof(void))
+                                    Visibility = StructMemberVisibilityModifier.Public,
+                                    InheritanceModifier = StructMethodInheritanceModifier.Override,
+                                    ReturnType = new TypeReference(typeof(int))
                                 }
                             }
                         }
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
-    public new static void Method1()
+    public override int GetHashCode()
     {
     }
 }";
             builder.ToString().Should().Be(expectedText);
         }
-
+        
         [TestMethod]
-        public void TestClassWithPublicNewVirtualMethod()
+        public void TestStructWithPublicStaticMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.NewVirtual,
+                                    Visibility = StructMemberVisibilityModifier.Public,
+                                    InheritanceModifier = StructMethodInheritanceModifier.Static,
                                     ReturnType = new TypeReference(typeof(void))
                                 }
                             }
@@ -331,109 +265,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public new virtual void Method1()
-    {
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicOverrideMethod()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
-                            {
-                                new ClassMethod("Method1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Override,
-                                    ReturnType = new TypeReference(typeof(void))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public override void Method1()
-    {
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicSealedOverrideMethod()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
-                            {
-                                new ClassMethod("Method1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.SealedOverride,
-                                    ReturnType = new TypeReference(typeof(void))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public sealed override void Method1()
-    {
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicStaticMethod()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
-                            {
-                                new ClassMethod("Method1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Static,
-                                    ReturnType = new TypeReference(typeof(void))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     public static void Method1()
     {
@@ -441,59 +273,24 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
 }";
             builder.ToString().Should().Be(expectedText);
         }
-
+        
         [TestMethod]
-        public void TestClassWithPublicVirtualMethod()
+        public void TestStructWithPublicAsyncMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Virtual,
-                                    ReturnType = new TypeReference(typeof(void))
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public virtual void Method1()
-    {
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithPublicVirtualAsyncMethod()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
-                            {
-                                new ClassMethod("Method1")
-                                {
-                                    Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Virtual,
+                                    Visibility = StructMemberVisibilityModifier.Public,
                                     IsAsync = true,
                                     ReturnType = new TypeReference(typeof(void))
                                 }
@@ -502,9 +299,9 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
-    public virtual async void Method1()
+    public async void Method1()
     {
     }
 }";
@@ -512,20 +309,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithPartialMethod()
+        public void TestStructWithPartialMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     IsPartial = true,
                                     ReturnType = new TypeReference(typeof(void))
@@ -535,7 +332,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     partial void Method1()
     {
@@ -545,20 +342,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithAsyncPartialMethod()
+        public void TestStructWithAsyncPartialMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     IsAsync = true,
                                     IsPartial = true,
@@ -569,7 +366,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     async partial void Method1()
     {
@@ -579,20 +376,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethod()
+        public void TestStructWithGenericMethod()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -605,7 +402,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<T>()
     {
@@ -615,20 +412,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWith2GenericParameters()
+        public void TestStructWithGenericMethodWith2GenericParameters()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -642,7 +439,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<T1, T2>()
     {
@@ -652,20 +449,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWithClassGenericParameterConstraint()
+        public void TestStructWithGenericMethodWithClassGenericParameterConstraint()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -681,7 +478,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<T>()
         where T : class
@@ -692,20 +489,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWithStructGenericParameterConstraint()
+        public void TestStructWithGenericMethodWithStructGenericParameterConstraint()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -721,7 +518,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<T>()
         where T : struct
@@ -732,20 +529,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWithEmptyConstructorGenericParameterConstraint()
+        public void TestStructWithGenericMethodWithEmptyConstructorGenericParameterConstraint()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -761,7 +558,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<T>()
         where T : new()
@@ -772,20 +569,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWithBaseClassGenericParameterConstraint()
+        public void TestStructWithGenericMethodWithBaseClassGenericParameterConstraint()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -801,7 +598,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<T>()
         where T : BaseClass
@@ -812,20 +609,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWith1InterfaceGenericParameterConstraint()
+        public void TestStructWithGenericMethodWith1InterfaceGenericParameterConstraint()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -844,7 +641,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<T>()
         where T : ITestInterface
@@ -855,20 +652,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWith2InterfaceGenericParameterConstraints()
+        public void TestStructWithGenericMethodWith2InterfaceGenericParameterConstraints()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -888,7 +685,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<T>()
         where T : ITestInterface, ITestInterface2
@@ -899,20 +696,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWith1GenericTypeGenericParameterConstraint()
+        public void TestStructWithGenericMethodWith1GenericTypeGenericParameterConstraint()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -932,7 +729,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<TParent, TChild>()
         where TChild : TParent
@@ -943,20 +740,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWith2GenericTypeGenericParameterConstraints()
+        public void TestStructWithGenericMethodWith2GenericTypeGenericParameterConstraints()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -978,7 +775,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<TGrandparent, TParent, TChild>()
         where TChild : TGrandparent, TParent
@@ -989,27 +786,27 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWithClassAndInterfaceAndEmptyConstructorGenericParameterConstraints()
+        public void TestStructWithGenericMethodWithStructAndInterfaceAndEmptyConstructorGenericParameterConstraints()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
                                     {
                                         new GenericParameter("T")
                                         {
-                                            TypeConstraint = GenericParameterTypeConstraintModifier.Class,
+                                            TypeConstraint = GenericParameterTypeConstraintModifier.Struct,
                                             InterfaceConstraints = new CodeGenerationCollection<InterfaceReference>()
                                             {
                                                 new InterfaceReference("ITestInterface")
@@ -1023,10 +820,10 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<T>()
-        where T : class, ITestInterface, new()
+        where T : struct, ITestInterface, new()
     {
     }
 }";
@@ -1034,20 +831,20 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithGenericMethodWith2GenericParameterConstraints()
+        public void TestStructWithGenericMethodWith2GenericParameterConstraints()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
                                     GenericParameters = new CodeGenerationCollection<GenericParameter>()
@@ -1073,7 +870,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1<TKey, TValue>()
         where TKey : ITestInterface
@@ -1085,25 +882,25 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithMethodWithParameter()
+        public void TestStructWithMethodWithParameter()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
-                                    Parameters = new CodeGenerationCollection<ClassMethodParameter>()
+                                    Parameters = new CodeGenerationCollection<MethodParameter>()
                                     {
-                                        new ClassMethodParameter("parameter1")
+                                        new MethodParameter("parameter1")
                                         {
                                             Type = new TypeReference(typeof(string))
                                         }
@@ -1114,7 +911,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1(string parameter1)
     {
@@ -1122,32 +919,30 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
 }";
             builder.ToString().Should().Be(expectedText);
         }
-
+        
         [TestMethod]
-        public void TestClassWithMethodWithExtensionClassMethodParameter()
+        public void TestStructWithMethodWithOutParameter()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        InheritanceModifier = TypeInheritanceModifier.Static,
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
-                                    InheritanceModifier = ClassMemberInheritanceModifier.Static,
-                                    Parameters = new CodeGenerationCollection<ClassMethodParameter>()
+                                    Parameters = new CodeGenerationCollection<MethodParameter>()
                                     {
-                                        new ClassMethodParameter("parameter1")
+                                        new MethodParameter("parameter1")
                                         {
                                             Type = new TypeReference(typeof(string)),
-                                            Modifier = ClassMethodParameterModifier.This
+                                            Modifier = MethodParameterModifier.Out
                                         }
                                     }
                                 }
@@ -1156,47 +951,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"static class TestClass
-{
-    static void Method1(this string parameter1)
-    {
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithMethodWithOutParameter()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
-                            {
-                                new ClassMethod("Method1")
-                                {
-                                    ReturnType = new TypeReference(typeof(void)),
-                                    Parameters = new CodeGenerationCollection<ClassMethodParameter>()
-                                    {
-                                        new ClassMethodParameter("parameter1")
-                                        {
-                                            Type = new TypeReference(typeof(string)),
-                                            Modifier = ClassMethodParameterModifier.Out
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1(out string parameter1)
     {
@@ -1206,28 +961,28 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithMethodWithRefParameter()
+        public void TestStructWithMethodWithRefParameter()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
-                                    Parameters = new CodeGenerationCollection<ClassMethodParameter>()
+                                    Parameters = new CodeGenerationCollection<MethodParameter>()
                                     {
-                                        new ClassMethodParameter("parameter1")
+                                        new MethodParameter("parameter1")
                                         {
                                             Type = new TypeReference(typeof(string)),
-                                            Modifier = ClassMethodParameterModifier.Ref
+                                            Modifier = MethodParameterModifier.Ref
                                         }
                                     }
                                 }
@@ -1236,7 +991,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1(ref string parameter1)
     {
@@ -1246,28 +1001,28 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         }
 
         [TestMethod]
-        public void TestClassWithMethodWithParamsParameter()
+        public void TestStructWithMethodWithParamsParameter()
         {
             SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
-                Classes =
+                Structs =
                 {
-                    new Class("TestClass")
+                    new Struct("TestStruct")
                     {
-                        Body = new ClassBody()
+                        Body = new StructBody()
                         {
-                            Methods = new CodeGenerationCollection<ClassMethod>()
+                            Methods = new CodeGenerationCollection<StructMethod>()
                             {
-                                new ClassMethod("Method1")
+                                new StructMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
-                                    Parameters = new CodeGenerationCollection<ClassMethodParameter>()
+                                    Parameters = new CodeGenerationCollection<MethodParameter>()
                                     {
-                                        new ClassMethodParameter("parameter1")
+                                        new MethodParameter("parameter1")
                                         {
                                             Type = new TypeReference("string[]"),
-                                            Modifier = ClassMethodParameterModifier.Params
+                                            Modifier = MethodParameterModifier.Params
                                         }
                                     }
                                 }
@@ -1276,7 +1031,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).Accept(builder);
-            const string expectedText = @"class TestClass
+            const string expectedText = @"struct TestStruct
 {
     void Method1(params string[] parameter1)
     {

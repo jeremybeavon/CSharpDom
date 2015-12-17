@@ -5,7 +5,7 @@
         public ClassMethod(string name)
         {
             Name = name;
-            Parameters = new CodeGenerationCollection<MethodParameter>();
+            Parameters = new CodeGenerationCollection<ClassMethodParameter>();
             Body = new CodeGenerationCollection<Statement>();
         }
 
@@ -17,13 +17,13 @@
 
         public bool IsPartial { get; set; }
 
-        public MemberInheritanceModifier InheritanceModifier { get; set; }
+        public ClassMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public TypeReference ReturnType { get; set; }
 
         public CodeGenerationCollection<GenericParameter> GenericParameters { get; set; }
 
-        public CodeGenerationCollection<MethodParameter> Parameters { get; set; }
+        public CodeGenerationCollection<ClassMethodParameter> Parameters { get; set; }
 
         public CodeGenerationCollection<Statement> Body { get; set; }
 

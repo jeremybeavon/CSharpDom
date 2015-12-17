@@ -88,6 +88,21 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.BinaryOperator.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedInterface.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedInterface.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedEnum.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedEnum.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedDelegate.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedDelegate.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedClass.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedClass.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructProperty.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructMethod.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructIndexer.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructField.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructEvent.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.EnumField.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Enum.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Struct.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Interface.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Delegate.cs" />

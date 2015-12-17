@@ -244,7 +244,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassProperty("Property1")
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = MemberInheritanceModifier.Abstract,
+                                    InheritanceModifier = ClassMemberInheritanceModifier.Abstract,
                                     Type = new TypeReference("string")
                                 }
                             }
@@ -276,7 +276,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassProperty("Property1")
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = MemberInheritanceModifier.New,
+                                    InheritanceModifier = ClassMemberInheritanceModifier.New,
                                     Type = new TypeReference("string")
                                 }
                             }
@@ -308,7 +308,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassProperty("Property1")
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = MemberInheritanceModifier.NewStatic,
+                                    InheritanceModifier = ClassMemberInheritanceModifier.NewStatic,
                                     Type = new TypeReference("string")
                                 }
                             }
@@ -340,7 +340,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassProperty("Property1")
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = MemberInheritanceModifier.NewVirtual,
+                                    InheritanceModifier = ClassMemberInheritanceModifier.NewVirtual,
                                     Type = new TypeReference("string")
                                 }
                             }
@@ -372,7 +372,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassProperty("Property1")
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = MemberInheritanceModifier.Override,
+                                    InheritanceModifier = ClassMemberInheritanceModifier.Override,
                                     Type = new TypeReference("string")
                                 }
                             }
@@ -404,7 +404,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassProperty("Property1")
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = MemberInheritanceModifier.SealedOverride,
+                                    InheritanceModifier = ClassMemberInheritanceModifier.SealedOverride,
                                     Type = new TypeReference("string")
                                 }
                             }
@@ -436,7 +436,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassProperty("Property1")
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = MemberInheritanceModifier.Static,
+                                    InheritanceModifier = ClassMemberInheritanceModifier.Static,
                                     Type = new TypeReference("string")
                                 }
                             }
@@ -468,7 +468,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassProperty("Property1")
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    InheritanceModifier = MemberInheritanceModifier.Virtual,
+                                    InheritanceModifier = ClassMemberInheritanceModifier.Virtual,
                                     Type = new TypeReference("string")
                                 }
                             }

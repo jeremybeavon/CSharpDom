@@ -411,9 +411,9 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     new Delegate("TestDelegate")
                     {
                         ReturnType = new TypeReference(typeof(void)),
-                        Parameters = new CodeGenerationCollection<DelegateParameter>()
+                        Parameters = new CodeGenerationCollection<MethodParameter>()
                         {
-                            new DelegateParameter("parameter1")
+                            new MethodParameter("parameter1")
                             {
                                 Type = new TypeReference(typeof(string))
                             }
@@ -436,11 +436,11 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     new Delegate("TestDelegate")
                     {
                         ReturnType = new TypeReference(typeof(void)),
-                        Parameters = new CodeGenerationCollection<DelegateParameter>()
+                        Parameters = new CodeGenerationCollection<MethodParameter>()
                         {
-                            new DelegateParameter("parameter1")
+                            new MethodParameter("parameter1")
                             {
-                                Modifier = DelegateParameterModifier.Out,
+                                Modifier = MethodParameterModifier.Out,
                                 Type = new TypeReference(typeof(string))
                             }
                         }
@@ -462,11 +462,11 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     new Delegate("TestDelegate")
                     {
                         ReturnType = new TypeReference(typeof(void)),
-                        Parameters = new CodeGenerationCollection<DelegateParameter>()
+                        Parameters = new CodeGenerationCollection<MethodParameter>()
                         {
-                            new DelegateParameter("parameter1")
+                            new MethodParameter("parameter1")
                             {
-                                Modifier = DelegateParameterModifier.Ref,
+                                Modifier = MethodParameterModifier.Ref,
                                 Type = new TypeReference(typeof(string))
                             }
                         }
@@ -488,11 +488,11 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     new Delegate("TestDelegate")
                     {
                         ReturnType = new TypeReference(typeof(void)),
-                        Parameters = new CodeGenerationCollection<DelegateParameter>()
+                        Parameters = new CodeGenerationCollection<MethodParameter>()
                         {
-                            new DelegateParameter("parameter1")
+                            new MethodParameter("parameter1")
                             {
-                                Modifier = DelegateParameterModifier.Params,
+                                Modifier = MethodParameterModifier.Params,
                                 Type = new TypeReference("string[]")
                             }
                         }
