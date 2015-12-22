@@ -2,13 +2,13 @@
 {
     public sealed class ForStatement : Statement
     {
-        public IExpressionStatement InitialValueExpression { get; set; }
+        public ExpressionStatement InitialValueExpression { get; set; }
 
         public VariableDeclarationStatement InitialValueStatement { get; set; }
 
-        public IExpressionStatement Condition { get; set; }
+        public ExpressionStatement Condition { get; set; }
 
-        public IExpressionStatement Increment { get; set; }
+        public ExpressionStatement Increment { get; set; }
 
         public Statement Statement { get; set; }
 

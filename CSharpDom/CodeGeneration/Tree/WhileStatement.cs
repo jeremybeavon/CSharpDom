@@ -2,7 +2,7 @@
 {
     public sealed class WhileStatement : Statement
     {
-        public IExpressionStatement Condition { get; set; }
+        public ExpressionStatement Condition { get; set; }
 
         public Statement Statement { get; set; }
 

@@ -109,10 +109,12 @@ namespace CSharpDom.CodeGeneration.Tree
         private ClassPropertyAccessor currentClassPropertyGetAccessor;
         private string fieldComma;
         private StructPropertyAccessor currentStructPropertyGetAccessor;
+        private Stack<bool> appendExtraLine;
 
         public SourceCodeBuilder()
         {
             textBuilder = new SourceCodeTextBuilder();
+            appendExtraLine = new Stack<bool>(new bool[] { false });
         }
 
         public SourceCodeBuilder(SourceCodeTextBuilder textBuilder)
@@ -496,7 +498,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(BinaryOperator node)
         {
-            AppendWithIndent(PublicText + StaticText);
+            AppendWithIndentAndExtraLine(PublicText + StaticText);
             AppendBinaryOperatorTypeReference(node.ReturnType, node.OperatorType);
             Append(" ");
             Append(OperatorText);
@@ -558,7 +560,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ClassEvent node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             Append("event ");
             node.Type.Accept(this);
@@ -585,7 +587,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ClassIndexer node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             node.Type.Accept(this);
             Append(" this[");
@@ -612,7 +614,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ClassMethod node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             if (node.IsAsync)
             {
@@ -643,7 +645,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ClassNestedClass node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             AppendPartial(node.IsPartial);
             Append(ClassText);
@@ -662,7 +664,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ClassNestedDelegate node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(DelegateText);
             node.ReturnType.Accept(this);
             Append(" ");
@@ -677,7 +679,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ClassNestedEnum node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(EnumText);
             Append(node.Name);
             Append(ToString(node.BaseType));
@@ -693,7 +695,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ClassNestedInterface node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             AppendPartial(node.IsPartial);
             Append(InterfaceText);
             Append(node.Name);
@@ -705,8 +707,9 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ClassNestedStruct node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             AppendPartial(node.IsPartial);
+            Append(StructText);
             Append(node.Name);
             AppendGenericParameters(node.GenericParameters);
             AppendCommaSeparatedCollection(node.Interfaces, " : ");
@@ -716,7 +719,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ClassProperty node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             node.Type.Accept(this);
             Append(" ");
@@ -795,7 +798,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ConversionOperator node)
         {
-            AppendWithIndent(PublicText + StaticText);
+            AppendWithIndentAndExtraLine(PublicText + StaticText);
             Append(ToString(node.OperatorType));
             Append(OperatorText);
             AppendReference(node.ReturnType);
@@ -960,13 +963,18 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(ExpressionStatement node)
         {
-            if (string.IsNullOrWhiteSpace(node.RawExpression))
+            if (node.Expression != null)
             {
                 throw new NotSupportedException();
             }
-
-            AppendWithIndent(node.RawExpression);
-            Append(";");
+            else if (node.RawExpression != null)
+            {
+                node.RawExpression.Accept(this);
+            }
+            else if (node.AssignExpression != null)
+            {
+                node.AssignExpression.Accept(this);
+            }
         }
 
         public override void Visit(Field node)
@@ -1146,10 +1154,10 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(InterfaceEvent node)
         {
-            AppendIndent();
+            AppendIndentAndExtraLine();
             if (node.IsNew)
             {
-                Append("new ");
+                Append(NewText);
             }
 
             node.Type.Accept(this);
@@ -1159,7 +1167,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(InterfaceMethod node)
         {
-            AppendIndent();
+            AppendIndentAndExtraLine();
             if (node.IsNew)
             {
                 Append("new ");
@@ -1175,7 +1183,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(InterfaceProperty node)
         {
-            AppendIndent();
+            AppendIndentAndExtraLine();
             if (node.IsNew)
             {
                 Append("new ");
@@ -1287,7 +1295,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructEvent node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             if (node.IsStatic)
             {
                 Append(StaticText);
@@ -1319,7 +1327,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructIndexer node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             node.Type.Accept(this);
             Append(" this[");
             AppendCommaSeparatedCollection(node.Parameters, string.Empty);
@@ -1336,7 +1344,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructMethod node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             if (node.IsAsync)
             {
@@ -1359,7 +1367,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructNestedClass node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(ToString(node.InheritanceModifier));
             AppendPartial(node.IsPartial);
             Append(ClassText);
@@ -1378,7 +1386,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructNestedDelegate node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(DelegateText);
             node.ReturnType.Accept(this);
             Append(" ");
@@ -1393,7 +1401,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructNestedEnum node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(EnumText);
             Append(node.Name);
             Append(ToString(node.BaseType));
@@ -1409,7 +1417,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructNestedInterface node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             AppendPartial(node.IsPartial);
             Append(InterfaceText);
             Append(node.Name);
@@ -1421,8 +1429,9 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructNestedStruct node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             AppendPartial(node.IsPartial);
+            Append(StructText);
             Append(node.Name);
             AppendGenericParameters(node.GenericParameters);
             AppendCommaSeparatedCollection(node.Interfaces, " : ");
@@ -1432,7 +1441,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructProperty node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             if (node.IsStatic)
             {
                 Append(StaticText);
@@ -1457,7 +1466,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(StructPropertyAccessor node)
         {
-            AppendWithIndent(ToString(node.Visibility));
+            AppendWithIndentAndExtraLine(ToString(node.Visibility));
             Append(currentStructPropertyGetAccessor == node ? GetText : SetText);
             switch (node.Body.Count)
             {
@@ -1549,7 +1558,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public override void Visit(UnaryOperator node)
         {
-            AppendWithIndent(PublicText + StaticText);
+            AppendWithIndentAndExtraLine(PublicText + StaticText);
             AppendUnaryOperatorTypeReference(node.ReturnType, node.OperatorType);
             Append(" ");
             Append(OperatorText);
@@ -1612,8 +1621,33 @@ namespace CSharpDom.CodeGeneration.Tree
             textBuilder.AppendIndent();
         }
 
+        protected void AppendIndentAndExtraLine()
+        {
+            textBuilder.AppendIndent();
+        }
+
+        protected void AppendExtraLine()
+        {
+            if (appendExtraLine.Peek())
+            {
+                textBuilder.AppendLine();
+            }
+
+            if (!appendExtraLine.Peek())
+            {
+                appendExtraLine.Pop();
+                appendExtraLine.Push(true);
+            }
+        }
+
         protected void AppendWithIndent(string text)
         {
+            textBuilder.AppendWithIndent(text);
+        }
+
+        protected void AppendWithIndentAndExtraLine(string text)
+        {
+            AppendExtraLine();
             textBuilder.AppendWithIndent(text);
         }
 
@@ -1670,7 +1704,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
             AppendWithIndent("}");
         }
-
+        
         private void AppendGenericParameters(CodeGenerationCollection<GenericParameter> genericParameters)
         {
             if (genericParameters != null && genericParameters.Count != 0)

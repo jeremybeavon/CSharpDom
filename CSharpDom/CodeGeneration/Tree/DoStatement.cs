@@ -2,7 +2,7 @@
 {
     public sealed class DoStatement : Statement
     {
-        public IExpressionStatement Condition { get; set; }
+        public ExpressionStatement Condition { get; set; }
 
         public CodeGenerationCollection<Statement> Block { get; set; }
 

@@ -25,6 +25,11 @@ namespace CSharpDom.CodeGeneration.Tree
             textBuilder.Append(text);
         }
 
+        public void AppendLine()
+        {
+            textBuilder.AppendLine();
+        }
+
         public void AppendIndent()
         {
             if (isFirstIndent)

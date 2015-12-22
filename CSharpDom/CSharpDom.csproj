@@ -113,9 +113,9 @@
     <Compile Include="CodeGeneration\Tree\EmptyStructPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\ClassMethodParameter.cs" />
     <Compile Include="CodeGeneration\Tree\ClassMethodParameterModifier.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeExpressionBuilder.cs" />
     <Compile Include="CodeGeneration\Tree\StructMethodInheritanceModifier.cs" />
     <Compile Include="CodeGeneration\Tree\ReturnStatement.cs" />
-    <Compile Include="CodeGeneration\Tree\ExpressionStatementExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\ICodeGenerationNode.cs" />
     <Compile Include="CodeGeneration\Tree\IndexerInheritanceModifier.cs" />
     <Compile Include="CodeGeneration\Tree\PropertyAccessors.cs" />
@@ -168,7 +168,6 @@
     <Compile Include="CodeGeneration\Tree\GenericParameterReference.cs" />
     <Compile Include="CodeGeneration\Tree\GenericParameterTypeConstraintModifier.cs" />
     <Compile Include="CodeGeneration\Tree\GotoStatement.cs" />
-    <Compile Include="CodeGeneration\Tree\IExpressionStatement.cs" />
     <Compile Include="CodeGeneration\Tree\IfStatement.cs" />
     <Compile Include="CodeGeneration\Tree\InterfaceEvent.cs" />
     <Compile Include="CodeGeneration\Tree\InterfaceMethod.cs" />

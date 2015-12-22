@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class AssignStatement : Statement, IExpressionStatement
+    public sealed class AssignStatement : Statement
     {
-        public IExpressionStatement Left { get; set; }
+        public ExpressionStatement Left { get; set; }
 
-        public IExpressionStatement Right { get; set; }
+        public ExpressionStatement Right { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

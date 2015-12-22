@@ -2,7 +2,7 @@
 {
     public sealed class SwitchCaseStatement : CodeGenerationNode
     {
-        public IExpressionStatement Match { get; set; }
+        public ExpressionStatement Match { get; set; }
 
         public CodeGenerationCollection<Statement> Statements { get; set; }
 

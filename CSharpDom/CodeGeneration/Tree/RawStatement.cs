@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class RawStatement : Statement, IExpressionStatement
+    public sealed class RawStatement : Statement
     {
         public RawStatement()
         {

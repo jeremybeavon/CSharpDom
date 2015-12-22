@@ -6,7 +6,7 @@
 
         public string VariableName { get; set; }
 
-        public IExpressionStatement Iterator { get; set; }
+        public ExpressionStatement Iterator { get; set; }
 
         public Statement Statement { get; set; }
 

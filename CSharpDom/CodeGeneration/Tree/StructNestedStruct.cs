@@ -5,6 +5,9 @@
         public StructNestedStruct(string name)
         {
             Name = name;
+            Body = new StructBody();
+            GenericParameters = new CodeGenerationCollection<GenericParameter>();
+            Interfaces = new CodeGenerationCollection<InterfaceReference>();
         }
 
         public string Name { get; set; }

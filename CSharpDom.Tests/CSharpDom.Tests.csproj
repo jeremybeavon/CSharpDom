@@ -88,6 +88,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.BinaryOperator.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedStruct.cs" />
+    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedStruct.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedInterface.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedInterface.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedEnum.cs" />

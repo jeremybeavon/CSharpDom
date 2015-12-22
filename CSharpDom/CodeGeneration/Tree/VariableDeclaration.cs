@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
 
-        public IExpressionStatement InitialValue { get; set; }
+        public ExpressionStatement InitialValue { get; set; }
 
         public override void Accept(CodeGenerationVisitor visitor)
         {

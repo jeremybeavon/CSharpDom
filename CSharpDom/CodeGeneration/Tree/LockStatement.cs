@@ -2,7 +2,7 @@
 {
     public sealed class LockStatement : Statement
     {
-        public IExpressionStatement Expression { get; set; }
+        public ExpressionStatement Expression { get; set; }
 
         public Statement Statement { get; set; }
 

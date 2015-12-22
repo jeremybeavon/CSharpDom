@@ -2,7 +2,7 @@
 {
     public sealed class IfStatement : Statement
     {
-        public IExpressionStatement Condition { get; set; }
+        public ExpressionStatement Condition { get; set; }
 
         public Statement ThenStatement { get; set; }
 

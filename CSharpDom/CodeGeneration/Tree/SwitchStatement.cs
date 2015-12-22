@@ -2,7 +2,7 @@
 {
     public sealed class SwitchStatement : Statement
     {
-        public IExpressionStatement Expression { get; set; }
+        public ExpressionStatement Expression { get; set; }
 
         public CodeGenerationCollection<SwitchCaseStatement> Cases { get; set; }
 
