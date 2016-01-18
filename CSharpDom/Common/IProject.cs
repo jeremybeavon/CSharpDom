@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Microsoft.CodeAnalysis;
+﻿using System.Threading.Tasks;
 
 namespace CSharpDom.Common
 {
-    public interface IProject<TDocument>
+    public interface IProject<TSolution, TDocument, TLoadedProject> :
+        IHasSolution<TSolution>,
+        IHasDocuments<TDocument>
     {
-        Project Project { get; }
-
-        IReadOnlyCollection<TDocument> Documents { get; }
+        Task<TLoadedProject> LoadAsync();
     }
 }

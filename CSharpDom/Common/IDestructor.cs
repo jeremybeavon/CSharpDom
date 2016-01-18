@@ -1,8 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IDestructor : IHasDeclaration<DestructorDeclarationSyntax>, IHasLocation
+    public interface IDestructor<TDeclaringType> : IHasDeclaringType<TDeclaringType>, IHasLocation
     {
     }
 }

@@ -1,8 +1,11 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IEnum : IHasName, IHasDeclaration<EnumDeclarationSyntax>, IHasLocation
+    public interface IEnum<TNamespace, TProject, TSolution, TEnumMember> :
+        IHasName,
+        IHasNamespace<TNamespace>,
+        IHasProject<TProject>,
+        IHasSolution<TSolution>,
+        IHasEnumMembers<TEnumMember>
     {
     }
 }

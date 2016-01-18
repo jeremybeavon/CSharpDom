@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.Common
 {
-    public interface INamespace
+    public interface INamespace<TClass, TDelegate, TEnum, TInterface, TStruct> :
+        IHasName,
+        IHasClasses<TClass>,
+        IHasDelegates<TDelegate>,
+        IHasEnums<TEnum>,
+        IHasInterfaces<TInterface>,
+        IHasStructs<TStruct>
     {
-        string Name { get; }
-
-        IEnumerable<NamespaceDeclarationSyntax> Declarations { get; }
     }
 }

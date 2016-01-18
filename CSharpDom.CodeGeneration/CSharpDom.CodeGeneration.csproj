@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E111EE24-6A59-4C19-AC9B-341E3A8D3C92}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CSharpDom.CodeGeneration</RootNamespace>
+    <AssemblyName>CSharpDom.CodeGeneration</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tree\AssignStatement.cs" />
+    <Compile Include="Tree\BinaryOperator.cs" />
+    <Compile Include="Tree\BinaryOperatorType.cs" />
+    <Compile Include="Tree\BlockStatement.cs" />
+    <Compile Include="Tree\CatchStatement.cs" />
+    <Compile Include="Tree\Class.cs" />
+    <Compile Include="Tree\ClassBody.cs" />
+    <Compile Include="Tree\ClassEvent.cs" />
+    <Compile Include="Tree\ClassFieldDeclaration.cs" />
+    <Compile Include="Tree\ClassIndexer.cs" />
+    <Compile Include="Tree\ClassMemberInheritanceModifier.cs" />
+    <Compile Include="Tree\ClassMemberVisibilityModifier.cs" />
+    <Compile Include="Tree\ClassMethod.cs" />
+    <Compile Include="Tree\ClassMethodParameter.cs" />
+    <Compile Include="Tree\ClassMethodParameterModifier.cs" />
+    <Compile Include="Tree\ClassNestedClass.cs" />
+    <Compile Include="Tree\ClassNestedDelegate.cs" />
+    <Compile Include="Tree\ClassNestedEnum.cs" />
+    <Compile Include="Tree\ClassNestedInterface.cs" />
+    <Compile Include="Tree\ClassNestedStruct.cs" />
+    <Compile Include="Tree\ClassProperty.cs" />
+    <Compile Include="Tree\ClassPropertyAccessor.cs" />
+    <Compile Include="Tree\ClassPropertyAccessorVisibilityModifier.cs" />
+    <Compile Include="Tree\ClassReference.cs" />
+    <Compile Include="Tree\CodeGenerationCollection.cs" />
+    <Compile Include="Tree\CodeGenerationCollectionExtensions.cs" />
+    <Compile Include="Tree\CodeGenerationFile.cs" />
+    <Compile Include="Tree\CodeGenerationNode.cs" />
+    <Compile Include="Tree\CodeGenerationNodeExtensions.cs" />
+    <Compile Include="Tree\CodeGenerationVisitor.cs" />
+    <Compile Include="Tree\ConversionOperator.cs" />
+    <Compile Include="Tree\ConversionOperatorType.cs" />
+    <Compile Include="Tree\Delegate.cs" />
+    <Compile Include="Tree\DelegateReference.cs" />
+    <Compile Include="Tree\DocumentationComment.cs" />
+    <Compile Include="Tree\DoStatement.cs" />
+    <Compile Include="Tree\EmptyClassPropertyAccessors.cs" />
+    <Compile Include="Tree\EmptyStatement.cs" />
+    <Compile Include="Tree\EmptyStructPropertyAccessors.cs" />
+    <Compile Include="Tree\Enum.cs" />
+    <Compile Include="Tree\EnumBaseType.cs" />
+    <Compile Include="Tree\EnumField.cs" />
+    <Compile Include="Tree\EventAccessors.cs" />
+    <Compile Include="Tree\ExpressionStatement.cs" />
+    <Compile Include="Tree\Field.cs" />
+    <Compile Include="Tree\FieldModifier.cs" />
+    <Compile Include="Tree\FinallyStatement.cs" />
+    <Compile Include="Tree\ForeachStatement.cs" />
+    <Compile Include="Tree\ForStatement.cs" />
+    <Compile Include="Tree\GenericParameter.cs" />
+    <Compile Include="Tree\GenericParameterReference.cs" />
+    <Compile Include="Tree\GenericParameterTypeConstraintModifier.cs" />
+    <Compile Include="Tree\GotoStatement.cs" />
+    <Compile Include="Tree\ICodeGenerationNode.cs" />
+    <Compile Include="Tree\IfStatement.cs" />
+    <Compile Include="Tree\IndexerInheritanceModifier.cs" />
+    <Compile Include="Tree\Interface.cs" />
+    <Compile Include="Tree\InterfaceBody.cs" />
+    <Compile Include="Tree\InterfaceEvent.cs" />
+    <Compile Include="Tree\InterfaceMethod.cs" />
+    <Compile Include="Tree\InterfaceProperty.cs" />
+    <Compile Include="Tree\InterfacePropertyAccessors.cs" />
+    <Compile Include="Tree\InterfaceReference.cs" />
+    <Compile Include="Tree\LabelReference.cs" />
+    <Compile Include="Tree\LabelStatement.cs" />
+    <Compile Include="Tree\LockStatement.cs" />
+    <Compile Include="Tree\MethodParameter.cs" />
+    <Compile Include="Tree\MethodParameterModifier.cs" />
+    <Compile Include="Tree\MultiLineComment.cs" />
+    <Compile Include="Tree\Namespace.cs" />
+    <Compile Include="Tree\PropertyAccessors.cs" />
+    <Compile Include="Tree\RawStatement.cs" />
+    <Compile Include="Tree\ReturnStatement.cs" />
+    <Compile Include="Tree\SingleLineComment.cs" />
+    <Compile Include="Tree\SourceCodeBuilder.cs" />
+    <Compile Include="Tree\SourceCodeExpressionBuilder.cs" />
+    <Compile Include="Tree\SourceCodeTextBuilder.cs" />
+    <Compile Include="Tree\Statement.cs" />
+    <Compile Include="Tree\Struct.cs" />
+    <Compile Include="Tree\StructBody.cs" />
+    <Compile Include="Tree\StructEvent.cs" />
+    <Compile Include="Tree\StructFieldDeclaration.cs" />
+    <Compile Include="Tree\StructIndexer.cs" />
+    <Compile Include="Tree\StructMemberVisibilityModifier.cs" />
+    <Compile Include="Tree\StructMethod.cs" />
+    <Compile Include="Tree\StructMethodInheritanceModifier.cs" />
+    <Compile Include="Tree\StructNestedClass.cs" />
+    <Compile Include="Tree\StructNestedDelegate.cs" />
+    <Compile Include="Tree\StructNestedEnum.cs" />
+    <Compile Include="Tree\StructNestedInterface.cs" />
+    <Compile Include="Tree\StructNestedStruct.cs" />
+    <Compile Include="Tree\StructProperty.cs" />
+    <Compile Include="Tree\StructPropertyAccessor.cs" />
+    <Compile Include="Tree\StructPropertyAccessorVisibilityModifier.cs" />
+    <Compile Include="Tree\SwitchCaseStatement.cs" />
+    <Compile Include="Tree\SwitchStatement.cs" />
+    <Compile Include="Tree\TryStatement.cs" />
+    <Compile Include="Tree\TypeContainer.cs" />
+    <Compile Include="Tree\TypeInheritanceModifier.cs" />
+    <Compile Include="Tree\TypeReference.cs" />
+    <Compile Include="Tree\TypeVisibilityModifier.cs" />
+    <Compile Include="Tree\UnaryOperator.cs" />
+    <Compile Include="Tree\UnaryOperatorType.cs" />
+    <Compile Include="Tree\UsingDeclaration.cs" />
+    <Compile Include="Tree\UsingStatement.cs" />
+    <Compile Include="Tree\VariableDeclaration.cs" />
+    <Compile Include="Tree\VariableDeclarationStatement.cs" />
+    <Compile Include="Tree\WhileStatement.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

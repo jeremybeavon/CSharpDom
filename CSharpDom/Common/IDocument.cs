@@ -1,11 +1,13 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Threading.Tasks;
 
 namespace CSharpDom.Common
 {
-    public interface IDocument
+    public interface IDocument<TProject, TSolution, TLoadedDocument> :
+        IHasProject<TProject>,
+        IHasSolution<TSolution>
     {
         string FullFilePath { get; }
 
-        Document Document { get; }
+        Task<TLoadedDocument> LoadAsync();
     }
 }

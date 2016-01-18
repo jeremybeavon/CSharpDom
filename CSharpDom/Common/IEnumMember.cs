@@ -1,8 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IEnumMember : IHasName, IHasDeclaration<EnumMemberDeclarationSyntax>, IHasLocation
+    public interface IEnumMember<TDeclaringType> : IHasName, IHasDeclaringType<TDeclaringType>
     {
     }
 }

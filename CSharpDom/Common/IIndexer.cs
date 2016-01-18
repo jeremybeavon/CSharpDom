@@ -1,8 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IIndexer : IHasDeclaration<IndexerDeclarationSyntax>, IHasLocation
+    public interface IIndexer<TDeclaringType> : IHasDeclaringType<TDeclaringType>
     {
         bool HasGet { get; }
 

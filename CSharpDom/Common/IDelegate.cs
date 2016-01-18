@@ -1,8 +1,11 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IDelegate : IHasName, ICanBeGeneric, IHasDeclaration<DelegateDeclarationSyntax>, IHasLocation
+    public interface IDelegate<TNamespace, TProject, TSolution> :
+        IHasName,
+        ICanBeGeneric,
+        IHasNamespace<TNamespace>,
+        IHasProject<TProject>,
+        IHasSolution<TSolution>
     {
     }
 }

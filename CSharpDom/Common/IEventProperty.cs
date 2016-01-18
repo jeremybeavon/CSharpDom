@@ -1,8 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IEventProperty : IHasName, IHasDeclaration<EventDeclarationSyntax>, IHasLocation
+    public interface IEventProperty<TDeclaringType> : IHasName, IHasDeclaringType<TDeclaringType>
     {
     }
 }

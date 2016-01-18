@@ -1,8 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IProperty : IHasName, IHasDeclaration<PropertyDeclarationSyntax>, IHasLocation
+    public interface IProperty<TDeclaringType> : IHasName, IHasDeclaringType<TDeclaringType>
     {
         bool HasGet { get; }
 
