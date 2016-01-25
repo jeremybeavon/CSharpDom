@@ -11,6 +11,14 @@ namespace CSharpDom.Tests
     [TestClass]
     public class UnitTest1
     {
+        public event EventHandler event1;
+
+        public event EventHandler event2
+        {
+            add { }
+            remove { }
+        }
+
         [TestMethod]
         public void TestMethod1()
         {

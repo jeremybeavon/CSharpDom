@@ -1,9 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface INestedEnum<TDeclaringType, TEnumMember> :
-        IHasName,
-        IHasDeclaringType<TDeclaringType>,
-        IHasEnumMembers<TEnumMember>
+    public interface INestedEnum : IVisitable<IGenericVisitor>
     {
     }
 }

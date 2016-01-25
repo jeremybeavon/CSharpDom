@@ -2,8 +2,7 @@
 
 namespace CSharpDom.Common
 {
-    public interface ISolution<TProject>
+    public interface ISolution : IAsyncVisitable<IGenericVisitor>
     {
-        IReadOnlyCollection<TProject> Projects { get; }
     }
 }

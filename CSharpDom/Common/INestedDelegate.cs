@@ -1,9 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface INestedDelegate<TDeclaringType> :
-        IHasName,
-        ICanBeGeneric,
-        IHasDeclaringType<TDeclaringType>
+    public interface INestedDelegate : IVisitable<IGenericVisitor>
     {
     }
 }

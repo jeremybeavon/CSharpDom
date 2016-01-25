@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IOperatorOverload<TDeclaringType> : IHasDeclaringType<TDeclaringType>
+    public interface IOperatorOverload : IVisitable<IGenericVisitor>
     {
     }
 }

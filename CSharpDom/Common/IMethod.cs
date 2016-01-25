@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IMethod<TDeclaringType> : IHasName, ICanBeGeneric, IHasDeclaringType<TDeclaringType>
+    public interface IMethod : IVisitable<IGenericVisitor>
     {
     }
 }

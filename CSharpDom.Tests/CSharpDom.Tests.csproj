@@ -111,36 +111,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.BinaryOperator.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedStruct.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedStruct.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedInterface.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedInterface.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedEnum.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedEnum.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedDelegate.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedDelegate.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructNestedClass.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassNestedClass.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructProperty.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructMethod.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructIndexer.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructField.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.StructEvent.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.EnumField.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Enum.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Struct.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Interface.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Delegate.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ConversionOperator.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.UnaryOperator.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassMethod.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassEvent.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassIndexer.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassProperty.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.ClassField.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.Class.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeBuilderTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -149,14 +119,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSharpDom.CodeAnalysis\CSharpDom.CodeAnalysis.csproj">
-      <Project>{f0edc858-c268-419c-b185-e80815b42e57}</Project>
-      <Name>CSharpDom.CodeAnalysis</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CSharpDom.CodeGeneration\CSharpDom.CodeGeneration.csproj">
-      <Project>{e111ee24-6a59-4c19-ac9b-341e3a8d3c92}</Project>
-      <Name>CSharpDom.CodeGeneration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CSharpDom\CSharpDom.csproj">
       <Project>{eaa58a34-7e4b-4e20-be3c-8d7aac4b261b}</Project>
       <Name>CSharpDom</Name>
@@ -165,6 +127,9 @@
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="CodeGeneration\Tree\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

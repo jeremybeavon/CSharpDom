@@ -219,7 +219,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new GenericParameter("T")
                                         {
-                                            TypeConstraint = GenericParameterTypeConstraintModifier.Class
+                                            TypeConstraint = GenericParameterTypeConstraint.Class
                                         }
                                     }
                                 }
@@ -257,7 +257,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new GenericParameter("T")
                                         {
-                                            TypeConstraint = GenericParameterTypeConstraintModifier.Struct
+                                            TypeConstraint = GenericParameterTypeConstraint.Struct
                                         }
                                     }
                                 }
@@ -540,7 +540,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new GenericParameter("T")
                                         {
-                                            TypeConstraint = GenericParameterTypeConstraintModifier.Struct,
+                                            TypeConstraint = GenericParameterTypeConstraint.Struct,
                                             InterfaceConstraints =
                                             {
                                                 new InterfaceReference("ITestInterface")

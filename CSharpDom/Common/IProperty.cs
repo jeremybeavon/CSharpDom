@@ -1,9 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IProperty<TDeclaringType> : IHasName, IHasDeclaringType<TDeclaringType>
+    public interface IProperty : IVisitable<IGenericVisitor>
     {
-        bool HasGet { get; }
-
-        bool HasSet { get; }
     }
 }

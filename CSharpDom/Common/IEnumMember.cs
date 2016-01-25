@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IEnumMember<TDeclaringType> : IHasName, IHasDeclaringType<TDeclaringType>
+    public interface IEnumMember : IVisitable<IGenericVisitor>
     {
     }
 }

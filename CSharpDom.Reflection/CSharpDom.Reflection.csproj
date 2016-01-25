@@ -40,7 +40,65 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractEnumMemberWithReflection.cs" />
+    <Compile Include="AssemblyWithReflection.cs" />
+    <Compile Include="AttributeWithReflection.cs" />
+    <Compile Include="ClassReferenceWithReflection.cs" />
+    <Compile Include="ClassWithReflection.cs" />
+    <Compile Include="ConstructorWithReflection.cs" />
+    <Compile Include="ConversionOperatorWithReflection.cs" />
+    <Compile Include="DelegateWithReflection.cs" />
+    <Compile Include="DestructorWithReflection.cs" />
+    <Compile Include="EnumMemberWithReflection.cs" />
+    <Compile Include="EnumWithReflection.cs" />
+    <Compile Include="EventPropertyWithReflection.cs" />
+    <Compile Include="EventWithReflection.cs" />
+    <Compile Include="FieldWithReflection.cs" />
+    <Compile Include="GenericParameterDeclarationWithReflection.cs" />
+    <Compile Include="GenericParameterReferenceWithReflection.cs" />
+    <Compile Include="GenericParameterWithReflection.cs" />
+    <Compile Include="IBasicTypeWithReflection.cs" />
+    <Compile Include="IndexerWithReflection.cs" />
+    <Compile Include="InterfaceReferenceWithReflection.cs" />
+    <Compile Include="InterfaceWithReflection.cs" />
+    <Compile Include="Internal\Attributes.cs" />
+    <Compile Include="Internal\BasicTypeWithReflection.cs" />
+    <Compile Include="Internal\Constructors.cs" />
+    <Compile Include="Internal\Events.cs" />
+    <Compile Include="Internal\GenericParameterDeclarations.cs" />
+    <Compile Include="Internal\Methods.cs" />
+    <Compile Include="Internal\NamespaceContainer.cs" />
+    <Compile Include="Internal\NestedTypes.cs" />
+    <Compile Include="Internal\Parameters.cs" />
+    <Compile Include="Internal\Properties.cs" />
+    <Compile Include="Internal\TypeClassification.cs" />
+    <Compile Include="Internal\TypeContainer.cs" />
+    <Compile Include="Internal\TypeExtensions.cs" />
+    <Compile Include="Internal\TypeWithReflection.cs" />
+    <Compile Include="ITypeReferenceWithReflection.cs" />
+    <Compile Include="ITypeWithReflection.cs" />
+    <Compile Include="MethodWithReflection.cs" />
+    <Compile Include="NamedAttributeValueWithReflection.cs" />
+    <Compile Include="NamespaceWithReflection.cs" />
+    <Compile Include="NestedClassWithReflection.cs" />
+    <Compile Include="NestedDelegateWithReflection.cs" />
+    <Compile Include="NestedDestructorWithReflection.cs" />
+    <Compile Include="NestedEnumMemberWithReflection.cs" />
+    <Compile Include="NestedEnumWithReflection.cs" />
+    <Compile Include="NestedInterfaceWithReflection.cs" />
+    <Compile Include="NestedStructWithReflection.cs" />
+    <Compile Include="OperatorOverloadWithReflection.cs" />
+    <Compile Include="ParameterWithReflection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PropertyWithReflection.cs" />
+    <Compile Include="StructWithReflection.cs" />
+    <Compile Include="UnnamedAttributeValueWithReflection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpDom\CSharpDom.csproj">
+      <Project>{eaa58a34-7e4b-4e20-be3c-8d7aac4b261b}</Project>
+      <Name>CSharpDom</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

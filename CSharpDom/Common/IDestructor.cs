@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IDestructor<TDeclaringType> : IHasDeclaringType<TDeclaringType>, IHasLocation
+    public interface IDestructor : IVisitable<IGenericVisitor>
     {
     }
 }

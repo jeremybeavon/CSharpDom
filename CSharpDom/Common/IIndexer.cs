@@ -1,9 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IIndexer<TDeclaringType> : IHasDeclaringType<TDeclaringType>
+    public interface IIndexer : IVisitable<IGenericVisitor>
     {
-        bool HasGet { get; }
-
-        bool HasSet { get; }
     }
 }

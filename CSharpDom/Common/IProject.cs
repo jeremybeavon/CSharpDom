@@ -2,10 +2,7 @@
 
 namespace CSharpDom.Common
 {
-    public interface IProject<TSolution, TDocument, TLoadedProject> :
-        IHasSolution<TSolution>,
-        IHasDocuments<TDocument>
+    public interface IProject : IAsyncVisitable<IGenericVisitor>
     {
-        Task<TLoadedProject> LoadAsync();
     }
 }

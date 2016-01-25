@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IConversionOperator<TDeclaringType> : IHasDeclaringType<TDeclaringType>
+    public interface IConversionOperator : IVisitable<IGenericVisitor>
     {
     }
 }
