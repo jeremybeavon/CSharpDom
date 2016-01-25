@@ -6,7 +6,12 @@ using System.Collections.Generic;
 namespace CSharpDom.Reflection
 {
     public sealed class IndexerWithReflection :
-        AbstractIndexer<AttributeWithReflection, IBasicTypeWithReflection, ParameterWithReflection>
+        AbstractIndexer<
+            AttributeWithReflection,
+            IBasicTypeWithReflection,
+            ITypeReferenceWithReflection,
+            ParameterWithReflection,
+            AccessorWithReflection>
     {
         internal IndexerWithReflection(IBasicTypeWithReflection declaringType, PropertyInfo indexer)
         {
@@ -29,7 +34,15 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override bool HasGet
+        public override AccessorWithReflection GetAccessor
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
+        public override ITypeReferenceWithReflection IndexerType
         {
             get
             {
@@ -37,7 +50,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override bool HasSet
+        public override MemberInheritanceModifier InheritanceModifier
         {
             get
             {
@@ -46,6 +59,22 @@ namespace CSharpDom.Reflection
         }
 
         public override IReadOnlyList<ParameterWithReflection> Parameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override AccessorWithReflection SetAccessor
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override MemberVisibilityModifier Visibility
         {
             get
             {

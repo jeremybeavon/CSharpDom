@@ -1,7 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
     public interface INestedEnumMember<TAttributeGroup, TDeclaringType> :
-        IEnumMember,
+        INestedEnumMember,
         IHasName,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>

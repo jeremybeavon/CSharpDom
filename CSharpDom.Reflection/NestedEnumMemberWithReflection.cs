@@ -6,39 +6,32 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class NestedEnumMemberWithReflection : AbstractEnumMember<AttributeWithReflection, NestedEnumWithReflection>
+    public sealed class NestedEnumMemberWithReflection : AbstractNestedEnumMember<AttributeWithReflection, NestedEnumWithReflection>
     {
         private readonly NestedEnumWithReflection declaringType;
         private readonly FieldInfo field;
         private readonly Lazy<Attributes> attributes;
 
         internal NestedEnumMemberWithReflection(NestedEnumWithReflection declaringType, FieldInfo field)
-            : base(declaringType, field)
         {
+            this.declaringType = declaringType;
+            this.field = field;
+            attributes = new Lazy<Attributes>(() => new Attributes(field));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return attributes.Value.AttributesWithReflection; }
         }
 
         public override NestedEnumWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return declaringType; }
         }
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return field.Name; }
         }
     }
 }

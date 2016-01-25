@@ -10,7 +10,9 @@ namespace CSharpDom.Reflection
             AssemblyWithReflection,
             AssemblyWithReflection,
             AttributeWithReflection,
-            GenericParameterDeclarationWithReflection>
+            GenericParameterDeclarationWithReflection,
+            ITypeReferenceWithReflection,
+            ParameterWithReflection>
     {
         private readonly AssemblyWithReflection assembly;
         private readonly NamespaceWithReflection @namespace;
@@ -49,14 +51,38 @@ namespace CSharpDom.Reflection
             get { return @namespace; }
         }
 
+        public override IReadOnlyList<ParameterWithReflection> Parameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override AssemblyWithReflection Project
         {
             get { return assembly; }
         }
 
+        public override ITypeReferenceWithReflection ReturnType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override AssemblyWithReflection Solution
         {
             get { return assembly; }
+        }
+
+        public override TypeVisibilityModifier Visibility
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

@@ -8,7 +8,8 @@ namespace CSharpDom.Reflection
         AbstractNestedInterface<
             AttributeWithReflection,
             ITypeWithReflection,
-            GenericParameterWithReflection,
+            GenericParameterDeclarationWithReflection,
+            InterfaceReferenceWithReflection,
             EventWithReflection,
             PropertyWithReflection,
             IndexerWithReflection,
@@ -44,7 +45,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyList<GenericParameterWithReflection> GenericParameters
+        public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
         {
             get
             {
@@ -53,6 +54,14 @@ namespace CSharpDom.Reflection
         }
 
         public override IReadOnlyCollection<IndexerWithReflection> Indexers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override IReadOnlyCollection<InterfaceReferenceWithReflection> Interfaces
         {
             get
             {
@@ -77,6 +86,14 @@ namespace CSharpDom.Reflection
         }
 
         public override IReadOnlyCollection<PropertyWithReflection> Properties
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override MemberVisibilityModifier Visibility
         {
             get
             {

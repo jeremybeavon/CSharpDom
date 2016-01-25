@@ -6,7 +6,11 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class OperatorOverloadWithReflection :
-        AbstractOperatorOverload<AttributeWithReflection, ITypeWithReflection, ParameterWithReflection>
+        AbstractOperatorOverload<
+            AttributeWithReflection,
+            ITypeWithReflection,
+            ITypeReferenceWithReflection,
+            ParameterWithReflection>
     {
         internal OperatorOverloadWithReflection(ITypeWithReflection declaringType, MethodInfo method)
         {
@@ -29,7 +33,23 @@ namespace CSharpDom.Reflection
             }
         }
 
+        public override OperatorOverloadType OperatorType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override IReadOnlyList<ParameterWithReflection> Parameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ITypeReferenceWithReflection ReturnType
         {
             get
             {

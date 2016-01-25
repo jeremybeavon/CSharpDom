@@ -70,5 +70,13 @@ namespace CSharpDom.Reflection
                 throw new NotImplementedException();
             }
         }
+
+        public override TypeVisibilityModifier Visibility
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

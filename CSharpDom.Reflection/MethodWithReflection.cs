@@ -6,7 +6,12 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class MethodWithReflection :
-        AbstractMethod<AttributeWithReflection, IBasicTypeWithReflection, GenericParameterWithReflection, ParameterWithReflection>
+        AbstractMethod<
+            AttributeWithReflection,
+            IBasicTypeWithReflection,
+            GenericParameterDeclarationWithReflection,
+            ITypeReferenceWithReflection,
+            ParameterWithReflection>
     {
         internal MethodWithReflection(IBasicTypeWithReflection declaringType, MethodInfo method)
         {
@@ -29,7 +34,15 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyList<GenericParameterWithReflection> GenericParameters
+        public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override MemberInheritanceModifier InheritanceModifier
         {
             get
             {
@@ -46,6 +59,22 @@ namespace CSharpDom.Reflection
         }
 
         public override IReadOnlyList<ParameterWithReflection> Parameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ITypeReferenceWithReflection ReturnType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override MemberVisibilityModifier Visibility
         {
             get
             {

@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractEnumMemberWithReflection.cs" />
+    <Compile Include="AccessorWithReflection.cs" />
     <Compile Include="AssemblyWithReflection.cs" />
     <Compile Include="AttributeWithReflection.cs" />
     <Compile Include="ClassReferenceWithReflection.cs" />

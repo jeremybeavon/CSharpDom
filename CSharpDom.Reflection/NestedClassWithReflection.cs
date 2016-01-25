@@ -8,7 +8,9 @@ namespace CSharpDom.Reflection
         AbstractNestedClass<
             AttributeWithReflection,
             ITypeWithReflection,
-            GenericParameterWithReflection,
+            GenericParameterDeclarationWithReflection,
+            ClassReferenceWithReflection,
+            InterfaceReferenceWithReflection,
             EventWithReflection,
             PropertyWithReflection,
             IndexerWithReflection,
@@ -31,6 +33,14 @@ namespace CSharpDom.Reflection
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ClassReferenceWithReflection BaseClass
         {
             get
             {
@@ -118,7 +128,15 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyList<GenericParameterWithReflection> GenericParameters
+        public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override IReadOnlyCollection<InterfaceReferenceWithReflection> ImplementedInterfaces
         {
             get
             {
@@ -127,6 +145,14 @@ namespace CSharpDom.Reflection
         }
 
         public override IReadOnlyCollection<IndexerWithReflection> Indexers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override TypeInheritanceModifier InheritanceModifier
         {
             get
             {
@@ -175,6 +201,14 @@ namespace CSharpDom.Reflection
         }
 
         public override IReadOnlyCollection<NestedStructWithReflection> Structs
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override MemberVisibilityModifier Visibility
         {
             get
             {

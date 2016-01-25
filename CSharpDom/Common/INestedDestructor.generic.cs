@@ -1,7 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
     public interface INestedDestructor<TAttributeGroup, TDeclaringType> :
-        IDestructor,
+        INestedDestructor,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>
         where TAttributeGroup : IAttributeGroup

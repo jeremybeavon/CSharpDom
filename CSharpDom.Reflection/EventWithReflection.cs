@@ -5,7 +5,8 @@ using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class EventWithReflection : AbstractEvent<AttributeWithReflection, IBasicTypeWithReflection>
+    public sealed class EventWithReflection :
+        AbstractEvent<AttributeWithReflection, IBasicTypeWithReflection, ITypeReferenceWithReflection>
     {
         internal EventWithReflection(IBasicTypeWithReflection declaringType, EventInfo @event)
         {
@@ -27,6 +28,14 @@ namespace CSharpDom.Reflection
             }
         }
 
+        public override ITypeReferenceWithReflection EventType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> FieldAttributes
         {
             get
@@ -35,7 +44,23 @@ namespace CSharpDom.Reflection
             }
         }
 
+        public override MemberInheritanceModifier InheritanceModifier
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override MemberVisibilityModifier Visibility
         {
             get
             {

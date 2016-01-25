@@ -34,5 +34,13 @@ namespace CSharpDom.Reflection
         {
             get { return parameters.Value.ParametersWithReflection; }
         }
+
+        public override MemberVisibilityModifier Visibility
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

@@ -5,7 +5,8 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class PropertyWithReflection : AbstractProperty<AttributeWithReflection, IBasicTypeWithReflection>
+    public sealed class PropertyWithReflection :
+        AbstractProperty<AttributeWithReflection, IBasicTypeWithReflection, ITypeReferenceWithReflection, AccessorWithReflection>
     {
         internal PropertyWithReflection(IBasicTypeWithReflection declaringType, PropertyInfo property)
         {
@@ -27,15 +28,15 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override bool HasGet
+        public override AccessorWithReflection GetAccessor
         {
             get
             {
                 throw new NotImplementedException();
             }
         }
-
-        public override bool HasSet
+        
+        public override MemberInheritanceModifier InheritanceModifier
         {
             get
             {
@@ -44,6 +45,30 @@ namespace CSharpDom.Reflection
         }
 
         public override string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ITypeReferenceWithReflection PropertyType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override AccessorWithReflection SetAccessor
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override MemberVisibilityModifier Visibility
         {
             get
             {

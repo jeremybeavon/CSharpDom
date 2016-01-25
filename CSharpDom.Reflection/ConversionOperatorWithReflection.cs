@@ -6,7 +6,11 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class ConversionOperatorWithReflection :
-        AbstractConversionOperator<AttributeWithReflection, ITypeWithReflection, ParameterWithReflection>
+        AbstractConversionOperator<
+            AttributeWithReflection,
+            ITypeWithReflection,
+            ITypeReferenceWithReflection,
+            ParameterWithReflection>
     {
         internal ConversionOperatorWithReflection(ITypeWithReflection declaringType, MethodInfo method)
         {
@@ -28,7 +32,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override ConversionOperatorType OperatorType
         {
             get
             {
@@ -36,7 +40,23 @@ namespace CSharpDom.Reflection
             }
         }
 
+        public override ParameterWithReflection Parameter
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+        
         public override IReadOnlyCollection<AttributeWithReflection> ReturnAttributes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ITypeReferenceWithReflection ReturnType
         {
             get
             {
