@@ -34,6 +34,8 @@ namespace CSharpDom.Reflection
         private readonly AssemblyWithReflection assembly;
         private readonly NamespaceWithReflection @namespace;
         private readonly Type type;
+        private readonly ClassReferenceWithReflection baseClass;
+        private readonly Lazy<InterfaceReferences> implementedInterfaces;
         private readonly TypeWithReflection typeWithReflection;
         private readonly Lazy<DestructorWithReflection> destructor;
 
@@ -42,6 +44,12 @@ namespace CSharpDom.Reflection
             this.assembly = assembly;
             this.@namespace = @namespace;
             this.type = type;
+            if (type.BaseType != null && type.BaseType != typeof(object))
+            {
+                baseClass = new ClassReferenceWithReflection(type.BaseType);
+            }
+
+            implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(type));
             typeWithReflection = new TypeWithReflection(this, type);
             destructor = new Lazy<DestructorWithReflection>(() => new DestructorWithReflection(this, typeWithReflection.Destructor));
         }
@@ -153,34 +161,22 @@ namespace CSharpDom.Reflection
 
         public override ClassReferenceWithReflection BaseClass
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return baseClass; }
         }
 
         public override IReadOnlyCollection<InterfaceReferenceWithReflection> ImplementedInterfaces
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return implementedInterfaces.Value.InterfaceReferencesWithReflection; }
         }
 
         public override TypeInheritanceModifier InheritanceModifier
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return type.InheritanceModifier(); }
         }
 
         public override TypeVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return type.Visibility(); }
         }
     }
 }

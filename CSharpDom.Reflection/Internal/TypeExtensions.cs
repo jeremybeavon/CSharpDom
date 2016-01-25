@@ -29,19 +29,23 @@ namespace CSharpDom.Reflection.Internal
             {
                 return TypeClassificationEnum.Class;
             }
-            else if (type.IsDelegate())
+
+            if (type.IsDelegate())
             {
                 return TypeClassificationEnum.Delegate;
             }
-            else if (type.IsEnum)
+
+            if (type.IsEnum)
             {
                 return TypeClassificationEnum.Enum;
             }
-            else if (type.IsInterface)
+
+            if (type.IsInterface)
             {
                 return TypeClassificationEnum.Interface;
             }
-            else if (type.IsValueType)
+
+            if (type.IsValueType)
             {
                 return TypeClassificationEnum.Struct;
             }
@@ -67,6 +71,46 @@ namespace CSharpDom.Reflection.Internal
         public static MethodInfo[] GetAllMethods(this Type type)
         {
             return type.GetMethods(allMemberFlags);
+        }
+
+        public static MemberVisibilityModifier NestedVisibility(this Type type)
+        {
+            if (type.IsPublic)
+            {
+                return MemberVisibilityModifier.Public;
+            }
+
+            return MemberVisibilityModifier.None;
+        }
+
+        public static TypeVisibilityModifier Visibility(this Type type)
+        {
+            if (type.IsPublic)
+            {
+                return TypeVisibilityModifier.Public;
+            }
+
+            return TypeVisibilityModifier.Internal;
+        }
+
+        public static TypeInheritanceModifier InheritanceModifier(this Type type)
+        {
+            if (type.IsAbstract && type.IsSealed)
+            {
+                return TypeInheritanceModifier.Static;
+            }
+
+            if (type.IsAbstract)
+            {
+                return TypeInheritanceModifier.Abstract;
+            }
+
+            if (type.IsSealed)
+            {
+                return TypeInheritanceModifier.Sealed;
+            }
+
+            return TypeInheritanceModifier.None;
         }
     }
 }

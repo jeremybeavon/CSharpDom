@@ -5,7 +5,8 @@ using CSharpDom.BaseClasses;
 namespace CSharpDom.Reflection
 {
     public sealed class InterfaceReferenceWithReflection :
-        AbstractInterfaceReference<GenericParameterWithReflection>
+        AbstractInterfaceReference<GenericParameterWithReflection>,
+        ITypeReferenceWithReflection
     {
         private readonly Type type;
 

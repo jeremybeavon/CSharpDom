@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,15 +42,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessorWithReflection.cs" />
+    <Compile Include="ArrayTypeReferenceWithReflection.cs" />
     <Compile Include="AssemblyWithReflection.cs" />
     <Compile Include="AttributeWithReflection.cs" />
+    <Compile Include="IHasConstructorInfo.cs" />
+    <Compile Include="IHasEventInfo.cs" />
+    <Compile Include="IHasFieldInfo.cs" />
+    <Compile Include="IHasMethodInfo.cs" />
+    <Compile Include="IHasPropertyInfo.cs" />
+    <Compile Include="IHasType.cs" />
+    <Compile Include="UnspecifiedTypeReferenceWithReflection.cs" />
+    <Compile Include="StructReferenceWithReflection.cs" />
     <Compile Include="ClassReferenceWithReflection.cs" />
     <Compile Include="ClassWithReflection.cs" />
     <Compile Include="ConstructorWithReflection.cs" />
     <Compile Include="ConversionOperatorWithReflection.cs" />
+    <Compile Include="DelegateReferenceWithReflection.cs" />
     <Compile Include="DelegateWithReflection.cs" />
     <Compile Include="DestructorWithReflection.cs" />
     <Compile Include="EnumMemberWithReflection.cs" />
+    <Compile Include="EnumReferenceWithReflection.cs" />
     <Compile Include="EnumWithReflection.cs" />
     <Compile Include="EventPropertyWithReflection.cs" />
     <Compile Include="EventWithReflection.cs" />
@@ -66,6 +78,9 @@
     <Compile Include="Internal\Constructors.cs" />
     <Compile Include="Internal\Events.cs" />
     <Compile Include="Internal\GenericParameterDeclarations.cs" />
+    <Compile Include="Internal\GenericParameters.cs" />
+    <Compile Include="Internal\InterfaceReferences.cs" />
+    <Compile Include="Internal\MethodBaseExtensions.cs" />
     <Compile Include="Internal\Methods.cs" />
     <Compile Include="Internal\NamespaceContainer.cs" />
     <Compile Include="Internal\NestedTypes.cs" />
@@ -74,6 +89,7 @@
     <Compile Include="Internal\TypeClassification.cs" />
     <Compile Include="Internal\TypeContainer.cs" />
     <Compile Include="Internal\TypeExtensions.cs" />
+    <Compile Include="Internal\TypeReferenceWithReflectionFactory.cs" />
     <Compile Include="Internal\TypeWithReflection.cs" />
     <Compile Include="ITypeReferenceWithReflection.cs" />
     <Compile Include="ITypeWithReflection.cs" />
@@ -87,6 +103,7 @@
     <Compile Include="NestedEnumWithReflection.cs" />
     <Compile Include="NestedInterfaceWithReflection.cs" />
     <Compile Include="NestedStructWithReflection.cs" />
+    <Compile Include="NestedTypeReferenceWithReflection.cs" />
     <Compile Include="OperatorOverloadWithReflection.cs" />
     <Compile Include="ParameterWithReflection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

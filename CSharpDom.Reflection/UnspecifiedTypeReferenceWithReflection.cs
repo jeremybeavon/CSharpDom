@@ -5,14 +5,14 @@ using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class ClassReferenceWithReflection :
-        AbstractClassReference<GenericParameterWithReflection>,
+    public sealed class UnspecifiedTypeReferenceWithReflection :
+        AbstractUnspecifiedTypeReference<GenericParameterWithReflection>,
         ITypeReferenceWithReflection
     {
         private readonly Type type;
         private readonly Lazy<GenericParameters> genericParameters;
 
-        internal ClassReferenceWithReflection(Type type)
+        internal UnspecifiedTypeReferenceWithReflection(Type type)
         {
             this.type = type;
             genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(type));

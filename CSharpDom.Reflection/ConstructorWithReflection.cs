@@ -10,12 +10,14 @@ namespace CSharpDom.Reflection
         AbstractConstructor<AttributeWithReflection, ITypeWithReflection, ParameterWithReflection>
     {
         private readonly ITypeWithReflection declaringType;
+        private readonly ConstructorInfo constructor;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<Parameters> parameters;
 
         internal ConstructorWithReflection(ITypeWithReflection declaringType, ConstructorInfo constructor)
         {
             this.declaringType = declaringType;
+            this.constructor = constructor;
             attributes = new Lazy<Attributes>(() => new Attributes(constructor));
             parameters = new Lazy<Parameters>(() => new Parameters(constructor));
         }
@@ -37,10 +39,7 @@ namespace CSharpDom.Reflection
 
         public override MemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return constructor.Visibility(); }
         }
     }
 }

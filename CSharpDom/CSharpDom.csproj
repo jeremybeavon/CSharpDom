@@ -358,13 +358,8 @@
     <Compile Include="Common\IConstructor.generic.cs" />
     <Compile Include="Common\IEnumMember.generic.cs" />
     <Compile Include="Common\IHasAssembly.cs" />
-    <Compile Include="Common\IHasConstructorInfo.cs" />
     <Compile Include="Common\IHasEnumMembers.cs" />
-    <Compile Include="Common\IHasEventInfo.cs" />
-    <Compile Include="Common\IHasFieldInfo.cs" />
     <Compile Include="Common\IHasLocation.cs" />
-    <Compile Include="Common\IHasMethodInfo.cs" />
-    <Compile Include="Common\IHasPropertyInfo.cs" />
     <Compile Include="Common\IHasReflection.cs" />
     <Compile Include="Common\IHasCompositeType.cs" />
     <Compile Include="Common\IConversionOperator.generic.cs" />
@@ -400,7 +395,6 @@
     <Compile Include="Common\IHasStructs.cs" />
     <Compile Include="Common\IHasSymbol.cs" />
     <Compile Include="Common\IHasSyntax.cs" />
-    <Compile Include="Common\IHasType.cs" />
     <Compile Include="Common\IIndexer.generic.cs" />
     <Compile Include="Common\IInterface.generic.cs" />
     <Compile Include="Common\IMethod.generic.cs" />

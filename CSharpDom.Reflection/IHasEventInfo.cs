@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace CSharpDom.Common
+namespace CSharpDom.Reflection
 {
     public interface IHasEventInfo
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CSharpDom.Common
+namespace CSharpDom.Reflection
 {
     public interface IHasType
     {

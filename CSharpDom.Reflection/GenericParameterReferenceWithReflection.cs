@@ -3,7 +3,7 @@ using CSharpDom.BaseClasses;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class GenericParameterReferenceWithReflection : AbstractGenericParameterReference
+    public sealed class GenericParameterReferenceWithReflection : AbstractGenericParameterReference, ITypeReferenceWithReflection
     {
         private readonly Type type;
 
