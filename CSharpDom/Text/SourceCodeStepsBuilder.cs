@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace CSharpDom.Text
 {
-    public sealed class SourceCodeStepsBuilder : AbstractGenericVisitor
+    public sealed class SourceCodeStepsBuilder : AbstractGenericVisitor, IHasSourceSourceBuilderSteps
     {
         private readonly bool isInInterface;
         private readonly AccessorFlags accessorFlags;

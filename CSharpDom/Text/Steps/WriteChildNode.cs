@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Text.Steps
 {
-    public sealed class WriteChildNode<TChildNode> : ISourceCodeBuilderStep
+    public sealed class WriteChildNode<TChildNode> : ISourceCodeBuilderStep, IHasSourceSourceBuilderSteps
         where TChildNode : IVisitable<IGenericVisitor>
     {
         public WriteChildNode(TChildNode childNode, SourceCodeStepsBuilder builder = null)
