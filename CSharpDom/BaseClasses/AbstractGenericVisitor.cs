@@ -144,20 +144,20 @@ namespace CSharpDom.BaseClasses
             enumReference.AcceptChildren(this);
         }
 
-        public virtual void VisitEvent<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IEvent<TAttributeGroup, TDeclaringType, TTypeReference> @event)
+        public virtual void VisitEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
-            where TTypeReference : ITypeReference
+            where TDelegateReference : IDelegateReference
         {
             @event.AcceptChildren(this);
         }
 
-        public virtual void VisitEventProperty<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TTypeReference> eventProperty)
+        public virtual void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> eventProperty)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
-            where TTypeReference : ITypeReference
+            where TDelegateReference : IDelegateReference
         {
             eventProperty.AcceptChildren(this);
         }

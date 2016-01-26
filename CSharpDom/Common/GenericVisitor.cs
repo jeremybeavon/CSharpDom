@@ -190,24 +190,24 @@ namespace CSharpDom.Common
             VisitCollection(enumMember.Attributes, visitor);
         }
 
-        public static void VisitEventChildren<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IEvent<TAttributeGroup, TDeclaringType, TTypeReference> @event,
+        public static void VisitEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
-            where TTypeReference : ITypeReference
+            where TDelegateReference : IDelegateReference
         {
             VisitCollection(@event.Attributes, visitor);
             VisitCollection(@event.FieldAttributes, visitor);
             VisitIfNotNull(@event.EventType, visitor);
         }
 
-        public static void VisitEventPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TTypeReference> eventProperty,
+        public static void VisitEventPropertyChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> eventProperty,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
-            where TTypeReference : ITypeReference
+            where TDelegateReference : IDelegateReference
         {
             VisitCollection(eventProperty.Attributes, visitor);
             VisitIfNotNull(eventProperty.EventType, visitor);

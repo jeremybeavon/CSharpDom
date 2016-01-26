@@ -96,17 +96,17 @@ namespace CSharpDom.Common
 
         void VisitEnumReference(IEnumReference enumReference);
 
-        void VisitEvent<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IEvent<TAttributeGroup, TDeclaringType, TTypeReference> @event)
+        void VisitEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
-            where TTypeReference : ITypeReference;
+            where TDelegateReference : IDelegateReference;
 
-        void VisitEventProperty<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TTypeReference> eventProperty)
+        void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> eventProperty)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
-            where TTypeReference : ITypeReference;
+            where TDelegateReference : IDelegateReference;
 
         void VisitField<TAttributeGroup, TDeclaringType, TTypeReference>(
             IField<TAttributeGroup, TDeclaringType, TTypeReference> field)

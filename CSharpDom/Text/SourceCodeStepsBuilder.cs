@@ -232,27 +232,27 @@ namespace CSharpDom.Text
             Steps.Add(new WriteName(enumReference.Name));
         }
 
-        public override void VisitEvent<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IEvent<TAttributeGroup, TDeclaringType, TTypeReference> @event)
+        public override void VisitEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
         {
             Steps.AddMemberVisibilityModifierSteps(@event.Visibility);
             Steps.AddMemberInheritanceModifierSteps(@event.InheritanceModifier);
             Steps.Add(new WriteEventKeyword());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteChildNode<TTypeReference>(@event.EventType));
+            Steps.Add(new WriteChildNode<TDelegateReference>(@event.EventType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@event.Name));
             Steps.Add(new WriteSemicolon());
         }
 
-        public override void VisitEventProperty<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TTypeReference> eventProperty)
+        public override void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> eventProperty)
         {
             Steps.AddMemberVisibilityModifierSteps(eventProperty.Visibility);
             Steps.AddMemberInheritanceModifierSteps(eventProperty.InheritanceModifier);
             Steps.Add(new WriteEventKeyword());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteChildNode<TTypeReference>(eventProperty.EventType));
+            Steps.Add(new WriteChildNode<TDelegateReference>(eventProperty.EventType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(eventProperty.Name));
             Steps.Add(new WriteIndentedNewLine());

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IEvent<TAttributeGroup, TDeclaringType, TTypeReference> :
+    public interface IEvent<TAttributeGroup, TDeclaringType, TDelegateReference> :
         IEvent,
         IHasName,
         IHasMemberVisibilityModifier,
@@ -8,10 +8,10 @@
         IHasAttributes<TAttributeGroup>,
         IHasFieldAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
-        IHasEventType<TTypeReference>
+        IHasEventType<TDelegateReference>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
-        where TTypeReference : ITypeReference
+        where TDelegateReference : IDelegateReference
     {
     }
 }

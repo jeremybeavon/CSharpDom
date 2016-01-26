@@ -4,17 +4,17 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractEventProperty<TAttributeGroup, TDeclaringType, TTypeReference> : 
-        IEventProperty<TAttributeGroup, TDeclaringType, TTypeReference>
+    public abstract class AbstractEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> : 
+        IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
-        where TTypeReference : ITypeReference
+        where TDelegateReference : IDelegateReference
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 
         public abstract TDeclaringType DeclaringType { get; }
 
-        public abstract TTypeReference EventType { get; }
+        public abstract TDelegateReference EventType { get; }
 
         public abstract MemberInheritanceModifier InheritanceModifier { get; }
 
