@@ -97,6 +97,29 @@
     <Compile Include="BaseClasses\AbstractStruct.cs" />
     <Compile Include="BaseClasses\AbstractUnnamedAttributeValue.cs" />
     <Compile Include="BaseClasses\AbstractUnspecifiedTypeReference.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractUsingStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractVariableDeclarationStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractWhileStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractTryStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractSwitchStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractSwitchCaseStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractReturnStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractLockStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractLabelStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractIfStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractGotoCaseStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractGotoStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractForStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractForeachStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractFinallyStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractExpressionStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractEmptyStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractDoStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractContinueStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractCatchStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractBreakStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractBlockStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractGenericStatementVisitor.cs" />
     <Compile Include="Common\Expressions\IExpression.cs" />
     <Compile Include="Common\Expressions\IGenericExpressionVisitor.cs" />
     <Compile Include="Common\IAccessor.cs" />
@@ -161,6 +184,7 @@
     <Compile Include="Common\IStruct.cs" />
     <Compile Include="Common\IType.cs" />
     <Compile Include="Common\IUnspecificTypeReference.cs" />
+    <Compile Include="Common\Statements\GenericStatementVisitor.cs" />
     <Compile Include="Common\Statements\IFinallyStatement.cs" />
     <Compile Include="Common\Statements\IFinallyStatement.generic.cs" />
     <Compile Include="Common\Statements\IGotoCaseStatement.cs" />
@@ -575,9 +599,10 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BaseClasses\Expressions\" />
     <Folder Include="CodeDom\" />
     <Folder Include="CodeGeneration\Tree\Text\" />
-    <Folder Include="Linq\" />
+    <Folder Include="Linq\Expressions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

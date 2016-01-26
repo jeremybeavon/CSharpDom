@@ -11,6 +11,6 @@ namespace CSharpDom.Common.Statements
 
         IReadOnlyCollection<TCatchStatement> CatchStatements { get; }
 
-        TFinallyStatement FinallyStatements { get; }
+        TFinallyStatement FinallyStatement { get; }
     }
 }

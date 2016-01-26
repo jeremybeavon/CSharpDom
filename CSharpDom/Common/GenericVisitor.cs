@@ -604,8 +604,17 @@ namespace CSharpDom.Common
             VisitCollection(unspecificTypeReference.GenericParameters, visitor);
         }
 
-        public static void VisitCollection<T>(IReadOnlyCollection<T> collection, IGenericVisitor visitor)
+        /*public static void VisitCollection<T>(IReadOnlyCollection<T> collection, IGenericVisitor visitor)
             where T : IVisitable<IGenericVisitor>
+        {
+            foreach (T item in collection)
+            {
+                item.Accept(visitor);
+            }
+        }*/
+
+        public static void VisitCollection<T, TVisitor>(IReadOnlyCollection<T> collection, TVisitor visitor)
+            where T : IVisitable<TVisitor>
         {
             foreach (T item in collection)
             {
@@ -613,8 +622,8 @@ namespace CSharpDom.Common
             }
         }
 
-        public static async Task VisitCollectionAsync<T>(IReadOnlyCollection<T> collection, IGenericVisitor visitor)
-            where T : IAsyncVisitable<IGenericVisitor>
+        public static async Task VisitCollectionAsync<T, TVisitor>(IReadOnlyCollection<T> collection, TVisitor visitor)
+            where T : IAsyncVisitable<TVisitor>
         {
             foreach (T item in collection)
             {
@@ -622,7 +631,7 @@ namespace CSharpDom.Common
             }
         }
 
-        private static void VisitIfNotNull(IVisitable<IGenericVisitor> visitable, IGenericVisitor visitor)
+        public static void VisitIfNotNull<TVisitor>(IVisitable<TVisitor> visitable, TVisitor visitor)
         {
             if (visitable != null)
             {

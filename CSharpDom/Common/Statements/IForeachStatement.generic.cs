@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Common.Statements
 {
-    public interface IForeachStatement<TTypeReference, TExpression, TStatement>
+    public interface IForeachStatement<TTypeReference, TExpression, TStatement> : IForeachStatement
         where TTypeReference : ITypeReference
         where TExpression : IExpression
         where TStatement : IStatement
@@ -13,6 +13,6 @@ namespace CSharpDom.Common.Statements
 
         TExpression Iterator { get; }
 
-        TStatement Statemenet { get; }
+        TStatement Statement { get; }
     }
 }
