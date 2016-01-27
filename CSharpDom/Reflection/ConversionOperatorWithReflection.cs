@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses;
+using CSharpDom.NotSupported;
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,8 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>,
+            ParameterWithReflection,
+            MethodBodyNotSupported>,
         IHasMethodInfo,
         IVisitable<IReflectionVisitor>
     {
@@ -79,6 +81,10 @@ namespace CSharpDom.Reflection
             get { return method; }
         }
 
+        public override MethodBodyNotSupported Body
+        {
+            get { return new MethodBodyNotSupported(); }
+        }
 
         public void Accept(IReflectionVisitor visitor)
         {

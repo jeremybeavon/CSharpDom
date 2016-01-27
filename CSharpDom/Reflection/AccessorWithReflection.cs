@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using CSharpDom.NotSupported;
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class AccessorWithReflection :
-        AbstractAccessor<AttributeWithReflection>,
+        AbstractAccessor<AttributeWithReflection, MethodBodyNotSupported>,
         IHasMethodInfo,
         IVisitable<IReflectionVisitor>
     {
@@ -40,6 +41,11 @@ namespace CSharpDom.Reflection
         public MethodInfo MethodInfo
         {
             get { return method; }
+        }
+
+        public override MethodBodyNotSupported Body
+        {
+            get { return new MethodBodyNotSupported(); }
         }
 
         public void Accept(IReflectionVisitor visitor)

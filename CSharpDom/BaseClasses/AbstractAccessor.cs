@@ -4,10 +4,13 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractAccessor<TAttributeGroup> : IAccessor<TAttributeGroup>
+    public abstract class AbstractAccessor<TAttributeGroup, TMethodBody> : IAccessor<TAttributeGroup, TMethodBody>
         where TAttributeGroup : IAttributeGroup
+        where TMethodBody : IMethodBody
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
+
+        public abstract TMethodBody Body { get; }
 
         public abstract MemberVisibilityModifier Visibility { get; }
 

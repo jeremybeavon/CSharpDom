@@ -4,8 +4,9 @@ namespace CSharpDom.Common
 {
     public interface IGenericVisitor
     {
-        void VisitAccessor<TAttributeGroup>(IAccessor<TAttributeGroup> accessor)
-            where TAttributeGroup : IAttributeGroup;
+        void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
+            where TAttributeGroup : IAttributeGroup
+            where TMethodBody : IMethodBody;
 
         void VisitArrayTypeReference<TTypeReference>(IArrayTypeReference<TTypeReference> arrayTypeReference)
             where TTypeReference : ITypeReference;
@@ -53,12 +54,13 @@ namespace CSharpDom.Common
             where TDeclaringType : IType
             where TParameter : IParameter;
 
-        void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> conversionOperator)
+        void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> conversionOperator)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IParameter
+            where TMethodBody : IMethodBody;
 
         void VisitDelegate<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
             IDelegate<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter> @delegate)
@@ -73,9 +75,11 @@ namespace CSharpDom.Common
         void VisitDelegateReference<TGenericParameter>(IDelegateReference<TGenericParameter> delegateReference)
             where TGenericParameter : IGenericParameter;
 
-        void VisitDestructor<TAttributeGroup, TDeclaringType>(IDestructor<TAttributeGroup, TDeclaringType> destructor)
+        void VisitDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            IDestructor<TAttributeGroup, TDeclaringType, TMethodBody> destructor)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClass;
+            where TDeclaringType : IClass
+            where TMethodBody : IMethodBody;
 
         Task VisitDocumentAsync<TProject, TSolution, TLoadedDocument>(IDocument<TProject, TSolution, TLoadedDocument> document)
             where TProject : IProject
@@ -102,11 +106,12 @@ namespace CSharpDom.Common
             where TDeclaringType : IBasicType
             where TDelegateReference : IDelegateReference;
 
-        void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> eventProperty)
+        void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
-            where TDelegateReference : IDelegateReference;
+            where TDelegateReference : IDelegateReference
+            where TMethodBody : IMethodBody;
 
         void VisitField<TAttributeGroup, TDeclaringType, TTypeReference>(
             IField<TAttributeGroup, TDeclaringType, TTypeReference> field)
@@ -162,13 +167,16 @@ namespace CSharpDom.Common
             where TInterface : IInterface
             where TStruct : IStruct;
 
-        void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
+        void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IParameter
+            where TMethodBody : IMethodBody;
+
+        void VisitMethodBody<TStatement>(IMethodBody<TStatement> methodBody);
 
         void VisitNamedAttributeValue(INamedAttributeValue namedAttributeValue);
 
@@ -211,10 +219,11 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TParameter : IParameter;
 
-        void VisitNestedDestructor<TAttributeGroup, TDeclaringType>(
-            INestedDestructor<TAttributeGroup, TDeclaringType> nestedDestructor)
+        void VisitNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : INestedClass;
+            where TDeclaringType : INestedClass
+            where TMethodBody : IMethodBody;
 
         void VisitNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
             INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
@@ -262,12 +271,13 @@ namespace CSharpDom.Common
         void VisitNestedTypeReference<TTypeReference>(INestedTypeReference<TTypeReference> nestedTypeReference)
             where TTypeReference : ITypeReference;
 
-        void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> operatorOverload)
+        void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> operatorOverload)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IParameter
+            where TMethodBody : IMethodBody;
 
         void VisitParameter<TAttributeGroup, TTypeReference>(IParameter<TAttributeGroup, TTypeReference> parameter)
             where TAttributeGroup : IAttributeGroup

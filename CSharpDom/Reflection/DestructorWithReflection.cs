@@ -3,11 +3,12 @@ using System.Reflection;
 using System;
 using System.Collections.Generic;
 using CSharpDom.Reflection.Internal;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
     public sealed class DestructorWithReflection :
-        AbstractDestructor<AttributeWithReflection, ClassWithReflection>,
+        AbstractDestructor<AttributeWithReflection, ClassWithReflection, MethodBodyNotSupported>,
         IHasMethodInfo,
         IVisitable<IReflectionVisitor>
     {
@@ -37,6 +38,10 @@ namespace CSharpDom.Reflection
             get { return method; }
         }
 
+        public override MethodBodyNotSupported Body
+        {
+            get { return new MethodBodyNotSupported(); }
+        }
 
         public void Accept(IReflectionVisitor visitor)
         {

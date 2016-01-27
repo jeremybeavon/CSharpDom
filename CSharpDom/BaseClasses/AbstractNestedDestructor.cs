@@ -1,18 +1,17 @@
 ﻿using CSharpDom.Common;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractNestedDestructor<TAttributeGroup, TDeclaringType> :
-        INestedDestructor<TAttributeGroup, TDeclaringType>
+    public abstract class AbstractNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> :
+        INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : INestedClass
+        where TMethodBody : IMethodBody
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
+
+        public abstract TMethodBody Body { get; }
 
         public abstract TDeclaringType DeclaringType { get; }
 

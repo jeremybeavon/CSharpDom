@@ -1,6 +1,8 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using CSharpDom.Common.Statements;
 using CSharpDom.Text.Steps;
+using CSharpDom.Text.Steps.Statements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +14,17 @@ namespace CSharpDom.Text
         private readonly bool isInInterface;
         private readonly AccessorFlags accessorFlags;
         private readonly ITypeReference accessorType;
+        private readonly string emptyBodyText;
 
         public SourceCodeStepsBuilder()
         {
             Steps = new List<ISourceCodeBuilderStep>();
+        }
+
+        internal SourceCodeStepsBuilder(string emptyBodyText)
+            : this()
+        {
+            this.emptyBodyText = emptyBodyText;
         }
         
         internal SourceCodeStepsBuilder(
@@ -31,7 +40,7 @@ namespace CSharpDom.Text
         
         public List<ISourceCodeBuilderStep> Steps { get; private set; }
 
-        public override void VisitAccessor<TAttributeGroup>(IAccessor<TAttributeGroup> accessor)
+        public override void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
         {
             bool isIndexer = accessorFlags.HasFlag(AccessorFlags.Indexer) && !isInInterface;
             Steps.Add(isIndexer ? (ISourceCodeBuilderStep)new WriteIndentedNewLine() : new WriteWhitespace());
@@ -44,7 +53,12 @@ namespace CSharpDom.Text
                 if (accessorFlags.HasFlag(AccessorFlags.Get))
                 {
                     string typeText = new WriteChildNode<ITypeReference>(accessorType).Steps.ToSourceCode();
-                    Steps.Add(new WriteRawValue(string.Format("return default({0});", typeText)));
+                    string emptyBodyText = string.Format("return default({0});", typeText);
+                    Steps.Add(new WriteChildNode<TMethodBody>(accessor.Body, new SourceCodeStepsBuilder(emptyBodyText)));
+                }
+                else
+                {
+                    Steps.Add(new WriteChildNode<TMethodBody>(accessor.Body));
                 }
 
                 Steps.Add(new WriteWhitespace());
@@ -141,8 +155,8 @@ namespace CSharpDom.Text
             Steps.Add(new WriteEndBrace());
         }
 
-        public override void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> conversionOperator)
+        public override void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> conversionOperator)
         {
             Steps.AddChildNodeStepsOnNewLines(conversionOperator.Attributes);
             Steps.AddMemberVisibilityModifierSteps(MemberVisibilityModifier.Public);
@@ -158,7 +172,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteEmptyBody());
+            Steps.Add(new WriteChildNode<TMethodBody>(conversionOperator.Body));
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
@@ -187,7 +201,8 @@ namespace CSharpDom.Text
             Steps.AddGenericParameterSteps(delegateReference.GenericParameters);
         }
 
-        public override void VisitDestructor<TAttributeGroup, TDeclaringType>(IDestructor<TAttributeGroup, TDeclaringType> destructor)
+        public override void VisitDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            IDestructor<TAttributeGroup, TDeclaringType, TMethodBody> destructor)
         {
             Steps.AddChildNodeStepsOnNewLines(destructor.Attributes);
             Steps.Add(new WriteTilda());
@@ -197,7 +212,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteEmptyBody());
+            Steps.Add(new WriteChildNode<TMethodBody>(destructor.Body));
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
@@ -245,8 +260,8 @@ namespace CSharpDom.Text
             Steps.Add(new WriteSemicolon());
         }
 
-        public override void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> eventProperty)
+        public override void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
         {
             Steps.AddMemberVisibilityModifierSteps(eventProperty.Visibility);
             Steps.AddMemberInheritanceModifierSteps(eventProperty.InheritanceModifier);
@@ -263,14 +278,14 @@ namespace CSharpDom.Text
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteEmptyBody());
+            Steps.Add(new WriteChildNode<TMethodBody>(eventProperty.AddBody));
             Steps.Add(new WriteEndBrace());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteRemoveKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteEmptyBody());
+            Steps.Add(new WriteChildNode<TMethodBody>(eventProperty.RemoveBody));
             Steps.Add(new WriteEndBrace());
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
@@ -413,8 +428,8 @@ namespace CSharpDom.Text
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
-        public override void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
+        public override void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
             Steps.AddMemberVisibilityModifierSteps(method.Visibility);
@@ -436,10 +451,29 @@ namespace CSharpDom.Text
                 Steps.Add(new WriteIndentedNewLine());
                 Steps.Add(new WriteStartBrace());
                 Steps.Add(new IncrementIndent());
-                Steps.Add(new WriteEmptyBody());
+                Steps.Add(new WriteChildNode<TMethodBody>(method.Body));
                 Steps.Add(new DecrementIndent());
                 Steps.Add(new WriteIndentedNewLine());
                 Steps.Add(new WriteEndBrace());
+            }
+        }
+
+        public override void VisitMethodBody<TStatement>(IMethodBody<TStatement> methodBody)
+        {
+            if (methodBody.Statements.Count == 0 || !(methodBody.Statements[0] is IStatement))
+            {
+                if (!string.IsNullOrWhiteSpace(emptyBodyText))
+                {
+                    Steps.Add(new WriteEmptyBody(emptyBodyText));
+                }
+            }
+            else
+            {
+                foreach (TStatement statement in methodBody.Statements)
+                {
+                    Steps.Add(new WriteIndentedNewLine());
+                    Steps.Add(new WriteGenericStatement<TStatement>(statement));
+                }
             }
         }
 
@@ -513,8 +547,8 @@ namespace CSharpDom.Text
             Steps.Add(new WriteSemicolon());
         }
 
-        public override void VisitNestedDestructor<TAttributeGroup, TDeclaringType>(
-            INestedDestructor<TAttributeGroup, TDeclaringType> nestedDestructor)
+        public override void VisitNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor)
         {
             Steps.AddChildNodeStepsOnNewLines(nestedDestructor.Attributes);
             Steps.Add(new WriteTilda());
@@ -524,7 +558,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteEmptyBody());
+            Steps.Add(new WriteChildNode<TMethodBody>(nestedDestructor.Body));
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
@@ -608,8 +642,8 @@ namespace CSharpDom.Text
             Steps.Add(new WriteChildNode<TTypeReference>(nestedTypeReference.NestedType));
         }
 
-        public override void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> operatorOverload)
+        public override void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> operatorOverload)
         {
             Steps.AddChildNodeStepsOnNewLines(operatorOverload.Attributes);
             Steps.AddMemberVisibilityModifierSteps(MemberVisibilityModifier.Public);
@@ -625,7 +659,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteEmptyBody());
+            Steps.Add(new WriteChildNode<TMethodBody>(operatorOverload.Body));
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());

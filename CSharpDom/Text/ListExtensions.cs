@@ -390,7 +390,7 @@ namespace CSharpDom.Text
                 steps.Add(new WriteStatement<TStatement>(statement));
             }
         }
-
+        
         private static void JoinList<T>(IEnumerable<T> items, Action<T> addAction, Action joinAction)
         {
             if (items.Any())

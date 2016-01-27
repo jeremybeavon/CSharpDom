@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses;
+using CSharpDom.NotSupported;
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class NestedDestructorWithReflection :
-        AbstractNestedDestructor<AttributeWithReflection, NestedClassWithReflection>,
+        AbstractNestedDestructor<AttributeWithReflection, NestedClassWithReflection, MethodBodyNotSupported>,
         IVisitable<IReflectionVisitor>
     {
         private readonly NestedClassWithReflection declaringType;
@@ -28,7 +29,12 @@ namespace CSharpDom.Reflection
         {
             get { return declaringType; }
         }
-        
+
+        public override MethodBodyNotSupported Body
+        {
+            get { return new MethodBodyNotSupported(); }
+        }
+
         public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNestedDestructorWithReflection(this);

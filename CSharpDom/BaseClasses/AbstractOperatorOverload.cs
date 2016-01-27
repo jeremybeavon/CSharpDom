@@ -4,14 +4,17 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> :
-        IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>
+    public abstract class AbstractOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> :
+        IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TTypeReference : ITypeReference
         where TParameter : IParameter
+        where TMethodBody : IMethodBody
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
+
+        public abstract TMethodBody Body { get; }
 
         public abstract TDeclaringType DeclaringType { get; }
 

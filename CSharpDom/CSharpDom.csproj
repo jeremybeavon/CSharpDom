@@ -54,6 +54,7 @@
     <Compile Include="BaseClasses\AbstractAttribute.cs" />
     <Compile Include="BaseClasses\AbstractBasicType.cs" />
     <Compile Include="BaseClasses\AbstractClass.cs" />
+    <Compile Include="BaseClasses\AbstractMethodBody.cs" />
     <Compile Include="BaseClasses\AbstractNestedDestructor.cs" />
     <Compile Include="BaseClasses\AbstractNestedEnumMember.cs" />
     <Compile Include="BaseClasses\AbstractNestedTypeReference.cs" />
@@ -226,6 +227,10 @@
     <Compile Include="Common\IAttributeGroup.cs" />
     <Compile Include="Common\IBasicType.cs" />
     <Compile Include="Common\IClass.cs" />
+    <Compile Include="Common\IHasBody.cs" />
+    <Compile Include="Common\IHasEventPropertyBody.cs" />
+    <Compile Include="Common\IMethodBody.cs" />
+    <Compile Include="Common\IMethodBody.generic.cs" />
     <Compile Include="Common\INestedTypeReference.cs" />
     <Compile Include="Common\INestedTypeReference.generic.cs" />
     <Compile Include="Common\IStructReference.cs" />
@@ -425,6 +430,7 @@
     <Compile Include="NotSupported\AccessorNotSupported.cs" />
     <Compile Include="NotSupported\DelegateReferenceNotSupported.cs" />
     <Compile Include="NotSupported\EnumReferenceNotSupported.cs" />
+    <Compile Include="NotSupported\MethodBodyNotSupported.cs" />
     <Compile Include="NotSupported\NestedTypeReferenceNotSupported.cs" />
     <Compile Include="NotSupported\StructReferenceNotSupported.cs" />
     <Compile Include="NotSupported\NestedDestructorNotSupported.cs" />
@@ -545,6 +551,7 @@
     <Compile Include="Text\Steps\Statements\WriteCaseKeyword.cs" />
     <Compile Include="Text\Steps\Statements\WriteElseKeyword.cs" />
     <Compile Include="Text\Steps\Statements\WriteDefaultKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteGenericStatement.cs" />
     <Compile Include="Text\Steps\Statements\WriteUsingKeyword.cs" />
     <Compile Include="Text\Steps\Statements\WriteTryKeyword.cs" />
     <Compile Include="Text\Steps\Statements\WriteSwitchKeyword.cs" />

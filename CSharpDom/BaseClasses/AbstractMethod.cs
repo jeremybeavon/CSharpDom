@@ -4,15 +4,18 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> :
-        IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
+    public abstract class AbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> :
+        IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
         where TParameter : IParameter
+        where TMethodBody : IMethodBody
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
+
+        public abstract TMethodBody Body { get; }
 
         public abstract TDeclaringType DeclaringType { get; }
 

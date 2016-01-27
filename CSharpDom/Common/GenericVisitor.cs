@@ -8,12 +8,14 @@ namespace CSharpDom.Common
 {
     public static class GenericVisitor
     {
-        public static void VisitAccessor<TAttributeGroup>(
-            IAccessor<TAttributeGroup> accessor,
+        public static void VisitAccessor<TAttributeGroup, TMethodBody>(
+            IAccessor<TAttributeGroup, TMethodBody> accessor,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
+            where TMethodBody : IMethodBody
         {
             VisitCollection(accessor.Attributes, visitor);
+            VisitIfNotNull(accessor.Body, visitor);
         }
 
         public static void VisitArrayTypeReferenceChildren<TTypeReference>(
@@ -110,18 +112,20 @@ namespace CSharpDom.Common
             VisitCollection(constructor.Parameters, visitor);
         }
 
-        public static void VisitConversionOperatorChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> conversionOperator,
+        public static void VisitConversionOperatorChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> conversionOperator,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
             where TParameter : IParameter
+            where TMethodBody : IMethodBody
         {
             VisitCollection(conversionOperator.Attributes, visitor);
             VisitCollection(conversionOperator.ReturnAttributes, visitor);
             VisitIfNotNull(conversionOperator.ReturnType, visitor);
             VisitIfNotNull(conversionOperator.Parameter, visitor);
+            VisitIfNotNull(conversionOperator.Body, visitor);
         }
 
         public static void VisitDelegateChildren<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
@@ -149,13 +153,15 @@ namespace CSharpDom.Common
             VisitCollection(delegateReference.GenericParameters, visitor);
         }
 
-        public static void VisitDestructor<TAttributeGroup, TDeclaringType>(
-            IDestructor<TAttributeGroup, TDeclaringType> destructor,
+        public static void VisitDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            IDestructor<TAttributeGroup, TDeclaringType, TMethodBody> destructor,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClass
+            where TMethodBody : IMethodBody
         {
             VisitCollection(destructor.Attributes, visitor);
+            VisitIfNotNull(destructor.Body, visitor);
         }
         
         public static async Task VisitDocumentChildrenAsync<TProject, TSolution, TLoadedDocument>(
@@ -202,15 +208,18 @@ namespace CSharpDom.Common
             VisitIfNotNull(@event.EventType, visitor);
         }
 
-        public static void VisitEventPropertyChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> eventProperty,
+        public static void VisitEventPropertyChildren<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TDelegateReference : IDelegateReference
+            where TMethodBody : IMethodBody
         {
             VisitCollection(eventProperty.Attributes, visitor);
             VisitIfNotNull(eventProperty.EventType, visitor);
+            VisitIfNotNull(eventProperty.AddBody, visitor);
+            VisitIfNotNull(eventProperty.RemoveBody, visitor);
         }
 
         public static void VisitFieldChildren<TAttributeGroup, TDeclaringType, TTypeReference>(
@@ -312,19 +321,21 @@ namespace CSharpDom.Common
             VisitCollection(loadedDocument.Structs, visitor);
         }
 
-        public static void VisitMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method,
+        public static void VisitMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
             where TParameter : IParameter
+            where TMethodBody : IMethodBody
         {
             VisitCollection(method.Attributes, visitor);
             VisitCollection(method.GenericParameters, visitor);
             VisitIfNotNull(method.ReturnType, visitor);
             VisitCollection(method.Parameters, visitor);
+            VisitIfNotNull(method.Body, visitor);
         }
 
         public static void VisitNamespaceChildren<TClass, TDelegate, TEnum, TInterface, TStruct>(
@@ -401,13 +412,15 @@ namespace CSharpDom.Common
             VisitCollection(nestedDelegate.Parameters, visitor);
         }
 
-        public static void VisitNestedDestructorChildren<TAttributeGroup, TDeclaringType>(
-            INestedDestructor<TAttributeGroup, TDeclaringType> nestedDestructor,
+        public static void VisitNestedDestructorChildren<TAttributeGroup, TDeclaringType, TMethodBody>(
+            INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : INestedClass
+            where TMethodBody : IMethodBody
         {
             VisitCollection(nestedDestructor.Attributes, visitor);
+            VisitIfNotNull(nestedDestructor.Body, visitor);
         }
 
         public static void VisitNestedEnumChildren<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
@@ -496,17 +509,19 @@ namespace CSharpDom.Common
             VisitIfNotNull(nestedTypeReference.NestedType, visitor);
         }
 
-        public static void VisitOperatorOverloadChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> operatorOverload,
+        public static void VisitOperatorOverloadChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> operatorOverload,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
             where TParameter : IParameter
+            where TMethodBody : IMethodBody
         {
             VisitCollection(operatorOverload.Attributes, visitor);
             VisitIfNotNull(operatorOverload.ReturnType, visitor);
             VisitCollection(operatorOverload.Parameters, visitor);
+            VisitIfNotNull(operatorOverload.Body, visitor);
         }
 
         public static void VisitParameter<TAttributeGroup, TTypeReference>(

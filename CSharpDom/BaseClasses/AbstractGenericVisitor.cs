@@ -5,9 +5,10 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractGenericVisitor : IGenericVisitor
-    {
-        public virtual void VisitAccessor<TAttributeGroup>(IAccessor<TAttributeGroup> accessor)
+    { 
+        public virtual void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
             where TAttributeGroup : IAttributeGroup
+            where TMethodBody : IMethodBody
         {
             accessor.AcceptChildren(this);
         }
@@ -76,12 +77,13 @@ namespace CSharpDom.BaseClasses
             constructor.AcceptChildren(this);
         }
 
-        public virtual void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> conversionOperator)
+        public virtual void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> conversionOperator)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
             where TParameter : IParameter
+            where TMethodBody : IMethodBody
         {
             conversionOperator.AcceptChildren(this);
         }
@@ -105,9 +107,11 @@ namespace CSharpDom.BaseClasses
             delegateReference.AcceptChildren(this);
         }
 
-        public virtual void VisitDestructor<TAttributeGroup, TDeclaringType>(IDestructor<TAttributeGroup, TDeclaringType> destructor)
+        public virtual void VisitDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            IDestructor<TAttributeGroup, TDeclaringType, TMethodBody> destructor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClass
+            where TMethodBody : IMethodBody
         {
             destructor.AcceptChildren(this);
         }
@@ -153,11 +157,12 @@ namespace CSharpDom.BaseClasses
             @event.AcceptChildren(this);
         }
 
-        public virtual void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> eventProperty)
+        public virtual void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TDelegateReference : IDelegateReference
+            where TMethodBody : IMethodBody
         {
             eventProperty.AcceptChildren(this);
         }
@@ -240,15 +245,21 @@ namespace CSharpDom.BaseClasses
             loadedDocument.AcceptChildren(this);
         }
 
-        public virtual void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
+        public virtual void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
             where TParameter : IParameter
+            where TMethodBody : IMethodBody
         {
             method.AcceptChildren(this);
+        }
+
+        public virtual void VisitMethodBody<TStatement>(IMethodBody<TStatement> methodBody)
+        {
+            methodBody.AcceptChildren(this);
         }
 
         public virtual void VisitNamedAttributeValue(INamedAttributeValue namedAttributeValue)
@@ -304,10 +315,11 @@ namespace CSharpDom.BaseClasses
             nestedDelegate.AcceptChildren(this);
         }
 
-        public virtual void VisitNestedDestructor<TAttributeGroup, TDeclaringType>(
-            INestedDestructor<TAttributeGroup, TDeclaringType> nestedDestructor)
+        public virtual void VisitNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : INestedClass
+            where TMethodBody : IMethodBody
         {
             nestedDestructor.AcceptChildren(this);
         }
@@ -373,12 +385,13 @@ namespace CSharpDom.BaseClasses
             nestedTypeReference.AcceptChildren(this);
         }
 
-        public virtual void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> operatorOverload)
+        public virtual void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> operatorOverload)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
             where TParameter : IParameter
+            where TMethodBody : IMethodBody
         {
             operatorOverload.AcceptChildren(this);
         }

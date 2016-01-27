@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using System.Reflection;
 using CSharpDom.Reflection.Internal;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
     public sealed class EventPropertyWithReflection :
-        AbstractEventProperty<AttributeWithReflection, ITypeWithReflection, DelegateReferenceWithReflection>,
+        AbstractEventProperty<AttributeWithReflection, ITypeWithReflection, DelegateReferenceWithReflection, MethodBodyNotSupported>,
         IHasEventInfo,
         IVisitable<IReflectionVisitor>
     {
@@ -59,6 +60,15 @@ namespace CSharpDom.Reflection
             get { return @event; }
         }
 
+        public override MethodBodyNotSupported AddBody
+        {
+            get { return new MethodBodyNotSupported(); }
+        }
+
+        public override MethodBodyNotSupported RemoveBody
+        {
+            get { return new MethodBodyNotSupported(); }
+        }
 
         public void Accept(IReflectionVisitor visitor)
         {

@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection.Internal
             this.visitor = visitor;
         }
 
-        public override void VisitAccessor<TAttributeGroup>(IAccessor<TAttributeGroup> accessor)
+        public override void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
         {
             visitor.VisitAccessorWithReflection((AccessorWithReflection)(object)accessor);
         }
@@ -46,8 +46,8 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitConstructorWithReflection((ConstructorWithReflection)(object)constructor);
         }
 
-        public override void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> conversionOperator)
+        public override void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> conversionOperator)
         {
             visitor.VisitConversionOperatorWithReflection((ConversionOperatorWithReflection)(object)conversionOperator);
         }
@@ -63,8 +63,8 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitDelegateReferenceWithReflection((DelegateReferenceWithReflection)(object)delegateReference);
         }
 
-        public override void VisitDestructor<TAttributeGroup, TDeclaringType>(
-            IDestructor<TAttributeGroup, TDeclaringType> destructor)
+        public override void VisitDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            IDestructor<TAttributeGroup, TDeclaringType, TMethodBody> destructor)
         {
             visitor.VisitDestructorWithReflection((DestructorWithReflection)(object)destructor);
         }
@@ -91,8 +91,8 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitEventWithReflection((EventWithReflection)(object)@event);
         }
 
-        public override void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference> eventProperty)
+        public override void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
         {
             visitor.VisitEventPropertyWithReflection((EventPropertyWithReflection)(object)eventProperty);
         }
@@ -142,8 +142,8 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitAssemblyWithReflection((AssemblyWithReflection)(object)loadedDocument);
         }
 
-        public override void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
+        public override void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
             visitor.VisitMethodWithReflection((MethodWithReflection)(object)method);
         }
@@ -171,8 +171,8 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitNestedDelegateWithReflection((NestedDelegateWithReflection)(object)nestedDelegate);
         }
 
-        public override void VisitNestedDestructor<TAttributeGroup, TDeclaringType>(
-            INestedDestructor<TAttributeGroup, TDeclaringType> nestedDestructor)
+        public override void VisitNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor)
         {
             visitor.VisitNestedDestructorWithReflection((NestedDestructorWithReflection)(object)nestedDestructor);
         }
@@ -206,8 +206,8 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitNestedTypeReferenceWithReflection((NestedTypeReferenceWithReflection)(object)nestedTypeReference);
         }
 
-        public override void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> operatorOverload)
+        public override void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> operatorOverload)
         {
             visitor.VisitOperatorOverloadWithReflection((OperatorOverloadWithReflection)(object)operatorOverload);
         }

@@ -4,12 +4,15 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractDestructor<TAttributeGroup, TDeclaringType> :
-        IDestructor<TAttributeGroup, TDeclaringType>
+    public abstract class AbstractDestructor<TAttributeGroup, TDeclaringType, TMethodBody> :
+        IDestructor<TAttributeGroup, TDeclaringType, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClass
+        where TMethodBody : IMethodBody
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
+
+        public abstract TMethodBody Body { get; }
 
         public abstract TDeclaringType DeclaringType { get; }
 

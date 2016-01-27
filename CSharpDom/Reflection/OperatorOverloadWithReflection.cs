@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using System.Reflection;
 using CSharpDom.Reflection.Internal;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
@@ -11,7 +12,8 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>,
+            ParameterWithReflection,
+            MethodBodyNotSupported>,
         IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
@@ -56,7 +58,12 @@ namespace CSharpDom.Reflection
         {
             get { return returnType; }
         }
-        
+
+        public override MethodBodyNotSupported Body
+        {
+            get { return new MethodBodyNotSupported(); }
+        }
+
         public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitOperatorOverloadWithReflection(this);

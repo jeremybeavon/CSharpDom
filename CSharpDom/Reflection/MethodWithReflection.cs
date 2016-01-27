@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using System.Reflection;
 using CSharpDom.Reflection.Internal;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
@@ -12,7 +13,8 @@ namespace CSharpDom.Reflection
             IBasicTypeWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>,
+            ParameterWithReflection,
+            MethodBodyNotSupported>,
         IHasMethodInfo,
         IVisitable<IReflectionVisitor>
     {
@@ -76,6 +78,11 @@ namespace CSharpDom.Reflection
         public override MemberVisibilityModifier Visibility
         {
             get { return method.Visibility(); }
+        }
+
+        public override MethodBodyNotSupported Body
+        {
+            get { return new MethodBodyNotSupported(); }
         }
 
         public void Accept(IReflectionVisitor visitor)
