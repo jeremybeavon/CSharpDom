@@ -31,6 +31,12 @@ namespace CSharpDom.BaseClasses.Statements
             continueStatement.AcceptChildren(this);
         }
 
+        public virtual void VisitDefaultCaseStatement<TStatement>(IDefaultCaseStatement<TStatement> defaultCaseStatement)
+            where TStatement : IStatement
+        {
+            defaultCaseStatement.AcceptChildren(this);
+        }
+
         public virtual void VisitDoStatement<TExpression, TStatement>(IDoStatement<TExpression, TStatement> doStatement)
             where TExpression : IExpression
             where TStatement : IStatement
@@ -116,11 +122,11 @@ namespace CSharpDom.BaseClasses.Statements
             switchCaseStatement.AcceptChildren(this);
         }
 
-        public virtual void VisitSwitchStatement<TExpression, TSwitchCaseStatement, TStatement>(
-            ISwitchStatement<TExpression, TSwitchCaseStatement, TStatement> switchStatement)
+        public virtual void VisitSwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement>(
+            ISwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement> switchStatement)
             where TExpression : IExpression
             where TSwitchCaseStatement : ISwitchCaseStatement
-            where TStatement : IStatement
+            where TDefaultCaseStatement : IDefaultCaseStatement
         {
             switchStatement.AcceptChildren(this);
         }

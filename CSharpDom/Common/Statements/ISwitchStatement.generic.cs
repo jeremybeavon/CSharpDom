@@ -3,15 +3,15 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Common.Statements
 {
-    public interface ISwitchStatement<TExpression, TSwitchCaseStatement, TStatement> : ISwitchStatement
+    public interface ISwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement> : ISwitchStatement
         where TExpression : IExpression
         where TSwitchCaseStatement : ISwitchCaseStatement
-        where TStatement : IStatement
+        where TDefaultCaseStatement : IDefaultCaseStatement
     {
         TExpression Expression { get; }
 
         IReadOnlyCollection<TSwitchCaseStatement> Cases { get; }
 
-        IReadOnlyList<TStatement> DefaultCase { get; }
+        TDefaultCaseStatement DefaultCase { get; }
     }
 }

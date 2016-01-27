@@ -97,6 +97,7 @@
     <Compile Include="BaseClasses\AbstractStruct.cs" />
     <Compile Include="BaseClasses\AbstractUnnamedAttributeValue.cs" />
     <Compile Include="BaseClasses\AbstractUnspecifiedTypeReference.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractDefaultCaseStatement.cs" />
     <Compile Include="BaseClasses\Statements\AbstractUsingStatement.cs" />
     <Compile Include="BaseClasses\Statements\AbstractVariableDeclarationStatement.cs" />
     <Compile Include="BaseClasses\Statements\AbstractWhileStatement.cs" />
@@ -246,6 +247,8 @@
     <Compile Include="Common\IType.cs" />
     <Compile Include="Common\IUnspecificTypeReference.cs" />
     <Compile Include="Common\Statements\GenericStatementVisitor.cs" />
+    <Compile Include="Common\Statements\IDefaultCaseStatement.cs" />
+    <Compile Include="Common\Statements\IDefaultCaseStatement.generic.cs" />
     <Compile Include="Common\Statements\IFinallyStatement.cs" />
     <Compile Include="Common\Statements\IFinallyStatement.generic.cs" />
     <Compile Include="Common\Statements\IGotoCaseStatement.cs" />
@@ -472,8 +475,30 @@
     <Compile Include="Text\AccessorFlags.cs" />
     <Compile Include="Text\SourceCodeStatementStepsBuilder.cs" />
     <Compile Include="Text\Steps\DecrementIndent.cs" />
+    <Compile Include="Text\Steps\Expressions\WriteDefaultKeyword.cs" />
+    <Compile Include="Text\Steps\Expressions\WriteExpression.cs" />
     <Compile Include="Text\Steps\IncrementIndent.cs" />
     <Compile Include="Text\SourceCodeExpressionStepsBuilder.cs" />
+    <Compile Include="Text\Steps\Statements\WriteGotoKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteCaseKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteElseKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteDefaultKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteUsingKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteTryKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteSwitchKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteReturnKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteLockKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteIfKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteInKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteForKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteForeachKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteFinallyKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteWhileKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteDoKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteCatchKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteBreakKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteContinueKeyword.cs" />
+    <Compile Include="Text\Steps\Statements\WriteStatement.cs" />
     <Compile Include="Text\Steps\WriteChildNode.cs" />
     <Compile Include="Text\Steps\WriteAddKeyword.cs" />
     <Compile Include="Text\Steps\WriteConversionOperatorType.cs" />
@@ -669,12 +694,11 @@
   <ItemGroup>
     <Folder Include="BaseClasses\Expressions\" />
     <Folder Include="CodeDom\" />
-    <Folder Include="CodeGeneration\Tree\Text\" />
+    <Folder Include="CodeGeneration\Tree\Text\Expressions\" />
+    <Folder Include="CodeGeneration\Tree\Text\Statements\" />
     <Folder Include="Linq\Expressions\" />
     <Folder Include="Text\Rules\Resharper\" />
     <Folder Include="Text\Rules\VisualStudio\" />
-    <Folder Include="Text\Steps\Expressions\" />
-    <Folder Include="Text\Steps\Statements\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

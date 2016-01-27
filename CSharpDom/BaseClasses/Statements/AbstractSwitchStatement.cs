@@ -6,15 +6,15 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.BaseClasses.Statements
 {
-    public abstract class AbstractSwitchStatement<TExpression, TSwitchCaseStatement, TStatement> :
-        ISwitchStatement<TExpression, TSwitchCaseStatement, TStatement>
+    public abstract class AbstractSwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement> :
+        ISwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement>
         where TExpression : IExpression
         where TSwitchCaseStatement : ISwitchCaseStatement
-        where TStatement : IStatement
+        where TDefaultCaseStatement : IDefaultCaseStatement
     {
         public abstract IReadOnlyCollection<TSwitchCaseStatement> Cases { get; }
 
-        public abstract IReadOnlyList<TStatement> DefaultCase { get; }
+        public abstract TDefaultCaseStatement DefaultCase { get; }
 
         public abstract TExpression Expression { get; }
 

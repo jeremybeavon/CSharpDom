@@ -15,6 +15,9 @@ namespace CSharpDom.Common.Statements
 
         void VisitContinueStatement(IContinueStatement continueStatement);
 
+        void VisitDefaultCaseStatement<TStatement>(IDefaultCaseStatement<TStatement> defaultCaseStatement)
+            where TStatement : IStatement;
+
         void VisitDoStatement<TExpression, TStatement>(IDoStatement<TExpression, TStatement> doStatement)
             where TExpression : IExpression
             where TStatement : IStatement;
@@ -60,11 +63,11 @@ namespace CSharpDom.Common.Statements
             where TExpression : IExpression
             where TStatement : IStatement;
 
-        void VisitSwitchStatement<TExpression, TSwitchCaseStatement, TStatement>(
-            ISwitchStatement<TExpression, TSwitchCaseStatement, TStatement> switchStatement)
+        void VisitSwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement>(
+            ISwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement> switchStatement)
             where TExpression : IExpression
             where TSwitchCaseStatement : ISwitchCaseStatement
-            where TStatement : IStatement;
+            where TDefaultCaseStatement : IDefaultCaseStatement;
 
         void VisitTryStatement<TStatement, TCatchStatement, TFinallyStatement>(
             ITryStatement<TStatement, TCatchStatement, TFinallyStatement> tryStatement)

@@ -21,7 +21,15 @@ namespace CSharpDom.Common.Statements
         {
             VisitCollection(catchStatement.Statements, visitor);
         }
-        
+
+        public static void VisitDefaultCaseStatementChildren<TStatement>(
+            IDefaultCaseStatement<TStatement> defaultCaseStatement,
+            IGenericStatementVisitor visitor)
+            where TStatement : IStatement
+        {
+            VisitCollection(defaultCaseStatement.Statements, visitor);
+        }
+
         public static void VisitDoStatementChildren<TExpression, TStatement>(
             IDoStatement<TExpression, TStatement> doStatement,
             IGenericStatementVisitor visitor)
@@ -88,15 +96,15 @@ namespace CSharpDom.Common.Statements
             VisitCollection(switchCaseStatement.Statements, visitor);
         }
 
-        public static void VisitSwitchStatementChildren<TExpression, TSwitchCaseStatement, TStatement>(
-            ISwitchStatement<TExpression, TSwitchCaseStatement, TStatement> switchStatement,
+        public static void VisitSwitchStatementChildren<TExpression, TSwitchCaseStatement, TDefaultCaseStatement>(
+            ISwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement> switchStatement,
             IGenericStatementVisitor visitor)
             where TExpression : IExpression
             where TSwitchCaseStatement : ISwitchCaseStatement
-            where TStatement : IStatement
+            where TDefaultCaseStatement : IDefaultCaseStatement
         {
             VisitCollection(switchStatement.Cases, visitor);
-            VisitCollection(switchStatement.DefaultCase, visitor);
+            VisitIfNotNull(switchStatement.DefaultCase, visitor);
         }
 
         public static void VisitTryStatementChildren<TStatement, TCatchStatement, TFinallyStatement>(

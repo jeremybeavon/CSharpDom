@@ -1,5 +1,9 @@
 ﻿using CSharpDom.Common;
+using CSharpDom.Common.Expressions;
+using CSharpDom.Common.Statements;
 using CSharpDom.Text.Steps;
+using CSharpDom.Text.Steps.Expressions;
+using CSharpDom.Text.Steps.Statements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,6 +64,17 @@ namespace CSharpDom.Text
             where T : IVisitable<IGenericVisitor>
         {
             steps.AddChildNodeSteps(childNodes, () => steps.AddRange(new WriteComma(), new WriteWhitespace()));
+        }
+
+        public static void AddCommaSeparatedExpressionSteps<T>(
+            this List<ISourceCodeBuilderStep> steps,
+            IReadOnlyCollection<T> expressions)
+            where T : IVisitable<IGenericExpressionVisitor>
+        {
+            JoinList(
+                expressions,
+                expression => steps.Add(new WriteExpression<T>(expression)),
+                () => steps.AddRange(new WriteComma(), new WriteWhitespace()));
         }
 
         public static void AddChildNodeStepsOnNewLines<T>(
@@ -327,6 +342,52 @@ namespace CSharpDom.Text
             {
                 steps.Add(new WriteMethodParameterModifier(modifier));
                 steps.Add(new WriteWhitespace());
+            }
+        }
+
+        public static void AddBlockSteps<TStatement>(this List<ISourceCodeBuilderStep> steps, IReadOnlyList<TStatement> statements)
+            where TStatement : IStatement
+        {
+            steps.Add(new WriteStartBrace());
+            steps.AddIndentedStatementSteps(statements);
+            steps.Add(new WriteEndBrace());
+        }
+
+        public static void AddIndentedStatementSteps<TStatement>(this List<ISourceCodeBuilderStep> steps, TStatement statement)
+            where TStatement : IStatement
+        {
+            if (statement is IBlockStatement)
+            {
+                steps.Add(new WriteStatement<TStatement>(statement));
+            }
+            else
+            {
+                steps.Add(new IncrementIndent());
+                steps.Add(new WriteIndentedNewLine());
+                steps.Add(new WriteStatement<TStatement>(statement));
+                steps.Add(new DecrementIndent());
+            }
+        }
+
+        public static void AddIndentedStatementSteps<TStatement>(
+            this List<ISourceCodeBuilderStep> steps,
+            IReadOnlyList<TStatement> statements)
+            where TStatement : IStatement
+        {
+            steps.Add(new IncrementIndent());
+            steps.AddStatementStepsOnNewLines(statements);
+            steps.Add(new DecrementIndent());
+        }
+
+        public static void AddStatementStepsOnNewLines<TStatement>(
+            this List<ISourceCodeBuilderStep> steps,
+            IReadOnlyCollection<TStatement> statements)
+            where TStatement : IVisitable<IGenericStatementVisitor>
+        {
+            foreach (TStatement statement in statements)
+            {
+                steps.Add(new WriteIndentedNewLine());
+                steps.Add(new WriteStatement<TStatement>(statement));
             }
         }
 
