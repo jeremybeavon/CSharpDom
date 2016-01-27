@@ -6,7 +6,9 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class NestedEnumMemberWithReflection : AbstractNestedEnumMember<AttributeWithReflection, NestedEnumWithReflection>
+    public sealed class NestedEnumMemberWithReflection :
+        AbstractNestedEnumMember<AttributeWithReflection, NestedEnumWithReflection>,
+        IVisitable<IReflectionVisitor>
     {
         private readonly NestedEnumWithReflection declaringType;
         private readonly FieldInfo field;
@@ -32,6 +34,16 @@ namespace CSharpDom.Reflection
         public override string Name
         {
             get { return field.Name; }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitNestedEnumMemberWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

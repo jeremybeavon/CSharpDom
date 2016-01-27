@@ -33,7 +33,8 @@ namespace CSharpDom.Reflection
             EnumWithReflection,
             InterfaceWithReflection,
             StructWithReflection>,
-        IHasAssembly
+        IHasAssembly,
+        IVisitable<IReflectionVisitor>
     {
         private readonly Assembly assembly;
         private readonly TypeContainer typeContainer;
@@ -160,6 +161,16 @@ namespace CSharpDom.Reflection
         Task<AssemblyWithReflection> IProject<AssemblyWithReflection, AssemblyWithReflection, AssemblyWithReflection>.LoadAsync()
         {
             return Task.FromResult(this);
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitAssemblyWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

@@ -316,7 +316,7 @@ namespace CSharpDom.Common
 
         void VisitUnnamedAttributeValue(IUnnamedAttributeValue unnamedAttributeValue);
 
-        void VisitUnspecifiedTypeReference<TGenericParameter>(IUnspecificTypeReference<TGenericParameter> unspecificTypeReference)
+        void VisitUnspecifiedTypeReference<TGenericParameter>(IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
             where TGenericParameter : IGenericParameter;
     }
 }

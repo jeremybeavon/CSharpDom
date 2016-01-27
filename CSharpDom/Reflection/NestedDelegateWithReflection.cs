@@ -12,7 +12,8 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>
+            ParameterWithReflection>,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly Type type;
@@ -65,6 +66,16 @@ namespace CSharpDom.Reflection
         public override MemberVisibilityModifier Visibility
         {
             get { return type.NestedVisibility(); }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitNestedDelegateWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

@@ -12,7 +12,8 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             ITypeReferenceWithReflection,
             ParameterWithReflection>,
-        IHasMethodInfo
+        IHasMethodInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly MethodInfo method;
@@ -76,6 +77,17 @@ namespace CSharpDom.Reflection
         public MethodInfo MethodInfo
         {
             get { return method; }
+        }
+
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitConversionOperatorWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

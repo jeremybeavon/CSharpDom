@@ -700,7 +700,7 @@ namespace CSharpDom.Text
         }
 
         public override void VisitUnspecifiedTypeReference<TGenericParameter>(
-            IUnspecificTypeReference<TGenericParameter> unspecificTypeReference)
+            IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
         {
             Steps.Add(new WriteName(unspecificTypeReference.Name));
             Steps.AddGenericParameterSteps(unspecificTypeReference.GenericParameters);

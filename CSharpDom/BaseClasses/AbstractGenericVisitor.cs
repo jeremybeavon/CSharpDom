@@ -452,7 +452,7 @@ namespace CSharpDom.BaseClasses
         }
 
         public virtual void VisitUnspecifiedTypeReference<TGenericParameter>(
-            IUnspecificTypeReference<TGenericParameter> unspecificTypeReference)
+            IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
             where TGenericParameter : IGenericParameter
         {
             unspecificTypeReference.AcceptChildren(this);

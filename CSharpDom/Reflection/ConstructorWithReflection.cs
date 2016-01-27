@@ -8,7 +8,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class ConstructorWithReflection :
         AbstractConstructor<AttributeWithReflection, ITypeWithReflection, ParameterWithReflection>,
-        IHasConstructorInfo
+        IHasConstructorInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly ConstructorInfo constructor;
@@ -46,6 +47,17 @@ namespace CSharpDom.Reflection
         public ConstructorInfo ConstructorInfo
         {
             get { return constructor; }
+        }
+
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitConstructorWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

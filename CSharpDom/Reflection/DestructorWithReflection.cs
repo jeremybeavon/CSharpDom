@@ -8,7 +8,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class DestructorWithReflection :
         AbstractDestructor<AttributeWithReflection, ClassWithReflection>,
-        IHasMethodInfo
+        IHasMethodInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ClassWithReflection declaringType;
         private readonly MethodInfo method;
@@ -34,6 +35,17 @@ namespace CSharpDom.Reflection
         public MethodInfo MethodInfo
         {
             get { return method; }
+        }
+
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitDestructorWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

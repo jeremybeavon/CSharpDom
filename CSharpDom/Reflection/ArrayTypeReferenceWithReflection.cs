@@ -7,7 +7,8 @@ namespace CSharpDom.Reflection
     public sealed class ArrayTypeReferenceWithReflection :
         AbstractArrayTypeReference<ITypeReferenceWithReflection>,
         ITypeReferenceWithReflection,
-        IHasType
+        IHasType,
+        IVisitable<IReflectionVisitor>
     {
         private readonly Type type;
         private readonly int dimensions;
@@ -33,6 +34,16 @@ namespace CSharpDom.Reflection
         public Type Type
         {
             get { return type; }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitArrayTypeReferenceWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

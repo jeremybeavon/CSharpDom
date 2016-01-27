@@ -21,7 +21,8 @@ namespace CSharpDom.Reflection
             IndexerWithReflection,
             MethodWithReflection>,
         IBasicTypeWithReflection,
-        IHasType
+        IHasType,
+        IVisitable<IReflectionVisitor>
     {
         private readonly AssemblyWithReflection assembly;
         private readonly NamespaceWithReflection @namespace;
@@ -99,6 +100,16 @@ namespace CSharpDom.Reflection
         public override TypeVisibilityModifier Visibility
         {
             get { return type.Visibility(); }
+        }
+        
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitInterfaceWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

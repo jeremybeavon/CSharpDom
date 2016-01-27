@@ -16,7 +16,8 @@ namespace CSharpDom.Reflection
             IndexerWithReflection,
             MethodWithReflection>,
         IBasicTypeWithReflection,
-        IHasType
+        IHasType,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly Type type;
@@ -82,6 +83,16 @@ namespace CSharpDom.Reflection
         public Type Type
         {
             get { return type; }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitNestedInterfaceWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

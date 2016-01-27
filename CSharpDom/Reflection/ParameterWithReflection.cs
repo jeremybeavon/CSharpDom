@@ -7,7 +7,10 @@ using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class ParameterWithReflection : AbstractParameter<AttributeWithReflection, ITypeReferenceWithReflection>
+    public sealed class ParameterWithReflection :
+        AbstractParameter<AttributeWithReflection, ITypeReferenceWithReflection>,
+        IHasParameterInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ParameterInfo parameter;
         private readonly Lazy<Attributes> attributes;
@@ -61,6 +64,21 @@ namespace CSharpDom.Reflection
         public override ITypeReferenceWithReflection ParameterType
         {
             get { return parameterType; }
+        }
+
+        public ParameterInfo ParameterInfo
+        {
+            get { return parameter; }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitParameterWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

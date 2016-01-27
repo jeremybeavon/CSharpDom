@@ -8,7 +8,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class FieldWithReflection : 
         AbstractField<AttributeWithReflection, ITypeWithReflection, ITypeReferenceWithReflection>,
-        IHasFieldInfo
+        IHasFieldInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly FieldInfo field;
@@ -117,6 +118,16 @@ namespace CSharpDom.Reflection
 
                 return MemberVisibilityModifier.None;
             }
+        }
+        
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitFieldWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

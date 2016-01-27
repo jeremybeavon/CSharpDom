@@ -12,7 +12,8 @@ namespace CSharpDom.Reflection
             GenericParameterReferenceWithReflection,
             InterfaceReferenceWithReflection,
             AttributeWithReflection>,
-        IHasType
+        IHasType,
+        IVisitable<IReflectionVisitor>
     {
         private readonly Type type;
         private readonly Lazy<Attributes> attributes;
@@ -95,6 +96,16 @@ namespace CSharpDom.Reflection
         public override GenericParameterTypeConstraint TypeConstraint
         {
             get { return typeConstraint; }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitGenericParameterDeclarationWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
 
         private static GenericParameterTypeConstraint GetTypeConstraint(Type type)

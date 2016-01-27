@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Reflection;
 using CSharpDom.BaseClasses;
+using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class UnnamedAttributeValueWithReflection : AbstractUnnamedAttributeValue
+    public sealed class UnnamedAttributeValueWithReflection : AbstractUnnamedAttributeValue, IVisitable<IReflectionVisitor>
     {
         private readonly CustomAttributeTypedArgument attributeValue;
 
@@ -19,6 +20,16 @@ namespace CSharpDom.Reflection
             {
                 throw new NotImplementedException();
             }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitUnnamedAttributeValueWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

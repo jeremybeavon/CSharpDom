@@ -1,9 +1,13 @@
 ﻿using CSharpDom.BaseClasses;
+using CSharpDom.Reflection.Internal;
 using System;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class EnumReferenceWithReflection : AbstractEnumReference, ITypeReferenceWithReflection
+    public sealed class EnumReferenceWithReflection :
+        AbstractEnumReference,
+        ITypeReferenceWithReflection,
+        IVisitable<IReflectionVisitor>
     {
         private readonly Type type;
 
@@ -19,10 +23,17 @@ namespace CSharpDom.Reflection
 
         public Type Type
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return type; }
+        }
+        
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitEnumReferenceWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

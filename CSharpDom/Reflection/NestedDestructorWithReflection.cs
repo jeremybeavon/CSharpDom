@@ -7,7 +7,8 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class NestedDestructorWithReflection :
-        AbstractNestedDestructor<AttributeWithReflection, NestedClassWithReflection>
+        AbstractNestedDestructor<AttributeWithReflection, NestedClassWithReflection>,
+        IVisitable<IReflectionVisitor>
     {
         private readonly NestedClassWithReflection declaringType;
         private readonly Lazy<Attributes> attributes;
@@ -26,6 +27,16 @@ namespace CSharpDom.Reflection
         public override NestedClassWithReflection DeclaringType
         {
             get { return declaringType; }
+        }
+        
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitNestedDestructorWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

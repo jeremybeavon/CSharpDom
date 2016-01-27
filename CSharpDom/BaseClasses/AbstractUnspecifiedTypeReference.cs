@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractUnspecifiedTypeReference<TGenericParameter> : IUnspecificTypeReference<TGenericParameter>
+    public abstract class AbstractUnspecifiedTypeReference<TGenericParameter> : IUnspecifiedTypeReference<TGenericParameter>
         where TGenericParameter : IGenericParameter
     {
         public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }

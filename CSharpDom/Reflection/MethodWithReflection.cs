@@ -13,7 +13,8 @@ namespace CSharpDom.Reflection
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
             ParameterWithReflection>,
-        IHasMethodInfo
+        IHasMethodInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly IBasicTypeWithReflection declaringType;
         private readonly MethodInfo method;
@@ -75,6 +76,16 @@ namespace CSharpDom.Reflection
         public override MemberVisibilityModifier Visibility
         {
             get { return method.Visibility(); }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitMethodWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

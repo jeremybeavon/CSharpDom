@@ -30,7 +30,8 @@ namespace CSharpDom.Reflection
             NestedStructWithReflection,
             DestructorWithReflection>,
         ITypeWithReflection,
-        IHasType
+        IHasType,
+        IVisitable<IReflectionVisitor>
     {
         private readonly AssemblyWithReflection assembly;
         private readonly NamespaceWithReflection @namespace;
@@ -181,6 +182,17 @@ namespace CSharpDom.Reflection
         public Type Type
         {
             get { return type; }
+        }
+
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitClassWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

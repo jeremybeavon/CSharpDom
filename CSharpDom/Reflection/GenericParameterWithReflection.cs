@@ -4,7 +4,9 @@ using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class GenericParameterWithReflection : AbstractGenericParameter<ITypeReferenceWithReflection>
+    public sealed class GenericParameterWithReflection :
+        AbstractGenericParameter<ITypeReferenceWithReflection>,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ITypeReferenceWithReflection typeReference;
 
@@ -16,6 +18,17 @@ namespace CSharpDom.Reflection
         public override ITypeReferenceWithReflection Type
         {
             get { return typeReference; }
+        }
+
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitGenericParameterWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

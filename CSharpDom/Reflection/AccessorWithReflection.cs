@@ -7,7 +7,10 @@ using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class AccessorWithReflection : AbstractAccessor<AttributeWithReflection>, IHasMethodInfo
+    public sealed class AccessorWithReflection :
+        AbstractAccessor<AttributeWithReflection>,
+        IHasMethodInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly MemberVisibilityModifier visibility;
         private readonly MethodInfo method;
@@ -37,6 +40,16 @@ namespace CSharpDom.Reflection
         public MethodInfo MethodInfo
         {
             get { return method; }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitAccessorWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

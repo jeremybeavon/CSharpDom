@@ -2,7 +2,7 @@
 
 namespace CSharpDom.NotSupported
 {
-    public sealed class UnspecifiedTypeReferenceNotSupported : VisitableNotSupported<IGenericVisitor>, IUnspecificTypeReference
+    public sealed class UnspecifiedTypeReferenceNotSupported : VisitableNotSupported<IGenericVisitor>, IUnspecifiedTypeReference
     {
     }
 }

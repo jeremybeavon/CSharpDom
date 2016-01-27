@@ -280,7 +280,7 @@
     <Compile Include="Common\ISolution.cs" />
     <Compile Include="Common\IStruct.cs" />
     <Compile Include="Common\IType.cs" />
-    <Compile Include="Common\IUnspecificTypeReference.cs" />
+    <Compile Include="Common\IUnspecifiedTypeReference.cs" />
     <Compile Include="Common\Statements\GenericStatementVisitor.cs" />
     <Compile Include="Common\Statements\IDefaultCaseStatement.cs" />
     <Compile Include="Common\Statements\IDefaultCaseStatement.generic.cs" />
@@ -457,6 +457,7 @@
     <Compile Include="Reflection\IHasEventInfo.cs" />
     <Compile Include="Reflection\IHasFieldInfo.cs" />
     <Compile Include="Reflection\IHasMethodInfo.cs" />
+    <Compile Include="Reflection\IHasParameterInfo.cs" />
     <Compile Include="Reflection\IHasPropertyInfo.cs" />
     <Compile Include="Reflection\IHasType.cs" />
     <Compile Include="Reflection\IndexerWithReflection.cs" />
@@ -466,6 +467,7 @@
     <Compile Include="Reflection\Internal\BasicTypeWithReflection.cs" />
     <Compile Include="Reflection\Internal\Constructors.cs" />
     <Compile Include="Reflection\Internal\Events.cs" />
+    <Compile Include="Reflection\Internal\ForwardingGenericVisitor.cs" />
     <Compile Include="Reflection\Internal\GenericParameterDeclarations.cs" />
     <Compile Include="Reflection\Internal\GenericParameters.cs" />
     <Compile Include="Reflection\Internal\InterfaceReferences.cs" />
@@ -482,6 +484,7 @@
     <Compile Include="Reflection\Internal\TypeExtensions.cs" />
     <Compile Include="Reflection\Internal\TypeReferenceWithReflectionFactory.cs" />
     <Compile Include="Reflection\Internal\TypeWithReflection.cs" />
+    <Compile Include="Reflection\IReflectionVisitor.cs" />
     <Compile Include="Reflection\ITypeReferenceWithReflection.cs" />
     <Compile Include="Reflection\ITypeWithReflection.cs" />
     <Compile Include="Reflection\MethodInfoExtensions.cs" />
@@ -695,7 +698,7 @@
     <Compile Include="Common\IType.generic.cs" />
     <Compile Include="Common\ITypeReference.cs" />
     <Compile Include="Common\IUnnamedAttributeValue.cs" />
-    <Compile Include="Common\IUnspecificTypeReference.generic.cs" />
+    <Compile Include="Common\IUnspecifiedTypeReference.generic.cs" />
     <Compile Include="GenericParameterTypeConstraint.cs" />
     <Compile Include="IAsyncVisitable.cs" />
     <Compile Include="Common\IGenericParameterReference.cs" />

@@ -11,7 +11,8 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>
+            ParameterWithReflection>,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly MethodInfo method;
@@ -54,6 +55,16 @@ namespace CSharpDom.Reflection
         public override ITypeReferenceWithReflection ReturnType
         {
             get { return returnType; }
+        }
+        
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitOperatorOverloadWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

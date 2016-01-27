@@ -8,7 +8,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class EventWithReflection :
         AbstractEvent<AttributeWithReflection, IBasicTypeWithReflection, DelegateReferenceWithReflection>,
-        IHasEventInfo
+        IHasEventInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly IBasicTypeWithReflection declaringType;
         private readonly EventInfo @event;
@@ -64,6 +65,17 @@ namespace CSharpDom.Reflection
             {
                 throw new NotImplementedException();
             }
+        }
+
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitEventWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

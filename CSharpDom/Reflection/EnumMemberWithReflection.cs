@@ -6,7 +6,10 @@ using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class EnumMemberWithReflection : AbstractEnumMember<AttributeWithReflection, EnumWithReflection>, IHasFieldInfo
+    public sealed class EnumMemberWithReflection :
+        AbstractEnumMember<AttributeWithReflection, EnumWithReflection>,
+        IHasFieldInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly EnumWithReflection declaringType;
         private readonly FieldInfo field;
@@ -37,6 +40,17 @@ namespace CSharpDom.Reflection
         public FieldInfo FieldInfo
         {
             get { return field; }
+        }
+
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitEnumMemberWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

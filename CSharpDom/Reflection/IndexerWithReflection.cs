@@ -14,7 +14,8 @@ namespace CSharpDom.Reflection
             ITypeReferenceWithReflection,
             ParameterWithReflection,
             AccessorWithReflection>,
-        IHasPropertyInfo
+        IHasPropertyInfo,
+        IVisitable<IReflectionVisitor>
     {
         private readonly IBasicTypeWithReflection declaringType;
         private readonly PropertyInfo indexer;
@@ -85,6 +86,17 @@ namespace CSharpDom.Reflection
         public override MemberVisibilityModifier Visibility
         {
             get { return indexer.Visibility(); }
+        }
+
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitIndexerWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

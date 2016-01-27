@@ -25,7 +25,8 @@ namespace CSharpDom.Reflection
             NestedEnumWithReflection,
             NestedInterfaceWithReflection,
             NestedStructWithReflection>,
-        ITypeWithReflection
+        ITypeWithReflection,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly Type type;
@@ -141,6 +142,16 @@ namespace CSharpDom.Reflection
         public Type Type
         {
             get { return type; }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitNestedStructWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

@@ -8,7 +8,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class NestedEnumWithReflection :
         AbstractNestedEnum<AttributeWithReflection, ITypeWithReflection, NestedEnumMemberWithReflection>,
-        IHasType
+        IHasType,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly Type type;
@@ -51,6 +52,16 @@ namespace CSharpDom.Reflection
         public Type Type
         {
             get { return type; }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitNestedEnumWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
 
         private IReadOnlyCollection<NestedEnumMemberWithReflection> InitializeEnumMembers()

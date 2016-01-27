@@ -7,7 +7,8 @@ using CSharpDom.Reflection.Internal;
 namespace CSharpDom.Reflection
 {
     public sealed class PropertyWithReflection :
-        AbstractProperty<AttributeWithReflection, IBasicTypeWithReflection, ITypeReferenceWithReflection, AccessorWithReflection>
+        AbstractProperty<AttributeWithReflection, IBasicTypeWithReflection, ITypeReferenceWithReflection, AccessorWithReflection>,
+        IVisitable<IReflectionVisitor>
     {
         private readonly IBasicTypeWithReflection declaringType;
         private readonly PropertyInfo property;
@@ -71,6 +72,16 @@ namespace CSharpDom.Reflection
         public override MemberVisibilityModifier Visibility
         {
             get { return property.Visibility(); }
+        }
+        
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitPropertyWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

@@ -597,7 +597,7 @@ namespace CSharpDom.Common
         }
 
         public static void VisitUnspecifiedTypeReference<TGenericParameter>(
-            IUnspecificTypeReference<TGenericParameter> unspecificTypeReference,
+            IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference,
             IGenericVisitor visitor)
             where TGenericParameter : IGenericParameter
         {

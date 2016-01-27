@@ -11,7 +11,8 @@ namespace CSharpDom.Reflection
             DelegateWithReflection,
             EnumWithReflection,
             InterfaceWithReflection,
-            StructWithReflection>
+            StructWithReflection>,
+        IVisitable<IReflectionVisitor>
     {
         private readonly string name;
         private readonly TypeContainer typeContainer;
@@ -50,6 +51,16 @@ namespace CSharpDom.Reflection
         public override IReadOnlyCollection<StructWithReflection> Structs
         {
             get { return typeContainer.Structs; }
+        }
+        
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitNamespaceWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }
