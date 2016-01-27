@@ -4,6 +4,8 @@ namespace CSharpDom.Common.Expressions
 {
     public interface IGenericExpressionVisitor
     {
+        void Visit(IVisitable<IGenericExpressionVisitor> node);
+
         void VisitArrayIndexExpression<TExpression>(IArrayIndexExpression<TExpression> arrayIndexExpression)
             where TExpression : IExpression;
 

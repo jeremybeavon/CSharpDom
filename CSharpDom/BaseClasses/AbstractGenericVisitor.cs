@@ -1,22 +1,31 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractGenericVisitor : IGenericVisitor
-    { 
+    {
+        public virtual void Visit(IVisitable<IGenericVisitor> node)
+        {
+            node.AcceptChildren(this);
+        }
+
         public virtual void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
             where TAttributeGroup : IAttributeGroup
             where TMethodBody : IMethodBody
         {
-            accessor.AcceptChildren(this);
+            Visit(accessor);
         }
 
         public virtual void VisitArrayTypeReference<TTypeReference>(IArrayTypeReference<TTypeReference> arrayTypeReference)
             where TTypeReference : ITypeReference
         {
-            arrayTypeReference.AcceptChildren(this);
+            Visit(arrayTypeReference);
+        }
+
+        public Task VisitAsync(IAsyncVisitable<IGenericVisitor> node)
+        {
+            return VisitAsync(node);
         }
 
         public virtual void VisitAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>(
@@ -25,13 +34,13 @@ namespace CSharpDom.BaseClasses
             where TUnnamedAttributeValue : IUnnamedAttributeValue
             where TNamedAttributeValue : INamedAttributeValue
         {
-            attribute.AcceptChildren(this);
+            Visit(attribute);
         }
 
         public virtual void VisitAttributeGroup<TAttribute>(IAttributeGroup<TAttribute> attributes)
             where TAttribute : IAttribute
         {
-            attributes.AcceptChildren(this);
+            Visit(attributes);
         }
 
         public virtual void VisitClass<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor>(
@@ -59,13 +68,13 @@ namespace CSharpDom.BaseClasses
             where TNestedStruct : INestedStruct
             where TDestructor : IDestructor
         {
-            @class.AcceptChildren(this);
+            Visit(@class);
         }
 
         public virtual void VisitClassReference<TGenericParameter>(IClassReference<TGenericParameter> classReference)
             where TGenericParameter : IGenericParameter
         {
-            classReference.AcceptChildren(this);
+            Visit(classReference);
         }
 
         public virtual void VisitConstructor<TAttributeGroup, TDeclaringType, TParameter>(
@@ -74,7 +83,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IType
             where TParameter : IParameter
         {
-            constructor.AcceptChildren(this);
+            Visit(constructor);
         }
 
         public virtual void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
@@ -85,7 +94,7 @@ namespace CSharpDom.BaseClasses
             where TParameter : IParameter
             where TMethodBody : IMethodBody
         {
-            conversionOperator.AcceptChildren(this);
+            Visit(conversionOperator);
         }
 
         public virtual void VisitDelegate<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
@@ -98,13 +107,13 @@ namespace CSharpDom.BaseClasses
             where TTypeReference : ITypeReference
             where TParameter : IParameter
         {
-            @delegate.AcceptChildren(this);
+            Visit(@delegate);
         }
 
         public virtual void VisitDelegateReference<TGenericParameter>(IDelegateReference<TGenericParameter> delegateReference)
             where TGenericParameter : IGenericParameter
         {
-            delegateReference.AcceptChildren(this);
+            Visit(delegateReference);
         }
 
         public virtual void VisitDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
@@ -113,7 +122,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IClass
             where TMethodBody : IMethodBody
         {
-            destructor.AcceptChildren(this);
+            Visit(destructor);
         }
 
         public virtual Task VisitDocumentAsync<TProject, TSolution, TLoadedDocument>(
@@ -122,7 +131,7 @@ namespace CSharpDom.BaseClasses
             where TSolution : ISolution
             where TLoadedDocument : ILoadedDocument
         {
-            return document.AcceptChildrenAsync(this);
+            return VisitAsync(document);
         }
 
         public virtual void VisitEnum<TNamespace, TProject, TSolution, TAttributeGroup, TEnumMember>(
@@ -133,19 +142,19 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TEnumMember : IEnumMember
         {
-            @enum.AcceptChildren(this);
+            Visit(@enum);
         }
 
         public virtual void VisitEnumMember<TAttributeGroup, TDeclaringType>(IEnumMember<TAttributeGroup, TDeclaringType> enumMember)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IEnum
         {
-            enumMember.AcceptChildren(this);
+            Visit(enumMember);
         }
 
         public virtual void VisitEnumReference(IEnumReference enumReference)
         {
-            enumReference.AcceptChildren(this);
+            Visit(enumReference);
         }
 
         public virtual void VisitEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
@@ -154,7 +163,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IBasicType
             where TDelegateReference : IDelegateReference
         {
-            @event.AcceptChildren(this);
+            Visit(@event);
         }
 
         public virtual void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
@@ -164,7 +173,7 @@ namespace CSharpDom.BaseClasses
             where TDelegateReference : IDelegateReference
             where TMethodBody : IMethodBody
         {
-            eventProperty.AcceptChildren(this);
+            Visit(eventProperty);
         }
 
         public virtual void VisitField<TAttributeGroup, TDeclaringType, TTypeReference>(
@@ -173,13 +182,13 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
         {
-            field.AcceptChildren(this);
+            Visit(field);
         }
 
         public virtual void VisitGenericParameter<TTypeReference>(IGenericParameter<TTypeReference> genericParameter)
             where TTypeReference : ITypeReference
         {
-            genericParameter.AcceptChildren(this);
+            Visit(genericParameter);
         }
 
         public virtual void VisitGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>(
@@ -189,12 +198,12 @@ namespace CSharpDom.BaseClasses
             where TInterfaceReference : IInterfaceReference
             where TAttributeGroup : IAttributeGroup
         {
-            genericParameterDeclaration.AcceptChildren(this);
+            Visit(genericParameterDeclaration);
         }
 
         public virtual void VisitGenericParameterReference(IGenericParameterReference genericParameterReference)
         {
-            genericParameterReference.AcceptChildren(this);
+            Visit(genericParameterReference);
         }
 
         public virtual void VisitIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
@@ -205,7 +214,7 @@ namespace CSharpDom.BaseClasses
             where TParameter : IParameter
             where TAccessor : IAccessor
         {
-            indexer.AcceptChildren(this);
+            Visit(indexer);
         }
 
         public virtual void VisitInterface<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
@@ -221,13 +230,13 @@ namespace CSharpDom.BaseClasses
             where TIndexer : IIndexer
             where TMethod : IMethod
         {
-            @interface.AcceptChildren(this);
+            Visit(@interface);
         }
 
         public virtual void VisitInterfaceReference<TGenericParameter>(IInterfaceReference<TGenericParameter> interfaceReference)
             where TGenericParameter : IGenericParameter
         {
-            interfaceReference.AcceptChildren(this);
+            Visit(interfaceReference);
         }
 
         public virtual void VisitLoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
@@ -242,7 +251,7 @@ namespace CSharpDom.BaseClasses
             where TInterface : IInterface
             where TStruct : IStruct
         {
-            loadedDocument.AcceptChildren(this);
+            Visit(loadedDocument);
         }
 
         public virtual void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
@@ -254,17 +263,17 @@ namespace CSharpDom.BaseClasses
             where TParameter : IParameter
             where TMethodBody : IMethodBody
         {
-            method.AcceptChildren(this);
+            Visit(method);
         }
 
         public virtual void VisitMethodBody<TStatement>(IMethodBody<TStatement> methodBody)
         {
-            methodBody.AcceptChildren(this);
+            Visit(methodBody);
         }
 
         public virtual void VisitNamedAttributeValue(INamedAttributeValue namedAttributeValue)
         {
-            namedAttributeValue.AcceptChildren(this);
+            Visit(namedAttributeValue);
         }
 
         public virtual void VisitNamespace<TClass, TDelegate, TEnum, TInterface, TStruct>(
@@ -275,7 +284,7 @@ namespace CSharpDom.BaseClasses
             where TInterface : IInterface
             where TStruct : IStruct
         {
-            @namespace.AcceptChildren(this);
+            Visit(@namespace);
         }
 
         public virtual void VisitNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor>(
@@ -301,7 +310,7 @@ namespace CSharpDom.BaseClasses
             where TNestedStruct : INestedStruct
             where TNestedDestructor : INestedDestructor
         {
-            nestedClass.AcceptChildren(this);
+            Visit(nestedClass);
         }
 
         public virtual void VisitNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
@@ -312,7 +321,7 @@ namespace CSharpDom.BaseClasses
             where TTypeReference : ITypeReference
             where TParameter : IParameter
         {
-            nestedDelegate.AcceptChildren(this);
+            Visit(nestedDelegate);
         }
 
         public virtual void VisitNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
@@ -321,7 +330,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : INestedClass
             where TMethodBody : IMethodBody
         {
-            nestedDestructor.AcceptChildren(this);
+            Visit(nestedDestructor);
         }
 
         public virtual void VisitNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
@@ -330,7 +339,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IType
             where TNestedEnumMember : INestedEnumMember
         {
-            nestedEnum.AcceptChildren(this);
+            Visit(nestedEnum);
         }
 
         public virtual void VisitNestedEnumMember<TAttributeGroup, TDeclaringType>(
@@ -338,7 +347,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : INestedEnum
         {
-            nestedEnumMember.AcceptChildren(this);
+            Visit(nestedEnumMember);
         }
 
         public virtual void VisitNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
@@ -352,7 +361,7 @@ namespace CSharpDom.BaseClasses
             where TIndexer : IIndexer
             where TMethod : IMethod
         {
-            @interface.AcceptChildren(this);
+            Visit(@interface);
         }
 
         public virtual void VisitNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
@@ -376,13 +385,13 @@ namespace CSharpDom.BaseClasses
             where TNestedInterface : INestedInterface
             where TNestedStruct : INestedStruct
         {
-            nestedStruct.AcceptChildren(this);
+            Visit(nestedStruct);
         }
 
         public virtual void VisitNestedTypeReference<TTypeReference>(INestedTypeReference<TTypeReference> nestedTypeReference)
             where TTypeReference : ITypeReference
         {
-            nestedTypeReference.AcceptChildren(this);
+            Visit(nestedTypeReference);
         }
 
         public virtual void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
@@ -393,14 +402,14 @@ namespace CSharpDom.BaseClasses
             where TParameter : IParameter
             where TMethodBody : IMethodBody
         {
-            operatorOverload.AcceptChildren(this);
+            Visit(operatorOverload);
         }
 
         public virtual void VisitParameter<TAttributeGroup, TTypeReference>(IParameter<TAttributeGroup, TTypeReference> parameter)
             where TAttributeGroup : IAttributeGroup
             where TTypeReference : ITypeReference
         {
-            parameter.AcceptChildren(this);
+            Visit(parameter);
         }
 
         public virtual Task VisitProjectAsync<TSolution, TDocument, TLoadedProject>(IProject<TSolution, TDocument, TLoadedProject> project)
@@ -408,7 +417,7 @@ namespace CSharpDom.BaseClasses
             where TDocument : IDocument
             where TLoadedProject : ILoadedProject
         {
-            return project.AcceptChildrenAsync(this);
+            return VisitAsync(project);
         }
 
         public virtual void VisitProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
@@ -418,13 +427,13 @@ namespace CSharpDom.BaseClasses
             where TTypeReference : ITypeReference
             where TAccessor : IAccessor
         {
-            property.AcceptChildren(this);
+            Visit(property);
         }
 
         public virtual Task VisitSolutionAsync<TProject>(ISolution<TProject> solution)
             where TProject : IProject
         {
-            return solution.AcceptChildrenAsync(this);
+            return VisitAsync(solution);
         }
 
         public virtual void VisitStruct<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
@@ -450,25 +459,25 @@ namespace CSharpDom.BaseClasses
             where TNestedInterface : INestedInterface
             where TNestedStruct : INestedStruct
         {
-            @struct.AcceptChildren(this);
+            Visit(@struct);
         }
 
         public virtual void VisitStructReference<TGenericParameter>(IStructReference<TGenericParameter> structReference)
             where TGenericParameter : IGenericParameter
         {
-            structReference.AcceptChildren(this);
+            Visit(structReference);
         }
 
         public virtual void VisitUnnamedAttributeValue(IUnnamedAttributeValue unnamedAttributeValue)
         {
-            unnamedAttributeValue.AcceptChildren(this);
+            Visit(unnamedAttributeValue);
         }
 
         public virtual void VisitUnspecifiedTypeReference<TGenericParameter>(
             IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
             where TGenericParameter : IGenericParameter
         {
-            unspecificTypeReference.AcceptChildren(this);
+            Visit(unspecificTypeReference);
         }
     }
 }

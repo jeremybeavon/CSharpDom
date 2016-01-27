@@ -4,6 +4,10 @@ namespace CSharpDom.Common
 {
     public interface IGenericVisitor
     {
+        void Visit(IVisitable<IGenericVisitor> node);
+
+        Task VisitAsync(IAsyncVisitable<IGenericVisitor> node);
+
         void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
             where TAttributeGroup : IAttributeGroup
             where TMethodBody : IMethodBody;

@@ -7,15 +7,20 @@ namespace CSharpDom.BaseClasses.Statements
 {
     public abstract class AbstractGenericStatementVisitor : IGenericStatementVisitor
     {
+        public virtual void Visit(IVisitable<IGenericStatementVisitor> node)
+        {
+            node.AcceptChildren(this);
+        }
+
         public virtual void VisitBlockStatement<TStatement>(IBlockStatement<TStatement> blockStatement)
             where TStatement : IStatement
         {
-            blockStatement.AcceptChildren(this);
+            Visit(blockStatement);
         }
 
         public virtual void VisitBreakStatement(IBreakStatement breakStatement)
         {
-            breakStatement.AcceptChildren(this);
+            Visit(breakStatement);
         }
 
         public virtual void VisitCatchStatement<TTypeReference, TStatement>(
@@ -23,42 +28,42 @@ namespace CSharpDom.BaseClasses.Statements
             where TTypeReference : ITypeReference
             where TStatement : IStatement
         {
-            catchStatement.AcceptChildren(this);
+            Visit(catchStatement);
         }
 
         public virtual void VisitContinueStatement(IContinueStatement continueStatement)
         {
-            continueStatement.AcceptChildren(this);
+            Visit(continueStatement);
         }
 
         public virtual void VisitDefaultCaseStatement<TStatement>(IDefaultCaseStatement<TStatement> defaultCaseStatement)
             where TStatement : IStatement
         {
-            defaultCaseStatement.AcceptChildren(this);
+            Visit(defaultCaseStatement);
         }
 
         public virtual void VisitDoStatement<TExpression, TStatement>(IDoStatement<TExpression, TStatement> doStatement)
             where TExpression : IExpression
             where TStatement : IStatement
         {
-            doStatement.AcceptChildren(this);
+            Visit(doStatement);
         }
 
         public virtual void VisitEmptyStatement(IEmptyStatement emptyStatement)
         {
-            emptyStatement.AcceptChildren(this);
+            Visit(emptyStatement);
         }
 
         public virtual void VisitExpressionStatement<TExpression>(IExpressionStatement<TExpression> expressionStatement)
             where TExpression : IExpression
         {
-            expressionStatement.AcceptChildren(this);
+            Visit(expressionStatement);
         }
 
         public virtual void VisitFinallyStatement<TStatement>(IFinallyStatement<TStatement> finallyStatement)
             where TStatement : IStatement
         {
-            finallyStatement.AcceptChildren(this);
+            Visit(finallyStatement);
         }
 
         public virtual void VisitForeachStatement<TTypeReference, TExpression, TStatement>(
@@ -67,7 +72,7 @@ namespace CSharpDom.BaseClasses.Statements
             where TExpression : IExpression
             where TStatement : IStatement
         {
-            foreachStatement.AcceptChildren(this);
+            Visit(foreachStatement);
         }
 
         public virtual void VisitForStatement<TExpression, TForInitializerStatement, TStatement>(
@@ -76,42 +81,42 @@ namespace CSharpDom.BaseClasses.Statements
             where TForInitializerStatement : IForInitializerStatement
             where TStatement : IStatement
         {
-            forStatement.AcceptChildren(this);
+            Visit(forStatement);
         }
 
         public virtual void VisitGotoCaseStatement(IGotoCaseStatement gotoCaseStatement)
         {
-            gotoCaseStatement.AcceptChildren(this);
+            Visit(gotoCaseStatement);
         }
 
         public virtual void VisitGotoStatement(IGotoStatement gotoStatement)
         {
-            gotoStatement.AcceptChildren(this);
+            Visit(gotoStatement);
         }
 
         public virtual void VisitIfStatement<TExpression, TStatement>(IIfStatement<TExpression, TStatement> ifStatement)
             where TExpression : IExpression
             where TStatement : IStatement
         {
-            ifStatement.AcceptChildren(this);
+            Visit(ifStatement);
         }
 
         public virtual void VisitLabelStatement(ILabelStatement labelStatement)
         {
-            labelStatement.AcceptChildren(this);
+            Visit(labelStatement);
         }
 
         public virtual void VisitLockStatement<TExpression, TStatement>(ILockStatement<TExpression, TStatement> lockStatement)
             where TExpression : IExpression
             where TStatement : IStatement
         {
-            lockStatement.AcceptChildren(this);
+            Visit(lockStatement);
         }
 
         public virtual void VisitReturnStatement<TExpression>(IReturnStatement<TExpression> returnStatement)
             where TExpression : IExpression
         {
-            returnStatement.AcceptChildren(this);
+            Visit(returnStatement);
         }
 
         public virtual void VisitSwitchCaseStatement<TExpression, TStatement>(
@@ -119,7 +124,7 @@ namespace CSharpDom.BaseClasses.Statements
             where TExpression : IExpression
             where TStatement : IStatement
         {
-            switchCaseStatement.AcceptChildren(this);
+            Visit(switchCaseStatement);
         }
 
         public virtual void VisitSwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement>(
@@ -128,7 +133,7 @@ namespace CSharpDom.BaseClasses.Statements
             where TSwitchCaseStatement : ISwitchCaseStatement
             where TDefaultCaseStatement : IDefaultCaseStatement
         {
-            switchStatement.AcceptChildren(this);
+            Visit(switchStatement);
         }
 
         public virtual void VisitTryStatement<TStatement, TCatchStatement, TFinallyStatement>(
@@ -137,14 +142,14 @@ namespace CSharpDom.BaseClasses.Statements
             where TCatchStatement : ICatchStatement
             where TFinallyStatement : IFinallyStatement
         {
-            tryStatement.AcceptChildren(this);
+            Visit(tryStatement);
         }
 
         public virtual void VisitUsingStatement<TExpression, TStatement>(IUsingStatement<TExpression, TStatement> usingStatement)
             where TExpression : IExpression
             where TStatement : IStatement
         {
-            usingStatement.AcceptChildren(this);
+            Visit(usingStatement);
         }
 
         public virtual void VisitVariableDeclarationStatement<TTypeReference, TExpression>(
@@ -152,14 +157,14 @@ namespace CSharpDom.BaseClasses.Statements
             where TTypeReference : ITypeReference
             where TExpression : IExpression
         {
-            variableDeclarationStatement.AcceptChildren(this);
+            Visit(variableDeclarationStatement);
         }
 
         public virtual void VisitWhileStatement<TExpression, TStatement>(IWhileStatement<TExpression, TStatement> whileStatement)
             where TExpression : IExpression
             where TStatement : IStatement
         {
-            whileStatement.AcceptChildren(this);
+            Visit(whileStatement);
         }
     }
 }

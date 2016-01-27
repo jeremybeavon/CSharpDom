@@ -4,6 +4,8 @@ namespace CSharpDom.Common.Statements
 {
     public interface IGenericStatementVisitor
     {
+        void Visit(IVisitable<IGenericStatementVisitor> node);
+
         void VisitBlockStatement<TStatement>(IBlockStatement<TStatement> blockStatement)
             where TStatement : IStatement;
 

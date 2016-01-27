@@ -2,6 +2,8 @@
 {
     public interface IReflectionVisitor
     {
+        void Visit(IVisitable<IReflectionVisitor> node);
+
         void VisitAccessorWithReflection(AccessorWithReflection accessor);
 
         void VisitArrayTypeReferenceWithReflection(ArrayTypeReferenceWithReflection arrayTypeReference);

@@ -437,6 +437,7 @@
     <Compile Include="NotSupported\NestedEnumMemberNotSupported.cs" />
     <Compile Include="OperatorOverloadType.cs" />
     <Compile Include="QueryOrderByType.cs" />
+    <Compile Include="Reflection\AbstractReflectionVisitor.cs" />
     <Compile Include="Reflection\AccessorWithReflection.cs" />
     <Compile Include="Reflection\ArrayTypeReferenceWithReflection.cs" />
     <Compile Include="Reflection\AssemblyWithReflection.cs" />

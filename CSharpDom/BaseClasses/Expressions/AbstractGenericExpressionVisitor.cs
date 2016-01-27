@@ -1,5 +1,4 @@
-﻿using System;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
 using CSharpDom.Common.Expressions;
 using CSharpDom.Common.Statements;
 
@@ -7,23 +6,28 @@ namespace CSharpDom.BaseClasses.Expressions
 {
     public abstract class AbstractGenericExpressionVisitor : IGenericExpressionVisitor
     {
+        public virtual void Visit(IVisitable<IGenericExpressionVisitor> node)
+        {
+            node.AcceptChildren(this);
+        }
+
         public virtual void VisitArrayIndexExpression<TExpression>(IArrayIndexExpression<TExpression> arrayIndexExpression)
             where TExpression : IExpression
         {
-            arrayIndexExpression.AcceptChildren(this);
+            Visit(arrayIndexExpression);
         }
 
         public virtual void VisitAwaitExpression<TExpression>(IAwaitExpression<TExpression> awaitExpression)
             where TExpression : IExpression
         {
-            awaitExpression.AcceptChildren(this);
+            Visit(awaitExpression);
         }
 
         public virtual void VisitBinaryOperatorExpression<TExpression>(
             IBinaryOperatorExpression<TExpression> binaryOperatorExpression)
             where TExpression : IExpression
         {
-            binaryOperatorExpression.AcceptChildren(this);
+            Visit(binaryOperatorExpression);
         }
 
         public virtual void VisitCastExpression<TTypeReference, TExpression>(
@@ -31,35 +35,35 @@ namespace CSharpDom.BaseClasses.Expressions
             where TTypeReference : ITypeReference
             where TExpression : IExpression
         {
-            castExpression.AcceptChildren(this);
+            Visit(castExpression);
         }
 
         public virtual void VisitDefaultExpression<TTypeReference>(IDefaultExpression<TTypeReference> defaultExpression)
             where TTypeReference : ITypeReference
         {
-            defaultExpression.AcceptChildren(this);
+            Visit(defaultExpression);
         }
 
         public virtual void VisitDoubleConstantExpression(IDoubleConstantExpression doubleConstantExpression)
         {
-            doubleConstantExpression.AcceptChildren(this);
+            Visit(doubleConstantExpression);
         }
 
         public virtual void VisitIdentifierExpression(IIdentifierExpression identifierExpression)
         {
-            identifierExpression.AcceptChildren(this);
+            Visit(identifierExpression);
         }
 
         public virtual void VisitIntegerConstantExpression(IIntegerConstantExpression integerConstantExpression)
         {
-            integerConstantExpression.AcceptChildren(this);
+            Visit(integerConstantExpression);
         }
 
         public virtual void VisitLambdaExpression<TParameter, TStatement>(ILambdaExpression<TParameter, TStatement> lambdaExpression)
             where TParameter : IParameter
             where TStatement : IStatement
         {
-            lambdaExpression.AcceptChildren(this);
+            Visit(lambdaExpression);
         }
 
         public virtual void VisitListInitializerExpression<TCreateListExpression, TExpression>(
@@ -67,29 +71,29 @@ namespace CSharpDom.BaseClasses.Expressions
             where TCreateListExpression : ICreateListExpression
             where TExpression : IExpression
         {
-            listInitializerExpression.AcceptChildren(this);
+            Visit(listInitializerExpression);
         }
 
         public virtual void VisitMemberExpression<TExpression>(IMemberExpression<TExpression> memberExpression)
             where TExpression : IExpression
         {
-            memberExpression.AcceptChildren(this);
+            Visit(memberExpression);
         }
 
         public virtual void VisitMethodCallExpression<TExpression>(IMethodCallExpression<TExpression> methodCallExpression)
             where TExpression : IExpression
         {
-            methodCallExpression.AcceptChildren(this);
+            Visit(methodCallExpression);
         }
 
         public virtual void VisitNewAnonymousArrayExpression(INewAnonymousArrayExpression newAnonymousArrayExpression)
         {
-            newAnonymousArrayExpression.AcceptChildren(this);
+            Visit(newAnonymousArrayExpression);
         }
 
         public virtual void VisitNewAnonymousTypeExpression(INewAnonymousTypeExpression newAnonymousTypeExpression)
         {
-            newAnonymousTypeExpression.AcceptChildren(this);
+            Visit(newAnonymousTypeExpression);
         }
 
         public virtual void VisitNewArrayExpression<TTypeReference, TExpression>(
@@ -97,7 +101,7 @@ namespace CSharpDom.BaseClasses.Expressions
             where TTypeReference : ITypeReference
             where TExpression : IExpression
         {
-            newArrayExpression.AcceptChildren(this);
+            Visit(newArrayExpression);
         }
 
         public virtual void VisitNewExpression<TTypeReference, TExpression>(
@@ -105,12 +109,12 @@ namespace CSharpDom.BaseClasses.Expressions
             where TTypeReference : ITypeReference
             where TExpression : IExpression
         {
-            newExpression.AcceptChildren(this);
+            Visit(newExpression);
         }
 
         public virtual void VisitNullExpression(INullExpression nullExpression)
         {
-            nullExpression.AcceptChildren(this);
+            Visit(nullExpression);
         }
 
         public virtual void VisitObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression>(
@@ -118,19 +122,19 @@ namespace CSharpDom.BaseClasses.Expressions
             where TCreateObjectExpression : ICreateObjectExpression
             where TBinaryOperatorExpression : IBinaryOperatorExpression
         {
-            objectInitializerExpression.AcceptChildren(this);
+            Visit(objectInitializerExpression);
         }
 
         public virtual void VisitOutExpression<TExpression>(IOutExpression<TExpression> outExpression)
             where TExpression : IExpression
         {
-            outExpression.AcceptChildren(this);
+            Visit(outExpression);
         }
 
         public virtual void VisitParenthesisExpression<TExpression>(IParenthesisExpression<TExpression> parenthesisExpression)
             where TExpression : IExpression
         {
-            parenthesisExpression.AcceptChildren(this);
+            Visit(parenthesisExpression);
         }
 
         public virtual void VisitQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression>(
@@ -139,7 +143,7 @@ namespace CSharpDom.BaseClasses.Expressions
             where TExpression : IExpression
             where TQueryExpression : IQueryExpression
         {
-            queryFromExpression.AcceptChildren(this);
+            Visit(queryFromExpression);
         }
 
         public virtual void VisitQueryGroupExpression<TExpression, TIdentiferExpression>(
@@ -147,7 +151,7 @@ namespace CSharpDom.BaseClasses.Expressions
             where TExpression : IExpression
             where TIdentiferExpression : IIdentifierExpression
         {
-            queryGroupExpression.AcceptChildren(this);
+            Visit(queryGroupExpression);
         }
 
         public virtual void VisitQueryJoinExpression<TExpression, TIdentifierExpresion>(
@@ -155,65 +159,65 @@ namespace CSharpDom.BaseClasses.Expressions
             where TExpression : IExpression
             where TIdentifierExpresion : IIdentifierExpression
         {
-            queryJoinExpression.AcceptChildren(this);
+            Visit(queryJoinExpression);
         }
 
         public virtual void VisitQueryLetExpression<TBinaryOperatorExpression>(
             IQueryLetExpression<TBinaryOperatorExpression> queryLetExpression)
             where TBinaryOperatorExpression : IBinaryOperatorExpression
         {
-            queryLetExpression.AcceptChildren(this);
+            Visit(queryLetExpression);
         }
 
         public virtual void VisitQueryOrderByExpression<TExpression>(
             IQueryOrderByExpression<TExpression> queryOrderByExpression)
             where TExpression : IExpression
         {
-            queryOrderByExpression.AcceptChildren(this);
+            Visit(queryOrderByExpression);
         }
 
         public virtual void VisitQuerySelectExpression<TExpression>(
             IQuerySelectExpression<TExpression> querySelectExpression)
             where TExpression : IExpression
         {
-            querySelectExpression.AcceptChildren(this);
+            Visit(querySelectExpression);
         }
 
         public virtual void VisitQueryWhereExpression<TExpression>(
             IQueryWhereExpression<TExpression> queryWhereExpression)
             where TExpression : IExpression
         {
-            queryWhereExpression.AcceptChildren(this);
+            Visit(queryWhereExpression);
         }
 
         public virtual void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
             where TExpression : IExpression
         {
-            refExpression.AcceptChildren(this);
+            Visit(refExpression);
         }
 
         public virtual void VisitStringConstantExpression(IStringConstantExpression stringConstantExpression)
         {
-            stringConstantExpression.AcceptChildren(this);
+            Visit(stringConstantExpression);
         }
 
         public virtual void VisitTernaryOperatorExpression<TExpression>(
             ITernaryOperatorExpression<TExpression> ternaryOperatorExpression)
             where TExpression : IExpression
         {
-            ternaryOperatorExpression.AcceptChildren(this);
+            Visit(ternaryOperatorExpression);
         }
 
         public virtual void VisitTypeofExpression<TTypeReference>(ITypeofExpression<TTypeReference> typeofExpression)
             where TTypeReference : ITypeReference
         {
-            typeofExpression.AcceptChildren(this);
+            Visit(typeofExpression);
         }
 
         public virtual void VisitUnaryOperatorExpression<TExpression>(IUnaryOperatorExpression<TExpression> unaryOperatorExpression)
             where TExpression : IExpression
         {
-            unaryOperatorExpression.AcceptChildren(this);
+            Visit(unaryOperatorExpression);
         }
     }
 }
