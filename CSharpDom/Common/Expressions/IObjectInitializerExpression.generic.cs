@@ -2,7 +2,8 @@
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface IObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression>
+    public interface IObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression> :
+        IObjectInitializerExpression
         where TCreateObjectExpression : ICreateObjectExpression
         where TBinaryOperatorExpression : IBinaryOperatorExpression
     {

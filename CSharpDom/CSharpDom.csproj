@@ -97,6 +97,39 @@
     <Compile Include="BaseClasses\AbstractStruct.cs" />
     <Compile Include="BaseClasses\AbstractUnnamedAttributeValue.cs" />
     <Compile Include="BaseClasses\AbstractUnspecifiedTypeReference.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractUnaryOperatorExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractTypeofExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractTernaryOperatorExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractStringConstantExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractRefExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractQueryWhereExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractQuerySelectExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractQueryOrderByExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractQueryLetExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractQueryJoinExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractQueryGroupExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractQueryFromExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractParenthesisExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractOutExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractObjectInitializerExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractNullExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractNewExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractNewArrayExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractNewAnonymousTypeExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractNewAnonymousArrayExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractMethodCallExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractMemberExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractListInitializerExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractLambdaExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractIntegerConstantExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractIdentifierExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractDoubleConstantExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractDefaultExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractCastExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractBinaryOperatorExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractAwaitExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractArrayIndexExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractGenericExpressionVisitor.cs" />
     <Compile Include="BaseClasses\Statements\AbstractDefaultCaseStatement.cs" />
     <Compile Include="BaseClasses\Statements\AbstractUsingStatement.cs" />
     <Compile Include="BaseClasses\Statements\AbstractVariableDeclarationStatement.cs" />
@@ -122,6 +155,7 @@
     <Compile Include="BaseClasses\Statements\AbstractBlockStatement.cs" />
     <Compile Include="BaseClasses\Statements\AbstractGenericStatementVisitor.cs" />
     <Compile Include="BinaryOperatorExpressionType.cs" />
+    <Compile Include="Common\Expressions\GenericExpressionVisitor.cs" />
     <Compile Include="Common\Expressions\IArrayIndexExpression.cs" />
     <Compile Include="Common\Expressions\IAwaitExpression.cs" />
     <Compile Include="Common\Expressions\IAwaitExpression.generic.cs" />
@@ -692,7 +726,6 @@
     <Compile Include="Common\Expressions\IArrayIndexExpression.generic.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BaseClasses\Expressions\" />
     <Folder Include="CodeDom\" />
     <Folder Include="CodeGeneration\Tree\Text\Expressions\" />
     <Folder Include="CodeGeneration\Tree\Text\Statements\" />

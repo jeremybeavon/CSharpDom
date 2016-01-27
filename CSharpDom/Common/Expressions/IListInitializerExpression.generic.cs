@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface IListInitializerExpression<TCreateListExpression, TExpression>
+    public interface IListInitializerExpression<TCreateListExpression, TExpression> : IListInitializerExpression
         where TCreateListExpression : ICreateListExpression
         where TExpression : IExpression
     {

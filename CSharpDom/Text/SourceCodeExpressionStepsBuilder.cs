@@ -1,9 +1,9 @@
-﻿using CSharpDom.Common.Expressions;
+﻿using CSharpDom.BaseClasses.Expressions;
 using System.Collections.Generic;
 
 namespace CSharpDom.Text
 {
-    public class SourceCodeExpressionStepsBuilder : IGenericExpressionVisitor, IHasSourceSourceBuilderSteps
+    public class SourceCodeExpressionStepsBuilder : AbstractGenericExpressionVisitor, IHasSourceSourceBuilderSteps
     {
         public SourceCodeExpressionStepsBuilder()
         {
