@@ -133,10 +133,11 @@ namespace CSharpDom.BaseClasses.Expressions
             parenthesisExpression.AcceptChildren(this);
         }
 
-        public virtual void VisitQueryFromExpression<TIdentifierExpression, TExpression>(
-            IQueryFromExpression<TIdentifierExpression, TExpression> queryFromExpression)
+        public virtual void VisitQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression>(
+            IQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression> queryFromExpression)
             where TIdentifierExpression : IIdentifierExpression
             where TExpression : IExpression
+            where TQueryExpression : IQueryExpression
         {
             queryFromExpression.AcceptChildren(this);
         }

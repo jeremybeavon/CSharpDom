@@ -110,14 +110,16 @@ namespace CSharpDom.Common.Expressions
             VisitIfNotNull(parenthesisExpression.Expression, visitor);
         }
 
-        public static void VisitQueryFromExpressionChildren<TIdentifierExpression, TExpression>(
-            IQueryFromExpression<TIdentifierExpression, TExpression> queryFromExpression,
+        public static void VisitQueryFromExpressionChildren<TIdentifierExpression, TExpression, TQueryExpression>(
+            IQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression> queryFromExpression,
             IGenericExpressionVisitor visitor)
             where TIdentifierExpression : IIdentifierExpression
             where TExpression : IExpression
+            where TQueryExpression : IQueryExpression
         {
             VisitIfNotNull(queryFromExpression.Identifier, visitor);
             VisitIfNotNull(queryFromExpression.Expression, visitor);
+            VisitCollection(queryFromExpression.QueryExpressions, visitor);
         }
 
         public static void VisitQueryGroupExpressionChildren<TExpression, TIdentiferExpression>(

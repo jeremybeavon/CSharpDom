@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common.Expressions
 {
-    public interface IQueryOrderByExpression : IExpression
+    public interface IQueryOrderByExpression : IQueryExpression
     {
     }
 }

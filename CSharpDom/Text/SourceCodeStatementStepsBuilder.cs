@@ -5,6 +5,7 @@ using CSharpDom.Text.Steps.Expressions;
 using CSharpDom.Text.Steps.Statements;
 using System.Collections.Generic;
 using WriteDefaultKeyword = CSharpDom.Text.Steps.Statements.WriteDefaultKeyword;
+using WriteInKeyword = CSharpDom.Text.Steps.Statements.WriteInKeyword;
 
 namespace CSharpDom.Text
 {
