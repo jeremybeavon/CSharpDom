@@ -1,0 +1,216 @@
+﻿using System.Collections.Generic;
+
+namespace CSharpDom.Common.Expressions
+{
+    public static class GenericExpressionVisitor
+    {
+        public static void VisitArrayIndexExpressionChildren<TExpression>(
+            IArrayIndexExpression<TExpression> arrayIndexExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(arrayIndexExpression.Array, visitor);
+            VisitCollection(arrayIndexExpression.Indexes, visitor);
+        }
+
+        public static void VisitAwaitExpressionChildren<TExpression>(
+            IAwaitExpression<TExpression> awaitExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(awaitExpression.Expression, visitor);
+        }
+
+        public static void VisitBinaryOperatorExpressionChildren<TExpression>(
+            IBinaryOperatorExpression<TExpression> binaryOperatorExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(binaryOperatorExpression.Left, visitor);
+            VisitIfNotNull(binaryOperatorExpression.Right, visitor);
+        }
+
+        public static void VisitCastExpressionChildren<TTypeReference, TExpression>(
+            ICastExpression<TTypeReference, TExpression> castExpression,
+            IGenericExpressionVisitor visitor)
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(castExpression.Expression, visitor);
+        }
+
+        public static void VisitListInitializerExpressionChildren<TCreateListExpression, TExpression>(
+            IListInitializerExpression<TCreateListExpression, TExpression> listInitializerExpression,
+            IGenericExpressionVisitor visitor)
+            where TCreateListExpression : ICreateListExpression
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(listInitializerExpression.CreateListExpression, visitor);
+            VisitCollection(listInitializerExpression.InitialValues, visitor);
+        }
+
+        public static void VisitMemberExpressionChildren<TExpression>(
+            IMemberExpression<TExpression> memberExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(memberExpression.ObjectExpression, visitor);
+        }
+
+        public static void VisitMethodCallExpressionChildren<TExpression>(
+            IMethodCallExpression<TExpression> methodCallExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(methodCallExpression.Expression, visitor);
+            VisitCollection(methodCallExpression.ParameterExpressions, visitor);
+        }
+
+        public static void VisitNewArrayExpressionChildren<TTypeReference, TExpression>(
+            INewArrayExpression<TTypeReference, TExpression> newArrayExpression,
+            IGenericExpressionVisitor visitor)
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            VisitCollection(newArrayExpression.InitialSizeExpressions, visitor);
+        }
+
+        public static void VisitNewExpressionChildren<TTypeReference, TExpression>(
+            INewExpression<TTypeReference, TExpression> newExpression,
+            IGenericExpressionVisitor visitor)
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            VisitCollection(newExpression.Parameters, visitor);
+        }
+        
+        public static void VisitObjectInitializerExpressionChildren<TCreateObjectExpression, TBinaryOperatorExpression>(
+            IObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression> objectInitializerExpression,
+            IGenericExpressionVisitor visitor)
+            where TCreateObjectExpression : ICreateObjectExpression
+            where TBinaryOperatorExpression : IBinaryOperatorExpression
+        {
+            VisitIfNotNull(objectInitializerExpression.CreateObjectExpression, visitor);
+            VisitCollection(objectInitializerExpression.Members, visitor);
+        }
+
+        public static void VisitOutExpressionChildren<TExpression>(
+            IOutExpression<TExpression> outExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(outExpression.Expression, visitor);
+        }
+
+        public static void VisitParenthesisExpressionChildren<TExpression>(
+            IParenthesisExpression<TExpression> parenthesisExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(parenthesisExpression.Expression, visitor);
+        }
+
+        public static void VisitQueryFromExpressionChildren<TIdentifierExpression, TExpression>(
+            IQueryFromExpression<TIdentifierExpression, TExpression> queryFromExpression,
+            IGenericExpressionVisitor visitor)
+            where TIdentifierExpression : IIdentifierExpression
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(queryFromExpression.Identifier, visitor);
+            VisitIfNotNull(queryFromExpression.Expression, visitor);
+        }
+
+        public static void VisitQueryGroupExpressionChildren<TExpression, TIdentiferExpression>(
+            IQueryGroupExpression<TExpression, TIdentiferExpression> queryGroupExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+            where TIdentiferExpression : IIdentifierExpression
+        {
+            VisitIfNotNull(queryGroupExpression.GroupExpression, visitor);
+            VisitIfNotNull(queryGroupExpression.ByExpression, visitor);
+            VisitIfNotNull(queryGroupExpression.IntoExpression, visitor);
+        }
+
+        public static void VisitQueryJoinExpressionChildren<TExpression, TIdentifierExpresion>(
+            IQueryJoinExpression<TExpression, TIdentifierExpresion> queryJoinExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+            where TIdentifierExpresion : IIdentifierExpression
+        {
+            VisitIfNotNull(queryJoinExpression.JoinExpression, visitor);
+            VisitIfNotNull(queryJoinExpression.InExpression, visitor);
+            VisitIfNotNull(queryJoinExpression.OnExpression, visitor);
+            VisitIfNotNull(queryJoinExpression.EqualsExpression, visitor);
+            VisitIfNotNull(queryJoinExpression.IntoExpression, visitor);
+        }
+
+        public static void VisitQueryLetExpressionChildren<TBinaryOperatorExpression>(
+            IQueryLetExpression<TBinaryOperatorExpression> queryLetExpression,
+            IGenericExpressionVisitor visitor)
+            where TBinaryOperatorExpression : IBinaryOperatorExpression
+        {
+            VisitIfNotNull(queryLetExpression.Expression, visitor);
+        }
+
+        public static void VisitQueryOrderByExpressionChildren<TExpression>(
+            IQueryOrderByExpression<TExpression> queryOrderByExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(queryOrderByExpression.Expression, visitor);
+        }
+
+        public static void VisitQuerySelectExpressionChildren<TExpression>(
+            IQuerySelectExpression<TExpression> querySelectExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(querySelectExpression.Expression, visitor);
+        }
+
+        public static void VisitQueryWhereExpressionChildren<TExpression>(
+            IQueryWhereExpression<TExpression> queryWhereExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(queryWhereExpression.Expression, visitor);
+        }
+
+        public static void VisitRefExpressionChildren<TExpression>(
+            IRefExpression<TExpression> refExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(refExpression, visitor);
+        }
+        
+        public static void VisitTernaryOperatorExpressionChildren<TExpression>(
+            ITernaryOperatorExpression<TExpression> ternaryOperatorExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(ternaryOperatorExpression.Left, visitor);
+            VisitIfNotNull(ternaryOperatorExpression.Middle, visitor);
+            VisitIfNotNull(ternaryOperatorExpression.Right, visitor);
+        }
+        
+        public static void VisitUnaryOperatorExpressionChildren<TExpression>(
+            IUnaryOperatorExpression<TExpression> unaryOperatorExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(unaryOperatorExpression.Operand, visitor);
+        }
+
+        private static void VisitCollection<T>(IReadOnlyCollection<T> collection, IGenericExpressionVisitor visitor)
+            where T : IVisitable<IGenericExpressionVisitor>
+        {
+            GenericVisitor.VisitCollection(collection, visitor);
+        }
+
+        private static void VisitIfNotNull(IVisitable<IGenericExpressionVisitor> visitable, IGenericExpressionVisitor visitor)
+        {
+            GenericVisitor.VisitIfNotNull(visitable, visitor);
+        }
+    }
+}

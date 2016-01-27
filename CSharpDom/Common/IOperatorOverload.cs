@@ -1,8 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IOperatorOverload : IHasDeclaration<OperatorDeclarationSyntax>, IHasLocation
+    public interface IOperatorOverload : IVisitable<IGenericVisitor>
     {
     }
 }

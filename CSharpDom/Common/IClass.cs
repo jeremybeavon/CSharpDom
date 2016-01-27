@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IClass : IHasName, ICanBeGeneric
+    public interface IClass : IVisitable<IGenericVisitor>
     {
     }
 }

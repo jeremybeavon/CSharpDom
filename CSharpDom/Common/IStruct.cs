@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStruct : IHasName, ICanBeGeneric
+    public interface IStruct : IVisitable<IGenericVisitor>
     {
     }
 }

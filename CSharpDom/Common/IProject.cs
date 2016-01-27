@@ -1,12 +1,8 @@
-﻿using System.Collections.Generic;
-using Microsoft.CodeAnalysis;
+﻿using System.Threading.Tasks;
 
 namespace CSharpDom.Common
 {
-    public interface IProject<TDocument>
+    public interface IProject : IAsyncVisitable<IGenericVisitor>
     {
-        Project Project { get; }
-
-        IReadOnlyCollection<TDocument> Documents { get; }
     }
 }

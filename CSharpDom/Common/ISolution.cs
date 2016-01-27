@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
-using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.Common
 {
-    public interface ISolution<TProject>
+    public interface ISolution : IAsyncVisitable<IGenericVisitor>
     {
-        Solution Solution { get; }
-
-        IReadOnlyCollection<TProject> Projects { get; }
     }
 }

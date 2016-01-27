@@ -1,8 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IMethod : IHasName, ICanBeGeneric, IHasDeclaration<MethodDeclarationSyntax>, IHasLocation
+    public interface IMethod : IVisitable<IGenericVisitor>
     {
     }
 }

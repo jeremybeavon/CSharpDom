@@ -1,11 +1,8 @@
-﻿using Microsoft.CodeAnalysis;
+﻿using System.Threading.Tasks;
 
 namespace CSharpDom.Common
 {
-    public interface IDocument
+    public interface IDocument : IAsyncVisitable<IGenericVisitor>
     {
-        string FullFilePath { get; }
-
-        Document Document { get; }
     }
 }

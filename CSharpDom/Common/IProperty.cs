@@ -1,11 +1,6 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IProperty : IHasName, IHasDeclaration<PropertyDeclarationSyntax>, IHasLocation
+    public interface IProperty : IVisitable<IGenericVisitor>
     {
-        bool HasGet { get; }
-
-        bool HasSet { get; }
     }
 }

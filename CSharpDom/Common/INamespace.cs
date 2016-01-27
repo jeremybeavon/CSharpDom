@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.Common
 {
-    public interface INamespace
+    public interface INamespace : IVisitable<IGenericVisitor>
     {
-        string Name { get; }
-
-        IEnumerable<NamespaceDeclarationSyntax> Declarations { get; }
     }
 }
