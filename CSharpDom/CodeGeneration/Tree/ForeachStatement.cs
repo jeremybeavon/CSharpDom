@@ -9,20 +9,5 @@
         public ExpressionStatement Iterator { get; set; }
 
         public Statement Statement { get; set; }
-
-        public override void Accept(StatementVisitor visitor)
-        {
-            if (visitor != null)
-            {
-                visitor.Visit(this);
-            }
-        }
-
-        public override void AcceptChildren(StatementVisitor visitor)
-        {
-            Type.AcceptIfNotNull(visitor);
-            Iterator.AcceptIfNotNull(visitor);
-            Statement.AcceptIfNotNull(visitor);
-        }
     }
 }

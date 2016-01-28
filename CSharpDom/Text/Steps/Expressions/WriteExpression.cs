@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Text.Steps.Expressions
 {
-    public sealed class WriteExpression<TExpression> : ISourceCodeBuilderStep, IHasSourceSourceBuilderSteps
+    public sealed class WriteExpression<TExpression> : ISourceCodeBuilderStep, IHasSourceSourceBuilderSteps, IHasExpression
         where TExpression : IVisitable<IGenericExpressionVisitor>
     {
         public WriteExpression(TExpression expression)
@@ -17,6 +17,11 @@ namespace CSharpDom.Text.Steps.Expressions
         public TExpression Expression { get; private set; }
 
         public List<ISourceCodeBuilderStep> Steps { get; private set; }
+
+        object IHasExpression.Expression
+        {
+            get { return Expression; }
+        }
 
         public void AddText(SourceCodeTextBuilder builder)
         {

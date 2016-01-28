@@ -182,7 +182,7 @@ namespace CSharpDom.Text
 
         public override void VisitOutExpression<TExpression>(IOutExpression<TExpression> outExpression)
         {
-            Steps.Add(new WriteMethodParameterModifier(MethodParameterModifier.Out));
+            Steps.Add(new WriteMethodParameterModifier(ParameterModifier.Out));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteExpression<TExpression>(outExpression.Expression));
         }
@@ -293,7 +293,7 @@ namespace CSharpDom.Text
 
         public override void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
         {
-            Steps.Add(new WriteMethodParameterModifier(MethodParameterModifier.Ref));
+            Steps.Add(new WriteMethodParameterModifier(ParameterModifier.Ref));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteExpression<TExpression>(refExpression.Expression));
         }

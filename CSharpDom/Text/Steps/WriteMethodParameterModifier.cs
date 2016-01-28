@@ -8,27 +8,27 @@ namespace CSharpDom.Text.Steps
 {
     public sealed class WriteMethodParameterModifier : ISourceCodeBuilderStep
     {
-        public WriteMethodParameterModifier(MethodParameterModifier modifier)
+        public WriteMethodParameterModifier(ParameterModifier modifier)
         {
             Modifier = modifier;
         }
 
-        public MethodParameterModifier Modifier { get; private set; }
+        public ParameterModifier Modifier { get; private set; }
 
         public void AddText(SourceCodeTextBuilder builder)
         {
             switch (Modifier)
             {
-                case MethodParameterModifier.Out:
+                case ParameterModifier.Out:
                     builder.Append("out");
                     break;
-                case MethodParameterModifier.Params:
+                case ParameterModifier.Params:
                     builder.Append("params");
                     break;
-                case MethodParameterModifier.Ref:
+                case ParameterModifier.Ref:
                     builder.Append("ref");
                     break;
-                case MethodParameterModifier.This:
+                case ParameterModifier.This:
                     builder.Append("this");
                     break;
             }

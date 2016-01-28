@@ -8,19 +8,5 @@ namespace CSharpDom.CodeGeneration.Tree
         public Expression<Func<object>> Expression { get; set; }
 
         public RawStatement RawExpression { get; set; }
-
-        public AssignStatement AssignExpression { get; set; }
-
-        public override void Accept(StatementVisitor visitor)
-        {
-            if (visitor != null)
-            {
-                visitor.Visit(this);
-            }
-        }
-
-        public override void AcceptChildren(StatementVisitor visitor)
-        {
-        }
     }
 }

@@ -10,9 +10,108 @@ using System.Linq;
 
 namespace CSharpDom.Text
 {
-    internal static class ListExtensions
+    public static class ListExtensions
     {
-        public static string ToSourceCode(this List<ISourceCodeBuilderStep> steps)
+        public static IEnumerable<ChildSteps> GetChildSteps(this List<ISourceCodeBuilderStep> steps)
+        {
+            foreach (ISourceCodeBuilderStep step in steps)
+            {
+                IHasSourceSourceBuilderSteps hasChildSteps = step as IHasSourceSourceBuilderSteps;
+                IHasChildNode hasChildNode = step as IHasChildNode;
+                IHasStatement hasStatement = step as IHasStatement;
+                IHasExpression hasExpression = step as IHasExpression;
+                if (hasChildNode != null)
+                {
+                    yield return new ChildSteps(hasChildNode.ChildNode, hasChildNode.Steps);
+                }
+                else if (hasStatement != null)
+                {
+                    yield return new ChildSteps(hasStatement.Statement, hasStatement.Steps);
+                }
+                else if (hasExpression != null)
+                {
+                    yield return new ChildSteps(hasExpression.Expression, hasExpression.Steps);
+                }
+
+                if (hasChildSteps != null)
+                {
+                    foreach (ChildSteps childSteps in hasChildSteps.Steps.GetChildSteps())
+                    {
+                        yield return childSteps;
+                    }
+                }
+            }
+        }
+
+        public static IEnumerable<ChildSteps> GetChildSteps(this List<ISourceCodeBuilderStep> steps, params Type[] types)
+        {
+            return steps.GetChildSteps().Where(step => types.Any(type => type.IsAssignableFrom(step.Object.GetType())));
+        }
+
+        public static int? FindNextIndex(this List<ISourceCodeBuilderStep> steps, Type initialStepType, Type stepType)
+        {
+            int? initialIndex = steps.FindIndex(initialStepType);
+            if (initialStepType == null)
+            {
+                return null;
+            }
+
+            return AsNullable(steps.FindIndex(initialIndex.Value + 1, GetTypePredicate(stepType)));
+        }
+
+        public static int? FindPreviousIndex(this List<ISourceCodeBuilderStep> steps, Type initialStepType, Type stepType)
+        {
+            int? initialIndex = steps.FindLastIndex(initialStepType);
+            return AsNullable(steps.FindLastIndex(0, initialIndex.Value - 1, GetTypePredicate(stepType)));
+        }
+
+        public static int? FindIndex(this List<ISourceCodeBuilderStep> steps, Type type)
+        {
+            return AsNullable(steps.FindIndex(GetTypePredicate(type)));
+        }
+
+        public static int? FindLastIndex(this List<ISourceCodeBuilderStep> steps, Type type)
+        {
+            return AsNullable(steps.FindLastIndex(GetTypePredicate(type)));
+        }
+
+        public static void InsertAfter(this List<ISourceCodeBuilderStep> steps, Type type, ISourceCodeBuilderStep step)
+        {
+            int? index = steps.FindLastIndex(type);
+            if (index.HasValue)
+            {
+                steps.Insert(index.Value + 1, step);
+            }
+        }
+
+        public static void InsertBefore(this List<ISourceCodeBuilderStep> steps, Type type, ISourceCodeBuilderStep step)
+        {
+            int? index = steps.FindIndex(type);
+            if (index.HasValue)
+            {
+                steps.Insert(index.Value, step);
+            }
+        }
+
+        public static void RemovePrevious(this List<ISourceCodeBuilderStep> steps, Type initialStepType, Type stepType)
+        {
+            steps.RemoveAt(steps.FindPreviousIndex(initialStepType, stepType));
+        }
+
+        public static void RemoveNext(this List<ISourceCodeBuilderStep> steps, Type initialStepType, Type stepType)
+        {
+            steps.RemoveAt(steps.FindNextIndex(initialStepType, stepType));
+        }
+
+        public static void RemoveAt(this List<ISourceCodeBuilderStep> steps, int? index)
+        {
+            if (index.HasValue)
+            {
+                steps.RemoveAt(index.Value);
+            }
+        }
+
+        internal static string ToSourceCode(this List<ISourceCodeBuilderStep> steps)
         {
             SourceCodeTextBuilder textBuilder = new SourceCodeTextBuilder();
             foreach (ISourceCodeBuilderStep step in steps)
@@ -23,17 +122,17 @@ namespace CSharpDom.Text
             return textBuilder.ToString();
         }
 
-        public static void AddRange(this List<ISourceCodeBuilderStep> steps, params ISourceCodeBuilderStep[] stepsToAdd)
+        internal static void AddRange(this List<ISourceCodeBuilderStep> steps, params ISourceCodeBuilderStep[] stepsToAdd)
         {
             steps.AddRange(stepsToAdd);
         }
 
-        public static void AddCommaSeparatedRange(this List<ISourceCodeBuilderStep> steps, params ISourceCodeBuilderStep[] stepsToAdd)
+        internal static void AddCommaSeparatedRange(this List<ISourceCodeBuilderStep> steps, params ISourceCodeBuilderStep[] stepsToAdd)
         {
             steps.AddRange(stepsToAdd, () => steps.AddRange(new WriteComma(), new WriteWhitespace()));
         }
 
-        public static void AddRange(
+        internal static void AddRange(
             this List<ISourceCodeBuilderStep> steps,
             IEnumerable<ISourceCodeBuilderStep> stepsToAdd,
             Action joinFunction)
@@ -41,7 +140,7 @@ namespace CSharpDom.Text
             JoinList(stepsToAdd, step => steps.Add(step), joinFunction);
         }
         
-        public static void AddChildNodeSteps<T>(
+        internal static void AddChildNodeSteps<T>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyCollection<T> childNodes,
             Action joinFunction)
@@ -50,7 +149,7 @@ namespace CSharpDom.Text
             JoinList(childNodes, childNode => steps.Add(new WriteChildNode<T>(childNode)), joinFunction);
         }
 
-        public static void AddChildNodeSteps<T>(
+        internal static void AddChildNodeSteps<T>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyCollection<T> childNodes)
             where T : IVisitable<IGenericVisitor>
@@ -58,7 +157,7 @@ namespace CSharpDom.Text
             steps.AddChildNodeSteps(childNodes, () => { });
         }
 
-        public static void AddCommaSeparatedChildNodeSteps<T>(
+        internal static void AddCommaSeparatedChildNodeSteps<T>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyCollection<T> childNodes)
             where T : IVisitable<IGenericVisitor>
@@ -66,7 +165,7 @@ namespace CSharpDom.Text
             steps.AddChildNodeSteps(childNodes, () => steps.AddRange(new WriteComma(), new WriteWhitespace()));
         }
 
-        public static void AddCommaSeparatedExpressionSteps<T>(
+        internal static void AddCommaSeparatedExpressionSteps<T>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyCollection<T> expressions)
             where T : IVisitable<IGenericExpressionVisitor>
@@ -77,7 +176,7 @@ namespace CSharpDom.Text
                 () => steps.AddRange(new WriteComma(), new WriteWhitespace()));
         }
 
-        public static void AddChildNodeStepsOnNewLines<T>(
+        internal static void AddChildNodeStepsOnNewLines<T>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyCollection<T> childNodes)
             where T : IVisitable<IGenericVisitor>
@@ -89,7 +188,7 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddTypeVisibilityModifierSteps(this List<ISourceCodeBuilderStep> steps, TypeVisibilityModifier visibility)
+        internal static void AddTypeVisibilityModifierSteps(this List<ISourceCodeBuilderStep> steps, TypeVisibilityModifier visibility)
         {
             if (visibility != TypeVisibilityModifier.None)
             {
@@ -98,7 +197,7 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddTypeInheritanceModifierSteps(
+        internal static void AddTypeInheritanceModifierSteps(
             this List<ISourceCodeBuilderStep> steps,
             TypeInheritanceModifier inheritanceModifier)
         {
@@ -109,7 +208,7 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddGenericParameterSteps<TGenericParameter>(
+        internal static void AddGenericParameterSteps<TGenericParameter>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyList<TGenericParameter> genericParameters)
         {
@@ -123,7 +222,7 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddBaseClassAndImplementedInterfacesSteps<TClassReference, TInterfaceReference>(
+        internal static void AddBaseClassAndImplementedInterfacesSteps<TClassReference, TInterfaceReference>(
             this List<ISourceCodeBuilderStep> steps,
             IHasBaseClass<TClassReference> baseClassContainer,
             IHasImplementedInterfaces<TInterfaceReference> implementedInterfaces)
@@ -156,7 +255,7 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddImplementedInterfacesSteps<TInterfaceReference>(
+        internal static void AddImplementedInterfacesSteps<TInterfaceReference>(
             this List<ISourceCodeBuilderStep> steps,
             IHasImplementedInterfaces<TInterfaceReference> implementedInterfaces)
             where TInterfaceReference : IVisitable<IGenericVisitor>
@@ -170,7 +269,7 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddGenericParameterConstraintSteps<TGenericParameter>(
+        internal static void AddGenericParameterConstraintSteps<TGenericParameter>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyCollection<TGenericParameter> genericParameters)
             where TGenericParameter : IVisitable<IGenericVisitor>
@@ -184,7 +283,7 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddInterfaceBodySteps<TEvent, TProperty, TIndexer, TMethod>(
+        internal static void AddInterfaceBodySteps<TEvent, TProperty, TIndexer, TMethod>(
             this List<ISourceCodeBuilderStep> steps,
             IBasicType<TEvent, TProperty, TIndexer, TMethod> type)
             where TEvent : IEvent
@@ -201,7 +300,7 @@ namespace CSharpDom.Text
             steps.AddRange(typeSteps, () => steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
-        public static void AddTypeBodySteps<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
+        internal static void AddTypeBodySteps<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
             this List<ISourceCodeBuilderStep> steps,
             IType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> type,
             ISourceCodeBuilderStep destructorStep = null)
@@ -239,7 +338,7 @@ namespace CSharpDom.Text
             steps.AddRange(typeSteps, () => steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
-        public static void AddMemberVisibilityModifierSteps(this List<ISourceCodeBuilderStep> steps, MemberVisibilityModifier visibility)
+        internal static void AddMemberVisibilityModifierSteps(this List<ISourceCodeBuilderStep> steps, MemberVisibilityModifier visibility)
         {
             if (visibility == MemberVisibilityModifier.None)
             {
@@ -260,7 +359,7 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddMemberInheritanceModifierSteps(
+        internal static void AddMemberInheritanceModifierSteps(
             this List<ISourceCodeBuilderStep> steps,
             MemberInheritanceModifier inheritanceModifer)
         {
@@ -295,7 +394,7 @@ namespace CSharpDom.Text
             steps.Add(new WriteWhitespace());
         }
 
-        public static void AddFieldModifierSteps(this List<ISourceCodeBuilderStep> steps, FieldModifier modifier)
+        internal static void AddFieldModifierSteps(this List<ISourceCodeBuilderStep> steps, FieldModifier modifier)
         {
             switch (modifier)
             {
@@ -319,7 +418,7 @@ namespace CSharpDom.Text
             steps.Add(new WriteWhitespace());
         }
 
-        public static void AddGenericParameterTypeConstraintStep(
+        internal static void AddGenericParameterTypeConstraintStep(
             this List<ISourceCodeBuilderStep> steps,
             GenericParameterTypeConstraint constraint)
         {
@@ -334,18 +433,18 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddMethodParameterModifierSteps(
+        internal static void AddMethodParameterModifierSteps(
             this List<ISourceCodeBuilderStep> steps,
-            MethodParameterModifier modifier)
+            ParameterModifier modifier)
         {
-            if (modifier != MethodParameterModifier.None)
+            if (modifier != ParameterModifier.None)
             {
                 steps.Add(new WriteMethodParameterModifier(modifier));
                 steps.Add(new WriteWhitespace());
             }
         }
 
-        public static void AddBlockSteps<TStatement>(this List<ISourceCodeBuilderStep> steps, IReadOnlyList<TStatement> statements)
+        internal static void AddBlockSteps<TStatement>(this List<ISourceCodeBuilderStep> steps, IReadOnlyList<TStatement> statements)
             where TStatement : IStatement
         {
             steps.Add(new WriteStartBrace());
@@ -353,7 +452,7 @@ namespace CSharpDom.Text
             steps.Add(new WriteEndBrace());
         }
 
-        public static void AddIndentedStatementSteps<TStatement>(this List<ISourceCodeBuilderStep> steps, TStatement statement)
+        internal static void AddIndentedStatementSteps<TStatement>(this List<ISourceCodeBuilderStep> steps, TStatement statement)
             where TStatement : IStatement
         {
             if (statement is IBlockStatement)
@@ -369,7 +468,7 @@ namespace CSharpDom.Text
             }
         }
 
-        public static void AddIndentedStatementSteps<TStatement>(
+        internal static void AddIndentedStatementSteps<TStatement>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyList<TStatement> statements)
             where TStatement : IStatement
@@ -379,7 +478,7 @@ namespace CSharpDom.Text
             steps.Add(new DecrementIndent());
         }
 
-        public static void AddStatementStepsOnNewLines<TStatement>(
+        internal static void AddStatementStepsOnNewLines<TStatement>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyCollection<TStatement> statements)
             where TStatement : IVisitable<IGenericStatementVisitor>
@@ -402,6 +501,16 @@ namespace CSharpDom.Text
                     addAction(item);
                 }
             }
+        }
+
+        private static Predicate<ISourceCodeBuilderStep> GetTypePredicate(Type type)
+        {
+            return step => type.IsAssignableFrom(step.GetType());
+        }
+
+        private static int? AsNullable(int index)
+        {
+            return index < 0 ? (int?)null : index;
         }
     }
 }

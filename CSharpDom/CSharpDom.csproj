@@ -156,6 +156,35 @@
     <Compile Include="BaseClasses\Statements\AbstractBlockStatement.cs" />
     <Compile Include="BaseClasses\Statements\AbstractGenericStatementVisitor.cs" />
     <Compile Include="BinaryOperatorExpressionType.cs" />
+    <Compile Include="CodeGeneration\Tree\MethodParameterModifier.cs" />
+    <Compile Include="CodeGeneration\Tree\Statement.cs" />
+    <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyBlockStatement.cs" />
+    <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyAssignStatement.cs" />
+    <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyCatchStatement.cs" />
+    <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyExpressionStatement.cs" />
+    <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyStatement.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassIndexer.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyBinaryOperator.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClass.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassEvent.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassFieldDeclaration.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassMethod.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassMethodParameter.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassProperty.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassPropertyAccessor.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassReference.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyConversionOperator.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyDelegate.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyDelegateReference.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyGenericParameter.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyGenericParameterDeclaration.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyGenericParameterReference.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyInterfaceReference.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyMethodBody.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyOperatorOverload.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyOperatorParameter.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyMethodParameter.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyTypeReference.cs" />
     <Compile Include="Common\Expressions\GenericExpressionVisitor.cs" />
     <Compile Include="Common\Expressions\IArrayIndexExpression.cs" />
     <Compile Include="Common\Expressions\IAwaitExpression.cs" />
@@ -358,9 +387,6 @@
     <Compile Include="CodeGeneration\Tree\ClassPropertyAccessorVisibilityModifier.cs" />
     <Compile Include="CodeGeneration\Tree\ClassReference.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationFile.cs" />
-    <Compile Include="CodeGeneration\Tree\CollectionExtensions.cs" />
-    <Compile Include="CodeGeneration\Tree\StatementExtensions.cs" />
-    <Compile Include="CodeGeneration\Tree\StatementVisitor.cs" />
     <Compile Include="CodeGeneration\Tree\ConversionOperator.cs" />
     <Compile Include="ConversionOperatorType.cs" />
     <Compile Include="CodeGeneration\Tree\Delegate.cs" />
@@ -403,7 +429,6 @@
     <Compile Include="CodeGeneration\Tree\SingleLineComment.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeExpressionBuilder.cs" />
     <Compile Include="CodeGeneration\Tree\SourceCodeTextBuilder.cs" />
-    <Compile Include="CodeGeneration\Tree\Statement.cs" />
     <Compile Include="CodeGeneration\Tree\Struct.cs" />
     <Compile Include="CodeGeneration\Tree\StructBody.cs" />
     <Compile Include="CodeGeneration\Tree\StructEvent.cs" />
@@ -513,11 +538,17 @@
     <Compile Include="Reflection\StructWithReflection.cs" />
     <Compile Include="Reflection\UnnamedAttributeValueWithReflection.cs" />
     <Compile Include="Reflection\UnspecifiedTypeReferenceWithReflection.cs" />
+    <Compile Include="Text\ChildSteps.cs" />
+    <Compile Include="Text\IHasChildNode.cs" />
+    <Compile Include="Text\IHasExpression.cs" />
     <Compile Include="Text\IHasSourceSourceBuilderSteps.cs" />
+    <Compile Include="Text\IHasStatement.cs" />
     <Compile Include="Text\InheritanceModifierText.cs" />
     <Compile Include="Text\ISourceCodeStyleRule.cs" />
     <Compile Include="Text\ListExtensions.cs" />
     <Compile Include="Text\AccessorFlags.cs" />
+    <Compile Include="Text\Rules\VisualStudio\IndentBlockContentsRule.cs" />
+    <Compile Include="Text\Rules\VisualStudio\IndentOpenAndCloseBracesRule.cs" />
     <Compile Include="Text\SourceCodeStatementStepsBuilder.cs" />
     <Compile Include="Text\Steps\DecrementIndent.cs" />
     <Compile Include="Text\Steps\Expressions\WriteTypeofKeyword.cs" />
@@ -711,7 +742,7 @@
     <Compile Include="IAsyncVisitable.cs" />
     <Compile Include="Common\IGenericParameterReference.cs" />
     <Compile Include="IVisitable.cs" />
-    <Compile Include="MethodParameterModifier.cs" />
+    <Compile Include="ParameterModifier.cs" />
     <Compile Include="NotSupported\AttributeGroupNotSupported.cs" />
     <Compile Include="NotSupported\AttributeNotSupported.cs" />
     <Compile Include="NotSupported\ClassNotSupported.cs" />
@@ -763,11 +794,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeDom\" />
-    <Folder Include="CodeGeneration\Tree\Text\Expressions\" />
-    <Folder Include="CodeGeneration\Tree\Text\Statements\" />
     <Folder Include="Linq\Expressions\" />
+    <Folder Include="Serialization\" />
     <Folder Include="Text\Rules\Resharper\" />
-    <Folder Include="Text\Rules\VisualStudio\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

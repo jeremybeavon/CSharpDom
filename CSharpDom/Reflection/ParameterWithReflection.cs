@@ -28,31 +28,31 @@ namespace CSharpDom.Reflection
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override MethodParameterModifier Modifier
+        public override ParameterModifier Modifier
         {
             get
             {
                 if (parameter.IsDefined(typeof(ExtensionAttribute)))
                 {
-                    return MethodParameterModifier.This;
+                    return ParameterModifier.This;
                 }
 
                 if (parameter.IsOut)
                 {
-                    return MethodParameterModifier.Out;
+                    return ParameterModifier.Out;
                 }
 
                 if (parameter.ParameterType.IsByRef)
                 {
-                    return MethodParameterModifier.Ref;
+                    return ParameterModifier.Ref;
                 }
 
                 if (parameter.IsDefined(typeof(ParamArrayAttribute)))
                 {
-                    return MethodParameterModifier.Params;
+                    return ParameterModifier.Params;
                 }
 
-                return MethodParameterModifier.None;
+                return ParameterModifier.None;
             }
         }
 

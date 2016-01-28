@@ -2,7 +2,7 @@
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class CatchStatement : Statement
+    public sealed class CatchStatement
     {
         public CatchStatement()
         {
@@ -14,19 +14,5 @@ namespace CSharpDom.CodeGeneration.Tree
         public string Name { get; set; }
 
         public Collection<Statement> Statements { get; set; }
-
-        public override void Accept(StatementVisitor visitor)
-        {
-            if (visitor != null)
-            {
-                visitor.Visit(this);
-            }
-        }
-
-        public override void AcceptChildren(StatementVisitor visitor)
-        {
-            Type.AcceptIfNotNull(visitor);
-            Statements.AcceptIfNotNull(visitor);
-        }
     }
 }

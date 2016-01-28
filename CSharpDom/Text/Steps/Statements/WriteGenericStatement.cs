@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Text.Steps.Statements
 {
-    public sealed class WriteGenericStatement<TStatement> : ISourceCodeBuilderStep, IHasSourceSourceBuilderSteps
+    public sealed class WriteGenericStatement<TStatement> : ISourceCodeBuilderStep, IHasSourceSourceBuilderSteps, IHasStatement
     {
         public WriteGenericStatement(TStatement statement)
         {
@@ -16,6 +16,11 @@ namespace CSharpDom.Text.Steps.Statements
         public TStatement Statement { get; private set; }
 
         public List<ISourceCodeBuilderStep> Steps { get; private set; }
+
+        object IHasStatement.Statement
+        {
+            get { return Statement; }
+        }
 
         public void AddText(SourceCodeTextBuilder builder)
         {

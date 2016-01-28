@@ -10,7 +10,7 @@ namespace CSharpDom.BaseClasses
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 
-        public abstract MethodParameterModifier Modifier { get; }
+        public abstract ParameterModifier Modifier { get; }
 
         public abstract string Name { get; }
 

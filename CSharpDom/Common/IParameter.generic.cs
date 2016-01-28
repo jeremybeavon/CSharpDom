@@ -9,6 +9,6 @@
     {
         TTypeReference ParameterType { get; }
 
-        MethodParameterModifier Modifier { get; }
+        ParameterModifier Modifier { get; }
     }
 }

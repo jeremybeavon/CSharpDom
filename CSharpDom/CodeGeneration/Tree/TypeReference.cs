@@ -206,14 +206,5 @@ namespace CSharpDom.CodeGeneration.Tree
         }
 
         public Collection<TypeReference> GenericParameters { get; set; }
-
-        public override void Accept(StatementVisitor visitor)
-        {
-            visitor.Visit(this);
-        }
-
-        public override void AcceptChildren(StatementVisitor visitor)
-        {
-        }
     }
 }

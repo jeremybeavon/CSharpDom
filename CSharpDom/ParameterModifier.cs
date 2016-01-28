@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom
 {
-    public enum MethodParameterModifier
+    public enum ParameterModifier
     {
         None,
         Params,
