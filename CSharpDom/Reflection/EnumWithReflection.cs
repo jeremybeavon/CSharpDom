@@ -20,7 +20,7 @@ namespace CSharpDom.Reflection
         private readonly NamespaceWithReflection @namespace;
         private readonly Type type;
         private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<IReadOnlyCollection<EnumMemberWithReflection>> enumMembers;
+        private readonly Lazy<IReadOnlyList<EnumMemberWithReflection>> enumMembers;
 
         internal EnumWithReflection(AssemblyWithReflection assembly, NamespaceWithReflection @namespace, Type type)
         {
@@ -28,7 +28,7 @@ namespace CSharpDom.Reflection
             this.@namespace = @namespace;
             this.type = type;
             attributes = new Lazy<Attributes>(() => new Attributes(type));
-            enumMembers = new Lazy<IReadOnlyCollection<EnumMemberWithReflection>>(InitializeEnumMembers);
+            enumMembers = new Lazy<IReadOnlyList<EnumMemberWithReflection>>(InitializeEnumMembers);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -36,7 +36,7 @@ namespace CSharpDom.Reflection
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override IReadOnlyCollection<EnumMemberWithReflection> EnumMembers
+        public override IReadOnlyList<EnumMemberWithReflection> EnumMembers
         {
             get { return enumMembers.Value; }
         }
@@ -82,7 +82,7 @@ namespace CSharpDom.Reflection
             AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
 
-        private IReadOnlyCollection<EnumMemberWithReflection> InitializeEnumMembers()
+        private IReadOnlyList<EnumMemberWithReflection> InitializeEnumMembers()
         {
             return type.GetAllFields().Select(field => new EnumMemberWithReflection(this, field)).ToList();
         }

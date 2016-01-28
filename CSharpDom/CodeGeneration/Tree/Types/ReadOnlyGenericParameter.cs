@@ -15,7 +15,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public static IReadOnlyList<ReadOnlyGenericParameter> Create(IEnumerable<TypeReference> typeReferences)
         {
-            return typeReferences.Select(type => new ReadOnlyGenericParameter(type)).ToArray();
+            return typeReferences.ToArray(type => new ReadOnlyGenericParameter(type));
         }
 
         public override ReadOnlyTypeReference Type

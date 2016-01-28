@@ -1,32 +1,32 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyClassMethod :
+    public sealed class ReadOnlyStructMethod :
         AbstractMethod<
             AttributeGroupNotSupported,
             IBasicType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
-            ReadOnlyClassMethodParameter,
+            ReadOnlyMethodParameter,
             ReadOnlyMethodBody>
     {
-        private readonly ClassMethod method;
+        private readonly StructMethod method;
         private readonly ReadOnlyMethodBody body;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
-        private readonly IReadOnlyList<ReadOnlyClassMethodParameter> parameters;
+        private readonly IReadOnlyList<ReadOnlyMethodParameter> parameters;
         private readonly ReadOnlyTypeReference returnType;
 
-        public ReadOnlyClassMethod(ClassMethod method)
+        public ReadOnlyStructMethod(StructMethod method)
         {
             this.method = method;
             body = new ReadOnlyMethodBody(method.Body);
             genericParameters = ReadOnlyGenericParameterDeclaration.Create(method.GenericParameters);
-            parameters = method.Parameters.ToArray(parameter => new ReadOnlyClassMethodParameter(parameter));
+            parameters = ReadOnlyMethodParameter.Create(method.Parameters);
             returnType = new ReadOnlyTypeReference(method.ReturnType);
         }
 
@@ -52,7 +52,24 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override MemberInheritanceModifier InheritanceModifier
         {
-            get { return ReadOnlyClass.GetInheritanceModifier(method.InheritanceModifier); }
+            get
+            {
+                switch (method.InheritanceModifier)
+                {
+                    case StructMethodInheritanceModifier.None:
+                        return MemberInheritanceModifier.None;
+                    case StructMethodInheritanceModifier.New:
+                        return MemberInheritanceModifier.New;
+                    case StructMethodInheritanceModifier.NewStatic:
+                        return MemberInheritanceModifier.NewStatic;
+                    case StructMethodInheritanceModifier.Override:
+                        return MemberInheritanceModifier.Override;
+                    case StructMethodInheritanceModifier.Static:
+                        return MemberInheritanceModifier.Static;
+                    default:
+                        throw new NotSupportedException();
+                }
+            }
         }
 
         public override string Name
@@ -60,7 +77,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return method.Name; }
         }
 
-        public override IReadOnlyList<ReadOnlyClassMethodParameter> Parameters
+        public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
         {
             get { return parameters; }
         }
@@ -72,7 +89,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override MemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(method.Visibility); }
+            get { return ReadOnlyStruct.GetVisibility(method.Visibility); }
         }
     }
 }

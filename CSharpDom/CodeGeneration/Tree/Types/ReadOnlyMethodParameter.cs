@@ -54,7 +54,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public static IReadOnlyList<ReadOnlyMethodParameter> Create(IEnumerable<MethodParameter> parameters)
         {
-            return parameters.Select(parameter => new ReadOnlyMethodParameter(parameter)).ToArray();
+            return parameters.ToArray(parameter => new ReadOnlyMethodParameter(parameter));
         }
     }
 }

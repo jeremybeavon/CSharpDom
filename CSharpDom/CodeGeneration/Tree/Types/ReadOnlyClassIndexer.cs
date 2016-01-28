@@ -105,7 +105,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override MemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.Visibility(indexer.Visibility); }
+            get { return ReadOnlyClass.GetVisibility(indexer.Visibility); }
         }
     }
 }

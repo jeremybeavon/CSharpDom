@@ -1,33 +1,34 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyClassMethod :
+    public sealed class ReadOnlyInterfaceMethod :
         AbstractMethod<
             AttributeGroupNotSupported,
             IBasicType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
-            ReadOnlyClassMethodParameter,
-            ReadOnlyMethodBody>
+            ReadOnlyMethodParameter,
+            MethodBodyNotSupported>
     {
-        private readonly ClassMethod method;
-        private readonly ReadOnlyMethodBody body;
+        private readonly InterfaceMethod interfaceMethod;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
-        private readonly IReadOnlyList<ReadOnlyClassMethodParameter> parameters;
+        private readonly IReadOnlyList<ReadOnlyMethodParameter> parameters;
         private readonly ReadOnlyTypeReference returnType;
 
-        public ReadOnlyClassMethod(ClassMethod method)
+        public ReadOnlyInterfaceMethod(InterfaceMethod interfaceMethod)
         {
-            this.method = method;
-            body = new ReadOnlyMethodBody(method.Body);
-            genericParameters = ReadOnlyGenericParameterDeclaration.Create(method.GenericParameters);
-            parameters = method.Parameters.ToArray(parameter => new ReadOnlyClassMethodParameter(parameter));
-            returnType = new ReadOnlyTypeReference(method.ReturnType);
+            this.interfaceMethod = interfaceMethod;
+            genericParameters = ReadOnlyGenericParameterDeclaration.Create(interfaceMethod.GenericParameters);
+            parameters = ReadOnlyMethodParameter.Create(interfaceMethod.Parameters);
+            returnType = new ReadOnlyTypeReference(interfaceMethod.ReturnType);
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -35,9 +36,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override ReadOnlyMethodBody Body
+        public override MethodBodyNotSupported Body
         {
-            get { return body; }
+            get { return new MethodBodyNotSupported(); }
         }
 
         public override IBasicType DeclaringType
@@ -52,15 +53,15 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override MemberInheritanceModifier InheritanceModifier
         {
-            get { return ReadOnlyClass.GetInheritanceModifier(method.InheritanceModifier); }
+            get { return interfaceMethod.IsNew ? MemberInheritanceModifier.New : MemberInheritanceModifier.None; }
         }
 
         public override string Name
         {
-            get { return method.Name; }
+            get { return interfaceMethod.Name; }
         }
 
-        public override IReadOnlyList<ReadOnlyClassMethodParameter> Parameters
+        public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
         {
             get { return parameters; }
         }
@@ -72,7 +73,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override MemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(method.Visibility); }
+            get { return MemberVisibilityModifier.None; }
+        }
+
+        public static IReadOnlyCollection<ReadOnlyInterfaceMethod> Create(IEnumerable<InterfaceMethod> interfaceMethods)
+        {
+            return interfaceMethods.ToArray(interfaceMethod => new ReadOnlyInterfaceMethod(interfaceMethod));
         }
     }
 }

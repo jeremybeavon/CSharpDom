@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyClassEvent :
+    public sealed class ReadOnlyStructEvent :
         IEvent<
             AttributeGroupNotSupported,
             IBasicType,
@@ -15,20 +15,20 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyDelegateReference,
             ReadOnlyMethodBody>
     {
-        private readonly ClassEvent classEvent;
+        private readonly StructEvent structEvent;
         private readonly ReadOnlyMethodBody addBody;
         private readonly ReadOnlyDelegateReference eventType;
         private readonly ReadOnlyMethodBody removeBody;
 
-        public ReadOnlyClassEvent(ClassEvent classEvent)
+        public ReadOnlyStructEvent(StructEvent structEvent)
         {
-            this.classEvent = classEvent;
-            eventType = new ReadOnlyDelegateReference(classEvent.Type);
-            IsEventProperty = classEvent.Accessors != null;
+            this.structEvent = structEvent;
+            eventType = new ReadOnlyDelegateReference(structEvent.Type);
+            IsEventProperty = structEvent.Accessors != null;
             if (IsEventProperty)
             {
-                addBody = new ReadOnlyMethodBody(classEvent.Accessors.AddBody);
-                removeBody = new ReadOnlyMethodBody(classEvent.Accessors.RemoveBody);
+                addBody = new ReadOnlyMethodBody(structEvent.Accessors.AddBody);
+                removeBody = new ReadOnlyMethodBody(structEvent.Accessors.RemoveBody);
             }
         }
 
@@ -59,12 +59,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public MemberInheritanceModifier InheritanceModifier
         {
-            get { return ReadOnlyClass.GetInheritanceModifier(classEvent.InheritanceModifier); }
+            get { return structEvent.IsStatic ? MemberInheritanceModifier.Static : MemberInheritanceModifier.None; }
         }
 
         public string Name
         {
-            get { return classEvent.Name; }
+            get { return structEvent.Name; }
         }
 
         public ReadOnlyMethodBody RemoveBody
@@ -74,7 +74,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public MemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(classEvent.Visibility); }
+            get { return ReadOnlyStruct.GetVisibility(structEvent.Visibility); }
         }
 
         IBasicType IHasDeclaringType<IBasicType>.DeclaringType

@@ -23,7 +23,7 @@ namespace CSharpDom.CodeGeneration.Tree.Statements
 
         public static IReadOnlyList<ReadOnlyStatement> Create(IEnumerable<Statement> statements)
         {
-            return statements.Select(statement => new ReadOnlyStatement(statement)).ToArray();
+            return statements.ToArray(statement => new ReadOnlyStatement(statement));
         }
 
         public void Accept(IGenericStatementVisitor visitor)

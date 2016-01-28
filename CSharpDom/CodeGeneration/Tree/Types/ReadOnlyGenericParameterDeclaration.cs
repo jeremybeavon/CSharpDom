@@ -31,11 +31,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             }
 
             genericParameterConstraints = genericParameter.GenericParameterConstraints
-                .Select(reference => new ReadOnlyGenericParameterReference(reference))
-                .ToArray();
+                .ToArray(reference => new ReadOnlyGenericParameterReference(reference));
             interfaceConstraints = genericParameter.InterfaceConstraints
-                .Select(reference => new ReadOnlyInterfaceReference(reference))
-                .ToArray();
+                .ToArray(reference => new ReadOnlyInterfaceReference(reference));
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -75,7 +73,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public static IReadOnlyList<ReadOnlyGenericParameterDeclaration> Create(IEnumerable<GenericParameter> genericParameters)
         {
-            return genericParameters.Select(parameter => new ReadOnlyGenericParameterDeclaration(parameter)).ToArray();
+            return genericParameters.ToArray(parameter => new ReadOnlyGenericParameterDeclaration(parameter));
         }
     }
 }

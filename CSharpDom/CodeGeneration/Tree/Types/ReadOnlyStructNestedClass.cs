@@ -1,16 +1,15 @@
 ﻿using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 using CSharpDom.NotSupported;
 using System;
 using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyClass :
-        AbstractClass<
-            NamespaceNotSupported,
-            ProjectNotSupported,
-            SolutionNotSupported,
+    public sealed class ReadOnlyStructNestedClass :
+        AbstractNestedClass<
             AttributeGroupNotSupported,
+            IType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyClassReference,
             ReadOnlyInterfaceReference,
@@ -28,25 +27,25 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassNestedEnum,
             ReadOnlyClassNestedInterface,
             ReadOnlyClassNestedStruct,
-            DestructorNotSupported>
+            NestedDestructorNotSupported>
     {
-        private readonly Class @class;
+        private readonly StructNestedClass nestedClass;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
         private readonly ReadOnlyClassReference baseClass;
         private readonly IReadOnlyCollection<ReadOnlyInterfaceReference> implementedInterfaces;
         private readonly ReadOnlyClassBody body;
 
-        public ReadOnlyClass(Class @class)
+        public ReadOnlyStructNestedClass(StructNestedClass nestedClass)
         {
-            this.@class = @class;
-            genericParameters = ReadOnlyGenericParameterDeclaration.Create(@class.GenericParameters);
-            if (@class.BaseClass != null)
+            this.nestedClass = nestedClass;
+            genericParameters = ReadOnlyGenericParameterDeclaration.Create(nestedClass.GenericParameters);
+            if (nestedClass.BaseClass != null)
             {
-                baseClass = new ReadOnlyClassReference(@class.BaseClass);
+                baseClass = new ReadOnlyClassReference(nestedClass.BaseClass);
             }
 
-            implementedInterfaces = ReadOnlyInterfaceReference.Create(@class.Interfaces);
-            body = new ReadOnlyClassBody(@class.Body);
+            implementedInterfaces = ReadOnlyInterfaceReference.Create(nestedClass.Interfaces);
+            body = new ReadOnlyClassBody(nestedClass.Body);
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -73,15 +72,20 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return body.ConversionOperators; }
         }
-        
+
+        public override IType DeclaringType
+        {
+            get { return null; }
+        }
+
         public override IReadOnlyCollection<ReadOnlyClassNestedDelegate> Delegates
         {
             get { return body.Delegates; }
         }
 
-        public override DestructorNotSupported Destructor
+        public override NestedDestructorNotSupported Destructor
         {
-            get { return new DestructorNotSupported(); }
+            get { return new NestedDestructorNotSupported(); }
         }
 
         public override IReadOnlyCollection<ReadOnlyClassNestedEnum> Enums
@@ -123,7 +127,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get
             {
-                switch (@class.InheritanceModifier)
+                switch (nestedClass.InheritanceModifier)
                 {
                     case TypeInheritanceModifier.Abstract:
                         return TypeInheritanceModifier.Abstract;
@@ -143,7 +147,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return body.Interfaces; }
         }
-
+        
         public override IReadOnlyCollection<ReadOnlyClassMethod> Methods
         {
             get { return body.Methods; }
@@ -151,12 +155,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override string Name
         {
-            get { return @class.Name; }
-        }
-
-        public override NamespaceNotSupported Namespace
-        {
-            get { return new NamespaceNotSupported(); }
+            get { return nestedClass.Name; }
         }
 
         public override IReadOnlyCollection<ReadOnlyOperatorOverload> OperatorOverloads
@@ -169,72 +168,14 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.Properties; }
         }
 
-        public override ProjectNotSupported Project
-        {
-            get { return new ProjectNotSupported(); }
-        }
-
-        public override SolutionNotSupported Solution
-        {
-            get { return new SolutionNotSupported(); }
-        }
-
         public override IReadOnlyCollection<ReadOnlyClassNestedStruct> Structs
         {
             get { return body.Structs; }
         }
 
-        public override TypeVisibilityModifier Visibility
+        public override MemberVisibilityModifier Visibility
         {
-            get { return @class.Visibility; }
-        }
-
-        public static MemberInheritanceModifier GetInheritanceModifier(ClassMemberInheritanceModifier inheritanceModifier)
-        {
-            switch (inheritanceModifier)
-            {
-                case ClassMemberInheritanceModifier.None:
-                    return MemberInheritanceModifier.None;
-                case ClassMemberInheritanceModifier.Abstract:
-                    return MemberInheritanceModifier.Abstract;
-                case ClassMemberInheritanceModifier.New:
-                    return MemberInheritanceModifier.New;
-                case ClassMemberInheritanceModifier.NewStatic:
-                    return MemberInheritanceModifier.NewStatic;
-                case ClassMemberInheritanceModifier.NewVirtual:
-                    return MemberInheritanceModifier.NewVirtual;
-                case ClassMemberInheritanceModifier.Override:
-                    return MemberInheritanceModifier.Override;
-                case ClassMemberInheritanceModifier.SealedOverride:
-                    return MemberInheritanceModifier.SealedOverride;
-                case ClassMemberInheritanceModifier.Static:
-                    return MemberInheritanceModifier.Static;
-                case ClassMemberInheritanceModifier.Virtual:
-                    return MemberInheritanceModifier.Virtual;
-                default:
-                    throw new NotSupportedException();
-            }
-        }
-
-        public static MemberVisibilityModifier GetVisibility(ClassMemberVisibilityModifier visibility)
-        {
-            switch (visibility)
-            {
-                case ClassMemberVisibilityModifier.None:
-                    return MemberVisibilityModifier.None;
-                case ClassMemberVisibilityModifier.Public:
-                    return MemberVisibilityModifier.Public;
-                case ClassMemberVisibilityModifier.Internal:
-                    return MemberVisibilityModifier.Internal;
-                case ClassMemberVisibilityModifier.ProtectedInternal:
-                    return MemberVisibilityModifier.ProtectedInternal;
-                case ClassMemberVisibilityModifier.Protected:
-                    return MemberVisibilityModifier.Protected;
-                case ClassMemberVisibilityModifier.Private:
-                    return MemberVisibilityModifier.Private;
-                default:
-                    throw new NotSupportedException();
-            }
+            get { return ReadOnlyStruct.GetVisibility(nestedClass.Visibility); }
         }
     }
 }

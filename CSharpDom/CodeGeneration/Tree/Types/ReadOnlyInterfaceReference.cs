@@ -48,5 +48,10 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return name; }
         }
+
+        public static IReadOnlyCollection<ReadOnlyInterfaceReference> Create(IEnumerable<InterfaceReference> interfaceReferences)
+        {
+            return interfaceReferences.ToArray(interfaceReference => new ReadOnlyInterfaceReference(interfaceReference));
+        }
     }
 }

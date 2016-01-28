@@ -1,9 +1,4 @@
 ﻿using CSharpDom.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
@@ -11,9 +6,14 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     {
         private readonly IOperatorOverload operatorOverload;
 
-        public ReadOnlyOperatorOverload(ReadOnlyBinaryOperator operatorOverload)
+        public ReadOnlyOperatorOverload(BinaryOperator operatorOverload)
         {
-            this.operatorOverload = operatorOverload;
+            this.operatorOverload = new ReadOnlyBinaryOperator(operatorOverload);
+        }
+
+        public ReadOnlyOperatorOverload(UnaryOperator operatorOverload)
+        {
+            this.operatorOverload = new ReadOnlyUnaryOperator(operatorOverload);
         }
 
         public void Accept(IGenericVisitor visitor)

@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyClassFieldDeclaration :
+    public sealed class ReadOnlyStructFieldDeclaration :
         AbstractField<AttributeGroupNotSupported, IType, ReadOnlyTypeReference>
     {
-        private readonly ClassFieldDeclaration field;
+        private readonly StructFieldDeclaration field;
         private readonly ReadOnlyTypeReference fieldType;
 
-        public ReadOnlyClassFieldDeclaration(ClassFieldDeclaration field)
+        public ReadOnlyStructFieldDeclaration(StructFieldDeclaration field)
         {
             this.field = field;
             fieldType = new ReadOnlyTypeReference(field.Type);
@@ -44,7 +44,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override MemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(field.Visibility); }
+            get { return ReadOnlyStruct.GetVisibility(field.Visibility); }
         }
     }
 }
