@@ -39,8 +39,6 @@ namespace CSharpDom.Serialization
 
         public List<Interface> Interfaces { get; set; }
 
-        public string Name { get; set; }
-
         public List<Namespace> Namespaces { get; set; }
 
         public ProjectNotSupported Project

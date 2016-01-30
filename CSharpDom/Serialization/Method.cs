@@ -5,12 +5,12 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class Method :
-        IMethod<AttributeGroup, IBasicType, IGenericParameterDeclaration, TypeReference, Parameter, MethodBody>
+        IMethod<AttributeGroup, IBasicType, GenericParameterDeclaration, TypeReference, Parameter, MethodBody>
     {
         public Method()
         {
             Attributes = new List<AttributeGroup>();
-            GenericParameters = new List<IGenericParameterDeclaration>();
+            GenericParameters = new List<GenericParameterDeclaration>();
             Parameters = new List<Parameter>();
         }
 
@@ -23,7 +23,7 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public List<IGenericParameterDeclaration> GenericParameters { get; set; }
+        public List<GenericParameterDeclaration> GenericParameters { get; set; }
 
         public MemberInheritanceModifier InheritanceModifier { get; set; }
 
@@ -40,7 +40,7 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
-        IReadOnlyList<IGenericParameterDeclaration> IHasGenericParameters<IGenericParameterDeclaration>.GenericParameters
+        IReadOnlyList<GenericParameterDeclaration> IHasGenericParameters<GenericParameterDeclaration>.GenericParameters
         {
             get { return GenericParameters; }
         }
