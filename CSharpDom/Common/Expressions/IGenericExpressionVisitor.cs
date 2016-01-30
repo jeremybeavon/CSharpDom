@@ -28,7 +28,8 @@ namespace CSharpDom.Common.Expressions
 
         void VisitIntegerConstantExpression(IIntegerConstantExpression integerConstantExpression);
 
-        void VisitLambdaExpression<TParameter, TStatement>(ILambdaExpression<TParameter, TStatement> lambdaExpression)
+        void VisitAnonymousMethodExpression<TParameter, TStatement>(
+            IAnonymousMethodExpression<TParameter, TStatement> anonymousMethodExpression)
             where TParameter : IParameter
             where TStatement : IStatement;
 

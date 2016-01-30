@@ -1,14 +1,13 @@
 ﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Expressions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CSharpDom.Common.Statements;
 
 namespace CSharpDom.CodeGeneration.Tree.Statements
 {
-    public sealed class ReadOnlyExpressionStatement : AbstractExpressionStatement<IExpression>, IExpression
+    public sealed class ReadOnlyExpressionStatement :
+        AbstractExpressionStatement<IExpression>,
+        IExpression,
+        IForInitializerStatement
     {
         private readonly IExpression expression;
 

@@ -23,7 +23,7 @@ namespace CSharpDom.BaseClasses
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitParameter(this, visitor);
+            GenericVisitor.VisitParameterChildren(this, visitor);
         }
     }
 }

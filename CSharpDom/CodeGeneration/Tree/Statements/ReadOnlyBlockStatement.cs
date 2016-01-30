@@ -9,9 +9,9 @@ namespace CSharpDom.CodeGeneration.Tree.Statements
     {
         private readonly IReadOnlyList<ReadOnlyStatement> statements;
 
-        public ReadOnlyBlockStatement(BlockStatement statement)
+        public ReadOnlyBlockStatement(BlockStatement blockStatement)
         {
-            statements = ReadOnlyStatement.Create(statement.Statements);
+            statements = ReadOnlyStatement.Create(blockStatement.Statements);
         }
 
         public override IReadOnlyList<ReadOnlyStatement> Statements

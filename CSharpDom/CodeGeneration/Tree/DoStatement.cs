@@ -6,6 +6,6 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public ExpressionStatement Condition { get; set; }
 
-        public Collection<Statement> Block { get; set; }
+        public Statement Statement { get; set; }
     }
 }

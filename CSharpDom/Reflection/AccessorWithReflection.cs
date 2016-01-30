@@ -1,6 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
-using CSharpDom.NotSupported;
+using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
@@ -9,13 +9,14 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class AccessorWithReflection :
-        AbstractAccessor<AttributeWithReflection, MethodBodyNotSupported>,
+        AbstractAccessor<AttributeWithReflection, ILMethodBodyWithReflectionEmit>,
         IHasMethodInfo,
         IVisitable<IReflectionVisitor>
     {
         private readonly MemberVisibilityModifier visibility;
         private readonly MethodInfo method;
         private readonly Lazy<Attributes> attributes;
+        private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
         internal AccessorWithReflection(IHasMemberVisibilityModifier parentVisibility, MethodInfo method)
         {
@@ -26,6 +27,8 @@ namespace CSharpDom.Reflection
             {
                 visibility = MemberVisibilityModifier.None;
             }
+
+            body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -43,9 +46,9 @@ namespace CSharpDom.Reflection
             get { return method; }
         }
 
-        public override MethodBodyNotSupported Body
+        public override ILMethodBodyWithReflectionEmit Body
         {
-            get { return new MethodBodyNotSupported(); }
+            get { return body.Value; }
         }
 
         public void Accept(IReflectionVisitor visitor)

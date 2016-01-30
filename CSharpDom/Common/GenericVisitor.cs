@@ -524,7 +524,7 @@ namespace CSharpDom.Common
             VisitIfNotNull(operatorOverload.Body, visitor);
         }
 
-        public static void VisitParameter<TAttributeGroup, TTypeReference>(
+        public static void VisitParameterChildren<TAttributeGroup, TTypeReference>(
             IParameter<TAttributeGroup, TTypeReference> parameter,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup

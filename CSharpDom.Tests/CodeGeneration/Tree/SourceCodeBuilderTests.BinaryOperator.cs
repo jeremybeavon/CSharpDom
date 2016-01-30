@@ -1,6 +1,7 @@
 ﻿using CSharpDom.CodeGeneration.Tree;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.Tests.CodeGeneration.Tree
 {
@@ -9,7 +10,13 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         [TestMethod]
         public void TestClassWithPlusBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator +(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -18,7 +25,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.Plus)
                                 {
@@ -27,7 +34,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -39,21 +46,19 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator +(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithMinusBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator -(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -62,7 +67,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.Minus)
                                 {
@@ -71,7 +76,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -83,21 +88,19 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator -(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithMultiplyBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator *(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -106,7 +109,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.Multiply)
                                 {
@@ -115,7 +118,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -127,21 +130,19 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator *(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithDivideBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator /(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -150,7 +151,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.Divide)
                                 {
@@ -159,7 +160,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -171,21 +172,19 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator /(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithModuloBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator %(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -194,7 +193,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.Modulo)
                                 {
@@ -203,7 +202,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -215,21 +214,19 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator %(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithAndBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator &(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -238,7 +235,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.And)
                                 {
@@ -247,7 +244,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -259,21 +256,19 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator &(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithOrBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator |(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -282,7 +277,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.Or)
                                 {
@@ -291,7 +286,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -303,21 +298,19 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator |(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithExclusiveOrBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator ^(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -326,7 +319,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.ExclusiveOr)
                                 {
@@ -335,7 +328,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -347,21 +340,19 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator ^(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithLeftShiftBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator <<(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -370,7 +361,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.LeftShift)
                                 {
@@ -379,7 +370,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -391,21 +382,19 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator <<(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithRightShiftBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
+            const string expectedText = @"class TestClass
+{
+    public static TestClass operator >>(TestClass parameter1, TestClass parameter2)
+    {
+        return parameter1;
+    }
+}";
             (new CodeGenerationFile()
             {
                 Classes =
@@ -414,7 +403,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
                                 new BinaryOperator(BinaryOperatorType.RightShift)
                                 {
@@ -423,7 +412,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
                                     ReturnType = new TypeReference("TestClass"),
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -435,50 +424,12 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator >>(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
-            builder.ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(expectedText);
         }
 
         [TestMethod]
         public void TestClassWithEqualBinaryOperator()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
-            {
-                Classes =
-                {
-                    new Class("TestClass")
-                    {
-                        Body = new ClassBody()
-                        {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
-                            {
-                                new BinaryOperator(BinaryOperatorType.Equal)
-                                {
-                                    Parameter1Type = new TypeReference("TestClass"),
-                                    Parameter1Name = "parameter1",
-                                    Parameter2Type = new TypeReference("TestClass"),
-                                    Parameter2Name = "parameter2",
-                                    Body = new CodeGenerationCollection<Statement>()
-                                    {
-                                        new ReturnStatement()
-                                        {
-                                            RawExpression = "true"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }).Accept(builder);
             const string expectedText = @"class TestClass
 {
     public static bool operator ==(TestClass parameter1, TestClass parameter2)
@@ -486,13 +437,6 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         return true;
     }
 }";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithNotEqualBinaryOperator()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
                 Classes =
@@ -501,15 +445,15 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
-                                new BinaryOperator(BinaryOperatorType.NotEqual)
+                                new BinaryOperator(BinaryOperatorType.Equal)
                                 {
                                     Parameter1Type = new TypeReference("TestClass"),
                                     Parameter1Name = "parameter1",
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -521,7 +465,12 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
+            }).ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassWithNotEqualBinaryOperator()
+        {
             const string expectedText = @"class TestClass
 {
     public static bool operator !=(TestClass parameter1, TestClass parameter2)
@@ -529,13 +478,6 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         return true;
     }
 }";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithGreaterThanBinaryOperator()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
                 Classes =
@@ -544,15 +486,15 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
-                                new BinaryOperator(BinaryOperatorType.GreaterThan)
+                                new BinaryOperator(BinaryOperatorType.NotEqual)
                                 {
                                     Parameter1Type = new TypeReference("TestClass"),
                                     Parameter1Name = "parameter1",
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -564,7 +506,12 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
+            }).ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassWithGreaterThanBinaryOperator()
+        {
             const string expectedText = @"class TestClass
 {
     public static bool operator >(TestClass parameter1, TestClass parameter2)
@@ -572,13 +519,6 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         return true;
     }
 }";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithGreaterThanOrEqualBinaryOperator()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
                 Classes =
@@ -587,15 +527,15 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
-                                new BinaryOperator(BinaryOperatorType.GreaterThanOrEqual)
+                                new BinaryOperator(BinaryOperatorType.GreaterThan)
                                 {
                                     Parameter1Type = new TypeReference("TestClass"),
                                     Parameter1Name = "parameter1",
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -607,7 +547,12 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
+            }).ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassWithGreaterThanOrEqualBinaryOperator()
+        {
             const string expectedText = @"class TestClass
 {
     public static bool operator >=(TestClass parameter1, TestClass parameter2)
@@ -615,13 +560,6 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         return true;
     }
 }";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithLessThanBinaryOperator()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
                 Classes =
@@ -630,15 +568,15 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
-                                new BinaryOperator(BinaryOperatorType.LessThan)
+                                new BinaryOperator(BinaryOperatorType.GreaterThanOrEqual)
                                 {
                                     Parameter1Type = new TypeReference("TestClass"),
                                     Parameter1Name = "parameter1",
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -650,7 +588,12 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
+            }).ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassWithLessThanBinaryOperator()
+        {
             const string expectedText = @"class TestClass
 {
     public static bool operator <(TestClass parameter1, TestClass parameter2)
@@ -658,13 +601,6 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         return true;
     }
 }";
-            builder.ToString().Should().Be(expectedText);
-        }
-
-        [TestMethod]
-        public void TestClassWithLessThanOrEqualBinaryOperator()
-        {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
             (new CodeGenerationFile()
             {
                 Classes =
@@ -673,15 +609,15 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     {
                         Body = new ClassBody()
                         {
-                            BinaryOperators = new CodeGenerationCollection<BinaryOperator>()
+                            BinaryOperators = new Collection<BinaryOperator>()
                             {
-                                new BinaryOperator(BinaryOperatorType.LessThanOrEqual)
+                                new BinaryOperator(BinaryOperatorType.LessThan)
                                 {
                                     Parameter1Type = new TypeReference("TestClass"),
                                     Parameter1Name = "parameter1",
                                     Parameter2Type = new TypeReference("TestClass"),
                                     Parameter2Name = "parameter2",
-                                    Body = new CodeGenerationCollection<Statement>()
+                                    Body = new Collection<Statement>()
                                     {
                                         new ReturnStatement()
                                         {
@@ -693,7 +629,12 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).Accept(builder);
+            }).ToString().Should().Be(expectedText);
+        }
+
+        [TestMethod]
+        public void TestClassWithLessThanOrEqualBinaryOperator()
+        {
             const string expectedText = @"class TestClass
 {
     public static bool operator <=(TestClass parameter1, TestClass parameter2)
@@ -701,7 +642,35 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         return true;
     }
 }";
-            builder.ToString().Should().Be(expectedText);
+            (new CodeGenerationFile()
+            {
+                Classes =
+                {
+                    new Class("TestClass")
+                    {
+                        Body = new ClassBody()
+                        {
+                            BinaryOperators = new Collection<BinaryOperator>()
+                            {
+                                new BinaryOperator(BinaryOperatorType.LessThanOrEqual)
+                                {
+                                    Parameter1Type = new TypeReference("TestClass"),
+                                    Parameter1Name = "parameter1",
+                                    Parameter2Type = new TypeReference("TestClass"),
+                                    Parameter2Name = "parameter2",
+                                    Body = new Collection<Statement>()
+                                    {
+                                        new ReturnStatement()
+                                        {
+                                            RawExpression = "true"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }).ToString().Should().Be(expectedText);
         }
     }
 }

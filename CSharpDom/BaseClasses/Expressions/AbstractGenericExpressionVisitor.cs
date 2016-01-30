@@ -59,11 +59,12 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(integerConstantExpression);
         }
 
-        public virtual void VisitLambdaExpression<TParameter, TStatement>(ILambdaExpression<TParameter, TStatement> lambdaExpression)
+        public virtual void VisitAnonymousMethodExpression<TParameter, TStatement>(
+            IAnonymousMethodExpression<TParameter, TStatement> anonymousMethod)
             where TParameter : IParameter
             where TStatement : IStatement
         {
-            Visit(lambdaExpression);
+            Visit(anonymousMethod);
         }
 
         public virtual void VisitListInitializerExpression<TCreateListExpression, TExpression>(

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface ILambdaExpression<TParameter, TStatement> : ILambdaExpression
+    public interface IAnonymousMethodExpression<TParameter, TStatement> : IAnonymousMethodExpression
         where TParameter : IParameter
         where TStatement : IStatement
     {

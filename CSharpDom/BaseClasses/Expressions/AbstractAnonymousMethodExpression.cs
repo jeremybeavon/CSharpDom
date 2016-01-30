@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractLambdaExpression<TParameter, TStatement> :
-        ILambdaExpression<TParameter, TStatement>
+    public abstract class AbstractAnonymousMethodExpression<TParameter, TStatement> :
+        IAnonymousMethodExpression<TParameter, TStatement>
         where TParameter : IParameter
         where TStatement : IStatement
     {
@@ -16,7 +16,7 @@ namespace CSharpDom.BaseClasses.Expressions
 
         public void Accept(IGenericExpressionVisitor visitor)
         {
-            visitor.VisitLambdaExpression(this);
+            visitor.VisitAnonymousMethodExpression(this);
         }
 
         public void AcceptChildren(IGenericExpressionVisitor visitor)

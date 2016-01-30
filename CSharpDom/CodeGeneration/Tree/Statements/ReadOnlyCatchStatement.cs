@@ -1,14 +1,10 @@
 ﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.CodeGeneration.Tree.Types;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree.Statements
 {
-    public abstract class ReadOnlyCatchStatement : AbstractCatchStatement<ReadOnlyTypeReference, ReadOnlyStatement>
+    public sealed class ReadOnlyCatchStatement : AbstractCatchStatement<ReadOnlyTypeReference, ReadOnlyStatement>
     {
         private readonly IReadOnlyList<ReadOnlyStatement> statements;
         private readonly ReadOnlyTypeReference type;
