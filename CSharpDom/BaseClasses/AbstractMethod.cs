@@ -23,6 +23,10 @@ namespace CSharpDom.BaseClasses
 
         public abstract MemberInheritanceModifier InheritanceModifier { get; }
 
+        public abstract bool IsAsync { get; }
+
+        public abstract bool IsPartial { get; }
+
         public abstract string Name { get; }
 
         public abstract IReadOnlyList<TParameter> Parameters { get; }

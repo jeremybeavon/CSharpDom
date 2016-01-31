@@ -184,6 +184,10 @@ namespace CSharpDom.Reflection
             get { return type; }
         }
 
+        public override bool IsPartial
+        {
+            get { return false; }
+        }
 
         public void Accept(IReflectionVisitor visitor)
         {

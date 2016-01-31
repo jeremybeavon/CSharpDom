@@ -3,6 +3,7 @@ using CSharpDom.Common;
 using CSharpDom.NotSupported;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
@@ -53,6 +54,16 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override MemberInheritanceModifier InheritanceModifier
         {
             get { return ReadOnlyClass.GetInheritanceModifier(method.InheritanceModifier); }
+        }
+
+        public override bool IsAsync
+        {
+            get { return method.IsAsync; }
+        }
+
+        public override bool IsPartial
+        {
+            get { return method.IsPartial; }
         }
 
         public override string Name

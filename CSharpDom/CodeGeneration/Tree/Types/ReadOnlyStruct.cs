@@ -109,6 +109,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.Interfaces; }
         }
 
+        public override bool IsPartial
+        {
+            get { return @struct.IsPartial; }
+        }
+
         public override IReadOnlyCollection<ReadOnlyStructMethod> Methods
         {
             get { return body.Methods; }

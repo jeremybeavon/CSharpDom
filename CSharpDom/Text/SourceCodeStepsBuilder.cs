@@ -415,9 +415,24 @@ namespace CSharpDom.Text
             Steps.AddGenericParameterSteps(interfaceReference.GenericParameters);
         }
 
-        public override void VisitLoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            ILoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
+        public override void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
         {
+            if (loadedDocument.UsingDirectives.Count != 0)
+            {
+                Steps.AddChildNodeStepsOnNewLines(loadedDocument.UsingDirectives);
+                Steps.Add(new WriteNewLine());
+                Steps.Add(new WriteIndentedNewLine());
+            }
+
+            if (loadedDocument.AssemblyAttributes.Count != 0 || loadedDocument.ModuleAttributes.Count != 0)
+            {
+                Steps.AddChildNodeStepsOnNewLines(loadedDocument.AssemblyAttributes);
+                Steps.AddChildNodeStepsOnNewLines(loadedDocument.ModuleAttributes);
+                Steps.Add(new WriteNewLine());
+                Steps.Add(new WriteIndentedNewLine());
+            }
+
             IEnumerable<ISourceCodeBuilderStep> steps =
                 loadedDocument.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum))
                 .Concat(loadedDocument.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)))
@@ -486,8 +501,8 @@ namespace CSharpDom.Text
             Steps.Add(new WriteRawValue(namedAttributeValue.RawValue));
         }
 
-        public override void VisitNamespace<TClass, TDelegate, TEnum, TInterface, TStruct>(
-            INamespace<TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
+        public override void VisitNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
         {
             Steps.Add(new WriteNamespaceKeyword());
             Steps.Add(new WriteWhitespace());
@@ -495,14 +510,26 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteIndentedNewLine());
-            IEnumerable<ISourceCodeBuilderStep> steps =
+            Steps.AddChildNodeStepsOnNewLines(@namespace.UsingDirectives, NewLineLocation.BeforeNode);
+            ISourceCodeBuilderStep[] steps =
                 @namespace.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum))
                 .Concat(@namespace.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)))
                 .Concat(@namespace.Interfaces.Select(@interface => new WriteChildNode<TInterface>(@interface)))
                 .Concat(@namespace.Structs.Select(@struct => new WriteChildNode<TStruct>(@struct)))
-                .Concat(@namespace.Classes.Select(@class => new WriteChildNode<TClass>(@class)));
-            Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
+                .Concat(@namespace.Classes.Select(@class => new WriteChildNode<TClass>(@class)))
+                .Concat(@namespace.Namespaces.Select(inner => new WriteChildNode<TNamespace>(inner)))
+                .ToArray();
+            if (steps.Length != 0)
+            {
+                if (@namespace.UsingDirectives.Count != 0)
+                {
+                    Steps.Add(new WriteNewLine());
+                }
+
+                Steps.Add(new WriteIndentedNewLine());
+                Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
+            }
+
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
@@ -738,6 +765,14 @@ namespace CSharpDom.Text
         {
             Steps.Add(new WriteName(unspecificTypeReference.Name));
             Steps.AddGenericParameterSteps(unspecificTypeReference.GenericParameters);
+        }
+
+        public override void VisitUsingDirective(IUsingDirective usingDirective)
+        {
+            Steps.Add(new WriteUsingKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(usingDirective.Name));
+            Steps.Add(new WriteSemicolon());
         }
     }
 }

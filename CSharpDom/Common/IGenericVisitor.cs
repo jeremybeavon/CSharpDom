@@ -159,11 +159,13 @@ namespace CSharpDom.Common
         void VisitInterfaceReference<TGenericParameter>(IInterfaceReference<TGenericParameter> interfaceReference)
             where TGenericParameter : IGenericParameter;
 
-        void VisitLoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            ILoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
+        void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
             where TSolution : ISolution
             where TProject : IProject
             where TDocument : IDocument
+            where TUsingDirective : IUsingDirective
+            where TAttributeGroup : IAttributeGroup
             where TNamespace : INamespace
             where TClass : IClass
             where TDelegate : IDelegate
@@ -184,8 +186,10 @@ namespace CSharpDom.Common
 
         void VisitNamedAttributeValue(INamedAttributeValue namedAttributeValue);
 
-        void VisitNamespace<TClass, TDelegate, TEnum, TInterface, TStruct>(
-            INamespace<TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
+        void VisitNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
+            where TUsingDirective : IUsingDirective
+            where TNamespace : INamespace
             where TClass : IClass
             where TDelegate : IDelegate
             where TEnum : IEnum
@@ -332,5 +336,7 @@ namespace CSharpDom.Common
 
         void VisitUnspecifiedTypeReference<TGenericParameter>(IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
             where TGenericParameter : IGenericParameter;
+
+        void VisitUsingDirective(IUsingDirective usingDirective);
     }
 }

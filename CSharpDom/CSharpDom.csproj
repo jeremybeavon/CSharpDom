@@ -102,6 +102,7 @@
     <Compile Include="BaseClasses\AbstractStruct.cs" />
     <Compile Include="BaseClasses\AbstractUnnamedAttributeValue.cs" />
     <Compile Include="BaseClasses\AbstractUnspecifiedTypeReference.cs" />
+    <Compile Include="BaseClasses\AbstractUsingDirective.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractUnaryOperatorExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractTypeofExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractTernaryOperatorExpression.cs" />
@@ -158,6 +159,13 @@
     <Compile Include="BaseClasses\IL\AbstractSimpleInstruction.cs" />
     <Compile Include="BaseClasses\IL\AbstractSwitchInstruction.cs" />
     <Compile Include="BaseClasses\IL\AbstractTypeInstruction.generic.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyUsingDeclaration.cs" />
+    <Compile Include="Common\Expressions\IHasObjectInitializers.cs" />
+    <Compile Include="Common\IHasAsyncSupport.cs" />
+    <Compile Include="Common\IHasModuleAttributes.cs" />
+    <Compile Include="Common\IHasAssemblyAttributes.cs" />
+    <Compile Include="Common\IHasPartialSupport.cs" />
+    <Compile Include="Common\IHasUsingDirectives.cs" />
     <Compile Include="Common\IL\ILInstructionVisitor.cs" />
     <Compile Include="BaseClasses\Statements\AbstractDefaultCaseStatement.cs" />
     <Compile Include="BaseClasses\Statements\AbstractUsingStatement.cs" />
@@ -422,6 +430,7 @@
     <Compile Include="Common\IStruct.cs" />
     <Compile Include="Common\IType.cs" />
     <Compile Include="Common\IUnspecifiedTypeReference.cs" />
+    <Compile Include="Common\IUsingDirective.cs" />
     <Compile Include="Common\Statements\GenericStatementVisitor.cs" />
     <Compile Include="Common\Statements\IDefaultCaseStatement.cs" />
     <Compile Include="Common\Statements\IDefaultCaseStatement.generic.cs" />
@@ -480,6 +489,7 @@
     <Compile Include="Linq\Expressions\DynamicMethodCallExpressionWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\EmptyStatementWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\ICreateListLinqExpression.cs" />
+    <Compile Include="Linq\Expressions\ICreateObjectLinqExpression.cs" />
     <Compile Include="Linq\Expressions\ILinqExpression.cs" />
     <Compile Include="Linq\Expressions\ILinqExpression.generic.cs" />
     <Compile Include="Linq\Expressions\ILinqStatement.cs" />
@@ -490,6 +500,11 @@
     <Compile Include="Linq\Expressions\DelegateMethodCallExpressionWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\MemberExpressionWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\MethodCallExpressionWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\NewArrayExpressionWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\NewExpressionWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\ObjectInitializerExpressionWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\ObjectInitializersWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\ParameterExpressionWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\ParameterWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\ReturnStatementWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\StringConstantWithLinqExpressions.cs" />
@@ -498,6 +513,8 @@
     <Compile Include="Linq\Expressions\LinqStatementBuilder.cs" />
     <Compile Include="Linq\Expressions\NullExpressionWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\TernaryOperatorExpressionWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\TypeBinaryExpressionWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\UnaryOperatorExpressionWithLinqExpressions.cs" />
     <Compile Include="MemberInheritanceModifier.cs" />
     <Compile Include="Common\IHasMemberVisibilityModifier.cs" />
     <Compile Include="MemberVisibilityModifier.cs" />
@@ -599,6 +616,7 @@
     <Compile Include="NotSupported\StructReferenceNotSupported.cs" />
     <Compile Include="NotSupported\NestedDestructorNotSupported.cs" />
     <Compile Include="NotSupported\NestedEnumMemberNotSupported.cs" />
+    <Compile Include="NotSupported\UsingDirectiveNotSupported.cs" />
     <Compile Include="OperatorOverloadType.cs" />
     <Compile Include="QueryOrderByType.cs" />
     <Compile Include="Reflection\AbstractReflectionVisitor.cs" />
@@ -714,6 +732,7 @@
     <Compile Include="Serialization\Factories\Expressions\AbstractExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\ExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\ReadOnlyListExtensions.cs" />
+    <Compile Include="Serialization\Factories\ILInstructionFactory.cs" />
     <Compile Include="Serialization\Factories\SolutionFactory.cs" />
     <Compile Include="Serialization\Factories\ProjectFactory.cs" />
     <Compile Include="Serialization\Factories\DocumentFactory.cs" />
@@ -787,6 +806,7 @@
     <Compile Include="Serialization\Factories\TypeReferenceFactory.cs" />
     <Compile Include="Serialization\Factories\UnnamedAttributeValueFactory.cs" />
     <Compile Include="Serialization\Factories\NamedAttributeValueFactory.cs" />
+    <Compile Include="Serialization\Factories\UsingDirectiveFactory.cs" />
     <Compile Include="Serialization\IL\MethodInstruction.cs" />
     <Compile Include="Serialization\IL\TypeInstruction.cs" />
     <Compile Include="Serialization\IL\SwitchInstruction.cs" />
@@ -866,6 +886,7 @@
     <Compile Include="Serialization\StructReference.cs" />
     <Compile Include="Serialization\TypeReference.cs" />
     <Compile Include="Serialization\UnnamedAttributeValue.cs" />
+    <Compile Include="Serialization\UsingDirective.cs" />
     <Compile Include="Text\ChildSteps.cs" />
     <Compile Include="Text\IHasChildNode.cs" />
     <Compile Include="Text\IHasExpression.cs" />
@@ -875,6 +896,7 @@
     <Compile Include="Text\ISourceCodeStyleRule.cs" />
     <Compile Include="Text\ListExtensions.cs" />
     <Compile Include="Text\AccessorFlags.cs" />
+    <Compile Include="Text\NewLineLocation.cs" />
     <Compile Include="Text\Rules\VisualStudio\IndentBlockContentsRule.cs" />
     <Compile Include="Text\Rules\VisualStudio\IndentOpenAndCloseBracesRule.cs" />
     <Compile Include="Text\SourceCodeStatementStepsBuilder.cs" />
@@ -1123,7 +1145,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CodeDom\" />
-    <Folder Include="Serialization\Factories\IL\" />
     <Folder Include="Text\Rules\Resharper\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

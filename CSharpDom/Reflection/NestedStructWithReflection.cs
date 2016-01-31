@@ -104,6 +104,11 @@ namespace CSharpDom.Reflection
             get { return typeWithReflection.Interfaces; }
         }
 
+        public override bool IsPartial
+        {
+            get { return false; }
+        }
+
         public override IReadOnlyCollection<MethodWithReflection> Methods
         {
             get { return typeWithReflection.Methods; }

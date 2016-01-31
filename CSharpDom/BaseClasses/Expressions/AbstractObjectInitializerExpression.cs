@@ -3,14 +3,19 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression> :
-        IObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression>
+    public abstract class AbstractObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer> :
+        IObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer>
         where TCreateObjectExpression : ICreateObjectExpression
-        where TBinaryOperatorExpression : IBinaryOperatorExpression
+        where TExpression : IExpression
+        where TObjectInitializer : IHasObjectInitializers<TExpression, TObjectInitializer>
     {
         public abstract TCreateObjectExpression CreateObjectExpression { get; }
 
-        public abstract IReadOnlyCollection<TBinaryOperatorExpression> Members { get; }
+        public abstract IReadOnlyList<IReadOnlyList<TExpression>> Elements { get; }
+
+        public abstract IReadOnlyDictionary<string, TObjectInitializer> Initializers { get; }
+
+        public abstract IReadOnlyDictionary<string, TExpression> Members { get; }
 
         public void Accept(IGenericExpressionVisitor visitor)
         {

@@ -24,6 +24,7 @@
         IHasName,
         IHasMemberVisibilityModifier,
         IHasTypeInheritanceModifier,
+        IHasPartialSupport,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
         IHasGenericParameters<TGenericParameter>,

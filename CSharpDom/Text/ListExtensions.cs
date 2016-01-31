@@ -178,13 +178,22 @@ namespace CSharpDom.Text
 
         internal static void AddChildNodeStepsOnNewLines<T>(
             this List<ISourceCodeBuilderStep> steps,
-            IReadOnlyCollection<T> childNodes)
+            IReadOnlyCollection<T> childNodes,
+            NewLineLocation location = NewLineLocation.AfterNode)
             where T : IVisitable<IGenericVisitor>
         {
             foreach (T childNode in childNodes)
             {
+                if (location == NewLineLocation.BeforeNode)
+                {
+                    steps.Add(new WriteIndentedNewLine());
+                }
+
                 steps.Add(new WriteChildNode<T>(childNode));
-                steps.Add(new WriteIndentedNewLine());
+                if (location == NewLineLocation.AfterNode)
+                {
+                    steps.Add(new WriteIndentedNewLine());
+                }
             }
         }
 
@@ -487,6 +496,81 @@ namespace CSharpDom.Text
             {
                 steps.Add(new WriteIndentedNewLine());
                 steps.Add(new WriteStatement<TStatement>(statement));
+            }
+        }
+
+        internal static void AddListInitializerSteps<TExpression>(
+            this List<ISourceCodeBuilderStep> steps,
+            IReadOnlyList<IReadOnlyList<TExpression>> listInitializer,
+            bool addComma = false)
+            where TExpression : IExpression
+        {
+            foreach (IReadOnlyList<TExpression> initialValues in listInitializer)
+            {
+                steps.AddCommaIfNecessary(addComma);
+                addComma = true;
+                steps.Add(new WriteIndentedNewLine());
+                if (initialValues.Count > 1)
+                {
+                    steps.Add(new WriteStartBrace());
+                    steps.Add(new WriteWhitespace());
+                }
+
+                steps.AddCommaSeparatedExpressionSteps(initialValues);
+                if (initialValues.Count > 1)
+                {
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteEndBrace());
+                }
+            }
+        }
+            
+
+        internal static void AddObjectInitializerSteps<TExpression, TObjectInitializer>(
+            this List<ISourceCodeBuilderStep> steps,
+            IHasObjectInitializers<TExpression, TObjectInitializer> objectInitializer)
+            where TExpression : IExpression
+            where TObjectInitializer : IHasObjectInitializers<TExpression, TObjectInitializer>
+        {
+            steps.Add(new WriteIndentedNewLine());
+            steps.Add(new WriteStartBrace());
+            steps.Add(new IncrementIndent());
+            bool addComma = false;
+            foreach (KeyValuePair<string, TExpression> expression in objectInitializer.Members)
+            {
+                steps.AddCommaIfNecessary(addComma);
+                addComma = true;
+                steps.Add(new WriteIndentedNewLine());
+                steps.Add(new WriteName(expression.Key));
+                steps.Add(new WriteWhitespace());
+                steps.Add(new WriteEquals());
+                steps.Add(new WriteWhitespace());
+                steps.Add(new WriteExpression<TExpression>(expression.Value));
+            }
+
+            foreach (KeyValuePair<string, TObjectInitializer> initializer in objectInitializer.Initializers)
+            {
+                steps.AddCommaIfNecessary(addComma);
+                addComma = true;
+                steps.Add(new WriteIndentedNewLine());
+                steps.Add(new WriteName(initializer.Key));
+                steps.Add(new WriteWhitespace());
+                steps.Add(new WriteEquals());
+                steps.Add(new WriteWhitespace());
+                steps.AddObjectInitializerSteps(initializer.Value);
+            }
+
+            steps.AddListInitializerSteps(objectInitializer.Elements, addComma);
+            steps.Add(new DecrementIndent());
+            steps.Add(new WriteIndentedNewLine());
+            steps.Add(new WriteEndBrace());
+        }
+
+        public static void AddCommaIfNecessary(this IList<ISourceCodeBuilderStep> steps, bool addComma)
+        {
+            if (addComma)
+            {
+                steps.Add(new WriteComma());
             }
         }
         

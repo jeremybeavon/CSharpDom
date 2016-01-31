@@ -76,6 +76,16 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return MemberVisibilityModifier.None; }
         }
 
+        public override bool IsAsync
+        {
+            get { return false; }
+        }
+
+        public override bool IsPartial
+        {
+            get { return false; }
+        }
+
         public static IReadOnlyCollection<ReadOnlyInterfaceMethod> Create(IEnumerable<InterfaceMethod> interfaceMethods)
         {
             return interfaceMethods.ToArray(interfaceMethod => new ReadOnlyInterfaceMethod(interfaceMethod));

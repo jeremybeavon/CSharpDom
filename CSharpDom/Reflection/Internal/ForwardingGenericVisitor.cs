@@ -136,8 +136,8 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitInterfaceReferenceWithReflection((InterfaceReferenceWithReflection)(object)interfaceReference);
         }
 
-        public override void VisitLoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            ILoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
+        public override void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
         {
             visitor.VisitAssemblyWithReflection((AssemblyWithReflection)(object)loadedDocument);
         }
@@ -153,8 +153,8 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitNamedAttributeValueWithReflection((NamedAttributeValueWithReflection)(object)namedAttributeValue);
         }
 
-        public override void VisitNamespace<TClass, TDelegate, TEnum, TInterface, TStruct>(
-            INamespace<TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
+        public override void VisitNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
         {
             visitor.VisitNamespaceWithReflection((NamespaceWithReflection)(object)@namespace);
         }

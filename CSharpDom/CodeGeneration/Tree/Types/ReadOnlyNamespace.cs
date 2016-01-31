@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyNamespace :
         AbstractNamespace<
+            ReadOnlyUsingDeclaration,
+            ReadOnlyNamespace,
             ReadOnlyClass,
             ReadOnlyDelegate,
             ReadOnlyEnum,
@@ -12,6 +15,8 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyStruct>
     {
         private readonly string name;
+        private readonly IReadOnlyCollection<ReadOnlyUsingDeclaration> usingDirectives;
+        private readonly IReadOnlyCollection<ReadOnlyNamespace> namespaces;
         private readonly IReadOnlyCollection<ReadOnlyClass> classes;
         private readonly IReadOnlyCollection<ReadOnlyDelegate> delegates;
         private readonly IReadOnlyCollection<ReadOnlyEnum> enums;
@@ -21,6 +26,8 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public ReadOnlyNamespace(Namespace @namespace)
         {
             name = @namespace.Name;
+            usingDirectives = @namespace.Usings.ToArray(@using => new ReadOnlyUsingDeclaration(@using));
+            namespaces = @namespace.Namespaces.ToArray(inner => new ReadOnlyNamespace(inner));
             classes = @namespace.Classes.ToArray(@class => new ReadOnlyClass(@class));
             delegates = @namespace.Delegates.ToArray(@delegate => new ReadOnlyDelegate(@delegate));
             enums = @namespace.Enums.ToArray(@enum => new ReadOnlyEnum(@enum));
@@ -56,6 +63,16 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override IReadOnlyCollection<ReadOnlyStruct> Structs
         {
             get { return structs; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyNamespace> Namespaces
+        {
+            get { return namespaces; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyUsingDeclaration> UsingDirectives
+        {
+            get { return usingDirectives; }
         }
     }
 }

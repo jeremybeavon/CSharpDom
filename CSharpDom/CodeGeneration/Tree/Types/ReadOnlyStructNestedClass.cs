@@ -147,7 +147,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return body.Interfaces; }
         }
-        
+
+        public override bool IsPartial
+        {
+            get { return nestedClass.IsPartial; }
+        }
+
         public override IReadOnlyCollection<ReadOnlyClassMethod> Methods
         {
             get { return body.Methods; }

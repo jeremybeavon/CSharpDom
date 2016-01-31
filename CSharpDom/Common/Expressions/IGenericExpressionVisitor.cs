@@ -59,10 +59,11 @@ namespace CSharpDom.Common.Expressions
 
         void VisitNullExpression(INullExpression nullExpression);
 
-        void VisitObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression>(
-            IObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression> objectInitializerExpression)
+        void VisitObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer>(
+            IObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer> objectInitializerExpression)
             where TCreateObjectExpression : ICreateObjectExpression
-            where TBinaryOperatorExpression : IBinaryOperatorExpression;
+            where TExpression : IExpression
+            where TObjectInitializer : IHasObjectInitializers<TExpression, TObjectInitializer>;
 
         void VisitOutExpression<TExpression>(IOutExpression<TExpression> outExpression)
             where TExpression : IExpression;

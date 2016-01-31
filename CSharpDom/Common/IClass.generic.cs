@@ -26,6 +26,7 @@
         IHasName,
         IHasTypeVisibilityModifier,
         IHasTypeInheritanceModifier,
+        IHasPartialSupport,
         IHasBaseClass<TClassReference>,
         IHasImplementedInterfaces<TInterfaceReference>,
         IHasNamespace<TNamespace>,

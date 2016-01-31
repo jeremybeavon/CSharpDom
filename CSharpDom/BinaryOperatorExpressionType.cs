@@ -31,6 +31,8 @@
         RightShift,
         RightShiftAssign,
         Subtract,
-        SubtractAssign
+        SubtractAssign,
+        TypeIs,
+        TypeAs
     }
 }

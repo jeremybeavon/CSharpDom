@@ -19,6 +19,7 @@ namespace CSharpDom.Serialization.Factories
                 GenericParameters = @interface.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 Indexers = @interface.Indexers.ToList(indexer => new IndexerFactory(indexer).Value),
                 Interfaces = @interface.Interfaces.ToList(baseInterface => new InterfaceReferenceFactory(baseInterface).Value),
+                IsPartial = @interface.IsPartial,
                 Methods = @interface.Methods.ToList(method => new MethodFactory(method).Value),
                 Name = @interface.Name,
                 Properties = @interface.Properties.ToList(property => new PropertyFactory(property).Value),

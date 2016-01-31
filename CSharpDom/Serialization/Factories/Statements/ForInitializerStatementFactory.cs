@@ -9,5 +9,30 @@ namespace CSharpDom.Serialization.Factories.Statements
             : base(statement)
         {
         }
+
+        public override void VisitEmptyStatement(IEmptyStatement emptyStatement)
+        {
+            Value = new ForInitializerStatement()
+            {
+                EmptyStatement = new EmptyStatementFactory(emptyStatement).Value
+            };
+        }
+
+        public override void VisitExpressionStatement<TExpression>(IExpressionStatement<TExpression> expressionStatement)
+        {
+            Value = new ForInitializerStatement()
+            {
+                ExpressionStatement = new ExpressionStatementFactory(expressionStatement).Value
+            };
+        }
+
+        public override void VisitVariableDeclarationStatement<TTypeReference, TExpression>(
+            IVariableDeclarationStatement<TTypeReference, TExpression> variableDeclarationStatement)
+        {
+            Value = new ForInitializerStatement()
+            {
+                VariableDeclarationStatement = new VariableDeclarationStatementFactory(variableDeclarationStatement).Value
+            };
+        }
     }
 }

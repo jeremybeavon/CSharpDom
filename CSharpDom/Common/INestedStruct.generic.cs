@@ -21,6 +21,7 @@
         INestedStruct,
         IHasName,
         IHasMemberVisibilityModifier,
+        IHasPartialSupport,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
         IHasGenericParameters<TGenericParameter>,

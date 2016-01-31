@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common.Statements
 {
-    public interface IExpressionStatement : IStatement
+    public interface IExpressionStatement : IForInitializerStatement
     {
     }
 }

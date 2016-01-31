@@ -5,6 +5,8 @@
         IHasName,
         IHasMemberVisibilityModifier,
         IHasMemberInheritanceModifier,
+        IHasAsyncSupport,
+        IHasPartialSupport,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
         IHasGenericParameters<TGenericParameter>,

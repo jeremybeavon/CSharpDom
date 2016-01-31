@@ -239,11 +239,13 @@ namespace CSharpDom.BaseClasses
             Visit(interfaceReference);
         }
 
-        public virtual void VisitLoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            ILoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
+        public virtual void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
             where TSolution : ISolution
             where TProject : IProject
             where TDocument : IDocument
+            where TUsingDirective : IUsingDirective
+            where TAttributeGroup : IAttributeGroup
             where TNamespace : INamespace
             where TClass : IClass
             where TDelegate : IDelegate
@@ -276,8 +278,10 @@ namespace CSharpDom.BaseClasses
             Visit(namedAttributeValue);
         }
 
-        public virtual void VisitNamespace<TClass, TDelegate, TEnum, TInterface, TStruct>(
-            INamespace<TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
+        public virtual void VisitNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
+            where TUsingDirective : IUsingDirective
+            where TNamespace : INamespace
             where TClass : IClass
             where TDelegate : IDelegate
             where TEnum : IEnum
@@ -478,6 +482,11 @@ namespace CSharpDom.BaseClasses
             where TGenericParameter : IGenericParameter
         {
             Visit(unspecificTypeReference);
+        }
+
+        public virtual void VisitUsingDirective(IUsingDirective usingDirective)
+        {
+            Visit(usingDirective);
         }
     }
 }

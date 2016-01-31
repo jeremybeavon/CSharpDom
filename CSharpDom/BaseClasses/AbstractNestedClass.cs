@@ -61,6 +61,8 @@ namespace CSharpDom.BaseClasses
 
         public abstract TypeInheritanceModifier InheritanceModifier { get; }
 
+        public abstract bool IsPartial { get; }
+
         public abstract string Name { get; }
 
         public abstract MemberVisibilityModifier Visibility { get; }

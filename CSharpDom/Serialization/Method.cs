@@ -27,6 +27,10 @@ namespace CSharpDom.Serialization
 
         public MemberInheritanceModifier InheritanceModifier { get; set; }
 
+        public bool IsAsync { get; set; }
+
+        public bool IsPartial { get; set; }
+
         public string Name { get; set; }
 
         public List<Parameter> Parameters { get; set; }

@@ -13,6 +13,8 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             SolutionNotSupported,
             ProjectNotSupported,
             DocumentNotSupported,
+            ReadOnlyUsingDeclaration,
+            AttributeGroupNotSupported,
             ReadOnlyNamespace,
             ReadOnlyClass,
             ReadOnlyDelegate,
@@ -20,6 +22,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyInterface,
             ReadOnlyStruct>
     {
+        private readonly IReadOnlyCollection<ReadOnlyUsingDeclaration> usingDeclarations;
         private readonly IReadOnlyCollection<ReadOnlyNamespace> namespaces;
         private readonly IReadOnlyCollection<ReadOnlyClass> classes;
         private readonly IReadOnlyCollection<ReadOnlyDelegate> delegates;
@@ -29,6 +32,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public ReadOnlyCodeGenerationFile(CodeGenerationFile codeGenerationFile)
         {
+            usingDeclarations = codeGenerationFile.Usings.ToArray(@using => new ReadOnlyUsingDeclaration(@using));
             namespaces = codeGenerationFile.Namespaces.ToArray(@namespace => new ReadOnlyNamespace(@namespace));
             classes = codeGenerationFile.Classes.ToArray(@class => new ReadOnlyClass(@class));
             delegates = codeGenerationFile.Delegates.ToArray(@delegate => new ReadOnlyDelegate(@delegate));
@@ -80,6 +84,21 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override IReadOnlyCollection<ReadOnlyStruct> Structs
         {
             get { return structs; }
+        }
+
+        public override IReadOnlyCollection<AttributeGroupNotSupported> AssemblyAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public override IReadOnlyCollection<AttributeGroupNotSupported> ModuleAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyUsingDeclaration> UsingDirectives
+        {
+            get { return usingDeclarations; }
         }
     }
 }

@@ -27,6 +27,7 @@ namespace CSharpDom.Serialization.Factories
                 ImplementedInterfaces = nestedStruct.ImplementedInterfaces.ToList(@interface => new InterfaceReferenceFactory(@interface).Value),
                 Indexers = nestedStruct.Indexers.ToList(indexer => new IndexerFactory(indexer).Value),
                 Interfaces = nestedStruct.Interfaces.ToList(@interface => new NestedInterfaceFactory(@interface).Value),
+                IsPartial = nestedStruct.IsPartial,
                 Methods = nestedStruct.Methods.ToList(method => new MethodFactory(method).Value),
                 Name = nestedStruct.Name,
                 OperatorOverloads = nestedStruct.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),

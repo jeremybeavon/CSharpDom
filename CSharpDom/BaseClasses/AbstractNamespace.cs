@@ -4,8 +4,10 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractNamespace<TClass, TDelegate, TEnum, TInterface, TStruct> :
-        INamespace<TClass, TDelegate, TEnum, TInterface, TStruct>
+    public abstract class AbstractNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> :
+        INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>
+        where TUsingDirective : IUsingDirective
+        where TNamespace : INamespace
         where TClass : IClass
         where TDelegate : IDelegate
         where TEnum : IEnum
@@ -22,7 +24,11 @@ namespace CSharpDom.BaseClasses
 
         public abstract string Name { get; }
 
+        public abstract IReadOnlyCollection<TNamespace> Namespaces { get; }
+
         public abstract IReadOnlyCollection<TStruct> Structs { get; }
+
+        public abstract IReadOnlyCollection<TUsingDirective> UsingDirectives { get; }
 
         public void Accept(IGenericVisitor visitor)
         {

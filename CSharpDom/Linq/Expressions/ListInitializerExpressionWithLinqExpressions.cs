@@ -11,15 +11,13 @@ namespace CSharpDom.Linq.Expressions
         ILinqExpression<ListInitExpression>
     {
         private readonly ICreateListLinqExpression createListExpression;
-        private readonly IReadOnlyList<ILinqExpression> initialValues;
+        private readonly IReadOnlyList<IReadOnlyList<ILinqExpression>> initialValues;
 
         public ListInitializerExpressionWithLinqExpressions(ListInitExpression expression)
         {
             Expression = expression;
             createListExpression = LinqExpressionBuilder.BuildExpression(expression.NewExpression) as ICreateListLinqExpression;
-            initialValues = new ILinqExpression[0];
-            //initialValues = LinqExpressionBuilder.BuildExpressions(expression.Initializers.Select(initializer => initializer.Arguments))
-            throw new NotImplementedException();
+            initialValues = LinqExpressionBuilder.BuildExpressions(expression.Initializers).ToArray();
         }
 
         public override ICreateListLinqExpression CreateListExpression
@@ -29,7 +27,7 @@ namespace CSharpDom.Linq.Expressions
 
         public ListInitExpression Expression { get; private set; }
 
-        public override IReadOnlyList<ILinqExpression> InitialValues
+        public override IReadOnlyList<IReadOnlyList<ILinqExpression>> InitialValues
         {
             get { return initialValues; }
         }

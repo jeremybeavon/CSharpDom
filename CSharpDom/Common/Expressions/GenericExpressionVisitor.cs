@@ -46,7 +46,10 @@ namespace CSharpDom.Common.Expressions
             where TExpression : IExpression
         {
             VisitIfNotNull(listInitializerExpression.CreateListExpression, visitor);
-            VisitCollection(listInitializerExpression.InitialValues, visitor);
+            foreach (IReadOnlyList<TExpression> initialValues in listInitializerExpression.InitialValues)
+            {
+                VisitCollection(initialValues, visitor);
+            }
         }
 
         public static void VisitMemberExpressionChildren<TExpression>(
@@ -84,14 +87,23 @@ namespace CSharpDom.Common.Expressions
             VisitCollection(newExpression.Parameters, visitor);
         }
         
-        public static void VisitObjectInitializerExpressionChildren<TCreateObjectExpression, TBinaryOperatorExpression>(
-            IObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression> objectInitializerExpression,
+        public static void VisitObjectInitializerExpressionChildren<TCreateObjectExpression, TExpression, TObjectInitializer>(
+            IObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer> objectInitializerExpression,
             IGenericExpressionVisitor visitor)
             where TCreateObjectExpression : ICreateObjectExpression
-            where TBinaryOperatorExpression : IBinaryOperatorExpression
+            where TExpression : IExpression
+            where TObjectInitializer : IHasObjectInitializers<TExpression, TObjectInitializer>
         {
             VisitIfNotNull(objectInitializerExpression.CreateObjectExpression, visitor);
-            VisitCollection(objectInitializerExpression.Members, visitor);
+            foreach (TExpression member in objectInitializerExpression.Members.Values)
+            {
+                VisitIfNotNull(member, visitor);
+            }
+
+            foreach (IReadOnlyList<TExpression> element in objectInitializerExpression.Elements)
+            {
+                VisitCollection(element, visitor);
+            }
         }
 
         public static void VisitOutExpressionChildren<TExpression>(

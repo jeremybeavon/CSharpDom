@@ -1,6 +1,7 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.NotSupported;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
@@ -57,6 +58,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override IReadOnlyCollection<ReadOnlyInterfaceReference> Interfaces
         {
             get { return interfaces; }
+        }
+
+        public override bool IsPartial
+        {
+            get { return @interface.IsPartial; }
         }
 
         public override IReadOnlyCollection<ReadOnlyInterfaceMethod> Methods

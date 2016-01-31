@@ -118,10 +118,11 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(nullExpression);
         }
 
-        public virtual void VisitObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression>(
-            IObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression> objectInitializerExpression)
+        public virtual void VisitObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer>(
+            IObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer> objectInitializerExpression)
             where TCreateObjectExpression : ICreateObjectExpression
-            where TBinaryOperatorExpression : IBinaryOperatorExpression
+            where TExpression : IExpression
+            where TObjectInitializer : IHasObjectInitializers<TExpression, TObjectInitializer>
         {
             Visit(objectInitializerExpression);
         }

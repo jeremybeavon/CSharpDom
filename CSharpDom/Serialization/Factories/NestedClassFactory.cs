@@ -30,6 +30,7 @@ namespace CSharpDom.Serialization.Factories
                 Indexers = nestedClass.Indexers.ToList(indexer => new IndexerFactory(indexer).Value),
                 InheritanceModifier = nestedClass.InheritanceModifier,
                 Interfaces = nestedClass.Interfaces.ToList(@interface => new NestedInterfaceFactory(@interface).Value),
+                IsPartial = nestedClass.IsPartial,
                 Methods = nestedClass.Methods.ToList(method => new MethodFactory(method).Value),
                 Name = nestedClass.Name,
                 OperatorOverloads = nestedClass.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),

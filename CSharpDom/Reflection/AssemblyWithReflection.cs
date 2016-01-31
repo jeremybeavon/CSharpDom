@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using CSharpDom.NotSupported;
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ namespace CSharpDom.Reflection
             AssemblyWithReflection,
             AssemblyWithReflection,
             AssemblyWithReflection,
+            UsingDirectiveNotSupported,
+            AttributeGroupNotSupported,
             NamespaceWithReflection,
             ClassWithReflection,
             DelegateWithReflection,
@@ -141,6 +144,21 @@ namespace CSharpDom.Reflection
         public Assembly Assembly
         {
             get { return assembly; }
+        }
+
+        public override IReadOnlyCollection<AttributeGroupNotSupported> AssemblyAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public override IReadOnlyCollection<AttributeGroupNotSupported> ModuleAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public override IReadOnlyCollection<UsingDirectiveNotSupported> UsingDirectives
+        {
+            get { return new UsingDirectiveNotSupported[0]; }
         }
 
         Task IAsyncVisitable<IGenericVisitor>.AcceptAsync(IGenericVisitor visitor)

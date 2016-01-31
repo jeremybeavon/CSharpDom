@@ -2,6 +2,13 @@
 {
     public enum UnaryOperatorExpressionType
     {
-        Plus
+        Plus,
+        Minus,
+        BitwiseNot,
+        LogicalNot,
+        PreIncrement,
+        PreDecrement,
+        PostIncrement,
+        PostDecrement
     }
 }

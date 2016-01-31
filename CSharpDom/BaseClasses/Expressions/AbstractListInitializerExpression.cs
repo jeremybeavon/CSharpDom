@@ -10,7 +10,7 @@ namespace CSharpDom.BaseClasses.Expressions
     {
         public abstract TCreateListExpression CreateListExpression { get; }
 
-        public abstract IReadOnlyList<TExpression> InitialValues { get; }
+        public abstract IReadOnlyList<IReadOnlyList<TExpression>> InitialValues { get; }
 
         public void Accept(IGenericExpressionVisitor visitor)
         {

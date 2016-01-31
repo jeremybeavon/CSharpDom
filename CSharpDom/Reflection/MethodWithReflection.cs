@@ -55,6 +55,16 @@ namespace CSharpDom.Reflection
             get { return method.InheritanceModifier(); }
         }
 
+        public override bool IsAsync
+        {
+            get { return false; }
+        }
+
+        public override bool IsPartial
+        {
+            get { return false; }
+        }
+
         public MethodInfo MethodInfo
         {
             get { return method; }

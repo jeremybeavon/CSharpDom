@@ -12,11 +12,15 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
     [TestClass]
     public sealed partial class SourceCodeBuilderTests
     {
-        /*[TestMethod]
+        [TestMethod]
         public void Test1UsingAnd1Namespace()
         {
-            SourceCodeBuilder builder = new SourceCodeBuilder();
-            (new CodeGenerationFile()
+            const string expectedText = @"using System;
+
+namespace Namespace1
+{
+}";             
+(new CodeGenerationFile()
             {
                 Usings =
                 {
@@ -26,13 +30,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                 {
                     new Namespace("Namespace1")
                 }
-            }).Accept(builder);
-            const string expectedText = @"using System;
-
-namespace Namespace1
-{
-}";
-            builder.ToString().Should().Be(expectedText);
-        }*/
+            }).ToString().Should().Be(expectedText);
+        }
     }
 }

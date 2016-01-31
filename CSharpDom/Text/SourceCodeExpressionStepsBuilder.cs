@@ -79,13 +79,9 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            foreach (TExpression expression in listInitializerExpression.InitialValues)
-            {
-                Steps.Add(new WriteIndentedNewLine());
-                Steps.Add(new WriteExpression<TExpression>(expression));
-            }
-
+            Steps.AddListInitializerSteps(listInitializerExpression.InitialValues);
             Steps.Add(new DecrementIndent());
+            Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
         }
 
@@ -162,22 +158,11 @@ namespace CSharpDom.Text
             Steps.Add(new WriteNullKeyword());
         }
 
-        public override void VisitObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression>(
-            IObjectInitializerExpression<TCreateObjectExpression, TBinaryOperatorExpression> objectInitializerExpression)
+        public override void VisitObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer>(
+            IObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer> objectInitializerExpression)
         {
             Steps.Add(new WriteExpression<TCreateObjectExpression>(objectInitializerExpression.CreateObjectExpression));
-            Steps.Add(new WriteIndentedNewLine());
-            Steps.Add(new WriteStartBrace());
-            Steps.Add(new IncrementIndent());
-            foreach (TBinaryOperatorExpression expression in objectInitializerExpression.Members)
-            {
-                Steps.Add(new WriteIndentedNewLine());
-                Steps.Add(new WriteExpression<TBinaryOperatorExpression>(expression));
-            }
-
-            Steps.Add(new DecrementIndent());
-            Steps.Add(new WriteIndentedNewLine());
-            Steps.Add(new WriteEndBrace());
+            Steps.AddObjectInitializerSteps(objectInitializerExpression);
         }
 
         public override void VisitOutExpression<TExpression>(IOutExpression<TExpression> outExpression)

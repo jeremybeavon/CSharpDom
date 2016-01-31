@@ -300,12 +300,14 @@ namespace CSharpDom.Common
             VisitCollection(interfaceReference.GenericParameters, visitor);
         }
 
-        public static void VisitLoadedDocumentChildren<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            ILoadedDocument<TSolution, TProject, TDocument, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument,
+        public static void VisitLoadedDocumentChildren<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument,
             IGenericVisitor visitor)
             where TSolution : ISolution
             where TProject : IProject
             where TDocument : IDocument
+            where TUsingDirective : IUsingDirective
+            where TAttributeGroup : IAttributeGroup
             where TNamespace : INamespace
             where TClass : IClass
             where TDelegate : IDelegate
@@ -313,6 +315,9 @@ namespace CSharpDom.Common
             where TInterface : IInterface
             where TStruct : IStruct
         {
+            VisitCollection(loadedDocument.UsingDirectives, visitor);
+            VisitCollection(loadedDocument.AssemblyAttributes, visitor);
+            VisitCollection(loadedDocument.ModuleAttributes, visitor);
             VisitCollection(loadedDocument.Namespaces, visitor);
             VisitCollection(loadedDocument.Classes, visitor);
             VisitCollection(loadedDocument.Delegates, visitor);
@@ -338,15 +343,19 @@ namespace CSharpDom.Common
             VisitIfNotNull(method.Body, visitor);
         }
 
-        public static void VisitNamespaceChildren<TClass, TDelegate, TEnum, TInterface, TStruct>(
-            INamespace<TClass, TDelegate, TEnum, TInterface, TStruct> @namespace,
+        public static void VisitNamespaceChildren<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
+            INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace,
             IGenericVisitor visitor)
+            where TUsingDirective : IUsingDirective
+            where TNamespace : INamespace
             where TClass : IClass
             where TDelegate : IDelegate
             where TEnum : IEnum
             where TInterface : IInterface
             where TStruct : IStruct
         {
+            VisitCollection(@namespace.UsingDirectives, visitor);
+            VisitCollection(@namespace.Namespaces, visitor);
             VisitCollection(@namespace.Classes, visitor);
             VisitCollection(@namespace.Delegates, visitor);
             VisitCollection(@namespace.Enums, visitor);

@@ -77,6 +77,8 @@ namespace CSharpDom.Serialization
 
         public List<NestedInterface> Interfaces { get; set; }
 
+        public bool IsPartial { get; set; }
+
         public List<Method> Methods { get; set; }
 
         public string Name { get; set; }

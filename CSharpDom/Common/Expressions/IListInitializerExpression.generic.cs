@@ -8,6 +8,6 @@ namespace CSharpDom.Common.Expressions
     {
         TCreateListExpression CreateListExpression { get; }
 
-        IReadOnlyList<TExpression> InitialValues { get; }
+        IReadOnlyList<IReadOnlyList<TExpression>> InitialValues { get; }
     }
 }

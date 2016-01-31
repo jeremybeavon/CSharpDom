@@ -141,12 +141,57 @@ namespace CSharpDom.Linq.Expressions
 
         protected override MemberAssignment VisitMemberAssignment(MemberAssignment node)
         {
-            throw new InvalidOperationException();
+            throw new NotSupportedException();
         }
 
         protected override MemberBinding VisitMemberBinding(MemberBinding node)
         {
+            throw new NotSupportedException();
+        }
+
+        protected override Expression VisitMemberInit(MemberInitExpression node)
+        {
             throw new InvalidOperationException();
+        }
+
+        protected override MemberListBinding VisitMemberListBinding(MemberListBinding node)
+        {
+            throw new NotSupportedException();
+        }
+
+        protected override MemberMemberBinding VisitMemberMemberBinding(MemberMemberBinding node)
+        {
+            throw new NotSupportedException();
+        }
+
+        protected override Expression VisitMethodCall(MethodCallExpression node)
+        {
+            throw new InvalidOperationException();
+        }
+
+        protected override Expression VisitNew(NewExpression node)
+        {
+            throw new InvalidOperationException();
+        }
+
+        protected override Expression VisitNewArray(NewArrayExpression node)
+        {
+            throw new InvalidOperationException();
+        }
+
+        protected override Expression VisitParameter(ParameterExpression node)
+        {
+            throw new InvalidOperationException();
+        }
+
+        protected override Expression VisitRuntimeVariables(RuntimeVariablesExpression node)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override Expression VisitSwitch(SwitchExpression node)
+        {
+            return base.VisitSwitch(node);
         }
     }
 }

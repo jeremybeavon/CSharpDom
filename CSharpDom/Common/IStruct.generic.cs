@@ -23,6 +23,7 @@
         IStruct,
         IHasName,
         IHasTypeVisibilityModifier,
+        IHasPartialSupport,
         IHasNamespace<TNamespace>,
         IHasProject<TProject>,
         IHasSolution<TSolution>,

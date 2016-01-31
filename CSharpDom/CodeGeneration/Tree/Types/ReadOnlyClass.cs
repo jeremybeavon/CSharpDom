@@ -189,6 +189,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return @class.Visibility; }
         }
 
+        public override bool IsPartial
+        {
+            get { return @class.IsPartial; }
+        }
+
         public static MemberInheritanceModifier GetInheritanceModifier(ClassMemberInheritanceModifier inheritanceModifier)
         {
             switch (inheritanceModifier)

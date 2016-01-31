@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace CSharpDom.Linq.Expressions
@@ -22,6 +23,16 @@ namespace CSharpDom.Linq.Expressions
         public static IReadOnlyList<ILinqExpression> BuildExpressions(IEnumerable<Expression> expressions)
         {
             return expressions.ToArray(BuildExpression);
+        }
+         
+        public static IReadOnlyList<ILinqExpression> BuildExpressions(ElementInit initializer)
+        {
+            return BuildExpressions(initializer.Arguments);
+        }
+
+        public static IEnumerable<IReadOnlyList<ILinqExpression>> BuildExpressions(IEnumerable<ElementInit> initializers)
+        {
+            return initializers.Select(BuildExpressions);
         }
 
         protected override Expression VisitBinary(BinaryExpression node)
@@ -157,6 +168,78 @@ namespace CSharpDom.Linq.Expressions
         protected override MemberBinding VisitMemberBinding(MemberBinding node)
         {
             throw new InvalidOperationException();
+        }
+
+        protected override Expression VisitMemberInit(MemberInitExpression node)
+        {
+            expression = new ObjectInitializerExpressionWithLinqExpressions(node);
+            return node;
+        }
+
+        protected override MemberListBinding VisitMemberListBinding(MemberListBinding node)
+        {
+            throw new NotSupportedException();
+        }
+
+        protected override MemberMemberBinding VisitMemberMemberBinding(MemberMemberBinding node)
+        {
+            throw new NotSupportedException();
+        }
+
+        protected override Expression VisitMethodCall(MethodCallExpression node)
+        {
+            expression = new MethodCallExpressionWithLinqExpressions(node);
+            return node;
+        }
+
+        protected override Expression VisitNew(NewExpression node)
+        {
+            expression = new NewExpressionWithLinqExpressions(node);
+            return node;
+        }
+
+        protected override Expression VisitNewArray(NewArrayExpression node)
+        {
+            expression = new NewArrayExpressionWithLinqExpressions(node);
+            return node;
+        }
+
+        protected override Expression VisitParameter(ParameterExpression node)
+        {
+            expression = new ParameterExpressionWithLinqExpressions(node);
+            return node;
+        }
+
+        protected override Expression VisitRuntimeVariables(RuntimeVariablesExpression node)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override Expression VisitSwitch(SwitchExpression node)
+        {
+            throw new InvalidOperationException();
+        }
+
+        protected override SwitchCase VisitSwitchCase(SwitchCase node)
+        {
+            throw new InvalidOperationException();
+        }
+
+        protected override Expression VisitTry(TryExpression node)
+        {
+            throw new InvalidOperationException();
+        }
+
+        protected override Expression VisitTypeBinary(TypeBinaryExpression node)
+        {
+            expression = new TypeBinaryExpressionWithLinqExpressions(node);
+            return node;
+        }
+
+        protected override Expression VisitUnary(UnaryExpression node)
+        {
+            expression = new UnaryOperatorExpressionWithLinqExpressions(node);
+            return node;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CSharpDom.Reflection.Internal;
+﻿using CSharpDom.NotSupported;
+using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
@@ -7,6 +8,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class NamespaceWithReflection :
         AbstractNamespace<
+            UsingDirectiveNotSupported,
+            NamespaceNotSupported,
             ClassWithReflection,
             DelegateWithReflection,
             EnumWithReflection,
@@ -48,11 +51,21 @@ namespace CSharpDom.Reflection
             get { return name; }
         }
 
+        public override IReadOnlyCollection<NamespaceNotSupported> Namespaces
+        {
+            get { return new NamespaceNotSupported[0]; }
+        }
+
         public override IReadOnlyCollection<StructWithReflection> Structs
         {
             get { return typeContainer.Structs; }
         }
-        
+
+        public override IReadOnlyCollection<UsingDirectiveNotSupported> UsingDirectives
+        {
+            get { return new UsingDirectiveNotSupported[0]; }
+        }
+
         public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNamespaceWithReflection(this);
