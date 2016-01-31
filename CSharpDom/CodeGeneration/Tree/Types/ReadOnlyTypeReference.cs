@@ -25,24 +25,24 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         private static readonly Func<ReadOnlyTypeReference, bool>[] nameAndTypeBuilders =
             new Func<ReadOnlyTypeReference, bool>[]
             {
-                type => Initialize(type, !string.IsNullOrWhiteSpace(type.type.TypeText), unspecifiedType, type.type.TypeText),
-                type => Initialize(type, type.type.Class != null, classType, type.type.Class.Name),
-                type => Initialize(type, type.type.ClassNestedClass != null, classType, type.type.ClassNestedClass.Name),
-                type => Initialize(type, type.type.ClassNestedDelegate != null, delegateType, type.type.ClassNestedDelegate.Name),
-                type => Initialize(type, type.type.ClassNestedEnum != null, enumType, type.type.ClassNestedEnum.Name),
-                type => Initialize(type, type.type.ClassNestedInterface != null, interfaceType, type.type.ClassNestedInterface.Name),
-                type => Initialize(type, type.type.ClassNestedStruct != null, classType, type.type.ClassNestedStruct.Name),
-                type => Initialize(type, type.type.Delegate != null, delegateType, type.type.Delegate.Name),
-                type => Initialize(type, type.type.Enum != null, enumType, type.type.Enum.Name),
-                type => Initialize(type, type.type.GenericParameter != null, genericParameterType, type.type.GenericParameter.Name),
-                type => Initialize(type, type.type.Interface != null, interfaceType, type.type.Interface.Name),
-                type => Initialize(type, type.type.Struct != null, structType, type.type.Struct.Name),
-                type => Initialize(type, type.type.StructNestedClass != null, classType, type.type.StructNestedClass.Name),
-                type => Initialize(type, type.type.StructNestedDelegate != null, delegateType, type.type.StructNestedDelegate.Name),
-                type => Initialize(type, type.type.StructNestedEnum != null, enumType, type.type.StructNestedEnum.Name),
-                type => Initialize(type, type.type.StructNestedInterface != null, interfaceType, type.type.StructNestedInterface.Name),
-                type => Initialize(type, type.type.StructNestedStruct != null, structType, type.type.StructNestedStruct.Name),
-                type => Initialize(type, type.type.Type != null, unspecifiedType, type.type.Type.Name),
+                type => Initialize(type, !string.IsNullOrWhiteSpace(type.type.TypeText), unspecifiedType, () => type.type.TypeText),
+                type => Initialize(type, type.type.Class != null, classType, () => type.type.Class.Name),
+                type => Initialize(type, type.type.ClassNestedClass != null, classType, () => type.type.ClassNestedClass.Name),
+                type => Initialize(type, type.type.ClassNestedDelegate != null, delegateType, () => type.type.ClassNestedDelegate.Name),
+                type => Initialize(type, type.type.ClassNestedEnum != null, enumType, () => type.type.ClassNestedEnum.Name),
+                type => Initialize(type, type.type.ClassNestedInterface != null, interfaceType, () => type.type.ClassNestedInterface.Name),
+                type => Initialize(type, type.type.ClassNestedStruct != null, classType, () => type.type.ClassNestedStruct.Name),
+                type => Initialize(type, type.type.Delegate != null, delegateType, () => type.type.Delegate.Name),
+                type => Initialize(type, type.type.Enum != null, enumType, () => type.type.Enum.Name),
+                type => Initialize(type, type.type.GenericParameter != null, genericParameterType, () => type.type.GenericParameter.Name),
+                type => Initialize(type, type.type.Interface != null, interfaceType, () => type.type.Interface.Name),
+                type => Initialize(type, type.type.Struct != null, structType, () => type.type.Struct.Name),
+                type => Initialize(type, type.type.StructNestedClass != null, classType, () => type.type.StructNestedClass.Name),
+                type => Initialize(type, type.type.StructNestedDelegate != null, delegateType, () => type.type.StructNestedDelegate.Name),
+                type => Initialize(type, type.type.StructNestedEnum != null, enumType, () => type.type.StructNestedEnum.Name),
+                type => Initialize(type, type.type.StructNestedInterface != null, interfaceType, () => type.type.StructNestedInterface.Name),
+                type => Initialize(type, type.type.StructNestedStruct != null, structType, () => type.type.StructNestedStruct.Name),
+                type => Initialize(type, type.type.Type != null, unspecifiedType, () => type.type.Type.Name),
             };
 
         private static readonly IDictionary<ReadOnlyTypeReferenceType, Action<ReadOnlyTypeReference, IGenericVisitor>> accept =
@@ -111,12 +111,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyTypeReference typeReference,
             bool isMatch,
             ReadOnlyTypeReferenceType typeReferenceType,
-            string name)
+            Func<string> name)
         {
             if (isMatch)
             {
                 typeReference.typeReferenceType = typeReferenceType;
-                typeReference.name = name;
+                typeReference.name = name();
             }
 
             return isMatch;

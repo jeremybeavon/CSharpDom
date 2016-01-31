@@ -16,10 +16,7 @@ namespace CSharpDom.Linq.Expressions
         {
             Statement = statement;
             type = TypeReferenceWithReflectionFactory.CreateReference(statement.Test);
-            BlockExpression block = statement.Body as BlockExpression;
-            statements = block == null ?
-                new ILinqStatement[] { LinqStatementBuilder.BuildStatement(statement.Body) } :
-                LinqStatementBuilder.BuildStatements(block.Expressions);
+            statements = LinqStatementBuilder.BuildStatements(statement.Body);
         }
 
         public CatchBlock Statement { get; private set; }

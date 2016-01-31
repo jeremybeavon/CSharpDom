@@ -7,13 +7,11 @@ namespace CSharpDom.Text
     public sealed class SourceCodeTextBuilder
     {
         private readonly StringBuilder textBuilder;
-        private bool isFirstIndent;
 
         public SourceCodeTextBuilder()
         {
             textBuilder = new StringBuilder();
             IndentText = string.Empty.PadLeft(4);
-            isFirstIndent = true;
         }
 
         public string IndentText { get; set; }
@@ -32,12 +30,6 @@ namespace CSharpDom.Text
 
         public void AppendIndent()
         {
-            if (isFirstIndent)
-            {
-                isFirstIndent = false;
-                return;
-            }
-
             textBuilder.AppendLine();
             foreach (string indent in Enumerable.Repeat(IndentText, Indent))
             {

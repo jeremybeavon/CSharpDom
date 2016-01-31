@@ -9,10 +9,10 @@ namespace CSharpDom.CodeGeneration.Tree.Statements
         private readonly ReadOnlyExpressionStatement expression;
         private readonly ReadOnlyStatement statement;
 
-        public ReadOnlyUsingStatement(LockStatement lockStatement)
+        public ReadOnlyUsingStatement(UsingStatement usingStatement)
         {
-            expression = new ReadOnlyExpressionStatement(lockStatement.Expression);
-            statement = new ReadOnlyStatement(lockStatement.Statement);
+            expression = new ReadOnlyExpressionStatement(usingStatement.Expression);
+            statement = new ReadOnlyStatement(usingStatement.Statement);
         }
 
         public override ReadOnlyExpressionStatement Expression

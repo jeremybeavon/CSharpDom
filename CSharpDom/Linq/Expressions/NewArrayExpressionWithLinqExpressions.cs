@@ -18,6 +18,7 @@ namespace CSharpDom.Linq.Expressions
         public NewArrayExpressionWithLinqExpressions(NewArrayExpression expression)
         {
             Expression = expression;
+            dimensions = new List<int>();
             for (Type arrayType = expression.Type; arrayType.IsArray; arrayType = arrayType.GetElementType())
             {
                 dimensions.Add(arrayType.GetArrayRank());

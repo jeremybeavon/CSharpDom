@@ -192,6 +192,11 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(queryWhereExpression);
         }
 
+        public virtual void VisitRawExpression(IRawExpression rawExpression)
+        {
+            Visit(rawExpression);
+        }
+
         public virtual void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
             where TExpression : IExpression
         {

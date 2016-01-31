@@ -11,14 +11,27 @@ namespace CSharpDom.CodeGeneration.Tree.Statements
         {
             statement => CreateStatement(statement as AssignStatement, assign => new ReadOnlyAssignStatement(assign)),
             statement => CreateStatement(statement as BlockStatement, block => new ReadOnlyBlockStatement(block)),
-            statement => CreateStatement(statement as ExpressionStatement, expression => new ReadOnlyExpressionStatement(expression))
+            statement => CreateStatement(statement as DoStatement, @do => new ReadOnlyDoStatement(@do)),
+            statement => CreateStatement(statement as EmptyStatement, empty => new ReadOnlyEmptyStatement()),
+            statement => CreateStatement(statement as ExpressionStatement, expression => new ReadOnlyExpressionStatement(expression)),
+            statement => CreateStatement(statement as ForeachStatement, @foreach => new ReadOnlyForeachStatement(@foreach)),
+            statement => CreateStatement(statement as ForStatement, @for => new ReadOnlyForStatement(@for)),
+            statement => CreateStatement(statement as GotoStatement, @goto => new ReadOnlyGotoStatement(@goto)),
+            statement => CreateStatement(statement as IfStatement, @if => new ReadOnlyIfStatement(@if)),
+            statement => CreateStatement(statement as LabelStatement, label => new ReadOnlyLabelStatement(label)),
+            statement => CreateStatement(statement as LockStatement, @lock => new ReadOnlyLockStatement(@lock)),
+            statement => CreateStatement(statement as ReturnStatement, @return => new ReadOnlyReturnStatement(@return)),
+            statement => CreateStatement(statement as TryStatement, @try => new ReadOnlyTryStatement(@try)),
+            statement => CreateStatement(statement as UsingStatement, @using => new ReadOnlyUsingStatement(@using)),
+            statement => CreateStatement(statement as VariableDeclarationStatement, variable => new ReadOnlyVariableDeclarationStatement(variable)),
+            statement => CreateStatement(statement as WhileStatement, @while => new ReadOnlyWhileStatement(@while))
         };
 
         private readonly IStatement readOnlyStatement;
 
         public ReadOnlyStatement(Statement statement)
         {
-            readOnlyStatement = statementBuilders.Select(builder => builder(statement)).FirstOrDefault(output => output != null);
+            readOnlyStatement = statementBuilders.Select(builder => builder(statement)).First(output => output != null);
         }
 
         public static IReadOnlyList<ReadOnlyStatement> Create(IEnumerable<Statement> statements)

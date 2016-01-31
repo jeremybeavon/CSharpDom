@@ -6,7 +6,7 @@ namespace CSharpDom.Text.Steps
     {
         public void AddText(SourceCodeTextBuilder builder)
         {
-            builder.Append("<");
+            builder.Append(">");
         }
     }
 }

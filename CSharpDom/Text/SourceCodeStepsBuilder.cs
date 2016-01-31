@@ -124,7 +124,6 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteIndentedNewLine());
             Steps.AddTypeBodySteps(@class, @class.Destructor == null ? null : new WriteChildNode<TDestructor>(@class.Destructor));
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
@@ -314,13 +313,15 @@ namespace CSharpDom.Text
             if (genericParameterDeclaration.BaseClassConstraint == null &&
                 genericParameterDeclaration.GenericParameterConstraints.Count == 0 &&
                 !genericParameterDeclaration.HasEmptyConstructorConstraint &&
-                genericParameterDeclaration.InterfaceConstraints == null &&
+                genericParameterDeclaration.InterfaceConstraints.Count == 0 &&
                 genericParameterDeclaration.TypeConstraint == GenericParameterTypeConstraint.None)
             {
                 return;
             }
 
+            Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteWhere());
+            Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(genericParameterDeclaration.Name));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteColon());
@@ -421,7 +422,6 @@ namespace CSharpDom.Text
             if (loadedDocument.UsingDirectives.Count != 0)
             {
                 Steps.AddChildNodeStepsOnNewLines(loadedDocument.UsingDirectives);
-                Steps.Add(new WriteNewLine());
                 Steps.Add(new WriteIndentedNewLine());
             }
 
@@ -429,7 +429,6 @@ namespace CSharpDom.Text
             {
                 Steps.AddChildNodeStepsOnNewLines(loadedDocument.AssemblyAttributes);
                 Steps.AddChildNodeStepsOnNewLines(loadedDocument.ModuleAttributes);
-                Steps.Add(new WriteNewLine());
                 Steps.Add(new WriteIndentedNewLine());
             }
 
@@ -550,7 +549,6 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteIndentedNewLine());
             Steps.AddTypeBodySteps(nestedClass);
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
@@ -565,8 +563,9 @@ namespace CSharpDom.Text
             Steps.Add(new WriteDelegateKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteChildNode<TTypeReference>(nestedDelegate.ReturnType));
-            Steps.AddGenericParameterSteps(nestedDelegate.GenericParameters);
+            Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(nestedDelegate.Name));
+            Steps.AddGenericParameterSteps(nestedDelegate.GenericParameters);
             Steps.Add(new WriteStartParenthesis());
             Steps.AddCommaSeparatedChildNodeSteps(nestedDelegate.Parameters);
             Steps.Add(new WriteEndParenthesis());
@@ -655,7 +654,6 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteIndentedNewLine());
             Steps.AddTypeBodySteps(nestedStruct);
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
@@ -742,7 +740,6 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteIndentedNewLine());
             Steps.AddTypeBodySteps(@struct);
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());

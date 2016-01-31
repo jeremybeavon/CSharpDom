@@ -7,92 +7,115 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         private object reference;
 
+        public TypeReference()
+        {
+            GenericParameters = new Collection<TypeReference>();
+        }
+
         public TypeReference(Type type)
+            : this()
         {
             reference = type;
         }
 
         public TypeReference(Class @class)
+            : this()
         {
             reference = @class;
         }
 
         public TypeReference(ClassNestedClass @class)
+            : this()
         {
             reference = @class;
         }
 
         public TypeReference(ClassNestedDelegate @delegate)
+            : this()
         {
             reference = @delegate;
         }
 
         public TypeReference(ClassNestedEnum @enum)
+            : this()
         {
             reference = @enum;
         }
 
         public TypeReference(ClassNestedInterface @interface)
+            : this()
         {
             reference = @interface;
         }
 
         public TypeReference(ClassNestedStruct @struct)
+            : this()
         {
             reference = @struct;
         }
 
         public TypeReference(Delegate @delegate)
+            : this()
         {
             reference = @delegate;
         }
 
         public TypeReference(Enum @enum)
+            : this()
         {
             reference = @enum;
         }
 
         public TypeReference(GenericParameter genericParameter)
+            : this()
         {
             reference = genericParameter;
         }
 
         public TypeReference(Interface @interface)
+            : this()
         {
             reference = @interface;
         }
 
         public TypeReference(Struct @struct)
+            : this()
         {
             reference = @struct;
         }
 
         public TypeReference(StructNestedClass @class)
+            : this()
         {
             reference = @class;
         }
 
         public TypeReference(StructNestedDelegate @delegate)
+            : this()
         {
             reference = @delegate;
         }
 
         public TypeReference(StructNestedEnum @enum)
+            : this()
         {
             reference = @enum;
         }
 
         public TypeReference(StructNestedInterface @interface)
+            : this()
         {
             reference = @interface;
         }
 
         public TypeReference(StructNestedStruct @struct)
+            : this()
         {
             reference = @struct;
         }
 
         public TypeReference(string type)
+            : this()
         {
             reference = type;
         }

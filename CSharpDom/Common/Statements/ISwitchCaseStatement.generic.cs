@@ -7,7 +7,7 @@ namespace CSharpDom.Common.Statements
         where TExpression : IExpression
         where TStatement : IStatement
     {
-        TExpression Match { get; }
+        IReadOnlyCollection<TExpression> Matches { get; }
 
         IReadOnlyList<TStatement> Statements { get; }
     }

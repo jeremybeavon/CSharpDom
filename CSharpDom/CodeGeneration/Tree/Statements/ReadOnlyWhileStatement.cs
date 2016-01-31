@@ -4,15 +4,15 @@ using CSharpDom.CodeGeneration.Tree.Types;
 
 namespace CSharpDom.CodeGeneration.Tree.Statements
 {
-    public abstract class ReadOnlyWhileStatement : AbstractDoStatement<ReadOnlyExpressionStatement, ReadOnlyStatement>
+    public sealed class ReadOnlyWhileStatement : AbstractWhileStatement<ReadOnlyExpressionStatement, ReadOnlyStatement>
     {
         private readonly ReadOnlyExpressionStatement condition;
         private readonly ReadOnlyStatement statement;
 
-        public ReadOnlyWhileStatement(DoStatement doStatement)
+        public ReadOnlyWhileStatement(WhileStatement whileStatement)
         {
-            condition = new ReadOnlyExpressionStatement(doStatement.Condition);
-            statement = new ReadOnlyStatement(doStatement.Statement);
+            condition = new ReadOnlyExpressionStatement(whileStatement.Condition);
+            statement = new ReadOnlyStatement(whileStatement.Statement);
         }
 
         public override ReadOnlyExpressionStatement Condition

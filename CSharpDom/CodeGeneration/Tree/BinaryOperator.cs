@@ -9,6 +9,17 @@ namespace CSharpDom.CodeGeneration.Tree
             OperatorType = operatorType;
             Parameter1Name = "parameter1";
             Parameter2Name = "parameter2";
+            switch (operatorType)
+            {
+                case BinaryOperatorType.Equal:
+                case BinaryOperatorType.GreaterThan:
+                case BinaryOperatorType.GreaterThanOrEqual:
+                case BinaryOperatorType.LessThan:
+                case BinaryOperatorType.LessThanOrEqual:
+                case BinaryOperatorType.NotEqual:
+                    ReturnType = new TypeReference("bool");
+                    break;
+            }
         }
 
         public BinaryOperatorType OperatorType { get; set; }

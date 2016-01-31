@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree.Statements
 {
-    public abstract class ReadOnlyForeachStatement :
+    public sealed class ReadOnlyForeachStatement :
         AbstractForeachStatement<ReadOnlyTypeReference, ReadOnlyExpressionStatement, ReadOnlyStatement>
     {
         private readonly ReadOnlyTypeReference type;

@@ -286,8 +286,7 @@ namespace CSharpDom.Text
             if (genericParameters.Count != 0)
             {
                 steps.Add(new IncrementIndent());
-                steps.Add(new WriteIndentedNewLine());
-                steps.AddChildNodeStepsOnNewLines(genericParameters);
+                steps.AddChildNodeSteps(genericParameters);
                 steps.Add(new DecrementIndent());
             }
         }
@@ -344,6 +343,11 @@ namespace CSharpDom.Text
                 .Concat(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)))
                 .Concat(type.Interfaces.Select(@interface => new WriteChildNode<TNestedInterface>(@interface)))
                 .Concat(type.Structs.Select(@struct => new WriteChildNode<TNestedStruct>(@struct)));
+            if (typeSteps.Any())
+            {
+                steps.Add(new WriteIndentedNewLine());
+            }
+
             steps.AddRange(typeSteps, () => steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
@@ -566,11 +570,19 @@ namespace CSharpDom.Text
             steps.Add(new WriteEndBrace());
         }
 
-        public static void AddCommaIfNecessary(this IList<ISourceCodeBuilderStep> steps, bool addComma)
+        internal static void AddCommaIfNecessary(this IList<ISourceCodeBuilderStep> steps, bool addComma)
         {
             if (addComma)
             {
                 steps.Add(new WriteComma());
+            }
+        }
+
+        internal static void AddStepIfNecessary(this List<ISourceCodeBuilderStep> steps, bool test, ISourceCodeBuilderStep step)
+        {
+            if (test)
+            {
+                steps.Add(step);
             }
         }
         

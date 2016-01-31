@@ -192,10 +192,17 @@ namespace CSharpDom.Text
         public override void VisitSwitchCaseStatement<TExpression, TStatement>(
             ISwitchCaseStatement<TExpression, TStatement> switchCaseStatement)
         {
-            Steps.Add(new WriteCaseKeyword());
-            Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteExpression<TExpression>(switchCaseStatement.Match));
-            Steps.Add(new WriteColon());
+            bool addIndentedNewLine = false;
+            foreach (TExpression match in switchCaseStatement.Matches)
+            {
+                Steps.AddStepIfNecessary(addIndentedNewLine, new WriteIndentedNewLine());
+                addIndentedNewLine = true;
+                Steps.Add(new WriteCaseKeyword());
+                Steps.Add(new WriteWhitespace());
+                Steps.Add(new WriteExpression<TExpression>(match));
+                Steps.Add(new WriteColon());
+            }
+
             Steps.AddIndentedStatementSteps(switchCaseStatement.Statements);
         }
 

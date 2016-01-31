@@ -24,6 +24,12 @@ namespace CSharpDom.Linq.Expressions
             return statements.ToArray(BuildStatement);
         }
 
+        public static IReadOnlyList<ILinqStatement> BuildStatements(Expression statement)
+        {
+            BlockExpression block = statement as BlockExpression;
+            return block == null ? new ILinqStatement[] { BuildStatement(statement) } : BuildStatements(block.Expressions);
+        }
+
         protected override Expression VisitBinary(BinaryExpression node)
         {
             throw new InvalidOperationException();
@@ -191,7 +197,29 @@ namespace CSharpDom.Linq.Expressions
 
         protected override Expression VisitSwitch(SwitchExpression node)
         {
-            return base.VisitSwitch(node);
+            statement = new SwitchStatementWithLinqExpressions(node);
+            return node;
+        }
+
+        protected override SwitchCase VisitSwitchCase(SwitchCase node)
+        {
+            throw new NotSupportedException();
+        }
+
+        protected override Expression VisitTry(TryExpression node)
+        {
+            statement = new TryStatementWithLinqExpressions(node);
+            return node;
+        }
+
+        protected override Expression VisitTypeBinary(TypeBinaryExpression node)
+        {
+            throw new InvalidOperationException();
+        }
+
+        protected override Expression VisitUnary(UnaryExpression node)
+        {
+            throw new InvalidOperationException();
         }
     }
 }

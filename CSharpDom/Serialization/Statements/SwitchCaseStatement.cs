@@ -9,12 +9,18 @@ namespace CSharpDom.Serialization.Statements
     {
         public SwitchCaseStatement()
         {
+            Matches = new List<Expression>();
             Statements = new List<Statement>();
         }
 
-        public Expression Match { get; set; }
+        public List<Expression> Matches { get; set; }
 
         public List<Statement> Statements { get; set; }
+
+        IReadOnlyCollection<Expression> ISwitchCaseStatement<Expression, Statement>.Matches
+        {
+            get { return Matches; }
+        }
 
         IReadOnlyList<Statement> ISwitchCaseStatement<Expression, Statement>.Statements
         {

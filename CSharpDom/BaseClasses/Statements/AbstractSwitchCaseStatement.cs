@@ -9,7 +9,7 @@ namespace CSharpDom.BaseClasses.Statements
         where TExpression : IExpression
         where TStatement : IStatement
     {
-        public abstract TExpression Match { get; }
+        public abstract IReadOnlyCollection<TExpression> Matches { get; }
 
         public abstract IReadOnlyList<TStatement> Statements { get; }
 

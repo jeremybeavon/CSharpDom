@@ -1,19 +1,30 @@
-﻿using CSharpDom.BaseClasses.Statements;
+﻿using System;
+using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Expressions;
 using CSharpDom.Common.Statements;
+using CSharpDom.Linq.Expressions;
 
 namespace CSharpDom.CodeGeneration.Tree.Statements
 {
     public sealed class ReadOnlyExpressionStatement :
         AbstractExpressionStatement<IExpression>,
-        IExpression,
-        IForInitializerStatement
+        IForInitializerStatement,
+        IRawExpression
     {
         private readonly IExpression expression;
+        private readonly string rawExpression;
 
         public ReadOnlyExpressionStatement(ExpressionStatement statement)
         {
-            expression = this;
+            if (statement.Expression == null)
+            {
+                expression = this;
+                rawExpression = statement.RawExpression.Statement ?? string.Empty;
+            }
+            else
+            {
+                expression = LinqExpressionBuilder.BuildExpression(statement.Expression.Body);
+            }
         }
 
         public override IExpression Expression
@@ -21,14 +32,29 @@ namespace CSharpDom.CodeGeneration.Tree.Statements
             get { return expression; }
         }
 
+        string IRawExpression.Expression
+        {
+            get { return rawExpression; }
+        }
+
         public void Accept(IGenericExpressionVisitor visitor)
         {
-            expression.Accept(visitor);
+            if (rawExpression == null)
+            {
+                expression.Accept(visitor);
+            }
+            else
+            {
+                visitor.VisitRawExpression(this);
+            }
         }
 
         public void AcceptChildren(IGenericExpressionVisitor visitor)
         {
-            expression.AcceptChildren(visitor);
+            if (rawExpression != null)
+            {
+                expression.AcceptChildren(visitor);
+            }
         }
     }
 }

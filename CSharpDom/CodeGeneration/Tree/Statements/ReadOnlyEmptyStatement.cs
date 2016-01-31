@@ -2,7 +2,7 @@
 
 namespace CSharpDom.CodeGeneration.Tree.Statements
 {
-    public abstract class ReadOnlyEmptyStatement : AbstractEmptyStatement
+    public sealed class ReadOnlyEmptyStatement : AbstractEmptyStatement
     {
     }
 }

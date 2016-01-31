@@ -19,6 +19,7 @@ namespace CSharpDom.Linq.Expressions
             Expression = expression;
             left = LinqExpressionBuilder.BuildExpression(expression.Expression);
             //right = LinqExpressionBuilder.BuildExpression()
+            right = LinqExpressionBuilder.BuildExpression(expression.Expression);
             throw new NotImplementedException();
         }
 

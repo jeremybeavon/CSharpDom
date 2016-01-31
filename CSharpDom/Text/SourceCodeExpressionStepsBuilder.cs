@@ -276,6 +276,11 @@ namespace CSharpDom.Text
             Steps.Add(new WriteExpression<TExpression>(queryWhereExpression.Expression));
         }
 
+        public override void VisitRawExpression(IRawExpression rawExpression)
+        {
+            Steps.Add(new WriteRawValue(rawExpression.Expression));
+        }
+
         public override void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
         {
             Steps.Add(new WriteMethodParameterModifier(ParameterModifier.Ref));

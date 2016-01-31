@@ -2,7 +2,7 @@
 
 namespace CSharpDom.CodeGeneration.Tree.Statements
 {
-    public abstract class ReadOnlyDoStatement : AbstractDoStatement<ReadOnlyExpressionStatement, ReadOnlyStatement>
+    public sealed class ReadOnlyDoStatement : AbstractDoStatement<ReadOnlyExpressionStatement, ReadOnlyStatement>
     {
         private readonly ReadOnlyExpressionStatement condition;
         private readonly ReadOnlyStatement statement;

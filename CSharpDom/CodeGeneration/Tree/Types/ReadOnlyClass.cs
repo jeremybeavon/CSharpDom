@@ -81,7 +81,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override DestructorNotSupported Destructor
         {
-            get { return new DestructorNotSupported(); }
+            get { return null; }
         }
 
         public override IReadOnlyCollection<ReadOnlyClassNestedEnum> Enums

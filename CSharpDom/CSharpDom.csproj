@@ -103,6 +103,7 @@
     <Compile Include="BaseClasses\AbstractUnnamedAttributeValue.cs" />
     <Compile Include="BaseClasses\AbstractUnspecifiedTypeReference.cs" />
     <Compile Include="BaseClasses\AbstractUsingDirective.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractRawExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractUnaryOperatorExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractTypeofExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractTernaryOperatorExpression.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="BaseClasses\IL\AbstractTypeInstruction.generic.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyUsingDeclaration.cs" />
     <Compile Include="Common\Expressions\IHasObjectInitializers.cs" />
+    <Compile Include="Common\Expressions\IRawExpression.cs" />
     <Compile Include="Common\IHasAsyncSupport.cs" />
     <Compile Include="Common\IHasModuleAttributes.cs" />
     <Compile Include="Common\IHasAssemblyAttributes.cs" />
@@ -480,6 +482,8 @@
     <Compile Include="Linq\Expressions\ArrayIndexExpressionWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\BinaryOperatorExpressionWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\BlockStatementWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\DefaultCaseStatementWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\FinallyStatementWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\ForStatementWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\GotoStatementWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\ContinueStatementWithLinqExpressions.cs" />
@@ -512,7 +516,10 @@
     <Compile Include="Linq\Expressions\LinqExpressionBuilder.cs" />
     <Compile Include="Linq\Expressions\LinqStatementBuilder.cs" />
     <Compile Include="Linq\Expressions\NullExpressionWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\SwitchCaseStatementWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\SwitchStatementWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\TernaryOperatorExpressionWithLinqExpressions.cs" />
+    <Compile Include="Linq\Expressions\TryStatementWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\TypeBinaryExpressionWithLinqExpressions.cs" />
     <Compile Include="Linq\Expressions\UnaryOperatorExpressionWithLinqExpressions.cs" />
     <Compile Include="MemberInheritanceModifier.cs" />

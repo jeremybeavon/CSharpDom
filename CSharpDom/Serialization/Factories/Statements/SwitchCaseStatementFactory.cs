@@ -15,7 +15,7 @@ namespace CSharpDom.Serialization.Factories.Statements
         {
             Value = new SwitchCaseStatement()
             {
-                Match = new ExpressionFactory(switchCaseStatement.Match).Value,
+                Matches = switchCaseStatement.Matches.ToExpressionListUsingFactory(),
                 Statements = switchCaseStatement.Statements.ToStatementListUsingFactory()
             };
         }

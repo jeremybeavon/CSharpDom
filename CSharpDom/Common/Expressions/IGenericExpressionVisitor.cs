@@ -99,6 +99,8 @@ namespace CSharpDom.Common.Expressions
         void VisitQueryWhereExpression<TExpression>(IQueryWhereExpression<TExpression> queryWhereExpression)
             where TExpression : IExpression;
 
+        void VisitRawExpression(IRawExpression rawExpression);
+
         void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
             where TExpression : IExpression;
 
