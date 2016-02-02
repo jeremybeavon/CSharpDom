@@ -2,7 +2,7 @@
 
 namespace CSharpDom.NotSupported
 {
-    public sealed class FieldNotSupported : VisitableNotSupported<IGenericVisitor>, IField
+    public sealed class FieldNotSupported : VisitableNotSupported<IGenericVisitor>, IClassField
     {
     }
 }

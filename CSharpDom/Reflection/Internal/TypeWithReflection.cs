@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpDom.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -7,7 +8,27 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class TypeWithReflection : ITypeWithReflection
+    internal sealed class TypeWithReflection : ITypeWithReflection,
+        IType<
+            EventWithReflection,
+            PropertyWithReflection,
+            IndexerWithReflection,
+            MethodWithReflection,
+            FieldWithReflection,
+            ConstructorWithReflection,
+            EventPropertyWithReflection,
+            OperatorOverloadWithReflection,
+            ConversionOperatorWithReflection,
+            NestedClassWithReflection,
+            NestedDelegateWithReflection,
+            NestedEnumWithReflection,
+            NestedInterfaceWithReflection,
+            NestedStructWithReflection,
+            StaticConstructorWithReflection,
+            ExplicitInterfaceEventWithReflection,
+            ExplicitInterfacePropertyWithReflection,
+            ExplicitInterfaceIndexerWithReflection,
+            ExplicitInterfaceMethodWithReflection>
     {
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
@@ -21,6 +42,7 @@ namespace CSharpDom.Reflection.Internal
 
         public TypeWithReflection(ITypeWithReflection declaringType, Type type)
         {
+            Type = type;
             attributes = new Lazy<Attributes>(() => new Attributes(type));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(type));
@@ -121,6 +143,36 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return nestedTypes.Value.NestedStructs; }
         }
+
+        public StaticConstructorWithReflection StaticConstructor
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
+        {
+            get { return events.Value.ExplictInterfaceEventsWithReflection; }
+        }
+
+        public IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexers
+        {
+            get { return properties.Value.ExplicitInterfaceIndexersWithReflection; }
+        }
+
+        public IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethods
+        {
+            get { return methods.Value.ExplicitInterfaceMethodsWithReflection; }
+        }
+
+        public IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfaceProperties
+        {
+            get { return properties.Value.ExplicitInterfacePropertiesWithReflection; }
+        }
+        
+        public Type Type { get; private set; }
 
         private static IReadOnlyCollection<FieldWithReflection> InitializeFields(ITypeWithReflection declaringType, Type type)
         {

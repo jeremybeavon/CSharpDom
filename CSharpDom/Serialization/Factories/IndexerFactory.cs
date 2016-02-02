@@ -2,17 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class IndexerFactory : AbstractFactory<IIndexer, Indexer>
+    public sealed class IndexerFactory : AbstractFactory<IClassIndexer, ClassIndexer>
     {
-        public IndexerFactory(IIndexer indexer)
+        public IndexerFactory(IClassIndexer indexer)
             : base(indexer)
         {
         }
 
-        public override void VisitIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
-            IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
+        public override void VisitClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
+            IClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
         {
-            Value = new Indexer()
+            Value = new ClassIndexer()
             {
                 Attributes = indexer.Attributes.ToAttributeListUsingFactory(),
                 GetAccessor = new AccessorFactory(indexer.GetAccessor).Value,

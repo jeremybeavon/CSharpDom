@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IType
+    public interface IType : IBasicType
     {
     }
 }

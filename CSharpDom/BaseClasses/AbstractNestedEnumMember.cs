@@ -6,7 +6,7 @@ namespace CSharpDom.BaseClasses
     public abstract class AbstractNestedEnumMember<TAttributeGroup, TDeclaringType> :
         INestedEnumMember<TAttributeGroup, TDeclaringType>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : INestedEnum
+        where TDeclaringType : IClassNestedEnum
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 

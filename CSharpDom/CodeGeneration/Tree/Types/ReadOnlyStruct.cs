@@ -29,7 +29,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyStructNestedDelegate,
             ReadOnlyStructNestedEnum,
             ReadOnlyStructNestedInterface,
-            ReadOnlyStructNestedStruct>
+            ReadOnlyStructNestedStruct,
+            ReadOnlyStaticConstructor,
+            ReadOnlyExplicitInterfaceEvent,
+            ReadOnlyExplicitInterfaceProperty,
+            ReadOnlyExplicitInterfaceIndexer,
+            ReadOnlyExplicitInterfaceMethod>
     {
         private readonly Struct @struct;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
@@ -159,21 +164,29 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return @struct.Visibility; }
         }
 
-        public static MemberVisibilityModifier GetVisibility(StructMemberVisibilityModifier visibility)
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceEvent> ExplicitInterfaceEvents
         {
-            switch (visibility)
-            {
-                case StructMemberVisibilityModifier.None:
-                    return MemberVisibilityModifier.None;
-                case StructMemberVisibilityModifier.Public:
-                    return MemberVisibilityModifier.Public;
-                case StructMemberVisibilityModifier.Internal:
-                    return MemberVisibilityModifier.Internal;
-                case StructMemberVisibilityModifier.Private:
-                    return MemberVisibilityModifier.Private;
-                default:
-                    throw new NotSupportedException();
-            }
+            get { return body.ExplicitInterfaceEvents; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceIndexer> ExplicitInterfaceIndexers
+        {
+            get { return body.ExplicitInterfaceIndexers; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceMethod> ExplicitInterfaceMethods
+        {
+            get { return body.ExplicitInterfaceMethods; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceProperty> ExplicitInterfaceProperties
+        {
+            get { return body.ExplicitInterfaceProperties; }
+        }
+
+        public override ReadOnlyStaticConstructor StaticConstructor
+        {
+            get { return body.StaticConstructor; }
         }
     }
 }

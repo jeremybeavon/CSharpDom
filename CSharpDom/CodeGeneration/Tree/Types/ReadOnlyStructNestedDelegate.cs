@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructNestedDelegate :
-        AbstractNestedDelegate<
+        AbstractStructNestedDelegate<
             AttributeGroupNotSupported,
             IType,
             ReadOnlyGenericParameterDeclaration,
@@ -60,9 +60,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return returnType; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyStruct.GetVisibility(nestedDelegate.Visibility); }
+            get { return nestedDelegate.Visibility; }
         }
     }
 }

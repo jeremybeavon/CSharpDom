@@ -10,11 +10,11 @@ namespace CSharpDom.Text.Rules.VisualStudio
     {
         private static readonly Type[] nodeTypes = new Type[]
         {
-            typeof(IAccessor),
+            typeof(IClassAccessor),
             typeof(IBlockStatement),
-            typeof(IConstructor),
+            typeof(IClassConstructor),
             typeof(IConversionOperator),
-            typeof(IMethod),
+            typeof(IClassMethod),
             typeof(IOperatorOverload)
         };
 

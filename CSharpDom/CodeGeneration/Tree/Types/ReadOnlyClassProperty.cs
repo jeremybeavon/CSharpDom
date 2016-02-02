@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassProperty :
-        AbstractProperty<AttributeGroupNotSupported, IBasicType, ReadOnlyTypeReference, ReadOnlyClassPropertyAccessor>
+        AbstractClassProperty<AttributeGroupNotSupported, IType, ReadOnlyTypeReference, ReadOnlyClassPropertyAccessor>
     {
         private readonly ClassProperty property;
         private readonly ReadOnlyClassPropertyAccessor getAccessor;
@@ -41,7 +41,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IBasicType DeclaringType
+        public override IType DeclaringType
         {
             get { return null; }
         }
@@ -51,7 +51,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return getAccessor; }
         }
 
-        public override MemberInheritanceModifier InheritanceModifier
+        public override ClassMemberInheritanceModifier InheritanceModifier
         {
             get { return ReadOnlyClass.GetInheritanceModifier(property.InheritanceModifier); }
         }
@@ -71,7 +71,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return setAccessor; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { return ReadOnlyClass.GetVisibility(property.Visibility); }
         }

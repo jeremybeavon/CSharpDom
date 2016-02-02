@@ -24,7 +24,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyStructNestedDelegate,
             ReadOnlyStructNestedEnum,
             ReadOnlyStructNestedInterface,
-            ReadOnlyStructNestedStruct>
+            ReadOnlyStructNestedStruct,
+            ReadOnlyStaticConstructor,
+            ReadOnlyExplicitInterfaceEvent,
+            ReadOnlyExplicitInterfaceProperty,
+            ReadOnlyExplicitInterfaceIndexer,
+            ReadOnlyExplicitInterfaceMethod>
     {
         public ReadOnlyStructBody(StructBody structBody)
         {
@@ -39,6 +44,10 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             Events = events;
             EventProperties = eventProperties;
             InitializeEvents(structBody, events, eventProperties);
+            ExplicitInterfaceEvents = structBody.ExplicitInterfaceEvents.ToArray(@event => new ReadOnlyExplicitInterfaceEvent(@event));
+            ExplicitInterfaceIndexers = structBody.ExplicitInterfaceIndexers.ToArray(indexer => new ReadOnlyExplicitInterfaceIndexer(indexer));
+            ExplicitInterfaceMethods = structBody.ExplicitInterfaceMethods.ToArray(method => new ReadOnlyExplicitInterfaceMethod(method));
+            ExplicitInterfaceProperties = structBody.ExplicitInterfaceProperties.ToArray(property => new ReadOnlyExplicitInterfaceProperty(property));
             Fields = structBody.Fields.ToArray(field => new ReadOnlyStructFieldDeclaration(field));
             Indexers = structBody.Indexers.ToArray(indexer => new ReadOnlyStructIndexer(indexer));
             Interfaces = structBody.NestedInterfaces.ToArray(nestedInterface => new ReadOnlyStructNestedInterface(nestedInterface));
@@ -66,6 +75,14 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public IReadOnlyCollection<ReadOnlyStructEvent> Events { get; private set; }
 
+        public IReadOnlyCollection<ReadOnlyExplicitInterfaceEvent> ExplicitInterfaceEvents { get; private set; }
+
+        public IReadOnlyCollection<ReadOnlyExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; private set; }
+
+        public IReadOnlyCollection<ReadOnlyExplicitInterfaceMethod> ExplicitInterfaceMethods { get; private set; }
+
+        public IReadOnlyCollection<ReadOnlyExplicitInterfaceProperty> ExplicitInterfaceProperties { get; private set; }
+
         public IReadOnlyCollection<ReadOnlyStructFieldDeclaration> Fields { get; private set; }
 
         public IReadOnlyCollection<ReadOnlyStructIndexer> Indexers { get; private set; }
@@ -77,6 +94,8 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public IReadOnlyCollection<ReadOnlyOperatorOverload> OperatorOverloads { get; private set; }
 
         public IReadOnlyCollection<ReadOnlyStructProperty> Properties { get; private set; }
+
+        public ReadOnlyStaticConstructor StaticConstructor { get; set; }
 
         public IReadOnlyCollection<ReadOnlyStructNestedStruct> Structs { get; private set; }
 

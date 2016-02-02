@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructFieldDeclaration :
-        AbstractField<AttributeGroupNotSupported, IType, ReadOnlyTypeReference>
+        AbstractStructField<AttributeGroupNotSupported, IType, ReadOnlyTypeReference>
     {
         private readonly StructFieldDeclaration field;
         private readonly ReadOnlyTypeReference fieldType;
@@ -42,9 +42,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return field.Fields[0].Name; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyStruct.GetVisibility(field.Visibility); }
+            get { return field.Visibility; }
         }
     }
 }

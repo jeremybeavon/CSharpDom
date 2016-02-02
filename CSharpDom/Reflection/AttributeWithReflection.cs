@@ -9,8 +9,8 @@ namespace CSharpDom.Reflection
 {
     public class AttributeWithReflection :
         AbstractAttribute<ClassReferenceWithReflection, UnnamedAttributeValueWithReflection, NamedAttributeValueWithReflection>,
-        IAttributeGroup<AttributeWithReflection>,
-        IVisitable<IReflectionVisitor>
+        IAttributeGroup<AttributeWithReflection>//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly ClassReferenceWithReflection attributeType;
         private readonly IReadOnlyCollection<NamedAttributeValueWithReflection> namedAttributeValues;
@@ -43,7 +43,7 @@ namespace CSharpDom.Reflection
             get { return unnamedAttributeValues; }
         }
 
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitAttributeWithReflection(this);
         }
@@ -51,6 +51,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

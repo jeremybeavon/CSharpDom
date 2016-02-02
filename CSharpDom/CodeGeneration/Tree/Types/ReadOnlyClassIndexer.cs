@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassIndexer :
-        AbstractIndexer<
+        AbstractClassIndexer<
             AttributeGroupNotSupported,
-            IBasicType,
+            IType,
             ReadOnlyTypeReference,
             ReadOnlyMethodParameter,
             ReadOnlyClassPropertyAccessor>
@@ -52,7 +52,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IBasicType DeclaringType
+        public override IType DeclaringType
         {
             get { return null; }
         }
@@ -67,26 +67,26 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return indexerType; }
         }
 
-        public override MemberInheritanceModifier InheritanceModifier
+        public override ClassMemberInheritanceModifier InheritanceModifier
         {
             get
             {
                 switch (indexer.InheritanceModifier)
                 {
                     case IndexerInheritanceModifier.None:
-                        return MemberInheritanceModifier.None;
+                        return CSharpDom.ClassMemberInheritanceModifier.None;
                     case IndexerInheritanceModifier.Abstract:
-                        return MemberInheritanceModifier.Abstract;
+                        return CSharpDom.ClassMemberInheritanceModifier.Abstract;
                     case IndexerInheritanceModifier.New:
-                        return MemberInheritanceModifier.New;
+                        return CSharpDom.ClassMemberInheritanceModifier.New;
                     case IndexerInheritanceModifier.NewVirtual:
-                        return MemberInheritanceModifier.NewVirtual;
+                        return CSharpDom.ClassMemberInheritanceModifier.NewVirtual;
                     case IndexerInheritanceModifier.Override:
-                        return MemberInheritanceModifier.Override;
+                        return CSharpDom.ClassMemberInheritanceModifier.Override;
                     case IndexerInheritanceModifier.SealedOverride:
-                        return MemberInheritanceModifier.SealedOverride;
+                        return CSharpDom.ClassMemberInheritanceModifier.SealedOverride;
                     case IndexerInheritanceModifier.Virtual:
-                        return MemberInheritanceModifier.Virtual;
+                        return CSharpDom.ClassMemberInheritanceModifier.Virtual;
                     default:
                         throw new NotSupportedException();
                 }
@@ -103,7 +103,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return setAccessor; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { return ReadOnlyClass.GetVisibility(indexer.Visibility); }
         }

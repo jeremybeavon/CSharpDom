@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassNestedEnum :
-        AbstractNestedEnum<AttributeGroupNotSupported, IType, ReadOnlyEnumField>
+        AbstractClassNestedEnum<AttributeGroupNotSupported, IType, ReadOnlyEnumField>
     {
         private readonly ClassNestedEnum nestedEnum;
         private readonly IReadOnlyList<ReadOnlyEnumField> enumMembers;
@@ -41,7 +41,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return nestedEnum.Name; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { return ReadOnlyClass.GetVisibility(nestedEnum.Visibility); }
         }

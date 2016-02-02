@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyClassPropertyAccessor : AbstractAccessor<AttributeGroupNotSupported, ReadOnlyMethodBody>
+    public sealed class ReadOnlyClassPropertyAccessor : AbstractClassAccessor<AttributeGroupNotSupported, ReadOnlyMethodBody>
     {
         private readonly ReadOnlyMethodBody body;
         private readonly ClassPropertyAccessorVisibilityModifier visibility;
@@ -31,22 +31,22 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get
             {
                 switch (visibility)
                 {
                     case ClassPropertyAccessorVisibilityModifier.None:
-                        return MemberVisibilityModifier.None;
+                        return CSharpDom.ClassMemberVisibilityModifier.None;
                     case ClassPropertyAccessorVisibilityModifier.Internal:
-                        return MemberVisibilityModifier.Internal;
+                        return CSharpDom.ClassMemberVisibilityModifier.Internal;
                     case ClassPropertyAccessorVisibilityModifier.ProtectedInternal:
-                        return MemberVisibilityModifier.ProtectedInternal;
+                        return CSharpDom.ClassMemberVisibilityModifier.ProtectedInternal;
                     case ClassPropertyAccessorVisibilityModifier.Protected:
-                        return MemberVisibilityModifier.Protected;
+                        return CSharpDom.ClassMemberVisibilityModifier.Protected;
                     case ClassPropertyAccessorVisibilityModifier.Private:
-                        return MemberVisibilityModifier.Private;
+                        return CSharpDom.ClassMemberVisibilityModifier.Private;
                     default:
                         throw new NotSupportedException();
                 }

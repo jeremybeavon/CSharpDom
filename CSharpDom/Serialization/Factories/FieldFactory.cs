@@ -2,17 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class FieldFactory : AbstractFactory<IField, Field>
+    public sealed class FieldFactory : AbstractFactory<IClassField, ClassField>
     {
-        public FieldFactory(IField field)
+        public FieldFactory(IClassField field)
             : base(field)
         {
         }
 
-        public override void VisitField<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IField<TAttributeGroup, TDeclaringType, TTypeReference> field)
+        public override void VisitClassField<TAttributeGroup, TDeclaringType, TTypeReference>(
+            IClassField<TAttributeGroup, TDeclaringType, TTypeReference> field)
         {
-            Value = new Field()
+            Value = new ClassField()
             {
                 Attributes = field.Attributes.ToAttributeListUsingFactory(),
                 FieldType = new TypeReferenceFactory(field.FieldType).Value,

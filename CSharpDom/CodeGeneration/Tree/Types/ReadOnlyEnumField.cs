@@ -11,7 +11,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyEnumField :
         IEnumMember<AttributeGroupNotSupported, IEnum>,
-        INestedEnumMember<AttributeGroupNotSupported, INestedEnum>
+        INestedEnumMember<AttributeGroupNotSupported, IClassNestedEnum>
     {
         private readonly EnumField enumField;
         private readonly bool isNested;
@@ -37,7 +37,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return enumField.Name; }
         }
 
-        INestedEnum IHasDeclaringType<INestedEnum>.DeclaringType
+        IClassNestedEnum IHasDeclaringType<IClassNestedEnum>.DeclaringType
         {
             get { return null; }
         }

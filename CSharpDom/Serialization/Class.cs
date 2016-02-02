@@ -14,78 +14,95 @@ namespace CSharpDom.Serialization
             GenericParameterDeclaration,
             ClassReference,
             InterfaceReference,
-            Event,
-            Property,
-            Indexer,
-            Method,
-            Field,
-            Constructor,
-            EventProperty,
+            ClassEvent,
+            ClassProperty,
+            ClassIndexer,
+            ClassMethod,
+            ClassField,
+            ClassConstructor,
+            ClassEventProperty,
             OperatorOverload,
             ConversionOperator,
-            NestedClass,
-            NestedDelegate,
-            NestedEnum,
-            NestedInterface,
-            NestedStruct,
-            Destructor>
+            ClassNestedClass,
+            ClassNestedDelegate,
+            ClassNestedEnum,
+            ClassNestedInterface,
+            ClassNestedStruct,
+            Destructor,
+            StaticConstructor,
+            ExplicitInterfaceEvent,
+            ExplicitInterfaceProperty,
+            ExplicitInterfaceIndexer,
+            ExplicitInterfaceMethod>
     {
         public Class()
         {
             Attributes = new List<AttributeGroup>();
-            Classes = new List<NestedClass>();
-            Constructors = new List<Constructor>();
+            Classes = new List<ClassNestedClass>();
+            Constructors = new List<ClassConstructor>();
             ConversionOperators = new List<ConversionOperator>();
-            Delegates = new List<NestedDelegate>();
-            Enums = new List<NestedEnum>();
-            EventProperties = new List<EventProperty>();
-            Events = new List<Event>();
-            Fields = new List<Field>();
+            Delegates = new List<ClassNestedDelegate>();
+            Enums = new List<ClassNestedEnum>();
+            EventProperties = new List<ClassEventProperty>();
+            Events = new List<ClassEvent>();
+            ExplicitInterfaceEvents = new List<ExplicitInterfaceEvent>();
+            ExplicitInterfaceIndexers = new List<ExplicitInterfaceIndexer>();
+            ExplicitInterfaceMethods = new List<ExplicitInterfaceMethod>();
+            ExplicitInterfaceProperties = new List<ExplicitInterfaceProperty>();
+            Fields = new List<ClassField>();
             GenericParameters = new List<GenericParameterDeclaration>();
             ImplementedInterfaces = new List<InterfaceReference>();
-            Indexers = new List<Indexer>();
-            Interfaces = new List<NestedInterface>();
-            Methods = new List<Method>();
+            Indexers = new List<ClassIndexer>();
+            Interfaces = new List<ClassNestedInterface>();
+            Methods = new List<ClassMethod>();
             OperatorOverloads = new List<OperatorOverload>();
-            Properties = new List<Property>();
-            Structs = new List<NestedStruct>();
+            Properties = new List<ClassProperty>();
+            Structs = new List<ClassNestedStruct>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
 
         public ClassReference BaseClass { get; set; }
 
-        public List<NestedClass> Classes { get; set; }
+        public List<ClassNestedClass> Classes { get; set; }
 
-        public List<Constructor> Constructors { get; set; }
+        public List<ClassConstructor> Constructors { get; set; }
 
         public List<ConversionOperator> ConversionOperators { get; set; }
         
-        public List<NestedDelegate> Delegates { get; set; }
+        public List<ClassNestedDelegate> Delegates { get; set; }
 
         public Destructor Destructor { get; set; }
 
-        public List<NestedEnum> Enums { get; set; }
+        public List<ClassNestedEnum> Enums { get; set; }
 
-        public List<EventProperty> EventProperties { get; set; }
+        public List<ClassEventProperty> EventProperties { get; set; }
 
-        public List<Event> Events { get; set; }
+        public List<ClassEvent> Events { get; set; }
 
-        public List<Field> Fields { get; set; }
+        public List<ExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
+
+        public List<ExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
+
+        public List<ExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
+
+        public List<ExplicitInterfaceProperty> ExplicitInterfaceProperties { get; set; }
+
+        public List<ClassField> Fields { get; set; }
 
         public List<GenericParameterDeclaration> GenericParameters { get; set; }
 
         public List<InterfaceReference> ImplementedInterfaces { get; set; }
 
-        public List<Indexer> Indexers { get; set; }
+        public List<ClassIndexer> Indexers { get; set; }
 
         public TypeInheritanceModifier InheritanceModifier { get; set; }
 
-        public List<NestedInterface> Interfaces { get; set; }
+        public List<ClassNestedInterface> Interfaces { get; set; }
 
         public bool IsPartial { get; set; }
 
-        public List<Method> Methods { get; set; }
+        public List<ClassMethod> Methods { get; set; }
 
         public string Name { get; set; }
 
@@ -101,14 +118,16 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public List<Property> Properties { get; set; }
+        public List<ClassProperty> Properties { get; set; }
 
         public SolutionNotSupported Solution
         {
             get { return null; }
         }
 
-        public List<NestedStruct> Structs { get; set; }
+        public StaticConstructor StaticConstructor { get; set; }
+
+        public List<ClassNestedStruct> Structs { get; set; }
 
         public TypeVisibilityModifier Visibility { get; set; }
 
@@ -117,12 +136,12 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
-        IReadOnlyCollection<NestedClass> IHasClasses<NestedClass>.Classes
+        IReadOnlyCollection<ClassNestedClass> IHasClasses<ClassNestedClass>.Classes
         {
             get { return Classes; }
         }
 
-        IReadOnlyCollection<Constructor> IHasConstructors<Constructor>.Constructors
+        IReadOnlyCollection<ClassConstructor> IHasConstructors<ClassConstructor>.Constructors
         {
             get { return Constructors; }
         }
@@ -132,27 +151,47 @@ namespace CSharpDom.Serialization
             get { return ConversionOperators; }
         }
 
-        IReadOnlyCollection<NestedDelegate> IHasDelegates<NestedDelegate>.Delegates
+        IReadOnlyCollection<ClassNestedDelegate> IHasDelegates<ClassNestedDelegate>.Delegates
         {
             get { return Delegates; }
         }
 
-        IReadOnlyCollection<NestedEnum> IHasEnums<NestedEnum>.Enums
+        IReadOnlyCollection<ClassNestedEnum> IHasEnums<ClassNestedEnum>.Enums
         {
             get { return Enums; }
         }
 
-        IReadOnlyCollection<EventProperty> IHasEventProperties<EventProperty>.EventProperties
+        IReadOnlyCollection<ClassEventProperty> IHasEventProperties<ClassEventProperty>.EventProperties
         {
             get { return EventProperties; }
         }
 
-        IReadOnlyCollection<Event> IHasEvents<Event>.Events
+        IReadOnlyCollection<ClassEvent> IHasEvents<ClassEvent>.Events
         {
             get { return Events; }
         }
 
-        IReadOnlyCollection<Field> IHasFields<Field>.Fields
+        IReadOnlyCollection<ExplicitInterfaceEvent> IHasExplicitInterfaceEvents<ExplicitInterfaceEvent>.ExplicitInterfaceEvents
+        {
+            get { return ExplicitInterfaceEvents; }
+        }
+
+        IReadOnlyCollection<ExplicitInterfaceIndexer> IHasExplicitInterfaceIndexers<ExplicitInterfaceIndexer>.ExplicitInterfaceIndexers
+        {
+            get { return ExplicitInterfaceIndexers; }
+        }
+
+        IReadOnlyCollection<ExplicitInterfaceMethod> IHasExplicitInterfaceMethods<ExplicitInterfaceMethod>.ExplicitInterfaceMethods
+        {
+            get { return ExplicitInterfaceMethods; }
+        }
+
+        IReadOnlyCollection<ExplicitInterfaceProperty> IHasExplicitInterfaceProperties<ExplicitInterfaceProperty>.ExplicitInterfaceProperties
+        {
+            get { return ExplicitInterfaceProperties; }
+        }
+
+        IReadOnlyCollection<ClassField> IHasFields<ClassField>.Fields
         {
             get { return Fields; }
         }
@@ -167,17 +206,17 @@ namespace CSharpDom.Serialization
             get { return ImplementedInterfaces; }
         }
 
-        IReadOnlyCollection<Indexer> IHasIndexers<Indexer>.Indexers
+        IReadOnlyCollection<ClassIndexer> IHasIndexers<ClassIndexer>.Indexers
         {
             get { return Indexers; }
         }
 
-        IReadOnlyCollection<NestedInterface> IHasInterfaces<NestedInterface>.Interfaces
+        IReadOnlyCollection<ClassNestedInterface> IHasInterfaces<ClassNestedInterface>.Interfaces
         {
             get { return Interfaces; }
         }
 
-        IReadOnlyCollection<Method> IHasMethods<Method>.Methods
+        IReadOnlyCollection<ClassMethod> IHasMethods<ClassMethod>.Methods
         {
             get { return Methods; }
         }
@@ -187,12 +226,12 @@ namespace CSharpDom.Serialization
             get { return OperatorOverloads; }
         }
 
-        IReadOnlyCollection<Property> IHasProperties<Property>.Properties
+        IReadOnlyCollection<ClassProperty> IHasProperties<ClassProperty>.Properties
         {
             get { return Properties; }
         }
 
-        IReadOnlyCollection<NestedStruct> IHasStructs<NestedStruct>.Structs
+        IReadOnlyCollection<ClassNestedStruct> IHasStructs<ClassNestedStruct>.Structs
         {
             get { return Structs; }
         }

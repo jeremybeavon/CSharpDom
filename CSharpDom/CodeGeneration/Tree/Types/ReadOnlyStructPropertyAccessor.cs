@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyStructPropertyAccessor : AbstractAccessor<AttributeGroupNotSupported, ReadOnlyMethodBody>
+    public sealed class ReadOnlyStructPropertyAccessor : AbstractStructAccessor<AttributeGroupNotSupported, ReadOnlyMethodBody>
     {
         private readonly ReadOnlyMethodBody body;
         private readonly StructPropertyAccessorVisibilityModifier visibility;
@@ -31,18 +31,18 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
             get
             {
                 switch (visibility)
                 {
                     case StructPropertyAccessorVisibilityModifier.None:
-                        return MemberVisibilityModifier.None;
+                        return StructMemberVisibilityModifier.None;
                     case StructPropertyAccessorVisibilityModifier.Internal:
-                        return MemberVisibilityModifier.Internal;
+                        return StructMemberVisibilityModifier.Internal;
                     case StructPropertyAccessorVisibilityModifier.Private:
-                        return MemberVisibilityModifier.Private;
+                        return StructMemberVisibilityModifier.Private;
                     default:
                         throw new NotSupportedException();
                 }

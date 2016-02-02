@@ -13,35 +13,35 @@ namespace CSharpDom.Serialization
             AttributeGroup,
             GenericParameterDeclaration,
             InterfaceReference,
-            Event,
-            Property,
-            Indexer,
-            Method>
+            InterfaceEvent,
+            InterfaceProperty,
+            InterfaceIndexer,
+            InterfaceMethod>
     {
         public Interface()
         {
             Attributes = new List<AttributeGroup>();
-            Events = new List<Event>();
+            Events = new List<InterfaceEvent>();
             GenericParameters = new List<GenericParameterDeclaration>();
-            Indexers = new List<Indexer>();
+            Indexers = new List<InterfaceIndexer>();
             Interfaces = new List<InterfaceReference>();
-            Methods = new List<Method>();
-            Properties = new List<Property>();
+            Methods = new List<InterfaceMethod>();
+            Properties = new List<InterfaceProperty>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public List<Event> Events { get; set; }
+        public List<InterfaceEvent> Events { get; set; }
 
         public List<GenericParameterDeclaration> GenericParameters { get; set; }
 
-        public List<Indexer> Indexers { get; set; }
+        public List<InterfaceIndexer> Indexers { get; set; }
 
         public List<InterfaceReference> Interfaces { get; set; }
 
         public bool IsPartial { get; set; }
 
-        public List<Method> Methods { get; set; }
+        public List<InterfaceMethod> Methods { get; set; }
 
         public string Name { get; set; }
 
@@ -55,7 +55,7 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public List<Property> Properties { get; set; }
+        public List<InterfaceProperty> Properties { get; set; }
 
         public SolutionNotSupported Solution
         {
@@ -69,7 +69,7 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
-        IReadOnlyCollection<Event> IHasEvents<Event>.Events
+        IReadOnlyCollection<InterfaceEvent> IHasEvents<InterfaceEvent>.Events
         {
             get { return Events; }
         }
@@ -79,7 +79,7 @@ namespace CSharpDom.Serialization
             get { return GenericParameters; }
         }
 
-        IReadOnlyCollection<Indexer> IHasIndexers<Indexer>.Indexers
+        IReadOnlyCollection<InterfaceIndexer> IHasIndexers<InterfaceIndexer>.Indexers
         {
             get { return Indexers; }
         }
@@ -89,12 +89,12 @@ namespace CSharpDom.Serialization
             get { return Interfaces; }
         }
 
-        IReadOnlyCollection<Method> IHasMethods<Method>.Methods
+        IReadOnlyCollection<InterfaceMethod> IHasMethods<InterfaceMethod>.Methods
         {
             get { return Methods; }
         }
 
-        IReadOnlyCollection<Property> IHasProperties<Property>.Properties
+        IReadOnlyCollection<InterfaceProperty> IHasProperties<InterfaceProperty>.Properties
         {
             get { return Properties; }
         }

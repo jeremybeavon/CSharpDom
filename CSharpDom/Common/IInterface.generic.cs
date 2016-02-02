@@ -27,10 +27,10 @@
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TInterfaceReference : IInterfaceReference
-        where TEvent : IEvent
-        where TProperty : IProperty
-        where TIndexer : IIndexer
-        where TMethod : IMethod
+        where TEvent : IInterfaceEvent
+        where TProperty : IInterfaceProperty
+        where TIndexer : IInterfaceIndexer
+        where TMethod : IInterfaceMethod
     {
     }
 }

@@ -11,10 +11,10 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : IType
         where TGenericParameter : IGenericParameterDeclaration
         where TInterfaceReference : IInterfaceReference
-        where TEvent : IEvent
-        where TProperty : IProperty
-        where TIndexer : IIndexer
-        where TMethod : IMethod
+        where TEvent : IInterfaceEvent
+        where TProperty : IInterfaceProperty
+        where TIndexer : IInterfaceIndexer
+        where TMethod : IInterfaceMethod
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 
@@ -25,14 +25,7 @@ namespace CSharpDom.BaseClasses
         public abstract IReadOnlyCollection<TInterfaceReference> Interfaces { get; }
 
         public abstract string Name { get; }
-
-        public abstract MemberVisibilityModifier Visibility { get; }
-
-        public void Accept(IGenericVisitor visitor)
-        {
-            visitor.VisitNestedInterface(this);
-        }
-
+        
         public void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedInterfaceChildren(this, visitor);

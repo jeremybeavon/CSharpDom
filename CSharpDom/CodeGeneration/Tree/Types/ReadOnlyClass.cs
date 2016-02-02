@@ -28,7 +28,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassNestedEnum,
             ReadOnlyClassNestedInterface,
             ReadOnlyClassNestedStruct,
-            DestructorNotSupported>
+            DestructorNotSupported,
+            ReadOnlyStaticConstructor,
+            ReadOnlyExplicitInterfaceEvent,
+            ReadOnlyExplicitInterfaceProperty,
+            ReadOnlyExplicitInterfaceIndexer,
+            ReadOnlyExplicitInterfaceMethod>
     {
         private readonly Class @class;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
@@ -194,49 +199,74 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return @class.IsPartial; }
         }
 
-        public static MemberInheritanceModifier GetInheritanceModifier(ClassMemberInheritanceModifier inheritanceModifier)
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceEvent> ExplicitInterfaceEvents
+        {
+            get { return body.ExplicitInterfaceEvents; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceIndexer> ExplicitInterfaceIndexers
+        {
+            get { return body.ExplicitInterfaceIndexers; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceMethod> ExplicitInterfaceMethods
+        {
+            get { return body.ExplicitInterfaceMethods; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceProperty> ExplicitInterfaceProperties
+        {
+            get { return body.ExplicitInterfaceProperties; }
+        }
+
+        public override ReadOnlyStaticConstructor StaticConstructor
+        {
+            get { return body.StaticConstructor; }
+        }
+
+        public static ClassMemberInheritanceModifier GetInheritanceModifier(ClassMemberInheritanceModifier inheritanceModifier)
         {
             switch (inheritanceModifier)
             {
                 case ClassMemberInheritanceModifier.None:
-                    return MemberInheritanceModifier.None;
+                    return CSharpDom.ClassMemberInheritanceModifier.None;
                 case ClassMemberInheritanceModifier.Abstract:
-                    return MemberInheritanceModifier.Abstract;
+                    return CSharpDom.ClassMemberInheritanceModifier.Abstract;
                 case ClassMemberInheritanceModifier.New:
-                    return MemberInheritanceModifier.New;
+                    return CSharpDom.ClassMemberInheritanceModifier.New;
                 case ClassMemberInheritanceModifier.NewStatic:
-                    return MemberInheritanceModifier.NewStatic;
+                    return CSharpDom.ClassMemberInheritanceModifier.NewStatic;
                 case ClassMemberInheritanceModifier.NewVirtual:
-                    return MemberInheritanceModifier.NewVirtual;
+                    return CSharpDom.ClassMemberInheritanceModifier.NewVirtual;
                 case ClassMemberInheritanceModifier.Override:
-                    return MemberInheritanceModifier.Override;
+                    return CSharpDom.ClassMemberInheritanceModifier.Override;
                 case ClassMemberInheritanceModifier.SealedOverride:
-                    return MemberInheritanceModifier.SealedOverride;
+                    return CSharpDom.ClassMemberInheritanceModifier.SealedOverride;
                 case ClassMemberInheritanceModifier.Static:
-                    return MemberInheritanceModifier.Static;
+                    return CSharpDom.ClassMemberInheritanceModifier.Static;
                 case ClassMemberInheritanceModifier.Virtual:
-                    return MemberInheritanceModifier.Virtual;
+                    return CSharpDom.ClassMemberInheritanceModifier.Virtual;
                 default:
                     throw new NotSupportedException();
             }
         }
 
-        public static MemberVisibilityModifier GetVisibility(ClassMemberVisibilityModifier visibility)
+        public static ClassMemberVisibilityModifier GetVisibility(ClassMemberVisibilityModifier visibility)
         {
             switch (visibility)
             {
                 case ClassMemberVisibilityModifier.None:
-                    return MemberVisibilityModifier.None;
+                    return CSharpDom.ClassMemberVisibilityModifier.None;
                 case ClassMemberVisibilityModifier.Public:
-                    return MemberVisibilityModifier.Public;
+                    return CSharpDom.ClassMemberVisibilityModifier.Public;
                 case ClassMemberVisibilityModifier.Internal:
-                    return MemberVisibilityModifier.Internal;
+                    return CSharpDom.ClassMemberVisibilityModifier.Internal;
                 case ClassMemberVisibilityModifier.ProtectedInternal:
-                    return MemberVisibilityModifier.ProtectedInternal;
+                    return CSharpDom.ClassMemberVisibilityModifier.ProtectedInternal;
                 case ClassMemberVisibilityModifier.Protected:
-                    return MemberVisibilityModifier.Protected;
+                    return CSharpDom.ClassMemberVisibilityModifier.Protected;
                 case ClassMemberVisibilityModifier.Private:
-                    return MemberVisibilityModifier.Private;
+                    return CSharpDom.ClassMemberVisibilityModifier.Private;
                 default:
                     throw new NotSupportedException();
             }

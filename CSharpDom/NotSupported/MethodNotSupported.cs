@@ -2,7 +2,7 @@
 
 namespace CSharpDom.NotSupported
 {
-    public sealed class MethodNotSupported : VisitableNotSupported<IGenericVisitor>, IMethod
+    public sealed class MethodNotSupported : VisitableNotSupported<IGenericVisitor>, IClassMethod
     {
     }
 }

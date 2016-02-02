@@ -1,9 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
     public interface INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> :
-        INestedEnum,
         IHasName,
-        IHasMemberVisibilityModifier,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
         IHasEnumMembers<TNestedEnumMember>

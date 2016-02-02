@@ -6,8 +6,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class EnumReferenceWithReflection :
         AbstractEnumReference,
-        ITypeReferenceWithReflection,
-        IVisitable<IReflectionVisitor>
+        ITypeReferenceWithReflection//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly Type type;
 
@@ -26,7 +26,7 @@ namespace CSharpDom.Reflection
             get { return type; }
         }
         
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitEnumReferenceWithReflection(this);
         }
@@ -34,6 +34,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

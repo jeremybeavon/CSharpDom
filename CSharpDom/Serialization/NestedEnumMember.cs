@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class NestedEnumMember : INestedEnumMember<AttributeGroup, INestedEnum>
+    public sealed class NestedEnumMember : INestedEnumMember<AttributeGroup, IClassNestedEnum>
     {
         public NestedEnumMember()
         {
@@ -13,7 +13,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public INestedEnum DeclaringType
+        public IClassNestedEnum DeclaringType
         {
             get { return null; }
         }

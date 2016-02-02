@@ -13,7 +13,12 @@
         TNestedDelegate,
         TNestedEnum,
         TNestedInterface,
-        TNestedStruct> :
+        TNestedStruct,
+        TStaticConstructor,
+        TExplicitInterfaceEvent,
+        TExplicitInterfaceProperty,
+        TExplicitInterfaceIndexer,
+        TExplicitInterfaceMethod> :
         IType,
         IBasicType<TEvent, TProperty, TIndexer, TMethod>,
         IHasFields<TField>,
@@ -25,7 +30,12 @@
         IHasDelegates<TNestedDelegate>,
         IHasEnums<TNestedEnum>,
         IHasInterfaces<TNestedInterface>,
-        IHasStructs<TNestedStruct>
+        IHasStructs<TNestedStruct>,
+        IHasStaticConstructor<TStaticConstructor>,
+        IHasExplicitInterfaceEvents<TExplicitInterfaceEvent>,
+        IHasExplicitInterfaceIndexers<TExplicitInterfaceIndexer>,
+        IHasExplicitInterfaceMethods<TExplicitInterfaceMethod>,
+        IHasExplicitInterfaceProperties<TExplicitInterfaceProperty>
     {
     }
 }

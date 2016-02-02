@@ -14,8 +14,8 @@ namespace CSharpDom.Reflection
             DelegateWithReflection,
             EnumWithReflection,
             InterfaceWithReflection,
-            StructWithReflection>,
-        IVisitable<IReflectionVisitor>
+            StructWithReflection>//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly string name;
         private readonly TypeContainer typeContainer;
@@ -66,7 +66,7 @@ namespace CSharpDom.Reflection
             get { return new UsingDirectiveNotSupported[0]; }
         }
 
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNamespaceWithReflection(this);
         }
@@ -74,6 +74,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

@@ -1,8 +1,9 @@
-﻿using CSharpDom.Common;
+﻿using System;
+using CSharpDom.Common;
 
 namespace CSharpDom.NotSupported
 {
-    public sealed class ConstructorNotSupported : VisitableNotSupported<IGenericVisitor>, IConstructor
+    public sealed class ConstructorNotSupported : VisitableNotSupported<IGenericVisitor>, IClassConstructor, IStructConstructor
     {
     }
 }

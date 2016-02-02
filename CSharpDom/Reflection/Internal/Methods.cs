@@ -51,5 +51,7 @@ namespace CSharpDom.Reflection.Internal
         public IReadOnlyCollection<OperatorOverloadWithReflection> OperatorOverloadsWithReflection { get; private set; }
 
         public MethodInfo Destructor { get; private set; }
+
+        public IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethodsWithReflection { get; private set; }
     }
 }

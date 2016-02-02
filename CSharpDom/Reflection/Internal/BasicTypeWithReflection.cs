@@ -18,7 +18,8 @@ namespace CSharpDom.Reflection.Internal
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
             interfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(type));
             events = new Lazy<IReadOnlyCollection<EventWithReflection>>(() => InitializeEvents(type));
-            properties = new Lazy<Properties>(() => new Properties(declaringType, type));
+            properties = new Lazy<Internal.Properties>();
+            //properties = new Lazy<Properties>(() => new Properties(declaringType, type));
             methods = new Lazy<IReadOnlyCollection<MethodWithReflection>>(() => InitializeMethods(type));
         }
 
@@ -55,6 +56,14 @@ namespace CSharpDom.Reflection.Internal
         public IReadOnlyCollection<PropertyWithReflection> Properties
         {
             get { return properties.Value.PropertiesWithReflection; }
+        }
+
+        public Type Type
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         private static IReadOnlyCollection<EventWithReflection> InitializeEvents(Type type)

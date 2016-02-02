@@ -5,10 +5,10 @@ namespace CSharpDom.Reflection.Internal
 {
     internal static class PropertyInfoExtensions
     {
-        public static MemberVisibilityModifier Visibility(this PropertyInfo property)
+        public static ClassMemberVisibilityModifier Visibility(this PropertyInfo property)
         {
-            MemberVisibilityModifier? getVisibility = Visibility(property.GetMethod);
-            MemberVisibilityModifier? setVisibility = Visibility(property.SetMethod);
+            ClassMemberVisibilityModifier? getVisibility = Visibility(property.GetMethod);
+            ClassMemberVisibilityModifier? setVisibility = Visibility(property.SetMethod);
             if (getVisibility.HasValue && setVisibility.HasValue)
             {
                 return (new[] { getVisibility.Value, setVisibility.Value }).Min();
@@ -22,14 +22,14 @@ namespace CSharpDom.Reflection.Internal
             return setVisibility.Value;
         }
 
-        public static MemberInheritanceModifier InheritanceModifier(this PropertyInfo property)
+        public static ClassMemberInheritanceModifier InheritanceModifier(this PropertyInfo property)
         {
             return (property.GetMethod ?? property.SetMethod).InheritanceModifier();
         }
 
-        private static MemberVisibilityModifier? Visibility(MethodInfo method)
+        private static ClassMemberVisibilityModifier? Visibility(MethodInfo method)
         {
-            return method == null ? (MemberVisibilityModifier?)null : method.Visibility();
+            return method == null ? (ClassMemberVisibilityModifier?)null : method.Visibility();
         }
     }
 }

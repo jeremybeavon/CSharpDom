@@ -2,8 +2,7 @@
 
 namespace CSharpDom.Reflection
 {
-    public interface IBasicTypeWithReflection : 
-        IBasicType<EventWithReflection, PropertyWithReflection, IndexerWithReflection, MethodWithReflection>
+    public interface IBasicTypeWithReflection : IBasicType, IHasType
     {
     }
 }

@@ -7,8 +7,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class StructReferenceWithReflection :
         AbstractStructReference<GenericParameterWithReflection>,
-        ITypeReferenceWithReflection,
-        IVisitable<IReflectionVisitor>
+        ITypeReferenceWithReflection//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly Type type;
         private readonly Lazy<GenericParameters> genericParameters;
@@ -34,7 +34,7 @@ namespace CSharpDom.Reflection
             get { return type; }
         }
         
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitStructReferenceWithReflection(this);
         }
@@ -42,6 +42,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

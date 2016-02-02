@@ -2,7 +2,6 @@
 {
     public interface IAccessor<TAttributeGroup, TMethodBody> :
         IAccessor,
-        IHasMemberVisibilityModifier,
         IHasAttributes<TAttributeGroup>,
         IHasBody<TMethodBody>
         where TAttributeGroup : IAttributeGroup

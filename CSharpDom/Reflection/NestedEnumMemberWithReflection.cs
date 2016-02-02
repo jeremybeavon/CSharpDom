@@ -3,12 +3,13 @@ using CSharpDom.Reflection.Internal;
 using System;
 using System.Reflection;
 using System.Collections.Generic;
+using CSharpDom.Common;
 
 namespace CSharpDom.Reflection
 {
     public sealed class NestedEnumMemberWithReflection :
-        AbstractNestedEnumMember<AttributeWithReflection, NestedEnumWithReflection>,
-        IVisitable<IReflectionVisitor>
+        AbstractNestedEnumMember<AttributeWithReflection, IClassNestedEnum>//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly NestedEnumWithReflection declaringType;
         private readonly FieldInfo field;
@@ -26,7 +27,23 @@ namespace CSharpDom.Reflection
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override NestedEnumWithReflection DeclaringType
+        public override IClassNestedEnum DeclaringType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /*public override NestedEnumWithReflection DeclaringType
         {
             get { return declaringType; }
         }
@@ -44,6 +61,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

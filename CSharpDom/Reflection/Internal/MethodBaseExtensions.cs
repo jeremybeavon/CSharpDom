@@ -4,34 +4,34 @@ namespace CSharpDom.Reflection.Internal
 {
     public static class MethodBaseExtensions
     {
-        public static MemberVisibilityModifier Visibility(this MethodBase method)
+        public static ClassMemberVisibilityModifier Visibility(this MethodBase method)
         {
             if (method.IsPublic)
             {
-                return MemberVisibilityModifier.Public;
+                return ClassMemberVisibilityModifier.Public;
             }
 
             if (method.IsAssembly)
             {
-                return MemberVisibilityModifier.Internal;
+                return ClassMemberVisibilityModifier.Internal;
             }
 
             if (method.IsFamilyOrAssembly)
             {
-                return MemberVisibilityModifier.ProtectedInternal;
+                return ClassMemberVisibilityModifier.ProtectedInternal;
             }
 
             if (method.IsFamily)
             {
-                return MemberVisibilityModifier.Protected;
+                return ClassMemberVisibilityModifier.Protected;
             }
 
             if (method.IsPrivate)
             {
-                return MemberVisibilityModifier.Private;
+                return ClassMemberVisibilityModifier.Private;
             }
 
-            return MemberVisibilityModifier.None;
+            return ClassMemberVisibilityModifier.None;
         }
     }
 }

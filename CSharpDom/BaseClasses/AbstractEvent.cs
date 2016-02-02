@@ -15,20 +15,9 @@ namespace CSharpDom.BaseClasses
         public abstract TDeclaringType DeclaringType { get; }
 
         public abstract TDelegateReference EventType { get; }
-
-        public abstract IReadOnlyCollection<TAttributeGroup> FieldAttributes { get; }
-
-        public abstract MemberInheritanceModifier InheritanceModifier { get; }
-
+        
         public abstract string Name { get; }
-
-        public abstract MemberVisibilityModifier Visibility { get; }
-
-        public void Accept(IGenericVisitor visitor)
-        {
-            visitor.VisitEvent(this);
-        }
-
+        
         public void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitEventChildren(this, visitor);

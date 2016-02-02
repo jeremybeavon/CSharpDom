@@ -36,8 +36,8 @@ namespace CSharpDom.Reflection
             EnumWithReflection,
             InterfaceWithReflection,
             StructWithReflection>,
-        IHasAssembly,
-        IVisitable<IReflectionVisitor>
+        IHasAssembly//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly Assembly assembly;
         private readonly TypeContainer typeContainer;
@@ -181,7 +181,7 @@ namespace CSharpDom.Reflection
             return Task.FromResult(this);
         }
 
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitAssemblyWithReflection(this);
         }
@@ -189,6 +189,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

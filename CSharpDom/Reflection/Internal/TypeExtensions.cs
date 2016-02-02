@@ -78,14 +78,14 @@ namespace CSharpDom.Reflection.Internal
             return type.GetMethods(allMemberFlags);
         }
 
-        public static MemberVisibilityModifier NestedVisibility(this Type type)
+        public static ClassMemberVisibilityModifier NestedVisibility(this Type type)
         {
             if (type.IsPublic)
             {
-                return MemberVisibilityModifier.Public;
+                return ClassMemberVisibilityModifier.Public;
             }
 
-            return MemberVisibilityModifier.None;
+            return ClassMemberVisibilityModifier.None;
         }
 
         public static TypeVisibilityModifier Visibility(this Type type)

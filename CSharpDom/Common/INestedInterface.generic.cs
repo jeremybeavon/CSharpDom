@@ -1,9 +1,15 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> :
-        INestedInterface,
+    public interface INestedInterface<
+        TAttributeGroup,
+        TDeclaringType,
+        TGenericParameter,
+        TInterfaceReference,
+        TEvent,
+        TProperty,
+        TIndexer,
+        TMethod> :
         IHasName,
-        IHasMemberVisibilityModifier,
         IHasAttributes<TAttributeGroup>,
         IBasicType<TEvent, TProperty, TIndexer, TMethod>,
         IHasDeclaringType<TDeclaringType>,
@@ -13,10 +19,10 @@
         where TDeclaringType : IType
         where TGenericParameter : IGenericParameterDeclaration
         where TInterfaceReference : IInterfaceReference
-        where TEvent : IEvent
-        where TProperty : IProperty
-        where TIndexer : IIndexer
-        where TMethod : IMethod
+        where TEvent : IInterfaceEvent
+        where TProperty : IInterfaceProperty
+        where TIndexer : IInterfaceIndexer
+        where TMethod : IInterfaceMethod
     {
     }
 }

@@ -19,6 +19,10 @@ namespace CSharpDom.CodeGeneration.Tree
             NestedEnums = new Collection<StructNestedEnum>();
             NestedInterfaces = new Collection<StructNestedInterface>();
             NestedStructs = new Collection<StructNestedStruct>();
+            ExplicitInterfaceEvents = new Collection<ExplicitInterfaceEvent>();
+            ExplicitInterfaceIndexers = new Collection<ExplicitInterfaceIndexer>();
+            ExplicitInterfaceMethods = new Collection<ExplicitInterfaceMethod>();
+            ExplicitInterfaceProperties = new Collection<ExplicitInterfaceProperty>();
         }
 
         public Collection<StructFieldDeclaration> Fields { get; set; }
@@ -46,5 +50,15 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<StructNestedInterface> NestedInterfaces { get; set; }
 
         public Collection<StructNestedStruct> NestedStructs { get; set; }
+
+        public StaticConstructor StaticConstructor { get; set; }
+
+        public Collection<ExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
+
+        public Collection<ExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
+
+        public Collection<ExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
+
+        public Collection<ExplicitInterfaceProperty> ExplicitInterfaceProperties { get; set; }
     }
 }

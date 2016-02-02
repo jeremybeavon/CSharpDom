@@ -10,8 +10,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class NestedTypeReferenceWithReflection :
         AbstractNestedTypeReference<ITypeReferenceWithReflection>,
-        ITypeReferenceWithReflection,
-        IVisitable<IReflectionVisitor>
+        ITypeReferenceWithReflection//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly ITypeReferenceWithReflection type;
         private readonly ITypeReferenceWithReflection nestedType;
@@ -37,7 +37,7 @@ namespace CSharpDom.Reflection
             get { return nestedType.Type; }
         }
 
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNestedTypeReferenceWithReflection(this);
         }
@@ -45,6 +45,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

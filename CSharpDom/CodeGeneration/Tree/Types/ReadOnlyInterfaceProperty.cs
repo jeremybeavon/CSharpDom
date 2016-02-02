@@ -10,27 +10,15 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyInterfaceProperty :
-        AbstractProperty<AttributeGroupNotSupported, IBasicType, ReadOnlyTypeReference, ReadOnlyInterfacePropertyAccessor>
+        AbstractInterfaceProperty<AttributeGroupNotSupported, IBasicType, ReadOnlyTypeReference>
     {
         private readonly InterfaceProperty interfaceProperty;
         private readonly ReadOnlyTypeReference propertyType;
-        private readonly ReadOnlyInterfacePropertyAccessor getAccessor;
-        private readonly ReadOnlyInterfacePropertyAccessor setAccessor;
 
         public ReadOnlyInterfaceProperty(InterfaceProperty interfaceProperty)
         {
             this.interfaceProperty = interfaceProperty;
             propertyType = new ReadOnlyTypeReference(interfaceProperty.Type);
-            InterfacePropertyAccessors accessors = interfaceProperty.Accessors;
-            if (accessors == InterfacePropertyAccessors.Get || accessors == InterfacePropertyAccessors.GetAndSet)
-            {
-                getAccessor = new ReadOnlyInterfacePropertyAccessor();
-            }
-
-            if (accessors == InterfacePropertyAccessors.Set || accessors == InterfacePropertyAccessors.GetAndSet)
-            {
-                setAccessor = new ReadOnlyInterfacePropertyAccessor();
-            }
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -43,14 +31,30 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return null; }
         }
 
-        public override ReadOnlyInterfacePropertyAccessor GetAccessor
+        public override bool HasGet
         {
-            get { return getAccessor; }
+            get
+            {
+                InterfacePropertyAccessors accessors = interfaceProperty.Accessors;
+                return accessors == InterfacePropertyAccessors.Get || accessors == InterfacePropertyAccessors.GetAndSet;
+            }
         }
 
-        public override MemberInheritanceModifier InheritanceModifier
+        public override bool HasSet
         {
-            get { return interfaceProperty.IsNew ? MemberInheritanceModifier.New : MemberInheritanceModifier.None; }
+            get
+            {
+                InterfacePropertyAccessors accessors = interfaceProperty.Accessors;
+                return accessors == InterfacePropertyAccessors.Set || accessors == InterfacePropertyAccessors.GetAndSet;
+            }
+        }
+
+        public override InterfaceMemberInheritanceModifier InheritanceModifier
+        {
+            get
+            {
+                return interfaceProperty.IsNew ? InterfaceMemberInheritanceModifier.New : InterfaceMemberInheritanceModifier.None;
+            }
         }
 
         public override string Name
@@ -62,17 +66,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return propertyType; }
         }
-
-        public override ReadOnlyInterfacePropertyAccessor SetAccessor
-        {
-            get { return setAccessor; }
-        }
-
-        public override MemberVisibilityModifier Visibility
-        {
-            get { return MemberVisibilityModifier.None; }
-        }
-
+        
         public static IReadOnlyCollection<ReadOnlyInterfaceProperty> Create(IEnumerable<InterfaceProperty> interfaceProperties)
         {
             return interfaceProperties.ToArray(interfaceProperty => new ReadOnlyInterfaceProperty(interfaceProperty));

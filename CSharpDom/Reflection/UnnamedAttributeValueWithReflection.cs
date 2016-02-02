@@ -5,7 +5,7 @@ using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class UnnamedAttributeValueWithReflection : AbstractUnnamedAttributeValue, IVisitable<IReflectionVisitor>
+    public sealed class UnnamedAttributeValueWithReflection : AbstractUnnamedAttributeValue//, IVisitable<IReflectionVisitor>
     {
         private readonly CustomAttributeTypedArgument attributeValue;
 
@@ -22,7 +22,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitUnnamedAttributeValueWithReflection(this);
         }
@@ -30,6 +30,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

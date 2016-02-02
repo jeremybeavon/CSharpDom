@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructIndexer :
-        AbstractIndexer<
+        AbstractStructIndexer<
             AttributeGroupNotSupported,
-            IBasicType,
+            IType,
             ReadOnlyTypeReference,
             ReadOnlyMethodParameter,
             ReadOnlyStructPropertyAccessor>
@@ -44,7 +44,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IBasicType DeclaringType
+        public override IType DeclaringType
         {
             get { return null; }
         }
@@ -58,12 +58,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return indexerType; }
         }
-
-        public override MemberInheritanceModifier InheritanceModifier
-        {
-            get { return MemberInheritanceModifier.None; }
-        }
-
+        
         public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
         {
             get { return parameters; }
@@ -74,9 +69,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return setAccessor; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyStruct.GetVisibility(indexer.Visibility); }
+            get { return indexer.Visibility; }
         }
     }
 }

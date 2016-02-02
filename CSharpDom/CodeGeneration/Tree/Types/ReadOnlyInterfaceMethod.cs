@@ -10,13 +10,12 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyInterfaceMethod :
-        AbstractMethod<
+        AbstractInterfaceMethod<
             AttributeGroupNotSupported,
             IBasicType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
-            ReadOnlyMethodParameter,
-            MethodBodyNotSupported>
+            ReadOnlyMethodParameter>
     {
         private readonly InterfaceMethod interfaceMethod;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
@@ -35,12 +34,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return new AttributeGroupNotSupported[0]; }
         }
-
-        public override MethodBodyNotSupported Body
-        {
-            get { return new MethodBodyNotSupported(); }
-        }
-
+        
         public override IBasicType DeclaringType
         {
             get { return null; }
@@ -51,9 +45,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return genericParameters; }
         }
 
-        public override MemberInheritanceModifier InheritanceModifier
+        public override InterfaceMemberInheritanceModifier InheritanceModifier
         {
-            get { return interfaceMethod.IsNew ? MemberInheritanceModifier.New : MemberInheritanceModifier.None; }
+            get
+            {
+                return interfaceMethod.IsNew ? InterfaceMemberInheritanceModifier.New : InterfaceMemberInheritanceModifier.None;
+            }
         }
 
         public override string Name
@@ -70,12 +67,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return returnType; }
         }
-
-        public override MemberVisibilityModifier Visibility
-        {
-            get { return MemberVisibilityModifier.None; }
-        }
-
+        
         public override bool IsAsync
         {
             get { return false; }

@@ -23,14 +23,7 @@ namespace CSharpDom.BaseClasses
         public abstract IReadOnlyList<TParameter> Parameters { get; }
 
         public abstract TTypeReference ReturnType { get; }
-
-        public abstract MemberVisibilityModifier Visibility { get; }
-
-        public void Accept(IGenericVisitor visitor)
-        {
-            visitor.VisitNestedDelegate(this);
-        }
-
+        
         public void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedDelegateChildren(this, visitor);

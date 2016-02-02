@@ -17,14 +17,7 @@ namespace CSharpDom.BaseClasses
         public abstract IReadOnlyList<TNestedEnumMember> EnumMembers { get; }
 
         public abstract string Name { get; }
-
-        public abstract MemberVisibilityModifier Visibility { get; }
-
-        public void Accept(IGenericVisitor visitor)
-        {
-            visitor.VisitNestedEnum(this);
-        }
-
+        
         public void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedEnumChildren(this, visitor);

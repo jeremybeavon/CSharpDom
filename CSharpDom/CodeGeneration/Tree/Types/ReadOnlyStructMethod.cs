@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructMethod :
-        AbstractMethod<
+        AbstractStructMethod<
             AttributeGroupNotSupported,
-            IBasicType,
+            IType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
             ReadOnlyMethodParameter,
@@ -40,7 +40,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body; }
         }
 
-        public override IBasicType DeclaringType
+        public override IType DeclaringType
         {
             get { return null; }
         }
@@ -50,27 +50,27 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return genericParameters; }
         }
 
-        public override MemberInheritanceModifier InheritanceModifier
+        /*public override ClassMemberInheritanceModifier InheritanceModifier
         {
             get
             {
                 switch (method.InheritanceModifier)
                 {
                     case StructMethodInheritanceModifier.None:
-                        return MemberInheritanceModifier.None;
+                        return CSharpDom.ClassMemberInheritanceModifier.None;
                     case StructMethodInheritanceModifier.New:
-                        return MemberInheritanceModifier.New;
+                        return CSharpDom.ClassMemberInheritanceModifier.New;
                     case StructMethodInheritanceModifier.NewStatic:
-                        return MemberInheritanceModifier.NewStatic;
+                        return CSharpDom.ClassMemberInheritanceModifier.NewStatic;
                     case StructMethodInheritanceModifier.Override:
-                        return MemberInheritanceModifier.Override;
+                        return CSharpDom.ClassMemberInheritanceModifier.Override;
                     case StructMethodInheritanceModifier.Static:
-                        return MemberInheritanceModifier.Static;
+                        return CSharpDom.ClassMemberInheritanceModifier.Static;
                     default:
                         throw new NotSupportedException();
                 }
             }
-        }
+        }*/
 
         public override bool IsAsync
         {
@@ -97,9 +97,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return returnType; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyStruct.GetVisibility(method.Visibility); }
+            get { return method.Visibility; }
         }
     }
 }

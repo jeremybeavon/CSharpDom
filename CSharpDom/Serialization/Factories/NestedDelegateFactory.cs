@@ -2,17 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class NestedDelegateFactory : AbstractFactory<INestedDelegate, NestedDelegate>
+    public sealed class NestedDelegateFactory : AbstractFactory<IClassNestedDelegate, ClassNestedDelegate>
     {
-        public NestedDelegateFactory(INestedDelegate nestedDelegate)
+        public NestedDelegateFactory(IClassNestedDelegate nestedDelegate)
             : base(nestedDelegate)
         {
         }
 
-        public override void VisitNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate)
+        public override void VisitClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
+            IClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate)
         {
-            Value = new NestedDelegate()
+            Value = new ClassNestedDelegate()
             {
                 Attributes = nestedDelegate.Attributes.ToAttributeListUsingFactory(),
                 GenericParameters = nestedDelegate.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),

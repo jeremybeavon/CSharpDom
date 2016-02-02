@@ -2,17 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class MethodFactory : AbstractFactory<IMethod, Method>
+    public sealed class MethodFactory : AbstractFactory<IClassMethod, ClassMethod>
     {
-        public MethodFactory(IMethod method)
+        public MethodFactory(IClassMethod method)
             : base(method)
         {
         }
 
-        public override void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
-            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+        public override void VisitClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
-            Value = new Method()
+            Value = new ClassMethod()
             {
                 Attributes = method.Attributes.ToAttributeListUsingFactory(),
                 Body = new MethodBodyFactory(method.Body).Value,

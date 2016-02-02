@@ -1,8 +1,10 @@
-﻿namespace CSharpDom.Reflection
+﻿using CSharpDom.Common;
+
+namespace CSharpDom.Reflection
 {
-    public interface IReflectionVisitor
+    public interface IReflectionVisitor : IGenericVisitor
     {
-        void Visit(IVisitable<IReflectionVisitor> node);
+        /*void Visit(IVisitable<IReflectionVisitor> node);
 
         void VisitAccessorWithReflection(AccessorWithReflection accessor);
 
@@ -34,7 +36,7 @@
 
         void VisitEventWithReflection(EventWithReflection @event);
 
-        void VisitEventPropertyWithReflection(EventPropertyWithReflection eventProperty);
+        void VisitEventPropertyWithReflection(ClassEventPropertyWithReflection eventProperty);
 
         void VisitFieldWithReflection(FieldWithReflection field);
 
@@ -84,6 +86,6 @@
 
         void VisitUnnamedAttributeValueWithReflection(UnnamedAttributeValueWithReflection unnamedAttributeValue);
 
-        void VisitUnspecifiedTypeReferenceWithReflection(UnspecifiedTypeReferenceWithReflection unspecificTypeReference);
+        void VisitUnspecifiedTypeReferenceWithReflection(UnspecifiedTypeReferenceWithReflection unspecificTypeReference);*/
     }
 }

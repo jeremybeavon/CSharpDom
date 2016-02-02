@@ -8,8 +8,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class EnumMemberWithReflection :
         AbstractEnumMember<AttributeWithReflection, EnumWithReflection>,
-        IHasFieldInfo,
-        IVisitable<IReflectionVisitor>
+        IHasFieldInfo//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly EnumWithReflection declaringType;
         private readonly FieldInfo field;
@@ -43,7 +43,7 @@ namespace CSharpDom.Reflection
         }
 
 
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitEnumMemberWithReflection(this);
         }
@@ -51,6 +51,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

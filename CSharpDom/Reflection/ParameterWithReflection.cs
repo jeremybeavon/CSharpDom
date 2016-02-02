@@ -9,8 +9,8 @@ namespace CSharpDom.Reflection
 {
     public sealed class ParameterWithReflection :
         AbstractParameter<AttributeWithReflection, ITypeReferenceWithReflection>,
-        IHasParameterInfo,
-        IVisitable<IReflectionVisitor>
+        IHasParameterInfo//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly ParameterInfo parameter;
         private readonly Lazy<Attributes> attributes;
@@ -71,7 +71,7 @@ namespace CSharpDom.Reflection
             get { return parameter; }
         }
 
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitParameterWithReflection(this);
         }
@@ -79,6 +79,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

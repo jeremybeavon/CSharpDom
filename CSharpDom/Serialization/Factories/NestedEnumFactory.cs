@@ -2,16 +2,16 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class NestedEnumFactory : AbstractFactory<INestedEnum, NestedEnum>
+    public sealed class NestedEnumFactory : AbstractFactory<IClassNestedEnum, ClassNestedEnum>
     {
-        public NestedEnumFactory(INestedEnum nestedEnum)
+        public NestedEnumFactory(IClassNestedEnum nestedEnum)
             : base(nestedEnum)
         {
         }
 
-        public override void VisitNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
+        public override void VisitClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(IClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
         {
-            Value = new NestedEnum()
+            Value = new ClassNestedEnum()
             {
                 Attributes = nestedEnum.Attributes.ToAttributeListUsingFactory(),
                 EnumMembers = nestedEnum.EnumMembers.ToList(member => new NestedEnumMemberFactory(member).Value),

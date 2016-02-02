@@ -2,7 +2,7 @@
 
 namespace CSharpDom.NotSupported
 {
-    public sealed class NestedStructNotSupported : VisitableNotSupported<IGenericVisitor>, INestedStruct
+    public sealed class NestedStructNotSupported : VisitableNotSupported<IGenericVisitor>, IClassNestedStruct
     {
     }
 }

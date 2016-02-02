@@ -2,17 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class EventFactory : AbstractFactory<IEvent, Event>
+    public sealed class EventFactory : AbstractFactory<IClassEvent, ClassEvent>
     {
-        public EventFactory(IEvent @event)
+        public EventFactory(IClassEvent @event)
             : base(@event)
         {
         }
 
-        public override void VisitEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
+        public override void VisitClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
         {
-            Value = new Event()
+            Value = new ClassEvent()
             {
                 Attributes = @event.Attributes.ToAttributeListUsingFactory(),
                 EventType = new DelegateReferenceFactory(@event.EventType).Value,

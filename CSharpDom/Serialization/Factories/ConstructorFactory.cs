@@ -2,17 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class ConstructorFactory : AbstractFactory<IConstructor, Constructor>
+    public sealed class ConstructorFactory : AbstractFactory<IClassConstructor, ClassConstructor>
     {
-        public ConstructorFactory(IConstructor constructor)
+        public ConstructorFactory(IClassConstructor constructor)
             : base(constructor)
         {
         }
 
-        public override void VisitConstructor<TAttributeGroup, TDeclaringType, TParameter>(
-            IConstructor<TAttributeGroup, TDeclaringType, TParameter> constructor)
+        public override void VisitClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
+            IClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
         {
-            Value = new Constructor()
+            Value = new ClassConstructor()
             {
                 Attributes = constructor.Attributes.ToAttributeListUsingFactory(),
                 Parameters = constructor.Parameters.ToParameterListUsingFactory(),

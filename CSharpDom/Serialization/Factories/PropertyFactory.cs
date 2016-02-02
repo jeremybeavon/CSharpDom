@@ -2,17 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class PropertyFactory : AbstractFactory<IProperty, Property>
+    public sealed class PropertyFactory : AbstractFactory<IClassProperty, ClassProperty>
     {
-        public PropertyFactory(IProperty property)
+        public PropertyFactory(IClassProperty property)
             : base(property)
         {
         }
 
-        public override void VisitProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
+        public override void VisitClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
+            IClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
         {
-            Value = new Property()
+            Value = new ClassProperty()
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
                 GetAccessor = new AccessorFactory(property.GetAccessor).Value,

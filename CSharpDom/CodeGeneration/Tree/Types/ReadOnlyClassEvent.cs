@@ -5,11 +5,11 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassEvent :
-        IEvent<
+        IClassEvent<
             AttributeGroupNotSupported,
-            IBasicType,
+            IType,
             ReadOnlyDelegateReference>,
-        IEventProperty<
+        IClassEventProperty<
             AttributeGroupNotSupported,
             IType,
             ReadOnlyDelegateReference,
@@ -57,7 +57,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public MemberInheritanceModifier InheritanceModifier
+        public ClassMemberInheritanceModifier InheritanceModifier
         {
             get { return ReadOnlyClass.GetInheritanceModifier(classEvent.InheritanceModifier); }
         }
@@ -72,27 +72,22 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return removeBody; }
         }
 
-        public MemberVisibilityModifier Visibility
+        public ClassMemberVisibilityModifier Visibility
         {
             get { return ReadOnlyClass.GetVisibility(classEvent.Visibility); }
         }
-
-        IBasicType IHasDeclaringType<IBasicType>.DeclaringType
-        {
-            get { return null; }
-        }
-
+        
         public bool IsEventProperty { get; private set; }
 
         public void Accept(IGenericVisitor visitor)
         {
             if (IsEventProperty)
             {
-                visitor.VisitEventProperty(this);
+                visitor.VisitClassEventProperty(this);
             }
             else
             {
-                visitor.VisitEvent(this);
+                //visitor.VisitEvent(this);
             }
         }
 

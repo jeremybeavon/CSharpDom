@@ -9,23 +9,24 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class AccessorWithReflection :
-        AbstractAccessor<AttributeWithReflection, ILMethodBodyWithReflectionEmit>,
+        AbstractClassAccessor<AttributeWithReflection, ILMethodBodyWithReflectionEmit>,
         IHasMethodInfo,
-        IVisitable<IReflectionVisitor>
+        //IVisitable<IReflectionVisitor>,
+        IStructAccessor
     {
-        private readonly MemberVisibilityModifier visibility;
+        private readonly ClassMemberVisibilityModifier visibility;
         private readonly MethodInfo method;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
-        internal AccessorWithReflection(IHasMemberVisibilityModifier parentVisibility, MethodInfo method)
+        internal AccessorWithReflection(IHasClassMemberVisibilityModifier parentVisibility, MethodInfo method)
         {
             this.method = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
             visibility = method.Visibility();
             if (parentVisibility.Visibility == visibility)
             {
-                visibility = MemberVisibilityModifier.None;
+                visibility = ClassMemberVisibilityModifier.None;
             }
 
             body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
@@ -36,7 +37,7 @@ namespace CSharpDom.Reflection
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { return visibility; }
         }
@@ -51,7 +52,7 @@ namespace CSharpDom.Reflection
             get { return body.Value; }
         }
 
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitAccessorWithReflection(this);
         }
@@ -59,6 +60,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

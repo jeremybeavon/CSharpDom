@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyInterfaceEvent :
-        AbstractEvent<AttributeGroupNotSupported, IBasicType, ReadOnlyDelegateReference>
+        AbstractInterfaceEvent<AttributeGroupNotSupported, IBasicType, ReadOnlyDelegateReference>
     {
         private readonly InterfaceEvent interfaceEvent;
         private readonly ReadOnlyDelegateReference eventType;
@@ -36,26 +36,19 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return eventType; }
         }
 
-        public override IReadOnlyCollection<AttributeGroupNotSupported> FieldAttributes
+        public override InterfaceMemberInheritanceModifier InheritanceModifier
         {
-            get { return new AttributeGroupNotSupported[0]; }
-        }
-
-        public override MemberInheritanceModifier InheritanceModifier
-        {
-            get { return interfaceEvent.IsNew ? MemberInheritanceModifier.New : MemberInheritanceModifier.None; }
+            get
+            {
+                return interfaceEvent.IsNew ? InterfaceMemberInheritanceModifier.New : InterfaceMemberInheritanceModifier.None;
+            }
         }
 
         public override string Name
         {
             get { return interfaceEvent.Name; }
         }
-
-        public override MemberVisibilityModifier Visibility
-        {
-            get { return MemberVisibilityModifier.None; }
-        }
-
+        
         public static IReadOnlyCollection<ReadOnlyInterfaceEvent> Create(IEnumerable<InterfaceEvent> interfaceEvents)
         {
             return interfaceEvents.ToArray(interfaceEvent => new ReadOnlyInterfaceEvent(interfaceEvent));

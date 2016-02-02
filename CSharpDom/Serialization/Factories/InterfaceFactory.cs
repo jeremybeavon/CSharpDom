@@ -12,7 +12,7 @@ namespace CSharpDom.Serialization.Factories
         public override void VisitInterface<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
             IInterface<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
         {
-            Value = new Interface()
+            /*Value = new Interface()
             {
                 Attributes = @interface.Attributes.ToAttributeListUsingFactory(),
                 Events = @interface.Events.ToList(@event => new EventFactory(@event).Value),
@@ -24,7 +24,7 @@ namespace CSharpDom.Serialization.Factories
                 Name = @interface.Name,
                 Properties = @interface.Properties.ToList(property => new PropertyFactory(property).Value),
                 Visibility = @interface.Visibility
-            };
+            };*/
         }
     }
 }

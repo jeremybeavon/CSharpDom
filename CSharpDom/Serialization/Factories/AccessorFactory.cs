@@ -2,20 +2,20 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class AccessorFactory : AbstractFactory<IAccessor, Accessor>
+    public sealed class AccessorFactory : AbstractFactory<IClassAccessor, ClassAccessor>
     {
-        public AccessorFactory(IAccessor accessor)
+        public AccessorFactory(IClassAccessor accessor)
             : base(accessor)
         {
         }
 
-        public override void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
+        public override void VisitClassAccessor<TAttributeGroup, TMethodBody>(IClassAccessor<TAttributeGroup, TMethodBody> accessor)
         {
-            Value = new Accessor()
+            Value = new ClassAccessor()
             {
                 Attributes = accessor.Attributes.ToAttributeListUsingFactory(),
-                Body = new MethodBodyFactory(accessor.Body).Value,
-                Visibility = accessor.Visibility
+                Body = new MethodBodyFactory(accessor.Body).Value//,
+                //Visibility = accessor.Visibility
             };
         }
     }

@@ -8,9 +8,9 @@ using System;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassMethod :
-        AbstractMethod<
+        AbstractClassMethod<
             AttributeGroupNotSupported,
-            IBasicType,
+            IType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
             ReadOnlyClassMethodParameter,
@@ -41,7 +41,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body; }
         }
 
-        public override IBasicType DeclaringType
+        public override IType DeclaringType
         {
             get { return null; }
         }
@@ -51,7 +51,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return genericParameters; }
         }
 
-        public override MemberInheritanceModifier InheritanceModifier
+        public override ClassMemberInheritanceModifier InheritanceModifier
         {
             get { return ReadOnlyClass.GetInheritanceModifier(method.InheritanceModifier); }
         }
@@ -81,7 +81,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return returnType; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { return ReadOnlyClass.GetVisibility(method.Visibility); }
         }

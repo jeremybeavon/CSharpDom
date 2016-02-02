@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassNestedClass :
-        AbstractNestedClass<
+        AbstractClassNestedClass<
             AttributeGroupNotSupported,
             IType,
             ReadOnlyGenericParameterDeclaration,
@@ -27,7 +27,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassNestedEnum,
             ReadOnlyClassNestedInterface,
             ReadOnlyClassNestedStruct,
-            NestedDestructorNotSupported>
+            NestedDestructorNotSupported,
+            ReadOnlyStaticConstructor,
+            ReadOnlyExplicitInterfaceEvent,
+            ReadOnlyExplicitInterfaceProperty,
+            ReadOnlyExplicitInterfaceIndexer,
+            ReadOnlyExplicitInterfaceMethod>
     {
         private readonly ClassNestedClass nestedClass;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
@@ -178,9 +183,34 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.Structs; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { return ReadOnlyClass.GetVisibility(nestedClass.Visibility); }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceEvent> ExplicitInterfaceEvents
+        {
+            get { return body.ExplicitInterfaceEvents; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceIndexer> ExplicitInterfaceIndexers
+        {
+            get { return body.ExplicitInterfaceIndexers; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceMethod> ExplicitInterfaceMethods
+        {
+            get { return body.ExplicitInterfaceMethods; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceProperty> ExplicitInterfaceProperties
+        {
+            get { return body.ExplicitInterfaceProperties; }
+        }
+
+        public override ReadOnlyStaticConstructor StaticConstructor
+        {
+            get { return body.StaticConstructor; }
         }
     }
 }

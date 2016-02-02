@@ -2,27 +2,27 @@
 {
     public sealed class WriteMemberVisibilityModifier : ISourceCodeBuilderStep
     {
-        public WriteMemberVisibilityModifier(MemberVisibilityModifier modifier)
+        public WriteMemberVisibilityModifier(ClassMemberVisibilityModifier modifier)
         {
             Modifier = modifier;
         }
 
-        public MemberVisibilityModifier Modifier { get; private set; }
+        public ClassMemberVisibilityModifier Modifier { get; private set; }
 
         public void AddText(SourceCodeTextBuilder builder)
         {
             switch (Modifier)
             {
-                case MemberVisibilityModifier.Public:
+                case ClassMemberVisibilityModifier.Public:
                     builder.Append(VisibilityText.PublicText);
                     break;
-                case MemberVisibilityModifier.Internal:
+                case ClassMemberVisibilityModifier.Internal:
                     builder.Append(VisibilityText.InternalText);
                     break;
-                case MemberVisibilityModifier.Protected:
+                case ClassMemberVisibilityModifier.Protected:
                     builder.Append(VisibilityText.ProtectedText);
                     break;
-                case MemberVisibilityModifier.Private:
+                case ClassMemberVisibilityModifier.Private:
                     builder.Append(VisibilityText.PrivateText);
                     break;
             }

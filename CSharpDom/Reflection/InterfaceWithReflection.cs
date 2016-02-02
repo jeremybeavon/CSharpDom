@@ -16,13 +16,13 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             GenericParameterDeclarationWithReflection,
             InterfaceReferenceWithReflection,
-            EventWithReflection,
-            PropertyWithReflection,
-            IndexerWithReflection,
-            MethodWithReflection>,
+            InterfaceEventWithReflection,
+            InterfacePropertyWithReflection,
+            InterfaceIndexerWithReflection,
+            InterfaceMethodWithReflection>,
         IBasicTypeWithReflection,
-        IHasType,
-        IVisitable<IReflectionVisitor>
+        IHasType//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly AssemblyWithReflection assembly;
         private readonly NamespaceWithReflection @namespace;
@@ -42,7 +42,7 @@ namespace CSharpDom.Reflection
             get { return basicType.Attributes; }
         }
 
-        public override IReadOnlyCollection<EventWithReflection> Events
+        /*public override IReadOnlyCollection<EventWithReflection> Events
         {
             get { return basicType.Events; }
         }
@@ -90,7 +90,7 @@ namespace CSharpDom.Reflection
         public override IReadOnlyCollection<PropertyWithReflection> Properties
         {
             get { return basicType.Properties; }
-        }
+        }*/
 
         public override AssemblyWithReflection Solution
         {
@@ -106,8 +106,88 @@ namespace CSharpDom.Reflection
         {
             get { return type.Visibility(); }
         }
-        
-        public void Accept(IReflectionVisitor visitor)
+
+        public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override IReadOnlyCollection<InterfaceReferenceWithReflection> Interfaces
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override bool IsPartial
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override NamespaceWithReflection Namespace
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override AssemblyWithReflection Project
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override IReadOnlyCollection<InterfaceEventWithReflection> Events
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override IReadOnlyCollection<InterfaceIndexerWithReflection> Indexers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override IReadOnlyCollection<InterfaceMethodWithReflection> Methods
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override IReadOnlyCollection<InterfacePropertyWithReflection> Properties
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitInterfaceWithReflection(this);
         }
@@ -115,6 +195,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

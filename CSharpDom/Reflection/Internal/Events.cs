@@ -33,5 +33,7 @@ namespace CSharpDom.Reflection.Internal
         public IReadOnlyCollection<EventWithReflection> EventsWithReflection { get; private set; }
 
         public IReadOnlyCollection<EventPropertyWithReflection> EventPropertiesWithReflection { get; private set; }
+
+        public IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplictInterfaceEventsWithReflection { get; private set; }
     }
 }

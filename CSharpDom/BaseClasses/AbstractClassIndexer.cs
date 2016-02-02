@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using CSharpDom.Common;
+
+namespace CSharpDom.BaseClasses
+{
+    public abstract class AbstractClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> :
+        AbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>,
+        IClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
+        where TAttributeGroup : IAttributeGroup
+        where TDeclaringType : IType
+        where TTypeReference : ITypeReference
+        where TParameter : IParameter
+        where TAccessor : IClassAccessor
+    {
+        public abstract ClassMemberInheritanceModifier InheritanceModifier { get; }
+        
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
+
+        public void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitClassIndexer(this);
+        }
+    }
+}

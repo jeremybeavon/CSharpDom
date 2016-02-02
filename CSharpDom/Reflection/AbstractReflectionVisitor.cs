@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection
 {
-    public abstract class AbstractReflectionVisitor : IReflectionVisitor
+    /*public abstract class AbstractReflectionVisitor : IReflectionVisitor
     {
         public virtual void Visit(IVisitable<IReflectionVisitor> node)
         {
@@ -83,7 +83,7 @@ namespace CSharpDom.Reflection
             Visit(@enum);
         }
 
-        public virtual void VisitEventPropertyWithReflection(EventPropertyWithReflection eventProperty)
+        public virtual void VisitEventPropertyWithReflection(ClassEventPropertyWithReflection eventProperty)
         {
             Visit(eventProperty);
         }
@@ -217,5 +217,5 @@ namespace CSharpDom.Reflection
         {
             Visit(unspecificTypeReference);
         }
-    }
+    }*/
 }

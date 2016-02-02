@@ -4,49 +4,49 @@ namespace CSharpDom.Reflection.Internal
 {
     internal static class MethodInfoExtensions
     {
-        public static MemberInheritanceModifier InheritanceModifier(this MethodInfo method)
+        public static ClassMemberInheritanceModifier InheritanceModifier(this MethodInfo method)
         {
             if (method.IsFinal && method.IsOverride())
             {
-                return MemberInheritanceModifier.SealedOverride;
+                return ClassMemberInheritanceModifier.SealedOverride;
             }
 
             if (method.IsOverride())
             {
-                return MemberInheritanceModifier.Override;
+                return ClassMemberInheritanceModifier.Override;
             }
 
             if (method.IsHideBySig && method.IsStatic)
             {
-                return MemberInheritanceModifier.NewStatic;
+                return ClassMemberInheritanceModifier.NewStatic;
             }
 
             if (method.IsHideBySig && method.IsVirtual)
             {
-                return MemberInheritanceModifier.NewVirtual;
+                return ClassMemberInheritanceModifier.NewVirtual;
             }
 
             if (method.IsHideBySig)
             {
-                return MemberInheritanceModifier.New;
+                return ClassMemberInheritanceModifier.New;
             }
 
             if (method.IsStatic)
             {
-                return MemberInheritanceModifier.Static;
+                return ClassMemberInheritanceModifier.Static;
             }
 
             if (method.IsAbstract)
             {
-                return MemberInheritanceModifier.Abstract;
+                return ClassMemberInheritanceModifier.Abstract;
             }
 
             if (method.IsVirtual)
             {
-                return MemberInheritanceModifier.Virtual;
+                return ClassMemberInheritanceModifier.Virtual;
             }
 
-            return MemberInheritanceModifier.None;
+            return ClassMemberInheritanceModifier.None;
         }
     }
 }

@@ -13,8 +13,8 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             ITypeReferenceWithReflection,
             ParameterWithReflection,
-            MethodBodyNotSupported>,
-        IVisitable<IReflectionVisitor>
+            MethodBodyNotSupported>//,
+        //IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly MethodInfo method;
@@ -64,7 +64,7 @@ namespace CSharpDom.Reflection
             get { return new MethodBodyNotSupported(); }
         }
 
-        public void Accept(IReflectionVisitor visitor)
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitOperatorOverloadWithReflection(this);
         }
@@ -72,6 +72,6 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }
+        }*/
     }
 }

@@ -2,30 +2,30 @@
 {
     public sealed class WriteMemberInheritanceModifier : ISourceCodeBuilderStep
     {
-        public WriteMemberInheritanceModifier(MemberInheritanceModifier inheritanceModifier)
+        public WriteMemberInheritanceModifier(ClassMemberInheritanceModifier inheritanceModifier)
         {
             InheritanceModifier = inheritanceModifier;
         }
 
-        public MemberInheritanceModifier InheritanceModifier { get; private set; }
+        public ClassMemberInheritanceModifier InheritanceModifier { get; private set; }
 
         public void AddText(SourceCodeTextBuilder builder)
         {
             switch (InheritanceModifier)
             {
-                case MemberInheritanceModifier.Abstract:
+                case ClassMemberInheritanceModifier.Abstract:
                     builder.Append(InheritanceModifierText.AbstractText);
                     break;
-                case MemberInheritanceModifier.New:
+                case ClassMemberInheritanceModifier.New:
                     builder.Append(InheritanceModifierText.NewText);
                     break;
-                case MemberInheritanceModifier.Override:
+                case ClassMemberInheritanceModifier.Override:
                     builder.Append(InheritanceModifierText.OverrideText);
                     break;
-                case MemberInheritanceModifier.Static:
+                case ClassMemberInheritanceModifier.Static:
                     builder.Append(InheritanceModifierText.StaticText);
                     break;
-                case MemberInheritanceModifier.Virtual:
+                case ClassMemberInheritanceModifier.Virtual:
                     builder.Append(InheritanceModifierText.VirtualText);
                     break;
             }

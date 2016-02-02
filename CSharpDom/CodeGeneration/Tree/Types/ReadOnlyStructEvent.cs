@@ -5,11 +5,11 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructEvent :
-        IEvent<
+        IStructEvent<
             AttributeGroupNotSupported,
-            IBasicType,
+            IType,
             ReadOnlyDelegateReference>,
-        IEventProperty<
+        IStructEventProperty<
             AttributeGroupNotSupported,
             IType,
             ReadOnlyDelegateReference,
@@ -57,9 +57,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public MemberInheritanceModifier InheritanceModifier
+        public ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return structEvent.IsStatic ? MemberInheritanceModifier.Static : MemberInheritanceModifier.None; }
+            get { return structEvent.IsStatic ? CSharpDom.ClassMemberInheritanceModifier.Static : CSharpDom.ClassMemberInheritanceModifier.None; }
         }
 
         public string Name
@@ -72,27 +72,22 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return removeBody; }
         }
 
-        public MemberVisibilityModifier Visibility
+        public StructMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyStruct.GetVisibility(structEvent.Visibility); }
+            get { return structEvent.Visibility; }
         }
-
-        IBasicType IHasDeclaringType<IBasicType>.DeclaringType
-        {
-            get { return null; }
-        }
-
+        
         public bool IsEventProperty { get; private set; }
 
         public void Accept(IGenericVisitor visitor)
         {
             if (IsEventProperty)
             {
-                visitor.VisitEventProperty(this);
+                visitor.VisitStructEventProperty(this);
             }
             else
             {
-                visitor.VisitEvent(this);
+                visitor.VisitStructEvent(this);
             }
         }
 

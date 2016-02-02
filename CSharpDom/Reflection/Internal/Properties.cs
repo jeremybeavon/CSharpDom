@@ -9,7 +9,7 @@ namespace CSharpDom.Reflection.Internal
 {
     internal sealed class Properties
     {
-        public Properties(IBasicTypeWithReflection declaringType, Type type)
+        public Properties(ITypeWithReflection declaringType, Type type)
         {
             List<IndexerWithReflection> indexers = new List<IndexerWithReflection>();
             List<PropertyWithReflection> properties = new List<PropertyWithReflection>();
@@ -32,5 +32,9 @@ namespace CSharpDom.Reflection.Internal
         public IReadOnlyCollection<IndexerWithReflection> IndexersWithReflection { get; private set; }
 
         public IReadOnlyCollection<PropertyWithReflection> PropertiesWithReflection { get; private set; }
+
+        public IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexersWithReflection { get; private set; }
+
+        public IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfacePropertiesWithReflection { get; private set; }
     }
 }

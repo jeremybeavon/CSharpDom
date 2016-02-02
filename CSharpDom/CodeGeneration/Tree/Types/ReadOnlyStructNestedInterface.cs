@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructNestedInterface :
-        AbstractNestedInterface<
+        AbstractStructNestedInterface<
             AttributeGroupNotSupported,
             IType,
             ReadOnlyGenericParameterDeclaration,
@@ -78,9 +78,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return properties; }
         }
 
-        public override MemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyStruct.GetVisibility(nestedInterface.Visibility); }
+            get { return nestedInterface.Visibility; }
         }
     }
 }

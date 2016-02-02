@@ -12,11 +12,9 @@ namespace CSharpDom.BaseClasses
 
         public abstract TMethodBody Body { get; }
 
-        public abstract MemberVisibilityModifier Visibility { get; }
-
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitAccessor(this);
+            throw new NotSupportedException();
         }
 
         public void AcceptChildren(IGenericVisitor visitor)
