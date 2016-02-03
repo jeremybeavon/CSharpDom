@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -15,92 +16,66 @@ namespace CSharpDom.Reflection
             ParameterWithReflection,
             ILMethodBodyWithReflectionEmit>
     {
+        private readonly MethodWithReflection method;
+
+        internal ClassMethodWithReflection(ITypeWithReflection declaringType, MethodInfo method)
+        {
+            this.method = new MethodWithReflection(declaringType, method);
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Attributes; }
         }
 
         public override ILMethodBodyWithReflectionEmit Body
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Body; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.DeclaringType; }
         }
 
         public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.GenericParameters; }
         }
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.MethodInfo.InheritanceModifier(); }
         }
 
         public override bool IsAsync
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.IsAsync; }
         }
 
         public override bool IsPartial
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.IsPartial; }
         }
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Name; }
         }
 
         public override IReadOnlyList<ParameterWithReflection> Parameters
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Parameters; }
         }
 
         public override ITypeReferenceWithReflection ReturnType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.ReturnType; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.MethodInfo.ClassVisibility(); }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStructConstructor : IStructMember
+    public interface IStructConstructor : IStructMember, IConstructor
     {
     }
 }

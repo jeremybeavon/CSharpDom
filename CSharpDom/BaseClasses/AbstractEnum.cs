@@ -14,6 +14,8 @@ namespace CSharpDom.BaseClasses
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 
+        public abstract EnumBaseType BaseType { get; }
+
         public abstract IReadOnlyList<TEnumMember> EnumMembers { get; }
 
         public abstract string Name { get; }

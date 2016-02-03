@@ -4,13 +4,13 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class NestedDestructor : INestedDestructor<AttributeGroup, IClassNestedClass, MethodBody>
+    public sealed class NestedDestructor : INestedDestructor<AttributeGroup, INestedClass, MethodBody>
     {
         public IReadOnlyCollection<AttributeGroup> Attributes { get; set; }
 
         public MethodBody Body { get; set; }
 
-        public IClassNestedClass DeclaringType
+        public INestedClass DeclaringType
         {
             get { return null; }
         }

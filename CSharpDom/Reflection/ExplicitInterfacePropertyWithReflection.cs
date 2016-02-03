@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using CSharpDom.BaseClasses;
 
 namespace CSharpDom.Reflection
@@ -12,6 +13,15 @@ namespace CSharpDom.Reflection
             ITypeReferenceWithReflection,
             AccessorWithReflection>
     {
+        private ITypeWithReflection declaringType;
+        private PropertyInfo property;
+
+        internal ExplicitInterfacePropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
+        {
+            this.declaringType = declaringType;
+            this.property = property;
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
             get

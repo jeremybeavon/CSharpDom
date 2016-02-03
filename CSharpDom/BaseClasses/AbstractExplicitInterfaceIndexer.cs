@@ -22,7 +22,7 @@ namespace CSharpDom.BaseClasses
     {
         public abstract TInterfaceReference ExplicitInterface { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitExplicitInterfaceIndexer(this);
         }

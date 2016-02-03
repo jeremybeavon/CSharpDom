@@ -34,13 +34,13 @@ namespace CSharpDom.Reflection.Internal
     {
         private readonly ITypeWithReflection declaringType;
         private readonly Type type;
-        private readonly TypeWithReflection typeWithReflection;
+        private readonly StructTypeWithReflection typeWithReflection;
 
         internal NestedStructWithReflection(ITypeWithReflection declaringType, Type type)
         {
             this.declaringType = declaringType;
             this.type = type;
-            typeWithReflection = new TypeWithReflection(this, type);
+            typeWithReflection = new StructTypeWithReflection(this, type);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -48,12 +48,12 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.Attributes; }
         }
 
-        /*public override IReadOnlyCollection<NestedClassWithReflection> Classes
+        public override IReadOnlyCollection<StructNestedClassWithReflection> Classes
         {
             get { return typeWithReflection.Classes; }
         }
 
-        public override IReadOnlyCollection<ConstructorWithReflection> Constructors
+        public override IReadOnlyCollection<StructConstructorWithReflection> Constructors
         {
             get { return typeWithReflection.Constructors; }
         }
@@ -68,27 +68,27 @@ namespace CSharpDom.Reflection.Internal
             get { return declaringType; }
         }
 
-        public override IReadOnlyCollection<NestedDelegateWithReflection> Delegates
+        public override IReadOnlyCollection<StructNestedDelegateWithReflection> Delegates
         {
             get { return typeWithReflection.Delegates; }
         }
         
-        public override IReadOnlyCollection<NestedEnumWithReflection> Enums
+        public override IReadOnlyCollection<StructNestedEnumWithReflection> Enums
         {
             get { return typeWithReflection.Enums; }
         }
 
-        public override IReadOnlyCollection<EventPropertyWithReflection> EventProperties
+        public override IReadOnlyCollection<StructEventPropertyWithReflection> EventProperties
         {
             get { return typeWithReflection.EventProperties; }
         }
 
-        public override IReadOnlyCollection<EventWithReflection> Events
+        public override IReadOnlyCollection<StructEventWithReflection> Events
         {
             get { return typeWithReflection.Events; }
         }
 
-        public override IReadOnlyCollection<FieldWithReflection> Fields
+        public override IReadOnlyCollection<StructFieldWithReflection> Fields
         {
             get { return typeWithReflection.Fields; }
         }
@@ -98,12 +98,12 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.GenericParameters; }
         }
 
-        public override IReadOnlyCollection<IndexerWithReflection> Indexers
+        public override IReadOnlyCollection<StructIndexerWithReflection> Indexers
         {
             get { return typeWithReflection.Indexers; }
         }
 
-        public override IReadOnlyCollection<NestedInterfaceWithReflection> Interfaces
+        public override IReadOnlyCollection<StructNestedInterfaceWithReflection> Interfaces
         {
             get { return typeWithReflection.Interfaces; }
         }
@@ -113,7 +113,7 @@ namespace CSharpDom.Reflection.Internal
             get { return false; }
         }
 
-        public override IReadOnlyCollection<MethodWithReflection> Methods
+        public override IReadOnlyCollection<StructMethodWithReflection> Methods
         {
             get { return typeWithReflection.Methods; }
         }
@@ -128,12 +128,12 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.OperatorOverloads; }
         }
 
-        public override IReadOnlyCollection<PropertyWithReflection> Properties
+        public override IReadOnlyCollection<StructPropertyWithReflection> Properties
         {
             get { return typeWithReflection.Properties; }
         }
 
-        public override IReadOnlyCollection<NestedStructWithReflection> Structs
+        public override IReadOnlyCollection<StructNestedStructWithReflection> Structs
         {
             get { return typeWithReflection.Structs; }
         }
@@ -141,7 +141,7 @@ namespace CSharpDom.Reflection.Internal
         public override IReadOnlyCollection<InterfaceReferenceWithReflection> ImplementedInterfaces
         {
             get { return typeWithReflection.ImplementedInterfaces; }
-        }*/
+        }
 
         public Type Type
         {
@@ -171,158 +171,6 @@ namespace CSharpDom.Reflection.Internal
         public override StaticConstructorWithReflection StaticConstructor
         {
             get { return typeWithReflection.StaticConstructor; }
-        }
-
-        public override ITypeWithReflection DeclaringType
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfaceReferenceWithReflection> ImplementedInterfaces
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override bool IsPartial
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override string Name
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructNestedClassWithReflection> Classes
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructConstructorWithReflection> Constructors
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<ConversionOperatorWithReflection> ConversionOperators
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructNestedDelegateWithReflection> Delegates
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructNestedEnumWithReflection> Enums
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructEventPropertyWithReflection> EventProperties
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructFieldWithReflection> Fields
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructNestedInterfaceWithReflection> Interfaces
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<OperatorOverloadWithReflection> OperatorOverloads
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructNestedStructWithReflection> Structs
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructEventWithReflection> Events
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructIndexerWithReflection> Indexers
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructMethodWithReflection> Methods
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructPropertyWithReflection> Properties
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
         }
     }
 }

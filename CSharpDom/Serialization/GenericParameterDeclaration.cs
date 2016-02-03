@@ -15,6 +15,8 @@ namespace CSharpDom.Serialization
 
         public ClassReference BaseClassConstraint { get; set; }
 
+        public GenericParameterDeclarationDirection Direction { get; set; }
+
         public List<GenericParameterReference> GenericParameterConstraints { get; set; }
 
         public bool HasEmptyConstructorConstraint { get; set; }

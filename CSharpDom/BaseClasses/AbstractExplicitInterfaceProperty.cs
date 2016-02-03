@@ -20,9 +20,14 @@ namespace CSharpDom.BaseClasses
     {
         public abstract TInterfaceReference ExplicitInterface { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitExplicitInterfaceProperty(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            base.Accept(visitor);
         }
     }
 }

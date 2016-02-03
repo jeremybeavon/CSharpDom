@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStructProperty : IStructMember
+    public interface IStructProperty : IStructMember, IProperty
     {
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -14,9 +15,9 @@ namespace CSharpDom.Reflection
     {
         private readonly EventWithReflection @event;
 
-        internal StructEventWithReflection(EventWithReflection @event)
+        internal StructEventWithReflection(ITypeWithReflection declaringType, EventInfo @event)
         {
-            this.@event = @event;
+            this.@event = new EventWithReflection(declaringType, @event);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -41,7 +42,7 @@ namespace CSharpDom.Reflection
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get { throw new NotImplementedException(); }
+            get { return @event.EventInfo.AddMethod.StructVisibility(); }
         }
     }
 }

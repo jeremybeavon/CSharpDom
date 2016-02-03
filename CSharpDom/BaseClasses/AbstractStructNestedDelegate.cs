@@ -15,9 +15,14 @@ namespace CSharpDom.BaseClasses
     {
         public abstract StructMemberVisibilityModifier Visibility { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStructNestedDelegate(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            base.Accept(visitor);
         }
     }
 }

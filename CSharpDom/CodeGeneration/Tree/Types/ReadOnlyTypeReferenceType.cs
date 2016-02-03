@@ -14,6 +14,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         Interface,
         GenericParameter,
         Struct,
+        Reflection,
         Unspecified
     }
 }

@@ -17,5 +17,13 @@ namespace CSharpDom
         {
             return enumerable.Select(func).ToList();
         }
+
+        public static IEnumerable<TOutput> ConcatIfNotNull<TInput, TOutput>(
+            this IEnumerable<TOutput> enumerable,
+            TInput item,
+            Func<TInput, TOutput> func)
+        {
+            return item == null ? enumerable : enumerable.Concat(new TOutput[] { func(item) });
+        }
     }
 }

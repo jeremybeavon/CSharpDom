@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -14,6 +15,11 @@ namespace CSharpDom.Reflection
             ParameterWithReflection,
             AccessorWithReflection>
     {
+        internal ExplicitInterfaceIndexerWithReflection(ITypeWithReflection declaringType, PropertyInfo indexer)
+        {
+
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
             get

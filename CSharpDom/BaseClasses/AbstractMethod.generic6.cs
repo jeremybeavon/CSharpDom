@@ -15,8 +15,13 @@ namespace CSharpDom.BaseClasses
         where TMethodBody : IMethodBody
     {
         public abstract TMethodBody Body { get; }
-        
-        public sealed override void AcceptChildren(IGenericVisitor visitor)
+
+        public virtual void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitMethod(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitMethodChildren(this, visitor);
         }

@@ -71,6 +71,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return genericParameter.TypeConstraint; }
         }
 
+        public override GenericParameterDeclarationDirection Direction
+        {
+            get { return genericParameter.Direction; }
+        }
+
         public static IReadOnlyList<ReadOnlyGenericParameterDeclaration> Create(IEnumerable<GenericParameter> genericParameters)
         {
             return genericParameters.ToArray(parameter => new ReadOnlyGenericParameterDeclaration(parameter));

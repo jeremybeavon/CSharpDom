@@ -15,6 +15,8 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
+        public EnumBaseType BaseType { get; set; }
+
         public IType DeclaringType
         {
             get { return null; }

@@ -1,4 +1,5 @@
-﻿using CSharpDom.Common;
+﻿using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,50 +9,83 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class TypeWithReflection : ITypeWithReflection,
-        IType<
-            EventWithReflection,
-            PropertyWithReflection,
-            IndexerWithReflection,
-            MethodWithReflection,
-            FieldWithReflection,
-            ConstructorWithReflection,
-            EventPropertyWithReflection,
+    internal abstract class TypeWithReflection<
+        TEvent,
+        TProperty,
+        TIndexer,
+        TMethod,
+        TField,
+        TConstructor,
+        TEventProperty,
+        TNestedClass,
+        TNestedDelegate,
+        TNestedEnum,
+        TNestedInterface,
+        TNestedStruct> :
+        AbstractType<
+            TEvent,
+            TProperty,
+            TIndexer,
+            TMethod,
+            TField,
+            TConstructor,
+            TEventProperty,
             OperatorOverloadWithReflection,
             ConversionOperatorWithReflection,
-            NestedClassWithReflection,
-            NestedDelegateWithReflection,
-            NestedEnumWithReflection,
-            NestedInterfaceWithReflection,
-            NestedStructWithReflection,
+            TNestedClass,
+            TNestedDelegate,
+            TNestedEnum,
+            TNestedInterface,
+            TNestedStruct,
             StaticConstructorWithReflection,
             ExplicitInterfaceEventWithReflection,
             ExplicitInterfacePropertyWithReflection,
             ExplicitInterfaceIndexerWithReflection,
-            ExplicitInterfaceMethodWithReflection>
+            ExplicitInterfaceMethodWithReflection>,
+        ITypeWithReflection,
+        IEventFactory<TEvent, TEventProperty>,
+        INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
+        IPropertyFactory<TProperty, TIndexer>
+        where TEvent : IEvent
+        where TProperty : IProperty
+        where TIndexer : IIndexer
+        where TMethod : IMethod
+        where TField : IField
+        where TConstructor : IConstructor
+        where TEventProperty : IEventProperty
+        where TNestedClass : INestedClass
+        where TNestedDelegate : INestedDelegate
+        where TNestedEnum : INestedEnum
+        where TNestedInterface : INestedInterface
+        where TNestedStruct : INestedStruct
     {
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly Lazy<InterfaceReferences> implementedInterfaces;
-        private readonly Lazy<IReadOnlyCollection<FieldWithReflection>> fields;
-        private readonly Lazy<Constructors> constructors;
-        private readonly Lazy<Events> events;
-        private readonly Lazy<Properties> properties;
-        private readonly Lazy<Methods> methods;
-        private readonly Lazy<NestedTypes> nestedTypes;
+        private readonly Lazy<IReadOnlyCollection<TField>> fields;
+        private readonly Lazy<Constructors<TConstructor>> constructors;
+        private readonly Lazy<Events<TEvent, TEventProperty>> events;
+        private readonly Lazy<Properties<TProperty, TIndexer>> properties;
+        private readonly Lazy<Methods<TMethod>> methods;
+        private readonly Lazy<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>> nestedTypes;
 
-        public TypeWithReflection(ITypeWithReflection declaringType, Type type)
+        protected TypeWithReflection(ITypeWithReflection declaringType, Type type)
         {
             Type = type;
+            ISet<MethodInfo> interfaceMethods = new HashSet<MethodInfo>(
+                type.GetInterfaces().SelectMany(interfaceType => type.GetInterfaceMap(interfaceType).TargetMethods));
             attributes = new Lazy<Attributes>(() => new Attributes(type));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(type));
-            fields = new Lazy<IReadOnlyCollection<FieldWithReflection>>(() => InitializeFields(declaringType, type));
-            constructors = new Lazy<Constructors>(() => new Constructors(declaringType, type));
-            events = new Lazy<Events>(() => new Events(declaringType, type));
-            properties = new Lazy<Properties>(() => new Properties(declaringType, type));
-            methods = new Lazy<Methods>(() => new Methods(declaringType, type));
-            nestedTypes = new Lazy<NestedTypes>(() => new NestedTypes(declaringType, type));
+            fields = new Lazy<IReadOnlyCollection<TField>>(() => InitializeFields(declaringType, type));
+            constructors = new Lazy<Constructors<TConstructor>>(() => new Constructors<TConstructor>(declaringType, type, CreateConstructor));
+            events = new Lazy<Events<TEvent, TEventProperty>>(
+                () => new Events<TEvent, TEventProperty>(declaringType, type, this, interfaceMethods));
+            properties = new Lazy<Properties<TProperty, TIndexer>>(
+                () => new Properties<TProperty, TIndexer>(declaringType, type, this, interfaceMethods));
+            methods = new Lazy<Methods<TMethod>>(() => new Methods<TMethod>(declaringType, type, CreateMethod, interfaceMethods));
+            nestedTypes = new Lazy<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>>(
+                () => new NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, type, this));
         }
 
         public IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -59,22 +93,22 @@ namespace CSharpDom.Reflection.Internal
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public IReadOnlyCollection<NestedClassWithReflection> Classes
+        public override IReadOnlyCollection<TNestedClass> Classes
         {
             get { return nestedTypes.Value.NestedClasses; }
         }
 
-        public IReadOnlyCollection<ConstructorWithReflection> Constructors
+        public override IReadOnlyCollection<TConstructor> Constructors
         {
             get { return constructors.Value.ConstructorsWithReflection; }
         }
 
-        public IReadOnlyCollection<ConversionOperatorWithReflection> ConversionOperators
+        public override IReadOnlyCollection<ConversionOperatorWithReflection> ConversionOperators
         {
             get { return methods.Value.ConversionOperatorsWithReflection; }
         }
 
-        public IReadOnlyCollection<NestedDelegateWithReflection> Delegates
+        public override IReadOnlyCollection<TNestedDelegate> Delegates
         {
             get { return nestedTypes.Value.NestedDelegates; }
         }
@@ -84,22 +118,22 @@ namespace CSharpDom.Reflection.Internal
             get { return methods.Value.Destructor; }
         }
 
-        public IReadOnlyCollection<NestedEnumWithReflection> Enums
+        public override IReadOnlyCollection<TNestedEnum> Enums
         {
             get { return nestedTypes.Value.NestedEnums; }
         }
 
-        public IReadOnlyCollection<EventPropertyWithReflection> EventProperties
+        public override IReadOnlyCollection<TEventProperty> EventProperties
         {
             get { return events.Value.EventPropertiesWithReflection; }
         }
 
-        public IReadOnlyCollection<EventWithReflection> Events
+        public override IReadOnlyCollection<TEvent> Events
         {
             get { return events.Value.EventsWithReflection; }
         }
 
-        public IReadOnlyCollection<FieldWithReflection> Fields
+        public override IReadOnlyCollection<TField> Fields
         {
             get { return fields.Value; }
         }
@@ -114,69 +148,145 @@ namespace CSharpDom.Reflection.Internal
             get { return implementedInterfaces.Value.InterfaceReferencesWithReflection; }
         }
 
-        public IReadOnlyCollection<IndexerWithReflection> Indexers
+        public override IReadOnlyCollection<TIndexer> Indexers
         {
             get { return properties.Value.IndexersWithReflection; }
         }
 
-        public IReadOnlyCollection<NestedInterfaceWithReflection> Interfaces
+        public override IReadOnlyCollection<TNestedInterface> Interfaces
         {
             get { return nestedTypes.Value.NestedInterfaces; }
         }
 
-        public IReadOnlyCollection<MethodWithReflection> Methods
+        public override IReadOnlyCollection<TMethod> Methods
         {
             get { return methods.Value.MethodsWithReflection; }
         }
 
-        public IReadOnlyCollection<OperatorOverloadWithReflection> OperatorOverloads
+        public override IReadOnlyCollection<OperatorOverloadWithReflection> OperatorOverloads
         {
             get { return methods.Value.OperatorOverloadsWithReflection; }
         }
 
-        public IReadOnlyCollection<PropertyWithReflection> Properties
+        public override IReadOnlyCollection<TProperty> Properties
         {
             get { return properties.Value.PropertiesWithReflection; }
         }
 
-        public IReadOnlyCollection<NestedStructWithReflection> Structs
+        public override IReadOnlyCollection<TNestedStruct> Structs
         {
             get { return nestedTypes.Value.NestedStructs; }
         }
 
-        public StaticConstructorWithReflection StaticConstructor
+        public override StaticConstructorWithReflection StaticConstructor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return constructors.Value.StaticConstructorWithReflection; }
         }
 
-        public IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
+        public override IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
         {
             get { return events.Value.ExplictInterfaceEventsWithReflection; }
         }
 
-        public IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexers
+        public override IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexers
         {
             get { return properties.Value.ExplicitInterfaceIndexersWithReflection; }
         }
 
-        public IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethods
+        public override IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethods
         {
             get { return methods.Value.ExplicitInterfaceMethodsWithReflection; }
         }
 
-        public IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfaceProperties
+        public override IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfaceProperties
         {
             get { return properties.Value.ExplicitInterfacePropertiesWithReflection; }
         }
-        
+
+        TNestedClass INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedClass(
+            ITypeWithReflection declaringType,
+            Type type)
+        {
+            return CreateNestedClass(declaringType, type);
+        }
+
+        TNestedDelegate INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedDelegate(
+            ITypeWithReflection declaringType,
+            Type type)
+        {
+            return CreateNestedDelegate(declaringType, type);
+        }
+
+        TNestedEnum INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedEnum(
+            ITypeWithReflection declaringType,
+            Type type)
+        {
+            return CreateNestedEnum(declaringType, type);
+        }
+
+        TNestedInterface INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedInterface(
+            ITypeWithReflection declaringType,
+            Type type)
+        {
+            return CreateNestedInterface(declaringType, type);
+        }
+
+        TNestedStruct INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedStruct(
+            ITypeWithReflection declaringType,
+            Type type)
+        {
+            return CreateNestedStruct(declaringType, type);
+        }
+
+        TEvent IEventFactory<TEvent, TEventProperty>.CreateEvent(ITypeWithReflection declaringType, EventInfo @event)
+        {
+            return CreateEvent(declaringType, @event);
+        }
+
+        TEventProperty IEventFactory<TEvent, TEventProperty>.CreateEventProperty(ITypeWithReflection declaringType, EventInfo @event)
+        {
+            return CreateEventProperty(declaringType, @event);
+        }
+
+        TProperty IPropertyFactory<TProperty, TIndexer>.CreateProperty(ITypeWithReflection declaringType, PropertyInfo property)
+        {
+            return CreateProperty(declaringType, property);
+        }
+
+        TIndexer IPropertyFactory<TProperty, TIndexer>.CreateIndexer(ITypeWithReflection declaringType, PropertyInfo property)
+        {
+            return CreateIndexer(declaringType, property);
+        }
+
         public Type Type { get; private set; }
 
-        private static IReadOnlyCollection<FieldWithReflection> InitializeFields(ITypeWithReflection declaringType, Type type)
+        protected abstract TConstructor CreateConstructor(ITypeWithReflection declaringType, ConstructorInfo constructor);
+
+        protected abstract TEvent CreateEvent(ITypeWithReflection declaringType, EventInfo @event);
+
+        protected abstract TEventProperty CreateEventProperty(ITypeWithReflection declaringType, EventInfo @event);
+
+        protected abstract TField CreateField(ITypeWithReflection declaringType, FieldInfo field);
+
+        protected abstract TIndexer CreateIndexer(ITypeWithReflection declaringType, PropertyInfo indexer);
+
+        protected abstract TMethod CreateMethod(ITypeWithReflection declaringType, MethodInfo method);
+
+        protected abstract TNestedClass CreateNestedClass(ITypeWithReflection declaringType, Type type);
+
+        protected abstract TNestedDelegate CreateNestedDelegate(ITypeWithReflection declaringType, Type type);
+
+        protected abstract TNestedEnum CreateNestedEnum(ITypeWithReflection declaringType, Type type);
+
+        protected abstract TNestedInterface CreateNestedInterface(ITypeWithReflection declaringType, Type type);
+
+        protected abstract TNestedStruct CreateNestedStruct(ITypeWithReflection declaringType, Type type);
+
+        protected abstract TProperty CreateProperty(ITypeWithReflection declaringType, PropertyInfo property);
+
+        private IReadOnlyCollection<TField> InitializeFields(ITypeWithReflection declaringType, Type type)
         {
-            return type.GetAllFields().Select(field => new FieldWithReflection(declaringType, field)).ToList();
+            return type.GetAllFields().Select(field => CreateField(declaringType, field)).ToList();
         }
 
         private static IReadOnlyCollection<GenericParameterDeclarationWithReflection> InitializeGenericParameterDeclarations(

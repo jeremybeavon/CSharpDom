@@ -1,6 +1,7 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.NotSupported;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
@@ -24,6 +25,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
         {
             get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public override EnumBaseType BaseType
+        {
+            get { return @enum.BaseType; }
         }
 
         public override IReadOnlyList<ReadOnlyEnumField> EnumMembers

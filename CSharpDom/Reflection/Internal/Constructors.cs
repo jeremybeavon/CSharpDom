@@ -1,18 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class Constructors
+    internal sealed class Constructors<TConstructor>
     {
-        public Constructors(ITypeWithReflection declaringType, Type type)
+        public Constructors(
+            ITypeWithReflection declaringType,
+            Type type,
+            Func<ITypeWithReflection, ConstructorInfo, TConstructor> constructorFactory)
         {
-            ConstructorsWithReflection = type.GetAllConstructors()
-                .Select(constructor => new ConstructorWithReflection(declaringType, constructor))
-                .ToList();
+            List<TConstructor> constructors = new List<TConstructor>();
+            foreach (ConstructorInfo constructor in type.GetAllConstructors())
+            {
+                if (constructor.IsStatic)
+                {
+                    StaticConstructorWithReflection = new StaticConstructorWithReflection(declaringType, constructor);
+                }
+                else
+                {
+                    constructors.Add(constructorFactory(declaringType, constructor));
+                }
+            }
+
+            ConstructorsWithReflection = constructors;
         }
 
-        public IReadOnlyCollection<ConstructorWithReflection> ConstructorsWithReflection { get; private set; }
+        public IReadOnlyCollection<TConstructor> ConstructorsWithReflection { get; private set; }
+
+        public StaticConstructorWithReflection StaticConstructorWithReflection { get; set; }
     }
 }

@@ -6,7 +6,7 @@
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IClassNestedEnum
+        where TDeclaringType : INestedEnum
     {
     }
 }

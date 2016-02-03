@@ -111,6 +111,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <EmbeddedResource Include="..\CSharpDom.TestTarget\Classes\PublicClass.cs">
+      <Link>ExpectedResults\CSharpDom.TestTarget\Classes\PublicClass.cs</Link>
+    </EmbeddedResource>
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.BinaryOperator.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.Class.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassEvent.cs" />
@@ -141,6 +144,7 @@
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructNestedStruct.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructProperty.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.UnaryOperator.cs" />
+    <Compile Include="ObjectAssertionsExtensions.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -149,6 +153,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CSharpDom.TestTarget\CSharpDom.TestTarget.csproj">
+      <Project>{fdcbf08f-ca67-4d15-915e-c54c79f9ba0a}</Project>
+      <Name>CSharpDom.TestTarget</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CSharpDom\CSharpDom.csproj">
       <Project>{eaa58a34-7e4b-4e20-be3c-8d7aac4b261b}</Project>
       <Name>CSharpDom</Name>

@@ -85,14 +85,15 @@ namespace CSharpDom.BaseClasses
 
         public abstract TypeVisibilityModifier Visibility { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClass(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassChildren(this, visitor);
+            base.Accept(visitor);
         }
     }
 }

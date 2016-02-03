@@ -1,15 +1,13 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> :
+    public interface IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> :
         IInterfaceIndexer,
-        IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>
+        IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
         where TTypeReference : ITypeReference
         where TParameter : IParameter
+        where TAccessor : IAccessor
     {
-        bool HasGet { get; }
-
-        bool HasSet { get; }
     }
 }

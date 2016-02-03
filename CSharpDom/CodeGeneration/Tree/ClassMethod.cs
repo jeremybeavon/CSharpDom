@@ -7,6 +7,7 @@ namespace CSharpDom.CodeGeneration.Tree
         public ClassMethod(string name)
         {
             Name = name;
+            GenericParameters = new Collection<GenericParameter>();
             Parameters = new Collection<ClassMethodParameter>();
             Body = new Collection<Statement>();
         }

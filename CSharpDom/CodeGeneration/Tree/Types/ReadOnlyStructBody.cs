@@ -99,6 +99,16 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public IReadOnlyCollection<ReadOnlyStructNestedStruct> Structs { get; private set; }
 
+        public void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitType(this);
+        }
+
+        public void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitTypeChildren(this, visitor);
+        }
+
         private void InitializeEvents(StructBody structBody, List<ReadOnlyStructEvent> events, List<ReadOnlyStructEvent> eventProperties)
         {
             foreach (StructEvent structEvent in structBody.Events)

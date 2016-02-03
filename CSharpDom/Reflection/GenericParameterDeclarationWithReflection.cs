@@ -98,6 +98,14 @@ namespace CSharpDom.Reflection
             get { return typeConstraint; }
         }
 
+        public override GenericParameterDeclarationDirection Direction
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitGenericParameterDeclarationWithReflection(this);

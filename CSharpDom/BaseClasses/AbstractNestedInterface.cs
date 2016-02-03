@@ -24,9 +24,16 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyCollection<TInterfaceReference> Interfaces { get; }
 
+        public abstract bool IsPartial { get; }
+
         public abstract string Name { get; }
-        
-        public void AcceptChildren(IGenericVisitor visitor)
+
+        public virtual void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitNestedInterface(this);
+        }
+
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedInterfaceChildren(this, visitor);
         }

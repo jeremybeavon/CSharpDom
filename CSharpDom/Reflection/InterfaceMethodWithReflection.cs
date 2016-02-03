@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -12,6 +13,11 @@ namespace CSharpDom.Reflection
             ITypeReferenceWithReflection,
             ParameterWithReflection>
     {
+        internal InterfaceMethodWithReflection(IBasicTypeWithReflection declaringType, MethodInfo method)
+        {
+
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
             get

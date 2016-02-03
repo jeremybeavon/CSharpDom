@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -13,6 +14,13 @@ namespace CSharpDom.Reflection
             ITypeReferenceWithReflection,
             AccessorWithReflection>
     {
+        private readonly PropertyWithReflection property;
+
+        internal StructPropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
+        {
+            this.property = new PropertyWithReflection(declaringType, property);
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
             get

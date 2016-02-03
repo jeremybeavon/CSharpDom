@@ -7,7 +7,7 @@ using System.Linq;
 namespace CSharpDom.Reflection.Internal
 {
     internal sealed class NestedEnumWithReflection :
-        AbstractClassNestedEnum<AttributeWithReflection, ITypeWithReflection, NestedEnumMemberWithReflection>,
+        AbstractNestedEnum<AttributeWithReflection, ITypeWithReflection, NestedEnumMemberWithReflection>,
         IHasType//,
         //IVisitable<IReflectionVisitor>
     {
@@ -43,15 +43,18 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return type.Name; }
         }
-
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get { return type.NestedVisibility(); }
-        }
-
+        
         public Type Type
         {
             get { return type; }
+        }
+
+        public override EnumBaseType BaseType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

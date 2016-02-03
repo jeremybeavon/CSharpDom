@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class InterfaceProperty : IInterfaceProperty<AttributeGroup, IBasicType, TypeReference>
+    public sealed class InterfaceProperty : IInterfaceProperty<AttributeGroup, IBasicType, TypeReference, InterfaceAccessor>
     {
         public InterfaceProperty()
         {
@@ -18,16 +18,16 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public bool HasGet { get; set; }
-
-        public bool HasSet { get; set; }
-
+        public InterfaceAccessor GetAccessor { get; set; }
+        
         public InterfaceMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public string Name { get; set; }
 
         public TypeReference PropertyType { get; set; }
-        
+
+        public InterfaceAccessor SetAccessor { get; set; }
+
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {
             get { return Attributes; }

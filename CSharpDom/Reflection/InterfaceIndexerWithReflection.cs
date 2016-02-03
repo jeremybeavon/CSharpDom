@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -9,8 +10,13 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             IBasicTypeWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>
+            ParameterWithReflection,
+            InterfaceAccessorWithReflection>
     {
+        internal InterfaceIndexerWithReflection(IBasicTypeWithReflection declaringType, PropertyInfo indexer)
+        {
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
             get
@@ -27,22 +33,14 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override bool HasGet
+        public override InterfaceAccessorWithReflection GetAccessor
         {
             get
             {
                 throw new NotImplementedException();
             }
         }
-
-        public override bool HasSet
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
+        
         public override ITypeReferenceWithReflection IndexerType
         {
             get
@@ -60,6 +58,14 @@ namespace CSharpDom.Reflection
         }
 
         public override IReadOnlyList<ParameterWithReflection> Parameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override InterfaceAccessorWithReflection SetAccessor
         {
             get
             {

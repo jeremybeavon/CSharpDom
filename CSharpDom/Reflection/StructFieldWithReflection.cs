@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -12,51 +13,59 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             ITypeReferenceWithReflection>
     {
+        private readonly FieldWithReflection field;
+
+        internal StructFieldWithReflection(ITypeWithReflection declaringType, FieldInfo field)
+        {
+            this.field = new FieldWithReflection(declaringType, field);
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return field.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return field.DeclaringType; }
         }
 
         public override ITypeReferenceWithReflection FieldType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return field.FieldType; }
         }
 
         public override FieldModifier Modifier
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return field.Modifier; }
         }
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return field.Name; }
         }
 
         public override StructMemberVisibilityModifier Visibility
         {
             get
             {
-                throw new NotImplementedException();
+                FieldInfo fieldInfo = field.FieldInfo;
+                if (fieldInfo.IsPublic)
+                {
+                    return StructMemberVisibilityModifier.Public;
+                }
+
+                if (fieldInfo.IsAssembly)
+                {
+                    return StructMemberVisibilityModifier.Internal;
+                }
+                
+                if (fieldInfo.IsPrivate)
+                {
+                    return StructMemberVisibilityModifier.Private;
+                }
+
+                return StructMemberVisibilityModifier.None;
             }
         }
     }

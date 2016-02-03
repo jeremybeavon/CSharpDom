@@ -7,6 +7,7 @@ namespace CSharpDom.CodeGeneration.Tree
         public StructMethod(string name)
         {
             Name = name;
+            GenericParameters = new Collection<GenericParameter>();
             Parameters = new Collection<MethodParameter>();
             Body = new Collection<Statement>();
         }

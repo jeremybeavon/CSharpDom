@@ -87,7 +87,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             }
             else
             {
-                //visitor.VisitEvent(this);
+                visitor.VisitClassEvent(this);
             }
         }
 

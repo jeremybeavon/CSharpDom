@@ -7,27 +7,37 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         private object reference;
 
+        public DelegateReference()
+        {
+            GenericParameters = new Collection<TypeReference>();
+        }
+
         public DelegateReference(Type type)
+            : this()
         {
             reference = type;
         }
 
         public DelegateReference(Delegate @delegate)
+            : this()
         {
             reference = @delegate;
         }
 
         public DelegateReference(ClassNestedDelegate @delegate)
+            : this()
         {
             reference = @delegate;
         }
 
         public DelegateReference(StructNestedDelegate @delegate)
+            : this()
         {
             reference = @delegate;
         }
 
         public DelegateReference(string type)
+            : this()
         {
             reference = type;
         }

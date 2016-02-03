@@ -4,9 +4,9 @@ using System.Reflection;
 using System.Collections.Generic;
 using CSharpDom.Reflection.Internal;
 
-namespace CSharpDom.Reflection
+namespace CSharpDom.Reflection.Internal
 {
-    public sealed class PropertyWithReflection :
+    internal sealed class PropertyWithReflection :
         AbstractClassProperty<AttributeWithReflection, ITypeWithReflection, ITypeReferenceWithReflection, AccessorWithReflection>//,
         //IVisitable<IReflectionVisitor>
     {
@@ -71,7 +71,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return property.Visibility(); }
+            get { return property.ClassVisibility(); }
         }
         
        /* public void Accept(IReflectionVisitor visitor)

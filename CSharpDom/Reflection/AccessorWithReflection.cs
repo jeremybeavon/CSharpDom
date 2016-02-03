@@ -23,7 +23,7 @@ namespace CSharpDom.Reflection
         {
             this.method = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
-            visibility = method.Visibility();
+            visibility = method.ClassVisibility();
             if (parentVisibility.Visibility == visibility)
             {
                 visibility = ClassMemberVisibilityModifier.None;

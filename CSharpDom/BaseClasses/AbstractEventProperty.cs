@@ -22,8 +22,13 @@ namespace CSharpDom.BaseClasses
         public abstract string Name { get; }
 
         public abstract TMethodBody RemoveBody { get; }
-        
-        public void AcceptChildren(IGenericVisitor visitor)
+
+        public virtual void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitEventProperty(this);
+        }
+
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitEventPropertyChildren(this, visitor);
         }

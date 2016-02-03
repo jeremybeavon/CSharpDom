@@ -8,21 +8,30 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class Events
+    internal sealed class Events<TEvent, TEventProperty>
     {
-        public Events(ITypeWithReflection declaringType, Type type)
+        public Events(
+            ITypeWithReflection declaringType,
+            Type type,
+            IEventFactory<TEvent, TEventProperty> eventFactory,
+            ISet<MethodInfo> interfaceMethods)
         {
-            List<EventWithReflection> events = new List<EventWithReflection>();
-            List<EventPropertyWithReflection> eventProperties = new List<EventPropertyWithReflection>();
+            List<TEvent> events = new List<TEvent>();
+            List<ExplicitInterfaceEventWithReflection> explicitInterfaceEvents = new List<ExplicitInterfaceEventWithReflection>();
+            List<TEventProperty> eventProperties = new List<TEventProperty>();
             foreach (EventInfo eventInfo in type.GetAllEvents())
             {
                 if (eventInfo.IsDefined(typeof(CompilerGeneratedAttribute)))
                 {
-                    events.Add(new EventWithReflection(declaringType, eventInfo));
+                    events.Add(eventFactory.CreateEvent(declaringType, eventInfo));
+                }
+                else if (interfaceMethods.Contains(eventInfo.AddMethod) && eventInfo.AddMethod.IsPrivate)
+                {
+                    explicitInterfaceEvents.Add(new ExplicitInterfaceEventWithReflection(declaringType, eventInfo));
                 }
                 else
                 {
-                    eventProperties.Add(new EventPropertyWithReflection(declaringType, eventInfo));
+                    eventProperties.Add(eventFactory.CreateEventProperty(declaringType, eventInfo));
                 }
             }
 
@@ -30,9 +39,9 @@ namespace CSharpDom.Reflection.Internal
             EventPropertiesWithReflection = eventProperties;
         }
 
-        public IReadOnlyCollection<EventWithReflection> EventsWithReflection { get; private set; }
+        public IReadOnlyCollection<TEvent> EventsWithReflection { get; private set; }
 
-        public IReadOnlyCollection<EventPropertyWithReflection> EventPropertiesWithReflection { get; private set; }
+        public IReadOnlyCollection<TEventProperty> EventPropertiesWithReflection { get; private set; }
 
         public IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplictInterfaceEventsWithReflection { get; private set; }
     }

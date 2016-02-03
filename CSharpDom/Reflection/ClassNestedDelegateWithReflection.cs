@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
+using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
@@ -12,6 +13,13 @@ namespace CSharpDom.Reflection
             ITypeReferenceWithReflection,
             ParameterWithReflection>
     {
+        private readonly NestedDelegateWithReflection nestedDelegate;
+
+        internal ClassNestedDelegateWithReflection(ITypeWithReflection declaringType, Type type)
+        {
+            nestedDelegate = new NestedDelegateWithReflection(declaringType, type);
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
             get

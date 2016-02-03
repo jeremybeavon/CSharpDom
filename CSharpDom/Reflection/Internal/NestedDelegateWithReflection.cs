@@ -7,7 +7,7 @@ using System.Reflection;
 namespace CSharpDom.Reflection.Internal
 {
     internal sealed class NestedDelegateWithReflection :
-        AbstractClassNestedDelegate<
+        AbstractNestedDelegate<
             AttributeWithReflection,
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
@@ -61,11 +61,6 @@ namespace CSharpDom.Reflection.Internal
         public override ITypeReferenceWithReflection ReturnType
         {
             get { return returnType; }
-        }
-
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get { return type.NestedVisibility(); }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

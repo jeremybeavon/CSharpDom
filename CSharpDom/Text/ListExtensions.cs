@@ -217,6 +217,15 @@ namespace CSharpDom.Text
             }
         }
 
+        internal static void AddPartialSteps(this List<ISourceCodeBuilderStep> steps, bool isPartial)
+        {
+            if (isPartial)
+            {
+                steps.Add(new WritePartialKeyword());
+                steps.Add(new WriteWhitespace());
+            }
+        }
+
         internal static void AddGenericParameterSteps<TGenericParameter>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyList<TGenericParameter> genericParameters)
@@ -299,7 +308,7 @@ namespace CSharpDom.Text
             where TIndexer : IInterfaceIndexer
             where TMethod : IInterfaceMethod
         {
-            Func<SourceCodeStepsBuilder> builderFactory = () => new SourceCodeStepsBuilder(true);
+            Func<SourceCodeStepsBuilder> builderFactory = () => new SourceCodeStepsBuilder();
             IEnumerable<ISourceCodeBuilderStep> typeSteps =
                 type.Events.Select(@event => (ISourceCodeBuilderStep)new WriteChildNode<TEvent>(@event, builderFactory()))
                 .Concat(type.Properties.Select(property => new WriteChildNode<TProperty>(property, builderFactory())))
@@ -307,51 +316,10 @@ namespace CSharpDom.Text
                 .Concat(type.Methods.Select(method => new WriteChildNode<TMethod>(method, builderFactory())));
             steps.AddRange(typeSteps, () => steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
-
-        /*internal static void AddTypeBodySteps<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
+        
+        internal static void AddClassMemberVisibilityModifierSteps(
             this List<ISourceCodeBuilderStep> steps,
-            IType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> type,
-            ISourceCodeBuilderStep destructorStep = null)
-            where TEvent : IClassEvent
-            where TProperty : IClassProperty
-            where TIndexer : IClassIndexer
-            where TMethod : IClassMethod
-            where TField : IClassField
-            where TConstructor : IClassConstructor
-            where TEventProperty : IClassEventProperty
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClass : IClassNestedClass
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStruct : IClassNestedStruct
-        {
-            IEnumerable<ISourceCodeBuilderStep> typeSteps =
-                type.Fields.Select(field => (ISourceCodeBuilderStep)new WriteChildNode<TField>(field))
-                .Concat(type.Events.Select(@event => new WriteChildNode<TEvent>(@event)))
-                .Concat(type.EventProperties.Select(eventProperty => new WriteChildNode<TEventProperty>(eventProperty)))
-                .Concat(type.Constructors.Select(constructor => new WriteChildNode<TConstructor>(constructor)))
-                .Concat(destructorStep == null ? new ISourceCodeBuilderStep[0] : new ISourceCodeBuilderStep[] { destructorStep })
-                .Concat(type.Properties.Select(property => new WriteChildNode<TProperty>(property)))
-                .Concat(type.Indexers.Select(indexer => new WriteChildNode<TIndexer>(indexer)))
-                .Concat(type.Methods.Select(method => new WriteChildNode<TMethod>(method)))
-                .Concat(type.OperatorOverloads.Select(@operator => new WriteChildNode<TOperatorOverload>(@operator)))
-                .Concat(type.ConversionOperators.Select(@operator => new WriteChildNode<TConversionOperator>(@operator)))
-                .Concat(type.Classes.Select(@class => new WriteChildNode<TNestedClass>(@class)))
-                .Concat(type.Delegates.Select(@delegate => new WriteChildNode<TNestedDelegate>(@delegate)))
-                .Concat(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)))
-                .Concat(type.Interfaces.Select(@interface => new WriteChildNode<TNestedInterface>(@interface)))
-                .Concat(type.Structs.Select(@struct => new WriteChildNode<TNestedStruct>(@struct)));
-            if (typeSteps.Any())
-            {
-                steps.Add(new WriteIndentedNewLine());
-            }
-
-            steps.AddRange(typeSteps, () => steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
-        }*/
-
-        internal static void AddMemberVisibilityModifierSteps(this List<ISourceCodeBuilderStep> steps, ClassMemberVisibilityModifier visibility)
+            ClassMemberVisibilityModifier visibility)
         {
             if (visibility == ClassMemberVisibilityModifier.None)
             {
@@ -360,19 +328,32 @@ namespace CSharpDom.Text
 
             if (visibility == ClassMemberVisibilityModifier.ProtectedInternal)
             {
-                steps.Add(new WriteMemberVisibilityModifier(ClassMemberVisibilityModifier.Protected));
+                steps.Add(new WriteClassMemberVisibilityModifier(ClassMemberVisibilityModifier.Protected));
                 steps.Add(new WriteWhitespace());
-                steps.Add(new WriteMemberVisibilityModifier(ClassMemberVisibilityModifier.Internal));
+                steps.Add(new WriteClassMemberVisibilityModifier(ClassMemberVisibilityModifier.Internal));
                 steps.Add(new WriteWhitespace());
             }
             else
             {
-                steps.Add(new WriteMemberVisibilityModifier(visibility));
+                steps.Add(new WriteClassMemberVisibilityModifier(visibility));
                 steps.Add(new WriteWhitespace());
             }
         }
 
-        internal static void AddMemberInheritanceModifierSteps(
+        internal static void AddStructMemberVisibilityModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            StructMemberVisibilityModifier visibility)
+        {
+            if (visibility == StructMemberVisibilityModifier.None)
+            {
+                return;
+            }
+
+            steps.Add(new WriteStructMemberVisibilityModifier(visibility));
+            steps.Add(new WriteWhitespace());
+        }
+
+        internal static void AddClassMemberInheritanceModifierSteps(
             this List<ISourceCodeBuilderStep> steps,
             ClassMemberInheritanceModifier inheritanceModifer)
         {
@@ -385,22 +366,22 @@ namespace CSharpDom.Text
                 case ClassMemberInheritanceModifier.Override:
                 case ClassMemberInheritanceModifier.Static:
                 case ClassMemberInheritanceModifier.Virtual:
-                    steps.Add(new WriteMemberInheritanceModifier(inheritanceModifer));
+                    steps.Add(new WriteClassMemberInheritanceModifier(inheritanceModifer));
                     break;
                 case ClassMemberInheritanceModifier.NewStatic:
-                    steps.Add(new WriteMemberInheritanceModifier(ClassMemberInheritanceModifier.New));
+                    steps.Add(new WriteClassMemberInheritanceModifier(ClassMemberInheritanceModifier.New));
                     steps.Add(new WriteWhitespace());
-                    steps.Add(new WriteMemberInheritanceModifier(ClassMemberInheritanceModifier.Static));
+                    steps.Add(new WriteClassMemberInheritanceModifier(ClassMemberInheritanceModifier.Static));
                     break;
                 case ClassMemberInheritanceModifier.NewVirtual:
-                    steps.Add(new WriteMemberInheritanceModifier(ClassMemberInheritanceModifier.New));
+                    steps.Add(new WriteClassMemberInheritanceModifier(ClassMemberInheritanceModifier.New));
                     steps.Add(new WriteWhitespace());
-                    steps.Add(new WriteMemberInheritanceModifier(ClassMemberInheritanceModifier.Virtual));
+                    steps.Add(new WriteClassMemberInheritanceModifier(ClassMemberInheritanceModifier.Virtual));
                     break;
                 case ClassMemberInheritanceModifier.SealedOverride:
                     steps.Add(new WriteSealed());
                     steps.Add(new WriteWhitespace());
-                    steps.Add(new WriteMemberInheritanceModifier(ClassMemberInheritanceModifier.Override));
+                    steps.Add(new WriteClassMemberInheritanceModifier(ClassMemberInheritanceModifier.Override));
                     break;
             }
 

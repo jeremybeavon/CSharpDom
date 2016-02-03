@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
 {
     internal sealed class BasicTypeWithReflection : IBasicTypeWithReflection
     {
+        private readonly Type type;
+        private readonly IBasicTypeWithReflection declaringType;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly Lazy<InterfaceReferences> interfaces;
-        private readonly Lazy<IReadOnlyCollection<EventWithReflection>> events;
-        private readonly Lazy<Properties> properties;
-        private readonly Lazy<IReadOnlyCollection<MethodWithReflection>> methods;
+        private readonly Lazy<IReadOnlyCollection<InterfaceEventWithReflection>> events;
+        private readonly Lazy<InterfaceProperties> properties;
+        private readonly Lazy<IReadOnlyCollection<InterfaceMethodWithReflection>> methods;
 
         public BasicTypeWithReflection(IBasicTypeWithReflection declaringType, Type type)
         {
+            this.declaringType = declaringType;
+            this.type = type;
             attributes = new Lazy<Attributes>(() => new Attributes(type));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
             interfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(type));
-            events = new Lazy<IReadOnlyCollection<EventWithReflection>>(() => InitializeEvents(type));
-            properties = new Lazy<Internal.Properties>();
-            //properties = new Lazy<Properties>(() => new Properties(declaringType, type));
-            methods = new Lazy<IReadOnlyCollection<MethodWithReflection>>(() => InitializeMethods(type));
+            events = new Lazy<IReadOnlyCollection<InterfaceEventWithReflection>>(InitializeEvents);
+            properties = new Lazy<InterfaceProperties>(() => new InterfaceProperties(declaringType, type));
+            methods = new Lazy<IReadOnlyCollection<InterfaceMethodWithReflection>>(InitializeMethods);
         }
 
         public IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -38,22 +42,22 @@ namespace CSharpDom.Reflection.Internal
             get { return interfaces.Value.InterfaceReferencesWithReflection; }
         }
 
-        public IReadOnlyCollection<EventWithReflection> Events
+        public IReadOnlyCollection<InterfaceEventWithReflection> Events
         {
             get { return events.Value; }
         }
 
-        public IReadOnlyCollection<IndexerWithReflection> Indexers
+        public IReadOnlyCollection<InterfaceIndexerWithReflection> Indexers
         {
             get { return properties.Value.IndexersWithReflection; }
         }
 
-        public IReadOnlyCollection<MethodWithReflection> Methods
+        public IReadOnlyCollection<InterfaceMethodWithReflection> Methods
         {
             get { return methods.Value; }
         }
 
-        public IReadOnlyCollection<PropertyWithReflection> Properties
+        public IReadOnlyCollection<InterfacePropertyWithReflection> Properties
         {
             get { return properties.Value.PropertiesWithReflection; }
         }
@@ -66,14 +70,14 @@ namespace CSharpDom.Reflection.Internal
             }
         }
 
-        private static IReadOnlyCollection<EventWithReflection> InitializeEvents(Type type)
+        private IReadOnlyCollection<InterfaceEventWithReflection> InitializeEvents()
         {
-            return null;
+            return type.GetAllEvents().ToArray(@event => new InterfaceEventWithReflection(declaringType, @event));
         }
 
-        private static IReadOnlyCollection<MethodWithReflection> InitializeMethods(Type type)
+        private IReadOnlyCollection<InterfaceMethodWithReflection> InitializeMethods()
         {
-            return null;
+            return type.GetAllMethods().ToArray(method => new InterfaceMethodWithReflection(declaringType, method));
         }
     }
 }

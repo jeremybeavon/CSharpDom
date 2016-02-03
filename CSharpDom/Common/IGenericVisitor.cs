@@ -24,6 +24,8 @@ namespace CSharpDom.Common
             where TUnnamedAttributeValue : IUnnamedAttributeValue
             where TNamedAttributeValue : INamedAttributeValue;
 
+        void VisitBuiltInTypeReference(IBuiltInTypeReference builtInTypeReference);
+
         void VisitClass<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
             IClass<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> @class)
             where TNamespace : INamespace
@@ -297,18 +299,22 @@ namespace CSharpDom.Common
             where TIndexer : IInterfaceIndexer
             where TMethod : IInterfaceMethod;
 
+        void VisitInterfaceAccessor<TAttributeGroup>(IInterfaceAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup;
+
         void VisitInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             IInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TDelegateReference : IDelegateReference;
 
-        void VisitInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>(
-            IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> indexer)
+        void VisitInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
+            IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IParameter
+            where TAccessor : IInterfaceAccessor;
 
         void VisitInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             IInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
@@ -318,11 +324,12 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TParameter : IParameter;
 
-        void VisitInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference> property)
+        void VisitInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
+            IInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
-            where TTypeReference : ITypeReference;
+            where TTypeReference : ITypeReference
+            where TAccessor : IInterfaceAccessor;
 
         void VisitInterfaceReference<TGenericParameter>(IInterfaceReference<TGenericParameter> interfaceReference)
             where TGenericParameter : IGenericParameter;
@@ -358,13 +365,13 @@ namespace CSharpDom.Common
         void VisitNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
             INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassNestedClass
+            where TDeclaringType : INestedClass
             where TMethodBody : IMethodBody;
 
         void VisitNestedEnumMember<TAttributeGroup, TDeclaringType>(
             INestedEnumMember<TAttributeGroup, TDeclaringType> nestedEnumMember)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassNestedEnum;
+            where TDeclaringType : INestedEnum;
 
         void VisitNestedTypeReference<TTypeReference>(INestedTypeReference<TTypeReference> nestedTypeReference)
             where TTypeReference : ITypeReference;
@@ -566,5 +573,159 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameter;
 
         void VisitUsingDirective(IUsingDirective usingDirective);
+        
+        void VisitConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
+            IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TParameter : IParameter
+            where TMethodBody : IMethodBody;
+
+        void VisitEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IBasicType
+            where TDelegateReference : IDelegateReference;
+
+        void VisitEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
+            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TDelegateReference : IDelegateReference
+            where TMethodBody : IMethodBody;
+
+        void VisitField<TAttributeGroup, TDeclaringType, TTypeReference>(
+            IField<TAttributeGroup, TDeclaringType, TTypeReference> field)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TTypeReference : ITypeReference;
+
+        void VisitIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
+            IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IBasicType
+            where TTypeReference : ITypeReference
+            where TParameter : IParameter
+            where TAccessor : IAccessor;
+
+        void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IParameter
+            where TMethodBody : IMethodBody;
+
+        void VisitNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
+            INestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedClass)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEvent : IClassEvent
+            where TProperty : IClassProperty
+            where TIndexer : IClassIndexer
+            where TMethod : IClassMethod
+            where TField : IClassField
+            where TConstructor : IClassConstructor
+            where TEventProperty : IClassEventProperty
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClass : IClassNestedClass
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterface : IClassNestedInterface
+            where TNestedStruct : IClassNestedStruct
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod;
+
+        void VisitNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
+            INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IParameter;
+
+        void VisitNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
+            INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TNestedEnumMember : INestedEnumMember;
+
+        void VisitNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
+            INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TInterfaceReference : IInterfaceReference
+            where TEvent : IInterfaceEvent
+            where TProperty : IInterfaceProperty
+            where TIndexer : IInterfaceIndexer
+            where TMethod : IInterfaceMethod;
+
+        void VisitNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
+            INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedStruct)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TInterfaceReference : IInterfaceReference
+            where TEvent : IStructEvent
+            where TProperty : IStructProperty
+            where TIndexer : IStructIndexer
+            where TMethod : IStructMethod
+            where TField : IStructField
+            where TConstructor : IStructConstructor
+            where TEventProperty : IStructEventProperty
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClass : IStructNestedClass
+            where TNestedDelegate : IStructNestedDelegate
+            where TNestedEnum : IStructNestedEnum
+            where TNestedInterface : IStructNestedInterface
+            where TNestedStruct : IStructNestedStruct
+            where TStaticConstructor : IStaticConstructor
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod;
+
+        void VisitNullableTypeReference<TStructReference>(INullableTypeReference<TStructReference> reference)
+            where TStructReference : IStructReference;
+
+        void VisitProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
+            IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IBasicType
+            where TTypeReference : ITypeReference
+            where TAccessor : IAccessor;
+
+        void VisitType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
+            IType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> type)
+            where TEvent : IEvent
+            where TProperty : IProperty
+            where TIndexer : IIndexer
+            where TMethod : IMethod
+            where TField : IField
+            where TConstructor : IConstructor
+            where TEventProperty : IEventProperty
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClass : INestedClass
+            where TNestedDelegate : INestedDelegate
+            where TNestedEnum : INestedEnum
+            where TNestedInterface : INestedInterface
+            where TNestedStruct : INestedStruct
+            where TStaticConstructor : IStaticConstructor
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty;
     }
 }

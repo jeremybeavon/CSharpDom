@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -14,9 +15,9 @@ namespace CSharpDom.Reflection
     {
         private readonly EventWithReflection @event;
 
-        internal ClassEventWithReflection(EventWithReflection @event)
+        internal ClassEventWithReflection(ITypeWithReflection declaringType, EventInfo @event)
         {
-            this.@event = @event;
+            this.@event = new EventWithReflection(declaringType, @event);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -41,7 +42,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { throw new NotImplementedException(); }
+            get { return @event.EventInfo.AddMethod.InheritanceModifier(); }
         }
 
         public override string Name
@@ -51,7 +52,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { throw new NotImplementedException(); }
+            get { return @event.EventInfo.AddMethod.ClassVisibility(); }
         }
     }
 }

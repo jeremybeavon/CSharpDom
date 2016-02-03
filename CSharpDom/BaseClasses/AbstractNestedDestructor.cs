@@ -6,7 +6,7 @@ namespace CSharpDom.BaseClasses
     public abstract class AbstractNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> :
         INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IClassNestedClass
+        where TDeclaringType : INestedClass
         where TMethodBody : IMethodBody
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }

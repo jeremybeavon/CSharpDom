@@ -3,6 +3,7 @@
     public interface IEnum<TNamespace, TProject, TSolution, TAttributeGroup, TEnumMember> :
         IEnum,
         IHasName,
+        IHasEnumBaseType,
         IHasTypeVisibilityModifier,
         IHasNamespace<TNamespace>,
         IHasProject<TProject>,

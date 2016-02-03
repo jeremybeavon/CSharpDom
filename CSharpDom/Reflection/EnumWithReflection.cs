@@ -71,6 +71,14 @@ namespace CSharpDom.Reflection
             get { return type.Visibility(); }
         }
 
+        public override EnumBaseType BaseType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
 
         /*public void Accept(IReflectionVisitor visitor)
         {

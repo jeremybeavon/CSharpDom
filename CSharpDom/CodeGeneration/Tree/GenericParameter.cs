@@ -13,6 +13,8 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public string Name { get; set; }
 
+        public GenericParameterDeclarationDirection Direction { get; set; }
+
         public GenericParameterTypeConstraint TypeConstraint { get; set; }
 
         public ClassReference BaseClassConstraint { get; set; }

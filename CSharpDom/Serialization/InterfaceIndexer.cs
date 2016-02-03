@@ -4,7 +4,8 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class InterfaceIndexer : IInterfaceIndexer<AttributeGroup, IBasicType, TypeReference, Parameter>
+    public sealed class InterfaceIndexer :
+        IInterfaceIndexer<AttributeGroup, IBasicType, TypeReference, Parameter, InterfaceAccessor>
     {
         public InterfaceIndexer()
         {
@@ -19,16 +20,16 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public bool HasGet { get; set; }
-
-        public bool HasSet { get; set; }
+        public InterfaceAccessor GetAccessor { get; set; }
 
         public TypeReference IndexerType { get; set; }
 
         public InterfaceMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public List<Parameter> Parameters { get; set; }
-        
+
+        public InterfaceAccessor SetAccessor { get; set; }
+
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {
             get { return Attributes; }

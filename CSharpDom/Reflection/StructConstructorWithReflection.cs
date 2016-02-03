@@ -17,9 +17,9 @@ namespace CSharpDom.Reflection
     {
         private readonly ConstructorWithReflection constructor;
 
-        internal StructConstructorWithReflection(ConstructorWithReflection constructor)
+        internal StructConstructorWithReflection(ITypeWithReflection declaringType, ConstructorInfo constructor)
         {
-            this.constructor = constructor;
+            this.constructor = new ConstructorWithReflection(declaringType, constructor);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -49,10 +49,7 @@ namespace CSharpDom.Reflection
         
         public override StructMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return constructor.ConstructorInfo.StructVisibility(); }
         }
     }
 }

@@ -14,6 +14,7 @@
         Float,
         Double,
         Decimal,
+        Char,
         String,
         Void
     }

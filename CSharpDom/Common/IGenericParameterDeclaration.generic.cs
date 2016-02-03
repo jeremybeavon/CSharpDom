@@ -11,6 +11,8 @@ namespace CSharpDom.Common
         where TInterfaceReference : IInterfaceReference
         where TAttributeGroup : IAttributeGroup
     {
+        GenericParameterDeclarationDirection Direction { get; }
+
         GenericParameterTypeConstraint TypeConstraint { get; }
 
         TClassReference BaseClassConstraint { get; }

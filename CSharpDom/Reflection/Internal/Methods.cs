@@ -7,19 +7,31 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class Methods
+    internal sealed class Methods<TMethod>
     {
-        public Methods(ITypeWithReflection declaringType, Type type)
+        public Methods(
+            ITypeWithReflection declaringType,
+            Type type,
+            Func<ITypeWithReflection, MethodInfo, TMethod> methodFactory,
+            ISet<MethodInfo> interfaceMethods)
         {
-            List<MethodWithReflection> methods = new List<MethodWithReflection>();
+            List<TMethod> methods = new List<TMethod>();
             List<ConversionOperatorWithReflection> conversionOperators = new List<ConversionOperatorWithReflection>();
             List<OperatorOverloadWithReflection> operatorOverloads = new List<OperatorOverloadWithReflection>();
+            List<ExplicitInterfaceMethodWithReflection> explicitInterfaceMethods = new List<ExplicitInterfaceMethodWithReflection>();
             MethodInfo destructorMethod = new Action(Finalize).Method;
             foreach (MethodInfo method in type.GetAllMethods())
             {
                 if (!method.IsSpecialName)
                 {
-                    methods.Add(new MethodWithReflection(declaringType, method));
+                    if (interfaceMethods.Contains(method))
+                    {
+                        explicitInterfaceMethods.Add(new ExplicitInterfaceMethodWithReflection(declaringType, method));
+                    }
+                    else
+                    {
+                        methods.Add(methodFactory(declaringType, method));
+                    }
                 }
                 else if (method.Name == "op_Implicit")
                 {
@@ -46,7 +58,7 @@ namespace CSharpDom.Reflection.Internal
 
         public IReadOnlyCollection<ConversionOperatorWithReflection> ConversionOperatorsWithReflection { get; private set; }
 
-        public IReadOnlyCollection<MethodWithReflection> MethodsWithReflection { get; private set; }
+        public IReadOnlyCollection<TMethod> MethodsWithReflection { get; private set; }
 
         public IReadOnlyCollection<OperatorOverloadWithReflection> OperatorOverloadsWithReflection { get; private set; }
 

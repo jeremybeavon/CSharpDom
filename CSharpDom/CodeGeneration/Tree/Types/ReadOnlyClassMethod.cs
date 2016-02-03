@@ -25,7 +25,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public ReadOnlyClassMethod(ClassMethod method)
         {
             this.method = method;
-            body = new ReadOnlyMethodBody(method.Body);
+            if (method.Body.Count != 0)
+            {
+                body = new ReadOnlyMethodBody(method.Body);
+            }
+
             genericParameters = ReadOnlyGenericParameterDeclaration.Create(method.GenericParameters);
             parameters = method.Parameters.ToArray(parameter => new ReadOnlyClassMethodParameter(parameter));
             returnType = new ReadOnlyTypeReference(method.ReturnType);

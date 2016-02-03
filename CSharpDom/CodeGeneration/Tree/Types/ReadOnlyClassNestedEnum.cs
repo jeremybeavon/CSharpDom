@@ -45,5 +45,10 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return ReadOnlyClass.GetVisibility(nestedEnum.Visibility); }
         }
+
+        public override EnumBaseType BaseType
+        {
+            get { return nestedEnum.BaseType; }
+        }
     }
 }

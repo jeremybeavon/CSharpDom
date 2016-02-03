@@ -10,15 +10,26 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyInterfaceProperty :
-        AbstractInterfaceProperty<AttributeGroupNotSupported, IBasicType, ReadOnlyTypeReference>
+        AbstractInterfaceProperty<AttributeGroupNotSupported, IBasicType, ReadOnlyTypeReference, ReadOnlyInterfaceAccessor>
     {
         private readonly InterfaceProperty interfaceProperty;
         private readonly ReadOnlyTypeReference propertyType;
+        private readonly ReadOnlyInterfaceAccessor getAccessor;
+        private readonly ReadOnlyInterfaceAccessor setAccessor;
 
         public ReadOnlyInterfaceProperty(InterfaceProperty interfaceProperty)
         {
             this.interfaceProperty = interfaceProperty;
             propertyType = new ReadOnlyTypeReference(interfaceProperty.Type);
+            if (interfaceProperty.GetAccessor != null)
+            {
+                getAccessor = new ReadOnlyInterfaceAccessor();
+            }
+
+            if (interfaceProperty.SetAccessor != null)
+            {
+                setAccessor = new ReadOnlyInterfaceAccessor();
+            }
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -30,25 +41,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return null; }
         }
-
-        public override bool HasGet
-        {
-            get
-            {
-                InterfacePropertyAccessors accessors = interfaceProperty.Accessors;
-                return accessors == InterfacePropertyAccessors.Get || accessors == InterfacePropertyAccessors.GetAndSet;
-            }
-        }
-
-        public override bool HasSet
-        {
-            get
-            {
-                InterfacePropertyAccessors accessors = interfaceProperty.Accessors;
-                return accessors == InterfacePropertyAccessors.Set || accessors == InterfacePropertyAccessors.GetAndSet;
-            }
-        }
-
+        
         public override InterfaceMemberInheritanceModifier InheritanceModifier
         {
             get
@@ -66,7 +59,17 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return propertyType; }
         }
-        
+
+        public override ReadOnlyInterfaceAccessor GetAccessor
+        {
+            get { return getAccessor; }
+        }
+
+        public override ReadOnlyInterfaceAccessor SetAccessor
+        {
+            get { return setAccessor; }
+        }
+
         public static IReadOnlyCollection<ReadOnlyInterfaceProperty> Create(IEnumerable<InterfaceProperty> interfaceProperties)
         {
             return interfaceProperties.ToArray(interfaceProperty => new ReadOnlyInterfaceProperty(interfaceProperty));

@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses;
+using CSharpDom.Reflection.Internal;
 using CSharpDom.Reflection.Emit;
 using System;
 using System.Collections.Generic;
@@ -15,43 +16,36 @@ namespace CSharpDom.Reflection
             ILMethodBodyWithReflectionEmit>,
         IHasEventInfo
     {
-        private readonly Lazy<ILMethodBodyWithReflectionEmit> addBody;
+        private readonly EventPropertyWithReflection @event;
 
-        internal ExplicitInterfaceEventWithReflection(EventInfo @event)
+        internal ExplicitInterfaceEventWithReflection(ITypeWithReflection declaringType, EventInfo @event)
         {
-            EventInfo = @event;
-            addBody = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(@event.AddMethod));
+            this.@event = new EventPropertyWithReflection(declaringType, @event);
         }
 
         public override ILMethodBodyWithReflectionEmit AddBody
         {
-            get { return addBody.Value; }
+            get { return @event.AddBody; }
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.DeclaringType; }
         }
 
-        public EventInfo EventInfo { get; set; }
+        public EventInfo EventInfo
+        {
+            get { return @event.EventInfo; }
+        }
 
         public override DelegateReferenceWithReflection EventType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.EventType; }
         }
 
         public override InterfaceReferenceWithReflection ExplicitInterface
@@ -64,18 +58,12 @@ namespace CSharpDom.Reflection
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.Name; }
         }
 
         public override ILMethodBodyWithReflectionEmit RemoveBody
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.RemoveBody; }
         }
     }
 }

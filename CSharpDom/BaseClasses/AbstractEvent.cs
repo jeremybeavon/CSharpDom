@@ -17,8 +17,13 @@ namespace CSharpDom.BaseClasses
         public abstract TDelegateReference EventType { get; }
         
         public abstract string Name { get; }
-        
-        public void AcceptChildren(IGenericVisitor visitor)
+
+        public virtual void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitEvent(this);
+        }
+
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitEventChildren(this, visitor);
         }

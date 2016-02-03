@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -13,60 +14,46 @@ namespace CSharpDom.Reflection
             DelegateReferenceWithReflection,
             ILMethodBodyWithReflectionEmit>
     {
+        private readonly EventPropertyWithReflection @event;
+
+        internal StructEventPropertyWithReflection(ITypeWithReflection declaringType, EventInfo @event)
+        {
+            this.@event = new EventPropertyWithReflection(declaringType, @event);
+        }
+
         public override ILMethodBodyWithReflectionEmit AddBody
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.AddBody; }
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.DeclaringType; }
         }
 
         public override DelegateReferenceWithReflection EventType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.EventType; }
         }
         
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.Name; }
         }
 
         public override ILMethodBodyWithReflectionEmit RemoveBody
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.RemoveBody; }
         }
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.EventInfo.AddMethod.StructVisibility(); }
         }
     }
 }

@@ -9,12 +9,15 @@
         TProperty,
         TIndexer,
         TMethod> :
+        INestedInterface,
         IHasName,
+        IHasPartialSupport,
         IHasAttributes<TAttributeGroup>,
         IBasicType<TEvent, TProperty, TIndexer, TMethod>,
         IHasDeclaringType<TDeclaringType>,
         IHasGenericParameters<TGenericParameter>,
-        IHasInterfaces<TInterfaceReference>
+        IHasInterfaces<TInterfaceReference>,
+        IVisitable<IGenericVisitor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TGenericParameter : IGenericParameterDeclaration

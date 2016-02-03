@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IClassNestedStruct : IClassMember
+    public interface IClassNestedStruct : IClassMember, INestedStruct
     {
     }
 }

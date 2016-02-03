@@ -8,6 +8,14 @@ namespace CSharpDom.CodeGeneration.Tree
         {
             OperatorType = unaryOperatorType;
             Body = new Collection<Statement>();
+            switch (unaryOperatorType)
+            {
+                case UnaryOperatorType.LogicalNot:
+                case UnaryOperatorType.True:
+                case UnaryOperatorType.False:
+                    ReturnType = new TypeReference(typeof(bool));
+                    break;
+            }
         }
 
         public UnaryOperatorType OperatorType { get; set; }

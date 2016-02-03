@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpDom.Text
+﻿namespace CSharpDom.Text
 {
     public static class VisibilityText
     {
@@ -14,6 +8,6 @@ namespace CSharpDom.Text
 
         public const string ProtectedText = "protected";
 
-        public const string PrivateText = "private ";
+        public const string PrivateText = "private";
     }
 }

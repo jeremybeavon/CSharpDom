@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Reflection;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
@@ -19,6 +20,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         private const ReadOnlyTypeReferenceType genericParameterType = ReadOnlyTypeReferenceType.GenericParameter;
         private const ReadOnlyTypeReferenceType interfaceType = ReadOnlyTypeReferenceType.Interface;
         private const ReadOnlyTypeReferenceType structType = ReadOnlyTypeReferenceType.Struct;
+        private const ReadOnlyTypeReferenceType reflectionType = ReadOnlyTypeReferenceType.Reflection;
         private const ReadOnlyTypeReferenceType unspecifiedType = ReadOnlyTypeReferenceType.Unspecified;
         //private static readonly A
 
@@ -42,30 +44,32 @@ namespace CSharpDom.CodeGeneration.Tree.Types
                 type => Initialize(type, type.type.StructNestedEnum != null, enumType, () => type.type.StructNestedEnum.Name),
                 type => Initialize(type, type.type.StructNestedInterface != null, interfaceType, () => type.type.StructNestedInterface.Name),
                 type => Initialize(type, type.type.StructNestedStruct != null, structType, () => type.type.StructNestedStruct.Name),
-                type => Initialize(type, type.type.Type != null, unspecifiedType, () => type.type.Type.Name),
+                type => InitializeReflection(type)
             };
 
         private static readonly IDictionary<ReadOnlyTypeReferenceType, Action<ReadOnlyTypeReference, IGenericVisitor>> accept =
             new Dictionary<ReadOnlyTypeReferenceType, Action<ReadOnlyTypeReference, IGenericVisitor>>
             {
-                { ReadOnlyTypeReferenceType.Class, (type, visitor) => visitor.VisitClassReference(type) },
-                { ReadOnlyTypeReferenceType.Delegate, (type, visitor) => visitor.VisitDelegateReference(type) },
-                { ReadOnlyTypeReferenceType.Enum, (type, visitor) => visitor.VisitEnumReference(type) },
-                { ReadOnlyTypeReferenceType.GenericParameter, (type, visitor) => visitor.VisitGenericParameterReference(type) },
-                { ReadOnlyTypeReferenceType.Interface, (type, visitor) => visitor.VisitInterfaceReference(type) },
-                { ReadOnlyTypeReferenceType.Struct, (type, visitor) => visitor.VisitStructReference(type) },
+                { classType, (type, visitor) => visitor.VisitClassReference(type) },
+                { delegateType, (type, visitor) => visitor.VisitDelegateReference(type) },
+                { enumType, (type, visitor) => visitor.VisitEnumReference(type) },
+                { genericParameterType, (type, visitor) => visitor.VisitGenericParameterReference(type) },
+                { interfaceType, (type, visitor) => visitor.VisitInterfaceReference(type) },
+                { structType, (type, visitor) => visitor.VisitStructReference(type) },
+                { reflectionType, (type, visitor) => type.typeReferenceWithReflection.Accept(visitor) },
                 { ReadOnlyTypeReferenceType.Unspecified, (type, visitor) => visitor.VisitUnspecifiedTypeReference(type) }
             };
 
         private static readonly IDictionary<ReadOnlyTypeReferenceType, Action<ReadOnlyTypeReference, IGenericVisitor>> acceptChildren =
             new Dictionary<ReadOnlyTypeReferenceType, Action<ReadOnlyTypeReference, IGenericVisitor>>
             {
-                { ReadOnlyTypeReferenceType.Class, GenericVisitor.VisitClassReferenceChildren },
-                { ReadOnlyTypeReferenceType.Delegate, GenericVisitor.VisitDelegateReferenceChildren },
-                { ReadOnlyTypeReferenceType.Enum, (type, visitor) => { } },
-                { ReadOnlyTypeReferenceType.GenericParameter, (type, visitor) => { } },
-                { ReadOnlyTypeReferenceType.Interface, GenericVisitor.VisitInterfaceReferenceChildren },
-                { ReadOnlyTypeReferenceType.Struct, GenericVisitor.VisitStructReferenceChildren },
+                { classType, GenericVisitor.VisitClassReferenceChildren },
+                { delegateType, GenericVisitor.VisitDelegateReferenceChildren },
+                { enumType, (type, visitor) => { } },
+                { genericParameterType, (type, visitor) => { } },
+                { interfaceType, GenericVisitor.VisitInterfaceReferenceChildren },
+                { structType, GenericVisitor.VisitStructReferenceChildren },
+                { reflectionType, (type, visitor) => type.typeReferenceWithReflection.AcceptChildren(visitor) },
                 { ReadOnlyTypeReferenceType.Unspecified, GenericVisitor.VisitUnspecifiedTypeReference }
             };
 
@@ -73,6 +77,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         private readonly IReadOnlyList<ReadOnlyGenericParameter> genericParameters;
         private ReadOnlyTypeReferenceType typeReferenceType;
         private string name;
+        private ITypeReferenceWithReflection typeReferenceWithReflection;
         
         public ReadOnlyTypeReference(TypeReference typeReference)
         {
@@ -120,6 +125,19 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             }
 
             return isMatch;
+        }
+
+        private static bool InitializeReflection(ReadOnlyTypeReference type)
+        {
+            if (type.type.Type == null)
+            {
+                return false;
+            }
+
+            type.typeReferenceWithReflection = TypeReferenceWithReflectionFactory.CreateReference(type.type.Type);
+            type.typeReferenceType = reflectionType;
+            type.name = type.typeReferenceWithReflection.Type.Name;
+            return true;
         }
     }
 }

@@ -2,6 +2,7 @@
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
@@ -81,6 +82,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override ClassMemberVisibilityModifier Visibility
         {
             get { return ReadOnlyClass.GetVisibility(nestedInterface.Visibility); }
+        }
+
+        public override bool IsPartial
+        {
+            get { return nestedInterface.IsPartial; }
         }
     }
 }

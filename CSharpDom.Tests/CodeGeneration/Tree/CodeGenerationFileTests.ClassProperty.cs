@@ -14,7 +14,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
 {
     string Property1 { get; set; }
 }";             
-(new CodeGenerationFile()
+            (new CodeGenerationFile()
             {
                 Classes =
                 {

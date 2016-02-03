@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
+using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
@@ -30,6 +31,13 @@ namespace CSharpDom.Reflection
             ExplicitInterfaceIndexerWithReflection,
             ExplicitInterfaceMethodWithReflection>
     {
+        private readonly NestedStructWithReflection nestedStruct;
+
+        internal StructNestedStructWithReflection(ITypeWithReflection declaringType, Type type)
+        {
+            nestedStruct = new NestedStructWithReflection(declaringType, type);
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
             get

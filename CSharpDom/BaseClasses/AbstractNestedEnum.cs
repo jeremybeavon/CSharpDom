@@ -14,11 +14,18 @@ namespace CSharpDom.BaseClasses
 
         public abstract TDeclaringType DeclaringType { get; }
 
+        public abstract EnumBaseType BaseType { get; }
+
         public abstract IReadOnlyList<TNestedEnumMember> EnumMembers { get; }
 
         public abstract string Name { get; }
-        
-        public void AcceptChildren(IGenericVisitor visitor)
+
+        public virtual void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitNestedEnum(this);
+        }
+
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedEnumChildren(this, visitor);
         }

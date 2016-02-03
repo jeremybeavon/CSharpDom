@@ -21,6 +21,8 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
+        public EnumBaseType BaseType { get; set; }
+
         public List<EnumMember> EnumMembers { get; set; }
 
         public string Name { get; set; }

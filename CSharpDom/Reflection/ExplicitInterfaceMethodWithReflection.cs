@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 
@@ -15,6 +16,15 @@ namespace CSharpDom.Reflection
             ParameterWithReflection,
             ILMethodBodyWithReflectionEmit>
     {
+        private ITypeWithReflection declaringType;
+        private MethodInfo method;
+
+        internal ExplicitInterfaceMethodWithReflection(ITypeWithReflection declaringType, MethodInfo method)
+        {
+            this.declaringType = declaringType;
+            this.method = method;
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
             get

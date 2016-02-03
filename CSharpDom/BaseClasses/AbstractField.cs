@@ -19,8 +19,13 @@ namespace CSharpDom.BaseClasses
         public abstract FieldModifier Modifier { get; }
 
         public abstract string Name { get; }
-        
-        public void AcceptChildren(IGenericVisitor visitor)
+
+        public virtual void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitField(this);
+        }
+
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitFieldChildren(this, visitor);
         }

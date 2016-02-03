@@ -74,10 +74,16 @@ namespace CSharpDom.BaseClasses
         public abstract bool IsPartial { get; }
 
         public abstract string Name { get; }
-        
-        public void AcceptChildren(IGenericVisitor visitor)
+
+        public override void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitNestedClass(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedClassChildren(this, visitor);
+            base.Accept(visitor);
         }
     }
 }

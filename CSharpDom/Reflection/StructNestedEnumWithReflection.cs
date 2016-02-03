@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
+using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
@@ -10,7 +11,22 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             NestedEnumMemberWithReflection>
     {
+        private readonly NestedEnumWithReflection nestedEnum;
+
+        internal StructNestedEnumWithReflection(ITypeWithReflection declaringType, Type type)
+        {
+            nestedEnum = new NestedEnumWithReflection(declaringType, type);
+        }
+
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override EnumBaseType BaseType
         {
             get
             {

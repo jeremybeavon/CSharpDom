@@ -24,14 +24,7 @@
         TExplicitInterfaceIndexer,
         TExplicitInterfaceMethod> :
         IStructNestedStruct,
-        IHasName,
-        IHasStructMemberVisibilityModifier,
-        IHasPartialSupport,
-        IHasAttributes<TAttributeGroup>,
-        IHasDeclaringType<TDeclaringType>,
-        IHasGenericParameters<TGenericParameter>,
-        IHasImplementedInterfaces<TInterfaceReference>,
-        IType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>
+        INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TGenericParameter : IGenericParameterDeclaration

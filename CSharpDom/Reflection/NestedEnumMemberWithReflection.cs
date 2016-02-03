@@ -8,7 +8,7 @@ using CSharpDom.Common;
 namespace CSharpDom.Reflection
 {
     public sealed class NestedEnumMemberWithReflection :
-        AbstractNestedEnumMember<AttributeWithReflection, IClassNestedEnum>//,
+        AbstractNestedEnumMember<AttributeWithReflection, INestedEnum>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly NestedEnumWithReflection declaringType;
@@ -27,7 +27,7 @@ namespace CSharpDom.Reflection
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override IClassNestedEnum DeclaringType
+        public override INestedEnum DeclaringType
         {
             get
             {

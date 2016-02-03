@@ -14,14 +14,14 @@ namespace CSharpDom.BaseClasses
     {
         public abstract StructMemberVisibilityModifier Visibility { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStructConstructor(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitConstructorChildren(this, visitor);
+            base.Accept(visitor);
         }
     }
 }

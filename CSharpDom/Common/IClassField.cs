@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IClassField : IClassMember
+    public interface IClassField : IClassMember, IField
     {
     }
 }

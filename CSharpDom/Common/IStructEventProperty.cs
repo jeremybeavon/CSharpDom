@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStructEventProperty : IStructMember
+    public interface IStructEventProperty : IStructMember, IEventProperty
     {
     }
 }

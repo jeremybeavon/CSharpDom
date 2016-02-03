@@ -42,6 +42,8 @@ namespace CSharpDom.Serialization
 
         public List<InterfaceReference> Interfaces { get; set; }
 
+        public bool IsPartial { get; set; }
+
         public List<InterfaceMethod> Methods { get; set; }
 
         public string Name { get; set; }

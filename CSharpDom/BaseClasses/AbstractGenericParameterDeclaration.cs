@@ -15,6 +15,8 @@ namespace CSharpDom.BaseClasses
 
         public abstract TClassReference BaseClassConstraint { get; }
 
+        public abstract GenericParameterDeclarationDirection Direction { get; }
+
         public abstract IReadOnlyCollection<TGenericParameterReference> GenericParameterConstraints { get; }
 
         public abstract bool HasEmptyConstructorConstraint { get; }

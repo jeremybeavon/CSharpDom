@@ -7,31 +7,50 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class Properties
+    internal sealed class Properties<TProperty, TIndexer>
     {
-        public Properties(ITypeWithReflection declaringType, Type type)
+        public Properties(
+            ITypeWithReflection declaringType,
+            Type type,
+            IPropertyFactory<TProperty, TIndexer> propertyFactory,
+            ISet<MethodInfo> interfaceMethods)
         {
-            List<IndexerWithReflection> indexers = new List<IndexerWithReflection>();
-            List<PropertyWithReflection> properties = new List<PropertyWithReflection>();
+            List<TIndexer> indexers = new List<TIndexer>();
+            List<TProperty> properties = new List<TProperty>();
+            List<ExplicitInterfaceIndexerWithReflection> explicitInterfaceIndexers = new List<ExplicitInterfaceIndexerWithReflection>();
+            List<ExplicitInterfacePropertyWithReflection> explicitInterfaceProperties = new List<ExplicitInterfacePropertyWithReflection>();
             foreach (PropertyInfo property in type.GetAllProperties())
             {
                 if (property.GetIndexParameters().Any())
                 {
-                    indexers.Add(new IndexerWithReflection(declaringType, property));
+                    if (interfaceMethods.Contains(property.GetMethod ?? property.SetMethod))
+                    {
+                        explicitInterfaceIndexers.Add(new ExplicitInterfaceIndexerWithReflection(declaringType, property));
+                    }
+                    else
+                    {
+                        indexers.Add(propertyFactory.CreateIndexer(declaringType, property));
+                    }
+                }
+                else if (interfaceMethods.Contains(property.GetMethod ?? property.SetMethod))
+                {
+                    explicitInterfaceProperties.Add(new ExplicitInterfacePropertyWithReflection(declaringType, property));
                 }
                 else
                 {
-                    properties.Add(new PropertyWithReflection(declaringType, property));
+                    properties.Add(propertyFactory.CreateProperty(declaringType, property));
                 }
             }
 
+            ExplicitInterfaceIndexersWithReflection = explicitInterfaceIndexers;
+            ExplicitInterfacePropertiesWithReflection = explicitInterfaceProperties;
             IndexersWithReflection = indexers;
             PropertiesWithReflection = properties;
         }
 
-        public IReadOnlyCollection<IndexerWithReflection> IndexersWithReflection { get; private set; }
+        public IReadOnlyCollection<TIndexer> IndexersWithReflection { get; private set; }
 
-        public IReadOnlyCollection<PropertyWithReflection> PropertiesWithReflection { get; private set; }
+        public IReadOnlyCollection<TProperty> PropertiesWithReflection { get; private set; }
 
         public IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexersWithReflection { get; private set; }
 

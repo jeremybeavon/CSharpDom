@@ -23,8 +23,13 @@ namespace CSharpDom.BaseClasses
         public abstract IReadOnlyList<TParameter> Parameters { get; }
 
         public abstract TTypeReference ReturnType { get; }
-        
-        public void AcceptChildren(IGenericVisitor visitor)
+
+        public virtual void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitNestedDelegate(this);
+        }
+
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedDelegateChildren(this, visitor);
         }

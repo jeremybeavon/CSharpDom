@@ -6,7 +6,7 @@ using CSharpDom.Reflection.Internal;
 namespace CSharpDom.Reflection.Internal
 {
     internal sealed class NestedInterfaceWithReflection :
-        AbstractClassNestedInterface<
+        AbstractNestedInterface<
             AttributeWithReflection,
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
@@ -39,80 +39,8 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return declaringType; }
         }
-
-        public Type Type
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfaceReferenceWithReflection> Interfaces
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override string Name
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
+        
         public override IReadOnlyCollection<InterfaceEventWithReflection> Events
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfaceIndexerWithReflection> Indexers
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfaceMethodWithReflection> Methods
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfacePropertyWithReflection> Properties
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        /*public override IReadOnlyCollection<EventWithReflection> Events
         {
             get { return basicType.Events; }
         }
@@ -122,7 +50,7 @@ namespace CSharpDom.Reflection.Internal
             get { return basicType.GenericParameters; }
         }
 
-        public override IReadOnlyCollection<IndexerWithReflection> Indexers
+        public override IReadOnlyCollection<InterfaceIndexerWithReflection> Indexers
         {
             get { return basicType.Indexers; }
         }
@@ -132,7 +60,7 @@ namespace CSharpDom.Reflection.Internal
             get { return basicType.Interfaces; }
         }
 
-        public override IReadOnlyCollection<MethodWithReflection> Methods
+        public override IReadOnlyCollection<InterfaceMethodWithReflection> Methods
         {
             get { return basicType.Methods; }
         }
@@ -142,22 +70,22 @@ namespace CSharpDom.Reflection.Internal
             get { return type.Name; }
         }
 
-        public override IReadOnlyCollection<PropertyWithReflection> Properties
+        public override IReadOnlyCollection<InterfacePropertyWithReflection> Properties
         {
             get { return basicType.Properties; }
         }
-
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get { return type.NestedVisibility(); }
-        }
-
+        
         public Type Type
         {
             get { return type; }
         }
 
-        public void Accept(IReflectionVisitor visitor)
+        public override bool IsPartial
+        {
+            get { return false; }
+        }
+
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNestedInterfaceWithReflection(this);
         }

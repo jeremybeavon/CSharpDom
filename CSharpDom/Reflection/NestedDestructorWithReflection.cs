@@ -9,7 +9,7 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class NestedDestructorWithReflection :
-        AbstractNestedDestructor<AttributeWithReflection, IClassNestedClass, MethodBodyNotSupported>//,
+        AbstractNestedDestructor<AttributeWithReflection, INestedClass, MethodBodyNotSupported>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly NestedClassWithReflection declaringType;
@@ -34,7 +34,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IClassNestedClass DeclaringType
+        public override INestedClass DeclaringType
         {
             get
             {

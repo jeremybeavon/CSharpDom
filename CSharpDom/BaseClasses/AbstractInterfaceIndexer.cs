@@ -4,23 +4,25 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter> :
-        AbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>,
-        IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter>
+    public abstract class AbstractInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> :
+        AbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>,
+        IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
         where TTypeReference : ITypeReference
         where TParameter : IParameter
+        where TAccessor : IInterfaceAccessor
     {
-        public abstract bool HasGet { get; }
-
-        public abstract bool HasSet { get; }
-
         public abstract InterfaceMemberInheritanceModifier InheritanceModifier { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitInterfaceIndexer(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            base.Accept(visitor);
         }
     }
 }
