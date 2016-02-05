@@ -50,7 +50,7 @@
         where TExplicitInterfaceMethod : IExplicitInterfaceMethod
         where TExplicitInterfaceProperty : IExplicitInterfaceProperty
         where TAbstractEvent : IAbstractEvent
-        where TAbstractProperty : IAbstractIndexer
+        where TAbstractProperty : IAbstractProperty
         where TAbstractIndexer : IAbstractIndexer
         where TAbstractMethod : IAbstractMethod
     {

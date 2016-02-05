@@ -8,10 +8,10 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyStructFieldDeclaration :
         AbstractStructField<AttributeGroupNotSupported, IStructType, ReadOnlyTypeReference>
     {
-        private readonly StructFieldDeclaration field;
+        private readonly StructField field;
         private readonly ReadOnlyTypeReference fieldType;
 
-        public ReadOnlyStructFieldDeclaration(StructFieldDeclaration field)
+        public ReadOnlyStructFieldDeclaration(StructField field)
         {
             this.field = field;
             fieldType = new ReadOnlyTypeReference(field.Type);

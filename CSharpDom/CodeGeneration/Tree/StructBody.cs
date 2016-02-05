@@ -6,7 +6,7 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public StructBody()
         {
-            Fields = new Collection<StructFieldDeclaration>();
+            Fields = new Collection<StructField>();
             Events = new Collection<StructEvent>();
             Properties = new Collection<StructProperty>();
             Indexers = new Collection<StructIndexer>();
@@ -25,7 +25,7 @@ namespace CSharpDom.CodeGeneration.Tree
             ExplicitInterfaceProperties = new Collection<ExplicitInterfaceProperty>();
         }
 
-        public Collection<StructFieldDeclaration> Fields { get; set; }
+        public Collection<StructField> Fields { get; set; }
 
         public Collection<StructEvent> Events { get; set; }
 

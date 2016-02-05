@@ -23,7 +23,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Fields =
                                     {
@@ -54,7 +54,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Fields =
                                     {
@@ -87,14 +87,14 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Fields =
                                     {
                                         new Field("field1")
                                     }
                                 },
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Fields =
                                     {
@@ -125,7 +125,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
                                     Fields =
@@ -157,7 +157,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Internal,
                                     Fields =
@@ -189,7 +189,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.ProtectedInternal,
                                     Fields =
@@ -221,7 +221,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Protected,
                                     Fields =
@@ -253,7 +253,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Private,
                                     Fields =
@@ -285,7 +285,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.Const,
@@ -318,7 +318,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.Static,
@@ -351,7 +351,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.ReadOnly,
@@ -384,7 +384,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.StaticReadOnly,
@@ -417,7 +417,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.Volatile,
@@ -450,7 +450,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new ClassFieldDeclaration(new TypeReference("string"))
+                                new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.StaticVolatile,

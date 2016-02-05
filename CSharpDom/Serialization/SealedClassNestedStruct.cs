@@ -4,10 +4,10 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassNestedStruct :
-        IClassNestedStruct<
+    public sealed class SealedClassNestedStruct :
+        ISealedClassNestedStruct<
             AttributeGroup,
-            IClassType,
+            ISealedType,
             GenericParameterDeclaration,
             InterfaceReference,
             StructEvent,
@@ -30,7 +30,7 @@ namespace CSharpDom.Serialization
             ExplicitInterfaceIndexer,
             ExplicitInterfaceMethod>
     {
-        public ClassNestedStruct()
+        public SealedClassNestedStruct()
         {
             Attributes = new List<AttributeGroup>();
             Classes = new List<StructNestedClass>();
@@ -63,7 +63,7 @@ namespace CSharpDom.Serialization
 
         public List<ConversionOperator> ConversionOperators { get; set; }
 
-        public IClassType DeclaringType
+        public ISealedType DeclaringType
         {
             get { return null; }
         }
@@ -108,7 +108,7 @@ namespace CSharpDom.Serialization
 
         public List<StructNestedStruct> Structs { get; set; }
 
-        public ClassMemberVisibilityModifier Visibility { get; set; }
+        public SealedClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {
@@ -217,7 +217,7 @@ namespace CSharpDom.Serialization
 
         public void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitClassNestedStruct(this);
+            visitor.VisitSealedClassNestedStruct(this);
         }
 
         public void AcceptChildren(IGenericVisitor visitor)

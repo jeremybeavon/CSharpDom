@@ -1038,7 +1038,7 @@ namespace CSharpDom.BaseClasses
             where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
             where TExplicitInterfaceMethod : IExplicitInterfaceMethod
             where TAbstractEvent : IAbstractEvent
-            where TAbstractProperty : IAbstractIndexer
+            where TAbstractProperty : IAbstractProperty
             where TAbstractIndexer : IAbstractIndexer
             where TAbstractMethod : IAbstractMethod
         {

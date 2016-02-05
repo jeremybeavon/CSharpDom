@@ -6,7 +6,7 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public ClassBody()
         {
-            Fields = new Collection<ClassFieldDeclaration>();
+            Fields = new Collection<ClassField>();
             Events = new Collection<ClassEvent>();
             Properties = new Collection<ClassProperty>();
             Indexers = new Collection<ClassIndexer>();
@@ -25,7 +25,7 @@ namespace CSharpDom.CodeGeneration.Tree
             ExplicitInterfaceProperties = new Collection<ExplicitInterfaceProperty>();
         }
 
-        public Collection<ClassFieldDeclaration> Fields { get; set; }
+        public Collection<ClassField> Fields { get; set; }
 
         public Collection<ClassEvent> Events { get; set; }
 

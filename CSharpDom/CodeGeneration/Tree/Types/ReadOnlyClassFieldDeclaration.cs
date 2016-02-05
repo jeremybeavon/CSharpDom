@@ -8,10 +8,10 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyClassFieldDeclaration :
         AbstractClassField<AttributeGroupNotSupported, IClassType, ReadOnlyTypeReference>
     {
-        private readonly ClassFieldDeclaration field;
+        private readonly ClassField field;
         private readonly ReadOnlyTypeReference fieldType;
 
-        public ReadOnlyClassFieldDeclaration(ClassFieldDeclaration field)
+        public ReadOnlyClassFieldDeclaration(ClassField field)
         {
             this.field = field;
             fieldType = new ReadOnlyTypeReference(field.Type);

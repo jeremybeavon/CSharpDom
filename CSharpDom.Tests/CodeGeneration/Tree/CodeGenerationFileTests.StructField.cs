@@ -23,7 +23,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Fields =
                                     {
@@ -54,7 +54,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Fields =
                                     {
@@ -87,14 +87,14 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Fields =
                                     {
                                         new Field("field1")
                                     }
                                 },
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Fields =
                                     {
@@ -125,7 +125,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
                                     Fields =
@@ -157,7 +157,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Internal,
                                     Fields =
@@ -189,7 +189,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Private,
                                     Fields =
@@ -221,7 +221,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.Const,
@@ -254,7 +254,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.Static,
@@ -287,7 +287,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.ReadOnly,
@@ -320,7 +320,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.StaticReadOnly,
@@ -353,7 +353,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.Volatile,
@@ -386,7 +386,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         {
                             Fields =
                             {
-                                new StructFieldDeclaration(new TypeReference("string"))
+                                new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
                                     Modifier = FieldModifier.StaticVolatile,

@@ -2,9 +2,9 @@
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class StructFieldDeclaration
+    public sealed class StructField
     {
-        public StructFieldDeclaration(TypeReference type)
+        public StructField(TypeReference type)
         {
             Type = type;
             Fields = new Collection<Field>();
