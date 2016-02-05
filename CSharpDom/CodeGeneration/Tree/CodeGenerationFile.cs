@@ -24,15 +24,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public string ToString(params ISourceCodeStyleRule[] styleRules)
         {
-            ReadOnlyCodeGenerationFile file = new ReadOnlyCodeGenerationFile(this);
-            SourceCodeStepsBuilder stepsBuilder = new SourceCodeStepsBuilder();
-            stepsBuilder.VisitLoadedDocument(new ReadOnlyCodeGenerationFile(this));
-            foreach (ISourceCodeStyleRule styleRule in styleRules.Where(rule => !rule.IsRuleAlreadyApplied))
-            {
-                styleRule.ApplyRule(stepsBuilder.Steps);
-            }
-
-            return stepsBuilder.Steps.ToSourceCode();
+            return new ReadOnlyCodeGenerationFile(this).ToSourceCode(styleRules);
         }
     }
 }

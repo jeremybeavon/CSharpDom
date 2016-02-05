@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassField : IClassField<AttributeGroup, IType, TypeReference>
+    public sealed class ClassField : IClassField<AttributeGroup, IClassType, TypeReference>
     {
         public ClassField()
         {
@@ -13,7 +13,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IType DeclaringType
+        public IClassType DeclaringType
         {
             get { return null; }
         }

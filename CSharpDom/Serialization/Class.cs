@@ -95,13 +95,9 @@ namespace CSharpDom.Serialization
         public List<InterfaceReference> ImplementedInterfaces { get; set; }
 
         public List<ClassIndexer> Indexers { get; set; }
-
-        public TypeInheritanceModifier InheritanceModifier { get; set; }
-
+        
         public List<ClassNestedInterface> Interfaces { get; set; }
-
-        public bool IsPartial { get; set; }
-
+        
         public List<ClassMethod> Methods { get; set; }
 
         public string Name { get; set; }

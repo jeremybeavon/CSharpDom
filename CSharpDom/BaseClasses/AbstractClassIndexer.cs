@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>,
         IClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TTypeReference : ITypeReference
         where TParameter : IParameter
         where TAccessor : IClassAccessor

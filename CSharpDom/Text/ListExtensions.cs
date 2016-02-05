@@ -111,8 +111,13 @@ namespace CSharpDom.Text
             }
         }
 
-        internal static string ToSourceCode(this List<ISourceCodeBuilderStep> steps)
+        internal static string ToSourceCode(this List<ISourceCodeBuilderStep> steps, params ISourceCodeStyleRule[] styleRules)
         {
+            foreach (ISourceCodeStyleRule styleRule in styleRules.Where(rule => !rule.IsRuleAlreadyApplied))
+            {
+                styleRule.ApplyRule(steps);
+            }
+
             SourceCodeTextBuilder textBuilder = new SourceCodeTextBuilder();
             foreach (ISourceCodeBuilderStep step in steps)
             {
@@ -205,18 +210,7 @@ namespace CSharpDom.Text
                 steps.Add(new WriteWhitespace());
             }
         }
-
-        internal static void AddTypeInheritanceModifierSteps(
-            this List<ISourceCodeBuilderStep> steps,
-            TypeInheritanceModifier inheritanceModifier)
-        {
-            if (inheritanceModifier != TypeInheritanceModifier.None)
-            {
-                steps.Add(new WriteTypeInheritanceModifier(inheritanceModifier));
-                steps.Add(new WriteWhitespace());
-            }
-        }
-
+        
         internal static void AddPartialSteps(this List<ISourceCodeBuilderStep> steps, bool isPartial)
         {
             if (isPartial)

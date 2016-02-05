@@ -2,10 +2,10 @@
 {
     internal sealed class NamespaceContainer
     {
-        public NamespaceContainer(string name, TypeContainer typeContainer)
+        public NamespaceContainer(string name)
         {
-            Namespace = new NamespaceWithReflection(name, typeContainer);
-            TypeContainer = typeContainer;
+            TypeContainer = new TypeContainer();
+            Namespace = new NamespaceWithReflection(name, TypeContainer);
         }
 
         public NamespaceWithReflection Namespace { get; private set; }

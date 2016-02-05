@@ -12,7 +12,7 @@
         IStructNestedInterface,
         INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TGenericParameter : IGenericParameterDeclaration
         where TInterfaceReference : IInterfaceReference
         where TEvent : IInterfaceEvent

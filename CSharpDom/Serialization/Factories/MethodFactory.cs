@@ -19,7 +19,6 @@ namespace CSharpDom.Serialization.Factories
                 GenericParameters = method.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 InheritanceModifier = method.InheritanceModifier,
                 IsAsync = method.IsAsync,
-                IsPartial = method.IsPartial,
                 Name = method.Name,
                 Parameters = method.Parameters.ToParameterListUsingFactory(),
                 ReturnType = new TypeReferenceFactory(method.ReturnType).Value,

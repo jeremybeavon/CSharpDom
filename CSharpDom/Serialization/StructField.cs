@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class StructField : IStructField<AttributeGroup, IType, TypeReference>
+    public sealed class StructField : IStructField<AttributeGroup, IStructType, TypeReference>
     {
         public StructField()
         {
@@ -13,7 +13,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IType DeclaringType
+        public IStructType DeclaringType
         {
             get { return null; }
         }

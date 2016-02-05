@@ -9,7 +9,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyClassNestedClass :
         AbstractClassNestedClass<
             AttributeGroupNotSupported,
-            IType,
+            IClassType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyClassReference,
             ReadOnlyInterfaceReference,
@@ -78,7 +78,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.ConversionOperators; }
         }
 
-        public override IType DeclaringType
+        public override IClassType DeclaringType
         {
             get { return null; }
         }
@@ -127,37 +127,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return body.Indexers; }
         }
-
-        public override TypeInheritanceModifier InheritanceModifier
-        {
-            get
-            {
-                switch (nestedClass.InheritanceModifier)
-                {
-                    case TypeInheritanceModifier.Abstract:
-                        return TypeInheritanceModifier.Abstract;
-                    case TypeInheritanceModifier.None:
-                        return TypeInheritanceModifier.None;
-                    case TypeInheritanceModifier.Sealed:
-                        return TypeInheritanceModifier.Sealed;
-                    case TypeInheritanceModifier.Static:
-                        return TypeInheritanceModifier.Static;
-                    default:
-                        throw new NotSupportedException();
-                }
-            }
-        }
-
+        
         public override IReadOnlyCollection<ReadOnlyClassNestedInterface> Interfaces
         {
             get { return body.Interfaces; }
         }
-
-        public override bool IsPartial
-        {
-            get { return nestedClass.IsPartial; }
-        }
-
+        
         public override IReadOnlyCollection<ReadOnlyClassMethod> Methods
         {
             get { return body.Methods; }

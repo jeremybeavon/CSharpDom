@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>,
         IClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TGenericParameter : IGenericParameterDeclaration
         where TInterfaceReference : IInterfaceReference
         where TEvent : IInterfaceEvent

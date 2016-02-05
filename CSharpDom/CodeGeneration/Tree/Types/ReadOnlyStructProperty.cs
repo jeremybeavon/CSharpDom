@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructProperty :
-        AbstractStructProperty<AttributeGroupNotSupported, IType, ReadOnlyTypeReference, ReadOnlyStructPropertyAccessor>
+        AbstractStructProperty<AttributeGroupNotSupported, IStructType, ReadOnlyTypeReference, ReadOnlyStructPropertyAccessor>
     {
         private readonly StructProperty property;
         private readonly ReadOnlyStructPropertyAccessor getAccessor;
@@ -41,7 +41,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IType DeclaringType
+        public override IStructType DeclaringType
         {
             get { return null; }
         }

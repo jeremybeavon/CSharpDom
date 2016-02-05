@@ -24,9 +24,9 @@ namespace CSharpDom.BaseClasses
             Visit(arrayTypeReference);
         }
 
-        public Task VisitAsync(IAsyncVisitable<IGenericVisitor> node)
+        public virtual Task VisitAsync(IAsyncVisitable<IGenericVisitor> node)
         {
-            return VisitAsync(node);
+            return node.AcceptChildrenAsync(this);
         }
 
         public virtual void VisitAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>(
@@ -128,7 +128,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             IClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TDelegateReference : IDelegateReference
         {
             Visit(@event);
@@ -137,7 +137,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
             IClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TDelegateReference : IDelegateReference
             where TMethodBody : IMethodBody
         {
@@ -147,7 +147,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassField<TAttributeGroup, TDeclaringType, TTypeReference>(
             IClassField<TAttributeGroup, TDeclaringType, TTypeReference> field)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TTypeReference : ITypeReference
         {
             Visit(field);
@@ -177,7 +177,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             IClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TTypeReference : ITypeReference
             where TParameter : IParameter
             where TAccessor : IClassAccessor
@@ -227,7 +227,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
             IClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
             where TParameter : IParameter
@@ -264,7 +264,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             IClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
             where TParameter : IParameter
@@ -284,7 +284,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
             IClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TNestedEnumMember : INestedEnumMember
         {
             Visit(nestedEnum);
@@ -301,7 +301,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
             IClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TInterfaceReference : IInterfaceReference
             where TEvent : IInterfaceEvent
@@ -347,7 +347,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TTypeReference : ITypeReference
             where TAccessor : IClassAccessor
         {
@@ -371,7 +371,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             IStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TDelegateReference : IDelegateReference
         {
             Visit(@event);
@@ -380,7 +380,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
             IStructEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TDelegateReference : IDelegateReference
             where TMethodBody : IMethodBody
         {
@@ -390,7 +390,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructField<TAttributeGroup, TDeclaringType, TTypeReference>(
             IStructField<TAttributeGroup, TDeclaringType, TTypeReference> field)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TTypeReference : ITypeReference
         {
             Visit(field);
@@ -399,7 +399,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             IStructIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TTypeReference : ITypeReference
             where TParameter : IParameter
             where TAccessor : IStructAccessor
@@ -410,7 +410,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
             IStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
             where TParameter : IParameter
@@ -422,7 +422,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             IStructNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
             where TParameter : IParameter
@@ -433,7 +433,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
             IStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TNestedEnumMember : INestedEnumMember
         {
             Visit(nestedEnum);
@@ -442,7 +442,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
             IStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TInterfaceReference : IInterfaceReference
             where TEvent : IInterfaceEvent
@@ -456,7 +456,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IStructProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TTypeReference : ITypeReference
             where TAccessor : IStructAccessor
         {
@@ -522,7 +522,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
             IClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TParameter : IParameter
             where TMethodBody : IMethodBody
         {
@@ -532,7 +532,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
             IClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedClass)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TClassReference : IClassReference
             where TInterfaceReference : IInterfaceReference
@@ -563,7 +563,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
             IClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedStruct)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TInterfaceReference : IInterfaceReference
             where TEvent : IStructEvent
@@ -720,7 +720,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
             IStructConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TParameter : IParameter
             where TMethodBody : IMethodBody
         {
@@ -730,7 +730,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
             IStructNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedClass)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TClassReference : IClassReference
             where TInterfaceReference : IInterfaceReference
@@ -761,7 +761,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
             IStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedStruct)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TInterfaceReference : IInterfaceReference
             where TEvent : IStructEvent

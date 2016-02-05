@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class StructProperty : IStructProperty<AttributeGroup, IType, TypeReference, StructAccessor>
+    public sealed class StructProperty : IStructProperty<AttributeGroup, IStructType, TypeReference, StructAccessor>
     {
         public StructProperty()
         {
@@ -13,7 +13,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IType DeclaringType
+        public IStructType DeclaringType
         {
             get { return null; }
         }

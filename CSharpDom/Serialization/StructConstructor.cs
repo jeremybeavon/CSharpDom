@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class StructConstructor : IStructConstructor<AttributeGroup, IType, Parameter, MethodBody>
+    public sealed class StructConstructor : IStructConstructor<AttributeGroup, IStructType, Parameter, MethodBody>
     {
         public StructConstructor()
         {
@@ -16,7 +16,7 @@ namespace CSharpDom.Serialization
 
         public MethodBody Body { get; set; }
 
-        public IType DeclaringType
+        public IStructType DeclaringType
         {
             get { return null; }
         }

@@ -4,7 +4,6 @@
         IMethod,
         IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>,
         IHasAsyncSupport,
-        IHasPartialSupport,
         IHasBody<TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType

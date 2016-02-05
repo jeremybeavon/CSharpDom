@@ -12,7 +12,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyClassNestedDelegate :
         AbstractClassNestedDelegate<
             AttributeGroupNotSupported,
-            IType,
+            IClassType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
             ReadOnlyMethodParameter>
@@ -35,7 +35,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IType DeclaringType
+        public override IClassType DeclaringType
         {
             get { return null; }
         }

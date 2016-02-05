@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>,
         IClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TDelegateReference : IDelegateReference
         where TMethodBody : IMethodBody
     {

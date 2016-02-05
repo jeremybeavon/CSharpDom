@@ -9,7 +9,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyStructMethod :
         AbstractStructMethod<
             AttributeGroupNotSupported,
-            IType,
+            IStructType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
             ReadOnlyMethodParameter,
@@ -40,7 +40,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body; }
         }
 
-        public override IType DeclaringType
+        public override IStructType DeclaringType
         {
             get { return null; }
         }

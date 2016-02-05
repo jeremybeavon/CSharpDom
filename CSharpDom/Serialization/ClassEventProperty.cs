@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassEventProperty : IClassEventProperty<AttributeGroup, IType, DelegateReference, MethodBody>
+    public sealed class ClassEventProperty : IClassEventProperty<AttributeGroup, IClassType, DelegateReference, MethodBody>
     {
         public ClassEventProperty()
         {
@@ -15,7 +15,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IType DeclaringType
+        public IClassType DeclaringType
         {
             get { return null; }
         }

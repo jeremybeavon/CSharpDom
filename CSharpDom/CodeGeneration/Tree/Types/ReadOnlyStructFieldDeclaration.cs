@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructFieldDeclaration :
-        AbstractStructField<AttributeGroupNotSupported, IType, ReadOnlyTypeReference>
+        AbstractStructField<AttributeGroupNotSupported, IStructType, ReadOnlyTypeReference>
     {
         private readonly StructFieldDeclaration field;
         private readonly ReadOnlyTypeReference fieldType;
@@ -22,7 +22,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IType DeclaringType
+        public override IStructType DeclaringType
         {
             get { return null; }
         }

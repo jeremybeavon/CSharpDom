@@ -134,22 +134,12 @@ namespace CSharpDom.Reflection
         {
             get { return nestedClass.Indexers; }
         }
-
-        public override TypeInheritanceModifier InheritanceModifier
-        {
-            get { return nestedClass.InheritanceModifier; }
-        }
-
+        
         public override IReadOnlyCollection<ClassNestedInterfaceWithReflection> Interfaces
         {
             get { return nestedClass.Interfaces; }
         }
-
-        public override bool IsPartial
-        {
-            get { return nestedClass.IsPartial; }
-        }
-
+        
         public override IReadOnlyCollection<ClassMethodWithReflection> Methods
         {
             get { return nestedClass.Methods; }

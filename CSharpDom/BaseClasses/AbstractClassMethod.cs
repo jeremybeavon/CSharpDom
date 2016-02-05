@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>,
         IClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
         where TParameter : IParameter

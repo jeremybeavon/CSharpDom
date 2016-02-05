@@ -5,7 +5,7 @@ using CSharpDom.NotSupported;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassNestedEnum : IClassNestedEnum<AttributeGroup, IType, NestedEnumMember>
+    public sealed class ClassNestedEnum : IClassNestedEnum<AttributeGroup, IClassType, NestedEnumMember>
     {
         public ClassNestedEnum()
         {
@@ -17,7 +17,7 @@ namespace CSharpDom.Serialization
 
         public EnumBaseType BaseType { get; set; }
 
-        public IType DeclaringType
+        public IClassType DeclaringType
         {
             get { return null; }
         }

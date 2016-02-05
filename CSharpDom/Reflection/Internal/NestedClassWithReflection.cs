@@ -124,12 +124,7 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return typeWithReflection.Interfaces; }
         }
-
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
-
+        
         public override IReadOnlyCollection<ClassMethodWithReflection> Methods
         {
             get { return typeWithReflection.Methods; }
@@ -163,11 +158,6 @@ namespace CSharpDom.Reflection.Internal
         public override IReadOnlyCollection<InterfaceReferenceWithReflection> ImplementedInterfaces
         {
             get { return typeWithReflection.ImplementedInterfaces; }
-        }
-
-        public override TypeInheritanceModifier InheritanceModifier
-        {
-            get { return type.InheritanceModifier(); }
         }
         
         public Type Type

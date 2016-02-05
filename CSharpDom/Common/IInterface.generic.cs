@@ -13,7 +13,6 @@
         IInterface,
         IHasName,
         IHasTypeVisibilityModifier,
-        IHasPartialSupport,
         IHasAttributes<TAttributeGroup>,
         IHasGenericParameters<TGenericParameter>,
         IHasInterfaces<TInterfaceReference>,

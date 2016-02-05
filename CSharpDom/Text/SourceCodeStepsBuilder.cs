@@ -155,8 +155,6 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(@class.Attributes);
             Steps.AddTypeVisibilityModifierSteps(@class.Visibility);
-            Steps.AddTypeInheritanceModifierSteps(@class.InheritanceModifier);
-            Steps.AddPartialSteps(@class.IsPartial);
             Steps.Add(new WriteClassKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@class.Name));
@@ -580,7 +578,6 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(@interface.Attributes);
             Steps.AddTypeVisibilityModifierSteps(@interface.Visibility);
-            Steps.AddPartialSteps(@interface.IsPartial);
             Steps.Add(new WriteInterfaceKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@interface.Name));
@@ -684,7 +681,6 @@ namespace CSharpDom.Text
                 Steps.Add(new WriteWhitespace());
             }
 
-            Steps.AddPartialSteps(method.IsPartial);
             Steps.Add(new WriteChildNode<TTypeReference>(method.ReturnType));
             Steps.Add(new WriteWhitespace());
             if (explicitInterface != null)
@@ -699,7 +695,7 @@ namespace CSharpDom.Text
             Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
             Steps.Add(new WriteEndParenthesis());
             Steps.AddGenericParameterConstraintSteps(method.GenericParameters);
-            if (isAbstract || (method.IsPartial && method.Body == null))
+            if (isAbstract)
             {
                 Steps.Add(new WriteSemicolon());
             }
@@ -800,8 +796,6 @@ namespace CSharpDom.Text
         public override void VisitNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
             INestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedClass)
         {
-            Steps.AddTypeInheritanceModifierSteps(nestedClass.InheritanceModifier);
-            Steps.AddPartialSteps(nestedClass.IsPartial);
             Steps.Add(new WriteClassKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(nestedClass.Name));
@@ -931,7 +925,6 @@ namespace CSharpDom.Text
         public override void VisitNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
             INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
         {
-            Steps.AddPartialSteps(@interface.IsPartial);
             Steps.Add(new WriteInterfaceKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@interface.Name));
@@ -973,7 +966,6 @@ namespace CSharpDom.Text
         public override void VisitNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
             INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedStruct)
         {
-            Steps.AddPartialSteps(nestedStruct.IsPartial);
             Steps.Add(new WriteStructKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(nestedStruct.Name));
@@ -1118,7 +1110,6 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(@struct.Attributes);
             Steps.AddTypeVisibilityModifierSteps(@struct.Visibility);
-            Steps.AddPartialSteps(@struct.IsPartial);
             Steps.Add(new WriteStructKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@struct.Name));

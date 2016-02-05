@@ -4,7 +4,7 @@
         IStructField,
         IField<TAttributeGroup, TDeclaringType, TTypeReference>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TTypeReference : ITypeReference
     {
     }

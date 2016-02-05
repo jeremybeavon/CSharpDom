@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference>,
         IStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TDelegateReference : IDelegateReference
     {
         public abstract StructMemberVisibilityModifier Visibility { get; }

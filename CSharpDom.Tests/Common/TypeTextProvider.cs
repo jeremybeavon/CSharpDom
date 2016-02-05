@@ -1,23 +1,22 @@
-﻿using FluentAssertions.Primitives;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CSharpDom.Tests
+namespace CSharpDom.Tests.Common
 {
-    public static class ObjectAssertionsExtensions
+    public static class TypeTextProvider
     {
-        public static void HaveTextEqualTo(this ObjectAssertions assertions, Type type)
-        {
-        }
-
-        private static string GetTypeText(Type type)
+        public static string GetTypeText(Type type)
         {
             using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(GetResourceName(type)))
             {
                 using (TextReader reader = new StreamReader(stream))
                 {
-                    return reader.ReadToEnd();
+                    return reader.ReadToEnd().Trim();
                 }
             }
         }

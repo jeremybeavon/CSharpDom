@@ -26,12 +26,11 @@
         TExplicitInterfaceMethod> :
         INestedStruct,
         IHasName,
-        IHasPartialSupport,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
         IHasGenericParameters<TGenericParameter>,
         IHasImplementedInterfaces<TInterfaceReference>,
-        IType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>,
+        IStructType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>,
         IVisitable<IGenericVisitor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType

@@ -107,25 +107,5 @@ namespace CSharpDom.Reflection.Internal
 
             return TypeVisibilityModifier.Internal;
         }
-
-        public static TypeInheritanceModifier InheritanceModifier(this Type type)
-        {
-            if (type.IsAbstract && type.IsSealed)
-            {
-                return TypeInheritanceModifier.Static;
-            }
-
-            if (type.IsAbstract)
-            {
-                return TypeInheritanceModifier.Abstract;
-            }
-
-            if (type.IsSealed)
-            {
-                return TypeInheritanceModifier.Sealed;
-            }
-
-            return TypeInheritanceModifier.None;
-        }
     }
 }

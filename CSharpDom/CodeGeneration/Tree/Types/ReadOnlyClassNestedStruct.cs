@@ -9,7 +9,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyClassNestedStruct :
         AbstractClassNestedStruct<
             AttributeGroupNotSupported,
-            IType,
+            IClassType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyInterfaceReference,
             ReadOnlyStructEvent,
@@ -65,7 +65,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.ConversionOperators; }
         }
 
-        public override IType DeclaringType
+        public override IClassType DeclaringType
         {
             get { return null; }
         }

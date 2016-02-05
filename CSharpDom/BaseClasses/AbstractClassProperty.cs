@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
         IClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TTypeReference : ITypeReference
         where TAccessor : IClassAccessor
     {

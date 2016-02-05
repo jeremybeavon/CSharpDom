@@ -8,7 +8,7 @@ namespace CSharpDom.Serialization
     public sealed class StructNestedInterface :
         IStructNestedInterface<
             AttributeGroup,
-            IType,
+            IStructType,
             GenericParameterDeclaration,
             InterfaceReference,
             InterfaceEvent,
@@ -29,7 +29,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IType DeclaringType
+        public IStructType DeclaringType
         {
             get { return null; }
         }

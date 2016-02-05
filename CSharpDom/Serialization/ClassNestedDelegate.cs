@@ -8,7 +8,7 @@ namespace CSharpDom.Serialization
     public sealed class ClassNestedDelegate :
         IClassNestedDelegate<
             AttributeGroup,
-            IType,
+            IClassType,
             GenericParameterDeclaration,
             TypeReference,
             Parameter>
@@ -22,7 +22,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IType DeclaringType
+        public IClassType DeclaringType
         {
             get { return null; }
         }

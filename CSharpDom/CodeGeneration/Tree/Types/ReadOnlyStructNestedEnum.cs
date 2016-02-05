@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructNestedEnum :
-        AbstractStructNestedEnum<AttributeGroupNotSupported, IType, ReadOnlyEnumField>
+        AbstractStructNestedEnum<AttributeGroupNotSupported, IStructType, ReadOnlyEnumField>
     {
         private readonly StructNestedEnum nestedEnum;
         private readonly IReadOnlyList<ReadOnlyEnumField> enumMembers;
@@ -26,7 +26,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IType DeclaringType
+        public override IStructType DeclaringType
         {
             get { return null; }
         }

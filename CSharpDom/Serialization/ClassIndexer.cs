@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassIndexer : IClassIndexer<AttributeGroup, IType, TypeReference, Parameter, ClassAccessor>
+    public sealed class ClassIndexer : IClassIndexer<AttributeGroup, IClassType, TypeReference, Parameter, ClassAccessor>
     {
         public ClassIndexer()
         {
@@ -14,7 +14,7 @@ namespace CSharpDom.Serialization
         
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IType DeclaringType
+        public IClassType DeclaringType
         {
             get { return null; }
         }

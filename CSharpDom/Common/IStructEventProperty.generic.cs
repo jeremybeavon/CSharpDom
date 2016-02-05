@@ -4,7 +4,7 @@
         IStructEventProperty,
         IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TDelegateReference : IDelegateReference
         where TMethodBody : IMethodBody
     {

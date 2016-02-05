@@ -5,7 +5,7 @@
         IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
         IHasClassMemberInheritanceModifier
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TTypeReference : ITypeReference
         where TAccessor : IClassAccessor
     {

@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>,
         IStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TNestedEnumMember : INestedEnumMember
     {
         public abstract StructMemberVisibilityModifier Visibility { get; }

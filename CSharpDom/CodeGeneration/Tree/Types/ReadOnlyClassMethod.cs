@@ -10,7 +10,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyClassMethod :
         AbstractClassMethod<
             AttributeGroupNotSupported,
-            IType,
+            IClassType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
             ReadOnlyClassMethodParameter,
@@ -45,7 +45,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body; }
         }
 
-        public override IType DeclaringType
+        public override IClassType DeclaringType
         {
             get { return null; }
         }

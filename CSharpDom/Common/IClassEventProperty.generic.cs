@@ -5,7 +5,7 @@
         IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>,
         IHasClassMemberInheritanceModifier
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TDelegateReference : IDelegateReference
         where TMethodBody : IMethodBody
     {

@@ -70,11 +70,7 @@ namespace CSharpDom.BaseClasses
         public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
 
         public abstract IReadOnlyCollection<TInterfaceReference> ImplementedInterfaces { get; }
-
-        public abstract TypeInheritanceModifier InheritanceModifier { get; }
-
-        public abstract bool IsPartial { get; }
-
+        
         public abstract string Name { get; }
 
         public abstract TNamespace Namespace { get; }

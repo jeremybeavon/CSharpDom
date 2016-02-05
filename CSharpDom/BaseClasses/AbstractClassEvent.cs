@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference>,
         IClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TDelegateReference : IDelegateReference
     {
         public abstract IReadOnlyCollection<TAttributeGroup> FieldAttributes { get; }

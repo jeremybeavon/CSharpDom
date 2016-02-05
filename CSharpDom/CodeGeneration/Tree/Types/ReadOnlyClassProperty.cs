@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassProperty :
-        AbstractClassProperty<AttributeGroupNotSupported, IType, ReadOnlyTypeReference, ReadOnlyClassPropertyAccessor>
+        AbstractClassProperty<AttributeGroupNotSupported, IClassType, ReadOnlyTypeReference, ReadOnlyClassPropertyAccessor>
     {
         private readonly ClassProperty property;
         private readonly ReadOnlyClassPropertyAccessor getAccessor;
@@ -41,7 +41,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IType DeclaringType
+        public override IClassType DeclaringType
         {
             get { return null; }
         }

@@ -5,7 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class ClassMethod :
-        IClassMethod<AttributeGroup, IType, GenericParameterDeclaration, TypeReference, Parameter, MethodBody>
+        IClassMethod<AttributeGroup, IClassType, GenericParameterDeclaration, TypeReference, Parameter, MethodBody>
     {
         public ClassMethod()
         {
@@ -18,7 +18,7 @@ namespace CSharpDom.Serialization
 
         public MethodBody Body { get; set; }
 
-        public IType DeclaringType
+        public IClassType DeclaringType
         {
             get { return null; }
         }

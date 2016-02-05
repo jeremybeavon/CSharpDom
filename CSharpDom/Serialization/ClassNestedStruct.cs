@@ -7,7 +7,7 @@ namespace CSharpDom.Serialization
     public sealed class ClassNestedStruct :
         IClassNestedStruct<
             AttributeGroup,
-            IType,
+            IClassType,
             GenericParameterDeclaration,
             InterfaceReference,
             StructEvent,
@@ -63,7 +63,7 @@ namespace CSharpDom.Serialization
 
         public List<ConversionOperator> ConversionOperators { get; set; }
 
-        public IType DeclaringType
+        public IClassType DeclaringType
         {
             get { return null; }
         }

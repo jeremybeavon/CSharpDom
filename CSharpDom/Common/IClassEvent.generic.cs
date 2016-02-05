@@ -6,7 +6,7 @@
         IHasClassMemberInheritanceModifier,
         IHasFieldAttributes<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TDelegateReference : IDelegateReference
     {
     }

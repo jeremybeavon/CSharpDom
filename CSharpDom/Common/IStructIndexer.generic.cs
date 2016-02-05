@@ -4,7 +4,7 @@
         IStructIndexer,
         IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TTypeReference : ITypeReference
         where TParameter : IParameter
         where TAccessor : IStructAccessor

@@ -7,7 +7,7 @@ namespace CSharpDom.Serialization
     public sealed class ClassNestedClass :
         IClassNestedClass<
             AttributeGroup,
-            IType,
+            IClassType,
             GenericParameterDeclaration,
             ClassReference,
             InterfaceReference,
@@ -67,7 +67,7 @@ namespace CSharpDom.Serialization
 
         public List<ConversionOperator> ConversionOperators { get; set; }
 
-        public IType DeclaringType
+        public IClassType DeclaringType
         {
             get { return null; }
         }
@@ -97,13 +97,9 @@ namespace CSharpDom.Serialization
         public List<InterfaceReference> ImplementedInterfaces { get; set; }
 
         public List<ClassIndexer> Indexers { get; set; }
-
-        public TypeInheritanceModifier InheritanceModifier { get; set; }
-
+        
         public List<ClassNestedInterface> Interfaces { get; set; }
-
-        public bool IsPartial { get; set; }
-
+        
         public List<ClassMethod> Methods { get; set; }
 
         public string Name { get; set; }

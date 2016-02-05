@@ -123,27 +123,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return body.Indexers; }
         }
-
-        public override TypeInheritanceModifier InheritanceModifier
-        {
-            get
-            {
-                switch (@class.InheritanceModifier)
-                {
-                    case TypeInheritanceModifier.Abstract:
-                        return TypeInheritanceModifier.Abstract;
-                    case TypeInheritanceModifier.None:
-                        return TypeInheritanceModifier.None;
-                    case TypeInheritanceModifier.Sealed:
-                        return TypeInheritanceModifier.Sealed;
-                    case TypeInheritanceModifier.Static:
-                        return TypeInheritanceModifier.Static;
-                    default:
-                        throw new NotSupportedException();
-                }
-            }
-        }
-
+        
         public override IReadOnlyCollection<ReadOnlyClassNestedInterface> Interfaces
         {
             get { return body.Interfaces; }
@@ -193,12 +173,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return @class.Visibility; }
         }
-
-        public override bool IsPartial
-        {
-            get { return @class.IsPartial; }
-        }
-
+        
         public override IReadOnlyCollection<ReadOnlyExplicitInterfaceEvent> ExplicitInterfaceEvents
         {
             get { return body.ExplicitInterfaceEvents; }

@@ -27,8 +27,6 @@
         TExplicitInterfaceMethod> :
         INestedClass,
         IHasName,
-        IHasTypeInheritanceModifier,
-        IHasPartialSupport,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
         IHasGenericParameters<TGenericParameter>,

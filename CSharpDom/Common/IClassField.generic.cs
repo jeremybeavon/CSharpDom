@@ -2,10 +2,9 @@
 {
     public interface IClassField<TAttributeGroup, TDeclaringType, TTypeReference> :
         IClassField,
-        IField<TAttributeGroup, TDeclaringType, TTypeReference>,
-        IHasClassMemberVisibilityModifier
+        IField<TAttributeGroup, TDeclaringType, TTypeReference>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IClassType
         where TTypeReference : ITypeReference
     {
     }

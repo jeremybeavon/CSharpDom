@@ -4,7 +4,7 @@
         IStructNestedEnum,
         INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TNestedEnumMember : INestedEnumMember
     {
     }

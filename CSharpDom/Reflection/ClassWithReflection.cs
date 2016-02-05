@@ -2,6 +2,7 @@
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -56,7 +57,7 @@ namespace CSharpDom.Reflection
             }
 
             typeWithReflection = new ClassTypeWithReflection(this, type);
-            destructor = new Lazy<DestructorWithReflection>(() => new DestructorWithReflection(this, typeWithReflection.Destructor));
+            destructor = new Lazy<DestructorWithReflection>(InitializeDestructor);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -173,12 +174,7 @@ namespace CSharpDom.Reflection
         {
             get { return typeWithReflection.ImplementedInterfaces; }
         }
-
-        public override TypeInheritanceModifier InheritanceModifier
-        {
-            get { return type.InheritanceModifier(); }
-        }
-
+        
         public override TypeVisibilityModifier Visibility
         {
             get { return type.Visibility(); }
@@ -188,12 +184,7 @@ namespace CSharpDom.Reflection
         {
             get { return type; }
         }
-
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
-
+        
         public override IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
         {
             get { return typeWithReflection.ExplicitInterfaceEvents; }
@@ -217,6 +208,12 @@ namespace CSharpDom.Reflection
         public override StaticConstructorWithReflection StaticConstructor
         {
             get { return typeWithReflection.StaticConstructor; }
+        }
+
+        private DestructorWithReflection InitializeDestructor()
+        {
+            MethodInfo method = typeWithReflection.Destructor;
+            return method == null ? null : new DestructorWithReflection(this, method);
         }
 
         /*public void Accept(IReflectionVisitor visitor)

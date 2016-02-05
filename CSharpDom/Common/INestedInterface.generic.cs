@@ -11,7 +11,6 @@
         TMethod> :
         INestedInterface,
         IHasName,
-        IHasPartialSupport,
         IHasAttributes<TAttributeGroup>,
         IBasicType<TEvent, TProperty, TIndexer, TMethod>,
         IHasDeclaringType<TDeclaringType>,

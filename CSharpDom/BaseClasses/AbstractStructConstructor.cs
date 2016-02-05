@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>,
         IStructConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TParameter : IParameter
         where TMethodBody : IMethodBody
     {

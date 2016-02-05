@@ -9,7 +9,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyClassNestedInterface :
         AbstractClassNestedInterface<
             AttributeGroupNotSupported,
-            IType,
+            IClassType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyInterfaceReference,
             ReadOnlyInterfaceEvent,
@@ -39,7 +39,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IType DeclaringType
+        public override IClassType DeclaringType
         {
             get { return null; }
         }

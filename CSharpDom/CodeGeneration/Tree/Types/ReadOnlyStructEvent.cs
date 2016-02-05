@@ -7,11 +7,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyStructEvent :
         IStructEvent<
             AttributeGroupNotSupported,
-            IType,
+            IStructType,
             ReadOnlyDelegateReference>,
         IStructEventProperty<
             AttributeGroupNotSupported,
-            IType,
+            IStructType,
             ReadOnlyDelegateReference,
             ReadOnlyMethodBody>
     {
@@ -42,7 +42,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public IType DeclaringType
+        public IStructType DeclaringType
         {
             get { return null; }
         }

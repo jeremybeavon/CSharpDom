@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractField<TAttributeGroup, TDeclaringType, TTypeReference>,
         IStructField<TAttributeGroup, TDeclaringType, TTypeReference>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TTypeReference : ITypeReference
     {
         public abstract StructMemberVisibilityModifier Visibility { get; }

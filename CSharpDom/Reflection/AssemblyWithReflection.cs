@@ -51,7 +51,7 @@ namespace CSharpDom.Reflection
             {
                 NamespaceContainer namespaceContainer = namespaces.GetOrAdd(
                     type.Namespace ?? string.Empty,
-                    name => new NamespaceContainer(name, new TypeContainer()));
+                    name => new NamespaceContainer(name));
                 NamespaceWithReflection @namespace = namespaceContainer.Namespace;
                 TypeContainer typeContainer = namespaceContainer.TypeContainer;
                 switch (type.TypeClassification())
@@ -74,7 +74,7 @@ namespace CSharpDom.Reflection
                 }
             }
 
-            this.typeContainer = namespaces.GetOrAdd(string.Empty, name => new NamespaceContainer(name, typeContainer)).TypeContainer;
+            this.typeContainer = namespaces.GetOrAdd(string.Empty, name => new NamespaceContainer(name)).TypeContainer;
             this.namespaces = namespaces.Values
                 .Select(container => container.Namespace)
                 .Where(@namespace => @namespace.Name.Length != 0)
@@ -159,6 +159,21 @@ namespace CSharpDom.Reflection
         public override IReadOnlyCollection<UsingDirectiveNotSupported> UsingDirectives
         {
             get { return new UsingDirectiveNotSupported[0]; }
+        }
+
+        public SolutionWithReflection AsSolution()
+        {
+            return new SolutionWithReflection(this);
+        }
+
+        public ProjectWithReflection AsProject()
+        {
+            return new ProjectWithReflection(AsSolution(), this);
+        }
+
+        public DocumentWithReflection AsDocument()
+        {
+            return new DocumentWithReflection(AsProject(), this);
         }
 
         Task IAsyncVisitable<IGenericVisitor>.AcceptAsync(IGenericVisitor visitor)

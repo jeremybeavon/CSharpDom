@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassConstructor : IClassConstructor<AttributeGroup, IType, Parameter, MethodBody>
+    public sealed class ClassConstructor : IClassConstructor<AttributeGroup, IClassType, Parameter, MethodBody>
     {
         public ClassConstructor()
         {
@@ -16,7 +16,7 @@ namespace CSharpDom.Serialization
 
         public MethodBody Body { get; set; }
 
-        public IType DeclaringType
+        public IClassType DeclaringType
         {
             get { return null; }
         }

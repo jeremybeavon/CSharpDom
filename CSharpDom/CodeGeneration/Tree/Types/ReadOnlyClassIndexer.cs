@@ -12,7 +12,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyClassIndexer :
         AbstractClassIndexer<
             AttributeGroupNotSupported,
-            IType,
+            IClassType,
             ReadOnlyTypeReference,
             ReadOnlyMethodParameter,
             ReadOnlyClassPropertyAccessor>
@@ -52,7 +52,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IType DeclaringType
+        public override IClassType DeclaringType
         {
             get { return null; }
         }
