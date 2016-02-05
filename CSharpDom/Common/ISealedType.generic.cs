@@ -30,20 +30,20 @@
         IHasProtectedOverrideProperties<TProtectedOverrideProperty>,
         IHasProtectedOverrideIndexers<TProtectedOverrideIndexer>,
         IHasProtectedOverrideMethods<TProtectedOverrideMethod>
-        where TEvent : IClassEvent
-        where TProperty : IClassProperty
-        where TIndexer : IClassIndexer
-        where TMethod : IClassMethod
-        where TField : IClassField
-        where TConstructor : IClassConstructor
-        where TEventProperty : IClassEventProperty
+        where TEvent : ISealedClassEvent
+        where TProperty : ISealedClassProperty
+        where TIndexer : ISealedClassIndexer
+        where TMethod : ISealedClassMethod
+        where TField : ISealedClassField
+        where TConstructor : ISealedClassConstructor
+        where TEventProperty : ISealedClassEventProperty
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
-        where TNestedClass : IClassNestedClass
-        where TNestedDelegate : IClassNestedDelegate
-        where TNestedEnum : IClassNestedEnum
-        where TNestedInterface : IClassNestedInterface
-        where TNestedStruct : IClassNestedStruct
+        where TNestedClass : ISealedClassNestedClass
+        where TNestedDelegate : ISealedClassNestedDelegate
+        where TNestedEnum : ISealedClassNestedEnum
+        where TNestedInterface : ISealedClassNestedInterface
+        where TNestedStruct : ISealedClassNestedStruct
         where TStaticConstructor : IStaticConstructor
         where TExplicitInterfaceEvent : IExplicitInterfaceEvent
         where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer

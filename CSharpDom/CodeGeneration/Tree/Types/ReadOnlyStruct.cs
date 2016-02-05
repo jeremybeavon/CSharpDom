@@ -11,6 +11,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyStruct :
         AbstractStruct<
             NamespaceNotSupported,
+            DocumentNotSupported,
             ProjectNotSupported,
             SolutionNotSupported,
             AttributeGroupNotSupported,
@@ -187,6 +188,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override ReadOnlyStaticConstructor StaticConstructor
         {
             get { return body.StaticConstructor; }
+        }
+
+        public override DocumentNotSupported Document
+        {
+            get { return new DocumentNotSupported(); }
         }
     }
 }

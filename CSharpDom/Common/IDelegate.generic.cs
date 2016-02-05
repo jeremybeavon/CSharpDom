@@ -1,10 +1,19 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IDelegate<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter> :
+    public interface IDelegate<
+        TNamespace,
+        TDocument,
+        TProject,
+        TSolution,
+        TAttributeGroup,
+        TGenericParameter,
+        TTypeReference,
+        TParameter> :
         IDelegate,
         IHasName,
         IHasTypeVisibilityModifier,
         IHasNamespace<TNamespace>,
+        IHasDocument<TDocument>,
         IHasProject<TProject>,
         IHasSolution<TSolution>,
         IHasAttributes<TAttributeGroup>,
@@ -12,6 +21,7 @@
         IHasReturnType<TTypeReference>,
         IHasParameters<TParameter>
         where TNamespace : INamespace
+        where TDocument : IDocument
         where TProject : IProject
         where TSolution : ISolution
         where TAttributeGroup : IAttributeGroup

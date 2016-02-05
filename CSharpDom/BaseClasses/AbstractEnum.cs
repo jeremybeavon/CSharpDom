@@ -4,9 +4,10 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractEnum<TNamespace, TProject, TSolution, TAttributeGroup, TEnumMember> :
-        IEnum<TNamespace, TProject, TSolution, TAttributeGroup, TEnumMember>
+    public abstract class AbstractEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember> :
+        IEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember>
         where TNamespace : INamespace
+        where TDocument : IDocument
         where TProject : IProject
         where TSolution : ISolution
         where TAttributeGroup : IAttributeGroup
@@ -15,6 +16,8 @@ namespace CSharpDom.BaseClasses
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 
         public abstract EnumBaseType BaseType { get; }
+
+        public abstract TDocument Document { get; }
 
         public abstract IReadOnlyList<TEnumMember> EnumMembers { get; }
 

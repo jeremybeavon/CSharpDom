@@ -8,6 +8,7 @@ namespace CSharpDom.Serialization
     public sealed class Enum :
         IEnum<
             NamespaceNotSupported,
+            DocumentNotSupported,
             ProjectNotSupported,
             SolutionNotSupported,
             AttributeGroup,
@@ -22,6 +23,11 @@ namespace CSharpDom.Serialization
         public List<AttributeGroup> Attributes { get; set; }
 
         public EnumBaseType BaseType { get; set; }
+
+        public DocumentNotSupported Document
+        {
+            get { return null; }
+        }
 
         public List<EnumMember> EnumMembers { get; set; }
 

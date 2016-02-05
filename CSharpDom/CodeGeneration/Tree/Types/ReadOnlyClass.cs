@@ -8,6 +8,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyClass :
         AbstractClass<
             NamespaceNotSupported,
+            DocumentNotSupported,
             ProjectNotSupported,
             SolutionNotSupported,
             AttributeGroupNotSupported,
@@ -197,6 +198,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override ReadOnlyStaticConstructor StaticConstructor
         {
             get { return body.StaticConstructor; }
+        }
+
+        public override DocumentNotSupported Document
+        {
+            get { return new DocumentNotSupported(); }
         }
 
         public static ClassMemberInheritanceModifier GetInheritanceModifier(ClassMemberInheritanceModifier inheritanceModifier)

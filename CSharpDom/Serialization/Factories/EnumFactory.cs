@@ -9,8 +9,8 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitEnum<TNamespace, TProject, TSolution, TAttributeGroup, TEnumMember>(
-            IEnum<TNamespace, TProject, TSolution, TAttributeGroup, TEnumMember> @enum)
+        public override void VisitEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember>(
+            IEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember> @enum)
         {
             Value = new Enum()
             {

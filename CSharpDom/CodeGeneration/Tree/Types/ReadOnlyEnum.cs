@@ -8,6 +8,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyEnum :
         AbstractEnum<
             NamespaceNotSupported,
+            DocumentNotSupported,
             ProjectNotSupported,
             SolutionNotSupported,
             AttributeGroupNotSupported,
@@ -30,6 +31,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override EnumBaseType BaseType
         {
             get { return @enum.BaseType; }
+        }
+
+        public override DocumentNotSupported Document
+        {
+            get { return new DocumentNotSupported(); }
         }
 
         public override IReadOnlyList<ReadOnlyEnumField> EnumMembers

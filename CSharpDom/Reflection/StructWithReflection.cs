@@ -10,6 +10,7 @@ namespace CSharpDom.Reflection
             NamespaceWithReflection,
             AssemblyWithReflection,
             AssemblyWithReflection,
+            AssemblyWithReflection,
             AttributeWithReflection,
             GenericParameterDeclarationWithReflection,
             InterfaceReferenceWithReflection,
@@ -191,6 +192,11 @@ namespace CSharpDom.Reflection
         public override StaticConstructorWithReflection StaticConstructor
         {
             get { return typeWithReflection.StaticConstructor; }
+        }
+
+        public override AssemblyWithReflection Document
+        {
+            get { return assembly; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

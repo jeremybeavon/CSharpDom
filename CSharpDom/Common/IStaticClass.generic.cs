@@ -1,6 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
     public interface IStaticClass<TNamespace,
+        TDocument,
         TProject,
         TSolution,
         TAttributeGroup,
@@ -20,12 +21,14 @@
         IHasName,
         IHasTypeVisibilityModifier,
         IHasNamespace<TNamespace>,
+        IHasDocument<TDocument>,
         IHasProject<TProject>,
         IHasSolution<TSolution>,
         IHasAttributes<TAttributeGroup>,
         IHasGenericParameters<TGenericParameter>,
         IStaticType<TEvent, TProperty, TMethod, TField, TEventProperty, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor>
         where TNamespace : INamespace
+        where TDocument : IDocument
         where TProject : IProject
         where TSolution : ISolution
         where TAttributeGroup : IAttributeGroup

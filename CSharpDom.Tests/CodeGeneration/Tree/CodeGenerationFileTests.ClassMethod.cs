@@ -1064,7 +1064,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             }).ToString().Should().Be(expectedText);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestClassWithMethodWithExtensionClassMethodParameter()
         {
             const string expectedText = @"static class TestClass
@@ -1102,7 +1102,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
         [TestMethod]
         public void TestClassWithMethodWithOutParameter()

@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Common
 {
-    public interface IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass>
+    public interface IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
     {
         IReadOnlyCollection<TClass> Classes { get; }
 
@@ -11,5 +11,7 @@ namespace CSharpDom.Common
         IReadOnlyCollection<TSealedClass> SealedClasses { get; }
 
         IReadOnlyCollection<TStaticClass> StaticClasses { get; }
+
+        TPartialClassCollection PartialClasses { get; }
     }
 }

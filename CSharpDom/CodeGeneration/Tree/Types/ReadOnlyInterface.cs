@@ -8,6 +8,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyInterface :
         AbstractInterface<
             NamespaceNotSupported,
+            DocumentNotSupported,
             ProjectNotSupported,
             SolutionNotSupported,
             AttributeGroupNotSupported,
@@ -98,6 +99,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override TypeVisibilityModifier Visibility
         {
             get { return @interface.Visibility; }
+        }
+
+        public override DocumentNotSupported Document
+        {
+            get { return new DocumentNotSupported(); }
         }
     }
 }

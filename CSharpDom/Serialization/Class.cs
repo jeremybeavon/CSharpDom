@@ -8,6 +8,7 @@ namespace CSharpDom.Serialization
     public sealed class Class :
         IClass<
             NamespaceNotSupported,
+            DocumentNotSupported,
             ProjectNotSupported,
             SolutionNotSupported,
             AttributeGroup,
@@ -73,6 +74,11 @@ namespace CSharpDom.Serialization
         public List<ClassNestedDelegate> Delegates { get; set; }
 
         public Destructor Destructor { get; set; }
+
+        public DocumentNotSupported Document
+        {
+            get { return null; }
+        }
 
         public List<ClassNestedEnum> Enums { get; set; }
 

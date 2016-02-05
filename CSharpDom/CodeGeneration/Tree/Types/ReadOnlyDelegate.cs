@@ -12,6 +12,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyDelegate :
         AbstractDelegate<
             NamespaceNotSupported,
+            DocumentNotSupported,
             ProjectNotSupported,
             SolutionNotSupported,
             AttributeGroupNotSupported,
@@ -35,6 +36,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
         {
             get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public override DocumentNotSupported Document
+        {
+            get { return new DocumentNotSupported(); }
         }
 
         public override IReadOnlyList<ReadOnlyGenericParameterDeclaration> GenericParameters

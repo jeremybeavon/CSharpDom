@@ -8,6 +8,7 @@ namespace CSharpDom.Serialization
     public sealed class Delegate :
         IDelegate<
             NamespaceNotSupported,
+            DocumentNotSupported,
             ProjectNotSupported,
             SolutionNotSupported,
             AttributeGroup,
@@ -23,6 +24,11 @@ namespace CSharpDom.Serialization
         }
 
         public List<AttributeGroup> Attributes { get; set; }
+
+        public DocumentNotSupported Document
+        {
+            get { return null; }
+        }
 
         public List<GenericParameterDeclaration> GenericParameters { get; set; }
 

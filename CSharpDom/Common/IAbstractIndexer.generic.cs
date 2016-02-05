@@ -7,7 +7,7 @@
         where TDeclaringType : IAbstractType
         where TTypeReference : ITypeReference
         where TParameter : IParameter
-        where TAccessor : IClassAccessor
+        where TAccessor : IAbstractAccessor
     {
     }
 }

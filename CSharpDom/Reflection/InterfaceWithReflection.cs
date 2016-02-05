@@ -13,6 +13,7 @@ namespace CSharpDom.Reflection
             NamespaceWithReflection,
             AssemblyWithReflection,
             AssemblyWithReflection,
+            AssemblyWithReflection,
             AttributeWithReflection,
             GenericParameterDeclarationWithReflection,
             InterfaceReferenceWithReflection,
@@ -185,6 +186,11 @@ namespace CSharpDom.Reflection
             {
                 throw new NotImplementedException();
             }
+        }
+
+        public override AssemblyWithReflection Document
+        {
+            get { return assembly; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

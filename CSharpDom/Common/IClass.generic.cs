@@ -1,6 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
     public interface IClass<TNamespace,
+        TDocument,
         TProject,
         TSolution,
         TAttributeGroup,
@@ -33,12 +34,14 @@
         IHasBaseClass<TClassReference>,
         IHasImplementedInterfaces<TInterfaceReference>,
         IHasNamespace<TNamespace>,
+        IHasDocument<TDocument>,
         IHasProject<TProject>,
         IHasSolution<TSolution>,
         IHasAttributes<TAttributeGroup>,
         IHasGenericParameters<TGenericParameter>,
         IClassType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod, TDestructor>
         where TNamespace : INamespace
+        where TDocument : IDocument
         where TProject : IProject
         where TSolution : ISolution
         where TAttributeGroup : IAttributeGroup

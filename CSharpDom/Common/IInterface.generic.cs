@@ -1,6 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
     public interface IInterface<TNamespace,
+        TDocument,
         TProject,
         TSolution,
         TAttributeGroup,
@@ -18,9 +19,11 @@
         IHasInterfaces<TInterfaceReference>,
         IBasicType<TEvent, TProperty, TIndexer, TMethod>,
         IHasNamespace<TNamespace>,
+        IHasDocument<TDocument>,
         IHasProject<TProject>,
         IHasSolution<TSolution>
         where TNamespace : INamespace
+        where TDocument : IDocument
         where TProject : IProject
         where TSolution : ISolution
         where TAttributeGroup : IAttributeGroup

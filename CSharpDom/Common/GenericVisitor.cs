@@ -43,10 +43,11 @@ namespace CSharpDom.Common
             VisitCollection(attribute.NamedValues, visitor);
         }
 
-        public static void VisitClassChildren<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
-            IClass<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> @class,
+        public static void VisitClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
+            IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> @class,
             IGenericVisitor visitor)
             where TNamespace : INamespace
+            where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
             where TAttributeGroup : IAttributeGroup
@@ -116,10 +117,11 @@ namespace CSharpDom.Common
             VisitIfNotNull(conversionOperator.Body, visitor);
         }
 
-        public static void VisitDelegateChildren<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
-            IDelegate<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter> @delegate,
+        public static void VisitDelegateChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
+            IDelegate<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter> @delegate,
             IGenericVisitor visitor)
             where TNamespace : INamespace
+            where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
             where TAttributeGroup : IAttributeGroup
@@ -162,10 +164,11 @@ namespace CSharpDom.Common
             (await document.LoadAsync()).Accept(visitor);
         }
 
-        public static void VisitEnumChildren<TNamespace, TProject, TSolution, TAttributeGroup, TEnumMember>(
-            IEnum<TNamespace, TProject, TSolution, TAttributeGroup, TEnumMember> @enum,
+        public static void VisitEnumChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember>(
+            IEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember> @enum,
             IGenericVisitor visitor)
             where TNamespace : INamespace
+            where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
             where TAttributeGroup : IAttributeGroup
@@ -259,10 +262,11 @@ namespace CSharpDom.Common
             VisitIfNotNull(indexer.SetAccessor, visitor);
         }
 
-        public static void VisitInterfaceChildren<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
-            IInterface<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface,
+        public static void VisitInterfaceChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
+            IInterface<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface,
             IGenericVisitor visitor)
             where TNamespace : INamespace
+            where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
             where TAttributeGroup : IAttributeGroup
@@ -590,10 +594,11 @@ namespace CSharpDom.Common
             VisitIfNotNull(staticConstructor.Body, visitor);
         }
 
-        public static void VisitStructChildren<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
-            IStruct<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> @struct,
+        public static void VisitStructChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
+            IStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> @struct,
             IGenericVisitor visitor)
             where TNamespace : INamespace
+            where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
             where TAttributeGroup : IAttributeGroup

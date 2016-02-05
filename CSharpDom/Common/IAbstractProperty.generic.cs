@@ -2,12 +2,11 @@
 {
     public interface IAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
         IAbstractProperty,
-        IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
-        IHasClassMemberInheritanceModifier
+        IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IAbstractType
         where TTypeReference : ITypeReference
-        where TAccessor : IClassAccessor
+        where TAccessor : IAbstractAccessor
     {
     }
 }

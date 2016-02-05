@@ -11,6 +11,7 @@ namespace CSharpDom.Reflection
             NamespaceWithReflection,
             AssemblyWithReflection,
             AssemblyWithReflection,
+            AssemblyWithReflection,
             AttributeWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
@@ -88,6 +89,10 @@ namespace CSharpDom.Reflection
             get { return type; }
         }
 
+        public override AssemblyWithReflection Document
+        {
+            get { return assembly; }
+        }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

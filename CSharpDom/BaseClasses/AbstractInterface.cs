@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractInterface<TNamespace,
+        TDocument,
         TProject,
         TSolution,
         TAttributeGroup,
@@ -15,8 +16,9 @@ namespace CSharpDom.BaseClasses
         TIndexer,
         TMethod> :
         AbstractBasicType<TEvent, TProperty, TIndexer, TMethod>,
-        IInterface<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
+        IInterface<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
         where TNamespace : INamespace
+        where TDocument : IDocument
         where TProject : IProject
         where TSolution : ISolution
         where TAttributeGroup : IAttributeGroup
@@ -28,6 +30,8 @@ namespace CSharpDom.BaseClasses
         where TMethod : IInterfaceMethod
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
+
+        public abstract TDocument Document { get; }
 
         public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
 

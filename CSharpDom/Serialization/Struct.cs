@@ -8,6 +8,7 @@ namespace CSharpDom.Serialization
     public sealed class Struct :
         IStruct<
             NamespaceNotSupported,
+            DocumentNotSupported,
             ProjectNotSupported,
             SolutionNotSupported,
             AttributeGroup,
@@ -67,6 +68,11 @@ namespace CSharpDom.Serialization
         public List<ConversionOperator> ConversionOperators { get; set; }
         
         public List<StructNestedDelegate> Delegates { get; set; }
+
+        public DocumentNotSupported Document
+        {
+            get { return null; }
+        }
 
         public List<StructNestedEnum> Enums { get; set; }
 

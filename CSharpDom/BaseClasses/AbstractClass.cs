@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractClass<TNamespace,
+        TDocument,
         TProject,
         TSolution,
         TAttributeGroup,
@@ -32,8 +33,9 @@ namespace CSharpDom.BaseClasses
         TExplicitInterfaceIndexer,
         TExplicitInterfaceMethod> :
         AbstractType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>,
-        IClass<TNamespace, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>
+        IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>
         where TNamespace : INamespace
+        where TDocument : IDocument
         where TProject : IProject
         where TSolution : ISolution
         where TAttributeGroup : IAttributeGroup
@@ -66,6 +68,8 @@ namespace CSharpDom.BaseClasses
         public abstract TClassReference BaseClass { get; }
 
         public abstract TDestructor Destructor { get; }
+
+        public abstract TDocument Document { get; }
 
         public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
 

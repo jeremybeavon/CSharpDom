@@ -11,6 +11,7 @@ namespace CSharpDom.Reflection
             NamespaceWithReflection,
             AssemblyWithReflection,
             AssemblyWithReflection,
+            AssemblyWithReflection,
             AttributeWithReflection,
             EnumMemberWithReflection>,
         IHasType//,
@@ -79,7 +80,11 @@ namespace CSharpDom.Reflection
             }
         }
 
-
+        public override AssemblyWithReflection Document
+        {
+            get { return assembly; }
+        }
+        
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitEnumWithReflection(this);

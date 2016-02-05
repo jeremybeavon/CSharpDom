@@ -401,7 +401,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             }).ToString().Should().Be(expectedText);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestAbstractClass()
         {
             const string expectedText = @"abstract class TestClass
@@ -453,7 +453,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
         [TestMethod]
         public void TestClassWithInterface()
@@ -498,7 +498,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             }).ToString().Should().Be(expectedText);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestPartialClass()
         {
             const string expectedText = @"partial class TestClass
@@ -514,6 +514,6 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
     }
 }
