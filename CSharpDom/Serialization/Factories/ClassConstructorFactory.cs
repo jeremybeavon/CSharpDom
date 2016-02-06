@@ -2,9 +2,9 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class ConstructorFactory : AbstractFactory<IClassConstructor, ClassConstructor>
+    public sealed class ClassConstructorFactory : AbstractFactory<IClassConstructor, ClassConstructor>
     {
-        public ConstructorFactory(IClassConstructor constructor)
+        public ClassConstructorFactory(IClassConstructor constructor)
             : base(constructor)
         {
         }

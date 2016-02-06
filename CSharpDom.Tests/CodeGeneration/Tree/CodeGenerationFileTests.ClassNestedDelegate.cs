@@ -697,7 +697,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1")
                                         {
-                                            Modifier = MethodParameterModifier.Out,
+                                            Modifier = ParameterModifier.Out,
                                             Type = new TypeReference(typeof(string))
                                         }
                                     }
@@ -733,7 +733,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1")
                                         {
-                                            Modifier = MethodParameterModifier.Ref,
+                                            Modifier = ParameterModifier.Ref,
                                             Type = new TypeReference(typeof(string))
                                         }
                                     }
@@ -769,7 +769,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1")
                                         {
-                                            Modifier = MethodParameterModifier.Params,
+                                            Modifier = ParameterModifier.Params,
                                             Type = new TypeReference("string[]")
                                         }
                                     }

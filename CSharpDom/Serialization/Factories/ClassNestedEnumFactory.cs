@@ -2,9 +2,9 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class NestedEnumFactory : AbstractFactory<IClassNestedEnum, ClassNestedEnum>
+    public sealed class ClassNestedEnumFactory : AbstractFactory<IClassNestedEnum, ClassNestedEnum>
     {
-        public NestedEnumFactory(IClassNestedEnum nestedEnum)
+        public ClassNestedEnumFactory(IClassNestedEnum nestedEnum)
             : base(nestedEnum)
         {
         }

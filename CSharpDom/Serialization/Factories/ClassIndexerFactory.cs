@@ -2,9 +2,9 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class IndexerFactory : AbstractFactory<IClassIndexer, ClassIndexer>
+    public sealed class ClassIndexerFactory : AbstractFactory<IClassIndexer, ClassIndexer>
     {
-        public IndexerFactory(IClassIndexer indexer)
+        public ClassIndexerFactory(IClassIndexer indexer)
             : base(indexer)
         {
         }

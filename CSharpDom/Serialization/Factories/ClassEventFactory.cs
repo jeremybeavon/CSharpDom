@@ -2,9 +2,9 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class EventFactory : AbstractFactory<IClassEvent, ClassEvent>
+    public sealed class ClassEventFactory : AbstractFactory<IClassEvent, ClassEvent>
     {
-        public EventFactory(IClassEvent @event)
+        public ClassEventFactory(IClassEvent @event)
             : base(@event)
         {
         }

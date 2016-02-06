@@ -1049,9 +1049,9 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
-                                    Parameters = new Collection<ClassMethodParameter>()
+                                    Parameters = new Collection<MethodParameter>()
                                     {
-                                        new ClassMethodParameter("parameter1")
+                                        new MethodParameter("parameter1")
                                         {
                                             Type = new TypeReference(typeof(string))
                                         }
@@ -1126,12 +1126,12 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
-                                    Parameters = new Collection<ClassMethodParameter>()
+                                    Parameters = new Collection<MethodParameter>()
                                     {
-                                        new ClassMethodParameter("parameter1")
+                                        new MethodParameter("parameter1")
                                         {
                                             Type = new TypeReference(typeof(string)),
-                                            Modifier = ClassMethodParameterModifier.Out
+                                            Modifier = ParameterModifier.Out
                                         }
                                     }
                                 }
@@ -1164,12 +1164,12 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
-                                    Parameters = new Collection<ClassMethodParameter>()
+                                    Parameters = new Collection<MethodParameter>()
                                     {
-                                        new ClassMethodParameter("parameter1")
+                                        new MethodParameter("parameter1")
                                         {
                                             Type = new TypeReference(typeof(string)),
-                                            Modifier = ClassMethodParameterModifier.Ref
+                                            Modifier = ParameterModifier.Ref
                                         }
                                     }
                                 }
@@ -1202,12 +1202,12 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassMethod("Method1")
                                 {
                                     ReturnType = new TypeReference(typeof(void)),
-                                    Parameters = new Collection<ClassMethodParameter>()
+                                    Parameters = new Collection<MethodParameter>()
                                     {
-                                        new ClassMethodParameter("parameter1")
+                                        new MethodParameter("parameter1")
                                         {
                                             Type = new TypeReference("string[]"),
-                                            Modifier = ClassMethodParameterModifier.Params
+                                            Modifier = ParameterModifier.Params
                                         }
                                     }
                                 }

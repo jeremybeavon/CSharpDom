@@ -2,20 +2,20 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class NestedStructFactory : AbstractFactory<IClassNestedStruct, ClassNestedStruct>
+    public sealed class StructNestedStructFactory : AbstractFactory<IStructNestedStruct, StructNestedStruct>
     {
-        public NestedStructFactory(IClassNestedStruct nestedStruct)
+        public StructNestedStructFactory(IStructNestedStruct nestedStruct)
             : base(nestedStruct)
         {
         }
 
-        public override void VisitClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
-            IClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedStruct)
+        public override void VisitStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
+            IStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedStruct)
         {
-            /*Value = new ClassNestedStruct()
+            /*Value = new StructNestedStruct()
             {
                 Attributes = nestedStruct.Attributes.ToAttributeListUsingFactory(),
-                Classes = nestedStruct.Classes.ToList(@class => new NestedClassFactory(@class).Value),
+                Structes = nestedStruct.Structes.ToList(@class => new NestedStructFactory(@class).Value),
                 Constructors = nestedStruct.Constructors.ToList(constructor => new ConstructorFactory(constructor).Value),
                 ConversionOperators = nestedStruct.ConversionOperators.ToList(@operator => new ConversionOperatorFactory(@operator).Value),
                 Delegates = nestedStruct.Delegates.ToList(@delegate => new NestedDelegateFactory(@delegate).Value),

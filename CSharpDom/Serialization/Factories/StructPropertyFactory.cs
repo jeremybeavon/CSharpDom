@@ -2,17 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class PropertyFactory : AbstractFactory<IClassProperty, ClassProperty>
+    public sealed class StructPropertyFactory : AbstractFactory<IStructProperty, StructProperty>
     {
-        public PropertyFactory(IClassProperty property)
+        public StructPropertyFactory(IStructProperty property)
             : base(property)
         {
         }
 
-        public override void VisitClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
+        public override void VisitStructProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
+            IStructProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
         {
-            Value = new ClassProperty()
+            /*Value = new StructProperty()
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
                 GetAccessor = new AccessorFactory(property.GetAccessor).Value,
@@ -21,7 +21,7 @@ namespace CSharpDom.Serialization.Factories
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value,
                 SetAccessor = new AccessorFactory(property.SetAccessor).Value,
                 Visibility = property.Visibility
-            };
+            };*/
         }
     }
 }

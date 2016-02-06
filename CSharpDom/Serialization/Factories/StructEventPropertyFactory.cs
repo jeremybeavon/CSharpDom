@@ -2,22 +2,21 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class EventPropertyFactory : AbstractFactory<IClassEventProperty, ClassEventProperty>
+    public sealed class StructEventPropertyFactory : AbstractFactory<IStructEventProperty, StructEventProperty>
     {
-        public EventPropertyFactory(IClassEventProperty eventProperty)
+        public StructEventPropertyFactory(IStructEventProperty eventProperty)
             : base(eventProperty)
         {
         }
 
-        public override void VisitClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
-            IClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
+        public override void VisitStructEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
+            IStructEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
         {
-            Value = new ClassEventProperty()
+            Value = new StructEventProperty()
             {
                 AddBody = new MethodBodyFactory(eventProperty.AddBody).Value,
                 Attributes = eventProperty.Attributes.ToAttributeListUsingFactory(),
                 EventType = new DelegateReferenceFactory(eventProperty.EventType).Value,
-                InheritanceModifier = eventProperty.InheritanceModifier,
                 Name = eventProperty.Name,
                 RemoveBody = new MethodBodyFactory(eventProperty.RemoveBody).Value,
                 Visibility = eventProperty.Visibility

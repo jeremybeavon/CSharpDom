@@ -2,17 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class NestedInterfaceFactory : AbstractFactory<IClassNestedInterface, ClassNestedInterface>
+    public sealed class StructNestedInterfaceFactory : AbstractFactory<IStructNestedInterface, StructNestedInterface>
     {
-        public NestedInterfaceFactory(IClassNestedInterface @interface)
+        public StructNestedInterfaceFactory(IStructNestedInterface @interface)
             : base(@interface)
         {
         }
 
-        public override void VisitClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
-            IClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
+        public override void VisitStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
+            IStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
         {
-            /*Value = new ClassNestedInterface()
+            /*Value = new StructNestedInterface()
             {
                 Attributes = @interface.Attributes.ToAttributeListUsingFactory(),
                 Events = @interface.Events.ToList(@event => new EventFactory(@event).Value),
