@@ -23,9 +23,7 @@ namespace CSharpDom.BaseClasses
         public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
 
         public abstract IReadOnlyCollection<TInterfaceReference> Interfaces { get; }
-
-        public abstract bool IsPartial { get; }
-
+        
         public abstract string Name { get; }
 
         public virtual void Accept(IGenericVisitor visitor)

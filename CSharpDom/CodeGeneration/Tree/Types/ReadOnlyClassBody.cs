@@ -15,7 +15,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassProperty,
             ReadOnlyClassIndexer,
             ReadOnlyClassMethod,
-            ReadOnlyClassFieldDeclaration,
+            ReadOnlyClassField,
             ConstructorNotSupported,
             ReadOnlyClassEvent,
             ReadOnlyOperatorOverload,
@@ -48,7 +48,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ExplicitInterfaceIndexers = classBody.ExplicitInterfaceIndexers.ToArray(indexer => new ReadOnlyExplicitInterfaceIndexer(indexer));
             ExplicitInterfaceMethods = classBody.ExplicitInterfaceMethods.ToArray(method => new ReadOnlyExplicitInterfaceMethod(method));
             ExplicitInterfaceProperties = classBody.ExplicitInterfaceProperties.ToArray(property => new ReadOnlyExplicitInterfaceProperty(property));
-            Fields = classBody.Fields.ToArray(field => new ReadOnlyClassFieldDeclaration(field));
+            Fields = classBody.Fields.ToArray(field => new ReadOnlyClassField(field));
             Indexers = classBody.Indexers.ToArray(indexer => new ReadOnlyClassIndexer(indexer));
             Interfaces = classBody.NestedInterfaces.ToArray(nestedInterface => new ReadOnlyClassNestedInterface(nestedInterface));
             Methods = classBody.Methods.ToArray(method => new ReadOnlyClassMethod(method));
@@ -87,7 +87,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public IReadOnlyCollection<ReadOnlyExplicitInterfaceProperty> ExplicitInterfaceProperties { get; private set; }
 
-        public IReadOnlyCollection<ReadOnlyClassFieldDeclaration> Fields { get; private set; }
+        public IReadOnlyCollection<ReadOnlyClassField> Fields { get; private set; }
 
         public IReadOnlyCollection<ReadOnlyClassIndexer> Indexers { get; private set; }
 

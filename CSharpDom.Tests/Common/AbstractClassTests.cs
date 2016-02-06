@@ -20,10 +20,10 @@ namespace CSharpDom.Tests.Common
             return TestClassAsync(typeof(PublicClass));
         }
 
-        /*protected Task TestInternalClassAsync()
+        protected Task TestInternalClassAsync()
         {
-            return TestClassAsync(typeof(InternalClass))
-        }*/
+            return TestClassAsync(typeof(InternalClass));
+        }
 
         private async Task TestClassAsync(Type type)
         {

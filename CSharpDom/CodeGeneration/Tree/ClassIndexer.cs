@@ -6,8 +6,8 @@ namespace CSharpDom.CodeGeneration.Tree
     public sealed class ClassIndexer
     {
         private EmptyClassPropertyAccessors emptyAccessors;
-        private ClassPropertyAccessor getAccessor;
-        private ClassPropertyAccessor setAccessor;
+        private ClassAccessor getAccessor;
+        private ClassAccessor setAccessor;
 
         public ClassIndexer()
         {
@@ -40,7 +40,7 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
-        public ClassPropertyAccessor GetAccessor
+        public ClassAccessor GetAccessor
         {
             get
             {
@@ -57,7 +57,7 @@ namespace CSharpDom.CodeGeneration.Tree
             }
         }
 
-        public ClassPropertyAccessor SetAccessor
+        public ClassAccessor SetAccessor
         {
             get
             {

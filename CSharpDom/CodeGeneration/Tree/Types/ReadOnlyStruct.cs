@@ -21,7 +21,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyStructProperty,
             ReadOnlyStructIndexer,
             ReadOnlyStructMethod,
-            ReadOnlyStructFieldDeclaration,
+            ReadOnlyStructField,
             ConstructorNotSupported,
             ReadOnlyStructEvent,
             ReadOnlyOperatorOverload,
@@ -90,7 +90,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.Events; }
         }
 
-        public override IReadOnlyCollection<ReadOnlyStructFieldDeclaration> Fields
+        public override IReadOnlyCollection<ReadOnlyStructField> Fields
         {
             get { return body.Fields; }
         }

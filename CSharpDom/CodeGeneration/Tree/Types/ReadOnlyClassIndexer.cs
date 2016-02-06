@@ -15,13 +15,13 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             IClassType,
             ReadOnlyTypeReference,
             ReadOnlyMethodParameter,
-            ReadOnlyClassPropertyAccessor>
+            ReadOnlyClassAccessor>
     {
         private readonly ClassIndexer indexer;
         private readonly ReadOnlyTypeReference indexerType;
         private readonly IReadOnlyList<ReadOnlyMethodParameter> parameters;
-        private readonly ReadOnlyClassPropertyAccessor getAccessor;
-        private readonly ReadOnlyClassPropertyAccessor setAccessor;
+        private readonly ReadOnlyClassAccessor getAccessor;
+        private readonly ReadOnlyClassAccessor setAccessor;
 
         public ReadOnlyClassIndexer(ClassIndexer indexer)
         {
@@ -30,19 +30,19 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             parameters = ReadOnlyMethodParameter.Create(indexer.Parameters);
             if (indexer.EmptyAccessors != null)
             {
-                getAccessor = new ReadOnlyClassPropertyAccessor(indexer.EmptyAccessors.GetAccessorVisibility);
-                setAccessor = new ReadOnlyClassPropertyAccessor(indexer.EmptyAccessors.SetAccessorVisibility);
+                getAccessor = new ReadOnlyClassAccessor(indexer.EmptyAccessors.GetAccessorVisibility);
+                setAccessor = new ReadOnlyClassAccessor(indexer.EmptyAccessors.SetAccessorVisibility);
             }
             else
             {
                 if (indexer.GetAccessor != null)
                 {
-                    getAccessor = new ReadOnlyClassPropertyAccessor(indexer.GetAccessor);
+                    getAccessor = new ReadOnlyClassAccessor(indexer.GetAccessor);
                 }
 
                 if (indexer.SetAccessor != null)
                 {
-                    setAccessor = new ReadOnlyClassPropertyAccessor(indexer.SetAccessor);
+                    setAccessor = new ReadOnlyClassAccessor(indexer.SetAccessor);
                 }
             }
         }
@@ -57,7 +57,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return null; }
         }
 
-        public override ReadOnlyClassPropertyAccessor GetAccessor
+        public override ReadOnlyClassAccessor GetAccessor
         {
             get { return getAccessor; }
         }
@@ -98,7 +98,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return parameters; }
         }
 
-        public override ReadOnlyClassPropertyAccessor SetAccessor
+        public override ReadOnlyClassAccessor SetAccessor
         {
             get { return setAccessor; }
         }

@@ -8,7 +8,7 @@ namespace CSharpDom.CodeGeneration.Tree
         {
             Name = name;
             GenericParameters = new Collection<GenericParameter>();
-            Parameters = new Collection<ClassMethodParameter>();
+            Parameters = new Collection<MethodParameter>();
             Body = new Collection<Statement>();
         }
 
@@ -26,7 +26,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public Collection<GenericParameter> GenericParameters { get; set; }
 
-        public Collection<ClassMethodParameter> Parameters { get; set; }
+        public Collection<MethodParameter> Parameters { get; set; }
 
         public Collection<Statement> Body { get; set; }
     }

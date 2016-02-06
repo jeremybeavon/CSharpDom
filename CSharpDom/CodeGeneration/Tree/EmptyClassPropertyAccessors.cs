@@ -7,15 +7,15 @@
         }
 
         public EmptyClassPropertyAccessors(
-            ClassPropertyAccessorVisibilityModifier getAccessorVisibility,
-            ClassPropertyAccessorVisibilityModifier setAccessorVisibility)
+            ClassAccessorVisibilityModifier getAccessorVisibility,
+            ClassAccessorVisibilityModifier setAccessorVisibility)
         {
             getAccessorVisibility = GetAccessorVisibility;
             SetAccessorVisibility = setAccessorVisibility;
         }
 
-        public ClassPropertyAccessorVisibilityModifier GetAccessorVisibility { get; set; }
+        public ClassAccessorVisibilityModifier GetAccessorVisibility { get; set; }
 
-        public ClassPropertyAccessorVisibilityModifier SetAccessorVisibility { get; set; }
+        public ClassAccessorVisibilityModifier SetAccessorVisibility { get; set; }
     }
 }

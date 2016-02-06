@@ -52,12 +52,7 @@ namespace CSharpDom.Reflection
         {
             get { return nestedInterface.Interfaces; }
         }
-
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
-
+        
         public override IReadOnlyCollection<InterfaceMethodWithReflection> Methods
         {
             get { return nestedInterface.Methods; }

@@ -3,8 +3,8 @@
     public sealed class ClassProperty
     {
         private EmptyClassPropertyAccessors emptyAccessors;
-        private ClassPropertyAccessor getAccessor;
-        private ClassPropertyAccessor setAccessor;
+        private ClassAccessor getAccessor;
+        private ClassAccessor setAccessor;
 
         public ClassProperty(string name)
         {
@@ -38,7 +38,7 @@
             }
         }
 
-        public ClassPropertyAccessor GetAccessor
+        public ClassAccessor GetAccessor
         {
             get
             {
@@ -55,7 +55,7 @@
             }
         }
 
-        public ClassPropertyAccessor SetAccessor
+        public ClassAccessor SetAccessor
         {
             get
             {

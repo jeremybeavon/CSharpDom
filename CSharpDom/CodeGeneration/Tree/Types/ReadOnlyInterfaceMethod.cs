@@ -72,12 +72,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return false; }
         }
-
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
-
+        
         public static IReadOnlyCollection<ReadOnlyInterfaceMethod> Create(IEnumerable<InterfaceMethod> interfaceMethods)
         {
             return interfaceMethods.ToArray(interfaceMethod => new ReadOnlyInterfaceMethod(interfaceMethod));

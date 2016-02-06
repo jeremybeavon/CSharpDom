@@ -32,11 +32,6 @@ namespace CSharpDom.Reflection
         {
             get
             {
-                if (parameter.IsDefined(typeof(ExtensionAttribute)))
-                {
-                    return ParameterModifier.This;
-                }
-
                 if (parameter.IsOut)
                 {
                     return ParameterModifier.Out;

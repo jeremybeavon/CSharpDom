@@ -107,12 +107,7 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return typeWithReflection.Interfaces; }
         }
-
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
-
+        
         public override IReadOnlyCollection<StructMethodWithReflection> Methods
         {
             get { return typeWithReflection.Methods; }

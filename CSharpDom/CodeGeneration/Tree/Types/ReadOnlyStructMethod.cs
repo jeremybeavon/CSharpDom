@@ -76,12 +76,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return method.IsAsync; }
         }
-
-        public override bool IsPartial
-        {
-            get { return method.IsPartial; }
-        }
-
+        
         public override string Name
         {
             get { return method.Name; }

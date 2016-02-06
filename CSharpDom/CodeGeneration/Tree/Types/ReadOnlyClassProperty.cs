@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassProperty :
-        AbstractClassProperty<AttributeGroupNotSupported, IClassType, ReadOnlyTypeReference, ReadOnlyClassPropertyAccessor>
+        AbstractClassProperty<AttributeGroupNotSupported, IClassType, ReadOnlyTypeReference, ReadOnlyClassAccessor>
     {
         private readonly ClassProperty property;
-        private readonly ReadOnlyClassPropertyAccessor getAccessor;
+        private readonly ReadOnlyClassAccessor getAccessor;
         private readonly ReadOnlyTypeReference propertyType;
-        private readonly ReadOnlyClassPropertyAccessor setAccessor;
+        private readonly ReadOnlyClassAccessor setAccessor;
 
         public ReadOnlyClassProperty(ClassProperty property)
         {
@@ -19,19 +19,19 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             propertyType = new ReadOnlyTypeReference(property.Type);
             if (property.EmptyAccessors != null)
             {
-                getAccessor = new ReadOnlyClassPropertyAccessor(property.EmptyAccessors.GetAccessorVisibility);
-                setAccessor = new ReadOnlyClassPropertyAccessor(property.EmptyAccessors.SetAccessorVisibility);
+                getAccessor = new ReadOnlyClassAccessor(property.EmptyAccessors.GetAccessorVisibility);
+                setAccessor = new ReadOnlyClassAccessor(property.EmptyAccessors.SetAccessorVisibility);
             }
             else
             {
                 if (property.GetAccessor != null)
                 {
-                    getAccessor = new ReadOnlyClassPropertyAccessor(property.GetAccessor);
+                    getAccessor = new ReadOnlyClassAccessor(property.GetAccessor);
                 }
 
                 if (property.SetAccessor != null)
                 {
-                    setAccessor = new ReadOnlyClassPropertyAccessor(property.SetAccessor);
+                    setAccessor = new ReadOnlyClassAccessor(property.SetAccessor);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return null; }
         }
 
-        public override ReadOnlyClassPropertyAccessor GetAccessor
+        public override ReadOnlyClassAccessor GetAccessor
         {
             get { return getAccessor; }
         }
@@ -66,7 +66,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return propertyType; }
         }
 
-        public override ReadOnlyClassPropertyAccessor SetAccessor
+        public override ReadOnlyClassAccessor SetAccessor
         {
             get { return setAccessor; }
         }

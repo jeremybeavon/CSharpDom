@@ -72,15 +72,7 @@ namespace CSharpDom.Reflection
                 throw new NotImplementedException();
             }
         }
-
-        public override bool IsPartial
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
+        
         public override string Name
         {
             get

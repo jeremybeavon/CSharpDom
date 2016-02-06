@@ -8,6 +8,7 @@ namespace CSharpDom.CodeGeneration.Tree
         {
             Fields = new Collection<ClassField>();
             Events = new Collection<ClassEvent>();
+            Constructors = new Collection<ClassConstructor>();
             Properties = new Collection<ClassProperty>();
             Indexers = new Collection<ClassIndexer>();
             Methods = new Collection<ClassMethod>();
@@ -28,6 +29,8 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<ClassField> Fields { get; set; }
 
         public Collection<ClassEvent> Events { get; set; }
+
+        public Collection<ClassConstructor> Constructors { get; set; }
 
         public Collection<ClassProperty> Properties { get; set; }
 

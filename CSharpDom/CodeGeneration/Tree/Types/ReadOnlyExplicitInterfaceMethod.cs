@@ -14,14 +14,14 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyInterfaceReference,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
-            ReadOnlyClassMethodParameter,
+            ReadOnlyMethodParameter,
             ReadOnlyMethodBody>
     {
         private readonly ExplicitInterfaceMethod method;
         private readonly ReadOnlyInterfaceReference explicitInterface;
         private readonly ReadOnlyMethodBody body;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
-        private readonly IReadOnlyList<ReadOnlyClassMethodParameter> parameters;
+        private readonly IReadOnlyList<ReadOnlyMethodParameter> parameters;
         private readonly ReadOnlyTypeReference returnType;
 
         public ReadOnlyExplicitInterfaceMethod(ExplicitInterfaceMethod method)
@@ -30,7 +30,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             explicitInterface = new ReadOnlyInterfaceReference(method.ExplicitInterface);
             body = new ReadOnlyMethodBody(method.Body);
             genericParameters = ReadOnlyGenericParameterDeclaration.Create(method.GenericParameters);
-            parameters = method.Parameters.ToArray(parameter => new ReadOnlyClassMethodParameter(parameter));
+            parameters = method.Parameters.ToArray(parameter => new ReadOnlyMethodParameter(parameter));
             returnType = new ReadOnlyTypeReference(method.ReturnType);
         }
 
@@ -64,17 +64,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return method.IsAsync; }
         }
 
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
-
         public override string Name
         {
             get { return method.Name; }
         }
 
-        public override IReadOnlyList<ReadOnlyClassMethodParameter> Parameters
+        public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
         {
             get { return parameters; }
         }

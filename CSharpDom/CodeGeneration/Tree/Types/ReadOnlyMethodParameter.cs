@@ -24,22 +24,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ParameterModifier Modifier
         {
-            get
-            {
-                switch (parameter.Modifier)
-                {
-                    case MethodParameterModifier.None:
-                        return ParameterModifier.None;
-                    case MethodParameterModifier.Out:
-                        return ParameterModifier.Out;
-                    case MethodParameterModifier.Params:
-                        return ParameterModifier.Params;
-                    case MethodParameterModifier.Ref:
-                        return ParameterModifier.Ref;
-                    default:
-                        throw new NotSupportedException();
-                }
-            }
+            get { return parameter.Modifier; }
         }
 
         public override string Name

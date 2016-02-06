@@ -2,14 +2,14 @@
 
 namespace CSharpDom.CodeGeneration.Tree
 {
-    public sealed class ClassPropertyAccessor
+    public sealed class ClassAccessor
     {
-        public ClassPropertyAccessor()
+        public ClassAccessor()
         {
             Body = new Collection<Statement>();
         }
 
-        public ClassPropertyAccessorVisibilityModifier Visibility { get; set; }
+        public ClassAccessorVisibilityModifier Visibility { get; set; }
 
         public Collection<Statement> Body { get; set; }
     }

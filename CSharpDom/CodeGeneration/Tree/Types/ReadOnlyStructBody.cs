@@ -15,7 +15,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyStructProperty,
             ReadOnlyStructIndexer,
             ReadOnlyStructMethod,
-            ReadOnlyStructFieldDeclaration,
+            ReadOnlyStructField,
             ConstructorNotSupported,
             ReadOnlyStructEvent,
             ReadOnlyOperatorOverload,
@@ -48,7 +48,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ExplicitInterfaceIndexers = structBody.ExplicitInterfaceIndexers.ToArray(indexer => new ReadOnlyExplicitInterfaceIndexer(indexer));
             ExplicitInterfaceMethods = structBody.ExplicitInterfaceMethods.ToArray(method => new ReadOnlyExplicitInterfaceMethod(method));
             ExplicitInterfaceProperties = structBody.ExplicitInterfaceProperties.ToArray(property => new ReadOnlyExplicitInterfaceProperty(property));
-            Fields = structBody.Fields.ToArray(field => new ReadOnlyStructFieldDeclaration(field));
+            Fields = structBody.Fields.ToArray(field => new ReadOnlyStructField(field));
             Indexers = structBody.Indexers.ToArray(indexer => new ReadOnlyStructIndexer(indexer));
             Interfaces = structBody.NestedInterfaces.ToArray(nestedInterface => new ReadOnlyStructNestedInterface(nestedInterface));
             Methods = structBody.Methods.ToArray(method => new ReadOnlyStructMethod(method));
@@ -83,7 +83,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public IReadOnlyCollection<ReadOnlyExplicitInterfaceProperty> ExplicitInterfaceProperties { get; private set; }
 
-        public IReadOnlyCollection<ReadOnlyStructFieldDeclaration> Fields { get; private set; }
+        public IReadOnlyCollection<ReadOnlyStructField> Fields { get; private set; }
 
         public IReadOnlyCollection<ReadOnlyStructIndexer> Indexers { get; private set; }
 

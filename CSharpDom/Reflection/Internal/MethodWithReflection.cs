@@ -53,12 +53,7 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return false; }
         }
-
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
-
+        
         public MethodInfo MethodInfo
         {
             get { return method; }

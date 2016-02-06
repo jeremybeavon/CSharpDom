@@ -53,11 +53,6 @@ namespace CSharpDom.Reflection
             get { return method.IsAsync; }
         }
 
-        public override bool IsPartial
-        {
-            get { return method.IsPartial; }
-        }
-
         public override string Name
         {
             get { return method.Name; }

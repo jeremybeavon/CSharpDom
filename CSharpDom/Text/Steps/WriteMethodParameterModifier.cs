@@ -28,9 +28,6 @@ namespace CSharpDom.Text.Steps
                 case ParameterModifier.Ref:
                     builder.Append("ref");
                     break;
-                case ParameterModifier.This:
-                    builder.Append("this");
-                    break;
             }
         }
     }

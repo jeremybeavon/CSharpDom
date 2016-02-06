@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyClassFieldDeclaration :
+    public sealed class ReadOnlyClassField :
         AbstractClassField<AttributeGroupNotSupported, IClassType, ReadOnlyTypeReference>
     {
         private readonly ClassField field;
         private readonly ReadOnlyTypeReference fieldType;
 
-        public ReadOnlyClassFieldDeclaration(ClassField field)
+        public ReadOnlyClassField(ClassField field)
         {
             this.field = field;
             fieldType = new ReadOnlyTypeReference(field.Type);

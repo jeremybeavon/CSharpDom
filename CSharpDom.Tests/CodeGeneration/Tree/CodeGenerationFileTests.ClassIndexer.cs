@@ -34,7 +34,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(string)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -75,7 +75,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(string)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 },
                                 new ClassIndexer()
                                 {
@@ -84,7 +84,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -121,7 +121,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -158,7 +158,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -195,7 +195,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -232,7 +232,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -269,7 +269,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -342,7 +342,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -380,7 +380,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -418,7 +418,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -456,7 +456,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }
@@ -494,7 +494,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                     {
                                         new MethodParameter("parameter1", new TypeReference(typeof(int)))
                                     },
-                                    SetAccessor = new ClassPropertyAccessor()
+                                    SetAccessor = new ClassAccessor()
                                 }
                             }
                         }

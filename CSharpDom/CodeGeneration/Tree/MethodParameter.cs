@@ -15,7 +15,7 @@
 
         public string Name { get; set; }
 
-        public MethodParameterModifier Modifier { get; set; }
+        public ParameterModifier Modifier { get; set; }
 
         public TypeReference Type { get; set; }
     }
