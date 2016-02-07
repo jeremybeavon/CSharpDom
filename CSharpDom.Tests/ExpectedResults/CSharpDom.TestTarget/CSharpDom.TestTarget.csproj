@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FDCBF08F-CA67-4D15-915E-C54C79F9BA0A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CSharpDom.TestTarget</RootNamespace>
+    <AssemblyName>CSharpDom.TestTarget</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CSharpDom.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attribute2Attribute.cs" />
+    <Compile Include="Attribute3Attribute.cs" />
+    <Compile Include="Attribute1Attribute.cs" />
+    <Compile Include="BaseClass.cs" />
+    <Compile Include="BaseClassWithMethod.cs" />
+    <Compile Include="BaseClassWithProperty.cs" />
+    <Compile Include="BaseClassWithIndexer.cs" />
+    <Compile Include="BaseClassWithEvent.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWith1Attribute.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWith1GenericParameter.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWith1ImplementedInterface.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWith2AttributesIn1AttributeGroup.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWith2AttributesIn2AttributeGroups.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWith2GenericParameters.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWith2ImplementedInterfaces.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithBaseClass.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithDestructor.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithGenericParameterBaseClassConstraint.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithGenericParameterClassAndEmptyConstructorConstraints.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithGenericParameterClassConstraint.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithGenericParameterEmptyConstructorConstraint.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithGenericParameterGenericParameterConstraint.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithGenericParameterInterfaceConstraint.cs" />
+    <Compile Include="AbstractClasses\AbstractClassWithGenericParameterStructConstraint.cs" />
+    <Compile Include="AbstractClasses\InternalAbstractClass.cs" />
+    <Compile Include="Classes\ClassWith2ImplementedInterfaces.cs" />
+    <Compile Include="Classes\ClassWith2AttributesIn2AttributeGroups.cs" />
+    <Compile Include="Classes\ClassWith2AttributesIn1AttributeGroup.cs" />
+    <Compile Include="Classes\ClassWith1Attribute.cs" />
+    <Compile Include="Classes\ClassWith1GenericParameter.cs" />
+    <Compile Include="Classes\ClassWith2GenericParameters.cs" />
+    <Compile Include="Classes\ClassWithBaseClass.cs" />
+    <Compile Include="Classes\ClassWithDestructor.cs" />
+    <Compile Include="Classes\ClassWithGenericParameterBaseClassConstraint.cs" />
+    <Compile Include="Classes\ClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
+    <Compile Include="Classes\ClassWithGenericParameterClassAndEmptyConstructorConstraints.cs" />
+    <Compile Include="Classes\ClassWithGenericParameterGenericParameterConstraint.cs" />
+    <Compile Include="Classes\ClassWithGenericParameterInterfaceConstraint.cs" />
+    <Compile Include="Classes\ClassWithGenericParameterEmptyConstructorConstraint.cs" />
+    <Compile Include="Classes\ClassWithGenericParameterStructConstraint.cs" />
+    <Compile Include="Classes\ClassWithGenericParameterClassConstraint.cs" />
+    <Compile Include="Classes\ClassWith1ImplementedInterface.cs" />
+    <Compile Include="Classes\ClassWithExplicitConversionOperator.cs" />
+    <Compile Include="Classes\ClassWithImplicitConversionOperator.cs" />
+    <Compile Include="Classes\Constructors\ClassWithPublicConstructor.cs" />
+    <Compile Include="Classes\Constructors\ClassWithProtectedConstructor.cs" />
+    <Compile Include="Classes\Constructors\ClassWithProtectedInternalConstructor.cs" />
+    <Compile Include="Classes\Constructors\ClassWithPrivateConstructor.cs" />
+    <Compile Include="Classes\Constructors\ClassWithInternalConstructor.cs" />
+    <Compile Include="Classes\Indexers\ClassWithInternalEvent.cs" />
+    <Compile Include="Classes\Methods\ClassWithInternalMethod.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithUnaryPlusOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithUnaryMinusOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithLogicalNotOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithBitwiseNotOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithIncrementOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithDecrementOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithEqualAndNotEqualOperators.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithExclusiveOrOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithMinusOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithModuloOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithMultiplyOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithOrOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithRightShiftOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithLessThanOrEqualAndGreaterThanOrEqualOperators.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithTrueAndFalseOperators.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithLessThanAndGreaterThanOperators.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithLeftShiftOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithAndOperator.cs" />
+    <Compile Include="Classes\OperatorOverloads\ClassWithPlusOperator.cs" />
+    <Compile Include="Classes\Properties\ClassWithInternalProperty.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithInternalEventProperty.cs" />
+    <Compile Include="Classes\Events\ClassWithInternalEvent.cs" />
+    <Compile Include="Classes\Methods\ClassWithNewMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithNewProperty.cs" />
+    <Compile Include="Classes\Indexers\ClassWithNewIndexer.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithNewEventProperty.cs" />
+    <Compile Include="Classes\Methods\ClassWithNewStaticMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithNewStaticProperty.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithNewStaticEventProperty.cs" />
+    <Compile Include="Classes\Methods\ClassWithNewVirtualMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithNewVirtualProperty.cs" />
+    <Compile Include="Classes\Indexers\ClassWithNewVirtualIndexer.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithNewVirtualEventProperty.cs" />
+    <Compile Include="Classes\Methods\ClassWithOverrideMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithOverrideProperty.cs" />
+    <Compile Include="Classes\Indexers\ClassWithOverrideIndexer.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithOverrideEventProperty.cs" />
+    <Compile Include="Classes\Methods\ClassWithPrivateMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithPrivateProperty.cs" />
+    <Compile Include="Classes\Indexers\ClassWithPrivateIndexer.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithPrivateEventProperty.cs" />
+    <Compile Include="Classes\Methods\ClassWithProtectedMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithProtectedProperty.cs" />
+    <Compile Include="Classes\Indexers\ClassWithProtectedIndexer.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithProtectedEventProperty.cs" />
+    <Compile Include="Classes\Methods\ClassWithProtectedInternalMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithProtectedInternalProperty.cs" />
+    <Compile Include="Classes\Indexers\ClassWithProtectedInternalIndexer.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithProtectedInternalEventProperty.cs" />
+    <Compile Include="Classes\Methods\ClassWithPublicMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithPublicProperty.cs" />
+    <Compile Include="Classes\Indexers\ClassWithPublicIndexer.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithPublicEventProperty.cs" />
+    <Compile Include="Classes\Methods\ClassWithSealedOverrideMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithSealedOverrideProperty.cs" />
+    <Compile Include="Classes\Indexers\ClassWithSealedOverrideIndexer.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithSealedOverrideEventProperty.cs" />
+    <Compile Include="Classes\Events\ClassWithSealedOverrideEvent.cs" />
+    <Compile Include="Classes\Events\ClassWithOverrideEvent.cs" />
+    <Compile Include="Classes\Events\ClassWithNewVirtualEvent.cs" />
+    <Compile Include="Classes\Events\ClassWithNewStaticEvent.cs" />
+    <Compile Include="Classes\Events\ClassWithPrivateEvent.cs" />
+    <Compile Include="Classes\Events\ClassWithProtectedInternalEvent.cs" />
+    <Compile Include="Classes\Events\ClassWithProtectedEvent.cs" />
+    <Compile Include="Classes\Events\ClassWithPublicEvent.cs" />
+    <Compile Include="Classes\Events\ClassWithNewEvent.cs" />
+    <Compile Include="Classes\Methods\ClassWithStaticMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithStaticProperty.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithStaticEventProperty.cs" />
+    <Compile Include="Classes\Methods\ClassWithVirtualMethod.cs" />
+    <Compile Include="Classes\Properties\ClassWithVirtualProperty.cs" />
+    <Compile Include="Classes\Indexers\ClassWithVirtualIndexer.cs" />
+    <Compile Include="Classes\EventProperties\ClassWithVirtualEventProperty.cs" />
+    <Compile Include="Classes\Events\ClassWithVirtualEvent.cs" />
+    <Compile Include="Classes\Events\ClassWithStaticEvent.cs" />
+    <Compile Include="Classes\InternalClass.cs" />
+    <Compile Include="AbstractClasses\PublicAbstractClass.cs" />
+    <Compile Include="Classes\PublicClass.cs" />
+    <Compile Include="Delegates\InternalDelegate.cs" />
+    <Compile Include="Delegates\PublicDelegate.cs" />
+    <Compile Include="EventArgs.cs" />
+    <Compile Include="EventHandler.cs" />
+    <Compile Include="IInterface.cs" />
+    <Compile Include="IInterface1.cs" />
+    <Compile Include="IInterface2.cs" />
+    <Compile Include="IInterfaceWithEvent.cs" />
+    <Compile Include="IInterfaceWithIndexer.cs" />
+    <Compile Include="IInterfaceWithMethod.cs" />
+    <Compile Include="IInterfaceWithProperty.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Structs\Constructors\StructWithInternalConstructor.cs" />
+    <Compile Include="Structs\Constructors\StructWithPrivateConstructor.cs" />
+    <Compile Include="Structs\Constructors\StructWithPublicConstructor.cs" />
+    <Compile Include="Structs\EventProperties\StructWithInternalEventProperty.cs" />
+    <Compile Include="Structs\EventProperties\StructWithPrivateEventProperty.cs" />
+    <Compile Include="Structs\EventProperties\StructWithPublicEventProperty.cs" />
+    <Compile Include="Structs\EventProperties\StructWithStaticEventProperty.cs" />
+    <Compile Include="Structs\Events\StructWithInternalEvent.cs" />
+    <Compile Include="Structs\Events\StructWithPrivateEvent.cs" />
+    <Compile Include="Structs\Events\StructWithPublicEvent.cs" />
+    <Compile Include="Structs\Events\StructWithStaticEvent.cs" />
+    <Compile Include="Structs\Indexers\StructWithInternalEvent.cs" />
+    <Compile Include="Structs\Indexers\StructWithPrivateIndexer.cs" />
+    <Compile Include="Structs\Indexers\StructWithPublicIndexer.cs" />
+    <Compile Include="Structs\InternalStruct.cs" />
+    <Compile Include="Structs\Methods\StructWithInternalMethod.cs" />
+    <Compile Include="Structs\Methods\StructWithPrivateMethod.cs" />
+    <Compile Include="Structs\Methods\StructWithPublicMethod.cs" />
+    <Compile Include="Structs\Methods\StructWithStaticMethod.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithAndOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithBitwiseNotOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithDecrementOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithEqualAndNotEqualOperators.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithExclusiveOrOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithIncrementOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithLeftShiftOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithLessThanAndGreaterThanOperators.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithLessThanOrEqualAndGreaterThanOrEqualOperators.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithLogicalNotOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithMinusOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithModuloOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithMultiplyOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithOrOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithPlusOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithRightShiftOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithTrueAndFalseOperators.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithUnaryMinusOperator.cs" />
+    <Compile Include="Structs\OperatorOverloads\StructWithUnaryPlusOperator.cs" />
+    <Compile Include="Structs\Properties\StructWithInternalProperty.cs" />
+    <Compile Include="Structs\Properties\StructWithPrivateProperty.cs" />
+    <Compile Include="Structs\Properties\StructWithPublicProperty.cs" />
+    <Compile Include="Structs\Properties\StructWithStaticProperty.cs" />
+    <Compile Include="Structs\PublicStruct.cs" />
+    <Compile Include="Structs\StructWith1Attribute.cs" />
+    <Compile Include="Structs\StructWith1GenericParameter.cs" />
+    <Compile Include="Structs\StructWith1ImplementedInterface.cs" />
+    <Compile Include="Structs\StructWith2AttributesIn1AttributeGroup.cs" />
+    <Compile Include="Structs\StructWith2AttributesIn2AttributeGroups.cs" />
+    <Compile Include="Structs\StructWith2GenericParameters.cs" />
+    <Compile Include="Structs\StructWith2ImplementedInterfaces.cs" />
+    <Compile Include="Structs\StructWithExplicitConversionOperator.cs" />
+    <Compile Include="Structs\StructWithGenericParameterBaseClassConstraint.cs" />
+    <Compile Include="Structs\StructWithGenericParameterClassAndEmptyConstructorConstraints.cs" />
+    <Compile Include="Structs\StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
+    <Compile Include="Structs\StructWithGenericParameterClassConstraint.cs" />
+    <Compile Include="Structs\StructWithGenericParameterEmptyConstructorConstraint.cs" />
+    <Compile Include="Structs\StructWithGenericParameterGenericParameterConstraint.cs" />
+    <Compile Include="Structs\StructWithGenericParameterInterfaceConstraint.cs" />
+    <Compile Include="Structs\StructWithGenericParameterStructConstraint.cs" />
+    <Compile Include="Structs\StructWithImplicitConversionOperator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CSharpDom.snk" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Classes\NestedClasses\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Interfaces\" />
+    <Folder Include="SealedClasses\" />
+    <Folder Include="StaticClasses\" />
+    <Folder Include="Structs\NestedClasses\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -11,7 +11,7 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             InterfaceReferenceWithReflection,
             ITypeReferenceWithReflection,
-            AccessorWithReflection>
+            ClassAccessorWithReflection>
     {
         private ITypeWithReflection declaringType;
         private PropertyInfo property;
@@ -46,7 +46,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override AccessorWithReflection GetAccessor
+        public override ClassAccessorWithReflection GetAccessor
         {
             get
             {
@@ -70,7 +70,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override AccessorWithReflection SetAccessor
+        public override ClassAccessorWithReflection SetAccessor
         {
             get
             {

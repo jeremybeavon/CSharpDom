@@ -53,7 +53,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return ReadOnlyClass.GetInheritanceModifier(property.InheritanceModifier); }
+            get { return property.InheritanceModifier; }
         }
 
         public override string Name
@@ -73,7 +73,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(property.Visibility); }
+            get { return property.Visibility; }
         }
     }
 }

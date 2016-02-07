@@ -355,7 +355,6 @@ namespace CSharpDom.Text
             {
                 case ClassMemberInheritanceModifier.None:
                     return;
-                case ClassMemberInheritanceModifier.Abstract:
                 case ClassMemberInheritanceModifier.New:
                 case ClassMemberInheritanceModifier.Override:
                 case ClassMemberInheritanceModifier.Static:
@@ -376,6 +375,34 @@ namespace CSharpDom.Text
                     steps.Add(new WriteSealed());
                     steps.Add(new WriteWhitespace());
                     steps.Add(new WriteClassMemberInheritanceModifier(ClassMemberInheritanceModifier.Override));
+                    break;
+            }
+
+            steps.Add(new WriteWhitespace());
+        }
+
+        internal static void AddIndexerInheritanceModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            IndexerInheritanceModifier inheritanceModifer)
+        {
+            switch (inheritanceModifer)
+            {
+                case IndexerInheritanceModifier.None:
+                    return;
+                case IndexerInheritanceModifier.New:
+                case IndexerInheritanceModifier.Override:
+                case IndexerInheritanceModifier.Virtual:
+                    steps.Add(new WriteIndexerInheritanceModifier(inheritanceModifer));
+                    break;
+                case IndexerInheritanceModifier.NewVirtual:
+                    steps.Add(new WriteIndexerInheritanceModifier(IndexerInheritanceModifier.New));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteIndexerInheritanceModifier(IndexerInheritanceModifier.Virtual));
+                    break;
+                case IndexerInheritanceModifier.SealedOverride:
+                    steps.Add(new WriteSealed());
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteIndexerInheritanceModifier(IndexerInheritanceModifier.Override));
                     break;
             }
 

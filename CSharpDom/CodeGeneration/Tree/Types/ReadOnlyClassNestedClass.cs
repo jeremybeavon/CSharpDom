@@ -160,7 +160,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(nestedClass.Visibility); }
+            get { return nestedClass.Visibility; }
         }
 
         public override IReadOnlyCollection<ReadOnlyExplicitInterfaceEvent> ExplicitInterfaceEvents

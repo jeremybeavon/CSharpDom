@@ -44,7 +44,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(field.Visibility); }
+            get { return field.Visibility; }
         }
     }
 }

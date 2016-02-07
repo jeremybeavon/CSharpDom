@@ -23,7 +23,7 @@ namespace CSharpDom.Serialization
 
         public TypeReference IndexerType { get; set; }
 
-        public ClassMemberInheritanceModifier InheritanceModifier { get; set; }
+        public IndexerInheritanceModifier InheritanceModifier { get; set; }
 
         public List<Parameter> Parameters { get; set; }
 

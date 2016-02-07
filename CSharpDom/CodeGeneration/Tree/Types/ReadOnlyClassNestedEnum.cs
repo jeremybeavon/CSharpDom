@@ -43,7 +43,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(nestedEnum.Visibility); }
+            get { return nestedEnum.Visibility; }
         }
 
         public override EnumBaseType BaseType

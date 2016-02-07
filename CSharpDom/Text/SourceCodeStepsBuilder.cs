@@ -14,7 +14,6 @@ namespace CSharpDom.Text
         private readonly AccessorFlags accessorFlags;
         private readonly ITypeReference accessorType;
         private readonly string emptyBodyText;
-        private bool isAbstract;
         private ISourceCodeBuilderStep explicitInterface;
 
         public SourceCodeStepsBuilder()
@@ -484,7 +483,7 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(indexer.Attributes);
             Steps.AddClassMemberVisibilityModifierSteps(indexer.Visibility);
-            Steps.AddClassMemberInheritanceModifierSteps(indexer.InheritanceModifier);
+            Steps.AddIndexerInheritanceModifierSteps(indexer.InheritanceModifier);
             VisitIndexer(indexer);
         }
 
@@ -638,9 +637,7 @@ namespace CSharpDom.Text
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
             Steps.AddClassMemberVisibilityModifierSteps(method.Visibility);
             Steps.AddClassMemberInheritanceModifierSteps(method.InheritanceModifier);
-            isAbstract = method.InheritanceModifier == ClassMemberInheritanceModifier.Abstract;
             VisitMethod(method);
-            isAbstract = false;
         }
 
         public override void VisitExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
@@ -695,24 +692,17 @@ namespace CSharpDom.Text
             Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
             Steps.Add(new WriteEndParenthesis());
             Steps.AddGenericParameterConstraintSteps(method.GenericParameters);
-            if (isAbstract)
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteStartBrace());
+            Steps.Add(new IncrementIndent());
+            if (method.Body != null)
             {
-                Steps.Add(new WriteSemicolon());
+                Steps.Add(new WriteChildNode<TMethodBody>(method.Body));
             }
-            else
-            {
-                Steps.Add(new WriteIndentedNewLine());
-                Steps.Add(new WriteStartBrace());
-                Steps.Add(new IncrementIndent());
-                if (method.Body != null)
-                {
-                    Steps.Add(new WriteChildNode<TMethodBody>(method.Body));
-                }
 
-                Steps.Add(new DecrementIndent());
-                Steps.Add(new WriteIndentedNewLine());
-                Steps.Add(new WriteEndBrace());
-            }
+            Steps.Add(new DecrementIndent());
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteEndBrace());
         }
 
         public override void VisitMethodBody<TStatement>(IMethodBody<TStatement> methodBody)

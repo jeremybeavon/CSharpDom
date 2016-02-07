@@ -7,15 +7,15 @@ using CSharpDom.Reflection.Internal;
 namespace CSharpDom.Reflection.Internal
 {
     internal sealed class PropertyWithReflection :
-        AbstractClassProperty<AttributeWithReflection, ITypeWithReflection, ITypeReferenceWithReflection, AccessorWithReflection>//,
+        AbstractClassProperty<AttributeWithReflection, ITypeWithReflection, ITypeReferenceWithReflection, ClassAccessorWithReflection>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly PropertyInfo property;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithReflection propertyType;
-        private readonly AccessorWithReflection getAccessor;
-        private readonly AccessorWithReflection setAccessor;
+        private readonly ClassAccessorWithReflection getAccessor;
+        private readonly ClassAccessorWithReflection setAccessor;
 
         internal PropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
         {
@@ -25,12 +25,12 @@ namespace CSharpDom.Reflection.Internal
             propertyType = TypeReferenceWithReflectionFactory.CreateReference(property.PropertyType);
             if (property.GetMethod != null)
             {
-                getAccessor = new AccessorWithReflection(this, property.GetMethod);
+                getAccessor = new ClassAccessorWithReflection(this, property.GetMethod);
             }
 
             if (property.SetMethod != null)
             {
-                setAccessor = new AccessorWithReflection(this, property.SetMethod);
+                setAccessor = new ClassAccessorWithReflection(this, property.SetMethod);
             }
         }
 
@@ -44,7 +44,7 @@ namespace CSharpDom.Reflection.Internal
             get { return declaringType; }
         }
 
-        public override AccessorWithReflection GetAccessor
+        public override ClassAccessorWithReflection GetAccessor
         {
             get { return getAccessor; }
         }
@@ -64,7 +64,7 @@ namespace CSharpDom.Reflection.Internal
             get { return propertyType; }
         }
 
-        public override AccessorWithReflection SetAccessor
+        public override ClassAccessorWithReflection SetAccessor
         {
             get { return setAccessor; }
         }

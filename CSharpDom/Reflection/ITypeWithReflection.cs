@@ -2,7 +2,14 @@
 
 namespace CSharpDom.Reflection
 {
-    public interface ITypeWithReflection : IType, IBasicTypeWithReflection, IStructType, IClassType
+    public interface ITypeWithReflection :
+        IType,
+        IBasicTypeWithReflection,
+        IStructType,
+        IClassType,
+        IAbstractType,
+        IStaticType,
+        ISealedType
     {
     }
 }

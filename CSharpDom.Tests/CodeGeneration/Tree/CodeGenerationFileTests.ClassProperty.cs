@@ -214,7 +214,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             }).ToString().Should().Be(expectedText);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestClassWithPublicAbstractProperty()
         {
             const string expectedText = @"class TestClass
@@ -242,7 +242,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
         [TestMethod]
         public void TestClassWithPublicNewProperty()

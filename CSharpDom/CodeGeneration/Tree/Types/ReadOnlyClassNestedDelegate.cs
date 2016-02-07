@@ -62,7 +62,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(nestedDelegate.Visibility); }
+            get { return nestedDelegate.Visibility; }
         }
     }
 }

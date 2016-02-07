@@ -25,6 +25,8 @@ namespace CSharpDom.Tests.Common
             return TestClassAsync(typeof(InternalClass));
         }
 
+
+
         private async Task TestClassAsync(Type type)
         {
             Solution solution = await new SolutionFactory(Solution).ValueAsync();

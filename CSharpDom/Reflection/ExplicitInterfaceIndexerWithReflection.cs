@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection
             InterfaceReferenceWithReflection,
             ITypeReferenceWithReflection,
             ParameterWithReflection,
-            AccessorWithReflection>
+            ClassAccessorWithReflection>
     {
         internal ExplicitInterfaceIndexerWithReflection(ITypeWithReflection declaringType, PropertyInfo indexer)
         {
@@ -44,7 +44,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override AccessorWithReflection GetAccessor
+        public override ClassAccessorWithReflection GetAccessor
         {
             get
             {
@@ -68,7 +68,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override AccessorWithReflection SetAccessor
+        public override ClassAccessorWithReflection SetAccessor
         {
             get
             {

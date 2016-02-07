@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             ITypeReferenceWithReflection,
             ParameterWithReflection,
-            AccessorWithReflection>
+            ClassAccessorWithReflection>
     {
         private readonly IndexerWithReflection indexer;
 
@@ -32,7 +32,7 @@ namespace CSharpDom.Reflection
             get { return indexer.DeclaringType; }
         }
 
-        public override AccessorWithReflection GetAccessor
+        public override ClassAccessorWithReflection GetAccessor
         {
             get { return indexer.GetAccessor; }
         }
@@ -47,7 +47,7 @@ namespace CSharpDom.Reflection
             get { return indexer.Parameters; }
         }
 
-        public override AccessorWithReflection SetAccessor
+        public override ClassAccessorWithReflection SetAccessor
         {
             get { return indexer.SetAccessor; }
         }

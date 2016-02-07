@@ -15,11 +15,11 @@ namespace CSharpDom.Serialization.Factories
             Value = new ClassProperty()
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
-                GetAccessor = new AccessorFactory(property.GetAccessor).Value,
+                GetAccessor = new ClassAccessorFactory(property.GetAccessor).Value,
                 InheritanceModifier = property.InheritanceModifier,
                 Name = property.Name,
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value,
-                SetAccessor = new AccessorFactory(property.SetAccessor).Value,
+                SetAccessor = new ClassAccessorFactory(property.SetAccessor).Value,
                 Visibility = property.Visibility
             };
         }

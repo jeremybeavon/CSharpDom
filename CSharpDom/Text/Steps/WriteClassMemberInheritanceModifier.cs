@@ -13,9 +13,6 @@
         {
             switch (InheritanceModifier)
             {
-                case ClassMemberInheritanceModifier.Abstract:
-                    builder.Append(InheritanceModifierText.AbstractText);
-                    break;
                 case ClassMemberInheritanceModifier.New:
                     builder.Append(InheritanceModifierText.NewText);
                     break;

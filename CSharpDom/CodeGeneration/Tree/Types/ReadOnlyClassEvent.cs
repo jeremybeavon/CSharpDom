@@ -59,7 +59,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return ReadOnlyClass.GetInheritanceModifier(classEvent.InheritanceModifier); }
+            get { return classEvent.InheritanceModifier; }
         }
 
         public string Name
@@ -74,7 +74,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public ClassMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(classEvent.Visibility); }
+            get { return classEvent.Visibility; }
         }
         
         public bool IsEventProperty { get; private set; }

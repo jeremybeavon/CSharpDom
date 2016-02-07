@@ -57,7 +57,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return ReadOnlyClass.GetInheritanceModifier(method.InheritanceModifier); }
+            get { return method.InheritanceModifier; }
         }
 
         public override bool IsAsync
@@ -82,7 +82,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(method.Visibility); }
+            get { return method.Visibility; }
         }
     }
 }

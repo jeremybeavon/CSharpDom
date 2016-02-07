@@ -67,30 +67,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return indexerType; }
         }
 
-        public override ClassMemberInheritanceModifier InheritanceModifier
+        public override IndexerInheritanceModifier InheritanceModifier
         {
-            get
-            {
-                switch (indexer.InheritanceModifier)
-                {
-                    case IndexerInheritanceModifier.None:
-                        return CSharpDom.ClassMemberInheritanceModifier.None;
-                    case IndexerInheritanceModifier.Abstract:
-                        return CSharpDom.ClassMemberInheritanceModifier.Abstract;
-                    case IndexerInheritanceModifier.New:
-                        return CSharpDom.ClassMemberInheritanceModifier.New;
-                    case IndexerInheritanceModifier.NewVirtual:
-                        return CSharpDom.ClassMemberInheritanceModifier.NewVirtual;
-                    case IndexerInheritanceModifier.Override:
-                        return CSharpDom.ClassMemberInheritanceModifier.Override;
-                    case IndexerInheritanceModifier.SealedOverride:
-                        return CSharpDom.ClassMemberInheritanceModifier.SealedOverride;
-                    case IndexerInheritanceModifier.Virtual:
-                        return CSharpDom.ClassMemberInheritanceModifier.Virtual;
-                    default:
-                        throw new NotSupportedException();
-                }
-            }
+            get { return indexer.InheritanceModifier; }
         }
 
         public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
@@ -105,7 +84,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return ReadOnlyClass.GetVisibility(indexer.Visibility); }
+            get { return indexer.Visibility; }
         }
     }
 }

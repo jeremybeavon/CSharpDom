@@ -204,53 +204,5 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return new DocumentNotSupported(); }
         }
-
-        public static ClassMemberInheritanceModifier GetInheritanceModifier(ClassMemberInheritanceModifier inheritanceModifier)
-        {
-            switch (inheritanceModifier)
-            {
-                case ClassMemberInheritanceModifier.None:
-                    return CSharpDom.ClassMemberInheritanceModifier.None;
-                case ClassMemberInheritanceModifier.Abstract:
-                    return CSharpDom.ClassMemberInheritanceModifier.Abstract;
-                case ClassMemberInheritanceModifier.New:
-                    return CSharpDom.ClassMemberInheritanceModifier.New;
-                case ClassMemberInheritanceModifier.NewStatic:
-                    return CSharpDom.ClassMemberInheritanceModifier.NewStatic;
-                case ClassMemberInheritanceModifier.NewVirtual:
-                    return CSharpDom.ClassMemberInheritanceModifier.NewVirtual;
-                case ClassMemberInheritanceModifier.Override:
-                    return CSharpDom.ClassMemberInheritanceModifier.Override;
-                case ClassMemberInheritanceModifier.SealedOverride:
-                    return CSharpDom.ClassMemberInheritanceModifier.SealedOverride;
-                case ClassMemberInheritanceModifier.Static:
-                    return CSharpDom.ClassMemberInheritanceModifier.Static;
-                case ClassMemberInheritanceModifier.Virtual:
-                    return CSharpDom.ClassMemberInheritanceModifier.Virtual;
-                default:
-                    throw new NotSupportedException();
-            }
-        }
-
-        public static ClassMemberVisibilityModifier GetVisibility(ClassMemberVisibilityModifier visibility)
-        {
-            switch (visibility)
-            {
-                case ClassMemberVisibilityModifier.None:
-                    return CSharpDom.ClassMemberVisibilityModifier.None;
-                case ClassMemberVisibilityModifier.Public:
-                    return CSharpDom.ClassMemberVisibilityModifier.Public;
-                case ClassMemberVisibilityModifier.Internal:
-                    return CSharpDom.ClassMemberVisibilityModifier.Internal;
-                case ClassMemberVisibilityModifier.ProtectedInternal:
-                    return CSharpDom.ClassMemberVisibilityModifier.ProtectedInternal;
-                case ClassMemberVisibilityModifier.Protected:
-                    return CSharpDom.ClassMemberVisibilityModifier.Protected;
-                case ClassMemberVisibilityModifier.Private:
-                    return CSharpDom.ClassMemberVisibilityModifier.Private;
-                default:
-                    throw new NotSupportedException();
-            }
-        }
     }
 }

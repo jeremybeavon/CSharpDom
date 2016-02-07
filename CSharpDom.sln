@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.Cci", "CSharpDom.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.NRefactory", "CSharpDom.NRefactory\CSharpDom.NRefactory.csproj", "{F0D015D3-22BE-4591-B8E9-8E4C46957C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.TestTarget", "CSharpDom.TestTarget\CSharpDom.TestTarget.csproj", "{FDCBF08F-CA67-4D15-915E-C54C79F9BA0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.TestTarget", "CSharpDom.Tests\ExpectedResults\CSharpDom.TestTarget\CSharpDom.TestTarget.csproj", "{FDCBF08F-CA67-4D15-915E-C54C79F9BA0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

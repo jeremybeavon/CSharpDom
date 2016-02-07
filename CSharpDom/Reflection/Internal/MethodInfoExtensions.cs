@@ -35,12 +35,7 @@ namespace CSharpDom.Reflection.Internal
             {
                 return ClassMemberInheritanceModifier.Static;
             }
-
-            if (method.IsAbstract)
-            {
-                return ClassMemberInheritanceModifier.Abstract;
-            }
-
+            
             if (method.IsVirtual)
             {
                 return ClassMemberInheritanceModifier.Virtual;

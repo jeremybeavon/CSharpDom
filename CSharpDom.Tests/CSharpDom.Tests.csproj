@@ -117,9 +117,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <EmbeddedResource Include="..\CSharpDom.TestTarget\Classes\PublicClass.cs">
-      <Link>ExpectedResults\CSharpDom.TestTarget\Classes\PublicClass.cs</Link>
-    </EmbeddedResource>
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.BinaryOperator.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.Class.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassEvent.cs" />
@@ -152,6 +149,171 @@
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.UnaryOperator.cs" />
     <Compile Include="Common\AbstractClassTests.cs" />
     <Compile Include="Common\TypeTextProvider.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith1Attribute.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith1GenericParameter.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith1ImplementedInterface.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith2AttributesIn1AttributeGroup.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith2AttributesIn2AttributeGroups.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith2GenericParameters.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith2ImplementedInterfaces.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithBaseClass.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithDestructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithExplicitConversionOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterBaseClassConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterClassAndEmptyConstructorConstraints.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterClassConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterEmptyConstructorConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterGenericParameterConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterInterfaceConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterStructConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithImplicitConversionOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\InternalClass.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\PublicClass.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithInternalConstructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithPrivateConstructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithProtectedConstructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithProtectedInternalConstructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithPublicConstructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithInternalEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithNewEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithNewStaticEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithNewVirtualEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithOverrideEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithPrivateEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithProtectedEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithProtectedInternalEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithPublicEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithSealedOverrideEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithStaticEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\EventProperties\ClassWithVirtualEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithInternalEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithNewEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithNewStaticEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithNewVirtualEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithOverrideEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithPrivateEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithProtectedEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithProtectedInternalEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithPublicEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithSealedOverrideEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithStaticEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Events\ClassWithVirtualEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithInternalEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithNewIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithNewVirtualIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithOverrideIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithPrivateIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithProtectedIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithProtectedInternalIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithPublicIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithSealedOverrideIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Indexers\ClassWithVirtualIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithInternalMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithNewMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithNewStaticMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithNewVirtualMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithOverrideMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithPrivateMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithProtectedInternalMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithProtectedMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithPublicMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithSealedOverrideMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithStaticMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Methods\ClassWithVirtualMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithAndOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithBitwiseNotOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithDecrementOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithEqualAndNotEqualOperators.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithExclusiveOrOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithIncrementOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithLeftShiftOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithLessThanAndGreaterThanOperators.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithLessThanOrEqualAndGreaterThanOrEqualOperators.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithLogicalNotOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithMinusOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithModuloOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithMultiplyOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithOrOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithPlusOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithRightShiftOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithTrueAndFalseOperators.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithUnaryMinusOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ClassWithUnaryPlusOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithInternalProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithNewProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithNewStaticProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithNewVirtualProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithOverrideProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithPrivateProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithProtectedInternalProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithProtectedProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithPublicProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithSealedOverrideProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithStaticProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Properties\ClassWithVirtualProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Delegates\InternalDelegate.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Delegates\PublicDelegate.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\StructWithInternalConstructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\StructWithPrivateConstructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\StructWithPublicConstructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\EventProperties\StructWithInternalEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\EventProperties\StructWithPrivateEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\EventProperties\StructWithPublicEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\EventProperties\StructWithStaticEventProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Events\StructWithInternalEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Events\StructWithPrivateEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Events\StructWithPublicEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Events\StructWithStaticEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Indexers\StructWithInternalEvent.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Indexers\StructWithPrivateIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Indexers\StructWithPublicIndexer.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Methods\StructWithInternalMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Methods\StructWithPrivateMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Methods\StructWithPublicMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Methods\StructWithStaticMethod.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithAndOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithBitwiseNotOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithDecrementOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithEqualAndNotEqualOperators.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithExclusiveOrOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithIncrementOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithLeftShiftOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithLessThanAndGreaterThanOperators.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithLessThanOrEqualAndGreaterThanOrEqualOperators.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithLogicalNotOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithMinusOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithModuloOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithMultiplyOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithOrOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithPlusOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithRightShiftOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithTrueAndFalseOperators.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithUnaryMinusOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\OperatorOverloads\StructWithUnaryPlusOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Properties\StructWithInternalProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Properties\StructWithPrivateProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Properties\StructWithPublicProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Properties\StructWithStaticProperty.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\InternalStruct.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\PublicStruct.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWith1Attribute.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWith1GenericParameter.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWith1ImplementedInterface.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWith2AttributesIn1AttributeGroup.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWith2AttributesIn2AttributeGroups.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWith2GenericParameters.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWith2ImplementedInterfaces.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithExplicitConversionOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterBaseClassConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterClassAndEmptyConstructorConstraints.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterClassConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterEmptyConstructorConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterGenericParameterConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterInterfaceConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterStructConstraint.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithImplicitConversionOperator.cs" />
     <Compile Include="Reflection\ClassWithReflectionTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,20 +324,27 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSharpDom.TestTarget\CSharpDom.TestTarget.csproj">
-      <Project>{fdcbf08f-ca67-4d15-915e-c54c79f9ba0a}</Project>
-      <Name>CSharpDom.TestTarget</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CSharpDom\CSharpDom.csproj">
       <Project>{eaa58a34-7e4b-4e20-be3c-8d7aac4b261b}</Project>
       <Name>CSharpDom</Name>
+    </ProjectReference>
+    <ProjectReference Include="ExpectedResults\CSharpDom.TestTarget\CSharpDom.TestTarget.csproj">
+      <Project>{fdcbf08f-ca67-4d15-915e-c54c79f9ba0a}</Project>
+      <Name>CSharpDom.TestTarget</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Classes\AbstractClasses\" />
+    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Classes\NestedClasses\" />
+    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Classes\SealedClasses\" />
+    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Classes\StaticClasses\" />
+    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Enums\" />
+    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Interfaces\" />
+  </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
       <ItemGroup>

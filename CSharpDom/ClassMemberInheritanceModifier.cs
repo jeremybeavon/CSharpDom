@@ -4,7 +4,6 @@
     {
         None,
         Static,
-        Abstract,
         Virtual,
         Override,
         SealedOverride,
