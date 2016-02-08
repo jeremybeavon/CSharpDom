@@ -40,6 +40,10 @@ namespace CSharpDom.Serialization.Factories
             {
                 Value.Destructor.AttachDeclaringType(@class);
             }
+            foreach (ClassConstructor constructor in Value.Constructors)
+            {
+                constructor.AttachDeclaringType(@class);
+            }
         }
     }
 }

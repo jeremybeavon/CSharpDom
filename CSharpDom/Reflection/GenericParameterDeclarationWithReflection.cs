@@ -2,6 +2,7 @@
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace CSharpDom.Reflection
@@ -29,10 +30,11 @@ namespace CSharpDom.Reflection
             attributes = new Lazy<Attributes>(() => new Attributes(type));
             typeConstraint = GetTypeConstraint(type);
             hasEmptyConstructorConstraint = 
-                type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.DefaultConstructorConstraint);
+                type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.DefaultConstructorConstraint) &&
+                typeConstraint != GenericParameterTypeConstraint.Struct;
             genericParameterConstraints = new List<GenericParameterReferenceWithReflection>();
             interfaceConstraints = new List<InterfaceReferenceWithReflection>();
-            foreach (Type constraintType in type.GetGenericParameterConstraints())
+            foreach (Type constraintType in type.GetGenericParameterConstraints().Where(constraint => constraint != typeof(ValueType)))
             {
                 if (constraintType.IsGenericParameter)
                 {

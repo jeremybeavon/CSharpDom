@@ -15,30 +15,45 @@ namespace CSharpDom.Tests.Common
     {
         public abstract ISolution<TProject> Solution { get; }
 
+        protected virtual bool IsConstructorTest
+        {
+            get { return false; }
+        }
+
         protected async Task TestClassAsync(Type type)
         {
             IClass @class = await Solution.Find().ClassByNameAsync<IClass>(type.Name());
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
+            LoadedDocument document = CreateLoadedDocument(new ClassFactory(@class).Value, namespaceName);
+            string documentText = document.ToSourceCode();
+            string expectedResult = TypeTextProvider.GetTypeText(type);
+            documentText.Should().Be(expectedResult);
+        }
+
+        private LoadedDocument CreateLoadedDocument(Class @class, string namespaceName)
+        {
+            if (!IsConstructorTest)
+            {
+                @class.Constructors.Clear();
+            }
+
+            @class.Accept(new FixMethodBodyVisitor());
             LoadedDocument document = new LoadedDocument();
-            Class serializableClass = new ClassFactory(@class).Value;
-            serializableClass.Constructors.Clear();
             if (string.IsNullOrWhiteSpace(namespaceName))
             {
-                document.Classes.Add(serializableClass);
+                document.Classes.Add(@class);
             }
             else
             {
                 Namespace @namespace = new Namespace()
                 {
                     Name = namespaceName,
-                    Classes = { serializableClass }
+                    Classes = { @class }
                 };
                 document.Namespaces.Add(@namespace);
             }
 
-            string documentText = document.ToSourceCode();
-            string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.Should().Be(expectedResult);
+            return document;
         }
     }
 }

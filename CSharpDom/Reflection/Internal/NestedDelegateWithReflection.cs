@@ -12,7 +12,8 @@ namespace CSharpDom.Reflection.Internal
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>//,
+            ParameterWithReflection>,
+        IHasType//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
@@ -61,6 +62,11 @@ namespace CSharpDom.Reflection.Internal
         public override ITypeReferenceWithReflection ReturnType
         {
             get { return returnType; }
+        }
+
+        public Type Type
+        {
+            get { return type; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

@@ -13,15 +13,15 @@ namespace CSharpDom.Tests.Reflection
     {
         private ISolution<ProjectWithReflection> solution;
 
+        public override ISolution<ProjectWithReflection> Solution
+        {
+            get { return solution; }
+        }
+
         [TestInitialize]
         public void SetUp()
         {
             solution = new AssemblyWithReflection(typeof(PublicClass).Assembly).AsSolution();
-        }
-
-        public override ISolution<ProjectWithReflection> Solution
-        {
-            get { return solution; }
         }
 
         [TestMethod]
@@ -79,18 +79,6 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestClassWithReflectionWithDestructorAsync()
-        {
-            await TestClassAsync(typeof(ClassWithDestructor));
-        }
-
-        [TestMethod]
-        public async Task TestClassWithReflectionWithExplicitConversionOperatorAsync()
-        {
-            await TestClassAsync(typeof(ClassWithExplicitConversionOperator));
-        }
-
-        [TestMethod]
         public async Task TestClassWithReflectionWithGenericParameterBaseClassConstraintAsync()
         {
             await TestClassAsync(typeof(ClassWithGenericParameterBaseClassConstraint<>));
@@ -136,12 +124,6 @@ namespace CSharpDom.Tests.Reflection
         public async Task TestClassWithReflectionWithGenericParameterStructConstraintAsync()
         {
             await TestClassAsync(typeof(ClassWithGenericParameterStructConstraint<>));
-        }
-
-        [TestMethod]
-        public async Task TestClassWithReflectionWithImplicitConversionOperatorConstraintAsync()
-        {
-            await TestClassAsync(typeof(ClassWithImplicitConversionOperator));
         }
     }
 }

@@ -15,74 +15,61 @@ namespace CSharpDom.Reflection
             ClassAccessorWithReflection>
     {
         private readonly PropertyWithReflection property;
+        private readonly ClassAccessorWithReflection getAccessor;
+        private readonly ClassAccessorWithReflection setAccessor;
 
-        internal ClassPropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
+        internal ClassPropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo propertyInfo)
         {
-            this.property = new PropertyWithReflection(declaringType, property);
+            property = new PropertyWithReflection(declaringType, propertyInfo);
+            if (property.GetAccessor != null)
+            {
+                getAccessor = new ClassAccessorWithReflection(this, property.GetAccessor);
+            }
+
+            if (property.SetAccessor != null)
+            {
+                setAccessor = new ClassAccessorWithReflection(this, property.SetAccessor);
+            }
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.DeclaringType; }
         }
 
         public override ClassAccessorWithReflection GetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return getAccessor; }
         }
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.PropertyInfo.InheritanceModifier(); }
         }
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Name; }
         }
 
         public override ITypeReferenceWithReflection PropertyType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.PropertyType; }
         }
 
         public override ClassAccessorWithReflection SetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return setAccessor; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.PropertyInfo.ClassVisibility(); }
         }
     }
 }

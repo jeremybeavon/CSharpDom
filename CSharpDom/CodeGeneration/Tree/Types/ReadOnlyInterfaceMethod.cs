@@ -68,11 +68,6 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return returnType; }
         }
         
-        public override bool IsAsync
-        {
-            get { return false; }
-        }
-        
         public static IReadOnlyCollection<ReadOnlyInterfaceMethod> Create(IEnumerable<InterfaceMethod> interfaceMethods)
         {
             return interfaceMethods.ToArray(interfaceMethod => new ReadOnlyInterfaceMethod(interfaceMethod));

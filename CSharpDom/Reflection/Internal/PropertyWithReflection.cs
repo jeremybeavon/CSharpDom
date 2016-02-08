@@ -2,20 +2,20 @@
 using System;
 using System.Reflection;
 using System.Collections.Generic;
-using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection.Internal
 {
     internal sealed class PropertyWithReflection :
-        AbstractClassProperty<AttributeWithReflection, ITypeWithReflection, ITypeReferenceWithReflection, ClassAccessorWithReflection>//,
+        AbstractProperty<AttributeWithReflection, ITypeWithReflection, ITypeReferenceWithReflection, AccessorWithReflection>,
+        IHasPropertyInfo//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithReflection declaringType;
         private readonly PropertyInfo property;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithReflection propertyType;
-        private readonly ClassAccessorWithReflection getAccessor;
-        private readonly ClassAccessorWithReflection setAccessor;
+        private readonly AccessorWithReflection getAccessor;
+        private readonly AccessorWithReflection setAccessor;
 
         internal PropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
         {
@@ -25,12 +25,12 @@ namespace CSharpDom.Reflection.Internal
             propertyType = TypeReferenceWithReflectionFactory.CreateReference(property.PropertyType);
             if (property.GetMethod != null)
             {
-                getAccessor = new ClassAccessorWithReflection(this, property.GetMethod);
+                getAccessor = new AccessorWithReflection(property.GetMethod);
             }
 
             if (property.SetMethod != null)
             {
-                setAccessor = new ClassAccessorWithReflection(this, property.SetMethod);
+                setAccessor = new AccessorWithReflection(property.SetMethod);
             }
         }
 
@@ -44,16 +44,11 @@ namespace CSharpDom.Reflection.Internal
             get { return declaringType; }
         }
 
-        public override ClassAccessorWithReflection GetAccessor
+        public override AccessorWithReflection GetAccessor
         {
             get { return getAccessor; }
         }
         
-        public override ClassMemberInheritanceModifier InheritanceModifier
-        {
-            get { return property.InheritanceModifier(); }
-        }
-
         public override string Name
         {
             get { return property.Name; }
@@ -64,24 +59,14 @@ namespace CSharpDom.Reflection.Internal
             get { return propertyType; }
         }
 
-        public override ClassAccessorWithReflection SetAccessor
+        public override AccessorWithReflection SetAccessor
         {
             get { return setAccessor; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public PropertyInfo PropertyInfo
         {
-            get { return property.ClassVisibility(); }
+            get { return property; }
         }
-        
-       /* public void Accept(IReflectionVisitor visitor)
-        {
-            visitor.VisitPropertyWithReflection(this);
-        }
-
-        public void AcceptChildren(IReflectionVisitor visitor)
-        {
-            AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }*/
     }
 }

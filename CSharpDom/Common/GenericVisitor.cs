@@ -79,6 +79,7 @@ namespace CSharpDom.Common
             VisitCollection(@class.ImplementedInterfaces, visitor);
             VisitCollection(@class.Attributes, visitor);
             VisitCollection(@class.GenericParameters, visitor);
+            VisitTypeChildren(@class, visitor);
         }
 
         public static void VisitClassReferenceChildren<TGenericParameter>(

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using System.Reflection;
+using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
@@ -13,73 +14,64 @@ namespace CSharpDom.Reflection
             ITypeReferenceWithReflection,
             ParameterWithReflection>
     {
+        private readonly MethodInfo method;
+        private readonly IBasicTypeWithReflection declaringType;
+        private readonly Lazy<Attributes> attributes;
+        private readonly Lazy<GenericParameterDeclarations> genericParameters;
+        private readonly ITypeReferenceWithReflection returnType;
+        private readonly Lazy<Parameters> parameters;
+
         internal InterfaceMethodWithReflection(IBasicTypeWithReflection declaringType, MethodInfo method)
         {
-
+            this.method = method;
+            this.declaringType = declaringType;
+            attributes = new Lazy<Attributes>(() => new Attributes(method));
+            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(method));
+            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
+            parameters = new Lazy<Parameters>(() => new Parameters(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return attributes.Value.AttributesWithReflection; }
         }
 
         public override IBasicTypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return declaringType; }
         }
 
         public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return genericParameters.Value.GenericParameterDeclarationsWithReflection; }
         }
 
         public override InterfaceMemberInheritanceModifier InheritanceModifier
         {
             get
             {
-                throw new NotImplementedException();
-            }
-        }
+                if (method.IsHideBySig)
+                {
+                    return InterfaceMemberInheritanceModifier.New;
+                }
 
-        public override bool IsAsync
-        {
-            get
-            {
-                throw new NotImplementedException();
+                return InterfaceMemberInheritanceModifier.None;
             }
         }
         
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Name; }
         }
 
         public override IReadOnlyList<ParameterWithReflection> Parameters
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return parameters.Value.ParametersWithReflection; }
         }
 
         public override ITypeReferenceWithReflection ReturnType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return returnType; }
         }
     }
 }

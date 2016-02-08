@@ -16,10 +16,21 @@ namespace CSharpDom.Reflection
             ClassAccessorWithReflection>
     {
         private readonly IndexerWithReflection indexer;
+        private readonly ClassAccessorWithReflection getAccessor;
+        private readonly ClassAccessorWithReflection setAccessor;
 
         internal ClassIndexerWithReflection(ITypeWithReflection declaringType, PropertyInfo indexer)
         {
             this.indexer = new IndexerWithReflection(declaringType, indexer);
+            if (this.indexer.GetAccessor != null)
+            {
+                getAccessor = new ClassAccessorWithReflection(this, this.indexer.GetAccessor);
+            }
+
+            if (this.indexer.SetAccessor != null)
+            {
+                setAccessor = new ClassAccessorWithReflection(this, this.indexer.SetAccessor);
+            }
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -34,7 +45,7 @@ namespace CSharpDom.Reflection
 
         public override ClassAccessorWithReflection GetAccessor
         {
-            get { return indexer.GetAccessor; }
+            get { return getAccessor; }
         }
 
         public override ITypeReferenceWithReflection IndexerType
@@ -55,7 +66,7 @@ namespace CSharpDom.Reflection
 
         public override ClassAccessorWithReflection SetAccessor
         {
-            get { return indexer.SetAccessor; }
+            get { return setAccessor; }
         }
 
         public override ClassMemberVisibilityModifier Visibility

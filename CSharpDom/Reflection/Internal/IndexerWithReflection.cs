@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection.Internal
             ITypeWithReflection,
             ITypeReferenceWithReflection,
             ParameterWithReflection,
-            ClassAccessorWithReflection>,
+            AccessorWithReflection>,
         IHasPropertyInfo
     {
         private readonly ITypeWithReflection declaringType;
@@ -21,8 +21,8 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithReflection indexerType;
         private readonly Lazy<Parameters> parameters;
-        private readonly ClassAccessorWithReflection getAccessor;
-        private readonly ClassAccessorWithReflection setAccessor;
+        private readonly AccessorWithReflection getAccessor;
+        private readonly AccessorWithReflection setAccessor;
 
         internal IndexerWithReflection(ITypeWithReflection declaringType, PropertyInfo indexer)
         {
@@ -33,12 +33,12 @@ namespace CSharpDom.Reflection.Internal
             parameters = new Lazy<Parameters>(() => new Parameters(indexer));
             if (indexer.GetMethod != null)
             {
-                getAccessor = new ClassAccessorWithReflection(null, indexer.GetMethod);
+                getAccessor = new AccessorWithReflection(indexer.GetMethod);
             }
 
             if (indexer.SetMethod != null)
             {
-                setAccessor = new ClassAccessorWithReflection(null, indexer.SetMethod);
+                setAccessor = new AccessorWithReflection(indexer.SetMethod);
             }
         }
 
@@ -52,7 +52,7 @@ namespace CSharpDom.Reflection.Internal
             get { return declaringType; }
         }
 
-        public override ClassAccessorWithReflection GetAccessor
+        public override AccessorWithReflection GetAccessor
         {
             get { return getAccessor; }
         }
@@ -72,7 +72,7 @@ namespace CSharpDom.Reflection.Internal
             get { return indexer; }
         }
 
-        public override ClassAccessorWithReflection SetAccessor
+        public override AccessorWithReflection SetAccessor
         {
             get { return setAccessor; }
         }

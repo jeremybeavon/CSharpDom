@@ -18,8 +18,6 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
         
-        public abstract bool IsAsync { get; }
-        
         public abstract string Name { get; }
 
         public abstract IReadOnlyList<TParameter> Parameters { get; }

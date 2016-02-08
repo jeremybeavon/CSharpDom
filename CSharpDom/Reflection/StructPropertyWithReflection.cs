@@ -12,69 +12,59 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
-            ClassAccessorWithReflection>
+            StructAccessorWithReflection>
     {
         private readonly PropertyWithReflection property;
+        private readonly StructAccessorWithReflection getAccessor;
+        private readonly StructAccessorWithReflection setAccessor;
 
         internal StructPropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
         {
             this.property = new PropertyWithReflection(declaringType, property);
+            if (this.property.GetAccessor != null)
+            {
+                getAccessor = new StructAccessorWithReflection(this, this.property.GetAccessor);
+            }
+
+            if (this.property.SetAccessor != null)
+            {
+                setAccessor = new StructAccessorWithReflection(this, this.property.SetAccessor);
+            }
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.DeclaringType; }
         }
 
-        public override ClassAccessorWithReflection GetAccessor
+        public override StructAccessorWithReflection GetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return getAccessor; }
         }
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Name; }
         }
 
         public override ITypeReferenceWithReflection PropertyType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.PropertyType; }
         }
 
-        public override ClassAccessorWithReflection SetAccessor
+        public override StructAccessorWithReflection SetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return setAccessor; }
         }
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.PropertyInfo.StructVisibility(); }
         }
     }
 }

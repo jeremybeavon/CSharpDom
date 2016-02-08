@@ -80,7 +80,8 @@
     <Compile Include="Classes\ClassWith1GenericParameter.cs" />
     <Compile Include="Classes\ClassWith2GenericParameters.cs" />
     <Compile Include="Classes\ClassWithBaseClass.cs" />
-    <Compile Include="Classes\ClassWithDestructor.cs" />
+    <Compile Include="Classes\Destructors\ClassWithDestructorWith1Attribute.cs" />
+    <Compile Include="Classes\Destructors\ClassWithDestructor.cs" />
     <Compile Include="Classes\ClassWithGenericParameterBaseClassConstraint.cs" />
     <Compile Include="Classes\ClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
     <Compile Include="Classes\ClassWithGenericParameterClassAndEmptyConstructorConstraints.cs" />
@@ -90,8 +91,8 @@
     <Compile Include="Classes\ClassWithGenericParameterStructConstraint.cs" />
     <Compile Include="Classes\ClassWithGenericParameterClassConstraint.cs" />
     <Compile Include="Classes\ClassWith1ImplementedInterface.cs" />
-    <Compile Include="Classes\ClassWithExplicitConversionOperator.cs" />
-    <Compile Include="Classes\ClassWithImplicitConversionOperator.cs" />
+    <Compile Include="Classes\ConversionOperators\ClassWithExplicitConversionOperator.cs" />
+    <Compile Include="Classes\ConversionOperators\ClassWithImplicitConversionOperator.cs" />
     <Compile Include="Classes\Constructors\ClassWithPublicConstructor.cs" />
     <Compile Include="Classes\Constructors\ClassWithProtectedConstructor.cs" />
     <Compile Include="Classes\Constructors\ClassWithProtectedInternalConstructor.cs" />

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IArrayTypeReference : IVisitable<IGenericVisitor>
+    public interface IArrayTypeReference : ITypeReference
     {
     }
 }

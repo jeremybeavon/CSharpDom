@@ -6,6 +6,8 @@ namespace CSharpDom.Serialization
 {
     public sealed class ClassConstructor : IClassConstructor<AttributeGroup, IClassType, Parameter, MethodBody>
     {
+        private IClassType declaringType;
+
         public ClassConstructor()
         {
             Attributes = new List<AttributeGroup>();
@@ -18,7 +20,7 @@ namespace CSharpDom.Serialization
 
         public IClassType DeclaringType
         {
-            get { return null; }
+            get { return declaringType; }
         }
 
         public List<Parameter> Parameters { get; set; }
@@ -33,6 +35,11 @@ namespace CSharpDom.Serialization
         IReadOnlyList<Parameter> IHasParameters<Parameter>.Parameters
         {
             get { return Parameters; }
+        }
+
+        public void AttachDeclaringType(IClassType @class)
+        {
+            declaringType = @class;
         }
 
         public void Accept(IGenericVisitor visitor)

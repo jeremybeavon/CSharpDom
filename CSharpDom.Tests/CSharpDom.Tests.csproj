@@ -112,7 +112,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -158,8 +160,6 @@
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith2GenericParameters.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith2ImplementedInterfaces.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithBaseClass.cs" />
-    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithDestructor.cs" />
-    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithExplicitConversionOperator.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterBaseClassConstraint.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterClassAndEmptyConstructorConstraints.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
@@ -168,7 +168,6 @@
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterGenericParameterConstraint.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterInterfaceConstraint.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithGenericParameterStructConstraint.cs" />
-    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWithImplicitConversionOperator.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\InternalClass.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\PublicClass.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithInternalConstructor.cs" />
@@ -315,7 +314,32 @@
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterInterfaceConstraint.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithGenericParameterStructConstraint.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\StructWithImplicitConversionOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ConversionOperators\ClassWithExplicitConversionOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ConversionOperators\ClassWithImplicitConversionOperator.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Destructors\ClassWithDestructor.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Destructors\ClassWithDestructorWith1Attribute.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithConstField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithInternalField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithNewField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithNewStaticField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithNewStaticReadOnlyField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithNewStaticVolatileField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithNewVolatileField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithPrivateField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithProtectedField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithProtectedInternalField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithPublicField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithReadOnlyField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithStaticField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithStaticReadOnlyField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithStaticVolatileField.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Fields\ClassWithVolatileField.cs" />
+    <Compile Include="Reflection\ClassEventWithReflectionTests.cs" />
+    <Compile Include="Reflection\ClassEventPropertyWithReflectionTests.cs" />
     <Compile Include="Reflection\ClassWithReflectionTests.cs" />
+    <Compile Include="Reflection\ConversionOperatorWithReflectionTests.cs" />
+    <Compile Include="Reflection\ClassConstructorWithReflectionTests.cs" />
+    <Compile Include="Reflection\DestructorWithReflectionTests.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

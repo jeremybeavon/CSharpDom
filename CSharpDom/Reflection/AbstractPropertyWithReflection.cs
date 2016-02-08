@@ -23,18 +23,12 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.DeclaringType; }
         }
 
         public override AbstractAccessorWithReflection GetAccessor

@@ -10,31 +10,24 @@ namespace CSharpDom.Reflection
 {
     public sealed class ClassAccessorWithReflection :
         AbstractClassAccessor<AttributeWithReflection, ILMethodBodyWithReflectionEmit>,
-        IHasMethodInfo,
-        //IVisitable<IReflectionVisitor>,
-        IStructAccessor
+        IHasMethodInfo
     {
         private readonly ClassMemberVisibilityModifier visibility;
-        private readonly MethodInfo method;
-        private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
+        private readonly AccessorWithReflection accessor;
 
-        internal ClassAccessorWithReflection(IHasClassMemberVisibilityModifier parentVisibility, MethodInfo method)
+        internal ClassAccessorWithReflection(IHasClassMemberVisibilityModifier parentVisibility, AccessorWithReflection accessor)
         {
-            this.method = method;
-            attributes = new Lazy<Attributes>(() => new Attributes(method));
-            visibility = method.ClassVisibility();
+            this.accessor = accessor;
+            visibility = accessor.MethodInfo.ClassVisibility();
             if (parentVisibility.Visibility == visibility)
             {
                 visibility = ClassMemberVisibilityModifier.None;
             }
-
-            body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get { return attributes.Value.AttributesWithReflection; }
+            get { return accessor.Attributes; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
@@ -44,12 +37,12 @@ namespace CSharpDom.Reflection
 
         public MethodInfo MethodInfo
         {
-            get { return method; }
+            get { return accessor.MethodInfo; }
         }
 
         public override ILMethodBodyWithReflectionEmit Body
         {
-            get { return body.Value; }
+            get { return accessor.Body; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

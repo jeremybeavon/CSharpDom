@@ -22,58 +22,37 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedDelegate.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedDelegate.DeclaringType; }
         }
 
         public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedDelegate.GenericParameters; }
         }
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedDelegate.Name; }
         }
 
         public override IReadOnlyList<ParameterWithReflection> Parameters
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedDelegate.Parameters; }
         }
 
         public override ITypeReferenceWithReflection ReturnType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedDelegate.ReturnType; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedDelegate.Type.ClassMemberVisibility(); }
         }
     }
 }
