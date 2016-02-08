@@ -35,9 +35,10 @@ namespace CSharpDom.Reflection
             get { return field.FieldType; }
         }
 
-        public override FieldModifier Modifier
+        public override StructFieldModifier Modifier
         {
-            get { return field.Modifier; }
+            get { throw new NotImplementedException(); }
+            //get { return field.Modifier; }
         }
 
         public override string Name

@@ -11,6 +11,8 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : IStaticType
         where TTypeReference : ITypeReference
     {
+        public abstract StaticClassFieldModifier Modifier { get; }
+
         public abstract StaticClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)

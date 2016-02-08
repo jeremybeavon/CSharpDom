@@ -32,34 +32,22 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        /*public override StaticClassMemberVisibilityModifier Visibility
+        public override StaticClassMemberVisibilityModifier Visibility
         {
             get
             {
                 switch (visibility)
                 {
                     case ClassAccessorVisibilityModifier.None:
-                        return CSharpDom.ClassMemberVisibilityModifier.None;
+                        return StaticClassMemberVisibilityModifier.None;
                     case ClassAccessorVisibilityModifier.Internal:
-                        return CSharpDom.ClassMemberVisibilityModifier.Internal;
-                    case ClassAccessorVisibilityModifier.ProtectedInternal:
-                        return CSharpDom.ClassMemberVisibilityModifier.ProtectedInternal;
-                    case ClassAccessorVisibilityModifier.Protected:
-                        return CSharpDom.ClassMemberVisibilityModifier.Protected;
+                        return StaticClassMemberVisibilityModifier.Internal;
                     case ClassAccessorVisibilityModifier.Private:
-                        return CSharpDom.ClassMemberVisibilityModifier.Private;
+                        return StaticClassMemberVisibilityModifier.Private;
                     default:
                         throw new NotSupportedException();
                 }
             }
-        }*/
+        }
     }
 }

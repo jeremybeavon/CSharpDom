@@ -27,6 +27,7 @@ namespace CSharpDom.Serialization
             Enums = new List<Enum>();
             Interfaces = new List<Interface>();
             ModuleAttributes = new List<AttributeGroup>();
+            Namespaces = new List<Namespace>();
             Structs = new List<Struct>();
             UsingDirectives = new List<UsingDirective>();
         }

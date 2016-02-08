@@ -1,8 +1,4 @@
 ﻿using CSharpDom.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CSharpDom.Search
@@ -17,7 +13,7 @@ namespace CSharpDom.Search
             this.solution = solution;
         }
 
-        public Task<TClass> FindClassByNameAsync<TClass>(string name)
+        public Task<TClass> ClassByNameAsync<TClass>(string name)
             where TClass : IClass
         {
             return SearchSolutionAsync(new FindClassByNameVisitor<TClass>(name));

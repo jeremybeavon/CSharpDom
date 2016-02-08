@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom
 {
-    public enum FieldModifier
+    public enum StructFieldModifier
     {
         None,
         Const,

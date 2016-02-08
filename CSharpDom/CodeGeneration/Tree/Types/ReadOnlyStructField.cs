@@ -32,7 +32,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return fieldType; }
         }
 
-        public override FieldModifier Modifier
+        public override StructFieldModifier Modifier
         {
             get { return field.Modifier; }
         }

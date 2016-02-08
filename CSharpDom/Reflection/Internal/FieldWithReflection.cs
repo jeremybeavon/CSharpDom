@@ -43,41 +43,41 @@ namespace CSharpDom.Reflection.Internal
             get { return fieldType; }
         }
 
-        public override FieldModifier Modifier
+        public ClassFieldModifier Modifier
         {
             get
             {
                 if (field.IsLiteral)
                 {
-                    return FieldModifier.Const;
+                    return ClassFieldModifier.Const;
                 }
 
                 if (field.IsStatic)
                 {
                     if (field.IsInitOnly)
                     {
-                        return FieldModifier.StaticReadOnly;
+                        return ClassFieldModifier.StaticReadOnly;
                     }
 
                     if (field.IsVolatile())
                     {
-                        return FieldModifier.StaticVolatile;
+                        return ClassFieldModifier.StaticVolatile;
                     }
 
-                    return FieldModifier.Static;
+                    return ClassFieldModifier.Static;
                 }
 
                 if (field.IsInitOnly)
                 {
-                    return FieldModifier.ReadOnly;
+                    return ClassFieldModifier.ReadOnly;
                 }
 
                 if (field.IsVolatile())
                 {
-                    return FieldModifier.Volatile;
+                    return ClassFieldModifier.Volatile;
                 }
 
-                return FieldModifier.None;
+                return ClassFieldModifier.None;
             }
         }
 

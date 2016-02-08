@@ -20,7 +20,7 @@ namespace CSharpDom.Serialization
 
         public TypeReference FieldType { get; set; }
 
-        public FieldModifier Modifier { get; set; }
+        public ClassFieldModifier Modifier { get; set; }
 
         public string Name { get; set; }
 

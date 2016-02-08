@@ -3,7 +3,6 @@
     public interface IField<TAttributeGroup, TDeclaringType, TTypeReference> :
         IField,
         IHasName,
-        IHasFieldModifier,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
         IHasFieldType<TTypeReference>

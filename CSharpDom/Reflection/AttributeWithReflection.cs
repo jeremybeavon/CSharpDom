@@ -1,46 +1,40 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using CSharpDom.BaseClasses;
-using CSharpDom.Common;
 using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
     public class AttributeWithReflection :
-        AbstractAttribute<ClassReferenceWithReflection, UnnamedAttributeValueWithReflection, NamedAttributeValueWithReflection>,
-        IAttributeGroup<AttributeWithReflection>//,
+        AbstractAttributeGroup<IAttributeWithReflection>,
+        IAttributeWithReflection//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly ClassReferenceWithReflection attributeType;
-        private readonly IReadOnlyCollection<NamedAttributeValueWithReflection> namedAttributeValues;
-        private readonly IReadOnlyList<UnnamedAttributeValueWithReflection> unnamedAttributeValues;
+        private readonly IAttributeWithReflection attribute;
 
         internal AttributeWithReflection(CustomAttributeData attribute)
         {
-            attributeType = new ClassReferenceWithReflection(attribute.AttributeType);
-            namedAttributeValues = attribute.NamedArguments.Select(value => new NamedAttributeValueWithReflection(value)).ToList();
-            unnamedAttributeValues = attribute.ConstructorArguments.Select(value => new UnnamedAttributeValueWithReflection(value)).ToList();
+            this.attribute = new InternalAttributeWithReflection(attribute);
         }
 
-        public IReadOnlyCollection<AttributeWithReflection> Attributes
+        public override IReadOnlyCollection<IAttributeWithReflection> Attributes
         {
-            get { return new AttributeWithReflection[] { this }; }
+            get { return new IAttributeWithReflection[] { attribute }; }
         }
 
-        public override ClassReferenceWithReflection AttributeType
+        public ClassReferenceWithReflection AttributeType
         {
-            get { return attributeType; }
+            get { return attribute.AttributeType; }
         }
 
-        public override IReadOnlyCollection<NamedAttributeValueWithReflection> NamedValues
+        public IReadOnlyCollection<NamedAttributeValueWithReflection> NamedValues
         {
-            get { return namedAttributeValues; }
+            get { return attribute.NamedValues; }
         }
 
-        public override IReadOnlyList<UnnamedAttributeValueWithReflection> UnnamedValues
+        public IReadOnlyList<UnnamedAttributeValueWithReflection> UnnamedValues
         {
-            get { return unnamedAttributeValues; }
+            get { return attribute.UnnamedValues; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

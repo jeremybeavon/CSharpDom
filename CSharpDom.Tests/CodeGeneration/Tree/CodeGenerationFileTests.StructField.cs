@@ -224,7 +224,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
-                                    Modifier = FieldModifier.Const,
+                                    Modifier = StructFieldModifier.Const,
                                     Fields =
                                     {
                                         new Field("field1")
@@ -257,7 +257,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
-                                    Modifier = FieldModifier.Static,
+                                    Modifier = StructFieldModifier.Static,
                                     Fields =
                                     {
                                         new Field("field1")
@@ -290,7 +290,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
-                                    Modifier = FieldModifier.ReadOnly,
+                                    Modifier = StructFieldModifier.ReadOnly,
                                     Fields =
                                     {
                                         new Field("field1")
@@ -323,7 +323,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
-                                    Modifier = FieldModifier.StaticReadOnly,
+                                    Modifier = StructFieldModifier.StaticReadOnly,
                                     Fields =
                                     {
                                         new Field("field1")
@@ -356,7 +356,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
-                                    Modifier = FieldModifier.Volatile,
+                                    Modifier = StructFieldModifier.Volatile,
                                     Fields =
                                     {
                                         new Field("field1")
@@ -389,7 +389,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new StructField(new TypeReference("string"))
                                 {
                                     Visibility = StructMemberVisibilityModifier.Public,
-                                    Modifier = FieldModifier.StaticVolatile,
+                                    Modifier = StructFieldModifier.StaticVolatile,
                                     Fields =
                                     {
                                         new Field("field1")

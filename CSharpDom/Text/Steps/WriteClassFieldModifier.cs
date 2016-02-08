@@ -1,28 +1,28 @@
 ﻿namespace CSharpDom.Text.Steps
 {
-    public sealed class WriteFieldModifier : ISourceCodeBuilderStep
+    public sealed class WriteClassFieldModifier : ISourceCodeBuilderStep
     {
-        public WriteFieldModifier(FieldModifier modifier)
+        public WriteClassFieldModifier(ClassFieldModifier modifier)
         {
             Modifier = modifier;
         }
 
-        public FieldModifier Modifier { get; private set; }
+        public ClassFieldModifier Modifier { get; private set; }
 
         public void AddText(SourceCodeTextBuilder builder)
         {
             switch (Modifier)
             {
-                case FieldModifier.Const:
+                case ClassFieldModifier.Const:
                     builder.Append("const");
                     break;
-                case FieldModifier.ReadOnly:
+                case ClassFieldModifier.ReadOnly:
                     builder.Append("readonly");
                     break;
-                case FieldModifier.Static:
+                case ClassFieldModifier.Static:
                     builder.Append("static");
                     break;
-                case FieldModifier.Volatile:
+                case ClassFieldModifier.Volatile:
                     builder.Append("volatile");
                     break;
             }

@@ -9,6 +9,9 @@ namespace CSharpDom.Serialization
         public ArrayTypeReference ArrayTypeReference { get; set; }
 
         [DefaultValue(null)]
+        public BuiltInTypeReference BuiltInTypeReference { get; set; }
+
+        [DefaultValue(null)]
         public ClassReference ClassReference { get; set; }
 
         [DefaultValue(null)]

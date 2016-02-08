@@ -12,7 +12,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 
-        public FieldModifier Modifier { get; set; }
+        public StructFieldModifier Modifier { get; set; }
         
         public TypeReference Type { get; set; }
 

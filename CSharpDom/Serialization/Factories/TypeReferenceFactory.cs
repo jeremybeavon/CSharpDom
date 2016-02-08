@@ -17,6 +17,14 @@ namespace CSharpDom.Serialization.Factories
             };
         }
 
+        public override void VisitBuiltInTypeReference(IBuiltInTypeReference builtInTypeReference)
+        {
+            Value = new TypeReference()
+            {
+                BuiltInTypeReference = new BuiltInTypeReferenceFactory(builtInTypeReference).Value
+            };
+        }
+
         public override void VisitClassReference<TGenericParameter>(IClassReference<TGenericParameter> classReference)
         {
             Value = new TypeReference()

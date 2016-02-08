@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using System.Reflection;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
-using CSharpDom.NotSupported;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -23,6 +23,8 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithReflection returnType;
         private readonly Lazy<Parameters> parameters;
+        private readonly Lazy<bool> isAsync;
+        private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
         internal MethodWithReflection(ITypeWithReflection declaringType, MethodInfo method)
         {
@@ -32,6 +34,8 @@ namespace CSharpDom.Reflection.Internal
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(method));
             returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
             parameters = new Lazy<Parameters>(() => new Parameters(method));
+            isAsync = new Lazy<bool>(() => method.IsDefined(typeof(AsyncStateMachineAttribute)));
+            body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -51,7 +55,7 @@ namespace CSharpDom.Reflection.Internal
         
         public override bool IsAsync
         {
-            get { return false; }
+            get { return isAsync.Value; }
         }
         
         public MethodInfo MethodInfo
@@ -76,7 +80,7 @@ namespace CSharpDom.Reflection.Internal
         
         public override ILMethodBodyWithReflectionEmit Body
         {
-            get { throw new NotImplementedException(); }
+            get { return body.Value; }
         }
         
     }

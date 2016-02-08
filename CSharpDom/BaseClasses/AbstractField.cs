@@ -16,8 +16,6 @@ namespace CSharpDom.BaseClasses
 
         public abstract TTypeReference FieldType { get; }
 
-        public abstract FieldModifier Modifier { get; }
-
         public abstract string Name { get; }
 
         public virtual void Accept(IGenericVisitor visitor)

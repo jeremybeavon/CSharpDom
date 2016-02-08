@@ -11,6 +11,8 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : ISealedType
         where TTypeReference : ITypeReference
     {
+        public abstract ClassFieldModifier Modifier { get; }
+
         public abstract SealedClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)

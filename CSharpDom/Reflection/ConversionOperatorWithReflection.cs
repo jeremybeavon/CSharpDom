@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.NotSupported;
+using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             ITypeReferenceWithReflection,
             ParameterWithReflection,
-            MethodBodyNotSupported>,
+            ILMethodBodyWithReflectionEmit>,
         IHasMethodInfo//,
         //IVisitable<IReflectionVisitor>
     {
@@ -22,6 +23,8 @@ namespace CSharpDom.Reflection
         private readonly Lazy<Attributes> attributes;
         private readonly ParameterWithReflection parameter;
         private readonly ITypeReferenceWithReflection returnType;
+        private readonly Lazy<Attributes> returnAttributes;
+        private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
         internal ConversionOperatorWithReflection(ITypeWithReflection declaringType, MethodInfo method)
         {
@@ -30,6 +33,8 @@ namespace CSharpDom.Reflection
             attributes = new Lazy<Attributes>(() => new Attributes(method));
             parameter = new ParameterWithReflection(method.GetParameters()[0]);
             returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
+            returnAttributes = new Lazy<Attributes>(() => new Attributes(method.ReturnParameter));
+            body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -65,10 +70,7 @@ namespace CSharpDom.Reflection
         
         public override IReadOnlyCollection<AttributeWithReflection> ReturnAttributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return returnAttributes.Value.AttributesWithReflection; }
         }
 
         public override ITypeReferenceWithReflection ReturnType
@@ -81,9 +83,9 @@ namespace CSharpDom.Reflection
             get { return method; }
         }
 
-        public override MethodBodyNotSupported Body
+        public override ILMethodBodyWithReflectionEmit Body
         {
-            get { return new MethodBodyNotSupported(); }
+            get { return body.Value; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

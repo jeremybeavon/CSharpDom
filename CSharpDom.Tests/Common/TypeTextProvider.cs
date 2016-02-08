@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using CSharpDom.Reflection;
 
 namespace CSharpDom.Tests.Common
 {
@@ -23,7 +20,7 @@ namespace CSharpDom.Tests.Common
 
         private static string GetResourceName(Type type)
         {
-            return "CSharpDom.Tests.ExpectedResults." + type.Namespace + "." + type.Name + ".cs";
+            return "CSharpDom.Tests.ExpectedResults." + type.Namespace + "." + type.Name() + ".cs";
         }
     }
 }

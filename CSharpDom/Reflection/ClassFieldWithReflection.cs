@@ -35,7 +35,7 @@ namespace CSharpDom.Reflection
             get { return field.FieldType; }
         }
 
-        public override FieldModifier Modifier
+        public override ClassFieldModifier Modifier
         {
             get { return field.Modifier; }
         }

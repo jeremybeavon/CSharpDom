@@ -6,6 +6,7 @@ using CSharpDom.Text.Steps.Statements;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CSharpDom.Text
 {
@@ -15,10 +16,17 @@ namespace CSharpDom.Text
         private readonly ITypeReference accessorType;
         private readonly string emptyBodyText;
         private ISourceCodeBuilderStep explicitInterface;
+        private bool isAttribute;
 
         public SourceCodeStepsBuilder()
         {
             Steps = new List<ISourceCodeBuilderStep>();
+        }
+
+        internal SourceCodeStepsBuilder(bool isAttribute)
+            : this()
+        {
+            this.isAttribute = isAttribute;
         }
 
         internal SourceCodeStepsBuilder(string emptyBodyText)
@@ -125,7 +133,7 @@ namespace CSharpDom.Text
         public override void VisitAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>(
             IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue> attribute)
         {
-            Steps.Add(new WriteChildNode<TClassReference>(attribute.AttributeType));
+            Steps.Add(new WriteChildNode<TClassReference>(attribute.AttributeType, new SourceCodeStepsBuilder(true)));
             if (attribute.UnnamedValues.Count == 0 && attribute.NamedValues.Count == 0)
             {
                 return;
@@ -176,6 +184,12 @@ namespace CSharpDom.Text
 
         public override void VisitClassReference<TGenericParameter>(IClassReference<TGenericParameter> classReference)
         {
+            if (isAttribute)
+            {
+                Steps.Add(new WriteName(Regex.Replace(classReference.Name, "Attribute$", string.Empty)));
+                return;
+            }
+
             Steps.Add(new WriteName(classReference.Name));
             Steps.AddGenericParameterSteps(classReference.GenericParameters);
         }
@@ -409,6 +423,7 @@ namespace CSharpDom.Text
             IClassField<TAttributeGroup, TDeclaringType, TTypeReference> field)
         {
             Steps.AddClassMemberVisibilityModifierSteps(field.Visibility);
+            Steps.AddClassFieldModifierSteps(field.Modifier);
             VisitField(field);
         }
 
@@ -422,7 +437,6 @@ namespace CSharpDom.Text
         public override void VisitField<TAttributeGroup, TDeclaringType, TTypeReference>(
             IField<TAttributeGroup, TDeclaringType, TTypeReference> field)
         {
-            Steps.AddFieldModifierSteps(field.Modifier);
             Steps.Add(new WriteChildNode<TTypeReference>(field.FieldType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(field.Name));

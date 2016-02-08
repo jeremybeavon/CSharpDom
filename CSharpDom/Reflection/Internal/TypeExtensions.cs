@@ -88,6 +88,26 @@ namespace CSharpDom.Reflection.Internal
             return ClassMemberVisibilityModifier.None;
         }
 
+        public static StaticClassMemberVisibilityModifier StaticClassMemberVisibility(this Type type)
+        {
+            if (type.IsPublic)
+            {
+                return StaticClassMemberVisibilityModifier.Public;
+            }
+
+            return StaticClassMemberVisibilityModifier.None;
+        }
+
+        public static SealedClassMemberVisibilityModifier SealedClassMemberVisibility(this Type type)
+        {
+            if (type.IsPublic)
+            {
+                return SealedClassMemberVisibilityModifier.Public;
+            }
+
+            return SealedClassMemberVisibilityModifier.None;
+        }
+
         public static StructMemberVisibilityModifier StructMemberVisibility(this Type type)
         {
             if (type.IsPublic)

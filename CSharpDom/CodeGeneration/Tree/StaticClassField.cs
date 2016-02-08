@@ -12,7 +12,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public StaticClassMemberVisibilityModifier Visibility { get; set; }
 
-        public FieldModifier Modifier { get; set; }
+        public StaticClassFieldModifier Modifier { get; set; }
         
         public TypeReference Type { get; set; }
 

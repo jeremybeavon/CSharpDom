@@ -11,6 +11,8 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : IStructType
         where TTypeReference : ITypeReference
     {
+        public abstract StructFieldModifier Modifier { get; }
+
         public abstract StructMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)

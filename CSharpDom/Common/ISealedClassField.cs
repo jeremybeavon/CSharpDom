@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface ISealedClassField : ISealedClassMember, IField
+    public interface ISealedClassField : ISealedClassMember, IField, IHasClassFieldModifier
     {
     }
 }

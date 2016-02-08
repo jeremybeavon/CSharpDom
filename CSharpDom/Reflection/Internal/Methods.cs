@@ -22,7 +22,11 @@ namespace CSharpDom.Reflection.Internal
             MethodInfo destructorMethod = new Action(Finalize).Method;
             foreach (MethodInfo method in type.GetAllMethods())
             {
-                if (!method.IsSpecialName)
+                if (method.GetBaseDefinition() == destructorMethod)
+                {
+                    Destructor = method;
+                }
+                else if (!method.IsSpecialName)
                 {
                     if (interfaceMethods.Contains(method))
                     {
@@ -44,10 +48,6 @@ namespace CSharpDom.Reflection.Internal
                 else if (method.Name.StartsWith("op_"))
                 {
                     operatorOverloads.Add(new OperatorOverloadWithReflection(declaringType, method));
-                }
-                else if (method.GetBaseDefinition() == destructorMethod)
-                {
-                    Destructor = method;
                 }
             }
 

@@ -409,24 +409,24 @@ namespace CSharpDom.Text
             steps.Add(new WriteWhitespace());
         }
 
-        internal static void AddFieldModifierSteps(this List<ISourceCodeBuilderStep> steps, FieldModifier modifier)
+        internal static void AddClassFieldModifierSteps(this List<ISourceCodeBuilderStep> steps, ClassFieldModifier modifier)
         {
             switch (modifier)
             {
-                case FieldModifier.None:
+                case ClassFieldModifier.None:
                     return;
-                case FieldModifier.StaticReadOnly:
-                    steps.Add(new WriteFieldModifier(FieldModifier.Static));
+                case ClassFieldModifier.StaticReadOnly:
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.Static));
                     steps.Add(new WriteWhitespace());
-                    steps.Add(new WriteFieldModifier(FieldModifier.ReadOnly));
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.ReadOnly));
                     break;
-                case FieldModifier.StaticVolatile:
-                    steps.Add(new WriteFieldModifier(FieldModifier.Static));
+                case ClassFieldModifier.StaticVolatile:
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.Static));
                     steps.Add(new WriteWhitespace());
-                    steps.Add(new WriteFieldModifier(FieldModifier.Volatile));
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.Volatile));
                     break;
                 default:
-                    steps.Add(new WriteFieldModifier(modifier));
+                    steps.Add(new WriteClassFieldModifier(modifier));
                     break;
             }
 
