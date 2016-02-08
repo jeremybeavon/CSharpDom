@@ -14,10 +14,12 @@ namespace CSharpDom.Reflection
             ITypeReferenceWithReflection>
     {
         private readonly FieldWithReflection field;
+        private readonly IInternalTypeWithReflection declaringType;
 
-        internal ClassFieldWithReflection(ITypeWithReflection declaringType, FieldInfo field)
+        internal ClassFieldWithReflection(IInternalTypeWithReflection declaringType, FieldInfo field)
         {
             this.field = new FieldWithReflection(declaringType, field);
+            this.declaringType = declaringType;
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -47,36 +49,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get
-            {
-                FieldInfo fieldInfo = field.FieldInfo;
-                if (fieldInfo.IsPublic)
-                {
-                    return ClassMemberVisibilityModifier.Public;
-                }
-
-                if (fieldInfo.IsAssembly)
-                {
-                    return ClassMemberVisibilityModifier.Internal;
-                }
-
-                if (fieldInfo.IsFamilyOrAssembly)
-                {
-                    return ClassMemberVisibilityModifier.ProtectedInternal;
-                }
-
-                if (fieldInfo.IsFamily)
-                {
-                    return ClassMemberVisibilityModifier.Protected;
-                }
-
-                if (fieldInfo.IsPrivate)
-                {
-                    return ClassMemberVisibilityModifier.Private;
-                }
-
-                return ClassMemberVisibilityModifier.None;
-            }
+            get { return field.FieldInfo.ClassVisibility(); }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Internal;
+using CSharpDom.Reflection.Internal.Hiding;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -37,6 +38,7 @@ namespace CSharpDom.Reflection
             ExplicitInterfaceIndexerWithReflection,
             ExplicitInterfaceMethodWithReflection>,
         ITypeWithReflection,
+        IInternalTypeWithReflection,
         IHasType//,
         //IVisitable<IReflectionVisitor>
     {
@@ -46,6 +48,7 @@ namespace CSharpDom.Reflection
         private readonly ClassReferenceWithReflection baseClass;
         private readonly ClassTypeWithReflection typeWithReflection;
         private readonly Lazy<DestructorWithReflection> destructor;
+        private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
 
         internal ClassWithReflection(AssemblyWithReflection assembly, NamespaceWithReflection @namespace, Type type)
         {
@@ -57,6 +60,7 @@ namespace CSharpDom.Reflection
                 baseClass = new ClassReferenceWithReflection(type.BaseType);
             }
 
+            hiddenMembersAnalyzer = new HiddenMembersAnalyzer(type);
             typeWithReflection = new ClassTypeWithReflection(this, type);
             destructor = new Lazy<DestructorWithReflection>(InitializeDestructor);
         }
@@ -214,6 +218,11 @@ namespace CSharpDom.Reflection
         public override AssemblyWithReflection Document
         {
             get { return assembly; }
+        }
+
+        HiddenMembersAnalyzer IInternalTypeWithReflection.HiddenMembersAnalyzer
+        {
+            get { return hiddenMembersAnalyzer; }
         }
 
         private DestructorWithReflection InitializeDestructor()

@@ -15,10 +15,12 @@ namespace CSharpDom.Reflection
             ILMethodBodyWithReflectionEmit>
     {
         private readonly EventPropertyWithReflection @event;
+        private readonly IInternalTypeWithReflection declaringType;
 
-        internal ClassEventPropertyWithReflection(ITypeWithReflection declaringType, EventInfo @event)
+        internal ClassEventPropertyWithReflection(IInternalTypeWithReflection declaringType, EventInfo @event)
         {
             this.@event = new EventPropertyWithReflection(declaringType, @event);
+            this.declaringType = declaringType;
         }
 
         public override ILMethodBodyWithReflectionEmit AddBody
@@ -43,7 +45,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return @event.EventInfo.AddMethod.InheritanceModifier(); }
+            get { return @event.EventInfo.InheritanceModifier(declaringType); }
         }
 
         public override string Name
@@ -58,7 +60,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return @event.EventInfo.AddMethod.ClassVisibility(); }
+            get { return @event.EventInfo.ClassVisibility(); }
         }
     }
 }

@@ -17,10 +17,12 @@ namespace CSharpDom.Reflection
             ILMethodBodyWithReflectionEmit>
     {
         private readonly MethodWithReflection method;
+        private readonly IInternalTypeWithReflection declaringType;
 
-        internal SealedClassMethodWithReflection(ITypeWithReflection declaringType, MethodInfo method)
+        internal SealedClassMethodWithReflection(IInternalTypeWithReflection declaringType, MethodInfo method)
         {
             this.method = new MethodWithReflection(declaringType, method);
+            this.declaringType = declaringType; 
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -45,7 +47,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return method.MethodInfo.InheritanceModifier(); }
+            get { return method.MethodInfo.InheritanceModifier(declaringType); }
         }
 
         public override bool IsAsync

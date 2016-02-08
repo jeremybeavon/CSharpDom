@@ -9,6 +9,7 @@ namespace CSharpDom.Reflection.Internal
 {
     internal sealed class StructTypeWithReflection :
         TypeWithReflection<
+            ITypeWithReflection,
             StructEventWithReflection,
             StructPropertyWithReflection,
             StructIndexerWithReflection,

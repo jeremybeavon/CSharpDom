@@ -14,10 +14,12 @@ namespace CSharpDom.Reflection
             DelegateReferenceWithReflection>
     {
         private readonly EventWithReflection @event;
+        private readonly IInternalTypeWithReflection declaringType;
 
-        internal SealedClassEventWithReflection(ITypeWithReflection declaringType, EventInfo @event)
+        internal SealedClassEventWithReflection(IInternalTypeWithReflection declaringType, EventInfo @event)
         {
             this.@event = new EventWithReflection(declaringType, @event);
+            this.declaringType = declaringType;
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -42,7 +44,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return @event.EventInfo.AddMethod.InheritanceModifier(); }
+            get { return @event.EventInfo.InheritanceModifier(declaringType); }
         }
 
         public override string Name

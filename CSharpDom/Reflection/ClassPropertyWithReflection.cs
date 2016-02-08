@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CSharpDom.BaseClasses;
-using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using System.Reflection;
 
@@ -15,12 +13,14 @@ namespace CSharpDom.Reflection
             ClassAccessorWithReflection>
     {
         private readonly PropertyWithReflection property;
+        private readonly IInternalTypeWithReflection declaringType;
         private readonly ClassAccessorWithReflection getAccessor;
         private readonly ClassAccessorWithReflection setAccessor;
 
-        internal ClassPropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo propertyInfo)
+        internal ClassPropertyWithReflection(IInternalTypeWithReflection declaringType, PropertyInfo propertyInfo)
         {
             property = new PropertyWithReflection(declaringType, propertyInfo);
+            this.declaringType = declaringType;
             if (property.GetAccessor != null)
             {
                 getAccessor = new ClassAccessorWithReflection(this, property.GetAccessor);
@@ -49,7 +49,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return property.PropertyInfo.InheritanceModifier(); }
+            get { return property.PropertyInfo.InheritanceModifier(declaringType); }
         }
 
         public override string Name

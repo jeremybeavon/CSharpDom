@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
@@ -17,10 +16,12 @@ namespace CSharpDom.Reflection
             ILMethodBodyWithReflectionEmit>
     {
         private readonly MethodWithReflection method;
+        private readonly IInternalTypeWithReflection declaringType;
 
-        internal ClassMethodWithReflection(ITypeWithReflection declaringType, MethodInfo method)
+        internal ClassMethodWithReflection(IInternalTypeWithReflection declaringType, MethodInfo method)
         {
             this.method = new MethodWithReflection(declaringType, method);
+            this.declaringType = declaringType;
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -45,7 +46,7 @@ namespace CSharpDom.Reflection
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return method.MethodInfo.InheritanceModifier(); }
+            get { return method.MethodInfo.InheritanceModifier(declaringType); }
         }
 
         public override bool IsAsync

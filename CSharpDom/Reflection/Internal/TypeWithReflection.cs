@@ -4,12 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
     internal abstract class TypeWithReflection<
+        TType,
         TEvent,
         TProperty,
         TIndexer,
@@ -43,9 +42,10 @@ namespace CSharpDom.Reflection.Internal
             ExplicitInterfaceIndexerWithReflection,
             ExplicitInterfaceMethodWithReflection>,
         ITypeWithReflection,
-        IEventFactory<TEvent, TEventProperty>,
+        IEventFactory<TEvent, TEventProperty, TType>,
         INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
-        IPropertyFactory<TProperty, TIndexer>
+        IPropertyFactory<TProperty, TIndexer, TType>
+        where TType : ITypeWithReflection
         where TEvent : IEvent
         where TProperty : IProperty
         where TIndexer : IIndexer
@@ -64,12 +64,12 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<InterfaceReferences> implementedInterfaces;
         private readonly Lazy<IReadOnlyCollection<TField>> fields;
         private readonly Lazy<Constructors<TConstructor>> constructors;
-        private readonly Lazy<Events<TEvent, TEventProperty>> events;
-        private readonly Lazy<Properties<TProperty, TIndexer>> properties;
-        private readonly Lazy<Methods<TMethod>> methods;
+        private readonly Lazy<Events<TEvent, TEventProperty, TType>> events;
+        private readonly Lazy<Properties<TProperty, TIndexer, TType>> properties;
+        private readonly Lazy<Methods<TMethod, TType>> methods;
         private readonly Lazy<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>> nestedTypes;
 
-        protected TypeWithReflection(ITypeWithReflection declaringType, Type type)
+        protected TypeWithReflection(TType declaringType, Type type)
         {
             Type = type;
             ISet<MethodInfo> interfaceMethods = new HashSet<MethodInfo>(
@@ -78,12 +78,14 @@ namespace CSharpDom.Reflection.Internal
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(type));
             fields = new Lazy<IReadOnlyCollection<TField>>(() => InitializeFields(declaringType, type));
-            constructors = new Lazy<Constructors<TConstructor>>(() => new Constructors<TConstructor>(declaringType, type, CreateConstructor));
-            events = new Lazy<Events<TEvent, TEventProperty>>(
-                () => new Events<TEvent, TEventProperty>(declaringType, type, this, interfaceMethods));
-            properties = new Lazy<Properties<TProperty, TIndexer>>(
-                () => new Properties<TProperty, TIndexer>(declaringType, type, this, interfaceMethods));
-            methods = new Lazy<Methods<TMethod>>(() => new Methods<TMethod>(declaringType, type, CreateMethod, interfaceMethods));
+            constructors = new Lazy<Constructors<TConstructor>>(
+                () => new Constructors<TConstructor>(declaringType, type, CreateConstructor));
+            events = new Lazy<Events<TEvent, TEventProperty, TType>>(
+                () => new Events<TEvent, TEventProperty, TType>(declaringType, type, this, interfaceMethods));
+            properties = new Lazy<Properties<TProperty, TIndexer, TType>>(
+                () => new Properties<TProperty, TIndexer, TType>(declaringType, type, this, interfaceMethods));
+            methods = new Lazy<Methods<TMethod, TType>>(
+                () => new Methods<TMethod, TType>(declaringType, type, CreateMethod, interfaceMethods));
             nestedTypes = new Lazy<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>>(
                 () => new NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, type, this));
         }
@@ -238,22 +240,22 @@ namespace CSharpDom.Reflection.Internal
             return CreateNestedStruct(declaringType, type);
         }
 
-        TEvent IEventFactory<TEvent, TEventProperty>.CreateEvent(ITypeWithReflection declaringType, EventInfo @event)
+        TEvent IEventFactory<TEvent, TEventProperty, TType>.CreateEvent(TType declaringType, EventInfo @event)
         {
             return CreateEvent(declaringType, @event);
         }
 
-        TEventProperty IEventFactory<TEvent, TEventProperty>.CreateEventProperty(ITypeWithReflection declaringType, EventInfo @event)
+        TEventProperty IEventFactory<TEvent, TEventProperty, TType>.CreateEventProperty(TType declaringType, EventInfo @event)
         {
             return CreateEventProperty(declaringType, @event);
         }
 
-        TProperty IPropertyFactory<TProperty, TIndexer>.CreateProperty(ITypeWithReflection declaringType, PropertyInfo property)
+        TProperty IPropertyFactory<TProperty, TIndexer, TType>.CreateProperty(TType declaringType, PropertyInfo property)
         {
             return CreateProperty(declaringType, property);
         }
 
-        TIndexer IPropertyFactory<TProperty, TIndexer>.CreateIndexer(ITypeWithReflection declaringType, PropertyInfo property)
+        TIndexer IPropertyFactory<TProperty, TIndexer, TType>.CreateIndexer(TType declaringType, PropertyInfo property)
         {
             return CreateIndexer(declaringType, property);
         }
@@ -262,15 +264,15 @@ namespace CSharpDom.Reflection.Internal
 
         protected abstract TConstructor CreateConstructor(ITypeWithReflection declaringType, ConstructorInfo constructor);
 
-        protected abstract TEvent CreateEvent(ITypeWithReflection declaringType, EventInfo @event);
+        protected abstract TEvent CreateEvent(TType declaringType, EventInfo @event);
 
-        protected abstract TEventProperty CreateEventProperty(ITypeWithReflection declaringType, EventInfo @event);
+        protected abstract TEventProperty CreateEventProperty(TType declaringType, EventInfo @event);
 
-        protected abstract TField CreateField(ITypeWithReflection declaringType, FieldInfo field);
+        protected abstract TField CreateField(TType declaringType, FieldInfo field);
 
-        protected abstract TIndexer CreateIndexer(ITypeWithReflection declaringType, PropertyInfo indexer);
+        protected abstract TIndexer CreateIndexer(TType declaringType, PropertyInfo indexer);
 
-        protected abstract TMethod CreateMethod(ITypeWithReflection declaringType, MethodInfo method);
+        protected abstract TMethod CreateMethod(TType declaringType, MethodInfo method);
 
         protected abstract TNestedClass CreateNestedClass(ITypeWithReflection declaringType, Type type);
 
@@ -282,9 +284,9 @@ namespace CSharpDom.Reflection.Internal
 
         protected abstract TNestedStruct CreateNestedStruct(ITypeWithReflection declaringType, Type type);
 
-        protected abstract TProperty CreateProperty(ITypeWithReflection declaringType, PropertyInfo property);
+        protected abstract TProperty CreateProperty(TType declaringType, PropertyInfo property);
 
-        private IReadOnlyCollection<TField> InitializeFields(ITypeWithReflection declaringType, Type type)
+        private IReadOnlyCollection<TField> InitializeFields(TType declaringType, Type type)
         {
             return type.GetAllFields().Select(field => CreateField(declaringType, field)).ToList();
         }

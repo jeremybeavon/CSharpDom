@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class Properties<TProperty, TIndexer>
+    internal sealed class Properties<TProperty, TIndexer, TType>
+        where TType : ITypeWithReflection
     {
         public Properties(
-            ITypeWithReflection declaringType,
+            TType declaringType,
             Type type,
-            IPropertyFactory<TProperty, TIndexer> propertyFactory,
+            IPropertyFactory<TProperty, TIndexer, TType> propertyFactory,
             ISet<MethodInfo> interfaceMethods)
         {
             List<TIndexer> indexers = new List<TIndexer>();

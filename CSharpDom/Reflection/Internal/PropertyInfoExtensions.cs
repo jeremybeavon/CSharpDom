@@ -39,9 +39,15 @@ namespace CSharpDom.Reflection.Internal
             return setVisibility.Value;
         }
 
-        public static ClassMemberInheritanceModifier InheritanceModifier(this PropertyInfo property)
+        public static ClassMemberInheritanceModifier InheritanceModifier(this PropertyInfo property, IInternalTypeWithReflection type)
         {
-            return (property.GetMethod ?? property.SetMethod).InheritanceModifier();
+            return (property.GetMethod ?? property.SetMethod).InheritanceModifier(
+                () => type.HiddenMembersAnalyzer.IsPropertyHidden(property));
+        }
+
+        public static bool IsOverride(this PropertyInfo property)
+        {
+            return (property.GetMethod ?? property.SetMethod).IsOverride();
         }
 
         private static ClassMemberVisibilityModifier? ClassVisibility(MethodInfo method)

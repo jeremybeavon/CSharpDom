@@ -11,27 +11,14 @@ namespace CSharpDom.Reflection.Internal.Hiding
             AttributeGroupNotSupported,
             IBasicType,
             ITypeReferenceWithReflection,
-            ParameterWithReflection,
+            ParameterSignature,
             AccessorSignature>
     {
-        private readonly ITypeReferenceWithReflection indexerType;
-        private readonly IReadOnlyList<ParameterWithReflection> parameters;
-        private readonly AccessorSignature getAccessor;
-        private readonly AccessorSignature setAccessor;
-
+        private readonly IReadOnlyList<ParameterSignature> parameters;
+        
         public IndexerSignature(PropertyInfo indexer)
         {
-            indexerType = TypeReferenceWithReflectionFactory.CreateReference(indexer.PropertyType);
-            parameters = new Parameters(indexer).ParametersWithReflection;
-            if (indexer.GetMethod != null)
-            {
-                getAccessor = AccessorSignature.Default;
-            }
-
-            if (indexer.SetMethod != null)
-            {
-                setAccessor = AccessorSignature.Default;
-            }
+            parameters = indexer.GetIndexParameters().ToArray(parameter => new ParameterSignature(parameter));
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -46,22 +33,22 @@ namespace CSharpDom.Reflection.Internal.Hiding
 
         public override AccessorSignature GetAccessor
         {
-            get { return getAccessor; }
+            get { return AccessorSignature.Default; }
         }
 
         public override ITypeReferenceWithReflection IndexerType
         {
-            get { return indexerType; }
+            get { return ReturnTypeSignature.Default; }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<ParameterSignature> Parameters
         {
             get { return parameters; }
         }
 
         public override AccessorSignature SetAccessor
         {
-            get { return setAccessor; }
+            get { return AccessorSignature.Default; }
         }
     }
 }

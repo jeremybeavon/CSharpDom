@@ -13,20 +13,16 @@ namespace CSharpDom.Reflection.Internal.Hiding
             IType,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection,
+            ParameterSignature,
             EmptyMethodBody>
     {
-        private readonly IReadOnlyList<GenericParameterDeclarationWithReflection> genericParameters;
         private readonly string name;
-        private readonly IReadOnlyList<ParameterWithReflection> parameters;
-        private readonly ITypeReferenceWithReflection returnType;
+        private readonly IReadOnlyList<ParameterSignature> parameters;
 
         public MethodSignature(MethodInfo method)
         {
-            genericParameters = new GenericParameterDeclarations(method).GenericParameterDeclarationsWithReflection;
             name = method.Name;
-            parameters = new Parameters(method).ParametersWithReflection;
-            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
+            parameters = method.GetParameters().ToArray(parameter => new ParameterSignature(parameter));
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -46,7 +42,7 @@ namespace CSharpDom.Reflection.Internal.Hiding
 
         public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
         {
-            get { return genericParameters; }
+            get { return new GenericParameterDeclarationWithReflection[0]; }
         }
 
         public override bool IsAsync
@@ -59,14 +55,14 @@ namespace CSharpDom.Reflection.Internal.Hiding
             get { return name; }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<ParameterSignature> Parameters
         {
             get { return parameters; }
         }
 
         public override ITypeReferenceWithReflection ReturnType
         {
-            get { return returnType; }
+            get { return ReturnTypeSignature.Default; }
         }
     }
 }

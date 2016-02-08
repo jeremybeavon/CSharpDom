@@ -8,12 +8,13 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class Events<TEvent, TEventProperty>
+    internal sealed class Events<TEvent, TEventProperty, TType>
+        where TType : ITypeWithReflection
     {
         public Events(
-            ITypeWithReflection declaringType,
+            TType declaringType,
             Type type,
-            IEventFactory<TEvent, TEventProperty> eventFactory,
+            IEventFactory<TEvent, TEventProperty, TType> eventFactory,
             ISet<MethodInfo> interfaceMethods)
         {
             List<TEvent> events = new List<TEvent>();

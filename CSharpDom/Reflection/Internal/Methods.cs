@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class Methods<TMethod>
+    internal sealed class Methods<TMethod, TType>
+        where TType : ITypeWithReflection
     {
         public Methods(
-            ITypeWithReflection declaringType,
+            TType declaringType,
             Type type,
-            Func<ITypeWithReflection, MethodInfo, TMethod> methodFactory,
+            Func<TType, MethodInfo, TMethod> methodFactory,
             ISet<MethodInfo> interfaceMethods)
         {
             List<TMethod> methods = new List<TMethod>();

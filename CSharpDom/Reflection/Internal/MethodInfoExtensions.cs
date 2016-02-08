@@ -1,10 +1,16 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
 {
     internal static class MethodInfoExtensions
     {
-        public static ClassMemberInheritanceModifier InheritanceModifier(this MethodInfo method)
+        public static ClassMemberInheritanceModifier InheritanceModifier(this MethodInfo method, IInternalTypeWithReflection type)
+        {
+            return method.InheritanceModifier(() => type.HiddenMembersAnalyzer.IsMethodHidden(method));
+        }
+
+        public static ClassMemberInheritanceModifier InheritanceModifier(this MethodInfo method, Func<bool> isHidden)
         {
             if (method.IsFinal && method.IsOverride())
             {
@@ -16,18 +22,18 @@ namespace CSharpDom.Reflection.Internal
                 return ClassMemberInheritanceModifier.Override;
             }
 
-            if (method.IsHideBySig && method.IsStatic)
+            if (isHidden())
             {
-                return ClassMemberInheritanceModifier.NewStatic;
-            }
+                if (method.IsStatic)
+                {
+                    return ClassMemberInheritanceModifier.NewStatic;
+                }
 
-            if (method.IsHideBySig && method.IsVirtual)
-            {
-                return ClassMemberInheritanceModifier.NewVirtual;
-            }
+                if (method.IsVirtual)
+                {
+                    return ClassMemberInheritanceModifier.NewVirtual;
+                }
 
-            if (method.IsHideBySig)
-            {
                 return ClassMemberInheritanceModifier.New;
             }
 

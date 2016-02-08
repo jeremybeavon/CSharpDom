@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Internal;
+using CSharpDom.Reflection.Internal.Hiding;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -33,9 +34,11 @@ namespace CSharpDom.Reflection.Internal
             ExplicitInterfaceIndexerWithReflection,
             ExplicitInterfaceMethodWithReflection>,
         ITypeWithReflection,
+        IInternalTypeWithReflection,
         IHasType
     {
         private readonly ITypeWithReflection declaringType;
+        private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
         private readonly Type type;
         private readonly ClassReferenceWithReflection baseClass;
         private readonly ClassTypeWithReflection typeWithReflection;
@@ -44,6 +47,7 @@ namespace CSharpDom.Reflection.Internal
         internal NestedClassWithReflection(ITypeWithReflection declaringType, Type type)
         {
             this.declaringType = declaringType;
+            hiddenMembersAnalyzer = new HiddenMembersAnalyzer(type);
             this.type = type;
             if (type.BaseType != null && type.BaseType != typeof(object))
             {
@@ -188,6 +192,11 @@ namespace CSharpDom.Reflection.Internal
         public override StaticConstructorWithReflection StaticConstructor
         {
             get { return typeWithReflection.StaticConstructor; }
+        }
+
+        public HiddenMembersAnalyzer HiddenMembersAnalyzer
+        {
+            get { return hiddenMembersAnalyzer; }
         }
     }
 }

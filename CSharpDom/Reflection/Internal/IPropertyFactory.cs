@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal interface IPropertyFactory<TProperty, TIndexer>
+    internal interface IPropertyFactory<TProperty, TIndexer, TType>
+        where TType : ITypeWithReflection
     {
-        TProperty CreateProperty(ITypeWithReflection declaringType, PropertyInfo property);
+        TProperty CreateProperty(TType declaringType, PropertyInfo property);
 
-        TIndexer CreateIndexer(ITypeWithReflection declaringType, PropertyInfo property);
+        TIndexer CreateIndexer(TType declaringType, PropertyInfo property);
     }
 }

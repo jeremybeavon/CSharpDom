@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
     internal sealed class ClassTypeWithReflection :
         TypeWithReflection<
+            IInternalTypeWithReflection,
             ClassEventWithReflection,
             ClassPropertyWithReflection,
             ClassIndexerWithReflection,
@@ -22,7 +19,7 @@ namespace CSharpDom.Reflection.Internal
             ClassNestedInterfaceWithReflection,
             ClassNestedStructWithReflection>
     {
-        public ClassTypeWithReflection(ITypeWithReflection declaringType, Type type)
+        public ClassTypeWithReflection(IInternalTypeWithReflection declaringType, Type type)
             : base(declaringType, type)
         {
         }
@@ -32,27 +29,29 @@ namespace CSharpDom.Reflection.Internal
             return new ClassConstructorWithReflection(declaringType, constructor);
         }
 
-        protected override ClassEventWithReflection CreateEvent(ITypeWithReflection declaringType, EventInfo @event)
+        protected override ClassEventWithReflection CreateEvent(IInternalTypeWithReflection declaringType, EventInfo @event)
         {
             return new ClassEventWithReflection(declaringType, @event);
         }
 
-        protected override ClassEventPropertyWithReflection CreateEventProperty(ITypeWithReflection declaringType, EventInfo @event)
+        protected override ClassEventPropertyWithReflection CreateEventProperty(
+            IInternalTypeWithReflection declaringType,
+            EventInfo @event)
         {
             return new ClassEventPropertyWithReflection(declaringType, @event);
         }
 
-        protected override ClassFieldWithReflection CreateField(ITypeWithReflection declaringType, FieldInfo field)
+        protected override ClassFieldWithReflection CreateField(IInternalTypeWithReflection declaringType, FieldInfo field)
         {
             return new ClassFieldWithReflection(declaringType, field);
         }
 
-        protected override ClassIndexerWithReflection CreateIndexer(ITypeWithReflection declaringType, PropertyInfo indexer)
+        protected override ClassIndexerWithReflection CreateIndexer(IInternalTypeWithReflection declaringType, PropertyInfo indexer)
         {
             return new ClassIndexerWithReflection(declaringType, indexer);
         }
 
-        protected override ClassMethodWithReflection CreateMethod(ITypeWithReflection declaringType, MethodInfo method)
+        protected override ClassMethodWithReflection CreateMethod(IInternalTypeWithReflection declaringType, MethodInfo method)
         {
             return new ClassMethodWithReflection(declaringType, method);
         }
@@ -82,7 +81,7 @@ namespace CSharpDom.Reflection.Internal
             return new ClassNestedStructWithReflection(declaringType, type);
         }
 
-        protected override ClassPropertyWithReflection CreateProperty(ITypeWithReflection declaringType, PropertyInfo property)
+        protected override ClassPropertyWithReflection CreateProperty(IInternalTypeWithReflection declaringType, PropertyInfo property)
         {
             return new ClassPropertyWithReflection(declaringType, property);
         }

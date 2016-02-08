@@ -16,12 +16,14 @@ namespace CSharpDom.Reflection
             ClassAccessorWithReflection>
     {
         private readonly IndexerWithReflection indexer;
+        private readonly IInternalTypeWithReflection declaringType;
         private readonly ClassAccessorWithReflection getAccessor;
         private readonly ClassAccessorWithReflection setAccessor;
 
-        internal ClassIndexerWithReflection(ITypeWithReflection declaringType, PropertyInfo indexer)
+        internal ClassIndexerWithReflection(IInternalTypeWithReflection declaringType, PropertyInfo indexer)
         {
             this.indexer = new IndexerWithReflection(declaringType, indexer);
+            this.declaringType = declaringType;
             if (this.indexer.GetAccessor != null)
             {
                 getAccessor = new ClassAccessorWithReflection(this, this.indexer.GetAccessor);
