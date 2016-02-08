@@ -10,20 +10,20 @@ namespace CSharpDom.Reflection.Emit
         private static readonly IDictionary<OpCode, ShortBranchTargetInstructionType> instructionTypes =
             new Dictionary<OpCode, ShortBranchTargetInstructionType>()
             {
-                { OpCodes.Br, ShortBranchTargetInstructionType.Branch },
-                { OpCodes.Beq, ShortBranchTargetInstructionType.BranchIfEqual },
-                { OpCodes.Brfalse, ShortBranchTargetInstructionType.BranchIfFalse },
-                { OpCodes.Bgt, ShortBranchTargetInstructionType.BranchIfGreaterThan },
-                { OpCodes.Bge, ShortBranchTargetInstructionType.BranchIfGreaterThanOrEqual },
-                { OpCodes.Bge_Un, ShortBranchTargetInstructionType.BranchIfGreaterThanOrEqualUnsigned },
-                { OpCodes.Bgt_Un, ShortBranchTargetInstructionType.BranchIfGreaterThanUnsigned },
-                { OpCodes.Blt, ShortBranchTargetInstructionType.BranchIfLessThan },
-                { OpCodes.Ble, ShortBranchTargetInstructionType.BranchIfLessThanOrEqual },
-                { OpCodes.Ble_Un, ShortBranchTargetInstructionType.BranchIfLessThanOrEqualUnsigned },
-                { OpCodes.Blt_Un, ShortBranchTargetInstructionType.BranchIfLessThanUnsigned },
-                { OpCodes.Bne_Un, ShortBranchTargetInstructionType.BranchIfNotEqual },
-                { OpCodes.Brtrue, ShortBranchTargetInstructionType.BranchIfTrue },
-                { OpCodes.Leave, ShortBranchTargetInstructionType.Leave }
+                { OpCodes.Br_S, ShortBranchTargetInstructionType.Branch },
+                { OpCodes.Beq_S, ShortBranchTargetInstructionType.BranchIfEqual },
+                { OpCodes.Brfalse_S, ShortBranchTargetInstructionType.BranchIfFalse },
+                { OpCodes.Bgt_S, ShortBranchTargetInstructionType.BranchIfGreaterThan },
+                { OpCodes.Bge_S, ShortBranchTargetInstructionType.BranchIfGreaterThanOrEqual },
+                { OpCodes.Bge_Un_S, ShortBranchTargetInstructionType.BranchIfGreaterThanOrEqualUnsigned },
+                { OpCodes.Bgt_Un_S, ShortBranchTargetInstructionType.BranchIfGreaterThanUnsigned },
+                { OpCodes.Blt_S, ShortBranchTargetInstructionType.BranchIfLessThan },
+                { OpCodes.Ble_S, ShortBranchTargetInstructionType.BranchIfLessThanOrEqual },
+                { OpCodes.Ble_Un_S, ShortBranchTargetInstructionType.BranchIfLessThanOrEqualUnsigned },
+                { OpCodes.Blt_Un_S, ShortBranchTargetInstructionType.BranchIfLessThanUnsigned },
+                { OpCodes.Bne_Un_S, ShortBranchTargetInstructionType.BranchIfNotEqual },
+                { OpCodes.Brtrue_S, ShortBranchTargetInstructionType.BranchIfTrue },
+                { OpCodes.Leave_S, ShortBranchTargetInstructionType.Leave }
             };
 
         private readonly OpCode opCode;

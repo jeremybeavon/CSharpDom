@@ -17,16 +17,12 @@ namespace CSharpDom.Text
         private readonly string emptyBodyText;
         private ISourceCodeBuilderStep explicitInterface;
         private bool isAttribute;
+        private ISourceCodeBuilderStep[] destructorStep;
 
         public SourceCodeStepsBuilder()
         {
             Steps = new List<ISourceCodeBuilderStep>();
-        }
-
-        internal SourceCodeStepsBuilder(bool isAttribute)
-            : this()
-        {
-            this.isAttribute = isAttribute;
+            destructorStep = new ISourceCodeBuilderStep[0];
         }
 
         internal SourceCodeStepsBuilder(string emptyBodyText)
@@ -133,7 +129,8 @@ namespace CSharpDom.Text
         public override void VisitAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>(
             IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue> attribute)
         {
-            Steps.Add(new WriteChildNode<TClassReference>(attribute.AttributeType, new SourceCodeStepsBuilder(true)));
+            SourceCodeStepsBuilder stepsBuilder = new SourceCodeStepsBuilder() { isAttribute = true };
+            Steps.Add(new WriteChildNode<TClassReference>(attribute.AttributeType, stepsBuilder));
             if (attribute.UnnamedValues.Count == 0 && attribute.NamedValues.Count == 0)
             {
                 return;
@@ -171,7 +168,16 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
+            if (@class.Destructor != null)
+            {
+                destructorStep = new ISourceCodeBuilderStep[]
+                {
+                new WriteChildNode<TDestructor>(@class.Destructor)
+                };
+            }
+
             VisitType(@class);
+            destructorStep = new ISourceCodeBuilderStep[0];
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
@@ -1138,14 +1144,14 @@ namespace CSharpDom.Text
         public override void VisitType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
             IType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> type)
         {
-            IEnumerable<ISourceCodeBuilderStep> typeSteps =
+            ISourceCodeBuilderStep[] typeSteps =
                 type.Fields.Select(field => (ISourceCodeBuilderStep)new WriteChildNode<TField>(field))
                 .Concat(type.Events.Select(@event => new WriteChildNode<TEvent>(@event)))
                 .Concat(type.EventProperties.Select(eventProperty => new WriteChildNode<TEventProperty>(eventProperty)))
                 .Concat(type.ExplicitInterfaceEvents.Select(@event => new WriteChildNode<TExplicitInterfaceEvent>(@event)))
                 .ConcatIfNotNull(type.StaticConstructor, constructor => new WriteChildNode<TStaticConstructor>(constructor))
                 .Concat(type.Constructors.Select(constructor => new WriteChildNode<TConstructor>(constructor)))
-                //.Concat(destructorStep == null ? new ISourceCodeBuilderStep[0] : new ISourceCodeBuilderStep[] { destructorStep })
+                .Concat(destructorStep)
                 .Concat(type.Properties.Select(property => new WriteChildNode<TProperty>(property)))
                 .Concat(type.ExplicitInterfaceProperties.Select(property => new WriteChildNode<TExplicitInterfaceProperty>(property)))
                 .Concat(type.Indexers.Select(indexer => new WriteChildNode<TIndexer>(indexer)))
@@ -1158,7 +1164,8 @@ namespace CSharpDom.Text
                 .Concat(type.Delegates.Select(@delegate => new WriteChildNode<TNestedDelegate>(@delegate)))
                 .Concat(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)))
                 .Concat(type.Interfaces.Select(@interface => new WriteChildNode<TNestedInterface>(@interface)))
-                .Concat(type.Structs.Select(@struct => new WriteChildNode<TNestedStruct>(@struct)));
+                .Concat(type.Structs.Select(@struct => new WriteChildNode<TNestedStruct>(@struct)))
+                .ToArray();
             if (typeSteps.Any())
             {
                 Steps.Add(new WriteIndentedNewLine());

@@ -2,25 +2,28 @@
 using System.Reflection;
 using System;
 using System.Collections.Generic;
+using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
     public sealed class DestructorWithReflection :
-        AbstractDestructor<AttributeWithReflection, ClassWithReflection, MethodBodyNotSupported>,
+        AbstractDestructor<AttributeWithReflection, ClassWithReflection, ILMethodBodyWithReflectionEmit>,
         IHasMethodInfo//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassWithReflection declaringType;
         private readonly MethodInfo method;
         private readonly Lazy<Attributes> attributes;
+        private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
         internal DestructorWithReflection(ClassWithReflection declaringType, MethodInfo method)
         {
             this.declaringType = declaringType;
             this.method = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
+            body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -38,9 +41,9 @@ namespace CSharpDom.Reflection
             get { return method; }
         }
 
-        public override MethodBodyNotSupported Body
+        public override ILMethodBodyWithReflectionEmit Body
         {
-            get { return new MethodBodyNotSupported(); }
+            get { return body.Value; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

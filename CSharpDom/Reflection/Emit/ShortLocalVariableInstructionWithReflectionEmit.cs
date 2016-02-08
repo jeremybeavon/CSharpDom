@@ -12,12 +12,12 @@ namespace CSharpDom.Reflection.Emit
         private static readonly IDictionary<OpCode, ShortLocalVariableInstructionType> instructionTypes =
             new Dictionary<OpCode, ShortLocalVariableInstructionType>()
             {
-                { OpCodes.Ldarg, ShortLocalVariableInstructionType.LoadArgument },
-                { OpCodes.Ldarga, ShortLocalVariableInstructionType.LoadArgumentAddress },
-                { OpCodes.Ldloc, ShortLocalVariableInstructionType.LoadLocalVariable },
-                { OpCodes.Ldloca, ShortLocalVariableInstructionType.LoadLocalVariableAddress },
-                { OpCodes.Starg, ShortLocalVariableInstructionType.StoreArgument },
-                { OpCodes.Stloc, ShortLocalVariableInstructionType.StoreLocalVariable }
+                { OpCodes.Ldarg_S, ShortLocalVariableInstructionType.LoadArgument },
+                { OpCodes.Ldarga_S, ShortLocalVariableInstructionType.LoadArgumentAddress },
+                { OpCodes.Ldloc_S, ShortLocalVariableInstructionType.LoadLocalVariable },
+                { OpCodes.Ldloca_S, ShortLocalVariableInstructionType.LoadLocalVariableAddress },
+                { OpCodes.Starg_S, ShortLocalVariableInstructionType.StoreArgument },
+                { OpCodes.Stloc_S, ShortLocalVariableInstructionType.StoreLocalVariable }
             };
 
         private readonly OpCode opCode;

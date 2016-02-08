@@ -148,6 +148,7 @@
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructProperty.cs" />
     <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.UnaryOperator.cs" />
     <Compile Include="Common\AbstractClassTests.cs" />
+    <Compile Include="Common\FixMethodBodyVisitor.cs" />
     <Compile Include="Common\TypeTextProvider.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith1Attribute.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\ClassWith1GenericParameter.cs" />

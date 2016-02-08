@@ -272,6 +272,7 @@
     <Compile Include="Search\SolutionExtensions.cs" />
     <Compile Include="Search\SolutionSearch.cs" />
     <Compile Include="Serialization\BuiltInTypeReference.cs" />
+    <Compile Include="Serialization\Expressions\DefaultExpression.cs" />
     <Compile Include="Serialization\Factories\BuiltInTypeReferenceFactory.cs" />
     <Compile Include="StructFieldModifier.cs" />
     <Compile Include="StaticClassFieldModifier.cs" />
