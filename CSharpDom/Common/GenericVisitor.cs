@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses.Wrappers;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CSharpDom.Common
@@ -88,6 +89,17 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameter
         {
             VisitCollection(classReference.GenericParameters, visitor);
+        }
+
+        public static void VisitClassConstructorChildren<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
+            IClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TParameter : IParameter
+            where TMethodBody : IMethodBody
+        {
+            new ConstructorWrapper<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(constructor).Accept(visitor);
         }
 
         public static void VisitConstructorChildren<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(

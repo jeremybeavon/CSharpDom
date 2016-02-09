@@ -237,9 +237,11 @@
     <Compile Include="BaseClasses\IL\AbstractSimpleInstruction.cs" />
     <Compile Include="BaseClasses\IL\AbstractSwitchInstruction.cs" />
     <Compile Include="BaseClasses\IL\AbstractTypeInstruction.generic.cs" />
+    <Compile Include="BaseClasses\Wrappers\ConstructorWrapper.cs" />
     <Compile Include="BuiltInType.cs" />
     <Compile Include="Common\IHasStructFieldModifier.cs" />
     <Compile Include="Common\IHasStaticClassFieldModifier.cs" />
+    <Compile Include="Common\IWrapper.cs" />
     <Compile Include="Serialization\Expressions\UnaryOperatorExpression.cs" />
     <Compile Include="Serialization\Expressions\TypeofExpression.cs" />
     <Compile Include="Serialization\Expressions\TernaryOperatorExpression.cs" />

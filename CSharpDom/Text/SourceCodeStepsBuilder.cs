@@ -210,7 +210,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Steps.Add(new WriteEmptyBody());
+            Steps.Add(new WriteChildNode<TMethodBody>(constructor.Body));
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
