@@ -1,6 +1,7 @@
 ﻿using CSharpDom.Common.Expressions;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System;
 
 namespace CSharpDom.Linq.Expressions
 {
@@ -55,6 +56,16 @@ namespace CSharpDom.Linq.Expressions
         public IReadOnlyDictionary<string, ILinqExpression> Members
         {
             get { return members; }
+        }
+
+        public void Accept(IGenericExpressionVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

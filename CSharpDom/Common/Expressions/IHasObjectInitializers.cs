@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface IHasObjectInitializers<TExpression, TObjectInitializers>
+    public interface IHasObjectInitializers<TExpression, TObjectInitializers> : IVisitable<IGenericExpressionVisitor>
         where TObjectInitializers : IHasObjectInitializers<TExpression, TObjectInitializers>
     {
         IReadOnlyDictionary<string, TExpression> Members { get; }
