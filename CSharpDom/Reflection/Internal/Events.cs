@@ -22,7 +22,7 @@ namespace CSharpDom.Reflection.Internal
             List<TEventProperty> eventProperties = new List<TEventProperty>();
             foreach (EventInfo eventInfo in type.GetAllEvents())
             {
-                if (eventInfo.IsDefined(typeof(CompilerGeneratedAttribute)))
+                if (eventInfo.AddMethod.IsDefined(typeof(CompilerGeneratedAttribute)))
                 {
                     events.Add(eventFactory.CreateEvent(declaringType, eventInfo));
                 }

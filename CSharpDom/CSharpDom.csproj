@@ -285,6 +285,16 @@
     <Compile Include="Search\SolutionExtensions.cs" />
     <Compile Include="Search\SolutionSearch.cs" />
     <Compile Include="Serialization\BuiltInTypeReference.cs" />
+    <Compile Include="Serialization\Expressions\AnonymousMethodExpression.cs" />
+    <Compile Include="Serialization\Expressions\MethodCallExpression.cs" />
+    <Compile Include="Serialization\Expressions\MemberExpression.cs" />
+    <Compile Include="Serialization\Expressions\IntegerConstantExpression.cs" />
+    <Compile Include="Serialization\Expressions\IdentifierExpression.cs" />
+    <Compile Include="Serialization\Expressions\DoubleConstantExpression.cs" />
+    <Compile Include="Serialization\Expressions\CastExpression.cs" />
+    <Compile Include="Serialization\Expressions\BinaryOperatorExpression.cs" />
+    <Compile Include="Serialization\Expressions\AwaitExpression.cs" />
+    <Compile Include="Serialization\Expressions\ArrayIndexExpression.cs" />
     <Compile Include="Serialization\Expressions\DefaultExpression.cs" />
     <Compile Include="Serialization\Factories\BuiltInTypeReferenceFactory.cs" />
     <Compile Include="StructFieldModifier.cs" />

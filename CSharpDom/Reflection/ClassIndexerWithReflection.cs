@@ -57,8 +57,7 @@ namespace CSharpDom.Reflection
 
         public override IndexerInheritanceModifier InheritanceModifier
         {
-            get { throw new NotImplementedException(); }
-            //get { return indexer.PropertyInfo.InheritanceModifier(); }
+            get { return indexer.PropertyInfo.IndexerInheritanceModifier(declaringType); }
         }
 
         public override IReadOnlyList<ParameterWithReflection> Parameters

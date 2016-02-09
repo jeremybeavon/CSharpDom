@@ -1,8 +1,9 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses;
+using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
+using System.Diagnostics;
 using System.Reflection;
-using CSharpDom.Reflection.Internal;
+using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -10,6 +11,11 @@ namespace CSharpDom.Reflection.Internal
         AbstractEvent<AttributeWithReflection, ITypeWithReflection, DelegateReferenceWithReflection>,
         IHasEventInfo
     {
+        private static readonly Type[] excludedAttributeTypes = new Type[]
+        {
+            typeof(CompilerGeneratedAttribute),
+            typeof(DebuggerBrowsableAttribute)
+        };
         private readonly ITypeWithReflection declaringType;
         private readonly EventInfo @event;
         private readonly Lazy<Attributes> attributes;
@@ -19,7 +25,7 @@ namespace CSharpDom.Reflection.Internal
         {
             this.declaringType = declaringType;
             this.@event = @event;
-            attributes = new Lazy<Attributes>(() => new Attributes(@event));
+            attributes = new Lazy<Attributes>(() => new Attributes(@event, excludedAttributeTypes));
             eventType = new DelegateReferenceWithReflection(@event.EventHandlerType);
         }
 

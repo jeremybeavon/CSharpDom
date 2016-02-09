@@ -2,7 +2,7 @@
 {
     public class ClassWithPublicConstructor
     {
-        public ClassWithPublicConstructor(string text)
+        public ClassWithPublicConstructor()
         {
         }
     }

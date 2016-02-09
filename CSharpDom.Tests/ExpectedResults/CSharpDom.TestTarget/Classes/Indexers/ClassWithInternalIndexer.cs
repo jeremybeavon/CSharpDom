@@ -2,7 +2,7 @@
 {
     public class ClassWithInternalIndexer
     {
-        internal string this [int index]
+        internal string this[int index]
         {
             set { }
         }

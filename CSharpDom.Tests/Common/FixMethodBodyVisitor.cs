@@ -3,6 +3,7 @@ using CSharpDom.Common;
 using CSharpDom.Serialization;
 using CSharpDom.Serialization.Expressions;
 using CSharpDom.Serialization.Statements;
+using System.Linq;
 
 namespace CSharpDom.Tests.Common
 {
@@ -20,13 +21,19 @@ namespace CSharpDom.Tests.Common
             }
             else
             {
-                RewriteMethodBody(hasBody.Body, hasReturnType.ReturnType);
+                RewriteMethodBody(hasBody.Body, hasReturnType.ReturnType, node as IHasParameters<Parameter>);
             }
         }
 
         public override void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
         {
-            RewriteMethodBody(accessor.Body as MethodBody, accessorReturnType);
+            RewriteMethodBody(accessor.Body as MethodBody, accessorReturnType, null);
+        }
+
+        public override void VisitConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
+            IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
+        {
+            RewriteMethodBody(constructor.Body as MethodBody, constructor as IHasParameters<Parameter>);
         }
 
         public override void VisitProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
@@ -51,9 +58,9 @@ namespace CSharpDom.Tests.Common
             }
         }
 
-        private static void RewriteMethodBody(MethodBody body, TypeReference returnType)
+        private static void RewriteMethodBody(MethodBody body, TypeReference returnType, IHasParameters<Parameter> parameters)
         {
-            body.Instructions.Clear();
+            RewriteMethodBody(body, parameters);
             if (returnType.BuiltInTypeReference == null || returnType.BuiltInTypeReference.Type != BuiltInType.Void)
             {
                 Statement statement = new Statement()
@@ -71,6 +78,53 @@ namespace CSharpDom.Tests.Common
                 };
                 body.Statements.Add(statement);
             }
+        }
+
+        private static void RewriteMethodBody(MethodBody body, IHasParameters<Parameter> parameters)
+        {
+            body.Instructions.Clear();
+            if (parameters != null)
+            {
+                foreach (Parameter parameter in parameters.Parameters)
+                {
+                    if (parameter.Modifier == ParameterModifier.Out)
+                    {
+                        Statement statement = new Statement()
+                        {
+                            ExpressionStatement = new ExpressionStatement()
+                            {
+                                Expression = CreateExpressionForOutParameter(parameter)
+                            }
+                        };
+                        body.Statements.Add(statement);
+                    }
+                }
+            }
+        }
+
+        private static Expression CreateExpressionForOutParameter(Parameter parameter)
+        {
+            return new Expression()
+            {
+                BinaryOperatorExpression = new BinaryOperatorExpression()
+                {
+                    Left = new Expression()
+                    {
+                        IdentifierExpression = new IdentifierExpression()
+                        {
+                            Name = parameter.Name
+                        }
+                    },
+                    OperatorType = BinaryOperatorExpressionType.Assign,
+                    Right = new Expression()
+                    {
+                        DefaultExpression = new DefaultExpression()
+                        {
+                            Type = parameter.ParameterType
+                        }
+                    }
+                }
+            };
         }
     }
 }

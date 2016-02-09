@@ -16,6 +16,7 @@
         Decimal,
         Char,
         String,
-        Void
+        Void,
+        Object
     }
 }

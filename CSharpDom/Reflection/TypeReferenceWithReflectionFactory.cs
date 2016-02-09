@@ -7,6 +7,11 @@ namespace CSharpDom.Reflection
     {
         public static ITypeReferenceWithReflection CreateReference(Type type, bool ignoreNestedType = false)
         {
+            if (type.IsByRef)
+            {
+                type = type.GetElementType();
+            }
+
             if (type.IsArray)
             {
                 return new ArrayTypeReferenceWithReflection(type);
@@ -25,6 +30,11 @@ namespace CSharpDom.Reflection
             if (type == typeof(void))
             {
                 return new BuiltInTypeReferenceWithReflection(BuiltInType.Void);
+            }
+
+            if (type == typeof(object))
+            {
+                return new BuiltInTypeReferenceWithReflection(BuiltInType.Object);
             }
 
             switch (Type.GetTypeCode(type))

@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 namespace CSharpDom.Reflection
 {
@@ -12,6 +13,11 @@ namespace CSharpDom.Reflection
         IHasParameterInfo//,
         //IVisitable<IReflectionVisitor>
     {
+        private static readonly Type[] excludedAttributeTypes = new Type[]
+        {
+            typeof(OutAttribute),
+            typeof(ParamArrayAttribute)
+        };
         private readonly ParameterInfo parameter;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithReflection parameterType;
@@ -19,7 +25,7 @@ namespace CSharpDom.Reflection
         internal ParameterWithReflection(ParameterInfo parameter)
         {
             this.parameter = parameter;
-            attributes = new Lazy<Attributes>(() => new Attributes(parameter));
+            attributes = new Lazy<Attributes>(() => new Attributes(parameter, excludedAttributeTypes));
             parameterType = TypeReferenceWithReflectionFactory.CreateReference(parameter.ParameterType);
         }
 

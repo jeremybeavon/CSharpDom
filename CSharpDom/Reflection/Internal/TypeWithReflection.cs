@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -74,7 +75,7 @@ namespace CSharpDom.Reflection.Internal
             Type = type;
             ISet<MethodInfo> interfaceMethods = new HashSet<MethodInfo>(
                 type.GetInterfaces().SelectMany(interfaceType => type.GetInterfaceMap(interfaceType).TargetMethods));
-            attributes = new Lazy<Attributes>(() => new Attributes(type));
+            attributes = new Lazy<Attributes>(() => new Attributes(type, typeof(DefaultMemberAttribute)));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(type));
             fields = new Lazy<IReadOnlyCollection<TField>>(() => InitializeFields(declaringType, type));
@@ -288,7 +289,10 @@ namespace CSharpDom.Reflection.Internal
 
         private IReadOnlyCollection<TField> InitializeFields(TType declaringType, Type type)
         {
-            return type.GetAllFields().Select(field => CreateField(declaringType, field)).ToList();
+            return type.GetAllFields()
+                .Where(field => !field.IsDefined(typeof(CompilerGeneratedAttribute)))
+                .Select(field => CreateField(declaringType, field))
+                .ToList();
         }
 
         private static IReadOnlyCollection<GenericParameterDeclarationWithReflection> InitializeGenericParameterDeclarations(

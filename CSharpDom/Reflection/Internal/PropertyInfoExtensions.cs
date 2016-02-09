@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
@@ -39,15 +40,44 @@ namespace CSharpDom.Reflection.Internal
             return setVisibility.Value;
         }
 
-        public static ClassMemberInheritanceModifier InheritanceModifier(this PropertyInfo property, IInternalTypeWithReflection type)
+        public static ClassMemberInheritanceModifier InheritanceModifier(
+            this PropertyInfo property,
+            IInternalTypeWithReflection type)
         {
-            return (property.GetMethod ?? property.SetMethod).InheritanceModifier(
-                () => type.HiddenMembersAnalyzer.IsPropertyHidden(property));
+            return property.Method().InheritanceModifier(() => type.HiddenMembersAnalyzer.IsPropertyHidden(property));
+        }
+
+        public static IndexerInheritanceModifier IndexerInheritanceModifier(
+            this PropertyInfo property,
+            IInternalTypeWithReflection type)
+        {
+            switch (property.Method().InheritanceModifier(() => type.HiddenMembersAnalyzer.IsIndexerHidden(property)))
+            {
+                case ClassMemberInheritanceModifier.None:
+                    return CSharpDom.IndexerInheritanceModifier.None;
+                case ClassMemberInheritanceModifier.New:
+                    return CSharpDom.IndexerInheritanceModifier.New;
+                case ClassMemberInheritanceModifier.NewVirtual:
+                    return CSharpDom.IndexerInheritanceModifier.NewVirtual;
+                case ClassMemberInheritanceModifier.Override:
+                    return CSharpDom.IndexerInheritanceModifier.Override;
+                case ClassMemberInheritanceModifier.SealedOverride:
+                    return CSharpDom.IndexerInheritanceModifier.SealedOverride;
+                case ClassMemberInheritanceModifier.Virtual:
+                    return CSharpDom.IndexerInheritanceModifier.Virtual;
+                default:
+                    throw new NotSupportedException();
+            }
         }
 
         public static bool IsOverride(this PropertyInfo property)
         {
-            return (property.GetMethod ?? property.SetMethod).IsOverride();
+            return property.Method().IsOverride();
+        }
+
+        internal static MethodInfo Method(this PropertyInfo property)
+        {
+            return property.GetMethod ?? property.SetMethod;
         }
 
         private static ClassMemberVisibilityModifier? ClassVisibility(MethodInfo method)

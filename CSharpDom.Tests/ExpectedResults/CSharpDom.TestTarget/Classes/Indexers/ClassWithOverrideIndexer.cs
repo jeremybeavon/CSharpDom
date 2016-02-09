@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Classes
+﻿namespace CSharpDom.TestTarget.Classes.Indexers
 {
     public class ClassWithOverrideIndexer : BaseClassWithIndexer
     {

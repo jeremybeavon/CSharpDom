@@ -1,7 +1,7 @@
 ﻿using CSharpDom.BaseClasses;
 using System;
-using System.Reflection;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
 {

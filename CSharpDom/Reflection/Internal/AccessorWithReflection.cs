@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.BaseClasses;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
+using System;
+using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -16,7 +17,7 @@ namespace CSharpDom.Reflection.Internal
         internal AccessorWithReflection(MethodInfo method)
         {
             MethodInfo = method;
-            attributes = new Lazy<Attributes>(() => new Attributes(method));
+            attributes = new Lazy<Attributes>(() => new Attributes(method, typeof(CompilerGeneratedAttribute)));
             body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
