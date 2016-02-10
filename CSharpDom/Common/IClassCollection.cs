@@ -1,17 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace CSharpDom.Common
+﻿namespace CSharpDom.Common
 {
-    public interface IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
+    public interface IClassCollection : IVisitable<IGenericVisitor>
     {
-        IReadOnlyCollection<TClass> Classes { get; }
-
-        IReadOnlyCollection<TAbstractClass> AbstractClasses { get; }
-
-        IReadOnlyCollection<TSealedClass> SealedClasses { get; }
-
-        IReadOnlyCollection<TStaticClass> StaticClasses { get; }
-
-        TPartialClassCollection PartialClasses { get; }
     }
 }

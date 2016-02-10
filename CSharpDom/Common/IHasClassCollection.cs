@@ -2,8 +2,8 @@
 
 namespace CSharpDom.Common
 {
-    public interface IHasClassCollection<TClasses>
+    public interface IHasClassCollection<TClassCollection>
     {
-        TClasses Classes { get; }
+        TClassCollection Classes { get; }
     }
 }

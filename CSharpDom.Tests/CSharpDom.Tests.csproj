@@ -338,6 +338,10 @@
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithConstructorWith1Parameter.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithConstructorWith2Parameters.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithConstructorWithParametersWithModifiers.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithConstructorWith1Attribute.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithConstructorWith2AttributesIn1AttributeGroup.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithConstructorWith2AttributesIn2AttributeGroups.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\ClassWithConstructorWithParametersWithAttributes.cs" />
     <Compile Include="Reflection\OperatorOverloadsWithReflectionTests.cs" />
     <Compile Include="Reflection\ClassMethodWithReflectionTests.cs" />
     <Compile Include="Reflection\ClassIndexerWithReflectionTests.cs" />

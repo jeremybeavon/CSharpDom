@@ -1,9 +1,5 @@
 ﻿using CSharpDom.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CSharpDom.Serialization.Factories.Expressions;
 
 namespace CSharpDom.Serialization.Factories
 {
@@ -14,11 +10,11 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitUnnamedAttributeValue(IUnnamedAttributeValue unnamedAttributeValue)
+        public override void VisitUnnamedAttributeValue<TExpression>(IUnnamedAttributeValue<TExpression> unnamedAttributeValue)
         {
             Value = new UnnamedAttributeValue()
             {
-                RawValue = unnamedAttributeValue.RawValue
+                Value = new ExpressionFactory(unnamedAttributeValue.Value).Value
             };
         }
     }

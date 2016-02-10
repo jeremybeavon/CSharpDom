@@ -80,6 +80,10 @@
     <Compile Include="Classes\ClassWith1GenericParameter.cs" />
     <Compile Include="Classes\ClassWith2GenericParameters.cs" />
     <Compile Include="Classes\ClassWithBaseClass.cs" />
+    <Compile Include="Classes\Constructors\ClassWithConstructorWithParametersWithAttributes.cs" />
+    <Compile Include="Classes\Constructors\ClassWithConstructorWith2AttributesIn2AttributeGroups.cs" />
+    <Compile Include="Classes\Constructors\ClassWithConstructorWith2AttributesIn1AttributeGroup.cs" />
+    <Compile Include="Classes\Constructors\ClassWithConstructorWith1Attribute.cs" />
     <Compile Include="Classes\Constructors\ClassWithConstructorWithParametersWithModifiers.cs" />
     <Compile Include="Classes\Constructors\ClassWithConstructorWith2Parameters.cs" />
     <Compile Include="Classes\Constructors\ClassWithConstructorWith1Parameter.cs" />

@@ -1,13 +1,14 @@
 ﻿using System;
 using CSharpDom.Common;
+using CSharpDom.Serialization.Expressions;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class NamedAttributeValue : INamedAttributeValue
+    public sealed class NamedAttributeValue : INamedAttributeValue<Expression>
     {
         public string Name { get; set; }
 
-        public string RawValue { get; set; }
+        public Expression Value { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

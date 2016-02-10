@@ -2,6 +2,7 @@
 using CSharpDom.Common;
 using CSharpDom.Common.Statements;
 using CSharpDom.Text.Steps;
+using CSharpDom.Text.Steps.Expressions;
 using CSharpDom.Text.Steps.Statements;
 using System;
 using System.Collections.Generic;
@@ -748,15 +749,15 @@ namespace CSharpDom.Text
             }
         }
 
-        public override void VisitNamedAttributeValue(INamedAttributeValue namedAttributeValue)
+        public override void VisitNamedAttributeValue<TExpression>(INamedAttributeValue<TExpression> namedAttributeValue)
         {
             Steps.Add(new WriteName(namedAttributeValue.Name));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteEquals());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteRawValue(namedAttributeValue.RawValue));
+            Steps.Add(new WriteExpression<TExpression>(namedAttributeValue.Value));
         }
-
+        
         public override void VisitNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
             INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
         {
@@ -1027,7 +1028,7 @@ namespace CSharpDom.Text
 
         public override void VisitParameter<TAttributeGroup, TTypeReference>(IParameter<TAttributeGroup, TTypeReference> parameter)
         {
-            Steps.AddChildNodeStepsOnNewLines(parameter.Attributes);
+            Steps.AddChildNodeSteps(parameter.Attributes);
             Steps.AddMethodParameterModifierSteps(parameter.Modifier);
             Steps.Add(new WriteChildNode<TTypeReference>(parameter.ParameterType));
             Steps.Add(new WriteWhitespace());
@@ -1178,11 +1179,11 @@ namespace CSharpDom.Text
             Steps.AddRange(typeSteps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
-        public override void VisitUnnamedAttributeValue(IUnnamedAttributeValue unnamedAttributeValue)
+        public override void VisitUnnamedAttributeValue<TExpression>(IUnnamedAttributeValue<TExpression> unnamedAttributeValue)
         {
-            Steps.Add(new WriteRawValue(unnamedAttributeValue.RawValue));
+            Steps.Add(new WriteExpression<TExpression>(unnamedAttributeValue.Value));
         }
-
+        
         public override void VisitUnspecifiedTypeReference<TGenericParameter>(
             IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
         {

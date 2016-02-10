@@ -1,10 +1,12 @@
-﻿using CSharpDom.Common;
+﻿using System;
+using CSharpDom.Common;
+using CSharpDom.Serialization.Expressions;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class UnnamedAttributeValue : IUnnamedAttributeValue
+    public sealed class UnnamedAttributeValue : IUnnamedAttributeValue<Expression>
     {
-        public string RawValue { get; set; }
+        public Expression Value { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using CSharpDom.Common;
+
+namespace CSharpDom.BaseClasses
+{
+    public abstract class AbstractClassEventCollection<TEvent, TExplicitInterfaceEvent> :
+        IClassEventCollection<TEvent, TExplicitInterfaceEvent>
+        where TEvent : IClassEvent
+        where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+    {
+        public int Count
+        {
+            get { return Events.Count + ExplicitInterfaceEvents.Count; }
+        }
+
+        public abstract IReadOnlyCollection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; }
+
+        protected abstract IReadOnlyCollection<TEvent> Events { get; }
+
+        public void Accept(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<TEvent> GetEnumerator()
+        {
+            return Events.GetEnumerator();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
+    }
+}

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using CSharpDom.Common.Expressions;
+using System.Threading.Tasks;
 
 namespace CSharpDom.Common
 {
@@ -421,7 +422,8 @@ namespace CSharpDom.Common
 
         void VisitMethodBody<TStatement>(IMethodBody<TStatement> methodBody);
 
-        void VisitNamedAttributeValue(INamedAttributeValue namedAttributeValue);
+        void VisitNamedAttributeValue<TExpression>(INamedAttributeValue<TExpression> namedAttributeValue)
+            where TExpression : IExpression;
 
         void VisitNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
             INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
@@ -945,7 +947,8 @@ namespace CSharpDom.Common
         void VisitStructReference<TGenericParameter>(IStructReference<TGenericParameter> structReference)
             where TGenericParameter : IGenericParameter;
 
-        void VisitUnnamedAttributeValue(IUnnamedAttributeValue unnamedAttributeValue);
+        void VisitUnnamedAttributeValue<TExpression>(IUnnamedAttributeValue<TExpression> unnamedAttributeValue)
+            where TExpression : IExpression;
 
         void VisitUnspecifiedTypeReference<TGenericParameter>(IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
             where TGenericParameter : IGenericParameter;

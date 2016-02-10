@@ -77,5 +77,23 @@ namespace CSharpDom.Tests.Reflection
         {
             await TestClassAsync(typeof(ClassWithConstructorWithParametersWithModifiers));
         }
+
+        [TestMethod]
+        public async Task TestClassWithReflectionWithConstructorWith1AttributeAsync()
+        {
+            await TestClassAsync(typeof(ClassWithConstructorWith1Parameter));
+        }
+
+        [TestMethod]
+        public async Task TestClassWithReflectionWithConstructorWith2AttributesIn2AttributeGroupsAsync()
+        {
+            await TestClassAsync(typeof(ClassWithConstructorWith2AttributesIn2AttributeGroups));
+        }
+
+        [TestMethod]
+        public async Task TestClassWithReflectionWithConstructorWithParametersWithAttributesAsync()
+        {
+            await TestClassAsync(typeof(ClassWithConstructorWithParametersWithAttributes));
+        }
     }
 }

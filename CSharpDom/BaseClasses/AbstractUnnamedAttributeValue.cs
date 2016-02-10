@@ -1,11 +1,13 @@
 ﻿using System;
 using CSharpDom.Common;
+using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractUnnamedAttributeValue : IUnnamedAttributeValue
+    public abstract class AbstractUnnamedAttributeValue<TExpression> : IUnnamedAttributeValue<TExpression>
+        where TExpression : IExpression
     {
-        public abstract string RawValue { get; }
+        public abstract TExpression Value { get; }
 
         public void Accept(IGenericVisitor visitor)
         {

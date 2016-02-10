@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CSharpDom.Common;
+using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.BaseClasses
 {
@@ -239,12 +240,7 @@ namespace CSharpDom.BaseClasses
         {
             Visit(methodBody);
         }
-
-        public virtual void VisitNamedAttributeValue(INamedAttributeValue namedAttributeValue)
-        {
-            Visit(namedAttributeValue);
-        }
-
+        
         public virtual void VisitNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
             INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
             where TUsingDirective : IUsingDirective
@@ -465,12 +461,7 @@ namespace CSharpDom.BaseClasses
         {
             Visit(structReference);
         }
-
-        public virtual void VisitUnnamedAttributeValue(IUnnamedAttributeValue unnamedAttributeValue)
-        {
-            Visit(unnamedAttributeValue);
-        }
-
+        
         public virtual void VisitUnspecifiedTypeReference<TGenericParameter>(
             IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
             where TGenericParameter : IGenericParameter
@@ -1470,6 +1461,18 @@ namespace CSharpDom.BaseClasses
             where TAccessor : IStaticClassAccessor
         {
             Visit(property);
+        }
+
+        public virtual void VisitNamedAttributeValue<TExpression>(INamedAttributeValue<TExpression> namedAttributeValue)
+            where TExpression : IExpression
+        {
+            Visit(namedAttributeValue);
+        }
+
+        public virtual void VisitUnnamedAttributeValue<TExpression>(IUnnamedAttributeValue<TExpression> unnamedAttributeValue)
+            where TExpression : IExpression
+        {
+            Visit(unnamedAttributeValue);
         }
     }
 }
