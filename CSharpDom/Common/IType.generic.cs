@@ -1,61 +1,49 @@
 ﻿namespace CSharpDom.Common
 {
     public interface IType<
-        TEvent,
-        TProperty,
-        TIndexer,
-        TMethod,
-        TField,
+        TEventCollection,
+        TPropertyCollection,
+        TIndexerCollection,
+        TMethodCollection,
+        TFieldCollection,
         TConstructor,
-        TEventProperty,
         TOperatorOverload,
         TConversionOperator,
-        TNestedClass,
+        TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterface,
-        TNestedStruct,
-        TStaticConstructor,
-        TExplicitInterfaceEvent,
-        TExplicitInterfaceProperty,
-        TExplicitInterfaceIndexer,
-        TExplicitInterfaceMethod> :
+        TNestedInterfaceCollection,
+        TNestedStructCollection,
+        TStaticConstructor> :
         IType,
-        IBasicType<TEvent, TProperty, TIndexer, TMethod>,
-        IHasFields<TField>,
+        IHasEventCollection<TEventCollection>,
+        IHasPropertyCollection<TPropertyCollection>,
+        IHasIndexerCollection<TIndexerCollection>,
+        IHasMethodCollection<TMethodCollection>,
+        IHasFieldCollection<TFieldCollection>,
         IHasConstructors<TConstructor>,
-        IHasEventProperties<TEventProperty>,
         IHasOperatorOverloads<TOperatorOverload>,
         IHasConversionOperators<TConversionOperator>,
-        IHasClasses<TNestedClass>,
+        IHasClassCollection<TNestedClassCollection>,
         IHasDelegates<TNestedDelegate>,
         IHasEnums<TNestedEnum>,
-        IHasInterfaces<TNestedInterface>,
-        IHasStructs<TNestedStruct>,
-        IHasStaticConstructor<TStaticConstructor>,
-        IHasExplicitInterfaceEvents<TExplicitInterfaceEvent>,
-        IHasExplicitInterfaceIndexers<TExplicitInterfaceIndexer>,
-        IHasExplicitInterfaceMethods<TExplicitInterfaceMethod>,
-        IHasExplicitInterfaceProperties<TExplicitInterfaceProperty>
-        where TEvent : IEvent
-        where TProperty : IProperty
-        where TIndexer : IIndexer
-        where TMethod : IMethod
-        where TField : IField
+        IHasInterfaceCollection<TNestedInterfaceCollection>,
+        IHasStructCollection<TNestedStructCollection>,
+        IHasStaticConstructor<TStaticConstructor>
+        where TEventCollection : IEventCollection
+        where TPropertyCollection : IPropertyCollection
+        where TIndexerCollection : IIndexerCollection
+        where TMethodCollection : IMethodCollection
+        where TFieldCollection : IFieldCollection
         where TConstructor : IConstructor
-        where TEventProperty : IEventProperty
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
-        where TNestedClass : INestedClass
+        where TNestedClassCollection : INestedClassCollection
         where TNestedDelegate : INestedDelegate
         where TNestedEnum : INestedEnum
-        where TNestedInterface : INestedInterface
-        where TNestedStruct : INestedStruct
+        where TNestedInterfaceCollection : INestedInterfaceCollection
+        where TNestedStructCollection : INestedStructCollection
         where TStaticConstructor : IStaticConstructor
-        where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-        where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-        where TExplicitInterfaceMethod : IExplicitInterfaceMethod
-        where TExplicitInterfaceProperty : IExplicitInterfaceProperty
     {
     }
 }

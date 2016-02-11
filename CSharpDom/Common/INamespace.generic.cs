@@ -2,23 +2,30 @@
 
 namespace CSharpDom.Common
 {
-    public interface INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> :
+    public interface INamespace<
+        TUsingDirective,
+        TNamespace,
+        TClassCollection,
+        TDelegate,
+        TEnum,
+        TInterfaceCollection,
+        TStructCollection> :
         INamespace,
         IHasName,
         IHasUsingDirectives<TUsingDirective>,
         IHasNamespaces<TNamespace>,
-        IHasClasses<TClass>,
+        IHasClassCollection<TClassCollection>,
         IHasDelegates<TDelegate>,
         IHasEnums<TEnum>,
-        IHasInterfaces<TInterface>,
-        IHasStructs<TStruct>
+        IHasInterfaceCollection<TInterfaceCollection>,
+        IHasStructCollection<TStructCollection>
         where TUsingDirective : IUsingDirective
         where TNamespace : INamespace
-        where TClass : IClass
+        where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterface : IInterface
-        where TStruct : IStruct
+        where TInterfaceCollection : IInterfaceCollection
+        where TStructCollection : IStructCollection
     {
     }
 }

@@ -6,7 +6,7 @@ using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class FieldWithReflection : 
+    internal sealed class FieldGroupWithReflection : 
         AbstractField<AttributeWithReflection, ITypeWithReflection, ITypeReferenceWithReflection>,
         IHasFieldInfo
     {
@@ -15,7 +15,7 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithReflection fieldType;
 
-        internal FieldWithReflection(ITypeWithReflection declaringType, FieldInfo field)
+        internal FieldGroupWithReflection(ITypeWithReflection declaringType, FieldInfo field)
         {
             this.declaringType = declaringType;
             this.field = field;
@@ -47,11 +47,6 @@ namespace CSharpDom.Reflection.Internal
         {
             get
             {
-                if (field.IsLiteral)
-                {
-                    return ClassFieldModifier.Const;
-                }
-
                 if (field.IsStatic)
                 {
                     if (field.IsInitOnly)

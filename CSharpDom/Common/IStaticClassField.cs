@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStaticClassField : IStaticClassMember, IField, IHasStaticClassFieldModifier
+    public interface IStaticClassField : IStaticClassMember, IFieldGroup, IHasStaticClassFieldModifier
     {
     }
 }

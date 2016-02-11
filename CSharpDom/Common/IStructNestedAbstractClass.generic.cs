@@ -6,61 +6,43 @@
         TGenericParameter,
         TClassReference,
         TInterfaceReference,
-        TEvent,
-        TProperty,
-        TIndexer,
-        TMethod,
-        TField,
+        TEventCollection,
+        TPropertyCollection,
+        TIndexerCollection,
+        TMethodCollection,
+        TFieldCollection,
         TConstructor,
-        TEventProperty,
         TOperatorOverload,
         TConversionOperator,
-        TNestedClass,
+        TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterface,
-        TNestedStruct,
+        TNestedInterfaceCollection,
+        TNestedStructCollection,
         TNestedDestructor,
-        TStaticConstructor,
-        TExplicitInterfaceEvent,
-        TExplicitInterfaceProperty,
-        TExplicitInterfaceIndexer,
-        TExplicitInterfaceMethod,
-        TAbstractEvent,
-        TAbstractProperty,
-        TAbstractIndexer,
-        TAbstractMethod> :
+        TStaticConstructor> :
         IStructNestedAbstractClass,
-        INestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod, TAbstractEvent, TAbstractProperty, TAbstractIndexer, TAbstractMethod>
+        INestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TGenericParameter : IGenericParameterDeclaration
         where TClassReference : IClassReference
         where TInterfaceReference : IInterfaceReference
-        where TEvent : IClassEvent
-        where TProperty : IClassProperty
-        where TIndexer : IClassIndexer
-        where TMethod : IClassMethod
-        where TField : IClassField
+        where TEventCollection : IAbstractClassEventCollection
+        where TPropertyCollection : IAbstractClassPropertyCollection
+        where TIndexerCollection : IAbstractClassIndexerCollection
+        where TMethodCollection : IAbstractClassMethodCollection
+        where TFieldCollection : IClassFieldCollection
         where TConstructor : IClassConstructor
-        where TEventProperty : IClassEventProperty
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
-        where TNestedClass : IClassNestedClass
+        where TNestedClassCollection : IClassNestedClassCollection
         where TNestedDelegate : IClassNestedDelegate
         where TNestedEnum : IClassNestedEnum
-        where TNestedInterface : IClassNestedInterface
-        where TNestedStruct : IClassNestedStruct
+        where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+        where TNestedStructCollection : IClassNestedStructCollection
         where TNestedDestructor : INestedDestructor
         where TStaticConstructor : IStaticConstructor
-        where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-        where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-        where TExplicitInterfaceMethod : IExplicitInterfaceMethod
-        where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-        where TAbstractEvent : IAbstractEvent
-        where TAbstractProperty : IAbstractProperty
-        where TAbstractIndexer : IAbstractIndexer
-        where TAbstractMethod : IAbstractMethod
     {
     }
 }

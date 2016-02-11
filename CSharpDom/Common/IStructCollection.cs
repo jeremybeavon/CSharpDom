@@ -2,10 +2,7 @@
 
 namespace CSharpDom.Common
 {
-    public interface IStructCollection<TStruct, TPartialStruct>
+    public interface IStructCollection : IVisitable<IGenericVisitor>
     {
-        IReadOnlyCollection<TStruct> Structs { get; }
-
-        IReadOnlyCollection<TPartialStruct> PartialStructs { get; }
     }
 }

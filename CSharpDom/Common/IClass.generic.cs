@@ -8,26 +8,21 @@
         TGenericParameter,
         TClassReference,
         TInterfaceReference,
-        TEvent,
-        TProperty,
-        TIndexer,
-        TMethod,
-        TField,
+        TEventCollection,
+        TPropertyCollection,
+        TIndexerCollection,
+        TMethodCollection,
+        TFieldCollection,
         TConstructor,
-        TEventProperty,
         TOperatorOverload,
         TConversionOperator,
-        TNestedClass,
+        TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterface,
-        TNestedStruct,
+        TNestedInterfaceCollection,
+        TNestedStructCollection,
         TDestructor,
-        TStaticConstructor,
-        TExplicitInterfaceEvent,
-        TExplicitInterfaceProperty,
-        TExplicitInterfaceIndexer,
-        TExplicitInterfaceMethod> :
+        TStaticConstructor> :
         IClass,
         IHasName,
         IHasTypeVisibilityModifier,
@@ -39,7 +34,7 @@
         IHasSolution<TSolution>,
         IHasAttributes<TAttributeGroup>,
         IHasGenericParameters<TGenericParameter>,
-        IClassType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod, TDestructor>
+        IClassType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor, TDestructor>
         where TNamespace : INamespace
         where TDocument : IDocument
         where TProject : IProject
@@ -48,26 +43,21 @@
         where TGenericParameter : IGenericParameterDeclaration
         where TClassReference : IClassReference
         where TInterfaceReference : IInterfaceReference
-        where TEvent : IClassEvent
-        where TProperty : IClassProperty
-        where TIndexer : IClassIndexer
-        where TMethod : IClassMethod
-        where TField : IClassField
+        where TEventCollection : IClassEventCollection
+        where TPropertyCollection : IClassPropertyCollection
+        where TIndexerCollection : IClassIndexerCollection
+        where TMethodCollection : IClassMethodCollection
+        where TFieldCollection : IClassFieldCollection
         where TConstructor : IClassConstructor
-        where TEventProperty : IClassEventProperty
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
-        where TNestedClass : IClassNestedClass
+        where TNestedClassCollection : IClassNestedClassCollection
         where TNestedDelegate : IClassNestedDelegate
         where TNestedEnum : IClassNestedEnum
-        where TNestedInterface : IClassNestedInterface
-        where TNestedStruct : IClassNestedStruct
+        where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+        where TNestedStructCollection : IClassNestedStructCollection
         where TDestructor : IDestructor
         where TStaticConstructor : IStaticConstructor
-        where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-        where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-        where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-        where TExplicitInterfaceMethod : IExplicitInterfaceMethod
     {
     }
 }

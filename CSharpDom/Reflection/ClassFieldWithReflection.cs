@@ -13,12 +13,12 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             ITypeReferenceWithReflection>
     {
-        private readonly FieldWithReflection field;
+        private readonly FieldGroupWithReflection field;
         private readonly IInternalTypeWithReflection declaringType;
 
         internal ClassFieldWithReflection(IInternalTypeWithReflection declaringType, FieldInfo field)
         {
-            this.field = new FieldWithReflection(declaringType, field);
+            this.field = new FieldGroupWithReflection(declaringType, field);
             this.declaringType = declaringType;
         }
 

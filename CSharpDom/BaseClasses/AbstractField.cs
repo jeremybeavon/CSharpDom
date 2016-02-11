@@ -4,15 +4,18 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractField<TAttributeGroup, TDeclaringType, TTypeReference> :
-        IField<TAttributeGroup, TDeclaringType, TTypeReference>
+    public abstract class AbstractField<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
+        IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TTypeReference : ITypeReference
+        where TField : IField
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 
         public abstract TDeclaringType DeclaringType { get; }
+
+        public abstract IReadOnlyCollection<TField> Fields { get; }
 
         public abstract TTypeReference FieldType { get; }
 
@@ -25,7 +28,7 @@ namespace CSharpDom.BaseClasses
 
         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitFieldChildren(this, visitor);
+            GenericVisitor.VisitFieldGroupChildren(this, visitor);
         }
     }
 }

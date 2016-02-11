@@ -51,7 +51,7 @@ namespace CSharpDom.Reflection.Internal
         where TProperty : IProperty
         where TIndexer : IIndexer
         where TMethod : IMethod
-        where TField : IField
+        where TField : IFieldGroup
         where TConstructor : IConstructor
         where TEventProperty : IEventProperty
         where TNestedClass : INestedClass

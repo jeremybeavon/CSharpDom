@@ -3,7 +3,6 @@
     public enum ClassFieldModifier
     {
         None,
-        Const,
         Static,
         ReadOnly,
         StaticReadOnly,

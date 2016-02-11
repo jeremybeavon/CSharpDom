@@ -6,16 +6,15 @@
         TSolution,
         TAttributeGroup,
         TGenericParameter,
-        TEvent,
+        TEventCollection,
         TProperty,
-        TMethod,
-        TField,
-        TEventProperty,
-        TNestedClass,
+        TMethodCollection,
+        TFieldCollection,
+        TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterface,
-        TNestedStruct,
+        TNestedInterfaceCollection,
+        TNestedStructCollection,
         TStaticConstructor> :
         IStaticClass,
         IHasName,
@@ -26,23 +25,22 @@
         IHasSolution<TSolution>,
         IHasAttributes<TAttributeGroup>,
         IHasGenericParameters<TGenericParameter>,
-        IStaticType<TEvent, TProperty, TMethod, TField, TEventProperty, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor>
+        IStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
         where TProject : IProject
         where TSolution : ISolution
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
-        where TEvent : IStaticClassEvent
+        where TEventCollection : IStaticClassEventCollection
         where TProperty : IStaticClassProperty
-        where TMethod : IStaticClassMethod
-        where TField : IStaticClassField
-        where TEventProperty : IStaticClassEventProperty
-        where TNestedClass : IStaticClassNestedClass
+        where TMethodCollection : IStaticClassMethodCollection
+        where TFieldCollection : IStaticClassFieldCollection
+        where TNestedClassCollection : IStaticClassNestedClassCollection
         where TNestedDelegate : IStaticClassNestedDelegate
         where TNestedEnum : IStaticClassNestedEnum
-        where TNestedInterface : IStaticClassNestedInterface
-        where TNestedStruct : IStaticClassNestedStruct
+        where TNestedInterfaceCollection : IStaticClassNestedInterfaceCollection
+        where TNestedStructCollection : IStaticClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
     }

@@ -10,7 +10,7 @@ namespace CSharpDom.Serialization.Factories
         }
 
         public override void VisitClassField<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IClassField<TAttributeGroup, TDeclaringType, TTypeReference> field)
+            IClassFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference> field)
         {
             Value = new ClassField()
             {

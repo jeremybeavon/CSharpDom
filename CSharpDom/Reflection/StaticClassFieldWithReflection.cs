@@ -13,11 +13,11 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             ITypeReferenceWithReflection>
     {
-        private readonly FieldWithReflection field;
+        private readonly FieldGroupWithReflection field;
 
         internal StaticClassFieldWithReflection(ITypeWithReflection declaringType, FieldInfo field)
         {
-            this.field = new FieldWithReflection(declaringType, field);
+            this.field = new FieldGroupWithReflection(declaringType, field);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes

@@ -5,9 +5,10 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractAbstractClassEventCollection<TEvent, TAbstractEvent, TExplicitInterfaceEvent> :
-        IAbstractClassEventCollection<TEvent, TAbstractEvent, TExplicitInterfaceEvent>
+    public abstract class AbstractAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent> :
+        IAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent>
         where TEvent : IClassEvent
+        where TEventProperty : IClassEventProperty
         where TAbstractEvent : IAbstractEvent
         where TExplicitInterfaceEvent : IExplicitInterfaceEvent
     {
@@ -15,8 +16,10 @@ namespace CSharpDom.BaseClasses
 
         public int Count
         {
-            get { return Events.Count + AbstractEvents.Count + ExplicitInterfaceEvents.Count; }
+            get { return Events.Count + EventProperties.Count + AbstractEvents.Count + ExplicitInterfaceEvents.Count; }
         }
+
+        public abstract IReadOnlyCollection<TEventProperty> EventProperties { get; }
 
         public abstract IReadOnlyCollection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; }
 

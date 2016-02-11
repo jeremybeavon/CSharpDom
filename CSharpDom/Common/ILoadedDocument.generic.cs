@@ -7,11 +7,11 @@
         TUsingDirective,
         TAttributeGroup,
         TNamespace,
-        TClass,
+        TClassCollection,
         TDelegate,
         TEnum,
-        TInterface,
-        TStruct> :
+        TInterfaceCollection,
+        TStructCollection> :
         ILoadedDocument,
         IHasSolution<TSolution>,
         IHasProject<TProject>,
@@ -20,22 +20,22 @@
         IHasAssemblyAttributes<TAttributeGroup>,
         IHasModuleAttributes<TAttributeGroup>,
         IHasNamespaces<TNamespace>,
-        IHasClasses<TClass>,
+        IHasClassCollection<TClassCollection>,
         IHasDelegates<TDelegate>,
         IHasEnums<TEnum>,
-        IHasInterfaces<TInterface>,
-        IHasStructs<TStruct>
+        IHasInterfaceCollection<TInterfaceCollection>,
+        IHasStructCollection<TStructCollection>
         where TSolution : ISolution
         where TProject : IProject
         where TDocument : IDocument
         where TUsingDirective : IUsingDirective
         where TAttributeGroup : IAttributeGroup
         where TNamespace : INamespace
-        where TClass : IClass
+        where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterface : IInterface
-        where TStruct : IStruct
+        where TInterfaceCollection : IInterfaceCollection
+        where TStructCollection : IStructCollection
     {
     }
 }

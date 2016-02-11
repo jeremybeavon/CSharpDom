@@ -1,11 +1,12 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference> :
+    public interface IStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
         IStaticClassField,
-        IField<TAttributeGroup, TDeclaringType, TTypeReference>
+        IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStaticType
         where TTypeReference : ITypeReference
+        where TField : IField
     {
     }
 }

@@ -1,11 +1,12 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IClassField<TAttributeGroup, TDeclaringType, TTypeReference> :
+    public interface IClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
         IClassField,
-        IField<TAttributeGroup, TDeclaringType, TTypeReference>
+        IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
         where TTypeReference : ITypeReference
+        where TField : IField
     {
     }
 }

@@ -4,11 +4,12 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassField : IClassField<AttributeGroup, IClassType, TypeReference>
+    public sealed class ClassField : IClassField<AttributeGroup, IClassType, TypeReference, Field>
     {
         public ClassField()
         {
             Attributes = new List<AttributeGroup>();
+            Fields = new List<Field>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
@@ -17,6 +18,8 @@ namespace CSharpDom.Serialization
         {
             get { return null; }
         }
+
+        public List<Field> Fields { get; set; }
 
         public TypeReference FieldType { get; set; }
 
@@ -31,6 +34,11 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
+        IReadOnlyCollection<Field> IHasFields<Field>.Fields
+        {
+            get { return Fields; }
+        }
+
         public void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassField(this);
@@ -38,7 +46,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            //GenericVisitor.VisitFieldChildren(this, visitor);
+            GenericVisitor.VisitClassFieldChildren(this, visitor);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStructField : IStructMember, IField, IHasStructFieldModifier
+    public interface IStructField : IStructMember, IFieldGroup, IHasStructFieldModifier
     {
     }
 }

@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses.Wrappers;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -44,8 +45,8 @@ namespace CSharpDom.Common
             VisitCollection(attribute.NamedValues, visitor);
         }
 
-        public static void VisitClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
-            IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> @class,
+        public static void VisitClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
+            IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> @class,
             IGenericVisitor visitor)
             where TNamespace : INamespace
             where TDocument : IDocument
@@ -55,26 +56,21 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameterDeclaration
             where TClassReference : IClassReference
             where TInterfaceReference : IInterfaceReference
-            where TEvent : IClassEvent
-            where TProperty : IClassProperty
-            where TIndexer : IClassIndexer
-            where TMethod : IClassMethod
-            where TField : IClassField
+            where TEventCollection : IClassEventCollection
+            where TPropertyCollection : IClassPropertyCollection
+            where TIndexerCollection : IClassIndexerCollection
+            where TMethodCollection : IClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
             where TConstructor : IClassConstructor
-            where TEventProperty : IClassEventProperty
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
-            where TNestedClass : IClassNestedClass
+            where TNestedClassCollection : IClassNestedClassCollection
             where TNestedDelegate : IClassNestedDelegate
             where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStruct : IClassNestedStruct
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
             where TDestructor : IDestructor
             where TStaticConstructor : IStaticConstructor
-            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
         {
             VisitIfNotNull(@class.BaseClass, visitor);
             VisitCollection(@class.ImplementedInterfaces, visitor);
@@ -226,15 +222,17 @@ namespace CSharpDom.Common
             VisitIfNotNull(eventProperty.RemoveBody, visitor);
         }
 
-        public static void VisitFieldChildren<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IField<TAttributeGroup, TDeclaringType, TTypeReference> field,
+        public static void VisitFieldGroupChildren<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
+            IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField> field,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
+            where TField : IField
         {
             VisitCollection(field.Attributes, visitor);
             VisitIfNotNull(field.FieldType, visitor);
+            VisitCollection(field.Fields, visitor);
         }
 
         public static void VisitGenericParameter<TTypeReference>(
@@ -315,8 +313,8 @@ namespace CSharpDom.Common
             VisitCollection(interfaceReference.GenericParameters, visitor);
         }
 
-        public static void VisitLoadedDocumentChildren<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument,
+        public static void VisitLoadedDocumentChildren<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>(
+            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> loadedDocument,
             IGenericVisitor visitor)
             where TSolution : ISolution
             where TProject : IProject
@@ -324,21 +322,21 @@ namespace CSharpDom.Common
             where TUsingDirective : IUsingDirective
             where TAttributeGroup : IAttributeGroup
             where TNamespace : INamespace
-            where TClass : IClass
+            where TClassCollection : IClassCollection
             where TDelegate : IDelegate
             where TEnum : IEnum
-            where TInterface : IInterface
-            where TStruct : IStruct
+            where TInterfaceCollection : IInterfaceCollection
+            where TStructCollection : IStructCollection
         {
             VisitCollection(loadedDocument.UsingDirectives, visitor);
             VisitCollection(loadedDocument.AssemblyAttributes, visitor);
             VisitCollection(loadedDocument.ModuleAttributes, visitor);
             VisitCollection(loadedDocument.Namespaces, visitor);
-            VisitCollection(loadedDocument.Classes, visitor);
+            VisitIfNotNull(loadedDocument.Classes, visitor);
             VisitCollection(loadedDocument.Delegates, visitor);
             VisitCollection(loadedDocument.Enums, visitor);
-            VisitCollection(loadedDocument.Interfaces, visitor);
-            VisitCollection(loadedDocument.Structs, visitor);
+            VisitIfNotNull(loadedDocument.Interfaces, visitor);
+            VisitIfNotNull(loadedDocument.Structs, visitor);
         }
 
         public static void VisitMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
@@ -373,59 +371,56 @@ namespace CSharpDom.Common
             VisitIfNotNull(method.Body, visitor);
         }
 
-        public static void VisitNamespaceChildren<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace,
+        public static void VisitNamespaceChildren<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>(
+            INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> @namespace,
             IGenericVisitor visitor)
             where TUsingDirective : IUsingDirective
             where TNamespace : INamespace
-            where TClass : IClass
+            where TClassCollection : IClassCollection
             where TDelegate : IDelegate
             where TEnum : IEnum
-            where TInterface : IInterface
-            where TStruct : IStruct
+            where TInterfaceCollection : IInterfaceCollection
+            where TStructCollection : IStructCollection
         {
             VisitCollection(@namespace.UsingDirectives, visitor);
             VisitCollection(@namespace.Namespaces, visitor);
-            VisitCollection(@namespace.Classes, visitor);
+            VisitIfNotNull(@namespace.Classes, visitor);
             VisitCollection(@namespace.Delegates, visitor);
             VisitCollection(@namespace.Enums, visitor);
-            VisitCollection(@namespace.Interfaces, visitor);
-            VisitCollection(@namespace.Structs, visitor);
+            VisitIfNotNull(@namespace.Interfaces, visitor);
+            VisitIfNotNull(@namespace.Structs, visitor);
         }
 
-        public static void VisitNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
-            INestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedClass,
+        public static void VisitNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            INestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TGenericParameter : IGenericParameterDeclaration
             where TClassReference : IClassReference
             where TInterfaceReference : IInterfaceReference
-            where TEvent : IClassEvent
-            where TProperty : IClassProperty
-            where TIndexer : IClassIndexer
-            where TMethod : IClassMethod
-            where TField : IClassField
+            where TEventCollection : IClassEventCollection
+            where TPropertyCollection : IClassPropertyCollection
+            where TIndexerCollection : IClassIndexerCollection
+            where TMethodCollection : IClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
             where TConstructor : IClassConstructor
-            where TEventProperty : IClassEventProperty
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
-            where TNestedClass : IClassNestedClass
+            where TNestedClassCollection : IClassNestedClassCollection
             where TNestedDelegate : IClassNestedDelegate
             where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStruct : IClassNestedStruct
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
             where TNestedDestructor : INestedDestructor
             where TStaticConstructor : IStaticConstructor
-            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
         {
             VisitCollection(nestedClass.Attributes, visitor);
             VisitCollection(nestedClass.GenericParameters, visitor);
             VisitIfNotNull(nestedClass.BaseClass, visitor);
-            VisitCollection(nestedClass.Interfaces, visitor);
+            VisitCollection(nestedClass.ImplementedInterfaces, visitor);
+            visitor.VisitType(nestedClass);
+            VisitIfNotNull(nestedClass.Destructor, visitor);
         }
 
         public static void VisitNestedDelegateChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
@@ -493,36 +488,31 @@ namespace CSharpDom.Common
             VisitCollection(@interface.Methods, visitor);
         }
 
-        public static void VisitNestedStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
-            INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> nestedStruct,
+        public static void VisitNestedStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedStruct,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TGenericParameter : IGenericParameterDeclaration
             where TInterfaceReference : IInterfaceReference
-            where TEvent : IStructEvent
-            where TProperty : IStructProperty
-            where TIndexer : IStructIndexer
-            where TMethod : IStructMethod
-            where TField : IStructField
+            where TEventCollection : IStructEventCollection
+            where TPropertyCollection : IStructPropertyCollection
+            where TIndexerCollection : IStructIndexerCollection
+            where TMethodCollection : IStructMethodCollection
+            where TFieldCollection : IStructFieldCollection
             where TConstructor : IStructConstructor
-            where TEventProperty : IStructEventProperty
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
-            where TNestedClass : IStructNestedClass
+            where TNestedClassCollection : IStructNestedClassCollection
             where TNestedDelegate : IStructNestedDelegate
             where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStruct : IStructNestedStruct
+            where TNestedInterfaceCollection : IStructNestedInterfaceCollection
+            where TNestedStructCollection : IStructNestedStructCollection
             where TStaticConstructor : IStaticConstructor
-            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
         {
             VisitCollection(nestedStruct.Attributes, visitor);
             VisitCollection(nestedStruct.GenericParameters, visitor);
-            VisitCollection(nestedStruct.Interfaces, visitor);
+            VisitCollection(nestedStruct.ImplementedInterfaces, visitor);
         }
 
         public static void VisitNestedTypeReferenceChildren<TTypeReference>(
@@ -607,8 +597,8 @@ namespace CSharpDom.Common
             VisitIfNotNull(staticConstructor.Body, visitor);
         }
 
-        public static void VisitStructChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
-            IStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> @struct,
+        public static void VisitStructChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> @struct,
             IGenericVisitor visitor)
             where TNamespace : INamespace
             where TDocument : IDocument
@@ -617,29 +607,24 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TGenericParameter : IGenericParameterDeclaration
             where TInterfaceReference : IInterfaceReference
-            where TEvent : IStructEvent
-            where TProperty : IStructProperty
-            where TIndexer : IStructIndexer
-            where TMethod : IStructMethod
-            where TField : IStructField
+            where TEventCollection : IStructEventCollection
+            where TPropertyCollection : IStructPropertyCollection
+            where TIndexerCollection : IStructIndexerCollection
+            where TMethodCollection : IStructMethodCollection
+            where TFieldCollection : IStructFieldCollection
             where TConstructor : IStructConstructor
-            where TEventProperty : IStructEventProperty
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
-            where TNestedClass : IStructNestedClass
+            where TNestedClassCollection : IStructNestedClassCollection
             where TNestedDelegate : IStructNestedDelegate
             where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStruct : IStructNestedStruct
+            where TNestedInterfaceCollection : IStructNestedInterfaceCollection
+            where TNestedStructCollection : IStructNestedStructCollection
             where TStaticConstructor : IStaticConstructor
-            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
         {
             VisitCollection(@struct.Attributes, visitor);
             VisitCollection(@struct.GenericParameters, visitor);
-            VisitCollection(@struct.Interfaces, visitor);
+            VisitCollection(@struct.ImplementedInterfaces, visitor);
         }
 
         public static void VisitStructReferenceChildren<TGenericParameter>(
@@ -684,48 +669,281 @@ namespace CSharpDom.Common
             }
         }
 
-        public static void VisitTypeChildren<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>(
-            IType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod> type,
+        public static void VisitTypeChildren<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> type,
             IGenericVisitor visitor)
-            where TEvent : IEvent
-            where TProperty : IProperty
-            where TIndexer : IIndexer
-            where TMethod : IMethod
-            where TField : IField
+            where TEventCollection : IEventCollection
+            where TPropertyCollection : IPropertyCollection
+            where TIndexerCollection : IIndexerCollection
+            where TMethodCollection : IMethodCollection
+            where TFieldCollection : IFieldCollection
             where TConstructor : IConstructor
-            where TEventProperty : IEventProperty
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
-            where TNestedClass : INestedClass
+            where TNestedClassCollection : INestedClassCollection
             where TNestedDelegate : INestedDelegate
             where TNestedEnum : INestedEnum
-            where TNestedInterface : INestedInterface
-            where TNestedStruct : INestedStruct
+            where TNestedInterfaceCollection : INestedInterfaceCollection
+            where TNestedStructCollection : INestedStructCollection
             where TStaticConstructor : IStaticConstructor
-            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
         {
-            VisitCollection(type.Events, visitor);
-            VisitCollection(type.Properties, visitor);
-            VisitCollection(type.Indexers, visitor);
-            VisitCollection(type.Methods, visitor);
-            VisitCollection(type.Fields, visitor);
+            VisitIfNotNull(type.Events, visitor);
+            VisitIfNotNull(type.Properties, visitor);
+            VisitIfNotNull(type.Indexers, visitor);
+            VisitIfNotNull(type.Methods, visitor);
+            VisitIfNotNull(type.Fields, visitor);
             VisitCollection(type.Constructors, visitor);
-            VisitCollection(type.EventProperties, visitor);
             VisitCollection(type.OperatorOverloads, visitor);
             VisitCollection(type.ConversionOperators, visitor);
-            VisitCollection(type.Classes, visitor);
+            VisitIfNotNull(type.Classes, visitor);
             VisitCollection(type.Delegates, visitor);
             VisitCollection(type.Enums, visitor);
-            VisitCollection(type.Interfaces, visitor);
-            VisitCollection(type.Structs, visitor);
+            VisitIfNotNull(type.Interfaces, visitor);
+            VisitIfNotNull(type.Structs, visitor);
             VisitIfNotNull(type.StaticConstructor, visitor);
-            VisitCollection(type.ExplicitInterfaceEvents, visitor);
-            VisitCollection(type.ExplicitInterfaceProperties, visitor);
-            VisitCollection(type.ExplicitInterfaceIndexers, visitor);
-            VisitCollection(type.ExplicitInterfaceMethods, visitor);
+        }
+
+        public static void VisitSealedClassNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            ISealedClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedSealedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IClassEventCollection
+            where TPropertyCollection : IClassPropertyCollection
+            where TIndexerCollection : IClassIndexerCollection
+            where TMethodCollection : IClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            visitor.VisitNestedClass(nestedSealedClass);
+        }
+
+        public static void VisitAbstractClassEventCollectionChildren<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent>(
+            IAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent> eventCollection,
+            IGenericVisitor visitor)
+            where TEvent : IClassEvent
+            where TEventProperty : IClassEventProperty
+            where TAbstractEvent : IAbstractEvent
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+        {
+            VisitCollection(eventCollection, visitor);
+            VisitCollection(eventCollection.EventProperties, visitor);
+            VisitCollection(eventCollection.AbstractEvents, visitor);
+            VisitCollection(eventCollection.ExplicitInterfaceEvents, visitor);
+        }
+
+        public static void VisitAbstractClassIndexerCollectionChildren<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer>(
+            IAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer> indexerCollection,
+            IGenericVisitor visitor)
+            where TIndexer : IClassIndexer
+            where TAbstractIndexer : IAbstractIndexer
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+        {
+            VisitCollection(indexerCollection, visitor);
+            VisitCollection(indexerCollection.AbstractIndexers, visitor);
+            VisitCollection(indexerCollection.ExplicitInterfaceIndexers, visitor);
+        }
+
+        public static void VisitAbstractClassMethodCollectionChildren<TMethod, TAbstractMethod, TExplicitInterfaceMethod>(
+            IAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : IClassMethod
+            where TAbstractMethod : IAbstractMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+        {
+            VisitCollection(methodCollection, visitor);
+            VisitCollection(methodCollection.AbstractMethods, visitor);
+            VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
+        }
+
+        public static void VisitAbstractClassPropertyCollectionChildren<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(
+            IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection,
+            IGenericVisitor visitor)
+            where TProperty : IClassProperty
+            where TAbstractProperty : IAbstractProperty
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        {
+            VisitCollection(propertyCollection, visitor);
+            VisitCollection(propertyCollection.AbstractProperties, visitor);
+            VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
+        }
+
+        public static void VisitClassEventCollectionChildren<TEvent, TEventProperty, TExplicitInterfaceEvent>(
+            IClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection,
+            IGenericVisitor visitor)
+            where TEvent : IClassEvent
+            where TEventProperty : IClassEventProperty
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+        {
+            VisitCollection(eventCollection, visitor);
+            VisitCollection(eventCollection.EventProperties, visitor);
+            VisitCollection(eventCollection.ExplicitInterfaceEvents, visitor);
+        }
+
+        public static void VisitClassIndexerCollectionChildren<TIndexer, TExplicitInterfaceIndexer>(
+            IClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection,
+            IGenericVisitor visitor)
+            where TIndexer : IClassIndexer
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+        {
+            VisitCollection(indexerCollection, visitor);
+            VisitCollection(indexerCollection.ExplicitInterfaceIndexers, visitor);
+        }
+
+        public static void VisitClassMethodCollectionChildren<TMethod, TExplicitInterfaceMethod>(
+            IClassMethodCollection<TMethod, TExplicitInterfaceMethod> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : IClassMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+        {
+            VisitCollection(methodCollection, visitor);
+            VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
+        }
+
+        public static void VisitClassPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
+            IClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection,
+            IGenericVisitor visitor)
+            where TProperty : IClassProperty
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        {
+            VisitCollection(propertyCollection, visitor);
+            VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
+        }
+
+        public static void VisitSealedClassEventCollectionChildren<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent>(
+            ISealedClassEventCollection<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent> eventCollection,
+            IGenericVisitor visitor)
+            where TEvent : ISealedClassEvent
+            where TEventProperty : IClassEventProperty
+            where TProtectedOverrideEvent : IProtectedOverrideEvent
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+        {
+            VisitCollection(eventCollection, visitor);
+            VisitCollection(eventCollection.EventProperties, visitor);
+            VisitCollection(eventCollection.ProtectedOverrideEvents, visitor);
+            VisitCollection(eventCollection.ExplicitInterfaceEvents, visitor);
+        }
+
+        public static void VisitSealedClassIndexerCollectionChildren<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer>(
+            ISealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer> indexerCollection,
+            IGenericVisitor visitor)
+            where TIndexer : ISealedClassIndexer
+            where TProtectedOverrideIndexer : IProtectedOverrideIndexer
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+        {
+            VisitCollection(indexerCollection, visitor);
+            VisitCollection(indexerCollection.ProtectedOverrideIndexers, visitor);
+            VisitCollection(indexerCollection.ExplicitInterfaceIndexers, visitor);
+        }
+
+        public static void VisitSealedClassMethodCollectionChildren<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod>(
+            ISealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : ISealedClassMethod
+            where TProtectedOverrideMethod : IProtectedOverrideMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+        {
+            VisitCollection(methodCollection, visitor);
+            VisitCollection(methodCollection.ProtectedOverrideMethods, visitor);
+            VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
+        }
+
+        public static void VisitSealedClassPropertyCollectionChildren<TProperty, TProtectedOverrideProperty, TExplicitInterfaceProperty>(
+            ISealedClassPropertyCollection<TProperty, TProtectedOverrideProperty, TExplicitInterfaceProperty> propertyCollection,
+            IGenericVisitor visitor)
+            where TProperty : ISealedClassProperty
+            where TProtectedOverrideProperty : IProtectedOverrideProperty
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        {
+            VisitCollection(propertyCollection, visitor);
+            VisitCollection(propertyCollection.ProtectedOverrideProperties, visitor);
+            VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
+        }
+
+        public static void VisitStructEventCollectionChildren<TEvent, TEventProperty, TExplicitInterfaceEvent>(
+            IStructEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection,
+            IGenericVisitor visitor)
+            where TEvent : IStructEvent
+            where TEventProperty : IStructEventProperty
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+        {
+            VisitCollection(eventCollection, visitor);
+            VisitCollection(eventCollection.EventProperties, visitor);
+            VisitCollection(eventCollection.ExplicitInterfaceEvents, visitor);
+        }
+
+        public static void VisitStructIndexerCollectionChildren<TIndexer, TExplicitInterfaceIndexer>(
+            IStructIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection,
+            IGenericVisitor visitor)
+            where TIndexer : IStructIndexer
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+        {
+            VisitCollection(indexerCollection, visitor);
+            VisitCollection(indexerCollection.ExplicitInterfaceIndexers, visitor);
+        }
+
+        public static void VisitStructMethodCollectionChildren<TMethod, TExplicitInterfaceMethod>(
+            IStructMethodCollection<TMethod, TExplicitInterfaceMethod> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : IStructMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+        {
+            VisitCollection(methodCollection, visitor);
+            VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
+        }
+
+        public static void VisitStructPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
+            IStructPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection,
+            IGenericVisitor visitor)
+            where TProperty : IStructProperty
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        {
+            VisitCollection(propertyCollection, visitor);
+            VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
+        }
+
+        public static void VisitClassFieldChildren<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
+            IClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TTypeReference : ITypeReference
+            where TField : IField
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void VisitClassConstantChildren<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
+            IClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> classConstant,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TTypeReference : ITypeReference
+            where TConstant : IConstant
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void VisitClassFieldCollectionChildren<TField, TConstant>(
+            IClassFieldCollection<TField, TConstant> fieldCollection,
+            IGenericVisitor visitor)
+            where TField : IClassField
+            where TConstant : IClassConstant
+        {
+            VisitCollection(fieldCollection, visitor);
+            VisitCollection(fieldCollection.Constants, visitor);
         }
     }
 }

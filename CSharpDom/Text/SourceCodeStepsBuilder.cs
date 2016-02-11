@@ -431,7 +431,7 @@ namespace CSharpDom.Text
         }
 
         public override void VisitClassField<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IClassField<TAttributeGroup, TDeclaringType, TTypeReference> field)
+            IClassFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference> field)
         {
             Steps.AddClassMemberVisibilityModifierSteps(field.Visibility);
             Steps.AddClassFieldModifierSteps(field.Modifier);
@@ -446,7 +446,7 @@ namespace CSharpDom.Text
         }
 
         public override void VisitField<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IField<TAttributeGroup, TDeclaringType, TTypeReference> field)
+            IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference> field)
         {
             Steps.Add(new WriteChildNode<TTypeReference>(field.FieldType));
             Steps.Add(new WriteWhitespace());

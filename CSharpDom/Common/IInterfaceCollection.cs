@@ -2,10 +2,7 @@
 
 namespace CSharpDom.Common
 {
-    public interface IInterfaceCollection<TInterface, TPartialInterface>
+    public interface IInterfaceCollection : IVisitable<IGenericVisitor>
     {
-        IReadOnlyCollection<TInterface> Interfaces { get; }
-
-        IReadOnlyCollection<TPartialInterface> PartialInterfaces { get; }
     }
 }

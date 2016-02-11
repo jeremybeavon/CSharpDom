@@ -268,7 +268,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             }).ToString().Should().Be(expectedText);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestClassWithPublicConstField()
         {
             const string expectedText = @"class TestClass
@@ -299,7 +299,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
         [TestMethod]
         public void TestClassWithPublicStaticField()

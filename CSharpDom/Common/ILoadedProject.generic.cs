@@ -1,23 +1,31 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface ILoadedProject<TSolution, TProject, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> :
+    public interface ILoadedProject<
+        TSolution,
+        TProject,
+        TNamespace,
+        TClassCollection,
+        TDelegate, 
+        TEnum,
+        TInterfaceCollection,
+        TStructCollection> :
         ILoadedProject,
         IHasSolution<TSolution>,
         IHasProject<TProject>,
         IHasNamespaces<TNamespace>,
-        IHasClasses<TClass>,
+        IHasClassCollection<TClassCollection>,
         IHasDelegates<TDelegate>,
         IHasEnums<TEnum>,
-        IHasInterfaces<TInterface>,
-        IHasStructs<TStruct>
+        IHasInterfaceCollection<TInterfaceCollection>,
+        IHasStructCollection<TStructCollection>
         where TSolution : ISolution
         where TProject : IProject
         where TNamespace : INamespace
-        where TClass : IClass
+        where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterface : IInterface
-        where TStruct : IStruct
+        where TInterfaceCollection : IInterfaceCollection
+        where TStructCollection : IStructCollection
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IAbstractClassPropertyCollection : IVisitable<IGenericVisitor>
+    public interface IAbstractClassPropertyCollection : IClassPropertyCollection
     {
     }
 }

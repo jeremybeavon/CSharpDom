@@ -1,14 +1,9 @@
-﻿namespace CSharpDom.Common
+﻿using CSharpDom.Common.Expressions;
+
+namespace CSharpDom.Common
 {
-    public interface IField<TAttributeGroup, TDeclaringType, TTypeReference> :
-        IField,
-        IHasName,
-        IHasAttributes<TAttributeGroup>,
-        IHasDeclaringType<TDeclaringType>,
-        IHasFieldType<TTypeReference>
-        where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
-        where TTypeReference : ITypeReference
+    public interface IField<TExpression> : IField, IHasName, IHasInitialValue<TExpression>
+        where TExpression : IExpression
     {
     }
 }

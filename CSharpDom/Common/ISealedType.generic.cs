@@ -1,58 +1,36 @@
 ﻿namespace CSharpDom.Common
 {
     public interface ISealedType<
-        TEvent,
-        TProperty,
-        TIndexer,
-        TMethod,
-        TField,
+        TEventCollection,
+        TPropertyCollection,
+        TIndexerCollection,
+        TMethodCollection,
+        TFieldCollection,
         TConstructor,
-        TEventProperty,
         TOperatorOverload,
         TConversionOperator,
-        TNestedClass,
+        TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterface,
-        TNestedStruct,
-        TStaticConstructor,
-        TExplicitInterfaceEvent,
-        TExplicitInterfaceProperty,
-        TExplicitInterfaceIndexer,
-        TExplicitInterfaceMethod,
-        TProtectedOverrideEvent,
-        TProtectedOverrideProperty,
-        TProtectedOverrideIndexer,
-        TProtectedOverrideMethod> :
+        TNestedInterfaceCollection,
+        TNestedStructCollection,
+        TStaticConstructor> :
         ISealedType,
-        IType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>,
-        IHasProtectedOverrideEvents<TProtectedOverrideEvent>,
-        IHasProtectedOverrideProperties<TProtectedOverrideProperty>,
-        IHasProtectedOverrideIndexers<TProtectedOverrideIndexer>,
-        IHasProtectedOverrideMethods<TProtectedOverrideMethod>
-        where TEvent : ISealedClassEvent
-        where TProperty : ISealedClassProperty
-        where TIndexer : ISealedClassIndexer
-        where TMethod : ISealedClassMethod
-        where TField : ISealedClassField
+        IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        where TEventCollection : ISealedClassEventCollection
+        where TPropertyCollection : ISealedClassPropertyCollection
+        where TIndexerCollection : ISealedClassIndexerCollection
+        where TMethodCollection : ISealedClassMethodCollection
+        where TFieldCollection : ISealedClassFieldCollection
         where TConstructor : ISealedClassConstructor
-        where TEventProperty : ISealedClassEventProperty
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
-        where TNestedClass : ISealedClassNestedClass
+        where TNestedClassCollection : ISealedClassNestedClassCollection
         where TNestedDelegate : ISealedClassNestedDelegate
         where TNestedEnum : ISealedClassNestedEnum
-        where TNestedInterface : ISealedClassNestedInterface
-        where TNestedStruct : ISealedClassNestedStruct
+        where TNestedInterfaceCollection : ISealedClassNestedInterfaceCollection
+        where TNestedStructCollection : ISealedClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
-        where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-        where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-        where TExplicitInterfaceMethod : IExplicitInterfaceMethod
-        where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-        where TProtectedOverrideEvent : IProtectedOverrideEvent
-        where TProtectedOverrideProperty : IProtectedOverrideIndexer
-        where TProtectedOverrideIndexer : IProtectedOverrideIndexer
-        where TProtectedOverrideMethod : IProtectedOverrideMethod
     {
     }
 }

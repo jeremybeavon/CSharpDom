@@ -4,48 +4,38 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractType<TEvent,
-        TProperty,
-        TIndexer,
-        TMethod,
-        TField,
+    public abstract class AbstractType<
+        TEventCollection,
+        TPropertyCollection,
+        TIndexerCollection,
+        TMethodCollection,
+        TFieldCollection,
         TConstructor,
-        TEventProperty,
         TOperatorOverload,
         TConversionOperator,
-        TNestedClass,
+        TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterface,
-        TNestedStruct,
-        TStaticConstructor,
-        TExplicitInterfaceEvent,
-        TExplicitInterfaceProperty,
-        TExplicitInterfaceIndexer,
-        TExplicitInterfaceMethod> :
-        AbstractBasicType<TEvent, TProperty, TIndexer, TMethod>,
-        IType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>
-        where TEvent : IEvent
-        where TProperty : IProperty
-        where TIndexer : IIndexer
-        where TMethod : IMethod
-        where TField : IField
+        TNestedInterfaceCollection,
+        TNestedStructCollection,
+        TStaticConstructor> :
+        IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        where TEventCollection : IEventCollection
+        where TPropertyCollection : IPropertyCollection
+        where TIndexerCollection : IIndexerCollection
+        where TMethodCollection : IMethodCollection
+        where TFieldCollection : IFieldCollection
         where TConstructor : IConstructor
-        where TEventProperty : IEventProperty
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
-        where TNestedClass : INestedClass
+        where TNestedClassCollection : INestedClassCollection
         where TNestedDelegate : INestedDelegate
         where TNestedEnum : INestedEnum
-        where TNestedInterface : INestedInterface
-        where TNestedStruct : INestedStruct
+        where TNestedInterfaceCollection : INestedInterfaceCollection
+        where TNestedStructCollection : INestedStructCollection
         where TStaticConstructor : IStaticConstructor
-        where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-        where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-        where TExplicitInterfaceMethod : IExplicitInterfaceMethod
-        where TExplicitInterfaceProperty : IExplicitInterfaceProperty
     {
-        public abstract IReadOnlyCollection<TNestedClass> Classes { get; }
+        public abstract TNestedClassCollection Classes { get; }
 
         public abstract IReadOnlyCollection<TConstructor> Constructors { get; }
 
@@ -55,25 +45,23 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyCollection<TNestedEnum> Enums { get; }
 
-        public abstract IReadOnlyCollection<TEventProperty> EventProperties { get; }
+        public abstract TEventCollection Events { get; }
 
-        public abstract IReadOnlyCollection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; }
+        public abstract TFieldCollection Fields { get; }
 
-        public abstract IReadOnlyCollection<TExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; }
+        public abstract TIndexerCollection Indexers { get; }
 
-        public abstract IReadOnlyCollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods { get; }
+        public abstract TNestedInterfaceCollection Interfaces { get; }
 
-        public abstract IReadOnlyCollection<TExplicitInterfaceProperty> ExplicitInterfaceProperties { get; }
-
-        public abstract IReadOnlyCollection<TField> Fields { get; }
-
-        public abstract IReadOnlyCollection<TNestedInterface> Interfaces { get; }
+        public abstract TMethodCollection Methods { get; }
 
         public abstract IReadOnlyCollection<TOperatorOverload> OperatorOverloads { get; }
 
+        public abstract TPropertyCollection Properties { get; }
+
         public abstract TStaticConstructor StaticConstructor { get; }
 
-        public abstract IReadOnlyCollection<TNestedStruct> Structs { get; }
+        public abstract TNestedStructCollection Structs { get; }
 
         public virtual void Accept(IGenericVisitor visitor)
         {

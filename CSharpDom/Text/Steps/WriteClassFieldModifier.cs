@@ -13,9 +13,6 @@
         {
             switch (Modifier)
             {
-                case ClassFieldModifier.Const:
-                    builder.Append("const");
-                    break;
                 case ClassFieldModifier.ReadOnly:
                     builder.Append("readonly");
                     break;

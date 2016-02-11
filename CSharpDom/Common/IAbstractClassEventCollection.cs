@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IAbstractClassEventCollection : IVisitable<IGenericVisitor>
+    public interface IAbstractClassEventCollection : IClassEventCollection
     {
     }
 }
