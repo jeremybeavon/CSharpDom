@@ -2,8 +2,7 @@
 {
     public interface IProtectedOverrideProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
         IProtectedOverrideProperty,
-        IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
-        IHasClassMemberInheritanceModifier
+        IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : ISealedType
         where TTypeReference : ITypeReference

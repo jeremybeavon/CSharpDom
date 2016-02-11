@@ -37,12 +37,12 @@ namespace CSharpDom.Serialization
 
         public void Accept(IGenericVisitor visitor)
         {
-            //visitor.VisitStructConstant(this);
+            visitor.VisitStructConstant(this);
         }
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            //GenericVisitor.VisitStructConstantChildren(this, visitor);
+            GenericVisitor.VisitStructConstantChildren(this, visitor);
         }
     }
 }

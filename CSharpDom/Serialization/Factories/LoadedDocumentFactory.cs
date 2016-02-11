@@ -9,19 +9,19 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
+        public override void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>(
+            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> loadedDocument)
         {
             Value = new LoadedDocument()
             {
                 AssemblyAttributes = loadedDocument.AssemblyAttributes.ToAttributeListUsingFactory(),
-                Classes = loadedDocument.Classes.ToList(@class => new ClassFactory(@class).Value),
+                Classes = new ClassCollectionFactory(loadedDocument.Classes).Value,
                 Delegates = loadedDocument.Delegates.ToList(@delegate => new DelegateFactory(@delegate).Value),
                 Enums = loadedDocument.Enums.ToList(@enum => new EnumFactory(@enum).Value),
-                Interfaces = loadedDocument.Interfaces.ToList(@interface => new InterfaceFactory(@interface).Value),
+                Interfaces = new InterfaceCollectionFactory(loadedDocument.Interfaces).Value,
                 ModuleAttributes = loadedDocument.ModuleAttributes.ToAttributeListUsingFactory(),
                 Namespaces = loadedDocument.Namespaces.ToList(@namespace => new NamespaceFactory(@namespace).Value),
-                Structs = loadedDocument.Structs.ToList(@struct => new StructFactory(@struct).Value),
+                Structs = new StructCollectionFactory(loadedDocument.Structs).Value,
                 UsingDirectives = loadedDocument.UsingDirectives.ToList(@using => new UsingDirectiveFactory(@using).Value)
             };
         }

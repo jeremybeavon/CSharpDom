@@ -9,18 +9,18 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
+        public override void VisitNamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>(
+            INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> @namespace)
         {
             Value = new Namespace()
             {
-                Classes = @namespace.Classes.ToList(@class => new ClassFactory(@class).Value),
+                Classes = new ClassCollectionFactory(@namespace.Classes).Value,
                 Delegates = @namespace.Delegates.ToList(@delegate => new DelegateFactory(@delegate).Value),
                 Enums = @namespace.Enums.ToList(@enum => new EnumFactory(@enum).Value),
-                Interfaces = @namespace.Interfaces.ToList(@interface => new InterfaceFactory(@interface).Value),
+                Interfaces = new InterfaceCollectionFactory(@namespace.Interfaces).Value,
                 Name = @namespace.Name,
                 Namespaces = @namespace.Namespaces.ToList(inner => new NamespaceFactory(inner).Value),
-                Structs = @namespace.Structs.ToList(@struct => new StructFactory(@struct).Value),
+                Structs = new StructCollectionFactory(@namespace.Structs).Value,
                 UsingDirectives = @namespace.UsingDirectives.ToList(@using => new UsingDirectiveFactory(@using).Value)
             };
         }

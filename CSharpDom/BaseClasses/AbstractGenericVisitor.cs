@@ -209,19 +209,19 @@ namespace CSharpDom.BaseClasses
             Visit(interfaceReference);
         }
 
-        public virtual void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
+        public virtual void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>(
+            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> loadedDocument)
             where TSolution : ISolution
             where TProject : IProject
             where TDocument : IDocument
             where TUsingDirective : IUsingDirective
             where TAttributeGroup : IAttributeGroup
             where TNamespace : INamespace
-            where TClass : IClass
+            where TClassCollection : IClassCollection
             where TDelegate : IDelegate
             where TEnum : IEnum
-            where TInterface : IInterface
-            where TStruct : IStruct
+            where TInterfaceCollection : IInterfaceCollection
+            where TStructCollection : IStructCollection
         {
             Visit(loadedDocument);
         }
@@ -243,15 +243,15 @@ namespace CSharpDom.BaseClasses
             Visit(methodBody);
         }
         
-        public virtual void VisitNamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
-            INamespace<TUsingDirective, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> @namespace)
+        public virtual void VisitNamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>(
+            INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> @namespace)
             where TUsingDirective : IUsingDirective
             where TNamespace : INamespace
-            where TClass : IClass
+            where TClassCollection : IClassCollection
             where TDelegate : IDelegate
             where TEnum : IEnum
-            where TInterface : IInterface
-            where TStruct : IStruct
+            where TInterfaceCollection : IInterfaceCollection
+            where TStructCollection : IStructCollection
         {
             Visit(@namespace);
         }
@@ -630,17 +630,7 @@ namespace CSharpDom.BaseClasses
         {
             Visit(eventProperty);
         }
-
-        public virtual void VisitField<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
-            IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField> field)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TTypeReference : ITypeReference
-            where TField : IField
-        {
-            Visit(field);
-        }
-
+        
         public virtual void VisitIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
             where TAttributeGroup : IAttributeGroup
@@ -1819,7 +1809,7 @@ namespace CSharpDom.BaseClasses
 
         public virtual void VisitSealedClassEventCollection<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent>(
             ISealedClassEventCollection<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent> eventCollection)
-            where TEvent : IClassEvent
+            where TEvent : ISealedClassEvent
             where TEventProperty : IClassEventProperty
             where TProtectedOverrideEvent : IProtectedOverrideEvent
             where TExplicitInterfaceEvent : IExplicitInterfaceEvent
@@ -1837,7 +1827,7 @@ namespace CSharpDom.BaseClasses
 
         public virtual void VisitSealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer>(
             ISealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer> indexerCollection)
-            where TIndexer : IClassIndexer
+            where TIndexer : ISealedClassIndexer
             where TProtectedOverrideIndexer : IProtectedOverrideIndexer
             where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
         {
@@ -1846,7 +1836,7 @@ namespace CSharpDom.BaseClasses
 
         public virtual void VisitSealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod>(
             ISealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod> methodCollection)
-            where TMethod : IClassMethod
+            where TMethod : ISealedClassMethod
             where TProtectedOverrideMethod : IProtectedOverrideMethod
             where TExplicitInterfaceMethod : IExplicitInterfaceMethod
         {
@@ -2258,6 +2248,24 @@ namespace CSharpDom.BaseClasses
             where TStaticConstructor : IStaticConstructor
         {
             Visit(type);
+        }
+
+        public virtual void VisitStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
+            IStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constant)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference
+            where TConstant : IConstant
+        {
+            Visit(constant);
+        }
+
+        public virtual void VisitInterfaceCollection<TInterface, TPartialInterface>(
+            IInterfaceCollection<TInterface, TPartialInterface> interfaceCollection)
+            where TInterface : IInterface
+            where TPartialInterface : IPartialInterface
+        {
+            Visit(interfaceCollection);
         }
     }
 }

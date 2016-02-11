@@ -1,0 +1,12 @@
+﻿using CSharpDom.Common;
+
+namespace CSharpDom.NotSupported
+{
+    public sealed class PartialClassCollectionNotSupported : VisitableNotSupported<IGenericVisitor>, IPartialClassCollection
+    {
+        public int Count
+        {
+            get { return 0; }
+        }
+    }
+}

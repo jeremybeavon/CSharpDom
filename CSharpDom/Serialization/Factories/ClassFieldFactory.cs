@@ -9,17 +9,18 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitClassField<TAttributeGroup, TDeclaringType, TTypeReference>(
-            IClassFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference> field)
+        public override void VisitClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
+            IClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field)
         {
             Value = new ClassField()
             {
                 Attributes = field.Attributes.ToAttributeListUsingFactory(),
+                Fields = field.Fields.ToList(child => new FieldFactory(child).Value),
                 FieldType = new TypeReferenceFactory(field.FieldType).Value,
                 Modifier = field.Modifier,
-                Name = field.Name,
                 Visibility = field.Visibility
             };
         }
+        
     }
 }

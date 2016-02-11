@@ -935,14 +935,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IType
             where TDelegateReference : IDelegateReference
             where TMethodBody : IMethodBody;
-
-        void VisitField<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
-            IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField> field)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TTypeReference : ITypeReference
-            where TField : IField;
-
+        
         void VisitIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
             where TAttributeGroup : IAttributeGroup
@@ -1351,7 +1344,7 @@ namespace CSharpDom.Common
 
         void VisitSealedClassEventCollection<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent>(
             ISealedClassEventCollection<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent> eventCollection)
-            where TEvent : IClassEvent
+            where TEvent : ISealedClassEvent
             where TEventProperty : IClassEventProperty
             where TProtectedOverrideEvent : IProtectedOverrideEvent
             where TExplicitInterfaceEvent : IExplicitInterfaceEvent;
@@ -1363,13 +1356,13 @@ namespace CSharpDom.Common
 
         void VisitSealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer>(
             ISealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer> indexerCollection)
-            where TIndexer : IClassIndexer
+            where TIndexer : ISealedClassIndexer
             where TProtectedOverrideIndexer : IProtectedOverrideIndexer
             where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer;
 
         void VisitSealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod>(
             ISealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod> methodCollection)
-            where TMethod : IClassMethod
+            where TMethod : ISealedClassMethod
             where TProtectedOverrideMethod : IProtectedOverrideMethod
             where TExplicitInterfaceMethod : IExplicitInterfaceMethod;
 
@@ -1688,5 +1681,17 @@ namespace CSharpDom.Common
             where TNestedInterfaceCollection : IStructNestedInterfaceCollection
             where TNestedStructCollection : IStructNestedStructCollection
             where TStaticConstructor : IStaticConstructor;
+
+        void VisitStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
+            IStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constant)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference
+            where TConstant : IConstant;
+
+        void VisitInterfaceCollection<TInterface, TPartialInterface>(
+            IInterfaceCollection<TInterface, TPartialInterface> interfaceCollection)
+            where TInterface : IInterface
+            where TPartialInterface : IPartialInterface;
     }
 }

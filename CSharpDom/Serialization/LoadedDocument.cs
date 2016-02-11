@@ -13,28 +13,28 @@ namespace CSharpDom.Serialization
             UsingDirective,
             AttributeGroup,
             Namespace, 
-            Class,
+            ClassCollection,
             Delegate,
             Enum,
-            Interface,
-            Struct>
+            InterfaceCollection,
+            StructCollection>
     {
         public LoadedDocument()
         {
             AssemblyAttributes = new List<AttributeGroup>();
-            Classes = new List<Class>();
+            Classes = new ClassCollection();
             Delegates = new List<Delegate>();
             Enums = new List<Enum>();
-            Interfaces = new List<Interface>();
+            Interfaces = new InterfaceCollection();
             ModuleAttributes = new List<AttributeGroup>();
             Namespaces = new List<Namespace>();
-            Structs = new List<Struct>();
+            Structs = new StructCollection();
             UsingDirectives = new List<UsingDirective>();
         }
 
         public List<AttributeGroup> AssemblyAttributes { get; set; }
 
-        public List<Class> Classes { get; set; }
+        public ClassCollection Classes { get; set; }
 
         public List<Delegate> Delegates { get; set; }
 
@@ -45,7 +45,7 @@ namespace CSharpDom.Serialization
 
         public List<Enum> Enums { get; set; }
 
-        public List<Interface> Interfaces { get; set; }
+        public InterfaceCollection Interfaces { get; set; }
 
         public List<AttributeGroup> ModuleAttributes { get; set; }
 
@@ -61,7 +61,7 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public List<Struct> Structs { get; set; }
+        public StructCollection Structs { get; set; }
 
         public List<UsingDirective> UsingDirectives { get; set; }
 
@@ -69,12 +69,7 @@ namespace CSharpDom.Serialization
         {
             get { return AssemblyAttributes; }
         }
-
-        IReadOnlyCollection<Class> IHasClasses<Class>.Classes
-        {
-            get { return Classes; }
-        }
-
+        
         IReadOnlyCollection<Delegate> IHasDelegates<Delegate>.Delegates
         {
             get { return Delegates; }
@@ -84,12 +79,7 @@ namespace CSharpDom.Serialization
         {
             get { return Enums; }
         }
-
-        IReadOnlyCollection<Interface> IHasInterfaces<Interface>.Interfaces
-        {
-            get { return Interfaces; }
-        }
-
+        
         IReadOnlyCollection<AttributeGroup> IHasModuleAttributes<AttributeGroup>.ModuleAttributes
         {
             get { return ModuleAttributes; }
@@ -99,12 +89,7 @@ namespace CSharpDom.Serialization
         {
             get { return Namespaces; }
         }
-
-        IReadOnlyCollection<Struct> IHasStructs<Struct>.Structs
-        {
-            get { return Structs; }
-        }
-
+        
         IReadOnlyCollection<UsingDirective> IHasUsingDirectives<UsingDirective>.UsingDirectives
         {
             get { return UsingDirectives; }

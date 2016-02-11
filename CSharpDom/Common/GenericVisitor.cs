@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses.Wrappers;
+using CSharpDom.Common.Partial;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -162,7 +163,7 @@ namespace CSharpDom.Common
             VisitCollection(destructor.Attributes, visitor);
             VisitIfNotNull(destructor.Body, visitor);
         }
-        
+
         public static async Task VisitDocumentChildrenAsync<TProject, TSolution, TLoadedDocument>(
             IDocument<TProject, TSolution, TLoadedDocument> document,
             IGenericVisitor visitor)
@@ -256,7 +257,7 @@ namespace CSharpDom.Common
             VisitCollection(genericParameterDeclaration.GenericParameterConstraints, visitor);
             VisitCollection(genericParameterDeclaration.InterfaceConstraints, visitor);
         }
-        
+
         public static void VisitIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
             IGenericVisitor visitor)
@@ -566,7 +567,7 @@ namespace CSharpDom.Common
         {
             return VisitCollectionAsync(project.Documents, visitor);
         }
-        
+
         public static void VisitPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
             IGenericVisitor visitor)
@@ -634,7 +635,7 @@ namespace CSharpDom.Common
         {
             VisitCollection(structReference.GenericParameters, visitor);
         }
-        
+
         public static void VisitUnspecifiedTypeReference<TGenericParameter>(
             IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference,
             IGenericVisitor visitor)
@@ -944,6 +945,110 @@ namespace CSharpDom.Common
         {
             VisitCollection(fieldCollection, visitor);
             VisitCollection(fieldCollection.Constants, visitor);
+        }
+
+        public static void VisitProtectedOverrideEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IProtectedOverrideEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TDelegateReference : IDelegateReference
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void VisitProtectedOverrideIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
+            IProtectedOverrideIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TTypeReference : ITypeReference
+            where TParameter : IParameter
+            where TAccessor : ISealedClassAccessor
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void VisitProtectedOverrideMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IProtectedOverrideMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IParameter
+            where TMethodBody : IMethodBody
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void VisitProtectedOverridePropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
+            IProtectedOverrideProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TTypeReference : ITypeReference
+            where TAccessor : ISealedClassAccessor
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void VisitStructFieldChildren<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
+            IStructField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference
+            where TField : IField
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void VisitStructConstantChildren<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
+            IStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constant,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference
+            where TConstant : IConstant
+        {
+            throw new NotImplementedException();
+        }
+
+        public static void VisitClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
+            IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> classCollection,
+            IGenericVisitor visitor)
+            where TClass : IClass
+            where TAbstractClass : IAbstractClass
+            where TSealedClass : ISealedClass
+            where TStaticClass : IStaticClass
+            where TPartialClassCollection : IPartialClassCollection
+        {
+            VisitCollection(classCollection, visitor);
+            VisitCollection(classCollection.AbstractClasses, visitor);
+            VisitCollection(classCollection.SealedClasses, visitor);
+            VisitCollection(classCollection.StaticClasses, visitor);
+            VisitIfNotNull(classCollection.PartialClasses, visitor);
+        }
+
+        public static void VisitStructCollectionChildren<TStruct, TPartialStruct>(
+            IStructCollection<TStruct, TPartialStruct> structCollection,
+            IGenericVisitor visitor)
+            where TStruct : IStruct
+            where TPartialStruct : IPartialStruct
+        {
+            VisitCollection(structCollection, visitor);
+            VisitCollection(structCollection.PartialStructs, visitor);
+        }
+
+        public static void VisitInterfaceCollectionChildren<TInterface, TPartialInterface>(
+            IInterfaceCollection<TInterface, TPartialInterface> interfaceCollection,
+            IGenericVisitor visitor)
+            where TInterface : IInterface
+            where TPartialInterface : IPartialInterface
+        {
+            VisitCollection(interfaceCollection, visitor);
+            VisitCollection(interfaceCollection.PartialInterfaces, visitor);
         }
     }
 }
