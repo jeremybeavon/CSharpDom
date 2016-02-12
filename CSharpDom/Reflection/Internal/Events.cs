@@ -13,14 +13,14 @@ namespace CSharpDom.Reflection.Internal
     {
         public Events(
             TType declaringType,
-            Type type,
             IEventFactory<TEvent, TEventProperty, TType> eventFactory,
             ISet<MethodInfo> interfaceMethods)
         {
             List<TEvent> events = new List<TEvent>();
             List<ExplicitInterfaceEventWithReflection> explicitInterfaceEvents = new List<ExplicitInterfaceEventWithReflection>();
             List<TEventProperty> eventProperties = new List<TEventProperty>();
-            foreach (EventInfo eventInfo in type.GetAllEvents())
+            List<AbstractEventWithReflection> abstractEvents = new List<AbstractEventWithReflection>();
+            foreach (EventInfo eventInfo in declaringType.Type.GetAllEvents())
             {
                 if (eventInfo.AddMethod.IsDefined(typeof(CompilerGeneratedAttribute)))
                 {
@@ -30,6 +30,10 @@ namespace CSharpDom.Reflection.Internal
                 {
                     explicitInterfaceEvents.Add(new ExplicitInterfaceEventWithReflection(declaringType, eventInfo));
                 }
+                else if (eventInfo.AddMethod.IsAbstract)
+                {
+                    abstractEvents.Add(new AbstractEventWithReflection(declaringType, eventInfo));
+                }
                 else
                 {
                     eventProperties.Add(eventFactory.CreateEventProperty(declaringType, eventInfo));
@@ -38,11 +42,15 @@ namespace CSharpDom.Reflection.Internal
 
             EventsWithReflection = events;
             EventPropertiesWithReflection = eventProperties;
+            ExplictInterfaceEventsWithReflection = explicitInterfaceEvents;
+            AbstractEventsWithReflection = abstractEvents;
         }
 
         public IReadOnlyCollection<TEvent> EventsWithReflection { get; private set; }
 
         public IReadOnlyCollection<TEventProperty> EventPropertiesWithReflection { get; private set; }
+
+        public IReadOnlyCollection<AbstractEventWithReflection> AbstractEventsWithReflection { get; private set; }
 
         public IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplictInterfaceEventsWithReflection { get; private set; }
     }

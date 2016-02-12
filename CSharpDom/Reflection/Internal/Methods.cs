@@ -12,20 +12,24 @@ namespace CSharpDom.Reflection.Internal
     {
         public Methods(
             TType declaringType,
-            Type type,
             Func<TType, MethodInfo, TMethod> methodFactory,
             ISet<MethodInfo> interfaceMethods)
         {
             List<TMethod> methods = new List<TMethod>();
+            List<AbstractMethodWithReflection> abstractMethods = new List<AbstractMethodWithReflection>();
             List<ConversionOperatorWithReflection> conversionOperators = new List<ConversionOperatorWithReflection>();
             List<OperatorOverloadWithReflection> operatorOverloads = new List<OperatorOverloadWithReflection>();
             List<ExplicitInterfaceMethodWithReflection> explicitInterfaceMethods = new List<ExplicitInterfaceMethodWithReflection>();
             MethodInfo destructorMethod = new Action(Finalize).Method;
-            foreach (MethodInfo method in type.GetAllMethods())
+            foreach (MethodInfo method in declaringType.Type.GetAllMethods())
             {
                 if (method.GetBaseDefinition() == destructorMethod)
                 {
                     Destructor = method;
+                }
+                else if (method.IsAbstract)
+                {
+                    abstractMethods.Add(new AbstractMethodWithReflection(declaringType, method));
                 }
                 else if (!method.IsSpecialName)
                 {
@@ -52,12 +56,16 @@ namespace CSharpDom.Reflection.Internal
                 }
             }
 
+            AbstractMethodsWithReflection = abstractMethods;
             ConversionOperatorsWithReflection = conversionOperators;
             MethodsWithReflection = methods;
             OperatorOverloadsWithReflection = operatorOverloads;
+            ExplicitInterfaceMethodsWithReflection = explicitInterfaceMethods;
         }
 
         public IReadOnlyCollection<ConversionOperatorWithReflection> ConversionOperatorsWithReflection { get; private set; }
+
+        public IReadOnlyCollection<AbstractMethodWithReflection> AbstractMethodsWithReflection { get; private set; }
 
         public IReadOnlyCollection<TMethod> MethodsWithReflection { get; private set; }
 

@@ -7,7 +7,7 @@ using CSharpDom.Reflection.Internal;
 namespace CSharpDom.Reflection.Internal
 {
     internal sealed class FieldGroupWithReflection : 
-        AbstractField<AttributeWithReflection, ITypeWithReflection, ITypeReferenceWithReflection>,
+        AbstractFieldGroup<AttributeWithReflection, ITypeWithReflection, ITypeReferenceWithReflection, IFieldWithReflection>,
         IHasFieldInfo
     {
         private readonly ITypeWithReflection declaringType;
@@ -79,6 +79,11 @@ namespace CSharpDom.Reflection.Internal
         public override string Name
         {
             get { return field.Name; }
+        }
+
+        public override IReadOnlyCollection<IFieldWithReflection> Fields
+        {
+            get { return new IFieldWithReflection[0]; }
         }
 
         /*public override ClassMemberVisibilityModifier Visibility

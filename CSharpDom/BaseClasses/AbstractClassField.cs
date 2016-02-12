@@ -5,7 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
-        AbstractField<TAttributeGroup, TDeclaringType, TTypeReference, TField>,
+        AbstractFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>,
         IClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType

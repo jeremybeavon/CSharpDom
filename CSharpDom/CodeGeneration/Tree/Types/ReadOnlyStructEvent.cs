@@ -24,8 +24,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             this.structEvent = structEvent;
             eventType = new ReadOnlyDelegateReference(structEvent.Type);
-            IsEventProperty = structEvent.Accessors != null;
-            if (IsEventProperty)
+            if (structEvent.IsEventProperty)
             {
                 addBody = new ReadOnlyMethodBody(structEvent.Accessors.AddBody);
                 removeBody = new ReadOnlyMethodBody(structEvent.Accessors.RemoveBody);
@@ -59,7 +58,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return structEvent.IsStatic ? CSharpDom.ClassMemberInheritanceModifier.Static : CSharpDom.ClassMemberInheritanceModifier.None; }
+            get { return structEvent.IsStatic ? ClassMemberInheritanceModifier.Static : ClassMemberInheritanceModifier.None; }
         }
 
         public string Name
@@ -77,11 +76,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return structEvent.Visibility; }
         }
         
-        public bool IsEventProperty { get; private set; }
-
         public void Accept(IGenericVisitor visitor)
         {
-            if (IsEventProperty)
+            if (structEvent.IsEventProperty)
             {
                 visitor.VisitStructEventProperty(this);
             }
@@ -93,7 +90,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            if (IsEventProperty)
+            if (structEvent.IsEventProperty)
             {
                 GenericVisitor.VisitEventPropertyChildren(this, visitor);
             }

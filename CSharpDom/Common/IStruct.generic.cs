@@ -1,6 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStruct<TNamespace,
+    public interface IStruct<
+        TNamespace,
         TDocument,
         TProject,
         TSolution,

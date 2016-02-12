@@ -4,12 +4,13 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference> :
-        AbstractField<TAttributeGroup, TDeclaringType, TTypeReference>,
-        IStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference>
+    public abstract class AbstractStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
+        AbstractFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>,
+        IStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStaticType
         where TTypeReference : ITypeReference
+        where TField : IField
     {
         public abstract StaticClassFieldModifier Modifier { get; }
 

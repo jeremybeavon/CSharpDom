@@ -4,12 +4,13 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractSealedClassField<TAttributeGroup, TDeclaringType, TTypeReference> :
-        AbstractField<TAttributeGroup, TDeclaringType, TTypeReference>,
-        ISealedClassField<TAttributeGroup, TDeclaringType, TTypeReference>
+    public abstract class AbstractSealedClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
+        AbstractFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>,
+        ISealedClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : ISealedType
         where TTypeReference : ITypeReference
+        where TField : IField
     {
         public abstract ClassFieldModifier Modifier { get; }
 

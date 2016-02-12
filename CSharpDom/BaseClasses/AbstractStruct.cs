@@ -4,34 +4,30 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractStruct<TNamespace,
+    public abstract class AbstractStruct<
+        TNamespace,
         TDocument,
         TProject,
         TSolution,
         TAttributeGroup,
         TGenericParameter,
         TInterfaceReference,
-        TEvent,
-        TProperty,
-        TIndexer,
-        TMethod,
-        TField,
+        TEventCollection,
+        TPropertyCollection,
+        TIndexerCollection,
+        TMethodCollection,
+        TFieldCollection,
         TConstructor,
-        TEventProperty,
         TOperatorOverload,
         TConversionOperator,
-        TNestedClass,
+        TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterface,
-        TNestedStruct,
-        TStaticConstructor,
-        TExplicitInterfaceEvent,
-        TExplicitInterfaceProperty,
-        TExplicitInterfaceIndexer,
-        TExplicitInterfaceMethod> :
-        AbstractType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>,
-        IStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>
+        TNestedInterfaceCollection,
+        TNestedStructCollection,
+        TStaticConstructor> :
+        AbstractType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        IStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
         where TProject : IProject
@@ -39,25 +35,20 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TInterfaceReference : IInterfaceReference
-        where TEvent : IStructEvent
-        where TProperty : IStructProperty
-        where TIndexer : IStructIndexer
-        where TMethod : IStructMethod
-        where TField : IStructField
+        where TEventCollection : IStructEventCollection
+        where TPropertyCollection : IStructPropertyCollection
+        where TIndexerCollection : IStructIndexerCollection
+        where TMethodCollection : IStructMethodCollection
+        where TFieldCollection : IStructFieldCollection
         where TConstructor : IStructConstructor
-        where TEventProperty : IStructEventProperty
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
-        where TNestedClass : IStructNestedClass
+        where TNestedClassCollection : IStructNestedClassCollection
         where TNestedDelegate : IStructNestedDelegate
         where TNestedEnum : IStructNestedEnum
-        where TNestedInterface : IStructNestedInterface
-        where TNestedStruct : IStructNestedStruct
+        where TNestedInterfaceCollection : IStructNestedInterfaceCollection
+        where TNestedStructCollection : IStructNestedStructCollection
         where TStaticConstructor : IStaticConstructor
-        where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-        where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-        where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-        where TExplicitInterfaceMethod : IExplicitInterfaceMethod
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 

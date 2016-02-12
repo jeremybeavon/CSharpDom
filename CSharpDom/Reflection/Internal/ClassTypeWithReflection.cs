@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using CSharpDom.Common;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -17,11 +18,69 @@ namespace CSharpDom.Reflection.Internal
             ClassNestedDelegateWithReflection,
             ClassNestedEnumWithReflection,
             ClassNestedInterfaceWithReflection,
-            ClassNestedStructWithReflection>
+            ClassNestedStructWithReflection>,
+        IInternalClassTypeWithReflection
     {
-        public ClassTypeWithReflection(IInternalTypeWithReflection declaringType, Type type)
-            : base(declaringType, type)
+        private readonly ClassNestedClassCollectionWithReflection classes;
+        private readonly ClassEventCollectionWithReflection events;
+        private readonly ClassFieldCollectionWithReflection fields;
+        private readonly ClassIndexerCollectionWithReflection indexers;
+        private readonly ClassNestedInterfaceCollectionWithReflection interfaces;
+        private readonly ClassMethodCollectionWithReflection methods;
+        private readonly ClassPropertyCollectionWithReflection properties;
+        private readonly ClassNestedStructCollectionWithReflection structs;
+
+        public ClassTypeWithReflection(IInternalTypeWithReflection declaringType)
+            : base(declaringType)
         {
+            classes = new ClassNestedClassCollectionWithReflection(this);
+            events = new ClassEventCollectionWithReflection(this);
+            fields = new ClassFieldCollectionWithReflection(this);
+            indexers = new ClassIndexerCollectionWithReflection(this);
+            interfaces = new ClassNestedInterfaceCollectionWithReflection(this);
+            methods = new ClassMethodCollectionWithReflection(this);
+            properties = new ClassPropertyCollectionWithReflection(this);
+            structs = new ClassNestedStructCollectionWithReflection(this);
+        }
+
+        ClassNestedClassCollectionWithReflection IHasClassCollection<ClassNestedClassCollectionWithReflection>.Classes
+        {
+            get { return classes; }
+        }
+
+        ClassEventCollectionWithReflection IHasEventCollection<ClassEventCollectionWithReflection>.Events
+        {
+            get { return events; }
+        }
+
+        ClassFieldCollectionWithReflection IHasFieldCollection<ClassFieldCollectionWithReflection>.Fields
+        {
+            get { return fields; }
+        }
+
+        ClassIndexerCollectionWithReflection IHasIndexerCollection<ClassIndexerCollectionWithReflection>.Indexers
+        {
+            get { return indexers; }
+        }
+
+        ClassNestedInterfaceCollectionWithReflection IHasInterfaceCollection<ClassNestedInterfaceCollectionWithReflection>.Interfaces
+        {
+            get { return interfaces; }
+        }
+
+        ClassMethodCollectionWithReflection IHasMethodCollection<ClassMethodCollectionWithReflection>.Methods
+        {
+            get { return methods; }
+        }
+
+        ClassPropertyCollectionWithReflection IHasPropertyCollection<ClassPropertyCollectionWithReflection>.Properties
+        {
+            get { return properties; }
+        }
+
+        ClassNestedStructCollectionWithReflection IHasStructCollection<ClassNestedStructCollectionWithReflection>.Structs
+        {
+            get { return structs; }
         }
 
         protected override ClassConstructorWithReflection CreateConstructor(ITypeWithReflection declaringType, ConstructorInfo constructor)

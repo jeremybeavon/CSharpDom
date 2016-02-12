@@ -13,26 +13,21 @@ namespace CSharpDom.Reflection.Internal
             GenericParameterDeclarationWithReflection,
             ClassReferenceWithReflection,
             InterfaceReferenceWithReflection,
-            ClassEventWithReflection,
-            ClassPropertyWithReflection,
-            ClassIndexerWithReflection,
-            ClassMethodWithReflection,
-            ClassFieldWithReflection,
+            ClassEventCollectionWithReflection,
+            ClassPropertyCollectionWithReflection,
+            ClassIndexerCollectionWithReflection,
+            ClassMethodCollectionWithReflection,
+            ClassFieldCollectionWithReflection,
             ClassConstructorWithReflection,
-            ClassEventPropertyWithReflection,
             OperatorOverloadWithReflection,
             ConversionOperatorWithReflection,
-            ClassNestedClassWithReflection,
+            ClassNestedClassCollectionWithReflection,
             ClassNestedDelegateWithReflection,
             ClassNestedEnumWithReflection,
-            ClassNestedInterfaceWithReflection,
-            ClassNestedStructWithReflection,
+            ClassNestedInterfaceCollectionWithReflection,
+            ClassNestedStructCollectionWithReflection,
             NestedDestructorWithReflection,
-            StaticConstructorWithReflection,
-            ExplicitInterfaceEventWithReflection,
-            ExplicitInterfacePropertyWithReflection,
-            ExplicitInterfaceIndexerWithReflection,
-            ExplicitInterfaceMethodWithReflection>,
+            StaticConstructorWithReflection>,
         ITypeWithReflection,
         IInternalTypeWithReflection,
         IHasType
@@ -41,7 +36,7 @@ namespace CSharpDom.Reflection.Internal
         private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
         private readonly Type type;
         private readonly ClassReferenceWithReflection baseClass;
-        private readonly ClassTypeWithReflection typeWithReflection;
+        private readonly IInternalClassTypeWithReflection typeWithReflection;
         private readonly Lazy<NestedDestructorWithReflection> destructor;
 
         internal NestedClassWithReflection(ITypeWithReflection declaringType, Type type)
@@ -54,7 +49,7 @@ namespace CSharpDom.Reflection.Internal
                 baseClass = new ClassReferenceWithReflection(type.BaseType);
             }
 
-            typeWithReflection = new ClassTypeWithReflection(this, type);
+            typeWithReflection = new ClassTypeWithReflection(this);
             destructor = new Lazy<NestedDestructorWithReflection>(
                 () => new NestedDestructorWithReflection(this, typeWithReflection.Destructor));
         }
@@ -64,7 +59,7 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.Attributes; }
         }
 
-        public override IReadOnlyCollection<ClassNestedClassWithReflection> Classes
+        public override ClassNestedClassCollectionWithReflection Classes
         {
             get { return typeWithReflection.Classes; }
         }
@@ -98,18 +93,13 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return typeWithReflection.Enums; }
         }
-
-        public override IReadOnlyCollection<ClassEventPropertyWithReflection> EventProperties
-        {
-            get { return typeWithReflection.EventProperties; }
-        }
-
-        public override IReadOnlyCollection<ClassEventWithReflection> Events
+        
+        public override ClassEventCollectionWithReflection Events
         {
             get { return typeWithReflection.Events; }
         }
 
-        public override IReadOnlyCollection<ClassFieldWithReflection> Fields
+        public override ClassFieldCollectionWithReflection Fields
         {
             get { return typeWithReflection.Fields; }
         }
@@ -119,17 +109,17 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.GenericParameters; }
         }
 
-        public override IReadOnlyCollection<ClassIndexerWithReflection> Indexers
+        public override ClassIndexerCollectionWithReflection Indexers
         {
             get { return typeWithReflection.Indexers; }
         }
 
-        public override IReadOnlyCollection<ClassNestedInterfaceWithReflection> Interfaces
+        public override ClassNestedInterfaceCollectionWithReflection Interfaces
         {
             get { return typeWithReflection.Interfaces; }
         }
         
-        public override IReadOnlyCollection<ClassMethodWithReflection> Methods
+        public override ClassMethodCollectionWithReflection Methods
         {
             get { return typeWithReflection.Methods; }
         }
@@ -144,12 +134,12 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.OperatorOverloads; }
         }
         
-        public override IReadOnlyCollection<ClassPropertyWithReflection> Properties
+        public override ClassPropertyCollectionWithReflection Properties
         {
             get { return typeWithReflection.Properties; }
         }
         
-        public override IReadOnlyCollection<ClassNestedStructWithReflection> Structs
+        public override ClassNestedStructCollectionWithReflection Structs
         {
             get { return typeWithReflection.Structs; }
         }
@@ -168,27 +158,7 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return type; }
         }
-
-        public override IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
-        {
-            get { return typeWithReflection.ExplicitInterfaceEvents; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexers
-        {
-            get { return typeWithReflection.ExplicitInterfaceIndexers; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethods
-        {
-            get { return typeWithReflection.ExplicitInterfaceMethods; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfaceProperties
-        {
-            get { return typeWithReflection.ExplicitInterfaceProperties; }
-        }
-
+        
         public override StaticConstructorWithReflection StaticConstructor
         {
             get { return typeWithReflection.StaticConstructor; }

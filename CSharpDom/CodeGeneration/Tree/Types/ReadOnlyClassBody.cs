@@ -11,61 +11,48 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassBody :
         IType<
-            ReadOnlyClassEvent,
-            ReadOnlyClassProperty,
-            ReadOnlyClassIndexer,
-            ReadOnlyClassMethod,
-            ReadOnlyClassField,
+            ReadOnlyClassEventCollection,
+            ReadOnlyClassPropertyCollection,
+            ReadOnlyClassIndexerCollection,
+            ReadOnlyClassMethodCollection,
+            ReadOnlyClassFieldCollection,
             ConstructorNotSupported,
-            ReadOnlyClassEvent,
             ReadOnlyOperatorOverload,
             ReadOnlyConversionOperator,
-            ReadOnlyClassNestedClass,
+            ReadOnlyClassNestedClassCollection,
             ReadOnlyClassNestedDelegate,
             ReadOnlyClassNestedEnum,
-            ReadOnlyClassNestedInterface,
-            ReadOnlyClassNestedStruct,
-            ReadOnlyStaticConstructor,
-            ReadOnlyExplicitInterfaceEvent,
-            ReadOnlyExplicitInterfaceProperty,
-            ReadOnlyExplicitInterfaceIndexer,
-            ReadOnlyExplicitInterfaceMethod>
+            ReadOnlyClassNestedInterfaceCollection,
+            ReadOnlyClassNestedStructCollection,
+            ReadOnlyStaticConstructor>
     {
         public ReadOnlyClassBody(ClassBody classBody)
         {
-            Classes = classBody.NestedClasses.ToArray(nestedClass => new ReadOnlyClassNestedClass(nestedClass));
+            Classes = new ReadOnlyClassNestedClassCollection(classBody);
             Constructors = new ConstructorNotSupported[0];
             ConversionOperators = classBody.ConversionOperators
                 .ToArray(conversionOperator => new ReadOnlyConversionOperator(conversionOperator));
             Delegates = classBody.NestedDelegates.ToArray(nestedDelegate => new ReadOnlyClassNestedDelegate(nestedDelegate));
             Enums = classBody.NestedEnums.ToArray(nestedEnum => new ReadOnlyClassNestedEnum(nestedEnum));
-            List<ReadOnlyClassEvent> events = new List<ReadOnlyClassEvent>();
-            List<ReadOnlyClassEvent> eventProperties = new List<ReadOnlyClassEvent>();
-            Events = events;
-            EventProperties = eventProperties;
-            InitializeEvents(classBody, events, eventProperties);
-            ExplicitInterfaceEvents = classBody.ExplicitInterfaceEvents.ToArray(@event => new ReadOnlyExplicitInterfaceEvent(@event));
-            ExplicitInterfaceIndexers = classBody.ExplicitInterfaceIndexers.ToArray(indexer => new ReadOnlyExplicitInterfaceIndexer(indexer));
-            ExplicitInterfaceMethods = classBody.ExplicitInterfaceMethods.ToArray(method => new ReadOnlyExplicitInterfaceMethod(method));
-            ExplicitInterfaceProperties = classBody.ExplicitInterfaceProperties.ToArray(property => new ReadOnlyExplicitInterfaceProperty(property));
-            Fields = classBody.Fields.ToArray(field => new ReadOnlyClassField(field));
-            Indexers = classBody.Indexers.ToArray(indexer => new ReadOnlyClassIndexer(indexer));
-            Interfaces = classBody.NestedInterfaces.ToArray(nestedInterface => new ReadOnlyClassNestedInterface(nestedInterface));
-            Methods = classBody.Methods.ToArray(method => new ReadOnlyClassMethod(method));
+            Events = new ReadOnlyClassEventCollection(classBody);
+            Fields = new ReadOnlyClassFieldCollection(classBody);
+            Indexers = new ReadOnlyClassIndexerCollection(classBody);
+            Interfaces = new ReadOnlyClassNestedInterfaceCollection(classBody);
+            Methods = new ReadOnlyClassMethodCollection(classBody);
             OperatorOverloads =
                 classBody.BinaryOperators.Select(@operator => new ReadOnlyOperatorOverload(@operator))
                 .Concat(classBody.UnaryOperators.Select(@operator => new ReadOnlyOperatorOverload(@operator)))
                 .ToArray();
-            Properties = classBody.Properties.ToArray(property => new ReadOnlyClassProperty(property));
+            Properties = new ReadOnlyClassPropertyCollection(classBody);
             if (classBody.StaticConstructor != null)
             {
                 StaticConstructor = new ReadOnlyStaticConstructor(classBody.StaticConstructor);
             }
 
-            Structs = classBody.NestedStructs.ToArray(nestedStruct => new ReadOnlyClassNestedStruct(nestedStruct));
+            Structs = new ReadOnlyClassNestedStructCollection(classBody);
         }
 
-        public IReadOnlyCollection<ReadOnlyClassNestedClass> Classes { get; private set; }
+        public ReadOnlyClassNestedClassCollection Classes { get; private set; }
 
         public IReadOnlyCollection<ConstructorNotSupported> Constructors { get; private set; }
 
@@ -75,33 +62,23 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public IReadOnlyCollection<ReadOnlyClassNestedEnum> Enums { get; private set; }
 
-        public IReadOnlyCollection<ReadOnlyClassEvent> EventProperties { get; private set; }
+        public ReadOnlyClassEventCollection Events { get; private set; }
+        
+        public ReadOnlyClassFieldCollection Fields { get; private set; }
 
-        public IReadOnlyCollection<ReadOnlyClassEvent> Events { get; private set; }
+        public ReadOnlyClassIndexerCollection Indexers { get; private set; }
 
-        public IReadOnlyCollection<ReadOnlyExplicitInterfaceEvent> ExplicitInterfaceEvents { get; private set; }
+        public ReadOnlyClassNestedInterfaceCollection Interfaces { get; private set; }
 
-        public IReadOnlyCollection<ReadOnlyExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; private set; }
-
-        public IReadOnlyCollection<ReadOnlyExplicitInterfaceMethod> ExplicitInterfaceMethods { get; private set; }
-
-        public IReadOnlyCollection<ReadOnlyExplicitInterfaceProperty> ExplicitInterfaceProperties { get; private set; }
-
-        public IReadOnlyCollection<ReadOnlyClassField> Fields { get; private set; }
-
-        public IReadOnlyCollection<ReadOnlyClassIndexer> Indexers { get; private set; }
-
-        public IReadOnlyCollection<ReadOnlyClassNestedInterface> Interfaces { get; private set; }
-
-        public IReadOnlyCollection<ReadOnlyClassMethod> Methods { get; private set; }
+        public ReadOnlyClassMethodCollection Methods { get; private set; }
 
         public IReadOnlyCollection<ReadOnlyOperatorOverload> OperatorOverloads { get; private set; }
 
-        public IReadOnlyCollection<ReadOnlyClassProperty> Properties { get; private set; }
+        public ReadOnlyClassPropertyCollection Properties { get; private set; }
 
         public ReadOnlyStaticConstructor StaticConstructor { get; set; }
 
-        public IReadOnlyCollection<ReadOnlyClassNestedStruct> Structs { get; private set; }
+        public ReadOnlyClassNestedStructCollection Structs { get; private set; }
 
         public void Accept(IGenericVisitor visitor)
         {
@@ -111,22 +88,6 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitTypeChildren(this, visitor);
-        }
-
-        private void InitializeEvents(ClassBody classBody, List<ReadOnlyClassEvent> events, List<ReadOnlyClassEvent> eventProperties)
-        {
-            foreach (ClassEvent classEvent in classBody.Events)
-            {
-                ReadOnlyClassEvent @event = new ReadOnlyClassEvent(classEvent);
-                if (@event.IsEventProperty)
-                {
-                    eventProperties.Add(@event);
-                }
-                else
-                {
-                    events.Add(@event);
-                }
-            }
         }
     }
 }

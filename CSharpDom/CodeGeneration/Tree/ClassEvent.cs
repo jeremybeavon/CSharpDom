@@ -16,5 +16,10 @@
         public DelegateReference Type { get; set; }
 
         public EventAccessors Accessors { get; set; }
+
+        internal bool IsEventProperty
+        {
+            get { return Accessors != null; }
+        }
     }
 }

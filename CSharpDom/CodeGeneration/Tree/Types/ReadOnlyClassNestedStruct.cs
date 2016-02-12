@@ -12,25 +12,20 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             IClassType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyInterfaceReference,
-            ReadOnlyStructEvent,
-            ReadOnlyStructProperty,
-            ReadOnlyStructIndexer,
-            ReadOnlyStructMethod,
-            ReadOnlyStructField,
+            ReadOnlyStructEventCollection,
+            ReadOnlyStructPropertyCollection,
+            ReadOnlyStructIndexerCollection,
+            ReadOnlyStructMethodCollection,
+            ReadOnlyStructFieldCollection,
             ConstructorNotSupported,
-            ReadOnlyStructEvent,
             ReadOnlyOperatorOverload,
             ReadOnlyConversionOperator,
-            ReadOnlyStructNestedClass,
+            ReadOnlyStructNestedClassCollection,
             ReadOnlyStructNestedDelegate,
             ReadOnlyStructNestedEnum,
-            ReadOnlyStructNestedInterface,
-            ReadOnlyStructNestedStruct,
-            ReadOnlyStaticConstructor,
-            ReadOnlyExplicitInterfaceEvent,
-            ReadOnlyExplicitInterfaceProperty,
-            ReadOnlyExplicitInterfaceIndexer,
-            ReadOnlyExplicitInterfaceMethod>
+            ReadOnlyStructNestedInterfaceCollection,
+            ReadOnlyStructNestedStructCollection,
+            ReadOnlyStaticConstructor>
     {
         private readonly ClassNestedStruct nestedStruct;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
@@ -50,7 +45,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
         
-        public override IReadOnlyCollection<ReadOnlyStructNestedClass> Classes
+        public override ReadOnlyStructNestedClassCollection Classes
         {
             get { return body.Classes; }
         }
@@ -79,18 +74,13 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return body.Enums; }
         }
-
-        public override IReadOnlyCollection<ReadOnlyStructEvent> EventProperties
-        {
-            get { return body.EventProperties; }
-        }
-
-        public override IReadOnlyCollection<ReadOnlyStructEvent> Events
+        
+        public override ReadOnlyStructEventCollection Events
         {
             get { return body.Events; }
         }
 
-        public override IReadOnlyCollection<ReadOnlyStructField> Fields
+        public override ReadOnlyStructFieldCollection Fields
         {
             get { return body.Fields; }
         }
@@ -105,17 +95,17 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return implementedInterfaces; }
         }
 
-        public override IReadOnlyCollection<ReadOnlyStructIndexer> Indexers
+        public override ReadOnlyStructIndexerCollection Indexers
         {
             get { return body.Indexers; }
         }
 
-        public override IReadOnlyCollection<ReadOnlyStructNestedInterface> Interfaces
+        public override ReadOnlyStructNestedInterfaceCollection Interfaces
         {
             get { return body.Interfaces; }
         }
         
-        public override IReadOnlyCollection<ReadOnlyStructMethod> Methods
+        public override ReadOnlyStructMethodCollection Methods
         {
             get { return body.Methods; }
         }
@@ -130,12 +120,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.OperatorOverloads; }
         }
 
-        public override IReadOnlyCollection<ReadOnlyStructProperty> Properties
+        public override ReadOnlyStructPropertyCollection Properties
         {
             get { return body.Properties; }
         }
 
-        public override IReadOnlyCollection<ReadOnlyStructNestedStruct> Structs
+        public override ReadOnlyStructNestedStructCollection Structs
         {
             get { return body.Structs; }
         }
@@ -144,27 +134,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return nestedStruct.Visibility; }
         }
-
-        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceEvent> ExplicitInterfaceEvents
-        {
-            get { return body.ExplicitInterfaceEvents; }
-        }
-
-        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceIndexer> ExplicitInterfaceIndexers
-        {
-            get { return body.ExplicitInterfaceIndexers; }
-        }
-
-        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceMethod> ExplicitInterfaceMethods
-        {
-            get { return body.ExplicitInterfaceMethods; }
-        }
-
-        public override IReadOnlyCollection<ReadOnlyExplicitInterfaceProperty> ExplicitInterfaceProperties
-        {
-            get { return body.ExplicitInterfaceProperties; }
-        }
-
+        
         public override ReadOnlyStaticConstructor StaticConstructor
         {
             get { return body.StaticConstructor; }

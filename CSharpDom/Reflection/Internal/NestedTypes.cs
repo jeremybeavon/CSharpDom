@@ -8,7 +8,6 @@ namespace CSharpDom.Reflection.Internal
     {
         public NestedTypes(
             ITypeWithReflection declaringType,
-            Type type,
             INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> factory)
         {
             List<TNestedClass> nestedClasses = new List<TNestedClass>();
@@ -16,7 +15,7 @@ namespace CSharpDom.Reflection.Internal
             List<TNestedEnum> nestedEnums = new List<TNestedEnum>();
             List<TNestedInterface> nestedInterfaces = new List<TNestedInterface>();
             List<TNestedStruct> nestedStructs = new List<TNestedStruct>();
-            foreach (Type nestedType in type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic))
+            foreach (Type nestedType in declaringType.Type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic))
             {
                 switch (nestedType.TypeClassification())
                 {

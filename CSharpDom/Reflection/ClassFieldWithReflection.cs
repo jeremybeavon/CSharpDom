@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
-using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using System.Reflection;
+using CSharpDom.Reflection.ConstantExpressions;
 
 namespace CSharpDom.Reflection
 {
@@ -11,7 +11,9 @@ namespace CSharpDom.Reflection
         AbstractClassField<
             AttributeWithReflection,
             ITypeWithReflection,
-            ITypeReferenceWithReflection>
+            ITypeReferenceWithReflection,
+            IFieldWithReflection>,
+        IFieldWithReflection
     {
         private readonly FieldGroupWithReflection field;
         private readonly IInternalTypeWithReflection declaringType;
@@ -50,6 +52,19 @@ namespace CSharpDom.Reflection
         public override ClassMemberVisibilityModifier Visibility
         {
             get { return field.FieldInfo.ClassVisibility(); }
+        }
+
+        public override IReadOnlyCollection<IFieldWithReflection> Fields
+        {
+            get { return new IFieldWithReflection[] { this }; }
+        }
+
+        public IConstantExpressionWithReflection InitialValue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

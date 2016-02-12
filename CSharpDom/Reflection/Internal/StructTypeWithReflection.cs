@@ -23,8 +23,8 @@ namespace CSharpDom.Reflection.Internal
             StructNestedInterfaceWithReflection,
             StructNestedStructWithReflection>
     {
-        public StructTypeWithReflection(ITypeWithReflection declaringType, Type type)
-            : base(declaringType, type)
+        public StructTypeWithReflection(ITypeWithReflection declaringType)
+            : base(declaringType)
         {
         }
 

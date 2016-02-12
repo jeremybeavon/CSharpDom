@@ -24,8 +24,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             this.classEvent = classEvent;
             eventType = new ReadOnlyDelegateReference(classEvent.Type);
-            IsEventProperty = classEvent.Accessors != null;
-            if (IsEventProperty)
+            if (classEvent.IsEventProperty)
             {
                 addBody = new ReadOnlyMethodBody(classEvent.Accessors.AddBody);
                 removeBody = new ReadOnlyMethodBody(classEvent.Accessors.RemoveBody);
@@ -77,11 +76,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return classEvent.Visibility; }
         }
         
-        public bool IsEventProperty { get; private set; }
-
         public void Accept(IGenericVisitor visitor)
         {
-            if (IsEventProperty)
+            if (classEvent.IsEventProperty)
             {
                 visitor.VisitClassEventProperty(this);
             }
@@ -93,7 +90,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            if (IsEventProperty)
+            if (classEvent.IsEventProperty)
             {
                 GenericVisitor.VisitEventPropertyChildren(this, visitor);
             }

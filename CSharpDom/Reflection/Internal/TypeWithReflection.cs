@@ -23,25 +23,20 @@ namespace CSharpDom.Reflection.Internal
         TNestedInterface,
         TNestedStruct> :
         AbstractType<
-            TEvent,
-            TProperty,
-            TIndexer,
-            TMethod,
-            TField,
+            EventCollection<TEvent, TEventProperty, TType>,
+            PropertyCollection<TProperty, TIndexer, TType>,
+            PropertyCollection<TProperty, TIndexer, TType>,
+            MethodCollection<TMethod, TType>,
+            FieldCollection<TField>,
             TConstructor,
-            TEventProperty,
             OperatorOverloadWithReflection,
             ConversionOperatorWithReflection,
-            TNestedClass,
+            NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
             TNestedDelegate,
             TNestedEnum,
-            TNestedInterface,
-            TNestedStruct,
-            StaticConstructorWithReflection,
-            ExplicitInterfaceEventWithReflection,
-            ExplicitInterfacePropertyWithReflection,
-            ExplicitInterfaceIndexerWithReflection,
-            ExplicitInterfaceMethodWithReflection>,
+            NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
+            NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
+            StaticConstructorWithReflection>,
         ITypeWithReflection,
         IEventFactory<TEvent, TEventProperty, TType>,
         INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
@@ -63,32 +58,32 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly Lazy<InterfaceReferences> implementedInterfaces;
-        private readonly Lazy<IReadOnlyCollection<TField>> fields;
+        private readonly FieldCollection<TField> fields;
         private readonly Lazy<Constructors<TConstructor>> constructors;
-        private readonly Lazy<Events<TEvent, TEventProperty, TType>> events;
-        private readonly Lazy<Properties<TProperty, TIndexer, TType>> properties;
-        private readonly Lazy<Methods<TMethod, TType>> methods;
-        private readonly Lazy<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>> nestedTypes;
+        private readonly EventCollection<TEvent, TEventProperty, TType> events;
+        private readonly PropertyCollection<TProperty, TIndexer, TType> properties;
+        private readonly MethodCollection<TMethod, TType> methods;
+        private readonly NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> nestedTypes;
 
-        protected TypeWithReflection(TType declaringType, Type type)
+        protected TypeWithReflection(TType declaringType)
         {
-            Type = type;
+            Type = declaringType.Type;
             ISet<MethodInfo> interfaceMethods = new HashSet<MethodInfo>(
-                type.GetInterfaces().SelectMany(interfaceType => type.GetInterfaceMap(interfaceType).TargetMethods));
-            attributes = new Lazy<Attributes>(() => new Attributes(type, typeof(DefaultMemberAttribute)));
-            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
-            implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(type));
-            fields = new Lazy<IReadOnlyCollection<TField>>(() => InitializeFields(declaringType, type));
+                Type.GetInterfaces().SelectMany(interfaceType => Type.GetInterfaceMap(interfaceType).TargetMethods));
+            attributes = new Lazy<Attributes>(() => new Attributes(Type, typeof(DefaultMemberAttribute)));
+            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(Type));
+            implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(Type));
+            fields = new FieldCollection<TField>(() => InitializeFields(declaringType, Type));
             constructors = new Lazy<Constructors<TConstructor>>(
-                () => new Constructors<TConstructor>(declaringType, type, CreateConstructor));
-            events = new Lazy<Events<TEvent, TEventProperty, TType>>(
-                () => new Events<TEvent, TEventProperty, TType>(declaringType, type, this, interfaceMethods));
-            properties = new Lazy<Properties<TProperty, TIndexer, TType>>(
-                () => new Properties<TProperty, TIndexer, TType>(declaringType, type, this, interfaceMethods));
-            methods = new Lazy<Methods<TMethod, TType>>(
-                () => new Methods<TMethod, TType>(declaringType, type, CreateMethod, interfaceMethods));
-            nestedTypes = new Lazy<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>>(
-                () => new NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, type, this));
+                () => new Constructors<TConstructor>(declaringType, Type, CreateConstructor));
+            events = new EventCollection<TEvent, TEventProperty, TType>(
+                () => new Events<TEvent, TEventProperty, TType>(declaringType, this, interfaceMethods));
+            properties = new PropertyCollection<TProperty, TIndexer, TType>(
+                () => new Properties<TProperty, TIndexer, TType>(declaringType, this, interfaceMethods));
+            methods = new MethodCollection<TMethod, TType>(
+                () => new Methods<TMethod, TType>(declaringType, CreateMethod, interfaceMethods));
+            nestedTypes = new NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
+                () => new NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, this));
         }
 
         public IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -96,9 +91,9 @@ namespace CSharpDom.Reflection.Internal
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override IReadOnlyCollection<TNestedClass> Classes
+        public override NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> Classes
         {
-            get { return nestedTypes.Value.NestedClasses; }
+            get { return nestedTypes; }
         }
 
         public override IReadOnlyCollection<TConstructor> Constructors
@@ -108,37 +103,32 @@ namespace CSharpDom.Reflection.Internal
 
         public override IReadOnlyCollection<ConversionOperatorWithReflection> ConversionOperators
         {
-            get { return methods.Value.ConversionOperatorsWithReflection; }
+            get { return methods.Methods.ConversionOperatorsWithReflection; }
         }
 
         public override IReadOnlyCollection<TNestedDelegate> Delegates
         {
-            get { return nestedTypes.Value.NestedDelegates; }
+            get { return nestedTypes.NestedTypes.NestedDelegates; }
         }
 
         public MethodInfo Destructor
         {
-            get { return methods.Value.Destructor; }
+            get { return methods.Methods.Destructor; }
         }
 
         public override IReadOnlyCollection<TNestedEnum> Enums
         {
-            get { return nestedTypes.Value.NestedEnums; }
+            get { return nestedTypes.NestedTypes.NestedEnums; }
+        }
+        
+        public override EventCollection<TEvent, TEventProperty, TType> Events
+        {
+            get { return events; }
         }
 
-        public override IReadOnlyCollection<TEventProperty> EventProperties
+        public override FieldCollection<TField> Fields
         {
-            get { return events.Value.EventPropertiesWithReflection; }
-        }
-
-        public override IReadOnlyCollection<TEvent> Events
-        {
-            get { return events.Value.EventsWithReflection; }
-        }
-
-        public override IReadOnlyCollection<TField> Fields
-        {
-            get { return fields.Value; }
+            get { return fields; }
         }
 
         public IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
@@ -151,61 +141,41 @@ namespace CSharpDom.Reflection.Internal
             get { return implementedInterfaces.Value.InterfaceReferencesWithReflection; }
         }
 
-        public override IReadOnlyCollection<TIndexer> Indexers
+        public override PropertyCollection<TProperty, TIndexer, TType> Indexers
         {
-            get { return properties.Value.IndexersWithReflection; }
+            get { return properties; }
         }
 
-        public override IReadOnlyCollection<TNestedInterface> Interfaces
+        public override NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> Interfaces
         {
-            get { return nestedTypes.Value.NestedInterfaces; }
+            get { return nestedTypes; }
         }
 
-        public override IReadOnlyCollection<TMethod> Methods
+        public override MethodCollection<TMethod, TType> Methods
         {
-            get { return methods.Value.MethodsWithReflection; }
+            get { return methods; }
         }
 
         public override IReadOnlyCollection<OperatorOverloadWithReflection> OperatorOverloads
         {
-            get { return methods.Value.OperatorOverloadsWithReflection; }
+            get { return methods.Methods.OperatorOverloadsWithReflection; }
         }
 
-        public override IReadOnlyCollection<TProperty> Properties
+        public override PropertyCollection<TProperty, TIndexer, TType> Properties
         {
-            get { return properties.Value.PropertiesWithReflection; }
+            get { return properties; }
         }
 
-        public override IReadOnlyCollection<TNestedStruct> Structs
+        public override NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> Structs
         {
-            get { return nestedTypes.Value.NestedStructs; }
+            get { return nestedTypes; }
         }
 
         public override StaticConstructorWithReflection StaticConstructor
         {
             get { return constructors.Value.StaticConstructorWithReflection; }
         }
-
-        public override IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
-        {
-            get { return events.Value.ExplictInterfaceEventsWithReflection; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexers
-        {
-            get { return properties.Value.ExplicitInterfaceIndexersWithReflection; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethods
-        {
-            get { return methods.Value.ExplicitInterfaceMethodsWithReflection; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfaceProperties
-        {
-            get { return properties.Value.ExplicitInterfacePropertiesWithReflection; }
-        }
-
+        
         TNestedClass INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedClass(
             ITypeWithReflection declaringType,
             Type type)

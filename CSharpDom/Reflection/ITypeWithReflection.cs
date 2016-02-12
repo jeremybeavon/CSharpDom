@@ -4,6 +4,7 @@ namespace CSharpDom.Reflection
 {
     public interface ITypeWithReflection :
         IType,
+        IHasType,
         IBasicTypeWithReflection,
         IStructType,
         IClassType,

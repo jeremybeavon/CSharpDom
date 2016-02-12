@@ -2,11 +2,12 @@
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructField :
-        AbstractStructField<AttributeGroupNotSupported, IStructType, ReadOnlyTypeReference>
+        AbstractStructField<AttributeGroupNotSupported, IStructType, ReadOnlyTypeReference, ReadOnlyField`>
     {
         private readonly StructField field;
         private readonly ReadOnlyTypeReference fieldType;
@@ -25,6 +26,14 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override IStructType DeclaringType
         {
             get { return null; }
+        }
+
+        public override IReadOnlyCollection<ReadOnlyField> Fields
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override ReadOnlyTypeReference FieldType
