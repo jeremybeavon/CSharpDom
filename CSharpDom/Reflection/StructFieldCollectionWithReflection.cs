@@ -23,7 +23,7 @@ namespace CSharpDom.Reflection
 
         protected override IReadOnlyCollection<StructFieldWithReflection> Fields
         {
-            get { return typeWithReflection.Fields.Fields; }
+            get { return typeWithReflection.FieldCollection.Fields; }
         }
     }
 }

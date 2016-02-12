@@ -9,15 +9,14 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitSealedClassField<TAttributeGroup, TDeclaringType, TTypeReference>(
-            ISealedClassField<TAttributeGroup, TDeclaringType, TTypeReference> field)
+        public override void VisitSealedClassField<TAttributeGroup, TDeclaringType, TTypeReference, Field>(
+            ISealedClassField<TAttributeGroup, TDeclaringType, TTypeReference, Field> field)
         {
             Value = new SealedClassField()
             {
                 Attributes = field.Attributes.ToAttributeListUsingFactory(),
                 FieldType = new TypeReferenceFactory(field.FieldType).Value,
                 Modifier = field.Modifier,
-                Name = field.Name,
                 Visibility = field.Visibility
             };
         }

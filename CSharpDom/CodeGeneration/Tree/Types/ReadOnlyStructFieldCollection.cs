@@ -16,7 +16,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public override IReadOnlyCollection<IStructConstant> Constants
         {
-            get { return new IStructField[0]; }
+            get { return new IStructConstant[0]; }
         }
 
         protected override IReadOnlyCollection<ReadOnlyStructField> Fields

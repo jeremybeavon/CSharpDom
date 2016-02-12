@@ -1,17 +1,15 @@
-﻿using CSharpDom.Common;
-using CSharpDom.NotSupported;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class FieldCollection<TField> : VisitableNotSupported<IGenericVisitor>, IFieldCollection
+    internal sealed class FieldCollection<TField>
     {
         private readonly Lazy<IReadOnlyCollection<TField>> fields;
 
         public FieldCollection(Func<IReadOnlyCollection<TField>> fields)
         {
-            Fields = fields;
+            this.fields = new Lazy<IReadOnlyCollection<TField>>(fields);
         }
 
         public IReadOnlyCollection<TField> Fields

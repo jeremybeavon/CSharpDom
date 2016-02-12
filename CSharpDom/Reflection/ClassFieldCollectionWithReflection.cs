@@ -23,7 +23,7 @@ namespace CSharpDom.Reflection
 
         protected override IReadOnlyCollection<ClassFieldWithReflection> Fields
         {
-            get { return typeWithReflection.Fields.Fields; }
+            get { return typeWithReflection.FieldCollection.Fields; }
         }
     }
 }

@@ -19,29 +19,33 @@ namespace CSharpDom.Reflection
             UsingDirectiveNotSupported,
             AttributeGroupNotSupported,
             NamespaceWithReflection,
-            ClassWithReflection,
+            ClassCollectionWithReflection,
             DelegateWithReflection,
             EnumWithReflection,
-            InterfaceWithReflection,
-            StructWithReflection>,
+            InterfaceCollectionWithReflection,
+            StructCollectionWithReflection>,
         ISolution<AssemblyWithReflection>,
         IProject<AssemblyWithReflection, AssemblyWithReflection, AssemblyWithReflection>,
         IDocument<AssemblyWithReflection, AssemblyWithReflection, AssemblyWithReflection>,
         ILoadedProject<
             AssemblyWithReflection,
             AssemblyWithReflection,
-            NamespaceWithReflection, 
-            ClassWithReflection,
+            NamespaceWithReflection,
+            ClassCollectionWithReflection,
             DelegateWithReflection,
             EnumWithReflection,
-            InterfaceWithReflection,
-            StructWithReflection>,
+            InterfaceCollectionWithReflection,
+            StructCollectionWithReflection>,
+
         IHasAssembly//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly Assembly assembly;
         private readonly TypeContainer typeContainer;
         private readonly IReadOnlyCollection<NamespaceWithReflection> namespaces;
+        private readonly ClassCollectionWithReflection classes;
+        private readonly InterfaceCollectionWithReflection interfaces;
+        private readonly StructCollectionWithReflection structs;
 
         public AssemblyWithReflection(Assembly assembly)
         {
@@ -79,11 +83,14 @@ namespace CSharpDom.Reflection
                 .Select(container => container.Namespace)
                 .Where(@namespace => @namespace.Name.Length != 0)
                 .ToList();
+            classes = new ClassCollectionWithReflection(this.typeContainer);
+            interfaces = new InterfaceCollectionWithReflection(this.typeContainer);
+            structs = new StructCollectionWithReflection(this.typeContainer);
         }
 
-        public override IReadOnlyCollection<ClassWithReflection> Classes
+        public override ClassCollectionWithReflection Classes
         {
-            get { return typeContainer.Classes; }
+            get { return classes; }
         }
 
         public override IReadOnlyCollection<DelegateWithReflection> Delegates
@@ -106,9 +113,9 @@ namespace CSharpDom.Reflection
             get { return assembly.Location; }
         }
 
-        public override IReadOnlyCollection<InterfaceWithReflection> Interfaces
+        public override InterfaceCollectionWithReflection Interfaces
         {
-            get { return typeContainer.Interfaces; }
+            get { return interfaces; }
         }
 
         public override IReadOnlyCollection<NamespaceWithReflection> Namespaces
@@ -126,9 +133,9 @@ namespace CSharpDom.Reflection
             get { return this; }
         }
 
-        public override IReadOnlyCollection<StructWithReflection> Structs
+        public override StructCollectionWithReflection Structs
         {
-            get { return typeContainer.Structs; }
+            get { return structs; }
         }
 
         IReadOnlyCollection<AssemblyWithReflection> IHasDocuments<AssemblyWithReflection>.Documents

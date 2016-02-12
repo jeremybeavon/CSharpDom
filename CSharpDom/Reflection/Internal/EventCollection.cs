@@ -1,12 +1,8 @@
 ﻿using System;
-using CSharpDom.Common;
-using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class EventCollection<TEvent, TEventProperty, TType> :
-        VisitableNotSupported<IGenericVisitor>,
-        IEventCollection
+    internal sealed class EventCollection<TEvent, TEventProperty, TType>
         where TType : ITypeWithReflection
     {
         private readonly Lazy<Events<TEvent, TEventProperty, TType>> events;

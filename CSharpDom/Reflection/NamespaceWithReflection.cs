@@ -10,25 +10,31 @@ namespace CSharpDom.Reflection
         AbstractNamespace<
             UsingDirectiveNotSupported,
             NamespaceNotSupported,
-            ClassWithReflection,
+            ClassCollectionWithReflection,
             DelegateWithReflection,
             EnumWithReflection,
-            InterfaceWithReflection,
-            StructWithReflection>//,
+            InterfaceCollectionWithReflection,
+            StructCollectionWithReflection>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly string name;
         private readonly TypeContainer typeContainer;
+        private readonly ClassCollectionWithReflection classes;
+        private readonly InterfaceCollectionWithReflection interfaces;
+        private readonly StructCollectionWithReflection structs;
 
         internal NamespaceWithReflection(string name, TypeContainer typeContainer)
         {
             this.name = name;
             this.typeContainer = typeContainer;
+            classes = new ClassCollectionWithReflection(typeContainer);
+            interfaces = new InterfaceCollectionWithReflection(typeContainer);
+            structs = new StructCollectionWithReflection(typeContainer);
         }
 
-        public override IReadOnlyCollection<ClassWithReflection> Classes
+        public override ClassCollectionWithReflection Classes
         {
-            get { return typeContainer.Classes; }
+            get { return classes; }
         }
 
         public override IReadOnlyCollection<DelegateWithReflection> Delegates
@@ -41,9 +47,9 @@ namespace CSharpDom.Reflection
             get { return typeContainer.Enums; }
         }
 
-        public override IReadOnlyCollection<InterfaceWithReflection> Interfaces
+        public override InterfaceCollectionWithReflection Interfaces
         {
-            get { return typeContainer.Interfaces; }
+            get { return interfaces; }
         }
 
         public override string Name
@@ -56,9 +62,9 @@ namespace CSharpDom.Reflection
             get { return new NamespaceNotSupported[0]; }
         }
 
-        public override IReadOnlyCollection<StructWithReflection> Structs
+        public override StructCollectionWithReflection Structs
         {
-            get { return typeContainer.Structs; }
+            get { return structs; }
         }
 
         public override IReadOnlyCollection<UsingDirectiveNotSupported> UsingDirectives

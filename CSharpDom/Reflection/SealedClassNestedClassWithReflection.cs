@@ -12,26 +12,21 @@ namespace CSharpDom.Reflection
             GenericParameterDeclarationWithReflection,
             ClassReferenceWithReflection,
             InterfaceReferenceWithReflection,
-            ClassEventWithReflection,
-            ClassPropertyWithReflection,
-            ClassIndexerWithReflection,
-            ClassMethodWithReflection,
-            ClassFieldWithReflection,
+            ClassEventCollectionWithReflection,
+            ClassPropertyCollectionWithReflection,
+            ClassIndexerCollectionWithReflection,
+            ClassMethodCollectionWithReflection,
+            ClassFieldCollectionWithReflection,
             ClassConstructorWithReflection,
-            ClassEventPropertyWithReflection,
             OperatorOverloadWithReflection,
             ConversionOperatorWithReflection,
-            ClassNestedClassWithReflection,
+            ClassNestedClassCollectionWithReflection,
             ClassNestedDelegateWithReflection,
             ClassNestedEnumWithReflection,
-            ClassNestedInterfaceWithReflection,
-            ClassNestedStructWithReflection,
+            ClassNestedInterfaceCollectionWithReflection,
+            ClassNestedStructCollectionWithReflection,
             NestedDestructorWithReflection,
-            StaticConstructorWithReflection,
-            ExplicitInterfaceEventWithReflection,
-            ExplicitInterfacePropertyWithReflection,
-            ExplicitInterfaceIndexerWithReflection,
-            ExplicitInterfaceMethodWithReflection>
+            StaticConstructorWithReflection>
     {
         private readonly NestedClassWithReflection nestedClass;
 
@@ -50,7 +45,7 @@ namespace CSharpDom.Reflection
             get { return nestedClass.BaseClass; }
         }
 
-        public override IReadOnlyCollection<ClassNestedClassWithReflection> Classes
+        public override ClassNestedClassCollectionWithReflection Classes
         {
             get { return nestedClass.Classes; }
         }
@@ -84,38 +79,13 @@ namespace CSharpDom.Reflection
         {
             get { return nestedClass.Enums; }
         }
-
-        public override IReadOnlyCollection<ClassEventPropertyWithReflection> EventProperties
-        {
-            get { return nestedClass.EventProperties; }
-        }
-
-        public override IReadOnlyCollection<ClassEventWithReflection> Events
+        
+        public override ClassEventCollectionWithReflection Events
         {
             get { return nestedClass.Events; }
         }
-
-        public override IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
-        {
-            get { return nestedClass.ExplicitInterfaceEvents; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexers
-        {
-            get { return nestedClass.ExplicitInterfaceIndexers; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethods
-        {
-            get { return nestedClass.ExplicitInterfaceMethods; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfaceProperties
-        {
-            get { return nestedClass.ExplicitInterfaceProperties; }
-        }
-
-        public override IReadOnlyCollection<ClassFieldWithReflection> Fields
+        
+        public override ClassFieldCollectionWithReflection Fields
         {
             get { return nestedClass.Fields; }
         }
@@ -130,17 +100,17 @@ namespace CSharpDom.Reflection
             get { return nestedClass.ImplementedInterfaces; }
         }
 
-        public override IReadOnlyCollection<ClassIndexerWithReflection> Indexers
+        public override ClassIndexerCollectionWithReflection Indexers
         {
             get { return nestedClass.Indexers; }
         }
         
-        public override IReadOnlyCollection<ClassNestedInterfaceWithReflection> Interfaces
+        public override ClassNestedInterfaceCollectionWithReflection Interfaces
         {
             get { return nestedClass.Interfaces; }
         }
         
-        public override IReadOnlyCollection<ClassMethodWithReflection> Methods
+        public override ClassMethodCollectionWithReflection Methods
         {
             get { return nestedClass.Methods; }
         }
@@ -155,7 +125,7 @@ namespace CSharpDom.Reflection
             get { return nestedClass.OperatorOverloads; }
         }
 
-        public override IReadOnlyCollection<ClassPropertyWithReflection> Properties
+        public override ClassPropertyCollectionWithReflection Properties
         {
             get { return nestedClass.Properties; }
         }
@@ -165,7 +135,7 @@ namespace CSharpDom.Reflection
             get { return nestedClass.StaticConstructor; }
         }
 
-        public override IReadOnlyCollection<ClassNestedStructWithReflection> Structs
+        public override ClassNestedStructCollectionWithReflection Structs
         {
             get { return nestedClass.Structs; }
         }

@@ -1,6 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IAbstractClass<TNamespace,
+    public interface IAbstractClass<
+        TNamespace,
         TDocument,
         TProject,
         TSolution,

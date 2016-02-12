@@ -36,7 +36,7 @@ namespace CSharpDom.Reflection.Internal
         private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
         private readonly Type type;
         private readonly ClassReferenceWithReflection baseClass;
-        private readonly IInternalClassTypeWithReflection typeWithReflection;
+        private readonly ClassTypeWithReflection typeWithReflection;
         private readonly Lazy<NestedDestructorWithReflection> destructor;
 
         internal NestedClassWithReflection(ITypeWithReflection declaringType, Type type)

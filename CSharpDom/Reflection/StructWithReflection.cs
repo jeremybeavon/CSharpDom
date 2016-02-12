@@ -14,26 +14,21 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             GenericParameterDeclarationWithReflection,
             InterfaceReferenceWithReflection,
-            StructEventWithReflection,
-            StructPropertyWithReflection,
-            StructIndexerWithReflection,
-            StructMethodWithReflection,
-            StructFieldWithReflection,
+            StructEventCollectionWithReflection,
+            StructPropertyCollectionWithReflection,
+            StructIndexerCollectionWithReflection,
+            StructMethodCollectionWithReflection,
+            StructFieldCollectionWithReflection,
             StructConstructorWithReflection,
-            StructEventPropertyWithReflection,
             OperatorOverloadWithReflection,
             ConversionOperatorWithReflection,
-            StructNestedClassWithReflection,
+            StructNestedClassCollectionWithReflection,
             StructNestedDelegateWithReflection,
             StructNestedEnumWithReflection,
-            StructNestedInterfaceWithReflection,
-            StructNestedStructWithReflection,
-            StaticConstructorWithReflection,
-            ExplicitInterfaceEventWithReflection,
-            ExplicitInterfacePropertyWithReflection,
-            ExplicitInterfaceIndexerWithReflection,
-            ExplicitInterfaceMethodWithReflection>//,
-        //ITypeWithReflection,
+            StructNestedInterfaceCollectionWithReflection,
+            StructNestedStructCollectionWithReflection,
+            StaticConstructorWithReflection>,
+        ITypeWithReflection//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly AssemblyWithReflection assembly;
@@ -46,7 +41,7 @@ namespace CSharpDom.Reflection
             this.assembly = assembly;
             this.@namespace = @namespace;
             this.type = type;
-            typeWithReflection = new StructTypeWithReflection(null, type);
+            typeWithReflection = new StructTypeWithReflection(this);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -54,7 +49,7 @@ namespace CSharpDom.Reflection
             get { return typeWithReflection.Attributes; }
         }
 
-        public override IReadOnlyCollection<StructNestedClassWithReflection> Classes
+        public override StructNestedClassCollectionWithReflection Classes
         {
             get { return typeWithReflection.Classes; }
         }
@@ -78,18 +73,13 @@ namespace CSharpDom.Reflection
         {
             get { return typeWithReflection.Enums; }
         }
-
-        public override IReadOnlyCollection<StructEventPropertyWithReflection> EventProperties
-        {
-            get { return typeWithReflection.EventProperties; }
-        }
-
-        public override IReadOnlyCollection<StructEventWithReflection> Events
+        
+        public override StructEventCollectionWithReflection Events
         {
             get { return typeWithReflection.Events; }
         }
 
-        public override IReadOnlyCollection<StructFieldWithReflection> Fields
+        public override StructFieldCollectionWithReflection Fields
         {
             get { return typeWithReflection.Fields; }
         }
@@ -99,17 +89,17 @@ namespace CSharpDom.Reflection
             get { return typeWithReflection.GenericParameters; }
         }
 
-        public override IReadOnlyCollection<StructIndexerWithReflection> Indexers
+        public override StructIndexerCollectionWithReflection Indexers
         {
             get { return typeWithReflection.Indexers; }
         }
 
-        public override IReadOnlyCollection<StructNestedInterfaceWithReflection> Interfaces
+        public override StructNestedInterfaceCollectionWithReflection Interfaces
         {
             get { return typeWithReflection.Interfaces; }
         }
 
-        public override IReadOnlyCollection<StructMethodWithReflection> Methods
+        public override StructMethodCollectionWithReflection Methods
         {
             get { return typeWithReflection.Methods; }
         }
@@ -134,7 +124,7 @@ namespace CSharpDom.Reflection
             get { return assembly; }
         }
 
-        public override IReadOnlyCollection<StructPropertyWithReflection> Properties
+        public override StructPropertyCollectionWithReflection Properties
         {
             get { return typeWithReflection.Properties; }
         }
@@ -144,7 +134,7 @@ namespace CSharpDom.Reflection
             get { return assembly; }
         }
 
-        public override IReadOnlyCollection<StructNestedStructWithReflection> Structs
+        public override StructNestedStructCollectionWithReflection Structs
         {
             get { return typeWithReflection.Structs; }
         }
@@ -168,27 +158,7 @@ namespace CSharpDom.Reflection
         {
             get { return false; }
         }
-
-        public override IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
-        {
-            get { return typeWithReflection.ExplicitInterfaceEvents; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexers
-        {
-            get { return typeWithReflection.ExplicitInterfaceIndexers; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethods
-        {
-            get { return typeWithReflection.ExplicitInterfaceMethods; }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfaceProperties
-        {
-            get { return typeWithReflection.ExplicitInterfaceProperties; }
-        }
-
+        
         public override StaticConstructorWithReflection StaticConstructor
         {
             get { return typeWithReflection.StaticConstructor; }

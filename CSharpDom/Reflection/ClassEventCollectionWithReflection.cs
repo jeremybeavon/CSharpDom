@@ -20,17 +20,17 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<ClassEventPropertyWithReflection> EventProperties
         {
-            get { return typeWithReflection.Events.Events.EventPropertiesWithReflection; }
+            get { return typeWithReflection.EventCollection.Events.EventPropertiesWithReflection; }
         }
 
         public override IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
         {
-            get { return typeWithReflection.Events.Events.ExplictInterfaceEventsWithReflection; }
+            get { return typeWithReflection.EventCollection.Events.ExplictInterfaceEventsWithReflection; }
         }
 
         protected override IReadOnlyCollection<ClassEventWithReflection> Events
         {
-            get { return typeWithReflection.Events.Events.EventsWithReflection; }
+            get { return typeWithReflection.EventCollection.Events.EventsWithReflection; }
         }
     }
 }

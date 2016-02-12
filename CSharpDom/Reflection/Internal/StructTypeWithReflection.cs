@@ -1,31 +1,92 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.Reflection.Internal
 {
     internal sealed class StructTypeWithReflection :
         TypeWithReflection<
             ITypeWithReflection,
+            StructEventCollectionWithReflection,
             StructEventWithReflection,
+            StructEventPropertyWithReflection,
+            StructPropertyCollectionWithReflection,
             StructPropertyWithReflection,
+            StructIndexerCollectionWithReflection,
             StructIndexerWithReflection,
+            StructMethodCollectionWithReflection,
             StructMethodWithReflection,
+            StructFieldCollectionWithReflection,
             StructFieldWithReflection,
             StructConstructorWithReflection,
-            StructEventPropertyWithReflection,
+            StructNestedClassCollectionWithReflection,
             StructNestedClassWithReflection,
             StructNestedDelegateWithReflection,
             StructNestedEnumWithReflection,
+            StructNestedInterfaceCollectionWithReflection,
             StructNestedInterfaceWithReflection,
+            StructNestedStructCollectionWithReflection,
             StructNestedStructWithReflection>
     {
+        private readonly StructNestedClassCollectionWithReflection classes;
+        private readonly StructEventCollectionWithReflection events;
+        private readonly StructFieldCollectionWithReflection fields;
+        private readonly StructIndexerCollectionWithReflection indexers;
+        private readonly StructNestedInterfaceCollectionWithReflection interfaces;
+        private readonly StructMethodCollectionWithReflection methods;
+        private readonly StructPropertyCollectionWithReflection properties;
+        private readonly StructNestedStructCollectionWithReflection structs;
+
         public StructTypeWithReflection(ITypeWithReflection declaringType)
             : base(declaringType)
         {
+            classes = new StructNestedClassCollectionWithReflection(this);
+            events = new StructEventCollectionWithReflection(this);
+            fields = new StructFieldCollectionWithReflection(this);
+            indexers = new StructIndexerCollectionWithReflection(this);
+            interfaces = new StructNestedInterfaceCollectionWithReflection(this);
+            methods = new StructMethodCollectionWithReflection(this);
+            properties = new StructPropertyCollectionWithReflection(this);
+            structs = new StructNestedStructCollectionWithReflection(this);
+        }
+
+        public override StructNestedClassCollectionWithReflection Classes
+        {
+            get { return classes; }
+        }
+
+        public override StructEventCollectionWithReflection Events
+        {
+            get { return events; }
+        }
+
+        public override StructFieldCollectionWithReflection Fields
+        {
+            get { return fields; }
+        }
+
+        public override StructIndexerCollectionWithReflection Indexers
+        {
+            get { return indexers; }
+        }
+
+        public override StructNestedInterfaceCollectionWithReflection Interfaces
+        {
+            get { return interfaces; }
+        }
+
+        public override StructMethodCollectionWithReflection Methods
+        {
+            get { return methods; }
+        }
+
+        public override StructPropertyCollectionWithReflection Properties
+        {
+            get { return properties; }
+        }
+
+        public override StructNestedStructCollectionWithReflection Structs
+        {
+            get { return structs; }
         }
 
         protected override StructConstructorWithReflection CreateConstructor(ITypeWithReflection declaringType, ConstructorInfo constructor)

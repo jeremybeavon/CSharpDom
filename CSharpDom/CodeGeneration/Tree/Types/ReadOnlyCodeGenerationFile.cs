@@ -16,32 +16,32 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyUsingDeclaration,
             AttributeGroupNotSupported,
             ReadOnlyNamespace,
-            ReadOnlyClass,
+            ReadOnlyClassCollection,
             ReadOnlyDelegate,
             ReadOnlyEnum,
-            ReadOnlyInterface,
-            ReadOnlyStruct>
+            ReadOnlyInterfaceCollection,
+            ReadOnlyStructCollection>
     {
         private readonly IReadOnlyCollection<ReadOnlyUsingDeclaration> usingDeclarations;
         private readonly IReadOnlyCollection<ReadOnlyNamespace> namespaces;
-        private readonly IReadOnlyCollection<ReadOnlyClass> classes;
+        private readonly ReadOnlyClassCollection classes;
         private readonly IReadOnlyCollection<ReadOnlyDelegate> delegates;
         private readonly IReadOnlyCollection<ReadOnlyEnum> enums;
-        private readonly IReadOnlyCollection<ReadOnlyInterface> interfaces;
-        private readonly IReadOnlyCollection<ReadOnlyStruct> structs;
+        private readonly ReadOnlyInterfaceCollection interfaces;
+        private readonly ReadOnlyStructCollection structs;
 
         public ReadOnlyCodeGenerationFile(CodeGenerationFile codeGenerationFile)
         {
             usingDeclarations = codeGenerationFile.Usings.ToArray(@using => new ReadOnlyUsingDeclaration(@using));
             namespaces = codeGenerationFile.Namespaces.ToArray(@namespace => new ReadOnlyNamespace(@namespace));
-            classes = codeGenerationFile.Classes.ToArray(@class => new ReadOnlyClass(@class));
+            classes = new ReadOnlyClassCollection(codeGenerationFile.Classes);
             delegates = codeGenerationFile.Delegates.ToArray(@delegate => new ReadOnlyDelegate(@delegate));
             enums = codeGenerationFile.Enums.ToArray(@enum => new ReadOnlyEnum(@enum));
-            interfaces = codeGenerationFile.Interfaces.ToArray(@interface => new ReadOnlyInterface(@interface));
-            structs = codeGenerationFile.Structs.ToArray(@struct => new ReadOnlyStruct(@struct));
+            interfaces = new ReadOnlyInterfaceCollection(codeGenerationFile.Interfaces);
+            structs = new ReadOnlyStructCollection(codeGenerationFile.Structs);
         }
 
-        public override IReadOnlyCollection<ReadOnlyClass> Classes
+        public override ReadOnlyClassCollection Classes
         {
             get { return classes; }
         }
@@ -61,7 +61,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return enums; }
         }
 
-        public override IReadOnlyCollection<ReadOnlyInterface> Interfaces
+        public override ReadOnlyInterfaceCollection Interfaces
         {
             get { return interfaces; }
         }
@@ -81,7 +81,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new SolutionNotSupported(); }
         }
 
-        public override IReadOnlyCollection<ReadOnlyStruct> Structs
+        public override ReadOnlyStructCollection Structs
         {
             get { return structs; }
         }

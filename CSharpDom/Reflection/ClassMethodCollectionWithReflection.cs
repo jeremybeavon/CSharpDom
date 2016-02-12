@@ -17,12 +17,12 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethods
         {
-            get { return typeWithReflection.Methods.Methods.ExplicitInterfaceMethodsWithReflection; }
+            get { return typeWithReflection.MethodCollection.Methods.ExplicitInterfaceMethodsWithReflection; }
         }
 
         protected override IReadOnlyCollection<ClassMethodWithReflection> Methods
         {
-            get { return typeWithReflection.Methods.Methods.MethodsWithReflection; }
+            get { return typeWithReflection.MethodCollection.Methods.MethodsWithReflection; }
         }
     }
 }

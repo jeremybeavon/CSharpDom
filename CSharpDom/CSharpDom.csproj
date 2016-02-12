@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseClasses\AbstractStructCollection.cs" />
+    <Compile Include="BaseClasses\AbstractInterfaceCollection.cs" />
     <Compile Include="BaseClasses\AbstractStructFieldCollection.cs" />
     <Compile Include="BaseClasses\AbstractStructNestedClassCollection.cs" />
     <Compile Include="BaseClasses\AbstractStructNestedInterfaceCollection.cs" />
@@ -260,6 +262,9 @@
     <Compile Include="BaseClasses\IL\AbstractSwitchInstruction.cs" />
     <Compile Include="BaseClasses\IL\AbstractTypeInstruction.generic.cs" />
     <Compile Include="CodeGeneration\Tree\ClassFieldModifier.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassCollection.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructCollection.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyInterfaceCollection.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructFieldCollection.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructEventCollection.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassEventCollection.cs" />
@@ -407,8 +412,10 @@
     <Compile Include="NotSupported\PartialClassCollectionNotSupported.cs" />
     <Compile Include="NotSupported\Partial\PartialStructNotSupported.cs" />
     <Compile Include="NotSupported\Partial\PartialInterfaceNotSupported.cs" />
+    <Compile Include="Reflection\ClassCollectionWithReflection.cs" />
     <Compile Include="Reflection\IClassTypeWithReflection.cs" />
-    <Compile Include="Reflection\Internal\IInternalClassTypeWithReflection.cs" />
+    <Compile Include="Reflection\StructCollectionWithReflection.cs" />
+    <Compile Include="Reflection\InterfaceCollectionWithReflection.cs" />
     <Compile Include="Reflection\StructEventCollectionWithReflection.cs" />
     <Compile Include="Reflection\ClassEventCollectionWithReflection.cs" />
     <Compile Include="Reflection\StructFieldCollectionWithReflection.cs" />

@@ -26,7 +26,7 @@ namespace CSharpDom.BaseClasses
         AbstractNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
         IStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStructType
         where TGenericParameter : IGenericParameterDeclaration
         where TInterfaceReference : IInterfaceReference
         where TEventCollection : IStructEventCollection

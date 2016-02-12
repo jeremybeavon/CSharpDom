@@ -17,12 +17,12 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfaceProperties
         {
-            get { return typeWithReflection.Properties.Properties.ExplicitInterfacePropertiesWithReflection; }
+            get { return typeWithReflection.PropertyCollection.Properties.ExplicitInterfacePropertiesWithReflection; }
         }
 
         protected override IReadOnlyCollection<ClassPropertyWithReflection> Properties
         {
-            get { return typeWithReflection.Properties.Properties.PropertiesWithReflection; }
+            get { return typeWithReflection.PropertyCollection.Properties.PropertiesWithReflection; }
         }
     }
 }

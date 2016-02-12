@@ -44,7 +44,7 @@ namespace CSharpDom.Reflection
 
         protected override IReadOnlyCollection<StructNestedClassWithReflection> Classes
         {
-            get { return typeWithReflection.Classes.NestedTypes.NestedClasses; }
+            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedClasses; }
         }
     }
 }

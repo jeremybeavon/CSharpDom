@@ -321,7 +321,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    Modifier = ClassFieldModifier.Static,
+                                    Modifier = FieldModifier.Static,
                                     Fields =
                                     {
                                         new Field("field1")
@@ -354,7 +354,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    Modifier = ClassFieldModifier.ReadOnly,
+                                    Modifier = FieldModifier.ReadOnly,
                                     Fields =
                                     {
                                         new Field("field1")
@@ -387,7 +387,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    Modifier = ClassFieldModifier.StaticReadOnly,
+                                    Modifier = FieldModifier.StaticReadOnly,
                                     Fields =
                                     {
                                         new Field("field1")
@@ -420,7 +420,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    Modifier = ClassFieldModifier.Volatile,
+                                    Modifier = FieldModifier.Volatile,
                                     Fields =
                                     {
                                         new Field("field1")
@@ -453,7 +453,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                                 new ClassField(new TypeReference("string"))
                                 {
                                     Visibility = ClassMemberVisibilityModifier.Public,
-                                    Modifier = ClassFieldModifier.StaticVolatile,
+                                    Modifier = FieldModifier.StaticVolatile,
                                     Fields =
                                     {
                                         new Field("field1")

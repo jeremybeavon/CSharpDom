@@ -10,18 +10,31 @@ namespace CSharpDom.Search
     {
         public T Result { get; protected set; }
 
-        protected void VisitChildren(params IEnumerable[] children)
+        protected void VisitChildren(params object[] children)
         {
-            foreach (IVisitable<IGenericVisitor> child in children
-                .Cast<IEnumerable<IVisitable<IGenericVisitor>>>()
-                .SelectMany(child => child))
+            foreach (object child in children)
             {
+                IVisitable<IGenericVisitor> item = child as IVisitable<IGenericVisitor>;
+                if (item != null)
+                {
+                    item.Accept(this);
+                }
+                else
+                {
+                    IEnumerable<IVisitable<IGenericVisitor>> collection = child as IEnumerable<IVisitable<IGenericVisitor>>;
+                    if (collection != null)
+                    {
+                        foreach (IVisitable<IGenericVisitor> childItem in collection)
+                        {
+                            childItem.Accept(this);
+                        }
+                    }
+                }
+
                 if (Result != null)
                 {
                     return;
                 }
-
-                child.Accept(this);
             }
         }
     }

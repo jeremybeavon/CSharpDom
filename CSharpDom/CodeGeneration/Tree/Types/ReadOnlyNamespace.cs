@@ -8,34 +8,34 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         AbstractNamespace<
             ReadOnlyUsingDeclaration,
             ReadOnlyNamespace,
-            ReadOnlyClass,
+            ReadOnlyClassCollection,
             ReadOnlyDelegate,
             ReadOnlyEnum,
-            ReadOnlyInterface,
-            ReadOnlyStruct>
+            ReadOnlyInterfaceCollection,
+            ReadOnlyStructCollection>
     {
         private readonly string name;
         private readonly IReadOnlyCollection<ReadOnlyUsingDeclaration> usingDirectives;
         private readonly IReadOnlyCollection<ReadOnlyNamespace> namespaces;
-        private readonly IReadOnlyCollection<ReadOnlyClass> classes;
+        private readonly ReadOnlyClassCollection classes;
         private readonly IReadOnlyCollection<ReadOnlyDelegate> delegates;
         private readonly IReadOnlyCollection<ReadOnlyEnum> enums;
-        private readonly IReadOnlyCollection<ReadOnlyInterface> interfaces;
-        private readonly IReadOnlyCollection<ReadOnlyStruct> structs;
+        private readonly ReadOnlyInterfaceCollection interfaces;
+        private readonly ReadOnlyStructCollection structs;
 
         public ReadOnlyNamespace(Namespace @namespace)
         {
             name = @namespace.Name;
             usingDirectives = @namespace.Usings.ToArray(@using => new ReadOnlyUsingDeclaration(@using));
             namespaces = @namespace.Namespaces.ToArray(inner => new ReadOnlyNamespace(inner));
-            classes = @namespace.Classes.ToArray(@class => new ReadOnlyClass(@class));
+            classes = new ReadOnlyClassCollection(@namespace.Classes);
             delegates = @namespace.Delegates.ToArray(@delegate => new ReadOnlyDelegate(@delegate));
             enums = @namespace.Enums.ToArray(@enum => new ReadOnlyEnum(@enum));
-            interfaces = @namespace.Interfaces.ToArray(@interface => new ReadOnlyInterface(@interface));
-            structs = @namespace.Structs.ToArray(@struct => new ReadOnlyStruct(@struct));
+            interfaces = new ReadOnlyInterfaceCollection(@namespace.Interfaces);
+            structs = new ReadOnlyStructCollection(@namespace.Structs);
         }
 
-        public override IReadOnlyCollection<ReadOnlyClass> Classes
+        public override ReadOnlyClassCollection Classes
         {
             get { return classes; }
         }
@@ -50,7 +50,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return enums; }
         }
 
-        public override IReadOnlyCollection<ReadOnlyInterface> Interfaces
+        public override ReadOnlyInterfaceCollection Interfaces
         {
             get { return interfaces; }
         }
@@ -60,7 +60,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return name; }
         }
 
-        public override IReadOnlyCollection<ReadOnlyStruct> Structs
+        public override ReadOnlyStructCollection Structs
         {
             get { return structs; }
         }

@@ -41,7 +41,7 @@ namespace CSharpDom.Reflection
         private readonly NamespaceWithReflection @namespace;
         private readonly Type type;
         private readonly ClassReferenceWithReflection baseClass;
-        private readonly IInternalClassTypeWithReflection typeWithReflection;
+        private readonly ClassTypeWithReflection typeWithReflection;
         private readonly Lazy<DestructorWithReflection> destructor;
         private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
 

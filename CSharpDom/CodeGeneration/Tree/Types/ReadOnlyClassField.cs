@@ -13,7 +13,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         private readonly ClassField field;
         private readonly ReadOnlyTypeReference fieldType;
         private readonly IReadOnlyCollection<ReadOnlyField> fields;
-        private readonly IReadOnlyCollection<ReadOnlyConstant> constants;
+        //private readonly IReadOnlyCollection<ReadOnlyConstant> constants;
 
         public ReadOnlyClassField(ClassField field)
         {
@@ -84,7 +84,8 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public IReadOnlyCollection<ReadOnlyConstant> Constants
         {
-            get { return constants; }
+            get { throw new NotImplementedException(); }
+            //get { return constants; }
         }
 
         public void Accept(IGenericVisitor visitor)

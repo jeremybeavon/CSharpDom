@@ -7,7 +7,7 @@ using System;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructField :
-        AbstractStructField<AttributeGroupNotSupported, IStructType, ReadOnlyTypeReference, ReadOnlyField`>
+        AbstractStructField<AttributeGroupNotSupported, IStructType, ReadOnlyTypeReference, ReadOnlyField>
     {
         private readonly StructField field;
         private readonly ReadOnlyTypeReference fieldType;

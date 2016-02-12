@@ -1,13 +1,8 @@
-﻿using CSharpDom.Common;
-using CSharpDom.NotSupported;
-using System;
+﻿using System;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class PropertyCollection<TProperty, TIndexer, TType> :
-        VisitableNotSupported<IGenericVisitor>,
-        IPropertyCollection,
-        IIndexerCollection
+    internal sealed class PropertyCollection<TProperty, TIndexer, TType>
         where TType : ITypeWithReflection
     {
         private readonly Lazy<Properties<TProperty, TIndexer, TType>> properties;

@@ -11,25 +11,20 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             InterfaceReferenceWithReflection,
-            StructEventWithReflection,
-            StructPropertyWithReflection,
-            StructIndexerWithReflection,
-            StructMethodWithReflection,
-            StructFieldWithReflection,
+            StructEventCollectionWithReflection,
+            StructPropertyCollectionWithReflection,
+            StructIndexerCollectionWithReflection,
+            StructMethodCollectionWithReflection,
+            StructFieldCollectionWithReflection,
             StructConstructorWithReflection,
-            StructEventPropertyWithReflection,
             OperatorOverloadWithReflection,
             ConversionOperatorWithReflection,
-            StructNestedClassWithReflection,
+            StructNestedClassCollectionWithReflection,
             StructNestedDelegateWithReflection,
             StructNestedEnumWithReflection,
-            StructNestedInterfaceWithReflection,
-            StructNestedStructWithReflection,
-            StaticConstructorWithReflection,
-            ExplicitInterfaceEventWithReflection,
-            ExplicitInterfacePropertyWithReflection,
-            ExplicitInterfaceIndexerWithReflection,
-            ExplicitInterfaceMethodWithReflection>
+            StructNestedInterfaceCollectionWithReflection,
+            StructNestedStructCollectionWithReflection,
+            StaticConstructorWithReflection>
     {
         private readonly NestedStructWithReflection nestedStruct;
 
@@ -46,7 +41,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyCollection<StructNestedClassWithReflection> Classes
+        public override StructNestedClassCollectionWithReflection Classes
         {
             get
             {
@@ -94,7 +89,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyCollection<StructEventPropertyWithReflection> EventProperties
+        public override StructEventCollectionWithReflection Events
         {
             get
             {
@@ -102,47 +97,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyCollection<StructEventWithReflection> Events
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceEventWithReflection> ExplicitInterfaceEvents
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexers
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfaceMethodWithReflection> ExplicitInterfaceMethods
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<ExplicitInterfacePropertyWithReflection> ExplicitInterfaceProperties
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<StructFieldWithReflection> Fields
+        public override StructFieldCollectionWithReflection Fields
         {
             get
             {
@@ -166,7 +121,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyCollection<StructIndexerWithReflection> Indexers
+        public override StructIndexerCollectionWithReflection Indexers
         {
             get
             {
@@ -174,15 +129,15 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyCollection<StructNestedInterfaceWithReflection> Interfaces
+        public override StructNestedInterfaceCollectionWithReflection Interfaces
         {
             get
             {
                 throw new NotImplementedException();
             }
         }
-        
-        public override IReadOnlyCollection<StructMethodWithReflection> Methods
+
+        public override StructMethodCollectionWithReflection Methods
         {
             get
             {
@@ -206,7 +161,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyCollection<StructPropertyWithReflection> Properties
+        public override StructPropertyCollectionWithReflection Properties
         {
             get
             {
@@ -222,7 +177,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyCollection<StructNestedStructWithReflection> Structs
+        public override StructNestedStructCollectionWithReflection Structs
         {
             get
             {

@@ -41,14 +41,14 @@ namespace CSharpDom.Tests.Common
             LoadedDocument document = new LoadedDocument();
             if (string.IsNullOrWhiteSpace(namespaceName))
             {
-                document.Classes.Add(@class);
+                document.Classes.Classes.Add(@class);
             }
             else
             {
                 Namespace @namespace = new Namespace()
                 {
                     Name = namespaceName,
-                    Classes = { @class }
+                    Classes = { Classes = { @class } }
                 };
                 document.Namespaces.Add(@namespace);
             }

@@ -1264,7 +1264,7 @@ namespace CSharpDom.Common
         void VisitNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
             INestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : ISealedType
             where TGenericParameter : IGenericParameterDeclaration
             where TClassReference : IClassReference
             where TInterfaceReference : IInterfaceReference
@@ -1402,10 +1402,10 @@ namespace CSharpDom.Common
             where TInterface : ISealedClassNestedInterface
             where TPartialInterface : IPartialInterface;
 
-        void VisitSealedClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
-            ISealedClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> nestedClass)
+        void VisitSealedClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            ISealedClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
+            where TDeclaringType : ISealedType
             where TGenericParameter : IGenericParameterDeclaration
             where TClassReference : IClassReference
             where TInterfaceReference : IInterfaceReference
@@ -1422,7 +1422,7 @@ namespace CSharpDom.Common
             where TNestedEnum : ISealedClassNestedEnum
             where TNestedInterfaceCollection : ISealedClassNestedInterfaceCollection
             where TNestedStructCollection : ISealedClassNestedStructCollection
-            where TDestructor : IDestructor
+            where TNestedDestructor : INestedDestructor
             where TStaticConstructor : IStaticConstructor;
 
         void VisitSealedClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(

@@ -11,26 +11,27 @@ namespace CSharpDom.BaseClasses
         TUsingDirective,
         TAttributeGroup,
         TNamespace,
-        TClass,
+        TClassCollection,
         TDelegate,
         TEnum,
-        TInterface,
-        TStruct> :
-        ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>
+        TInterfaceCollection,
+        TStructCollection> :
+        ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>
         where TSolution : ISolution
         where TProject : IProject
         where TDocument : IDocument
         where TUsingDirective : IUsingDirective
         where TAttributeGroup : IAttributeGroup
         where TNamespace : INamespace
-        where TClass : IClass
+        where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterface : IInterface
-        where TStruct : IStruct
+        where TInterfaceCollection : IInterfaceCollection
+        where TStructCollection : IStructCollection
     {
         public abstract IReadOnlyCollection<TAttributeGroup> AssemblyAttributes { get; }
-        public abstract IReadOnlyCollection<TClass> Classes { get; }
+
+        public abstract TClassCollection Classes { get; }
 
         public abstract IReadOnlyCollection<TDelegate> Delegates { get; }
 
@@ -38,7 +39,7 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyCollection<TEnum> Enums { get; }
 
-        public abstract IReadOnlyCollection<TInterface> Interfaces { get; }
+        public abstract TInterfaceCollection Interfaces { get; }
 
         public abstract IReadOnlyCollection<TAttributeGroup> ModuleAttributes { get; }
 
@@ -48,7 +49,7 @@ namespace CSharpDom.BaseClasses
 
         public abstract TSolution Solution { get; }
 
-        public abstract IReadOnlyCollection<TStruct> Structs { get; }
+        public abstract TStructCollection Structs { get; }
 
         public abstract IReadOnlyCollection<TUsingDirective> UsingDirectives { get; }
 

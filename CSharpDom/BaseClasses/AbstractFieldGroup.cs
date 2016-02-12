@@ -23,7 +23,7 @@ namespace CSharpDom.BaseClasses
 
         public virtual void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitField(this);
+            visitor.VisitFieldGroup(this);
         }
 
         public virtual void AcceptChildren(IGenericVisitor visitor)

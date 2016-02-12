@@ -1,14 +1,8 @@
-﻿using CSharpDom.Common;
-using CSharpDom.NotSupported;
-using System;
+﻿using System;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> :
-        VisitableNotSupported<IGenericVisitor>,
-        INestedClassCollection,
-        INestedInterfaceCollection,
-        INestedStructCollection
+    internal sealed class NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>
     {
         private readonly Lazy<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>> nestedTypes;
 

@@ -31,7 +31,7 @@ namespace CSharpDom.Serialization.Factories
                 Methods = new AbstractClassMethodCollectionFactory(@class.Methods).Value,
                 Name = @class.Name,
                 OperatorOverloads = @class.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),
-                Properties = new AbstractClassPropertyCollection(@class.Properties),
+                Properties = new AbstractClassPropertyCollectionFactory(@class.Properties).Value,
                 //Structs = @class.Structs.ToList(@struct => new ClassNestedStructFactory(@struct).Value),
                 Visibility = @class.Visibility
             };

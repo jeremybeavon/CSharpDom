@@ -1,6 +1,7 @@
 ﻿namespace CSharpDom.Common.Partial
 {
-    public interface IAbstractCombinedClass<TNamespace,
+    public interface IAbstractCombinedClass<
+        TNamespace,
         TPartialClass,
         TProject,
         TSolution,
@@ -8,33 +9,24 @@
         TGenericParameter,
         TClassReference,
         TInterfaceReference,
-        TEvent,
-        TProperty,
-        TIndexer,
-        TMethod,
-        TField,
+        TEventCollection,
+        TPropertyCollection,
+        TIndexerCollection,
+        TMethodCollection,
+        TFieldCollection,
         TConstructor,
-        TEventProperty,
         TOperatorOverload,
         TConversionOperator,
-        TNestedClass,
+        TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterface,
-        TNestedStruct,
+        TNestedInterfaceCollection,
+        TNestedStructCollection,
         TDestructor,
-        TStaticConstructor,
-        TExplicitInterfaceEvent,
-        TExplicitInterfaceProperty,
-        TExplicitInterfaceIndexer,
-        TExplicitInterfaceMethod,
-        TAbstractEvent,
-        TAbstractProperty,
-        TAbstractIndexer,
-        TAbstractMethod> :
+        TStaticConstructor> :
         IAbstractCombinedClass,
-        ICombinedClass<TNamespace, TPartialClass, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod>,
-        IAbstractType<TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TStaticConstructor, TExplicitInterfaceEvent, TExplicitInterfaceProperty, TExplicitInterfaceIndexer, TExplicitInterfaceMethod, TAbstractEvent, TAbstractProperty, TAbstractIndexer, TAbstractMethod>
+        ICombinedClass<TNamespace, TPartialClass, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>,
+        IAbstractType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TNamespace : INamespace
         where TPartialClass : IPartialClass
         where TProject : IProject
@@ -43,30 +35,21 @@
         where TGenericParameter : IGenericParameterDeclaration
         where TClassReference : IClassReference
         where TInterfaceReference : IInterfaceReference
-        where TEvent : IClassEvent
-        where TProperty : IClassProperty
-        where TIndexer : IClassIndexer
-        where TMethod : IClassMethod
-        where TField : IClassField
+        where TEventCollection : IAbstractClassEventCollection
+        where TPropertyCollection : IAbstractClassPropertyCollection
+        where TIndexerCollection : IAbstractClassIndexerCollection
+        where TMethodCollection : IAbstractClassMethodCollection
+        where TFieldCollection : IClassFieldCollection
         where TConstructor : IClassConstructor
-        where TEventProperty : IClassEventProperty
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
-        where TNestedClass : IClassNestedClass
+        where TNestedClassCollection : IClassNestedClassCollection
         where TNestedDelegate : IClassNestedDelegate
         where TNestedEnum : IClassNestedEnum
-        where TNestedInterface : IClassNestedInterface
-        where TNestedStruct : IClassNestedStruct
+        where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+        where TNestedStructCollection : IClassNestedStructCollection
         where TDestructor : IDestructor
         where TStaticConstructor : IStaticConstructor
-        where TExplicitInterfaceEvent : IExplicitInterfaceEvent
-        where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
-        where TExplicitInterfaceMethod : IExplicitInterfaceMethod
-        where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-        where TAbstractEvent : IAbstractEvent
-        where TAbstractProperty : IAbstractProperty
-        where TAbstractIndexer : IAbstractIndexer
-        where TAbstractMethod : IAbstractMethod
     {
     }
 }

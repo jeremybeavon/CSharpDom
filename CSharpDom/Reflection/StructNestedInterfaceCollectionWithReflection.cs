@@ -23,7 +23,7 @@ namespace CSharpDom.Reflection
 
         protected override IReadOnlyCollection<StructNestedInterfaceWithReflection> Interfaces
         {
-            get { return typeWithReflection.Interfaces.NestedTypes.NestedInterfaces; }
+            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedInterfaces; }
         }
     }
 }

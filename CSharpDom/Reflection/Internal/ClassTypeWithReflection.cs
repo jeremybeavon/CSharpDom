@@ -7,19 +7,26 @@ namespace CSharpDom.Reflection.Internal
     internal sealed class ClassTypeWithReflection :
         TypeWithReflection<
             IInternalTypeWithReflection,
+            ClassEventCollectionWithReflection,
             ClassEventWithReflection,
+            ClassEventPropertyWithReflection,
+            ClassPropertyCollectionWithReflection,
             ClassPropertyWithReflection,
+            ClassIndexerCollectionWithReflection,
             ClassIndexerWithReflection,
+            ClassMethodCollectionWithReflection,
             ClassMethodWithReflection,
+            ClassFieldCollectionWithReflection,
             ClassFieldWithReflection,
             ClassConstructorWithReflection,
-            ClassEventPropertyWithReflection,
+            ClassNestedClassCollectionWithReflection,
             ClassNestedClassWithReflection,
             ClassNestedDelegateWithReflection,
             ClassNestedEnumWithReflection,
+            ClassNestedInterfaceCollectionWithReflection,
             ClassNestedInterfaceWithReflection,
-            ClassNestedStructWithReflection>,
-        IInternalClassTypeWithReflection
+            ClassNestedStructCollectionWithReflection,
+            ClassNestedStructWithReflection>
     {
         private readonly ClassNestedClassCollectionWithReflection classes;
         private readonly ClassEventCollectionWithReflection events;
@@ -43,42 +50,42 @@ namespace CSharpDom.Reflection.Internal
             structs = new ClassNestedStructCollectionWithReflection(this);
         }
 
-        ClassNestedClassCollectionWithReflection IHasClassCollection<ClassNestedClassCollectionWithReflection>.Classes
+        public override ClassNestedClassCollectionWithReflection Classes
         {
             get { return classes; }
         }
 
-        ClassEventCollectionWithReflection IHasEventCollection<ClassEventCollectionWithReflection>.Events
+        public override ClassEventCollectionWithReflection Events
         {
             get { return events; }
         }
 
-        ClassFieldCollectionWithReflection IHasFieldCollection<ClassFieldCollectionWithReflection>.Fields
+        public override ClassFieldCollectionWithReflection Fields
         {
             get { return fields; }
         }
 
-        ClassIndexerCollectionWithReflection IHasIndexerCollection<ClassIndexerCollectionWithReflection>.Indexers
+        public override ClassIndexerCollectionWithReflection Indexers
         {
             get { return indexers; }
         }
 
-        ClassNestedInterfaceCollectionWithReflection IHasInterfaceCollection<ClassNestedInterfaceCollectionWithReflection>.Interfaces
+        public override ClassNestedInterfaceCollectionWithReflection Interfaces
         {
             get { return interfaces; }
         }
 
-        ClassMethodCollectionWithReflection IHasMethodCollection<ClassMethodCollectionWithReflection>.Methods
+        public override ClassMethodCollectionWithReflection Methods
         {
             get { return methods; }
         }
 
-        ClassPropertyCollectionWithReflection IHasPropertyCollection<ClassPropertyCollectionWithReflection>.Properties
+        public override ClassPropertyCollectionWithReflection Properties
         {
             get { return properties; }
         }
 
-        ClassNestedStructCollectionWithReflection IHasStructCollection<ClassNestedStructCollectionWithReflection>.Structs
+        public override ClassNestedStructCollectionWithReflection Structs
         {
             get { return structs; }
         }

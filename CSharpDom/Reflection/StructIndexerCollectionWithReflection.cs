@@ -17,12 +17,12 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<ExplicitInterfaceIndexerWithReflection> ExplicitInterfaceIndexers
         {
-            get { return typeWithReflection.Indexers.Indexers.ExplicitInterfaceIndexersWithReflection; }
+            get { return typeWithReflection.IndexerCollection.Indexers.ExplicitInterfaceIndexersWithReflection; }
         }
 
         protected override IReadOnlyCollection<StructIndexerWithReflection> Indexers
         {
-            get { return typeWithReflection.Indexers.Indexers.IndexersWithReflection; }
+            get { return typeWithReflection.IndexerCollection.Indexers.IndexersWithReflection; }
         }
     }
 }
