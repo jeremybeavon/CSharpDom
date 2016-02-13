@@ -2,6 +2,6 @@
 {
     public interface IInterfaceWithIndexer
     {
-        string this[int index] { set; }
+        string this[int index] { get; set; }
     }
 }
