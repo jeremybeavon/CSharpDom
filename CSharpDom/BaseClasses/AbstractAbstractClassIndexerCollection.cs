@@ -24,12 +24,12 @@ namespace CSharpDom.BaseClasses
 
         public void Accept(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.VisitAbstractClassIndexerCollection(this);
         }
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitAbstractClassIndexerCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TIndexer> GetEnumerator()

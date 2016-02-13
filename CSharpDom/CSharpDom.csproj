@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseClasses\AbstractAbstractClass.cs" />
     <Compile Include="BaseClasses\AbstractStructCollection.cs" />
     <Compile Include="BaseClasses\AbstractInterfaceCollection.cs" />
     <Compile Include="BaseClasses\AbstractStructFieldCollection.cs" />
@@ -261,6 +262,9 @@
     <Compile Include="BaseClasses\IL\AbstractSimpleInstruction.cs" />
     <Compile Include="BaseClasses\IL\AbstractSwitchInstruction.cs" />
     <Compile Include="BaseClasses\IL\AbstractTypeInstruction.generic.cs" />
+    <Compile Include="BaseClasses\Wrappers\EventWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\IndexerWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\PropertyWrapper.cs" />
     <Compile Include="CodeGeneration\Tree\ClassFieldModifier.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassCollection.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructCollection.cs" />

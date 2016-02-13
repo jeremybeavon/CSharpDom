@@ -377,10 +377,7 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Classes\AbstractClasses\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Classes\NestedClasses\" />
-    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Classes\SealedClasses\" />
-    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Classes\StaticClasses\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Enums\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Interfaces\" />
   </ItemGroup>

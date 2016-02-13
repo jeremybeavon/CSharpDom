@@ -1050,5 +1050,46 @@ namespace CSharpDom.Common
             VisitCollection(interfaceCollection, visitor);
             VisitCollection(interfaceCollection.PartialInterfaces, visitor);
         }
+
+        public static void VisitAbstractAccessorChildren<TAttributeGroup>(
+            IAbstractAccessor<TAttributeGroup> accessor,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            VisitCollection(accessor.Attributes, visitor);
+        }
+
+        public static void VisitAbstractEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IAbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IAbstractType
+            where TDelegateReference : IDelegateReference
+        {
+            new EventWrapper<TAttributeGroup, TDeclaringType, TDelegateReference>(@event).Accept(visitor);
+        }
+
+        public static void VisitAbstractIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
+            IAbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IAbstractType
+            where TTypeReference : ITypeReference
+            where TParameter : IParameter
+            where TAccessor : IAbstractAccessor
+        {
+            new IndexerWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(indexer).Accept(visitor);
+        }
+
+        public static void VisitAbstractPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
+            IAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IAbstractType
+            where TTypeReference : ITypeReference
+            where TAccessor : IAbstractAccessor
+        {
+            new PropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(property).Accept(visitor);
+        }
     }
 }

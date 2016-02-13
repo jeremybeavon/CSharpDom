@@ -4,7 +4,8 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractClass<TNamespace,
+    public abstract class AbstractClass<
+        TNamespace,
         TDocument,
         TProject,
         TSolution,

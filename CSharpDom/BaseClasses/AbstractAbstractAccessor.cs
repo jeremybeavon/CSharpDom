@@ -16,7 +16,7 @@ namespace CSharpDom.BaseClasses
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitAbstractAccessorChildren(this, visitor);
         }
     }
 }
