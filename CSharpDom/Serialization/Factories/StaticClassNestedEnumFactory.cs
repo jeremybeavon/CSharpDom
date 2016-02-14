@@ -16,7 +16,7 @@ namespace CSharpDom.Serialization.Factories
                 Attributes = nestedEnum.Attributes.ToAttributeListUsingFactory(),
                 EnumMembers = nestedEnum.EnumMembers.ToList(member => new NestedEnumMemberFactory(member).Value),
                 Name = nestedEnum.Name,
-                Visibility = nestedEnum.Visibility
+                InheritanceModifier = nestedEnum.InheritanceModifier
             };
         }
     }

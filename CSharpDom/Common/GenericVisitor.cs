@@ -823,53 +823,45 @@ namespace CSharpDom.Common
             VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
         }
 
-        public static void VisitSealedClassEventCollectionChildren<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent>(
-            ISealedClassEventCollection<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent> eventCollection,
+        public static void VisitSealedClassEventCollectionChildren<TEvent, TEventProperty, TExplicitInterfaceEvent>(
+            ISealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection,
             IGenericVisitor visitor)
             where TEvent : ISealedClassEvent
             where TEventProperty : IClassEventProperty
-            where TProtectedOverrideEvent : IProtectedOverrideEvent
             where TExplicitInterfaceEvent : IExplicitInterfaceEvent
         {
             VisitCollection(eventCollection, visitor);
             VisitCollection(eventCollection.EventProperties, visitor);
-            VisitCollection(eventCollection.ProtectedOverrideEvents, visitor);
             VisitCollection(eventCollection.ExplicitInterfaceEvents, visitor);
         }
 
-        public static void VisitSealedClassIndexerCollectionChildren<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer>(
-            ISealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer> indexerCollection,
+        public static void VisitSealedClassIndexerCollectionChildren<TIndexer, TExplicitInterfaceIndexer>(
+            ISealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection,
             IGenericVisitor visitor)
             where TIndexer : ISealedClassIndexer
-            where TProtectedOverrideIndexer : IProtectedOverrideIndexer
             where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
         {
             VisitCollection(indexerCollection, visitor);
-            VisitCollection(indexerCollection.ProtectedOverrideIndexers, visitor);
             VisitCollection(indexerCollection.ExplicitInterfaceIndexers, visitor);
         }
 
-        public static void VisitSealedClassMethodCollectionChildren<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod>(
-            ISealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod> methodCollection,
+        public static void VisitSealedClassMethodCollectionChildren<TMethod, TExplicitInterfaceMethod>(
+            ISealedClassMethodCollection<TMethod, TExplicitInterfaceMethod> methodCollection,
             IGenericVisitor visitor)
             where TMethod : ISealedClassMethod
-            where TProtectedOverrideMethod : IProtectedOverrideMethod
             where TExplicitInterfaceMethod : IExplicitInterfaceMethod
         {
             VisitCollection(methodCollection, visitor);
-            VisitCollection(methodCollection.ProtectedOverrideMethods, visitor);
             VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
         }
 
-        public static void VisitSealedClassPropertyCollectionChildren<TProperty, TProtectedOverrideProperty, TExplicitInterfaceProperty>(
-            ISealedClassPropertyCollection<TProperty, TProtectedOverrideProperty, TExplicitInterfaceProperty> propertyCollection,
+        public static void VisitSealedClassPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
+            ISealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection,
             IGenericVisitor visitor)
             where TProperty : ISealedClassProperty
-            where TProtectedOverrideProperty : IProtectedOverrideProperty
             where TExplicitInterfaceProperty : IExplicitInterfaceProperty
         {
             VisitCollection(propertyCollection, visitor);
-            VisitCollection(propertyCollection.ProtectedOverrideProperties, visitor);
             VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
         }
 
@@ -946,53 +938,7 @@ namespace CSharpDom.Common
             VisitCollection(fieldCollection, visitor);
             VisitCollection(fieldCollection.Constants, visitor);
         }
-
-        public static void VisitProtectedOverrideEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IProtectedOverrideEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TDelegateReference : IDelegateReference
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void VisitProtectedOverrideIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
-            IProtectedOverrideIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TTypeReference : ITypeReference
-            where TParameter : IParameter
-            where TAccessor : ISealedClassAccessor
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void VisitProtectedOverrideMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
-            IProtectedOverrideMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IParameter
-            where TMethodBody : IMethodBody
-        {
-            throw new NotImplementedException();
-        }
-
-        public static void VisitProtectedOverridePropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IProtectedOverrideProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TTypeReference : ITypeReference
-            where TAccessor : ISealedClassAccessor
-        {
-            throw new NotImplementedException();
-        }
-
+        
         public static void VisitStructFieldChildren<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
             IStructField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field,
             IGenericVisitor visitor)

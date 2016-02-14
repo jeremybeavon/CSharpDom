@@ -10,13 +10,12 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitSealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer>(
-            ISealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer> indexerCollection)
+        public override void VisitSealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer>(
+            ISealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection)
         {
             Value = new SealedClassIndexerCollection()
             {
                 Indexers = indexerCollection.ToList(indexer => new SealedClassIndexerFactory(indexer).Value),
-                ProtectedOverrideIndexers = indexerCollection.ProtectedOverrideIndexers.ToList(indexer => new ProtectedOverrideIndexerFactory(indexer).Value),
                 ExplicitInterfaceIndexers = indexerCollection.ExplicitInterfaceIndexers.ToList(indexer => new ExplicitInterfaceIndexerFactory(indexer).Value)
             };
         }

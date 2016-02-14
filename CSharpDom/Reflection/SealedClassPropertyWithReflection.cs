@@ -45,7 +45,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override ClassMemberInheritanceModifier InheritanceModifier
+        public override SealedClassMemberInheritanceModifier InheritanceModifier
         {
             get
             {
@@ -77,7 +77,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override SealedClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get
             {

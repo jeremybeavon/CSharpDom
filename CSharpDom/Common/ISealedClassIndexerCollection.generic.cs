@@ -2,13 +2,11 @@
 
 namespace CSharpDom.Common
 {
-    public interface ISealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer> :
+    public interface ISealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> :
         ISealedClassIndexerCollection,
         IReadOnlyCollection<TIndexer>,
-        IHasProtectedOverrideIndexers<TProtectedOverrideIndexer>,
         IHasExplicitInterfaceIndexers<TExplicitInterfaceIndexer>
         where TIndexer : ISealedClassIndexer
-        where TProtectedOverrideIndexer : IProtectedOverrideIndexer
         where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
     {
     }

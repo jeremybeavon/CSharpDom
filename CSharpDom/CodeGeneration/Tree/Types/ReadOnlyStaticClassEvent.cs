@@ -67,7 +67,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return removeBody; }
         }
 
-        public StaticClassMemberVisibilityModifier Visibility
+        public StaticClassMemberVisibilityModifier InheritanceModifier
         {
             get { return classEvent.Visibility; }
         }

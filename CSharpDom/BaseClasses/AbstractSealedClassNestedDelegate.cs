@@ -13,7 +13,7 @@ namespace CSharpDom.BaseClasses
         where TTypeReference : ITypeReference
         where TParameter : IParameter
     {
-        public abstract SealedClassMemberVisibilityModifier Visibility { get; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

@@ -21,7 +21,7 @@ namespace CSharpDom.Serialization
 
         public SealedClassAccessor GetAccessor { get; set; }
 
-        public ClassMemberInheritanceModifier InheritanceModifier { get; set; }
+        public SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public string Name { get; set; }
 
@@ -29,7 +29,7 @@ namespace CSharpDom.Serialization
 
         public SealedClassAccessor SetAccessor { get; set; }
 
-        public SealedClassMemberVisibilityModifier Visibility { get; set; }
+        public ClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

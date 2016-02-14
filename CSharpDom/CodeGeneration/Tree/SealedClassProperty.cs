@@ -14,7 +14,7 @@
 
         public string Name { get; set; }
 
-        public SealedClassMemberVisibilityModifier Visibility { get; set; }
+        public ClassMemberVisibilityModifier Visibility { get; set; }
 
         public ClassMemberInheritanceModifier InheritanceModifier { get; set; }
 

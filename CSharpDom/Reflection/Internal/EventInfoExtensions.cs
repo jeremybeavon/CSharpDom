@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection.Internal
         {
             return @event.AddMethod.InheritanceModifier(() => type.HiddenMembersAnalyzer.IsEventHidden(@event));
         }
-
+        
         public static bool IsOverride(this EventInfo @event)
         {
             return @event.AddMethod.IsOverride();

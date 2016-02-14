@@ -25,7 +25,7 @@ namespace CSharpDom.Serialization
 
         public List<GenericParameterDeclaration> GenericParameters { get; set; }
 
-        public ClassMemberInheritanceModifier InheritanceModifier { get; set; }
+        public SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public bool IsAsync { get; set; }
         
@@ -35,7 +35,7 @@ namespace CSharpDom.Serialization
 
         public TypeReference ReturnType { get; set; }
 
-        public SealedClassMemberVisibilityModifier Visibility { get; set; }
+        public ClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

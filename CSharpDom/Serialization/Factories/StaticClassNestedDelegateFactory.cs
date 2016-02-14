@@ -19,7 +19,7 @@ namespace CSharpDom.Serialization.Factories
                 Name = nestedDelegate.Name,
                 Parameters = nestedDelegate.Parameters.ToParameterListUsingFactory(),
                 ReturnType = new TypeReferenceFactory(nestedDelegate.ReturnType).Value,
-                Visibility = nestedDelegate.Visibility
+                InheritanceModifier = nestedDelegate.InheritanceModifier
             };
         }
     }

@@ -9,7 +9,7 @@ namespace CSharpDom.CodeGeneration.Tree
             Parameters = new Collection<MethodParameter>();
         }
 
-        public SealedClassMemberVisibilityModifier Visibility { get; set; }
+        public ClassMemberVisibilityModifier Visibility { get; set; }
 
         public Collection<MethodParameter> Parameters { get; set; }
 

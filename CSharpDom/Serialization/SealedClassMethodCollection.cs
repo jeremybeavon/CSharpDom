@@ -6,31 +6,23 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class SealedClassMethodCollection :
-        ISealedClassMethodCollection<SealedClassMethod, ProtectedOverrideMethod, ExplicitInterfaceMethod>
+        ISealedClassMethodCollection<SealedClassMethod, ExplicitInterfaceMethod>
     {
         public SealedClassMethodCollection()
         {
-            ProtectedOverrideMethods = new List<ProtectedOverrideMethod>();
             Methods = new List<SealedClassMethod>();
             ExplicitInterfaceMethods = new List<ExplicitInterfaceMethod>();
         }
-
-        public List<ProtectedOverrideMethod> ProtectedOverrideMethods { get; set; }
-
+        
         public int Count
         {
-            get { return ProtectedOverrideMethods.Count + ExplicitInterfaceMethods.Count + Methods.Count; }
+            get { return ExplicitInterfaceMethods.Count + Methods.Count; }
         }
 
         public List<SealedClassMethod> Methods { get; set; }
 
         public List<ExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
-
-        IReadOnlyCollection<ProtectedOverrideMethod> IHasProtectedOverrideMethods<ProtectedOverrideMethod>.ProtectedOverrideMethods
-        {
-            get { return ProtectedOverrideMethods; }
-        }
-
+        
         IReadOnlyCollection<ExplicitInterfaceMethod> IHasExplicitInterfaceMethods<ExplicitInterfaceMethod>.ExplicitInterfaceMethods
         {
             get { return ExplicitInterfaceMethods; }

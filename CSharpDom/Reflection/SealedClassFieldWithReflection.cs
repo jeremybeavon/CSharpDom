@@ -60,27 +60,27 @@ namespace CSharpDom.Reflection
             get { return field.Name; }
         }
 
-        public override SealedClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get
             {
                 FieldInfo fieldInfo = field.FieldInfo;
                 if (fieldInfo.IsPublic)
                 {
-                    return SealedClassMemberVisibilityModifier.Public;
+                    return ClassMemberVisibilityModifier.Public;
                 }
 
                 if (fieldInfo.IsAssembly)
                 {
-                    return SealedClassMemberVisibilityModifier.Internal;
+                    return ClassMemberVisibilityModifier.Internal;
                 }
                 
                 if (fieldInfo.IsPrivate)
                 {
-                    return SealedClassMemberVisibilityModifier.Private;
+                    return ClassMemberVisibilityModifier.Private;
                 }
 
-                return SealedClassMemberVisibilityModifier.None;
+                return ClassMemberVisibilityModifier.None;
             }
         }
     }

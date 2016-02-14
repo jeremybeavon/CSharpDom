@@ -24,7 +24,7 @@ namespace CSharpDom.BaseClasses
         where TIndexer : IInterfaceIndexer
         where TMethod : IInterfaceMethod
     {
-        public abstract StaticClassMemberVisibilityModifier Visibility { get; }
+        public abstract StaticClassMemberVisibilityModifier InheritanceModifier { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

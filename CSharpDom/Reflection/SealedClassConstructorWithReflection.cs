@@ -47,9 +47,9 @@ namespace CSharpDom.Reflection
             get { return constructor.Parameters; }
         }
 
-        public override SealedClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return constructor.ConstructorInfo.SealedClassVisibility(); }
+            get { return constructor.ConstructorInfo.ClassVisibility(); }
         }
     }
 }

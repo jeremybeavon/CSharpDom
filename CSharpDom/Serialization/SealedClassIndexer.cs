@@ -24,13 +24,13 @@ namespace CSharpDom.Serialization
 
         public TypeReference IndexerType { get; set; }
 
-        public ClassMemberInheritanceModifier InheritanceModifier { get; set; }
+        public SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public List<Parameter> Parameters { get; set; }
 
         public SealedClassAccessor SetAccessor { get; set; }
 
-        public SealedClassMemberVisibilityModifier Visibility { get; set; }
+        public ClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

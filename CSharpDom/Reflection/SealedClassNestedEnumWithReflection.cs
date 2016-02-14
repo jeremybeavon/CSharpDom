@@ -58,7 +58,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override SealedClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get
             {

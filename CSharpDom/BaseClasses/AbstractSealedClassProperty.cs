@@ -12,9 +12,9 @@ namespace CSharpDom.BaseClasses
         where TTypeReference : ITypeReference
         where TAccessor : ISealedClassAccessor
     {
-        public abstract ClassMemberInheritanceModifier InheritanceModifier { get; }
+        public abstract SealedClassMemberInheritanceModifier InheritanceModifier { get; }
 
-        public abstract SealedClassMemberVisibilityModifier Visibility { get; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

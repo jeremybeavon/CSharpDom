@@ -14,19 +14,19 @@ namespace CSharpDom.Reflection
         //IVisitable<IReflectionVisitor>,
         IStructAccessor
     {
-        private readonly SealedClassMemberVisibilityModifier visibility;
+        private readonly ClassMemberVisibilityModifier visibility;
         private readonly MethodInfo method;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
-        internal SealedClassAccessorWithReflection(IHasSealedClassMemberVisibilityModifier parentVisibility, MethodInfo method)
+        internal SealedClassAccessorWithReflection(IHasClassMemberVisibilityModifier parentVisibility, MethodInfo method)
         {
             this.method = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
-            visibility = method.SealedClassVisibility();
+            visibility = method.ClassVisibility();
             if (parentVisibility.Visibility == visibility)
             {
-                visibility = SealedClassMemberVisibilityModifier.None;
+                visibility = ClassMemberVisibilityModifier.None;
             }
 
             body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
@@ -37,7 +37,7 @@ namespace CSharpDom.Reflection
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override SealedClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { return visibility; }
         }

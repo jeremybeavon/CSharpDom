@@ -19,7 +19,7 @@ namespace CSharpDom.Serialization.Factories
                 Name = property.Name,
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value,
                 SetAccessor = new StaticClassAccessorFactory(property.SetAccessor).Value,
-                Visibility = property.Visibility
+                InheritanceModifier = property.InheritanceModifier
             };
         }
     }

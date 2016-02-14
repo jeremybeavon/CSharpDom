@@ -9,9 +9,9 @@
 
         public string Name { get; set; }
 
-        public SealedClassMemberVisibilityModifier Visibility { get; set; }
+        public ClassMemberVisibilityModifier Visibility { get; set; }
 
-        public ClassMemberInheritanceModifier InheritanceModifier { get; set; }
+        public SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public DelegateReference Type { get; set; }
 

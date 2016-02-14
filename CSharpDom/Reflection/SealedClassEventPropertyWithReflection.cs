@@ -43,9 +43,10 @@ namespace CSharpDom.Reflection
             get { return @event.EventType; }
         }
 
-        public override ClassMemberInheritanceModifier InheritanceModifier
+        public override SealedClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return @event.EventInfo.InheritanceModifier(declaringType); }
+            get { throw new NotImplementedException(); }
+            //get { return @event.EventInfo.InheritanceModifier(declaringType); }
         }
 
         public override string Name
@@ -58,9 +59,9 @@ namespace CSharpDom.Reflection
             get { return @event.RemoveBody; }
         }
 
-        public override SealedClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return @event.EventInfo.AddMethod.SealedClassVisibility(); }
+            get { return @event.EventInfo.AddMethod.ClassVisibility(); }
         }
     }
 }

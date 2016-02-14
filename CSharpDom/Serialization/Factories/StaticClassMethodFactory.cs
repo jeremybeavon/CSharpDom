@@ -21,7 +21,7 @@ namespace CSharpDom.Serialization.Factories
                 Name = method.Name,
                 Parameters = method.Parameters.ToParameterListUsingFactory(),
                 ReturnType = new TypeReferenceFactory(method.ReturnType).Value,
-                Visibility = method.Visibility
+                InheritanceModifier = method.InheritanceModifier
             };
         }
     }

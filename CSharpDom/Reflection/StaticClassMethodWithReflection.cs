@@ -63,7 +63,7 @@ namespace CSharpDom.Reflection
             get { return method.ReturnType; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override StaticClassMemberVisibilityModifier InheritanceModifier
         {
             get { return method.MethodInfo.StaticClassVisibility(); }
         }

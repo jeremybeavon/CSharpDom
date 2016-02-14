@@ -14,7 +14,7 @@ namespace CSharpDom.BaseClasses
     {
         public abstract ClassFieldModifier Modifier { get; }
 
-        public abstract SealedClassMemberVisibilityModifier Visibility { get; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

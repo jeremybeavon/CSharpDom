@@ -79,7 +79,7 @@ namespace CSharpDom.Reflection
             get { return field.Name; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override StaticClassMemberVisibilityModifier InheritanceModifier
         {
             get
             {

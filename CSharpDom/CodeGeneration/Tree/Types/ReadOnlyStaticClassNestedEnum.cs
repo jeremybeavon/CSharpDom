@@ -41,7 +41,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return nestedEnum.Name; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override StaticClassMemberVisibilityModifier InheritanceModifier
         {
             get { return nestedEnum.Visibility; }
         }

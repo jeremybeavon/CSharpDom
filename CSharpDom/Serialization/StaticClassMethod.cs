@@ -35,7 +35,7 @@ namespace CSharpDom.Serialization
 
         public TypeReference ReturnType { get; set; }
 
-        public StaticClassMemberVisibilityModifier Visibility { get; set; }
+        public StaticClassMemberVisibilityModifier InheritanceModifier { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

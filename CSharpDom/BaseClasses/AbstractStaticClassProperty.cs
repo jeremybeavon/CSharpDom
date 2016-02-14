@@ -12,7 +12,7 @@ namespace CSharpDom.BaseClasses
         where TTypeReference : ITypeReference
         where TAccessor : IStaticClassAccessor
     {
-        public abstract StaticClassMemberVisibilityModifier Visibility { get; }
+        public abstract StaticClassMemberVisibilityModifier InheritanceModifier { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

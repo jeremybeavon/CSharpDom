@@ -45,9 +45,10 @@ namespace CSharpDom.Reflection
             get { return method.GenericParameters; }
         }
 
-        public override ClassMemberInheritanceModifier InheritanceModifier
+        public override SealedClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return method.MethodInfo.InheritanceModifier(declaringType); }
+            get { throw new NotImplementedException(); }
+            //get { return method.MethodInfo.InheritanceModifier(declaringType); }
         }
 
         public override bool IsAsync
@@ -70,9 +71,9 @@ namespace CSharpDom.Reflection
             get { return method.ReturnType; }
         }
 
-        public override SealedClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return method.MethodInfo.SealedClassVisibility(); }
+            get { return method.MethodInfo.ClassVisibility(); }
         }
     }
 }

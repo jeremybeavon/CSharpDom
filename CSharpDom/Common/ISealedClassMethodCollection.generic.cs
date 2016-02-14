@@ -2,13 +2,11 @@
 
 namespace CSharpDom.Common
 {
-    public interface ISealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod> :
+    public interface ISealedClassMethodCollection<TMethod, TExplicitInterfaceMethod> :
         ISealedClassMethodCollection,
         IReadOnlyCollection<TMethod>,
-        IHasProtectedOverrideMethods<TProtectedOverrideMethod>,
         IHasExplicitInterfaceMethods<TExplicitInterfaceMethod>
         where TMethod : ISealedClassMethod
-        where TProtectedOverrideMethod : IProtectedOverrideMethod
         where TExplicitInterfaceMethod : IExplicitInterfaceMethod
     {
     }

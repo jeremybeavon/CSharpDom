@@ -10,7 +10,7 @@ namespace CSharpDom.CodeGeneration.Tree
             Fields = new Collection<Field>();
         }
 
-        public SealedClassMemberVisibilityModifier Visibility { get; set; }
+        public ClassMemberVisibilityModifier Visibility { get; set; }
 
         public ClassFieldModifier Modifier { get; set; }
         

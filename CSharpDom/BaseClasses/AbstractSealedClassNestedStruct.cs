@@ -44,7 +44,7 @@ namespace CSharpDom.BaseClasses
         where TNestedStructCollection : IStructNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public abstract SealedClassMemberVisibilityModifier Visibility { get; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

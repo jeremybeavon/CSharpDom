@@ -73,25 +73,5 @@ namespace CSharpDom.Reflection.Internal
 
             return StaticClassMemberVisibilityModifier.None;
         }
-
-        public static SealedClassMemberVisibilityModifier SealedClassVisibility(this MethodBase method)
-        {
-            if (method.IsPublic)
-            {
-                return SealedClassMemberVisibilityModifier.Public;
-            }
-
-            if (method.IsAssembly)
-            {
-                return SealedClassMemberVisibilityModifier.Internal;
-            }
-
-            if (method.IsPrivate)
-            {
-                return SealedClassMemberVisibilityModifier.Private;
-            }
-
-            return SealedClassMemberVisibilityModifier.None;
-        }
     }
 }

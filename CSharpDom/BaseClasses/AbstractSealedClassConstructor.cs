@@ -12,8 +12,8 @@ namespace CSharpDom.BaseClasses
         where TParameter : IParameter
         where TMethodBody : IMethodBody
     {
-        public abstract SealedClassMemberVisibilityModifier Visibility { get; }
-
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
+        
         public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitSealedClassConstructor(this);

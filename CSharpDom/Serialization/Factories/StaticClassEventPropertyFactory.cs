@@ -19,7 +19,7 @@ namespace CSharpDom.Serialization.Factories
                 EventType = new DelegateReferenceFactory(eventProperty.EventType).Value,
                 Name = eventProperty.Name,
                 RemoveBody = new MethodBodyFactory(eventProperty.RemoveBody).Value,
-                Visibility = eventProperty.Visibility
+                InheritanceModifier = eventProperty.InheritanceModifier
             };
         }
     }

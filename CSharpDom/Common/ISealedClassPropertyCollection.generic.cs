@@ -2,13 +2,11 @@
 
 namespace CSharpDom.Common
 {
-    public interface ISealedClassPropertyCollection<TProperty, TProtectedOverrideProperty, TExplicitInterfaceProperty> :
+    public interface ISealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty> :
         ISealedClassPropertyCollection,
         IReadOnlyCollection<TProperty>,
-        IHasProtectedOverrideProperties<TProtectedOverrideProperty>,
         IHasExplicitInterfaceProperties<TExplicitInterfaceProperty>
         where TProperty : ISealedClassProperty
-        where TProtectedOverrideProperty : IProtectedOverrideProperty
         where TExplicitInterfaceProperty : IExplicitInterfaceProperty
     {
     }

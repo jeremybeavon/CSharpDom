@@ -13,7 +13,7 @@ namespace CSharpDom.BaseClasses
     {
         public abstract IReadOnlyCollection<TAttributeGroup> FieldAttributes { get; }
         
-        public abstract StaticClassMemberVisibilityModifier Visibility { get; }
+        public abstract StaticClassMemberVisibilityModifier InheritanceModifier { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

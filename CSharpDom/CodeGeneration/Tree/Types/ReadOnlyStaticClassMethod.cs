@@ -75,7 +75,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return returnType; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override StaticClassMemberVisibilityModifier InheritanceModifier
         {
             get { return method.Visibility; }
         }

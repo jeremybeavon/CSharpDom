@@ -10,13 +10,12 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitSealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod>(
-            ISealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod> methodCollection)
+        public override void VisitSealedClassMethodCollection<TMethod, TExplicitInterfaceMethod>(
+            ISealedClassMethodCollection<TMethod, TExplicitInterfaceMethod> methodCollection)
         {
             Value = new SealedClassMethodCollection()
             {
                 Methods = methodCollection.ToList(method => new SealedClassMethodFactory(method).Value),
-                ProtectedOverrideMethods = methodCollection.ProtectedOverrideMethods.ToList(method => new ProtectedOverrideMethodFactory(method).Value),
                 ExplicitInterfaceMethods = methodCollection.ExplicitInterfaceMethods.ToList(method => new ExplicitInterfaceMethodFactory(method).Value)
             };
         }

@@ -2,6 +2,6 @@
 {
     public interface IHasStaticClassMemberVisibilityModifier
     {
-        StaticClassMemberVisibilityModifier Visibility { get; }
+        StaticClassMemberVisibilityModifier InheritanceModifier { get; }
     }
 }

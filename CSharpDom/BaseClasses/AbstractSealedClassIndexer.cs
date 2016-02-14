@@ -13,9 +13,9 @@ namespace CSharpDom.BaseClasses
         where TParameter : IParameter
         where TAccessor : ISealedClassAccessor
     {
-        public abstract ClassMemberInheritanceModifier InheritanceModifier { get; }
+        public abstract SealedClassMemberInheritanceModifier InheritanceModifier { get; }
         
-        public abstract SealedClassMemberVisibilityModifier Visibility { get; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

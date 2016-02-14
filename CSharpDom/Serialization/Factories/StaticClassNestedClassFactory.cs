@@ -33,7 +33,7 @@ namespace CSharpDom.Serialization.Factories
                 OperatorOverloads = nestedClass.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),
                 Properties = new ClassPropertyCollectionFactory(nestedClass.Properties).Value,
                 //Structs = nestedClass.Structs.ToList(@struct => new ClassNestedStructFactory(@struct).Value),
-                Visibility = nestedClass.Visibility
+                InheritanceModifier = nestedClass.InheritanceModifier
             };
         }
     }

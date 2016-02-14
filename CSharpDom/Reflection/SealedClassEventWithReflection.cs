@@ -52,9 +52,9 @@ namespace CSharpDom.Reflection
             get { return @event.Name; }
         }
 
-        public override SealedClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return @event.EventInfo.AddMethod.SealedClassVisibility(); }
+            get { return @event.EventInfo.AddMethod.ClassVisibility(); }
         }
     }
 }

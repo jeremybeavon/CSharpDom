@@ -16,7 +16,7 @@ namespace CSharpDom.BaseClasses
         where TIndexer : IInterfaceIndexer
         where TMethod : IInterfaceMethod
     {
-        public abstract SealedClassMemberVisibilityModifier Visibility { get; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

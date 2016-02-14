@@ -1304,37 +1304,7 @@ namespace CSharpDom.Common
             INestedStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : INestedStruct
             where TPartialStruct : IPartialStruct;
-
-        void VisitProtectedOverrideEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IProtectedOverrideEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TDelegateReference : IDelegateReference;
-
-        void VisitProtectedOverrideIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
-            IProtectedOverrideIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TTypeReference : ITypeReference
-            where TParameter : IParameter
-            where TAccessor : ISealedClassAccessor;
-
-        void VisitProtectedOverrideMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
-            IProtectedOverrideMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IParameter
-            where TMethodBody : IMethodBody;
-
-        void VisitProtectedOverrideProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IProtectedOverrideProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TTypeReference : ITypeReference
-            where TAccessor : ISealedClassAccessor;
-
+        
         void VisitSealedClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
             ISealedClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constant)
             where TAttributeGroup : IAttributeGroup
@@ -1342,11 +1312,10 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TConstant : IConstant;
 
-        void VisitSealedClassEventCollection<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent>(
-            ISealedClassEventCollection<TEvent, TEventProperty, TProtectedOverrideEvent, TExplicitInterfaceEvent> eventCollection)
+        void VisitSealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>(
+            ISealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection)
             where TEvent : ISealedClassEvent
             where TEventProperty : IClassEventProperty
-            where TProtectedOverrideEvent : IProtectedOverrideEvent
             where TExplicitInterfaceEvent : IExplicitInterfaceEvent;
 
         void VisitSealedClassFieldCollection<TFieldGroup, TConstantGroup>(
@@ -1354,16 +1323,14 @@ namespace CSharpDom.Common
             where TFieldGroup : ISealedClassField
             where TConstantGroup : ISealedClassConstant;
 
-        void VisitSealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer>(
-            ISealedClassIndexerCollection<TIndexer, TProtectedOverrideIndexer, TExplicitInterfaceIndexer> indexerCollection)
+        void VisitSealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer>(
+            ISealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection)
             where TIndexer : ISealedClassIndexer
-            where TProtectedOverrideIndexer : IProtectedOverrideIndexer
             where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer;
 
-        void VisitSealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod>(
-            ISealedClassMethodCollection<TMethod, TProtectedOverrideMethod, TExplicitInterfaceMethod> methodCollection)
+        void VisitSealedClassMethodCollection<TMethod, TExplicitInterfaceMethod>(
+            ISealedClassMethodCollection<TMethod, TExplicitInterfaceMethod> methodCollection)
             where TMethod : ISealedClassMethod
-            where TProtectedOverrideMethod : IProtectedOverrideMethod
             where TExplicitInterfaceMethod : IExplicitInterfaceMethod;
 
         void VisitSealedClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
@@ -1446,10 +1413,9 @@ namespace CSharpDom.Common
             where TStruct : ISealedClassNestedStruct
             where TPartialStruct : IPartialStruct;
 
-        void VisitSealedClassPropertyCollection<TProperty, TProtectedOverrideProperty, TExplicitInterfaceProperty>(
-            ISealedClassPropertyCollection<TProperty, TProtectedOverrideProperty, TExplicitInterfaceProperty> propertyCollection)
+        void VisitSealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty>(
+            ISealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
             where TProperty : ISealedClassProperty
-            where TProtectedOverrideProperty : IProtectedOverrideProperty
             where TExplicitInterfaceProperty : IExplicitInterfaceProperty;
 
         void VisitSealedType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(

@@ -43,7 +43,7 @@ namespace CSharpDom.Reflection
             get { return indexer.IndexerType; }
         }
 
-        public override ClassMemberInheritanceModifier InheritanceModifier
+        public override SealedClassMemberInheritanceModifier InheritanceModifier
         {
             get
             {
@@ -68,7 +68,7 @@ namespace CSharpDom.Reflection
             //get { return indexer.SetAccessor; }
         }
 
-        public override SealedClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { throw new NotImplementedException(); }
             //get { return indexer.PropertyInfo.SealedClassVisibility(); }

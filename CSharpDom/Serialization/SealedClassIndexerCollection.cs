@@ -5,31 +5,23 @@ using System.Collections;
 namespace CSharpDom.Serialization
 {
     public sealed class SealedClassIndexerCollection :
-        ISealedClassIndexerCollection<SealedClassIndexer, ProtectedOverrideIndexer, ExplicitInterfaceIndexer>
+        ISealedClassIndexerCollection<SealedClassIndexer, ExplicitInterfaceIndexer>
     {
         public SealedClassIndexerCollection()
         {
-            ProtectedOverrideIndexers = new List<ProtectedOverrideIndexer>();
             ExplicitInterfaceIndexers = new List<ExplicitInterfaceIndexer>();
             Indexers = new List<SealedClassIndexer>();
         }
-
-        public List<ProtectedOverrideIndexer> ProtectedOverrideIndexers { get; set; }
-
+        
         public int Count
         {
-            get { return ProtectedOverrideIndexers.Count + ExplicitInterfaceIndexers.Count + Indexers.Count; }
+            get { return ExplicitInterfaceIndexers.Count + Indexers.Count; }
         }
 
         public List<ExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
 
         public List<SealedClassIndexer> Indexers { get; set; }
-
-        IReadOnlyCollection<ProtectedOverrideIndexer> IHasProtectedOverrideIndexers<ProtectedOverrideIndexer>.ProtectedOverrideIndexers
-        {
-            get { return ProtectedOverrideIndexers; }
-        }
-
+        
         IReadOnlyCollection<ExplicitInterfaceIndexer> IHasExplicitInterfaceIndexers<ExplicitInterfaceIndexer>.ExplicitInterfaceIndexers
         {
             get { return ExplicitInterfaceIndexers; }
