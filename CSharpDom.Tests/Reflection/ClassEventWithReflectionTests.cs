@@ -4,6 +4,7 @@ using CSharpDom.Reflection.Internal;
 using CSharpDom.Tests.Common;
 using CSharpDom.TestTarget.Classes;
 using CSharpDom.TestTarget.Classes.Events;
+using CSharpDom.TestTarget.Classes.Events.EventProperties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 
