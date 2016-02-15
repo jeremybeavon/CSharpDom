@@ -5,7 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class SealedClassProperty :
-        ISealedClassProperty<AttributeGroup, ISealedType, TypeReference, SealedClassAccessor>
+        ISealedClassProperty<AttributeGroup, ISealedType, TypeReference, ClassAccessor>
     {
         public SealedClassProperty()
         {
@@ -19,7 +19,7 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public SealedClassAccessor GetAccessor { get; set; }
+        public ClassAccessor GetAccessor { get; set; }
 
         public SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
 
@@ -27,7 +27,7 @@ namespace CSharpDom.Serialization
 
         public TypeReference PropertyType { get; set; }
 
-        public SealedClassAccessor SetAccessor { get; set; }
+        public ClassAccessor SetAccessor { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
 

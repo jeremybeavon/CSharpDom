@@ -703,34 +703,7 @@ namespace CSharpDom.Common
             VisitIfNotNull(type.Structs, visitor);
             VisitIfNotNull(type.StaticConstructor, visitor);
         }
-
-        public static void VisitSealedClassNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
-            ISealedClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedSealedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TNestedDestructor : INestedDestructor
-            where TStaticConstructor : IStaticConstructor
-        {
-            visitor.VisitNestedClass(nestedSealedClass);
-        }
-
+        
         public static void VisitAbstractClassEventCollectionChildren<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent>(
             IAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent> eventCollection,
             IGenericVisitor visitor)

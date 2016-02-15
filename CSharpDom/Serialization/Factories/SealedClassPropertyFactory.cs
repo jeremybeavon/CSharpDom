@@ -15,10 +15,10 @@ namespace CSharpDom.Serialization.Factories
             Value = new SealedClassProperty()
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
-                GetAccessor = new SealedClassAccessorFactory(property.GetAccessor).Value,
+                GetAccessor = new ClassAccessorFactory(property.GetAccessor).Value,
                 Name = property.Name,
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value,
-                SetAccessor = new SealedClassAccessorFactory(property.SetAccessor).Value,
+                SetAccessor = new ClassAccessorFactory(property.SetAccessor).Value,
                 Visibility = property.Visibility
             };
         }

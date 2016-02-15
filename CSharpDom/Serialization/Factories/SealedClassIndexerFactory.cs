@@ -15,11 +15,11 @@ namespace CSharpDom.Serialization.Factories
             Value = new SealedClassIndexer()
             {
                 Attributes = indexer.Attributes.ToAttributeListUsingFactory(),
-                GetAccessor = new SealedClassAccessorFactory(indexer.GetAccessor).Value,
+                GetAccessor = new ClassAccessorFactory(indexer.GetAccessor).Value,
                 IndexerType = new TypeReferenceFactory(indexer.IndexerType).Value,
                 InheritanceModifier = indexer.InheritanceModifier,
                 Parameters = indexer.Parameters.ToParameterListUsingFactory(),
-                SetAccessor = new SealedClassAccessorFactory(indexer.SetAccessor).Value,
+                SetAccessor = new ClassAccessorFactory(indexer.SetAccessor).Value,
                 Visibility = indexer.Visibility
             };
         }

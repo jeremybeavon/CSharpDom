@@ -5,7 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class SealedClassIndexer :
-        ISealedClassIndexer<AttributeGroup, ISealedType, TypeReference, Parameter, SealedClassAccessor>
+        ISealedClassIndexer<AttributeGroup, ISealedType, TypeReference, Parameter, ClassAccessor>
     {
         public SealedClassIndexer()
         {
@@ -20,7 +20,7 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public SealedClassAccessor GetAccessor { get; set; }
+        public ClassAccessor GetAccessor { get; set; }
 
         public TypeReference IndexerType { get; set; }
 
@@ -28,7 +28,7 @@ namespace CSharpDom.Serialization
 
         public List<Parameter> Parameters { get; set; }
 
-        public SealedClassAccessor SetAccessor { get; set; }
+        public ClassAccessor SetAccessor { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
 

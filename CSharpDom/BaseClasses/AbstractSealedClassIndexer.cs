@@ -11,7 +11,7 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : ISealedType
         where TTypeReference : ITypeReference
         where TParameter : IParameter
-        where TAccessor : ISealedClassAccessor
+        where TAccessor : IClassAccessor
     {
         public abstract SealedClassMemberInheritanceModifier InheritanceModifier { get; }
         

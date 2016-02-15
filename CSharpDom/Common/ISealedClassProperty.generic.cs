@@ -7,7 +7,7 @@
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TTypeReference : ITypeReference
-        where TAccessor : ISealedClassAccessor
+        where TAccessor : IClassAccessor
     {
     }
 }

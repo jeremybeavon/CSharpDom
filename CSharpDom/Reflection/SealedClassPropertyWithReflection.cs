@@ -12,7 +12,7 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
-            SealedClassAccessorWithReflection>
+            ClassAccessorWithReflection>
     {
         private readonly PropertyWithReflection property;
 
@@ -37,7 +37,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override SealedClassAccessorWithReflection GetAccessor
+        public override ClassAccessorWithReflection GetAccessor
         {
             get
             {
@@ -69,7 +69,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override SealedClassAccessorWithReflection SetAccessor
+        public override ClassAccessorWithReflection SetAccessor
         {
             get
             {

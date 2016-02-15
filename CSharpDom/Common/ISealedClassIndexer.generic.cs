@@ -8,7 +8,7 @@
         where TDeclaringType : ISealedType
         where TTypeReference : ITypeReference
         where TParameter : IParameter
-        where TAccessor : ISealedClassAccessor
+        where TAccessor : IClassAccessor
     {
     }
 }

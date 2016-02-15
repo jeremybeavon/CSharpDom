@@ -25,11 +25,11 @@
         where TConstructor : ISealedClassConstructor
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
-        where TNestedClassCollection : ISealedClassNestedClassCollection
-        where TNestedDelegate : ISealedClassNestedDelegate
-        where TNestedEnum : ISealedClassNestedEnum
-        where TNestedInterfaceCollection : ISealedClassNestedInterfaceCollection
-        where TNestedStructCollection : ISealedClassNestedStructCollection
+        where TNestedClassCollection : IClassNestedClassCollection
+        where TNestedDelegate : IClassNestedDelegate
+        where TNestedEnum : IClassNestedEnum
+        where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+        where TNestedStructCollection : IClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
     }
