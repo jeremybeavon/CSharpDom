@@ -4,14 +4,14 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassConstructor : IClassConstructor<AttributeGroup, IClassType, Parameter, MethodBody>
+    public sealed class ClassConstructor : IClassConstructor<AttributeGroup, IClassType, ConstructorParameter, MethodBody>
     {
         private IClassType declaringType;
 
         public ClassConstructor()
         {
             Attributes = new List<AttributeGroup>();
-            Parameters = new List<Parameter>();
+            Parameters = new List<ConstructorParameter>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
@@ -23,7 +23,7 @@ namespace CSharpDom.Serialization
             get { return declaringType; }
         }
 
-        public List<Parameter> Parameters { get; set; }
+        public List<ConstructorParameter> Parameters { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
@@ -32,7 +32,7 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
-        IReadOnlyList<Parameter> IHasParameters<Parameter>.Parameters
+        IReadOnlyList<ConstructorParameter> IHasParameters<ConstructorParameter>.Parameters
         {
             get { return Parameters; }
         }

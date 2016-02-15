@@ -698,12 +698,6 @@ namespace CSharpDom.Text
         public override void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
             IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
-            if (method.IsAsync)
-            {
-                Steps.Add(new WriteAsyncKeyword());
-                Steps.Add(new WriteWhitespace());
-            }
-
             Steps.Add(new WriteChildNode<TTypeReference>(method.ReturnType));
             Steps.Add(new WriteWhitespace());
             if (explicitInterface != null)
@@ -1030,7 +1024,7 @@ namespace CSharpDom.Text
         public override void VisitParameter<TAttributeGroup, TTypeReference>(IParameter<TAttributeGroup, TTypeReference> parameter)
         {
             Steps.AddChildNodeSteps(parameter.Attributes);
-            Steps.AddMethodParameterModifierSteps(parameter.Modifier);
+            //Steps.AddMethodParameterModifierSteps(parameter.Modifier);
             Steps.Add(new WriteChildNode<TTypeReference>(parameter.ParameterType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(parameter.Name));

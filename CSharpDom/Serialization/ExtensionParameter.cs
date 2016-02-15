@@ -4,17 +4,15 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class Parameter : IParameter<AttributeGroup, TypeReference>
+    public sealed class ExtensionParameter : IExtensionParameter<AttributeGroup, TypeReference>
     {
-        public Parameter()
+        public ExtensionParameter()
         {
             Attributes = new List<AttributeGroup>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
-
-        public ParameterModifier Modifier { get; set; }
-
+        
         public string Name { get; set; }
 
         public TypeReference ParameterType { get; set; }
@@ -26,12 +24,12 @@ namespace CSharpDom.Serialization
 
         public void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitParameter(this);
+            visitor.VisitExtensionParameter(this);
         }
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitParameterChildren(this, visitor);
+            GenericVisitor.VisitExtensionParameterChildren(this, visitor);
         }
     }
 }

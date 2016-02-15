@@ -11,7 +11,7 @@
         where TDeclaringType : IBasicType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IMethodParameter
     {
     }
 }

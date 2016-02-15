@@ -16,7 +16,7 @@ namespace CSharpDom.Serialization.Factories
             {
                 Attributes = indexer.Attributes.ToAttributeListUsingFactory(),
                 IndexerType = new TypeReferenceFactory(indexer.IndexerType).Value,
-                Parameters = indexer.Parameters.ToParameterListUsingFactory()
+                Parameters = indexer.Parameters.ToList(parameter => new IndexerParameterFactory(parameter).Value)
             };
         }
     }

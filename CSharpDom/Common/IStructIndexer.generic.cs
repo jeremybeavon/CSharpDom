@@ -6,7 +6,7 @@
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStructType
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IIndexerParameter
         where TAccessor : IStructAccessor
     {
     }

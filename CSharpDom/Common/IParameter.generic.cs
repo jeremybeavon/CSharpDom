@@ -8,7 +8,5 @@
         where TTypeReference : ITypeReference
     {
         TTypeReference ParameterType { get; }
-
-        ParameterModifier Modifier { get; }
     }
 }

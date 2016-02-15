@@ -15,13 +15,13 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             IType,
             ReadOnlyInterfaceReference,
             ReadOnlyTypeReference,
-            ReadOnlyMethodParameter,
+            ReadOnlyIndexerParameter,
             ReadOnlyAccessor>
     {
         private readonly ExplicitInterfaceIndexer indexer;
         private readonly ReadOnlyInterfaceReference explicitInterface;
         private readonly ReadOnlyTypeReference indexerType;
-        private readonly IReadOnlyList<ReadOnlyMethodParameter> parameters;
+        private readonly IReadOnlyList<ReadOnlyIndexerParameter> parameters;
         private readonly ReadOnlyAccessor getAccessor;
         private readonly ReadOnlyAccessor setAccessor;
 
@@ -30,7 +30,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             this.indexer = indexer;
             explicitInterface = new ReadOnlyInterfaceReference(indexer.ExplicitInterface);
             indexerType = new ReadOnlyTypeReference(indexer.Type);
-            parameters = ReadOnlyMethodParameter.Create(indexer.Parameters);
+            parameters = ReadOnlyIndexerParameter.Create(indexer.Parameters);
             if (indexer.GetAccessor != null)
             {
                 getAccessor = new ReadOnlyAccessor(indexer.GetAccessor);
@@ -62,7 +62,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return indexerType; }
         }
         
-        public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
+        public override IReadOnlyList<ReadOnlyIndexerParameter> Parameters
         {
             get { return parameters; }
         }

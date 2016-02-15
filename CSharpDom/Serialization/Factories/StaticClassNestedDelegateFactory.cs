@@ -17,7 +17,7 @@ namespace CSharpDom.Serialization.Factories
                 Attributes = nestedDelegate.Attributes.ToAttributeListUsingFactory(),
                 GenericParameters = nestedDelegate.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 Name = nestedDelegate.Name,
-                Parameters = nestedDelegate.Parameters.ToParameterListUsingFactory(),
+                Parameters = nestedDelegate.Parameters.ToList(parameter => new DelegateParameterFactory(parameter).Value),
                 ReturnType = new TypeReferenceFactory(nestedDelegate.ReturnType).Value,
                 InheritanceModifier = nestedDelegate.InheritanceModifier
             };

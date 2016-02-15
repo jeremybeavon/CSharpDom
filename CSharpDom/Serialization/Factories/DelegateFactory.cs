@@ -17,7 +17,7 @@ namespace CSharpDom.Serialization.Factories
                 Attributes = @delegate.Attributes.ToAttributeListUsingFactory(),
                 GenericParameters = @delegate.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 Name = @delegate.Name,
-                Parameters = @delegate.Parameters.ToParameterListUsingFactory(),
+                Parameters = @delegate.Parameters.ToList(parameter => new DelegateParameterFactory(parameter).Value),
                 ReturnType = new TypeReferenceFactory(@delegate.ReturnType).Value,
                 Visibility = @delegate.Visibility
             };

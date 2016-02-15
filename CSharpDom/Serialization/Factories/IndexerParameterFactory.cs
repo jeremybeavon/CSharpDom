@@ -2,16 +2,17 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class ParameterFactory : AbstractFactory<IParameter, Parameter>
+    public sealed class IndexerParameterFactory : AbstractFactory<IParameter, IndexerParameter>
     {
-        public ParameterFactory(IParameter parameter)
+        public IndexerParameterFactory(IParameter parameter)
             : base(parameter)
         {
         }
 
-        public override void VisitParameter<TAttributeGroup, TTypeReference>(IParameter<TAttributeGroup, TTypeReference> parameter)
+        public override void VisitIndexerParameter<TAttributeGroup, TTypeReference>(
+            IIndexerParameter<TAttributeGroup, TTypeReference> parameter)
         {
-            Value = new Parameter()
+            Value = new IndexerParameter()
             {
                 Attributes = parameter.Attributes.ToAttributeListUsingFactory(),
                 Modifier = parameter.Modifier,

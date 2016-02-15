@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 using CSharpDom.NotSupported;
 using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal.Hiding
 {
-    internal sealed class ParameterSignature : AbstractParameter<AttributeGroupNotSupported, ITypeReferenceWithReflection>
+    internal sealed class ParameterSignature : AbstractMethodParameter<AttributeGroupNotSupported, ITypeReferenceWithReflection>,
+        IIndexerParameter<AttributeGroupNotSupported, ITypeReferenceWithReflection>
     {
         private readonly ParameterModifier modifier;
         private readonly string name;
@@ -37,6 +39,11 @@ namespace CSharpDom.Reflection.Internal.Hiding
         public override ITypeReferenceWithReflection ParameterType
         {
             get { return parameterType; }
+        }
+
+        IndexerParameterModifier IHasModifier<IndexerParameterModifier>.Modifier
+        {
+            get { return Modifier == ParameterModifier.Params ? IndexerParameterModifier.Params : IndexerParameterModifier.None; }
         }
     }
 }

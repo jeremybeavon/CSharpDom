@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyMethodParameter : AbstractParameter<AttributeGroupNotSupported, ReadOnlyTypeReference>
+    public sealed class ReadOnlyMethodParameter : AbstractMethodParameter<AttributeGroupNotSupported, ReadOnlyTypeReference>
     {
         private readonly MethodParameter parameter;
         private readonly ReadOnlyTypeReference parameterType;

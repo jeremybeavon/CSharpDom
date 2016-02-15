@@ -18,7 +18,7 @@ namespace CSharpDom.Serialization.Factories
                 GetAccessor = new InterfaceAccessorFactory(indexer.GetAccessor).Value,
                 IndexerType = new TypeReferenceFactory(indexer.IndexerType).Value,
                 InheritanceModifier = indexer.InheritanceModifier,
-                Parameters = indexer.Parameters.ToParameterListUsingFactory(),
+                Parameters = indexer.Parameters.ToList(parameter => new IndexerParameterFactory(parameter).Value),
                 SetAccessor = new InterfaceAccessorFactory(indexer.SetAccessor).Value
             };
         }

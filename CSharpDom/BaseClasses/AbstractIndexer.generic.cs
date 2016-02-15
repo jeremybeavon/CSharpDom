@@ -9,7 +9,7 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IIndexerParameter
         where TAccessor : IAccessor
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }

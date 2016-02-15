@@ -12,7 +12,7 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             InterfaceReferenceWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection,
+            IndexerParameterWithReflection,
             ClassAccessorWithReflection>
     {
         internal ExplicitInterfaceIndexerWithReflection(ITypeWithReflection declaringType, PropertyInfo indexer)
@@ -60,7 +60,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<IndexerParameterWithReflection> Parameters
         {
             get
             {

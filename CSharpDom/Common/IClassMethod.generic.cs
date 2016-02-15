@@ -8,7 +8,7 @@
         where TDeclaringType : IClassType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IMethodParameter
         where TMethodBody : IMethodBody
     {
     }

@@ -12,7 +12,7 @@ namespace CSharpDom.Reflection.Internal
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection,
+            IndexerParameterWithReflection,
             AccessorWithReflection>,
         IHasPropertyInfo
     {
@@ -20,7 +20,7 @@ namespace CSharpDom.Reflection.Internal
         private readonly PropertyInfo indexer;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithReflection indexerType;
-        private readonly Lazy<Parameters> parameters;
+        private readonly Lazy<Parameters<IndexerParameterWithReflection>> parameters;
         private readonly AccessorWithReflection getAccessor;
         private readonly AccessorWithReflection setAccessor;
 
@@ -30,7 +30,8 @@ namespace CSharpDom.Reflection.Internal
             this.indexer = indexer;
             attributes = new Lazy<Attributes>(() => new Attributes(indexer));
             indexerType = TypeReferenceWithReflectionFactory.CreateReference(indexer.PropertyType);
-            parameters = new Lazy<Parameters>(() => new Parameters(indexer));
+            parameters = new Lazy<Parameters<IndexerParameterWithReflection>>(
+                () => new Parameters<IndexerParameterWithReflection>(indexer, parameter => new IndexerParameterWithReflection(parameter)));
             if (indexer.GetMethod != null)
             {
                 getAccessor = new AccessorWithReflection(indexer.GetMethod);
@@ -62,7 +63,7 @@ namespace CSharpDom.Reflection.Internal
             get { return indexerType; }
         }
         
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<IndexerParameterWithReflection> Parameters
         {
             get { return parameters.Value.ParametersWithReflection; }
         }

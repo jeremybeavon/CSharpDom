@@ -11,7 +11,7 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>
+            DelegateParameterWithReflection>
     {
         private readonly NestedDelegateWithReflection nestedDelegate;
 
@@ -52,7 +52,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<DelegateParameterWithReflection> Parameters
         {
             get
             {

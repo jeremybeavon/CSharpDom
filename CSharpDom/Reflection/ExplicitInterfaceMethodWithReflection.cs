@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection
             InterfaceReferenceWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection,
+            MethodParameterWithReflection,
             ILMethodBodyWithReflectionEmit>
     {
         private ITypeWithReflection declaringType;
@@ -81,7 +81,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<MethodParameterWithReflection> Parameters
         {
             get
             {

@@ -5,7 +5,7 @@
         IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
-        where TParameter : IParameter
+        where TParameter : IConstructorParameter
         where TMethodBody : IMethodBody
     {
     }

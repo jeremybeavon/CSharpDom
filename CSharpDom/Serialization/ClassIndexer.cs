@@ -4,12 +4,12 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassIndexer : IClassIndexer<AttributeGroup, IClassType, TypeReference, Parameter, ClassAccessor>
+    public sealed class ClassIndexer : IClassIndexer<AttributeGroup, IClassType, TypeReference, IndexerParameter, ClassAccessor>
     {
         public ClassIndexer()
         {
             Attributes = new List<AttributeGroup>();
-            Parameters = new List<Parameter>();
+            Parameters = new List<IndexerParameter>();
         }
         
         public List<AttributeGroup> Attributes { get; set; }
@@ -25,7 +25,7 @@ namespace CSharpDom.Serialization
 
         public IndexerInheritanceModifier InheritanceModifier { get; set; }
 
-        public List<Parameter> Parameters { get; set; }
+        public List<IndexerParameter> Parameters { get; set; }
 
         public ClassAccessor SetAccessor { get; set; }
 
@@ -36,7 +36,7 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
-        IReadOnlyList<Parameter> IHasParameters<Parameter>.Parameters
+        IReadOnlyList<IndexerParameter> IHasParameters<IndexerParameter>.Parameters
         {
             get { return Parameters; }
         }

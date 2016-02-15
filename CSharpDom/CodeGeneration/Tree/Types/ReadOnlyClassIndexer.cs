@@ -14,12 +14,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             AttributeGroupNotSupported,
             IClassType,
             ReadOnlyTypeReference,
-            ReadOnlyMethodParameter,
+            ReadOnlyIndexerParameter,
             ReadOnlyClassAccessor>
     {
         private readonly ClassIndexer indexer;
         private readonly ReadOnlyTypeReference indexerType;
-        private readonly IReadOnlyList<ReadOnlyMethodParameter> parameters;
+        private readonly IReadOnlyList<ReadOnlyIndexerParameter> parameters;
         private readonly ReadOnlyClassAccessor getAccessor;
         private readonly ReadOnlyClassAccessor setAccessor;
 
@@ -27,7 +27,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             this.indexer = indexer;
             indexerType = new ReadOnlyTypeReference(indexer.Type);
-            parameters = ReadOnlyMethodParameter.Create(indexer.Parameters);
+            parameters = ReadOnlyIndexerParameter.Create(indexer.Parameters);
             if (indexer.EmptyAccessors != null)
             {
                 getAccessor = new ReadOnlyClassAccessor(indexer.EmptyAccessors.GetAccessorVisibility);
@@ -72,7 +72,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return indexer.InheritanceModifier; }
         }
 
-        public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
+        public override IReadOnlyList<ReadOnlyIndexerParameter> Parameters
         {
             get { return parameters; }
         }

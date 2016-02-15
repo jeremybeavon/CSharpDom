@@ -5,13 +5,13 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class StructMethod :
-        IStructMethod<AttributeGroup, IStructType, GenericParameterDeclaration, TypeReference, Parameter, MethodBody>
+        IStructMethod<AttributeGroup, IStructType, GenericParameterDeclaration, TypeReference, MethodParameter, MethodBody>
     {
         public StructMethod()
         {
             Attributes = new List<AttributeGroup>();
             GenericParameters = new List<GenericParameterDeclaration>();
-            Parameters = new List<Parameter>();
+            Parameters = new List<MethodParameter>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
@@ -31,7 +31,7 @@ namespace CSharpDom.Serialization
 
         public string Name { get; set; }
 
-        public List<Parameter> Parameters { get; set; }
+        public List<MethodParameter> Parameters { get; set; }
 
         public TypeReference ReturnType { get; set; }
 
@@ -47,7 +47,7 @@ namespace CSharpDom.Serialization
             get { return GenericParameters; }
         }
 
-        IReadOnlyList<Parameter> IHasParameters<Parameter>.Parameters
+        IReadOnlyList<MethodParameter> IHasParameters<MethodParameter>.Parameters
         {
             get { return Parameters; }
         }

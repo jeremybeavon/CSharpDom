@@ -9,7 +9,7 @@ namespace CSharpDom.BaseClasses.Wrappers
         IWrapper<IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
-        where TParameter : IParameter
+        where TParameter : IConstructorParameter
         where TMethodBody : IMethodBody
     {
         public ConstructorWrapper(IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)

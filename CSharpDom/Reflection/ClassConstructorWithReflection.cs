@@ -11,7 +11,7 @@ namespace CSharpDom.Reflection
         AbstractClassConstructor<
             AttributeWithReflection,
             ITypeWithReflection,
-            ParameterWithReflection,
+            ConstructorParameterWithReflection,
             ILMethodBodyWithReflectionEmit>,
         IHasConstructorInfo
     {
@@ -42,7 +42,7 @@ namespace CSharpDom.Reflection
             get { return constructor.DeclaringType; }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<ConstructorParameterWithReflection> Parameters
         {
             get { return constructor.Parameters; }
         }

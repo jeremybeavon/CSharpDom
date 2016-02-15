@@ -4,12 +4,12 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class StructIndexer : IStructIndexer<AttributeGroup, IStructType, TypeReference, Parameter, StructAccessor>
+    public sealed class StructIndexer : IStructIndexer<AttributeGroup, IStructType, TypeReference, IndexerParameter, StructAccessor>
     {
         public StructIndexer()
         {
             Attributes = new List<AttributeGroup>();
-            Parameters = new List<Parameter>();
+            Parameters = new List<IndexerParameter>();
         }
         
         public List<AttributeGroup> Attributes { get; set; }
@@ -23,7 +23,7 @@ namespace CSharpDom.Serialization
 
         public TypeReference IndexerType { get; set; }
         
-        public List<Parameter> Parameters { get; set; }
+        public List<IndexerParameter> Parameters { get; set; }
 
         public StructAccessor SetAccessor { get; set; }
 
@@ -34,7 +34,7 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
-        IReadOnlyList<Parameter> IHasParameters<Parameter>.Parameters
+        IReadOnlyList<IndexerParameter> IHasParameters<IndexerParameter>.Parameters
         {
             get { return Parameters; }
         }

@@ -16,7 +16,7 @@ namespace CSharpDom.Serialization.Factories
             {
                 Attributes = constructor.Attributes.ToAttributeListUsingFactory(),
                 Body = new MethodBodyFactory(constructor.Body).Value,
-                Parameters = constructor.Parameters.ToParameterListUsingFactory(),
+                Parameters = constructor.Parameters.ToList(parameter => new ConstructorParameterFactory(parameter).Value),
                 Visibility = constructor.Visibility
             };
         }

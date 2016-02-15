@@ -12,7 +12,7 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection,
+            IndexerParameterWithReflection,
             AbstractAccessorWithReflection>
     {
         private readonly IndexerWithReflection indexer;
@@ -53,7 +53,7 @@ namespace CSharpDom.Reflection
             get { return indexer.IndexerType; }
         }
         
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<IndexerParameterWithReflection> Parameters
         {
             get { return indexer.Parameters; }
         }

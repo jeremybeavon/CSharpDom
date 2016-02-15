@@ -5,18 +5,18 @@ using CSharpDom.Serialization.Statements;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class AnonymousMethodExpression : IAnonymousMethodExpression<Parameter, Statement>
+    public sealed class AnonymousMethodExpression : IAnonymousMethodExpression<MethodParameter, Statement>
     {
         public AnonymousMethodExpression()
         {
-            Parameters = new List<Parameter>();
+            Parameters = new List<MethodParameter>();
         }
 
         public Statement Body { get; set; }
 
-        public List<Parameter> Parameters { get; set; }
+        public List<MethodParameter> Parameters { get; set; }
 
-        IReadOnlyList<Parameter> IAnonymousMethodExpression<Parameter, Statement>.Parameters
+        IReadOnlyList<MethodParameter> IAnonymousMethodExpression<MethodParameter, Statement>.Parameters
         {
             get { return Parameters; }
         }

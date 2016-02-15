@@ -11,13 +11,13 @@ namespace CSharpDom.Serialization
             IStaticType,
             GenericParameterDeclaration,
             TypeReference,
-            Parameter>
+            DelegateParameter>
     {
         public StaticClassNestedDelegate()
         {
             Attributes = new List<AttributeGroup>();
             GenericParameters = new List<GenericParameterDeclaration>();
-            Parameters = new List<Parameter>();
+            Parameters = new List<DelegateParameter>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
@@ -31,7 +31,7 @@ namespace CSharpDom.Serialization
 
         public string Name { get; set; }
        
-        public List<Parameter> Parameters { get; set; }
+        public List<DelegateParameter> Parameters { get; set; }
         
         public TypeReference ReturnType { get; set; }
         
@@ -47,7 +47,7 @@ namespace CSharpDom.Serialization
             get { return GenericParameters; }
         }
 
-        IReadOnlyList<Parameter> IHasParameters<Parameter>.Parameters
+        IReadOnlyList<DelegateParameter> IHasParameters<DelegateParameter>.Parameters
         {
             get { return Parameters; }
         }

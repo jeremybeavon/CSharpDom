@@ -11,14 +11,14 @@ namespace CSharpDom.Reflection.Internal
         AbstractConstructor<
             AttributeWithReflection,
             ITypeWithReflection,
-            ParameterWithReflection,
+            ConstructorParameterWithReflection,
             ILMethodBodyWithReflectionEmit>,
         IHasConstructorInfo
     {
         private readonly ITypeWithReflection declaringType;
         private readonly ConstructorInfo constructor;
         private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<Parameters> parameters;
+        private readonly Lazy<Parameters<ConstructorParameterWithReflection>> parameters;
         private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
         internal ConstructorWithReflection(ITypeWithReflection declaringType, ConstructorInfo constructor)
@@ -26,7 +26,8 @@ namespace CSharpDom.Reflection.Internal
             this.declaringType = declaringType;
             this.constructor = constructor;
             attributes = new Lazy<Attributes>(() => new Attributes(constructor));
-            parameters = new Lazy<Parameters>(() => new Parameters(constructor));
+            parameters = new Lazy<Parameters<ConstructorParameterWithReflection>>(
+                () => new Parameters<ConstructorParameterWithReflection>(constructor, parameter => new ConstructorParameterWithReflection(parameter)));
             body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(constructor));
         }
 
@@ -40,7 +41,7 @@ namespace CSharpDom.Reflection.Internal
             get { return declaringType; }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<ConstructorParameterWithReflection> Parameters
         {
             get { return parameters.Value.ParametersWithReflection; }
         }

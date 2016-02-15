@@ -18,11 +18,5 @@ namespace CSharpDom.Serialization.Factories
         {
             return parameters.ToList(parameter => new GenericParameterDeclarationFactory(parameter).Value);
         }
-
-        public static List<Parameter> ToParameterListUsingFactory<TParameter>(this IReadOnlyList<TParameter> parameters)
-            where TParameter : IParameter
-        {
-            return parameters.ToList(parameter => new ParameterFactory(parameter).Value);
-        }
     }
 }

@@ -93,7 +93,7 @@ namespace CSharpDom.Common
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClassType
-            where TParameter : IParameter
+            where TParameter : IConstructorParameter
             where TMethodBody : IMethodBody
         {
             new ConstructorWrapper<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(constructor).Accept(visitor);
@@ -104,7 +104,7 @@ namespace CSharpDom.Common
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
-            where TParameter : IParameter
+            where TParameter : IConstructorParameter
             where TMethodBody : IMethodBody
         {
             VisitCollection(constructor.Attributes, visitor);
@@ -117,7 +117,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IOperatorParameter
             where TMethodBody : IMethodBody
         {
             VisitCollection(conversionOperator.Attributes, visitor);
@@ -137,7 +137,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IDelegateParameter
         {
             VisitCollection(@delegate.Attributes, visitor);
             VisitCollection(@delegate.GenericParameters, visitor);
@@ -264,7 +264,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IAccessor
         {
             VisitCollection(indexer.Attributes, visitor);
@@ -347,7 +347,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IBasicType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
         {
             VisitCollection(method.Attributes, visitor);
             VisitCollection(method.GenericParameters, visitor);
@@ -362,7 +362,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody
         {
             VisitCollection(method.Attributes, visitor);
@@ -431,7 +431,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IDelegateParameter
         {
             VisitCollection(nestedDelegate.Attributes, visitor);
             VisitCollection(nestedDelegate.GenericParameters, visitor);
@@ -539,7 +539,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IOperatorParameter
             where TMethodBody : IMethodBody
         {
             VisitCollection(operatorOverload.Attributes, visitor);
@@ -556,6 +556,60 @@ namespace CSharpDom.Common
         {
             VisitCollection(parameter.Attributes, visitor);
             VisitIfNotNull(parameter.ParameterType, visitor);
+        }
+
+        public static void VisitConstructorParameterChildren<TAttributeGroup, TTypeReference>(
+            IConstructorParameter<TAttributeGroup, TTypeReference> parameter,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+        }
+
+        public static void VisitDelegateParameterChildren<TAttributeGroup, TTypeReference>(
+            IDelegateParameter<TAttributeGroup, TTypeReference> parameter,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+        }
+
+        public static void VisitExtensionParameterChildren<TAttributeGroup, TTypeReference>(
+            IExtensionParameter<TAttributeGroup, TTypeReference> parameter,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+        }
+
+        public static void VisitIndexerParameterChildren<TAttributeGroup, TTypeReference>(
+            IIndexerParameter<TAttributeGroup, TTypeReference> parameter,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+        }
+
+        public static void VisitMethodParameterChildren<TAttributeGroup, TTypeReference>(
+            IMethodParameter<TAttributeGroup, TTypeReference> parameter,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+        }
+
+        public static void VisitOperatorParameterChildren<TAttributeGroup, TTypeReference>(
+            IOperatorParameter<TAttributeGroup, TTypeReference> parameter,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
         }
 
         public static Task VisitProjectChildrenAsync<TSolution, TDocument, TLoadedProject>(
@@ -994,7 +1048,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IAbstractType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IAbstractAccessor
         {
             new IndexerWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(indexer).Accept(visitor);

@@ -18,18 +18,18 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             AttributeGroupNotSupported,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
-            ReadOnlyMethodParameter>
+            ReadOnlyDelegateParameter>
     {
         private readonly Delegate @delegate;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
-        private readonly IReadOnlyList<ReadOnlyMethodParameter> parameters;
+        private readonly IReadOnlyList<ReadOnlyDelegateParameter> parameters;
         private readonly ReadOnlyTypeReference returnType;
 
         public ReadOnlyDelegate(Delegate @delegate)
         {
             this.@delegate = @delegate;
             genericParameters = ReadOnlyGenericParameterDeclaration.Create(@delegate.GenericParameters);
-            parameters = ReadOnlyMethodParameter.Create(@delegate.Parameters);
+            parameters = ReadOnlyDelegateParameter.Create(@delegate.Parameters);
             returnType = new ReadOnlyTypeReference(@delegate.ReturnType);
         }
 
@@ -58,7 +58,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new NamespaceNotSupported(); }
         }
 
-        public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
+        public override IReadOnlyList<ReadOnlyDelegateParameter> Parameters
         {
             get { return parameters; }
         }

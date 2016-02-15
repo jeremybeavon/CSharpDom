@@ -9,7 +9,7 @@ namespace CSharpDom.BaseClasses
         IStructConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStructType
-        where TParameter : IParameter
+        where TParameter : IConstructorParameter
         where TMethodBody : IMethodBody
     {
         public abstract StructMemberVisibilityModifier Visibility { get; }

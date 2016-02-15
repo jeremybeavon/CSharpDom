@@ -17,7 +17,7 @@ namespace CSharpDom.Serialization.Factories
                 Attributes = conversionOperator.Attributes.ToAttributeListUsingFactory(),
                 Body = new MethodBodyFactory(conversionOperator.Body).Value,
                 OperatorType = conversionOperator.OperatorType,
-                Parameter = new ParameterFactory(conversionOperator.Parameter).Value,
+                Parameter = new OperatorParameterFactory(conversionOperator.Parameter).Value,
                 ReturnAttributes = conversionOperator.ReturnAttributes.ToAttributeListUsingFactory(),
                 ReturnType = new TypeReferenceFactory(conversionOperator.ReturnType).Value
             };

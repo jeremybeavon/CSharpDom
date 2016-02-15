@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>
+            MethodParameterWithReflection>
     {
         private readonly MethodWithReflection method;
 
@@ -42,7 +42,7 @@ namespace CSharpDom.Reflection
             get { return method.Name; }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<MethodParameterWithReflection> Parameters
         {
             get { return method.Parameters; }
         }

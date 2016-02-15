@@ -57,7 +57,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IOperatorParameter
             where TMethodBody : IMethodBody
         {
             Visit(conversionOperator);
@@ -72,7 +72,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IDelegateParameter
         {
             Visit(@delegate);
         }
@@ -180,7 +180,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClassType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IClassAccessor
         {
             Visit(indexer);
@@ -232,7 +232,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody
         {
             Visit(method);
@@ -262,7 +262,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IDelegateParameter
         {
             Visit(nestedDelegate);
         }
@@ -318,7 +318,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IOperatorParameter
             where TMethodBody : IMethodBody
         {
             Visit(operatorOverload);
@@ -397,7 +397,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStructType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IStructAccessor
         {
             Visit(indexer);
@@ -409,7 +409,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody
         {
             Visit(method);
@@ -421,7 +421,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IDelegateParameter
         {
             Visit(nestedDelegate);
         }
@@ -481,7 +481,7 @@ namespace CSharpDom.BaseClasses
             IClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClassType
-            where TParameter : IParameter
+            where TParameter : IConstructorParameter
             where TMethodBody : IMethodBody
         {
             Visit(constructor);
@@ -505,7 +505,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IType
             where TInterfaceReference : IInterfaceReference
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IAccessor
         {
             Visit(indexer);
@@ -518,7 +518,7 @@ namespace CSharpDom.BaseClasses
             where TInterfaceReference : IInterfaceReference
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody
         {
             Visit(method);
@@ -549,7 +549,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IInterfaceAccessor
         {
             Visit(indexer);
@@ -561,7 +561,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IBasicType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
         {
             Visit(method);
         }
@@ -589,7 +589,7 @@ namespace CSharpDom.BaseClasses
             IStructConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStructType
-            where TParameter : IParameter
+            where TParameter : IConstructorParameter
             where TMethodBody : IMethodBody
         {
             Visit(constructor);
@@ -606,7 +606,7 @@ namespace CSharpDom.BaseClasses
             IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
-            where TParameter : IParameter
+            where TParameter : IConstructorParameter
             where TMethodBody : IMethodBody
         {
             Visit(constructor);
@@ -636,7 +636,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IAccessor
         {
             Visit(indexer);
@@ -648,7 +648,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody
         {
             Visit(method);
@@ -660,7 +660,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IDelegateParameter
         {
             Visit(nestedDelegate);
         }
@@ -736,7 +736,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IAbstractType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IAbstractAccessor
         {
             Visit(indexer);
@@ -748,7 +748,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IAbstractType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
         {
             Visit(method);
         }
@@ -763,16 +763,6 @@ namespace CSharpDom.BaseClasses
             Visit(property);
         }
         
-        public virtual void VisitSealedClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
-            ISealedClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TParameter : IParameter
-            where TMethodBody : IMethodBody
-        {
-            Visit(constructor);
-        }
-
         public virtual void VisitSealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             ISealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
             where TAttributeGroup : IAttributeGroup
@@ -791,23 +781,13 @@ namespace CSharpDom.BaseClasses
         {
             Visit(eventProperty);
         }
-
-        public virtual void VisitSealedClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
-            ISealedClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TTypeReference : ITypeReference
-            where TField : IField
-        {
-            Visit(field);
-        }
-
+        
         public virtual void VisitSealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             ISealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : ISealedType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IClassAccessor
         {
             Visit(indexer);
@@ -819,7 +799,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : ISealedType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody
         {
             Visit(method);
@@ -878,7 +858,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IStaticType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody
         {
             Visit(method);
@@ -890,7 +870,7 @@ namespace CSharpDom.BaseClasses
             where TDeclaringType : IStaticType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IDelegateParameter
         {
             Visit(nestedDelegate);
         }
@@ -1099,8 +1079,8 @@ namespace CSharpDom.BaseClasses
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -1462,8 +1442,8 @@ namespace CSharpDom.BaseClasses
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -1621,8 +1601,8 @@ namespace CSharpDom.BaseClasses
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -1663,16 +1643,6 @@ namespace CSharpDom.BaseClasses
             Visit(structCollection);
         }
         
-        public virtual void VisitSealedClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
-            ISealedClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constant)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TTypeReference : ITypeReference
-            where TConstant : IConstant
-        {
-            Visit(constant);
-        }
-
         public virtual void VisitSealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>(
             ISealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection)
             where TEvent : ISealedClassEvent
@@ -1681,15 +1651,7 @@ namespace CSharpDom.BaseClasses
         {
             Visit(eventCollection);
         }
-
-        public virtual void VisitSealedClassFieldCollection<TFieldGroup, TConstantGroup>(
-            ISealedClassFieldCollection<TFieldGroup, TConstantGroup> fieldCollection)
-            where TFieldGroup : ISealedClassField
-            where TConstantGroup : ISealedClassConstant
-        {
-            Visit(fieldCollection);
-        }
-
+        
         public virtual void VisitSealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer>(
             ISealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection)
             where TIndexer : ISealedClassIndexer
@@ -1804,8 +1766,8 @@ namespace CSharpDom.BaseClasses
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -1924,8 +1886,8 @@ namespace CSharpDom.BaseClasses
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -2018,8 +1980,8 @@ namespace CSharpDom.BaseClasses
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -2030,6 +1992,54 @@ namespace CSharpDom.BaseClasses
             where TStaticConstructor : IStaticConstructor
         {
             Visit(type);
+        }
+
+        public virtual void VisitConstructorParameter<TAttributeGroup, TTypeReference>(
+            IConstructorParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            Visit(parameter);
+        }
+
+        public virtual void VisitExtensionParameter<TAttributeGroup, TTypeReference>(
+            IExtensionParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            Visit(parameter);
+        }
+
+        public virtual void VisitIndexerParameter<TAttributeGroup, TTypeReference>(
+            IIndexerParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            Visit(parameter);
+        }
+
+        public virtual void VisitMethodParameter<TAttributeGroup, TTypeReference>(
+            IMethodParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            Visit(parameter);
+        }
+
+        public virtual void VisitOperatorParameter<TAttributeGroup, TTypeReference>(
+            IOperatorParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            Visit(parameter);
+        }
+
+        public virtual void VisitDelegateParameter<TAttributeGroup, TTypeReference>(
+            IDelegateParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference
+        {
+            Visit(parameter);
         }
     }
 }

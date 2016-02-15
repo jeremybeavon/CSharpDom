@@ -10,7 +10,7 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IIndexerParameter
         where TAccessor : IClassAccessor
     {
         public abstract IndexerInheritanceModifier InheritanceModifier { get; }

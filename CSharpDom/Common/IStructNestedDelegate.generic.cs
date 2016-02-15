@@ -7,7 +7,7 @@
         where TDeclaringType : IStructType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IDelegateParameter
     {
     }
 }

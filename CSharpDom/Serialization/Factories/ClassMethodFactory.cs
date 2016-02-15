@@ -18,9 +18,8 @@ namespace CSharpDom.Serialization.Factories
                 Body = new MethodBodyFactory(method.Body).Value,
                 GenericParameters = method.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 InheritanceModifier = method.InheritanceModifier,
-                IsAsync = method.IsAsync,
                 Name = method.Name,
-                Parameters = method.Parameters.ToParameterListUsingFactory(),
+                Parameters = method.Parameters.ToList(parameter => new MethodParameterFactory(parameter).Value),
                 ReturnType = new TypeReferenceFactory(method.ReturnType).Value,
                 Visibility = method.Visibility
             };

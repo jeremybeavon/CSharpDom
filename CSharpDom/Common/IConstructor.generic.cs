@@ -8,7 +8,7 @@
         IHasBody<TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
-        where TParameter : IParameter
+        where TParameter : IConstructorParameter
         where TMethodBody : IMethodBody
     {
     }

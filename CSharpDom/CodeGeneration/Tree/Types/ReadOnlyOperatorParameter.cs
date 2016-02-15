@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyOperatorParameter : AbstractParameter<AttributeGroupNotSupported, ReadOnlyTypeReference>
+    public sealed class ReadOnlyOperatorParameter : AbstractOperatorParameter<AttributeGroupNotSupported, ReadOnlyTypeReference>
     {
         private readonly string name;
         private readonly ReadOnlyTypeReference parameterType;
@@ -19,12 +19,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return new AttributeGroupNotSupported[0]; }
         }
-
-        public override ParameterModifier Modifier
-        {
-            get { return ParameterModifier.None; }
-        }
-
+        
         public override string Name
         {
             get { return name; }

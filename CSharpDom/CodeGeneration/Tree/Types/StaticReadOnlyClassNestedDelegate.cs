@@ -15,18 +15,18 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             IStaticType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
-            ReadOnlyMethodParameter>
+            ReadOnlyDelegateParameter>
     {
         private readonly StaticClassNestedDelegate nestedDelegate;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
-        private readonly IReadOnlyList<ReadOnlyMethodParameter> parameters;
+        private readonly IReadOnlyList<ReadOnlyDelegateParameter> parameters;
         private readonly ReadOnlyTypeReference returnType;
 
         public ReadOnlyStaticClassNestedDelegate(StaticClassNestedDelegate nestedDelegate)
         {
             this.nestedDelegate = nestedDelegate;
             genericParameters = ReadOnlyGenericParameterDeclaration.Create(nestedDelegate.GenericParameters);
-            parameters = ReadOnlyMethodParameter.Create(nestedDelegate.Parameters);
+            parameters = ReadOnlyDelegateParameter.Create(nestedDelegate.Parameters);
             returnType = new ReadOnlyTypeReference(nestedDelegate.ReturnType);
         }
 
@@ -50,7 +50,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return nestedDelegate.Name; }
         }
 
-        public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
+        public override IReadOnlyList<ReadOnlyDelegateParameter> Parameters
         {
             get { return parameters; }
         }

@@ -5,12 +5,12 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class InterfaceIndexer :
-        IInterfaceIndexer<AttributeGroup, IBasicType, TypeReference, Parameter, InterfaceAccessor>
+        IInterfaceIndexer<AttributeGroup, IBasicType, TypeReference, IndexerParameter, InterfaceAccessor>
     {
         public InterfaceIndexer()
         {
             Attributes = new List<AttributeGroup>();
-            Parameters = new List<Parameter>();
+            Parameters = new List<IndexerParameter>();
         }
         
         public List<AttributeGroup> Attributes { get; set; }
@@ -26,7 +26,7 @@ namespace CSharpDom.Serialization
 
         public InterfaceMemberInheritanceModifier InheritanceModifier { get; set; }
 
-        public List<Parameter> Parameters { get; set; }
+        public List<IndexerParameter> Parameters { get; set; }
 
         public InterfaceAccessor SetAccessor { get; set; }
 
@@ -35,7 +35,7 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
-        IReadOnlyList<Parameter> IHasParameters<Parameter>.Parameters
+        IReadOnlyList<IndexerParameter> IHasParameters<IndexerParameter>.Parameters
         {
             get { return Parameters; }
         }

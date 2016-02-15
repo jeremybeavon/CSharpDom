@@ -4,12 +4,12 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class OperatorOverload : IOperatorOverload<AttributeGroup, IType, TypeReference, Parameter, MethodBody>
+    public sealed class OperatorOverload : IOperatorOverload<AttributeGroup, IType, TypeReference, OperatorParameter, MethodBody>
     {
         public OperatorOverload()
         {
             Attributes = new List<AttributeGroup>();
-            Parameters = new List<Parameter>();
+            Parameters = new List<OperatorParameter>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
@@ -23,7 +23,7 @@ namespace CSharpDom.Serialization
 
         public OperatorOverloadType OperatorType { get; set; }
 
-        public List<Parameter> Parameters { get; set; }
+        public List<OperatorParameter> Parameters { get; set; }
 
         public TypeReference ReturnType { get; set; }
 
@@ -32,7 +32,7 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
-        IReadOnlyList<Parameter> IHasParameters<Parameter>.Parameters
+        IReadOnlyList<OperatorParameter> IHasParameters<OperatorParameter>.Parameters
         {
             get { return Parameters; }
         }

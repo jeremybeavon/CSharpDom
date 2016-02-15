@@ -16,7 +16,7 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : IBasicType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IMethodParameter
     {
         public abstract InterfaceMemberInheritanceModifier InheritanceModifier { get; }
 

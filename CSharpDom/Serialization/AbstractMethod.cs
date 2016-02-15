@@ -5,13 +5,13 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class AbstractMethod :
-        IAbstractMethod<AttributeGroup, IAbstractType, GenericParameterDeclaration, TypeReference, Parameter>
+        IAbstractMethod<AttributeGroup, IAbstractType, GenericParameterDeclaration, TypeReference, MethodParameter>
     {
         public AbstractMethod()
         {
             Attributes = new List<AttributeGroup>();
             GenericParameters = new List<GenericParameterDeclaration>();
-            Parameters = new List<Parameter>();
+            Parameters = new List<MethodParameter>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
@@ -29,7 +29,7 @@ namespace CSharpDom.Serialization
         
         public string Name { get; set; }
 
-        public List<Parameter> Parameters { get; set; }
+        public List<MethodParameter> Parameters { get; set; }
 
         public TypeReference ReturnType { get; set; }
 
@@ -45,7 +45,7 @@ namespace CSharpDom.Serialization
             get { return GenericParameters; }
         }
 
-        IReadOnlyList<Parameter> IHasParameters<Parameter>.Parameters
+        IReadOnlyList<MethodParameter> IHasParameters<MethodParameter>.Parameters
         {
             get { return Parameters; }
         }

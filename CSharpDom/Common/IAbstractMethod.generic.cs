@@ -7,7 +7,7 @@
         where TDeclaringType : IAbstractType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IMethodParameter
     {
     }
 }

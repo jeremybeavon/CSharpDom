@@ -11,7 +11,7 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : IStructType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IDelegateParameter
     {
         public abstract StructMemberVisibilityModifier Visibility { get; }
 

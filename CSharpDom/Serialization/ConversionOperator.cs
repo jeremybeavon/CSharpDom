@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ConversionOperator : IConversionOperator<AttributeGroup, IType, TypeReference, Parameter, MethodBody>
+    public sealed class ConversionOperator : IConversionOperator<AttributeGroup, IType, TypeReference, OperatorParameter, MethodBody>
     {
         public ConversionOperator()
         {
@@ -23,7 +23,7 @@ namespace CSharpDom.Serialization
 
         public ConversionOperatorType OperatorType { get; set; }
 
-        public Parameter Parameter { get; set; }
+        public OperatorParameter Parameter { get; set; }
 
         public List<AttributeGroup> ReturnAttributes { get; set; }
 

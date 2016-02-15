@@ -6,7 +6,7 @@
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IAbstractType
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IIndexerParameter
         where TAccessor : IAbstractAccessor
     {
     }

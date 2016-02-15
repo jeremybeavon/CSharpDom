@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection.Internal
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection,
+            MethodParameterWithReflection,
             ILMethodBodyWithReflectionEmit>,
         IHasMethodInfo
     {
@@ -22,7 +22,7 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithReflection returnType;
-        private readonly Lazy<Parameters> parameters;
+        private readonly Lazy<Parameters<MethodParameterWithReflection>> parameters;
         private readonly Lazy<bool> isAsync;
         private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
@@ -33,7 +33,8 @@ namespace CSharpDom.Reflection.Internal
             attributes = new Lazy<Attributes>(() => new Attributes(method));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(method));
             returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
-            parameters = new Lazy<Parameters>(() => new Parameters(method));
+            parameters = new Lazy<Parameters<MethodParameterWithReflection>>(
+                () => new Parameters<MethodParameterWithReflection>(method, parameter => new MethodParameterWithReflection(parameter)));
             isAsync = new Lazy<bool>(() => method.IsDefined(typeof(AsyncStateMachineAttribute)));
             body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
@@ -68,7 +69,7 @@ namespace CSharpDom.Reflection.Internal
             get { return method.Name; }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<MethodParameterWithReflection> Parameters
         {
             get { return parameters.Value.ParametersWithReflection; }
         }

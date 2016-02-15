@@ -3,7 +3,6 @@ using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace CSharpDom.Reflection
@@ -34,7 +33,22 @@ namespace CSharpDom.Reflection
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override ParameterModifier Modifier
+        public override string Name
+        {
+            get { return parameter.Name; }
+        }
+
+        public override ITypeReferenceWithReflection ParameterType
+        {
+            get { return parameterType; }
+        }
+
+        public ParameterInfo ParameterInfo
+        {
+            get { return parameter; }
+        }
+
+        internal ParameterModifier Modifier
         {
             get
             {
@@ -55,21 +69,6 @@ namespace CSharpDom.Reflection
 
                 return ParameterModifier.None;
             }
-        }
-
-        public override string Name
-        {
-            get { return parameter.Name; }
-        }
-
-        public override ITypeReferenceWithReflection ParameterType
-        {
-            get { return parameterType; }
-        }
-
-        public ParameterInfo ParameterInfo
-        {
-            get { return parameter; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

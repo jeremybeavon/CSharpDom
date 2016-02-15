@@ -1,15 +1,22 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> :
+    public interface IExtensionMethod<
+        TAttributeGroup,
+        TDeclaringType,
+        TGenericParameter,
+        TTypeReference,
+        TExtensionParameter,
+        TParameter,
+        TMethodBody> :
         IExtensionMethod,
-        IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>,
-        IHasAsyncSupport,
+        IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>,
         IHasBody<TMethodBody>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : IStaticClass
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TExtensionParameter : IExtensionParameter
+        where TParameter : IMethodParameter
         where TMethodBody : IMethodBody
     {
     }

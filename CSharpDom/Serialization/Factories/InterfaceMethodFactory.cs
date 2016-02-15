@@ -18,7 +18,7 @@ namespace CSharpDom.Serialization.Factories
                 GenericParameters = method.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 InheritanceModifier = method.InheritanceModifier,
                 Name = method.Name,
-                Parameters = method.Parameters.ToParameterListUsingFactory(),
+                Parameters = method.Parameters.ToList(parameter => new MethodParameterFactory(parameter).Value),
                 ReturnType = new TypeReferenceFactory(method.ReturnType).Value
             };
         }

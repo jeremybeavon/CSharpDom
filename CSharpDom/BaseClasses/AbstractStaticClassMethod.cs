@@ -11,7 +11,7 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : IStaticType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IMethodParameter
         where TMethodBody : IMethodBody
     { 
         public abstract StaticClassMemberVisibilityModifier InheritanceModifier { get; }

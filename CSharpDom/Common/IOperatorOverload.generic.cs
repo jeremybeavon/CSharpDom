@@ -11,7 +11,7 @@
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IOperatorParameter
         where TMethodBody : IMethodBody
     {
     }

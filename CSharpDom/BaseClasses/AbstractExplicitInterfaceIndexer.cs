@@ -17,7 +17,7 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : IType
         where TInterfaceReference : IInterfaceReference
         where TTypeReference : ITypeReference
-        where TParameter : IParameter
+        where TParameter : IIndexerParameter
         where TAccessor : IAccessor
     {
         public abstract TInterfaceReference ExplicitInterface { get; }

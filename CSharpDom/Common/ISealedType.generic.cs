@@ -21,8 +21,8 @@
         where TPropertyCollection : ISealedClassPropertyCollection
         where TIndexerCollection : ISealedClassIndexerCollection
         where TMethodCollection : ISealedClassMethodCollection
-        where TFieldCollection : ISealedClassFieldCollection
-        where TConstructor : ISealedClassConstructor
+        where TFieldCollection : IClassFieldCollection
+        where TConstructor : IClassConstructor
         where TOperatorOverload : IOperatorOverload
         where TConversionOperator : IConversionOperator
         where TNestedClassCollection : IClassNestedClassCollection

@@ -10,19 +10,19 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassConstructor :
-        AbstractClassConstructor<AttributeGroupNotSupported, IClassType, ReadOnlyMethodParameter, ReadOnlyMethodBody>
+        AbstractClassConstructor<AttributeGroupNotSupported, IClassType, ReadOnlyConstructorParameter, ReadOnlyMethodBody>
     {
         private readonly IClassType declaringType;
         private readonly ClassConstructor constructor;
         private readonly ReadOnlyMethodBody body;
-        private readonly IReadOnlyList<ReadOnlyMethodParameter> parameters;
+        private readonly IReadOnlyList<ReadOnlyConstructorParameter> parameters;
 
         public ReadOnlyClassConstructor(IClassType declaringType, ClassConstructor constructor)
         {
             this.declaringType = declaringType;
             this.constructor = constructor;
             body = new ReadOnlyMethodBody(constructor.Statements);
-            parameters = constructor.Parameters.ToArray(parameter => new ReadOnlyMethodParameter(parameter));
+            parameters = constructor.Parameters.ToArray(parameter => new ReadOnlyConstructorParameter(parameter));
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -40,7 +40,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return declaringType; }
         }
 
-        public override IReadOnlyList<ReadOnlyMethodParameter> Parameters
+        public override IReadOnlyList<ReadOnlyConstructorParameter> Parameters
         {
             get { return parameters; }
         }

@@ -73,7 +73,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IAbstractType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IAbstractAccessor;
 
         void VisitAbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
@@ -82,7 +82,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IAbstractType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IMethodParameter;
 
         void VisitAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
@@ -145,7 +145,7 @@ namespace CSharpDom.Common
             IClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClassType
-            where TParameter : IParameter
+            where TParameter : IConstructorParameter
             where TMethodBody : IMethodBody;
 
         void VisitClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
@@ -173,7 +173,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClassType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IClassAccessor;
 
         void VisitClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
@@ -182,7 +182,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody;
 
         void VisitClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
@@ -214,7 +214,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IDelegateParameter;
 
         void VisitClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
             IClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
@@ -269,7 +269,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IOperatorParameter
             where TMethodBody : IMethodBody;
 
         void VisitDelegate<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
@@ -281,7 +281,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IDelegateParameter;
 
         void VisitDelegateReference<TGenericParameter>(IDelegateReference<TGenericParameter> delegateReference)
             where TGenericParameter : IGenericParameter;
@@ -326,7 +326,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IType
             where TInterfaceReference : IInterfaceReference
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IAccessor;
 
         void VisitExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
@@ -336,7 +336,7 @@ namespace CSharpDom.Common
             where TInterfaceReference : IInterfaceReference
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody;
 
         void VisitExplicitInterfaceProperty<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor>(
@@ -388,7 +388,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IInterfaceAccessor;
 
         void VisitInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
@@ -397,7 +397,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IBasicType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IMethodParameter;
 
         void VisitInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
@@ -457,10 +457,40 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IOperatorParameter
             where TMethodBody : IMethodBody;
 
         void VisitParameter<TAttributeGroup, TTypeReference>(IParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference;
+
+        void VisitConstructorParameter<TAttributeGroup, TTypeReference>(
+            IConstructorParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference;
+
+        void VisitDelegateParameter<TAttributeGroup, TTypeReference>(
+            IDelegateParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference;
+
+        void VisitExtensionParameter<TAttributeGroup, TTypeReference>(
+            IExtensionParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference;
+
+        void VisitIndexerParameter<TAttributeGroup, TTypeReference>(
+            IIndexerParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference;
+
+        void VisitMethodParameter<TAttributeGroup, TTypeReference>(
+            IMethodParameter<TAttributeGroup, TTypeReference> parameter)
+            where TAttributeGroup : IAttributeGroup
+            where TTypeReference : ITypeReference;
+
+        void VisitOperatorParameter<TAttributeGroup, TTypeReference>(
+            IOperatorParameter<TAttributeGroup, TTypeReference> parameter)
             where TAttributeGroup : IAttributeGroup
             where TTypeReference : ITypeReference;
 
@@ -483,8 +513,8 @@ namespace CSharpDom.Common
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -495,13 +525,6 @@ namespace CSharpDom.Common
             where TDestructor : IDestructor
             where TStaticConstructor : IStaticConstructor;
         
-        void VisitSealedClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
-            ISealedClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TParameter : IParameter
-            where TMethodBody : IMethodBody;
-
         void VisitSealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             ISealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
             where TAttributeGroup : IAttributeGroup
@@ -514,20 +537,13 @@ namespace CSharpDom.Common
             where TDeclaringType : ISealedType
             where TDelegateReference : IDelegateReference
             where TMethodBody : IMethodBody;
-
-        void VisitSealedClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
-            ISealedClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TTypeReference : ITypeReference
-            where TField : IField;
-
+        
         void VisitSealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             ISealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : ISealedType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IClassAccessor;
 
         void VisitSealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
@@ -536,7 +552,7 @@ namespace CSharpDom.Common
             where TDeclaringType : ISealedType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody;
         
         void VisitSealedClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
@@ -604,7 +620,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IStaticType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody;
 
         void VisitStaticClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
@@ -636,7 +652,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IStaticType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IDelegateParameter;
 
         void VisitStaticClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
             IStaticClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
@@ -715,7 +731,7 @@ namespace CSharpDom.Common
             IStructConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStructType
-            where TParameter : IParameter
+            where TParameter : IConstructorParameter
             where TMethodBody : IMethodBody;
 
         void VisitStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
@@ -743,7 +759,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStructType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IStructAccessor;
 
         void VisitStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
@@ -752,7 +768,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody;
 
         void VisitStructNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
@@ -777,15 +793,14 @@ namespace CSharpDom.Common
             where TNestedStructCollection : IClassNestedStructCollection
             where TNestedDestructor : INestedDestructor
             where TStaticConstructor : IStaticConstructor;
-
-
+        
         void VisitStructNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             IStructNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IDelegateParameter;
 
         void VisitStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
             IStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
@@ -847,7 +862,7 @@ namespace CSharpDom.Common
             IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
-            where TParameter : IParameter
+            where TParameter : IConstructorParameter
             where TMethodBody : IMethodBody;
 
         void VisitEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
@@ -868,7 +883,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IIndexerParameter
             where TAccessor : IAccessor;
 
         void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
@@ -877,7 +892,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter
+            where TParameter : IMethodParameter
             where TMethodBody : IMethodBody;
 
         void VisitNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
@@ -909,7 +924,7 @@ namespace CSharpDom.Common
             where TDeclaringType : IType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
-            where TParameter : IParameter;
+            where TParameter : IDelegateParameter;
 
         void VisitNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
             INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
@@ -1076,8 +1091,8 @@ namespace CSharpDom.Common
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -1199,8 +1214,8 @@ namespace CSharpDom.Common
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -1232,24 +1247,12 @@ namespace CSharpDom.Common
             where TStruct : INestedStruct
             where TPartialStruct : IPartialStruct;
         
-        void VisitSealedClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
-            ISealedClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constant)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TTypeReference : ITypeReference
-            where TConstant : IConstant;
-
         void VisitSealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>(
             ISealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection)
             where TEvent : ISealedClassEvent
             where TEventProperty : IClassEventProperty
             where TExplicitInterfaceEvent : IExplicitInterfaceEvent;
-
-        void VisitSealedClassFieldCollection<TFieldGroup, TConstantGroup>(
-            ISealedClassFieldCollection<TFieldGroup, TConstantGroup> fieldCollection)
-            where TFieldGroup : ISealedClassField
-            where TConstantGroup : ISealedClassConstant;
-
+        
         void VisitSealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer>(
             ISealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection)
             where TIndexer : ISealedClassIndexer
@@ -1271,8 +1274,8 @@ namespace CSharpDom.Common
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -1351,8 +1354,8 @@ namespace CSharpDom.Common
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection
@@ -1440,8 +1443,8 @@ namespace CSharpDom.Common
             where TPropertyCollection : ISealedClassPropertyCollection
             where TIndexerCollection : ISealedClassIndexerCollection
             where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : ISealedClassFieldCollection
-            where TConstructor : ISealedClassConstructor
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
             where TOperatorOverload : IOperatorOverload
             where TConversionOperator : IConversionOperator
             where TNestedClassCollection : IClassNestedClassCollection

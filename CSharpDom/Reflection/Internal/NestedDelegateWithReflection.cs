@@ -12,7 +12,7 @@ namespace CSharpDom.Reflection.Internal
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection>,
+            DelegateParameterWithReflection>,
         IHasType//,
         //IVisitable<IReflectionVisitor>
     {
@@ -21,7 +21,7 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithReflection returnType;
-        private readonly Lazy<Parameters> parameters;
+        private readonly Lazy<Parameters<DelegateParameterWithReflection>> parameters;
 
         internal NestedDelegateWithReflection(ITypeWithReflection declaringType, Type type)
         {
@@ -31,7 +31,8 @@ namespace CSharpDom.Reflection.Internal
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
             MethodInfo method = type.GetMethod("Invoke");
             returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
-            parameters = new Lazy<Parameters>(() => new Parameters(method));
+            parameters = new Lazy<Parameters<DelegateParameterWithReflection>>(
+                () => new Parameters<DelegateParameterWithReflection>(method, parameter => new DelegateParameterWithReflection(parameter)));
         }
         
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -54,7 +55,7 @@ namespace CSharpDom.Reflection.Internal
             get { return type.Name; }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<DelegateParameterWithReflection> Parameters
         {
             get { return parameters.Value.ParametersWithReflection; }
         }

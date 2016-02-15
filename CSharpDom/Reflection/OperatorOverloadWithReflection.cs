@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
-            ParameterWithReflection,
+            OperatorParameterWithReflection,
             ILMethodBodyWithReflectionEmit>//,
         //IVisitable<IReflectionVisitor>
     {
@@ -49,7 +49,7 @@ namespace CSharpDom.Reflection
         private readonly MethodInfo method;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithReflection returnType;
-        private readonly Lazy<Parameters> parameters;
+        private readonly Lazy<Parameters<OperatorParameterWithReflection>> parameters;
         private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
         internal OperatorOverloadWithReflection(ITypeWithReflection declaringType, MethodInfo method)
@@ -58,7 +58,8 @@ namespace CSharpDom.Reflection
             this.method = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
             returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
-            parameters = new Lazy<Parameters>(() => new Parameters(method));
+            parameters = new Lazy<Parameters<OperatorParameterWithReflection>>(
+                () => new Parameters<OperatorParameterWithReflection>(method, parameter => new OperatorParameterWithReflection(parameter)));
             body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
@@ -77,7 +78,7 @@ namespace CSharpDom.Reflection
             get { return operatorTypes[method.Name]; }
         }
 
-        public override IReadOnlyList<ParameterWithReflection> Parameters
+        public override IReadOnlyList<OperatorParameterWithReflection> Parameters
         {
             get { return parameters.Value.ParametersWithReflection; }
         }
