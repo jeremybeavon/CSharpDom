@@ -69,7 +69,7 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override StaticClassMemberVisibilityModifier InheritanceModifier
+        public override StaticClassMemberVisibilityModifier Visibility
         {
             get
             {

@@ -2041,5 +2041,183 @@ namespace CSharpDom.BaseClasses
         {
             Visit(parameter);
         }
+
+        public virtual void VisitAsyncMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncVoidMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncVoidClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TInterfaceReference : IInterfaceReference
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncVoidExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TInterfaceReference : IInterfaceReference
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody>(
+            IAsyncExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticClass
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TExtensionParameter : IExtensionParameter
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncVoidExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TExtensionParameter, TParameter, TMethodBody>(
+            IAsyncVoidExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TExtensionParameter, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticClass
+            where TGenericParameter : IGenericParameterDeclaration
+            where TExtensionParameter : IExtensionParameter
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncSealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncSealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncVoidSealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidSealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncVoidStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitAsyncVoidStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
+
+        public virtual void VisitExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody>(
+            IExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticClass
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TExtensionParameter : IExtensionParameter
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            Visit(method);
+        }
     }
 }

@@ -355,6 +355,193 @@ namespace CSharpDom.Common
             VisitCollection(method.Parameters, visitor);
         }
 
+        public static void VisitAsyncMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            VisitCollection(method.Attributes, visitor);
+            VisitCollection(method.GenericParameters, visitor);
+            VisitIfNotNull(method.TaskGenericParameter, visitor);
+            VisitCollection(method.Parameters, visitor);
+        }
+
+        public static void VisitAsyncVoidMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            VisitCollection(method.Attributes, visitor);
+            VisitCollection(method.GenericParameters, visitor);
+            VisitCollection(method.Parameters, visitor);
+        }
+
+        public static void VisitAsyncClassMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+        }
+
+        public static void VisitAsyncVoidClassMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncVoidMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(method).Accept(visitor);
+        }
+
+        public static void VisitAsyncExplicitInterfaceMethodChildren<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TInterfaceReference : IInterfaceReference
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+            VisitIfNotNull(method.ExplicitInterface, visitor);
+        }
+
+        public static void VisitAsyncVoidExplicitInterfaceMethodChildren<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TInterfaceReference : IInterfaceReference
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncVoidMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(method).Accept(visitor);
+        }
+
+        public static void VisitAsyncExtensionMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody>(
+            IAsyncExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticClass
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TExtensionParameter : IExtensionParameter
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+            VisitIfNotNull(method.ExtensionParameter, visitor);
+        }
+
+        public static void VisitAsyncVoidExtensionMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TExtensionParameter, TParameter, TMethodBody>(
+            IAsyncVoidExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TExtensionParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticClass
+            where TGenericParameter : IGenericParameterDeclaration
+            where TExtensionParameter : IExtensionParameter
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncVoidMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(method).Accept(visitor);
+            VisitIfNotNull(method.ExtensionParameter, visitor);
+        }
+
+        public static void VisitAsyncSealedClassMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncSealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+        }
+
+        public static void VisitAsyncVoidSealedClassMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidSealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncVoidMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(method).Accept(visitor);
+        }
+
+        public static void VisitAsyncStaticClassMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+        }
+
+        public static void VisitAsyncVoidStaticClassMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncVoidMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(method).Accept(visitor);
+        }
+
+        public static void VisitAsyncStructMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IAsyncStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+        }
+
+        public static void VisitAsyncVoidStructMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IAsyncVoidStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            new AsyncVoidMethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(method).Accept(visitor);
+        }
+
         public static void VisitMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
             IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
             IGenericVisitor visitor)
@@ -1063,6 +1250,20 @@ namespace CSharpDom.Common
             where TAccessor : IAbstractAccessor
         {
             new PropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(property).Accept(visitor);
+        }
+
+        public static void VisitExtensionMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody>(
+            IExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticClass
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TExtensionParameter : IExtensionParameter
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -25,17 +25,13 @@ namespace CSharpDom.Serialization
 
         public List<GenericParameterDeclaration> GenericParameters { get; set; }
         
-        public bool IsAsync { get; set; }
-
-        public bool IsPartial { get; set; }
-
         public string Name { get; set; }
 
         public List<MethodParameter> Parameters { get; set; }
 
         public TypeReference ReturnType { get; set; }
 
-        public StaticClassMemberVisibilityModifier InheritanceModifier { get; set; }
+        public StaticClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

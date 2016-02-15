@@ -14,8 +14,6 @@ namespace CSharpDom.CodeGeneration.Tree
         public string Name { get; set; }
 
         public InterfaceReference ExplicitInterface { get; set; }
-
-        public bool IsAsync { get; set; }
         
         public TypeReference ReturnType { get; set; }
 

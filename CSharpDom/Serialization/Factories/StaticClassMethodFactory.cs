@@ -20,7 +20,7 @@ namespace CSharpDom.Serialization.Factories
                 Name = method.Name,
                 Parameters = method.Parameters.ToList(parameter => new MethodParameterFactory(parameter).Value),
                 ReturnType = new TypeReferenceFactory(method.ReturnType).Value,
-                InheritanceModifier = method.InheritanceModifier
+                Visibility = method.Visibility
             };
         }
     }

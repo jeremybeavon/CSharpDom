@@ -140,7 +140,7 @@ namespace CSharpDom.Reflection
             get { return nestedClass.Structs; }
         }
 
-        public override StaticClassMemberVisibilityModifier InheritanceModifier
+        public override StaticClassMemberVisibilityModifier Visibility
         {
             get { return nestedClass.Type.StaticClassMemberVisibility(); }
         }

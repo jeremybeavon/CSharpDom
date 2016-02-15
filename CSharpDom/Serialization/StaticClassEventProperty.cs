@@ -27,7 +27,7 @@ namespace CSharpDom.Serialization
 
         public MethodBody RemoveBody { get; set; }
 
-        public StaticClassMemberVisibilityModifier InheritanceModifier { get; set; }
+        public StaticClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

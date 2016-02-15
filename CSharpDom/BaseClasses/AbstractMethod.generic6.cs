@@ -15,9 +15,7 @@ namespace CSharpDom.BaseClasses
         where TMethodBody : IMethodBody
     {
         public abstract TMethodBody Body { get; }
-
-        public abstract bool IsAsync { get; }
-
+        
         public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitMethod(this);

@@ -86,7 +86,7 @@ namespace CSharpDom.Serialization
 
         public StructNestedStructCollection Structs { get; set; }
 
-        public StaticClassMemberVisibilityModifier InheritanceModifier { get; set; }
+        public StaticClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

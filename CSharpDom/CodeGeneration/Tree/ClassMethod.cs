@@ -15,11 +15,7 @@ namespace CSharpDom.CodeGeneration.Tree
         public string Name { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
-
-        public bool IsAsync { get; set; }
-
-        public bool IsPartial { get; set; }
-
+        
         public ClassMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public TypeReference ReturnType { get; set; }

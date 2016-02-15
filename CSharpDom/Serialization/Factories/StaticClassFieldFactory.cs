@@ -18,7 +18,7 @@ namespace CSharpDom.Serialization.Factories
                 Fields = field.Fields.ToList(child => new FieldFactory(child).Value),
                 FieldType = new TypeReferenceFactory(field.FieldType).Value,
                 Modifier = field.Modifier,
-                InheritanceModifier = field.InheritanceModifier
+                Visibility = field.Visibility
             };
         }
     }

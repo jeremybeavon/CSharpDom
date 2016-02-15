@@ -14,7 +14,7 @@ namespace CSharpDom.BaseClasses
         where TParameter : IMethodParameter
         where TMethodBody : IMethodBody
     { 
-        public abstract StaticClassMemberVisibilityModifier InheritanceModifier { get; }
+        public abstract StaticClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

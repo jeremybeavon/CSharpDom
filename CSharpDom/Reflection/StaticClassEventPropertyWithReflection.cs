@@ -51,7 +51,7 @@ namespace CSharpDom.Reflection
             get { return @event.RemoveBody; }
         }
 
-        public override StaticClassMemberVisibilityModifier InheritanceModifier
+        public override StaticClassMemberVisibilityModifier Visibility
         {
             get { return @event.EventInfo.AddMethod.StaticClassVisibility(); }
         }

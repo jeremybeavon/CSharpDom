@@ -12,8 +12,8 @@ namespace CSharpDom.BaseClasses
         where TDelegateReference : IDelegateReference
     {
         public abstract IReadOnlyCollection<TAttributeGroup> FieldAttributes { get; }
-        
-        public abstract StaticClassMemberVisibilityModifier InheritanceModifier { get; }
+
+        public abstract StaticClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

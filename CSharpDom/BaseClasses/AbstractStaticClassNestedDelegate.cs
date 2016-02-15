@@ -18,7 +18,7 @@ namespace CSharpDom.BaseClasses
         where TTypeReference : ITypeReference
         where TParameter : IDelegateParameter
     {
-        public abstract StaticClassMemberVisibilityModifier InheritanceModifier { get; }
+        public abstract StaticClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

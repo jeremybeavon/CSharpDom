@@ -64,14 +64,6 @@ namespace CSharpDom.Reflection
                 throw new NotImplementedException();
             }
         }
-
-        public override bool IsAsync
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
         
         public override string Name
         {

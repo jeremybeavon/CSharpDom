@@ -10,6 +10,27 @@ namespace CSharpDom.Reflection.Internal
             return method.InheritanceModifier(() => type.HiddenMembersAnalyzer.IsMethodHidden(method));
         }
 
+        public static SealedClassMemberInheritanceModifier SealedClassInheritanceModifier(this MethodInfo method, IInternalTypeWithReflection type)
+        {
+            switch (method.InheritanceModifier(type))
+            {
+                case ClassMemberInheritanceModifier.New:
+                    return SealedClassMemberInheritanceModifier.New;
+                case ClassMemberInheritanceModifier.NewStatic:
+                    return SealedClassMemberInheritanceModifier.NewStatic;
+                case ClassMemberInheritanceModifier.None:
+                    return SealedClassMemberInheritanceModifier.None;
+                case ClassMemberInheritanceModifier.Override:
+                    return SealedClassMemberInheritanceModifier.Override;
+                case ClassMemberInheritanceModifier.SealedOverride:
+                    return SealedClassMemberInheritanceModifier.SealedOverride;
+                case ClassMemberInheritanceModifier.Static:
+                    return SealedClassMemberInheritanceModifier.Static;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
         public static ClassMemberInheritanceModifier InheritanceModifier(this MethodInfo method, Func<bool> isHidden)
         {
             if (method.IsFinal && method.IsOverride())

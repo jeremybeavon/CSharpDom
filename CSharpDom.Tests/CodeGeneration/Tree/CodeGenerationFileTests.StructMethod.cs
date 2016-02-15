@@ -259,7 +259,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             }).ToString().Should().Be(expectedText);
         }
         
-        [TestMethod]
+        /*[TestMethod]
         public void TestStructWithPublicAsyncMethod()
         {
             const string expectedText = @"struct TestStruct
@@ -289,9 +289,9 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestStructWithPartialMethod()
         {
             const string expectedText = @"struct TestStruct
@@ -320,9 +320,9 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestStructWithAsyncPartialMethod()
         {
             const string expectedText = @"struct TestStruct
@@ -352,7 +352,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
         [TestMethod]
         public void TestStructWithGenericMethod()

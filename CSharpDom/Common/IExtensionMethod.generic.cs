@@ -10,7 +10,7 @@
         TMethodBody> :
         IExtensionMethod,
         IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>,
-        IHasBody<TMethodBody>
+        IHasExtensionParameter<TExtensionParameter>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStaticClass
         where TGenericParameter : IGenericParameterDeclaration

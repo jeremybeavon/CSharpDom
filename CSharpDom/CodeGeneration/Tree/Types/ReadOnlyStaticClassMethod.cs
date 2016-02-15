@@ -55,11 +55,6 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return genericParameters; }
         }
         
-        public override bool IsAsync
-        {
-            get { return method.IsAsync; }
-        }
-        
         public override string Name
         {
             get { return method.Name; }
@@ -75,7 +70,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return returnType; }
         }
 
-        public override StaticClassMemberVisibilityModifier InheritanceModifier
+        public override StaticClassMemberVisibilityModifier Visibility
         {
             get { return method.Visibility; }
         }

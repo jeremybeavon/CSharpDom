@@ -3,7 +3,6 @@ using CSharpDom.Reflection.Emit;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -23,7 +22,6 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithReflection returnType;
         private readonly Lazy<Parameters<MethodParameterWithReflection>> parameters;
-        private readonly Lazy<bool> isAsync;
         private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
         internal MethodWithReflection(ITypeWithReflection declaringType, MethodInfo method)
@@ -35,7 +33,6 @@ namespace CSharpDom.Reflection.Internal
             returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
             parameters = new Lazy<Parameters<MethodParameterWithReflection>>(
                 () => new Parameters<MethodParameterWithReflection>(method, parameter => new MethodParameterWithReflection(parameter)));
-            isAsync = new Lazy<bool>(() => method.IsDefined(typeof(AsyncStateMachineAttribute)));
             body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
@@ -52,11 +49,6 @@ namespace CSharpDom.Reflection.Internal
         public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
         {
             get { return genericParameters.Value.GenericParameterDeclarationsWithReflection; }
-        }
-        
-        public override bool IsAsync
-        {
-            get { return isAsync.Value; }
         }
         
         public MethodInfo MethodInfo
@@ -83,6 +75,5 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return body.Value; }
         }
-        
     }
 }

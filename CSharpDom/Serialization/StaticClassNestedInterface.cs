@@ -48,7 +48,7 @@ namespace CSharpDom.Serialization
         
         public List<InterfaceProperty> Properties { get; set; }
         
-        public StaticClassMemberVisibilityModifier InheritanceModifier { get; set; }
+        public StaticClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

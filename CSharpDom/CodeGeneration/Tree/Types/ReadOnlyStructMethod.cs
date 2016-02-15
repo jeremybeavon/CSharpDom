@@ -71,11 +71,6 @@ namespace CSharpDom.CodeGeneration.Tree.Types
                 }
             }
         }*/
-
-        public override bool IsAsync
-        {
-            get { return method.IsAsync; }
-        }
         
         public override string Name
         {

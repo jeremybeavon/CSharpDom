@@ -59,11 +59,6 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return genericParameters; }
         }
         
-        public override bool IsAsync
-        {
-            get { return method.IsAsync; }
-        }
-
         public override string Name
         {
             get { return method.Name; }

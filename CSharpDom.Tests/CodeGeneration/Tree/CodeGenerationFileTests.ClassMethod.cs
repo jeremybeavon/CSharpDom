@@ -449,7 +449,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
             }).ToString().Should().Be(expectedText);
         }
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestClassWithPublicVirtualAsyncMethod()
         {
             const string expectedText = @"class TestClass
@@ -480,9 +480,9 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestClassWithPartialMethod()
         {
             const string expectedText = @"class TestClass
@@ -511,9 +511,9 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
-        [TestMethod]
+        /*[TestMethod]
         public void TestClassWithAsyncPartialMethod()
         {
             const string expectedText = @"class TestClass
@@ -543,7 +543,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                     }
                 }
             }).ToString().Should().Be(expectedText);
-        }
+        }*/
 
         [TestMethod]
         public void TestClassWithGenericMethod()

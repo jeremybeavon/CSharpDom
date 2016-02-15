@@ -43,11 +43,6 @@ namespace CSharpDom.Reflection
             get { return method.GenericParameters; }
         }
         
-        public override bool IsAsync
-        {
-            get { return method.IsAsync; }
-        }
-
         public override string Name
         {
             get { return method.Name; }
@@ -63,7 +58,7 @@ namespace CSharpDom.Reflection
             get { return method.ReturnType; }
         }
 
-        public override StaticClassMemberVisibilityModifier InheritanceModifier
+        public override StaticClassMemberVisibilityModifier Visibility
         {
             get { return method.MethodInfo.StaticClassVisibility(); }
         }
