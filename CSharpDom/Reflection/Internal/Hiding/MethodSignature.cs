@@ -44,7 +44,12 @@ namespace CSharpDom.Reflection.Internal.Hiding
         {
             get { return new GenericParameterDeclarationWithReflection[0]; }
         }
-        
+
+        public override bool IsAsync
+        {
+            get { return false; }
+        }
+
         public override string Name
         {
             get { return name; }

@@ -73,5 +73,10 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return returnType; }
         }
+
+        public override bool IsAsync
+        {
+            get { return method.IsAsync; }
+        }
     }
 }

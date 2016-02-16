@@ -3,6 +3,7 @@ using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using System.Reflection;
+using System;
 
 namespace CSharpDom.Reflection
 {
@@ -67,6 +68,11 @@ namespace CSharpDom.Reflection
         public override ClassMemberVisibilityModifier Visibility
         {
             get { return method.MethodInfo.ClassVisibility(); }
+        }
+
+        public override bool IsAsync
+        {
+            get { return method.IsAsync; }
         }
     }
 }

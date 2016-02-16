@@ -42,7 +42,12 @@ namespace CSharpDom.Reflection
         {
             get { return method.GenericParameters; }
         }
-        
+
+        public override bool IsAsync
+        {
+            get { return IsAsync; }
+        }
+
         public override string Name
         {
             get { return method.Name; }

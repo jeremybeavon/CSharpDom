@@ -3,6 +3,7 @@ using CSharpDom.Reflection.Emit;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -74,6 +75,11 @@ namespace CSharpDom.Reflection.Internal
         public override ILMethodBodyWithReflectionEmit Body
         {
             get { return body.Value; }
+        }
+
+        public override bool IsAsync
+        {
+            get { return method.IsDefined(typeof(AsyncStateMachineAttribute)); }
         }
     }
 }

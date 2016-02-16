@@ -3,6 +3,7 @@
     public interface IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> : 
         IMethod,
         IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>,
+        IHasAsync,
         IHasBody<TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType

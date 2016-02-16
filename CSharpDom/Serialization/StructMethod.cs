@@ -26,9 +26,7 @@ namespace CSharpDom.Serialization
         public List<GenericParameterDeclaration> GenericParameters { get; set; }
 
         public bool IsAsync { get; set; }
-
-        public bool IsPartial { get; set; }
-
+        
         public string Name { get; set; }
 
         public List<MethodParameter> Parameters { get; set; }

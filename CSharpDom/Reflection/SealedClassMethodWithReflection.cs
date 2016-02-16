@@ -70,5 +70,10 @@ namespace CSharpDom.Reflection
         {
             get { return method.MethodInfo.ClassVisibility(); }
         }
+
+        public override bool IsAsync
+        {
+            get { return method.IsAsync; }
+        }
     }
 }

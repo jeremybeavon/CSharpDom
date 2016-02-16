@@ -2,23 +2,25 @@
 
 namespace CSharpDom.Serialization.Factories
 {
-    public sealed class AsyncVoidStructMethodFactory : AbstractFactory<IAsyncVoidStructMethod, AsyncVoidStructMethod>
+    public sealed class StructMethodFactory : AbstractFactory<IStructMethod, StructMethod>
     {
-        public AsyncVoidStructMethodFactory(IAsyncVoidStructMethod method)
+        public StructMethodFactory(IStructMethod method)
             : base(method)
         {
         }
 
-        public override void VisitAsyncVoidStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
-            IAsyncVoidStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method)
+        public override void VisitStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
-            Value = new AsyncVoidStructMethod()
+            Value = new StructMethod()
             {
                 Attributes = method.Attributes.ToAttributeListUsingFactory(),
                 Body = new MethodBodyFactory(method.Body).Value,
                 GenericParameters = method.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
+                IsAsync = method.IsAsync,
                 Name = method.Name,
                 Parameters = method.Parameters.ToList(parameter => new MethodParameterFactory(parameter).Value),
+                ReturnType = new TypeReferenceFactory(method.ReturnType).Value,
                 Visibility = method.Visibility
             };
         }
