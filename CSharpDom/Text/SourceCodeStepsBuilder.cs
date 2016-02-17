@@ -505,6 +505,16 @@ namespace CSharpDom.Text
             Steps.Add(new WriteName(genericParameterReference.Name));
         }
 
+        public override void VisitAbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
+            IAbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
+        {
+            Steps.AddChildNodeStepsOnNewLines(indexer.Attributes);
+            Steps.AddClassMemberVisibilityModifierSteps(indexer.Visibility);
+            Steps.Add(new WriteAbstractKeyword());
+            Steps.Add(new WriteWhitespace());
+            VisitIndexer(indexer);
+        }
+
         public override void VisitClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             IClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
         {
@@ -648,13 +658,13 @@ namespace CSharpDom.Text
                 Steps.Add(new WriteIndentedNewLine());
             }
 
-            IEnumerable<ISourceCodeBuilderStep> steps =
-                loadedDocument.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum))
-                .Concat(loadedDocument.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)))
-                /*.Concat(loadedDocument.Interfaces.Select(@interface => new WriteChildNode<TInterface>(@interface)))
-                .Concat(loadedDocument.Structs.Select(@struct => new WriteChildNode<TStruct>(@struct)))
-                .Concat(loadedDocument.Classes.Select(@class => new WriteChildNode<TClass>(@class)))*/
-                .Concat(loadedDocument.Namespaces.Select(@namespace => new WriteChildNode<TNamespace>(@namespace)));
+            List<ISourceCodeBuilderStep> steps = new List<ISourceCodeBuilderStep>();
+            steps.AddRange(loadedDocument.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum)));
+            steps.AddRange(loadedDocument.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)));
+            steps.AddIfNotEmpty(loadedDocument.Interfaces);
+            steps.AddIfNotEmpty(loadedDocument.Structs);
+            steps.AddIfNotEmpty(loadedDocument.Classes);
+            steps.AddRange(loadedDocument.Namespaces.Select(@namespace => new WriteChildNode<TNamespace>(@namespace)));
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
@@ -764,15 +774,14 @@ namespace CSharpDom.Text
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
             Steps.AddChildNodeStepsOnNewLines(@namespace.UsingDirectives, NewLineLocation.BeforeNode);
-            ISourceCodeBuilderStep[] steps =
-                @namespace.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum))
-                .Concat(@namespace.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)))
-                /*.Concat(@namespace.Interfaces.Select(@interface => new WriteChildNode<TInterface>(@interface)))
-                .Concat(@namespace.Structs.Select(@struct => new WriteChildNode<TStruct>(@struct)))
-                .Concat(@namespace.Classes.Select(@class => new WriteChildNode<TClass>(@class)))*/
-                .Concat(@namespace.Namespaces.Select(inner => new WriteChildNode<TNamespace>(inner)))
-                .ToArray();
-            if (steps.Length != 0)
+            List<ISourceCodeBuilderStep> steps = new List<ISourceCodeBuilderStep>();
+            steps.AddRange(@namespace.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum)));
+            steps.AddRange(@namespace.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)));
+            steps.AddIfNotEmpty(@namespace.Interfaces);
+            steps.AddIfNotEmpty(@namespace.Structs);
+            steps.AddIfNotEmpty(@namespace.Classes);
+            steps.AddRange(@namespace.Namespaces.Select(inner => new WriteChildNode<TNamespace>(inner)));
+            if (steps.Count != 0)
             {
                 if (@namespace.UsingDirectives.Count != 0)
                 {

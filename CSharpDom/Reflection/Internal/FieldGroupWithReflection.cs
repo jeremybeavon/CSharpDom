@@ -75,12 +75,7 @@ namespace CSharpDom.Reflection.Internal
                 return ClassFieldModifier.None;
             }
         }
-
-        public override string Name
-        {
-            get { return field.Name; }
-        }
-
+        
         public override IReadOnlyCollection<IFieldWithReflection> Fields
         {
             get { return new IFieldWithReflection[0]; }

@@ -42,9 +42,9 @@ namespace CSharpDom.Reflection
             get { throw new NotImplementedException(); }
         }
 
-        public override ClassMemberInheritanceModifier InheritanceModifier
+        public override SealedClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return @event.EventInfo.InheritanceModifier(declaringType); }
+            get { return @event.EventInfo.SealedClassInheritanceModifier(declaringType); }
         }
 
         public override string Name

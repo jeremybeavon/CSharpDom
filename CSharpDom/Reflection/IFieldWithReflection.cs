@@ -1,9 +1,9 @@
 ﻿using CSharpDom.Common;
-using CSharpDom.Reflection.ConstantExpressions;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
-    public interface IFieldWithReflection : IField<IConstantExpressionWithReflection>
+    public interface IFieldWithReflection : IField<ExpressionNotSupported>
     {
     }
 }

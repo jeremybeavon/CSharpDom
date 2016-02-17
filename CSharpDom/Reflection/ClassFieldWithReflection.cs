@@ -4,6 +4,7 @@ using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Internal;
 using System.Reflection;
 using CSharpDom.Reflection.ConstantExpressions;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
@@ -44,9 +45,9 @@ namespace CSharpDom.Reflection
             get { return field.Modifier; }
         }
 
-        public override string Name
+        public string Name
         {
-            get { return field.Name; }
+            get { return field.FieldInfo.Name; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
@@ -59,12 +60,9 @@ namespace CSharpDom.Reflection
             get { return new IFieldWithReflection[] { this }; }
         }
 
-        public IConstantExpressionWithReflection InitialValue
+        public ExpressionNotSupported InitialValue
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return new ExpressionNotSupported(); }
         }
     }
 }

@@ -244,6 +244,7 @@
     <Compile Include="BaseClasses\Expressions\AbstractGenericExpressionVisitor.cs" />
     <Compile Include="BaseClasses\Wrappers\ConstantGroupWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\FieldGroupWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\NestedClassCollectionWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedInterfaceCollectionWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedStructCollectionWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\StructTypeWrapper.cs" />
@@ -284,6 +285,7 @@
     <Compile Include="Common\IHasExtensionParameter.cs" />
     <Compile Include="Common\IDelegateParameter.cs" />
     <Compile Include="Common\IDelegateParameter.generic.cs" />
+    <Compile Include="Common\IHasSealedClassIndexerInheritanceModifier.cs" />
     <Compile Include="Common\IHasTaskGenericParameter.cs" />
     <Compile Include="Common\IOperatorParameter.cs" />
     <Compile Include="Common\IExtensionParameter.cs" />
@@ -297,6 +299,7 @@
     <Compile Include="Common\IHasModifier.cs" />
     <Compile Include="Common\IConstructorParameter.generic.cs" />
     <Compile Include="IndexerParameterModifier.cs" />
+    <Compile Include="NotSupported\ExpressionNotSupported.cs" />
     <Compile Include="Reflection\ExtensionMethodWithReflection.cs" />
     <Compile Include="Reflection\ConstructorParameterWithReflection.cs" />
     <Compile Include="Reflection\ExtensionParameterWithReflection.cs" />
@@ -304,6 +307,7 @@
     <Compile Include="Reflection\OperatorParameterWithReflection.cs" />
     <Compile Include="Reflection\MethodParameterWithReflection.cs" />
     <Compile Include="Reflection\DelegateParameterWithReflection.cs" />
+    <Compile Include="SealedClassIndexerInheritanceModifier.cs" />
     <Compile Include="SealedClassMemberInheritanceModifier.cs" />
     <Compile Include="CodeGeneration\Tree\ClassFieldModifier.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassCollection.cs" />

@@ -64,10 +64,7 @@ namespace CSharpDom.Reflection.Internal
 
         public Type Type
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return type; }
         }
 
         private IReadOnlyCollection<InterfaceEventWithReflection> InitializeEvents()

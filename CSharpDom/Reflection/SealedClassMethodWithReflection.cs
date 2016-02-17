@@ -47,8 +47,7 @@ namespace CSharpDom.Reflection
 
         public override SealedClassMemberInheritanceModifier InheritanceModifier
         {
-            get { throw new NotImplementedException(); }
-            //get { return method.MethodInfo.InheritanceModifier(declaringType); }
+            get { return method.MethodInfo.SealedClassInheritanceModifier(declaringType); }
         }
         
         public override string Name

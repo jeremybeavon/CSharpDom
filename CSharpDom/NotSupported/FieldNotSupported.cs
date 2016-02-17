@@ -7,10 +7,7 @@ namespace CSharpDom.NotSupported
     {
         public ClassFieldModifier Modifier
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { throw new NotSupportedException(); }
         }
     }
 }

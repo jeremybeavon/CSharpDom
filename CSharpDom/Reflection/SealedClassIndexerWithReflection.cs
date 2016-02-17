@@ -16,10 +16,23 @@ namespace CSharpDom.Reflection
             ClassAccessorWithReflection>
     {
         private readonly IndexerWithReflection indexer;
+        private readonly IInternalTypeWithReflection declaringType;
+        private readonly ClassAccessorWithReflection getAccessor;
+        private readonly ClassAccessorWithReflection setAccessor;
 
-        internal SealedClassIndexerWithReflection(ITypeWithReflection declaringType, PropertyInfo indexer)
+        internal SealedClassIndexerWithReflection(IInternalTypeWithReflection declaringType, PropertyInfo indexer)
         {
             this.indexer = new IndexerWithReflection(declaringType, indexer);
+            this.declaringType = declaringType;
+            if (this.indexer.GetAccessor != null)
+            {
+                getAccessor = new ClassAccessorWithReflection(this, this.indexer.GetAccessor);
+            }
+
+            if (this.indexer.SetAccessor != null)
+            {
+                setAccessor = new ClassAccessorWithReflection(this, this.indexer.SetAccessor);
+            }
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -34,8 +47,7 @@ namespace CSharpDom.Reflection
 
         public override ClassAccessorWithReflection GetAccessor
         {
-            get { throw new NotImplementedException(); }
-            //get { return indexer.GetAccessor; }
+            get { return getAccessor; }
         }
 
         public override ITypeReferenceWithReflection IndexerType
@@ -43,20 +55,11 @@ namespace CSharpDom.Reflection
             get { return indexer.IndexerType; }
         }
 
-        public override SealedClassMemberInheritanceModifier InheritanceModifier
+        public override SealedClassIndexerInheritanceModifier InheritanceModifier
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return indexer.PropertyInfo.SealedClassIndexerInheritanceModifier(declaringType); }
         }
-
-        /*public override IndexerInheritanceModifier InheritanceModifier
-        {
-            get { throw new NotImplementedException(); }
-            //get { return indexer.PropertyInfo.InheritanceModifier(); }
-        }*/
-
+        
         public override IReadOnlyList<IndexerParameterWithReflection> Parameters
         {
             get { return indexer.Parameters; }
@@ -64,14 +67,12 @@ namespace CSharpDom.Reflection
 
         public override ClassAccessorWithReflection SetAccessor
         {
-            get { throw new NotImplementedException(); }
-            //get { return indexer.SetAccessor; }
+            get { return setAccessor; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { throw new NotImplementedException(); }
-            //get { return indexer.PropertyInfo.SealedClassVisibility(); }
+            get { return indexer.PropertyInfo.ClassVisibility(); }
         }
     }
 }

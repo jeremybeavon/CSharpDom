@@ -74,17 +74,14 @@ namespace CSharpDom.Reflection
 
         public override EnumBaseType BaseType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return GetBaseType(type); }
         }
 
         public override AssemblyWithReflection Document
         {
             get { return assembly; }
         }
-        
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitEnumWithReflection(this);
@@ -94,6 +91,29 @@ namespace CSharpDom.Reflection
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
         }*/
+
+        internal static EnumBaseType GetBaseType(Type type)
+        {
+            switch (Type.GetTypeCode(Enum.GetUnderlyingType(type)))
+            {
+                case TypeCode.Byte:
+                    return EnumBaseType.Byte;
+                case TypeCode.Int64:
+                    return EnumBaseType.Long;
+                case TypeCode.SByte:
+                    return EnumBaseType.SByte;
+                case TypeCode.Int16:
+                    return EnumBaseType.Short;
+                case TypeCode.UInt32:
+                    return EnumBaseType.UInt;
+                case TypeCode.UInt64:
+                    return EnumBaseType.ULong;
+                case TypeCode.UInt16:
+                    return EnumBaseType.UShort;
+                default:
+                    return EnumBaseType.None;
+            }
+        }
 
         private IReadOnlyList<EnumMemberWithReflection> InitializeEnumMembers()
         {

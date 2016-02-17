@@ -3,7 +3,7 @@
     public interface ISealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> :
         ISealedClassIndexer,
         IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>,
-        IHasSealedClassMemberInheritanceModifier
+        IHasSealedClassIndexerInheritanceModifier
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : ISealedType
         where TTypeReference : ITypeReference

@@ -45,12 +45,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return field.Modifier; }
         }
-
-        public override string Name
-        {
-            get { return field.Fields[0].Name; }
-        }
-
+        
         public override StructMemberVisibilityModifier Visibility
         {
             get { return field.Visibility; }

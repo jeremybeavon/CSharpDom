@@ -7,10 +7,7 @@ namespace CSharpDom.NotSupported
     {
         public InterfaceMemberInheritanceModifier InheritanceModifier
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { throw new NotSupportedException(); }
         }
     }
 }

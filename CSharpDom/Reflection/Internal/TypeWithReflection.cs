@@ -74,7 +74,6 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly Lazy<InterfaceReferences> implementedInterfaces;
-        private readonly FieldCollection<TField> fields;
         private readonly Lazy<Constructors<TConstructor>> constructors;
         
         protected TypeWithReflection(TType declaringType)
@@ -89,7 +88,7 @@ namespace CSharpDom.Reflection.Internal
             attributes = new Lazy<Attributes>(() => new Attributes(Type, typeof(DefaultMemberAttribute)));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(Type));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(Type));
-            fields = new FieldCollection<TField>(() => InitializeFields(declaringType, Type));
+            FieldCollection = new FieldCollection<TField>(() => InitializeFields(declaringType, Type));
             constructors = new Lazy<Constructors<TConstructor>>(
                 () => new Constructors<TConstructor>(declaringType, Type, CreateConstructor));
             EventCollection = new EventCollection<TEvent, TEventProperty, TType>(

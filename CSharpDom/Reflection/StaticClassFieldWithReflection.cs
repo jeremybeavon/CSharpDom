@@ -5,6 +5,7 @@ using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using System.Reflection;
 using CSharpDom.Reflection.ConstantExpressions;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
@@ -43,12 +44,9 @@ namespace CSharpDom.Reflection
             get { return field.FieldType; }
         }
 
-        public IConstantExpressionWithReflection InitialValue
+        public ExpressionNotSupported InitialValue
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return new ExpressionNotSupported(); }
         }
 
         public override StaticClassFieldModifier Modifier
@@ -74,9 +72,9 @@ namespace CSharpDom.Reflection
             }
         }
 
-        public override string Name
+        public string Name
         {
-            get { return field.Name; }
+            get { return field.FieldInfo.Name; }
         }
 
         public override StaticClassMemberVisibilityModifier Visibility

@@ -12,7 +12,12 @@ namespace CSharpDom.Reflection.Internal
 
         public static SealedClassMemberInheritanceModifier SealedClassInheritanceModifier(this MethodInfo method, IInternalTypeWithReflection type)
         {
-            switch (method.InheritanceModifier(type))
+            return method.SealedClassInheritanceModifier(() => type.HiddenMembersAnalyzer.IsMethodHidden(method));
+        }
+
+        public static SealedClassMemberInheritanceModifier SealedClassInheritanceModifier(this MethodInfo method, Func<bool> isHidden)
+        {
+            switch (method.InheritanceModifier(isHidden))
             {
                 case ClassMemberInheritanceModifier.New:
                     return SealedClassMemberInheritanceModifier.New;

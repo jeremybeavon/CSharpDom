@@ -1,4 +1,6 @@
 ﻿using CSharpDom.CodeGeneration.Tree;
+using CSharpDom.Tests.Common;
+using CSharpDom.TestTarget.Classes.OperatorOverloads;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.ObjectModel;
@@ -10,35 +12,34 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
         [TestMethod]
         public void TestClassWithPlusBinaryOperator()
         {
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator +(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
             (new CodeGenerationFile()
             {
-                Classes =
+                Namespaces =
                 {
-                    new Class("TestClass")
+                    new Namespace("CSharpDom.TestTarget.Classes.OperatorOverloads")
                     {
-                        Body = new ClassBody()
+                        Classes =
                         {
-                            BinaryOperators = new Collection<BinaryOperator>()
+                            new Class("ClassWithPlusOperatorOverload")
                             {
-                                new BinaryOperator(BinaryOperatorType.Plus)
+                                Body = new ClassBody()
                                 {
-                                    Parameter1Type = new TypeReference("TestClass"),
-                                    Parameter1Name = "parameter1",
-                                    Parameter2Type = new TypeReference("TestClass"),
-                                    Parameter2Name = "parameter2",
-                                    ReturnType = new TypeReference("TestClass"),
-                                    Body = new Collection<Statement>()
+                                    BinaryOperators = new Collection<BinaryOperator>()
                                     {
-                                        new ReturnStatement()
+                                        new BinaryOperator(BinaryOperatorType.Plus)
                                         {
-                                            RawExpression = "parameter1"
+                                            Parameter1Type = new TypeReference("ClassWithPlusOperatorOverload"),
+                                            Parameter1Name = "parameter1",
+                                            Parameter2Type = new TypeReference("ClassWithPlusOperatorOverload"),
+                                            Parameter2Name = "parameter2",
+                                            ReturnType = new TypeReference("TestClass"),
+                                            Body = new Collection<Statement>()
+                                            {
+                                                new ReturnStatement()
+                                                {
+                                                    RawExpression = "default(ClassWithPlusOperatorOverload)"
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -46,41 +47,40 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(TypeTextProvider.GetTypeText(typeof(ClassWithPlusOperatorOverload)));
         }
 
         [TestMethod]
         public void TestClassWithMinusBinaryOperator()
         {
-            const string expectedText = @"class TestClass
-{
-    public static TestClass operator -(TestClass parameter1, TestClass parameter2)
-    {
-        return parameter1;
-    }
-}";
             (new CodeGenerationFile()
             {
-                Classes =
+                Namespaces =
                 {
-                    new Class("TestClass")
+                    new Namespace("CSharpDom.TestTarget.Classes.OperatorOverloads")
                     {
-                        Body = new ClassBody()
+                        Classes =
                         {
-                            BinaryOperators = new Collection<BinaryOperator>()
+                            new Class("ClassWithMinusOperatorOverload")
                             {
-                                new BinaryOperator(BinaryOperatorType.Minus)
+                                Body = new ClassBody()
                                 {
-                                    Parameter1Type = new TypeReference("TestClass"),
-                                    Parameter1Name = "parameter1",
-                                    Parameter2Type = new TypeReference("TestClass"),
-                                    Parameter2Name = "parameter2",
-                                    ReturnType = new TypeReference("TestClass"),
-                                    Body = new Collection<Statement>()
+                                    BinaryOperators = new Collection<BinaryOperator>()
                                     {
-                                        new ReturnStatement()
+                                        new BinaryOperator(BinaryOperatorType.Minus)
                                         {
-                                            RawExpression = "parameter1"
+                                            Parameter1Type = new TypeReference("ClassWithMinusOperatorOverload"),
+                                            Parameter1Name = "parameter1",
+                                            Parameter2Type = new TypeReference("ClassWithMinusOperatorOverload"),
+                                            Parameter2Name = "parameter2",
+                                            ReturnType = new TypeReference("TestClass"),
+                                            Body = new Collection<Statement>()
+                                            {
+                                                new ReturnStatement()
+                                                {
+                                                    RawExpression = "default(ClassWithMinusOperatorOverload)"
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -88,7 +88,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
                         }
                     }
                 }
-            }).ToString().Should().Be(expectedText);
+            }).ToString().Should().Be(TypeTextProvider.GetTypeText(typeof(ClassWithMinusOperatorOverload)));
         }
 
         [TestMethod]
@@ -103,6 +103,7 @@ namespace CSharpDom.Tests.CodeGeneration.Tree
 }";
             (new CodeGenerationFile()
             {
+
                 Classes =
                 {
                     new Class("TestClass")

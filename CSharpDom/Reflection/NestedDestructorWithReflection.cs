@@ -1,6 +1,7 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
+using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,18 @@ using System.Reflection;
 namespace CSharpDom.Reflection
 {
     public sealed class NestedDestructorWithReflection :
-        AbstractNestedDestructor<AttributeWithReflection, INestedClass, MethodBodyNotSupported>//,
+        AbstractNestedDestructor<AttributeWithReflection, INestedClass, ILMethodBodyWithReflectionEmit>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly NestedClassWithReflection declaringType;
+        private readonly INestedClass declaringType;
         private readonly Lazy<Attributes> attributes;
+        private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
-        internal NestedDestructorWithReflection(NestedClassWithReflection declaringType, MethodInfo method)
+        internal NestedDestructorWithReflection(INestedClass declaringType, MethodInfo method)
         {
             this.declaringType = declaringType;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
+            body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -26,33 +29,17 @@ namespace CSharpDom.Reflection
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override MethodBodyNotSupported Body
+        public override ILMethodBodyWithReflectionEmit Body
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return body.Value; }
         }
 
         public override INestedClass DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        /*public override NestedClassWithReflection DeclaringType
-        {
             get { return declaringType; }
         }
-
-        public override MethodBodyNotSupported Body
-        {
-            get { return new MethodBodyNotSupported(); }
-        }
-
-        public void Accept(IReflectionVisitor visitor)
+        
+        /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNestedDestructorWithReflection(this);
         }

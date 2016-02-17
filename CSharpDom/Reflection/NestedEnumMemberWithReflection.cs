@@ -29,22 +29,6 @@ namespace CSharpDom.Reflection
 
         public override INestedEnum DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override string Name
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        /*public override NestedEnumWithReflection DeclaringType
-        {
             get { return declaringType; }
         }
 
@@ -53,6 +37,7 @@ namespace CSharpDom.Reflection
             get { return field.Name; }
         }
 
+        /*
         public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNestedEnumMemberWithReflection(this);

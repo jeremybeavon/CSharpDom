@@ -21,6 +21,15 @@ namespace CSharpDom.Reflection
         internal StaticClassPropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
         {
             this.property = new PropertyWithReflection(declaringType, property);
+            if (this.property.GetAccessor != null)
+            {
+                getAccessor = new StaticClassAccessorWithReflection(this, this.property.GetAccessor);
+            }
+
+            if (this.property.SetAccessor != null)
+            {
+                setAccessor = new StaticClassAccessorWithReflection(this, this.property.SetAccessor);
+            }
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -55,8 +64,7 @@ namespace CSharpDom.Reflection
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { throw new NotImplementedException(); }
-            //get { return property.PropertyInfo.StructVisibility(); }
+            get { return property.PropertyInfo.StaticClassVisibility(); }
         }
     }
 }

@@ -51,10 +51,7 @@ namespace CSharpDom.Reflection.Internal
 
         public override EnumBaseType BaseType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return EnumWithReflection.GetBaseType(type); }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

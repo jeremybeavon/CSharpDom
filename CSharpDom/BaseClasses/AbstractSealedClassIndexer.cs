@@ -13,7 +13,7 @@ namespace CSharpDom.BaseClasses
         where TParameter : IIndexerParameter
         where TAccessor : IClassAccessor
     {
-        public abstract SealedClassMemberInheritanceModifier InheritanceModifier { get; }
+        public abstract SealedClassIndexerInheritanceModifier InheritanceModifier { get; }
         
         public abstract ClassMemberVisibilityModifier Visibility { get; }
 

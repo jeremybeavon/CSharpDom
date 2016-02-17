@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
+using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
 using System.Reflection;

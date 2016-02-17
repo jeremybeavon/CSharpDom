@@ -8,6 +8,11 @@ namespace CSharpDom.Serialization
 {
     public sealed class InterfaceCollection : IInterfaceCollection<Interface, PartialInterfaceNotSupported>
     {
+        public InterfaceCollection()
+        {
+            Interfaces = new List<Interface>();
+        }
+
         public List<Interface> Interfaces { get; set; }
 
         public int Count

@@ -13,7 +13,7 @@ namespace CSharpDom.BaseClasses
     {
         public abstract IReadOnlyCollection<TAttributeGroup> FieldAttributes { get; }
 
-        public abstract ClassMemberInheritanceModifier InheritanceModifier { get; }
+        public abstract SealedClassMemberInheritanceModifier InheritanceModifier { get; }
         
         public abstract ClassMemberVisibilityModifier Visibility { get; }
 

@@ -3,7 +3,6 @@
     public enum StructFieldModifier
     {
         None,
-        Const,
         Static,
         ReadOnly,
         StaticReadOnly,

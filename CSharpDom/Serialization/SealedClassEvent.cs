@@ -23,6 +23,8 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> FieldAttributes { get; set; }
 
+        public SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
+
         public string Name { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }

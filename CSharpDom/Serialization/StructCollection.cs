@@ -8,6 +8,11 @@ namespace CSharpDom.Serialization
 {
     public sealed class StructCollection : IStructCollection<Struct, PartialStructNotSupported>
     {
+        public StructCollection()
+        {
+            Structs = new List<Struct>();
+        }
+
         public List<Struct> Structs { get; set; }
 
         public int Count
@@ -27,7 +32,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitStructCollectionChildren(this, visitor);
         }
 
         public IEnumerator<Struct> GetEnumerator()

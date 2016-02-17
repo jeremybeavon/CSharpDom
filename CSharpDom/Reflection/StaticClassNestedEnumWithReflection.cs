@@ -20,50 +20,32 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedEnum.Attributes; }
         }
 
         public override EnumBaseType BaseType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedEnum.BaseType; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedEnum.DeclaringType; }
         }
 
         public override IReadOnlyList<NestedEnumMemberWithReflection> EnumMembers
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedEnum.EnumMembers; }
         }
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedEnum.Name; }
         }
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return nestedEnum.Type.StaticClassMemberVisibility(); }
         }
     }
 }

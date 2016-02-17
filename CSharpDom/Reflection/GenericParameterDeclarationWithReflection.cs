@@ -23,12 +23,14 @@ namespace CSharpDom.Reflection
         private readonly ClassReferenceWithReflection baseClassConstraint;
         private readonly List<GenericParameterReferenceWithReflection> genericParameterConstraints;
         private readonly List<InterfaceReferenceWithReflection> interfaceConstraints;
+        private readonly GenericParameterDeclarationDirection direction;
 
         internal GenericParameterDeclarationWithReflection(Type type)
         {
             this.type = type;
             attributes = new Lazy<Attributes>(() => new Attributes(type));
             typeConstraint = GetTypeConstraint(type);
+            direction = GetDirection(type);
             hasEmptyConstructorConstraint = 
                 type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.DefaultConstructorConstraint) &&
                 typeConstraint != GenericParameterTypeConstraint.Struct;
@@ -102,10 +104,7 @@ namespace CSharpDom.Reflection
 
         public override GenericParameterDeclarationDirection Direction
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return direction; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)
@@ -131,6 +130,21 @@ namespace CSharpDom.Reflection
             }
 
             return GenericParameterTypeConstraint.None;
+        }
+
+        private static GenericParameterDeclarationDirection GetDirection(Type type)
+        {
+            if (type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.Contravariant))
+            {
+                return GenericParameterDeclarationDirection.In;
+            }
+
+            if (type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.Covariant))
+            {
+                return GenericParameterDeclarationDirection.Out;
+            }
+
+            return GenericParameterDeclarationDirection.None;
         }
     }
 }

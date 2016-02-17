@@ -21,8 +21,14 @@ namespace CSharpDom.Tests.Common
 
         private static string GetResourceName(Type type)
         {
-            string typeNamePrefix = string.Join("With", type.Namespace.Split('.').Skip(2).Select(RemovePlural)) + "With";
-            string typeName = type.Name().Replace(typeNamePrefix, string.Empty);
+            string typeName = type.Name();
+            string[] namespaces = type.Namespace.Split('.').Skip(2).Select(RemovePlural).ToArray();
+            foreach (string @namespace in namespaces)
+            {
+                typeName = typeName.Replace(@namespace + "With", string.Empty);
+            }
+
+            typeName = typeName.Replace(namespaces.Last(), string.Empty);
             return string.Format(
                 "CSharpDom.Tests.ExpectedResults.{0}.{1}.cs",
                 type.Namespace,

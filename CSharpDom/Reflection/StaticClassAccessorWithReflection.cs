@@ -13,27 +13,22 @@ namespace CSharpDom.Reflection
         IHasMethodInfo
         //IVisitable<IReflectionVisitor>,
     {
+        private readonly AccessorWithReflection accessor;
         private readonly StaticClassMemberVisibilityModifier visibility;
-        private readonly MethodInfo method;
-        private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
-
-        internal StaticClassAccessorWithReflection(IHasStaticClassMemberVisibilityModifier parentVisibility, MethodInfo method)
+        
+        internal StaticClassAccessorWithReflection(IHasStaticClassMemberVisibilityModifier parentVisibility, AccessorWithReflection accessor)
         {
-            this.method = method;
-            attributes = new Lazy<Attributes>(() => new Attributes(method));
-            visibility = method.StaticClassVisibility();
+            this.accessor = accessor;
+            visibility = accessor.MethodInfo.StaticClassVisibility();
             if (parentVisibility.Visibility == visibility)
             {
                 visibility = StaticClassMemberVisibilityModifier.None;
             }
-
-            body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get { return attributes.Value.AttributesWithReflection; }
+            get { return accessor.Attributes; }
         }
 
         public override StaticClassMemberVisibilityModifier Visibility
@@ -43,12 +38,12 @@ namespace CSharpDom.Reflection
 
         public MethodInfo MethodInfo
         {
-            get { return method; }
+            get { return accessor.MethodInfo; }
         }
 
         public override ILMethodBodyWithReflectionEmit Body
         {
-            get { return body.Value; }
+            get { return accessor.Body; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

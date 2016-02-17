@@ -23,6 +23,23 @@ namespace CSharpDom.Reflection.Internal
             return setVisibility.Value;
         }
 
+        public static StaticClassMemberVisibilityModifier StaticClassVisibility(this PropertyInfo property)
+        {
+            StaticClassMemberVisibilityModifier? getVisibility = StaticClassVisibility(property.GetMethod);
+            StaticClassMemberVisibilityModifier? setVisibility = StaticClassVisibility(property.SetMethod);
+            if (getVisibility.HasValue && setVisibility.HasValue)
+            {
+                return (new[] { getVisibility.Value, setVisibility.Value }).Min();
+            }
+
+            if (getVisibility.HasValue)
+            {
+                return getVisibility.Value;
+            }
+
+            return setVisibility.Value;
+        }
+
         public static StructMemberVisibilityModifier StructVisibility(this PropertyInfo property)
         {
             StructMemberVisibilityModifier? getVisibility = StructVisibility(property.GetMethod);
@@ -45,6 +62,13 @@ namespace CSharpDom.Reflection.Internal
             IInternalTypeWithReflection type)
         {
             return property.Method().InheritanceModifier(() => type.HiddenMembersAnalyzer.IsPropertyHidden(property));
+        }
+
+        public static SealedClassMemberInheritanceModifier SealedClassInheritanceModifier(
+            this PropertyInfo property,
+            IInternalTypeWithReflection type)
+        {
+            return property.Method().SealedClassInheritanceModifier(() => type.HiddenMembersAnalyzer.IsPropertyHidden(property));
         }
 
         public static IndexerInheritanceModifier IndexerInheritanceModifier(
@@ -70,6 +94,25 @@ namespace CSharpDom.Reflection.Internal
             }
         }
 
+        public static SealedClassIndexerInheritanceModifier SealedClassIndexerInheritanceModifier(
+            this PropertyInfo property,
+            IInternalTypeWithReflection type)
+        {
+            switch (property.Method().InheritanceModifier(() => type.HiddenMembersAnalyzer.IsIndexerHidden(property)))
+            {
+                case ClassMemberInheritanceModifier.None:
+                    return CSharpDom.SealedClassIndexerInheritanceModifier.None;
+                case ClassMemberInheritanceModifier.New:
+                    return CSharpDom.SealedClassIndexerInheritanceModifier.New;
+                case ClassMemberInheritanceModifier.Override:
+                    return CSharpDom.SealedClassIndexerInheritanceModifier.Override;
+                case ClassMemberInheritanceModifier.SealedOverride:
+                    return CSharpDom.SealedClassIndexerInheritanceModifier.SealedOverride;
+                default:
+                    throw new NotSupportedException();
+            }
+        }
+
         public static bool IsOverride(this PropertyInfo property)
         {
             return property.Method().IsOverride();
@@ -83,6 +126,11 @@ namespace CSharpDom.Reflection.Internal
         private static ClassMemberVisibilityModifier? ClassVisibility(MethodInfo method)
         {
             return method == null ? (ClassMemberVisibilityModifier?)null : method.ClassVisibility();
+        }
+
+        private static StaticClassMemberVisibilityModifier? StaticClassVisibility(MethodInfo method)
+        {
+            return method == null ? (StaticClassMemberVisibilityModifier?)null : method.StaticClassVisibility();
         }
 
         private static StructMemberVisibilityModifier? StructVisibility(MethodInfo method)

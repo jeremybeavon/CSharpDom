@@ -3,10 +3,11 @@ using System.Reflection;
 using CSharpDom.Common;
 using CSharpDom.Reflection.ConstantExpressions;
 using CSharpDom.BaseClasses;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class InternalFieldWithReflection : AbstractField<IConstantExpressionWithReflection>, IFieldWithReflection
+    internal sealed class InternalFieldWithReflection : AbstractField<ExpressionNotSupported>, IFieldWithReflection
     {
         private readonly FieldInfo field;
 
@@ -15,9 +16,9 @@ namespace CSharpDom.Reflection.Internal
             this.field = field;
         }
 
-        public override IConstantExpressionWithReflection InitialValue
+        public override ExpressionNotSupported InitialValue
         {
-            get { return null; }
+            get { return new ExpressionNotSupported(); }
         }
 
         public override string Name

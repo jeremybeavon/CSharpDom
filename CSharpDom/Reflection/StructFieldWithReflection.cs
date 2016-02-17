@@ -5,6 +5,7 @@ using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using System.Reflection;
 using CSharpDom.Reflection.ConstantExpressions;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
@@ -43,23 +44,38 @@ namespace CSharpDom.Reflection
             get { return field.FieldType; }
         }
 
-        public IConstantExpressionWithReflection InitialValue
+        public ExpressionNotSupported InitialValue
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return new ExpressionNotSupported(); }
         }
 
         public override StructFieldModifier Modifier
         {
-            get { throw new NotImplementedException(); }
-            //get { return field.Modifier; }
+            get
+            {
+                switch (field.Modifier)
+                {
+                    case ClassFieldModifier.None:
+                        return StructFieldModifier.None;
+                    case ClassFieldModifier.ReadOnly:
+                        return StructFieldModifier.ReadOnly;
+                    case ClassFieldModifier.Static:
+                        return StructFieldModifier.Static;
+                    case ClassFieldModifier.StaticReadOnly:
+                        return StructFieldModifier.StaticReadOnly;
+                    case ClassFieldModifier.StaticVolatile:
+                        return StructFieldModifier.StaticVolatile;
+                    case ClassFieldModifier.Volatile:
+                        return StructFieldModifier.Volatile;
+                    default:
+                        throw new NotSupportedException();
+                }
+            }
         }
 
-        public override string Name
+        public string Name
         {
-            get { return field.Name; }
+            get { return field.FieldInfo.Name; }
         }
 
         public override StructMemberVisibilityModifier Visibility

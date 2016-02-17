@@ -24,7 +24,7 @@ namespace CSharpDom.Serialization
 
         public TypeReference IndexerType { get; set; }
 
-        public SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
+        public SealedClassIndexerInheritanceModifier InheritanceModifier { get; set; }
 
         public List<IndexerParameter> Parameters { get; set; }
 

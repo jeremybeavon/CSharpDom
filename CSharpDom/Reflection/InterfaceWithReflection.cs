@@ -43,7 +43,7 @@ namespace CSharpDom.Reflection
             get { return basicType.Attributes; }
         }
 
-        /*public override IReadOnlyCollection<EventWithReflection> Events
+        public override IReadOnlyCollection<InterfaceEventWithReflection> Events
         {
             get { return basicType.Events; }
         }
@@ -53,7 +53,7 @@ namespace CSharpDom.Reflection
             get { return basicType.GenericParameters; }
         }
 
-        public override IReadOnlyCollection<IndexerWithReflection> Indexers
+        public override IReadOnlyCollection<InterfaceIndexerWithReflection> Indexers
         {
             get { return basicType.Indexers; }
         }
@@ -68,7 +68,7 @@ namespace CSharpDom.Reflection
             get { return false; }
         }
 
-        public override IReadOnlyCollection<MethodWithReflection> Methods
+        public override IReadOnlyCollection<InterfaceMethodWithReflection> Methods
         {
             get { return basicType.Methods; }
         }
@@ -88,10 +88,10 @@ namespace CSharpDom.Reflection
             get { return assembly; }
         }
 
-        public override IReadOnlyCollection<PropertyWithReflection> Properties
+        public override IReadOnlyCollection<InterfacePropertyWithReflection> Properties
         {
             get { return basicType.Properties; }
-        }*/
+        }
 
         public override AssemblyWithReflection Solution
         {
@@ -106,86 +106,6 @@ namespace CSharpDom.Reflection
         public override TypeVisibilityModifier Visibility
         {
             get { return type.Visibility(); }
-        }
-
-        public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfaceReferenceWithReflection> Interfaces
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override bool IsPartial
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override string Name
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override NamespaceWithReflection Namespace
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override AssemblyWithReflection Project
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfaceEventWithReflection> Events
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfaceIndexerWithReflection> Indexers
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfaceMethodWithReflection> Methods
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        public override IReadOnlyCollection<InterfacePropertyWithReflection> Properties
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
         }
 
         public override AssemblyWithReflection Document

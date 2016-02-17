@@ -9,6 +9,13 @@ namespace CSharpDom.Reflection.Internal
             return @event.AddMethod.ClassVisibility();
         }
 
+        public static SealedClassMemberInheritanceModifier SealedClassInheritanceModifier(
+            this EventInfo @event,
+            IInternalTypeWithReflection type)
+        {
+            return @event.AddMethod.SealedClassInheritanceModifier(() => type.HiddenMembersAnalyzer.IsEventHidden(@event));
+        }
+
         public static ClassMemberInheritanceModifier InheritanceModifier(this EventInfo @event, IInternalTypeWithReflection type)
         {
             return @event.AddMethod.InheritanceModifier(() => type.HiddenMembersAnalyzer.IsEventHidden(@event));

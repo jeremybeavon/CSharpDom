@@ -54,7 +54,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitClassNestedClassCollectionChildren(this, visitor);
         }
 
         public IEnumerator<ClassNestedClass> GetEnumerator()

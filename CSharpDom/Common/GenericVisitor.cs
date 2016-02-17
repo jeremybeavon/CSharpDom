@@ -236,6 +236,19 @@ namespace CSharpDom.Common
             VisitCollection(field.Fields, visitor);
         }
 
+        public static void VisitConstantGroupChildren<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
+            IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> field,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TTypeReference : ITypeReference
+            where TConstant : IConstant
+        {
+            VisitCollection(field.Attributes, visitor);
+            VisitIfNotNull(field.FieldType, visitor);
+            VisitCollection(field.Constants, visitor);
+        }
+
         public static void VisitGenericParameter<TTypeReference>(
             IGenericParameter<TTypeReference> genericParameter,
             IGenericVisitor visitor)
@@ -1007,7 +1020,7 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TConstant : IConstant
         {
-            new ConstantGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(classConstant).Accept(visitor);
+            new ConstantGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(constant).Accept(visitor);
         }
 
         public static void VisitClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
@@ -1171,6 +1184,18 @@ namespace CSharpDom.Common
             VisitCollection(classCollection.SealedClasses, visitor);
             VisitCollection(classCollection.StaticClasses, visitor);
             VisitIfNotNull(classCollection.PartialClasses, visitor);
+        }
+
+        public static void VisitClassNestedClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
+            IClassNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> nestedClass,
+            IGenericVisitor visitor)
+            where TClass : IClassNestedClass
+            where TAbstractClass : IClassNestedAbstractClass
+            where TSealedClass : IClassNestedSealedClass
+            where TStaticClass : IClassNestedStaticClass
+            where TPartialClassCollection : IPartialClassCollection
+        {
+            new NestedClassCollectionWrapper<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(nestedClass).Accept(visitor);
         }
     }
 }
