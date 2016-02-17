@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection.Internal
         public Methods(
             TType declaringType,
             Func<TType, MethodInfo, TMethod> methodFactory,
-            ISet<MethodInfo> interfaceMethods)
+            IDictionary<MethodInfo, Type> interfaceMethods)
         {
             List<TMethod> methods = new List<TMethod>();
             List<AbstractMethodWithReflection> abstractMethods = new List<AbstractMethodWithReflection>();
@@ -33,9 +33,10 @@ namespace CSharpDom.Reflection.Internal
                 }
                 else if (!method.IsSpecialName)
                 {
-                    if (interfaceMethods.Contains(method))
+                    Type interfaceType;
+                    if (interfaceMethods.TryGetValue(method, out interfaceType))
                     {
-                        explicitInterfaceMethods.Add(new ExplicitInterfaceMethodWithReflection(declaringType, method));
+                        explicitInterfaceMethods.Add(new ExplicitInterfaceMethodWithReflection(declaringType, interfaceType, method));
                     }
                     else
                     {

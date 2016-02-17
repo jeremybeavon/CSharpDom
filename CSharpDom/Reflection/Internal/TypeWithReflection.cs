@@ -80,8 +80,12 @@ namespace CSharpDom.Reflection.Internal
         protected TypeWithReflection(TType declaringType)
         {
             Type = declaringType.Type;
-            ISet<MethodInfo> interfaceMethods = new HashSet<MethodInfo>(
-                Type.GetInterfaces().SelectMany(interfaceType => Type.GetInterfaceMap(interfaceType).TargetMethods));
+            IDictionary<MethodInfo, Type> interfaceMethods =
+                (from interfaceType in Type.GetInterfaces()
+                 from targetMethod in Type.GetInterfaceMap(interfaceType).TargetMethods
+                 where targetMethod.IsPrivate
+                 select new KeyValuePair<MethodInfo, Type>(targetMethod, interfaceType))
+                .ToDictionary(entry => entry.Key, entry => entry.Value);
             attributes = new Lazy<Attributes>(() => new Attributes(Type, typeof(DefaultMemberAttribute)));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(Type));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(Type));

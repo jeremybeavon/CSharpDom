@@ -5,9 +5,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
-namespace CSharpDom.Reflection.Internal
+namespace CSharpDom.Reflection
 {
-    internal sealed class AccessorWithReflection :
+    public sealed class AccessorWithReflection :
         AbstractAccessor<AttributeWithReflection, ILMethodBodyWithReflectionEmit>,
         IHasMethodInfo
     {

@@ -15,6 +15,8 @@ namespace CSharpDom.Reflection
             StaticClassAccessorWithReflection>
     {
         private readonly PropertyWithReflection property;
+        private readonly StaticClassAccessorWithReflection getAccessor;
+        private readonly StaticClassAccessorWithReflection setAccessor;
 
         internal StaticClassPropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
         {
@@ -23,58 +25,38 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.DeclaringType; }
         }
 
         public override StaticClassAccessorWithReflection GetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return getAccessor; }
         }
-        
+
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Name; }
         }
 
         public override ITypeReferenceWithReflection PropertyType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.PropertyType; }
         }
 
         public override StaticClassAccessorWithReflection SetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return setAccessor; }
         }
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { throw new NotImplementedException(); }
+            //get { return property.PropertyInfo.StructVisibility(); }
         }
     }
 }

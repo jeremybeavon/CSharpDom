@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using CSharpDom.BaseClasses;
+using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
@@ -11,71 +12,50 @@ namespace CSharpDom.Reflection
             ITypeWithReflection,
             InterfaceReferenceWithReflection,
             ITypeReferenceWithReflection,
-            ClassAccessorWithReflection>
+            AccessorWithReflection>
     {
-        private ITypeWithReflection declaringType;
-        private PropertyInfo property;
+        private readonly PropertyWithReflection property;
+        private readonly InterfaceReferenceWithReflection explicitInterface;
 
-        internal ExplicitInterfacePropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
+        internal ExplicitInterfacePropertyWithReflection(ITypeWithReflection declaringType, Type interfaceType, PropertyInfo property)
         {
-            this.declaringType = declaringType;
-            this.property = property;
+            this.property = new PropertyWithReflection(declaringType, property);
+            explicitInterface = new InterfaceReferenceWithReflection(interfaceType);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.DeclaringType; }
         }
 
         public override InterfaceReferenceWithReflection ExplicitInterface
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return explicitInterface; }
         }
 
-        public override ClassAccessorWithReflection GetAccessor
+        public override AccessorWithReflection GetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.GetAccessor; }
         }
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Name; }
         }
 
         public override ITypeReferenceWithReflection PropertyType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.PropertyType; }
         }
 
-        public override ClassAccessorWithReflection SetAccessor
+        public override AccessorWithReflection SetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.SetAccessor; }
         }
     }
 }

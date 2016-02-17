@@ -7,11 +7,13 @@ namespace CSharpDom.Reflection.Emit
     public sealed class LoadStringInstructionWithReflectionEmit : AbstractLoadStringInstruction, IILInstructionWithReflectionEmit
     {
         private readonly OpCode opCode;
+        private readonly int token;
         private readonly string value;
 
         public LoadStringInstructionWithReflectionEmit(OpCode opCode, int token, string value)
         {
             this.opCode = opCode;
+            this.token = token;
             this.value = value;
         }
 
@@ -22,10 +24,7 @@ namespace CSharpDom.Reflection.Emit
 
         public override int Token
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return token; }
         }
 
         public override string Value

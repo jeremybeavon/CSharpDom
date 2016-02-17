@@ -21,12 +21,12 @@ namespace CSharpDom.BaseClasses
 
         public void Accept(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.VisitStructPropertyCollection(this);
         }
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitStructPropertyCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TProperty> GetEnumerator()

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
-using CSharpDom.Reflection.Emit;
+using CSharpDom.Reflection.Internal;
 using System.Reflection;
 
 namespace CSharpDom.Reflection
@@ -13,67 +13,50 @@ namespace CSharpDom.Reflection
             InterfaceReferenceWithReflection,
             ITypeReferenceWithReflection,
             IndexerParameterWithReflection,
-            ClassAccessorWithReflection>
+            AccessorWithReflection>
     {
-        internal ExplicitInterfaceIndexerWithReflection(ITypeWithReflection declaringType, PropertyInfo indexer)
-        {
+        private readonly IndexerWithReflection indexer;
+        private readonly InterfaceReferenceWithReflection explicitInterface;
 
+        internal ExplicitInterfaceIndexerWithReflection(ITypeWithReflection declaringType, Type interfaceType, PropertyInfo indexer)
+        {
+            this.indexer = new IndexerWithReflection(declaringType, indexer);
+            explicitInterface = new InterfaceReferenceWithReflection(interfaceType);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return indexer.Attributes; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return indexer.DeclaringType; }
         }
 
         public override InterfaceReferenceWithReflection ExplicitInterface
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return explicitInterface; }
         }
 
-        public override ClassAccessorWithReflection GetAccessor
+        public override AccessorWithReflection GetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return indexer.GetAccessor; }
         }
 
         public override ITypeReferenceWithReflection IndexerType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return indexer.IndexerType; }
         }
 
         public override IReadOnlyList<IndexerParameterWithReflection> Parameters
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return indexer.Parameters; }
         }
 
-        public override ClassAccessorWithReflection SetAccessor
+        public override AccessorWithReflection SetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return indexer.SetAccessor; }
         }
     }
 }

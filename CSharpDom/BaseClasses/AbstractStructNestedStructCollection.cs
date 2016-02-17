@@ -27,7 +27,7 @@ namespace CSharpDom.BaseClasses
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitStructNestedStructCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TStruct> GetEnumerator()

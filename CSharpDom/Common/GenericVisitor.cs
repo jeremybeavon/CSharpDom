@@ -514,6 +514,7 @@ namespace CSharpDom.Common
             VisitCollection(nestedStruct.Attributes, visitor);
             VisitCollection(nestedStruct.GenericParameters, visitor);
             VisitCollection(nestedStruct.ImplementedInterfaces, visitor);
+            new StructTypeWrapper<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
         }
 
         public static void VisitNestedTypeReferenceChildren<TTypeReference>(
@@ -757,7 +758,28 @@ namespace CSharpDom.Common
             VisitIfNotNull(type.Structs, visitor);
             VisitIfNotNull(type.StaticConstructor, visitor);
         }
-        
+
+        public static void VisitStructTypeChildren<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStructType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> type,
+            IGenericVisitor visitor)
+            where TEventCollection : IStructEventCollection
+            where TPropertyCollection : IStructPropertyCollection
+            where TIndexerCollection : IStructIndexerCollection
+            where TMethodCollection : IStructMethodCollection
+            where TFieldCollection : IStructFieldCollection
+            where TConstructor : IStructConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IStructNestedClassCollection
+            where TNestedDelegate : IStructNestedDelegate
+            where TNestedEnum : IStructNestedEnum
+            where TNestedInterfaceCollection : IStructNestedInterfaceCollection
+            where TNestedStructCollection : IStructNestedStructCollection
+            where TStaticConstructor : IStaticConstructor
+        {
+            new TypeWrapper<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(type).Accept(visitor);
+        }
+
         public static void VisitAbstractClassEventCollectionChildren<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent>(
             IAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent> eventCollection,
             IGenericVisitor visitor)
@@ -942,7 +964,7 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TField : IField
         {
-            throw new NotImplementedException();
+            new FieldGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TField>(field).Accept(visitor);
         }
 
         public static void VisitClassConstantChildren<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
@@ -953,7 +975,7 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TConstant : IConstant
         {
-            throw new NotImplementedException();
+            new ConstantGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(classConstant).Accept(visitor);
         }
 
         public static void VisitClassFieldCollectionChildren<TField, TConstant>(
@@ -974,7 +996,7 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TField : IField
         {
-            throw new NotImplementedException();
+            new FieldGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TField>(field).Accept(visitor);
         }
 
         public static void VisitStructConstantChildren<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
@@ -985,7 +1007,7 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TConstant : IConstant
         {
-            throw new NotImplementedException();
+            new ConstantGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(classConstant).Accept(visitor);
         }
 
         public static void VisitClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
@@ -1077,6 +1099,78 @@ namespace CSharpDom.Common
             where TMethodBody : IMethodBody
         {
             throw new NotImplementedException();
+        }
+
+        public static void VisitNestedInterfaceCollectionChildren<TInterface, TPartialInterface>(
+            INestedInterfaceCollection<TInterface, TPartialInterface> interfaceCollection,
+            IGenericVisitor visitor)
+            where TInterface : INestedInterface
+            where TPartialInterface : IPartialInterface
+        {
+            VisitCollection(interfaceCollection, visitor);
+            VisitCollection(interfaceCollection.PartialInterfaces, visitor);
+        }
+
+        public static void VisitClassNestedInterfaceCollectionChildren<TInterface, TPartialInterface>(
+            IClassNestedInterfaceCollection<TInterface, TPartialInterface> interfaceCollection,
+            IGenericVisitor visitor)
+            where TInterface : IClassNestedInterface
+            where TPartialInterface : IPartialInterface
+        {
+            new NestedInterfaceCollectionWrapper<TInterface, TPartialInterface>(interfaceCollection).Accept(visitor);
+        }
+
+        public static void VisitStructNestedInterfaceCollectionChildren<TInterface, TPartialInterface>(
+            IStructNestedInterfaceCollection<TInterface, TPartialInterface> interfaceCollection,
+            IGenericVisitor visitor)
+            where TInterface : IStructNestedInterface
+            where TPartialInterface : IPartialInterface
+        {
+            new NestedInterfaceCollectionWrapper<TInterface, TPartialInterface>(interfaceCollection).Accept(visitor);
+        }
+
+        public static void VisitNestedStructCollectionChildren<TStruct, TPartialStruct>(
+            INestedStructCollection<TStruct, TPartialStruct> structCollection,
+            IGenericVisitor visitor)
+            where TStruct : INestedStruct
+            where TPartialStruct : IPartialStruct
+        {
+            VisitCollection(structCollection, visitor);
+            VisitCollection(structCollection.PartialStructs, visitor);
+        }
+
+        public static void VisitClassNestedStructCollectionChildren<TStruct, TPartialStruct>(
+            IClassNestedStructCollection<TStruct, TPartialStruct> structCollection,
+            IGenericVisitor visitor)
+            where TStruct : IClassNestedStruct
+            where TPartialStruct : IPartialStruct
+        {
+            new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
+        }
+
+        public static void VisitStructNestedStructCollectionChildren<TStruct, TPartialStruct>(
+            IStructNestedStructCollection<TStruct, TPartialStruct> structCollection,
+            IGenericVisitor visitor)
+            where TStruct : IStructNestedStruct
+            where TPartialStruct : IPartialStruct
+        {
+            new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
+        }
+
+        public static void VisitNestedClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
+            INestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> classCollection,
+            IGenericVisitor visitor)
+            where TClass : INestedClass
+            where TAbstractClass : INestedAbstractClass
+            where TSealedClass : INestedSealedClass
+            where TStaticClass : INestedStaticClass
+            where TPartialClassCollection : IPartialClassCollection
+        {
+            VisitCollection(classCollection, visitor);
+            VisitCollection(classCollection.AbstractClasses, visitor);
+            VisitCollection(classCollection.SealedClasses, visitor);
+            VisitCollection(classCollection.StaticClasses, visitor);
+            VisitIfNotNull(classCollection.PartialClasses, visitor);
         }
     }
 }

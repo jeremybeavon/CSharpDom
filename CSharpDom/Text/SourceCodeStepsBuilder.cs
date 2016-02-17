@@ -64,54 +64,46 @@ namespace CSharpDom.Text
 
         public override void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
         {
-            bool isIndexer = accessorFlags.HasFlag(AccessorFlags.Indexer);
-            Steps.Add(isIndexer ? (ISourceCodeBuilderStep)new WriteIndentedNewLine() : new WriteWhitespace());
+            Steps.Add(new WriteIndentedNewLine());
             Steps.AddRange(accessor.Attributes.Select(attribute => new WriteChildNode<TAttributeGroup>(attribute)));
             Steps.Add(accessorFlags.HasFlag(AccessorFlags.Get) ? (ISourceCodeBuilderStep)new WriteGetKeyword() : new WriteSetKeyword());
-            if (isIndexer)
+            WriteChildNode<TMethodBody> methodBody;
+            if (accessorFlags.HasFlag(AccessorFlags.Get))
             {
-                WriteChildNode<TMethodBody> methodBody;
-                if (accessorFlags.HasFlag(AccessorFlags.Get))
-                {
-                    string typeText = new WriteChildNode<ITypeReference>(accessorType).Steps.ToSourceCode();
-                    string emptyBodyText = string.Format("return default({0});", typeText);
-                    methodBody = new WriteChildNode<TMethodBody>(accessor.Body, new SourceCodeStepsBuilder(emptyBodyText));
-                }
-                else
-                {
-                    methodBody = new WriteChildNode<TMethodBody>(accessor.Body);
-                }
-
-                if (methodBody.Steps.Count == 0)
-                {
-                    Steps.Add(new WriteWhitespace());
-                    Steps.Add(new WriteStartBrace());
-                    Steps.Add(new WriteWhitespace());
-                    Steps.Add(new WriteEndBrace());
-                }       
-                else if (methodBody.Steps.OfType<WriteIndentedNewLine>().Any())
-                {
-                    Steps.Add(new WriteIndentedNewLine());
-                    Steps.Add(new WriteStartBrace());
-                    Steps.Add(new IncrementIndent());
-                    Steps.Add(methodBody);
-                    Steps.Add(new DecrementIndent());
-                    Steps.Add(new WriteIndentedNewLine());
-                    Steps.Add(new WriteEndBrace());
-                }
-                else
-                {
-                    Steps.Add(new WriteWhitespace());
-                    Steps.Add(new WriteStartBrace());
-                    Steps.Add(new WriteWhitespace());
-                    Steps.Add(methodBody);
-                    Steps.Add(new WriteWhitespace());
-                    Steps.Add(new WriteEndBrace());
-                }
+                string typeText = new WriteChildNode<ITypeReference>(accessorType).Steps.ToSourceCode();
+                string emptyBodyText = string.Format("return default({0});", typeText);
+                methodBody = new WriteChildNode<TMethodBody>(accessor.Body, new SourceCodeStepsBuilder(emptyBodyText));
             }
             else
             {
-                Steps.Add(new WriteSemicolon());
+                methodBody = new WriteChildNode<TMethodBody>(accessor.Body);
+            }
+
+            if (methodBody.Steps.Count == 0)
+            {
+                Steps.Add(new WriteWhitespace());
+                Steps.Add(new WriteStartBrace());
+                Steps.Add(new WriteWhitespace());
+                Steps.Add(new WriteEndBrace());
+            }
+            else if (methodBody.Steps.OfType<WriteIndentedNewLine>().Any())
+            {
+                Steps.Add(new WriteIndentedNewLine());
+                Steps.Add(new WriteStartBrace());
+                Steps.Add(new IncrementIndent());
+                Steps.Add(methodBody);
+                Steps.Add(new DecrementIndent());
+                Steps.Add(new WriteIndentedNewLine());
+                Steps.Add(new WriteEndBrace());
+            }
+            else
+            {
+                Steps.Add(new WriteWhitespace());
+                Steps.Add(new WriteStartBrace());
+                Steps.Add(new WriteWhitespace());
+                Steps.Add(methodBody);
+                Steps.Add(new WriteWhitespace());
+                Steps.Add(new WriteEndBrace());
             }
         }
 
@@ -174,7 +166,7 @@ namespace CSharpDom.Text
             {
                 destructorStep = new ISourceCodeBuilderStep[]
                 {
-                new WriteChildNode<TDestructor>(@class.Destructor)
+                    new WriteChildNode<TDestructor>(@class.Destructor)
                 };
             }
 
@@ -338,6 +330,15 @@ namespace CSharpDom.Text
         public override void VisitEnumReference(IEnumReference enumReference)
         {
             Steps.Add(new WriteName(enumReference.Name));
+        }
+
+        public override void VisitAbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IAbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
+        {
+            Steps.AddClassMemberVisibilityModifierSteps(@event.Visibility);
+            Steps.Add(new WriteAbstractKeyword());
+            Steps.Add(new WriteWhitespace());
+            VisitEvent(@event);
         }
 
         public override void VisitClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
@@ -1144,34 +1145,27 @@ namespace CSharpDom.Text
         public override void VisitType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
             IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> type)
         {
-            /*ISourceCodeBuilderStep[] typeSteps =
-                type.Fields.Select(field => (ISourceCodeBuilderStep)new WriteChildNode<TField>(field))
-                .Concat(type.Events.Select(@event => new WriteChildNode<TEvent>(@event)))
-                .Concat(type.EventProperties.Select(eventProperty => new WriteChildNode<TEventProperty>(eventProperty)))
-                .Concat(type.ExplicitInterfaceEvents.Select(@event => new WriteChildNode<TExplicitInterfaceEvent>(@event)))
-                .ConcatIfNotNull(type.StaticConstructor, constructor => new WriteChildNode<TStaticConstructor>(constructor))
-                .Concat(type.Constructors.Select(constructor => new WriteChildNode<TConstructor>(constructor)))
-                .Concat(destructorStep)
-                .Concat(type.Properties.Select(property => new WriteChildNode<TProperty>(property)))
-                .Concat(type.ExplicitInterfaceProperties.Select(property => new WriteChildNode<TExplicitInterfaceProperty>(property)))
-                .Concat(type.Indexers.Select(indexer => new WriteChildNode<TIndexer>(indexer)))
-                .Concat(type.ExplicitInterfaceIndexers.Select(indexer => new WriteChildNode<TExplicitInterfaceIndexer>(indexer)))
-                .Concat(type.Methods.Select(method => new WriteChildNode<TMethod>(method)))
-                .Concat(type.ExplicitInterfaceMethods.Select(method => new WriteChildNode<TExplicitInterfaceMethod>(method)))
-                .Concat(type.OperatorOverloads.Select(@operator => new WriteChildNode<TOperatorOverload>(@operator)))
-                .Concat(type.ConversionOperators.Select(@operator => new WriteChildNode<TConversionOperator>(@operator)))
-                .Concat(type.Classes.Select(@class => new WriteChildNode<TNestedClass>(@class)))
-                .Concat(type.Delegates.Select(@delegate => new WriteChildNode<TNestedDelegate>(@delegate)))
-                .Concat(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)))
-                .Concat(type.Interfaces.Select(@interface => new WriteChildNode<TNestedInterface>(@interface)))
-                .Concat(type.Structs.Select(@struct => new WriteChildNode<TNestedStruct>(@struct)))
-                .ToArray();
+            List<ISourceCodeBuilderStep> typeSteps = new List<ISourceCodeBuilderStep>();
+            typeSteps.AddIfNotEmpty(type.Fields);
+            typeSteps.AddIfNotEmpty(type.Events);
+            typeSteps.AddIfNotNull(type.StaticConstructor);
+            typeSteps.AddRange(type.Constructors.Select(constructor => new WriteChildNode<TConstructor>(constructor)));
+            typeSteps.AddRange(destructorStep);
+            typeSteps.AddIfNotEmpty(type.Properties);
+            typeSteps.AddIfNotEmpty(type.Methods);
+            typeSteps.AddRange(type.ConversionOperators.Select(@operator => new WriteChildNode<TConversionOperator>(@operator)));
+            typeSteps.AddRange(type.OperatorOverloads.Select(@operator => new WriteChildNode<TOperatorOverload>(@operator)));
+            typeSteps.AddIfNotEmpty(type.Classes);
+            typeSteps.AddRange(type.Delegates.Select(@delegate => new WriteChildNode<TNestedDelegate>(@delegate)));
+            typeSteps.AddRange(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)));
+            typeSteps.AddIfNotEmpty(type.Interfaces);
+            typeSteps.AddIfNotEmpty(type.Structs);
             if (typeSteps.Any())
             {
                 Steps.Add(new WriteIndentedNewLine());
             }
 
-            Steps.AddRange(typeSteps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));*/
+            Steps.AddRange(typeSteps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
         
         public override void VisitUnnamedAttributeValue<TExpression>(IUnnamedAttributeValue<TExpression> unnamedAttributeValue)
@@ -1209,6 +1203,84 @@ namespace CSharpDom.Text
             Steps.Add(new WriteChildNode<TMethodBody>(staticConstructor.Body));
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteEndBrace());
+        }
+
+        public override void VisitAbstractAccessor<TAttributeGroup>(IAbstractAccessor<TAttributeGroup> accessor)
+        {
+            Steps.Add(new WriteWhitespace());
+            Steps.AddRange(accessor.Attributes.Select(attribute => new WriteChildNode<TAttributeGroup>(attribute)));
+            Steps.Add(accessorFlags.HasFlag(AccessorFlags.Get) ? (ISourceCodeBuilderStep)new WriteGetKeyword() : new WriteSetKeyword());
+            Steps.Add(new WriteSemicolon());
+        }
+
+        public override void VisitAbstractClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
+            IAbstractClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> @class)
+        {
+            Steps.AddChildNodeStepsOnNewLines(@class.Attributes);
+            Steps.AddTypeVisibilityModifierSteps(@class.Visibility);
+            Steps.Add(new WriteAbstractKeyword());
+            Steps.Add(new WriteClassKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(@class.Name));
+            Steps.AddGenericParameterSteps(@class.GenericParameters);
+            Steps.AddBaseClassAndImplementedInterfacesSteps(@class, @class);
+            Steps.AddGenericParameterConstraintSteps(@class.GenericParameters);
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteStartBrace());
+            Steps.Add(new IncrementIndent());
+            if (@class.Destructor != null)
+            {
+                destructorStep = new ISourceCodeBuilderStep[]
+                {
+                    new WriteChildNode<TDestructor>(@class.Destructor)
+                };
+            }
+
+            VisitType(@class);
+            destructorStep = new ISourceCodeBuilderStep[0];
+            Steps.Add(new DecrementIndent());
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteEndBrace());
+        }
+
+        public override void VisitAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent>(
+            IAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent> eventCollection)
+        {
+            IEnumerable<ISourceCodeBuilderStep> steps =
+                eventCollection.Select(@event => (ISourceCodeBuilderStep)new WriteChildNode<TEvent>(@event))
+                .Concat(eventCollection.EventProperties.Select(@event => new WriteChildNode<TEventProperty>(@event)))
+                .Concat(eventCollection.ExplicitInterfaceEvents.Select(@event => new WriteChildNode<TExplicitInterfaceEvent>(@event)))
+                .Concat(eventCollection.AbstractEvents.Select(@event => new WriteChildNode<TAbstractEvent>(@event)));
+            Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
+        }
+
+        public override void VisitAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer>(
+            IAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer> indexerCollection)
+        {
+            IEnumerable<ISourceCodeBuilderStep> steps =
+                indexerCollection.Select(indexer => (ISourceCodeBuilderStep)new WriteChildNode<TIndexer>(indexer))
+                .Concat(indexerCollection.ExplicitInterfaceIndexers.Select(indexer => new WriteChildNode<TExplicitInterfaceIndexer>(indexer)))
+                .Concat(indexerCollection.AbstractIndexers.Select(indexer => new WriteChildNode<TAbstractIndexer>(indexer)));
+            Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
+        }
+
+        public override void VisitAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod>(
+            IAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod> methodCollection)
+        {
+            IEnumerable<ISourceCodeBuilderStep> steps =
+                methodCollection.Select(method => (ISourceCodeBuilderStep)new WriteChildNode<TMethod>(method))
+                .Concat(methodCollection.ExplicitInterfaceMethods.Select(method => new WriteChildNode<TExplicitInterfaceMethod>(method)))
+                .Concat(methodCollection.AbstractMethods.Select(method => new WriteChildNode<TAbstractMethod>(method)));
+            Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
+        }
+
+        public override void VisitAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection)
+        {
+            IEnumerable<ISourceCodeBuilderStep> steps =
+                propertyCollection.Select(property => (ISourceCodeBuilderStep)new WriteChildNode<TProperty>(property))
+                .Concat(propertyCollection.ExplicitInterfaceProperties.Select(property => new WriteChildNode<TExplicitInterfaceProperty>(property)))
+                .Concat(propertyCollection.AbstractProperties.Select(property => new WriteChildNode<TAbstractProperty>(property)));
+            Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
     }
 }

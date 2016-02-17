@@ -17,10 +17,12 @@ namespace CSharpDom.Reflection
         IHasEventInfo
     {
         private readonly EventPropertyWithReflection @event;
+        private readonly InterfaceReferenceWithReflection explicitInterface;
 
-        internal ExplicitInterfaceEventWithReflection(ITypeWithReflection declaringType, EventInfo @event)
+        internal ExplicitInterfaceEventWithReflection(ITypeWithReflection declaringType, Type interfaceType, EventInfo @event)
         {
             this.@event = new EventPropertyWithReflection(declaringType, @event);
+            explicitInterface = new InterfaceReferenceWithReflection(interfaceType);
         }
 
         public override ILMethodBodyWithReflectionEmit AddBody
@@ -50,10 +52,7 @@ namespace CSharpDom.Reflection
 
         public override InterfaceReferenceWithReflection ExplicitInterface
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return explicitInterface; }
         }
 
         public override string Name

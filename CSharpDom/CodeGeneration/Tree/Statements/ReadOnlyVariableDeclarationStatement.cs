@@ -1,34 +1,30 @@
 ﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.CodeGeneration.Tree.Types;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree.Statements
 {
     public sealed class ReadOnlyVariableDeclarationStatement :
-        AbstractVariableDeclarationStatement<ReadOnlyTypeReference, ReadOnlyExpressionStatement>
+        AbstractVariableDeclarationStatement<ReadOnlyTypeReference, ReadOnlyVariableDeclaration>
     {
+        private readonly IReadOnlyList<ReadOnlyVariableDeclaration> expressions;
+        private readonly ReadOnlyTypeReference type;
+
         public ReadOnlyVariableDeclarationStatement(VariableDeclarationStatement variableDeclarationStatement)
         {
+            expressions = variableDeclarationStatement.VariableDeclarations.ToArray(
+                variable => new ReadOnlyVariableDeclaration(variable));
+            type = new ReadOnlyTypeReference(variableDeclarationStatement.Type);
         }
 
-        public override IReadOnlyList<ReadOnlyExpressionStatement> Expressions
+        public override IReadOnlyList<ReadOnlyVariableDeclaration> Expressions
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return expressions; }
         }
 
         public override ReadOnlyTypeReference Type
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return type; }
         }
     }
 }

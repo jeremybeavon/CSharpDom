@@ -28,14 +28,14 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TClass> Classes { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.VisitNestedClassCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitNestedClassCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TClass> GetEnumerator()

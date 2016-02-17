@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
+using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
@@ -16,85 +17,58 @@ namespace CSharpDom.Reflection
             MethodParameterWithReflection,
             ILMethodBodyWithReflectionEmit>
     {
-        private ITypeWithReflection declaringType;
-        private MethodInfo method;
+        private readonly MethodWithReflection method;
+        private readonly InterfaceReferenceWithReflection explicitInterface;
 
-        internal ExplicitInterfaceMethodWithReflection(ITypeWithReflection declaringType, MethodInfo method)
+        internal ExplicitInterfaceMethodWithReflection(ITypeWithReflection declaringType, Type interfaceType, MethodInfo method)
         {
-            this.declaringType = declaringType;
-            this.method = method;
+            this.method = new MethodWithReflection(declaringType, method);
+            explicitInterface = new InterfaceReferenceWithReflection(interfaceType);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Attributes; }
         }
 
         public override ILMethodBodyWithReflectionEmit Body
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Body; }
         }
 
         public override ITypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.DeclaringType; }
         }
 
         public override InterfaceReferenceWithReflection ExplicitInterface
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return explicitInterface; }
         }
 
         public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.GenericParameters; }
         }
 
         public override bool IsAsync
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.IsAsync; }
         }
 
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Name; }
         }
 
         public override IReadOnlyList<MethodParameterWithReflection> Parameters
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Parameters; }
         }
 
         public override ITypeReferenceWithReflection ReturnType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.ReturnType; }
         }
     }
 }

@@ -24,12 +24,12 @@ namespace CSharpDom.BaseClasses
 
         public void Accept(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.VisitClassEventCollection(this);
         }
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitClassEventCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TEvent> GetEnumerator()

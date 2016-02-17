@@ -13,7 +13,7 @@ namespace CSharpDom.Reflection.Internal
         public Properties(
             TType declaringType,
             IPropertyFactory<TProperty, TIndexer, TType> propertyFactory,
-            ISet<MethodInfo> interfaceMethods)
+            IDictionary<MethodInfo, Type> interfaceMethods)
         {
             List<TIndexer> indexers = new List<TIndexer>();
             List<TProperty> properties = new List<TProperty>();
@@ -24,11 +24,12 @@ namespace CSharpDom.Reflection.Internal
             foreach (PropertyInfo property in declaringType.Type.GetAllProperties())
             {
                 MethodInfo method = property.Method();
+                Type interfaceType;
                 if (property.GetIndexParameters().Any())
                 {
-                    if (interfaceMethods.Contains(method))
+                    if (interfaceMethods.TryGetValue(method, out interfaceType))
                     {
-                        explicitInterfaceIndexers.Add(new ExplicitInterfaceIndexerWithReflection(declaringType, property));
+                        explicitInterfaceIndexers.Add(new ExplicitInterfaceIndexerWithReflection(declaringType, interfaceType, property));
                     }
                     else if (method.IsAbstract)
                     {
@@ -39,9 +40,9 @@ namespace CSharpDom.Reflection.Internal
                         indexers.Add(propertyFactory.CreateIndexer(declaringType, property));
                     }
                 }
-                else if (interfaceMethods.Contains(method))
+                else if (interfaceMethods.TryGetValue(method, out interfaceType))
                 {
-                    explicitInterfaceProperties.Add(new ExplicitInterfacePropertyWithReflection(declaringType, property));
+                    explicitInterfaceProperties.Add(new ExplicitInterfacePropertyWithReflection(declaringType, interfaceType, property));
                 }
                 else if (method.IsAbstract)
                 {

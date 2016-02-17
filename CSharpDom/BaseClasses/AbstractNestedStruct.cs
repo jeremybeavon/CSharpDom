@@ -23,7 +23,7 @@ namespace CSharpDom.BaseClasses
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        AbstractType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        AbstractStructType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
         INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -56,13 +56,12 @@ namespace CSharpDom.BaseClasses
 
         public override void Accept(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.VisitNestedStruct(this);
         }
 
         public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedStructChildren(this, visitor);
-            base.Accept(visitor);
         }
     }
 }

@@ -1,43 +1,22 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
 using CSharpDom.Common.Partial;
 
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractClassNestedInterfaceCollection<TInterface, TPartialInterface> :
+        AbstractNestedInterfaceCollection<TInterface, TPartialInterface>,
         IClassNestedInterfaceCollection<TInterface, TPartialInterface>
         where TInterface : IClassNestedInterface
         where TPartialInterface : IPartialInterface
     {
-        public int Count
-        {
-            get { return PartialInterfaces.Count + Interfaces.Count; }
-        }
-
-        public abstract IReadOnlyCollection<TPartialInterface> PartialInterfaces { get; }
-
-        protected abstract IReadOnlyCollection<TInterface> Interfaces { get; }
-
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassNestedInterfaceCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerator<TInterface> GetEnumerator()
-        {
-            return Interfaces.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
+            GenericVisitor.VisitClassNestedInterfaceCollectionChildren(this, visitor);
         }
     }
 }

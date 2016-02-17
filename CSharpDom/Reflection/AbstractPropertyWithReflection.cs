@@ -15,10 +15,21 @@ namespace CSharpDom.Reflection
             AbstractAccessorWithReflection>
     {
         private readonly PropertyWithReflection property;
+        private readonly AbstractAccessorWithReflection getAccessor;
+        private readonly AbstractAccessorWithReflection setAccessor;
 
         internal AbstractPropertyWithReflection(ITypeWithReflection declaringType, PropertyInfo property)
         {
             this.property = new PropertyWithReflection(declaringType, property);
+            if (this.property.GetAccessor != null)
+            {
+                getAccessor = new AbstractAccessorWithReflection(this, this.property.GetAccessor);
+            }
+
+            if (this.property.SetAccessor != null)
+            {
+                setAccessor = new AbstractAccessorWithReflection(this, this.property.SetAccessor);
+            }
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -33,42 +44,27 @@ namespace CSharpDom.Reflection
 
         public override AbstractAccessorWithReflection GetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return getAccessor; }
         }
         
         public override string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.Name; }
         }
 
         public override ITypeReferenceWithReflection PropertyType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.PropertyType; }
         }
 
         public override AbstractAccessorWithReflection SetAccessor
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return setAccessor; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return property.PropertyInfo.ClassVisibility(); }
         }
     }
 }

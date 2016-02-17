@@ -6,9 +6,9 @@ using CSharpDom.Common.Partial;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractStructCollection<TStruct, TPartialStruct> :
-        IStructCollection<TStruct, TPartialStruct>
-        where TStruct : IStruct
+    public abstract class AbstractNestedStructCollection<TStruct, TPartialStruct> :
+        INestedStructCollection<TStruct, TPartialStruct>
+        where TStruct : INestedStruct
         where TPartialStruct : IPartialStruct
     {
         public int Count
@@ -20,14 +20,14 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TStruct> Structs { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitStructCollection(this);
+            visitor.VisitNestedStructCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitStructCollectionChildren(this, visitor);
+            GenericVisitor.VisitNestedStructCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TStruct> GetEnumerator()

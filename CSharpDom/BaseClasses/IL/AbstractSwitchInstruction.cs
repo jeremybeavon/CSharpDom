@@ -13,12 +13,11 @@ namespace CSharpDom.BaseClasses.IL
 
         public void Accept(IILInstructionVisitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.VisitSwitchInstruction(this);
         }
 
         public void AcceptChildren(IILInstructionVisitor visitor)
         {
-            throw new NotImplementedException();
         }
     }
 }

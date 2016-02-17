@@ -21,19 +21,28 @@ namespace CSharpDom.Tests.Common
             }
             else
             {
-                RewriteMethodBody(hasBody.Body, hasReturnType.ReturnType, node as IHasParameters<Parameter>);
+                RewriteMethodBody(hasBody.Body, hasReturnType.ReturnType, node as IHasParameters<MethodParameter>);
             }
         }
 
         public override void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
         {
-            RewriteMethodBody(accessor.Body as MethodBody, accessorReturnType, null);
+            RewriteMethodBody<MethodParameter>(accessor.Body as MethodBody, accessorReturnType, null);
         }
 
         public override void VisitConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
             IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor)
         {
-            RewriteMethodBody(constructor.Body as MethodBody, constructor as IHasParameters<Parameter>);
+            RewriteMethodBody(constructor.Body as MethodBody, constructor as IHasParameters<ConstructorParameter>);
+        }
+
+        public override void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
+            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> conversionOperator)
+        {
+            RewriteMethodBody<MethodParameter>(
+                conversionOperator.Body as MethodBody,
+                conversionOperator.ReturnType as TypeReference,
+                null);
         }
 
         public override void VisitProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
@@ -58,7 +67,8 @@ namespace CSharpDom.Tests.Common
             }
         }
 
-        private static void RewriteMethodBody(MethodBody body, TypeReference returnType, IHasParameters<Parameter> parameters)
+        private static void RewriteMethodBody<TParameter>(MethodBody body, TypeReference returnType, IHasParameters<TParameter> parameters)
+            where TParameter : IParameter<AttributeGroup, TypeReference>, IHasModifier<ParameterModifier>
         {
             RewriteMethodBody(body, parameters);
             if (returnType.BuiltInTypeReference == null || returnType.BuiltInTypeReference.Type != BuiltInType.Void)
@@ -80,12 +90,13 @@ namespace CSharpDom.Tests.Common
             }
         }
 
-        private static void RewriteMethodBody(MethodBody body, IHasParameters<Parameter> parameters)
+        private static void RewriteMethodBody<TParameter>(MethodBody body, IHasParameters<TParameter> parameters)
+            where TParameter : IParameter<AttributeGroup, TypeReference>, IHasModifier<ParameterModifier>
         {
             body.Instructions.Clear();
             if (parameters != null)
             {
-                foreach (Parameter parameter in parameters.Parameters)
+                foreach (TParameter parameter in parameters.Parameters)
                 {
                     if (parameter.Modifier == ParameterModifier.Out)
                     {
@@ -102,7 +113,7 @@ namespace CSharpDom.Tests.Common
             }
         }
 
-        private static Expression CreateExpressionForOutParameter(Parameter parameter)
+        private static Expression CreateExpressionForOutParameter(IParameter<AttributeGroup, TypeReference> parameter)
         {
             return new Expression()
             {

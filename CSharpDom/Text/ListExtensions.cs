@@ -12,6 +12,25 @@ namespace CSharpDom.Text
 {
     public static class ListExtensions
     {
+        public static void AddIfNotEmpty<TChildNode>(this List<ISourceCodeBuilderStep> steps, TChildNode childNode)
+            where TChildNode : IVisitable<IGenericVisitor>
+        {
+            WriteChildNode<TChildNode> node = new WriteChildNode<TChildNode>(childNode);
+            if (node.Steps.Count != 0)
+            {
+                steps.Add(node);
+            }
+        }
+
+        public static void AddIfNotNull<TChildNode>(this List<ISourceCodeBuilderStep> steps, TChildNode childNode)
+            where TChildNode : IVisitable<IGenericVisitor>
+        {
+            if (childNode != null)
+            {
+                steps.Add(new WriteChildNode<TChildNode>(childNode));
+            }
+        }
+
         public static IEnumerable<ChildSteps> GetChildSteps(this List<ISourceCodeBuilderStep> steps)
         {
             foreach (ISourceCodeBuilderStep step in steps)

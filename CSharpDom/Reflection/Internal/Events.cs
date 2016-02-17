@@ -14,7 +14,7 @@ namespace CSharpDom.Reflection.Internal
         public Events(
             TType declaringType,
             IEventFactory<TEvent, TEventProperty, TType> eventFactory,
-            ISet<MethodInfo> interfaceMethods)
+            IDictionary<MethodInfo, Type> interfaceMethods)
         {
             List<TEvent> events = new List<TEvent>();
             List<ExplicitInterfaceEventWithReflection> explicitInterfaceEvents = new List<ExplicitInterfaceEventWithReflection>();
@@ -22,13 +22,14 @@ namespace CSharpDom.Reflection.Internal
             List<AbstractEventWithReflection> abstractEvents = new List<AbstractEventWithReflection>();
             foreach (EventInfo eventInfo in declaringType.Type.GetAllEvents())
             {
+                Type interfaceType;
                 if (eventInfo.AddMethod.IsDefined(typeof(CompilerGeneratedAttribute)))
                 {
                     events.Add(eventFactory.CreateEvent(declaringType, eventInfo));
                 }
-                else if (interfaceMethods.Contains(eventInfo.AddMethod) && eventInfo.AddMethod.IsPrivate)
+                else if (interfaceMethods.TryGetValue(eventInfo.AddMethod, out interfaceType))
                 {
-                    explicitInterfaceEvents.Add(new ExplicitInterfaceEventWithReflection(declaringType, eventInfo));
+                    explicitInterfaceEvents.Add(new ExplicitInterfaceEventWithReflection(declaringType, interfaceType, eventInfo));
                 }
                 else if (eventInfo.AddMethod.IsAbstract)
                 {

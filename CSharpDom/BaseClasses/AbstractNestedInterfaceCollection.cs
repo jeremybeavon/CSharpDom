@@ -6,9 +6,9 @@ using CSharpDom.Common.Partial;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractInterfaceCollection<TInterface, TPartialInterface> :
-        IInterfaceCollection<TInterface, TPartialInterface>
-        where TInterface : IInterface
+    public abstract class AbstractNestedInterfaceCollection<TInterface, TPartialInterface> :
+        INestedInterfaceCollection<TInterface, TPartialInterface>
+        where TInterface : INestedInterface
         where TPartialInterface : IPartialInterface
     {
         public int Count
@@ -20,14 +20,14 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TInterface> Interfaces { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitInterfaceCollection(this);
+            visitor.VisitNestedInterfaceCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitInterfaceCollectionChildren(this, visitor);
+            GenericVisitor.VisitNestedInterfaceCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TInterface> GetEnumerator()

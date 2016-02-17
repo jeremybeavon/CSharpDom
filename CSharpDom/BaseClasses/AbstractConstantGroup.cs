@@ -4,29 +4,29 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
-        IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>
+    public abstract class AbstractConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> :
+        IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TTypeReference : ITypeReference
-        where TField : IField
+        where TConstant : IConstant
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 
         public abstract TDeclaringType DeclaringType { get; }
 
-        public abstract IReadOnlyCollection<TField> Fields { get; }
+        public abstract IReadOnlyCollection<TConstant> Constants { get; }
 
         public abstract TTypeReference FieldType { get; }
         
         public virtual void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitFieldGroup(this);
+            visitor.VisitConstantGroup(this);
         }
 
         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitFieldGroupChildren(this, visitor);
+            GenericVisitor.VisitConstantGroupChildren(this, visitor);
         }
     }
 }
