@@ -10,8 +10,14 @@ namespace CSharpDom.Tests.Common
     {
         public static string GetTypeText(Type type)
         {
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(GetResourceName(type)))
+            string resourceName = GetResourceName(type);
+            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
             {
+                if (stream == null)
+                {
+                    throw new ArgumentException("Resource not found for: " + resourceName, nameof(type));
+                }
+
                 using (TextReader reader = new StreamReader(stream))
                 {
                     return reader.ReadToEnd().Trim();
@@ -22,13 +28,20 @@ namespace CSharpDom.Tests.Common
         private static string GetResourceName(Type type)
         {
             string typeName = type.Name();
-            string[] namespaces = type.Namespace.Split('.').Skip(2).Select(RemovePlural).ToArray();
+            string[] namespaces = type.Namespace.Split('.').Skip(2).Select(RemovePlural).Reverse().ToArray();
             foreach (string @namespace in namespaces)
             {
                 typeName = typeName.Replace(@namespace + "With", string.Empty);
             }
 
-            typeName = typeName.Replace(namespaces.Last(), string.Empty);
+            if (!typeName.EndsWith("BaseClass"))
+            {
+                string lastNamespace = namespaces.Last();
+                typeName = typeName
+                    .Replace(lastNamespace + "s", string.Empty)
+                    .Replace(lastNamespace, string.Empty);
+            }
+
             return string.Format(
                 "CSharpDom.Tests.ExpectedResults.{0}.{1}.cs",
                 type.Namespace,

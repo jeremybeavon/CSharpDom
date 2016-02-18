@@ -6,7 +6,8 @@
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
         IHasEventType<TDelegateReference>,
-        IHasEventPropertyBody<TMethodBody>
+        IHasEventPropertyBody<TMethodBody>,
+        IHasEventPropertyBodyAttributes<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TDelegateReference : IDelegateReference

@@ -17,6 +17,7 @@ namespace CSharpDom.Serialization.Factories
                 AddBody = new MethodBodyFactory(@event.AddBody).Value,
                 Attributes = @event.Attributes.ToAttributeListUsingFactory(),
                 EventType = new DelegateReferenceFactory(@event.EventType).Value,
+                ExplicitInterface = new InterfaceReferenceFactory(@event.ExplicitInterface).Value,
                 Name = @event.Name,
                 RemoveBody = new MethodBodyFactory(@event.RemoveBody).Value
             };

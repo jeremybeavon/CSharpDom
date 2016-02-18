@@ -11,6 +11,8 @@ namespace CSharpDom.BaseClasses
         where TDelegateReference : IDelegateReference
         where TMethodBody : IMethodBody
     {
+        public abstract IReadOnlyCollection<TAttributeGroup> AddAttributes { get; }
+
         public abstract TMethodBody AddBody { get; }
 
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
@@ -20,6 +22,8 @@ namespace CSharpDom.BaseClasses
         public abstract TDelegateReference EventType { get; }
         
         public abstract string Name { get; }
+
+        public abstract IReadOnlyCollection<TAttributeGroup> RemoveAttributes { get; }
 
         public abstract TMethodBody RemoveBody { get; }
 

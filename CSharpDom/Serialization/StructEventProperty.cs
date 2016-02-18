@@ -9,7 +9,11 @@ namespace CSharpDom.Serialization
         public StructEventProperty()
         {
             Attributes = new List<AttributeGroup>();
+            AddAttributes = new List<AttributeGroup>();
+            RemoveAttributes = new List<AttributeGroup>();
         }
+
+        public List<AttributeGroup> AddAttributes { get; set; }
 
         public MethodBody AddBody { get; set; }
 
@@ -24,13 +28,25 @@ namespace CSharpDom.Serialization
 
         public string Name { get; set; }
 
+        public List<AttributeGroup> RemoveAttributes { get; set; }
+
         public MethodBody RemoveBody { get; set; }
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 
+        IReadOnlyCollection<AttributeGroup> IHasEventPropertyBodyAttributes<AttributeGroup>.AddAttributes
+        {
+            get { return AddAttributes; }
+        }
+
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {
             get { return Attributes; }
+        }
+
+        IReadOnlyCollection<AttributeGroup> IHasEventPropertyBodyAttributes<AttributeGroup>.RemoveAttributes
+        {
+            get { return RemoveAttributes; }
         }
 
         public void Accept(IGenericVisitor visitor)

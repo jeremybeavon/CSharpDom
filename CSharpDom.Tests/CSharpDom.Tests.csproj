@@ -119,36 +119,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.BinaryOperator.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.Class.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassEvent.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassField.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassIndexer.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassMethod.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassNestedClass.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassNestedDelegate.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassNestedEnum.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassNestedInterface.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassNestedStruct.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ClassProperty.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.ConversionOperator.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.Delegate.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.Enum.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.EnumField.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.Interface.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.Struct.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructEvent.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructField.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructIndexer.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructMethod.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructNestedClass.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructNestedDelegate.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructNestedEnum.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructNestedInterface.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructNestedStruct.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.StructProperty.cs" />
-    <Compile Include="CodeGeneration\Tree\CodeGenerationFileTests.UnaryOperator.cs" />
     <Compile Include="Common\AbstractClassTests.cs" />
     <Compile Include="Common\FixMethodBodyVisitor.cs" />
     <Compile Include="Common\TypeTextProvider.cs" />
@@ -918,6 +888,8 @@
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\SealedClasses\Constructors\ParametersWithModifiers.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\SealedClasses\Constructors\Private.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\SealedClasses\Constructors\Public.cs" />
+    <Compile Include="Reflection\ClassEventPropertyWithReflectionTests.cs" />
+    <Compile Include="Reflection\ExplicitInterfaceEventWithReflectionTests.cs" />
     <Compile Include="Reflection\OperatorOverloadsWithReflectionTests.cs" />
     <Compile Include="Reflection\ClassMethodWithReflectionTests.cs" />
     <Compile Include="Reflection\ClassIndexerWithReflectionTests.cs" />
@@ -950,6 +922,7 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.1.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CodeGeneration\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Enums\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Structs\Events\" />

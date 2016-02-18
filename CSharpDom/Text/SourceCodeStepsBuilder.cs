@@ -64,10 +64,16 @@ namespace CSharpDom.Text
 
         public override void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
         {
-            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(accessor.Body == null ? (ISourceCodeBuilderStep)new WriteWhitespace() : new WriteIndentedNewLine());
             Steps.AddRange(accessor.Attributes.Select(attribute => new WriteChildNode<TAttributeGroup>(attribute)));
             Steps.Add(accessorFlags.HasFlag(AccessorFlags.Get) ? (ISourceCodeBuilderStep)new WriteGetKeyword() : new WriteSetKeyword());
             WriteChildNode<TMethodBody> methodBody;
+            if (accessor.Body == null)
+            {
+                Steps.Add(new WriteSemicolon());
+                return;
+            }
+
             if (accessorFlags.HasFlag(AccessorFlags.Get))
             {
                 string typeText = new WriteChildNode<ITypeReference>(accessorType).Steps.ToSourceCode();
@@ -706,6 +712,26 @@ namespace CSharpDom.Text
             VisitMethod(method);
         }
 
+        public override void VisitAbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
+            IAbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
+        {
+            Steps.Add(new WriteChildNode<TTypeReference>(method.ReturnType));
+            Steps.Add(new WriteWhitespace());
+            if (explicitInterface != null)
+            {
+                Steps.Add(explicitInterface);
+                Steps.Add(new WriteDot());
+            }
+
+            Steps.Add(new WriteName(method.Name));
+            Steps.AddGenericParameterSteps(method.GenericParameters);
+            Steps.Add(new WriteStartParenthesis());
+            Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
+            Steps.Add(new WriteEndParenthesis());
+            Steps.AddGenericParameterConstraintSteps(method.GenericParameters);
+            Steps.Add(new WriteSemicolon());
+        }
+
         public override void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
             IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
@@ -1031,15 +1057,102 @@ namespace CSharpDom.Text
             Steps.Add(new WriteEndBrace());
         }
 
-        public override void VisitParameter<TAttributeGroup, TTypeReference>(IParameter<TAttributeGroup, TTypeReference> parameter)
+        public override void VisitConstructorParameter<TAttributeGroup, TTypeReference>(
+            IConstructorParameter<TAttributeGroup, TTypeReference> parameter)
         {
             Steps.AddChildNodeSteps(parameter.Attributes);
-            //Steps.AddMethodParameterModifierSteps(parameter.Modifier);
+            Steps.AddMethodParameterModifierSteps(parameter.Modifier);
             Steps.Add(new WriteChildNode<TTypeReference>(parameter.ParameterType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(parameter.Name));
         }
-        
+
+        public override void VisitDelegateParameter<TAttributeGroup, TTypeReference>(
+            IDelegateParameter<TAttributeGroup, TTypeReference> parameter)
+        {
+            Steps.AddChildNodeSteps(parameter.Attributes);
+            Steps.AddMethodParameterModifierSteps(parameter.Modifier);
+            Steps.Add(new WriteChildNode<TTypeReference>(parameter.ParameterType));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(parameter.Name));
+        }
+
+        public override void VisitExtensionParameter<TAttributeGroup, TTypeReference>(
+            IExtensionParameter<TAttributeGroup, TTypeReference> parameter)
+        {
+            Steps.AddChildNodeSteps(parameter.Attributes);
+            Steps.Add(new WriteThisKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteChildNode<TTypeReference>(parameter.ParameterType));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(parameter.Name));
+        }
+
+        public override void VisitIndexerParameter<TAttributeGroup, TTypeReference>(
+            IIndexerParameter<TAttributeGroup, TTypeReference> parameter)
+        {
+            Steps.AddChildNodeSteps(parameter.Attributes);
+            if (parameter.Modifier == IndexerParameterModifier.Params)
+            {
+                Steps.Add(new WriteMethodParameterModifier(ParameterModifier.Params));
+                Steps.Add(new WriteWhitespace());
+            }
+
+            Steps.Add(new WriteChildNode<TTypeReference>(parameter.ParameterType));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(parameter.Name));
+        }
+
+        public override void VisitMethodParameter<TAttributeGroup, TTypeReference>(
+            IMethodParameter<TAttributeGroup, TTypeReference> parameter)
+        {
+            Steps.AddChildNodeSteps(parameter.Attributes);
+            Steps.AddMethodParameterModifierSteps(parameter.Modifier);
+            Steps.Add(new WriteChildNode<TTypeReference>(parameter.ParameterType));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(parameter.Name));
+        }
+
+        public override void VisitParameter<TAttributeGroup, TTypeReference>(IParameter<TAttributeGroup, TTypeReference> parameter)
+        {
+            Steps.AddChildNodeSteps(parameter.Attributes);
+            Steps.Add(new WriteChildNode<TTypeReference>(parameter.ParameterType));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(parameter.Name));
+        }
+
+        public override void VisitAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
+            IAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
+        {
+            Steps.AddChildNodeStepsOnNewLines(property.Attributes);
+            Steps.AddClassMemberVisibilityModifierSteps(property.Visibility);
+            Steps.Add(new WriteAbstractKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteChildNode<TTypeReference>(property.PropertyType));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(property.Name));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteStartBrace());
+            Steps.Add(new WriteWhitespace());
+            if (property.GetAccessor != null)
+            {
+                Steps.Add(new WriteChildNode<TAccessor>(property.GetAccessor));
+            }
+
+            if (property.SetAccessor != null)
+            {
+                if (property.GetAccessor != null)
+                {
+                    Steps.Add(new WriteWhitespace());
+                }
+
+                Steps.Add(new WriteChildNode<TAccessor>(property.SetAccessor));
+            }
+
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteEndBrace());
+        }
+
         public override void VisitClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
         {
@@ -1161,6 +1274,7 @@ namespace CSharpDom.Text
             typeSteps.AddRange(type.Constructors.Select(constructor => new WriteChildNode<TConstructor>(constructor)));
             typeSteps.AddRange(destructorStep);
             typeSteps.AddIfNotEmpty(type.Properties);
+            typeSteps.AddIfNotEmpty(type.Indexers);
             typeSteps.AddIfNotEmpty(type.Methods);
             typeSteps.AddRange(type.ConversionOperators.Select(@operator => new WriteChildNode<TConversionOperator>(@operator)));
             typeSteps.AddRange(type.OperatorOverloads.Select(@operator => new WriteChildNode<TOperatorOverload>(@operator)));
@@ -1290,6 +1404,41 @@ namespace CSharpDom.Text
                 .Concat(propertyCollection.ExplicitInterfaceProperties.Select(property => new WriteChildNode<TExplicitInterfaceProperty>(property)))
                 .Concat(propertyCollection.AbstractProperties.Select(property => new WriteChildNode<TAbstractProperty>(property)));
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
+        }
+
+        public override void VisitConstant<TExpression>(IConstant<TExpression> constant)
+        {
+            Steps.Add(new WriteName(constant.Name));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteEquals());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteExpression<TExpression>(constant.ConstantValue));
+        }
+
+        public override void VisitConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
+            IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constantGroup)
+        {
+            Steps.Add(new WriteConstantKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteChildNode<TTypeReference>(constantGroup.FieldType));
+            Steps.AddCommaSeparatedChildNodeSteps(constantGroup.Constants);
+            Steps.Add(new WriteSemicolon());
+        }
+
+        public override void VisitClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
+            IClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> classConstant)
+        {
+            Steps.AddChildNodeStepsOnNewLines(classConstant.Attributes);
+            Steps.AddClassMemberVisibilityModifierSteps(classConstant.Visibility);
+            VisitConstantGroup(classConstant);
+        }
+
+        public override void VisitStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
+            IStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constant)
+        {
+            Steps.AddChildNodeStepsOnNewLines(constant.Attributes);
+            Steps.AddStructMemberVisibilityModifierSteps(constant.Visibility);
+            VisitConstantGroup(constant);
         }
     }
 }

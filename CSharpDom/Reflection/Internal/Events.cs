@@ -23,7 +23,7 @@ namespace CSharpDom.Reflection.Internal
             foreach (EventInfo eventInfo in declaringType.Type.GetAllEvents())
             {
                 Type interfaceType;
-                if (eventInfo.AddMethod.IsDefined(typeof(CompilerGeneratedAttribute)))
+                if (eventInfo.AddMethod.IsDefined(typeof(CompilerGeneratedAttribute), false))
                 {
                     events.Add(eventFactory.CreateEvent(declaringType, eventInfo));
                 }

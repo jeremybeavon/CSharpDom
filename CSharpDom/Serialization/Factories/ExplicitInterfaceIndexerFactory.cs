@@ -15,6 +15,7 @@ namespace CSharpDom.Serialization.Factories
             Value = new ExplicitInterfaceIndexer()
             {
                 Attributes = indexer.Attributes.ToAttributeListUsingFactory(),
+                ExplicitInterface = new InterfaceReferenceFactory(indexer.ExplicitInterface).Value,
                 IndexerType = new TypeReferenceFactory(indexer.IndexerType).Value,
                 Parameters = indexer.Parameters.ToList(parameter => new IndexerParameterFactory(parameter).Value)
             };

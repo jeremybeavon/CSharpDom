@@ -19,7 +19,8 @@ namespace CSharpDom.Reflection
         {
             MethodInfo = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method, typeof(CompilerGeneratedAttribute)));
-            body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
+            body = new Lazy<ILMethodBodyWithReflectionEmit>(
+                () => method.IsDefined(typeof(CompilerGeneratedAttribute)) ? null : new ILMethodBodyWithReflectionEmit(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes

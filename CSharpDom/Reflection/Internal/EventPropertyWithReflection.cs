@@ -20,7 +20,9 @@ namespace CSharpDom.Reflection.Internal
         private readonly EventInfo @event;
         private readonly Lazy<Attributes> attributes;
         private readonly DelegateReferenceWithReflection eventType;
+        private readonly Lazy<Attributes> addAttributes;
         private readonly Lazy<ILMethodBodyWithReflectionEmit> addBody;
+        private readonly Lazy<Attributes> removeAttributes;
         private readonly Lazy<ILMethodBodyWithReflectionEmit> removeBody;
 
         internal EventPropertyWithReflection(ITypeWithReflection declaringType, EventInfo @event)
@@ -29,7 +31,9 @@ namespace CSharpDom.Reflection.Internal
             this.@event = @event;
             attributes = new Lazy<Attributes>(() => new Attributes(@event));
             eventType = new DelegateReferenceWithReflection(@event.EventHandlerType);
+            addAttributes = new Lazy<Attributes>(() => new Attributes(@event.AddMethod));
             addBody = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(@event.AddMethod));
+            removeAttributes = new Lazy<Attributes>(() => new Attributes(@event.RemoveMethod));
             removeBody = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(@event.RemoveMethod));
         }
 
@@ -50,7 +54,7 @@ namespace CSharpDom.Reflection.Internal
 
         public override string Name
         {
-            get { return @event.Name; }
+            get { return @event.Name(); }
         }
 
         public EventInfo EventInfo
@@ -66,6 +70,16 @@ namespace CSharpDom.Reflection.Internal
         public override ILMethodBodyWithReflectionEmit RemoveBody
         {
             get { return removeBody.Value; }
+        }
+
+        public override IReadOnlyCollection<AttributeWithReflection> AddAttributes
+        {
+            get { return addAttributes.Value.AttributesWithReflection; }
+        }
+
+        public override IReadOnlyCollection<AttributeWithReflection> RemoveAttributes
+        {
+            get { return removeAttributes.Value.AttributesWithReflection; }
         }
     }
 }

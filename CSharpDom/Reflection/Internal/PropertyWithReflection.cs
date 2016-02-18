@@ -51,7 +51,7 @@ namespace CSharpDom.Reflection.Internal
         
         public override string Name
         {
-            get { return property.Name; }
+            get { return property.Name(); }
         }
 
         public override ITypeReferenceWithReflection PropertyType

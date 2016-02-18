@@ -16,6 +16,7 @@ namespace CSharpDom.Serialization.Factories
             {
                 Attributes = method.Attributes.ToAttributeListUsingFactory(),
                 Body = new MethodBodyFactory(method.Body).Value,
+                ExplicitInterface = new InterfaceReferenceFactory(method.ExplicitInterface).Value,
                 GenericParameters = method.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 IsAsync = method.IsAsync,
                 Name = method.Name,

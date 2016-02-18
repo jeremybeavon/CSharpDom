@@ -15,6 +15,7 @@ namespace CSharpDom.Serialization.Factories
             Value = new ExplicitInterfaceProperty()
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
+                ExplicitInterface = new InterfaceReferenceFactory(property.ExplicitInterface).Value,
                 Name = property.Name,
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value
             };

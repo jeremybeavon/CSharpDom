@@ -1,0 +1,16 @@
+﻿public static string GenerateTestCode(Type type)
+{
+    StringBuilder builder = new StringBuilder();
+    foreach (Type testType in type.Assembly.GetTypes().Where(temp => temp.Namespace == type.Namespace))
+    {
+        string typeName = CSharpDom.Reflection.TypeExtensions.Name(testType);
+        builder.AppendLine();
+		builder.AppendLine("[TestMethod]");
+        builder.AppendLine(string.Format("public async Task Test{0}()", System.Text.RegularExpressions.Regex.Replace(typeName, "^ClassWith", "ClassWithReflectionWith")));
+        builder.AppendLine("{");
+        builder.AppendLine(string.Format("await TestClassAsync(typeof({0}));", typeName));
+        builder.AppendLine("}");
+    }
+
+    return builder.ToString();
+}

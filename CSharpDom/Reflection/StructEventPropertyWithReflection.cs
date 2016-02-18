@@ -21,6 +21,11 @@ namespace CSharpDom.Reflection
             this.@event = new EventPropertyWithReflection(declaringType, @event);
         }
 
+        public override IReadOnlyCollection<AttributeWithReflection> AddAttributes
+        {
+            get { return @event.AddAttributes; }
+        }
+
         public override ILMethodBodyWithReflectionEmit AddBody
         {
             get { return @event.AddBody; }
@@ -44,6 +49,11 @@ namespace CSharpDom.Reflection
         public override string Name
         {
             get { return @event.Name; }
+        }
+
+        public override IReadOnlyCollection<AttributeWithReflection> RemoveAttributes
+        {
+            get { return @event.RemoveAttributes; }
         }
 
         public override ILMethodBodyWithReflectionEmit RemoveBody

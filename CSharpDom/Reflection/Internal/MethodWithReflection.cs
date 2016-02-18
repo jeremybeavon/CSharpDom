@@ -59,7 +59,7 @@ namespace CSharpDom.Reflection.Internal
 
         public override string Name
         {
-            get { return method.Name; }
+            get { return method.Name(); }
         }
 
         public override IReadOnlyList<MethodParameterWithReflection> Parameters
