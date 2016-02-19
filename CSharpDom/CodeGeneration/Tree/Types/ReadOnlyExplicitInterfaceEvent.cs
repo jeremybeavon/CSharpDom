@@ -63,5 +63,15 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return removeBody; }
         }
+
+        public override IReadOnlyCollection<AttributeGroupNotSupported> AddAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public override IReadOnlyCollection<AttributeGroupNotSupported> RemoveAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
     }
 }

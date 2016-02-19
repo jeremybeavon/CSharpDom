@@ -42,25 +42,13 @@ namespace CSharpDom.Tests.Reflection
         {
             await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
         }
-
-        [TestMethod]
-        public async Task TestClassWithReflectionWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroup()
-        {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroup));
-        }
-
+        
         [TestMethod]
         public async Task TestClassWithReflectionWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups()
         {
             await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
-
-        [TestMethod]
-        public async Task TestClassWithReflectionWithExplicitInterfaceEventWith2AttributesIn1AttributeGroup()
-        {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn1AttributeGroup));
-        }
-
+        
         [TestMethod]
         public async Task TestClassWithReflectionWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups()
         {

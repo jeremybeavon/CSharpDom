@@ -239,9 +239,10 @@ namespace CSharpDom.Text
             }
         }
 
-        internal static void AddGenericParameterSteps<TGenericParameter>(
+        internal static void AddGenericParameterDeclarationSteps<TGenericParameter>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyList<TGenericParameter> genericParameters)
+            where TGenericParameter : IGenericParameterDeclaration
         {
             if (genericParameters.Count != 0)
             {
@@ -249,6 +250,19 @@ namespace CSharpDom.Text
                 steps.AddRange(
                     genericParameters.Select(parameter => new WriteName(((IHasName)parameter).Name)),
                     () => steps.AddRange(new WriteComma(), new WriteWhitespace()));
+                steps.Add(new WriteEndGenericParameters());
+            }
+        }
+
+        internal static void AddGenericParameterSteps<TGenericParameter>(
+            this List<ISourceCodeBuilderStep> steps,
+            IReadOnlyList<TGenericParameter> genericParameters)
+            where TGenericParameter : IGenericParameter
+        {
+            if (genericParameters.Count != 0)
+            {
+                steps.Add(new WriteStartGenericParameters());
+                steps.AddCommaSeparatedChildNodeSteps(genericParameters);
                 steps.Add(new WriteEndGenericParameters());
             }
         }

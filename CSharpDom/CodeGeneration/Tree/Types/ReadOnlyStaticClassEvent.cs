@@ -71,7 +71,17 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return classEvent.Visibility; }
         }
-        
+
+        public IReadOnlyCollection<AttributeGroupNotSupported> AddAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public IReadOnlyCollection<AttributeGroupNotSupported> RemoveAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
         public bool IsEventProperty { get; private set; }
 
         public void Accept(IGenericVisitor visitor)

@@ -162,7 +162,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteClassKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@class.Name));
-            Steps.AddGenericParameterSteps(@class.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(@class.GenericParameters);
             Steps.AddBaseClassAndImplementedInterfacesSteps(@class, @class);
             Steps.AddGenericParameterConstraintSteps(@class.GenericParameters);
             Steps.Add(new WriteIndentedNewLine());
@@ -265,7 +265,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteChildNode<TTypeReference>(@delegate.ReturnType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@delegate.Name));
-            Steps.AddGenericParameterSteps(@delegate.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(@delegate.GenericParameters);
             Steps.Add(new WriteStartParenthesis());
             Steps.AddCommaSeparatedChildNodeSteps(@delegate.Parameters);
             Steps.Add(new WriteEndParenthesis());
@@ -390,6 +390,7 @@ namespace CSharpDom.Text
         public override void VisitExplicitInterfaceEvent<TAttributeGroup, TDeclaringType, TInterfaceReference, TDelegateReference, TMethodBody>(
             IExplicitInterfaceEvent<TAttributeGroup, TDeclaringType, TInterfaceReference, TDelegateReference, TMethodBody> @event)
         {
+            Steps.AddChildNodeStepsOnNewLines(@event.Attributes);
             explicitInterface = new WriteChildNode<TInterfaceReference>(@event.ExplicitInterface);
             VisitEventProperty(@event);
             explicitInterface = null;
@@ -420,6 +421,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
             Steps.Add(new WriteIndentedNewLine());
+            Steps.AddChildNodeStepsOnNewLines(eventProperty.AddAttributes);
             Steps.Add(new WriteAddKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteStartBrace());
@@ -427,6 +429,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteChildNode<TMethodBody>(eventProperty.AddBody));
             Steps.Add(new WriteEndBrace());
             Steps.Add(new WriteIndentedNewLine());
+            Steps.AddChildNodeStepsOnNewLines(eventProperty.RemoveAttributes);
             Steps.Add(new WriteRemoveKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteStartBrace());
@@ -623,7 +626,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteInterfaceKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@interface.Name));
-            Steps.AddGenericParameterSteps(@interface.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(@interface.GenericParameters);
             if (@interface.Interfaces.Count != 0)
             {
                 Steps.Add(new WriteWhitespace());
@@ -697,7 +700,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteChildNode<TTypeReference>(method.ReturnType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(method.Name));
-            Steps.AddGenericParameterSteps(method.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(method.GenericParameters);
             Steps.Add(new WriteStartParenthesis());
             Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
             Steps.Add(new WriteEndParenthesis());
@@ -724,7 +727,7 @@ namespace CSharpDom.Text
             }
 
             Steps.Add(new WriteName(method.Name));
-            Steps.AddGenericParameterSteps(method.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(method.GenericParameters);
             Steps.Add(new WriteStartParenthesis());
             Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
             Steps.Add(new WriteEndParenthesis());
@@ -744,7 +747,7 @@ namespace CSharpDom.Text
             }
 
             Steps.Add(new WriteName(method.Name));
-            Steps.AddGenericParameterSteps(method.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(method.GenericParameters);
             Steps.Add(new WriteStartParenthesis());
             Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
             Steps.Add(new WriteEndParenthesis());
@@ -845,7 +848,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteClassKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(nestedClass.Name));
-            Steps.AddGenericParameterSteps(nestedClass.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(nestedClass.GenericParameters);
             Steps.AddBaseClassAndImplementedInterfacesSteps(nestedClass, nestedClass);
             Steps.AddGenericParameterConstraintSteps(nestedClass.GenericParameters);
             Steps.Add(new WriteIndentedNewLine());
@@ -881,7 +884,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteChildNode<TTypeReference>(nestedDelegate.ReturnType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(nestedDelegate.Name));
-            Steps.AddGenericParameterSteps(nestedDelegate.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(nestedDelegate.GenericParameters);
             Steps.Add(new WriteStartParenthesis());
             Steps.AddCommaSeparatedChildNodeSteps(nestedDelegate.Parameters);
             Steps.Add(new WriteEndParenthesis());
@@ -974,7 +977,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteInterfaceKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@interface.Name));
-            Steps.AddGenericParameterSteps(@interface.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(@interface.GenericParameters);
             if (@interface.Interfaces.Count != 0)
             {
                 Steps.Add(new WriteWhitespace());
@@ -1015,7 +1018,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteStructKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(nestedStruct.Name));
-            Steps.AddGenericParameterSteps(nestedStruct.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(nestedStruct.GenericParameters);
             Steps.AddImplementedInterfacesSteps(nestedStruct);
             Steps.AddGenericParameterConstraintSteps(nestedStruct.GenericParameters);
             Steps.Add(new WriteIndentedNewLine());
@@ -1246,7 +1249,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteStructKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@struct.Name));
-            Steps.AddGenericParameterSteps(@struct.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(@struct.GenericParameters);
             Steps.AddImplementedInterfacesSteps(@struct);
             Steps.AddGenericParameterConstraintSteps(@struct.GenericParameters);
             Steps.Add(new WriteIndentedNewLine());
@@ -1345,7 +1348,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteClassKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@class.Name));
-            Steps.AddGenericParameterSteps(@class.GenericParameters);
+            Steps.AddGenericParameterDeclarationSteps(@class.GenericParameters);
             Steps.AddBaseClassAndImplementedInterfacesSteps(@class, @class);
             Steps.AddGenericParameterConstraintSteps(@class.GenericParameters);
             Steps.Add(new WriteIndentedNewLine());

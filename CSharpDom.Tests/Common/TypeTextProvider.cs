@@ -36,7 +36,7 @@ namespace CSharpDom.Tests.Common
 
             if (!typeName.EndsWith("BaseClass"))
             {
-                string lastNamespace = namespaces.Last();
+                string lastNamespace = namespaces[0];
                 typeName = typeName
                     .Replace(lastNamespace + "s", string.Empty)
                     .Replace(lastNamespace, string.Empty);

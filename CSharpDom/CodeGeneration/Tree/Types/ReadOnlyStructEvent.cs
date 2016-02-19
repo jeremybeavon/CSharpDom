@@ -1,6 +1,7 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.NotSupported;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
@@ -75,7 +76,17 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return structEvent.Visibility; }
         }
-        
+
+        public IReadOnlyCollection<AttributeGroupNotSupported> AddAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public IReadOnlyCollection<AttributeGroupNotSupported> RemoveAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
         public void Accept(IGenericVisitor visitor)
         {
             if (structEvent.IsEventProperty)

@@ -14,11 +14,13 @@ namespace CSharpDom.Serialization.Factories
         {
             Value = new ExplicitInterfaceEvent()
             {
+                AddAttributes = @event.AddAttributes.ToAttributeListUsingFactory(),
                 AddBody = new MethodBodyFactory(@event.AddBody).Value,
                 Attributes = @event.Attributes.ToAttributeListUsingFactory(),
                 EventType = new DelegateReferenceFactory(@event.EventType).Value,
                 ExplicitInterface = new InterfaceReferenceFactory(@event.ExplicitInterface).Value,
                 Name = @event.Name,
+                RemoveAttributes = @event.AddAttributes.ToAttributeListUsingFactory(),
                 RemoveBody = new MethodBodyFactory(@event.RemoveBody).Value
             };
         }

@@ -62,5 +62,15 @@ namespace CSharpDom.Reflection
         {
             get { return @event.EventInfo.AddMethod.ClassVisibility(); }
         }
+
+        public override IReadOnlyCollection<AttributeWithReflection> AddAttributes
+        {
+            get { return @event.AddAttributes; }
+        }
+
+        public override IReadOnlyCollection<AttributeWithReflection> RemoveAttributes
+        {
+            get { return @event.RemoveAttributes; }
+        }
     }
 }

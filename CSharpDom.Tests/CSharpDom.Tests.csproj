@@ -786,7 +786,6 @@
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\BitwiseNot.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\Decrement.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\Divide.cs" />
-    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\EqualAndNotEquals.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\ExclusiveOr.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\Increment.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\LeftShift.cs" />
@@ -888,6 +887,7 @@
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\SealedClasses\Constructors\ParametersWithModifiers.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\SealedClasses\Constructors\Private.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\SealedClasses\Constructors\Public.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\EqualAndNotEqual.cs" />
     <Compile Include="Reflection\ClassEventPropertyWithReflectionTests.cs" />
     <Compile Include="Reflection\ExplicitInterfaceEventWithReflectionTests.cs" />
     <Compile Include="Reflection\OperatorOverloadsWithReflectionTests.cs" />

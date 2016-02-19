@@ -776,7 +776,7 @@
     <Compile Include="Classes\OperatorOverloads\BitwiseNot.cs" />
     <Compile Include="Classes\OperatorOverloads\Decrement.cs" />
     <Compile Include="Classes\OperatorOverloads\Divide.cs" />
-    <Compile Include="Classes\OperatorOverloads\EqualAndNotEquals.cs" />
+    <Compile Include="Classes\OperatorOverloads\EqualAndNotEqual.cs" />
     <Compile Include="Classes\OperatorOverloads\ExclusiveOr.cs" />
     <Compile Include="Classes\OperatorOverloads\Increment.cs" />
     <Compile Include="Classes\OperatorOverloads\LeftShift.cs" />
