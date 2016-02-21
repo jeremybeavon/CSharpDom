@@ -7,9 +7,9 @@ namespace CSharpDom.Reflection
     public sealed class ExtensionParameterWithReflection :
         AbstractExtensionParameter<AttributeWithReflection, ITypeReferenceWithReflection>
     {
-        private readonly ParameterWithReflection parameter;
+        private readonly MethodParameterWithReflection parameter;
 
-        internal ExtensionParameterWithReflection(ParameterWithReflection parameter)
+        internal ExtensionParameterWithReflection(MethodParameterWithReflection parameter)
         {
             this.parameter = parameter;
         }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CSharpDom.Common;
+using System;
 using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
@@ -19,7 +20,10 @@ namespace CSharpDom.Reflection.Internal
             StructFieldWithReflection,
             StructConstructorWithReflection,
             StructNestedClassCollectionWithReflection,
+            IStructNestedAbstractClass,
             StructNestedClassWithReflection,
+            IStructNestedSealedClass,
+            IStructNestedStaticClass,
             StructNestedDelegateWithReflection,
             StructNestedEnumWithReflection,
             StructNestedInterfaceCollectionWithReflection,
@@ -119,6 +123,11 @@ namespace CSharpDom.Reflection.Internal
             return new StructMethodWithReflection(declaringType, method);
         }
 
+        protected override IStructNestedAbstractClass CreateNestedAbstractClass(ITypeWithReflection declaringType, Type type)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override StructNestedClassWithReflection CreateNestedClass(ITypeWithReflection declaringType, Type type)
         {
             return new StructNestedClassWithReflection(declaringType, type);
@@ -137,6 +146,16 @@ namespace CSharpDom.Reflection.Internal
         protected override StructNestedInterfaceWithReflection CreateNestedInterface(ITypeWithReflection declaringType, Type type)
         {
             return new StructNestedInterfaceWithReflection(declaringType, type);
+        }
+
+        protected override IStructNestedSealedClass CreateNestedSealedClass(ITypeWithReflection declaringType, Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IStructNestedStaticClass CreateNestedStaticClass(ITypeWithReflection declaringType, Type type)
+        {
+            throw new NotImplementedException();
         }
 
         protected override StructNestedStructWithReflection CreateNestedStruct(ITypeWithReflection declaringType, Type type)

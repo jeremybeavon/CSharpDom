@@ -141,8 +141,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
-            //GenericVisitor.VisitStructNestedAbstractClassChildren(this, visitor);
+            GenericVisitor.VisitStructNestedAbstractClassChildren(this, visitor);
         }
     }
 }

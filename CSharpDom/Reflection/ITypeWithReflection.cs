@@ -10,7 +10,8 @@ namespace CSharpDom.Reflection
         IClassType,
         IAbstractType,
         IStaticType,
-        ISealedType
+        ISealedType,
+        IStaticClass
     {
     }
 }

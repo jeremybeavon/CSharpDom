@@ -20,7 +20,10 @@ namespace CSharpDom.Reflection.Internal
             ClassFieldWithReflection,
             ClassConstructorWithReflection,
             ClassNestedClassCollectionWithReflection,
+            IClassNestedAbstractClass,
             ClassNestedClassWithReflection,
+            IClassNestedSealedClass,
+            IClassNestedStaticClass,
             ClassNestedDelegateWithReflection,
             ClassNestedEnumWithReflection,
             ClassNestedInterfaceCollectionWithReflection,
@@ -122,6 +125,11 @@ namespace CSharpDom.Reflection.Internal
             return new SealedClassMethodWithReflection(declaringType, method);
         }
 
+        protected override IClassNestedAbstractClass CreateNestedAbstractClass(ITypeWithReflection declaringType, Type type)
+        {
+            throw new NotImplementedException();
+        }
+
         protected override ClassNestedClassWithReflection CreateNestedClass(ITypeWithReflection declaringType, Type type)
         {
             return new ClassNestedClassWithReflection(declaringType, type);
@@ -140,6 +148,16 @@ namespace CSharpDom.Reflection.Internal
         protected override ClassNestedInterfaceWithReflection CreateNestedInterface(ITypeWithReflection declaringType, Type type)
         {
             return new ClassNestedInterfaceWithReflection(declaringType, type);
+        }
+
+        protected override IClassNestedSealedClass CreateNestedSealedClass(ITypeWithReflection declaringType, Type type)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override IClassNestedStaticClass CreateNestedStaticClass(ITypeWithReflection declaringType, Type type)
+        {
+            throw new NotImplementedException();
         }
 
         protected override ClassNestedStructWithReflection CreateNestedStruct(ITypeWithReflection declaringType, Type type)

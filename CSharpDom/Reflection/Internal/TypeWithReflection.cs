@@ -23,7 +23,10 @@ namespace CSharpDom.Reflection.Internal
         TField,
         TConstructor,
         TNestedClassCollection,
+        TNestedAbstractClass,
         TNestedClass,
+        TNestedSealedClass,
+        TNestedStaticClass,
         TNestedDelegate,
         TNestedEnum,
         TNestedInterfaceCollection,
@@ -47,7 +50,7 @@ namespace CSharpDom.Reflection.Internal
             StaticConstructorWithReflection>,
         ITypeWithReflection,
         IEventFactory<TEvent, TEventProperty, TType>,
-        INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
+        INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
         IPropertyFactory<TProperty, TIndexer, TType>
         where TType : ITypeWithReflection
         where TEventCollection : IEventCollection
@@ -97,8 +100,8 @@ namespace CSharpDom.Reflection.Internal
                 () => new Properties<TProperty, TIndexer, TType>(declaringType, this, interfaceMethods));
             MethodCollection = new MethodCollection<TMethod, TType>(
                 () => new Methods<TMethod, TType>(declaringType, CreateMethod, interfaceMethods));
-            NestedTypeCollection = new NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
-                () => new NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, this));
+            NestedTypeCollection = new NestedTypeCollection<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
+                () => new NestedTypes<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, this));
         }
 
         public IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -150,7 +153,7 @@ namespace CSharpDom.Reflection.Internal
             get { return PropertyCollection; }
         }
 
-        public NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> NestedTypeCollection { get; private set; }
+        public NestedTypeCollection<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> NestedTypeCollection { get; private set; }
 
         public MethodCollection<TMethod, TType> MethodCollection { get; private set; }
 
@@ -166,35 +169,56 @@ namespace CSharpDom.Reflection.Internal
             get { return constructors.Value.StaticConstructorWithReflection; }
         }
         
-        TNestedClass INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedClass(
+        TNestedClass INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedClass(
             ITypeWithReflection declaringType,
             Type type)
         {
             return CreateNestedClass(declaringType, type);
         }
 
-        TNestedDelegate INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedDelegate(
+        TNestedAbstractClass INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedAbstractClass(
+            ITypeWithReflection declaringType,
+            Type type)
+        {
+            return CreateNestedAbstractClass(declaringType, type);
+        }
+
+        TNestedSealedClass INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedSealedClass(
+            ITypeWithReflection declaringType,
+            Type type)
+        {
+            return CreateNestedSealedClass(declaringType, type);
+        }
+
+        TNestedStaticClass INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedStaticClass(
+            ITypeWithReflection declaringType,
+            Type type)
+        {
+            return CreateNestedStaticClass(declaringType, type);
+        }
+
+        TNestedDelegate INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedDelegate(
             ITypeWithReflection declaringType,
             Type type)
         {
             return CreateNestedDelegate(declaringType, type);
         }
 
-        TNestedEnum INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedEnum(
+        TNestedEnum INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedEnum(
             ITypeWithReflection declaringType,
             Type type)
         {
             return CreateNestedEnum(declaringType, type);
         }
 
-        TNestedInterface INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedInterface(
+        TNestedInterface INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedInterface(
             ITypeWithReflection declaringType,
             Type type)
         {
             return CreateNestedInterface(declaringType, type);
         }
 
-        TNestedStruct INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedStruct(
+        TNestedStruct INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedStruct(
             ITypeWithReflection declaringType,
             Type type)
         {
@@ -234,6 +258,12 @@ namespace CSharpDom.Reflection.Internal
         protected abstract TIndexer CreateIndexer(TType declaringType, PropertyInfo indexer);
 
         protected abstract TMethod CreateMethod(TType declaringType, MethodInfo method);
+
+        protected abstract TNestedAbstractClass CreateNestedAbstractClass(ITypeWithReflection declaringType, Type type);
+
+        protected abstract TNestedSealedClass CreateNestedSealedClass(ITypeWithReflection declaringType, Type type);
+
+        protected abstract TNestedStaticClass CreateNestedStaticClass(ITypeWithReflection declaringType, Type type);
 
         protected abstract TNestedClass CreateNestedClass(ITypeWithReflection declaringType, Type type);
 

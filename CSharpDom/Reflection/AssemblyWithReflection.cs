@@ -58,24 +58,7 @@ namespace CSharpDom.Reflection
                     name => new NamespaceContainer(name));
                 NamespaceWithReflection @namespace = namespaceContainer.Namespace;
                 TypeContainer typeContainer = namespaceContainer.TypeContainer;
-                switch (type.TypeClassification())
-                {
-                    case TypeClassification.Class:
-                        typeContainer.Classes.Add(new ClassWithReflection(this, @namespace, type));
-                        break;
-                    case TypeClassification.Delegate:
-                        typeContainer.Delegates.Add(new DelegateWithReflection(this, @namespace, type));
-                        break;
-                    case TypeClassification.Enum:
-                        typeContainer.Enums.Add(new EnumWithReflection(this, @namespace, type));
-                        break;
-                    case TypeClassification.Interface:
-                        typeContainer.Interfaces.Add(new InterfaceWithReflection(this, @namespace, type));
-                        break;
-                    case TypeClassification.Struct:
-                        typeContainer.Structs.Add(new StructWithReflection(this, @namespace, type));
-                        break;
-                }
+                AddTypeToContainer(type, typeContainer, @namespace);
             }
 
             this.typeContainer = namespaces.GetOrAdd(string.Empty, name => new NamespaceContainer(name)).TypeContainer;
@@ -201,6 +184,37 @@ namespace CSharpDom.Reflection
         Task<AssemblyWithReflection> IProject<AssemblyWithReflection, AssemblyWithReflection, AssemblyWithReflection>.LoadAsync()
         {
             return Task.FromResult(this);
+        }
+
+        private void AddTypeToContainer(Type type, TypeContainer typeContainer, NamespaceWithReflection @namespace)
+        {
+            switch (type.TypeClassification())
+            {
+                case TypeClassification.AbstractClass:
+                    typeContainer.AbstractClasses.Add(new AbstractClassWithReflection(this, @namespace, type));
+                    break;
+                case TypeClassification.Class:
+                    typeContainer.Classes.Add(new ClassWithReflection(this, @namespace, type));
+                    break;
+                case TypeClassification.SealedClass:
+                    typeContainer.SealedClasses.Add(new SealedClassWithReflection(this, @namespace, type));
+                    break;
+                case TypeClassification.StaticClass:
+                    typeContainer.StaticClasses.Add(new StaticClassWithReflection(this, @namespace, type));
+                    break;
+                case TypeClassification.Delegate:
+                    typeContainer.Delegates.Add(new DelegateWithReflection(this, @namespace, type));
+                    break;
+                case TypeClassification.Enum:
+                    typeContainer.Enums.Add(new EnumWithReflection(this, @namespace, type));
+                    break;
+                case TypeClassification.Interface:
+                    typeContainer.Interfaces.Add(new InterfaceWithReflection(this, @namespace, type));
+                    break;
+                case TypeClassification.Struct:
+                    typeContainer.Structs.Add(new StructWithReflection(this, @namespace, type));
+                    break;
+            }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

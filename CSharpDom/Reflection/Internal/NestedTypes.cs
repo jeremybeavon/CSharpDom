@@ -4,13 +4,24 @@ using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>
+    internal sealed class NestedTypes<
+        TNestedAbstractClass,
+        TNestedClass,
+        TNestedSealedClass,
+        TNestedStaticClass,
+        TNestedDelegate,
+        TNestedEnum,
+        TNestedInterface,
+        TNestedStruct>
     {
         public NestedTypes(
             ITypeWithReflection declaringType,
-            INestedTypeFactory<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> factory)
+            INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> factory)
         {
+            List<TNestedAbstractClass> nestedAbstractClasses = new List<TNestedAbstractClass>();
             List<TNestedClass> nestedClasses = new List<TNestedClass>();
+            List<TNestedSealedClass> nestedSealedClasses = new List<TNestedSealedClass>();
+            List<TNestedStaticClass> nestedStaticClasses = new List<TNestedStaticClass>();
             List<TNestedDelegate> nestedDelegates = new List<TNestedDelegate>();
             List<TNestedEnum> nestedEnums = new List<TNestedEnum>();
             List<TNestedInterface> nestedInterfaces = new List<TNestedInterface>();
@@ -19,8 +30,17 @@ namespace CSharpDom.Reflection.Internal
             {
                 switch (nestedType.TypeClassification())
                 {
+                    case TypeClassification.AbstractClass:
+                        nestedAbstractClasses.Add(factory.CreateNestedAbstractClass(declaringType, nestedType));
+                        break;
                     case TypeClassification.Class:
                         nestedClasses.Add(factory.CreateNestedClass(declaringType, nestedType));
+                        break;
+                    case TypeClassification.SealedClass:
+                        nestedSealedClasses.Add(factory.CreateNestedSealedClass(declaringType, nestedType));
+                        break;
+                    case TypeClassification.StaticClass:
+                        nestedStaticClasses.Add(factory.CreateNestedStaticClass(declaringType, nestedType));
                         break;
                     case TypeClassification.Delegate:
                         nestedDelegates.Add(factory.CreateNestedDelegate(declaringType, nestedType));
@@ -37,14 +57,23 @@ namespace CSharpDom.Reflection.Internal
                 }
             }
 
+            NestedAbstractClasses = nestedAbstractClasses;
             NestedClasses = nestedClasses;
+            NestedSealedClasses = nestedSealedClasses;
+            NestedStaticClasses = nestedStaticClasses;
             NestedDelegates = nestedDelegates;
             NestedEnums = nestedEnums;
             NestedInterfaces = nestedInterfaces;
             NestedStructs = nestedStructs;
         }
 
+        public IReadOnlyCollection<TNestedAbstractClass> NestedAbstractClasses { get; private set; }
+
         public IReadOnlyCollection<TNestedClass> NestedClasses { get; private set; }
+
+        public IReadOnlyCollection<TNestedSealedClass> NestedSealedClasses { get; private set; }
+
+        public IReadOnlyCollection<TNestedStaticClass> NestedStaticClasses { get; private set; }
 
         public IReadOnlyCollection<TNestedDelegate> NestedDelegates { get; private set; }
 

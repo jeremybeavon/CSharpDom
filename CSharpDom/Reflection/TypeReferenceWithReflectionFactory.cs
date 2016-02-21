@@ -71,7 +71,10 @@ namespace CSharpDom.Reflection
 
             switch (type.TypeClassification())
             {
+                case TypeClassification.AbstractClass:
                 case TypeClassification.Class:
+                case TypeClassification.SealedClass:
+                case TypeClassification.StaticClass:
                     return new ClassReferenceWithReflection(type);
                 case TypeClassification.Delegate:
                     return new DelegateReferenceWithReflection(type);

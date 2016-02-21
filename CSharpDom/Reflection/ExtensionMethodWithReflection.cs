@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
-using CSharpDom.BaseClasses;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
-    /*public sealed class ExtensionMethodWithReflection :
+    public sealed class ExtensionMethodWithReflection :
         AbstractExtensionMethod<
             AttributeWithReflection,
-            ,
+            ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             ITypeReferenceWithReflection,
             ExtensionParameterWithReflection,
@@ -17,12 +18,14 @@ namespace CSharpDom.Reflection
             ILMethodBodyWithReflectionEmit>
     {
         private readonly MethodWithReflection method;
-        private readonly IInternalTypeWithReflection declaringType;
+        private readonly ExtensionParameterWithReflection extensionParameter;
+        private readonly IReadOnlyList<MethodParameterWithReflection> parameters;
 
-        internal ExtensionMethodWithReflection(IInternalTypeWithReflection declaringType, MethodInfo method)
+        internal ExtensionMethodWithReflection(ITypeWithReflection declaringType, MethodInfo method)
         {
             this.method = new MethodWithReflection(declaringType, method);
-            this.declaringType = declaringType;
+            extensionParameter = new ExtensionParameterWithReflection(this.method.Parameters[0]);
+            parameters = this.method.Parameters.Skip(1).ToArray();
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -44,11 +47,6 @@ namespace CSharpDom.Reflection
         {
             get { return method.GenericParameters; }
         }
-
-        public override ExtensionMemberInheritanceModifier InheritanceModifier
-        {
-            get { return method.MethodInfo.InheritanceModifier(declaringType); }
-        }
         
         public override string Name
         {
@@ -57,7 +55,7 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyList<MethodParameterWithReflection> Parameters
         {
-            get { return method.Parameters; }
+            get { return parameters; }
         }
 
         public override ITypeReferenceWithReflection ReturnType
@@ -65,9 +63,14 @@ namespace CSharpDom.Reflection
             get { return method.ReturnType; }
         }
 
-        public override ExtensionMemberVisibilityModifier Visibility
+        public override ExtensionParameterWithReflection ExtensionParameter
         {
-            get { return method.MethodInfo.ExtensionVisibility(); }
+            get { return extensionParameter; }
         }
-    }*/
+
+        public override bool IsAsync
+        {
+            get { return method.IsAsync; }
+        }
+    }
 }

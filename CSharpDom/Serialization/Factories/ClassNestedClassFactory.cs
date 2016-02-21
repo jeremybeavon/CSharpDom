@@ -16,7 +16,7 @@ namespace CSharpDom.Serialization.Factories
             {
                 Attributes = nestedClass.Attributes.ToAttributeListUsingFactory(),
                 BaseClass = new ClassReferenceFactory(nestedClass.BaseClass).Value,
-                //Classes = new classnestedc
+                Classes = new ClassNestedClassCollectionFactory(nestedClass.Classes).Value,
                 Constructors = nestedClass.Constructors.ToList(constructor => new ClassConstructorFactory(constructor).Value),
                 ConversionOperators = nestedClass.ConversionOperators.ToList(@operator => new ConversionOperatorFactory(@operator).Value),
                 Delegates = nestedClass.Delegates.ToList(@delegate => new ClassNestedDelegateFactory(@delegate).Value),
@@ -27,12 +27,12 @@ namespace CSharpDom.Serialization.Factories
                 GenericParameters = nestedClass.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 ImplementedInterfaces = nestedClass.ImplementedInterfaces.ToList(@interface => new InterfaceReferenceFactory(@interface).Value),
                 Indexers = new ClassIndexerCollectionFactory(nestedClass.Indexers).Value,
-                //Interfaces = new ClassNestedInterfaceCollection(nestedClass.Interfaces).,
+                Interfaces = new ClassNestedInterfaceCollectionFactory(nestedClass.Interfaces).Value,
                 Methods = new ClassMethodCollectionFactory(nestedClass.Methods).Value,
                 Name = nestedClass.Name,
                 OperatorOverloads = nestedClass.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),
                 Properties = new ClassPropertyCollectionFactory(nestedClass.Properties).Value,
-                //Structs = nestedClass.Structs.ToList(@struct => new ClassNestedStructFactory(@struct).Value),
+                Structs = new ClassNestedStructCollectionFactory(nestedClass.Structs).Value,
                 Visibility = nestedClass.Visibility
             };
         }

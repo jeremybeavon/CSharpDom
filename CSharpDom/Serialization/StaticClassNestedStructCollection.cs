@@ -33,8 +33,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
-            //GenericVisitor.VisitStaticClassNestedStructCollectionChildren(this, visitor);
+            GenericVisitor.VisitStaticClassNestedStructCollectionChildren(this, visitor);
         }
 
         public IEnumerator<StaticClassNestedStruct> GetEnumerator()

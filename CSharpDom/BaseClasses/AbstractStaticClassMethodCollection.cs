@@ -31,12 +31,12 @@ namespace CSharpDom.BaseClasses
 
         public IEnumerator<TMethod> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return Methods.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
     }
 }

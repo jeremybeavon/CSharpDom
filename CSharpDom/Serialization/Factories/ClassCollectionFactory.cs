@@ -14,8 +14,10 @@ namespace CSharpDom.Serialization.Factories
         {
             Value = new ClassCollection()
             {
+                AbstractClasses = classCollection.AbstractClasses.ToList(@class => new AbstractClassFactory(@class).Value),
                 Classes = classCollection.ToList(@class => new ClassFactory(@class).Value),
-                AbstractClasses = classCollection.AbstractClasses.ToList(@class => new AbstractClassFactory(@class).Value)
+                SealedClasses = classCollection.SealedClasses.ToList(@class => new SealedClassFactory(@class).Value),
+                StaticClasses = classCollection.StaticClasses.ToList(@class => new StaticClassFactory(@class).Value)
             };
         }
     }

@@ -2,16 +2,24 @@
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class NestedTypeCollection<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>
+    internal sealed class NestedTypeCollection<
+        TNestedAbstractClass,
+        TNestedClass,
+        TNestedSealedClass,
+        TNestedStaticClass,
+        TNestedDelegate,
+        TNestedEnum,
+        TNestedInterface,
+        TNestedStruct>
     {
-        private readonly Lazy<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>> nestedTypes;
+        private readonly Lazy<NestedTypes<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>> nestedTypes;
 
-        public NestedTypeCollection(Func<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>> nestedTypes)
+        public NestedTypeCollection(Func<NestedTypes<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>> nestedTypes)
         {
-            this.nestedTypes = new Lazy<NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>>(nestedTypes);
+            this.nestedTypes = new Lazy<NestedTypes<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>>(nestedTypes);
         }
 
-        public NestedTypes<TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> NestedTypes
+        public NestedTypes<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> NestedTypes
         {
             get { return nestedTypes.Value; }
         }

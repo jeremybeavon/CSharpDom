@@ -27,6 +27,21 @@ namespace CSharpDom.Reflection.Internal
         {
             if (type.IsClass())
             {
+                if (type.IsAbstract && type.IsSealed)
+                {
+                    return TypeClassificationEnum.StaticClass;
+                }
+
+                if (type.IsAbstract)
+                {
+                    return TypeClassificationEnum.AbstractClass;
+                }
+
+                if (type.IsSealed)
+                {
+                    return TypeClassificationEnum.SealedClass;
+                }
+                
                 return TypeClassificationEnum.Class;
             }
 

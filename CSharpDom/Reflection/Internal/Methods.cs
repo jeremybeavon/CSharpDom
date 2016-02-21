@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -20,6 +18,7 @@ namespace CSharpDom.Reflection.Internal
             List<ConversionOperatorWithReflection> conversionOperators = new List<ConversionOperatorWithReflection>();
             List<OperatorOverloadWithReflection> operatorOverloads = new List<OperatorOverloadWithReflection>();
             List<ExplicitInterfaceMethodWithReflection> explicitInterfaceMethods = new List<ExplicitInterfaceMethodWithReflection>();
+            List<ExtensionMethodWithReflection> extensionMethods = new List<ExtensionMethodWithReflection>();
             MethodInfo destructorMethod = new Action(Finalize).Method;
             foreach (MethodInfo method in declaringType.Type.GetAllMethods())
             {
@@ -34,7 +33,11 @@ namespace CSharpDom.Reflection.Internal
                 else if (!method.IsSpecialName)
                 {
                     Type interfaceType;
-                    if (interfaceMethods.TryGetValue(method, out interfaceType))
+                    if (method.IsDefined(typeof(ExtensionAttribute)))
+                    {
+                        extensionMethods.Add(new ExtensionMethodWithReflection(declaringType, method));
+                    }
+                    else if (interfaceMethods.TryGetValue(method, out interfaceType))
                     {
                         explicitInterfaceMethods.Add(new ExplicitInterfaceMethodWithReflection(declaringType, interfaceType, method));
                     }
@@ -62,6 +65,7 @@ namespace CSharpDom.Reflection.Internal
             MethodsWithReflection = methods;
             OperatorOverloadsWithReflection = operatorOverloads;
             ExplicitInterfaceMethodsWithReflection = explicitInterfaceMethods;
+            ExtensionMethodsWithReflection = extensionMethods;
         }
 
         public IReadOnlyCollection<ConversionOperatorWithReflection> ConversionOperatorsWithReflection { get; private set; }
@@ -69,6 +73,8 @@ namespace CSharpDom.Reflection.Internal
         public IReadOnlyCollection<AbstractMethodWithReflection> AbstractMethodsWithReflection { get; private set; }
 
         public IReadOnlyCollection<TMethod> MethodsWithReflection { get; private set; }
+
+        public IReadOnlyCollection<ExtensionMethodWithReflection> ExtensionMethodsWithReflection { get; private set; }
 
         public IReadOnlyCollection<OperatorOverloadWithReflection> OperatorOverloadsWithReflection { get; private set; }
 

@@ -1165,6 +1165,15 @@ namespace CSharpDom.Common
             new NestedInterfaceCollectionWrapper<TInterface, TPartialInterface>(interfaceCollection).Accept(visitor);
         }
 
+        public static void VisitStaticClassNestedInterfaceCollectionChildren<TInterface, TPartialInterface>(
+            IStaticClassNestedInterfaceCollection<TInterface, TPartialInterface> interfaceCollection,
+            IGenericVisitor visitor)
+            where TInterface : IStaticClassNestedInterface
+            where TPartialInterface : IPartialInterface
+        {
+            new NestedInterfaceCollectionWrapper<TInterface, TPartialInterface>(interfaceCollection).Accept(visitor);
+        }
+
         public static void VisitStructNestedInterfaceCollectionChildren<TInterface, TPartialInterface>(
             IStructNestedInterfaceCollection<TInterface, TPartialInterface> interfaceCollection,
             IGenericVisitor visitor)
@@ -1188,6 +1197,15 @@ namespace CSharpDom.Common
             IClassNestedStructCollection<TStruct, TPartialStruct> structCollection,
             IGenericVisitor visitor)
             where TStruct : IClassNestedStruct
+            where TPartialStruct : IPartialStruct
+        {
+            new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
+        }
+
+        public static void VisitStaticClassNestedStructCollectionChildren<TStruct, TPartialStruct>(
+            IStaticClassNestedStructCollection<TStruct, TPartialStruct> structCollection,
+            IGenericVisitor visitor)
+            where TStruct : IStaticClassNestedStruct
             where TPartialStruct : IPartialStruct
         {
             new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
@@ -1225,6 +1243,30 @@ namespace CSharpDom.Common
             where TAbstractClass : IClassNestedAbstractClass
             where TSealedClass : IClassNestedSealedClass
             where TStaticClass : IClassNestedStaticClass
+            where TPartialClassCollection : IPartialClassCollection
+        {
+            new NestedClassCollectionWrapper<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(nestedClass).Accept(visitor);
+        }
+
+        public static void VisitStaticClassNestedClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
+            IStaticClassNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> nestedClass,
+            IGenericVisitor visitor)
+            where TClass : IStaticClassNestedClass
+            where TAbstractClass : IStaticClassNestedAbstractClass
+            where TSealedClass : IStaticClassNestedSealedClass
+            where TStaticClass : IStaticClassNestedStaticClass
+            where TPartialClassCollection : IPartialClassCollection
+        {
+            new NestedClassCollectionWrapper<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(nestedClass).Accept(visitor);
+        }
+
+        public static void VisitStructNestedClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
+            IStructNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> nestedClass,
+            IGenericVisitor visitor)
+            where TClass : IStructNestedClass
+            where TAbstractClass : IStructNestedAbstractClass
+            where TSealedClass : IStructNestedSealedClass
+            where TStaticClass : IStructNestedStaticClass
             where TPartialClassCollection : IPartialClassCollection
         {
             new NestedClassCollectionWrapper<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(nestedClass).Accept(visitor);
