@@ -891,7 +891,14 @@
     <Compile Include="Structs\2AttributesIn2AttributeGroups.cs" />
     <Compile Include="Structs\2GenericParameters.cs" />
     <Compile Include="Structs\2ImplementedInterfaces.cs" />
+    <Compile Include="Structs\Constructors\1Attribute.cs" />
+    <Compile Include="Structs\Constructors\1Parameter.cs" />
+    <Compile Include="Structs\Constructors\2AttributesIn1AttributeGroup.cs" />
+    <Compile Include="Structs\Constructors\2AttributesIn2AttributeGroups.cs" />
+    <Compile Include="Structs\Constructors\2Parameters.cs" />
     <Compile Include="Structs\Constructors\Internal.cs" />
+    <Compile Include="Structs\Constructors\ParametersWithAttributes.cs" />
+    <Compile Include="Structs\Constructors\ParametersWithModifiers.cs" />
     <Compile Include="Structs\Constructors\Private.cs" />
     <Compile Include="Structs\Constructors\Public.cs" />
     <Compile Include="Structs\Events\EventProperties\Internal.cs" />

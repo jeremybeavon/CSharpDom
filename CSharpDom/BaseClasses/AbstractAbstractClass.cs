@@ -28,7 +28,7 @@ namespace CSharpDom.BaseClasses
         TNestedStructCollection,
         TDestructor,
         TStaticConstructor> :
-        AbstractType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        AbstractClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>,
         IAbstractClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -54,36 +54,14 @@ namespace CSharpDom.BaseClasses
         where TDestructor : IDestructor
         where TStaticConstructor : IStaticConstructor
     {
-        public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
-
-        public abstract TClassReference BaseClass { get; }
-
-        public abstract TDestructor Destructor { get; }
-
-        public abstract TDocument Document { get; }
-
-        public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
-
-        public abstract IReadOnlyCollection<TInterfaceReference> ImplementedInterfaces { get; }
-        
-        public abstract string Name { get; }
-
-        public abstract TNamespace Namespace { get; }
-
-        public abstract TProject Project { get; }
-
-        public abstract TSolution Solution { get; }
-
-        public abstract TypeVisibilityModifier Visibility { get; }
-
         public override void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitClass(this);
+            visitor.VisitAbstractClass(this);
         }
 
         public override void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitClassChildren(this, visitor);
+            GenericVisitor.VisitAbstractClassChildren(this, visitor);
         }
     }
 }

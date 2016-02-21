@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpDom.Tests.Reflection
 {
     [TestClass]
-    public class ClassConstructorWithReflectionTests : AbstractClassTests<ProjectWithReflection>
+    public class ClassConstructorWithReflectionTests : AbstractSolutionTests<ProjectWithReflection>
     {
         private ISolution<ProjectWithReflection> solution;
 

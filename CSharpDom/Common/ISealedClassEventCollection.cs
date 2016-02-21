@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface ISealedClassEventCollection : IEventCollection
+    public interface ISealedClassEventCollection : IClassEventCollection
     {
     }
 }

@@ -6,7 +6,7 @@ namespace CSharpDom.Common
         IStaticClassMethodCollection,
         IReadOnlyCollection<TMethod>,
         IHasExtensionMethods<TExtensionMethod>
-        where TMethod : IClassMethod
+        where TMethod : IStaticClassMethod
         where TExtensionMethod : IExtensionMethod
     {
     }

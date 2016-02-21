@@ -59,7 +59,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClasses\AbstractAbstractClass.cs" />
+    <Compile Include="BaseClasses\AbstractStaticClassFieldCollection.cs" />
+    <Compile Include="BaseClasses\AbstractStaticClassConstant.cs" />
+    <Compile Include="BaseClasses\AbstractStructConstant.cs" />
+    <Compile Include="BaseClasses\AbstractClassConstant.cs" />
+    <Compile Include="BaseClasses\AbstractSealedClass.cs" />
+    <Compile Include="BaseClasses\AbstractStaticClass.cs" />
+    <Compile Include="BaseClasses\AbstractStaticClassEventCollection.cs" />
+    <Compile Include="BaseClasses\AbstractStaticClassMethodCollection.cs" />
+    <Compile Include="BaseClasses\AbstractStaticClassNestedStaticClass.cs" />
+    <Compile Include="BaseClasses\AbstractClassNestedAbstractClass.cs" />
+    <Compile Include="BaseClasses\AbstractStaticClassNestedAbstractClass.cs" />
+    <Compile Include="BaseClasses\AbstractClassNestedSealedClass.cs" />
+    <Compile Include="BaseClasses\AbstractStaticClassNestedSealedClass.cs" />
+    <Compile Include="BaseClasses\AbstractStructNestedStaticClass.cs" />
     <Compile Include="BaseClasses\AbstractConstantGroup.cs" />
+    <Compile Include="BaseClasses\AbstractClassNestedStaticClass.cs" />
+    <Compile Include="BaseClasses\AbstractNestedStaticClass.cs" />
+    <Compile Include="BaseClasses\AbstractNestedSealedClass.cs" />
+    <Compile Include="BaseClasses\AbstractNestedAbstractClass.cs" />
     <Compile Include="BaseClasses\AbstractNestedStructCollection.cs" />
     <Compile Include="BaseClasses\AbstractNestedInterfaceCollection.cs" />
     <Compile Include="BaseClasses\AbstractExtensionMethod.cs" />
@@ -72,6 +90,8 @@
     <Compile Include="BaseClasses\AbstractStructCollection.cs" />
     <Compile Include="BaseClasses\AbstractInterfaceCollection.cs" />
     <Compile Include="BaseClasses\AbstractStructFieldCollection.cs" />
+    <Compile Include="BaseClasses\AbstractStructNestedSealedClass.cs" />
+    <Compile Include="BaseClasses\AbstractStructNestedAbstractClass.cs" />
     <Compile Include="BaseClasses\AbstractStructNestedClassCollection.cs" />
     <Compile Include="BaseClasses\AbstractStructNestedInterfaceCollection.cs" />
     <Compile Include="BaseClasses\AbstractStructNestedStructCollection.cs" />
@@ -172,6 +192,7 @@
     <Compile Include="BaseClasses\AbstractGenericParameterDeclaration.cs" />
     <Compile Include="BaseClasses\AbstractGenericVisitor.cs" />
     <Compile Include="BaseClasses\AbstractStructType.cs" />
+    <Compile Include="BaseClasses\AbstractStaticType.cs" />
     <Compile Include="BaseClasses\AbstractType.cs" />
     <Compile Include="BaseClasses\AbstractClassReference.cs" />
     <Compile Include="BaseClasses\AbstractClassConstructor.cs" />
@@ -242,11 +263,16 @@
     <Compile Include="BaseClasses\Expressions\AbstractAwaitExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractArrayIndexExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractGenericExpressionVisitor.cs" />
+    <Compile Include="BaseClasses\Wrappers\ClassWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\ConstantGroupWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\FieldGroupWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\NestedSealedClassWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\NestedAbstractClassWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedClassCollectionWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedInterfaceCollectionWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\NestedStaticClassWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedStructCollectionWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\StaticTypeWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\StructTypeWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\TypeWrapper.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclaration.cs" />
@@ -485,7 +511,17 @@
     <Compile Include="Reflection\Internal\MethodCollection.cs" />
     <Compile Include="Reflection\Internal\NestedTypeCollection.cs" />
     <Compile Include="Reflection\Internal\PropertyCollection.cs" />
+    <Compile Include="Search\FindStructByNameVisitor.cs" />
+    <Compile Include="Search\FindNamespaceForStructVisitor.cs" />
     <Compile Include="Serialization\ClassCollection.cs" />
+    <Compile Include="Serialization\StaticClassConstant.cs" />
+    <Compile Include="Serialization\ClassNestedStaticClass.cs" />
+    <Compile Include="Serialization\ExtensionMethod.cs" />
+    <Compile Include="Serialization\StaticClassEventCollection.cs" />
+    <Compile Include="Serialization\StaticClassMethodCollection.cs" />
+    <Compile Include="Serialization\StaticClassNestedSealedClass.cs" />
+    <Compile Include="Serialization\StructNestedSealedClass.cs" />
+    <Compile Include="Serialization\ClassNestedSealedClass.cs" />
     <Compile Include="Serialization\DelegateParameter.cs" />
     <Compile Include="Serialization\ExtensionParameter.cs" />
     <Compile Include="Serialization\Factories\ExtensionParameterFactory.cs" />
@@ -530,6 +566,9 @@
     <Compile Include="Serialization\Factories\AbstractClassMethodCollectionFactory.cs" />
     <Compile Include="Serialization\Factories\AbstractClassIndexerCollectionFactory.cs" />
     <Compile Include="Serialization\Factories\AbstractClassEventCollectionFactory.cs" />
+    <Compile Include="Serialization\ClassNestedAbstractClass.cs" />
+    <Compile Include="Serialization\StaticClassNestedAbstractClass.cs" />
+    <Compile Include="Serialization\StructNestedAbstractClass.cs" />
     <Compile Include="Serialization\StructNestedClassCollection.cs" />
     <Compile Include="Serialization\StructNestedInterfaceCollection.cs" />
     <Compile Include="Serialization\StructNestedStructCollection.cs" />

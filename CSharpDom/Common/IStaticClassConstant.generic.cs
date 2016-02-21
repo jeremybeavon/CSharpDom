@@ -4,7 +4,7 @@
         IStaticClassConstant,
         IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IClassType
+        where TDeclaringType : IStaticType
         where TTypeReference : ITypeReference
         where TConstant : IConstant
     {

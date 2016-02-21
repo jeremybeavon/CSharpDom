@@ -119,7 +119,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Common\AbstractClassTests.cs" />
+    <Compile Include="Common\AbstractSolutionTests.cs" />
     <Compile Include="Common\FixMethodBodyVisitor.cs" />
     <Compile Include="Common\TypeTextProvider.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\Constructors\1Attribute.cs" />
@@ -888,6 +888,17 @@
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\SealedClasses\Constructors\Private.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\SealedClasses\Constructors\Public.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Classes\OperatorOverloads\EqualAndNotEqual.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\1Attribute.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\1Parameter.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\2AttributesIn1AttributeGroup.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\2AttributesIn2AttributeGroups.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\2Parameters.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\Internal.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\ParametersWithAttributes.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\ParametersWithModifiers.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\Private.cs" />
+    <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\Public.cs" />
+    <Compile Include="Reflection\StructConstructorWithReflectionTests.cs" />
     <Compile Include="Reflection\ClassEventPropertyWithReflectionTests.cs" />
     <Compile Include="Reflection\ExplicitInterfaceEventWithReflectionTests.cs" />
     <Compile Include="Reflection\OperatorOverloadsWithReflectionTests.cs" />
@@ -924,7 +935,6 @@
   <ItemGroup>
     <Folder Include="CodeGeneration\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Enums\" />
-    <Folder Include="ExpectedResults\CSharpDom.TestTarget\Structs\Constructors\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Structs\Events\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Structs\Indexers\" />
     <Folder Include="ExpectedResults\CSharpDom.TestTarget\Structs\Methods\" />

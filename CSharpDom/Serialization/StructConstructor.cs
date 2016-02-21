@@ -6,6 +6,8 @@ namespace CSharpDom.Serialization
 {
     public sealed class StructConstructor : IStructConstructor<AttributeGroup, IStructType, ConstructorParameter, MethodBody>
     {
+        private IStructType declaringType;
+
         public StructConstructor()
         {
             Attributes = new List<AttributeGroup>();
@@ -18,7 +20,7 @@ namespace CSharpDom.Serialization
 
         public IStructType DeclaringType
         {
-            get { return null; }
+            get { return declaringType; }
         }
 
         public List<ConstructorParameter> Parameters { get; set; }
@@ -35,6 +37,11 @@ namespace CSharpDom.Serialization
             get { return Parameters; }
         }
 
+        public void AttachDeclaringType(IStructType @struct)
+        {
+            declaringType = @struct;
+        }
+
         public void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStructConstructor(this);
@@ -42,7 +49,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitConstructorChildren(this, visitor);
+            GenericVisitor.VisitStructConstructorChildren(this, visitor);
         }
     }
 }

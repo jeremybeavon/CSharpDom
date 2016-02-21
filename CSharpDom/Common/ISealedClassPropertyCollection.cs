@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface ISealedClassPropertyCollection : IPropertyCollection
+    public interface ISealedClassPropertyCollection : IClassPropertyCollection
     {
     }
 }

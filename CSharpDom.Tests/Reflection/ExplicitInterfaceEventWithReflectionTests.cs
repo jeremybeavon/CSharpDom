@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpDom.Tests.Reflection
 {
     [TestClass]
-    public class ExplicitInterfaceEventWithReflectionTests : AbstractClassTests<ProjectWithReflection>
+    public class ExplicitInterfaceEventWithReflectionTests : AbstractSolutionTests<ProjectWithReflection>
     {
         private ISolution<ProjectWithReflection> solution;
 

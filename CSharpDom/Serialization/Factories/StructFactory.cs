@@ -33,6 +33,10 @@ namespace CSharpDom.Serialization.Factories
                 //Structs = @struct.Structs.ToList(nestedStruct => new NestedStructFactory(nestedStruct).Value),
                 Visibility = @struct.Visibility
             };
+            foreach (StructConstructor constructor in Value.Constructors)
+            {
+                constructor.AttachDeclaringType(@struct);
+            }
         }
     }
 }

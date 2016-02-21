@@ -19,6 +19,12 @@ namespace CSharpDom.Search
             return SearchSolutionAsync(new FindClassByNameVisitor<TClass>(name));
         }
 
+        public Task<TStruct> StructByNameAsync<TStruct>(string name)
+            where TStruct : IStruct
+        {
+            return SearchSolutionAsync(new FindStructByNameVisitor<TStruct>(name));
+        }
+
         private async Task<T> SearchSolutionAsync<T>(AbstractSearchVisitor<T> visitor)
         {
             await visitor.VisitSolutionAsync(solution);

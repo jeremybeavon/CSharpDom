@@ -16,7 +16,7 @@
         IStaticClassNestedClass,
         INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IClassType
+        where TDeclaringType : IStaticType
         where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
         where TProperty : IStaticClassProperty

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface ISealedClassMethodCollection : IMethodCollection
+    public interface ISealedClassMethodCollection : IClassMethodCollection
     {
     }
 }

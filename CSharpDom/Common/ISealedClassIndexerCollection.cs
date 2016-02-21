@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface ISealedClassIndexerCollection : IIndexerCollection
+    public interface ISealedClassIndexerCollection : IClassIndexerCollection
     {
     }
 }
