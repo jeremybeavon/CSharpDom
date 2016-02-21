@@ -9,11 +9,16 @@ namespace CSharpDom.Reflection
     public sealed class ClassNestedInterfaceCollectionWithReflection :
         AbstractClassNestedInterfaceCollection<ClassNestedInterfaceWithReflection, PartialInterfaceNotSupported>
     {
-        private readonly ClassTypeWithReflection typeWithReflection;
+        private readonly AbstractClassNestedInterfaceCollection interfaceCollection;
 
         internal ClassNestedInterfaceCollectionWithReflection(ClassTypeWithReflection typeWithReflection)
         {
-            this.typeWithReflection = typeWithReflection;
+            interfaceCollection = new ClassNestedInterfaceCollection(typeWithReflection);
+        }
+
+        internal ClassNestedInterfaceCollectionWithReflection(SealedTypeWithReflection typeWithReflection)
+        {
+            interfaceCollection = new SealedClassNestedInterfaceCollection(typeWithReflection);
         }
 
         public override IReadOnlyCollection<PartialInterfaceNotSupported> PartialInterfaces
@@ -23,7 +28,7 @@ namespace CSharpDom.Reflection
 
         protected override IReadOnlyCollection<ClassNestedInterfaceWithReflection> Interfaces
         {
-            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedInterfaces; }
+            get { return interfaceCollection; }
         }
     }
 }

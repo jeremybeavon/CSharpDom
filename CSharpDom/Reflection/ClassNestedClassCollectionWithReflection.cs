@@ -15,36 +15,41 @@ namespace CSharpDom.Reflection
             IClassNestedStaticClass,
             PartialClassCollectionNotSupported>
     {
-        private readonly ClassTypeWithReflection typeWithReflection;
+        private readonly AbstractClassNestedClassCollection classCollection;
 
         internal ClassNestedClassCollectionWithReflection(ClassTypeWithReflection typeWithReflection)
         {
-            this.typeWithReflection = typeWithReflection;
+            classCollection = new ClassNestedClassCollection(typeWithReflection);
+        }
+
+        internal ClassNestedClassCollectionWithReflection(SealedTypeWithReflection typeWithReflection)
+        {
+            classCollection = new SealedClassNestedClassCollection(typeWithReflection);
         }
 
         public override IReadOnlyCollection<IClassNestedAbstractClass> AbstractClasses
         {
-            get { return new IClassNestedAbstractClass[0]; }
+            get { return classCollection.AbstractClasses; }
         }
 
         public override PartialClassCollectionNotSupported PartialClasses
         {
-            get { return new PartialClassCollectionNotSupported(); }
+            get { return classCollection.PartialClasses; }
         }
 
         public override IReadOnlyCollection<IClassNestedSealedClass> SealedClasses
         {
-            get { return new IClassNestedSealedClass[0]; }
+            get { return classCollection.SealedClasses; }
         }
 
         public override IReadOnlyCollection<IClassNestedStaticClass> StaticClasses
         {
-            get { return new IClassNestedStaticClass[0]; }
+            get { return classCollection.StaticClasses; }
         }
 
         protected override IReadOnlyCollection<ClassNestedClassWithReflection> Classes
         {
-            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedClasses; }
+            get { return classCollection; }
         }
     }
 }

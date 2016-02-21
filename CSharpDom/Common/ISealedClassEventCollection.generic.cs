@@ -8,7 +8,7 @@ namespace CSharpDom.Common
         IHasEventProperties<TEventProperty>,
         IHasExplicitInterfaceEvents<TExplicitInterfaceEvent>
         where TEvent : ISealedClassEvent
-        where TEventProperty : IClassEventProperty
+        where TEventProperty : ISealedClassEventProperty
         where TExplicitInterfaceEvent : IExplicitInterfaceEvent
     {
     }

@@ -10,9 +10,9 @@ namespace CSharpDom.Serialization
     public sealed class ClassNestedClassCollection :
         IClassNestedClassCollection<
             ClassNestedClass,
-            IClassNestedAbstractClass,
-            IClassNestedSealedClass,
-            IClassNestedStaticClass,
+            ClassNestedAbstractClass,
+            ClassNestedSealedClass,
+            ClassNestedStaticClass,
             IPartialClassCollection>
     {
         public ClassNestedClassCollection()
@@ -20,10 +20,7 @@ namespace CSharpDom.Serialization
             Classes = new List<ClassNestedClass>();
         }
 
-        public IReadOnlyCollection<IClassNestedAbstractClass> AbstractClasses
-        {
-            get { return new IClassNestedAbstractClass[0]; }
-        }
+        public List<ClassNestedAbstractClass> AbstractClasses { get; set; }
 
         public List<ClassNestedClass> Classes { get; set; }
 
@@ -37,16 +34,25 @@ namespace CSharpDom.Serialization
             get { return new PartialClassCollectionNotSupported(); }
         }
 
-        public IReadOnlyCollection<IClassNestedSealedClass> SealedClasses
+        public List<ClassNestedSealedClass> SealedClasses { get; set; }
+
+        public List<ClassNestedStaticClass> StaticClasses { get; set; }
+
+        IReadOnlyCollection<ClassNestedAbstractClass> IHasAbstractClasses<ClassNestedAbstractClass>.AbstractClasses
         {
-            get { return new IClassNestedSealedClass[0]; }
+            get { return AbstractClasses; }
         }
 
-        public IReadOnlyCollection<IClassNestedStaticClass> StaticClasses
+        IReadOnlyCollection<ClassNestedSealedClass> IHasSealedClasses<ClassNestedSealedClass>.SealedClasses
         {
-            get { return new IClassNestedStaticClass[0]; }
+            get { return SealedClasses; }
         }
-        
+
+        IReadOnlyCollection<ClassNestedStaticClass> IHasStaticClasses<ClassNestedStaticClass>.StaticClasses
+        {
+            get { return StaticClasses; }
+        }
+
         public void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassNestedClassCollection(this);

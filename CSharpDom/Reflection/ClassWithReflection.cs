@@ -190,6 +190,11 @@ namespace CSharpDom.Reflection
             get { return assembly; }
         }
 
+        internal ClassTypeWithReflection TypeWithReflection
+        {
+            get { return typeWithReflection; }
+        }
+
         HiddenMembersAnalyzer IInternalTypeWithReflection.HiddenMembersAnalyzer
         {
             get { return hiddenMembersAnalyzer; }

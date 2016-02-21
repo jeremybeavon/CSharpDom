@@ -9,21 +9,26 @@ namespace CSharpDom.Reflection
     public sealed class ClassNestedStructCollectionWithReflection :
         AbstractClassNestedStructCollection<ClassNestedStructWithReflection, PartialStructNotSupported>
     {
-        private readonly ClassTypeWithReflection typeWithReflection;
+        private readonly AbstractClassNestedStructCollection structCollection;
 
         internal ClassNestedStructCollectionWithReflection(ClassTypeWithReflection typeWithReflection)
         {
-            this.typeWithReflection = typeWithReflection;
+            structCollection = new ClassNestedStructCollection(typeWithReflection);
         }
-        
+
+        internal ClassNestedStructCollectionWithReflection(SealedTypeWithReflection typeWithReflection)
+        {
+            structCollection = new SealedClassNestedStructCollection(typeWithReflection);
+        }
+
         public override IReadOnlyCollection<PartialStructNotSupported> PartialStructs
         {
-            get { return new PartialStructNotSupported[0]; }
+            get { return structCollection.PartialStructs; }
         }
 
         protected override IReadOnlyCollection<ClassNestedStructWithReflection> Structs
         {
-            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedStructs; }
+            get { return structCollection; }
         }
     }
 }

@@ -13,14 +13,14 @@
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        IStructNestedClass,
+        IStructNestedStaticClass,
         INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStructType
         where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
         where TProperty : IStaticClassProperty
-        where TMethodCollection : IStaticClassMethodCollection
+        where TMethodCollection : INestedStaticClassMethodCollection
         where TFieldCollection : IStaticClassFieldCollection
         where TNestedClassCollection : IStaticClassNestedClassCollection
         where TNestedDelegate : IStaticClassNestedDelegate

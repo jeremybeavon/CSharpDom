@@ -1110,7 +1110,7 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
             where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
+            where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
             where TNestedDelegate : IStaticClassNestedDelegate
@@ -1126,7 +1126,7 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
             where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
+            where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
             where TNestedDelegate : IStaticClassNestedDelegate
@@ -1249,7 +1249,7 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
             where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
+            where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
             where TNestedDelegate : IStaticClassNestedDelegate
@@ -1266,7 +1266,7 @@ namespace CSharpDom.Common
         void VisitSealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>(
             ISealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection)
             where TEvent : ISealedClassEvent
-            where TEventProperty : IClassEventProperty
+            where TEventProperty : ISealedClassEventProperty
             where TExplicitInterfaceEvent : IExplicitInterfaceEvent;
         
         void VisitSealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer>(
@@ -1478,7 +1478,7 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
             where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
+            where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
             where TNestedDelegate : IStaticClassNestedDelegate
@@ -1548,5 +1548,8 @@ namespace CSharpDom.Common
             where TNestedInterfaceCollection : IStaticClassNestedInterfaceCollection
             where TNestedStructCollection : IStaticClassNestedStructCollection
             where TStaticConstructor : IStaticConstructor;
+
+        void VisitNestedStaticClassMethodCollection<TMethod>(INestedStaticClassMethodCollection<TMethod> methodCollection)
+            where TMethod : IStaticClassMethod;
     }
 }

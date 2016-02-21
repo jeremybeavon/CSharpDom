@@ -4,10 +4,10 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassNestedStaticClass :
-        IClassNestedStaticClass<
+    public sealed class StaticClassNestedStaticClass :
+        IStaticClassNestedStaticClass<
             AttributeGroup,
-            IClassType,
+            IStaticType,
             GenericParameterDeclaration,
             StaticClassEventCollection,
             StaticClassProperty,
@@ -20,7 +20,7 @@ namespace CSharpDom.Serialization
             StaticClassNestedStructCollection,
             StaticConstructor>
     {
-        public ClassNestedStaticClass()
+        public StaticClassNestedStaticClass()
         {
             Attributes = new List<AttributeGroup>();
             Classes = new StaticClassNestedClassCollection();
@@ -39,7 +39,7 @@ namespace CSharpDom.Serialization
 
         public StaticClassNestedClassCollection Classes { get; set; }
 
-        public IClassType DeclaringType
+        public IStaticType DeclaringType
         {
             get { return null; }
         }
@@ -66,7 +66,7 @@ namespace CSharpDom.Serialization
 
         public StaticClassNestedStructCollection Structs { get; set; }
 
-        public ClassMemberVisibilityModifier Visibility { get; set; }
+        public StaticClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {
@@ -95,12 +95,12 @@ namespace CSharpDom.Serialization
 
         public void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitClassNestedStaticClass(this);
+            visitor.VisitStaticClassNestedStaticClass(this);
         }
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitClassNestedStaticClassChildren(this, visitor);
+            GenericVisitor.VisitStaticClassNestedStaticClassChildren(this, visitor);
         }
     }
 }

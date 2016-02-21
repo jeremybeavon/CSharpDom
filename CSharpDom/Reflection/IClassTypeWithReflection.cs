@@ -18,6 +18,7 @@ namespace CSharpDom.Reflection
             ClassNestedInterfaceCollectionWithReflection,
             ClassNestedStructCollectionWithReflection,
             StaticConstructorWithReflection>,
+        IClassType,
         IHasAttributes<AttributeWithReflection>,
         IHasGenericParameters<GenericParameterDeclarationWithReflection>,
         IHasImplementedInterfaces<InterfaceReferenceWithReflection>

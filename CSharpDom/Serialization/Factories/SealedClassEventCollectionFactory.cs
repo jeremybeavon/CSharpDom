@@ -16,7 +16,7 @@ namespace CSharpDom.Serialization.Factories
             Value = new SealedClassEventCollection()
             {
                 Events = eventCollection.ToList(@event => new SealedClassEventFactory(@event).Value),
-                EventProperties = eventCollection.EventProperties.ToList(@event => new ClassEventPropertyFactory(@event).Value),
+                EventProperties = eventCollection.EventProperties.ToList(@event => new SealedClassEventPropertyFactory(@event).Value),
                 ExplicitInterfaceEvents = eventCollection.ExplicitInterfaceEvents.ToList(@event => new ExplicitInterfaceEventFactory(@event).Value)
             };
         }

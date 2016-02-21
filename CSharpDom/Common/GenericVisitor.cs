@@ -900,7 +900,7 @@ namespace CSharpDom.Common
             ISealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection,
             IGenericVisitor visitor)
             where TEvent : ISealedClassEvent
-            where TEventProperty : IClassEventProperty
+            where TEventProperty : ISealedClassEventProperty
             where TExplicitInterfaceEvent : IExplicitInterfaceEvent
         {
             VisitCollection(eventCollection, visitor);
@@ -1264,7 +1264,7 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
             where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
+            where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
             where TNestedDelegate : IStaticClassNestedDelegate
@@ -1286,7 +1286,7 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
             where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
+            where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
             where TNestedDelegate : IStaticClassNestedDelegate
@@ -1306,7 +1306,7 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
             where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
+            where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
             where TNestedDelegate : IStaticClassNestedDelegate
@@ -1326,7 +1326,7 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
             where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
+            where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
             where TNestedDelegate : IStaticClassNestedDelegate
@@ -1603,6 +1603,14 @@ namespace CSharpDom.Common
         {
             VisitCollection(methodCollection, visitor);
             VisitCollection(methodCollection.ExtensionMethods, visitor);
+        }
+
+        public static void VisitNestedStaticClassMethodCollectionChildren<TMethod>(
+            INestedStaticClassMethodCollection<TMethod> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : IStaticClassMethod
+        {
+            VisitCollection(methodCollection, visitor);
         }
     }
 }

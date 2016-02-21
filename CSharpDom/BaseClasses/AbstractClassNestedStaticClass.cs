@@ -25,7 +25,7 @@ namespace CSharpDom.BaseClasses
         where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
         where TProperty : IStaticClassProperty
-        where TMethodCollection : IStaticClassMethodCollection
+        where TMethodCollection : INestedStaticClassMethodCollection
         where TFieldCollection : IStaticClassFieldCollection
         where TNestedClassCollection : IStaticClassNestedClassCollection
         where TNestedDelegate : IStaticClassNestedDelegate

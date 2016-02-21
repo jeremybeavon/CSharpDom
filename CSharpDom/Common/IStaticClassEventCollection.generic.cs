@@ -3,7 +3,7 @@
 namespace CSharpDom.Common
 {
     public interface IStaticClassEventCollection<TEvent, TEventProperty> :
-        ISealedClassEventCollection,
+        IStaticClassEventCollection,
         IReadOnlyCollection<TEvent>,
         IHasEventProperties<TEventProperty>
         where TEvent : IStaticClassEvent

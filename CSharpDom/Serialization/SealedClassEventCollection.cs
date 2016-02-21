@@ -6,18 +6,18 @@ using System.Collections;
 namespace CSharpDom.Serialization
 {
     public sealed class SealedClassEventCollection :
-        ISealedClassEventCollection<SealedClassEvent, ClassEventProperty, ExplicitInterfaceEvent>
+        ISealedClassEventCollection<SealedClassEvent, SealedClassEventProperty, ExplicitInterfaceEvent>
     {
         public SealedClassEventCollection()
         {
             Events = new List<SealedClassEvent>();
-            EventProperties = new List<ClassEventProperty>();
+            EventProperties = new List<SealedClassEventProperty>();
             ExplicitInterfaceEvents = new List<ExplicitInterfaceEvent>();
         }
         
         public List<SealedClassEvent> Events { get; set; }
 
-        public List<ClassEventProperty> EventProperties { get; set; }
+        public List<SealedClassEventProperty> EventProperties { get; set; }
 
         public List<ExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
 
@@ -26,7 +26,7 @@ namespace CSharpDom.Serialization
             get { return Events.Count + EventProperties.Count + ExplicitInterfaceEvents.Count; }
         }
 
-        IReadOnlyCollection<ClassEventProperty> IHasEventProperties<ClassEventProperty>.EventProperties
+        IReadOnlyCollection<SealedClassEventProperty> IHasEventProperties<SealedClassEventProperty>.EventProperties
         {
             get { return EventProperties; }
         }
