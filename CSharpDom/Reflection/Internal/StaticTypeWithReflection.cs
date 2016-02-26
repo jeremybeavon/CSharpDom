@@ -20,10 +20,10 @@ namespace CSharpDom.Reflection.Internal
             StaticClassFieldWithReflection,
             IConstructor,
             StaticClassNestedClassCollectionWithReflection,
-            IStaticClassNestedAbstractClass,
+            StaticClassNestedAbstractClassWithReflection,
             StaticClassNestedClassWithReflection,
-            IStaticClassNestedSealedClass,
-            IStaticClassNestedStaticClass,
+            StaticClassNestedSealedClassWithReflection,
+            StaticClassNestedStaticClassWithReflection,
             StaticClassNestedDelegateWithReflection,
             StaticClassNestedEnumWithReflection,
             StaticClassNestedInterfaceCollectionWithReflection,
@@ -123,9 +123,9 @@ namespace CSharpDom.Reflection.Internal
             return new StaticClassMethodWithReflection(declaringType, method);
         }
 
-        protected override IStaticClassNestedAbstractClass CreateNestedAbstractClass(ITypeWithReflection declaringType, Type type)
+        protected override StaticClassNestedAbstractClassWithReflection CreateNestedAbstractClass(ITypeWithReflection declaringType, Type type)
         {
-            throw new NotImplementedException();
+            return new StaticClassNestedAbstractClassWithReflection(declaringType, type);
         }
 
         protected override StaticClassNestedClassWithReflection CreateNestedClass(ITypeWithReflection declaringType, Type type)
@@ -148,14 +148,14 @@ namespace CSharpDom.Reflection.Internal
             return new StaticClassNestedInterfaceWithReflection(declaringType, type);
         }
 
-        protected override IStaticClassNestedSealedClass CreateNestedSealedClass(ITypeWithReflection declaringType, Type type)
+        protected override StaticClassNestedSealedClassWithReflection CreateNestedSealedClass(ITypeWithReflection declaringType, Type type)
         {
-            throw new NotImplementedException();
+            return new StaticClassNestedSealedClassWithReflection((IInternalTypeWithReflection)declaringType, type);
         }
 
-        protected override IStaticClassNestedStaticClass CreateNestedStaticClass(ITypeWithReflection declaringType, Type type)
+        protected override StaticClassNestedStaticClassWithReflection CreateNestedStaticClass(ITypeWithReflection declaringType, Type type)
         {
-            throw new NotImplementedException();
+            return new StaticClassNestedStaticClassWithReflection(declaringType, type);
         }
 
         protected override StaticClassNestedStructWithReflection CreateNestedStruct(ITypeWithReflection declaringType, Type type)

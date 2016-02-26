@@ -10,9 +10,9 @@ namespace CSharpDom.Reflection
     public sealed class ClassCollectionWithReflection :
         AbstractClassCollection<
             ClassWithReflection,
-            IAbstractClass,
-            ISealedClass,
-            IStaticClass,
+            AbstractClassWithReflection,
+            SealedClassWithReflection,
+            StaticClassWithReflection,
             PartialClassCollectionNotSupported>
     {
         private readonly TypeContainer typeContainer;
@@ -22,9 +22,9 @@ namespace CSharpDom.Reflection
             this.typeContainer = typeContainer;
         }
 
-        public override IReadOnlyCollection<IAbstractClass> AbstractClasses
+        public override IReadOnlyCollection<AbstractClassWithReflection> AbstractClasses
         {
-            get { return new IAbstractClass[0]; }
+            get { return typeContainer.AbstractClasses; }
         }
 
         public override PartialClassCollectionNotSupported PartialClasses
@@ -32,14 +32,14 @@ namespace CSharpDom.Reflection
             get { return new PartialClassCollectionNotSupported(); }
         }
 
-        public override IReadOnlyCollection<ISealedClass> SealedClasses
+        public override IReadOnlyCollection<SealedClassWithReflection> SealedClasses
         {
-            get { return new ISealedClass[0]; }
+            get { return typeContainer.SealedClasses; }
         }
 
-        public override IReadOnlyCollection<IStaticClass> StaticClasses
+        public override IReadOnlyCollection<StaticClassWithReflection> StaticClasses
         {
-            get { return new IStaticClass[0]; }
+            get { return typeContainer.StaticClasses; }
         }
 
         protected override IReadOnlyCollection<ClassWithReflection> Classes

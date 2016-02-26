@@ -10,9 +10,9 @@ namespace CSharpDom.Reflection
     public sealed class ClassNestedClassCollectionWithReflection :
         AbstractClassNestedClassCollection<
             ClassNestedClassWithReflection,
-            IClassNestedAbstractClass,
-            IClassNestedSealedClass,
-            IClassNestedStaticClass,
+            ClassNestedAbstractClassWithReflection,
+            ClassNestedSealedClassWithReflection,
+            ClassNestedStaticClassWithReflection,
             PartialClassCollectionNotSupported>
     {
         private readonly AbstractClassNestedClassCollection classCollection;
@@ -27,7 +27,7 @@ namespace CSharpDom.Reflection
             classCollection = new SealedClassNestedClassCollection(typeWithReflection);
         }
 
-        public override IReadOnlyCollection<IClassNestedAbstractClass> AbstractClasses
+        public override IReadOnlyCollection<ClassNestedAbstractClassWithReflection> AbstractClasses
         {
             get { return classCollection.AbstractClasses; }
         }
@@ -37,12 +37,12 @@ namespace CSharpDom.Reflection
             get { return classCollection.PartialClasses; }
         }
 
-        public override IReadOnlyCollection<IClassNestedSealedClass> SealedClasses
+        public override IReadOnlyCollection<ClassNestedSealedClassWithReflection> SealedClasses
         {
             get { return classCollection.SealedClasses; }
         }
 
-        public override IReadOnlyCollection<IClassNestedStaticClass> StaticClasses
+        public override IReadOnlyCollection<ClassNestedStaticClassWithReflection> StaticClasses
         {
             get { return classCollection.StaticClasses; }
         }

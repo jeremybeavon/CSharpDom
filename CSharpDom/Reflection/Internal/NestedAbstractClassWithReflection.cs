@@ -6,17 +6,17 @@ using CSharpDom.Reflection.Internal.Hiding;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class NestedClassWithReflection :
-        AbstractNestedClass<
+    internal sealed class NestedAbstractClassWithReflection :
+        AbstractNestedAbstractClass<
             AttributeWithReflection,
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             ClassReferenceWithReflection,
             InterfaceReferenceWithReflection,
-            ClassEventCollectionWithReflection,
-            ClassPropertyCollectionWithReflection,
-            ClassIndexerCollectionWithReflection,
-            ClassMethodCollectionWithReflection,
+            AbstractClassEventCollectionWithReflection,
+            AbstractClassPropertyCollectionWithReflection,
+            AbstractClassIndexerCollectionWithReflection,
+            AbstractClassMethodCollectionWithReflection,
             ClassFieldCollectionWithReflection,
             ClassConstructorWithReflection,
             OperatorOverloadWithReflection,
@@ -32,26 +32,19 @@ namespace CSharpDom.Reflection.Internal
         IInternalTypeWithReflection,
         IHasType
     {
-        private readonly ITypeWithReflection declaringType;
-        private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
-        private readonly Type type;
-        private readonly ClassReferenceWithReflection baseClass;
-        private readonly ClassTypeWithReflection typeWithReflection;
-        private readonly Lazy<NestedDestructorWithReflection> destructor;
+        private readonly NestedClassWithReflection typeWithReflection;
+        private readonly AbstractClassEventCollectionWithReflection events;
+        private readonly AbstractClassIndexerCollectionWithReflection indexers;
+        private readonly AbstractClassMethodCollectionWithReflection methods;
+        private readonly AbstractClassPropertyCollectionWithReflection properties;
 
-        internal NestedClassWithReflection(ITypeWithReflection declaringType, Type type)
+        internal NestedAbstractClassWithReflection(ITypeWithReflection declaringType, Type type)
         {
-            this.declaringType = declaringType;
-            hiddenMembersAnalyzer = new HiddenMembersAnalyzer(type);
-            this.type = type;
-            if (type.BaseType != null && type.BaseType != typeof(object))
-            {
-                baseClass = new ClassReferenceWithReflection(type.BaseType);
-            }
-
-            typeWithReflection = new ClassTypeWithReflection(this);
-            destructor = new Lazy<NestedDestructorWithReflection>(
-                () => new NestedDestructorWithReflection(this, typeWithReflection.Destructor));
+            typeWithReflection = new NestedClassWithReflection(declaringType, type);
+            events = new AbstractClassEventCollectionWithReflection(typeWithReflection.TypeWithReflection);
+            indexers = new AbstractClassIndexerCollectionWithReflection(typeWithReflection.TypeWithReflection);
+            methods = new AbstractClassMethodCollectionWithReflection(typeWithReflection.TypeWithReflection);
+            properties = new AbstractClassPropertyCollectionWithReflection(typeWithReflection.TypeWithReflection);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -76,7 +69,7 @@ namespace CSharpDom.Reflection.Internal
 
         public override ITypeWithReflection DeclaringType
         {
-            get { return declaringType; }
+            get { return typeWithReflection.DeclaringType; }
         }
 
         public override IReadOnlyCollection<ClassNestedDelegateWithReflection> Delegates
@@ -86,7 +79,7 @@ namespace CSharpDom.Reflection.Internal
 
         public override NestedDestructorWithReflection Destructor
         {
-            get { return destructor.Value; }
+            get { return typeWithReflection.Destructor; }
         }
 
         public override IReadOnlyCollection<ClassNestedEnumWithReflection> Enums
@@ -94,9 +87,9 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.Enums; }
         }
         
-        public override ClassEventCollectionWithReflection Events
+        public override AbstractClassEventCollectionWithReflection Events
         {
-            get { return typeWithReflection.Events; }
+            get { return events; }
         }
 
         public override ClassFieldCollectionWithReflection Fields
@@ -109,9 +102,9 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.GenericParameters; }
         }
 
-        public override ClassIndexerCollectionWithReflection Indexers
+        public override AbstractClassIndexerCollectionWithReflection Indexers
         {
-            get { return typeWithReflection.Indexers; }
+            get { return indexers; }
         }
 
         public override ClassNestedInterfaceCollectionWithReflection Interfaces
@@ -119,14 +112,14 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.Interfaces; }
         }
         
-        public override ClassMethodCollectionWithReflection Methods
+        public override AbstractClassMethodCollectionWithReflection Methods
         {
-            get { return typeWithReflection.Methods; }
+            get { return methods; }
         }
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return typeWithReflection.Name; }
         }
         
         public override IReadOnlyCollection<OperatorOverloadWithReflection> OperatorOverloads
@@ -134,9 +127,9 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.OperatorOverloads; }
         }
         
-        public override ClassPropertyCollectionWithReflection Properties
+        public override AbstractClassPropertyCollectionWithReflection Properties
         {
-            get { return typeWithReflection.Properties; }
+            get { return properties; }
         }
         
         public override ClassNestedStructCollectionWithReflection Structs
@@ -146,7 +139,7 @@ namespace CSharpDom.Reflection.Internal
 
         public override ClassReferenceWithReflection BaseClass
         {
-            get { return baseClass; }
+            get { return typeWithReflection.BaseClass; }
         }
 
         public override IReadOnlyCollection<InterfaceReferenceWithReflection> ImplementedInterfaces
@@ -156,7 +149,7 @@ namespace CSharpDom.Reflection.Internal
         
         public Type Type
         {
-            get { return type; }
+            get { return typeWithReflection.Type; }
         }
         
         public override StaticConstructorWithReflection StaticConstructor
@@ -166,12 +159,7 @@ namespace CSharpDom.Reflection.Internal
 
         public HiddenMembersAnalyzer HiddenMembersAnalyzer
         {
-            get { return hiddenMembersAnalyzer; }
-        }
-
-        public ClassTypeWithReflection TypeWithReflection
-        {
-            get { return typeWithReflection; }
+            get { return typeWithReflection.HiddenMembersAnalyzer; }
         }
     }
 }

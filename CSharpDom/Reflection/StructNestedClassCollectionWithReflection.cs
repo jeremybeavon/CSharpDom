@@ -10,9 +10,9 @@ namespace CSharpDom.Reflection
     public sealed class StructNestedClassCollectionWithReflection :
         AbstractStructNestedClassCollection<
             StructNestedClassWithReflection,
-            IStructNestedAbstractClass,
-            IStructNestedSealedClass,
-            IStructNestedStaticClass,
+            StructNestedAbstractClassWithReflection,
+            StructNestedSealedClassWithReflection,
+            StructNestedStaticClassWithReflection,
             PartialClassCollectionNotSupported>
     {
         private readonly StructTypeWithReflection typeWithReflection;
@@ -22,9 +22,9 @@ namespace CSharpDom.Reflection
             this.typeWithReflection = typeWithReflection;
         }
 
-        public override IReadOnlyCollection<IStructNestedAbstractClass> AbstractClasses
+        public override IReadOnlyCollection<StructNestedAbstractClassWithReflection> AbstractClasses
         {
-            get { return new IStructNestedAbstractClass[0]; }
+            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedAbstractClasses; }
         }
 
         public override PartialClassCollectionNotSupported PartialClasses
@@ -32,14 +32,14 @@ namespace CSharpDom.Reflection
             get { return new PartialClassCollectionNotSupported(); }
         }
 
-        public override IReadOnlyCollection<IStructNestedSealedClass> SealedClasses
+        public override IReadOnlyCollection<StructNestedSealedClassWithReflection> SealedClasses
         {
-            get { return new IStructNestedSealedClass[0]; }
+            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedSealedClasses; }
         }
 
-        public override IReadOnlyCollection<IStructNestedStaticClass> StaticClasses
+        public override IReadOnlyCollection<StructNestedStaticClassWithReflection> StaticClasses
         {
-            get { return new IStructNestedStaticClass[0]; }
+            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedStaticClasses; }
         }
 
         protected override IReadOnlyCollection<StructNestedClassWithReflection> Classes

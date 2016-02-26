@@ -10,9 +10,9 @@ namespace CSharpDom.Reflection
     public sealed class StaticClassNestedClassCollectionWithReflection :
         AbstractStaticClassNestedClassCollection<
             StaticClassNestedClassWithReflection,
-            IStaticClassNestedAbstractClass,
-            IStaticClassNestedSealedClass,
-            IStaticClassNestedStaticClass,
+            StaticClassNestedAbstractClassWithReflection,
+            StaticClassNestedSealedClassWithReflection,
+            StaticClassNestedStaticClassWithReflection,
             PartialClassCollectionNotSupported>
     {
         private readonly StaticTypeWithReflection typeWithReflection;
@@ -22,9 +22,9 @@ namespace CSharpDom.Reflection
             this.typeWithReflection = typeWithReflection;
         }
         
-        public override IReadOnlyCollection<IStaticClassNestedAbstractClass> AbstractClasses
+        public override IReadOnlyCollection<StaticClassNestedAbstractClassWithReflection> AbstractClasses
         {
-            get { return new IStaticClassNestedAbstractClass[0]; }
+            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedAbstractClasses; }
         }
 
         public override PartialClassCollectionNotSupported PartialClasses
@@ -32,14 +32,14 @@ namespace CSharpDom.Reflection
             get { return new PartialClassCollectionNotSupported(); }
         }
 
-        public override IReadOnlyCollection<IStaticClassNestedSealedClass> SealedClasses
+        public override IReadOnlyCollection<StaticClassNestedSealedClassWithReflection> SealedClasses
         {
-            get { return new IStaticClassNestedSealedClass[0]; }
+            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedSealedClasses; }
         }
 
-        public override IReadOnlyCollection<IStaticClassNestedStaticClass> StaticClasses
+        public override IReadOnlyCollection<StaticClassNestedStaticClassWithReflection> StaticClasses
         {
-            get { return new IStaticClassNestedStaticClass[0]; }
+            get { return typeWithReflection.NestedTypeCollection.NestedTypes.NestedStaticClasses; }
         }
 
         protected override IReadOnlyCollection<StaticClassNestedClassWithReflection> Classes

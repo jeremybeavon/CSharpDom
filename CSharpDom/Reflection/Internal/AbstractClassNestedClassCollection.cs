@@ -7,9 +7,9 @@ namespace CSharpDom.Reflection.Internal
     internal abstract class AbstractClassNestedClassCollection :
         AbstractClassNestedClassCollection<
             ClassNestedClassWithReflection,
-            IClassNestedAbstractClass,
-            IClassNestedSealedClass,
-            IClassNestedStaticClass,
+            ClassNestedAbstractClassWithReflection,
+            ClassNestedSealedClassWithReflection,
+            ClassNestedStaticClassWithReflection,
             PartialClassCollectionNotSupported>
     {
     }
