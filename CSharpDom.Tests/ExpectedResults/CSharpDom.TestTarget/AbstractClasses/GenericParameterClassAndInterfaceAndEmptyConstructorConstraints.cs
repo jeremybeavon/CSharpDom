@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Classes.AbstractClasses
+﻿namespace CSharpDom.TestTarget.AbstractClasses
 {
     public abstract class AbstractClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<T>
         where T : class, IInterface, new()

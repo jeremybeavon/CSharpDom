@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Classes.AbstractClasses
+﻿namespace CSharpDom.TestTarget.AbstractClasses.Destructors
 {
     public abstract class AbstractClassWithDestructor
     {

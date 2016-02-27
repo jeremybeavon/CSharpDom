@@ -18,6 +18,9 @@ namespace CSharpDom.Serialization
         public ClassNestedClassCollection()
         {
             Classes = new List<ClassNestedClass>();
+            AbstractClasses = new List<ClassNestedAbstractClass>();
+            SealedClasses = new List<ClassNestedSealedClass>();
+            StaticClasses = new List<ClassNestedStaticClass>();
         }
 
         public List<ClassNestedAbstractClass> AbstractClasses { get; set; }

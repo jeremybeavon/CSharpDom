@@ -271,9 +271,17 @@
     <Compile Include="BaseClasses\Expressions\AbstractAwaitExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractArrayIndexExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractGenericExpressionVisitor.cs" />
+    <Compile Include="BaseClasses\Wrappers\NestedStructWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\NestedClassWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\ClassWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\ConstantGroupWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\EventPropertyWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\FieldGroupWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\MethodWrapper.generic5.cs" />
+    <Compile Include="BaseClasses\Wrappers\MethodWrapper.generic6.cs" />
+    <Compile Include="BaseClasses\Wrappers\NestedDelegateWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\NestedEnumWrapper.cs" />
+    <Compile Include="BaseClasses\Wrappers\NestedInterfaceWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedSealedClassWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedAbstractClassWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedClassCollectionWrapper.cs" />
@@ -568,6 +576,9 @@
     <Compile Include="Reflection\Internal\MethodCollection.cs" />
     <Compile Include="Reflection\Internal\NestedTypeCollection.cs" />
     <Compile Include="Reflection\Internal\PropertyCollection.cs" />
+    <Compile Include="Search\FindSealedClassByNameVisitor.cs" />
+    <Compile Include="Search\FindStaticClassByNameVisitor.cs" />
+    <Compile Include="Search\FindAbstractClassByNameVisitor.cs" />
     <Compile Include="Search\FindStructByNameVisitor.cs" />
     <Compile Include="Search\FindNamespaceForStructVisitor.cs" />
     <Compile Include="Serialization\Factories\StaticClassFactory.cs" />

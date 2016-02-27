@@ -21,7 +21,7 @@ namespace CSharpDom.BaseClasses
 
         public override void AcceptChildren(IGenericVisitor visitor)
         {
-            base.Accept(visitor);
+            GenericVisitor.VisitStructPropertyChildren(this, visitor);
         }
     }
 }

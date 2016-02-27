@@ -1,6 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
     public interface IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> : 
+        IMethod,
         IHasName,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,

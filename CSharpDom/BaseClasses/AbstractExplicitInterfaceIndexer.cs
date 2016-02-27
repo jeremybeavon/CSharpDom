@@ -26,5 +26,10 @@ namespace CSharpDom.BaseClasses
         {
             visitor.VisitExplicitInterfaceIndexer(this);
         }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitExplicitInterfaceIndexerChildren(this, visitor);
+        }
     }
 }

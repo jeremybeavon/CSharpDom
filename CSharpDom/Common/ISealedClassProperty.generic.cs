@@ -5,7 +5,7 @@
         IHasSealedClassMemberInheritanceModifier,
         IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
+        where TDeclaringType : ISealedType
         where TTypeReference : ITypeReference
         where TAccessor : IClassAccessor
     {

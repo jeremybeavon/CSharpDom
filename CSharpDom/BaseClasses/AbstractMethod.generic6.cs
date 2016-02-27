@@ -18,7 +18,7 @@ namespace CSharpDom.BaseClasses
 
         public abstract bool IsAsync { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitMethod(this);
         }

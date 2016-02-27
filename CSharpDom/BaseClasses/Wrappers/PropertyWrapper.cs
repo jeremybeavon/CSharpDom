@@ -8,9 +8,9 @@ namespace CSharpDom.BaseClasses.Wrappers
         AbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
         IWrapper<IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IAbstractType
+        where TDeclaringType : IBasicType
         where TTypeReference : ITypeReference
-        where TAccessor : IAbstractAccessor
+        where TAccessor : IAccessor
     {
         public PropertyWrapper(IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
         {

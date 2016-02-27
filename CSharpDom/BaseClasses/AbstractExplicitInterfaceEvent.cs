@@ -1,4 +1,5 @@
 ﻿using CSharpDom.Common;
+using CSharpDom.BaseClasses.Wrappers;
 
 namespace CSharpDom.BaseClasses
 {
@@ -20,7 +21,7 @@ namespace CSharpDom.BaseClasses
 
         public override void AcceptChildren(IGenericVisitor visitor)
         {
-            base.Accept(visitor);
+            GenericVisitor.VisitExplicitInterfaceEventChildren(this, visitor);
         }
     }
 }

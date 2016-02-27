@@ -2096,5 +2096,16 @@ namespace CSharpDom.BaseClasses
         {
             Visit(methodCollection);
         }
+
+        public virtual void VisitMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
+            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IBasicType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IMethodParameter
+        {
+            Visit(method);
+        }
     }
 }

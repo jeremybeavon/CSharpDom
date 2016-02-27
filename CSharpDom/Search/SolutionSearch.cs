@@ -19,6 +19,24 @@ namespace CSharpDom.Search
             return SearchSolutionAsync(new FindClassByNameVisitor<TClass>(name));
         }
 
+        public Task<TAbstractClass> AbstractClassByNameAsync<TAbstractClass>(string name)
+            where TAbstractClass : IAbstractClass
+        {
+            return SearchSolutionAsync(new FindAbstractClassByNameVisitor<TAbstractClass>(name));
+        }
+
+        public Task<TSealedClass> SealedClassByNameAsync<TSealedClass>(string name)
+            where TSealedClass : ISealedClass
+        {
+            return SearchSolutionAsync(new FindSealedClassByNameVisitor<TSealedClass>(name));
+        }
+
+        public Task<TStaticClass> StaticClassByNameAsync<TStaticClass>(string name)
+            where TStaticClass : IStaticClass
+        {
+            return SearchSolutionAsync(new FindStaticClassByNameVisitor<TStaticClass>(name));
+        }
+
         public Task<TStruct> StructByNameAsync<TStruct>(string name)
             where TStruct : IStruct
         {

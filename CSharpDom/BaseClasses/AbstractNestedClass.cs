@@ -70,7 +70,6 @@ namespace CSharpDom.BaseClasses
         public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedClassChildren(this, visitor);
-            base.Accept(visitor);
         }
     }
 }

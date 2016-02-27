@@ -20,9 +20,14 @@ namespace CSharpDom.BaseClasses
     {
         public abstract InterfaceMemberInheritanceModifier InheritanceModifier { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitInterfaceMethod(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitInterfaceMethodChildren(this, visitor);
         }
     }
 }

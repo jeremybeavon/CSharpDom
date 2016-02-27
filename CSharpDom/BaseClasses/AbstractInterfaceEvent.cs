@@ -17,5 +17,10 @@ namespace CSharpDom.BaseClasses
         {
             visitor.VisitInterfaceEvent(this);
         }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitInterfaceEventChildren(this, visitor);
+        }
     }
 }

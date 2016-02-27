@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Classes.AbstractClasses
+﻿namespace CSharpDom.TestTarget.AbstractClasses
 {
     internal abstract class InternalAbstractClass
     {
