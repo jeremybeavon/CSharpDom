@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -18,10 +19,10 @@ namespace CSharpDom.Mono.Cecil
         private readonly IndexerWithMonoCecil indexer;
         private readonly InterfaceReferenceWithMonoCecil explicitInterface;
 
-        internal ExplicitInterfaceIndexerWithMonoCecil(ITypeWithMonoCecil declaringType, Type interfaceType, PropertyInfo indexer)
+        internal ExplicitInterfaceIndexerWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition interfaceType, PropertyDefinition indexer)
         {
             this.indexer = new IndexerWithMonoCecil(declaringType, indexer);
-            explicitInterface = new InterfaceReferenceWithMonoCecil(interfaceType);
+            explicitInterface = new InterfaceReferenceWithMonoCecil(declaringType.Assembly, interfaceType);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes

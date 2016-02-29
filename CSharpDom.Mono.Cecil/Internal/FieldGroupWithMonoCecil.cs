@@ -1,26 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
-using System.Reflection;
-using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class FieldGroupWithMonoCecil : 
         AbstractFieldGroup<AttributeWithMonoCecil, ITypeWithMonoCecil, ITypeReferenceWithMonoCecil, IFieldWithMonoCecil>,
-        IHasFieldInfo
+        IHasFieldDefinition
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly FieldInfo field;
+        private readonly FieldDefinition field;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithMonoCecil fieldType;
 
-        internal FieldGroupWithMonoCecil(ITypeWithMonoCecil declaringType, FieldInfo field)
+        internal FieldGroupWithMonoCecil(ITypeWithMonoCecil declaringType, FieldDefinition field)
         {
             this.declaringType = declaringType;
             this.field = field;
-            attributes = new Lazy<Attributes>(() => new Attributes(field));
-            fieldType = TypeReferenceWithMonoCecilFactory.CreateReference(field.FieldType);
+            AssemblyWithMonoCecil assembly = declaringType.Assembly;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, field));
+            fieldType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, field.FieldType);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -33,7 +33,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return declaringType; }
         }
 
-        public FieldInfo FieldInfo
+        public FieldDefinition FieldDefinition
         {
             get { return field; }
         }

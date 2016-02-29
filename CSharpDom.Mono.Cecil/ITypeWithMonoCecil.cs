@@ -4,14 +4,15 @@ namespace CSharpDom.Mono.Cecil
 {
     public interface ITypeWithMonoCecil :
         IType,
-        IHasType,
+        IHasTypeDefinition,
         IBasicTypeWithMonoCecil,
         IStructType,
         IClassType,
         IAbstractType,
         IStaticType,
         ISealedType,
-        IStaticClass
+        IStaticClass,
+        IHasAssembly
     {
     }
 }

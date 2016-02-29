@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -13,7 +14,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         public Properties(
             TType declaringType,
             IPropertyFactory<TProperty, TIndexer, TType> propertyFactory,
-            IDictionary<MethodInfo, Type> interfaceMethods)
+            IDictionary<MethodDefinition, TypeDefinition> interfaceMethods)
         {
             List<TIndexer> indexers = new List<TIndexer>();
             List<TProperty> properties = new List<TProperty>();
@@ -21,11 +22,11 @@ namespace CSharpDom.Mono.Cecil.Internal
             List<AbstractPropertyWithMonoCecil> abstractProperties = new List<AbstractPropertyWithMonoCecil>();
             List<ExplicitInterfaceIndexerWithMonoCecil> explicitInterfaceIndexers = new List<ExplicitInterfaceIndexerWithMonoCecil>();
             List<ExplicitInterfacePropertyWithMonoCecil> explicitInterfaceProperties = new List<ExplicitInterfacePropertyWithMonoCecil>();
-            foreach (PropertyInfo property in declaringType.Type.GetAllProperties())
+            foreach (PropertyDefinition property in declaringType.TypeDefinition.Properties)
             {
-                MethodInfo method = property.Method();
-                Type interfaceType;
-                if (property.GetIndexParameters().Any())
+                MethodDefinition method = property.Method();
+                TypeDefinition interfaceType;
+                if (property.Parameters.Any())
                 {
                     if (interfaceMethods.TryGetValue(method, out interfaceType))
                     {

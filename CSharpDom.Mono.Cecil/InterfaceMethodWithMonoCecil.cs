@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using System.Reflection;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -14,22 +15,23 @@ namespace CSharpDom.Mono.Cecil
             ITypeReferenceWithMonoCecil,
             MethodParameterWithMonoCecil>
     {
-        private readonly MethodInfo method;
+        private readonly MethodDefinition method;
         private readonly IBasicTypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithMonoCecil returnType;
         private readonly Lazy<Parameters<MethodParameterWithMonoCecil>> parameters;
 
-        internal InterfaceMethodWithMonoCecil(IBasicTypeWithMonoCecil declaringType, MethodInfo method)
+        internal InterfaceMethodWithMonoCecil(IBasicTypeWithMonoCecil declaringType, MethodDefinition method)
         {
             this.method = method;
             this.declaringType = declaringType;
-            attributes = new Lazy<Attributes>(() => new Attributes(method));
-            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(method));
-            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(method.ReturnType);
+            AssemblyWithMonoCecil assembly = declaringType.Assembly;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
+            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, method));
+            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, method.ReturnType);
             parameters = new Lazy<Parameters<MethodParameterWithMonoCecil>>(
-                () => new Parameters<MethodParameterWithMonoCecil>(method, parameter => new MethodParameterWithMonoCecil(parameter)));
+                () => new Parameters<MethodParameterWithMonoCecil>(assembly, method, parameter => new MethodParameterWithMonoCecil(parameter)));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes

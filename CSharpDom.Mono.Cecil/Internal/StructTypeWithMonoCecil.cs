@@ -1,4 +1,5 @@
 ﻿using CSharpDom.Common;
+using Mono.Cecil;
 using System;
 using System.Reflection;
 
@@ -93,77 +94,77 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return structs; }
         }
 
-        protected override StructConstructorWithMonoCecil CreateConstructor(ITypeWithMonoCecil declaringType, ConstructorInfo constructor)
+        protected override StructConstructorWithMonoCecil CreateConstructor(ITypeWithMonoCecil declaringType, MethodDefinition constructor)
         {
             return new StructConstructorWithMonoCecil(declaringType, constructor);
         }
 
-        protected override StructEventWithMonoCecil CreateEvent(ITypeWithMonoCecil declaringType, EventInfo @event)
+        protected override StructEventWithMonoCecil CreateEvent(ITypeWithMonoCecil declaringType, EventDefinition @event)
         {
             return new StructEventWithMonoCecil(declaringType, @event);
         }
 
-        protected override StructEventPropertyWithMonoCecil CreateEventProperty(ITypeWithMonoCecil declaringType, EventInfo @event)
+        protected override StructEventPropertyWithMonoCecil CreateEventProperty(ITypeWithMonoCecil declaringType, EventDefinition @event)
         {
             return new StructEventPropertyWithMonoCecil(declaringType, @event);
         }
 
-        protected override StructFieldWithMonoCecil CreateField(ITypeWithMonoCecil declaringType, FieldInfo field)
+        protected override StructFieldWithMonoCecil CreateField(ITypeWithMonoCecil declaringType, FieldDefinition field)
         {
             return new StructFieldWithMonoCecil(declaringType, field);
         }
 
-        protected override StructIndexerWithMonoCecil CreateIndexer(ITypeWithMonoCecil declaringType, PropertyInfo indexer)
+        protected override StructIndexerWithMonoCecil CreateIndexer(ITypeWithMonoCecil declaringType, PropertyDefinition indexer)
         {
             return new StructIndexerWithMonoCecil(declaringType, indexer);
         }
 
-        protected override StructMethodWithMonoCecil CreateMethod(ITypeWithMonoCecil declaringType, MethodInfo method)
+        protected override StructMethodWithMonoCecil CreateMethod(ITypeWithMonoCecil declaringType, MethodDefinition method)
         {
             return new StructMethodWithMonoCecil(declaringType, method);
         }
 
-        protected override StructNestedAbstractClassWithMonoCecil CreateNestedAbstractClass(ITypeWithMonoCecil declaringType, Type type)
+        protected override StructNestedAbstractClassWithMonoCecil CreateNestedAbstractClass(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             return new StructNestedAbstractClassWithMonoCecil(declaringType, type);
         }
 
-        protected override StructNestedClassWithMonoCecil CreateNestedClass(ITypeWithMonoCecil declaringType, Type type)
+        protected override StructNestedClassWithMonoCecil CreateNestedClass(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             return new StructNestedClassWithMonoCecil(declaringType, type);
         }
 
-        protected override StructNestedDelegateWithMonoCecil CreateNestedDelegate(ITypeWithMonoCecil declaringType, Type type)
+        protected override StructNestedDelegateWithMonoCecil CreateNestedDelegate(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             return new StructNestedDelegateWithMonoCecil(declaringType, type);
         }
 
-        protected override StructNestedEnumWithMonoCecil CreateNestedEnum(ITypeWithMonoCecil declaringType, Type type)
+        protected override StructNestedEnumWithMonoCecil CreateNestedEnum(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             return new StructNestedEnumWithMonoCecil(declaringType, type);
         }
 
-        protected override StructNestedInterfaceWithMonoCecil CreateNestedInterface(ITypeWithMonoCecil declaringType, Type type)
+        protected override StructNestedInterfaceWithMonoCecil CreateNestedInterface(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             return new StructNestedInterfaceWithMonoCecil(declaringType, type);
         }
 
-        protected override StructNestedSealedClassWithMonoCecil CreateNestedSealedClass(ITypeWithMonoCecil declaringType, Type type)
+        protected override StructNestedSealedClassWithMonoCecil CreateNestedSealedClass(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             return new StructNestedSealedClassWithMonoCecil((IInternalTypeWithMonoCecil)declaringType, type);
         }
 
-        protected override StructNestedStaticClassWithMonoCecil CreateNestedStaticClass(ITypeWithMonoCecil declaringType, Type type)
+        protected override StructNestedStaticClassWithMonoCecil CreateNestedStaticClass(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             return new StructNestedStaticClassWithMonoCecil(declaringType, type);
         }
 
-        protected override StructNestedStructWithMonoCecil CreateNestedStruct(ITypeWithMonoCecil declaringType, Type type)
+        protected override StructNestedStructWithMonoCecil CreateNestedStruct(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             return new StructNestedStructWithMonoCecil(declaringType, type);
         }
 
-        protected override StructPropertyWithMonoCecil CreateProperty(ITypeWithMonoCecil declaringType, PropertyInfo property)
+        protected override StructPropertyWithMonoCecil CreateProperty(ITypeWithMonoCecil declaringType, PropertyDefinition property)
         {
             return new StructPropertyWithMonoCecil(declaringType, property);
         }

@@ -4,6 +4,7 @@ using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -18,7 +19,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly StructAccessorWithMonoCecil getAccessor;
         private readonly StructAccessorWithMonoCecil setAccessor;
 
-        internal StructPropertyWithMonoCecil(ITypeWithMonoCecil declaringType, PropertyInfo property)
+        internal StructPropertyWithMonoCecil(ITypeWithMonoCecil declaringType, PropertyDefinition property)
         {
             this.property = new PropertyWithMonoCecil(declaringType, property);
             if (this.property.GetAccessor != null)
@@ -64,7 +65,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get { return property.PropertyInfo.StructVisibility(); }
+            get { return property.PropertyDefinition.StructVisibility(); }
         }
     }
 }

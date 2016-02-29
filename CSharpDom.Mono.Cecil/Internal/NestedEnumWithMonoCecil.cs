@@ -3,24 +3,26 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Linq;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class NestedEnumWithMonoCecil :
         AbstractNestedEnum<AttributeWithMonoCecil, ITypeWithMonoCecil, NestedEnumMemberWithMonoCecil>,
-        IHasType//,
+        IHasTypeDefinition,
+        ITypeWithMonoCecil//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly Type type;
+        private readonly TypeDefinition type;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<IReadOnlyList<NestedEnumMemberWithMonoCecil>> enumMembers;
 
-        internal NestedEnumWithMonoCecil(ITypeWithMonoCecil declaringType, Type type)
+        internal NestedEnumWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             this.declaringType = declaringType;
             this.type = type;
-            attributes = new Lazy<Attributes>(() => new Attributes(type));
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, type));
             enumMembers = new Lazy<IReadOnlyList<NestedEnumMemberWithMonoCecil>>(InitializeEnumMembers);
         }
 
@@ -44,7 +46,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return type.Name; }
         }
         
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
             get { return type; }
         }
@@ -52,6 +54,11 @@ namespace CSharpDom.Mono.Cecil.Internal
         public override EnumBaseType BaseType
         {
             get { return EnumWithMonoCecil.GetBaseType(type); }
+        }
+
+        public AssemblyWithMonoCecil Assembly
+        {
+            get { return declaringType.Assembly; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)
@@ -66,7 +73,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         private IReadOnlyList<NestedEnumMemberWithMonoCecil> InitializeEnumMembers()
         {
-            return type.GetAllFields().Select(field => new NestedEnumMemberWithMonoCecil(this, field)).ToList();
+            return type.Fields.Select(field => new NestedEnumMemberWithMonoCecil(this, field)).ToList();
         }
     }
 }

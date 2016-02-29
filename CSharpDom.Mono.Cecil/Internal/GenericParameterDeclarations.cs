@@ -1,28 +1,27 @@
-﻿using System;
+﻿using Mono.Cecil;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class GenericParameterDeclarations
     {
-        public GenericParameterDeclarations(Type type)
+        public GenericParameterDeclarations(AssemblyWithMonoCecil assembly, TypeDefinition type)
         {
-            Initialize(type.GetGenericArguments());
+            Initialize(assembly, type.GenericParameters);
         }
 
-        public GenericParameterDeclarations(MethodInfo method)
+        public GenericParameterDeclarations(AssemblyWithMonoCecil assembly, MethodDefinition method)
         {
-            Initialize(method.GetGenericArguments());
+            Initialize(assembly, method.GenericParameters);
         }
 
         public IReadOnlyList<GenericParameterDeclarationWithMonoCecil> GenericParameterDeclarationsWithMonoCecil { get; private set; }
 
-        private void Initialize(IEnumerable<Type> types)
+        private void Initialize(AssemblyWithMonoCecil assembly, IEnumerable<GenericParameter> types)
         {
             GenericParameterDeclarationsWithMonoCecil = types
-                .Select(parameter => new GenericParameterDeclarationWithMonoCecil(parameter))
+                .Select(parameter => new GenericParameterDeclarationWithMonoCecil(assembly, parameter))
                 .ToList();
         }
     }

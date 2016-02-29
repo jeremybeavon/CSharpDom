@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
-using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal.Hiding
 {
@@ -16,13 +15,15 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
             ParameterSignature,
             EmptyMethodBody>
     {
+        private AssemblyWithMonoCecil assembly;
         private readonly string name;
         private readonly IReadOnlyList<ParameterSignature> parameters;
 
-        public MethodSignature(MethodInfo method)
+        public MethodSignature(AssemblyWithMonoCecil assembly, MethodDefinition method)
         {
+            this.assembly = assembly;
             name = method.Name;
-            parameters = method.GetParameters().ToArray(parameter => new ParameterSignature(parameter));
+            parameters = method.Parameters.ToArray(parameter => new ParameterSignature(assembly, parameter));
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -62,7 +63,7 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
 
         public override ITypeReferenceWithMonoCecil ReturnType
         {
-            get { return ReturnTypeSignature.Default; }
+            get { return ReturnTypeSignature.GetReturnType(assembly); }
         }
     }
 }

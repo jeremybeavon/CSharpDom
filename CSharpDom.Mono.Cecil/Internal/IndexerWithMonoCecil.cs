@@ -4,6 +4,7 @@ using System.Reflection;
 using System.Collections.Generic;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Linq;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -14,32 +15,32 @@ namespace CSharpDom.Mono.Cecil.Internal
             ITypeReferenceWithMonoCecil,
             IndexerParameterWithMonoCecil,
             AccessorWithMonoCecil>,
-        IHasPropertyInfo
+        IHasPropertyDefinition
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly PropertyInfo indexer;
+        private readonly PropertyDefinition indexer;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithMonoCecil indexerType;
         private readonly Lazy<Parameters<IndexerParameterWithMonoCecil>> parameters;
         private readonly AccessorWithMonoCecil getAccessor;
         private readonly AccessorWithMonoCecil setAccessor;
 
-        internal IndexerWithMonoCecil(ITypeWithMonoCecil declaringType, PropertyInfo indexer)
+        internal IndexerWithMonoCecil(ITypeWithMonoCecil declaringType, PropertyDefinition indexer)
         {
             this.declaringType = declaringType;
             this.indexer = indexer;
-            attributes = new Lazy<Attributes>(() => new Attributes(indexer));
-            indexerType = TypeReferenceWithMonoCecilFactory.CreateReference(indexer.PropertyType);
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, indexer));
+            indexerType = TypeReferenceWithMonoCecilFactory.CreateReference(declaringType.Assembly, indexer.PropertyType);
             parameters = new Lazy<Parameters<IndexerParameterWithMonoCecil>>(
-                () => new Parameters<IndexerParameterWithMonoCecil>(indexer, parameter => new IndexerParameterWithMonoCecil(parameter)));
+                () => new Parameters<IndexerParameterWithMonoCecil>(declaringType.Assembly, indexer, parameter => new IndexerParameterWithMonoCecil(parameter)));
             if (indexer.GetMethod != null)
             {
-                getAccessor = new AccessorWithMonoCecil(indexer.GetMethod);
+                getAccessor = new AccessorWithMonoCecil(declaringType.Assembly, indexer.GetMethod);
             }
 
             if (indexer.SetMethod != null)
             {
-                setAccessor = new AccessorWithMonoCecil(indexer.SetMethod);
+                setAccessor = new AccessorWithMonoCecil(declaringType.Assembly, indexer.SetMethod);
             }
         }
 
@@ -68,7 +69,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return parameters.Value.ParametersWithMonoCecil; }
         }
 
-        public PropertyInfo PropertyInfo
+        public PropertyDefinition PropertyDefinition
         {
             get { return indexer; }
         }

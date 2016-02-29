@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -15,7 +16,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly NestedDelegateWithMonoCecil nestedDelegate;
 
-        internal ClassNestedDelegateWithMonoCecil(ITypeWithMonoCecil declaringType, Type type)
+        internal ClassNestedDelegateWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             nestedDelegate = new NestedDelegateWithMonoCecil(declaringType, type);
         }
@@ -52,7 +53,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedDelegate.Type.ClassMemberVisibility(); }
+            get { return nestedDelegate.TypeDefinition.ClassMemberVisibility(); }
         }
     }
 }

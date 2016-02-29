@@ -1,28 +1,37 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class Parameters<TParameter>
     {
-        public Parameters(MethodBase method, Func<ParameterWithMonoCecil, TParameter> parameterFactory)
+        public Parameters(
+            AssemblyWithMonoCecil assembly,
+            MethodDefinition method,
+            Func<ParameterWithMonoCecil, TParameter> parameterFactory)
         {
-            Initialize(method.GetParameters(), parameterFactory);
+            Initialize(assembly, method.Parameters, parameterFactory);
         }
 
-        public Parameters(PropertyInfo indexer, Func<ParameterWithMonoCecil, TParameter> parameterFactory)
+        public Parameters(
+            AssemblyWithMonoCecil assembly,
+            PropertyDefinition indexer,
+            Func<ParameterWithMonoCecil, TParameter> parameterFactory)
         {
-            Initialize(indexer.GetIndexParameters(), parameterFactory);
+            Initialize(assembly, indexer.Parameters, parameterFactory);
         }
 
         public IReadOnlyList<TParameter> ParametersWithMonoCecil { get; private set; }
 
-        private void Initialize(IEnumerable<ParameterInfo> parameters, Func<ParameterWithMonoCecil, TParameter> parameterFactory)
+        private void Initialize(
+            AssemblyWithMonoCecil assembly,
+            IEnumerable<ParameterDefinition> parameters,
+            Func<ParameterWithMonoCecil, TParameter> parameterFactory)
         {
             ParametersWithMonoCecil = parameters
-                .Select(parameter => parameterFactory(new ParameterWithMonoCecil(parameter)))
+                .Select(parameter => parameterFactory(new ParameterWithMonoCecil(assembly, parameter)))
                 .ToList();
         }
     }

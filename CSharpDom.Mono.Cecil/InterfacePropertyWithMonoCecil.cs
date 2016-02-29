@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using System.Reflection;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -13,27 +14,28 @@ namespace CSharpDom.Mono.Cecil
             ITypeReferenceWithMonoCecil,
             InterfaceAccessorWithMonoCecil>
     {
-        private readonly PropertyInfo property;
+        private readonly PropertyDefinition property;
         private readonly IBasicTypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithMonoCecil propertyType;
         private readonly InterfaceAccessorWithMonoCecil getAccessor;
         private readonly InterfaceAccessorWithMonoCecil setAccessor;
 
-        internal InterfacePropertyWithMonoCecil(IBasicTypeWithMonoCecil declaringType, PropertyInfo property)
+        internal InterfacePropertyWithMonoCecil(IBasicTypeWithMonoCecil declaringType, PropertyDefinition property)
         {
             this.property = property;
             this.declaringType = declaringType;
-            attributes = new Lazy<Attributes>(() => new Attributes(property));
-            propertyType = TypeReferenceWithMonoCecilFactory.CreateReference(property.PropertyType);
+            AssemblyWithMonoCecil assembly = declaringType.Assembly;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, property));
+            propertyType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, property.PropertyType);
             if (property.GetMethod != null)
             {
-                getAccessor = new InterfaceAccessorWithMonoCecil(property.GetMethod);
+                getAccessor = new InterfaceAccessorWithMonoCecil(assembly, property.GetMethod);
             }
 
             if (property.SetMethod != null)
             {
-                setAccessor = new InterfaceAccessorWithMonoCecil(property.SetMethod);
+                setAccessor = new InterfaceAccessorWithMonoCecil(assembly, property.SetMethod);
             }
         }
 

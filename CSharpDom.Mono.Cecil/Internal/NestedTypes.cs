@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 
@@ -26,7 +27,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             List<TNestedEnum> nestedEnums = new List<TNestedEnum>();
             List<TNestedInterface> nestedInterfaces = new List<TNestedInterface>();
             List<TNestedStruct> nestedStructs = new List<TNestedStruct>();
-            foreach (Type nestedType in declaringType.Type.GetNestedTypes(BindingFlags.Public | BindingFlags.NonPublic))
+            foreach (TypeDefinition nestedType in declaringType.TypeDefinition.NestedTypes)
             {
                 switch (nestedType.TypeClassification())
                 {

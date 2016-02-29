@@ -1,8 +1,8 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
+using Mono.Cecil;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil.Internal.Hiding
 {
@@ -15,10 +15,12 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
             AccessorSignature>
     {
         private readonly IReadOnlyList<ParameterSignature> parameters;
+        private readonly AssemblyWithMonoCecil assembly;
         
-        public IndexerSignature(PropertyInfo indexer)
+        public IndexerSignature(AssemblyWithMonoCecil assembly, PropertyDefinition indexer)
         {
-            parameters = indexer.GetIndexParameters().ToArray(parameter => new ParameterSignature(parameter));
+            this.assembly = assembly;
+            parameters = indexer.Parameters.ToArray(parameter => new ParameterSignature(assembly, parameter));
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes
@@ -38,7 +40,7 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
 
         public override ITypeReferenceWithMonoCecil IndexerType
         {
-            get { return ReturnTypeSignature.Default; }
+            get { return ReturnTypeSignature.GetReturnType(assembly); }
         }
 
         public override IReadOnlyList<ParameterSignature> Parameters

@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +13,10 @@ namespace CSharpDom.Mono.Cecil
             ClassReferenceWithMonoCecil,
             GenericParameterReferenceWithMonoCecil,
             InterfaceReferenceWithMonoCecil,
-            AttributeWithMonoCecil>,
-        IHasType//,
+            AttributeWithMonoCecil>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Type type;
+        private readonly GenericParameter type;
         private readonly Lazy<Attributes> attributes;
         private readonly GenericParameterTypeConstraint typeConstraint;
         private readonly bool hasEmptyConstructorConstraint;
@@ -25,18 +25,16 @@ namespace CSharpDom.Mono.Cecil
         private readonly List<InterfaceReferenceWithMonoCecil> interfaceConstraints;
         private readonly GenericParameterDeclarationDirection direction;
 
-        internal GenericParameterDeclarationWithMonoCecil(Type type)
+        internal GenericParameterDeclarationWithMonoCecil(AssemblyWithMonoCecil assembly, GenericParameter type)
         {
             this.type = type;
-            attributes = new Lazy<Attributes>(() => new Attributes(type));
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, type));
             typeConstraint = GetTypeConstraint(type);
             direction = GetDirection(type);
-            hasEmptyConstructorConstraint = 
-                type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.DefaultConstructorConstraint) &&
-                typeConstraint != GenericParameterTypeConstraint.Struct;
+            hasEmptyConstructorConstraint = type.HasDefaultConstructorConstraint;
             genericParameterConstraints = new List<GenericParameterReferenceWithMonoCecil>();
             interfaceConstraints = new List<InterfaceReferenceWithMonoCecil>();
-            foreach (Type constraintType in type.GetGenericParameterConstraints().Where(constraint => constraint != typeof(ValueType)))
+            foreach (TypeDefinition constraintType in type.Constraints.Select(reference => reference.Resolve()))
             {
                 if (constraintType.IsGenericParameter)
                 {
@@ -44,7 +42,7 @@ namespace CSharpDom.Mono.Cecil
                 }
                 else if (constraintType.IsInterface)
                 {
-                    interfaceConstraints.Add(new InterfaceReferenceWithMonoCecil(constraintType));
+                    interfaceConstraints.Add(new InterfaceReferenceWithMonoCecil(assembly, constraintType));
                 }
                 else if (constraintType.IsClass)
                 {
@@ -53,7 +51,7 @@ namespace CSharpDom.Mono.Cecil
                         throw new InvalidOperationException("GenericParameterDeclaration appears to have 2 base classes.");
                     }
 
-                    baseClassConstraint = new ClassReferenceWithMonoCecil(constraintType);
+                    baseClassConstraint = new ClassReferenceWithMonoCecil(assembly, constraintType);
                 }
                 else
                 {
@@ -91,12 +89,7 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return type.Name; }
         }
-
-        public Type Type
-        {
-            get { return type; }
-        }
-
+        
         public override GenericParameterTypeConstraint TypeConstraint
         {
             get { return typeConstraint; }
@@ -117,14 +110,14 @@ namespace CSharpDom.Mono.Cecil
             AcceptChildren(new ForwardingGenericVisitor(visitor));
         }*/
 
-        private static GenericParameterTypeConstraint GetTypeConstraint(Type type)
+        private static GenericParameterTypeConstraint GetTypeConstraint(GenericParameter type)
         {
-            if (type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.ReferenceTypeConstraint))
+            if (type.HasReferenceTypeConstraint)
             {
                 return GenericParameterTypeConstraint.Class;
             }
 
-            if (type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.NotNullableValueTypeConstraint))
+            if (type.HasNotNullableValueTypeConstraint)
             {
                 return GenericParameterTypeConstraint.Struct;
             }
@@ -132,14 +125,14 @@ namespace CSharpDom.Mono.Cecil
             return GenericParameterTypeConstraint.None;
         }
 
-        private static GenericParameterDeclarationDirection GetDirection(Type type)
+        private static GenericParameterDeclarationDirection GetDirection(GenericParameter type)
         {
-            if (type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.Contravariant))
+            if (type.IsContravariant)
             {
                 return GenericParameterDeclarationDirection.In;
             }
 
-            if (type.GenericParameterAttributes.HasFlag(GenericParameterAttributes.Covariant))
+            if (type.IsCovariant)
             {
                 return GenericParameterDeclarationDirection.Out;
             }

@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,29 +78,22 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly Lazy<InterfaceReferences> implementedInterfaces;
-        private readonly Lazy<Constructors<TConstructor>> constructors;
         
         protected TypeWithMonoCecil(TType declaringType)
         {
-            Type = declaringType.Type;
-            IDictionary<MethodInfo, Type> interfaceMethods =
-                (from interfaceType in Type.GetInterfaces()
-                 from targetMethod in Type.GetInterfaceMap(interfaceType).TargetMethods
-                 where targetMethod.IsPrivate
-                 select new KeyValuePair<MethodInfo, Type>(targetMethod, interfaceType))
-                .ToDictionary(entry => entry.Key, entry => entry.Value);
-            attributes = new Lazy<Attributes>(() => new Attributes(Type, typeof(DefaultMemberAttribute)));
-            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(Type));
-            implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(Type));
-            FieldCollection = new FieldCollection<TField>(() => InitializeFields(declaringType, Type));
-            constructors = new Lazy<Constructors<TConstructor>>(
-                () => new Constructors<TConstructor>(declaringType, Type, CreateConstructor));
+            TypeDefinition = declaringType.TypeDefinition;
+            AssemblyWithMonoCecil assembly = declaringType.Assembly;
+            IDictionary<MethodDefinition, TypeDefinition> interfaceMethods = null;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, TypeDefinition, typeof(DefaultMemberAttribute)));
+            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, TypeDefinition));
+            implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(assembly, TypeDefinition));
+            FieldCollection = new FieldCollection<TField>(() => InitializeFields(declaringType, TypeDefinition));
             EventCollection = new EventCollection<TEvent, TEventProperty, TType>(
                 () => new Events<TEvent, TEventProperty, TType>(declaringType, this, interfaceMethods));
             PropertyCollection = new PropertyCollection<TProperty, TIndexer, TType>(
                 () => new Properties<TProperty, TIndexer, TType>(declaringType, this, interfaceMethods));
-            MethodCollection = new MethodCollection<TMethod, TType>(
-                () => new Methods<TMethod, TType>(declaringType, CreateMethod, interfaceMethods));
+            MethodCollection = new MethodCollection<TConstructor, TMethod, TType>(
+                () => new Methods<TConstructor, TMethod, TType>(declaringType, CreateConstructor, CreateMethod, interfaceMethods));
             NestedTypeCollection = new NestedTypeCollection<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
                 () => new NestedTypes<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, this));
         }
@@ -111,7 +105,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         
         public override IReadOnlyCollection<TConstructor> Constructors
         {
-            get { return constructors.Value.ConstructorsWithMonoCecil; }
+            get { return MethodCollection.Methods.ConstructorsWithMonoCecil; }
         }
 
         public override IReadOnlyCollection<ConversionOperatorWithMonoCecil> ConversionOperators
@@ -124,7 +118,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return NestedTypeCollection.NestedTypes.NestedDelegates; }
         }
 
-        public MethodInfo Destructor
+        public MethodDefinition Destructor
         {
             get { return MethodCollection.Methods.Destructor; }
         }
@@ -155,7 +149,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public NestedTypeCollection<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> NestedTypeCollection { get; private set; }
 
-        public MethodCollection<TMethod, TType> MethodCollection { get; private set; }
+        public MethodCollection<TConstructor, TMethod, TType> MethodCollection { get; private set; }
 
         public override IReadOnlyCollection<OperatorOverloadWithMonoCecil> OperatorOverloads
         {
@@ -166,129 +160,137 @@ namespace CSharpDom.Mono.Cecil.Internal
         
         public override StaticConstructorWithMonoCecil StaticConstructor
         {
-            get { return constructors.Value.StaticConstructorWithMonoCecil; }
+            get { return MethodCollection.Methods.StaticConstructorWithMonoCecil; }
         }
         
         TNestedClass INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedClass(
             ITypeWithMonoCecil declaringType,
-            Type type)
+            TypeDefinition type)
         {
             return CreateNestedClass(declaringType, type);
         }
 
         TNestedAbstractClass INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedAbstractClass(
             ITypeWithMonoCecil declaringType,
-            Type type)
+            TypeDefinition type)
         {
             return CreateNestedAbstractClass(declaringType, type);
         }
 
         TNestedSealedClass INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedSealedClass(
             ITypeWithMonoCecil declaringType,
-            Type type)
+            TypeDefinition type)
         {
             return CreateNestedSealedClass(declaringType, type);
         }
 
         TNestedStaticClass INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedStaticClass(
             ITypeWithMonoCecil declaringType,
-            Type type)
+            TypeDefinition type)
         {
             return CreateNestedStaticClass(declaringType, type);
         }
 
         TNestedDelegate INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedDelegate(
             ITypeWithMonoCecil declaringType,
-            Type type)
+            TypeDefinition type)
         {
             return CreateNestedDelegate(declaringType, type);
         }
 
         TNestedEnum INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedEnum(
             ITypeWithMonoCecil declaringType,
-            Type type)
+            TypeDefinition type)
         {
             return CreateNestedEnum(declaringType, type);
         }
 
         TNestedInterface INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedInterface(
             ITypeWithMonoCecil declaringType,
-            Type type)
+            TypeDefinition type)
         {
             return CreateNestedInterface(declaringType, type);
         }
 
         TNestedStruct INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>.CreateNestedStruct(
             ITypeWithMonoCecil declaringType,
-            Type type)
+            TypeDefinition type)
         {
             return CreateNestedStruct(declaringType, type);
         }
 
-        TEvent IEventFactory<TEvent, TEventProperty, TType>.CreateEvent(TType declaringType, EventInfo @event)
+        TEvent IEventFactory<TEvent, TEventProperty, TType>.CreateEvent(TType declaringType, EventDefinition @event)
         {
             return CreateEvent(declaringType, @event);
         }
 
-        TEventProperty IEventFactory<TEvent, TEventProperty, TType>.CreateEventProperty(TType declaringType, EventInfo @event)
+        TEventProperty IEventFactory<TEvent, TEventProperty, TType>.CreateEventProperty(TType declaringType, EventDefinition @event)
         {
             return CreateEventProperty(declaringType, @event);
         }
 
-        TProperty IPropertyFactory<TProperty, TIndexer, TType>.CreateProperty(TType declaringType, PropertyInfo property)
+        TProperty IPropertyFactory<TProperty, TIndexer, TType>.CreateProperty(TType declaringType, PropertyDefinition property)
         {
             return CreateProperty(declaringType, property);
         }
 
-        TIndexer IPropertyFactory<TProperty, TIndexer, TType>.CreateIndexer(TType declaringType, PropertyInfo property)
+        TIndexer IPropertyFactory<TProperty, TIndexer, TType>.CreateIndexer(TType declaringType, PropertyDefinition property)
         {
             return CreateIndexer(declaringType, property);
         }
 
-        public Type Type { get; private set; }
+        public TypeDefinition TypeDefinition { get; private set; }
 
-        protected abstract TConstructor CreateConstructor(ITypeWithMonoCecil declaringType, ConstructorInfo constructor);
-
-        protected abstract TEvent CreateEvent(TType declaringType, EventInfo @event);
-
-        protected abstract TEventProperty CreateEventProperty(TType declaringType, EventInfo @event);
-
-        protected abstract TField CreateField(TType declaringType, FieldInfo field);
-
-        protected abstract TIndexer CreateIndexer(TType declaringType, PropertyInfo indexer);
-
-        protected abstract TMethod CreateMethod(TType declaringType, MethodInfo method);
-
-        protected abstract TNestedAbstractClass CreateNestedAbstractClass(ITypeWithMonoCecil declaringType, Type type);
-
-        protected abstract TNestedSealedClass CreateNestedSealedClass(ITypeWithMonoCecil declaringType, Type type);
-
-        protected abstract TNestedStaticClass CreateNestedStaticClass(ITypeWithMonoCecil declaringType, Type type);
-
-        protected abstract TNestedClass CreateNestedClass(ITypeWithMonoCecil declaringType, Type type);
-
-        protected abstract TNestedDelegate CreateNestedDelegate(ITypeWithMonoCecil declaringType, Type type);
-
-        protected abstract TNestedEnum CreateNestedEnum(ITypeWithMonoCecil declaringType, Type type);
-
-        protected abstract TNestedInterface CreateNestedInterface(ITypeWithMonoCecil declaringType, Type type);
-
-        protected abstract TNestedStruct CreateNestedStruct(ITypeWithMonoCecil declaringType, Type type);
-
-        protected abstract TProperty CreateProperty(TType declaringType, PropertyInfo property);
-
-        private IReadOnlyCollection<TField> InitializeFields(TType declaringType, Type type)
+        public AssemblyWithMonoCecil Assembly
         {
-            return type.GetAllFields()
-                .Where(field => !field.IsDefined(typeof(CompilerGeneratedAttribute)))
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        protected abstract TConstructor CreateConstructor(TType declaringType, MethodDefinition constructor);
+
+        protected abstract TEvent CreateEvent(TType declaringType, EventDefinition @event);
+
+        protected abstract TEventProperty CreateEventProperty(TType declaringType, EventDefinition @event);
+
+        protected abstract TField CreateField(TType declaringType, FieldDefinition field);
+
+        protected abstract TIndexer CreateIndexer(TType declaringType, PropertyDefinition indexer);
+
+        protected abstract TMethod CreateMethod(TType declaringType, MethodDefinition method);
+
+        protected abstract TNestedAbstractClass CreateNestedAbstractClass(ITypeWithMonoCecil declaringType, TypeDefinition type);
+
+        protected abstract TNestedSealedClass CreateNestedSealedClass(ITypeWithMonoCecil declaringType, TypeDefinition type);
+
+        protected abstract TNestedStaticClass CreateNestedStaticClass(ITypeWithMonoCecil declaringType, TypeDefinition type);
+
+        protected abstract TNestedClass CreateNestedClass(ITypeWithMonoCecil declaringType, TypeDefinition type);
+
+        protected abstract TNestedDelegate CreateNestedDelegate(ITypeWithMonoCecil declaringType, TypeDefinition type);
+
+        protected abstract TNestedEnum CreateNestedEnum(ITypeWithMonoCecil declaringType, TypeDefinition type);
+
+        protected abstract TNestedInterface CreateNestedInterface(ITypeWithMonoCecil declaringType, TypeDefinition type);
+
+        protected abstract TNestedStruct CreateNestedStruct(ITypeWithMonoCecil declaringType, TypeDefinition type);
+
+        protected abstract TProperty CreateProperty(TType declaringType, PropertyDefinition property);
+
+        private IReadOnlyCollection<TField> InitializeFields(TType declaringType, TypeDefinition type)
+        {
+            return type.Fields
+                .Where(field => !field.IsDefined(declaringType.Assembly, typeof(CompilerGeneratedAttribute)))
                 .Select(field => CreateField(declaringType, field))
                 .ToList();
         }
 
-        private static IReadOnlyCollection<GenericParameterDeclarationWithMonoCecil> InitializeGenericParameterDeclarations(
-            Type type)
+        private IReadOnlyCollection<GenericParameterDeclarationWithMonoCecil> InitializeGenericParameterDeclarations(
+            TypeDefinition type)
         {
-            return type.GetGenericArguments().Select(parameter => new GenericParameterDeclarationWithMonoCecil(parameter)).ToList();
+            return type.GenericParameters.Select(parameter => new GenericParameterDeclarationWithMonoCecil(Assembly, parameter)).ToList();
         }
     }
 }

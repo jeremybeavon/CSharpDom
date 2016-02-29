@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -13,7 +14,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly NestedEnumWithMonoCecil nestedEnum;
 
-        internal StructNestedEnumWithMonoCecil(ITypeWithMonoCecil declaringType, Type type)
+        internal StructNestedEnumWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             nestedEnum = new NestedEnumWithMonoCecil(declaringType, type);
         }
@@ -45,7 +46,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get { return nestedEnum.Type.StructMemberVisibility(); }
+            get { return nestedEnum.TypeDefinition.StructMemberVisibility(); }
         }
     }
 }

@@ -1,26 +1,26 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class AccessorWithMonoCecil :
-        AbstractAccessor<AttributeWithMonoCecil, ILMethodBodyWithMonoCecilEmit>,
-        IHasMethodInfo
+        AbstractAccessor<AttributeWithMonoCecil, ILMethodBodyWithMonoCecilCil>,
+        IHasMethodDefinition
     {
         private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<ILMethodBodyWithMonoCecilEmit> body;
+        private readonly Lazy<ILMethodBodyWithMonoCecilCil> body;
 
-        internal AccessorWithMonoCecil(MethodInfo method)
+        internal AccessorWithMonoCecil(AssemblyWithMonoCecil assembly, MethodDefinition method)
         {
-            MethodInfo = method;
-            attributes = new Lazy<Attributes>(() => new Attributes(method, typeof(CompilerGeneratedAttribute)));
-            body = new Lazy<ILMethodBodyWithMonoCecilEmit>(
-                () => method.IsDefined(typeof(CompilerGeneratedAttribute)) ? null : new ILMethodBodyWithMonoCecilEmit(method));
+            MethodDefinition = method;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, method, typeof(CompilerGeneratedAttribute)));
+            body = new Lazy<ILMethodBodyWithMonoCecilCil>(
+                () => method.IsDefined(assembly, typeof(CompilerGeneratedAttribute)) ? null : new ILMethodBodyWithMonoCecilCil(method));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -28,11 +28,11 @@ namespace CSharpDom.Mono.Cecil
             get { return attributes.Value.AttributesWithMonoCecil; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return body.Value; }
         }
 
-        public MethodInfo MethodInfo { get; private set; }
+        public MethodDefinition MethodDefinition { get; private set; }
     }
 }

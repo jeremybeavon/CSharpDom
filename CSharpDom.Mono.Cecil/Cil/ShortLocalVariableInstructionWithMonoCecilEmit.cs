@@ -1,13 +1,13 @@
 ﻿using CSharpDom.BaseClasses.IL;
 using CSharpDom.Common.IL;
+using Mono.Cecil.Cil;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class ShortLocalVariableInstructionWithMonoCecilEmit :
+    public sealed class ShortLocalVariableInstructionWithMonoCecilCil :
         AbstractShortLocalVariableInstruction,
-        IILInstructionWithMonoCecilEmit
+        IILInstructionWithMonoCecilCil
     {
         private static readonly IDictionary<OpCode, ShortLocalVariableInstructionType> instructionTypes =
             new Dictionary<OpCode, ShortLocalVariableInstructionType>()
@@ -24,7 +24,7 @@ namespace CSharpDom.Mono.Cecil.Cil
         private readonly ShortLocalVariableInstructionType instructionType;
         private readonly byte ordinal;
 
-        public ShortLocalVariableInstructionWithMonoCecilEmit(OpCode opCode, byte ordinal)
+        public ShortLocalVariableInstructionWithMonoCecilCil(OpCode opCode, byte ordinal)
         {
             this.opCode = opCode;
             instructionType = instructionTypes[opCode];

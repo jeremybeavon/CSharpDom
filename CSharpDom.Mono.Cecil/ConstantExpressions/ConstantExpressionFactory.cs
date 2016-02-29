@@ -1,23 +1,24 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 
 namespace CSharpDom.Mono.Cecil.ConstantExpressions
 {
     internal static class ConstantExpressionFactory
     {
-        public static IConstantExpressionWithMonoCecil CreateExpression(object value)
+        public static IConstantExpressionWithMonoCecil CreateExpression(AssemblyWithMonoCecil assembly, object value)
         {
             if (value == null)
             {
                 return new NullExpressionWithMonoCecil();
             }
 
-            Type type = value as Type;
+            TypeDefinition type = value as TypeDefinition;
             if (type != null)
             {
-                return new TypeofExpressionWithMonoCecil(TypeReferenceWithMonoCecilFactory.CreateReference(type));
+                return new TypeofExpressionWithMonoCecil(TypeReferenceWithMonoCecilFactory.CreateReference(assembly, type));
             }
 
-            switch (Type.GetTypeCode(value.GetType()))
+            /*switch (TypeDefinition.GetTypeCode(value.GetType()))
             {
                 case TypeCode.Double:
                     return new DoubleConstantExpressionWithMonoCecil((double)value);
@@ -27,7 +28,8 @@ namespace CSharpDom.Mono.Cecil.ConstantExpressions
                     return new StringConstantExpressionWithMonoCecil((string)value);
                 default:
                     throw new NotImplementedException();
-            }
+            }*/
+            throw new NotImplementedException();
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
-using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal.Hiding
 {
@@ -14,11 +14,11 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
         private readonly string name;
         private readonly ITypeReferenceWithMonoCecil parameterType;
 
-        public ParameterSignature(ParameterInfo parameter)
+        public ParameterSignature(AssemblyWithMonoCecil assembly, ParameterDefinition parameter)
         {
-            modifier = parameter.Modifier();
-            name = string.Format("parameter{0}", parameter.Position + 1);
-            parameterType = TypeReferenceWithMonoCecilFactory.CreateReference(parameter.ParameterType);
+            modifier = parameter.Modifier(assembly);
+            name = string.Format("parameter{0}", parameter.Index + 1);
+            parameterType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, parameter.ParameterType);
         }
 
         public override IReadOnlyCollection<AttributeGroupNotSupported> Attributes

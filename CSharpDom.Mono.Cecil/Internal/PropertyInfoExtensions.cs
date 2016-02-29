@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Linq;
 using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
-    internal static class PropertyInfoExtensions
+    internal static class PropertyDefinitionExtensions
     {
-        public static ClassMemberVisibilityModifier ClassVisibility(this PropertyInfo property)
+        public static ClassMemberVisibilityModifier ClassVisibility(this PropertyDefinition property)
         {
             ClassMemberVisibilityModifier? getVisibility = ClassVisibility(property.GetMethod);
             ClassMemberVisibilityModifier? setVisibility = ClassVisibility(property.SetMethod);
@@ -23,7 +24,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             return setVisibility.Value;
         }
 
-        public static StaticClassMemberVisibilityModifier StaticClassVisibility(this PropertyInfo property)
+        public static StaticClassMemberVisibilityModifier StaticClassVisibility(this PropertyDefinition property)
         {
             StaticClassMemberVisibilityModifier? getVisibility = StaticClassVisibility(property.GetMethod);
             StaticClassMemberVisibilityModifier? setVisibility = StaticClassVisibility(property.SetMethod);
@@ -40,7 +41,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             return setVisibility.Value;
         }
 
-        public static StructMemberVisibilityModifier StructVisibility(this PropertyInfo property)
+        public static StructMemberVisibilityModifier StructVisibility(this PropertyDefinition property)
         {
             StructMemberVisibilityModifier? getVisibility = StructVisibility(property.GetMethod);
             StructMemberVisibilityModifier? setVisibility = StructVisibility(property.SetMethod);
@@ -58,21 +59,21 @@ namespace CSharpDom.Mono.Cecil.Internal
         }
 
         public static ClassMemberInheritanceModifier InheritanceModifier(
-            this PropertyInfo property,
+            this PropertyDefinition property,
             IInternalTypeWithMonoCecil type)
         {
             return property.Method().InheritanceModifier(() => type.HiddenMembersAnalyzer.IsPropertyHidden(property));
         }
 
         public static SealedClassMemberInheritanceModifier SealedClassInheritanceModifier(
-            this PropertyInfo property,
+            this PropertyDefinition property,
             IInternalTypeWithMonoCecil type)
         {
             return property.Method().SealedClassInheritanceModifier(() => type.HiddenMembersAnalyzer.IsPropertyHidden(property));
         }
 
         public static IndexerInheritanceModifier IndexerInheritanceModifier(
-            this PropertyInfo property,
+            this PropertyDefinition property,
             IInternalTypeWithMonoCecil type)
         {
             switch (property.Method().InheritanceModifier(() => type.HiddenMembersAnalyzer.IsIndexerHidden(property)))
@@ -95,7 +96,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         }
 
         public static SealedClassIndexerInheritanceModifier SealedClassIndexerInheritanceModifier(
-            this PropertyInfo property,
+            this PropertyDefinition property,
             IInternalTypeWithMonoCecil type)
         {
             switch (property.Method().InheritanceModifier(() => type.HiddenMembersAnalyzer.IsIndexerHidden(property)))
@@ -113,27 +114,27 @@ namespace CSharpDom.Mono.Cecil.Internal
             }
         }
 
-        public static bool IsOverride(this PropertyInfo property)
+        public static bool IsOverride(this PropertyDefinition property)
         {
-            return property.Method().IsOverride();
+            return property.Method().HasOverrides;
         }
 
-        internal static MethodInfo Method(this PropertyInfo property)
+        internal static MethodDefinition Method(this PropertyDefinition property)
         {
             return property.GetMethod ?? property.SetMethod;
         }
 
-        private static ClassMemberVisibilityModifier? ClassVisibility(MethodInfo method)
+        private static ClassMemberVisibilityModifier? ClassVisibility(MethodDefinition method)
         {
             return method == null ? (ClassMemberVisibilityModifier?)null : method.ClassVisibility();
         }
 
-        private static StaticClassMemberVisibilityModifier? StaticClassVisibility(MethodInfo method)
+        private static StaticClassMemberVisibilityModifier? StaticClassVisibility(MethodDefinition method)
         {
             return method == null ? (StaticClassMemberVisibilityModifier?)null : method.StaticClassVisibility();
         }
 
-        private static StructMemberVisibilityModifier? StructVisibility(MethodInfo method)
+        private static StructMemberVisibilityModifier? StructVisibility(MethodDefinition method)
         {
             return method == null ? (StructMemberVisibilityModifier?)null : method.StructVisibility();
         }

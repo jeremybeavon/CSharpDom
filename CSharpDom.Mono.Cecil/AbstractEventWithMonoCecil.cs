@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CSharpDom.BaseClasses;
-using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
-using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -15,7 +13,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly EventWithMonoCecil @event;
 
-        internal AbstractEventWithMonoCecil(ITypeWithMonoCecil declaringType, EventInfo @event)
+        internal AbstractEventWithMonoCecil(ITypeWithMonoCecil declaringType, EventDefinition @event)
         {
             this.@event = new EventWithMonoCecil(declaringType, @event);
         }
@@ -42,7 +40,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return @event.EventInfo.AddMethod.ClassVisibility(); }
+            get { return @event.EventDefinition.AddMethod.ClassVisibility(); }
         }
     }
 }

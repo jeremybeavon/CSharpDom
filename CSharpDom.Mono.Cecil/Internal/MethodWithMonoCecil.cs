@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -14,27 +15,28 @@ namespace CSharpDom.Mono.Cecil.Internal
             GenericParameterDeclarationWithMonoCecil,
             ITypeReferenceWithMonoCecil,
             MethodParameterWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>,
-        IHasMethodInfo
+            ILMethodBodyWithMonoCecilCil>,
+        IHasMethodDefinition
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly MethodInfo method;
+        private readonly MethodDefinition method;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithMonoCecil returnType;
         private readonly Lazy<Parameters<MethodParameterWithMonoCecil>> parameters;
-        private readonly Lazy<ILMethodBodyWithMonoCecilEmit> body;
+        private readonly Lazy<ILMethodBodyWithMonoCecilCil> body;
 
-        internal MethodWithMonoCecil(ITypeWithMonoCecil declaringType, MethodInfo method)
+        internal MethodWithMonoCecil(ITypeWithMonoCecil declaringType, MethodDefinition method)
         {
             this.declaringType = declaringType;
             this.method = method;
-            attributes = new Lazy<Attributes>(() => new Attributes(method));
-            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(method));
-            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(method.ReturnType);
+            AssemblyWithMonoCecil assembly = declaringType.Assembly;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
+            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, method));
+            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, method.ReturnType);
             parameters = new Lazy<Parameters<MethodParameterWithMonoCecil>>(
-                () => new Parameters<MethodParameterWithMonoCecil>(method, parameter => new MethodParameterWithMonoCecil(parameter)));
-            body = new Lazy<ILMethodBodyWithMonoCecilEmit>(() => new ILMethodBodyWithMonoCecilEmit(method));
+                () => new Parameters<MethodParameterWithMonoCecil>(assembly, method, parameter => new MethodParameterWithMonoCecil(parameter)));
+            body = new Lazy<ILMethodBodyWithMonoCecilCil>(() => new ILMethodBodyWithMonoCecilCil(method));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -52,14 +54,14 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return genericParameters.Value.GenericParameterDeclarationsWithMonoCecil; }
         }
         
-        public MethodInfo MethodInfo
+        public MethodDefinition MethodDefinition
         {
             get { return method; }
         }
 
         public override string Name
         {
-            get { return method.Name(); }
+            get { return method.Name; }
         }
 
         public override IReadOnlyList<MethodParameterWithMonoCecil> Parameters
@@ -72,14 +74,14 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return returnType; }
         }
         
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return body.Value; }
         }
 
         public override bool IsAsync
         {
-            get { return method.IsDefined(typeof(AsyncStateMachineAttribute)); }
+            get { return method.IsDefined(declaringType.Assembly, typeof(AsyncStateMachineAttribute)); }
         }
     }
 }

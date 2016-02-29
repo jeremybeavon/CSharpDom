@@ -1,17 +1,18 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Collections.Generic;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
-    internal sealed class Methods<TMethod, TType>
+    internal sealed class Methods<TConstructor, TMethod, TType>
         where TType : ITypeWithMonoCecil
     {
         public Methods(
             TType declaringType,
-            Func<TType, MethodInfo, TMethod> methodFactory,
-            IDictionary<MethodInfo, Type> interfaceMethods)
+            Func<TType, MethodDefinition, TConstructor> constructorFactory,
+            Func<TType, MethodDefinition, TMethod> methodFactory,
+            IDictionary<MethodDefinition, TypeDefinition> interfaceMethods)
         {
             List<TMethod> methods = new List<TMethod>();
             List<AbstractMethodWithMonoCecil> abstractMethods = new List<AbstractMethodWithMonoCecil>();
@@ -19,21 +20,21 @@ namespace CSharpDom.Mono.Cecil.Internal
             List<OperatorOverloadWithMonoCecil> operatorOverloads = new List<OperatorOverloadWithMonoCecil>();
             List<ExplicitInterfaceMethodWithMonoCecil> explicitInterfaceMethods = new List<ExplicitInterfaceMethodWithMonoCecil>();
             List<ExtensionMethodWithMonoCecil> extensionMethods = new List<ExtensionMethodWithMonoCecil>();
-            MethodInfo destructorMethod = new Action(Finalize).Method;
-            foreach (MethodInfo method in declaringType.Type.GetAllMethods())
+            //MethodDefinition destructorMethod = new Action(Finalize).Method;
+            foreach (MethodDefinition method in declaringType.TypeDefinition.Methods)
             {
-                if (method.GetBaseDefinition() == destructorMethod)
+                /*if (method. == destructorMethod)
                 {
                     Destructor = method;
                 }
-                else if (method.IsAbstract)
+                else*/ if (method.IsAbstract)
                 {
                     abstractMethods.Add(new AbstractMethodWithMonoCecil(declaringType, method));
                 }
                 else if (!method.IsSpecialName)
                 {
-                    Type interfaceType;
-                    if (method.IsDefined(typeof(ExtensionAttribute)))
+                    TypeDefinition interfaceType;
+                    if (method.IsDefined(declaringType.Assembly, typeof(ExtensionAttribute)))
                     {
                         extensionMethods.Add(new ExtensionMethodWithMonoCecil(declaringType, method));
                     }
@@ -68,6 +69,10 @@ namespace CSharpDom.Mono.Cecil.Internal
             ExtensionMethodsWithMonoCecil = extensionMethods;
         }
 
+        public IReadOnlyCollection<TConstructor> ConstructorsWithMonoCecil { get; private set; }
+
+        public StaticConstructorWithMonoCecil StaticConstructorWithMonoCecil { get; set; }
+
         public IReadOnlyCollection<ConversionOperatorWithMonoCecil> ConversionOperatorsWithMonoCecil { get; private set; }
 
         public IReadOnlyCollection<AbstractMethodWithMonoCecil> AbstractMethodsWithMonoCecil { get; private set; }
@@ -78,7 +83,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public IReadOnlyCollection<OperatorOverloadWithMonoCecil> OperatorOverloadsWithMonoCecil { get; private set; }
 
-        public MethodInfo Destructor { get; private set; }
+        public MethodDefinition Destructor { get; private set; }
 
         public IReadOnlyCollection<ExplicitInterfaceMethodWithMonoCecil> ExplicitInterfaceMethodsWithMonoCecil { get; private set; }
     }

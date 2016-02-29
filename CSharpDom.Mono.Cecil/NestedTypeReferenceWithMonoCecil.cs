@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,10 @@ namespace CSharpDom.Mono.Cecil
         private readonly ITypeReferenceWithMonoCecil type;
         private readonly ITypeReferenceWithMonoCecil nestedType;
 
-        internal NestedTypeReferenceWithMonoCecil(Type nestedType)
+        internal NestedTypeReferenceWithMonoCecil(AssemblyWithMonoCecil assembly, TypeReference nestedType)
         {
-            type = TypeReferenceWithMonoCecilFactory.CreateReference(nestedType.DeclaringType);
-            this.nestedType = TypeReferenceWithMonoCecilFactory.CreateReference(nestedType, ignoreNestedType: true);
+            type = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, nestedType.DeclaringType);
+            this.nestedType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, nestedType, ignoreNestedType: true);
         }
 
         public override ITypeReferenceWithMonoCecil NestedType
@@ -32,9 +33,9 @@ namespace CSharpDom.Mono.Cecil
             get { return type; }
         }
 
-        Type IHasType.Type
+        public TypeReference TypeReference
         {
-            get { return nestedType.Type; }
+            get { return nestedType.TypeReference; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

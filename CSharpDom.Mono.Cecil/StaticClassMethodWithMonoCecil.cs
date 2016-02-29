@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
-using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -14,11 +13,11 @@ namespace CSharpDom.Mono.Cecil
             GenericParameterDeclarationWithMonoCecil,
             ITypeReferenceWithMonoCecil,
             MethodParameterWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>
+            ILMethodBodyWithMonoCecilCil>
     {
         private readonly MethodWithMonoCecil method;
 
-        internal StaticClassMethodWithMonoCecil(ITypeWithMonoCecil declaringType, MethodInfo method)
+        internal StaticClassMethodWithMonoCecil(ITypeWithMonoCecil declaringType, MethodDefinition method)
         {
             this.method = new MethodWithMonoCecil(declaringType, method);
         }
@@ -28,7 +27,7 @@ namespace CSharpDom.Mono.Cecil
             get { return method.Attributes; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return method.Body; }
         }
@@ -65,7 +64,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { return method.MethodInfo.StaticClassVisibility(); }
+            get { return method.MethodDefinition.StaticClassVisibility(); }
         }
     }
 }

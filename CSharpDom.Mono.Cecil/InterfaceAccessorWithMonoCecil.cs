@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using System.Reflection;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -11,9 +12,9 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly Lazy<Attributes> attributes;
 
-        internal InterfaceAccessorWithMonoCecil(MethodInfo method)
+        internal InterfaceAccessorWithMonoCecil(AssemblyWithMonoCecil assembly, MethodDefinition method)
         {
-            attributes = new Lazy<Attributes>(() => new Attributes(method));
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes

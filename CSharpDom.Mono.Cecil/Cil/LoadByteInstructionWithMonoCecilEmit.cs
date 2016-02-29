@@ -1,14 +1,14 @@
 ﻿using CSharpDom.BaseClasses.IL;
-using System.Reflection.Emit;
+using Mono.Cecil.Cil;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class LoadByteInstructionWithMonoCecilEmit : AbstractLoadByteInstruction, IILInstructionWithMonoCecilEmit
+    public sealed class LoadByteInstructionWithMonoCecilCil : AbstractLoadByteInstruction, IILInstructionWithMonoCecilCil
     {
         private readonly OpCode opCode;
         private readonly byte value;
 
-        public LoadByteInstructionWithMonoCecilEmit(OpCode opCode, byte value)
+        public LoadByteInstructionWithMonoCecilCil(OpCode opCode, byte value)
         {
             this.opCode = opCode;
             this.value = value;

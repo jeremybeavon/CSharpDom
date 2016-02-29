@@ -4,6 +4,7 @@ using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -15,7 +16,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly EventWithMonoCecil @event;
 
-        internal StructEventWithMonoCecil(ITypeWithMonoCecil declaringType, EventInfo @event)
+        internal StructEventWithMonoCecil(ITypeWithMonoCecil declaringType, EventDefinition @event)
         {
             this.@event = new EventWithMonoCecil(declaringType, @event);
         }
@@ -42,7 +43,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get { return @event.EventInfo.AddMethod.StructVisibility(); }
+            get { return @event.EventDefinition.AddMethod.StructVisibility(); }
         }
     }
 }

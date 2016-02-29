@@ -1,11 +1,11 @@
 ﻿using CSharpDom.BaseClasses.IL;
 using CSharpDom.Common.IL;
+using Mono.Cecil.Cil;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class ShortBranchTargetInstructionWithMonoCecilEmit : AbstractShortBranchTargetInstruction, IILInstructionWithMonoCecilEmit
+    public sealed class ShortBranchTargetInstructionWithMonoCecilCil : AbstractShortBranchTargetInstruction, IILInstructionWithMonoCecilCil
     {
         private static readonly IDictionary<OpCode, ShortBranchTargetInstructionType> instructionTypes =
             new Dictionary<OpCode, ShortBranchTargetInstructionType>()
@@ -30,7 +30,7 @@ namespace CSharpDom.Mono.Cecil.Cil
         private readonly ShortBranchTargetInstructionType instructionType;
         private readonly sbyte delta;
 
-        public ShortBranchTargetInstructionWithMonoCecilEmit(OpCode opCode, sbyte delta)
+        public ShortBranchTargetInstructionWithMonoCecilCil(OpCode opCode, sbyte delta)
         {
             this.opCode = opCode;
             instructionType = instructionTypes[opCode];

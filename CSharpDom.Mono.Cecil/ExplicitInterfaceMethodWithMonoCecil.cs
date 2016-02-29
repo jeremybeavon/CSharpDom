@@ -4,6 +4,7 @@ using System.Reflection;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -15,15 +16,15 @@ namespace CSharpDom.Mono.Cecil
             GenericParameterDeclarationWithMonoCecil,
             ITypeReferenceWithMonoCecil,
             MethodParameterWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>
+            ILMethodBodyWithMonoCecilCil>
     {
         private readonly MethodWithMonoCecil method;
         private readonly InterfaceReferenceWithMonoCecil explicitInterface;
 
-        internal ExplicitInterfaceMethodWithMonoCecil(ITypeWithMonoCecil declaringType, Type interfaceType, MethodInfo method)
+        internal ExplicitInterfaceMethodWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition interfaceType, MethodDefinition method)
         {
             this.method = new MethodWithMonoCecil(declaringType, method);
-            explicitInterface = new InterfaceReferenceWithMonoCecil(interfaceType);
+            explicitInterface = new InterfaceReferenceWithMonoCecil(declaringType.Assembly, interfaceType);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -31,7 +32,7 @@ namespace CSharpDom.Mono.Cecil
             get { return method.Attributes; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return method.Body; }
         }

@@ -1,21 +1,18 @@
-﻿using System;
+﻿using Mono.Cecil;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class InterfaceProperties
     {
-        public InterfaceProperties(IBasicTypeWithMonoCecil declaringType, Type type)
+        public InterfaceProperties(IBasicTypeWithMonoCecil declaringType, TypeDefinition type)
         {
             List<InterfaceIndexerWithMonoCecil> indexers = new List<InterfaceIndexerWithMonoCecil>();
             List<InterfacePropertyWithMonoCecil> properties = new List<InterfacePropertyWithMonoCecil>();
-            foreach (PropertyInfo property in type.GetAllProperties())
+            foreach (PropertyDefinition property in type.Properties)
             {
-                if (property.GetIndexParameters().Any())
+                if (property.Parameters.Any())
                 {
                     indexers.Add(new InterfaceIndexerWithMonoCecil(declaringType, property));
                 }

@@ -6,22 +6,23 @@ using CSharpDom.Mono.Cecil.Internal;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class NestedDestructorWithMonoCecil :
-        AbstractNestedDestructor<AttributeWithMonoCecil, INestedClass, ILMethodBodyWithMonoCecilEmit>//,
+        AbstractNestedDestructor<AttributeWithMonoCecil, INestedClass, ILMethodBodyWithMonoCecilCil>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly INestedClass declaringType;
         private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<ILMethodBodyWithMonoCecilEmit> body;
+        private readonly Lazy<ILMethodBodyWithMonoCecilCil> body;
 
-        internal NestedDestructorWithMonoCecil(INestedClass declaringType, MethodInfo method)
+        internal NestedDestructorWithMonoCecil(INestedClass declaringType, MethodDefinition method)
         {
             this.declaringType = declaringType;
-            attributes = new Lazy<Attributes>(() => new Attributes(method));
-            body = new Lazy<ILMethodBodyWithMonoCecilEmit>(() => new ILMethodBodyWithMonoCecilEmit(method));
+            attributes = new Lazy<Attributes>(() => new Attributes(((ITypeWithMonoCecil)declaringType).Assembly, method));
+            body = new Lazy<ILMethodBodyWithMonoCecilCil>(() => new ILMethodBodyWithMonoCecilCil(method));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -29,7 +30,7 @@ namespace CSharpDom.Mono.Cecil
             get { return attributes.Value.AttributesWithMonoCecil; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return body.Value; }
         }

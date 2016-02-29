@@ -1,17 +1,14 @@
-﻿using System;
-using System.Reflection;
-using CSharpDom.Common;
-using CSharpDom.Mono.Cecil.ConstantExpressions;
-using CSharpDom.BaseClasses;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.NotSupported;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class InternalFieldWithMonoCecil : AbstractField<ExpressionNotSupported>, IFieldWithMonoCecil
     {
-        private readonly FieldInfo field;
+        private readonly FieldDefinition field;
 
-        public InternalFieldWithMonoCecil(FieldInfo field)
+        public InternalFieldWithMonoCecil(FieldDefinition field)
         {
             this.field = field;
         }

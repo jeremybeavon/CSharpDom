@@ -1,30 +1,29 @@
 ﻿using CSharpDom.BaseClasses;
-using System.Reflection;
 using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
-using CSharpDom.NotSupported;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class DestructorWithMonoCecil :
-        AbstractDestructor<AttributeWithMonoCecil, IClass, ILMethodBodyWithMonoCecilEmit>,
-        IHasMethodInfo//,
+        AbstractDestructor<AttributeWithMonoCecil, IClass, ILMethodBodyWithMonoCecilCil>,
+        IHasMethodDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly IClass declaringType;
-        private readonly MethodInfo method;
+        private readonly MethodDefinition method;
         private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<ILMethodBodyWithMonoCecilEmit> body;
+        private readonly Lazy<ILMethodBodyWithMonoCecilCil> body;
 
-        internal DestructorWithMonoCecil(IClass declaringType, MethodInfo method)
+        internal DestructorWithMonoCecil(AssemblyWithMonoCecil assembly, IClass declaringType, MethodDefinition method)
         {
             this.declaringType = declaringType;
             this.method = method;
-            attributes = new Lazy<Attributes>(() => new Attributes(method));
-            body = new Lazy<ILMethodBodyWithMonoCecilEmit>(() => new ILMethodBodyWithMonoCecilEmit(method));
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
+            body = new Lazy<ILMethodBodyWithMonoCecilCil>(() => new ILMethodBodyWithMonoCecilCil(method));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -37,12 +36,12 @@ namespace CSharpDom.Mono.Cecil
             get { return declaringType; }
         }
 
-        public MethodInfo MethodInfo
+        public MethodDefinition MethodDefinition
         {
             get { return method; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return body.Value; }
         }

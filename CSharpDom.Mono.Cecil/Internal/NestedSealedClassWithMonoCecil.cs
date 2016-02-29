@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
 using CSharpDom.Mono.Cecil.Internal.Hiding;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -30,7 +31,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             StaticConstructorWithMonoCecil>,
         ITypeWithMonoCecil,
         IInternalTypeWithMonoCecil,
-        IHasType
+        IHasTypeDefinition
     {
         private readonly NestedClassWithMonoCecil typeWithMonoCecil;
         private readonly SealedTypeWithMonoCecil sealedTypeWithMonoCecil;
@@ -39,7 +40,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly SealedClassMethodCollectionWithMonoCecil methods;
         private readonly SealedClassPropertyCollectionWithMonoCecil properties;
 
-        internal NestedSealedClassWithMonoCecil(IInternalTypeWithMonoCecil declaringType, Type type)
+        internal NestedSealedClassWithMonoCecil(IInternalTypeWithMonoCecil declaringType, TypeDefinition type)
         {
             typeWithMonoCecil = new NestedClassWithMonoCecil(declaringType, type);
             sealedTypeWithMonoCecil = new SealedTypeWithMonoCecil(declaringType);
@@ -149,9 +150,9 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return typeWithMonoCecil.ImplementedInterfaces; }
         }
         
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
-            get { return typeWithMonoCecil.Type; }
+            get { return typeWithMonoCecil.TypeDefinition; }
         }
         
         public override StaticConstructorWithMonoCecil StaticConstructor
@@ -162,6 +163,11 @@ namespace CSharpDom.Mono.Cecil.Internal
         public HiddenMembersAnalyzer HiddenMembersAnalyzer
         {
             get { return typeWithMonoCecil.HiddenMembersAnalyzer; }
+        }
+
+        public AssemblyWithMonoCecil Assembly
+        {
+            get { return typeWithMonoCecil.Assembly; }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -15,13 +16,13 @@ namespace CSharpDom.Mono.Cecil
             ITypeReferenceWithMonoCecil,
             ExtensionParameterWithMonoCecil,
             MethodParameterWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>
+            ILMethodBodyWithMonoCecilCil>
     {
         private readonly MethodWithMonoCecil method;
         private readonly ExtensionParameterWithMonoCecil extensionParameter;
         private readonly IReadOnlyList<MethodParameterWithMonoCecil> parameters;
 
-        internal ExtensionMethodWithMonoCecil(ITypeWithMonoCecil declaringType, MethodInfo method)
+        internal ExtensionMethodWithMonoCecil(ITypeWithMonoCecil declaringType, MethodDefinition method)
         {
             this.method = new MethodWithMonoCecil(declaringType, method);
             extensionParameter = new ExtensionParameterWithMonoCecil(this.method.Parameters[0]);
@@ -33,7 +34,7 @@ namespace CSharpDom.Mono.Cecil
             get { return method.Attributes; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return method.Body; }
         }

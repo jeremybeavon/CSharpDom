@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -9,7 +10,7 @@ namespace CSharpDom.Mono.Cecil
 {
     public sealed class ParameterWithMonoCecil :
         AbstractParameter<AttributeWithMonoCecil, ITypeReferenceWithMonoCecil>,
-        IHasParameterInfo//,
+        IHasParameterDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private static readonly Type[] excludedAttributeTypes = new Type[]
@@ -17,15 +18,17 @@ namespace CSharpDom.Mono.Cecil
             typeof(OutAttribute),
             typeof(ParamArrayAttribute)
         };
-        private readonly ParameterInfo parameter;
+        private readonly AssemblyWithMonoCecil assembly;
+        private readonly ParameterDefinition parameter;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithMonoCecil parameterType;
 
-        internal ParameterWithMonoCecil(ParameterInfo parameter)
+        internal ParameterWithMonoCecil(AssemblyWithMonoCecil assembly, ParameterDefinition parameter)
         {
+            this.assembly = assembly;
             this.parameter = parameter;
-            attributes = new Lazy<Attributes>(() => new Attributes(parameter, excludedAttributeTypes));
-            parameterType = TypeReferenceWithMonoCecilFactory.CreateReference(parameter.ParameterType);
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, parameter, excludedAttributeTypes));
+            parameterType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, parameter.ParameterType);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -43,7 +46,7 @@ namespace CSharpDom.Mono.Cecil
             get { return parameterType; }
         }
 
-        public ParameterInfo ParameterInfo
+        public ParameterDefinition ParameterDefinition
         {
             get { return parameter; }
         }
@@ -57,12 +60,12 @@ namespace CSharpDom.Mono.Cecil
                     return ParameterModifier.Out;
                 }
 
-                if (parameter.ParameterType.IsByRef)
+                if (parameter.ParameterType.IsByReference)
                 {
                     return ParameterModifier.Ref;
                 }
 
-                if (parameter.IsDefined(typeof(ParamArrayAttribute)))
+                if (parameter.IsDefined(assembly, typeof(ParamArrayAttribute)))
                 {
                     return ParameterModifier.Params;
                 }

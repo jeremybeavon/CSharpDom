@@ -4,6 +4,7 @@ using CSharpDom.Mono.Cecil.Cil;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -13,16 +14,16 @@ namespace CSharpDom.Mono.Cecil
             ITypeWithMonoCecil,
             InterfaceReferenceWithMonoCecil,
             DelegateReferenceWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>,
-        IHasEventInfo
+            ILMethodBodyWithMonoCecilCil>,
+        IHasEventDefinition
     {
         private readonly EventPropertyWithMonoCecil @event;
         private readonly InterfaceReferenceWithMonoCecil explicitInterface;
 
-        internal ExplicitInterfaceEventWithMonoCecil(ITypeWithMonoCecil declaringType, Type interfaceType, EventInfo @event)
+        internal ExplicitInterfaceEventWithMonoCecil(ITypeWithMonoCecil declaringType, TypeReference interfaceType, EventDefinition @event)
         {
             this.@event = new EventPropertyWithMonoCecil(declaringType, @event);
-            explicitInterface = new InterfaceReferenceWithMonoCecil(interfaceType);
+            explicitInterface = new InterfaceReferenceWithMonoCecil(declaringType.Assembly, interfaceType);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> AddAttributes
@@ -30,7 +31,7 @@ namespace CSharpDom.Mono.Cecil
             get { return @event.AddAttributes; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit AddBody
+        public override ILMethodBodyWithMonoCecilCil AddBody
         {
             get { return @event.AddBody; }
         }
@@ -45,9 +46,9 @@ namespace CSharpDom.Mono.Cecil
             get { return @event.DeclaringType; }
         }
 
-        public EventInfo EventInfo
+        public EventDefinition EventDefinition
         {
-            get { return @event.EventInfo; }
+            get { return @event.EventDefinition; }
         }
 
         public override DelegateReferenceWithMonoCecil EventType
@@ -70,7 +71,7 @@ namespace CSharpDom.Mono.Cecil
             get { return @event.RemoveAttributes; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit RemoveBody
+        public override ILMethodBodyWithMonoCecilCil RemoveBody
         {
             get { return @event.RemoveBody; }
         }

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class BasicTypeWithMonoCecil : IBasicTypeWithMonoCecil
     {
-        private readonly Type type;
+        private readonly TypeDefinition type;
         private readonly IBasicTypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
@@ -15,13 +15,13 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly Lazy<InterfaceProperties> properties;
         private readonly Lazy<IReadOnlyCollection<InterfaceMethodWithMonoCecil>> methods;
 
-        public BasicTypeWithMonoCecil(IBasicTypeWithMonoCecil declaringType, Type type)
+        public BasicTypeWithMonoCecil(IBasicTypeWithMonoCecil declaringType, TypeDefinition type)
         {
             this.declaringType = declaringType;
             this.type = type;
-            attributes = new Lazy<Attributes>(() => new Attributes(type));
-            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
-            interfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(type));
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, type));
+            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(declaringType.Assembly, type));
+            interfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(declaringType.Assembly, type));
             events = new Lazy<IReadOnlyCollection<InterfaceEventWithMonoCecil>>(InitializeEvents);
             properties = new Lazy<InterfaceProperties>(() => new InterfaceProperties(declaringType, type));
             methods = new Lazy<IReadOnlyCollection<InterfaceMethodWithMonoCecil>>(InitializeMethods);
@@ -62,19 +62,24 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return properties.Value.PropertiesWithMonoCecil; }
         }
 
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
             get { return type; }
         }
 
+        public AssemblyWithMonoCecil Assembly
+        {
+            get { return declaringType.Assembly; }
+        }
+
         private IReadOnlyCollection<InterfaceEventWithMonoCecil> InitializeEvents()
         {
-            return type.GetAllEvents().ToArray(@event => new InterfaceEventWithMonoCecil(declaringType, @event));
+            return type.Events.ToArray(@event => new InterfaceEventWithMonoCecil(declaringType, @event));
         }
 
         private IReadOnlyCollection<InterfaceMethodWithMonoCecil> InitializeMethods()
         {
-            return type.GetAllMethods().ToArray(method => new InterfaceMethodWithMonoCecil(declaringType, method));
+            return type.Methods.ToArray(method => new InterfaceMethodWithMonoCecil(declaringType, method));
         }
     }
 }

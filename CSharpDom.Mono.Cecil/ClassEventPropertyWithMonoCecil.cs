@@ -4,6 +4,7 @@ using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -12,18 +13,18 @@ namespace CSharpDom.Mono.Cecil
             AttributeWithMonoCecil,
             ITypeWithMonoCecil,
             DelegateReferenceWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>
+            ILMethodBodyWithMonoCecilCil>
     {
         private readonly EventPropertyWithMonoCecil @event;
         private readonly IInternalTypeWithMonoCecil declaringType;
 
-        internal ClassEventPropertyWithMonoCecil(IInternalTypeWithMonoCecil declaringType, EventInfo @event)
+        internal ClassEventPropertyWithMonoCecil(IInternalTypeWithMonoCecil declaringType, EventDefinition @event)
         {
             this.@event = new EventPropertyWithMonoCecil(declaringType, @event);
             this.declaringType = declaringType;
         }
 
-        public override ILMethodBodyWithMonoCecilEmit AddBody
+        public override ILMethodBodyWithMonoCecilCil AddBody
         {
             get { return @event.AddBody; }
         }
@@ -45,7 +46,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return @event.EventInfo.InheritanceModifier(declaringType); }
+            get { return @event.EventDefinition.InheritanceModifier(declaringType); }
         }
 
         public override string Name
@@ -53,14 +54,14 @@ namespace CSharpDom.Mono.Cecil
             get { return @event.Name; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit RemoveBody
+        public override ILMethodBodyWithMonoCecilCil RemoveBody
         {
             get { return @event.RemoveBody; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return @event.EventInfo.ClassVisibility(); }
+            get { return @event.EventDefinition.ClassVisibility(); }
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> AddAttributes

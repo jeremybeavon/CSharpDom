@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 
 namespace CSharpDom.Mono.Cecil
@@ -9,9 +10,9 @@ namespace CSharpDom.Mono.Cecil
         ITypeReferenceWithMonoCecil//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Type type;
+        private readonly TypeReference type;
 
-        internal EnumReferenceWithMonoCecil(Type type)
+        internal EnumReferenceWithMonoCecil(TypeReference type)
         {
             this.type = type;
         }
@@ -21,7 +22,7 @@ namespace CSharpDom.Mono.Cecil
             get { return type.Name; }
         }
 
-        public Type Type
+        public TypeReference TypeReference
         {
             get { return type; }
         }

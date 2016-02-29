@@ -1,8 +1,6 @@
-﻿using System;
-using System.Reflection;
-using CSharpDom.BaseClasses;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.ConstantExpressions;
-using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -11,15 +9,15 @@ namespace CSharpDom.Mono.Cecil
         private readonly CustomAttributeNamedArgument attributeValue;
         private readonly IConstantExpressionWithMonoCecil value;
 
-        internal NamedAttributeValueWithMonoCecil(CustomAttributeNamedArgument attributeValue)
+        internal NamedAttributeValueWithMonoCecil(AssemblyWithMonoCecil assembly, CustomAttributeNamedArgument attributeValue)
         {
             this.attributeValue = attributeValue;
-            value = ConstantExpressionFactory.CreateExpression(attributeValue.TypedValue.Value);
+            value = ConstantExpressionFactory.CreateExpression(assembly, attributeValue.Argument.Value);
         }
 
         public override string Name
         {
-            get { return attributeValue.MemberName; }
+            get { return attributeValue.Name; }
         }
 
         public override IConstantExpressionWithMonoCecil Value

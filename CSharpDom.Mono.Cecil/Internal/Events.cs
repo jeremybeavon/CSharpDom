@@ -1,10 +1,6 @@
-﻿using System;
+﻿using Mono.Cecil;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -14,30 +10,30 @@ namespace CSharpDom.Mono.Cecil.Internal
         public Events(
             TType declaringType,
             IEventFactory<TEvent, TEventProperty, TType> eventFactory,
-            IDictionary<MethodInfo, Type> interfaceMethods)
+            IDictionary<MethodDefinition, TypeDefinition> interfaceMethods)
         {
             List<TEvent> events = new List<TEvent>();
             List<ExplicitInterfaceEventWithMonoCecil> explicitInterfaceEvents = new List<ExplicitInterfaceEventWithMonoCecil>();
             List<TEventProperty> eventProperties = new List<TEventProperty>();
             List<AbstractEventWithMonoCecil> abstractEvents = new List<AbstractEventWithMonoCecil>();
-            foreach (EventInfo eventInfo in declaringType.Type.GetAllEvents())
+            foreach (EventDefinition eventDefinition in declaringType.TypeDefinition.Events)
             {
-                Type interfaceType;
-                if (eventInfo.AddMethod.IsDefined(typeof(CompilerGeneratedAttribute), false))
+                TypeDefinition interfaceType;
+                if (eventDefinition.AddMethod.IsDefined(declaringType.Assembly, typeof(CompilerGeneratedAttribute)))
                 {
-                    events.Add(eventFactory.CreateEvent(declaringType, eventInfo));
+                    events.Add(eventFactory.CreateEvent(declaringType, eventDefinition));
                 }
-                else if (interfaceMethods.TryGetValue(eventInfo.AddMethod, out interfaceType))
+                else if (interfaceMethods.TryGetValue(eventDefinition.AddMethod, out interfaceType))
                 {
-                    explicitInterfaceEvents.Add(new ExplicitInterfaceEventWithMonoCecil(declaringType, interfaceType, eventInfo));
+                    explicitInterfaceEvents.Add(new ExplicitInterfaceEventWithMonoCecil(declaringType, interfaceType, eventDefinition));
                 }
-                else if (eventInfo.AddMethod.IsAbstract)
+                else if (eventDefinition.AddMethod.IsAbstract)
                 {
-                    abstractEvents.Add(new AbstractEventWithMonoCecil(declaringType, eventInfo));
+                    abstractEvents.Add(new AbstractEventWithMonoCecil(declaringType, eventDefinition));
                 }
                 else
                 {
-                    eventProperties.Add(eventFactory.CreateEventProperty(declaringType, eventInfo));
+                    eventProperties.Add(eventFactory.CreateEventProperty(declaringType, eventDefinition));
                 }
             }
 

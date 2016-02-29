@@ -1,11 +1,11 @@
 ﻿using CSharpDom.BaseClasses.IL;
 using CSharpDom.Common.IL;
+using Mono.Cecil.Cil;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class SimpleInstructionWithMonoCecilEmit : AbstractSimpleInstruction, IILInstructionWithMonoCecilEmit
+    public sealed class SimpleInstructionWithMonoCecilCil : AbstractSimpleInstruction, IILInstructionWithMonoCecilCil
     {
         private static readonly IDictionary<OpCode, SimpleInstructionType> instructionTypes =
             new Dictionary<OpCode, SimpleInstructionType>()
@@ -146,7 +146,7 @@ namespace CSharpDom.Mono.Cecil.Cil
                 { OpCodes.Sub, SimpleInstructionType.Subtract },
                 { OpCodes.Sub_Ovf_Un, SimpleInstructionType.SubtractUnsignedWithOverflowCheck },
                 { OpCodes.Sub_Ovf, SimpleInstructionType.SubtractWithOverflowCheck },
-                { OpCodes.Tailcall, SimpleInstructionType.TailCall },
+                { OpCodes.Tail, SimpleInstructionType.TailCall },
                 { OpCodes.Throw, SimpleInstructionType.Throw },
                 { OpCodes.Volatile, SimpleInstructionType.Volatile },
             };
@@ -154,7 +154,7 @@ namespace CSharpDom.Mono.Cecil.Cil
         private readonly OpCode opCode;
         private readonly SimpleInstructionType instructionType;
 
-        public SimpleInstructionWithMonoCecilEmit(OpCode opCode)
+        public SimpleInstructionWithMonoCecilCil(OpCode opCode)
         {
             this.opCode = opCode;
             instructionType = instructionTypes[opCode];

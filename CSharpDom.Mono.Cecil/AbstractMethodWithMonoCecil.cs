@@ -4,6 +4,7 @@ using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -17,7 +18,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly MethodWithMonoCecil method;
 
-        internal AbstractMethodWithMonoCecil(ITypeWithMonoCecil declaringType, MethodInfo method)
+        internal AbstractMethodWithMonoCecil(ITypeWithMonoCecil declaringType, MethodDefinition method)
         {
             this.method = new MethodWithMonoCecil(declaringType, method);
         }
@@ -54,7 +55,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return method.MethodInfo.ClassVisibility(); }
+            get { return method.MethodDefinition.ClassVisibility(); }
         }
     }
 }

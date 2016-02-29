@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using System.Reflection;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -12,17 +13,18 @@ namespace CSharpDom.Mono.Cecil
             IBasicTypeWithMonoCecil,
             DelegateReferenceWithMonoCecil>
     {
-        private readonly EventInfo @event;
+        private readonly EventDefinition @event;
         private readonly Lazy<Attributes> attributes;
         private readonly IBasicTypeWithMonoCecil declaringType;
         private readonly DelegateReferenceWithMonoCecil eventType;
 
-        internal InterfaceEventWithMonoCecil(IBasicTypeWithMonoCecil declaringType, EventInfo @event)
+        internal InterfaceEventWithMonoCecil(IBasicTypeWithMonoCecil declaringType, EventDefinition @event)
         {
             this.@event = @event;
             this.declaringType = declaringType;
-            attributes = new Lazy<Attributes>(() => new Attributes(@event));
-            eventType = new DelegateReferenceWithMonoCecil(@event.EventHandlerType);
+            AssemblyWithMonoCecil assembly = declaringType.Assembly;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, @event));
+            eventType = new DelegateReferenceWithMonoCecil(assembly, @event.EventType);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes

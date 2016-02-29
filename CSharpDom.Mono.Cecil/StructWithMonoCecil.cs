@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -33,10 +34,10 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly AssemblyWithMonoCecil assembly;
         private readonly NamespaceWithMonoCecil @namespace;
-        private readonly Type type;
+        private readonly TypeDefinition type;
         private readonly StructTypeWithMonoCecil typeWithMonoCecil;
 
-        internal StructWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, Type type)
+        internal StructWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, TypeDefinition type)
         {
             this.assembly = assembly;
             this.@namespace = @namespace;
@@ -149,7 +150,7 @@ namespace CSharpDom.Mono.Cecil
             get { return type.Visibility(); }
         }
 
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
             get { return type; }
         }
@@ -165,6 +166,11 @@ namespace CSharpDom.Mono.Cecil
         }
 
         public override AssemblyWithMonoCecil Document
+        {
+            get { return assembly; }
+        }
+
+        public AssemblyWithMonoCecil Assembly
         {
             get { return assembly; }
         }

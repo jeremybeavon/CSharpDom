@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,15 +23,15 @@ namespace CSharpDom.Mono.Cecil
             InterfaceIndexerWithMonoCecil,
             InterfaceMethodWithMonoCecil>,
         IBasicTypeWithMonoCecil,
-        IHasType//,
+        IHasTypeDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly AssemblyWithMonoCecil assembly;
         private readonly NamespaceWithMonoCecil @namespace;
-        private readonly Type type;
+        private readonly TypeDefinition type;
         private readonly BasicTypeWithMonoCecil basicType;
 
-        internal InterfaceWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, Type type)
+        internal InterfaceWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, TypeDefinition type)
         {
             this.assembly = assembly;
             this.@namespace = @namespace;
@@ -98,7 +99,7 @@ namespace CSharpDom.Mono.Cecil
             get { return assembly; }
         }
 
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
             get { return type; }
         }
@@ -109,6 +110,11 @@ namespace CSharpDom.Mono.Cecil
         }
 
         public override AssemblyWithMonoCecil Document
+        {
+            get { return assembly; }
+        }
+
+        public AssemblyWithMonoCecil Assembly
         {
             get { return assembly; }
         }

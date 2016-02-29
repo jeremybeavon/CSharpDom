@@ -1,12 +1,13 @@
 ﻿using CSharpDom.BaseClasses.IL;
 using CSharpDom.Common.IL;
+using Mono.Cecil;
+using Mono.Cecil.Cil;
 using System;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class TypeInstructionWithMonoCecilEmit : AbstractTypeInstruction<Type>, IILInstructionWithMonoCecilEmit
+    public sealed class TypeInstructionWithMonoCecilCil : AbstractTypeInstruction<TypeDefinition>, IILInstructionWithMonoCecilCil
     {
         private static readonly IDictionary<OpCode, TypeInstructionType> instructionTypes =
             new Dictionary<OpCode, TypeInstructionType>()
@@ -18,13 +19,13 @@ namespace CSharpDom.Mono.Cecil.Cil
                 { OpCodes.Initobj, TypeInstructionType.InitializeObject },
                 { OpCodes.Isinst, TypeInstructionType.IsInstanceOfClass },
                 { OpCodes.Refanyval, TypeInstructionType.LoadAddress },
-                { OpCodes.Ldelem, TypeInstructionType.LoadArrayElement },
+                { OpCodes.Ldelem_Any, TypeInstructionType.LoadArrayElement },
                 { OpCodes.Ldelema, TypeInstructionType.LoadArrayElementAddress },
                 { OpCodes.Ldobj, TypeInstructionType.LoadObject },
                 { OpCodes.Mkrefany, TypeInstructionType.LoadTypeReference },
                 { OpCodes.Newarr, TypeInstructionType.NewArray },
                 { OpCodes.Sizeof, TypeInstructionType.SizeOf },
-                { OpCodes.Stelem, TypeInstructionType.StoreArrayElement },
+                { OpCodes.Stelem_Any, TypeInstructionType.StoreArrayElement },
                 { OpCodes.Stobj, TypeInstructionType.StoreObject },
                 { OpCodes.Unbox, TypeInstructionType.Unbox },
                 { OpCodes.Unbox_Any, TypeInstructionType.UnboxAny }
@@ -34,9 +35,9 @@ namespace CSharpDom.Mono.Cecil.Cil
         private readonly OpCode opCode;
         private readonly TypeInstructionType instructionType;
         private readonly int token;
-        private readonly Type type;
+        private readonly TypeDefinition type;
 
-        public TypeInstructionWithMonoCecilEmit(OpCode opCode, int token, Type type)
+        public TypeInstructionWithMonoCecilCil(OpCode opCode, int token, TypeDefinition type)
         {
             this.opCode = opCode;
             instructionType = instructionTypes[opCode];
@@ -59,7 +60,7 @@ namespace CSharpDom.Mono.Cecil.Cil
             get { return token; }
         }
 
-        public override Type Type
+        public override TypeDefinition Type
         {
             get { return type; }
         }

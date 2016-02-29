@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -7,30 +8,30 @@ namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class PropertyWithMonoCecil :
         AbstractProperty<AttributeWithMonoCecil, ITypeWithMonoCecil, ITypeReferenceWithMonoCecil, AccessorWithMonoCecil>,
-        IHasPropertyInfo//,
+        IHasPropertyDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly PropertyInfo property;
+        private readonly PropertyDefinition property;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithMonoCecil propertyType;
         private readonly AccessorWithMonoCecil getAccessor;
         private readonly AccessorWithMonoCecil setAccessor;
 
-        internal PropertyWithMonoCecil(ITypeWithMonoCecil declaringType, PropertyInfo property)
+        internal PropertyWithMonoCecil(ITypeWithMonoCecil declaringType, PropertyDefinition property)
         {
             this.declaringType = declaringType;
             this.property = property;
-            attributes = new Lazy<Attributes>(() => new Attributes(property));
-            propertyType = TypeReferenceWithMonoCecilFactory.CreateReference(property.PropertyType);
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, property));
+            propertyType = TypeReferenceWithMonoCecilFactory.CreateReference(declaringType.Assembly, property.PropertyType);
             if (property.GetMethod != null)
             {
-                getAccessor = new AccessorWithMonoCecil(property.GetMethod);
+                getAccessor = new AccessorWithMonoCecil(declaringType.Assembly, property.GetMethod);
             }
 
             if (property.SetMethod != null)
             {
-                setAccessor = new AccessorWithMonoCecil(property.SetMethod);
+                setAccessor = new AccessorWithMonoCecil(declaringType.Assembly, property.SetMethod);
             }
         }
 
@@ -51,7 +52,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         
         public override string Name
         {
-            get { return property.Name(); }
+            get { return property.Name; }
         }
 
         public override ITypeReferenceWithMonoCecil PropertyType
@@ -64,7 +65,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return setAccessor; }
         }
 
-        public PropertyInfo PropertyInfo
+        public PropertyDefinition PropertyDefinition
         {
             get { return property; }
         }

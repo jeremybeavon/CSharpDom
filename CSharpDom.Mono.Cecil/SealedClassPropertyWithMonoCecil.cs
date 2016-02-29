@@ -4,6 +4,7 @@ using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -19,7 +20,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly ClassAccessorWithMonoCecil getAccessor;
         private readonly ClassAccessorWithMonoCecil setAccessor;
 
-        internal SealedClassPropertyWithMonoCecil(IInternalTypeWithMonoCecil declaringType, PropertyInfo property)
+        internal SealedClassPropertyWithMonoCecil(IInternalTypeWithMonoCecil declaringType, PropertyDefinition property)
         {
             this.property = new PropertyWithMonoCecil(declaringType, property);
             this.declaringType = declaringType;
@@ -51,7 +52,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override SealedClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return property.PropertyInfo.SealedClassInheritanceModifier(declaringType); }
+            get { return property.PropertyDefinition.SealedClassInheritanceModifier(declaringType); }
         }
 
         public override string Name
@@ -71,7 +72,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return property.PropertyInfo.ClassVisibility(); }
+            get { return property.PropertyDefinition.ClassVisibility(); }
         }
     }
 }

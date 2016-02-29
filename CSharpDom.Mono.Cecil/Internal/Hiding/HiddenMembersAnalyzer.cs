@@ -1,4 +1,5 @@
 ﻿using CSharpDom.Text;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,15 +11,17 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
 {
     internal sealed class HiddenMembersAnalyzer
     {
-        private readonly Type type;
+        private readonly AssemblyWithMonoCecil assembly;
+        private readonly TypeDefinition type;
         private readonly Lazy<ISet<string>> events;
         private readonly Lazy<ISet<string>> fields;
         private readonly Lazy<ISet<string>> indexers;
         private readonly Lazy<ISet<string>> methods;
         private readonly Lazy<ISet<string>> properties;
 
-        public HiddenMembersAnalyzer(Type type)
+        public HiddenMembersAnalyzer(AssemblyWithMonoCecil assembly, TypeDefinition type)
         {
+            this.assembly = assembly;
             this.type = type;
             events = new Lazy<ISet<string>>(FindEvents);
             fields = new Lazy<ISet<string>>(FindFields);
@@ -27,95 +30,95 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
             properties = new Lazy<ISet<string>>(FindProperties);
         }
 
-        public bool IsEventHidden(EventInfo @event)
+        public bool IsEventHidden(EventDefinition @event)
         {
-            return !@event.IsOverride() && events.Value.Contains(ToString(@event));
+            return !@event.AddMethod.HasOverrides && events.Value.Contains(ToString(@event));
         }
         
-        public bool IsFieldHidden(FieldInfo field)
+        public bool IsFieldHidden(FieldDefinition field)
         {
             return fields.Value.Contains(ToString(field));
         }
 
-        public bool IsIndexerHidden(PropertyInfo indexer)
+        public bool IsIndexerHidden(PropertyDefinition indexer)
         {
             return !indexer.IsOverride() && indexers.Value.Contains(ToIndexerString(indexer));
         }
 
-        public bool IsMethodHidden(MethodInfo method)
+        public bool IsMethodHidden(MethodDefinition method)
         {
-            return !method.IsOverride() && methods.Value.Contains(ToString(method));
+            return !method.HasOverrides && methods.Value.Contains(ToString(method));
         }
 
-        public bool IsPropertyHidden(PropertyInfo property)
+        public bool IsPropertyHidden(PropertyDefinition property)
         {
             return !property.IsOverride() && properties.Value.Contains(ToString(property));
         }
 
-        private static string ToString(EventInfo @event)
+        private static string ToString(EventDefinition @event)
         {
             return @event.Name;
         }
 
-        private static string ToString(FieldInfo field)
+        private static string ToString(FieldDefinition field)
         {
             return field.Name;
         }
 
-        private static string ToIndexerString(PropertyInfo indexer)
+        private string ToIndexerString(PropertyDefinition indexer)
         {
-            return new IndexerSignature(indexer).ToSourceCode();
+            return new IndexerSignature(assembly, indexer).ToSourceCode();
         }
 
-        private static string ToString(MethodInfo method)
+        private string ToString(MethodDefinition method)
         {
-            return new MethodSignature(method).ToSourceCode();
+            return new MethodSignature(assembly, method).ToSourceCode();
         }
         
-        private static string ToString(PropertyInfo property)
+        private static string ToString(PropertyDefinition property)
         {
             return property.Name;
         }
 
         private ISet<string> FindEvents()
         {
-            return FindMembers(baseType => baseType.GetAllEvents(), @event => @event.ClassVisibility(), ToString);
+            return FindMembers(baseType => baseType.Events.ToArray(), @event => @event.ClassVisibility(), ToString);
         }
 
         private ISet<string> FindFields()
         {
-            return FindMembers(baseType => baseType.GetAllFields(), field => field.ClassVisibility(), ToString);
+            return FindMembers(baseType => baseType.Fields.ToArray(), field => field.ClassVisibility(), ToString);
         }
 
         private ISet<string> FindIndexers()
         {
             return FindMembers(
-                baseType => baseType.GetAllProperties().Where(property => property.GetIndexParameters().Any()).ToArray(),
+                baseType => baseType.Properties.Where(property => property.Parameters.Any()).ToArray(),
                 indexer => indexer.ClassVisibility(),
                 ToIndexerString);
         }
 
         private ISet<string> FindMethods()
         {
-            return FindMembers(baseType => baseType.GetAllMethods(), method => method.ClassVisibility(), ToString);
+            return FindMembers(baseType => baseType.Methods.ToArray(), method => method.ClassVisibility(), ToString);
         }
 
         private ISet<string> FindProperties()
         {
             return FindMembers(
-                baseType => baseType.GetAllProperties().Where(property => !property.GetIndexParameters().Any()).ToArray(),
+                baseType => baseType.Properties.Where(property => !property.Parameters.Any()).ToArray(),
                 property => property.ClassVisibility(),
                 ToString);
         }
 
         private ISet<string> FindMembers<T>(
-            Func<Type, T[]> getMembersFunc,
+            Func<TypeDefinition, T[]> getMembersFunc,
             Func<T, ClassMemberVisibilityModifier> visibilityFunc,
             Func<T, string> toStringFunc)
-            where T : MemberInfo
+            where T : MemberReference
         {
             HashSet<string> set = new HashSet<string>();
-            for (Type baseType = type.BaseType; baseType != null; baseType = baseType.BaseType)
+            for (TypeDefinition baseType = type.BaseType.Resolve(); baseType != null; baseType = baseType.BaseType.Resolve())
             {
                 bool isParentType = IsParentType(baseType);
                 bool isInSameAssembly = IsInSameAssembly(baseType);
@@ -149,9 +152,9 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
             }
         }
 
-        private bool IsParentType(Type baseType)
+        private bool IsParentType(TypeReference baseType)
         {
-            for (Type parentType = type.DeclaringType; parentType != null; parentType = parentType.DeclaringType)
+            for (TypeReference parentType = type.DeclaringType; parentType != null; parentType = parentType.DeclaringType)
             {
                 if (parentType == baseType)
                 {
@@ -162,9 +165,9 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
             return false;
         }
 
-        private bool IsInSameAssembly(Type baseType)
+        private bool IsInSameAssembly(TypeReference baseType)
         {
-            return type.AssemblyQualifiedName == baseType.AssemblyQualifiedName;
+            return type.Module == baseType.Module;
         }
     }
 }

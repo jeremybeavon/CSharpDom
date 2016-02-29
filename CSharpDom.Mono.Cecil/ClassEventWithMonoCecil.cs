@@ -4,6 +4,7 @@ using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -16,7 +17,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly EventWithMonoCecil @event;
         private readonly IInternalTypeWithMonoCecil declaringType;
 
-        internal ClassEventWithMonoCecil(IInternalTypeWithMonoCecil declaringType, EventInfo @event)
+        internal ClassEventWithMonoCecil(IInternalTypeWithMonoCecil declaringType, EventDefinition @event)
         {
             this.@event = new EventWithMonoCecil(declaringType, @event);
             this.declaringType = declaringType;
@@ -44,7 +45,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return @event.EventInfo.InheritanceModifier(declaringType); }
+            get { return @event.EventDefinition.InheritanceModifier(declaringType); }
         }
 
         public override string Name
@@ -54,7 +55,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return @event.EventInfo.ClassVisibility(); }
+            get { return @event.EventDefinition.ClassVisibility(); }
         }
     }
 }

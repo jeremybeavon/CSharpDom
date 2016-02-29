@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Mono.Cecil
 {
-    public interface ITypeReferenceWithMonoCecil : ITypeReference, IHasType
+    public interface ITypeReferenceWithMonoCecil : ITypeReference, IHasTypeReference
     {
     }
 }

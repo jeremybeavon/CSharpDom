@@ -2,6 +2,7 @@
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -17,7 +18,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly ClassAccessorWithMonoCecil getAccessor;
         private readonly ClassAccessorWithMonoCecil setAccessor;
 
-        internal ClassPropertyWithMonoCecil(IInternalTypeWithMonoCecil declaringType, PropertyInfo propertyInfo)
+        internal ClassPropertyWithMonoCecil(IInternalTypeWithMonoCecil declaringType, PropertyDefinition propertyInfo)
         {
             property = new PropertyWithMonoCecil(declaringType, propertyInfo);
             this.declaringType = declaringType;
@@ -49,7 +50,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return property.PropertyInfo.InheritanceModifier(declaringType); }
+            get { return property.PropertyDefinition.InheritanceModifier(declaringType); }
         }
 
         public override string Name
@@ -69,7 +70,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return property.PropertyInfo.ClassVisibility(); }
+            get { return property.PropertyDefinition.ClassVisibility(); }
         }
     }
 }

@@ -2,12 +2,12 @@
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -37,21 +37,21 @@ namespace CSharpDom.Mono.Cecil
             InterfaceCollectionWithMonoCecil,
             StructCollectionWithMonoCecil>,
 
-        IHasAssembly//,
+        IHasAssemblyDefinition//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Assembly assembly;
+        private readonly AssemblyDefinition assembly;
         private readonly TypeContainer typeContainer;
         private readonly IReadOnlyCollection<NamespaceWithMonoCecil> namespaces;
         private readonly ClassCollectionWithMonoCecil classes;
         private readonly InterfaceCollectionWithMonoCecil interfaces;
         private readonly StructCollectionWithMonoCecil structs;
 
-        public AssemblyWithMonoCecil(Assembly assembly)
+        public AssemblyWithMonoCecil(AssemblyDefinition assembly)
         {
             this.assembly = assembly;
             ConcurrentDictionary<string, NamespaceContainer> namespaces = new ConcurrentDictionary<string, NamespaceContainer>();
-            foreach (Type type in assembly.GetTypes())
+            foreach (TypeDefinition type in assembly.Modules.SelectMany(module => module.Types))
             {
                 NamespaceContainer namespaceContainer = namespaces.GetOrAdd(
                     type.Namespace ?? string.Empty,
@@ -93,7 +93,7 @@ namespace CSharpDom.Mono.Cecil
 
         public string FullFilePath
         {
-            get { return assembly.Location; }
+            get { throw new NotImplementedException(); }
         }
 
         public override InterfaceCollectionWithMonoCecil Interfaces
@@ -131,7 +131,7 @@ namespace CSharpDom.Mono.Cecil
             get { return new AssemblyWithMonoCecil[] { this }; }
         }
 
-        public Assembly Assembly
+        public AssemblyDefinition Assembly
         {
             get { return assembly; }
         }
@@ -186,7 +186,7 @@ namespace CSharpDom.Mono.Cecil
             return Task.FromResult(this);
         }
 
-        private void AddTypeToContainer(Type type, TypeContainer typeContainer, NamespaceWithMonoCecil @namespace)
+        private void AddTypeToContainer(TypeDefinition type, TypeContainer typeContainer, NamespaceWithMonoCecil @namespace)
         {
             switch (type.TypeClassification())
             {

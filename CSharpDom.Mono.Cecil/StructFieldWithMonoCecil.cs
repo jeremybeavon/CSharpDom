@@ -6,6 +6,7 @@ using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
 using CSharpDom.Mono.Cecil.ConstantExpressions;
 using CSharpDom.NotSupported;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -19,7 +20,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly FieldGroupWithMonoCecil field;
 
-        internal StructFieldWithMonoCecil(ITypeWithMonoCecil declaringType, FieldInfo field)
+        internal StructFieldWithMonoCecil(ITypeWithMonoCecil declaringType, FieldDefinition field)
         {
             this.field = new FieldGroupWithMonoCecil(declaringType, field);
         }
@@ -75,14 +76,14 @@ namespace CSharpDom.Mono.Cecil
 
         public string Name
         {
-            get { return field.FieldInfo.Name; }
+            get { return field.FieldDefinition.Name; }
         }
 
         public override StructMemberVisibilityModifier Visibility
         {
             get
             {
-                FieldInfo fieldInfo = field.FieldInfo;
+                FieldDefinition fieldInfo = field.FieldDefinition;
                 if (fieldInfo.IsPublic)
                 {
                     return StructMemberVisibilityModifier.Public;

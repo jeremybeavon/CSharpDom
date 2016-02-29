@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
-using System.Reflection;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class StaticConstructorWithMonoCecil :
-        AbstractStaticConstructor<AttributeWithMonoCecil, ITypeWithMonoCecil, ILMethodBodyWithMonoCecilEmit>,
-        IHasConstructorInfo
+        AbstractStaticConstructor<AttributeWithMonoCecil, ITypeWithMonoCecil, ILMethodBodyWithMonoCecilCil>,
+        IHasMethodDefinition
     {
         private readonly ITypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<ILMethodBodyWithMonoCecilEmit> body;
+        private readonly Lazy<ILMethodBodyWithMonoCecilCil> body;
 
-        public StaticConstructorWithMonoCecil(ITypeWithMonoCecil declaringType, ConstructorInfo constructor)
+        public StaticConstructorWithMonoCecil(ITypeWithMonoCecil declaringType, MethodDefinition constructor)
         {
             this.declaringType = declaringType;
-            ConstructorInfo = constructor;
-            attributes = new Lazy<Attributes>(() => new Attributes(constructor));
-            body = new Lazy<ILMethodBodyWithMonoCecilEmit>(() => new ILMethodBodyWithMonoCecilEmit(constructor));
+            MethodDefinition = constructor;
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, constructor));
+            body = new Lazy<ILMethodBodyWithMonoCecilCil>(() => new ILMethodBodyWithMonoCecilCil(constructor));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -28,12 +28,12 @@ namespace CSharpDom.Mono.Cecil
             get { return attributes.Value.AttributesWithMonoCecil; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return body.Value; }
         }
 
-        public ConstructorInfo ConstructorInfo { get; private set; }
+        public MethodDefinition MethodDefinition { get; private set; }
 
         public override ITypeWithMonoCecil DeclaringType
         {

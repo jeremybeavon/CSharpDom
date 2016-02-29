@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using System.Reflection;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -14,7 +15,7 @@ namespace CSharpDom.Mono.Cecil
             IndexerParameterWithMonoCecil,
             InterfaceAccessorWithMonoCecil>
     {
-        private readonly PropertyInfo indexer;
+        private readonly PropertyDefinition indexer;
         private readonly IBasicTypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithMonoCecil indexerType;
@@ -22,22 +23,23 @@ namespace CSharpDom.Mono.Cecil
         private readonly InterfaceAccessorWithMonoCecil setAccessor;
         private readonly Lazy<Parameters<IndexerParameterWithMonoCecil>> parameters;
 
-        internal InterfaceIndexerWithMonoCecil(IBasicTypeWithMonoCecil declaringType, PropertyInfo indexer)
+        internal InterfaceIndexerWithMonoCecil(IBasicTypeWithMonoCecil declaringType, PropertyDefinition indexer)
         {
             this.indexer = indexer;
             this.declaringType = declaringType;
-            attributes = new Lazy<Attributes>(() => new Attributes(indexer));
-            indexerType = TypeReferenceWithMonoCecilFactory.CreateReference(indexer.PropertyType);
+            AssemblyWithMonoCecil assembly = declaringType.Assembly;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, indexer));
+            indexerType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, indexer.PropertyType);
             parameters = new Lazy<Parameters<IndexerParameterWithMonoCecil>>(
-                () => new Parameters<IndexerParameterWithMonoCecil>(indexer, parameter => new IndexerParameterWithMonoCecil(parameter)));
+                () => new Parameters<IndexerParameterWithMonoCecil>(assembly, indexer, parameter => new IndexerParameterWithMonoCecil(parameter)));
             if (indexer.GetMethod != null)
             {
-                getAccessor = new InterfaceAccessorWithMonoCecil(indexer.GetMethod);
+                getAccessor = new InterfaceAccessorWithMonoCecil(assembly, indexer.GetMethod);
             }
 
             if (indexer.SetMethod != null)
             {
-                setAccessor = new InterfaceAccessorWithMonoCecil(indexer.SetMethod);
+                setAccessor = new InterfaceAccessorWithMonoCecil(assembly, indexer.SetMethod);
             }
         }
 

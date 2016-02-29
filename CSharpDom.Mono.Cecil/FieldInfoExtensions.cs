@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Mono.Cecil;
+using System;
 
 namespace CSharpDom.Mono.Cecil
 {
-    public static class FieldInfoExtensions
+    public static class FieldDefinitionExtensions
     {
-        public static bool IsVolatile(this FieldInfo field)
+        public static bool IsVolatile(this FieldDefinition field)
         {
-            return field.GetRequiredCustomModifiers().Contains(typeof(IsVolatile));
+            throw new NotImplementedException();
         }
     }
 }

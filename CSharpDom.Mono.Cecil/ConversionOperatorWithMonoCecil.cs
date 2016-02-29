@@ -5,6 +5,7 @@ using CSharpDom.Mono.Cecil.Internal;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -14,27 +15,28 @@ namespace CSharpDom.Mono.Cecil
             ITypeWithMonoCecil,
             ITypeReferenceWithMonoCecil,
             OperatorParameterWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>,
-        IHasMethodInfo//,
+            ILMethodBodyWithMonoCecilCil>,
+        IHasMethodDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly MethodInfo method;
+        private readonly MethodDefinition method;
         private readonly Lazy<Attributes> attributes;
         private readonly OperatorParameterWithMonoCecil parameter;
         private readonly ITypeReferenceWithMonoCecil returnType;
         private readonly Lazy<Attributes> returnAttributes;
-        private readonly Lazy<ILMethodBodyWithMonoCecilEmit> body;
+        private readonly Lazy<ILMethodBodyWithMonoCecilCil> body;
 
-        internal ConversionOperatorWithMonoCecil(ITypeWithMonoCecil declaringType, MethodInfo method)
+        internal ConversionOperatorWithMonoCecil(ITypeWithMonoCecil declaringType, MethodDefinition method)
         {
             this.declaringType = declaringType;
             this.method = method;
-            attributes = new Lazy<Attributes>(() => new Attributes(method));
-            parameter = new OperatorParameterWithMonoCecil(new ParameterWithMonoCecil(method.GetParameters()[0]));
-            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(method.ReturnType);
-            returnAttributes = new Lazy<Attributes>(() => new Attributes(method.ReturnParameter));
-            body = new Lazy<ILMethodBodyWithMonoCecilEmit>(() => new ILMethodBodyWithMonoCecilEmit(method));
+            AssemblyWithMonoCecil assembly = declaringType.Assembly;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
+            parameter = new OperatorParameterWithMonoCecil(new ParameterWithMonoCecil(assembly, method.Parameters[0]));
+            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(declaringType.Assembly, method.ReturnType);
+            returnAttributes = new Lazy<Attributes>(() => new Attributes(assembly, method.MethodReturnType));
+            body = new Lazy<ILMethodBodyWithMonoCecilCil>(() => new ILMethodBodyWithMonoCecilCil(method));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -78,12 +80,12 @@ namespace CSharpDom.Mono.Cecil
             get { return returnType; }
         }
 
-        public MethodInfo MethodInfo
+        public MethodDefinition MethodDefinition
         {
             get { return method; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return body.Value; }
         }

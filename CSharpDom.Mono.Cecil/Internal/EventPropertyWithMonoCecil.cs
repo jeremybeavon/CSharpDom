@@ -5,6 +5,7 @@ using System.Reflection;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
 using CSharpDom.NotSupported;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -13,28 +14,28 @@ namespace CSharpDom.Mono.Cecil.Internal
             AttributeWithMonoCecil, 
             ITypeWithMonoCecil,
             DelegateReferenceWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>,
-        IHasEventInfo
+            ILMethodBodyWithMonoCecilCil>,
+        IHasEventDefinition
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly EventInfo @event;
+        private readonly EventDefinition @event;
         private readonly Lazy<Attributes> attributes;
         private readonly DelegateReferenceWithMonoCecil eventType;
         private readonly Lazy<Attributes> addAttributes;
-        private readonly Lazy<ILMethodBodyWithMonoCecilEmit> addBody;
+        private readonly Lazy<ILMethodBodyWithMonoCecilCil> addBody;
         private readonly Lazy<Attributes> removeAttributes;
-        private readonly Lazy<ILMethodBodyWithMonoCecilEmit> removeBody;
+        private readonly Lazy<ILMethodBodyWithMonoCecilCil> removeBody;
 
-        internal EventPropertyWithMonoCecil(ITypeWithMonoCecil declaringType, EventInfo @event)
+        internal EventPropertyWithMonoCecil(ITypeWithMonoCecil declaringType, EventDefinition @event)
         {
             this.declaringType = declaringType;
             this.@event = @event;
-            attributes = new Lazy<Attributes>(() => new Attributes(@event));
-            eventType = new DelegateReferenceWithMonoCecil(@event.EventHandlerType);
-            addAttributes = new Lazy<Attributes>(() => new Attributes(@event.AddMethod));
-            addBody = new Lazy<ILMethodBodyWithMonoCecilEmit>(() => new ILMethodBodyWithMonoCecilEmit(@event.AddMethod));
-            removeAttributes = new Lazy<Attributes>(() => new Attributes(@event.RemoveMethod));
-            removeBody = new Lazy<ILMethodBodyWithMonoCecilEmit>(() => new ILMethodBodyWithMonoCecilEmit(@event.RemoveMethod));
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, @event));
+            eventType = new DelegateReferenceWithMonoCecil(declaringType.Assembly, @event.EventType);
+            addAttributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, @event.AddMethod));
+            addBody = new Lazy<ILMethodBodyWithMonoCecilCil>(() => new ILMethodBodyWithMonoCecilCil(@event.AddMethod));
+            removeAttributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, @event.RemoveMethod));
+            removeBody = new Lazy<ILMethodBodyWithMonoCecilCil>(() => new ILMethodBodyWithMonoCecilCil(@event.RemoveMethod));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -54,20 +55,20 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public override string Name
         {
-            get { return @event.Name(); }
+            get { return @event.Name; }
         }
 
-        public EventInfo EventInfo
+        public EventDefinition EventDefinition
         {
             get { return @event; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit AddBody
+        public override ILMethodBodyWithMonoCecilCil AddBody
         {
             get { return addBody.Value; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit RemoveBody
+        public override ILMethodBodyWithMonoCecilCil RemoveBody
         {
             get { return removeBody.Value; }
         }

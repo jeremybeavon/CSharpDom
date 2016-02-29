@@ -1,17 +1,15 @@
-﻿using System;
+﻿using Mono.Cecil;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class InterfaceReferences
     {
-        public InterfaceReferences(Type type)
+        public InterfaceReferences(AssemblyWithMonoCecil assembly, TypeDefinition type)
         {
-            InterfaceReferencesWithMonoCecil = type.GetInterfaces()
-                .Select(interfaceType => new InterfaceReferenceWithMonoCecil(interfaceType))
+            InterfaceReferencesWithMonoCecil = type.Interfaces
+                .Select(interfaceType => new InterfaceReferenceWithMonoCecil(assembly, interfaceType))
                 .ToList();
         }
 

@@ -4,6 +4,7 @@ using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -20,7 +21,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly ClassAccessorWithMonoCecil getAccessor;
         private readonly ClassAccessorWithMonoCecil setAccessor;
 
-        internal ClassIndexerWithMonoCecil(IInternalTypeWithMonoCecil declaringType, PropertyInfo indexer)
+        internal ClassIndexerWithMonoCecil(IInternalTypeWithMonoCecil declaringType, PropertyDefinition indexer)
         {
             this.indexer = new IndexerWithMonoCecil(declaringType, indexer);
             this.declaringType = declaringType;
@@ -57,7 +58,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override IndexerInheritanceModifier InheritanceModifier
         {
-            get { return indexer.PropertyInfo.IndexerInheritanceModifier(declaringType); }
+            get { return indexer.PropertyDefinition.IndexerInheritanceModifier(declaringType); }
         }
 
         public override IReadOnlyList<IndexerParameterWithMonoCecil> Parameters
@@ -72,7 +73,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return indexer.PropertyInfo.ClassVisibility(); }
+            get { return indexer.PropertyDefinition.ClassVisibility(); }
         }
     }
 }

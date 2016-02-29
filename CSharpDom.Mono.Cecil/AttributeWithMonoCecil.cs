@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Reflection;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -12,9 +12,9 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly IAttributeWithMonoCecil attribute;
 
-        internal AttributeWithMonoCecil(CustomAttributeData attribute)
+        internal AttributeWithMonoCecil(AssemblyWithMonoCecil assembly, CustomAttribute attribute)
         {
-            this.attribute = new InternalAttributeWithMonoCecil(attribute);
+            this.attribute = new InternalAttributeWithMonoCecil(assembly, attribute);
         }
 
         public override IReadOnlyCollection<IAttributeWithMonoCecil> Attributes

@@ -1,23 +1,23 @@
-﻿using System;
-using System.Reflection;
+﻿using Mono.Cecil;
+using System;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
-    internal static class ParameterInfoExtensions
+    internal static class ParameterDefinitionExtensions
     {
-        public static ParameterModifier Modifier(this ParameterInfo parameter)
+        public static ParameterModifier Modifier(this ParameterDefinition parameter, AssemblyWithMonoCecil assembly)
         {
             if (parameter.IsOut)
             {
                 return ParameterModifier.Out;
             }
 
-            if (parameter.ParameterType.IsByRef)
+            if (parameter.ParameterType.IsByReference)
             {
                 return ParameterModifier.Ref;
             }
 
-            if (parameter.IsDefined(typeof(ParamArrayAttribute)))
+            if (parameter.IsDefined(assembly, typeof(ParamArrayAttribute)))
             {
                 return ParameterModifier.Params;
             }

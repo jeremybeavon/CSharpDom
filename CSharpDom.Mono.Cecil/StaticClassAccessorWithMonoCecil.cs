@@ -2,15 +2,14 @@
 using CSharpDom.Common;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
-using System;
+using Mono.Cecil;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class StaticClassAccessorWithMonoCecil :
-        AbstractStaticClassAccessor<AttributeWithMonoCecil, ILMethodBodyWithMonoCecilEmit>,
-        IHasMethodInfo
+        AbstractStaticClassAccessor<AttributeWithMonoCecil, ILMethodBodyWithMonoCecilCil>,
+        IHasMethodDefinition
         //IVisitable<IReflectionVisitor>,
     {
         private readonly AccessorWithMonoCecil accessor;
@@ -19,7 +18,7 @@ namespace CSharpDom.Mono.Cecil
         internal StaticClassAccessorWithMonoCecil(IHasStaticClassMemberVisibilityModifier parentVisibility, AccessorWithMonoCecil accessor)
         {
             this.accessor = accessor;
-            visibility = accessor.MethodInfo.StaticClassVisibility();
+            visibility = accessor.MethodDefinition.StaticClassVisibility();
             if (parentVisibility.Visibility == visibility)
             {
                 visibility = StaticClassMemberVisibilityModifier.None;
@@ -36,12 +35,12 @@ namespace CSharpDom.Mono.Cecil
             get { return visibility; }
         }
 
-        public MethodInfo MethodInfo
+        public MethodDefinition MethodDefinition
         {
-            get { return accessor.MethodInfo; }
+            get { return accessor.MethodDefinition; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return accessor.Body; }
         }

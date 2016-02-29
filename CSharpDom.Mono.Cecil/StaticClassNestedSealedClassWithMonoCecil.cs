@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -30,7 +31,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly NestedSealedClassWithMonoCecil nestedClass;
 
-        internal StaticClassNestedSealedClassWithMonoCecil(IInternalTypeWithMonoCecil declaringType, Type type)
+        internal StaticClassNestedSealedClassWithMonoCecil(IInternalTypeWithMonoCecil declaringType, TypeDefinition type)
         {
             nestedClass = new NestedSealedClassWithMonoCecil(declaringType, type);
         }
@@ -142,7 +143,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { return nestedClass.Type.StaticClassMemberVisibility(); }
+            get { return nestedClass.TypeDefinition.StaticClassMemberVisibility(); }
         }
     }
 }

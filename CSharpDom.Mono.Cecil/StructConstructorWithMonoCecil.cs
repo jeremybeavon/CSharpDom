@@ -4,6 +4,7 @@ using System.Reflection;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -12,12 +13,12 @@ namespace CSharpDom.Mono.Cecil
             AttributeWithMonoCecil,
             ITypeWithMonoCecil,
             ConstructorParameterWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>,
-        IHasConstructorInfo
+            ILMethodBodyWithMonoCecilCil>,
+        IHasMethodDefinition
     {
         private readonly ConstructorWithMonoCecil constructor;
 
-        internal StructConstructorWithMonoCecil(ITypeWithMonoCecil declaringType, ConstructorInfo constructor)
+        internal StructConstructorWithMonoCecil(ITypeWithMonoCecil declaringType, MethodDefinition constructor)
         {
             this.constructor = new ConstructorWithMonoCecil(declaringType, constructor);
         }
@@ -27,14 +28,14 @@ namespace CSharpDom.Mono.Cecil
             get { return constructor.Attributes; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return constructor.Body; }
         }
 
-        public ConstructorInfo ConstructorInfo
+        public MethodDefinition MethodDefinition
         {
-            get { return constructor.ConstructorInfo; }
+            get { return constructor.MethodDefinition; }
         }
 
         public override ITypeWithMonoCecil DeclaringType
@@ -49,7 +50,7 @@ namespace CSharpDom.Mono.Cecil
         
         public override StructMemberVisibilityModifier Visibility
         {
-            get { return constructor.ConstructorInfo.StructVisibility(); }
+            get { return constructor.MethodDefinition.StructVisibility(); }
         }
     }
 }

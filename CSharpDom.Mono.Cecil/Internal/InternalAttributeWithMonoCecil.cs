@@ -1,10 +1,7 @@
 ﻿using CSharpDom.BaseClasses;
-using System;
+using Mono.Cecil;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -16,11 +13,16 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly IReadOnlyCollection<NamedAttributeValueWithMonoCecil> namedAttributeValues;
         private readonly IReadOnlyList<UnnamedAttributeValueWithMonoCecil> unnamedAttributeValues;
 
-        internal InternalAttributeWithMonoCecil(CustomAttributeData attribute)
+        internal InternalAttributeWithMonoCecil(AssemblyWithMonoCecil assembly, CustomAttribute attribute)
         {
-            attributeType = new ClassReferenceWithMonoCecil(attribute.AttributeType);
-            namedAttributeValues = attribute.NamedArguments.Select(value => new NamedAttributeValueWithMonoCecil(value)).ToList();
-            unnamedAttributeValues = attribute.ConstructorArguments.Select(value => new UnnamedAttributeValueWithMonoCecil(value)).ToList();
+            attributeType = new ClassReferenceWithMonoCecil(assembly, attribute.AttributeType);
+            namedAttributeValues = attribute.Fields
+                .Concat(attribute.Properties)
+                .Select(value => new NamedAttributeValueWithMonoCecil(assembly, value))
+                .ToList();
+            unnamedAttributeValues = attribute.ConstructorArguments
+                .Select(value => new UnnamedAttributeValueWithMonoCecil(assembly, value))
+                .ToList();
         }
         
         public override ClassReferenceWithMonoCecil AttributeType

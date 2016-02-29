@@ -1,10 +1,10 @@
-﻿using System.Reflection;
+﻿using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
-    internal static class FieldInfoExtensions
+    internal static class FieldDefinitionExtensions
     {
-        public static ClassMemberVisibilityModifier ClassVisibility(this FieldInfo fieldInfo)
+        public static ClassMemberVisibilityModifier ClassVisibility(this FieldDefinition fieldInfo)
         {
             if (fieldInfo.IsPublic)
             {

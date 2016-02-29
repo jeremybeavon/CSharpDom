@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 
@@ -10,13 +11,13 @@ namespace CSharpDom.Mono.Cecil
         ITypeReferenceWithMonoCecil//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Type type;
+        private readonly TypeReference type;
         private readonly Lazy<GenericParameters> genericParameters;
 
-        internal DelegateReferenceWithMonoCecil(Type type)
+        internal DelegateReferenceWithMonoCecil(AssemblyWithMonoCecil assembly, TypeReference type)
         {
             this.type = type;
-            genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(type));
+            genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(assembly, type));
         }
 
         public override IReadOnlyList<GenericParameterWithMonoCecil> GenericParameters
@@ -26,10 +27,10 @@ namespace CSharpDom.Mono.Cecil
 
         public override string Name
         {
-            get { return type.Name(); }
+            get { return type.Name; }
         }
 
-        public Type Type
+        public TypeReference TypeReference
         {
             get { return type; }
         }

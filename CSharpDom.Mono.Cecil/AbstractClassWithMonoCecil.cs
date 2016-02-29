@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 
@@ -30,7 +31,7 @@ namespace CSharpDom.Mono.Cecil
             DestructorWithMonoCecil,
             StaticConstructorWithMonoCecil>,
         ITypeWithMonoCecil,
-        IHasType//,
+        IHasTypeDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassWithMonoCecil classWithMonoCecil;
@@ -39,7 +40,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly AbstractClassMethodCollectionWithMonoCecil methods;
         private readonly AbstractClassPropertyCollectionWithMonoCecil properties;
 
-        internal AbstractClassWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, Type type)
+        internal AbstractClassWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, TypeDefinition type)
         {
             classWithMonoCecil = new ClassWithMonoCecil(assembly, @namespace, type);
             events = new AbstractClassEventCollectionWithMonoCecil(classWithMonoCecil.TypeWithMonoCecil);
@@ -163,9 +164,9 @@ namespace CSharpDom.Mono.Cecil
             get { return classWithMonoCecil.Visibility; }
         }
 
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
-            get { return classWithMonoCecil.Type; }
+            get { return classWithMonoCecil.TypeDefinition; }
         }
         
         public override StaticConstructorWithMonoCecil StaticConstructor
@@ -177,7 +178,12 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return classWithMonoCecil.Document; }
         }
-        
+
+        public AssemblyWithMonoCecil Assembly
+        {
+            get { return classWithMonoCecil.Assembly; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithMonoCecil(this);

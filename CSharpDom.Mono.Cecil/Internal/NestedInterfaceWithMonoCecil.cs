@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -20,10 +21,10 @@ namespace CSharpDom.Mono.Cecil.Internal
         IVisitable<IReflectionVisitor>*/
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly Type type;
+        private readonly TypeDefinition type;
         private readonly BasicTypeWithMonoCecil basicType;
 
-        internal NestedInterfaceWithMonoCecil(ITypeWithMonoCecil declaringType, Type type)
+        internal NestedInterfaceWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             this.declaringType = declaringType;
             this.type = type;
@@ -75,11 +76,16 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return basicType.Properties; }
         }
         
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
             get { return type; }
         }
-        
+
+        public AssemblyWithMonoCecil Assembly
+        {
+            get { return declaringType.Assembly; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNestedInterfaceWithMonoCecil(this);

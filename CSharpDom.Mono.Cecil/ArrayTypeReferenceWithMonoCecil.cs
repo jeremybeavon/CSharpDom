@@ -1,24 +1,22 @@
 ﻿using CSharpDom.BaseClasses;
-using CSharpDom.Mono.Cecil.Internal;
-using System;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class ArrayTypeReferenceWithMonoCecil :
         AbstractArrayTypeReference<ITypeReferenceWithMonoCecil>,
-        ITypeReferenceWithMonoCecil,
-        IHasType//,
+        ITypeReferenceWithMonoCecil//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Type type;
+        private readonly TypeReference type;
         private readonly int dimensions;
         private readonly ITypeReferenceWithMonoCecil elementType;
 
-        internal ArrayTypeReferenceWithMonoCecil(Type type)
+        internal ArrayTypeReferenceWithMonoCecil(AssemblyWithMonoCecil assembly, TypeReference type)
         {
             this.type = type;
-            dimensions = type.GetArrayRank();
-            elementType = TypeReferenceWithMonoCecilFactory.CreateReference(type.GetElementType());
+            //dimensions = type..GetArrayRank();
+            elementType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, type.GetElementType());
         }
 
         public override int Dimensions
@@ -31,7 +29,7 @@ namespace CSharpDom.Mono.Cecil
             get { return elementType; }
         }
 
-        public Type Type
+        public TypeReference TypeReference
         {
             get { return type; }
         }

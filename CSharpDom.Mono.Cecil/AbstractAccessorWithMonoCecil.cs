@@ -2,6 +2,7 @@
 using CSharpDom.Common;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -10,7 +11,7 @@ namespace CSharpDom.Mono.Cecil
 {
     public sealed class AbstractAccessorWithMonoCecil :
         AbstractAbstractAccessor<AttributeWithMonoCecil>,
-        IHasMethodInfo,
+        IHasMethodDefinition,
         //IVisitable<IReflectionVisitor>,
         IStructAccessor
     {
@@ -26,9 +27,9 @@ namespace CSharpDom.Mono.Cecil
             get { return accessor.Attributes; }
         }
         
-        public MethodInfo MethodInfo
+        public MethodDefinition MethodDefinition
         {
-            get { return accessor.MethodInfo; }
+            get { return accessor.MethodDefinition; }
         }
         
         /*public void Accept(IReflectionVisitor visitor)

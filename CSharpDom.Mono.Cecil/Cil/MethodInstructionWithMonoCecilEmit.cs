@@ -1,12 +1,12 @@
 ﻿using CSharpDom.BaseClasses.IL;
 using CSharpDom.Common.IL;
+using Mono.Cecil.Cil;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Reflection.Emit;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class MethodInstructionWithMonoCecilEmit : AbstractMethodInstruction<MethodBase>, IILInstructionWithMonoCecilEmit
+    public sealed class MethodInstructionWithMonoCecilCil : AbstractMethodInstruction<MethodBase>, IILInstructionWithMonoCecilCil
     {
         private static readonly IDictionary<OpCode, MethodInstructionType> instructionTypes =
             new Dictionary<OpCode, MethodInstructionType>()
@@ -24,7 +24,7 @@ namespace CSharpDom.Mono.Cecil.Cil
         private readonly MethodBase method;
         private readonly int token;
 
-        public MethodInstructionWithMonoCecilEmit(OpCode opCode, int token, MethodBase method)
+        public MethodInstructionWithMonoCecilCil(OpCode opCode, int token, MethodBase method)
         {
             this.opCode = opCode;
             instructionType = instructionTypes[opCode];

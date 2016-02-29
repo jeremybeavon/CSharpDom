@@ -1,9 +1,9 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
 using System;
-using System.Reflection;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -12,14 +12,14 @@ namespace CSharpDom.Mono.Cecil
         //IVisitable<IReflectionVisitor>
     {
         private readonly NestedEnumWithMonoCecil declaringType;
-        private readonly FieldInfo field;
+        private readonly FieldDefinition field;
         private readonly Lazy<Attributes> attributes;
 
-        internal NestedEnumMemberWithMonoCecil(NestedEnumWithMonoCecil declaringType, FieldInfo field)
+        internal NestedEnumMemberWithMonoCecil(NestedEnumWithMonoCecil declaringType, FieldDefinition field)
         {
             this.declaringType = declaringType;
             this.field = field;
-            attributes = new Lazy<Attributes>(() => new Attributes(field));
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, field));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes

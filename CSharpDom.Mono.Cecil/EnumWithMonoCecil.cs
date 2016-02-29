@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
 using System.Linq;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -14,21 +15,22 @@ namespace CSharpDom.Mono.Cecil
             AssemblyWithMonoCecil,
             AttributeWithMonoCecil,
             EnumMemberWithMonoCecil>,
-        IHasType//,
+        IHasTypeDefinition,
+        ITypeWithMonoCecil//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly AssemblyWithMonoCecil assembly;
         private readonly NamespaceWithMonoCecil @namespace;
-        private readonly Type type;
+        private readonly TypeDefinition type;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<IReadOnlyList<EnumMemberWithMonoCecil>> enumMembers;
 
-        internal EnumWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, Type type)
+        internal EnumWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, TypeDefinition type)
         {
             this.assembly = assembly;
             this.@namespace = @namespace;
             this.type = type;
-            attributes = new Lazy<Attributes>(() => new Attributes(type));
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, type));
             enumMembers = new Lazy<IReadOnlyList<EnumMemberWithMonoCecil>>(InitializeEnumMembers);
         }
 
@@ -62,7 +64,7 @@ namespace CSharpDom.Mono.Cecil
             get { return assembly; }
         }
 
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
             get { return type; }
         }
@@ -82,6 +84,11 @@ namespace CSharpDom.Mono.Cecil
             get { return assembly; }
         }
 
+        public AssemblyWithMonoCecil Assembly
+        {
+            get { return assembly; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitEnumWithMonoCecil(this);
@@ -92,9 +99,10 @@ namespace CSharpDom.Mono.Cecil
             AcceptChildren(new ForwardingGenericVisitor(visitor));
         }*/
 
-        internal static EnumBaseType GetBaseType(Type type)
+        internal static EnumBaseType GetBaseType(TypeDefinition type)
         {
-            switch (Type.GetTypeCode(Enum.GetUnderlyingType(type)))
+            throw new NotImplementedException();
+            /*switch (TypeDefinition.GetTypeCode(Enum.GetUnderlyingType(type)))
             {
                 case TypeCode.Byte:
                     return EnumBaseType.Byte;
@@ -112,12 +120,12 @@ namespace CSharpDom.Mono.Cecil
                     return EnumBaseType.UShort;
                 default:
                     return EnumBaseType.None;
-            }
+            }*/
         }
 
         private IReadOnlyList<EnumMemberWithMonoCecil> InitializeEnumMembers()
         {
-            return type.GetAllFields().Select(field => new EnumMemberWithMonoCecil(this, field)).ToList();
+            return type.Fields.Select(field => new EnumMemberWithMonoCecil(this, field)).ToList();
         }
     }
 }

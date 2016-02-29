@@ -1,26 +1,25 @@
 ﻿using CSharpDom.BaseClasses.IL;
-using System.Reflection;
-using System;
-using System.Reflection.Emit;
+using Mono.Cecil;
+using Mono.Cecil.Cil;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class LoadMemberTokenInstructionWithMonoCecilEmit :
-        AbstractLoadMemberTokenInstruction<MemberInfo>,
-        IILInstructionWithMonoCecilEmit
+    public sealed class LoadMemberTokenInstructionWithMonoCecilCil :
+        AbstractLoadMemberTokenInstruction<MemberReference>,
+        IILInstructionWithMonoCecilCil
     {
         private readonly OpCode opCode;
-        private readonly MemberInfo member;
+        private readonly MemberReference member;
         private readonly int token;
 
-        public LoadMemberTokenInstructionWithMonoCecilEmit(OpCode opCode, int token, MemberInfo member)
+        public LoadMemberTokenInstructionWithMonoCecilCil(OpCode opCode, int token, MemberReference member)
         {
             this.opCode = opCode;
             this.token = token;
             this.member = member;
         }
 
-        public override MemberInfo Member
+        public override MemberReference Member
         {
             get { return member; }
         }

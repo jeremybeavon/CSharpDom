@@ -6,6 +6,7 @@ using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
 using CSharpDom.Mono.Cecil.ConstantExpressions;
 using CSharpDom.NotSupported;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -19,7 +20,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly FieldGroupWithMonoCecil field;
 
-        internal StaticClassFieldWithMonoCecil(ITypeWithMonoCecil declaringType, FieldInfo field)
+        internal StaticClassFieldWithMonoCecil(ITypeWithMonoCecil declaringType, FieldDefinition field)
         {
             this.field = new FieldGroupWithMonoCecil(declaringType, field);
         }
@@ -53,17 +54,17 @@ namespace CSharpDom.Mono.Cecil
         {
             get
             {
-                if (field.FieldInfo.IsLiteral)
+                if (field.FieldDefinition.IsLiteral)
                 {
                     return StaticClassFieldModifier.Const;
                 }
 
-                if (field.FieldInfo.IsInitOnly)
+                if (field.FieldDefinition.IsInitOnly)
                 {
                     return StaticClassFieldModifier.ReadOnly;
                 }
 
-                if (field.FieldInfo.IsVolatile())
+                if (field.FieldDefinition.IsVolatile())
                 {
                     return StaticClassFieldModifier.Volatile;
                 }
@@ -74,14 +75,14 @@ namespace CSharpDom.Mono.Cecil
 
         public string Name
         {
-            get { return field.FieldInfo.Name; }
+            get { return field.FieldDefinition.Name; }
         }
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
             get
             {
-                FieldInfo fieldInfo = field.FieldInfo;
+                FieldDefinition fieldInfo = field.FieldDefinition;
                 if (fieldInfo.IsPublic)
                 {
                     return StaticClassMemberVisibilityModifier.Public;

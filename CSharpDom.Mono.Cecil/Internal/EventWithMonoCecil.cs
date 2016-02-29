@@ -1,15 +1,15 @@
 ﻿using CSharpDom.BaseClasses;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class EventWithMonoCecil :
         AbstractEvent<AttributeWithMonoCecil, ITypeWithMonoCecil, DelegateReferenceWithMonoCecil>,
-        IHasEventInfo
+        IHasEventDefinition
     {
         private static readonly Type[] excludedAttributeTypes = new Type[]
         {
@@ -17,16 +17,16 @@ namespace CSharpDom.Mono.Cecil.Internal
             typeof(DebuggerBrowsableAttribute)
         };
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly EventInfo @event;
+        private readonly EventDefinition @event;
         private readonly Lazy<Attributes> attributes;
         private readonly DelegateReferenceWithMonoCecil eventType;
 
-        internal EventWithMonoCecil(ITypeWithMonoCecil declaringType, EventInfo @event)
+        internal EventWithMonoCecil(ITypeWithMonoCecil declaringType, EventDefinition @event)
         {
             this.declaringType = declaringType;
             this.@event = @event;
-            attributes = new Lazy<Attributes>(() => new Attributes(@event, excludedAttributeTypes));
-            eventType = new DelegateReferenceWithMonoCecil(@event.EventHandlerType);
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, @event, excludedAttributeTypes));
+            eventType = new DelegateReferenceWithMonoCecil(declaringType.Assembly, @event.EventType);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -49,7 +49,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return @event.Name; }
         }
         
-        public EventInfo EventInfo
+        public EventDefinition EventDefinition
         {
             get { return @event; }
         }

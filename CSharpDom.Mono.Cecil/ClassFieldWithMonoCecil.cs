@@ -5,6 +5,7 @@ using CSharpDom.Mono.Cecil.Internal;
 using System.Reflection;
 using CSharpDom.Mono.Cecil.ConstantExpressions;
 using CSharpDom.NotSupported;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -19,7 +20,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly FieldGroupWithMonoCecil field;
         private readonly IInternalTypeWithMonoCecil declaringType;
 
-        internal ClassFieldWithMonoCecil(IInternalTypeWithMonoCecil declaringType, FieldInfo field)
+        internal ClassFieldWithMonoCecil(IInternalTypeWithMonoCecil declaringType, FieldDefinition field)
         {
             this.field = new FieldGroupWithMonoCecil(declaringType, field);
             this.declaringType = declaringType;
@@ -47,12 +48,12 @@ namespace CSharpDom.Mono.Cecil
 
         public string Name
         {
-            get { return field.FieldInfo.Name; }
+            get { return field.FieldDefinition.Name; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return field.FieldInfo.ClassVisibility(); }
+            get { return field.FieldDefinition.ClassVisibility(); }
         }
 
         public override IReadOnlyCollection<IFieldWithMonoCecil> Fields

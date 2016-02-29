@@ -3,23 +3,24 @@ using System.Reflection;
 using System;
 using System.Collections.Generic;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class EnumMemberWithMonoCecil :
         AbstractEnumMember<AttributeWithMonoCecil, EnumWithMonoCecil>,
-        IHasFieldInfo//,
+        IHasFieldDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly EnumWithMonoCecil declaringType;
-        private readonly FieldInfo field;
+        private readonly FieldDefinition field;
         private readonly Lazy<Attributes> attributes;
 
-        internal EnumMemberWithMonoCecil(EnumWithMonoCecil declaringType, FieldInfo field)
+        internal EnumMemberWithMonoCecil(EnumWithMonoCecil declaringType, FieldDefinition field)
         {
             this.declaringType = declaringType;
             this.field = field;
-            attributes = new Lazy<Attributes>(() => new Attributes(field));
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, field));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -37,7 +38,7 @@ namespace CSharpDom.Mono.Cecil
             get { return field.Name; }
         }
 
-        public FieldInfo FieldInfo
+        public FieldDefinition FieldDefinition
         {
             get { return field; }
         }

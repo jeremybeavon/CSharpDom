@@ -1,19 +1,20 @@
 ﻿using CSharpDom.Common;
+using Mono.Cecil;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class ILMethodBodyWithMonoCecilEmit : IMethodBody<IILInstructionWithMonoCecilEmit>
+    public sealed class ILMethodBodyWithMonoCecilCil : IMethodBody<IILInstructionWithMonoCecilCil>
     {
-        public ILMethodBodyWithMonoCecilEmit(MethodBase method)
+        public ILMethodBodyWithMonoCecilCil(MethodDefinition method)
         {
-            Instructions = ILInstructionBuilder.GetInstructions(method);
+            //Instructions = ILInstructionBuilder.GetInstructions(method);
         }
 
-        public IReadOnlyList<IILInstructionWithMonoCecilEmit> Instructions { get; private set; }
+        public IReadOnlyList<IILInstructionWithMonoCecilCil> Instructions { get; private set; }
 
-        IReadOnlyList<IILInstructionWithMonoCecilEmit> IMethodBody<IILInstructionWithMonoCecilEmit>.Statements
+        IReadOnlyList<IILInstructionWithMonoCecilCil> IMethodBody<IILInstructionWithMonoCecilCil>.Statements
         {
             get { return Instructions; }
         }

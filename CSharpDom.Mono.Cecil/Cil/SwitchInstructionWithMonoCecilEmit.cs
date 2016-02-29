@@ -1,15 +1,15 @@
 ﻿using CSharpDom.BaseClasses.IL;
+using Mono.Cecil.Cil;
 using System.Collections.Generic;
-using System.Reflection.Emit;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class SwitchInstructionWithMonoCecilEmit : AbstractSwitchInstruction, IILInstructionWithMonoCecilEmit
+    public sealed class SwitchInstructionWithMonoCecilCil : AbstractSwitchInstruction, IILInstructionWithMonoCecilCil
     {
         private readonly OpCode opCode;
         private readonly IReadOnlyList<int> deltas;
 
-        public SwitchInstructionWithMonoCecilEmit(OpCode opCode, IReadOnlyList<int> deltas)
+        public SwitchInstructionWithMonoCecilCil(OpCode opCode, IReadOnlyList<int> deltas)
         {
             this.opCode = opCode;
             this.deltas = deltas;

@@ -1,13 +1,12 @@
 ﻿using CSharpDom.BaseClasses.IL;
 using CSharpDom.Common.IL;
-using System;
+using Mono.Cecil;
+using Mono.Cecil.Cil;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Reflection.Emit;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class FieldInstructionWithMonoCecilEmit : AbstractFieldInstruction<FieldInfo>, IILInstructionWithMonoCecilEmit
+    public sealed class FieldInstructionWithMonoCecilCil : AbstractFieldInstruction<FieldDefinition>, IILInstructionWithMonoCecilCil
     {
         private static readonly IDictionary<OpCode, FieldInstructionType> instructionTypes =
             new Dictionary<OpCode, FieldInstructionType>()
@@ -22,10 +21,10 @@ namespace CSharpDom.Mono.Cecil.Cil
 
         private readonly OpCode opCode;
         private readonly FieldInstructionType instructionType;
-        private readonly FieldInfo field;
+        private readonly FieldDefinition field;
         private readonly int token;
 
-        public FieldInstructionWithMonoCecilEmit(OpCode opCode, int token, FieldInfo field)
+        public FieldInstructionWithMonoCecilCil(OpCode opCode, int token, FieldDefinition field)
         {
             this.opCode = opCode;
             instructionType = instructionTypes[opCode];
@@ -33,7 +32,7 @@ namespace CSharpDom.Mono.Cecil.Cil
             this.field = field;
         }
 
-        public override FieldInfo Field
+        public override FieldDefinition Field
         {
             get { return field; }
         }

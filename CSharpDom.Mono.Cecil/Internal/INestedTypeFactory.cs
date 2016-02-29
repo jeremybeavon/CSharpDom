@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -12,20 +13,20 @@ namespace CSharpDom.Mono.Cecil.Internal
         TNestedInterface,
         TNestedStruct>
     {
-        TNestedAbstractClass CreateNestedAbstractClass(ITypeWithMonoCecil declaringType, Type type);
+        TNestedAbstractClass CreateNestedAbstractClass(ITypeWithMonoCecil declaringType, TypeDefinition type);
 
-        TNestedClass CreateNestedClass(ITypeWithMonoCecil declaringType, Type type);
+        TNestedClass CreateNestedClass(ITypeWithMonoCecil declaringType, TypeDefinition type);
 
-        TNestedSealedClass CreateNestedSealedClass(ITypeWithMonoCecil declaringType, Type type);
+        TNestedSealedClass CreateNestedSealedClass(ITypeWithMonoCecil declaringType, TypeDefinition type);
 
-        TNestedStaticClass CreateNestedStaticClass(ITypeWithMonoCecil declaringType, Type type);
+        TNestedStaticClass CreateNestedStaticClass(ITypeWithMonoCecil declaringType, TypeDefinition type);
 
-        TNestedDelegate CreateNestedDelegate(ITypeWithMonoCecil declaringType, Type type);
+        TNestedDelegate CreateNestedDelegate(ITypeWithMonoCecil declaringType, TypeDefinition type);
 
-        TNestedEnum CreateNestedEnum(ITypeWithMonoCecil declaringType, Type type);
+        TNestedEnum CreateNestedEnum(ITypeWithMonoCecil declaringType, TypeDefinition type);
 
-        TNestedInterface CreateNestedInterface(ITypeWithMonoCecil declaringType, Type type);
+        TNestedInterface CreateNestedInterface(ITypeWithMonoCecil declaringType, TypeDefinition type);
 
-        TNestedStruct CreateNestedStruct(ITypeWithMonoCecil declaringType, Type type);
+        TNestedStruct CreateNestedStruct(ITypeWithMonoCecil declaringType, TypeDefinition type);
     }
 }

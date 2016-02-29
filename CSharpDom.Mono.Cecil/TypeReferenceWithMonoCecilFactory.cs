@@ -1,25 +1,49 @@
 ﻿using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpDom.Mono.Cecil
 {
     public static class TypeReferenceWithMonoCecilFactory
     {
-        public static ITypeReferenceWithMonoCecil CreateReference(Type type, bool ignoreNestedType = false)
+        private static readonly IDictionary<Func<TypeSystem, TypeReference>, BuiltInType?> builtInTypes =
+            new Dictionary<Func<TypeSystem, TypeReference>, BuiltInType?>()
+            {
+                { typeSystem => typeSystem.Boolean, BuiltInType.Bool },
+                { typeSystem => typeSystem.Byte, BuiltInType.Byte },
+                { typeSystem => typeSystem.Char, BuiltInType.Char },
+                //{ typeSystem => typeSystem, BuiltInType.Decimal },
+                { typeSystem => typeSystem.Double, BuiltInType.Double },
+                { typeSystem => typeSystem.Single, BuiltInType.Float },
+                { typeSystem => typeSystem.Int32, BuiltInType.Int },
+                { typeSystem => typeSystem.Int64, BuiltInType.Long },
+                { typeSystem => typeSystem.Object, BuiltInType.Object },
+                { typeSystem => typeSystem.SByte, BuiltInType.SByte },
+                { typeSystem => typeSystem.Int16, BuiltInType.Short },
+                { typeSystem => typeSystem.String, BuiltInType.String },
+                { typeSystem => typeSystem.UInt32, BuiltInType.UInt },
+                { typeSystem => typeSystem.UInt64, BuiltInType.ULong },
+                { typeSystem => typeSystem.UInt16, BuiltInType.UShort },
+                { typeSystem => typeSystem.Void, BuiltInType.Void }
+            };
+
+        public static ITypeReferenceWithMonoCecil CreateReference(AssemblyWithMonoCecil assembly, TypeReference type, bool ignoreNestedType = false)
         {
-            if (type.IsByRef)
+            if (type.IsByReference)
             {
                 type = type.GetElementType();
             }
 
             if (type.IsArray)
             {
-                return new ArrayTypeReferenceWithMonoCecil(type);
+                return new ArrayTypeReferenceWithMonoCecil(assembly, type);
             }
 
             if (type.DeclaringType != null && !ignoreNestedType)
             {
-                return new NestedTypeReferenceWithMonoCecil(type);
+                return new NestedTypeReferenceWithMonoCecil(assembly, type);
             }
 
             if (type.IsGenericParameter)
@@ -27,66 +51,41 @@ namespace CSharpDom.Mono.Cecil
                 return new GenericParameterReferenceWithMonoCecil(type);
             }
 
-            if (type == typeof(void))
+            ITypeReferenceWithMonoCecil typeReference = CreateBuiltInReference(assembly, type);
+            if (typeReference != null)
             {
-                return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Void);
+                return typeReference;
             }
 
-            if (type == typeof(object))
-            {
-                return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Object);
-            }
-
-            switch (Type.GetTypeCode(type))
-            {
-                case TypeCode.Boolean:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Bool);
-                case TypeCode.Byte:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Byte);
-                case TypeCode.Char:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Char);
-                case TypeCode.Decimal:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Decimal);
-                case TypeCode.Double:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Double);
-                case TypeCode.Int16:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Short);
-                case TypeCode.Int32:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Int);
-                case TypeCode.Int64:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Long);
-                case TypeCode.SByte:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.SByte);
-                case TypeCode.Single:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.Float);
-                case TypeCode.String:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.String);
-                case TypeCode.UInt16:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.UShort);
-                case TypeCode.UInt32:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.UInt);
-                case TypeCode.UInt64:
-                    return new BuiltInTypeReferenceWithMonoCecil(BuiltInType.ULong);
-            }
-
-            switch (type.TypeClassification())
+            switch (type.Resolve().TypeClassification())
             {
                 case TypeClassification.AbstractClass:
                 case TypeClassification.Class:
                 case TypeClassification.SealedClass:
                 case TypeClassification.StaticClass:
-                    return new ClassReferenceWithMonoCecil(type);
+                    return new ClassReferenceWithMonoCecil(assembly, type);
                 case TypeClassification.Delegate:
-                    return new DelegateReferenceWithMonoCecil(type);
+                    return new DelegateReferenceWithMonoCecil(assembly, type);
                 case TypeClassification.Enum:
                     return new EnumReferenceWithMonoCecil(type);
                 case TypeClassification.Interface:
-                    return new InterfaceReferenceWithMonoCecil(type);
+                    return new InterfaceReferenceWithMonoCecil(assembly, type);
                 case TypeClassification.Struct:
-                    return new StructReferenceWithMonoCecil(type);
+                    return new StructReferenceWithMonoCecil(assembly, type);
                 default:
-                    return new UnspecifiedTypeReferenceWithMonoCecil(type);
+                    return new UnspecifiedTypeReferenceWithMonoCecil(assembly, type);
             }
+        }
+
+        private static ITypeReferenceWithMonoCecil CreateBuiltInReference(AssemblyWithMonoCecil assembly, TypeReference type)
+        {
+            TypeSystem typeSystem = assembly.Assembly.MainModule.TypeSystem;
+            BuiltInType? builtInType =
+                (from entry in builtInTypes
+                 let typeReference = entry.Key(typeSystem)
+                 where typeReference != null
+                 select entry.Value).FirstOrDefault();
+            return builtInType.HasValue ? new BuiltInTypeReferenceWithMonoCecil(builtInType.Value, type) : null;
         }
     }
 }

@@ -1,14 +1,14 @@
 ﻿using CSharpDom.BaseClasses.IL;
-using System.Reflection.Emit;
+using Mono.Cecil.Cil;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public sealed class UnalignedInstructionWithMonoCecilEmit : AbstractUnalignedInstruction, IILInstructionWithMonoCecilEmit
+    public sealed class UnalignedInstructionWithMonoCecilCil : AbstractUnalignedInstruction, IILInstructionWithMonoCecilCil
     {
         private readonly OpCode opCode;
         private readonly byte value;
 
-        public UnalignedInstructionWithMonoCecilEmit(OpCode opCode, byte value)
+        public UnalignedInstructionWithMonoCecilCil(OpCode opCode, byte value)
         {
             this.opCode = opCode;
             this.value = value;

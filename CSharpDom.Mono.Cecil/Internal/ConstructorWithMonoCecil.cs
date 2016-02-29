@@ -4,6 +4,7 @@ using System.Reflection;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -12,23 +13,23 @@ namespace CSharpDom.Mono.Cecil.Internal
             AttributeWithMonoCecil,
             ITypeWithMonoCecil,
             ConstructorParameterWithMonoCecil,
-            ILMethodBodyWithMonoCecilEmit>,
-        IHasConstructorInfo
+            ILMethodBodyWithMonoCecilCil>,
+        IHasMethodDefinition
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly ConstructorInfo constructor;
+        private readonly MethodDefinition constructor;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<Parameters<ConstructorParameterWithMonoCecil>> parameters;
-        private readonly Lazy<ILMethodBodyWithMonoCecilEmit> body;
+        private readonly Lazy<ILMethodBodyWithMonoCecilCil> body;
 
-        internal ConstructorWithMonoCecil(ITypeWithMonoCecil declaringType, ConstructorInfo constructor)
+        internal ConstructorWithMonoCecil(ITypeWithMonoCecil declaringType, MethodDefinition constructor)
         {
             this.declaringType = declaringType;
             this.constructor = constructor;
-            attributes = new Lazy<Attributes>(() => new Attributes(constructor));
+            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, constructor));
             parameters = new Lazy<Parameters<ConstructorParameterWithMonoCecil>>(
-                () => new Parameters<ConstructorParameterWithMonoCecil>(constructor, parameter => new ConstructorParameterWithMonoCecil(parameter)));
-            body = new Lazy<ILMethodBodyWithMonoCecilEmit>(() => new ILMethodBodyWithMonoCecilEmit(constructor));
+                () => new Parameters<ConstructorParameterWithMonoCecil>(declaringType.Assembly, constructor, parameter => new ConstructorParameterWithMonoCecil(parameter)));
+            body = new Lazy<ILMethodBodyWithMonoCecilCil>(() => new ILMethodBodyWithMonoCecilCil(constructor));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -46,12 +47,12 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return parameters.Value.ParametersWithMonoCecil; }
         }
 
-        public ConstructorInfo ConstructorInfo
+        public MethodDefinition MethodDefinition
         {
             get { return constructor; }
         }
 
-        public override ILMethodBodyWithMonoCecilEmit Body
+        public override ILMethodBodyWithMonoCecilCil Body
         {
             get { return body.Value; }
         }

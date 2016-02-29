@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
-    public interface IILInstructionWithMonoCecilEmit : IILInstruction, IHasOpCode
+    public interface IILInstructionWithMonoCecilCil : IILInstruction, IHasOpCode
     {
     }
 }

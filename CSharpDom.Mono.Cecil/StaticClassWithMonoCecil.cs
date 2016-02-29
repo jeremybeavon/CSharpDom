@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 
@@ -24,15 +25,15 @@ namespace CSharpDom.Mono.Cecil
             StaticClassNestedStructCollectionWithMonoCecil,
             StaticConstructorWithMonoCecil>,
         ITypeWithMonoCecil,
-        IHasType//,
+        IHasTypeDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly AssemblyWithMonoCecil assembly;
         private readonly NamespaceWithMonoCecil @namespace;
-        private readonly Type type;
+        private readonly TypeDefinition type;
         private readonly StaticTypeWithMonoCecil typeWithMonoCecil;
 
-        internal StaticClassWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, Type type)
+        internal StaticClassWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, TypeDefinition type)
         {
             this.assembly = assembly;
             this.@namespace = @namespace;
@@ -87,7 +88,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override string Name
         {
-            get { return type.Name(); }
+            get { return type.Name; }
         }
 
         public override NamespaceWithMonoCecil Namespace
@@ -120,7 +121,7 @@ namespace CSharpDom.Mono.Cecil
             get { return type.Visibility(); }
         }
 
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
             get { return type; }
         }
@@ -139,7 +140,12 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return typeWithMonoCecil; }
         }
-        
+
+        public AssemblyWithMonoCecil Assembly
+        {
+            get { return assembly; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithMonoCecil(this);

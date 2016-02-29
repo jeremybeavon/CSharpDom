@@ -1,30 +1,21 @@
-﻿using System;
+﻿using Mono.Cecil;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class Attributes
     {
-        public Attributes(MemberInfo member, params Type[] excludedTypes)
+        public Attributes(AssemblyWithMonoCecil assembly, ICustomAttributeProvider member, params Type[] excludedTypes)
         {
-            Initialize(CustomAttributeData.GetCustomAttributes(member), excludedTypes);
-        }
-
-        public Attributes(ParameterInfo parameter, params Type[] excludedTypes)
-        {
-            Initialize(CustomAttributeData.GetCustomAttributes(parameter), excludedTypes);
-        }
-
-        public IReadOnlyCollection<AttributeWithMonoCecil> AttributesWithMonoCecil { get; private set; }
-        
-        private void Initialize(IEnumerable<CustomAttributeData> attributes, params Type[] excludedTypes)
-        {
-            AttributesWithMonoCecil = attributes
-                .Where(attribute => !excludedTypes.Contains(attribute.Constructor.DeclaringType))
-                .Select(attribute => new AttributeWithMonoCecil(attribute))
+            IEnumerable<TypeReference> excludedTypeReferences = excludedTypes.Select(type => assembly.GetTypeReference(type));
+            AttributesWithMonoCecil = member.CustomAttributes
+                .Where(attribute => !excludedTypeReferences.Contains(attribute.Constructor.DeclaringType))
+                .Select(attribute => new AttributeWithMonoCecil(assembly, attribute))
                 .ToList();
         }
+        
+        public IReadOnlyCollection<AttributeWithMonoCecil> AttributesWithMonoCecil { get; private set; }
     }
 }

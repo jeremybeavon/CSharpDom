@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CSharpDom.BaseClasses;
-using CSharpDom.Mono.Cecil.Internal;
-using System.Reflection;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -13,26 +13,27 @@ namespace CSharpDom.Mono.Cecil.Internal
             GenericParameterDeclarationWithMonoCecil,
             ITypeReferenceWithMonoCecil,
             DelegateParameterWithMonoCecil>,
-        IHasType//,
+        IHasTypeDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly ITypeWithMonoCecil declaringType;
-        private readonly Type type;
+        private readonly TypeDefinition type;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithMonoCecil returnType;
         private readonly Lazy<Parameters<DelegateParameterWithMonoCecil>> parameters;
 
-        internal NestedDelegateWithMonoCecil(ITypeWithMonoCecil declaringType, Type type)
+        internal NestedDelegateWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             this.declaringType = declaringType;
             this.type = type;
-            attributes = new Lazy<Attributes>(() => new Attributes(type));
-            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
-            MethodInfo method = type.GetMethod("Invoke");
-            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(method.ReturnType);
+            AssemblyWithMonoCecil assembly = declaringType.Assembly;
+            attributes = new Lazy<Attributes>(() => new Attributes(assembly, type));
+            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, type));
+            MethodDefinition invokeMethod = type.Methods.First(method => method.Name == "Invoke");
+            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, invokeMethod.ReturnType);
             parameters = new Lazy<Parameters<DelegateParameterWithMonoCecil>>(
-                () => new Parameters<DelegateParameterWithMonoCecil>(method, parameter => new DelegateParameterWithMonoCecil(parameter)));
+                () => new Parameters<DelegateParameterWithMonoCecil>(assembly, invokeMethod, parameter => new DelegateParameterWithMonoCecil(parameter)));
         }
         
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -65,7 +66,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return returnType; }
         }
 
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
             get { return type; }
         }

@@ -1,29 +1,23 @@
-﻿using System;
-using System.Reflection;
+﻿using Mono.Cecil;
+using System;
 using TypeClassificationEnum = CSharpDom.Mono.Cecil.Internal.TypeClassification;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
-    internal static class TypeExtensions
+    internal static class TypeReferenceExtensions
     {
-        private const BindingFlags allMemberFlags =
-            BindingFlags.Public |
-            BindingFlags.NonPublic |
-            BindingFlags.Instance |
-            BindingFlags.Static |
-            BindingFlags.DeclaredOnly;
-
-        public static bool IsClass(this Type type)
+        public static bool IsClass(this TypeDefinition type)
         {
             return type.IsClass && !type.IsDelegate();
         }
 
-        public static bool IsDelegate(this Type type)
+        public static bool IsDelegate(this TypeDefinition type)
         {
-            return type.IsClass && type.IsSubclassOf(typeof(Delegate));
+            throw new NotImplementedException();
+            //return type.IsClass && type.IsSubclassOf(typeof(Delegate));
         }
 
-        public static TypeClassificationEnum TypeClassification(this Type type)
+        public static TypeClassificationEnum TypeClassification(this TypeDefinition type)
         {
             if (type.IsClass())
             {
@@ -38,6 +32,7 @@ namespace CSharpDom.Mono.Cecil.Internal
                 }
 
                 if (type.IsSealed)
+
                 {
                     return TypeClassificationEnum.SealedClass;
                 }
@@ -67,33 +62,8 @@ namespace CSharpDom.Mono.Cecil.Internal
 
             return TypeClassificationEnum.Unknown;
         }
-
-        public static ConstructorInfo[] GetAllConstructors(this Type type)
-        {
-            return type.GetConstructors(allMemberFlags);
-        }
-         
-        public static EventInfo[] GetAllEvents(this Type type)
-        {
-            return type.GetEvents(allMemberFlags);
-        }
-
-        public static FieldInfo[] GetAllFields(this Type type)
-        {
-            return type.GetFields(allMemberFlags);
-        }
-
-        public static PropertyInfo[] GetAllProperties(this Type type)
-        {
-            return type.GetProperties(allMemberFlags);
-        }
-
-        public static MethodInfo[] GetAllMethods(this Type type)
-        {
-            return type.GetMethods(allMemberFlags);
-        }
-
-        public static ClassMemberVisibilityModifier ClassMemberVisibility(this Type type)
+        
+        public static ClassMemberVisibilityModifier ClassMemberVisibility(this TypeDefinition type)
         {
             if (type.IsPublic)
             {
@@ -103,7 +73,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             return ClassMemberVisibilityModifier.None;
         }
 
-        public static StaticClassMemberVisibilityModifier StaticClassMemberVisibility(this Type type)
+        public static StaticClassMemberVisibilityModifier StaticClassMemberVisibility(this TypeDefinition type)
         {
             if (type.IsPublic)
             {
@@ -113,7 +83,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             return StaticClassMemberVisibilityModifier.None;
         }
         
-        public static StructMemberVisibilityModifier StructMemberVisibility(this Type type)
+        public static StructMemberVisibilityModifier StructMemberVisibility(this TypeDefinition type)
         {
             if (type.IsPublic)
             {
@@ -123,7 +93,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             return StructMemberVisibilityModifier.None;
         }
 
-        public static TypeVisibilityModifier Visibility(this Type type)
+        public static TypeVisibilityModifier Visibility(this TypeDefinition type)
         {
             if (type.IsPublic)
             {

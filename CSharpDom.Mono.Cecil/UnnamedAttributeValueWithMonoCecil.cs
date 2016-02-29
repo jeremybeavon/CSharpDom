@@ -1,20 +1,18 @@
-﻿using System;
-using System.Reflection;
-using CSharpDom.BaseClasses;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.ConstantExpressions;
-using CSharpDom.Mono.Cecil.Internal;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class UnnamedAttributeValueWithMonoCecil : AbstractUnnamedAttributeValue<IConstantExpressionWithMonoCecil>//, IVisitable<IReflectionVisitor>
     {
-        private readonly CustomAttributeTypedArgument attributeValue;
+        private readonly CustomAttributeArgument attributeValue;
         private readonly IConstantExpressionWithMonoCecil value;
 
-        internal UnnamedAttributeValueWithMonoCecil(CustomAttributeTypedArgument attributeValue)
+        internal UnnamedAttributeValueWithMonoCecil(AssemblyWithMonoCecil assembly, CustomAttributeArgument attributeValue)
         {
             this.attributeValue = attributeValue;
-            value = ConstantExpressionFactory.CreateExpression(attributeValue.Value);
+            value = ConstantExpressionFactory.CreateExpression(assembly, attributeValue.Value);
         }
 
         public override IConstantExpressionWithMonoCecil Value

@@ -1,5 +1,6 @@
 ﻿using System;
 using CSharpDom.BaseClasses;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -7,9 +8,10 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly BuiltInType type;
 
-        internal BuiltInTypeReferenceWithMonoCecil(BuiltInType type)
+        internal BuiltInTypeReferenceWithMonoCecil(BuiltInType type, TypeReference typeReference)
         {
             this.type = type;
+            TypeReference = typeReference;
         }
 
         public override BuiltInType Type
@@ -17,46 +19,6 @@ namespace CSharpDom.Mono.Cecil
             get { return type; }
         }
 
-        Type IHasType.Type
-        {
-            get
-            {
-                switch (type)
-                {
-                    case BuiltInType.Bool:
-                        return typeof(bool);
-                    case BuiltInType.Byte:
-                        return typeof(byte);
-                    case BuiltInType.Char:
-                        return typeof(char);
-                    case BuiltInType.Decimal:
-                        return typeof(decimal);
-                    case BuiltInType.Double:
-                        return typeof(double);
-                    case BuiltInType.Float:
-                        return typeof(float);
-                    case BuiltInType.Int:
-                        return typeof(int);
-                    case BuiltInType.Long:
-                        return typeof(long);
-                    case BuiltInType.SByte:
-                        return typeof(sbyte);
-                    case BuiltInType.Short:
-                        return typeof(short);
-                    case BuiltInType.String:
-                        return typeof(string);
-                    case BuiltInType.UInt:
-                        return typeof(uint);
-                    case BuiltInType.ULong:
-                        return typeof(ulong);
-                    case BuiltInType.UShort:
-                        return typeof(ushort);
-                    case BuiltInType.Void:
-                        return typeof(void);
-                    default:
-                        throw new NotSupportedException();
-                }
-            }
-        }
+        public TypeReference TypeReference { get; private set; }
     }
 }

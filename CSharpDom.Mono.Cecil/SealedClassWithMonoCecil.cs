@@ -1,6 +1,7 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
 using CSharpDom.Mono.Cecil.Internal.Hiding;
+using Mono.Cecil;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
@@ -33,28 +34,28 @@ namespace CSharpDom.Mono.Cecil
             DestructorWithMonoCecil,
             StaticConstructorWithMonoCecil>,
         IInternalTypeWithMonoCecil,
-        IHasType//,
+        IHasTypeDefinition//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly AssemblyWithMonoCecil assembly;
         private readonly NamespaceWithMonoCecil @namespace;
-        private readonly Type type;
+        private readonly TypeDefinition type;
         private readonly ClassReferenceWithMonoCecil baseClass;
         private readonly SealedTypeWithMonoCecil typeWithMonoCecil;
         private readonly Lazy<DestructorWithMonoCecil> destructor;
         private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
 
-        internal SealedClassWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, Type type)
+        internal SealedClassWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, TypeDefinition type)
         {
             this.assembly = assembly;
             this.@namespace = @namespace;
             this.type = type;
-            if (type.BaseType != null && type.BaseType != typeof(object))
+            if (type.BaseType != null && type.BaseType != assembly.Assembly.MainModule.TypeSystem.Object)
             {
-                baseClass = new ClassReferenceWithMonoCecil(type.BaseType);
+                baseClass = new ClassReferenceWithMonoCecil(assembly, type.BaseType);
             }
 
-            hiddenMembersAnalyzer = new HiddenMembersAnalyzer(type);
+            hiddenMembersAnalyzer = new HiddenMembersAnalyzer(assembly, type);
             typeWithMonoCecil = new SealedTypeWithMonoCecil(this);
             destructor = new Lazy<DestructorWithMonoCecil>(InitializeDestructor);
         }
@@ -126,7 +127,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override string Name
         {
-            get { return type.Name(); }
+            get { return type.Name; }
         }
 
         public override NamespaceWithMonoCecil Namespace
@@ -174,7 +175,7 @@ namespace CSharpDom.Mono.Cecil
             get { return type.Visibility(); }
         }
 
-        public Type Type
+        public TypeDefinition TypeDefinition
         {
             get { return type; }
         }
@@ -199,10 +200,15 @@ namespace CSharpDom.Mono.Cecil
             get { return hiddenMembersAnalyzer; }
         }
 
+        public AssemblyWithMonoCecil Assembly
+        {
+            get { return assembly; }
+        }
+
         private DestructorWithMonoCecil InitializeDestructor()
         {
-            MethodInfo method = typeWithMonoCecil.Destructor;
-            return method == null ? null : new DestructorWithMonoCecil(this, method);
+            MethodDefinition method = typeWithMonoCecil.Destructor;
+            return method == null ? null : new DestructorWithMonoCecil(assembly, this, method);
         }
 
         /*public void Accept(IReflectionVisitor visitor)
