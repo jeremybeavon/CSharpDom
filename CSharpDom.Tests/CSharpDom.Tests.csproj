@@ -72,6 +72,22 @@
       <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.Common.1.1.1\lib\net45\Microsoft.CodeAnalysis.Workspaces.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Mono.Cecil, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Mdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Pdb.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks, Version=0.9.6.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Cecil.0.9.6.1\lib\net45\Mono.Cecil.Rocks.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
@@ -916,6 +932,19 @@
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\AbstractClasses\GenericParameterStructConstraint.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\AbstractClasses\Internal.cs" />
     <EmbeddedResource Include="ExpectedResults\CSharpDom.TestTarget\AbstractClasses\Public.cs" />
+    <Compile Include="Mono.Cecil\AbstractClassWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\ClassConstructorWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\ClassEventPropertyWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\ClassEventWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\ClassIndexerWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\ClassMethodWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\ClassPropertyWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\ClassWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\ConversionOperatorWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\DestructorWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\ExplicitInterfaceEventWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\OperatorOverloadsWithMonoCecilTests.cs" />
+    <Compile Include="Mono.Cecil\StructConstructorWithMonoCecilTests.cs" />
     <Compile Include="Reflection\AbstractClassWithReflectionTests.cs" />
     <Compile Include="Reflection\StructConstructorWithReflectionTests.cs" />
     <Compile Include="Reflection\ClassEventPropertyWithReflectionTests.cs" />
@@ -938,6 +967,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CSharpDom.Mono.Cecil\CSharpDom.Mono.Cecil.csproj">
+      <Project>{de94e0a9-c4ae-41c0-a0df-bc1fcf57bb08}</Project>
+      <Name>CSharpDom.Mono.Cecil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CSharpDom\CSharpDom.csproj">
       <Project>{eaa58a34-7e4b-4e20-be3c-8d7aac4b261b}</Project>
       <Name>CSharpDom</Name>
