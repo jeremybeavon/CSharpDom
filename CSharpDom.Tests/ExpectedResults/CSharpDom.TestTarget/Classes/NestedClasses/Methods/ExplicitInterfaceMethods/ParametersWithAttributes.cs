@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Classes.NestedClasses.Methods.ExplicitInterfaceMethods
 {
-    public class ClassExplicitInterfaceWithMethodWithParametersWithAttributes
+    public class ClassWithNestedClassWithExplicitInterfaceWithMethodWithParametersWithAttributes
     {
         public class Class : IInterfaceWithMethodWith2Parameters
         {

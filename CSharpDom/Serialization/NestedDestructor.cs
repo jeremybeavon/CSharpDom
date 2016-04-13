@@ -6,13 +6,30 @@ namespace CSharpDom.Serialization
 {
     public sealed class NestedDestructor : INestedDestructor<AttributeGroup, INestedClass, MethodBody>
     {
-        public IReadOnlyCollection<AttributeGroup> Attributes { get; set; }
+        private INestedClass declaringType;
+
+        public NestedDestructor()
+        {
+            Attributes = new List<AttributeGroup>();
+        }
+        
+        public List<AttributeGroup> Attributes { get; set; }
 
         public MethodBody Body { get; set; }
 
         public INestedClass DeclaringType
         {
-            get { return null; }
+            get { return declaringType; }
+        }
+
+        IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
+        {
+            get { return Attributes; }
+        }
+
+        public void AttachDeclaringType(INestedClass @class)
+        {
+            declaringType = @class;
         }
 
         public void Accept(IGenericVisitor visitor)

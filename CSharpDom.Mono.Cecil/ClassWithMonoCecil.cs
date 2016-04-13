@@ -51,7 +51,7 @@ namespace CSharpDom.Mono.Cecil
             this.assembly = assembly;
             this.@namespace = @namespace;
             this.type = type;
-            if (type.BaseType != null && type.BaseType != assembly.Assembly.MainModule.TypeSystem.Object)
+            if (type.BaseType != null && type.BaseType.FullName != "System.Object")
             {
                 baseClass = new ClassReferenceWithMonoCecil(assembly, type.BaseType);
             }
@@ -128,7 +128,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return type.Name(); }
         }
 
         public override NamespaceWithMonoCecil Namespace

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Internal;
 using System.Reflection;
-using CSharpDom.Reflection.ConstantExpressions;
 using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
@@ -57,7 +55,7 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<IFieldWithReflection> Fields
         {
-            get { return new IFieldWithReflection[] { this }; }
+            get { return new IFieldWithReflection[] { new InternalFieldWithReflection(field.FieldInfo) }; }
         }
 
         public ExpressionNotSupported InitialValue

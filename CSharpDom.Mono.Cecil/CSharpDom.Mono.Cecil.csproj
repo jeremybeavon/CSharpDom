@@ -29,6 +29,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CSharpDom.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ClrTest.Reflection.ILReader, Version=1.0.0.0, Culture=neutral, PublicKeyToken=73cdf07c5f38cab5, processorArchitecture=MSIL">
       <HintPath>..\packages\ILReader.1.0.0\lib\ClrTest.Reflection.ILReader.dll</HintPath>
@@ -252,6 +258,7 @@
     <Compile Include="ITypeReferenceWithMonoCecil.cs" />
     <Compile Include="ITypeWithMonoCecil.cs" />
     <Compile Include="MemberInfoExtensions.cs" />
+    <Compile Include="MemberReferenceExtensions.cs" />
     <Compile Include="MethodParameterWithMonoCecil.cs" />
     <Compile Include="NamedAttributeValueWithMonoCecil.cs" />
     <Compile Include="NamespaceWithMonoCecil.cs" />
@@ -328,6 +335,7 @@
     <Compile Include="UnspecifiedTypeReferenceWithMonoCecil.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="CSharpDom.snk" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

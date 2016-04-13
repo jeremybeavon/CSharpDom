@@ -1,7 +1,6 @@
 ﻿using CSharpDom.Common;
 using Mono.Cecil;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil.Cil
 {
@@ -9,7 +8,7 @@ namespace CSharpDom.Mono.Cecil.Cil
     {
         public ILMethodBodyWithMonoCecilCil(MethodDefinition method)
         {
-            //Instructions = ILInstructionBuilder.GetInstructions(method);
+            Instructions = new IILInstructionWithMonoCecilCil[0];
         }
 
         public IReadOnlyList<IILInstructionWithMonoCecilCil> Instructions { get; private set; }

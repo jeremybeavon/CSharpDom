@@ -18,7 +18,7 @@ namespace CSharpDom.Mono.Cecil.ConstantExpressions
                 return new TypeofExpressionWithMonoCecil(TypeReferenceWithMonoCecilFactory.CreateReference(assembly, type));
             }
 
-            /*switch (TypeDefinition.GetTypeCode(value.GetType()))
+            switch (Type.GetTypeCode(value.GetType()))
             {
                 case TypeCode.Double:
                     return new DoubleConstantExpressionWithMonoCecil((double)value);
@@ -28,8 +28,7 @@ namespace CSharpDom.Mono.Cecil.ConstantExpressions
                     return new StringConstantExpressionWithMonoCecil((string)value);
                 default:
                     throw new NotImplementedException();
-            }*/
-            throw new NotImplementedException();
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface INestedClass : IVisitable<IGenericVisitor>
+    public interface INestedClass : IVisitable<IGenericVisitor>, IClassType
     {
     }
 }

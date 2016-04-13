@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Classes.Fields
 {
-    public class ClassWithConstrField
+    public class ClassWithConstField
     {
         public const string Field = null;
     }

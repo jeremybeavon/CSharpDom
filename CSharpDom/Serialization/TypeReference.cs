@@ -29,6 +29,9 @@ namespace CSharpDom.Serialization
         public InterfaceReference InterfaceReference { get; set; }
 
         [DefaultValue(null)]
+        public NestedTypeReference NestedTypeReference { get; set; }
+
+        [DefaultValue(null)]
         public StructReference StructReference { get; set; }
 
         private IEnumerable<ITypeReference> TypeReferences

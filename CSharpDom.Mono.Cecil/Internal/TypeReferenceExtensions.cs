@@ -13,8 +13,19 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public static bool IsDelegate(this TypeDefinition type)
         {
-            throw new NotImplementedException();
-            //return type.IsClass && type.IsSubclassOf(typeof(Delegate));
+            if (!type.IsClass)
+            {
+                return false;
+            }
+
+            for (TypeReference baseType = type.BaseType; baseType != null; baseType = baseType.Resolve().BaseType)
+            {
+                if (baseType.FullName == "System.Delegate")
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static TypeClassificationEnum TypeClassification(this TypeDefinition type)

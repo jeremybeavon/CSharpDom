@@ -576,13 +576,17 @@
     <Compile Include="Reflection\Internal\MethodCollection.cs" />
     <Compile Include="Reflection\Internal\NestedTypeCollection.cs" />
     <Compile Include="Reflection\Internal\PropertyCollection.cs" />
+    <Compile Include="Search\AbstractTypeSearchVisitor.cs" />
+    <Compile Include="Search\FindMethodVisitor.cs" />
     <Compile Include="Search\FindSealedClassByNameVisitor.cs" />
     <Compile Include="Search\FindStaticClassByNameVisitor.cs" />
     <Compile Include="Search\FindAbstractClassByNameVisitor.cs" />
     <Compile Include="Search\FindStructByNameVisitor.cs" />
     <Compile Include="Search\FindNamespaceForStructVisitor.cs" />
+    <Compile Include="Serialization\Factories\NestedTypeReferenceFactory.cs" />
     <Compile Include="Serialization\Factories\StaticClassFactory.cs" />
     <Compile Include="Serialization\Factories\SealedClassFactory.cs" />
+    <Compile Include="Serialization\NestedTypeReference.cs" />
     <Compile Include="Serialization\StaticClass.cs" />
     <Compile Include="Serialization\SealedClass.cs" />
     <Compile Include="Serialization\ClassCollection.cs" />

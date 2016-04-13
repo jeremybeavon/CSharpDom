@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Classes.Constructors
+﻿namespace CSharpDom.TestTarget.Classes.Events.EventProperties
 {
     public class ClassWithEventPropertyWith2AttributesIn2AttributeGroups
     {

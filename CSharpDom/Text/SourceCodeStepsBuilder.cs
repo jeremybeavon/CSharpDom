@@ -1345,6 +1345,7 @@ namespace CSharpDom.Text
             Steps.AddChildNodeStepsOnNewLines(@class.Attributes);
             Steps.AddTypeVisibilityModifierSteps(@class.Visibility);
             Steps.Add(new WriteAbstractKeyword());
+            Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteClassKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@class.Name));
@@ -1442,6 +1443,111 @@ namespace CSharpDom.Text
             Steps.AddChildNodeStepsOnNewLines(constant.Attributes);
             Steps.AddStructMemberVisibilityModifierSteps(constant.Visibility);
             VisitConstantGroup(constant);
+        }
+
+        public override void VisitClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedClass.Attributes);
+            Steps.AddClassMemberVisibilityModifierSteps(nestedClass.Visibility);
+            VisitNestedAbstractClass(nestedClass);
+        }
+
+        public override void VisitNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            INestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
+        {
+            Steps.Add(new WriteAbstractKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteClassKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(nestedClass.Name));
+            Steps.AddGenericParameterDeclarationSteps(nestedClass.GenericParameters);
+            Steps.AddBaseClassAndImplementedInterfacesSteps(nestedClass, nestedClass);
+            Steps.AddGenericParameterConstraintSteps(nestedClass.GenericParameters);
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteStartBrace());
+            Steps.Add(new IncrementIndent());
+            if (nestedClass.Destructor != null)
+            {
+                destructorStep = new ISourceCodeBuilderStep[]
+                {
+                    new WriteChildNode<TNestedDestructor>(nestedClass.Destructor)
+                };
+            }
+
+            VisitType(nestedClass);
+            destructorStep = new ISourceCodeBuilderStep[0];
+            Steps.Add(new DecrementIndent());
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteEndBrace());
+        }
+
+        public override void VisitClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedClass.Attributes);
+            Steps.AddClassMemberVisibilityModifierSteps(nestedClass.Visibility);
+            VisitNestedSealedClass(nestedClass);
+        }
+
+        public override void VisitNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            INestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
+        {
+            Steps.Add(new WriteSealed());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteClassKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(nestedClass.Name));
+            Steps.AddGenericParameterDeclarationSteps(nestedClass.GenericParameters);
+            Steps.AddBaseClassAndImplementedInterfacesSteps(nestedClass, nestedClass);
+            Steps.AddGenericParameterConstraintSteps(nestedClass.GenericParameters);
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteStartBrace());
+            Steps.Add(new IncrementIndent());
+            if (nestedClass.Destructor != null)
+            {
+                destructorStep = new ISourceCodeBuilderStep[]
+                {
+                    new WriteChildNode<TNestedDestructor>(nestedClass.Destructor)
+                };
+            }
+
+            VisitType(nestedClass);
+            destructorStep = new ISourceCodeBuilderStep[0];
+            Steps.Add(new DecrementIndent());
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteEndBrace());
+        }
+
+        public override void VisitSealedClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
+            ISealedClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> @class)
+        {
+            Steps.AddChildNodeStepsOnNewLines(@class.Attributes);
+            Steps.AddTypeVisibilityModifierSteps(@class.Visibility);
+            Steps.Add(new WriteSealed());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteClassKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(@class.Name));
+            Steps.AddGenericParameterDeclarationSteps(@class.GenericParameters);
+            Steps.AddBaseClassAndImplementedInterfacesSteps(@class, @class);
+            Steps.AddGenericParameterConstraintSteps(@class.GenericParameters);
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteStartBrace());
+            Steps.Add(new IncrementIndent());
+            if (@class.Destructor != null)
+            {
+                destructorStep = new ISourceCodeBuilderStep[]
+                {
+                    new WriteChildNode<TDestructor>(@class.Destructor)
+                };
+            }
+
+            VisitType(@class);
+            destructorStep = new ISourceCodeBuilderStep[0];
+            Steps.Add(new DecrementIndent());
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteEndBrace());
         }
     }
 }

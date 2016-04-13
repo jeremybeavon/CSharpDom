@@ -1,9 +1,9 @@
 ﻿public static string GenerateTestCode(Type type)
 {
     StringBuilder builder = new StringBuilder();
-    foreach (Type testType in type.Assembly.GetTypes().Where(temp => temp.Namespace == type.Namespace))
+    foreach (Type testType in type.Assembly.GetTypes().Where(temp => temp.DeclaringType == null && temp.Namespace == type.Namespace))
     {
-        string typeName = CSharpDom.Reflection.TypeExtensions.Name(testType);
+        string typeName = CSharpDom.Reflection.MemberInfoExtensions.Name(testType);
         builder.AppendLine();
 		builder.AppendLine("[TestMethod]");
         builder.AppendLine(string.Format("public async Task Test{0}()", System.Text.RegularExpressions.Regex.Replace(typeName, "^ClassWith", "ClassWithReflectionWith")));

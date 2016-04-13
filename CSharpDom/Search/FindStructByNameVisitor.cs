@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Search
 {
-    public sealed class FindStructByNameVisitor<T> : AbstractSearchVisitor<T>
+    public sealed class FindStructByNameVisitor<T> : AbstractTypeSearchVisitor<T>
         where T : IStruct
     {
         public FindStructByNameVisitor(string name)

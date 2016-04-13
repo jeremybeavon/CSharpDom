@@ -6,6 +6,8 @@ using CSharpDom.Serialization.Factories;
 using CSharpDom.Text;
 using FluentAssertions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CSharpDom.Tests.Common
@@ -75,8 +77,15 @@ namespace CSharpDom.Tests.Common
             if (!IsConstructorTest)
             {
                 @class.Constructors.Clear();
+                foreach (List<ClassConstructor> constructors in
+                    @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
+                    .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
+                    .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                {
+                    constructors.Clear();
+                }
             }
-
+            
             return CreateLoadedDocument(@class, namespaceName, classes => classes.Classes.Add(@class));
         }
 

@@ -65,6 +65,14 @@ namespace CSharpDom.Serialization.Factories
             };
         }
 
+        public override void VisitNestedTypeReference<TTypeReference>(INestedTypeReference<TTypeReference> nestedTypeReference)
+        {
+            Value = new TypeReference()
+            {
+                NestedTypeReference = new NestedTypeReferenceFactory(nestedTypeReference).Value
+            };
+        }
+
         public override void VisitStructReference<TGenericParameter>(IStructReference<TGenericParameter> structReference)
         {
             Value = new TypeReference()

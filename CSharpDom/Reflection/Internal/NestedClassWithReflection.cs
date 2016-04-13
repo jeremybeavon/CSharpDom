@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Internal;
 using CSharpDom.Reflection.Internal.Hiding;
+using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -50,8 +51,11 @@ namespace CSharpDom.Reflection.Internal
             }
 
             typeWithReflection = new ClassTypeWithReflection(this);
-            destructor = new Lazy<NestedDestructorWithReflection>(
-                () => new NestedDestructorWithReflection(this, typeWithReflection.Destructor));
+            destructor = new Lazy<NestedDestructorWithReflection>(() =>
+            {
+                MethodInfo destructorMethod = typeWithReflection.Destructor;
+                return destructorMethod == null ? null : new NestedDestructorWithReflection(this, destructorMethod);
+            });
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes

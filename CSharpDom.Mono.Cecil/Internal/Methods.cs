@@ -14,6 +14,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             Func<TType, MethodDefinition, TMethod> methodFactory,
             IDictionary<MethodDefinition, TypeDefinition> interfaceMethods)
         {
+            List<TConstructor> constructors = new List<TConstructor>();
             List<TMethod> methods = new List<TMethod>();
             List<AbstractMethodWithMonoCecil> abstractMethods = new List<AbstractMethodWithMonoCecil>();
             List<ConversionOperatorWithMonoCecil> conversionOperators = new List<ConversionOperatorWithMonoCecil>();
@@ -47,6 +48,14 @@ namespace CSharpDom.Mono.Cecil.Internal
                         methods.Add(methodFactory(declaringType, method));
                     }
                 }
+                else if (method.Name == "ctor")
+                {
+                    constructors.Add(constructorFactory(declaringType, method));
+                }
+                else if (method.Name == "cctor")
+                {
+                    StaticConstructorWithMonoCecil = new StaticConstructorWithMonoCecil(declaringType, method);
+                }
                 else if (method.Name == "op_Implicit")
                 {
                     conversionOperators.Add(new ConversionOperatorWithMonoCecil(declaringType, method));
@@ -61,6 +70,7 @@ namespace CSharpDom.Mono.Cecil.Internal
                 }
             }
 
+            ConstructorsWithMonoCecil = constructors;
             AbstractMethodsWithMonoCecil = abstractMethods;
             ConversionOperatorsWithMonoCecil = conversionOperators;
             MethodsWithMonoCecil = methods;

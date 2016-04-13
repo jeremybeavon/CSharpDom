@@ -3,8 +3,6 @@ using CSharpDom.Mono.Cecil.Internal;
 using Mono.Cecil;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -34,17 +32,18 @@ namespace CSharpDom.Mono.Cecil
             hasEmptyConstructorConstraint = type.HasDefaultConstructorConstraint;
             genericParameterConstraints = new List<GenericParameterReferenceWithMonoCecil>();
             interfaceConstraints = new List<InterfaceReferenceWithMonoCecil>();
-            foreach (TypeDefinition constraintType in type.Constraints.Select(reference => reference.Resolve()))
+            foreach (TypeReference constraintType in type.Constraints)
             {
+                TypeDefinition constraintTypeDefinition = constraintType.Resolve();
                 if (constraintType.IsGenericParameter)
                 {
                     genericParameterConstraints.Add(new GenericParameterReferenceWithMonoCecil(constraintType));
                 }
-                else if (constraintType.IsInterface)
+                else if (constraintTypeDefinition.IsInterface)
                 {
                     interfaceConstraints.Add(new InterfaceReferenceWithMonoCecil(assembly, constraintType));
                 }
-                else if (constraintType.IsClass)
+                else if (constraintTypeDefinition.IsClass)
                 {
                     if (baseClassConstraint != null)
                     {

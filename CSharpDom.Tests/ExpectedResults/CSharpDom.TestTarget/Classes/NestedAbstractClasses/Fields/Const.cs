@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Classes.NestedAbstractClasses.Fields
 {
-    public class ClassWithNestedAbstractClassWithConstrField
+    public class ClassWithNestedAbstractClassWithConstField
     {
         public abstract class Class
         {

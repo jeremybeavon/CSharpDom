@@ -6,6 +6,8 @@ namespace CSharpDom.Serialization
 {
     public sealed class StaticConstructor : IStaticConstructor<AttributeGroup, IType, MethodBody>
     {
+        private IType declaringType;
+
         public StaticConstructor()
         {
             Attributes = new List<AttributeGroup>();
@@ -17,12 +19,17 @@ namespace CSharpDom.Serialization
 
         public IType DeclaringType
         {
-            get { return null; }
+            get { return declaringType; }
         }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {
             get { return Attributes; }
+        }
+
+        public void AttachDeclaringType(IType type)
+        {
+            declaringType = type;
         }
 
         public void Accept(IGenericVisitor visitor)
