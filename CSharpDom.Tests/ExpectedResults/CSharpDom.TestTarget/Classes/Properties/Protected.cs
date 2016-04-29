@@ -2,6 +2,10 @@
 {
     public class ClassWithProtectedProperty
     {
-        protected string Property { get; set; }
+        protected string Property
+        {
+            get { return default(string); }
+            set { }
+        }
     }
 }

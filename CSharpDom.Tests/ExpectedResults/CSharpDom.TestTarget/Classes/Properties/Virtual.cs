@@ -2,6 +2,10 @@
 {
     public class ClassWithVirtualProperty
     {
-        public virtual string Property { get; set; }
+        public virtual string Property
+        {
+            get { return default(string); }
+            set { }
+        }
     }
 }

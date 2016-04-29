@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Classes.Methods
+﻿namespace CSharpDom.TestTarget.Classes.NestedDelegates
 {
     public class ClassWithNestedDelegateWithParametersWithModifiers
     {

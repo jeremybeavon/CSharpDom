@@ -2,6 +2,10 @@
 {
     public class ClassWithNewVirtualProperty : BaseClassWithProperty
     {
-        public new virtual string Property { get; set; }
+        public new virtual string Property
+        {
+            get { return default(string); }
+            set { }
+        }
     }
 }

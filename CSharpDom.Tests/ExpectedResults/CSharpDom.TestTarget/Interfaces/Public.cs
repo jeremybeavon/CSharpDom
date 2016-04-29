@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Interfaces
 {
-    public interface InterfaceClass
+    public interface PublicInterface
     {
     }
 }

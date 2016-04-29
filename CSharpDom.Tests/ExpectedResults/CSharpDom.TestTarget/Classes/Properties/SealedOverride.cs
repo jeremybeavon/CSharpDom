@@ -2,6 +2,10 @@
 {
     public class ClassWithSealedOverrideProperty : BaseClassWithProperty
     {
-        public sealed override string Property { get; set; }
+        public sealed override string Property
+        {
+            get { return default(string); }
+            set { }
+        }
     }
 }

@@ -2,6 +2,10 @@
 {
     public class ClassWithInternalProperty
     {
-        internal string Property { get; set; }
+        internal string Property
+        {
+            get { return default(string); }
+            set { }
+        }
     }
 }

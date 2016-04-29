@@ -2,6 +2,10 @@
 {
     public class ClassWithPrivateProperty
     {
-        private string Property { get; set; }
+        private string Property
+        {
+            get { return default(string); }
+            set { }
+        }
     }
 }

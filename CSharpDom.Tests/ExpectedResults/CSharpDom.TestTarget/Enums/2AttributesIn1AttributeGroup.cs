@@ -1,7 +1,7 @@
 ﻿namespace CSharpDom.TestTarget.Enums
 {
     [Attribute1, Attribute2]
-    public class EnumWith2AttributesIn1AttributeGroup
+    public enum EnumWith2AttributesIn1AttributeGroup
     {
     }
 }

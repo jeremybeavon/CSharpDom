@@ -2,6 +2,10 @@
 {
     public class ClassWithProtectedInternalProperty
     {
-        protected internal string Property { get; set; }
+        protected internal string Property
+        {
+            get { return default(string); }
+            set { }
+        }
     }
 }

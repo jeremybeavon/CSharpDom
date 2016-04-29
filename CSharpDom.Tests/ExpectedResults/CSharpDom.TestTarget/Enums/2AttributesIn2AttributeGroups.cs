@@ -2,7 +2,7 @@
 {
     [Attribute1]
     [Attribute2]
-    public class EnumWith2AttributesIn2AttributeGroups
+    public enum EnumWith2AttributesIn2AttributeGroups
     {
     }
 }
