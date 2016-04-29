@@ -1,0 +1,12 @@
+﻿namespace CSharpDom.TestTarget.Classes.NestedStructs.NestedStructs
+{
+    public class ClassWithNestedStructWithInternalNestedStruct
+    {
+        public struct Struct
+        {
+            internal struct NestedStruct
+            {
+            }
+        }
+    }
+}
