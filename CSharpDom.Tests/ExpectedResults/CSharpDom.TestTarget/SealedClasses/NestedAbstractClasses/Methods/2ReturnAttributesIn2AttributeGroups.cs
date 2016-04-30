@@ -1,0 +1,14 @@
+﻿namespace CSharpDom.TestTarget.SealedClasses.NestedAbstractClasses.Methods
+{
+    public sealed class SealedClassWithNestedAbstractClassWithMethodWith2ReturnAttributesIn2AttributeGroups
+    {
+        public abstract class Class
+        {
+            [return: Attribute1]
+            [return: Attribute2]
+            public void Method()
+            {
+            }
+        }
+    }
+}

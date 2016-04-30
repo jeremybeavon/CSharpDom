@@ -1,0 +1,12 @@
+﻿namespace CSharpDom.TestTarget.SealedClasses.NestedSealedClasses.NestedInterfaces
+{
+    public sealed class SealedClassWithNestedSealedClassWithNestedProtectedInternalInterface
+    {
+        public sealed class Class
+        {
+            protected internal interface Interface
+            {
+            }
+        }
+    }
+}
