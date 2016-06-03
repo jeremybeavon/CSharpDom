@@ -355,6 +355,14 @@ namespace CSharpDom.Text
             VisitEvent(@event);
         }
 
+        public override void VisitSealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            ISealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
+        {
+            Steps.AddClassMemberVisibilityModifierSteps(@event.Visibility);
+            Steps.AddSealedClassMemberInheritanceModifierSteps(@event.InheritanceModifier);
+            VisitEvent(@event);
+        }
+
         public override void VisitInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             IInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
         {
@@ -384,6 +392,14 @@ namespace CSharpDom.Text
         {
             Steps.AddClassMemberVisibilityModifierSteps(eventProperty.Visibility);
             Steps.AddClassMemberInheritanceModifierSteps(eventProperty.InheritanceModifier);
+            VisitEventProperty(eventProperty);
+        }
+
+        public override void VisitSealedClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
+            ISealedClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
+        {
+            Steps.AddClassMemberVisibilityModifierSteps(eventProperty.Visibility);
+            //Steps.AddSealedClassMemberInheritanceModifierSteps(eventProperty.InheritanceModifier);
             VisitEventProperty(eventProperty);
         }
 
@@ -439,6 +455,11 @@ namespace CSharpDom.Text
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
+        }
+
+        public override void VisitField<TExpression>(IField<TExpression> field)
+        {
+            Steps.Add(new WriteName(field.Name));
         }
 
         public override void VisitClassField<TAttributeGroup, TDeclaringType, TTypeReference, Field>(
@@ -689,6 +710,7 @@ namespace CSharpDom.Text
         public override void VisitExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
             IExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
+            Steps.AddChildNodeStepsOnNewLines(method.Attributes);
             explicitInterface = new WriteChildNode<TInterfaceReference>(method.ExplicitInterface);
             VisitMethod(method);
             explicitInterface = null;
@@ -859,7 +881,41 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
         }
-        
+
+        public override void VisitNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> @class)
+        {
+            Steps.Add(new WriteStatic());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteClassKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(@class.Name));
+            Steps.AddGenericParameterDeclarationSteps(@class.GenericParameters);
+            Steps.AddGenericParameterConstraintSteps(@class.GenericParameters);
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteStartBrace());
+            Steps.Add(new IncrementIndent());
+            VisitStaticType(@class);
+            Steps.Add(new DecrementIndent());
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteEndBrace());
+        }
+
+        public override void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedClass)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedClass.Attributes);
+            Steps.AddClassMemberVisibilityModifierSteps(nestedClass.Visibility);
+            VisitNestedStaticClass(nestedClass);
+        }
+
+        public override void VisitNullableTypeReference<TStructReference>(
+            INullableTypeReference<TStructReference> reference)
+        {
+            reference.Type.Accept(this);
+            Steps.Add(new WriteQuestionMark());
+        }
+
         public override void VisitClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             IClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate)
         {
@@ -1168,6 +1224,7 @@ namespace CSharpDom.Text
         public override void VisitExplicitInterfaceProperty<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor>(
             IExplicitInterfaceProperty<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor> property)
         {
+            Steps.AddChildNodeStepsOnNewLines(property.Attributes);
             explicitInterface = new WriteChildNode<TInterfaceReference>(property.ExplicitInterface);
             VisitProperty(property);
             explicitInterface = null;
@@ -1548,6 +1605,32 @@ namespace CSharpDom.Text
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
+        }
+
+        public override void VisitSealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
+            ISealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
+        {
+            Steps.AddClassMemberVisibilityModifierSteps(indexer.Visibility);
+            Steps.AddSealedClassIndexerInheritanceModifierSteps(indexer.InheritanceModifier);
+            VisitIndexer(indexer);
+        }
+
+        public override void VisitSealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            ISealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+        {
+            Steps.AddChildNodeStepsOnNewLines(method.Attributes);
+            Steps.AddClassMemberVisibilityModifierSteps(method.Visibility);
+            Steps.AddSealedClassMemberInheritanceModifierSteps(method.InheritanceModifier);
+            VisitMethod(method);
+        }
+
+        public override void VisitSealedClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
+            ISealedClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
+        {
+            Steps.AddChildNodeStepsOnNewLines(property.Attributes);
+            Steps.AddClassMemberVisibilityModifierSteps(property.Visibility);
+            Steps.AddSealedClassMemberInheritanceModifierSteps(property.InheritanceModifier);
+            VisitProperty(property);
         }
     }
 }

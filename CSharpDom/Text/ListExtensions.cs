@@ -414,6 +414,34 @@ namespace CSharpDom.Text
             steps.Add(new WriteWhitespace());
         }
 
+        internal static void AddSealedClassMemberInheritanceModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            SealedClassMemberInheritanceModifier inheritanceModifer)
+        {
+            switch (inheritanceModifer)
+            {
+                case SealedClassMemberInheritanceModifier.None:
+                    return;
+                case SealedClassMemberInheritanceModifier.New:
+                case SealedClassMemberInheritanceModifier.Override:
+                case SealedClassMemberInheritanceModifier.Static:
+                    steps.Add(new WriteSealedClassMemberInheritanceModifier(inheritanceModifer));
+                    break;
+                case SealedClassMemberInheritanceModifier.NewStatic:
+                    steps.Add(new WriteSealedClassMemberInheritanceModifier(SealedClassMemberInheritanceModifier.New));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteSealedClassMemberInheritanceModifier(SealedClassMemberInheritanceModifier.Static));
+                    break;
+                case SealedClassMemberInheritanceModifier.SealedOverride:
+                    steps.Add(new WriteSealed());
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteSealedClassMemberInheritanceModifier(SealedClassMemberInheritanceModifier.Override));
+                    break;
+            }
+
+            steps.Add(new WriteWhitespace());
+        }
+
         internal static void AddIndexerInheritanceModifierSteps(
             this List<ISourceCodeBuilderStep> steps,
             IndexerInheritanceModifier inheritanceModifer)
@@ -436,6 +464,28 @@ namespace CSharpDom.Text
                     steps.Add(new WriteSealed());
                     steps.Add(new WriteWhitespace());
                     steps.Add(new WriteIndexerInheritanceModifier(IndexerInheritanceModifier.Override));
+                    break;
+            }
+
+            steps.Add(new WriteWhitespace());
+        }
+
+        internal static void AddSealedClassIndexerInheritanceModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            SealedClassIndexerInheritanceModifier inheritanceModifer)
+        {
+            switch (inheritanceModifer)
+            {
+                case SealedClassIndexerInheritanceModifier.None:
+                    return;
+                case SealedClassIndexerInheritanceModifier.New:
+                case SealedClassIndexerInheritanceModifier.Override:
+                    steps.Add(new WriteSealedClassIndexerInheritanceModifier(inheritanceModifer));
+                    break;
+                case SealedClassIndexerInheritanceModifier.SealedOverride:
+                    steps.Add(new WriteSealed());
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteSealedClassIndexerInheritanceModifier(SealedClassIndexerInheritanceModifier.Override));
                     break;
             }
 

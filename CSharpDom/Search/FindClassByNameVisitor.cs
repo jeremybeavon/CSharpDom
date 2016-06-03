@@ -20,7 +20,16 @@ namespace CSharpDom.Search
                 Result = (T)@class;
             }
         }
-        
+
+        public override void VisitClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
+            IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> classCollection)
+        {
+            foreach (IVisitable<IGenericVisitor> @class in classCollection)
+            {
+                @class.Accept(this);
+            }
+        }
+
         public override void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct>(
             ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClass, TDelegate, TEnum, TInterface, TStruct> loadedDocument)
         {

@@ -2,6 +2,7 @@
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
+using CSharpDom.Reflection.Internal.Hiding;
 
 namespace CSharpDom.Reflection
 {
@@ -23,7 +24,7 @@ namespace CSharpDom.Reflection
             StaticClassNestedInterfaceCollectionWithReflection,
             StaticClassNestedStructCollectionWithReflection,
             StaticConstructorWithReflection>,
-        ITypeWithReflection,
+        IInternalTypeWithReflection,
         IHasType//,
         //IVisitable<IReflectionVisitor>
     {
@@ -31,6 +32,7 @@ namespace CSharpDom.Reflection
         private readonly NamespaceWithReflection @namespace;
         private readonly Type type;
         private readonly StaticTypeWithReflection typeWithReflection;
+        private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
 
         internal StaticClassWithReflection(AssemblyWithReflection assembly, NamespaceWithReflection @namespace, Type type)
         {
@@ -38,6 +40,7 @@ namespace CSharpDom.Reflection
             this.@namespace = @namespace;
             this.type = type;
             typeWithReflection = new StaticTypeWithReflection(this);
+            hiddenMembersAnalyzer = new HiddenMembersAnalyzer(type);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -139,7 +142,12 @@ namespace CSharpDom.Reflection
         {
             get { return typeWithReflection; }
         }
-        
+
+        HiddenMembersAnalyzer IInternalTypeWithReflection.HiddenMembersAnalyzer
+        {
+            get { return hiddenMembersAnalyzer; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithReflection(this);

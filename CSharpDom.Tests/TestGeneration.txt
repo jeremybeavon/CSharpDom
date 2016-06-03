@@ -1,5 +1,7 @@
 ﻿public static string GenerateTestCode(Type type)
 {
+	
+
     StringBuilder builder = new StringBuilder();
     foreach (Type testType in type.Assembly.GetTypes().Where(temp => temp.DeclaringType == null && temp.Namespace == type.Namespace))
     {
@@ -13,4 +15,51 @@
     }
 
     return builder.ToString();
+}
+
+public static void GenerateTestCode(
+	string implementation,
+	string baseClass,
+	string outputDirectory,
+	Type initialType)
+{
+	foreach (IGrouping<string, Type> typesByNamespace in
+		initialType.Assembly.GetTypes().Where(type => type.DeclaringType == null).GroupBy(type => type.Namespace))
+	{
+		if (typesByNamespace.Key == "CSharpDom.TestTarget")
+		{
+			continue;
+		}
+
+		string[] namespaceParts = typesByNamespace.Key.Split('.');
+		string className = implementation.Replace(".", "") + "_" + string.Join("_", namespaceParts.Skip(2)) + "_Tests";
+		string testMethod = string.Format("Test{0}Async", System.Text.RegularExpressions.Regex.Replace(namespaceParts[2].Replace("Structs", "Struct"), "Classes$", "Class"));
+		StringBuilder builder = new StringBuilder();
+		builder.AppendLine("using " + typesByNamespace.Key + ";");
+		builder.AppendLine("using Microsoft.VisualStudio.TestTools.UnitTesting;");
+		builder.AppendLine("using System.Threading.Tasks;");
+		builder.AppendLine();
+		builder.AppendLine("namespace CSharpDom.Tests." + implementation);
+		builder.AppendLine("{");
+		builder.AppendLine("    [TestClass]");
+		builder.AppendLine("    public sealed class " + className + " : " + baseClass);
+		builder.Append("    {");
+		foreach (Type currentType in typesByNamespace)
+		{
+			string typeName = CSharpDom.Reflection.MemberInfoExtensions.Name(currentType);
+			builder.AppendLine();
+			builder.AppendLine("        [TestMethod]");
+			builder.AppendLine(string.Format("        public async Task Test{1}Using{0}()", implementation.Replace(".", ""), typeName));
+			builder.AppendLine("        {");
+			builder.AppendLine(string.Format("            await {0}(typeof({1}{2}));", testMethod, typeName,
+				currentType.ContainsGenericParameters ?
+				"<" + string.Empty.PadLeft(currentType.GetGenericArguments().Length - 1, ',') + ">" :
+				string.Empty));
+			builder.AppendLine("        }");
+		}
+
+		builder.AppendLine("    }");
+		builder.AppendLine("}");
+		File.WriteAllText(Path.Combine(outputDirectory, className + ".cs"), builder.ToString());
+	}
 }

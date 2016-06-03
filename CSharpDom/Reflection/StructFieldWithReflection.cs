@@ -36,7 +36,7 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<IFieldWithReflection> Fields
         {
-            get { return new IFieldWithReflection[] { this }; }
+            get { return new IFieldWithReflection[] { new InternalFieldWithReflection(field.FieldInfo) }; }
         }
 
         public override ITypeReferenceWithReflection FieldType
