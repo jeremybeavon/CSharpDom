@@ -78,6 +78,7 @@
     <Compile Include="AbstractClasses\ConversionOperators\ImplicitWith2ParameterAttributesIn2AttributeGroups.cs" />
     <Compile Include="AbstractClasses\ConversionOperators\ImplicitWith2ReturnAttributesIn1AttributeGroup.cs" />
     <Compile Include="AbstractClasses\ConversionOperators\ImplicitWith2ReturnAttributesIn2AttributeGroups.cs" />
+    <Compile Include="AbstractClasses\Destructors\Default.cs" />
     <Compile Include="AbstractClasses\Events\1Attribute.cs" />
     <Compile Include="AbstractClasses\Events\2AttributesIn1AttributeGroup.cs" />
     <Compile Include="AbstractClasses\Events\2AttributesIn2AttributeGroups.cs" />
@@ -1944,7 +1945,6 @@
     <Compile Include="AbstractClasses\2GenericParameters.cs" />
     <Compile Include="AbstractClasses\2ImplementedInterfaces.cs" />
     <Compile Include="AbstractClasses\BaseClass.cs" />
-    <Compile Include="AbstractClasses\Destructors\Basic.cs" />
     <Compile Include="AbstractClasses\GenericParameterBaseClassConstraint.cs" />
     <Compile Include="AbstractClasses\GenericParameterClassAndEmptyConstructorConstraints.cs" />
     <Compile Include="AbstractClasses\GenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />

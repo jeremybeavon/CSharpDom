@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom", "CSharpDom\CSharpDom.csproj", "{EAA58A34-7E4B-4E20-BE3C-8D7AAC4B261B}"
 EndProject
@@ -13,7 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.Cci", "CSharpDom.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.NRefactory", "CSharpDom.NRefactory\CSharpDom.NRefactory.csproj", "{F0D015D3-22BE-4591-B8E9-8E4C46957C75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.TestTarget", "CSharpDom.Tests\ExpectedResults\CSharpDom.TestTarget\CSharpDom.TestTarget.csproj", "{FDCBF08F-CA67-4D15-915E-C54C79F9BA0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.Tests.Reflection", "CSharpDom.Tests.Reflection\CSharpDom.Tests.Reflection.csproj", "{F50F8377-B7CC-41C9-BB08-0E1DFB13B9A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.Tests.Mono.Cecil", "CSharpDom.Tests.Mono.Cecil\CSharpDom.Tests.Mono.Cecil.csproj", "{11851CF7-ECE7-4560-9316-DFC9EE70490F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.Tests.ExpectedResults", "CSharpDom.Tests.ExpectedResults\CSharpDom.Tests.ExpectedResults.csproj", "{8AD2BCC2-D632-4A87-A4D6-0B687C3B5401}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.TestTarget", "CSharpDom.Tests.ExpectedResults\CSharpDom.TestTarget\CSharpDom.TestTarget.csproj", "{FDCBF08F-CA67-4D15-915E-C54C79F9BA0A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +47,18 @@ Global
 		{F0D015D3-22BE-4591-B8E9-8E4C46957C75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0D015D3-22BE-4591-B8E9-8E4C46957C75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0D015D3-22BE-4591-B8E9-8E4C46957C75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F50F8377-B7CC-41C9-BB08-0E1DFB13B9A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F50F8377-B7CC-41C9-BB08-0E1DFB13B9A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F50F8377-B7CC-41C9-BB08-0E1DFB13B9A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F50F8377-B7CC-41C9-BB08-0E1DFB13B9A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11851CF7-ECE7-4560-9316-DFC9EE70490F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11851CF7-ECE7-4560-9316-DFC9EE70490F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11851CF7-ECE7-4560-9316-DFC9EE70490F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11851CF7-ECE7-4560-9316-DFC9EE70490F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AD2BCC2-D632-4A87-A4D6-0B687C3B5401}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AD2BCC2-D632-4A87-A4D6-0B687C3B5401}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AD2BCC2-D632-4A87-A4D6-0B687C3B5401}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AD2BCC2-D632-4A87-A4D6-0B687C3B5401}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FDCBF08F-CA67-4D15-915E-C54C79F9BA0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FDCBF08F-CA67-4D15-915E-C54C79F9BA0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDCBF08F-CA67-4D15-915E-C54C79F9BA0A}.Release|Any CPU.ActiveCfg = Release|Any CPU

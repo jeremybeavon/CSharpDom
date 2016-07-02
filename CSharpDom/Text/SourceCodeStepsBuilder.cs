@@ -390,6 +390,7 @@ namespace CSharpDom.Text
         public override void VisitClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
             IClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
         {
+            Steps.AddChildNodeStepsOnNewLines(eventProperty.Attributes);
             Steps.AddClassMemberVisibilityModifierSteps(eventProperty.Visibility);
             Steps.AddClassMemberInheritanceModifierSteps(eventProperty.InheritanceModifier);
             VisitEventProperty(eventProperty);
@@ -398,6 +399,7 @@ namespace CSharpDom.Text
         public override void VisitSealedClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
             ISealedClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
         {
+            Steps.AddChildNodeStepsOnNewLines(eventProperty.Attributes);
             Steps.AddClassMemberVisibilityModifierSteps(eventProperty.Visibility);
             //Steps.AddSealedClassMemberInheritanceModifierSteps(eventProperty.InheritanceModifier);
             VisitEventProperty(eventProperty);
@@ -415,6 +417,7 @@ namespace CSharpDom.Text
         public override void VisitStructEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
             IStructEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
         {
+            Steps.AddChildNodeStepsOnNewLines(eventProperty.Attributes);
             Steps.AddStructMemberVisibilityModifierSteps(eventProperty.Visibility);
             VisitEventProperty(eventProperty);
         }

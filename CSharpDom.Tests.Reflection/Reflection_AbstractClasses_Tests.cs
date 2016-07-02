@@ -24,13 +24,7 @@ namespace CSharpDom.Tests.Reflection
         {
             await TestAbstractClassAsync(typeof(AbstractClassWith1ImplementedInterface));
         }
-
-        [TestMethod]
-        public async Task TestAbstractClassWith2AttributesIn1AttributeGroupUsingReflection()
-        {
-            await TestAbstractClassAsync(typeof(AbstractClassWith2AttributesIn1AttributeGroup));
-        }
-
+        
         [TestMethod]
         public async Task TestAbstractClassWith2AttributesIn2AttributeGroupsUsingReflection()
         {

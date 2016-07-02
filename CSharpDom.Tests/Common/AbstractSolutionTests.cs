@@ -17,10 +17,7 @@ namespace CSharpDom.Tests.Common
     {
         public abstract ISolution<TProject> Solution { get; }
 
-        protected virtual bool IsConstructorTest
-        {
-            get { return false; }
-        }
+        protected bool IsConstructorTest { get; set; }
 
         protected async Task TestClassAsync(Type type)
         {
@@ -94,6 +91,13 @@ namespace CSharpDom.Tests.Common
             if (!IsConstructorTest)
             {
                 @class.Constructors.Clear();
+                foreach (List<ClassConstructor> constructors in
+                    @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
+                    .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
+                    .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                {
+                    constructors.Clear();
+                }
             }
 
             return CreateLoadedDocument(@class, namespaceName, classes => classes.AbstractClasses.Add(@class));
@@ -104,6 +108,13 @@ namespace CSharpDom.Tests.Common
             if (!IsConstructorTest)
             {
                 @class.Constructors.Clear();
+                foreach (List<ClassConstructor> constructors in
+                    @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
+                    .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
+                    .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                {
+                    constructors.Clear();
+                }
             }
 
             return CreateLoadedDocument(@class, namespaceName, classes => classes.SealedClasses.Add(@class));
@@ -152,6 +163,13 @@ namespace CSharpDom.Tests.Common
             if (!IsConstructorTest)
             {
                 @struct.Constructors.Clear();
+                foreach (List<ClassConstructor> constructors in
+                    @struct.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
+                    .Concat(@struct.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
+                    .Concat(@struct.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                {
+                    constructors.Clear();
+                }
             }
 
             return CreateLoadedDocument(

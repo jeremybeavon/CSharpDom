@@ -1,0 +1,684 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F50F8377-B7CC-41C9-BB08-0E1DFB13B9A8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CSharpDom.Tests.Reflection</RootNamespace>
+    <AssemblyName>CSharpDom.Tests.Reflection</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
+    <IsCodedUITest>False</IsCodedUITest>
+    <TestProjectType>UnitTest</TestProjectType>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CSharpDom.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <Choose>
+    <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+      </ItemGroup>
+    </When>
+    <Otherwise>
+      <ItemGroup>
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
+      </ItemGroup>
+    </Otherwise>
+  </Choose>
+  <ItemGroup>
+    <Compile Include="AbstractSolutionWithReflectionTests.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection_AbstractClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Constructors_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Events_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Fields_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Indexers_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Methods_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Properties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_AbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_Classes_Destructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_Classes_Events_Tests.cs" />
+    <Compile Include="Reflection_Classes_Fields_Tests.cs" />
+    <Compile Include="Reflection_Classes_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_Classes_Methods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Events_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Fields_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Methods_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Properties_Tests.cs" />
+    <Compile Include="Reflection_Classes_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Classes_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Classes_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Classes_Properties_Tests.cs" />
+    <Compile Include="Reflection_Classes_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Constructors_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Events_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Fields_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Indexers_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Methods_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Properties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_SealedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_StaticClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_Structs_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Structs_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_Events_Tests.cs" />
+    <Compile Include="Reflection_Structs_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Structs_Methods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Destructors_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_Events_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_Fields_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_Methods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_Properties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Constructors_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_ConversionOperators_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Events_EventProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Events_ExplicitInterfaceEvents_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Events_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Fields_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Indexers_ExplicitInterfaceIndexers_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Indexers_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Methods_ExplicitInterfaceMethods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Methods_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_NestedAbstractClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_NestedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_NestedDelegates_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_NestedEnums_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_NestedInterfaces_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_NestedSealedClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_NestedStaticClasses_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Properties_AutoProperties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Properties_Tests.cs" />
+    <Compile Include="Reflection_Structs_NestedStructs_Tests.cs" />
+    <Compile Include="Reflection_Structs_OperatorOverloads_Tests.cs" />
+    <Compile Include="Reflection_Structs_Properties_Tests.cs" />
+    <Compile Include="Reflection_Structs_Tests.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSharpDom.Tests.ExpectedResults\CSharpDom.TestTarget\CSharpDom.TestTarget.csproj">
+      <Project>{fdcbf08f-ca67-4d15-915e-c54c79f9ba0a}</Project>
+      <Name>CSharpDom.TestTarget</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSharpDom.Tests\CSharpDom.Tests.csproj">
+      <Project>{7af198d4-97ef-436e-8a5d-508e0625b2b8}</Project>
+      <Name>CSharpDom.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CSharpDom\CSharpDom.csproj">
+      <Project>{eaa58a34-7e4b-4e20-be3c-8d7aac4b261b}</Project>
+      <Name>CSharpDom</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CSharpDom.snk" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

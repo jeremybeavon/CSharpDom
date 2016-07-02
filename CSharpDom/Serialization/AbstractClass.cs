@@ -160,7 +160,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            //GenericVisitor.VisitAbstractClassChildren(this, visitor);
+            GenericVisitor.VisitAbstractClassChildren(this, visitor);
         }
     }
 }

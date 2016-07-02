@@ -7,6 +7,11 @@ namespace CSharpDom.Tests.Reflection
     [TestClass]
     public sealed class Reflection_AbstractClasses_Constructors_Tests : AbstractSolutionWithReflectionTests
     {
+        public Reflection_AbstractClasses_Constructors_Tests()
+        {
+            IsConstructorTest = true;
+        }
+
         [TestMethod]
         public async Task TestAbstractClassWithConstructorWith1AttributeUsingReflection()
         {
@@ -17,12 +22,6 @@ namespace CSharpDom.Tests.Reflection
         public async Task TestAbstractClassWithConstructorWith1ParameterUsingReflection()
         {
             await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Parameter));
-        }
-
-        [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith2AttributesIn1AttributeGroupUsingReflection()
-        {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]

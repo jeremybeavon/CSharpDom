@@ -10,7 +10,7 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public async Task TestAbstractClassWithConstrFieldUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstrField));
+            await TestAbstractClassAsync(typeof(AbstractClassWithConstField));
         }
 
         [TestMethod]

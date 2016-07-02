@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using CSharpDom.Reflection;
+using CSharpDom.Tests.ExpectedResults;
 
 namespace CSharpDom.Tests.Common
 {
@@ -11,7 +11,7 @@ namespace CSharpDom.Tests.Common
         public static string GetTypeText(Type type)
         {
             string resourceName = GetResourceName(type);
-            using (Stream stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(resourceName))
+            using (Stream stream = typeof(ExpectedResultsType).Assembly.GetManifestResourceStream(resourceName))
             {
                 if (stream == null)
                 {
