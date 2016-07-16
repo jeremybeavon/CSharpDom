@@ -20,21 +20,9 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroupUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup));
-        }
-
-        [TestMethod]
         public async Task TestSealedClassWithNestedSealedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
             await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithIndexerWithWith2AttributesIn1AttributeGroupUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithIndexerWithWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]

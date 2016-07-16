@@ -14,12 +14,6 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithEventWith2AttributesIn1AttributeGroupUsingReflection()
-        {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEventWith2AttributesIn1AttributeGroup));
-        }
-
-        [TestMethod]
         public async Task TestAbstractClassWithNestedSealedClassWithEventWithGenericDelegateUsingReflection()
         {
             await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEventWithGenericDelegate));

@@ -20,18 +20,6 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroupUsingReflection()
-        {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroup));
-        }
-
-        [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithEventPropertyWith2AttributesIn1AttributeGroupUsingReflection()
-        {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith2AttributesIn1AttributeGroup));
-        }
-
-        [TestMethod]
         public async Task TestStaticClassWithNestedStaticClassWithEventPropertyWithGenericDelegateUsingReflection()
         {
             await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWithGenericDelegate));

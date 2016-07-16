@@ -20,12 +20,6 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedAbstractClassWithNestedStaticClassWith2AttributesIn1AttributeGroupUsingMonoCecil()
-        {
-            await TestClassAsync(typeof(ClassWithNestedAbstractClassWithNestedStaticClassWith2AttributesIn1AttributeGroup));
-        }
-
-        [TestMethod]
         public async Task TestClassWithNestedAbstractClassWithNestedStaticClassWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
             await TestClassAsync(typeof(ClassWithNestedAbstractClassWithNestedStaticClassWith2AttributesIn2AttributeGroups));

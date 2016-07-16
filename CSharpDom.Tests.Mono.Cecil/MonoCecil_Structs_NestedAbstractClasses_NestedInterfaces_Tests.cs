@@ -26,12 +26,6 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNestedInterfaceWith2AttributesIn1AttributeGroupUsingMonoCecil()
-        {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNestedInterfaceWith2AttributesIn1AttributeGroup));
-        }
-
-        [TestMethod]
         public async Task TestStructWithNestedAbstractClassWithNestedInterfaceWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
             await TestStructAsync(typeof(StructWithNestedAbstractClassWithNestedInterfaceWith2AttributesIn2AttributeGroups));

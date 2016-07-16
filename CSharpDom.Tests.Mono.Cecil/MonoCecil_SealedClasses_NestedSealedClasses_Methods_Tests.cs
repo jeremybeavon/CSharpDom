@@ -26,12 +26,6 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWith2AttributesIn1AttributeGroupUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2AttributesIn1AttributeGroup));
-        }
-
-        [TestMethod]
         public async Task TestSealedClassWithNestedSealedClassWithMethodWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
             await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2AttributesIn2AttributeGroups));
@@ -41,12 +35,6 @@ namespace CSharpDom.Tests.Mono.Cecil
         public async Task TestSealedClassWithNestedSealedClassWithMethodWith2GenericParametersUsingMonoCecil()
         {
             await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2GenericParameters));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWith2ReturnAttributesIn1AttributeGroupUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2ReturnAttributesIn1AttributeGroup));
         }
 
         [TestMethod]

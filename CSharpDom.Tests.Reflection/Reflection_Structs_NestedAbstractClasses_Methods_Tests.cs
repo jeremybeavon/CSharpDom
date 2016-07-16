@@ -26,12 +26,6 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWith2AttributesIn1AttributeGroupUsingReflection()
-        {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2AttributesIn1AttributeGroup));
-        }
-
-        [TestMethod]
         public async Task TestStructWithNestedAbstractClassWithMethodWith2AttributesIn2AttributeGroupsUsingReflection()
         {
             await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2AttributesIn2AttributeGroups));
@@ -41,12 +35,6 @@ namespace CSharpDom.Tests.Reflection
         public async Task TestStructWithNestedAbstractClassWithMethodWith2GenericParametersUsingReflection()
         {
             await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2GenericParameters));
-        }
-
-        [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWith2ReturnAttributesIn1AttributeGroupUsingReflection()
-        {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2ReturnAttributesIn1AttributeGroup));
         }
 
         [TestMethod]

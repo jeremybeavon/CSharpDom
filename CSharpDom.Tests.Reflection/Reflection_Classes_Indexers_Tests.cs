@@ -20,21 +20,9 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroupUsingReflection()
-        {
-            await TestClassAsync(typeof(ClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup));
-        }
-
-        [TestMethod]
         public async Task TestClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
             await TestClassAsync(typeof(ClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestClassWithIndexerWithWith2AttributesIn1AttributeGroupUsingReflection()
-        {
-            await TestClassAsync(typeof(ClassWithIndexerWithWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
