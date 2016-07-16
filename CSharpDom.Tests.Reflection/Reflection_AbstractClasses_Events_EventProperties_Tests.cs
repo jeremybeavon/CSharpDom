@@ -108,5 +108,17 @@ namespace CSharpDom.Tests.Reflection
         {
             await TestAbstractClassAsync(typeof(AbstractClassWithVirtualEventProperty));
         }
+
+        [TestMethod]
+        public async Task TestAbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        {
+            await TestAbstractClassAsync(typeof(AbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+        }
+
+        [TestMethod]
+        public async Task TestAbstractClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
+        {
+            await TestAbstractClassAsync(typeof(AbstractClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+        }
     }
 }
