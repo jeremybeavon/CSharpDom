@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.AbstractClasses.Constructors
+﻿namespace CSharpDom.TestTarget.AbstractClasses.Events
 {
     public abstract class AbstractClassWithEventWith2AttributesIn2AttributeGroups
     {
