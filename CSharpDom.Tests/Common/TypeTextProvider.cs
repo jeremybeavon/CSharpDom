@@ -46,7 +46,7 @@ namespace CSharpDom.Tests.Common
             return string.Format(
                 "CSharpDom.Tests.ExpectedResults.{0}.{1}.cs",
                 type.Namespace,
-                string.IsNullOrWhiteSpace(typeName) ? "Default" : Regex.Replace(typeName, "^(?:Im)|(?:Ex)plicit(?!$)", "$&With"));
+                string.IsNullOrWhiteSpace(typeName) ? "Default" : Regex.Replace(typeName, "^(?:Im|Ex)plicit(?!$)", "$&With"));
         }
 
         private static string RemovePlural(string name)

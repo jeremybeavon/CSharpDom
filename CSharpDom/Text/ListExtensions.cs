@@ -200,12 +200,28 @@ namespace CSharpDom.Text
                 () => steps.AddRange(new WriteComma(), new WriteWhitespace()));
         }
 
+        internal static void AddReturnAttributeNodeSteps<T>(
+            this List<ISourceCodeBuilderStep> steps,
+            IReadOnlyCollection<T> childNodes)
+            where T : IVisitable<IGenericVisitor>
+        {
+            steps.AddChildNodeStepsOnNewLines(
+                childNodes,
+                builderFactory: () => new SourceCodeStepsBuilder() { IsReturnAttributeGroup = true });
+        }
+
         internal static void AddChildNodeStepsOnNewLines<T>(
             this List<ISourceCodeBuilderStep> steps,
             IReadOnlyCollection<T> childNodes,
-            NewLineLocation location = NewLineLocation.AfterNode)
+            NewLineLocation location = NewLineLocation.AfterNode,
+            Func<SourceCodeStepsBuilder> builderFactory = null)
             where T : IVisitable<IGenericVisitor>
         {
+            if (builderFactory == null)
+            {
+                builderFactory = () => null;
+            }
+
             foreach (T childNode in childNodes)
             {
                 if (location == NewLineLocation.BeforeNode)
@@ -213,7 +229,7 @@ namespace CSharpDom.Text
                     steps.Add(new WriteIndentedNewLine());
                 }
 
-                steps.Add(new WriteChildNode<T>(childNode));
+                steps.Add(new WriteChildNode<T>(childNode, builderFactory()));
                 if (location == NewLineLocation.AfterNode)
                 {
                     steps.Add(new WriteIndentedNewLine());

@@ -43,6 +43,8 @@ namespace CSharpDom.Text
         
         public List<ISourceCodeBuilderStep> Steps { get; private set; }
 
+        internal bool IsReturnAttributeGroup { get; set; }
+
         public override void VisitClassAccessor<TAttributeGroup, TMethodBody>(
             IClassAccessor<TAttributeGroup, TMethodBody> accessor)
         {
@@ -149,10 +151,16 @@ namespace CSharpDom.Text
         public override void VisitAttributeGroup<TAttribute>(IAttributeGroup<TAttribute> attributes)
         {
             Steps.Add(new WriteStartBracket());
+            if (IsReturnAttributeGroup)
+            {
+                Steps.Add(new WriteReturnKeyword());
+                Steps.Add(new WriteColon());
+                Steps.Add(new WriteWhitespace());
+            }
+
             Steps.AddCommaSeparatedChildNodeSteps(attributes.Attributes);
             Steps.Add(new WriteEndBracket());
         }
-
 
         public override void VisitClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
             IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> @class)
@@ -236,6 +244,7 @@ namespace CSharpDom.Text
             IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> conversionOperator)
         {
             Steps.AddChildNodeStepsOnNewLines(conversionOperator.Attributes);
+            Steps.AddReturnAttributeNodeSteps(conversionOperator.ReturnAttributes);
             Steps.AddClassMemberVisibilityModifierSteps(ClassMemberVisibilityModifier.Public);
             Steps.AddClassMemberInheritanceModifierSteps(ClassMemberInheritanceModifier.Static);
             Steps.Add(new WriteConversionOperatorType(conversionOperator.OperatorType));
@@ -350,6 +359,7 @@ namespace CSharpDom.Text
         public override void VisitClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             IClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
         {
+            Steps.AddChildNodeStepsOnNewLines(@event.Attributes);
             Steps.AddClassMemberVisibilityModifierSteps(@event.Visibility);
             Steps.AddClassMemberInheritanceModifierSteps(@event.InheritanceModifier);
             VisitEvent(@event);
