@@ -9,8 +9,7 @@ namespace CSharpDom.Mono.Cecil.Internal
     {
         public Events(
             TType declaringType,
-            IEventFactory<TEvent, TEventProperty, TType> eventFactory,
-            IDictionary<MethodDefinition, TypeDefinition> interfaceMethods)
+            IEventFactory<TEvent, TEventProperty, TType> eventFactory)
         {
             List<TEvent> events = new List<TEvent>();
             List<ExplicitInterfaceEventWithMonoCecil> explicitInterfaceEvents = new List<ExplicitInterfaceEventWithMonoCecil>();
@@ -23,10 +22,10 @@ namespace CSharpDom.Mono.Cecil.Internal
                 {
                     events.Add(eventFactory.CreateEvent(declaringType, eventDefinition));
                 }
-                else if (interfaceMethods.TryGetValue(eventDefinition.AddMethod, out interfaceType))
+                /*else if (interfaceMethods.TryGetValue(eventDefinition.AddMethod, out interfaceType))
                 {
                     explicitInterfaceEvents.Add(new ExplicitInterfaceEventWithMonoCecil(declaringType, interfaceType, eventDefinition));
-                }
+                }*/
                 else if (eventDefinition.AddMethod.IsAbstract)
                 {
                     abstractEvents.Add(new AbstractEventWithMonoCecil(declaringType, eventDefinition));

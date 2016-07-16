@@ -11,8 +11,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         public Methods(
             TType declaringType,
             Func<TType, MethodDefinition, TConstructor> constructorFactory,
-            Func<TType, MethodDefinition, TMethod> methodFactory,
-            IDictionary<MethodDefinition, TypeDefinition> interfaceMethods)
+            Func<TType, MethodDefinition, TMethod> methodFactory)
         {
             List<TConstructor> constructors = new List<TConstructor>();
             List<TMethod> methods = new List<TMethod>();
@@ -34,15 +33,15 @@ namespace CSharpDom.Mono.Cecil.Internal
                 }
                 else if (!method.IsSpecialName)
                 {
-                    TypeDefinition interfaceType;
+                    //TypeDefinition interfaceType;
                     if (method.IsDefined(declaringType.Assembly, typeof(ExtensionAttribute)))
                     {
                         extensionMethods.Add(new ExtensionMethodWithMonoCecil(declaringType, method));
                     }
-                    else if (interfaceMethods.TryGetValue(method, out interfaceType))
+                    /*else if (interfaceMethods.TryGetValue(method, out interfaceType))
                     {
                         explicitInterfaceMethods.Add(new ExplicitInterfaceMethodWithMonoCecil(declaringType, interfaceType, method));
-                    }
+                    }*/
                     else
                     {
                         methods.Add(methodFactory(declaringType, method));

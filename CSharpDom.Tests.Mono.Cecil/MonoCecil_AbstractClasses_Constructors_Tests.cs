@@ -72,23 +72,5 @@ namespace CSharpDom.Tests.Mono.Cecil
         {
             await TestAbstractClassAsync(typeof(AbstractClassWithPublicConstructor));
         }
-
-        [TestMethod]
-        public async Task TestAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
-        {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEventWith2AttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestAbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
-        {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestAbstractClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
-        {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEventPropertyWith2AttributesIn2AttributeGroups));
-        }
     }
 }

@@ -83,17 +83,16 @@ namespace CSharpDom.Mono.Cecil.Internal
         {
             TypeDefinition = declaringType.TypeDefinition;
             AssemblyWithMonoCecil assembly = declaringType.Assembly;
-            IDictionary<MethodDefinition, TypeDefinition> interfaceMethods = null;
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, TypeDefinition, typeof(DefaultMemberAttribute)));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, TypeDefinition));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(assembly, TypeDefinition));
             FieldCollection = new FieldCollection<TField>(() => InitializeFields(declaringType, TypeDefinition));
             EventCollection = new EventCollection<TEvent, TEventProperty, TType>(
-                () => new Events<TEvent, TEventProperty, TType>(declaringType, this, interfaceMethods));
+                () => new Events<TEvent, TEventProperty, TType>(declaringType, this));
             PropertyCollection = new PropertyCollection<TProperty, TIndexer, TType>(
-                () => new Properties<TProperty, TIndexer, TType>(declaringType, this, interfaceMethods));
+                () => new Properties<TProperty, TIndexer, TType>(declaringType, this));
             MethodCollection = new MethodCollection<TConstructor, TMethod, TType>(
-                () => new Methods<TConstructor, TMethod, TType>(declaringType, CreateConstructor, CreateMethod, interfaceMethods));
+                () => new Methods<TConstructor, TMethod, TType>(declaringType, CreateConstructor, CreateMethod));
             NestedTypeCollection = new NestedTypeCollection<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(
                 () => new NestedTypes<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, this));
         }
