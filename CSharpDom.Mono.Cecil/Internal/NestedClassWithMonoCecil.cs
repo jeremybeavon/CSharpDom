@@ -45,7 +45,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             this.declaringType = declaringType;
             hiddenMembersAnalyzer = new HiddenMembersAnalyzer(declaringType.Assembly, type);
             this.type = type;
-            if (type.BaseType != null && type.FullName != "System.Object")
+            if (type.BaseType != null && type.BaseType.FullName != "System.Object")
             {
                 baseClass = new ClassReferenceWithMonoCecil(declaringType.Assembly, type.BaseType);
             }

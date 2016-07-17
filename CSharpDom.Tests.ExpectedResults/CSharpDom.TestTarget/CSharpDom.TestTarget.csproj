@@ -3967,7 +3967,7 @@
     <Compile Include="SealedClasses\ConversionOperators\ImplicitWith2ParameterAttributesIn2AttributeGroups.cs" />
     <Compile Include="SealedClasses\ConversionOperators\ImplicitWith2ReturnAttributesIn1AttributeGroup.cs" />
     <Compile Include="SealedClasses\ConversionOperators\ImplicitWith2ReturnAttributesIn2AttributeGroups.cs" />
-    <Compile Include="SealedClasses\Destructors\Basic.cs" />
+    <Compile Include="SealedClasses\Destructors\Default.cs" />
     <Compile Include="SealedClasses\Events\1Attribute.cs" />
     <Compile Include="SealedClasses\Events\2AttributesIn1AttributeGroup.cs" />
     <Compile Include="SealedClasses\Events\2AttributesIn2AttributeGroups.cs" />

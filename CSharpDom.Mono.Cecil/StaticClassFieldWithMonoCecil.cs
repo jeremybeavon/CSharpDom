@@ -54,11 +54,6 @@ namespace CSharpDom.Mono.Cecil
         {
             get
             {
-                if (field.FieldDefinition.IsLiteral)
-                {
-                    return StaticClassFieldModifier.Const;
-                }
-
                 if (field.FieldDefinition.IsInitOnly)
                 {
                     return StaticClassFieldModifier.ReadOnly;

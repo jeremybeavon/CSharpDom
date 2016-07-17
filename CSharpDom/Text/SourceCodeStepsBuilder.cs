@@ -889,7 +889,16 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
+            if (nestedClass.Destructor != null)
+            {
+                destructorStep = new ISourceCodeBuilderStep[]
+                {
+                    new WriteChildNode<TNestedDestructor>(nestedClass.Destructor)
+                };
+            }
+
             VisitType(nestedClass);
+            destructorStep = new ISourceCodeBuilderStep[0];
             Steps.Add(new DecrementIndent());
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteEndBrace());
@@ -1644,6 +1653,177 @@ namespace CSharpDom.Text
             Steps.AddClassMemberVisibilityModifierSteps(property.Visibility);
             Steps.AddSealedClassMemberInheritanceModifierSteps(property.InheritanceModifier);
             VisitProperty(property);
+        }
+
+        public override void VisitStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> @class)
+        {
+            Steps.AddChildNodeStepsOnNewLines(@class.Attributes);
+            Steps.AddTypeVisibilityModifierSteps(@class.Visibility);
+            Steps.Add(new WriteStatic());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteClassKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(@class.Name));
+            Steps.AddGenericParameterDeclarationSteps(@class.GenericParameters);
+            Steps.AddGenericParameterConstraintSteps(@class.GenericParameters);
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteStartBrace());
+            Steps.Add(new IncrementIndent());
+            VisitStaticType(@class);
+            Steps.Add(new DecrementIndent());
+            Steps.Add(new WriteIndentedNewLine());
+            Steps.Add(new WriteEndBrace());
+        }
+
+        public override void VisitStaticClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
+            IStaticClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constant)
+        {
+            Steps.AddChildNodeStepsOnNewLines(constant.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(constant.Visibility);
+            VisitConstantGroup(constant);
+        }
+
+        public override void VisitStaticClassAccessor<TAttributeGroup, TMethodBody>(
+            IStaticClassAccessor<TAttributeGroup, TMethodBody> accessor)
+        {
+            VisitAccessor(accessor);
+        }
+
+        public override void VisitStaticClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
+            IStaticClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
+        {
+            Steps.AddChildNodeStepsOnNewLines(@event.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(@event.Visibility);
+            Steps.Add(new WriteStatic());
+            Steps.Add(new WriteWhitespace());
+            VisitEvent(@event);
+        }
+
+        public override void VisitStaticClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
+            IStaticClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty)
+        {
+            Steps.AddChildNodeStepsOnNewLines(eventProperty.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(eventProperty.Visibility);
+            Steps.Add(new WriteStatic());
+            Steps.Add(new WriteWhitespace());
+            VisitEventProperty(eventProperty);
+        }
+
+        public override void VisitStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
+            IStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field)
+        {
+            Steps.AddStaticClassMemberVisibilityModifierSteps(field.Visibility);
+            Steps.Add(new WriteStatic());
+            Steps.Add(new WriteWhitespace());
+            Steps.AddStaticClassFieldModifierSteps(field.Modifier);
+            VisitFieldGroup(field);
+        }
+
+        public override void VisitStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
+            IStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
+        {
+            Steps.AddChildNodeStepsOnNewLines(method.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(method.Visibility);
+            Steps.Add(new WriteStatic());
+            Steps.Add(new WriteWhitespace());
+            VisitMethod(method);
+        }
+
+        public override void VisitStaticClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStaticClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedClass.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(nestedClass.Visibility);
+            VisitNestedAbstractClass(nestedClass);
+        }
+
+        public override void VisitStaticClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStaticClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedStaticClass)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedStaticClass.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(nestedStaticClass.Visibility);
+            VisitNestedClass(nestedStaticClass);
+        }
+
+        public override void VisitStaticClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
+            IStaticClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedDelegate.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(nestedDelegate.Visibility);
+            VisitNestedDelegate(nestedDelegate);
+        }
+
+        public override void VisitStaticClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
+            IStaticClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedEnum.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(nestedEnum.Visibility);
+            VisitNestedEnum(nestedEnum);
+        }
+
+        public override void VisitStaticClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
+            IStaticClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
+        {
+            Steps.AddChildNodeStepsOnNewLines(@interface.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(@interface.Visibility);
+            VisitNestedInterface(@interface);
+        }
+
+        public override void VisitStaticClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStaticClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedClass.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(nestedClass.Visibility);
+            VisitNestedSealedClass(nestedClass);
+        }
+
+        public override void VisitStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedClass)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedClass.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(nestedClass.Visibility);
+            VisitNestedStaticClass(nestedClass);
+        }
+
+        public override void VisitStaticClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStaticClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedStruct)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedStruct.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(nestedStruct.Visibility);
+            VisitNestedStruct(nestedStruct);
+        }
+
+        public override void VisitStaticClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
+            IStaticClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
+        {
+            Steps.AddChildNodeStepsOnNewLines(property.Attributes);
+            Steps.AddStaticClassMemberVisibilityModifierSteps(property.Visibility);
+            Steps.Add(new WriteStatic());
+            Steps.Add(new WriteWhitespace());
+            VisitProperty(property);
+        }
+
+        public override void VisitStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> type)
+        {
+            List<ISourceCodeBuilderStep> typeSteps = new List<ISourceCodeBuilderStep>();
+            typeSteps.AddIfNotEmpty(type.Fields);
+            typeSteps.AddIfNotEmpty(type.Events);
+            typeSteps.AddIfNotNull(type.StaticConstructor);
+            typeSteps.AddRange(type.Properties.Select(property => new WriteChildNode<TProperty>(property)));
+            typeSteps.AddIfNotEmpty(type.Methods);
+            typeSteps.AddIfNotEmpty(type.Classes);
+            typeSteps.AddRange(type.Delegates.Select(@delegate => new WriteChildNode<TNestedDelegate>(@delegate)));
+            typeSteps.AddRange(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)));
+            typeSteps.AddIfNotEmpty(type.Interfaces);
+            typeSteps.AddIfNotEmpty(type.Structs);
+            if (typeSteps.Any())
+            {
+                Steps.Add(new WriteIndentedNewLine());
+            }
+
+            Steps.AddRange(typeSteps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
     }
 }

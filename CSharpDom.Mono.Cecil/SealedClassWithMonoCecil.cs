@@ -50,7 +50,7 @@ namespace CSharpDom.Mono.Cecil
             this.assembly = assembly;
             this.@namespace = @namespace;
             this.type = type;
-            if (type.BaseType != null && type.FullName != "System.Object")
+            if (type.BaseType != null && type.BaseType.FullName != "System.Object")
             {
                 baseClass = new ClassReferenceWithMonoCecil(assembly, type.BaseType);
             }

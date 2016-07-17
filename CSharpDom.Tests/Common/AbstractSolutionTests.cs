@@ -122,6 +122,17 @@ namespace CSharpDom.Tests.Common
 
         private LoadedDocument CreateLoadedDocument(StaticClass @class, string namespaceName)
         {
+            if (!IsConstructorTest)
+            {
+                foreach (List<ClassConstructor> constructors in
+                    @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
+                    .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
+                    .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                {
+                    constructors.Clear();
+                }
+            }
+
             return CreateLoadedDocument(@class, namespaceName, classes => classes.StaticClasses.Add(@class));
         }
 

@@ -1,5 +1,6 @@
 ﻿using Mono.Cecil;
 using System;
+using System.Linq;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -144,6 +145,20 @@ namespace CSharpDom.Mono.Cecil.Internal
             }
 
             return StaticClassMemberVisibilityModifier.None;
+        }
+
+        public static TypeReference FindExplicitInterface(this MethodDefinition method)
+        {
+            foreach (MethodReference @override in method.Overrides.Where(@override => @override.DeclaringType != null))
+            {
+                TypeDefinition type = @override.DeclaringType.Resolve();
+                if (type.IsInterface)
+                {
+                    return type;
+                }
+            }
+
+            return null;
         }
     }
 }

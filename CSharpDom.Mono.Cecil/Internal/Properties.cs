@@ -1,10 +1,6 @@
 ﻿using Mono.Cecil;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
@@ -24,14 +20,13 @@ namespace CSharpDom.Mono.Cecil.Internal
             foreach (PropertyDefinition property in declaringType.TypeDefinition.Properties)
             {
                 MethodDefinition method = property.Method();
-                //TypeDefinition interfaceType;
                 if (property.Parameters.Any())
                 {
-                    /*if (interfaceMethods.TryGetValue(method, out interfaceType))
+                    if (property.Name.Contains("."))
                     {
-                        explicitInterfaceIndexers.Add(new ExplicitInterfaceIndexerWithMonoCecil(declaringType, interfaceType, property));
+                        explicitInterfaceIndexers.Add(new ExplicitInterfaceIndexerWithMonoCecil(declaringType, property));
                     }
-                    else*/ if (method.IsAbstract)
+                    else if (method.IsAbstract)
                     {
                         abstractIndexers.Add(new AbstractIndexerWithMonoCecil(declaringType, property));
                     }
@@ -40,10 +35,10 @@ namespace CSharpDom.Mono.Cecil.Internal
                         indexers.Add(propertyFactory.CreateIndexer(declaringType, property));
                     }
                 }
-                /*else if (interfaceMethods.TryGetValue(method, out interfaceType))
+                else if (property.Name.Contains("."))
                 {
-                    explicitInterfaceProperties.Add(new ExplicitInterfacePropertyWithMonoCecil(declaringType, interfaceType, property));
-                }*/
+                    explicitInterfaceProperties.Add(new ExplicitInterfacePropertyWithMonoCecil(declaringType, property));
+                }
                 else if (method.IsAbstract)
                 {
                     abstractProperties.Add(new AbstractPropertyWithMonoCecil(declaringType, property));

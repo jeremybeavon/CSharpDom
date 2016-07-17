@@ -2083,6 +2083,7 @@
     <Compile Include="Text\Steps\Statements\WriteStatement.cs" />
     <Compile Include="Text\Steps\WriteAbstractKeyword.cs" />
     <Compile Include="Text\Steps\WriteAsyncKeyword.cs" />
+    <Compile Include="Text\Steps\WriteStaticClassFieldModifier.cs" />
     <Compile Include="Text\Steps\WriteSealedClassIndexerInheritanceModifier.cs" />
     <Compile Include="Text\Steps\WriteSealedClassMemberInheritanceModifier.cs" />
     <Compile Include="Text\Steps\WriteConstantKeyword.cs" />
@@ -2093,6 +2094,7 @@
     <Compile Include="Text\Steps\WriteAddKeyword.cs" />
     <Compile Include="Text\Steps\WriteEnumBaseType.cs" />
     <Compile Include="Text\Steps\WriteStatic.cs" />
+    <Compile Include="Text\Steps\WriteStaticClassMemberVisibilityModifier.cs" />
     <Compile Include="Text\Steps\WriteStructMemberVisibilityModifier.cs" />
     <Compile Include="Text\Steps\WriteConversionOperatorType.cs" />
     <Compile Include="Text\Steps\WriteDot.cs" />

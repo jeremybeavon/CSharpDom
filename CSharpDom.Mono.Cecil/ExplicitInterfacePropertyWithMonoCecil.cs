@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Internal;
 using Mono.Cecil;
@@ -16,11 +16,14 @@ namespace CSharpDom.Mono.Cecil
             AccessorWithMonoCecil>
     {
         private readonly PropertyWithMonoCecil property;
+        private readonly string name;
         private readonly InterfaceReferenceWithMonoCecil explicitInterface;
 
-        internal ExplicitInterfacePropertyWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition interfaceType, PropertyDefinition property)
+        internal ExplicitInterfacePropertyWithMonoCecil(ITypeWithMonoCecil declaringType, PropertyDefinition property)
         {
             this.property = new PropertyWithMonoCecil(declaringType, property);
+            name = property.Name.Split('.').Last();
+            TypeReference interfaceType = property.Method().FindExplicitInterface();
             explicitInterface = new InterfaceReferenceWithMonoCecil(declaringType.Assembly, interfaceType);
         }
 
@@ -46,7 +49,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override string Name
         {
-            get { return property.Name; }
+            get { return name; }
         }
 
         public override ITypeReferenceWithMonoCecil PropertyType

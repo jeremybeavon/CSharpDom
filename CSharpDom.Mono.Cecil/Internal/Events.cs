@@ -1,5 +1,6 @@
 ﻿using Mono.Cecil;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace CSharpDom.Mono.Cecil.Internal
@@ -17,15 +18,14 @@ namespace CSharpDom.Mono.Cecil.Internal
             List<AbstractEventWithMonoCecil> abstractEvents = new List<AbstractEventWithMonoCecil>();
             foreach (EventDefinition eventDefinition in declaringType.TypeDefinition.Events)
             {
-                TypeDefinition interfaceType;
                 if (eventDefinition.AddMethod.IsDefined(declaringType.Assembly, typeof(CompilerGeneratedAttribute)))
                 {
                     events.Add(eventFactory.CreateEvent(declaringType, eventDefinition));
                 }
-                /*else if (interfaceMethods.TryGetValue(eventDefinition.AddMethod, out interfaceType))
+                else if (eventDefinition.Name.Contains("."))
                 {
-                    explicitInterfaceEvents.Add(new ExplicitInterfaceEventWithMonoCecil(declaringType, interfaceType, eventDefinition));
-                }*/
+                    explicitInterfaceEvents.Add(new ExplicitInterfaceEventWithMonoCecil(declaringType, eventDefinition));
+                }
                 else if (eventDefinition.AddMethod.IsAbstract)
                 {
                     abstractEvents.Add(new AbstractEventWithMonoCecil(declaringType, eventDefinition));

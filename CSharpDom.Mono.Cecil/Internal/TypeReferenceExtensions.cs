@@ -76,9 +76,29 @@ namespace CSharpDom.Mono.Cecil.Internal
         
         public static ClassMemberVisibilityModifier ClassMemberVisibility(this TypeDefinition type)
         {
-            if (type.IsPublic)
+            if (type.IsNestedPublic)
             {
                 return ClassMemberVisibilityModifier.Public;
+            }
+
+            if (type.IsNestedAssembly)
+            {
+                return ClassMemberVisibilityModifier.Internal;
+            }
+
+            if (type.IsNestedFamilyOrAssembly)
+            {
+                return ClassMemberVisibilityModifier.ProtectedInternal;
+            }
+
+            if (type.IsNestedFamily)
+            {
+                return ClassMemberVisibilityModifier.Protected;
+            }
+
+            if (type.IsNestedPrivate)
+            {
+                return ClassMemberVisibilityModifier.Private;
             }
 
             return ClassMemberVisibilityModifier.None;
@@ -86,9 +106,19 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public static StaticClassMemberVisibilityModifier StaticClassMemberVisibility(this TypeDefinition type)
         {
-            if (type.IsPublic)
+            if (type.IsNestedPublic)
             {
                 return StaticClassMemberVisibilityModifier.Public;
+            }
+
+            if (type.IsNestedAssembly)
+            {
+                return StaticClassMemberVisibilityModifier.Internal;
+            }
+            
+            if (type.IsNestedPrivate)
+            {
+                return StaticClassMemberVisibilityModifier.Private;
             }
 
             return StaticClassMemberVisibilityModifier.None;
@@ -96,9 +126,19 @@ namespace CSharpDom.Mono.Cecil.Internal
         
         public static StructMemberVisibilityModifier StructMemberVisibility(this TypeDefinition type)
         {
-            if (type.IsPublic)
+            if (type.IsNestedPublic)
             {
                 return StructMemberVisibilityModifier.Public;
+            }
+
+            if (type.IsNestedAssembly)
+            {
+                return StructMemberVisibilityModifier.Internal;
+            }
+
+            if (type.IsNestedPrivate)
+            {
+                return StructMemberVisibilityModifier.Private;
             }
 
             return StructMemberVisibilityModifier.None;

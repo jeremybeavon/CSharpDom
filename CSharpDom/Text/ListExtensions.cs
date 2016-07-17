@@ -383,6 +383,19 @@ namespace CSharpDom.Text
             }
         }
 
+        internal static void AddStaticClassMemberVisibilityModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            StaticClassMemberVisibilityModifier visibility)
+        {
+            if (visibility == StaticClassMemberVisibilityModifier.None)
+            {
+                return;
+            }
+
+            steps.Add(new WriteStaticClassMemberVisibilityModifier(visibility));
+            steps.Add(new WriteWhitespace());
+        }
+
         internal static void AddStructMemberVisibilityModifierSteps(
             this List<ISourceCodeBuilderStep> steps,
             StructMemberVisibilityModifier visibility)
@@ -529,6 +542,17 @@ namespace CSharpDom.Text
                     break;
             }
 
+            steps.Add(new WriteWhitespace());
+        }
+
+        internal static void AddStaticClassFieldModifierSteps(this List<ISourceCodeBuilderStep> steps, StaticClassFieldModifier modifier)
+        {
+            if (modifier == StaticClassFieldModifier.None)
+            {
+                return;
+            }
+
+            steps.Add(new WriteStaticClassFieldModifier(modifier));
             steps.Add(new WriteWhitespace());
         }
 

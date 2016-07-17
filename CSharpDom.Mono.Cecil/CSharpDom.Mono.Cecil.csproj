@@ -239,7 +239,7 @@
     <Compile Include="Internal\ProjectWithMonoCecil.cs" />
     <Compile Include="Internal\Properties.cs" />
     <Compile Include="Internal\PropertyCollection.cs" />
-    <Compile Include="Internal\PropertyInfoExtensions.cs" />
+    <Compile Include="Internal\PropertyDefinitionExtensions.cs" />
     <Compile Include="Internal\PropertyWithMonoCecil.cs" />
     <Compile Include="Internal\SealedClassFieldCollection.cs" />
     <Compile Include="Internal\SealedClassNestedClassCollection.cs" />

@@ -20,28 +20,26 @@ namespace CSharpDom.Mono.Cecil.Internal
             List<OperatorOverloadWithMonoCecil> operatorOverloads = new List<OperatorOverloadWithMonoCecil>();
             List<ExplicitInterfaceMethodWithMonoCecil> explicitInterfaceMethods = new List<ExplicitInterfaceMethodWithMonoCecil>();
             List<ExtensionMethodWithMonoCecil> extensionMethods = new List<ExtensionMethodWithMonoCecil>();
-            //MethodDefinition destructorMethod = new Action(Finalize).Method;
             foreach (MethodDefinition method in declaringType.TypeDefinition.Methods)
             {
-                /*if (method. == destructorMethod)
+                if (method.Name == "Finalize" && method.Overrides.Count != 0 && method.Parameters.Count == 0)
                 {
                     Destructor = method;
                 }
-                else*/ if (method.IsAbstract)
+                else if (method.IsAbstract)
                 {
                     abstractMethods.Add(new AbstractMethodWithMonoCecil(declaringType, method));
                 }
                 else if (!method.IsSpecialName)
                 {
-                    //TypeDefinition interfaceType;
                     if (method.IsDefined(declaringType.Assembly, typeof(ExtensionAttribute)))
                     {
                         extensionMethods.Add(new ExtensionMethodWithMonoCecil(declaringType, method));
                     }
-                    /*else if (interfaceMethods.TryGetValue(method, out interfaceType))
+                    else if (method.Name.Contains("."))
                     {
-                        explicitInterfaceMethods.Add(new ExplicitInterfaceMethodWithMonoCecil(declaringType, interfaceType, method));
-                    }*/
+                        explicitInterfaceMethods.Add(new ExplicitInterfaceMethodWithMonoCecil(declaringType, method));
+                    }
                     else
                     {
                         methods.Add(methodFactory(declaringType, method));

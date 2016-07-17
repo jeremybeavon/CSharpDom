@@ -125,9 +125,19 @@ namespace CSharpDom.Reflection.Internal
 
         public static StaticClassMemberVisibilityModifier StaticClassMemberVisibility(this Type type)
         {
-            if (type.IsPublic)
+            if (type.IsNestedPublic)
             {
                 return StaticClassMemberVisibilityModifier.Public;
+            }
+
+            if (type.IsNestedAssembly)
+            {
+                return StaticClassMemberVisibilityModifier.Internal;
+            }
+            
+            if (type.IsNestedPrivate)
+            {
+                return StaticClassMemberVisibilityModifier.Private;
             }
 
             return StaticClassMemberVisibilityModifier.None;
@@ -135,9 +145,19 @@ namespace CSharpDom.Reflection.Internal
         
         public static StructMemberVisibilityModifier StructMemberVisibility(this Type type)
         {
-            if (type.IsPublic)
+            if (type.IsNestedPublic)
             {
                 return StructMemberVisibilityModifier.Public;
+            }
+
+            if (type.IsNestedAssembly)
+            {
+                return StructMemberVisibilityModifier.Internal;
+            }
+
+            if (type.IsNestedPrivate)
+            {
+                return StructMemberVisibilityModifier.Private;
             }
 
             return StructMemberVisibilityModifier.None;

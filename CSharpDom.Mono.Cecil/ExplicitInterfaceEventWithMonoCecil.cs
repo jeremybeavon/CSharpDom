@@ -3,7 +3,7 @@ using CSharpDom.Mono.Cecil.Internal;
 using CSharpDom.Mono.Cecil.Cil;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
@@ -18,11 +18,14 @@ namespace CSharpDom.Mono.Cecil
         IHasEventDefinition
     {
         private readonly EventPropertyWithMonoCecil @event;
+        private readonly string name;
         private readonly InterfaceReferenceWithMonoCecil explicitInterface;
 
-        internal ExplicitInterfaceEventWithMonoCecil(ITypeWithMonoCecil declaringType, TypeReference interfaceType, EventDefinition @event)
+        internal ExplicitInterfaceEventWithMonoCecil(ITypeWithMonoCecil declaringType, EventDefinition @event)
         {
             this.@event = new EventPropertyWithMonoCecil(declaringType, @event);
+            name = @event.Name.Split('.').Last();
+            TypeReference interfaceType = @event.AddMethod.FindExplicitInterface();
             explicitInterface = new InterfaceReferenceWithMonoCecil(declaringType.Assembly, interfaceType);
         }
 
@@ -63,7 +66,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override string Name
         {
-            get { return @event.Name; }
+            get { return name; }
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> RemoveAttributes

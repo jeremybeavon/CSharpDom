@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
@@ -19,11 +19,14 @@ namespace CSharpDom.Mono.Cecil
             ILMethodBodyWithMonoCecilCil>
     {
         private readonly MethodWithMonoCecil method;
+        private readonly string name;
         private readonly InterfaceReferenceWithMonoCecil explicitInterface;
 
-        internal ExplicitInterfaceMethodWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition interfaceType, MethodDefinition method)
+        internal ExplicitInterfaceMethodWithMonoCecil(ITypeWithMonoCecil declaringType, MethodDefinition method)
         {
             this.method = new MethodWithMonoCecil(declaringType, method);
+            name = method.Name.Split('.').Last();
+            TypeReference interfaceType = method.FindExplicitInterface();
             explicitInterface = new InterfaceReferenceWithMonoCecil(declaringType.Assembly, interfaceType);
         }
 
@@ -59,7 +62,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override string Name
         {
-            get { return method.Name; }
+            get { return name; }
         }
 
         public override IReadOnlyList<MethodParameterWithMonoCecil> Parameters

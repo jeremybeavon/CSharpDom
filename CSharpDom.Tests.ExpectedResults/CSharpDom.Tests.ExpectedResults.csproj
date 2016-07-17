@@ -3700,7 +3700,7 @@
     <EmbeddedResource Include="CSharpDom.TestTarget\SealedClasses\ConversionOperators\ImplicitWith2ParameterAttributesIn2AttributeGroups.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\SealedClasses\ConversionOperators\ImplicitWith2ReturnAttributesIn1AttributeGroup.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\SealedClasses\ConversionOperators\ImplicitWith2ReturnAttributesIn2AttributeGroups.cs" />
-    <EmbeddedResource Include="CSharpDom.TestTarget\SealedClasses\Destructors\Basic.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\SealedClasses\Destructors\Default.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\SealedClasses\Events\1Attribute.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\SealedClasses\Events\2AttributesIn1AttributeGroup.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\SealedClasses\Events\2AttributesIn2AttributeGroups.cs" />

@@ -19,9 +19,10 @@ namespace CSharpDom.Mono.Cecil
         private readonly IndexerWithMonoCecil indexer;
         private readonly InterfaceReferenceWithMonoCecil explicitInterface;
 
-        internal ExplicitInterfaceIndexerWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition interfaceType, PropertyDefinition indexer)
+        internal ExplicitInterfaceIndexerWithMonoCecil(ITypeWithMonoCecil declaringType, PropertyDefinition indexer)
         {
             this.indexer = new IndexerWithMonoCecil(declaringType, indexer);
+            TypeReference interfaceType = indexer.Method().FindExplicitInterface();
             explicitInterface = new InterfaceReferenceWithMonoCecil(declaringType.Assembly, interfaceType);
         }
 

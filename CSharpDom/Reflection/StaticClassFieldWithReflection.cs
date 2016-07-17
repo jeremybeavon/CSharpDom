@@ -53,11 +53,6 @@ namespace CSharpDom.Reflection
         {
             get
             {
-                if (field.FieldInfo.IsLiteral)
-                {
-                    return StaticClassFieldModifier.Const;
-                }
-
                 if (field.FieldInfo.IsInitOnly)
                 {
                     return StaticClassFieldModifier.ReadOnly;
