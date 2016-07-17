@@ -3,6 +3,7 @@ using CSharpDom.Mono.Cecil.Internal;
 using Mono.Cecil;
 using System;
 using System.Collections.Generic;
+using CSharpDom.Mono.Cecil.Internal.Hiding;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -24,7 +25,7 @@ namespace CSharpDom.Mono.Cecil
             StaticClassNestedInterfaceCollectionWithMonoCecil,
             StaticClassNestedStructCollectionWithMonoCecil,
             StaticConstructorWithMonoCecil>,
-        ITypeWithMonoCecil,
+        IInternalTypeWithMonoCecil,
         IHasTypeDefinition//,
         //IVisitable<IReflectionVisitor>
     {
@@ -32,6 +33,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly NamespaceWithMonoCecil @namespace;
         private readonly TypeDefinition type;
         private readonly StaticTypeWithMonoCecil typeWithMonoCecil;
+        private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
 
         internal StaticClassWithMonoCecil(AssemblyWithMonoCecil assembly, NamespaceWithMonoCecil @namespace, TypeDefinition type)
         {
@@ -39,6 +41,7 @@ namespace CSharpDom.Mono.Cecil
             this.@namespace = @namespace;
             this.type = type;
             typeWithMonoCecil = new StaticTypeWithMonoCecil(this);
+            hiddenMembersAnalyzer = new HiddenMembersAnalyzer(assembly, type);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -144,6 +147,11 @@ namespace CSharpDom.Mono.Cecil
         public AssemblyWithMonoCecil Assembly
         {
             get { return assembly; }
+        }
+
+        HiddenMembersAnalyzer IInternalTypeWithMonoCecil.HiddenMembersAnalyzer
+        {
+            get { return hiddenMembersAnalyzer; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

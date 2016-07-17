@@ -83,7 +83,7 @@ namespace CSharpDom.Mono.Cecil
             BuiltInType? builtInType =
                 (from entry in builtInTypes
                  let typeReference = entry.Key(typeSystem)
-                 where typeReference != null
+                 where typeReference == type
                  select entry.Value).FirstOrDefault();
             return builtInType.HasValue ? new BuiltInTypeReferenceWithMonoCecil(builtInType.Value, type) : null;
         }

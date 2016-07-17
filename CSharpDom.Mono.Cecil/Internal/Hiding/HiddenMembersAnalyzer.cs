@@ -118,7 +118,7 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
             where T : MemberReference
         {
             HashSet<string> set = new HashSet<string>();
-            for (TypeDefinition baseType = type.BaseType.Resolve(); baseType != null; baseType = baseType.BaseType.Resolve())
+            for (TypeDefinition baseType = type.BaseType.Resolve(); baseType != null; baseType = baseType.BaseType?.Resolve())
             {
                 bool isParentType = IsParentType(baseType);
                 bool isInSameAssembly = IsInSameAssembly(baseType);

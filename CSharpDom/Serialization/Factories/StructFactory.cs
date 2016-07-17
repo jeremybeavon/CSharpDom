@@ -15,7 +15,7 @@ namespace CSharpDom.Serialization.Factories
             Value = new Struct()
             {
                 Attributes = @struct.Attributes.ToAttributeListUsingFactory(),
-                //Classes = @struct.Classes.ToList(@class => new NestedClassFactory(@class).Value),
+                Classes = new StructNestedClassCollectionFactory(@struct.Classes).Value,
                 Constructors = @struct.Constructors.ToList(constructor => new StructConstructorFactory(constructor).Value),
                 ConversionOperators = @struct.ConversionOperators.ToList(@operator => new ConversionOperatorFactory(@operator).Value),
                 Delegates = @struct.Delegates.ToList(@delegate => new StructNestedDelegateFactory(@delegate).Value),
@@ -25,12 +25,12 @@ namespace CSharpDom.Serialization.Factories
                 GenericParameters = @struct.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 ImplementedInterfaces = @struct.ImplementedInterfaces.ToList(@interface => new InterfaceReferenceFactory(@interface).Value),
                 Indexers = new StructIndexerCollectionFactory(@struct.Indexers).Value,
-                //Interfaces = @struct.Interfaces.ToList(@interface => new NestedInterfaceFactory(@interface).Value),
+                Interfaces = new StructNestedInterfaceCollectionFactory(@struct.Interfaces).Value,
                 Methods = new StructMethodCollectionFactory(@struct.Methods).Value,
                 Name = @struct.Name,
                 OperatorOverloads = @struct.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),
                 Properties = new StructPropertyCollectionFactory(@struct.Properties).Value,
-                //Structs = @struct.Structs.ToList(nestedStruct => new NestedStructFactory(nestedStruct).Value),
+                Structs = new StructNestedStructCollectionFactory(@struct.Structs).Value,
                 Visibility = @struct.Visibility
             };
             foreach (StructConstructor constructor in Value.Constructors)
