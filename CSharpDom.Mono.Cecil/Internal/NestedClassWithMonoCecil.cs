@@ -52,7 +52,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
             typeWithMonoCecil = new ClassTypeWithMonoCecil(this);
             destructor = new Lazy<NestedDestructorWithMonoCecil>(
-                () => new NestedDestructorWithMonoCecil(this, typeWithMonoCecil.Destructor));
+                () => typeWithMonoCecil.Destructor == null ? null : new NestedDestructorWithMonoCecil(this, typeWithMonoCecil.Destructor));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes

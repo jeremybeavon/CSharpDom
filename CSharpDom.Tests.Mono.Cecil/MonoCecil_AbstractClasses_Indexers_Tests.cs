@@ -38,9 +38,9 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithIndexerWith2ParametersWithParametersUsingMonoCecil()
+        public async Task TestAbstractClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2ParametersWithParameters));
+            await TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]

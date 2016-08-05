@@ -45,11 +45,11 @@ namespace CSharpDom.Mono.Cecil.Internal
                         methods.Add(methodFactory(declaringType, method));
                     }
                 }
-                else if (method.Name == "ctor")
+                else if (method.Name == ".ctor")
                 {
                     constructors.Add(constructorFactory(declaringType, method));
                 }
-                else if (method.Name == "cctor")
+                else if (method.Name == ".cctor")
                 {
                     StaticConstructorWithMonoCecil = new StaticConstructorWithMonoCecil(declaringType, method);
                 }

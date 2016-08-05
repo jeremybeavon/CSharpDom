@@ -583,6 +583,7 @@
     <Compile Include="Search\FindAbstractClassByNameVisitor.cs" />
     <Compile Include="Search\FindStructByNameVisitor.cs" />
     <Compile Include="Search\FindNamespaceForStructVisitor.cs" />
+    <Compile Include="Serialization\Factories\AccessorFactory.cs" />
     <Compile Include="Serialization\Factories\NestedTypeReferenceFactory.cs" />
     <Compile Include="Serialization\Factories\StaticClassFactory.cs" />
     <Compile Include="Serialization\Factories\SealedClassFactory.cs" />

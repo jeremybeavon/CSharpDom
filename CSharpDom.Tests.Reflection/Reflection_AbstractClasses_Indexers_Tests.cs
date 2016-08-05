@@ -38,9 +38,9 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithIndexerWith2ParametersWithParametersUsingReflection()
+        public async Task TestAbstractClassWithIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2ParametersWithParameters));
+            await TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]

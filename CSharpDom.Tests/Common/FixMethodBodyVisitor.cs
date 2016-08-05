@@ -42,6 +42,24 @@ namespace CSharpDom.Tests.Common
             RewriteMethodBody(conversionOperator.Body as MethodBody, conversionOperator.ReturnType as TypeReference);
         }
 
+        public override void VisitExplicitInterfaceIndexer<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TParameter, TAccessor>(
+            IExplicitInterfaceIndexer<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TParameter, TAccessor> indexer)
+        {
+            VisitPropertyOrIndexer(indexer, indexer.IndexerType);
+        }
+
+        public override void VisitExplicitInterfaceProperty<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor>(
+            IExplicitInterfaceProperty<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor> property)
+        {
+            VisitPropertyOrIndexer(property, property.PropertyType);
+        }
+
+        public override void VisitIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
+            IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
+        {
+            VisitPropertyOrIndexer(indexer, indexer.IndexerType);
+        }
+
         public override void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
             IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> operatorOverload)
         {
@@ -51,23 +69,7 @@ namespace CSharpDom.Tests.Common
         public override void VisitProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
         {
-            if (property.GetAccessor != null)
-            {
-                accessorReturnType = property.PropertyType as TypeReference;
-                property.GetAccessor.Accept(this);
-            }
-
-            if (property.SetAccessor != null)
-            {
-                accessorReturnType = new TypeReference()
-                {
-                    BuiltInTypeReference = new BuiltInTypeReference()
-                    {
-                        Type = BuiltInType.Void
-                    }
-                };
-                property.SetAccessor.Accept(this);
-            }
+            VisitPropertyOrIndexer(property, property.PropertyType);
         }
 
         private static void RewriteMethodBody(MethodBody body, TypeReference returnType)
@@ -144,6 +146,30 @@ namespace CSharpDom.Tests.Common
                     }
                 }
             };
+        }
+
+        private void VisitPropertyOrIndexer<TAccessor, TTypeReference>(
+            IHasAccessors<TAccessor> propertyOrIndexer,
+            TTypeReference type)
+            where TAccessor : IAccessor
+        {
+            if (propertyOrIndexer.GetAccessor != null)
+            {
+                accessorReturnType = type as TypeReference;
+                propertyOrIndexer.GetAccessor.Accept(this);
+            }
+
+            if (propertyOrIndexer.SetAccessor != null)
+            {
+                accessorReturnType = new TypeReference()
+                {
+                    BuiltInTypeReference = new BuiltInTypeReference()
+                    {
+                        Type = BuiltInType.Void
+                    }
+                };
+                propertyOrIndexer.SetAccessor.Accept(this);
+            }
         }
     }
 }

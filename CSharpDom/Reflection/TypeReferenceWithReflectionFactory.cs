@@ -17,14 +17,14 @@ namespace CSharpDom.Reflection
                 return new ArrayTypeReferenceWithReflection(type);
             }
 
-            if (type.DeclaringType != null && !ignoreNestedType)
-            {
-                return new NestedTypeReferenceWithReflection(type);
-            }
-
             if (type.IsGenericParameter)
             {
                 return new GenericParameterReferenceWithReflection(type);
+            }
+
+            if (type.DeclaringType != null && !ignoreNestedType)
+            {
+                return new NestedTypeReferenceWithReflection(type);
             }
 
             if (type == typeof(void))

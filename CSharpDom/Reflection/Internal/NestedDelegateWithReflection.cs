@@ -52,7 +52,7 @@ namespace CSharpDom.Reflection.Internal
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return type.Name(); }
         }
 
         public override IReadOnlyList<DelegateParameterWithReflection> Parameters

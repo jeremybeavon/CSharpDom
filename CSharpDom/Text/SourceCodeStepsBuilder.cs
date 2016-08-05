@@ -67,15 +67,16 @@ namespace CSharpDom.Text
         public override void VisitAccessor<TAttributeGroup, TMethodBody>(IAccessor<TAttributeGroup, TMethodBody> accessor)
         {
             Steps.Add(accessor.Body == null ? (ISourceCodeBuilderStep)new WriteWhitespace() : new WriteIndentedNewLine());
-            Steps.AddRange(accessor.Attributes.Select(attribute => new WriteChildNode<TAttributeGroup>(attribute)));
-            Steps.Add(accessorFlags.HasFlag(AccessorFlags.Get) ? (ISourceCodeBuilderStep)new WriteGetKeyword() : new WriteSetKeyword());
-            WriteChildNode<TMethodBody> methodBody;
+            ISourceCodeBuilderStep accessorKeyword = accessorFlags.HasFlag(AccessorFlags.Get) ? (ISourceCodeBuilderStep)new WriteGetKeyword() : new WriteSetKeyword();
             if (accessor.Body == null)
             {
+                Steps.AddRange(accessor.Attributes.Select(attribute => new WriteChildNode<TAttributeGroup>(attribute)));
+                Steps.Add(accessorKeyword);
                 Steps.Add(new WriteSemicolon());
                 return;
             }
 
+            WriteChildNode<TMethodBody> methodBody;
             if (accessorFlags.HasFlag(AccessorFlags.Get))
             {
                 string typeText = new WriteChildNode<ITypeReference>(accessorType).Steps.ToSourceCode();
@@ -87,6 +88,8 @@ namespace CSharpDom.Text
                 methodBody = new WriteChildNode<TMethodBody>(accessor.Body);
             }
 
+            Steps.AddChildNodeStepsOnNewLines(accessor.Attributes);
+            Steps.Add(accessorKeyword);
             if (methodBody.Steps.Count == 0)
             {
                 Steps.Add(new WriteWhitespace());
@@ -94,7 +97,7 @@ namespace CSharpDom.Text
                 Steps.Add(new WriteWhitespace());
                 Steps.Add(new WriteEndBrace());
             }
-            else if (methodBody.Steps.OfType<WriteIndentedNewLine>().Any())
+            else if (methodBody.Steps.OfType<WriteIndentedNewLine>().SingleOrDefault() == null)
             {
                 Steps.Add(new WriteIndentedNewLine());
                 Steps.Add(new WriteStartBrace());
@@ -106,6 +109,7 @@ namespace CSharpDom.Text
             }
             else
             {
+                methodBody.Steps.RemoveAt(0);
                 Steps.Add(new WriteWhitespace());
                 Steps.Add(new WriteStartBrace());
                 Steps.Add(new WriteWhitespace());
@@ -570,6 +574,7 @@ namespace CSharpDom.Text
         public override void VisitExplicitInterfaceIndexer<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TParameter, TAccessor>(
             IExplicitInterfaceIndexer<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TParameter, TAccessor> indexer)
         {
+            Steps.AddChildNodeStepsOnNewLines(indexer.Attributes);
             explicitInterface = new WriteChildNode<TInterfaceReference>(indexer.ExplicitInterface);
             VisitIndexer(indexer);
             explicitInterface = null;

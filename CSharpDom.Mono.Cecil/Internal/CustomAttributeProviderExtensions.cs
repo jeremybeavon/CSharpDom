@@ -8,8 +8,7 @@ namespace CSharpDom.Mono.Cecil.Internal
     {
         public static bool IsDefined(this ICustomAttributeProvider attributeProvider, AssemblyWithMonoCecil assembly, Type type)
         {
-            TypeReference typeReference = assembly.GetTypeReference(type);
-            return attributeProvider.CustomAttributes.Any(attribute => attribute.AttributeType == typeReference);
+            return attributeProvider.CustomAttributes.Any(attribute => attribute.AttributeType.FullName == type.FullName);
         }
     }
 }

@@ -29,7 +29,7 @@ namespace CSharpDom.Mono.Cecil
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, type));
             typeConstraint = GetTypeConstraint(type);
             direction = GetDirection(type);
-            hasEmptyConstructorConstraint = type.HasDefaultConstructorConstraint;
+            hasEmptyConstructorConstraint = type.HasDefaultConstructorConstraint && !type.HasNotNullableValueTypeConstraint;
             genericParameterConstraints = new List<GenericParameterReferenceWithMonoCecil>();
             interfaceConstraints = new List<InterfaceReferenceWithMonoCecil>();
             foreach (TypeReference constraintType in type.Constraints)
@@ -50,7 +50,10 @@ namespace CSharpDom.Mono.Cecil
                         throw new InvalidOperationException("GenericParameterDeclaration appears to have 2 base classes.");
                     }
 
-                    baseClassConstraint = new ClassReferenceWithMonoCecil(assembly, constraintType);
+                    if (constraintType.FullName != "System.ValueType")
+                    {
+                        baseClassConstraint = new ClassReferenceWithMonoCecil(assembly, constraintType);
+                    }
                 }
                 else
                 {

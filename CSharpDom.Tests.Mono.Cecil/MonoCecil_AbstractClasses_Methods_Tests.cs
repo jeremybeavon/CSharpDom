@@ -44,27 +44,27 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterBaseAbstractClassConstraintUsingMonoCecil()
+        public async Task TestAbstractClassWithMethodWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterBaseAbstractClassConstraint));
+            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterAbstractClassAndEmptyConstructorConstraintsUsingMonoCecil()
+        public async Task TestAbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterAbstractClassAndEmptyConstructorConstraints));
+            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public async Task TestAbstractClassWithMethodWithGenericParameterAbstractClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterAbstractClassAndInterfaceAndEmptyConstructorConstraints));
+            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterAbstractClassConstraintUsingMonoCecil()
+        public async Task TestAbstractClassWithMethodWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterAbstractClassConstraint));
+            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]

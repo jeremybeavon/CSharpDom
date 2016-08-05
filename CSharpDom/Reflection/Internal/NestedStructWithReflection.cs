@@ -105,7 +105,7 @@ namespace CSharpDom.Reflection.Internal
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return type.Name(); }
         }
 
         public override IReadOnlyCollection<OperatorOverloadWithReflection> OperatorOverloads

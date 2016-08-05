@@ -254,7 +254,6 @@
     <Compile Include="Internal\TypeContainer.cs" />
     <Compile Include="Internal\TypeReferenceExtensions.cs" />
     <Compile Include="Internal\TypeWithMonoCecil.cs" />
-    <Compile Include="Internal\TypeWithMonoCecilExtensions.cs" />
     <Compile Include="ITypeReferenceWithMonoCecil.cs" />
     <Compile Include="ITypeWithMonoCecil.cs" />
     <Compile Include="MemberInfoExtensions.cs" />

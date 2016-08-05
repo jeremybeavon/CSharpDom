@@ -9,9 +9,9 @@ namespace CSharpDom.Mono.Cecil.Internal
     {
         public Attributes(AssemblyWithMonoCecil assembly, ICustomAttributeProvider member, params Type[] excludedTypes)
         {
-            IEnumerable<TypeReference> excludedTypeReferences = excludedTypes.Select(type => assembly.GetTypeReference(type));
+            string[] excludedTypeReferences = excludedTypes.Select(type => type.FullName).ToArray();
             AttributesWithMonoCecil = member.CustomAttributes
-                .Where(attribute => !excludedTypeReferences.Contains(attribute.Constructor.DeclaringType))
+                .Where(attribute => !excludedTypeReferences.Contains(attribute.Constructor.DeclaringType.FullName))
                 .Select(attribute => new AttributeWithMonoCecil(assembly, attribute))
                 .ToList();
         }

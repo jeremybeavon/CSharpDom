@@ -9,9 +9,17 @@ namespace CSharpDom.Mono.Cecil.Internal
     {
         public GenericParameters(AssemblyWithMonoCecil assembly, TypeReference type)
         {
-            GenericParametersWithMonoCecil = type.GenericParameters
-                .Select(parameter => new GenericParameterWithMonoCecil(assembly, parameter))
-                .ToList();
+            GenericInstanceType genericType = type as GenericInstanceType;
+            if (genericType == null)
+            {
+                GenericParametersWithMonoCecil = new List<GenericParameterWithMonoCecil>();
+            }
+            else
+            {
+                GenericParametersWithMonoCecil = genericType.GenericArguments
+                    .Select(parameter => new GenericParameterWithMonoCecil(assembly, parameter))
+                    .ToList();
+            }
         }
 
         public IReadOnlyList<GenericParameterWithMonoCecil> GenericParametersWithMonoCecil { get; private set; }

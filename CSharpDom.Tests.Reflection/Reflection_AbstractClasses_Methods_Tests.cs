@@ -44,27 +44,27 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterBaseAbstractClassConstraintUsingReflection()
+        public async Task TestAbstractClassWithMethodWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterBaseAbstractClassConstraint));
+            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterAbstractClassAndEmptyConstructorConstraintsUsingReflection()
+        public async Task TestAbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterAbstractClassAndEmptyConstructorConstraints));
+            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterAbstractClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
+        public async Task TestAbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterAbstractClassAndInterfaceAndEmptyConstructorConstraints));
+            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterAbstractClassConstraintUsingReflection()
+        public async Task TestAbstractClassWithMethodWithGenericParameterClassConstraintUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterAbstractClassConstraint));
+            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
