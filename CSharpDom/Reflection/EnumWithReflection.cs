@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Internal;
 using System.Linq;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -117,7 +118,7 @@ namespace CSharpDom.Reflection
 
         private IReadOnlyList<EnumMemberWithReflection> InitializeEnumMembers()
         {
-            return type.GetAllFields().Select(field => new EnumMemberWithReflection(this, field)).ToList();
+            return type.GetFields(BindingFlags.Public | BindingFlags.Static).Select(field => new EnumMemberWithReflection(this, field)).ToList();
         }
     }
 }

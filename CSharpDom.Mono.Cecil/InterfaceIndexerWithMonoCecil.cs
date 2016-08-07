@@ -29,7 +29,7 @@ namespace CSharpDom.Mono.Cecil
             this.declaringType = declaringType;
             AssemblyWithMonoCecil assembly = declaringType.Assembly;
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, indexer));
-            indexerType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, indexer.PropertyType);
+            indexerType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, indexer.PropertyType, indexer);
             parameters = new Lazy<Parameters<IndexerParameterWithMonoCecil>>(
                 () => new Parameters<IndexerParameterWithMonoCecil>(assembly, indexer, parameter => new IndexerParameterWithMonoCecil(parameter)));
             if (indexer.GetMethod != null)

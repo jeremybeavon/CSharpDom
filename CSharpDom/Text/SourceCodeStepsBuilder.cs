@@ -88,8 +88,10 @@ namespace CSharpDom.Text
                 methodBody = new WriteChildNode<TMethodBody>(accessor.Body);
             }
 
+
             Steps.AddChildNodeStepsOnNewLines(accessor.Attributes);
             Steps.Add(accessorKeyword);
+            bool hasSingleLine = methodBody.Steps.OfType<WriteIndentedNewLine>().SingleOrDefault() != null;
             if (methodBody.Steps.Count == 0)
             {
                 Steps.Add(new WriteWhitespace());
@@ -97,7 +99,7 @@ namespace CSharpDom.Text
                 Steps.Add(new WriteWhitespace());
                 Steps.Add(new WriteEndBrace());
             }
-            else if (methodBody.Steps.OfType<WriteIndentedNewLine>().SingleOrDefault() == null)
+            else if (methodBody.Steps.Count != 1 && !hasSingleLine)
             {
                 Steps.Add(new WriteIndentedNewLine());
                 Steps.Add(new WriteStartBrace());
@@ -109,7 +111,11 @@ namespace CSharpDom.Text
             }
             else
             {
-                methodBody.Steps.RemoveAt(0);
+                if (hasSingleLine)
+                {
+                    methodBody.Steps.RemoveAt(0);
+                }
+
                 Steps.Add(new WriteWhitespace());
                 Steps.Add(new WriteStartBrace());
                 Steps.Add(new WriteWhitespace());
@@ -491,6 +497,7 @@ namespace CSharpDom.Text
             IStructField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field)
         {
             Steps.AddStructMemberVisibilityModifierSteps(field.Visibility);
+            Steps.AddStructFieldModifierSteps(field.Modifier);
             VisitFieldGroup(field);
         }
 
@@ -874,6 +881,30 @@ namespace CSharpDom.Text
             VisitNestedClass(nestedClass);
         }
 
+        public override void VisitStructNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStructNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedClass.Attributes);
+            Steps.AddStructMemberVisibilityModifierSteps(nestedClass.Visibility);
+            VisitNestedAbstractClass(nestedClass);
+        }
+
+        public override void VisitStructNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStructNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedStruct)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedStruct.Attributes);
+            Steps.AddStructMemberVisibilityModifierSteps(nestedStruct.Visibility);
+            base.VisitStructNestedSealedClass(nestedStruct);
+        }
+
+        public override void VisitStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedClass)
+        {
+            Steps.AddChildNodeStepsOnNewLines(nestedClass.Attributes);
+            Steps.AddStructMemberVisibilityModifierSteps(nestedClass.Visibility);
+            VisitNestedStaticClass(nestedClass);
+        }
+
         public override void VisitStructNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
             IStructNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass)
         {
@@ -1120,6 +1151,15 @@ namespace CSharpDom.Text
             Steps.Add(new WriteChildNode<TTypeReference>(nestedTypeReference.NestedType));
         }
 
+        public override void VisitOperatorParameter<TAttributeGroup, TTypeReference>(
+            IOperatorParameter<TAttributeGroup, TTypeReference> parameter)
+        {
+            Steps.AddChildNodeSteps(parameter.Attributes);
+            Steps.Add(new WriteChildNode<TTypeReference>(parameter.ParameterType));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteName(parameter.Name));
+        }
+
         public override void VisitOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
             IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> operatorOverload)
         {
@@ -1307,21 +1347,42 @@ namespace CSharpDom.Text
             }
 
             Steps.Add(new WriteName(property.Name));
-            Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteStartBrace());
+            bool containsNewLines = false;
+            List<ISourceCodeBuilderStep> steps = new List<ISourceCodeBuilderStep>();
             Func<AccessorFlags, SourceCodeStepsBuilder> builderFactory =
                 flags => new SourceCodeStepsBuilder(AccessorFlags.Property | flags, property.PropertyType);
             if (property.GetAccessor != null)
             {
-                Steps.Add(new WriteChildNode<TAccessor>(property.GetAccessor, builderFactory(AccessorFlags.Get)));
+                WriteChildNode<TAccessor> step = new WriteChildNode<TAccessor>(
+                    property.GetAccessor,
+                    builderFactory(AccessorFlags.Get));
+                containsNewLines = step.Steps.OfType<WriteIndentedNewLine>().Any();
+                steps.Add(step);
             }
 
             if (property.SetAccessor != null)
             {
-                Steps.Add(new WriteChildNode<TAccessor>(property.SetAccessor, builderFactory(AccessorFlags.Set)));
+                WriteChildNode<TAccessor> step = new WriteChildNode<TAccessor>(
+                    property.GetAccessor,
+                    builderFactory(AccessorFlags.Set));
+                containsNewLines &= step.Steps.OfType<WriteIndentedNewLine>().Any();
+                steps.Add(step);
             }
 
-            Steps.Add(new WriteWhitespace());
+            Steps.Add(containsNewLines ? (ISourceCodeBuilderStep)new WriteIndentedNewLine() : new WriteWhitespace());
+            Steps.Add(new WriteStartBrace());
+            if (containsNewLines)
+            {
+                Steps.Add(new IncrementIndent());
+            }
+
+            Steps.AddRange(steps);
+            if (containsNewLines)
+            {
+                Steps.Add(new DecrementIndent());
+            }
+
+            Steps.Add(containsNewLines ? (ISourceCodeBuilderStep)new WriteIndentedNewLine() : new WriteWhitespace());
             Steps.Add(new WriteEndBrace());
         }
 

@@ -1,6 +1,7 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Internal;
 using System;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -14,11 +15,11 @@ namespace CSharpDom.Reflection
         private readonly int dimensions;
         private readonly ITypeReferenceWithReflection elementType;
 
-        internal ArrayTypeReferenceWithReflection(Type type)
+        internal ArrayTypeReferenceWithReflection(Type type, MemberInfo member)
         {
             this.type = type;
             dimensions = type.GetArrayRank();
-            elementType = TypeReferenceWithReflectionFactory.CreateReference(type.GetElementType());
+            elementType = TypeReferenceWithReflectionFactory.CreateReference(type.GetElementType(), member);
         }
 
         public override int Dimensions

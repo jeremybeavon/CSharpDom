@@ -13,6 +13,9 @@
         {
             switch (Modifier)
             {
+                case ClassFieldModifier.New:
+                    builder.Append("new");
+                    break;
                 case ClassFieldModifier.ReadOnly:
                     builder.Append("readonly");
                     break;

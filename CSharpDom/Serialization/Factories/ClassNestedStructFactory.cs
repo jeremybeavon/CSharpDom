@@ -12,29 +12,31 @@ namespace CSharpDom.Serialization.Factories
         public override void VisitClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
             IClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedStruct)
         {
-            /*Value = new ClassNestedStruct()
+            Value = new ClassNestedStruct()
             {
                 Attributes = nestedStruct.Attributes.ToAttributeListUsingFactory(),
-                Classes = nestedStruct.Classes.ToList(@class => new NestedClassFactory(@class).Value),
-                Constructors = nestedStruct.Constructors.ToList(constructor => new ConstructorFactory(constructor).Value),
+                Classes = new StructNestedClassCollectionFactory(nestedStruct.Classes).Value,
+                Constructors = nestedStruct.Constructors.ToList(constructor => new StructConstructorFactory(constructor).Value),
                 ConversionOperators = nestedStruct.ConversionOperators.ToList(@operator => new ConversionOperatorFactory(@operator).Value),
-                Delegates = nestedStruct.Delegates.ToList(@delegate => new NestedDelegateFactory(@delegate).Value),
-                Enums = nestedStruct.Enums.ToList(@enum => new NestedEnumFactory(@enum).Value),
-                EventProperties = nestedStruct.EventProperties.ToList(eventProperty => new EventPropertyFactory(eventProperty).Value),
-                Events = nestedStruct.Events.ToList(@event => new EventFactory(@event).Value),
-                Fields = nestedStruct.Fields.ToList(field => new FieldFactory(field).Value),
+                Delegates = nestedStruct.Delegates.ToList(@delegate => new StructNestedDelegateFactory(@delegate).Value),
+                Enums = nestedStruct.Enums.ToList(@enum => new StructNestedEnumFactory(@enum).Value),
+                Events = new StructEventCollectionFactory(nestedStruct.Events).Value,
+                Fields = new StructFieldCollectionFactory(nestedStruct.Fields).Value,
                 GenericParameters = nestedStruct.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 ImplementedInterfaces = nestedStruct.ImplementedInterfaces.ToList(@interface => new InterfaceReferenceFactory(@interface).Value),
-                Indexers = nestedStruct.Indexers.ToList(indexer => new IndexerFactory(indexer).Value),
-                Interfaces = nestedStruct.Interfaces.ToList(@interface => new NestedInterfaceFactory(@interface).Value),
-                IsPartial = nestedStruct.IsPartial,
-                Methods = nestedStruct.Methods.ToList(method => new MethodFactory(method).Value),
+                Indexers = new StructIndexerCollectionFactory(nestedStruct.Indexers).Value,
+                Interfaces = new StructNestedInterfaceCollectionFactory(nestedStruct.Interfaces).Value,
+                Methods = new StructMethodCollectionFactory(nestedStruct.Methods).Value,
                 Name = nestedStruct.Name,
                 OperatorOverloads = nestedStruct.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),
-                Properties = nestedStruct.Properties.ToList(property => new PropertyFactory(property).Value),
-                Structs = nestedStruct.Structs.ToList(@struct => new NestedStructFactory(@struct).Value),
+                Properties = new StructPropertyCollectionFactory(nestedStruct.Properties).Value,
+                Structs = new StructNestedStructCollectionFactory(nestedStruct.Structs).Value,
                 Visibility = nestedStruct.Visibility
-            };*/
+            };
+            foreach (StructConstructor constructor in Value.Constructors)
+            {
+                constructor.AttachDeclaringType(nestedStruct);
+            }
         }
     }
 }

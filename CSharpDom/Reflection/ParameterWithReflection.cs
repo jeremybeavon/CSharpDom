@@ -21,11 +21,11 @@ namespace CSharpDom.Reflection
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithReflection parameterType;
 
-        internal ParameterWithReflection(ParameterInfo parameter)
+        internal ParameterWithReflection(ParameterInfo parameter, MemberInfo member)
         {
             this.parameter = parameter;
             attributes = new Lazy<Attributes>(() => new Attributes(parameter, excludedAttributeTypes));
-            parameterType = TypeReferenceWithReflectionFactory.CreateReference(parameter.ParameterType);
+            parameterType = TypeReferenceWithReflectionFactory.CreateReference(parameter.ParameterType, member);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes

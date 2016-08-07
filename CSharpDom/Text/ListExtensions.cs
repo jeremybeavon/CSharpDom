@@ -527,6 +527,35 @@ namespace CSharpDom.Text
             {
                 case ClassFieldModifier.None:
                     return;
+                case ClassFieldModifier.NewReadOnly:
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.New));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.ReadOnly));
+                    break;
+                case ClassFieldModifier.NewStatic:
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.New));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.Static));
+                    break;
+                case ClassFieldModifier.NewStaticReadOnly:
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.New));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.Static));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.ReadOnly));
+                    break;
+                case ClassFieldModifier.NewStaticVolatile:
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.New));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.Static));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.Volatile));
+                    break;
+                case ClassFieldModifier.NewVolatile:
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.New));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteClassFieldModifier(ClassFieldModifier.Volatile));
+                    break;
                 case ClassFieldModifier.StaticReadOnly:
                     steps.Add(new WriteClassFieldModifier(ClassFieldModifier.Static));
                     steps.Add(new WriteWhitespace());
@@ -539,6 +568,30 @@ namespace CSharpDom.Text
                     break;
                 default:
                     steps.Add(new WriteClassFieldModifier(modifier));
+                    break;
+            }
+
+            steps.Add(new WriteWhitespace());
+        }
+
+        internal static void AddStructFieldModifierSteps(this List<ISourceCodeBuilderStep> steps, StructFieldModifier modifier)
+        {
+            switch (modifier)
+            {
+                case StructFieldModifier.None:
+                    return;
+                case StructFieldModifier.StaticReadOnly:
+                    steps.Add(new WriteStructFieldModifier(StructFieldModifier.Static));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteStructFieldModifier(StructFieldModifier.ReadOnly));
+                    break;
+                case StructFieldModifier.StaticVolatile:
+                    steps.Add(new WriteStructFieldModifier(StructFieldModifier.Static));
+                    steps.Add(new WriteWhitespace());
+                    steps.Add(new WriteStructFieldModifier(StructFieldModifier.Volatile));
+                    break;
+                default:
+                    steps.Add(new WriteStructFieldModifier(modifier));
                     break;
             }
 

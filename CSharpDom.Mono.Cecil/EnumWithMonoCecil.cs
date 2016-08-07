@@ -125,7 +125,10 @@ namespace CSharpDom.Mono.Cecil
 
         private IReadOnlyList<EnumMemberWithMonoCecil> InitializeEnumMembers()
         {
-            return type.Fields.Select(field => new EnumMemberWithMonoCecil(this, field)).ToList();
+            return type.Fields
+                .Where(field => field.IsPublic && field.IsStatic)
+                .Select(field => new EnumMemberWithMonoCecil(this, field))
+                .ToList();
         }
     }
 }

@@ -40,10 +40,10 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly SealedClassMethodCollectionWithMonoCecil methods;
         private readonly SealedClassPropertyCollectionWithMonoCecil properties;
 
-        internal NestedSealedClassWithMonoCecil(IInternalTypeWithMonoCecil declaringType, TypeDefinition type)
+        internal NestedSealedClassWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             typeWithMonoCecil = new NestedClassWithMonoCecil(declaringType, type);
-            sealedTypeWithMonoCecil = new SealedTypeWithMonoCecil(declaringType);
+            sealedTypeWithMonoCecil = new SealedTypeWithMonoCecil(this);
             events = new SealedClassEventCollectionWithMonoCecil(sealedTypeWithMonoCecil);
             indexers = new SealedClassIndexerCollectionWithMonoCecil(sealedTypeWithMonoCecil);
             methods = new SealedClassMethodCollectionWithMonoCecil(sealedTypeWithMonoCecil);

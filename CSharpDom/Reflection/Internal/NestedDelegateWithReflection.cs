@@ -30,7 +30,7 @@ namespace CSharpDom.Reflection.Internal
             attributes = new Lazy<Attributes>(() => new Attributes(type));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(type));
             MethodInfo method = type.GetMethod("Invoke");
-            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
+            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType, method);
             parameters = new Lazy<Parameters<DelegateParameterWithReflection>>(
                 () => new Parameters<DelegateParameterWithReflection>(method, parameter => new DelegateParameterWithReflection(parameter)));
         }

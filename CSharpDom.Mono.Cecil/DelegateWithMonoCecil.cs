@@ -36,7 +36,7 @@ namespace CSharpDom.Mono.Cecil
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, type));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, type));
             MethodDefinition invokeMethod = type.Methods.First(method => method.Name == "Invoke");
-            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, invokeMethod.ReturnType);
+            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, invokeMethod.ReturnType, invokeMethod);
             parameters = new Lazy<Parameters<DelegateParameterWithMonoCecil>>(
                 () => new Parameters<DelegateParameterWithMonoCecil>(assembly, invokeMethod, parameter => new DelegateParameterWithMonoCecil(parameter)));
         }

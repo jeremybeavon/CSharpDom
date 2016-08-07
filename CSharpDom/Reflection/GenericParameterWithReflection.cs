@@ -1,6 +1,7 @@
 ﻿using System;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Internal;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
@@ -10,9 +11,9 @@ namespace CSharpDom.Reflection
     {
         private readonly ITypeReferenceWithReflection typeReference;
 
-        internal GenericParameterWithReflection(Type type)
+        internal GenericParameterWithReflection(Type type, MemberInfo member)
         {
-            typeReference = TypeReferenceWithReflectionFactory.CreateReference(type);
+            typeReference = TypeReferenceWithReflectionFactory.CreateReference(type, member);
         }
 
         public override ITypeReferenceWithReflection Type

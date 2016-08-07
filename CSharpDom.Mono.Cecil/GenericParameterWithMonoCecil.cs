@@ -13,7 +13,7 @@ namespace CSharpDom.Mono.Cecil
 
         internal GenericParameterWithMonoCecil(AssemblyWithMonoCecil assembly, TypeReference type)
         {
-            typeReference = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, type);
+            typeReference = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, type, type);
         }
 
         public override ITypeReferenceWithMonoCecil Type

@@ -34,7 +34,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            //GenericVisitor.VisitStructFieldCollectionChildren(this, visitor);
+            GenericVisitor.VisitStructFieldCollectionChildren(this, visitor);
         }
 
         public IEnumerator<StructField> GetEnumerator()

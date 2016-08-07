@@ -20,7 +20,7 @@ namespace CSharpDom.Reflection.Internal
             this.declaringType = declaringType;
             this.field = field;
             attributes = new Lazy<Attributes>(() => new Attributes(field));
-            fieldType = TypeReferenceWithReflectionFactory.CreateReference(field.FieldType);
+            fieldType = TypeReferenceWithReflectionFactory.CreateReference(field.FieldType, field);
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes
@@ -44,6 +44,40 @@ namespace CSharpDom.Reflection.Internal
         }
 
         public ClassFieldModifier Modifier
+        {
+            get
+            {
+                ClassFieldModifier modifier = NonNewModifier;
+                IInternalTypeWithReflection internalType = declaringType as IInternalTypeWithReflection;
+                if (internalType == null || !internalType.HiddenMembersAnalyzer.IsFieldHidden(field))
+                {
+                    return modifier;
+                }
+
+                switch (modifier)
+                {
+                    case ClassFieldModifier.None:
+                        return ClassFieldModifier.New;
+                    case ClassFieldModifier.Static:
+                        return ClassFieldModifier.NewStatic;
+                    case ClassFieldModifier.StaticReadOnly:
+                        return ClassFieldModifier.NewStaticReadOnly;
+                    case ClassFieldModifier.StaticVolatile:
+                        return ClassFieldModifier.NewStaticVolatile;
+                    case ClassFieldModifier.Volatile:
+                        return ClassFieldModifier.NewVolatile;
+                    default:
+                        throw new InvalidOperationException();
+                }
+            }
+        }
+        
+        public override IReadOnlyCollection<IFieldWithReflection> Fields
+        {
+            get { return new IFieldWithReflection[0]; }
+        }
+
+        private ClassFieldModifier NonNewModifier
         {
             get
             {
@@ -75,43 +109,5 @@ namespace CSharpDom.Reflection.Internal
                 return ClassFieldModifier.None;
             }
         }
-        
-        public override IReadOnlyCollection<IFieldWithReflection> Fields
-        {
-            get { return new IFieldWithReflection[0]; }
-        }
-
-        /*public override ClassMemberVisibilityModifier Visibility
-        {
-            get
-            {
-                if (field.IsPublic)
-                {
-                    return ClassMemberVisibilityModifier.Public;
-                }
-
-                if (field.IsAssembly)
-                {
-                    return ClassMemberVisibilityModifier.Internal;
-                }
-
-                if (field.IsFamilyOrAssembly)
-                {
-                    return ClassMemberVisibilityModifier.ProtectedInternal;
-                }
-
-                if (field.IsFamily)
-                {
-                    return ClassMemberVisibilityModifier.Protected;
-                }
-
-                if (field.IsPrivate)
-                {
-                    return ClassMemberVisibilityModifier.Private;
-                }
-
-                return ClassMemberVisibilityModifier.None;
-            }
-        }*/
     }
 }

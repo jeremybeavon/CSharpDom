@@ -7,7 +7,7 @@ namespace CSharpDom.Mono.Cecil
     {
         public static bool IsVolatile(this FieldDefinition field)
         {
-            throw new NotImplementedException();
+            return field.FullName.Contains("modreq(System.Runtime.CompilerServices.IsVolatile)");
         }
     }
 }

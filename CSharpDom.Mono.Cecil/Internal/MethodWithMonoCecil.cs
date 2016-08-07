@@ -33,7 +33,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             AssemblyWithMonoCecil assembly = declaringType.Assembly;
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, method));
-            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, method.ReturnType);
+            returnType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, method.ReturnType, method);
             parameters = new Lazy<Parameters<MethodParameterWithMonoCecil>>(
                 () => new Parameters<MethodParameterWithMonoCecil>(assembly, method, parameter => new MethodParameterWithMonoCecil(parameter)));
             body = new Lazy<ILMethodBodyWithMonoCecilCil>(() => new ILMethodBodyWithMonoCecilCil(method));

@@ -8658,6 +8658,18 @@
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\NestedStructs\Properties\Static.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\NestedStructs\Public.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Public.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\Internal.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\New.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\NewStatic.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\NewVirtual.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\Override.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\Private.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\Protected.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\ProtectedInternal.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\Public.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\SealedOverride.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\Static.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\AbstractClasses\Properties\AutoProperties\Virtual.cs" />
     <Compile Include="ExpectedResultsType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

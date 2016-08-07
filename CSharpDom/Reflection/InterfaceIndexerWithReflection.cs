@@ -27,7 +27,7 @@ namespace CSharpDom.Reflection
             this.indexer = indexer;
             this.declaringType = declaringType;
             attributes = new Lazy<Attributes>(() => new Attributes(indexer));
-            indexerType = TypeReferenceWithReflectionFactory.CreateReference(indexer.PropertyType);
+            indexerType = TypeReferenceWithReflectionFactory.CreateReference(indexer.PropertyType, indexer);
             parameters = new Lazy<Parameters<IndexerParameterWithReflection>>(
                 () => new Parameters<IndexerParameterWithReflection>(indexer, parameter => new IndexerParameterWithReflection(parameter)));
             if (indexer.GetMethod != null)

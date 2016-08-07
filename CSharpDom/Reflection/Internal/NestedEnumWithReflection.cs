@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Reflection.Internal;
 using System.Linq;
+using System.Reflection;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -66,7 +67,7 @@ namespace CSharpDom.Reflection.Internal
 
         private IReadOnlyList<NestedEnumMemberWithReflection> InitializeEnumMembers()
         {
-            return type.GetAllFields().Select(field => new NestedEnumMemberWithReflection(this, field)).ToList();
+            return type.GetFields(BindingFlags.Public | BindingFlags.Static).Select(field => new NestedEnumMemberWithReflection(this, field)).ToList();
         }
     }
 }

@@ -23,12 +23,12 @@ namespace CSharpDom.Mono.Cecil
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithMonoCecil parameterType;
 
-        internal ParameterWithMonoCecil(AssemblyWithMonoCecil assembly, ParameterDefinition parameter)
+        internal ParameterWithMonoCecil(AssemblyWithMonoCecil assembly, ParameterDefinition parameter, MemberReference member)
         {
             this.assembly = assembly;
             this.parameter = parameter;
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, parameter, excludedAttributeTypes));
-            parameterType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, parameter.ParameterType);
+            parameterType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, parameter.ParameterType, member);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes

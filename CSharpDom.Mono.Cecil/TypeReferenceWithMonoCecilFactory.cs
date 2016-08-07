@@ -29,7 +29,7 @@ namespace CSharpDom.Mono.Cecil
                 { typeSystem => typeSystem.Void, BuiltInType.Void }
             };
 
-        public static ITypeReferenceWithMonoCecil CreateReference(AssemblyWithMonoCecil assembly, TypeReference type, bool ignoreNestedType = false)
+        public static ITypeReferenceWithMonoCecil CreateReference(AssemblyWithMonoCecil assembly, TypeReference type, MemberReference member = null, bool ignoreNestedType = false)
         {
             if (type.IsByReference)
             {
@@ -38,10 +38,10 @@ namespace CSharpDom.Mono.Cecil
 
             if (type.IsArray)
             {
-                return new ArrayTypeReferenceWithMonoCecil(assembly, type);
+                return new ArrayTypeReferenceWithMonoCecil(assembly, type, member);
             }
 
-            if (type.DeclaringType != null && !ignoreNestedType)
+            if (type.DeclaringType != null && !ignoreNestedType && (member == null || !IsParentType(type, member.DeclaringType)))
             {
                 return new NestedTypeReferenceWithMonoCecil(assembly, type);
             }
@@ -75,6 +75,11 @@ namespace CSharpDom.Mono.Cecil
                 default:
                     return new UnspecifiedTypeReferenceWithMonoCecil(assembly, type);
             }
+        }
+
+        private static bool IsParentType(TypeReference type, TypeReference parentType)
+        {
+            return parentType != null && (type.FullName == parentType.FullName || IsParentType(type, parentType.DeclaringType));
         }
 
         private static ITypeReferenceWithMonoCecil CreateBuiltInReference(AssemblyWithMonoCecil assembly, TypeReference type)

@@ -45,6 +45,7 @@ namespace CSharpDom.Serialization
                 yield return EnumReference;
                 yield return GenericParameterReference;
                 yield return InterfaceReference;
+                yield return NestedTypeReference;
                 yield return StructReference;
             }
         }

@@ -57,7 +57,7 @@ namespace CSharpDom.Reflection
             this.declaringType = declaringType;
             this.method = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
-            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
+            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType, method);
             parameters = new Lazy<Parameters<OperatorParameterWithReflection>>(
                 () => new Parameters<OperatorParameterWithReflection>(method, parameter => new OperatorParameterWithReflection(parameter)));
             body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));

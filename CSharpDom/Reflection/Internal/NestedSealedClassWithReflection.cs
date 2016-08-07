@@ -39,10 +39,10 @@ namespace CSharpDom.Reflection.Internal
         private readonly SealedClassMethodCollectionWithReflection methods;
         private readonly SealedClassPropertyCollectionWithReflection properties;
 
-        internal NestedSealedClassWithReflection(IInternalTypeWithReflection declaringType, Type type)
+        internal NestedSealedClassWithReflection(ITypeWithReflection declaringType, Type type)
         {
             typeWithReflection = new NestedClassWithReflection(declaringType, type);
-            sealedTypeWithReflection = new SealedTypeWithReflection(declaringType);
+            sealedTypeWithReflection = new SealedTypeWithReflection(this);
             events = new SealedClassEventCollectionWithReflection(sealedTypeWithReflection);
             indexers = new SealedClassIndexerCollectionWithReflection(sealedTypeWithReflection);
             methods = new SealedClassMethodCollectionWithReflection(sealedTypeWithReflection);

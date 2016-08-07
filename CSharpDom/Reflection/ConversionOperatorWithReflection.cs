@@ -31,8 +31,8 @@ namespace CSharpDom.Reflection
             this.declaringType = declaringType;
             this.method = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
-            parameter = new OperatorParameterWithReflection(new ParameterWithReflection(method.GetParameters()[0]));
-            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
+            parameter = new OperatorParameterWithReflection(new ParameterWithReflection(method.GetParameters()[0], method));
+            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType, method);
             returnAttributes = new Lazy<Attributes>(() => new Attributes(method.ReturnParameter));
             body = new Lazy<ILMethodBodyWithReflectionEmit>(() => new ILMethodBodyWithReflectionEmit(method));
         }

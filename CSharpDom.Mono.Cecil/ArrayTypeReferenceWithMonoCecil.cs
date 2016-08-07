@@ -12,11 +12,11 @@ namespace CSharpDom.Mono.Cecil
         private readonly int dimensions;
         private readonly ITypeReferenceWithMonoCecil elementType;
 
-        internal ArrayTypeReferenceWithMonoCecil(AssemblyWithMonoCecil assembly, TypeReference type)
+        internal ArrayTypeReferenceWithMonoCecil(AssemblyWithMonoCecil assembly, TypeReference type, MemberReference member)
         {
             this.type = type;
             //dimensions = type..GetArrayRank();
-            elementType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, type.GetElementType());
+            elementType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, type.GetElementType(), member);
         }
 
         public override int Dimensions

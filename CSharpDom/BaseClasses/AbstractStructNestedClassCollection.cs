@@ -14,5 +14,14 @@ namespace CSharpDom.BaseClasses
         where TStaticClass : IStructNestedStaticClass
         where TPartialClassCollection : IPartialClassCollection
     {
+        public override void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitStructNestedClassCollection(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitStructNestedClassCollectionChildren(this, visitor);
+        }
     }
 }

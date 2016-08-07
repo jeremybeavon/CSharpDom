@@ -1157,6 +1157,16 @@ namespace CSharpDom.Common
             VisitCollection(fieldCollection.Constants, visitor);
         }
 
+        public static void VisitStructFieldCollectionChildren<TField, TConstant>(
+            IStructFieldCollection<TField, TConstant> fieldCollection,
+            IGenericVisitor visitor)
+            where TField : IStructField
+            where TConstant : IStructConstant
+        {
+            VisitCollection(fieldCollection, visitor);
+            VisitCollection(fieldCollection.Constants, visitor);
+        }
+
         public static void VisitStaticClassFieldCollectionChildren<TField, TConstant>(
             IStaticClassFieldCollection<TField, TConstant> fieldCollection,
             IGenericVisitor visitor)

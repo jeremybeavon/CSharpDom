@@ -30,6 +30,16 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public static TypeClassificationEnum TypeClassification(this TypeDefinition type)
         {
+            if (type.IsEnum)
+            {
+                return TypeClassificationEnum.Enum;
+            }
+
+            if (type.IsValueType)
+            {
+                return TypeClassificationEnum.Struct;
+            }
+
             if (type.IsClass())
             {
                 if (type.IsAbstract && type.IsSealed)
@@ -56,19 +66,9 @@ namespace CSharpDom.Mono.Cecil.Internal
                 return TypeClassificationEnum.Delegate;
             }
 
-            if (type.IsEnum)
-            {
-                return TypeClassificationEnum.Enum;
-            }
-
             if (type.IsInterface)
             {
                 return TypeClassificationEnum.Interface;
-            }
-
-            if (type.IsValueType)
-            {
-                return TypeClassificationEnum.Struct;
             }
 
             return TypeClassificationEnum.Unknown;

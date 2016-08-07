@@ -150,7 +150,7 @@ namespace CSharpDom.Reflection.Internal
 
         protected override StructNestedSealedClassWithReflection CreateNestedSealedClass(ITypeWithReflection declaringType, Type type)
         {
-            return new StructNestedSealedClassWithReflection((IInternalTypeWithReflection)declaringType, type);
+            return new StructNestedSealedClassWithReflection(declaringType, type);
         }
 
         protected override StructNestedStaticClassWithReflection CreateNestedStaticClass(ITypeWithReflection declaringType, Type type)

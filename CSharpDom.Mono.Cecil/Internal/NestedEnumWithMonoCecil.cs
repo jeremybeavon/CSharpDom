@@ -73,7 +73,10 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         private IReadOnlyList<NestedEnumMemberWithMonoCecil> InitializeEnumMembers()
         {
-            return type.Fields.Select(field => new NestedEnumMemberWithMonoCecil(this, field)).ToList();
+            return type.Fields
+                .Where(field => field.IsPublic && field.IsStatic)
+                .Select(field => new NestedEnumMemberWithMonoCecil(this, field))
+                .ToList();
         }
     }
 }

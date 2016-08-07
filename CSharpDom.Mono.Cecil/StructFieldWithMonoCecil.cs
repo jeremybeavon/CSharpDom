@@ -37,7 +37,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override IReadOnlyCollection<IFieldWithMonoCecil> Fields
         {
-            get { return new IFieldWithMonoCecil[] { this }; }
+            get { return new IFieldWithMonoCecil[] { new InternalFieldWithMonoCecil(field.FieldDefinition) }; }
         }
 
         public override ITypeReferenceWithMonoCecil FieldType

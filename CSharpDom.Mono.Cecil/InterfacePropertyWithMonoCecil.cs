@@ -27,7 +27,7 @@ namespace CSharpDom.Mono.Cecil
             this.declaringType = declaringType;
             AssemblyWithMonoCecil assembly = declaringType.Assembly;
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, property));
-            propertyType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, property.PropertyType);
+            propertyType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, property.PropertyType, property);
             if (property.GetMethod != null)
             {
                 getAccessor = new InterfaceAccessorWithMonoCecil(assembly, property.GetMethod);

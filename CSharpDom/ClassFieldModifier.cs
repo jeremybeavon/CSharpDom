@@ -10,6 +10,7 @@
         StaticVolatile,
         New,
         NewStatic,
+        NewReadOnly,
         NewStaticReadOnly,
         NewVolatile,
         NewStaticVolatile

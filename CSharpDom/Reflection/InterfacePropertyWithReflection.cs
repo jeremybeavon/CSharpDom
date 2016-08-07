@@ -25,7 +25,7 @@ namespace CSharpDom.Reflection
             this.property = property;
             this.declaringType = declaringType;
             attributes = new Lazy<Attributes>(() => new Attributes(property));
-            propertyType = TypeReferenceWithReflectionFactory.CreateReference(property.PropertyType);
+            propertyType = TypeReferenceWithReflectionFactory.CreateReference(property.PropertyType, property);
             if (property.GetMethod != null)
             {
                 getAccessor = new InterfaceAccessorWithReflection(property.GetMethod);

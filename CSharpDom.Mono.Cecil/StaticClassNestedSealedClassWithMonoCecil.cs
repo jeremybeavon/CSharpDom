@@ -31,7 +31,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly NestedSealedClassWithMonoCecil nestedClass;
 
-        internal StaticClassNestedSealedClassWithMonoCecil(IInternalTypeWithMonoCecil declaringType, TypeDefinition type)
+        internal StaticClassNestedSealedClassWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
             nestedClass = new NestedSealedClassWithMonoCecil(declaringType, type);
         }

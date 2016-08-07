@@ -1,11 +1,12 @@
 ﻿using CSharpDom.Reflection.Internal;
 using System;
+using System.Reflection;
 
 namespace CSharpDom.Reflection
 {
     public static class TypeReferenceWithReflectionFactory
     {
-        public static ITypeReferenceWithReflection CreateReference(Type type, bool ignoreNestedType = false)
+        public static ITypeReferenceWithReflection CreateReference(Type type, MemberInfo member = null, bool ignoreNestedType = false)
         {
             if (type.IsByRef)
             {
@@ -14,7 +15,7 @@ namespace CSharpDom.Reflection
 
             if (type.IsArray)
             {
-                return new ArrayTypeReferenceWithReflection(type);
+                return new ArrayTypeReferenceWithReflection(type, member);
             }
 
             if (type.IsGenericParameter)
@@ -22,7 +23,7 @@ namespace CSharpDom.Reflection
                 return new GenericParameterReferenceWithReflection(type);
             }
 
-            if (type.DeclaringType != null && !ignoreNestedType)
+            if (type.DeclaringType != null && !ignoreNestedType && (member == null || !IsParentType(type, member.DeclaringType)))
             {
                 return new NestedTypeReferenceWithReflection(type);
             }
@@ -87,6 +88,11 @@ namespace CSharpDom.Reflection
                 default:
                     return new UnspecifiedTypeReferenceWithReflection(type);
             }
+        }
+
+        private static bool IsParentType (Type type, Type parentType)
+        {
+            return parentType != null && (type == parentType || IsParentType(type, parentType.DeclaringType));
         }
     }
 }

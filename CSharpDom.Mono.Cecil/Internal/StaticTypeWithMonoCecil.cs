@@ -151,7 +151,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         protected override StaticClassNestedSealedClassWithMonoCecil CreateNestedSealedClass(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
-            return new StaticClassNestedSealedClassWithMonoCecil((IInternalTypeWithMonoCecil)declaringType, type);
+            return new StaticClassNestedSealedClassWithMonoCecil(declaringType, type);
         }
 
         protected override StaticClassNestedStaticClassWithMonoCecil CreateNestedStaticClass(ITypeWithMonoCecil declaringType, TypeDefinition type)

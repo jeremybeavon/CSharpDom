@@ -8,7 +8,7 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_AbstractClasses_Fields_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithConstrFieldUsingMonoCecil()
+        public async Task TestAbstractClassWithConstFieldUsingMonoCecil()
         {
             await TestAbstractClassAsync(typeof(AbstractClassWithConstField));
         }

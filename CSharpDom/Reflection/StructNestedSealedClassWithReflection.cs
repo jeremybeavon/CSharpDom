@@ -30,7 +30,7 @@ namespace CSharpDom.Reflection
     {
         private readonly NestedSealedClassWithReflection nestedClass;
 
-        internal StructNestedSealedClassWithReflection(IInternalTypeWithReflection declaringType, Type type)
+        internal StructNestedSealedClassWithReflection(ITypeWithReflection declaringType, Type type)
         {
             nestedClass = new NestedSealedClassWithReflection(declaringType, type);
         }

@@ -27,7 +27,7 @@ namespace CSharpDom.Reflection
             this.declaringType = declaringType;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(method));
-            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType);
+            returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType, method);
             parameters = new Lazy<Parameters<MethodParameterWithReflection>>(
                 () => new Parameters<MethodParameterWithReflection>(method, parameter => new MethodParameterWithReflection(parameter)));
         }

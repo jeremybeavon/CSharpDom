@@ -16,7 +16,7 @@ namespace CSharpDom.Reflection
         internal DelegateReferenceWithReflection(Type type)
         {
             this.type = type;
-            genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(type));
+            genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(type, type));
         }
 
         public override IReadOnlyList<GenericParameterWithReflection> GenericParameters

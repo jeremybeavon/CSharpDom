@@ -20,7 +20,11 @@ namespace CSharpDom.Mono.Cecil.Internal
             this.field = field;
             AssemblyWithMonoCecil assembly = declaringType.Assembly;
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, field));
-            fieldType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, field.FieldType);
+            RequiredModifierType modifierType = field.FieldType as RequiredModifierType;
+            fieldType = TypeReferenceWithMonoCecilFactory.CreateReference(
+                assembly,
+                modifierType == null ? field.FieldType : modifierType.ElementType,
+                field);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -44,6 +48,40 @@ namespace CSharpDom.Mono.Cecil.Internal
         }
 
         public ClassFieldModifier Modifier
+        {
+            get
+            {
+                ClassFieldModifier modifier = NonNewModifier;
+                IInternalTypeWithMonoCecil internalType = declaringType as IInternalTypeWithMonoCecil;
+                if (internalType == null || !internalType.HiddenMembersAnalyzer.IsFieldHidden(field))
+                {
+                    return modifier;
+                }
+
+                switch (modifier)
+                {
+                    case ClassFieldModifier.None:
+                        return ClassFieldModifier.New;
+                    case ClassFieldModifier.Static:
+                        return ClassFieldModifier.NewStatic;
+                    case ClassFieldModifier.StaticReadOnly:
+                        return ClassFieldModifier.NewStaticReadOnly;
+                    case ClassFieldModifier.StaticVolatile:
+                        return ClassFieldModifier.NewStaticVolatile;
+                    case ClassFieldModifier.Volatile:
+                        return ClassFieldModifier.NewVolatile;
+                    default:
+                        throw new InvalidOperationException();
+                }
+            }
+        }
+
+        public override IReadOnlyCollection<IFieldWithMonoCecil> Fields
+        {
+            get { return new IFieldWithMonoCecil[0]; }
+        }
+
+        public ClassFieldModifier NonNewModifier
         {
             get
             {
@@ -75,43 +113,5 @@ namespace CSharpDom.Mono.Cecil.Internal
                 return ClassFieldModifier.None;
             }
         }
-        
-        public override IReadOnlyCollection<IFieldWithMonoCecil> Fields
-        {
-            get { return new IFieldWithMonoCecil[0]; }
-        }
-
-        /*public override ClassMemberVisibilityModifier Visibility
-        {
-            get
-            {
-                if (field.IsPublic)
-                {
-                    return ClassMemberVisibilityModifier.Public;
-                }
-
-                if (field.IsAssembly)
-                {
-                    return ClassMemberVisibilityModifier.Internal;
-                }
-
-                if (field.IsFamilyOrAssembly)
-                {
-                    return ClassMemberVisibilityModifier.ProtectedInternal;
-                }
-
-                if (field.IsFamily)
-                {
-                    return ClassMemberVisibilityModifier.Protected;
-                }
-
-                if (field.IsPrivate)
-                {
-                    return ClassMemberVisibilityModifier.Private;
-                }
-
-                return ClassMemberVisibilityModifier.None;
-            }
-        }*/
     }
 }

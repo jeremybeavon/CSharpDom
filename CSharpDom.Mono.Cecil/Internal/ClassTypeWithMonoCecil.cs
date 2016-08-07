@@ -153,7 +153,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         protected override ClassNestedSealedClassWithMonoCecil CreateNestedSealedClass(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
-            return new ClassNestedSealedClassWithMonoCecil((IInternalTypeWithMonoCecil)declaringType, type);
+            return new ClassNestedSealedClassWithMonoCecil(declaringType, type);
         }
 
         protected override ClassNestedStaticClassWithMonoCecil CreateNestedStaticClass(ITypeWithMonoCecil declaringType, TypeDefinition type)
