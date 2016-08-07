@@ -13,16 +13,28 @@ namespace CSharpDom.Mono.Cecil
         AbstractStructAccessor<AttributeWithMonoCecil, ILMethodBodyWithMonoCecilCil>,
         IHasMethodDefinition
     {
-        private readonly StructMemberVisibilityModifier visibility;
+        private readonly StructAccessorVisibilityModifier visibility;
         private readonly AccessorWithMonoCecil accessor;
 
         internal StructAccessorWithMonoCecil(IHasStructMemberVisibilityModifier parentVisibility, AccessorWithMonoCecil accessor)
         {
             this.accessor = accessor;
-            visibility = accessor.MethodDefinition.StructVisibility();
-            if (parentVisibility.Visibility == visibility)
+            StructMemberVisibilityModifier structVisibility = accessor.MethodDefinition.StructVisibility();
+            if (parentVisibility.Visibility == structVisibility)
             {
-                visibility = StructMemberVisibilityModifier.None;
+                visibility = StructAccessorVisibilityModifier.None;
+            }
+            else
+            {
+                switch (structVisibility)
+                {
+                    case StructMemberVisibilityModifier.Internal:
+                        visibility = StructAccessorVisibilityModifier.Internal;
+                        break;
+                    case StructMemberVisibilityModifier.Private:
+                        visibility = StructAccessorVisibilityModifier.Private;
+                        break;
+                }
             }
         }
 
@@ -31,7 +43,7 @@ namespace CSharpDom.Mono.Cecil
             get { return accessor.Attributes; }
         }
 
-        public override StructMemberVisibilityModifier Visibility
+        public override StructAccessorVisibilityModifier Visibility
         {
             get { return visibility; }
         }

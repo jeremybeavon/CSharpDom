@@ -15,8 +15,8 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public Collection<MethodParameter> Parameters { get; set; }
 
-        public StructPropertyAccessor GetAccessor { get; set; }
+        public StructAccessor GetAccessor { get; set; }
 
-        public StructPropertyAccessor SetAccessor { get; set; }
+        public StructAccessor SetAccessor { get; set; }
     }
 }

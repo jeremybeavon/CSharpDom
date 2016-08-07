@@ -5,19 +5,18 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyStaticClassAccessor :
-        AbstractStaticClassAccessor<AttributeGroupNotSupported, ReadOnlyMethodBody>
+    public sealed class ReadOnlyStructAccessor : AbstractStructAccessor<AttributeGroupNotSupported, ReadOnlyMethodBody>
     {
-        private readonly StaticClassAccessorVisibilityModifier visibility;
+        private readonly StructAccessorVisibilityModifier visibility;
         private readonly ReadOnlyMethodBody body;
 
-        public ReadOnlyStaticClassAccessor(StaticClassAccessor accessor)
+        public ReadOnlyStructAccessor(StructAccessor accessor)
             : this(accessor.Visibility)
         {
             body = new ReadOnlyMethodBody(accessor.Body);
         }
 
-        public ReadOnlyStaticClassAccessor(StaticClassAccessorVisibilityModifier visibility)
+        public ReadOnlyStructAccessor(StructAccessorVisibilityModifier visibility)
         {
             this.visibility = visibility;
         }
@@ -32,7 +31,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body; }
         }
 
-        public override StaticClassAccessorVisibilityModifier Visibility
+        public override StructAccessorVisibilityModifier Visibility
         {
             get { return visibility; }
         }

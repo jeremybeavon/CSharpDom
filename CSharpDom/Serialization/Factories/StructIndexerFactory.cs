@@ -12,15 +12,15 @@ namespace CSharpDom.Serialization.Factories
         public override void VisitStructIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             IStructIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
         {
-            /*Value = new StructIndexer()
+            Value = new StructIndexer()
             {
                 Attributes = indexer.Attributes.ToAttributeListUsingFactory(),
-                GetAccessor = new AccessorFactory(indexer.GetAccessor).Value,
+                GetAccessor = new StructAccessorFactory(indexer.GetAccessor).Value,
                 IndexerType = new TypeReferenceFactory(indexer.IndexerType).Value,
-                Parameters = indexer.Parameters.ToParameterListUsingFactory(),
-                SetAccessor = new AccessorFactory(indexer.SetAccessor).Value,
+                Parameters = indexer.Parameters.ToList(parameter => new IndexerParameterFactory(parameter).Value),
+                SetAccessor = new StructAccessorFactory(indexer.SetAccessor).Value,
                 Visibility = indexer.Visibility
-            };*/
+            };
         }
     }
 }

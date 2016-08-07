@@ -2,7 +2,8 @@
 {
     public interface IStructAccessor<TAttributeGroup, TMethodBody> :
         IStructAccessor,
-        IAccessor<TAttributeGroup, TMethodBody>
+        IAccessor<TAttributeGroup, TMethodBody>,
+        IHasStructAccessorVisibilityModifier
         where TAttributeGroup : IAttributeGroup
         where TMethodBody : IMethodBody
     {

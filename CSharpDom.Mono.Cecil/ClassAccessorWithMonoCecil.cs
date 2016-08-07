@@ -13,16 +13,34 @@ namespace CSharpDom.Mono.Cecil
         AbstractClassAccessor<AttributeWithMonoCecil, ILMethodBodyWithMonoCecilCil>,
         IHasMethodDefinition
     {
-        private readonly ClassMemberVisibilityModifier visibility;
+        private readonly ClassAccessorVisibilityModifier visibility;
         private readonly AccessorWithMonoCecil accessor;
 
         internal ClassAccessorWithMonoCecil(IHasClassMemberVisibilityModifier parentVisibility, AccessorWithMonoCecil accessor)
         {
             this.accessor = accessor;
-            visibility = accessor.MethodDefinition.ClassVisibility();
-            if (parentVisibility.Visibility == visibility)
+            ClassMemberVisibilityModifier classVisibility = accessor.MethodDefinition.ClassVisibility();
+            if (parentVisibility.Visibility == classVisibility)
             {
-                visibility = ClassMemberVisibilityModifier.None;
+                visibility = ClassAccessorVisibilityModifier.None;
+            }
+            else
+            {
+                switch (classVisibility)
+                {
+                    case ClassMemberVisibilityModifier.Internal:
+                        visibility = ClassAccessorVisibilityModifier.Internal;
+                        break;
+                    case ClassMemberVisibilityModifier.ProtectedInternal:
+                        visibility = ClassAccessorVisibilityModifier.ProtectedInternal;
+                        break;
+                    case ClassMemberVisibilityModifier.Protected:
+                        visibility = ClassAccessorVisibilityModifier.Protected;
+                        break;
+                    case ClassMemberVisibilityModifier.Private:
+                        visibility = ClassAccessorVisibilityModifier.Private;
+                        break;
+                }
             }
         }
 
@@ -31,7 +49,7 @@ namespace CSharpDom.Mono.Cecil
             get { return accessor.Attributes; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override ClassAccessorVisibilityModifier Visibility
         {
             get { return visibility; }
         }

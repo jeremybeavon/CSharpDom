@@ -15,13 +15,13 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             IStructType,
             ReadOnlyTypeReference,
             ReadOnlyIndexerParameter,
-            ReadOnlyStructPropertyAccessor>
+            ReadOnlyStructAccessor>
     {
         private readonly StructIndexer indexer;
         private readonly ReadOnlyTypeReference indexerType;
         private readonly IReadOnlyList<ReadOnlyIndexerParameter> parameters;
-        private readonly ReadOnlyStructPropertyAccessor getAccessor;
-        private readonly ReadOnlyStructPropertyAccessor setAccessor;
+        private readonly ReadOnlyStructAccessor getAccessor;
+        private readonly ReadOnlyStructAccessor setAccessor;
 
         public ReadOnlyStructIndexer(StructIndexer indexer)
         {
@@ -30,12 +30,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             parameters = ReadOnlyIndexerParameter.Create(indexer.Parameters);
             if (indexer.GetAccessor != null)
             {
-                getAccessor = new ReadOnlyStructPropertyAccessor(indexer.GetAccessor);
+                getAccessor = new ReadOnlyStructAccessor(indexer.GetAccessor);
             }
 
             if (indexer.SetAccessor != null)
             {
-                setAccessor = new ReadOnlyStructPropertyAccessor(indexer.SetAccessor);
+                setAccessor = new ReadOnlyStructAccessor(indexer.SetAccessor);
             }
         }
 
@@ -49,7 +49,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return null; }
         }
 
-        public override ReadOnlyStructPropertyAccessor GetAccessor
+        public override ReadOnlyStructAccessor GetAccessor
         {
             get { return getAccessor; }
         }
@@ -64,7 +64,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return parameters; }
         }
 
-        public override ReadOnlyStructPropertyAccessor SetAccessor
+        public override ReadOnlyStructAccessor SetAccessor
         {
             get { return setAccessor; }
         }

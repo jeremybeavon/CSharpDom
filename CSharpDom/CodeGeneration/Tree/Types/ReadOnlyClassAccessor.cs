@@ -7,8 +7,8 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassAccessor : AbstractClassAccessor<AttributeGroupNotSupported, ReadOnlyMethodBody>
     {
-        private readonly ReadOnlyMethodBody body;
         private readonly ClassAccessorVisibilityModifier visibility;
+        private readonly ReadOnlyMethodBody body;
 
         public ReadOnlyClassAccessor(ClassAccessor accessor)
             : this(accessor.Visibility)
@@ -31,26 +31,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override ClassAccessorVisibilityModifier Visibility
         {
-            get
-            {
-                switch (visibility)
-                {
-                    case ClassAccessorVisibilityModifier.None:
-                        return CSharpDom.ClassMemberVisibilityModifier.None;
-                    case ClassAccessorVisibilityModifier.Internal:
-                        return CSharpDom.ClassMemberVisibilityModifier.Internal;
-                    case ClassAccessorVisibilityModifier.ProtectedInternal:
-                        return CSharpDom.ClassMemberVisibilityModifier.ProtectedInternal;
-                    case ClassAccessorVisibilityModifier.Protected:
-                        return CSharpDom.ClassMemberVisibilityModifier.Protected;
-                    case ClassAccessorVisibilityModifier.Private:
-                        return CSharpDom.ClassMemberVisibilityModifier.Private;
-                    default:
-                        throw new NotSupportedException();
-                }
-            }
+            get { return visibility; }
         }
     }
 }

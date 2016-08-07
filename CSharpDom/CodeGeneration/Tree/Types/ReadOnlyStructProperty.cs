@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructProperty :
-        AbstractStructProperty<AttributeGroupNotSupported, IStructType, ReadOnlyTypeReference, ReadOnlyStructPropertyAccessor>
+        AbstractStructProperty<AttributeGroupNotSupported, IStructType, ReadOnlyTypeReference, ReadOnlyStructAccessor>
     {
         private readonly StructProperty property;
-        private readonly ReadOnlyStructPropertyAccessor getAccessor;
+        private readonly ReadOnlyStructAccessor getAccessor;
         private readonly ReadOnlyTypeReference propertyType;
-        private readonly ReadOnlyStructPropertyAccessor setAccessor;
+        private readonly ReadOnlyStructAccessor setAccessor;
 
         public ReadOnlyStructProperty(StructProperty property)
         {
@@ -19,19 +19,19 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             propertyType = new ReadOnlyTypeReference(property.Type);
             if (property.EmptyAccessors != null)
             {
-                getAccessor = new ReadOnlyStructPropertyAccessor(property.EmptyAccessors.GetAccessorVisibility);
-                setAccessor = new ReadOnlyStructPropertyAccessor(property.EmptyAccessors.SetAccessorVisibility);
+                getAccessor = new ReadOnlyStructAccessor(property.EmptyAccessors.GetAccessorVisibility);
+                setAccessor = new ReadOnlyStructAccessor(property.EmptyAccessors.SetAccessorVisibility);
             }
             else
             {
                 if (property.GetAccessor != null)
                 {
-                    getAccessor = new ReadOnlyStructPropertyAccessor(property.GetAccessor);
+                    getAccessor = new ReadOnlyStructAccessor(property.GetAccessor);
                 }
 
                 if (property.SetAccessor != null)
                 {
-                    setAccessor = new ReadOnlyStructPropertyAccessor(property.SetAccessor);
+                    setAccessor = new ReadOnlyStructAccessor(property.SetAccessor);
                 }
             }
         }
@@ -46,7 +46,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return null; }
         }
 
-        public override ReadOnlyStructPropertyAccessor GetAccessor
+        public override ReadOnlyStructAccessor GetAccessor
         {
             get { return getAccessor; }
         }
@@ -61,7 +61,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return propertyType; }
         }
 
-        public override ReadOnlyStructPropertyAccessor SetAccessor
+        public override ReadOnlyStructAccessor SetAccessor
         {
             get { return setAccessor; }
         }

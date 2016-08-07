@@ -7,15 +7,15 @@
         }
 
         public EmptyStructPropertyAccessors(
-            StructPropertyAccessorVisibilityModifier getAccessorVisibility,
-            StructPropertyAccessorVisibilityModifier setAccessorVisibility)
+            StructAccessorVisibilityModifier getAccessorVisibility,
+            StructAccessorVisibilityModifier setAccessorVisibility)
         {
             getAccessorVisibility = GetAccessorVisibility;
             SetAccessorVisibility = setAccessorVisibility;
         }
 
-        public StructPropertyAccessorVisibilityModifier GetAccessorVisibility { get; set; }
+        public StructAccessorVisibilityModifier GetAccessorVisibility { get; set; }
 
-        public StructPropertyAccessorVisibilityModifier SetAccessorVisibility { get; set; }
+        public StructAccessorVisibilityModifier SetAccessorVisibility { get; set; }
     }
 }

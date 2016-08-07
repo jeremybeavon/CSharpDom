@@ -11,7 +11,7 @@ namespace CSharpDom.BaseClasses
         where TMethodBody : IMethodBody
     {
         
-        public abstract StructMemberVisibilityModifier Visibility { get; }
+        public abstract StructAccessorVisibilityModifier Visibility { get; }
 
         public sealed override void Accept(IGenericVisitor visitor)
         {

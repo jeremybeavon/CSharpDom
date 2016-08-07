@@ -3,8 +3,8 @@
     public sealed class StructProperty
     {
         private EmptyStructPropertyAccessors emptyAccessors;
-        private StructPropertyAccessor getAccessor;
-        private StructPropertyAccessor setAccessor;
+        private StructAccessor getAccessor;
+        private StructAccessor setAccessor;
 
         public StructProperty(string name)
         {
@@ -38,7 +38,7 @@
             }
         }
 
-        public StructPropertyAccessor GetAccessor
+        public StructAccessor GetAccessor
         {
             get
             {
@@ -55,7 +55,7 @@
             }
         }
 
-        public StructPropertyAccessor SetAccessor
+        public StructAccessor SetAccessor
         {
             get
             {

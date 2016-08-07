@@ -1,9 +1,8 @@
 ﻿namespace CSharpDom
 {
-    public enum StructPropertyAccessorVisibilityModifier
+    public enum StaticClassAccessorVisibilityModifier
     {
         None,
-        Public,
         Internal,
         Private
     }

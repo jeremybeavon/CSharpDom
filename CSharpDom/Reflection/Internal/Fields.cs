@@ -17,7 +17,7 @@ namespace CSharpDom.Reflection.Internal
             foreach (FieldInfo fieldDefinition in
                 declaringType.Type.GetAllFields().Where(field => !field.IsDefined(typeof(CompilerGeneratedAttribute))))
             {
-                if (fieldDefinition.IsInitOnly)
+                if (fieldDefinition.IsLiteral)
                 {
                     constants.Add(fieldFactory.CreateConstant(declaringType, fieldDefinition));
                 }

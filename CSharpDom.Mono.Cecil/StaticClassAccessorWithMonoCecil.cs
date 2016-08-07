@@ -13,15 +13,27 @@ namespace CSharpDom.Mono.Cecil
         //IVisitable<IReflectionVisitor>,
     {
         private readonly AccessorWithMonoCecil accessor;
-        private readonly StaticClassMemberVisibilityModifier visibility;
+        private readonly StaticClassAccessorVisibilityModifier visibility;
         
         internal StaticClassAccessorWithMonoCecil(IHasStaticClassMemberVisibilityModifier parentVisibility, AccessorWithMonoCecil accessor)
         {
             this.accessor = accessor;
-            visibility = accessor.MethodDefinition.StaticClassVisibility();
-            if (parentVisibility.Visibility == visibility)
+            StaticClassMemberVisibilityModifier staticClassVisibility = accessor.MethodDefinition.StaticClassVisibility();
+            if (parentVisibility.Visibility == staticClassVisibility)
             {
-                visibility = StaticClassMemberVisibilityModifier.None;
+                visibility = StaticClassAccessorVisibilityModifier.None;
+            }
+            else
+            {
+                switch (staticClassVisibility)
+                {
+                    case StaticClassMemberVisibilityModifier.Internal:
+                        visibility = StaticClassAccessorVisibilityModifier.Internal;
+                        break;
+                    case StaticClassMemberVisibilityModifier.Private:
+                        visibility = StaticClassAccessorVisibilityModifier.Private;
+                        break;
+                }
             }
         }
 
@@ -30,7 +42,7 @@ namespace CSharpDom.Mono.Cecil
             get { return accessor.Attributes; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override StaticClassAccessorVisibilityModifier Visibility
         {
             get { return visibility; }
         }

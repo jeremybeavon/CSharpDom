@@ -12,16 +12,28 @@ namespace CSharpDom.Reflection
         AbstractStructAccessor<AttributeWithReflection, ILMethodBodyWithReflectionEmit>,
         IHasMethodInfo
     {
-        private readonly StructMemberVisibilityModifier visibility;
+        private readonly StructAccessorVisibilityModifier visibility;
         private readonly AccessorWithReflection accessor;
 
         internal StructAccessorWithReflection(IHasStructMemberVisibilityModifier parentVisibility, AccessorWithReflection accessor)
         {
             this.accessor = accessor;
-            visibility = accessor.MethodInfo.StructVisibility();
-            if (parentVisibility.Visibility == visibility)
+            StructMemberVisibilityModifier structVisibility = accessor.MethodInfo.StructVisibility();
+            if (parentVisibility.Visibility == structVisibility)
             {
-                visibility = StructMemberVisibilityModifier.None;
+                visibility = StructAccessorVisibilityModifier.None;
+            }
+            else
+            {
+                switch (structVisibility)
+                {
+                    case StructMemberVisibilityModifier.Internal:
+                        visibility = StructAccessorVisibilityModifier.Internal;
+                        break;
+                    case StructMemberVisibilityModifier.Private:
+                        visibility = StructAccessorVisibilityModifier.Private;
+                        break;
+                }
             }
         }
 
@@ -30,7 +42,7 @@ namespace CSharpDom.Reflection
             get { return accessor.Attributes; }
         }
 
-        public override StructMemberVisibilityModifier Visibility
+        public override StructAccessorVisibilityModifier Visibility
         {
             get { return visibility; }
         }

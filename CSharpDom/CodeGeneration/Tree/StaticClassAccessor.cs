@@ -9,7 +9,7 @@ namespace CSharpDom.CodeGeneration.Tree
             Body = new Collection<Statement>();
         }
 
-        public ClassAccessorVisibilityModifier Visibility { get; set; }
+        public StaticClassAccessorVisibilityModifier Visibility { get; set; }
 
         public Collection<Statement> Body { get; set; }
     }

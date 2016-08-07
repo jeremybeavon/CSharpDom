@@ -15,8 +15,8 @@ namespace CSharpDom.Serialization.Factories
             Value = new StaticClassAccessor()
             {
                 Attributes = accessor.Attributes.ToAttributeListUsingFactory(),
-                Body = new MethodBodyFactory(accessor.Body).Value//,
-                //Visibility = accessor.Visibility
+                Body = new MethodBodyFactory(accessor.Body).Value,
+                Visibility = accessor.Visibility
             };
         }
     }

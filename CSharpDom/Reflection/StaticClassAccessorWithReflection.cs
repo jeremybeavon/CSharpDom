@@ -14,15 +14,27 @@ namespace CSharpDom.Reflection
         //IVisitable<IReflectionVisitor>,
     {
         private readonly AccessorWithReflection accessor;
-        private readonly StaticClassMemberVisibilityModifier visibility;
+        private readonly StaticClassAccessorVisibilityModifier visibility;
         
         internal StaticClassAccessorWithReflection(IHasStaticClassMemberVisibilityModifier parentVisibility, AccessorWithReflection accessor)
         {
             this.accessor = accessor;
-            visibility = accessor.MethodInfo.StaticClassVisibility();
-            if (parentVisibility.Visibility == visibility)
+            StaticClassMemberVisibilityModifier staticClassVisibility = accessor.MethodInfo.StaticClassVisibility();
+            if (parentVisibility.Visibility == staticClassVisibility)
             {
-                visibility = StaticClassMemberVisibilityModifier.None;
+                visibility = StaticClassAccessorVisibilityModifier.None;
+            }
+            else
+            {
+                switch (staticClassVisibility)
+                {
+                    case StaticClassMemberVisibilityModifier.Internal:
+                        visibility = StaticClassAccessorVisibilityModifier.Internal;
+                        break;
+                    case StaticClassMemberVisibilityModifier.Private:
+                        visibility = StaticClassAccessorVisibilityModifier.Private;
+                        break;
+                }
             }
         }
 
@@ -31,7 +43,7 @@ namespace CSharpDom.Reflection
             get { return accessor.Attributes; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override StaticClassAccessorVisibilityModifier Visibility
         {
             get { return visibility; }
         }

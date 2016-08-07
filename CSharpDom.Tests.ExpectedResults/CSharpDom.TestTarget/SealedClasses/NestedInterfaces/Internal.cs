@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.SealedClasses.NestedInterfaces
 {
-    public sealed class SealedClassWithNestedInternalInterface
+    public sealed class SealedClassWithInternalNestedInterface
     {
         internal interface Interface
         {

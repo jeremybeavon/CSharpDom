@@ -2,14 +2,14 @@
 {
     public sealed class StaticClassProperty
     {
-        private EmptyClassPropertyAccessors emptyAccessors;
+        private EmptyStaticClassPropertyAccessors emptyAccessors;
         private StaticClassAccessor getAccessor;
         private StaticClassAccessor setAccessor;
 
         public StaticClassProperty(string name)
         {
             Name = name;
-            emptyAccessors = new EmptyClassPropertyAccessors();
+            emptyAccessors = new EmptyStaticClassPropertyAccessors();
         }
 
         public string Name { get; set; }
@@ -18,7 +18,7 @@
         
         public TypeReference Type { get; set; }
 
-        public EmptyClassPropertyAccessors EmptyAccessors
+        public EmptyStaticClassPropertyAccessors EmptyAccessors
         {
             get
             {

@@ -1525,9 +1525,9 @@
     <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\2GenericParameters.cs" />
     <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\2ImplementedInterfaces.cs" />
     <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\BaseClass.cs" />
-    <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\GenericParameterAndEmptyConstructorConstraints.cs" />
+    <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\GenericParameterClassAndEmptyConstructorConstraints.cs" />
     <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\GenericParameterAndInterfaceAndEmptyConstructorConstraints.cs" />
-    <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\GenericParameterBaseConstraint.cs" />
+    <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\GenericParameterBaseClassConstraint.cs" />
     <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\GenericParameterConstraint.cs" />
     <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\GenericParameterEmptyConstructorConstraint.cs" />
     <Compile Include="AbstractClasses\NestedStaticClasses\NestedSealedClasses\GenericParameterGenericParameterConstraint.cs" />

@@ -10,7 +10,7 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
         where TMethodBody : IMethodBody
     {
-        public abstract StaticClassMemberVisibilityModifier Visibility { get; }
+        public abstract StaticClassAccessorVisibilityModifier Visibility { get; }
 
         public sealed override void Accept(IGenericVisitor visitor)
         {

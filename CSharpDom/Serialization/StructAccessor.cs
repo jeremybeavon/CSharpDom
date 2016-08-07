@@ -15,7 +15,7 @@ namespace CSharpDom.Serialization
 
         public MethodBody Body { get; set; }
 
-        public StructMemberVisibilityModifier Visibility { get; set; }
+        public StructAccessorVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

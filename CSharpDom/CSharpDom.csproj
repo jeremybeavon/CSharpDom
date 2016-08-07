@@ -291,6 +291,7 @@
     <Compile Include="BaseClasses\Wrappers\StaticTypeWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\StructTypeWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\TypeWrapper.cs" />
+    <Compile Include="CodeGeneration\Tree\EmptyStaticClassPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclaration.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclarationExpression.cs" />
     <Compile Include="Common\IHasAsync.cs" />
@@ -324,6 +325,9 @@
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyMethodParameter.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyDelegateParameter.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyIndexerParameter.cs" />
+    <Compile Include="Common\IHasStructAccessorVisibilityModifier.cs" />
+    <Compile Include="Common\IHasStaticClassAccessorVisibilityModifier.cs" />
+    <Compile Include="Common\IHasClassAccessorVisibilityModifier.cs" />
     <Compile Include="Common\IHasEventPropertyBodyAttributes.cs" />
     <Compile Include="Common\IHasExtensionParameter.cs" />
     <Compile Include="Common\IDelegateParameter.cs" />
@@ -589,6 +593,7 @@
     <Compile Include="Search\FindAbstractClassByNameVisitor.cs" />
     <Compile Include="Search\FindStructByNameVisitor.cs" />
     <Compile Include="Search\FindNamespaceForStructVisitor.cs" />
+    <Compile Include="Serialization\Factories\StructAccessorFactory.cs" />
     <Compile Include="Serialization\Factories\AccessorFactory.cs" />
     <Compile Include="Serialization\Factories\NestedTypeReferenceFactory.cs" />
     <Compile Include="Serialization\Factories\StaticClassFactory.cs" />
@@ -814,6 +819,7 @@
     <Compile Include="Serialization\Factories\Expressions\AwaitExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\ArrayIndexExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\AnonymousMethodExpressionFactory.cs" />
+    <Compile Include="StaticClassAccessorVisibilityModifier.cs" />
     <Compile Include="StructFieldModifier.cs" />
     <Compile Include="StaticClassFieldModifier.cs" />
     <Compile Include="CodeGeneration\Tree\StaticClassAccessor.cs" />
@@ -1255,7 +1261,7 @@
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructNestedInterface.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructProperty.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassProperty.cs" />
-    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructPropertyAccessor.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructAccessor.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassAccessor.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassReference.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyConversionOperator.cs" />
@@ -1836,6 +1842,7 @@
     <Compile Include="Serialization\ExplicitInterfaceProperty.cs" />
     <Compile Include="Serialization\StaticConstructor.cs" />
     <Compile Include="StaticClassMemberVisibilityModifier.cs" />
+    <Compile Include="StructAccessorVisibilityModifier.cs" />
     <Compile Include="StructMemberVisibilityModifier.cs" />
     <Compile Include="CodeGeneration\Tree\StructMethod.cs" />
     <Compile Include="StructMethodInheritanceModifier.cs" />
@@ -1845,8 +1852,7 @@
     <Compile Include="CodeGeneration\Tree\StructNestedInterface.cs" />
     <Compile Include="CodeGeneration\Tree\StructNestedStruct.cs" />
     <Compile Include="CodeGeneration\Tree\StructProperty.cs" />
-    <Compile Include="CodeGeneration\Tree\StructPropertyAccessor.cs" />
-    <Compile Include="StructPropertyAccessorVisibilityModifier.cs" />
+    <Compile Include="CodeGeneration\Tree\StructAccessor.cs" />
     <Compile Include="CodeGeneration\Tree\SwitchCaseStatement.cs" />
     <Compile Include="CodeGeneration\Tree\SwitchStatement.cs" />
     <Compile Include="CodeGeneration\Tree\TryStatement.cs" />
