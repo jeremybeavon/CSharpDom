@@ -12,16 +12,15 @@ namespace CSharpDom.Serialization.Factories
         public override void VisitStructProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IStructProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
         {
-            /*Value = new StructProperty()
+            Value = new StructProperty()
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
-                GetAccessor = new AccessorFactory(property.GetAccessor).Value,
-                InheritanceModifier = property.InheritanceModifier,
+                GetAccessor = new StructAccessorFactory(property.GetAccessor).Value,
                 Name = property.Name,
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value,
-                SetAccessor = new AccessorFactory(property.SetAccessor).Value,
+                SetAccessor = new StructAccessorFactory(property.SetAccessor).Value,
                 Visibility = property.Visibility
-            };*/
+            };
         }
     }
 }

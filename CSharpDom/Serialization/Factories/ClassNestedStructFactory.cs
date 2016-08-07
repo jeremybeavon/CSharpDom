@@ -30,6 +30,7 @@ namespace CSharpDom.Serialization.Factories
                 Name = nestedStruct.Name,
                 OperatorOverloads = nestedStruct.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),
                 Properties = new StructPropertyCollectionFactory(nestedStruct.Properties).Value,
+                StaticConstructor = new StaticConstructorFactory(nestedStruct.StaticConstructor).Value,
                 Structs = new StructNestedStructCollectionFactory(nestedStruct.Structs).Value,
                 Visibility = nestedStruct.Visibility
             };

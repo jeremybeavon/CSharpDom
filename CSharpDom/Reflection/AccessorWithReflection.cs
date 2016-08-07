@@ -3,6 +3,7 @@ using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -20,7 +21,9 @@ namespace CSharpDom.Reflection
             MethodInfo = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method, typeof(CompilerGeneratedAttribute)));
             body = new Lazy<ILMethodBodyWithReflectionEmit>(
-                () => method.IsDefined(typeof(CompilerGeneratedAttribute)) ? null : new ILMethodBodyWithReflectionEmit(method));
+                () => method.CustomAttributes.Any(attribute => attribute.AttributeType == typeof(CompilerGeneratedAttribute)) ?
+                    null :
+                    new ILMethodBodyWithReflectionEmit(method));
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes

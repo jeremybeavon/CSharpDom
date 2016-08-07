@@ -15,6 +15,7 @@ namespace CSharpDom.Serialization.Factories
             Value = new SealedClassProperty()
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
+                InheritanceModifier = property.InheritanceModifier,
                 GetAccessor = new ClassAccessorFactory(property.GetAccessor).Value,
                 Name = property.Name,
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value,
