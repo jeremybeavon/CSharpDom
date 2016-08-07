@@ -54,6 +54,11 @@ namespace CSharpDom.BaseClasses.Wrappers
             get { return WrappedObject.Parameters; }
         }
 
+        public override IReadOnlyCollection<TAttributeGroup> ReturnAttributes
+        {
+            get { return ReturnAttributes; }
+        }
+
         public override TTypeReference ReturnType
         {
             get { return WrappedObject.ReturnType; }

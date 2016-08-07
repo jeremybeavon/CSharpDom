@@ -18,6 +18,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly MethodDefinition method;
         private readonly IBasicTypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
+        private readonly Lazy<Attributes> returnAttributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithMonoCecil returnType;
         private readonly Lazy<Parameters<MethodParameterWithMonoCecil>> parameters;
@@ -28,6 +29,7 @@ namespace CSharpDom.Mono.Cecil
             this.declaringType = declaringType;
             AssemblyWithMonoCecil assembly = declaringType.Assembly;
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
+            returnAttributes = new Lazy<Attributes>(() => new Attributes(assembly, method.MethodReturnType));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, method));
             returnType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, method.ReturnType, method);
             parameters = new Lazy<Parameters<MethodParameterWithMonoCecil>>(
@@ -75,6 +77,11 @@ namespace CSharpDom.Mono.Cecil
         public override ITypeReferenceWithMonoCecil ReturnType
         {
             get { return returnType; }
+        }
+
+        public override IReadOnlyCollection<AttributeWithMonoCecil> ReturnAttributes
+        {
+            get { return returnAttributes.Value.AttributesWithMonoCecil; }
         }
     }
 }

@@ -20,6 +20,7 @@ namespace CSharpDom.Serialization.Factories
                 IsAsync = method.IsAsync,
                 Name = method.Name,
                 Parameters = method.Parameters.ToList(parameter => new MethodParameterFactory(parameter).Value),
+                ReturnAttributes = method.ReturnAttributes.ToAttributeListUsingFactory(),
                 ReturnType = new TypeReferenceFactory(method.ReturnType).Value,
                 Visibility = method.Visibility
             };

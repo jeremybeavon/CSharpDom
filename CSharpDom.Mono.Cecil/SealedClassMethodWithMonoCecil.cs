@@ -75,5 +75,10 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return method.IsAsync; }
         }
+
+        public override IReadOnlyCollection<AttributeWithMonoCecil> ReturnAttributes
+        {
+            get { return method.ReturnAttributes; }
+        }
     }
 }

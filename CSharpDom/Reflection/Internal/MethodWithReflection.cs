@@ -20,6 +20,7 @@ namespace CSharpDom.Reflection.Internal
         private readonly ITypeWithReflection declaringType;
         private readonly MethodInfo method;
         private readonly Lazy<Attributes> attributes;
+        private readonly Lazy<Attributes> returnAttributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithReflection returnType;
         private readonly Lazy<Parameters<MethodParameterWithReflection>> parameters;
@@ -30,6 +31,7 @@ namespace CSharpDom.Reflection.Internal
             this.declaringType = declaringType;
             this.method = method;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
+            returnAttributes = new Lazy<Attributes>(() => new Attributes(method.ReturnParameter));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(method));
             returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType, method);
             parameters = new Lazy<Parameters<MethodParameterWithReflection>>(
@@ -80,6 +82,11 @@ namespace CSharpDom.Reflection.Internal
         public override bool IsAsync
         {
             get { return method.IsDefined(typeof(AsyncStateMachineAttribute)); }
+        }
+
+        public override IReadOnlyCollection<AttributeWithReflection> ReturnAttributes
+        {
+            get { return returnAttributes.Value.AttributesWithReflection; }
         }
     }
 }

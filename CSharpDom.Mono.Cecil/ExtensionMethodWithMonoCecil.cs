@@ -5,6 +5,7 @@ using Mono.Cecil;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System;
 
 namespace CSharpDom.Mono.Cecil
 {
@@ -72,6 +73,11 @@ namespace CSharpDom.Mono.Cecil
         public override bool IsAsync
         {
             get { return method.IsAsync; }
+        }
+
+        public override IReadOnlyCollection<AttributeWithMonoCecil> ReturnAttributes
+        {
+            get { return method.ReturnAttributes; }
         }
     }
 }

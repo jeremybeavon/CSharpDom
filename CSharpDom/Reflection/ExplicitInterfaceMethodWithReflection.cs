@@ -70,5 +70,10 @@ namespace CSharpDom.Reflection
         {
             get { return method.ReturnType; }
         }
+
+        public override IReadOnlyCollection<AttributeWithReflection> ReturnAttributes
+        {
+            get { return method.ReturnAttributes; }
+        }
     }
 }

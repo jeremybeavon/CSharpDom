@@ -424,6 +424,7 @@ namespace CSharpDom.Common
             where TParameter : IMethodParameter
         {
             VisitCollection(method.Attributes, visitor);
+            VisitCollection(method.ReturnAttributes, visitor);
             VisitCollection(method.GenericParameters, visitor);
             VisitIfNotNull(method.ReturnType, visitor);
             VisitCollection(method.Parameters, visitor);

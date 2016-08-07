@@ -22,6 +22,8 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyList<TParameter> Parameters { get; }
 
+        public abstract IReadOnlyCollection<TAttributeGroup> ReturnAttributes { get; }
+
         public abstract TTypeReference ReturnType { get; }
 
         public virtual void Accept(IGenericVisitor visitor)

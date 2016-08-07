@@ -21,6 +21,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly ITypeWithMonoCecil declaringType;
         private readonly MethodDefinition method;
         private readonly Lazy<Attributes> attributes;
+        private readonly Lazy<Attributes> returnAttributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithMonoCecil returnType;
         private readonly Lazy<Parameters<MethodParameterWithMonoCecil>> parameters;
@@ -32,6 +33,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             this.method = method;
             AssemblyWithMonoCecil assembly = declaringType.Assembly;
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
+            returnAttributes = new Lazy<Attributes>(() => new Attributes(assembly, method.MethodReturnType));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, method));
             returnType = TypeReferenceWithMonoCecilFactory.CreateReference(assembly, method.ReturnType, method);
             parameters = new Lazy<Parameters<MethodParameterWithMonoCecil>>(
@@ -82,6 +84,11 @@ namespace CSharpDom.Mono.Cecil.Internal
         public override bool IsAsync
         {
             get { return method.IsDefined(declaringType.Assembly, typeof(AsyncStateMachineAttribute)); }
+        }
+
+        public override IReadOnlyCollection<AttributeWithMonoCecil> ReturnAttributes
+        {
+            get { return returnAttributes.Value.AttributesWithMonoCecil; }
         }
     }
 }

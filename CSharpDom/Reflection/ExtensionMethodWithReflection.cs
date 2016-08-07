@@ -4,6 +4,7 @@ using CSharpDom.Reflection.Internal;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System;
 
 namespace CSharpDom.Reflection
 {
@@ -71,6 +72,11 @@ namespace CSharpDom.Reflection
         public override bool IsAsync
         {
             get { return method.IsAsync; }
+        }
+
+        public override IReadOnlyCollection<AttributeWithReflection> ReturnAttributes
+        {
+            get { return method.ReturnAttributes; }
         }
     }
 }

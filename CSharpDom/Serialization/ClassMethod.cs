@@ -12,6 +12,7 @@ namespace CSharpDom.Serialization
             Attributes = new List<AttributeGroup>();
             GenericParameters = new List<GenericParameterDeclaration>();
             Parameters = new List<MethodParameter>();
+            ReturnAttributes = new List<AttributeGroup>();
         }
 
         public List<AttributeGroup> Attributes { get; set; }
@@ -33,6 +34,8 @@ namespace CSharpDom.Serialization
 
         public List<MethodParameter> Parameters { get; set; }
 
+        public List<AttributeGroup> ReturnAttributes { get; set; }
+
         public TypeReference ReturnType { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
@@ -50,6 +53,11 @@ namespace CSharpDom.Serialization
         IReadOnlyList<MethodParameter> IHasParameters<MethodParameter>.Parameters
         {
             get { return Parameters; }
+        }
+
+        IReadOnlyCollection<AttributeGroup> IHasReturnAttributes<AttributeGroup>.ReturnAttributes
+        {
+            get { return ReturnAttributes; }
         }
 
         public void Accept(IGenericVisitor visitor)

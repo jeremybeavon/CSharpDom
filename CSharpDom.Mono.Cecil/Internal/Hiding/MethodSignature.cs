@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.NotSupported;
@@ -59,6 +60,11 @@ namespace CSharpDom.Mono.Cecil.Internal.Hiding
         public override IReadOnlyList<ParameterSignature> Parameters
         {
             get { return parameters; }
+        }
+
+        public override IReadOnlyCollection<AttributeGroupNotSupported> ReturnAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
         }
 
         public override ITypeReferenceWithMonoCecil ReturnType

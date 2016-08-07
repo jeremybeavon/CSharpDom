@@ -727,6 +727,7 @@ namespace CSharpDom.Text
             IClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
+            Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
             Steps.AddClassMemberVisibilityModifierSteps(method.Visibility);
             Steps.AddClassMemberInheritanceModifierSteps(method.InheritanceModifier);
             VisitMethod(method);
@@ -758,6 +759,7 @@ namespace CSharpDom.Text
             IStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
+            Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
             Steps.AddStructMemberVisibilityModifierSteps(method.Visibility);
             VisitMethod(method);
         }
@@ -765,6 +767,8 @@ namespace CSharpDom.Text
         public override void VisitAbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             IAbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
         {
+            Steps.AddChildNodeStepsOnNewLines(method.Attributes);
+            Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
             Steps.Add(new WriteChildNode<TTypeReference>(method.ReturnType));
             Steps.Add(new WriteWhitespace());
             if (explicitInterface != null)
@@ -1708,6 +1712,7 @@ namespace CSharpDom.Text
             ISealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
+            Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
             Steps.AddClassMemberVisibilityModifierSteps(method.Visibility);
             Steps.AddSealedClassMemberInheritanceModifierSteps(method.InheritanceModifier);
             VisitMethod(method);
@@ -1791,6 +1796,7 @@ namespace CSharpDom.Text
             IStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
+            Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
             Steps.AddStaticClassMemberVisibilityModifierSteps(method.Visibility);
             Steps.Add(new WriteStatic());
             Steps.Add(new WriteWhitespace());

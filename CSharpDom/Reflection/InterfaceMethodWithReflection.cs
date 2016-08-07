@@ -17,6 +17,7 @@ namespace CSharpDom.Reflection
         private readonly MethodInfo method;
         private readonly IBasicTypeWithReflection declaringType;
         private readonly Lazy<Attributes> attributes;
+        private readonly Lazy<Attributes> returnAttributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithReflection returnType;
         private readonly Lazy<Parameters<MethodParameterWithReflection>> parameters;
@@ -26,6 +27,7 @@ namespace CSharpDom.Reflection
             this.method = method;
             this.declaringType = declaringType;
             attributes = new Lazy<Attributes>(() => new Attributes(method));
+            returnAttributes = new Lazy<Attributes>(() => new Attributes(method.ReturnParameter));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(method));
             returnType = TypeReferenceWithReflectionFactory.CreateReference(method.ReturnType, method);
             parameters = new Lazy<Parameters<MethodParameterWithReflection>>(
@@ -73,6 +75,11 @@ namespace CSharpDom.Reflection
         public override ITypeReferenceWithReflection ReturnType
         {
             get { return returnType; }
+        }
+
+        public override IReadOnlyCollection<AttributeWithReflection> ReturnAttributes
+        {
+            get { return returnAttributes.Value.AttributesWithReflection; }
         }
     }
 }

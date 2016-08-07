@@ -67,7 +67,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return returnType; }
         }
-        
+
+        public override IReadOnlyCollection<AttributeGroupNotSupported> ReturnAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
         public static IReadOnlyCollection<ReadOnlyInterfaceMethod> Create(IEnumerable<InterfaceMethod> interfaceMethods)
         {
             return interfaceMethods.ToArray(interfaceMethod => new ReadOnlyInterfaceMethod(interfaceMethod));

@@ -60,6 +60,11 @@ namespace CSharpDom.Reflection.Internal.Hiding
             get { return parameters; }
         }
 
+        public override IReadOnlyCollection<AttributeGroupNotSupported> ReturnAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
+
         public override ITypeReferenceWithReflection ReturnType
         {
             get { return ReturnTypeSignature.Default; }

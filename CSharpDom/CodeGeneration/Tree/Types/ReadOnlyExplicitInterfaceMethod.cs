@@ -78,5 +78,10 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return method.IsAsync; }
         }
+
+        public override IReadOnlyCollection<AttributeGroupNotSupported> ReturnAttributes
+        {
+            get { return new AttributeGroupNotSupported[0]; }
+        }
     }
 }

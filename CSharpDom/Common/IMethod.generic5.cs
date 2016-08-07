@@ -4,6 +4,7 @@
         IMethod,
         IHasName,
         IHasAttributes<TAttributeGroup>,
+        IHasReturnAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
         IHasGenericParameters<TGenericParameter>,
         IHasReturnType<TTypeReference>,

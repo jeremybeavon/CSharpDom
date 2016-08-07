@@ -48,6 +48,11 @@ namespace CSharpDom.Mono.Cecil
             get { return method.Parameters; }
         }
 
+        public override IReadOnlyCollection<AttributeWithMonoCecil> ReturnAttributes
+        {
+            get { return method.ReturnAttributes; }
+        }
+
         public override ITypeReferenceWithMonoCecil ReturnType
         {
             get { return method.ReturnType; }

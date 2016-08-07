@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
@@ -55,6 +56,11 @@ namespace CSharpDom.Mono.Cecil
         public override IReadOnlyList<MethodParameterWithMonoCecil> Parameters
         {
             get { return method.Parameters; }
+        }
+
+        public override IReadOnlyCollection<AttributeWithMonoCecil> ReturnAttributes
+        {
+            get { return method.ReturnAttributes; }
         }
 
         public override ITypeReferenceWithMonoCecil ReturnType
