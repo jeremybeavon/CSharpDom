@@ -7,6 +7,11 @@ namespace CSharpDom.Tests.Reflection
     [TestClass]
     public sealed class Reflection_AbstractClasses_NestedAbstractClasses_Constructors_Tests : AbstractSolutionWithReflectionTests
     {
+        public Reflection_AbstractClasses_NestedAbstractClasses_Constructors_Tests()
+        {
+            IsConstructorTest = true;
+        }
+
         [TestMethod]
         public async Task TestAbstractClassWithNestedAbstractClassWithConstructorWith1AttributeUsingReflection()
         {
