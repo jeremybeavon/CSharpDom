@@ -3,16 +3,17 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal sealed class FieldCollection<TField>
+    internal sealed class FieldCollection<TField, TConstant, TType>
+        where TType : ITypeWithReflection
     {
-        private readonly Lazy<IReadOnlyCollection<TField>> fields;
+        private readonly Lazy<Fields<TField, TConstant, TType>> fields;
 
-        public FieldCollection(Func<IReadOnlyCollection<TField>> fields)
+        public FieldCollection(Func<Fields<TField, TConstant, TType>> fields)
         {
-            this.fields = new Lazy<IReadOnlyCollection<TField>>(fields);
+            this.fields = new Lazy<Fields<TField, TConstant, TType>>(fields);
         }
 
-        public IReadOnlyCollection<TField> Fields
+        public Fields<TField, TConstant, TType> Fields
         {
             get { return fields.Value; }
         }

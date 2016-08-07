@@ -21,6 +21,7 @@ namespace CSharpDom.Reflection.Internal
         TMethod,
         TFieldCollection,
         TField,
+        TConstant,
         TConstructor,
         TNestedClassCollection,
         TNestedAbstractClass,
@@ -50,6 +51,7 @@ namespace CSharpDom.Reflection.Internal
             StaticConstructorWithReflection>,
         ITypeWithReflection,
         IEventFactory<TEvent, TEventProperty, TType>,
+        IFieldFactory<TField, TConstant, TType>,
         INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
         IPropertyFactory<TProperty, TIndexer, TType>
         where TType : ITypeWithReflection
@@ -64,6 +66,7 @@ namespace CSharpDom.Reflection.Internal
         where TMethod : IMethod
         where TFieldCollection : IFieldCollection
         where TField : IFieldGroup
+        where TConstant : IConstantGroup
         where TConstructor : IConstructor
         where TNestedClassCollection : INestedClassCollection
         where TNestedClass : INestedClass
@@ -91,7 +94,8 @@ namespace CSharpDom.Reflection.Internal
             attributes = new Lazy<Attributes>(() => new Attributes(Type, typeof(DefaultMemberAttribute)));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(Type));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(Type));
-            FieldCollection = new FieldCollection<TField>(() => InitializeFields(declaringType, Type));
+            FieldCollection = new FieldCollection<TField, TConstant, TType>(
+                () => new Fields<TField, TConstant, TType>(declaringType, this));
             constructors = new Lazy<Constructors<TConstructor>>(
                 () => new Constructors<TConstructor>(declaringType, Type, CreateConstructor));
             EventCollection = new EventCollection<TEvent, TEventProperty, TType>(
@@ -136,7 +140,7 @@ namespace CSharpDom.Reflection.Internal
         
         public EventCollection<TEvent, TEventProperty, TType> EventCollection { get; private set; }
 
-        public FieldCollection<TField> FieldCollection { get; private set; }
+        public FieldCollection<TField, TConstant, TType> FieldCollection { get; private set; }
 
         public IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
         {
@@ -235,6 +239,16 @@ namespace CSharpDom.Reflection.Internal
             return CreateEventProperty(declaringType, @event);
         }
 
+        TConstant IFieldFactory<TField, TConstant, TType>.CreateConstant(TType declaringType, FieldInfo field)
+        {
+            return CreateConstant(declaringType, field);
+        }
+
+        TField IFieldFactory<TField, TConstant, TType>.CreateField(TType declaringType, FieldInfo field)
+        {
+            return CreateField(declaringType, field);
+        }
+
         TProperty IPropertyFactory<TProperty, TIndexer, TType>.CreateProperty(TType declaringType, PropertyInfo property)
         {
             return CreateProperty(declaringType, property);
@@ -246,6 +260,8 @@ namespace CSharpDom.Reflection.Internal
         }
 
         public Type Type { get; private set; }
+
+        protected abstract TConstant CreateConstant(TType declaringType, FieldInfo field);
 
         protected abstract TConstructor CreateConstructor(ITypeWithReflection declaringType, ConstructorInfo constructor);
 
@@ -276,15 +292,7 @@ namespace CSharpDom.Reflection.Internal
         protected abstract TNestedStruct CreateNestedStruct(ITypeWithReflection declaringType, Type type);
 
         protected abstract TProperty CreateProperty(TType declaringType, PropertyInfo property);
-
-        private IReadOnlyCollection<TField> InitializeFields(TType declaringType, Type type)
-        {
-            return type.GetAllFields()
-                .Where(field => !field.IsDefined(typeof(CompilerGeneratedAttribute)))
-                .Select(field => CreateField(declaringType, field))
-                .ToList();
-        }
-
+        
         private static IReadOnlyCollection<GenericParameterDeclarationWithReflection> InitializeGenericParameterDeclarations(
             Type type)
         {

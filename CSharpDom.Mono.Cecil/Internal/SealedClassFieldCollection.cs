@@ -14,12 +14,12 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public override IReadOnlyCollection<ClassConstantWithMonoCecil> Constants
         {
-            get { return new ClassConstantWithMonoCecil[0]; }
+            get { return typeWithMonoCecil.FieldCollection.Fields.ConstantsWithMonoCecil; }
         }
 
         protected override IReadOnlyCollection<ClassFieldWithMonoCecil> Fields
         {
-            get { return typeWithMonoCecil.FieldCollection.Fields; }
+            get { return typeWithMonoCecil.FieldCollection.Fields.FieldsWithMonoCecil; }
         }
     }
 }

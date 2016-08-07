@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
-using CSharpDom.Common;
-using System.Reflection;
-using CSharpDom.NotSupported;
+using CSharpDom.Reflection.Emit;
 using CSharpDom.Reflection.Internal;
+using System.Reflection;
 using CSharpDom.Reflection.ConstantExpressions;
+using CSharpDom.NotSupported;
 
 namespace CSharpDom.Reflection
 {
-    public sealed class StaticClassConstantWithReflection :
-        AbstractStaticClassConstant<
+    public sealed class StructConstantWithReflection :
+        AbstractStructConstant<
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
@@ -19,7 +19,7 @@ namespace CSharpDom.Reflection
     {
         private readonly ConstantGroupWithReflection constant;
 
-        internal StaticClassConstantWithReflection(ITypeWithReflection declaringType, FieldInfo field)
+        internal StructConstantWithReflection(ITypeWithReflection declaringType, FieldInfo field)
         {
             this.constant = new ConstantGroupWithReflection(declaringType, field);
         }
@@ -48,33 +48,33 @@ namespace CSharpDom.Reflection
         {
             get { return constant.ConstantValue; }
         }
-        
+
         public string Name
         {
             get { return constant.FieldInfo.Name; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
             get
             {
                 FieldInfo fieldInfo = constant.FieldInfo;
                 if (fieldInfo.IsPublic)
                 {
-                    return StaticClassMemberVisibilityModifier.Public;
+                    return StructMemberVisibilityModifier.Public;
                 }
 
                 if (fieldInfo.IsAssembly)
                 {
-                    return StaticClassMemberVisibilityModifier.Internal;
+                    return StructMemberVisibilityModifier.Internal;
                 }
-
+                
                 if (fieldInfo.IsPrivate)
                 {
-                    return StaticClassMemberVisibilityModifier.Private;
+                    return StructMemberVisibilityModifier.Private;
                 }
 
-                return StaticClassMemberVisibilityModifier.None;
+                return StructMemberVisibilityModifier.None;
             }
         }
     }

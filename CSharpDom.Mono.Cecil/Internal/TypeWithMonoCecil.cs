@@ -22,6 +22,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         TMethod,
         TFieldCollection,
         TField,
+        TConstant,
         TConstructor,
         TNestedClassCollection,
         TNestedAbstractClass,
@@ -51,6 +52,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             StaticConstructorWithMonoCecil>,
         ITypeWithMonoCecil,
         IEventFactory<TEvent, TEventProperty, TType>,
+        IFieldFactory<TField, TConstant, TType>,
         INestedTypeFactory<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>,
         IPropertyFactory<TProperty, TIndexer, TType>
         where TType : ITypeWithMonoCecil
@@ -65,6 +67,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         where TMethod : IMethod
         where TFieldCollection : IFieldCollection
         where TField : IFieldGroup
+        where TConstant : IConstantGroup
         where TConstructor : IConstructor
         where TNestedClassCollection : INestedClassCollection
         where TNestedClass : INestedClass
@@ -86,7 +89,8 @@ namespace CSharpDom.Mono.Cecil.Internal
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, TypeDefinition, typeof(DefaultMemberAttribute)));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, TypeDefinition));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(assembly, TypeDefinition));
-            FieldCollection = new FieldCollection<TField>(() => InitializeFields(declaringType, TypeDefinition));
+            FieldCollection = new FieldCollection<TField, TConstant, TType>(
+                () => new Fields<TField, TConstant, TType>(declaringType, this));
             EventCollection = new EventCollection<TEvent, TEventProperty, TType>(
                 () => new Events<TEvent, TEventProperty, TType>(declaringType, this));
             PropertyCollection = new PropertyCollection<TProperty, TIndexer, TType>(
@@ -129,7 +133,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         
         public EventCollection<TEvent, TEventProperty, TType> EventCollection { get; private set; }
 
-        public FieldCollection<TField> FieldCollection { get; private set; }
+        public FieldCollection<TField, TConstant, TType> FieldCollection { get; private set; }
 
         public IReadOnlyList<GenericParameterDeclarationWithMonoCecil> GenericParameters
         {
@@ -218,6 +222,16 @@ namespace CSharpDom.Mono.Cecil.Internal
             return CreateNestedStruct(declaringType, type);
         }
 
+        TConstant IFieldFactory<TField, TConstant, TType>.CreateConstant(TType declaringType, FieldDefinition field)
+        {
+            return CreateConstant(declaringType, field);
+        }
+
+        TField IFieldFactory<TField, TConstant, TType>.CreateField(TType declaringType, FieldDefinition field)
+        {
+            return CreateField(declaringType, field);
+        }
+
         TEvent IEventFactory<TEvent, TEventProperty, TType>.CreateEvent(TType declaringType, EventDefinition @event)
         {
             return CreateEvent(declaringType, @event);
@@ -256,6 +270,8 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         protected abstract TField CreateField(TType declaringType, FieldDefinition field);
 
+        protected abstract TConstant CreateConstant(TType declaringType, FieldDefinition field);
+
         protected abstract TIndexer CreateIndexer(TType declaringType, PropertyDefinition indexer);
 
         protected abstract TMethod CreateMethod(TType declaringType, MethodDefinition method);
@@ -277,15 +293,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         protected abstract TNestedStruct CreateNestedStruct(ITypeWithMonoCecil declaringType, TypeDefinition type);
 
         protected abstract TProperty CreateProperty(TType declaringType, PropertyDefinition property);
-
-        private IReadOnlyCollection<TField> InitializeFields(TType declaringType, TypeDefinition type)
-        {
-            return type.Fields
-                .Where(field => !field.IsDefined(declaringType.Assembly, typeof(CompilerGeneratedAttribute)))
-                .Select(field => CreateField(declaringType, field))
-                .ToList();
-        }
-
+        
         private IReadOnlyCollection<GenericParameterDeclarationWithMonoCecil> InitializeGenericParameterDeclarations(
             TypeDefinition type)
         {

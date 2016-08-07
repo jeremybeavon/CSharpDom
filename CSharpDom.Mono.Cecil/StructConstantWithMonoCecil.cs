@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
-using CSharpDom.Common;
-using Mono.Cecil;
-using CSharpDom.NotSupported;
+using CSharpDom.Mono.Cecil.Cil;
 using CSharpDom.Mono.Cecil.Internal;
+using System.Reflection;
 using CSharpDom.Mono.Cecil.ConstantExpressions;
+using CSharpDom.NotSupported;
+using Mono.Cecil;
 
 namespace CSharpDom.Mono.Cecil
 {
-    public sealed class StaticClassConstantWithMonoCecil :
-        AbstractStaticClassConstant<
+    public sealed class StructConstantWithMonoCecil :
+        AbstractStructConstant<
             AttributeWithMonoCecil,
             ITypeWithMonoCecil,
             ITypeReferenceWithMonoCecil,
@@ -19,9 +20,9 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly ConstantGroupWithMonoCecil constant;
 
-        internal StaticClassConstantWithMonoCecil(ITypeWithMonoCecil declaringType, FieldDefinition field)
+        internal StructConstantWithMonoCecil(ITypeWithMonoCecil declaringType, FieldDefinition field)
         {
-            constant = new ConstantGroupWithMonoCecil(declaringType, field);
+            this.constant = new ConstantGroupWithMonoCecil(declaringType, field);
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -48,33 +49,33 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return constant.ConstantValue; }
         }
-        
+
         public string Name
         {
             get { return constant.FieldDefinition.Name; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
             get
             {
                 FieldDefinition fieldInfo = constant.FieldDefinition;
                 if (fieldInfo.IsPublic)
                 {
-                    return StaticClassMemberVisibilityModifier.Public;
+                    return StructMemberVisibilityModifier.Public;
                 }
 
                 if (fieldInfo.IsAssembly)
                 {
-                    return StaticClassMemberVisibilityModifier.Internal;
+                    return StructMemberVisibilityModifier.Internal;
                 }
-
+                
                 if (fieldInfo.IsPrivate)
                 {
-                    return StaticClassMemberVisibilityModifier.Private;
+                    return StructMemberVisibilityModifier.Private;
                 }
 
-                return StaticClassMemberVisibilityModifier.None;
+                return StructMemberVisibilityModifier.None;
             }
         }
     }

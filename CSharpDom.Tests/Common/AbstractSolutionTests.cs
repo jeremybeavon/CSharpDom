@@ -19,6 +19,8 @@ namespace CSharpDom.Tests.Common
 
         protected bool IsConstructorTest { get; set; }
 
+        protected bool IsNestedConstructorTest { get; set; }
+
         protected async Task TestClassAsync(Type type)
         {
             IClass @class = await Solution.Find().ClassByNameAsync<IClass>(type.Name());
@@ -26,7 +28,7 @@ namespace CSharpDom.Tests.Common
             LoadedDocument document = CreateLoadedDocument(new ClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
             string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.Should().Be(expectedResult);
+            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
         protected async Task TestAbstractClassAsync(Type type)
@@ -36,7 +38,7 @@ namespace CSharpDom.Tests.Common
             LoadedDocument document = CreateLoadedDocument(new AbstractClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
             string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.Should().Be(expectedResult);
+            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
         protected async Task TestSealedClassAsync(Type type)
@@ -46,7 +48,7 @@ namespace CSharpDom.Tests.Common
             LoadedDocument document = CreateLoadedDocument(new SealedClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
             string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.Should().Be(expectedResult);
+            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
         protected async Task TestStaticClassAsync(Type type)
@@ -56,7 +58,7 @@ namespace CSharpDom.Tests.Common
             LoadedDocument document = CreateLoadedDocument(new StaticClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
             string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.Should().Be(expectedResult);
+            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
         protected async Task TestStructAsync(Type type)
@@ -66,7 +68,7 @@ namespace CSharpDom.Tests.Common
             LoadedDocument document = CreateLoadedDocument(new StructFactory(@struct).Value, namespaceName);
             string documentText = document.ToSourceCode();
             string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.Should().Be(expectedResult);
+            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
         private LoadedDocument CreateLoadedDocument(Class @class, string namespaceName)
@@ -74,12 +76,15 @@ namespace CSharpDom.Tests.Common
             if (!IsConstructorTest)
             {
                 @class.Constructors.Clear();
-                foreach (List<ClassConstructor> constructors in
-                    @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
-                    .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
-                    .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                if (!IsNestedConstructorTest)
                 {
-                    constructors.Clear();
+                    foreach (List<ClassConstructor> constructors in
+                        @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
+                        .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
+                        .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                    {
+                        constructors.Clear();
+                    }
                 }
             }
             
@@ -91,12 +96,15 @@ namespace CSharpDom.Tests.Common
             if (!IsConstructorTest)
             {
                 @class.Constructors.Clear();
-                foreach (List<ClassConstructor> constructors in
-                    @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
-                    .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
-                    .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                if (!IsNestedConstructorTest)
                 {
-                    constructors.Clear();
+                    foreach (List<ClassConstructor> constructors in
+                        @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
+                        .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
+                        .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                    {
+                        constructors.Clear();
+                    }
                 }
             }
 
@@ -108,12 +116,15 @@ namespace CSharpDom.Tests.Common
             if (!IsConstructorTest)
             {
                 @class.Constructors.Clear();
-                foreach (List<ClassConstructor> constructors in
-                    @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
-                    .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
-                    .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                if (!IsNestedConstructorTest)
                 {
-                    constructors.Clear();
+                    foreach (List<ClassConstructor> constructors in
+                        @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
+                        .Concat(@class.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
+                        .Concat(@class.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                    {
+                        constructors.Clear();
+                    }
                 }
             }
 
@@ -122,7 +133,7 @@ namespace CSharpDom.Tests.Common
 
         private LoadedDocument CreateLoadedDocument(StaticClass @class, string namespaceName)
         {
-            if (!IsConstructorTest)
+            if (!IsNestedConstructorTest)
             {
                 foreach (List<ClassConstructor> constructors in
                     @class.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
@@ -174,12 +185,15 @@ namespace CSharpDom.Tests.Common
             if (!IsConstructorTest)
             {
                 @struct.Constructors.Clear();
-                foreach (List<ClassConstructor> constructors in
-                    @struct.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
-                    .Concat(@struct.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
-                    .Concat(@struct.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                if (!IsNestedConstructorTest)
                 {
-                    constructors.Clear();
+                    foreach (List<ClassConstructor> constructors in
+                        @struct.Classes.AbstractClasses.Select(nestedClass => nestedClass.Constructors)
+                        .Concat(@struct.Classes.Classes.Select(nestedClass => nestedClass.Constructors))
+                        .Concat(@struct.Classes.SealedClasses.Select(nestedClass => nestedClass.Constructors)))
+                    {
+                        constructors.Clear();
+                    }
                 }
             }
 

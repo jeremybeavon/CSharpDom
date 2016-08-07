@@ -18,6 +18,7 @@ namespace CSharpDom.Reflection.Internal
             ClassMethodWithReflection,
             ClassFieldCollectionWithReflection,
             ClassFieldWithReflection,
+            ClassConstantWithReflection,
             ClassConstructorWithReflection,
             ClassNestedClassCollectionWithReflection,
             ClassNestedAbstractClassWithReflection,
@@ -91,6 +92,11 @@ namespace CSharpDom.Reflection.Internal
         public override ClassNestedStructCollectionWithReflection Structs
         {
             get { return structs; }
+        }
+
+        protected override ClassConstantWithReflection CreateConstant(IInternalTypeWithReflection declaringType, FieldInfo field)
+        {
+            return new ClassConstantWithReflection(declaringType, field);
         }
 
         protected override ClassConstructorWithReflection CreateConstructor(ITypeWithReflection declaringType, ConstructorInfo constructor)

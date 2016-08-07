@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using CSharpDom.NotSupported;
+using CSharpDom.Reflection.Internal;
+using System.Reflection;
+using CSharpDom.Reflection.ConstantExpressions;
 
 namespace CSharpDom.Reflection
 {
@@ -10,47 +14,49 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             IClassTypeWithReflection,
             ITypeReferenceWithReflection,
-            IConstant>,
-        IConstant
+            IConstantWithReflection>,
+        IConstantWithReflection
     {
-        public override IReadOnlyCollection<AttributeWithReflection> Attributes
+        private readonly ConstantGroupWithReflection constant;
+
+        internal ClassConstantWithReflection(IInternalTypeWithReflection declaringType, FieldInfo field)
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            this.constant = new ConstantGroupWithReflection(declaringType, field);
         }
 
-        public override IReadOnlyCollection<IConstant> Constants
+        public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return constant.Attributes; }
         }
 
         public override IClassTypeWithReflection DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return (IClassTypeWithReflection)constant.DeclaringType; }
         }
 
         public override ITypeReferenceWithReflection FieldType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return constant.FieldType; }
+        }
+        
+        public string Name
+        {
+            get { return constant.FieldInfo.Name; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return constant.FieldInfo.ClassVisibility(); }
+        }
+
+        public override IReadOnlyCollection<IConstantWithReflection> Constants
+        {
+            get { return new IConstantWithReflection[] { new InternalConstantWithReflection(constant) }; }
+        }
+
+        public IConstantExpressionWithReflection ConstantValue
+        {
+            get { return constant.ConstantValue; }
         }
     }
 }

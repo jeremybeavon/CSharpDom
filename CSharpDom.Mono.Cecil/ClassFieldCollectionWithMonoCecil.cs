@@ -7,7 +7,7 @@ using CSharpDom.Mono.Cecil.Internal;
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class ClassFieldCollectionWithMonoCecil :
-        AbstractClassFieldCollection<ClassFieldWithMonoCecil, IClassConstant>
+        AbstractClassFieldCollection<ClassFieldWithMonoCecil, ClassConstantWithMonoCecil>
     {
         private readonly AbstractClassFieldCollection fieldCollection;
 
@@ -21,7 +21,7 @@ namespace CSharpDom.Mono.Cecil
             fieldCollection = new SealedClassFieldCollection(typeWithMonoCecil);
         }
 
-        public override IReadOnlyCollection<IClassConstant> Constants
+        public override IReadOnlyCollection<ClassConstantWithMonoCecil> Constants
         {
             get { return fieldCollection.Constants; }
         }

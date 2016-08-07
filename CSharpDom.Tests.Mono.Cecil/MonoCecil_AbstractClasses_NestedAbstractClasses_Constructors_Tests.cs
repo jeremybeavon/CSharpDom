@@ -9,7 +9,7 @@ namespace CSharpDom.Tests.Mono.Cecil
     {
         public MonoCecil_AbstractClasses_NestedAbstractClasses_Constructors_Tests()
         {
-            IsConstructorTest = true;
+            IsNestedConstructorTest = true;
         }
 
         [TestMethod]

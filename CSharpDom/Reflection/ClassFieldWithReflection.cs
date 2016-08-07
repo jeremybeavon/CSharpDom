@@ -15,12 +15,10 @@ namespace CSharpDom.Reflection
         IFieldWithReflection
     {
         private readonly FieldGroupWithReflection field;
-        private readonly IInternalTypeWithReflection declaringType;
 
         internal ClassFieldWithReflection(IInternalTypeWithReflection declaringType, FieldInfo field)
         {
             this.field = new FieldGroupWithReflection(declaringType, field);
-            this.declaringType = declaringType;
         }
 
         public override IReadOnlyCollection<AttributeWithReflection> Attributes

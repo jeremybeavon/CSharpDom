@@ -18,12 +18,12 @@ namespace CSharpDom.Mono.Cecil
 
         public override IReadOnlyCollection<IStructConstant> Constants
         {
-            get { return new IStructConstant[0]; }
+            get { return typeWithMonoCecil.FieldCollection.Fields.ConstantsWithMonoCecil; }
         }
 
         protected override IReadOnlyCollection<StructFieldWithMonoCecil> Fields
         {
-            get { return typeWithMonoCecil.FieldCollection.Fields; }
+            get { return typeWithMonoCecil.FieldCollection.Fields.FieldsWithMonoCecil; }
         }
     }
 }

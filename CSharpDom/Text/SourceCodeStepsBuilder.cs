@@ -1557,6 +1557,7 @@ namespace CSharpDom.Text
 
         public override void VisitConstant<TExpression>(IConstant<TExpression> constant)
         {
+            Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(constant.Name));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteEquals());

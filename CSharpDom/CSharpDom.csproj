@@ -345,7 +345,13 @@
     <Compile Include="Common\INestedStaticClassMethodCollection.generic.cs" />
     <Compile Include="IndexerParameterModifier.cs" />
     <Compile Include="NotSupported\ExpressionNotSupported.cs" />
+    <Compile Include="Reflection\IConstantWithReflection.cs" />
+    <Compile Include="Reflection\Internal\ConstantGroupWithReflection.cs" />
+    <Compile Include="Reflection\Internal\Fields.cs" />
+    <Compile Include="Reflection\Internal\IFieldFactory.cs" />
+    <Compile Include="Reflection\Internal\InternalConstantWithReflection.cs" />
     <Compile Include="Reflection\StaticClassNestedStaticClassWithReflection.cs" />
+    <Compile Include="Reflection\StructConstantWithReflection.cs" />
     <Compile Include="Reflection\StructNestedStaticClassWithReflection.cs" />
     <Compile Include="Reflection\ClassNestedStaticClassWithReflection.cs" />
     <Compile Include="Reflection\Internal\NestedStaticClassWithReflection.cs" />

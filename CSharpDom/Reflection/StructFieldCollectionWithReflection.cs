@@ -18,12 +18,12 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<IStructConstant> Constants
         {
-            get { return new IStructConstant[0]; }
+            get { return typeWithReflection.FieldCollection.Fields.ConstantsWithReflection; }
         }
 
         protected override IReadOnlyCollection<StructFieldWithReflection> Fields
         {
-            get { return typeWithReflection.FieldCollection.Fields; }
+            get { return typeWithReflection.FieldCollection.Fields.FieldsWithReflection; }
         }
     }
 }

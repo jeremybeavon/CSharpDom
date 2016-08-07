@@ -19,6 +19,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             StructMethodWithMonoCecil,
             StructFieldCollectionWithMonoCecil,
             StructFieldWithMonoCecil,
+            StructConstantWithMonoCecil,
             StructConstructorWithMonoCecil,
             StructNestedClassCollectionWithMonoCecil,
             StructNestedAbstractClassWithMonoCecil,
@@ -92,6 +93,11 @@ namespace CSharpDom.Mono.Cecil.Internal
         public override StructNestedStructCollectionWithMonoCecil Structs
         {
             get { return structs; }
+        }
+
+        protected override StructConstantWithMonoCecil CreateConstant(ITypeWithMonoCecil declaringType, FieldDefinition field)
+        {
+            return new StructConstantWithMonoCecil(declaringType, field);
         }
 
         protected override StructConstructorWithMonoCecil CreateConstructor(ITypeWithMonoCecil declaringType, MethodDefinition constructor)

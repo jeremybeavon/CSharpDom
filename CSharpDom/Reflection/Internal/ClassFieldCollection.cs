@@ -14,12 +14,12 @@ namespace CSharpDom.Reflection.Internal
 
         public override IReadOnlyCollection<ClassConstantWithReflection> Constants
         {
-            get { return new ClassConstantWithReflection[0]; }
+            get { return typeWithReflection.FieldCollection.Fields.ConstantsWithReflection; }
         }
 
         protected override IReadOnlyCollection<ClassFieldWithReflection> Fields
         {
-            get { return typeWithReflection.FieldCollection.Fields; }
+            get { return typeWithReflection.FieldCollection.Fields.FieldsWithReflection; }
         }
     }
 }

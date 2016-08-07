@@ -158,6 +158,7 @@
     <Compile Include="IAttributeWithMonoCecil.cs" />
     <Compile Include="IBasicTypeWithMonoCecil.cs" />
     <Compile Include="IClassTypeWithMonoCecil.cs" />
+    <Compile Include="IConstantWithMonoCecil.cs" />
     <Compile Include="IFieldWithMonoCecil.cs" />
     <Compile Include="IHasAssembly.cs" />
     <Compile Include="IHasAssemblyDefinition.cs" />
@@ -198,8 +199,10 @@
     <Compile Include="Internal\Events.cs" />
     <Compile Include="Internal\EventWithMonoCecil.cs" />
     <Compile Include="Internal\FieldCollection.cs" />
+    <Compile Include="Internal\ConstantGroupWithMonoCecil.cs" />
     <Compile Include="Internal\FieldGroupWithMonoCecil.cs" />
     <Compile Include="Internal\FieldInfoExtensions.cs" />
+    <Compile Include="Internal\Fields.cs" />
     <Compile Include="Internal\ForwardingGenericVisitor.cs" />
     <Compile Include="Internal\GenericParameterDeclarations.cs" />
     <Compile Include="Internal\GenericParameters.cs" />
@@ -211,12 +214,14 @@
     <Compile Include="Internal\Hiding\ParameterSignature.cs" />
     <Compile Include="Internal\Hiding\ReturnTypeSignature.cs" />
     <Compile Include="Internal\IEventFactory.cs" />
+    <Compile Include="Internal\IFieldFactory.cs" />
     <Compile Include="Internal\IInternalTypeWithMonoCecil.cs" />
     <Compile Include="Internal\IndexerWithMonoCecil.cs" />
     <Compile Include="Internal\INestedTypeFactory.cs" />
     <Compile Include="Internal\InterfaceProperties.cs" />
     <Compile Include="Internal\InterfaceReferences.cs" />
     <Compile Include="Internal\InternalAttributeWithMonoCecil.cs" />
+    <Compile Include="Internal\InternalConstantWithMonoCecil.cs" />
     <Compile Include="Internal\InternalFieldWithMonoCecil.cs" />
     <Compile Include="Internal\IPropertyFactory.cs" />
     <Compile Include="Internal\MethodCollection.cs" />
@@ -309,6 +314,7 @@
     <Compile Include="StructEventPropertyWithMonoCecil.cs" />
     <Compile Include="StructEventWithMonoCecil.cs" />
     <Compile Include="StructFieldCollectionWithMonoCecil.cs" />
+    <Compile Include="StructConstantWithMonoCecil.cs" />
     <Compile Include="StructFieldWithMonoCecil.cs" />
     <Compile Include="StructIndexerCollectionWithMonoCecil.cs" />
     <Compile Include="StructIndexerWithMonoCecil.cs" />

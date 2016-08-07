@@ -16,12 +16,12 @@ namespace CSharpDom.Reflection
         
         public override IReadOnlyCollection<StaticClassConstantWithReflection> Constants
         {
-            get { return new StaticClassConstantWithReflection[0]; }
+            get { return typeWithReflection.FieldCollection.Fields.ConstantsWithReflection; }
         }
 
         protected override IReadOnlyCollection<StaticClassFieldWithReflection> Fields
         {
-            get { return typeWithReflection.FieldCollection.Fields; }
+            get { return typeWithReflection.FieldCollection.Fields.FieldsWithReflection; }
         }
     }
 }
