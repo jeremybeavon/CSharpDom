@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.AbstractClasses.NestedAbstractClasses.NestedDelegates
 {
-    public abstract class AbstractClassWithNestedAbstractClassWithNestedClassWithNestedDelegateWithParametersWithModifiers
+    public abstract class AbstractClassWithNestedAbstractClassWithNestedDelegateWithParametersWithModifiers
     {
         public abstract class Class
         {

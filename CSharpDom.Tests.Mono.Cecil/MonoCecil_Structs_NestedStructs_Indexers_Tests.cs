@@ -38,9 +38,9 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith2ParametersWithParametersUsingMonoCecil()
+        public async Task TestStructWithNestedStructWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2ParametersWithParameters));
+            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]

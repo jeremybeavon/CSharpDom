@@ -38,9 +38,9 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithIndexerWith2ParametersWithParametersUsingReflection()
+        public async Task TestStructWithNestedClassWithIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithIndexerWith2ParametersWithParameters));
+            await TestStructAsync(typeof(StructWithNestedClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]

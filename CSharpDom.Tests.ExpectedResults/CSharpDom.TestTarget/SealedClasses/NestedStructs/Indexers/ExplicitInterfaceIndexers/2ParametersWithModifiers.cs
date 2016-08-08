@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpDom.TestTarget.SealedClasses.NestedStructs.Indexers.ExplicitInterfaceIndexers
+﻿namespace CSharpDom.TestTarget.SealedClasses.NestedStructs.Indexers.ExplicitInterfaceIndexers
 {
     public sealed class SealedClassWithNestedStructWithExplicitInterfaceIndexerWith2ParametersWithModifiers
     {

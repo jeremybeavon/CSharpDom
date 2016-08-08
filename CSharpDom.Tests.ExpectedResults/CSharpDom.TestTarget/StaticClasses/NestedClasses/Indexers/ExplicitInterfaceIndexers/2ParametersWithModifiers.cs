@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpDom.TestTarget.StaticClasses.NestedClasses.Indexers.ExplicitInterfaceIndexers
+﻿namespace CSharpDom.TestTarget.StaticClasses.NestedClasses.Indexers.ExplicitInterfaceIndexers
 {
     public static class StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers
     {

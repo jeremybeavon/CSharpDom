@@ -55,10 +55,7 @@ namespace CSharpDom.Reflection.Internal
 
         public string Name
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return field.Name; }
         }
 
         public IConstantExpressionWithReflection ConstantValue

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.SealedClasses.NestedClasses.Indexers.ExplicitInterfaceIndexers
 {
-    public sealed class SealedClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithParameters
+    public sealed class SealedClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes
     {
         public class Class : IInterfaceWithIndexerWith2Parameters
         {

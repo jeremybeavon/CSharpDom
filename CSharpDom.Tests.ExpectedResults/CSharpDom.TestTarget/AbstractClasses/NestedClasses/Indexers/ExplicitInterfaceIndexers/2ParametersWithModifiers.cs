@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpDom.TestTarget.AbstractClasses.NestedClasses.Indexers.ExplicitInterfaceIndexers
+﻿namespace CSharpDom.TestTarget.AbstractClasses.NestedClasses.Indexers.ExplicitInterfaceIndexers
 {
     public abstract class AbstractClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers
     {

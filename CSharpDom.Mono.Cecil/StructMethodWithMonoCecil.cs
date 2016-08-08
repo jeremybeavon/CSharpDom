@@ -46,7 +46,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override bool IsAsync
         {
-            get { return IsAsync; }
+            get { return method.IsAsync; }
         }
 
         public override string Name

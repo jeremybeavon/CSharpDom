@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.AbstractClasses.NestedStructs.Indexers.ExplicitInterfaceIndexers
 {
-    public abstract class AbstractClassWithNestedStructWithExplicitInterfaceIndexerWith2ParametersWithParameters
+    public abstract class AbstractClassWithNestedStructWithExplicitInterfaceIndexerWith2ParametersWithAttributes
     {
         public struct Struct : IInterfaceWithIndexerWith2Parameters
         {

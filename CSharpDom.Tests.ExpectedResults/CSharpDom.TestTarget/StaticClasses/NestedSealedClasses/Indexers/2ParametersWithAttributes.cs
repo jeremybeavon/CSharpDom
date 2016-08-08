@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.StaticClasses.NestedSealedClasses.Indexers
 {
-    public static class StaticClassWithNestedSealedClassWithIndexerWith2ParametersWithParameters
+    public static class StaticClassWithNestedSealedClassWithIndexerWith2ParametersWithAttributes
     {
         public sealed class Class
         {

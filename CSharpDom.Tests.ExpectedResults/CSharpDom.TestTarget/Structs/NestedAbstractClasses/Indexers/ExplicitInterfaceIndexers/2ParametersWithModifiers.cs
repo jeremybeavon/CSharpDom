@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CSharpDom.TestTarget.Structs.NestedAbstractClasses.Indexers.ExplicitInterfaceIndexers
+﻿namespace CSharpDom.TestTarget.Structs.NestedAbstractClasses.Indexers.ExplicitInterfaceIndexers
 {
     public struct StructWithNestedAbstractClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers
     {

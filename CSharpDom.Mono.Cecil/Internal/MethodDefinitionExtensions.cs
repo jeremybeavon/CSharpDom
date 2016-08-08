@@ -155,6 +155,17 @@ namespace CSharpDom.Mono.Cecil.Internal
                 TypeDefinition type = @override.DeclaringType.Resolve();
                 if (type.IsInterface)
                 {
+                    if (type.HasGenericParameters)
+                    {
+                        foreach (GenericInstanceType genericInterface in method.DeclaringType.Interfaces.OfType<GenericInstanceType>())
+                        {
+                            if (genericInterface.ElementType.FullName == type.FullName)
+                            {
+                                return genericInterface;
+                            }
+                        }
+                    }
+
                     return type;
                 }
             }
