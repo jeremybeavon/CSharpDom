@@ -10,7 +10,7 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public async Task TestAbstractClassWithNestedClassWithEventWith1AttributeUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(AbstractClassWithNestedClassWithEventWith1Attribute));
+            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithEventWith1Attribute));
         }
 
         [TestMethod]

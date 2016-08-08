@@ -92,27 +92,27 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedInternalInterfaceUsingReflection()
+        public async Task TestStructWithNestedClassWithInternalNestedInterfaceUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedInternalInterface));
+            await TestStructAsync(typeof(StructWithNestedClassWithInternalNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedPrivateInterfaceUsingReflection()
+        public async Task TestStructWithNestedClassWithPrivateNestedInterfaceUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedPrivateInterface));
+            await TestStructAsync(typeof(StructWithNestedClassWithPrivateNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedProtectedInterfaceUsingReflection()
+        public async Task TestStructWithNestedClassWithProtectedNestedInterfaceUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedProtectedInterface));
+            await TestStructAsync(typeof(StructWithNestedClassWithProtectedNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedProtectedInternalInterfaceUsingReflection()
+        public async Task TestStructWithNestedClassWithProtectedInternalNestedInterfaceUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedProtectedInternalInterface));
+            await TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalNestedInterface));
         }
 
         [TestMethod]

@@ -92,27 +92,27 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithNestedInternalInterfaceUsingMonoCecil()
+        public async Task TestSealedClassWithNestedAbstractClassWithInternalNestedInterfaceUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNestedInternalInterface));
+            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithInternalNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithNestedPrivateInterfaceUsingMonoCecil()
+        public async Task TestSealedClassWithNestedAbstractClassWithPrivateNestedInterfaceUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNestedPrivateInterface));
+            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPrivateNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithNestedProtectedInterfaceUsingMonoCecil()
+        public async Task TestSealedClassWithNestedAbstractClassWithProtectedNestedInterfaceUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNestedProtectedInterface));
+            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithNestedProtectedInternalInterfaceUsingMonoCecil()
+        public async Task TestSealedClassWithNestedAbstractClassWithProtectedInternalNestedInterfaceUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNestedProtectedInternalInterface));
+            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedInternalNestedInterface));
         }
 
         [TestMethod]

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedStaticClasses.NestedInterfaces
 {
-    public struct StructWithNestedStaticClassWithNestedInternalInterface
+    public struct StructWithNestedStaticClassWithInternalNestedInterface
     {
         public static class Class
         {

@@ -106,7 +106,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return type.Name(); }
         }
 
         public override IReadOnlyCollection<OperatorOverloadWithMonoCecil> OperatorOverloads

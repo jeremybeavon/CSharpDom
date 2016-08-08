@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedAbstractClasses.NestedInterfaces
 {
-    public struct StructWithNestedAbstractClassWithNestedPrivateInterface
+    public struct StructWithNestedAbstractClassWithPrivateNestedInterface
     {
         public abstract class Class
         {

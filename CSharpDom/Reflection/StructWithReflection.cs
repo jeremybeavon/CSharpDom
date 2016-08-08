@@ -106,7 +106,7 @@ namespace CSharpDom.Reflection
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return type.Name(); }
         }
 
         public override NamespaceWithReflection Namespace

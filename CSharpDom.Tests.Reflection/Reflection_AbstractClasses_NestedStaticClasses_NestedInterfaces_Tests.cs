@@ -92,27 +92,27 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithNestedInternalInterfaceUsingReflection()
+        public async Task TestAbstractClassWithNestedStaticClassWithInternalNestedInterfaceUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithNestedInternalInterface));
+            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithInternalNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithNestedPrivateInterfaceUsingReflection()
+        public async Task TestAbstractClassWithNestedStaticClassWithPrivateNestedInterfaceUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithNestedPrivateInterface));
+            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPrivateNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithNestedProtectedInterfaceUsingReflection()
+        public async Task TestAbstractClassWithNestedStaticClassWithProtectedNestedInterfaceUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithNestedProtectedInterface));
+            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithProtectedNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithNestedProtectedInternalInterfaceUsingReflection()
+        public async Task TestAbstractClassWithNestedStaticClassWithProtectedInternalNestedInterfaceUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithNestedProtectedInternalInterface));
+            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithProtectedInternalNestedInterface));
         }
 
         [TestMethod]

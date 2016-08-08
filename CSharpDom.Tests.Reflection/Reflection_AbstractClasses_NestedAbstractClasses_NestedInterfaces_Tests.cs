@@ -116,9 +116,9 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedAbstractClassWithNestedPublicInterfaceUsingReflection()
+        public async Task TestAbstractClassWithNestedAbstractClassWithPublicNestedInterfaceUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedAbstractClassWithNestedPublicInterface));
+            await TestAbstractClassAsync(typeof(AbstractClassWithNestedAbstractClassWithPublicNestedInterface));
         }
     }
 }

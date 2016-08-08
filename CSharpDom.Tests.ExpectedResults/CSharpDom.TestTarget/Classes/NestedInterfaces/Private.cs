@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Classes.NestedInterfaces
 {
-    public class ClassWithNestedPrivateInterface
+    public class ClassWithPrivateNestedInterface
     {
         private interface Interface
         {

@@ -92,27 +92,27 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNestedInternalInterfaceUsingReflection()
+        public async Task TestStaticClassWithNestedAbstractClassWithInternalNestedInterfaceUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedInternalInterface));
+            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNestedPrivateInterfaceUsingReflection()
+        public async Task TestStaticClassWithNestedAbstractClassWithPrivateNestedInterfaceUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedPrivateInterface));
+            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNestedProtectedInterfaceUsingReflection()
+        public async Task TestStaticClassWithNestedAbstractClassWithProtectedNestedInterfaceUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedProtectedInterface));
+            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNestedProtectedInternalInterfaceUsingReflection()
+        public async Task TestStaticClassWithNestedAbstractClassWithProtectedInternalNestedInterfaceUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedProtectedInternalInterface));
+            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalNestedInterface));
         }
 
         [TestMethod]

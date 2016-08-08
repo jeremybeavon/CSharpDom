@@ -10,7 +10,7 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public async Task TestAbstractClassWithNestedClassWithEventWith1AttributeUsingReflection()
         {
-            await TestSealedClassAsync(typeof(AbstractClassWithNestedClassWithEventWith1Attribute));
+            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithEventWith1Attribute));
         }
 
         [TestMethod]

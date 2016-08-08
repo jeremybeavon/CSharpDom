@@ -92,27 +92,27 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedInternalInterfaceUsingMonoCecil()
+        public async Task TestAbstractClassWithInternalNestedInterfaceUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedInternalInterface));
+            await TestAbstractClassAsync(typeof(AbstractClassWithInternalNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedPrivateInterfaceUsingMonoCecil()
+        public async Task TestAbstractClassWithPrivateNestedInterfaceUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedPrivateInterface));
+            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedProtectedInterfaceUsingMonoCecil()
+        public async Task TestAbstractClassWithProtectedNestedInterfaceUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedProtectedInterface));
+            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedProtectedInternalInterfaceUsingMonoCecil()
+        public async Task TestAbstractClassWithProtectedInternalNestedInterfaceUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedProtectedInternalInterface));
+            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalNestedInterface));
         }
 
         [TestMethod]

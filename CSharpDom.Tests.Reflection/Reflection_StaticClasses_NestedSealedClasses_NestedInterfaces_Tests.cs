@@ -92,27 +92,27 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNestedInternalInterfaceUsingReflection()
+        public async Task TestStaticClassWithNestedSealedClassWithInternalNestedInterfaceUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNestedInternalInterface));
+            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNestedPrivateInterfaceUsingReflection()
+        public async Task TestStaticClassWithNestedSealedClassWithPrivateNestedInterfaceUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNestedPrivateInterface));
+            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNestedProtectedInterfaceUsingReflection()
+        public async Task TestStaticClassWithNestedSealedClassWithProtectedNestedInterfaceUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNestedProtectedInterface));
+            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedNestedInterface));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNestedProtectedInternalInterfaceUsingReflection()
+        public async Task TestStaticClassWithNestedSealedClassWithProtectedInternalNestedInterfaceUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNestedProtectedInternalInterface));
+            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalNestedInterface));
         }
 
         [TestMethod]

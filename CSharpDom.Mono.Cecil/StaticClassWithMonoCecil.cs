@@ -91,7 +91,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return type.Name(); }
         }
 
         public override NamespaceWithMonoCecil Namespace
