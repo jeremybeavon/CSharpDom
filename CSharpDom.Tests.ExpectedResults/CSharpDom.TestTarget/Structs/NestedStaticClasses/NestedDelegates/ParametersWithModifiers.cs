@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedStaticClasses.NestedDelegates
 {
-    public struct StructWithNestedStaticClassWithNestedClassWithNestedDelegateWithParametersWithModifiers
+    public struct StructWithNestedStaticClassWithNestedDelegateWithParametersWithModifiers
     {
         public static class Class
         {

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedStructs.NestedDelegates
 {
-    public struct StructWithNestedStructWithNestedClassWithNestedDelegateWithGenericParameterClassConstraint
+    public struct StructWithNestedStructWithNestedDelegateWithGenericParameterClassConstraint
     {
         public struct Struct
         {
