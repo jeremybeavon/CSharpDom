@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Structs.NestedSealedClasses.Constructors
+﻿namespace CSharpDom.TestTarget.Structs.NestedSealedClasses.Events.EventProperties
 {
     public struct StructWithNestedSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups
     {

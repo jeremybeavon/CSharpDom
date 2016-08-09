@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.SealedClasses.Constructors
+﻿namespace CSharpDom.TestTarget.SealedClasses.Events.EventProperties
 {
     public sealed class SealedClassWithEventPropertyWith2AttributesIn2AttributeGroups
     {

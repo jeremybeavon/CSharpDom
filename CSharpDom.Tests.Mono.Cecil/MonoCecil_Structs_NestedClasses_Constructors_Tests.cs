@@ -7,6 +7,11 @@ namespace CSharpDom.Tests.Mono.Cecil
     [TestClass]
     public sealed class MonoCecil_Structs_NestedClasses_Constructors_Tests : AbstractSolutionWithMonoCecilTests
     {
+        public MonoCecil_Structs_NestedClasses_Constructors_Tests()
+        {
+            IsNestedConstructorTest = true;
+        }
+
         [TestMethod]
         public async Task TestStructWithNestedClassWithConstructorWith1AttributeUsingMonoCecil()
         {

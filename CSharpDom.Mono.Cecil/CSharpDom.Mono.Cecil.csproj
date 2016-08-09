@@ -194,7 +194,7 @@
     <Compile Include="Internal\CustomAttributeProviderExtensions.cs" />
     <Compile Include="Internal\DocumentWithMonoCecil.cs" />
     <Compile Include="Internal\EventCollection.cs" />
-    <Compile Include="Internal\EventInfoExtensions.cs" />
+    <Compile Include="Internal\EventDefinitionExtensions.cs" />
     <Compile Include="Internal\EventPropertyWithMonoCecil.cs" />
     <Compile Include="Internal\Events.cs" />
     <Compile Include="Internal\EventWithMonoCecil.cs" />

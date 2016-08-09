@@ -14,6 +14,18 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
+        public async Task TestSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        {
+            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+        }
+
+        [TestMethod]
+        public async Task TestSealedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
+        {
+            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+        }
+
+        [TestMethod]
         public async Task TestSealedClassWithEventPropertyWith1AttributeUsingReflection()
         {
             await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith1Attribute));

@@ -156,7 +156,6 @@
     <Compile Include="MonoCecil_AbstractClasses_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="MonoCecil_AbstractClasses_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="MonoCecil_AbstractClasses_NestedSealedClasses_Tests.cs" />
-    <Compile Include="MonoCecil_AbstractClasses_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="MonoCecil_AbstractClasses_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="MonoCecil_AbstractClasses_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="MonoCecil_AbstractClasses_NestedStaticClasses_Fields_Tests.cs" />
@@ -281,7 +280,6 @@
     <Compile Include="MonoCecil_Classes_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="MonoCecil_Classes_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="MonoCecil_Classes_NestedSealedClasses_Tests.cs" />
-    <Compile Include="MonoCecil_Classes_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="MonoCecil_Classes_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="MonoCecil_Classes_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="MonoCecil_Classes_NestedStaticClasses_Fields_Tests.cs" />
@@ -406,7 +404,6 @@
     <Compile Include="MonoCecil_SealedClasses_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="MonoCecil_SealedClasses_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="MonoCecil_SealedClasses_NestedSealedClasses_Tests.cs" />
-    <Compile Include="MonoCecil_SealedClasses_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="MonoCecil_SealedClasses_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="MonoCecil_SealedClasses_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="MonoCecil_SealedClasses_NestedStaticClasses_Fields_Tests.cs" />
@@ -447,7 +444,6 @@
     <Compile Include="MonoCecil_SealedClasses_OperatorOverloads_Tests.cs" />
     <Compile Include="MonoCecil_SealedClasses_Properties_Tests.cs" />
     <Compile Include="MonoCecil_SealedClasses_Tests.cs" />
-    <Compile Include="MonoCecil_StaticClasses_Constructors_Tests.cs" />
     <Compile Include="MonoCecil_StaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="MonoCecil_StaticClasses_Events_Tests.cs" />
     <Compile Include="MonoCecil_StaticClasses_Fields_Tests.cs" />
@@ -524,7 +520,6 @@
     <Compile Include="MonoCecil_StaticClasses_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="MonoCecil_StaticClasses_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="MonoCecil_StaticClasses_NestedSealedClasses_Tests.cs" />
-    <Compile Include="MonoCecil_StaticClasses_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="MonoCecil_StaticClasses_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="MonoCecil_StaticClasses_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="MonoCecil_StaticClasses_NestedStaticClasses_Fields_Tests.cs" />
@@ -618,7 +613,6 @@
     <Compile Include="MonoCecil_Structs_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="MonoCecil_Structs_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="MonoCecil_Structs_NestedSealedClasses_Tests.cs" />
-    <Compile Include="MonoCecil_Structs_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="MonoCecil_Structs_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="MonoCecil_Structs_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="MonoCecil_Structs_NestedStaticClasses_Fields_Tests.cs" />

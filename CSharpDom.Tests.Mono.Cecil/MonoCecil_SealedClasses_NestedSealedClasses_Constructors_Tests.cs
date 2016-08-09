@@ -7,6 +7,11 @@ namespace CSharpDom.Tests.Mono.Cecil
     [TestClass]
     public sealed class MonoCecil_SealedClasses_NestedSealedClasses_Constructors_Tests : AbstractSolutionWithMonoCecilTests
     {
+        public MonoCecil_SealedClasses_NestedSealedClasses_Constructors_Tests()
+        {
+            IsNestedConstructorTest = true;
+        }
+
         [TestMethod]
         public async Task TestSealedClassWithNestedSealedClassWithConstructorWith1AttributeUsingMonoCecil()
         {
@@ -71,24 +76,6 @@ namespace CSharpDom.Tests.Mono.Cecil
         public async Task TestSealedClassWithNestedSealedClassWithPublicConstructorUsingMonoCecil()
         {
             await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicConstructor));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
     }
 }

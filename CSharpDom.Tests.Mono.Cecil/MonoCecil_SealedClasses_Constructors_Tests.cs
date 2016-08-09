@@ -7,6 +7,11 @@ namespace CSharpDom.Tests.Mono.Cecil
     [TestClass]
     public sealed class MonoCecil_SealedClasses_Constructors_Tests : AbstractSolutionWithMonoCecilTests
     {
+        public MonoCecil_SealedClasses_Constructors_Tests()
+        {
+            IsConstructorTest = true;
+        }
+
         [TestMethod]
         public async Task TestSealedClassWithConstructorWith1AttributeUsingMonoCecil()
         {
@@ -59,24 +64,6 @@ namespace CSharpDom.Tests.Mono.Cecil
         public async Task TestSealedClassWithPublicConstructorUsingMonoCecil()
         {
             await TestSealedClassAsync(typeof(SealedClassWithPublicConstructor));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithEventWith2AttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
     }
 }

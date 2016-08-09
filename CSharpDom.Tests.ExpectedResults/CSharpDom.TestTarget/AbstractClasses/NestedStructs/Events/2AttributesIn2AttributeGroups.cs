@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.AbstractClasses.NestedStructs.Constructors
+﻿namespace CSharpDom.TestTarget.AbstractClasses.NestedStructs.Events
 {
     public abstract class AbstractClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups
     {

@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.StaticClasses.NestedSealedClasses.Constructors
+﻿namespace CSharpDom.TestTarget.StaticClasses.NestedSealedClasses.Events
 {
     public static class StaticClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups
     {

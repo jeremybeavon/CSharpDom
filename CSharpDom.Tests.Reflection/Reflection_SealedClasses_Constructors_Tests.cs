@@ -7,6 +7,11 @@ namespace CSharpDom.Tests.Reflection
     [TestClass]
     public sealed class Reflection_SealedClasses_Constructors_Tests : AbstractSolutionWithReflectionTests
     {
+        public Reflection_SealedClasses_Constructors_Tests()
+        {
+            IsConstructorTest = true;
+        }
+
         [TestMethod]
         public async Task TestSealedClassWithConstructorWith1AttributeUsingReflection()
         {
@@ -59,24 +64,6 @@ namespace CSharpDom.Tests.Reflection
         public async Task TestSealedClassWithPublicConstructorUsingReflection()
         {
             await TestSealedClassAsync(typeof(SealedClassWithPublicConstructor));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithEventWith2AttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
     }
 }

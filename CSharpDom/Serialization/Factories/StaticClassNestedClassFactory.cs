@@ -16,7 +16,7 @@ namespace CSharpDom.Serialization.Factories
             {
                 Attributes = nestedClass.Attributes.ToAttributeListUsingFactory(),
                 BaseClass = new ClassReferenceFactory(nestedClass.BaseClass).Value,
-                //Classes = nestedClass.Classes.ToList(@class => new ClassNestedClassFactory(@class).Value),
+                Classes = new ClassNestedClassCollectionFactory(nestedClass.Classes).Value,
                 Constructors = nestedClass.Constructors.ToList(constructor => new ClassConstructorFactory(constructor).Value),
                 ConversionOperators = nestedClass.ConversionOperators.ToList(@operator => new ConversionOperatorFactory(@operator).Value),
                 Delegates = nestedClass.Delegates.ToList(@delegate => new ClassNestedDelegateFactory(@delegate).Value),

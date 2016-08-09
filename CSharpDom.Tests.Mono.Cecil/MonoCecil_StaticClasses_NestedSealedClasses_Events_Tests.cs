@@ -8,9 +8,15 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_NestedSealedClasses_Events_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithEventWith1AttributeUsingMonoCecil()
+        public async Task TestStaticClassWithNestedSealedClassWithEventWith1AttributeUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(AbstractClassWithNestedSealedClassWithEventWith1Attribute));
+            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithEventWith1Attribute));
+        }
+
+        [TestMethod]
+        public async Task TestStaticClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        {
+            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]

@@ -7,6 +7,11 @@ namespace CSharpDom.Tests.Reflection
     [TestClass]
     public sealed class Reflection_Classes_NestedStructs_Constructors_Tests : AbstractSolutionWithReflectionTests
     {
+        public Reflection_Classes_NestedStructs_Constructors_Tests()
+        {
+            IsNestedConstructorTest = true;
+        }
+        
         [TestMethod]
         public async Task TestClassWithNestedStructWithConstructorWith1AttributeUsingReflection()
         {
@@ -59,24 +64,6 @@ namespace CSharpDom.Tests.Reflection
         public async Task TestClassWithNestedStructWithPublicConstructorUsingReflection()
         {
             await TestClassAsync(typeof(ClassWithNestedStructWithPublicConstructor));
-        }
-
-        [TestMethod]
-        public async Task TestClassWithNestedStructWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
-        {
-            await TestClassAsync(typeof(ClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestClassWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
-        {
-            await TestClassAsync(typeof(ClassWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
-        }
-
-        [TestMethod]
-        public async Task TestClassWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
-        {
-            await TestClassAsync(typeof(ClassWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
     }
 }

@@ -378,6 +378,7 @@ namespace CSharpDom.Text
         public override void VisitSealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             ISealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
         {
+            Steps.AddChildNodeStepsOnNewLines(@event.Attributes);
             Steps.AddClassMemberVisibilityModifierSteps(@event.Visibility);
             Steps.AddSealedClassMemberInheritanceModifierSteps(@event.InheritanceModifier);
             VisitEvent(@event);
@@ -1703,6 +1704,7 @@ namespace CSharpDom.Text
         public override void VisitSealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             ISealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
         {
+            Steps.AddChildNodeStepsOnNewLines(indexer.Attributes);
             Steps.AddClassMemberVisibilityModifierSteps(indexer.Visibility);
             Steps.AddSealedClassIndexerInheritanceModifierSteps(indexer.InheritanceModifier);
             VisitIndexer(indexer);

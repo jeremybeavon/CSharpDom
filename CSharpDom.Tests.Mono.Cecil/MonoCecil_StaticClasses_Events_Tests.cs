@@ -14,6 +14,12 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
+        public async Task TestStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        {
+            await TestStaticClassAsync(typeof(StaticClassWithEventWith2AttributesIn2AttributeGroups));
+        }
+
+        [TestMethod]
         public async Task TestStaticClassWithEventWithGenericDelegateUsingMonoCecil()
         {
             await TestStaticClassAsync(typeof(StaticClassWithEventWithGenericDelegate));

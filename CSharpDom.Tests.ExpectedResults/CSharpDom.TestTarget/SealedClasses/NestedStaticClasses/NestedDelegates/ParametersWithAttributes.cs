@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.SealedClasses.NestedStaticClasses.NestedDelegates
 {
-    public sealed class SealedClassWithNestedStaticClassWithNestedClassWithNestedDelegateWithParametersWithAttributes
+    public sealed class SealedClassWithNestedStaticClassWithNestedDelegateWithParametersWithAttributes
     {
         public static class Class
         {

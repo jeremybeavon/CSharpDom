@@ -40,7 +40,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public static ClassMemberInheritanceModifier InheritanceModifier(this MethodDefinition method, Func<bool> isHidden)
         {
-            if (method.IsFinal && method.HasOverrides)
+            if (method.IsFinal)
             {
                 return ClassMemberInheritanceModifier.SealedOverride;
             }
@@ -70,6 +70,36 @@ namespace CSharpDom.Mono.Cecil.Internal
                 return ClassMemberInheritanceModifier.Static;
             }
             
+            if (method.IsVirtual)
+            {
+                return ClassMemberInheritanceModifier.Virtual;
+            }
+
+            return ClassMemberInheritanceModifier.None;
+        }
+
+        public static ClassMemberInheritanceModifier PropertyOrEventInheritanceModifier(this MethodDefinition method, Func<bool> isHidden)
+        {
+            if (isHidden())
+            {
+                if (method.IsStatic)
+                {
+                    return ClassMemberInheritanceModifier.NewStatic;
+                }
+
+                if (method.IsVirtual)
+                {
+                    return ClassMemberInheritanceModifier.Override;
+                }
+
+                return ClassMemberInheritanceModifier.New;
+            }
+
+            if (method.IsStatic)
+            {
+                return ClassMemberInheritanceModifier.Static;
+            }
+
             if (method.IsVirtual)
             {
                 return ClassMemberInheritanceModifier.Virtual;

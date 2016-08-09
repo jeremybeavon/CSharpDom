@@ -50,9 +50,9 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithGenericParameterClassConstraintUsingMonoCecil()
+        public async Task TestClassWithNestedSealedClassWithNestedDelegateWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithGenericParameterClassConstraint));
+            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedDelegateWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
@@ -86,15 +86,15 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithParametersWithAttributesUsingMonoCecil()
+        public async Task TestClassWithNestedSealedClassWithNestedDelegateWithParametersWithAttributesUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithParametersWithAttributes));
+            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedDelegateWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithParametersWithModifiersUsingMonoCecil()
+        public async Task TestClassWithNestedSealedClassWithNestedDelegateWithParametersWithModifiersUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithParametersWithModifiers));
+            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedDelegateWithParametersWithModifiers));
         }
 
         [TestMethod]

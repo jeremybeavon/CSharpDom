@@ -50,9 +50,9 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithGenericParameterClassConstraintUsingReflection()
+        public async Task TestClassWithNestedSealedClassWithNestedDelegateWithGenericParameterClassConstraintUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithGenericParameterClassConstraint));
+            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedDelegateWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
@@ -86,15 +86,15 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithParametersWithAttributesUsingReflection()
+        public async Task TestClassWithNestedSealedClassWithNestedDelegateWithParametersWithAttributesUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithParametersWithAttributes));
+            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedDelegateWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithParametersWithModifiersUsingReflection()
+        public async Task TestClassWithNestedSealedClassWithNestedDelegateWithParametersWithModifiersUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedClassWithNestedDelegateWithParametersWithModifiers));
+            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedDelegateWithParametersWithModifiers));
         }
 
         [TestMethod]

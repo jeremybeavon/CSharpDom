@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Structs.NestedStaticClasses.Constructors
+﻿namespace CSharpDom.TestTarget.Structs.NestedStaticClasses.Events
 {
     public struct StructWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups
     {

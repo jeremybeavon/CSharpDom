@@ -38,7 +38,7 @@ namespace CSharpDom.Mono.Cecil
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> FieldAttributes
         {
-            get { throw new NotImplementedException(); }
+            get { return new AttributeWithMonoCecil[0]; }
         }
         
         public override string Name

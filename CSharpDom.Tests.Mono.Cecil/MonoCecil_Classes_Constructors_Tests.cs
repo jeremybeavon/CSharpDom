@@ -7,6 +7,11 @@ namespace CSharpDom.Tests.Mono.Cecil
     [TestClass]
     public sealed class MonoCecil_Classes_Constructors_Tests : AbstractSolutionWithMonoCecilTests
     {
+        public MonoCecil_Classes_Constructors_Tests()
+        {
+            IsConstructorTest = true;
+        }
+
         [TestMethod]
         public async Task TestClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {

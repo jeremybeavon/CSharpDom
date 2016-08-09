@@ -86,15 +86,15 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStaticClassWithNestedClassWithNestedDelegateWithParametersWithAttributesUsingReflection()
+        public async Task TestSealedClassWithNestedStaticClassWithNestedDelegateWithParametersWithAttributesUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithNestedClassWithNestedDelegateWithParametersWithAttributes));
+            await TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithNestedDelegateWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStaticClassWithNestedClassWithNestedDelegateWithParametersWithModifiersUsingReflection()
+        public async Task TestSealedClassWithNestedStaticClassWithNestedDelegateWithParametersWithModifiersUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithNestedClassWithNestedDelegateWithParametersWithModifiers));
+            await TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithNestedDelegateWithParametersWithModifiers));
         }
 
         [TestMethod]

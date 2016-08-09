@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.StaticClasses.Constructors
+﻿namespace CSharpDom.TestTarget.StaticClasses.Events
 {
     public static class StaticClassWithEventWith2AttributesIn2AttributeGroups
     {

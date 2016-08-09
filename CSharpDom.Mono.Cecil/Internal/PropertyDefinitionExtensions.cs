@@ -62,7 +62,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             this PropertyDefinition property,
             IInternalTypeWithMonoCecil type)
         {
-            return property.Method().InheritanceModifier(() => type.HiddenMembersAnalyzer.IsPropertyHidden(property));
+            return property.Method().PropertyOrEventInheritanceModifier(() => type.HiddenMembersAnalyzer.IsPropertyHidden(property));
         }
 
         public static SealedClassMemberInheritanceModifier SealedClassInheritanceModifier(

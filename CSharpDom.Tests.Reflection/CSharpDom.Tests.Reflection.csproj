@@ -152,7 +152,6 @@
     <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="Reflection_AbstractClasses_NestedSealedClasses_Tests.cs" />
-    <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="Reflection_AbstractClasses_NestedStaticClasses_Fields_Tests.cs" />
@@ -277,7 +276,6 @@
     <Compile Include="Reflection_Classes_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="Reflection_Classes_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="Reflection_Classes_NestedSealedClasses_Tests.cs" />
-    <Compile Include="Reflection_Classes_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="Reflection_Classes_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="Reflection_Classes_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="Reflection_Classes_NestedStaticClasses_Fields_Tests.cs" />
@@ -402,7 +400,6 @@
     <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="Reflection_SealedClasses_NestedSealedClasses_Tests.cs" />
-    <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="Reflection_SealedClasses_NestedStaticClasses_Fields_Tests.cs" />
@@ -443,7 +440,6 @@
     <Compile Include="Reflection_SealedClasses_OperatorOverloads_Tests.cs" />
     <Compile Include="Reflection_SealedClasses_Properties_Tests.cs" />
     <Compile Include="Reflection_SealedClasses_Tests.cs" />
-    <Compile Include="Reflection_StaticClasses_Constructors_Tests.cs" />
     <Compile Include="Reflection_StaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="Reflection_StaticClasses_Events_Tests.cs" />
     <Compile Include="Reflection_StaticClasses_Fields_Tests.cs" />
@@ -520,7 +516,6 @@
     <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="Reflection_StaticClasses_NestedSealedClasses_Tests.cs" />
-    <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="Reflection_StaticClasses_NestedStaticClasses_Fields_Tests.cs" />
@@ -614,7 +609,6 @@
     <Compile Include="Reflection_Structs_NestedSealedClasses_Properties_AutoProperties_Tests.cs" />
     <Compile Include="Reflection_Structs_NestedSealedClasses_Properties_Tests.cs" />
     <Compile Include="Reflection_Structs_NestedSealedClasses_Tests.cs" />
-    <Compile Include="Reflection_Structs_NestedStaticClasses_Constructors_Tests.cs" />
     <Compile Include="Reflection_Structs_NestedStaticClasses_Events_EventProperties_Tests.cs" />
     <Compile Include="Reflection_Structs_NestedStaticClasses_Events_Tests.cs" />
     <Compile Include="Reflection_Structs_NestedStaticClasses_Fields_Tests.cs" />

@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
-    internal static class EventInfoExtensions
+    internal static class EventDefinitionExtensions
     {
         public static ClassMemberVisibilityModifier ClassVisibility(this EventDefinition @event)
         {
@@ -18,7 +18,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public static ClassMemberInheritanceModifier InheritanceModifier(this EventDefinition @event, IInternalTypeWithMonoCecil type)
         {
-            return @event.AddMethod.InheritanceModifier(() => type.HiddenMembersAnalyzer.IsEventHidden(@event));
+            return @event.AddMethod.PropertyOrEventInheritanceModifier(() => type.HiddenMembersAnalyzer.IsEventHidden(@event));
         }
         
         public static bool IsOverride(this EventDefinition @event)
