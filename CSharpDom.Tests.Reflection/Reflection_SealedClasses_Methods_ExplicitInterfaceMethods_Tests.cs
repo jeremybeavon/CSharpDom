@@ -32,9 +32,9 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestSealedClassExplicitInterfaceWithMethodWithParametersWithAttributesUsingReflection()
+        public async Task TestSealedClassExplicitInterfaceMethodWithParametersWithAttributesUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassExplicitInterfaceWithMethodWithParametersWithAttributes));
+            await TestSealedClassAsync(typeof(SealedClassExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]

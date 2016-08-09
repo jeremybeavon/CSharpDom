@@ -32,9 +32,9 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithExplicitInterfaceWithMethodWithParametersWithAttributesUsingReflection()
+        public async Task TestClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithAttributesUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceWithMethodWithParametersWithAttributes));
+            await TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]

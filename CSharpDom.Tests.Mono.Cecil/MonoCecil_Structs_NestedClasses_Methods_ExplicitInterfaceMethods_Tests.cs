@@ -32,9 +32,9 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceWithMethodWithParametersWithAttributesUsingMonoCecil()
+        public async Task TestStructWithNestedClassWithExplicitInterfaceMethodWithParametersWithAttributesUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceWithMethodWithParametersWithAttributes));
+            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedStructs.Methods.ExplicitInterfaceMethods
 {
-    public struct StructWithNestedStructWithExplicitInterfaceWithMethodWithParametersWithAttributes
+    public struct StructWithNestedStructWithExplicitInterfaceMethodWithParametersWithAttributes
     {
         public struct Struct : IInterfaceWithMethodWith2Parameters
         {

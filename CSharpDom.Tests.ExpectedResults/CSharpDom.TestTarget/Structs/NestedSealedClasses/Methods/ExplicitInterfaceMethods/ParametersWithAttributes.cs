@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedSealedClasses.Methods.ExplicitInterfaceMethods
 {
-    public struct StructWithNestedSealedClassWithExplicitInterfaceWithMethodWithParametersWithAttributes
+    public struct StructWithNestedSealedClassWithExplicitInterfaceMethodWithParametersWithAttributes
     {
         public sealed class Class : IInterfaceWithMethodWith2Parameters
         {

@@ -71,27 +71,35 @@ namespace CSharpDom.Tests.Common
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
-        private static void RemoveNestedConstructors(List<ClassConstructor> constructors, ClassNestedClassCollection nestedClasses)
+        private static void RemoveNestedConstructors(
+            List<ClassConstructor> constructors,
+            ClassNestedClassCollection nestedClasses,
+            ClassNestedStructCollection nestedStructs)
         {
             constructors.Clear();
             foreach (ClassNestedAbstractClass @class in nestedClasses.AbstractClasses)
             {
-                RemoveNestedConstructors(@class.Constructors, @class.Classes);
+                RemoveNestedConstructors(@class.Constructors, @class.Classes, @class.Structs);
             }
 
             foreach (ClassNestedClass @class in nestedClasses.Classes)
             {
-                RemoveNestedConstructors(@class.Constructors, @class.Classes);
+                RemoveNestedConstructors(@class.Constructors, @class.Classes, @class.Structs);
             }
 
             foreach (ClassNestedSealedClass @class in nestedClasses.SealedClasses)
             {
-                RemoveNestedConstructors(@class.Constructors, @class.Classes);
+                RemoveNestedConstructors(@class.Constructors, @class.Classes, @class.Structs);
             }
 
             foreach (ClassNestedStaticClass @class in nestedClasses.StaticClasses)
             {
                 RemoveNestedConstructors(@class.Classes);
+            }
+
+            foreach (ClassNestedStruct @struct in nestedStructs.Structs)
+            {
+                RemoveNestedConstructors(@struct.Constructors, @struct.Classes, @struct.Structs);
             }
         }
 
@@ -99,17 +107,17 @@ namespace CSharpDom.Tests.Common
         {
             foreach (StaticClassNestedAbstractClass nestedClass in nestedClasses.AbstractClasses)
             {
-                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes);
+                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes, nestedClass.Structs);
             }
 
             foreach (StaticClassNestedClass nestedClass in nestedClasses.Classes)
             {
-                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes);
+                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes, nestedClass.Structs);
             }
 
             foreach (StaticClassNestedSealedClass nestedClass in nestedClasses.SealedClasses)
             {
-                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes);
+                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes, nestedClass.Structs);
             }
 
             foreach (StaticClassNestedStaticClass nestedClass in nestedClasses.StaticClasses)
@@ -118,26 +126,34 @@ namespace CSharpDom.Tests.Common
             }
         }
 
-        private static void RemoveNestedConstructors(StructNestedClassCollection nestedClasses)
+        private static void RemoveNestedConstructors(
+            List<StructConstructor> constructors,
+            StructNestedClassCollection nestedClasses,
+            StructNestedStructCollection nestedStructs)
         {
             foreach (StructNestedAbstractClass nestedClass in nestedClasses.AbstractClasses)
             {
-                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes);
+                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes, nestedClass.Structs);
             }
 
             foreach (StructNestedClass nestedClass in nestedClasses.Classes)
             {
-                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes);
+                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes, nestedClass.Structs);
             }
 
             foreach (StructNestedSealedClass nestedClass in nestedClasses.SealedClasses)
             {
-                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes);
+                RemoveNestedConstructors(nestedClass.Constructors, nestedClass.Classes, nestedClass.Structs);
             }
 
             foreach (StructNestedStaticClass nestedClass in nestedClasses.StaticClasses)
             {
                 RemoveNestedConstructors(nestedClass.Classes);
+            }
+
+            foreach (StructNestedStruct nestedStruct in nestedStructs.Structs)
+            {
+                RemoveNestedConstructors(nestedStruct.Constructors, nestedStruct.Classes, nestedStruct.Structs);
             }
         }
 
@@ -148,7 +164,7 @@ namespace CSharpDom.Tests.Common
                 @class.Constructors.Clear();
                 if (!IsNestedConstructorTest)
                 {
-                    RemoveNestedConstructors(@class.Constructors, @class.Classes);
+                    RemoveNestedConstructors(@class.Constructors, @class.Classes, @class.Structs);
                 }
             }
             
@@ -162,7 +178,7 @@ namespace CSharpDom.Tests.Common
                 @class.Constructors.Clear();
                 if (!IsNestedConstructorTest)
                 {
-                    RemoveNestedConstructors(@class.Constructors, @class.Classes);
+                    RemoveNestedConstructors(@class.Constructors, @class.Classes, @class.Structs);
                 }
             }
 
@@ -176,7 +192,7 @@ namespace CSharpDom.Tests.Common
                 @class.Constructors.Clear();
                 if (!IsNestedConstructorTest)
                 {
-                    RemoveNestedConstructors(@class.Constructors, @class.Classes);
+                    RemoveNestedConstructors(@class.Constructors, @class.Classes, @class.Structs);
                 }
             }
 
@@ -233,7 +249,7 @@ namespace CSharpDom.Tests.Common
                 @struct.Constructors.Clear();
                 if (!IsNestedConstructorTest)
                 {
-                    RemoveNestedConstructors(@struct.Classes);
+                    RemoveNestedConstructors(@struct.Constructors, @struct.Classes, @struct.Structs);
                 }
             }
 
