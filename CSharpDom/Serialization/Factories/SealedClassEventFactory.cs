@@ -17,6 +17,7 @@ namespace CSharpDom.Serialization.Factories
                 Attributes = @event.Attributes.ToAttributeListUsingFactory(),
                 EventType = new DelegateReferenceFactory(@event.EventType).Value,
                 FieldAttributes = @event.FieldAttributes.ToAttributeListUsingFactory(),
+                InheritanceModifier = @event.InheritanceModifier,
                 Name = @event.Name,
                 Visibility = @event.Visibility
             };

@@ -393,6 +393,7 @@ namespace CSharpDom.Text
         public override void VisitStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             IStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
         {
+            Steps.AddChildNodeStepsOnNewLines(@event.Attributes);
             Steps.AddStructMemberVisibilityModifierSteps(@event.Visibility);
             VisitEvent(@event);
         }

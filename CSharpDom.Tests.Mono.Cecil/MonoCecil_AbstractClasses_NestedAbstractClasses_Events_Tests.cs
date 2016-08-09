@@ -43,11 +43,11 @@ namespace CSharpDom.Tests.Mono.Cecil
             await TestAbstractClassAsync(typeof(AbstractClassWithNestedAbstractClassWithNewStaticEvent));
         }
 
-        [TestMethod]
-        public async Task TestAbstractClassWithNestedAbstractClassWithNewVirtualEventUsingMonoCecil()
-        {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedAbstractClassWithNewVirtualEvent));
-        }
+        //[TestMethod]
+        //public async Task TestAbstractClassWithNestedAbstractClassWithNewVirtualEventUsingMonoCecil()
+        //{
+        //    await TestAbstractClassAsync(typeof(AbstractClassWithNestedAbstractClassWithNewVirtualEvent));
+        //}
 
         [TestMethod]
         public async Task TestAbstractClassWithNestedAbstractClassWithOverrideEventUsingMonoCecil()

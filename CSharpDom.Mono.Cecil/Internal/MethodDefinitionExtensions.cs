@@ -27,6 +27,7 @@ namespace CSharpDom.Mono.Cecil.Internal
                     return SealedClassMemberInheritanceModifier.NewStatic;
                 case ClassMemberInheritanceModifier.None:
                     return SealedClassMemberInheritanceModifier.None;
+                case ClassMemberInheritanceModifier.NewVirtual:
                 case ClassMemberInheritanceModifier.Override:
                     return SealedClassMemberInheritanceModifier.Override;
                 case ClassMemberInheritanceModifier.SealedOverride:

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.AbstractClasses.NestedClasses.Events
 {
-    public abstract class AbstractClassW⁬ithNestedClassWithEventWith1Attribute
+    public abstract class AbstractClassWithNestedClassWithEventWith1Attribute
     {
         public class Class
         {

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedStructs.Events
 {
-    public struct StructWithNestedStructsWithEventWith1Attribute
+    public struct StructWithNestedStructWithEventWith1Attribute
     {
         public struct Struct
         {

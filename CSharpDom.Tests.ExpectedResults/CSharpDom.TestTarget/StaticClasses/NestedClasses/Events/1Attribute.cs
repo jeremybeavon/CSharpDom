@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.StaticClasses.NestedClasses.Events
 {
-    public static class StaticClassW⁬ithNestedClassWithEventWith1Attribute
+    public static class StaticClassWithNestedClassWithEventWith1Attribute
     {
         public class Class
         {

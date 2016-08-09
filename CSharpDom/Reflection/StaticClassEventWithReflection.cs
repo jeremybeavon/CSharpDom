@@ -37,7 +37,7 @@ namespace CSharpDom.Reflection
 
         public override IReadOnlyCollection<AttributeWithReflection> FieldAttributes
         {
-            get { throw new NotImplementedException(); }
+            get { return new AttributeWithReflection[0]; }
         }
         
         public override string Name

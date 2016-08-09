@@ -38,6 +38,8 @@ namespace CSharpDom.Tests.Common
             LoadedDocument document = CreateLoadedDocument(new AbstractClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
             string expectedResult = TypeTextProvider.GetTypeText(type);
+            char[] expectedResultArray = expectedResult.ToCharArray();
+            char[] documentTextArray = documentText.ToCharArray();
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 

@@ -25,11 +25,11 @@ namespace CSharpDom.Tests.Mono.Cecil
             await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewStaticProperty));
         }
 
-        [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithNewVirtualPropertyUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewVirtualProperty));
-        }
+        //[TestMethod]
+        //public async Task TestSealedClassWithNestedAbstractClassWithNewVirtualPropertyUsingMonoCecil()
+        //{
+        //    await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewVirtualProperty));
+        //}
 
         [TestMethod]
         public async Task TestSealedClassWithNestedAbstractClassWithOverridePropertyUsingMonoCecil()

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Classes.NestedClasses.Events
 {
-    public sealed class ClassWithNestedClassWithEventWith1Attribute
+    public class ClassWithNestedClassWithEventWith1Attribute
     {
         public class Class
         {
