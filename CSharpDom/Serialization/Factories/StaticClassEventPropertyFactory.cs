@@ -14,10 +14,12 @@ namespace CSharpDom.Serialization.Factories
         {
             Value = new StaticClassEventProperty()
             {
+                AddAttributes = eventProperty.AddAttributes.ToAttributeListUsingFactory(),
                 AddBody = new MethodBodyFactory(eventProperty.AddBody).Value,
                 Attributes = eventProperty.Attributes.ToAttributeListUsingFactory(),
                 EventType = new DelegateReferenceFactory(eventProperty.EventType).Value,
                 Name = eventProperty.Name,
+                RemoveAttributes = eventProperty.RemoveAttributes.ToAttributeListUsingFactory(),
                 RemoveBody = new MethodBodyFactory(eventProperty.RemoveBody).Value,
                 Visibility = eventProperty.Visibility
             };

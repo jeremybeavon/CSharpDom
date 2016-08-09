@@ -8,9 +8,9 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedSealedClasses_Events_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithEventWith1AttributeUsingReflection()
+        public async Task TestStructWithNestedSealedClassWithEventWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(AbstractClassWithNestedSealedClassWithEventWith1Attribute));
+            await TestStructAsync(typeof(StructWithNestedSealedClassWithEventWith1Attribute));
         }
 
         [TestMethod]

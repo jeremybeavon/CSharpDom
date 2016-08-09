@@ -26,7 +26,9 @@ namespace CSharpDom.Serialization
         }
 
         public DelegateReference EventType { get; set; }
-        
+
+        public SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
+
         public string Name { get; set; }
 
         public MethodBody RemoveBody { get; set; }

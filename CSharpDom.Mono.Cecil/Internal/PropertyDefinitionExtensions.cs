@@ -76,7 +76,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             this PropertyDefinition property,
             IInternalTypeWithMonoCecil type)
         {
-            switch (property.Method().InheritanceModifier(() => type.HiddenMembersAnalyzer.IsIndexerHidden(property)))
+            switch (property.Method().PropertyOrEventInheritanceModifier(() => type.HiddenMembersAnalyzer.IsIndexerHidden(property)))
             {
                 case ClassMemberInheritanceModifier.None:
                     return CSharpDom.IndexerInheritanceModifier.None;

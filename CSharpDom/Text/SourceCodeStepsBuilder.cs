@@ -422,7 +422,7 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(eventProperty.Attributes);
             Steps.AddClassMemberVisibilityModifierSteps(eventProperty.Visibility);
-            //Steps.AddSealedClassMemberInheritanceModifierSteps(eventProperty.InheritanceModifier);
+            Steps.AddSealedClassMemberInheritanceModifierSteps(eventProperty.InheritanceModifier);
             VisitEventProperty(eventProperty);
         }
 
