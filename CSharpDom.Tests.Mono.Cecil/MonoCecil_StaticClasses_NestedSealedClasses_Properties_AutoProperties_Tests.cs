@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_NestedSealedClasses_Properties_AutoProperties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithInternalAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithInternalAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNewAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithNewAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNewStaticAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithNewStaticAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewStaticAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithOverrideAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithOverrideAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithOverrideAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithPrivateAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithPrivateAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithProtectedAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithProtectedAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithProtectedInternalAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithProtectedInternalAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithPublicAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithPublicAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPublicAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithSealedOverrideAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithSealedOverrideAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithSealedOverrideAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithStaticAutoPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedSealedClassWithStaticAutoPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithStaticAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithStaticAutoProperty));
         }
     }
 }

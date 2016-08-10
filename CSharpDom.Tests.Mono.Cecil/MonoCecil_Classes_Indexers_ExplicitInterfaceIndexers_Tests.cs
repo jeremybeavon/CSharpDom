@@ -8,51 +8,51 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Classes_Indexers_ExplicitInterfaceIndexers_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceIndexerWith1AccessorAttributeUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceIndexerWith1AttributeUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceIndexerWith1AttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith1Attribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceIndexerWith2ParametersUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceIndexerWith2ParametersUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2Parameters));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceIndexerWith2ParametersWithAttributesUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceIndexerWith2ParametersWithModifiersUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceIndexerUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceIndexerUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceIndexer));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexer));
         }
     }
 }

@@ -130,7 +130,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.Structs; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { return nestedStruct.Visibility; }
         }

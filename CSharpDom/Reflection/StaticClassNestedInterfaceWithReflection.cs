@@ -68,9 +68,9 @@ namespace CSharpDom.Reflection
             get { return nestedInterface.Properties; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedInterface.Type.StaticClassMemberVisibility(); }
+            get { return nestedInterface.Type.ClassMemberVisibility(); }
         }
     }
 }

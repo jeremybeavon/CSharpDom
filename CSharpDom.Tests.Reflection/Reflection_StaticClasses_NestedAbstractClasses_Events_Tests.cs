@@ -8,93 +8,93 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_StaticClasses_NestedAbstractClasses_Events_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithEventWith1AttributeUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithEventWith1AttributeUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithEventWithGenericDelegateUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithEventWithGenericDelegateUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWithGenericDelegate));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithInternalEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithInternalEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNewEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithNewEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNewStaticEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithNewStaticEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewStaticEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNewVirtualEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithNewVirtualEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithOverrideEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithOverrideEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPrivateEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithPrivateEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedInternalEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedInternalEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPublicEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithPublicEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithSealedOverrideEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithSealedOverrideEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithStaticEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithStaticEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithStaticEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithVirtualEventUsingReflection()
+        public void TestStaticClassWithNestedAbstractClassWithVirtualEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualEvent));
         }
     }
 }

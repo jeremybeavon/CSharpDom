@@ -43,9 +43,9 @@ namespace CSharpDom.Reflection
             get { return nestedEnum.Name; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedEnum.Type.StaticClassMemberVisibility(); }
+            get { return nestedEnum.Type.ClassMemberVisibility(); }
         }
     }
 }

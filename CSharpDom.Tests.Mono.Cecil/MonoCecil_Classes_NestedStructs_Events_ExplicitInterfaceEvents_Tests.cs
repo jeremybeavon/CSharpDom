@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Classes_NestedStructs_Events_ExplicitInterfaceEvents_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttributeUsingMonoCecil()
+        public void TestClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithExplicitInterfaceEventWith1AttributeUsingMonoCecil()
+        public void TestClassWithNestedStructWithExplicitInterfaceEventWith1AttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithExplicitInterfaceEventUsingMonoCecil()
+        public void TestClassWithNestedStructWithExplicitInterfaceEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEvent));
+            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegateUsingMonoCecil()
+        public void TestClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegateUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegate));
+            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithExplicitInterfaceEventWithGenericInterfaceUsingMonoCecil()
+        public void TestClassWithNestedStructWithExplicitInterfaceEventWithGenericInterfaceUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWithGenericInterface));
+            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

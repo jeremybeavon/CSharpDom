@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Classes_NestedClasses_Events_ExplicitInterfaceEvents_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedClassWithExplicitInterfaceEventWith1AccessorAttributeUsingReflection()
+        public void TestClassWithNestedClassWithExplicitInterfaceEventWith1AccessorAttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithExplicitInterfaceEventWith1AttributeUsingReflection()
+        public void TestClassWithNestedClassWithExplicitInterfaceEventWith1AttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithExplicitInterfaceEventUsingReflection()
+        public void TestClassWithNestedClassWithExplicitInterfaceEventUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithExplicitInterfaceEventWithGenericDelegateUsingReflection()
+        public void TestClassWithNestedClassWithExplicitInterfaceEventWithGenericDelegateUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithExplicitInterfaceEventWithGenericInterfaceUsingReflection()
+        public void TestClassWithNestedClassWithExplicitInterfaceEventWithGenericInterfaceUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWithGenericInterface));
+            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

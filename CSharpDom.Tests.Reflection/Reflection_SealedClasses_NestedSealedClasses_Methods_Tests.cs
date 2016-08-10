@@ -8,159 +8,159 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_SealedClasses_NestedSealedClasses_Methods_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWith1AttributeUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWith1AttributeUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWith1GenericParameterUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWith1GenericParameterUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith1GenericParameter));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith1GenericParameter));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWith1ReturnAttributeUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWith1ReturnAttributeUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith1ReturnAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWith2GenericParametersUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWith2GenericParametersUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2GenericParameters));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2GenericParameters));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterBaseClassConstraintUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterBaseClassConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterClassConstraintUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterClassConstraintUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterClassConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterEmptyConstructorConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterGenericParameterConstraintUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterGenericParameterConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterInterfaceConstraintUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterInterfaceConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterStructConstraintUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithGenericParameterStructConstraintUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterStructConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithInternalMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithInternalMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithInternalMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithInternalMethod));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithNewMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithNewMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewMethod));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithNewStaticMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithNewStaticMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewStaticMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewStaticMethod));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithOverrideMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithOverrideMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithOverrideMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithOverrideMethod));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithParametersWithAttributesUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithParametersWithAttributesUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithParametersWithAttributes));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithMethodWithParametersWithModifiersUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithMethodWithParametersWithModifiersUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithParametersWithModifiers));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithMethodWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithPrivateMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithPrivateMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPrivateMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPrivateMethod));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithProtectedMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithProtectedMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedMethod));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithProtectedInternalMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithProtectedInternalMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedInternalMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedInternalMethod));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithPublicMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithPublicMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicMethod));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithSealedOverrideMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithSealedOverrideMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithSealedOverrideMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithSealedOverrideMethod));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithStaticMethodUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithStaticMethodUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithStaticMethod));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithStaticMethod));
         }
     }
 }

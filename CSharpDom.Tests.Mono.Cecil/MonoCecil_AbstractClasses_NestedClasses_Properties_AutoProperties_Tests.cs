@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_AbstractClasses_NestedClasses_Properties_AutoProperties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithInternalAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithInternalAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithInternalAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithNewAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithNewAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithNewStaticAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithNewStaticAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewStaticAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithNewVirtualAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithNewVirtualAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewVirtualAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithOverrideAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithOverrideAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithOverrideAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithPrivateAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithPrivateAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPrivateAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithProtectedAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithProtectedAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithProtectedInternalAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithProtectedInternalAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedInternalAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithPublicAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithPublicAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPublicAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPublicAutoProperty));
         }
 
         //[TestMethod]
-        //public async Task TestAbstractClassWithNestedClassWithSealedOverrideAutoPropertyUsingMonoCecil()
+        //public void TestAbstractClassWithNestedClassWithSealedOverrideAutoPropertyUsingMonoCecil()
         //{
-        //    await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithSealedOverrideAutoProperty));
+        //    TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithSealedOverrideAutoProperty));
         //}
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithStaticAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithStaticAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithStaticAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithVirtualAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNestedClassWithVirtualAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithVirtualAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithVirtualAutoProperty));
         }
     }
 }

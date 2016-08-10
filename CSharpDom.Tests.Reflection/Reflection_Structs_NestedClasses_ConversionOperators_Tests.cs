@@ -8,87 +8,87 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedClasses_ConversionOperators_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitConversionOperatorUsingReflection()
+        public void TestStructWithNestedClassWithExplicitConversionOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperator));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitConversionOperatorWith1AttributeUsingReflection()
+        public void TestStructWithNestedClassWithExplicitConversionOperatorWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitConversionOperatorWith1ParameterAttributeUsingReflection()
+        public void TestStructWithNestedClassWithExplicitConversionOperatorWith1ParameterAttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith1ParameterAttribute));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitConversionOperatorWith1ReturnAttributeUsingReflection()
+        public void TestStructWithNestedClassWithExplicitConversionOperatorWith1ReturnAttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith1ReturnAttribute));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithImplicitConversionOperatorUsingReflection()
+        public void TestStructWithNestedClassWithImplicitConversionOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperator));
+            TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithImplicitConversionOperatorWith1AttributeUsingReflection()
+        public void TestStructWithNestedClassWithImplicitConversionOperatorWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithImplicitConversionOperatorWith1ParameterAttributeUsingReflection()
+        public void TestStructWithNestedClassWithImplicitConversionOperatorWith1ParameterAttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith1ParameterAttribute));
+            TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithImplicitConversionOperatorWith1ReturnAttributeUsingReflection()
+        public void TestStructWithNestedClassWithImplicitConversionOperatorWith1ReturnAttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith1ReturnAttribute));
+            TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
     }
 }

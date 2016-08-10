@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedClasses_NestedDelegates_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWith1AttributeUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWith1GenericParameterUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWith1GenericParameterUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWith1GenericParameter));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWith1GenericParameter));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWith2GenericParametersUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWith2GenericParametersUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWith2GenericParameters));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWith2GenericParameters));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWithGenericParameterBaseClassConstraintUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterBaseClassConstraint));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedClassWithNestedDelegateWithGenericParameterClassConstraintUsingReflection()
+        public void TestStructWithNestedClassWithNestedClassWithNestedDelegateWithGenericParameterClassConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedClassWithNestedDelegateWithGenericParameterClassConstraint));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedClassWithNestedDelegateWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWithGenericParameterEmptyConstructorConstraintUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterEmptyConstructorConstraint));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWithGenericParameterGenericParameterConstraintUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterGenericParameterConstraint));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWithGenericParameterInterfaceConstraintUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterInterfaceConstraint));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedDelegateWithGenericParameterStructConstraintUsingReflection()
+        public void TestStructWithNestedClassWithNestedDelegateWithGenericParameterStructConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterStructConstraint));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedDelegateWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithInternalNestedDelegateUsingReflection()
+        public void TestStructWithNestedClassWithInternalNestedDelegateUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithInternalNestedDelegate));
+            TestStructAsync(typeof(StructWithNestedClassWithInternalNestedDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithAttributesUsingReflection()
+        public void TestStructWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithAttributesUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithAttributes));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithModifiersUsingReflection()
+        public void TestStructWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithModifiersUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithModifiers));
+            TestStructAsync(typeof(StructWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithPrivateNestedDelegateUsingReflection()
+        public void TestStructWithNestedClassWithPrivateNestedDelegateUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithPrivateNestedDelegate));
+            TestStructAsync(typeof(StructWithNestedClassWithPrivateNestedDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithProtectedNestedDelegateUsingReflection()
+        public void TestStructWithNestedClassWithProtectedNestedDelegateUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithProtectedNestedDelegate));
+            TestStructAsync(typeof(StructWithNestedClassWithProtectedNestedDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithProtectedInternalNestedDelegateUsingReflection()
+        public void TestStructWithNestedClassWithProtectedInternalNestedDelegateUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalNestedDelegate));
+            TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalNestedDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithPublicNestedDelegateUsingReflection()
+        public void TestStructWithNestedClassWithPublicNestedDelegateUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithPublicNestedDelegate));
+            TestStructAsync(typeof(StructWithNestedClassWithPublicNestedDelegate));
         }
     }
 }

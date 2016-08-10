@@ -13,69 +13,69 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWithParametersWithAttributesUsingReflection()
+        public void TestClassWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWithParametersWithAttributes));
+            TestClassAsync(typeof(ClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWith1AttributeUsingReflection()
+        public void TestClassWithConstructorWith1AttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWith1Attribute));
+            TestClassAsync(typeof(ClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWithParametersWithModifiersUsingReflection()
+        public void TestClassWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWithParametersWithModifiers));
+            TestClassAsync(typeof(ClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWith2ParametersUsingReflection()
+        public void TestClassWithConstructorWith2ParametersUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWith2Parameters));
+            TestClassAsync(typeof(ClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWith1ParameterUsingReflection()
+        public void TestClassWithConstructorWith1ParameterUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWith1Parameter));
+            TestClassAsync(typeof(ClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicConstructorUsingReflection()
+        public void TestClassWithPublicConstructorUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithPublicConstructor));
+            TestClassAsync(typeof(ClassWithPublicConstructor));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedConstructorUsingReflection()
+        public void TestClassWithProtectedConstructorUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithProtectedConstructor));
+            TestClassAsync(typeof(ClassWithProtectedConstructor));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalConstructorUsingReflection()
+        public void TestClassWithProtectedInternalConstructorUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalConstructor));
+            TestClassAsync(typeof(ClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivateConstructorUsingReflection()
+        public void TestClassWithPrivateConstructorUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithPrivateConstructor));
+            TestClassAsync(typeof(ClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestClassWithInternalConstructorUsingReflection()
+        public void TestClassWithInternalConstructorUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithInternalConstructor));
+            TestClassAsync(typeof(ClassWithInternalConstructor));
         }
     }
 }

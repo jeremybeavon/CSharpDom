@@ -48,7 +48,7 @@ namespace CSharpDom.BaseClasses
         where TNestedDestructor : INestedDestructor
         where TStaticConstructor : IStaticConstructor
     {
-        public abstract StaticClassMemberVisibilityModifier Visibility { get; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

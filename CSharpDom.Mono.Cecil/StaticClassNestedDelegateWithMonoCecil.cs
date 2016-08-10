@@ -51,9 +51,9 @@ namespace CSharpDom.Mono.Cecil
             get { return nestedDelegate.ReturnType; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedDelegate.TypeDefinition.StaticClassMemberVisibility(); }
+            get { return nestedDelegate.TypeDefinition.ClassMemberVisibility(); }
         }
     }
 }

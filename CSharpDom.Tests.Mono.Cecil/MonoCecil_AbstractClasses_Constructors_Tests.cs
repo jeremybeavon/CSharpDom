@@ -13,69 +13,69 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith1AttributeUsingMonoCecil()
+        public void TestAbstractClassWithConstructorWith1AttributeUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith1ParameterUsingMonoCecil()
+        public void TestAbstractClassWithConstructorWith1ParameterUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Parameter));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith2ParametersUsingMonoCecil()
+        public void TestAbstractClassWithConstructorWith2ParametersUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2Parameters));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithInternalConstructorUsingMonoCecil()
+        public void TestAbstractClassWithInternalConstructorUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
+        public void TestAbstractClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
+        public void TestAbstractClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPrivateConstructorUsingMonoCecil()
+        public void TestAbstractClassWithPrivateConstructorUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedConstructorUsingMonoCecil()
+        public void TestAbstractClassWithProtectedConstructorUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedInternalConstructorUsingMonoCecil()
+        public void TestAbstractClassWithProtectedInternalConstructorUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPublicConstructorUsingMonoCecil()
+        public void TestAbstractClassWithPublicConstructorUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPublicConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithPublicConstructor));
         }
     }
 }

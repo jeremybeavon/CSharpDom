@@ -8,105 +8,105 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Classes_Indexers_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestClassWithIndexerWith1AccessorAttributeUsingReflection()
+        public void TestClassWithIndexerWith1AccessorAttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith1AttributeUsingReflection()
+        public void TestClassWithIndexerWith1AttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith1Attribute));
+            TestClassAsync(typeof(ClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2ParametersUsingReflection()
+        public void TestClassWithIndexerWith2ParametersUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2Parameters));
+            TestClassAsync(typeof(ClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2ParametersWithAttributesUsingReflection()
+        public void TestClassWithIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithAttributes));
+            TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2ParametersWithModifiersUsingReflection()
+        public void TestClassWithIndexerWith2ParametersWithModifiersUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithModifiers));
+            TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestClassWithInternalIndexerUsingReflection()
+        public void TestClassWithInternalIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithInternalIndexer));
+            TestClassAsync(typeof(ClassWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewIndexerUsingReflection()
+        public void TestClassWithNewIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewIndexer));
+            TestClassAsync(typeof(ClassWithNewIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewVirtualIndexerUsingReflection()
+        public void TestClassWithNewVirtualIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewVirtualIndexer));
+            TestClassAsync(typeof(ClassWithNewVirtualIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithOverrideIndexerUsingReflection()
+        public void TestClassWithOverrideIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithOverrideIndexer));
+            TestClassAsync(typeof(ClassWithOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivateIndexerUsingReflection()
+        public void TestClassWithPrivateIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithPrivateIndexer));
+            TestClassAsync(typeof(ClassWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedIndexerUsingReflection()
+        public void TestClassWithProtectedIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithProtectedIndexer));
+            TestClassAsync(typeof(ClassWithProtectedIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalIndexerUsingReflection()
+        public void TestClassWithProtectedInternalIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalIndexer));
+            TestClassAsync(typeof(ClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicIndexerUsingReflection()
+        public void TestClassWithPublicIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithPublicIndexer));
+            TestClassAsync(typeof(ClassWithPublicIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithSealedOverrideIndexerUsingReflection()
+        public void TestClassWithSealedOverrideIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithSealedOverrideIndexer));
+            TestClassAsync(typeof(ClassWithSealedOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithVirtualIndexerUsingReflection()
+        public void TestClassWithVirtualIndexerUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithVirtualIndexer));
+            TestClassAsync(typeof(ClassWithVirtualIndexer));
         }
     }
 }

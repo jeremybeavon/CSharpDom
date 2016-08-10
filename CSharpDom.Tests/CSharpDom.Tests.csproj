@@ -121,6 +121,7 @@
   <ItemGroup>
     <Compile Include="Common\AbstractSolutionTests.cs" />
     <Compile Include="Common\FixMethodBodyVisitor.cs" />
+    <Compile Include="Common\TypeCache.cs" />
     <Compile Include="Common\TypeTextProvider.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -131,10 +132,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSharpDom.Mono.Cecil\CSharpDom.Mono.Cecil.csproj">
-      <Project>{de94e0a9-c4ae-41c0-a0df-bc1fcf57bb08}</Project>
-      <Name>CSharpDom.Mono.Cecil</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CSharpDom.Tests.ExpectedResults\CSharpDom.Tests.ExpectedResults.csproj">
       <Project>{8ad2bcc2-d632-4a87-a4d6-0b687c3b5401}</Project>
       <Name>CSharpDom.Tests.ExpectedResults</Name>

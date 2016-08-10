@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedSealedClasses_Properties_AutoProperties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithInternalAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithInternalAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithInternalAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithNewAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithNewAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithNewAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithNewStaticAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithNewStaticAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithNewStaticAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithOverrideAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithOverrideAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithOverrideAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithPrivateAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithPrivateAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithPrivateAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithProtectedAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithProtectedAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithProtectedInternalAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithProtectedInternalAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedInternalAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithPublicAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithPublicAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithPublicAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithSealedOverrideAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithSealedOverrideAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithSealedOverrideAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithStaticAutoPropertyUsingReflection()
+        public void TestStructWithNestedSealedClassWithStaticAutoPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithStaticAutoProperty));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithStaticAutoProperty));
         }
     }
 }

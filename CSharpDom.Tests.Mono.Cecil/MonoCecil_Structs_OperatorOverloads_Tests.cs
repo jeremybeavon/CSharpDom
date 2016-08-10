@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_OperatorOverloads_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStructWithAndOperatorUsingMonoCecil()
+        public void TestStructWithAndOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithAndOperator));
+            TestStructAsync(typeof(StructWithAndOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithBitwiseNotOperatorUsingMonoCecil()
+        public void TestStructWithBitwiseNotOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithBitwiseNotOperator));
+            TestStructAsync(typeof(StructWithBitwiseNotOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithDecrementOperatorUsingMonoCecil()
+        public void TestStructWithDecrementOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithDecrementOperator));
+            TestStructAsync(typeof(StructWithDecrementOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithEqualAndNotEqualOperatorsUsingMonoCecil()
+        public void TestStructWithEqualAndNotEqualOperatorsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithEqualAndNotEqualOperators));
+            TestStructAsync(typeof(StructWithEqualAndNotEqualOperators));
         }
 
         [TestMethod]
-        public async Task TestStructWithExclusiveOrOperatorUsingMonoCecil()
+        public void TestStructWithExclusiveOrOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithExclusiveOrOperator));
+            TestStructAsync(typeof(StructWithExclusiveOrOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithIncrementOperatorUsingMonoCecil()
+        public void TestStructWithIncrementOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithIncrementOperator));
+            TestStructAsync(typeof(StructWithIncrementOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithLeftShiftOperatorUsingMonoCecil()
+        public void TestStructWithLeftShiftOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithLeftShiftOperator));
+            TestStructAsync(typeof(StructWithLeftShiftOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithLessThanAndGreaterThanOperatorsUsingMonoCecil()
+        public void TestStructWithLessThanAndGreaterThanOperatorsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithLessThanAndGreaterThanOperators));
+            TestStructAsync(typeof(StructWithLessThanAndGreaterThanOperators));
         }
 
         [TestMethod]
-        public async Task TestStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorsUsingMonoCecil()
+        public void TestStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithLessThanOrEqualAndGreaterThanOrEqualOperators));
+            TestStructAsync(typeof(StructWithLessThanOrEqualAndGreaterThanOrEqualOperators));
         }
 
         [TestMethod]
-        public async Task TestStructWithLogicalNotOperatorUsingMonoCecil()
+        public void TestStructWithLogicalNotOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithLogicalNotOperator));
+            TestStructAsync(typeof(StructWithLogicalNotOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithMinusOperatorUsingMonoCecil()
+        public void TestStructWithMinusOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithMinusOperator));
+            TestStructAsync(typeof(StructWithMinusOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithModuloOperatorUsingMonoCecil()
+        public void TestStructWithModuloOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithModuloOperator));
+            TestStructAsync(typeof(StructWithModuloOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithMultiplyOperatorUsingMonoCecil()
+        public void TestStructWithMultiplyOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithMultiplyOperator));
+            TestStructAsync(typeof(StructWithMultiplyOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithOrOperatorUsingMonoCecil()
+        public void TestStructWithOrOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithOrOperator));
+            TestStructAsync(typeof(StructWithOrOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithPlusOperatorUsingMonoCecil()
+        public void TestStructWithPlusOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithPlusOperator));
+            TestStructAsync(typeof(StructWithPlusOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithRightShiftOperatorUsingMonoCecil()
+        public void TestStructWithRightShiftOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithRightShiftOperator));
+            TestStructAsync(typeof(StructWithRightShiftOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithTrueAndFalseOperatorsUsingMonoCecil()
+        public void TestStructWithTrueAndFalseOperatorsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithTrueAndFalseOperators));
+            TestStructAsync(typeof(StructWithTrueAndFalseOperators));
         }
 
         [TestMethod]
-        public async Task TestStructWithUnaryMinusOperatorUsingMonoCecil()
+        public void TestStructWithUnaryMinusOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithUnaryMinusOperator));
+            TestStructAsync(typeof(StructWithUnaryMinusOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithUnaryPlusOperatorUsingMonoCecil()
+        public void TestStructWithUnaryPlusOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithUnaryPlusOperator));
+            TestStructAsync(typeof(StructWithUnaryPlusOperator));
         }
     }
 }

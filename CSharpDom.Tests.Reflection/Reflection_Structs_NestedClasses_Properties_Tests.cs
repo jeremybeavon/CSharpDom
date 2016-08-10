@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedClasses_Properties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedClassWithInternalPropertyUsingReflection()
+        public void TestStructWithNestedClassWithInternalPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithInternalProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNewPropertyUsingReflection()
+        public void TestStructWithNestedClassWithNewPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNewProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithNewProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNewStaticPropertyUsingReflection()
+        public void TestStructWithNestedClassWithNewStaticPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNewStaticProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithNewStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNewVirtualPropertyUsingReflection()
+        public void TestStructWithNestedClassWithNewVirtualPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNewVirtualProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithNewVirtualProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithOverridePropertyUsingReflection()
+        public void TestStructWithNestedClassWithOverridePropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithOverrideProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithPrivatePropertyUsingReflection()
+        public void TestStructWithNestedClassWithPrivatePropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithPrivateProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithProtectedPropertyUsingReflection()
+        public void TestStructWithNestedClassWithProtectedPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithProtectedProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithProtectedProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithProtectedInternalPropertyUsingReflection()
+        public void TestStructWithNestedClassWithProtectedInternalPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithPublicPropertyUsingReflection()
+        public void TestStructWithNestedClassWithPublicPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithPublicProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithSealedOverridePropertyUsingReflection()
+        public void TestStructWithNestedClassWithSealedOverridePropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithSealedOverrideProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithStaticPropertyUsingReflection()
+        public void TestStructWithNestedClassWithStaticPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithStaticProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithVirtualPropertyUsingReflection()
+        public void TestStructWithNestedClassWithVirtualPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithVirtualProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithVirtualProperty));
         }
     }
 }

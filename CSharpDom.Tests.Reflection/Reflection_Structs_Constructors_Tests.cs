@@ -13,57 +13,57 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith1AttributeUsingReflection()
+        public void TestStructWithConstructorWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith1Attribute));
+            TestStructAsync(typeof(StructWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith1ParameterUsingReflection()
+        public void TestStructWithConstructorWith1ParameterUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith1Parameter));
+            TestStructAsync(typeof(StructWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith2ParametersUsingReflection()
+        public void TestStructWithConstructorWith2ParametersUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith2Parameters));
+            TestStructAsync(typeof(StructWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestStructWithInternalConstructorUsingReflection()
+        public void TestStructWithInternalConstructorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithInternalConstructor));
+            TestStructAsync(typeof(StructWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWithParametersWithAttributesUsingReflection()
+        public void TestStructWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithConstructorWithParametersWithAttributes));
+            TestStructAsync(typeof(StructWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWithParametersWithModifiersUsingReflection()
+        public void TestStructWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithConstructorWithParametersWithModifiers));
+            TestStructAsync(typeof(StructWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateConstructorUsingReflection()
+        public void TestStructWithPrivateConstructorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithPrivateConstructor));
+            TestStructAsync(typeof(StructWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicConstructorUsingReflection()
+        public void TestStructWithPublicConstructorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithPublicConstructor));
+            TestStructAsync(typeof(StructWithPublicConstructor));
         }
     }
 }

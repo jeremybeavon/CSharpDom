@@ -8,123 +8,123 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_NestedClasses_OperatorOverloads_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedClassWithAndOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithAndOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithAndOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithAndOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithBitwiseNotOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithBitwiseNotOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithBitwiseNotOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithDecrementOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithDecrementOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithDecrementOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithDivideOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithDivideOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithDivideOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithEqualAndNotEqualOperatorOverloadsUsingMonoCecil()
+        public void TestStructWithNestedClassWithEqualAndNotEqualOperatorOverloadsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithEqualAndNotEqualOperatorOverloads));
+            TestStructAsync(typeof(StructWithNestedClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExclusiveOrOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithExclusiveOrOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExclusiveOrOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithIncrementOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithIncrementOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithIncrementOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithLeftShiftOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithLeftShiftOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithLeftShiftOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithLessThanAndGreaterThanOperatorOverloadsUsingMonoCecil()
+        public void TestStructWithNestedClassWithLessThanAndGreaterThanOperatorOverloadsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestStructAsync(typeof(StructWithNestedClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingMonoCecil()
+        public void TestStructWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestStructAsync(typeof(StructWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithLogicalNotOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithLogicalNotOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithLogicalNotOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithMinusOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithMinusOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithMinusOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithModuloOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithModuloOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithModuloOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithMultiplyOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithMultiplyOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithMultiplyOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithOrOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithOrOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithOrOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithOrOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithPlusOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithPlusOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithPlusOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithRightShiftOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithRightShiftOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithRightShiftOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithTrueAndFalseOperatorOverloadsUsingMonoCecil()
+        public void TestStructWithNestedClassWithTrueAndFalseOperatorOverloadsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithTrueAndFalseOperatorOverloads));
+            TestStructAsync(typeof(StructWithNestedClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithUnaryMinusOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithUnaryMinusOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithUnaryMinusOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithUnaryPlusOperatorOverloadUsingMonoCecil()
+        public void TestStructWithNestedClassWithUnaryPlusOperatorOverloadUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithUnaryPlusOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedClassWithUnaryPlusOperatorOverload));
         }
     }
 }

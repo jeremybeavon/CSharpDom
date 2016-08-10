@@ -8,21 +8,21 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_SealedClasses_NestedSealedClasses_Destructors_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithDestructorWith1AttributeUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithDestructorWith1AttributeUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithDestructorWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithDestructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithDestructorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithDestructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithDestructorWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithDestructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithDestructorUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithDestructorUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithDestructor));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithDestructor));
         }
     }
 }

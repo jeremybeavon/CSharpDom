@@ -8,105 +8,105 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_NestedAbstractClasses_Indexers_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithIndexerWith1AccessorAttributeUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith1AccessorAttribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithIndexerWith1AttributeUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithIndexerWith1AttributeUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithIndexerWith2ParametersUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithIndexerWith2ParametersUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2Parameters));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2ParametersWithAttributes));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2ParametersWithModifiers));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithInternalIndexerUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithInternalIndexerUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNewIndexerUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithNewIndexerUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewIndexer));
+        }
+
+        //[TestMethod]
+        //public void TestStaticClassWithNestedAbstractClassWithNewVirtualIndexerUsingMonoCecil()
+        //{
+        //    TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualIndexer));
+        //}
+
+        [TestMethod]
+        public void TestStaticClassWithNestedAbstractClassWithOverrideIndexerUsingMonoCecil()
+        {
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNewVirtualIndexerUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithPrivateIndexerUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithOverrideIndexerUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedIndexerUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPrivateIndexerUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedInternalIndexerUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedIndexerUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithPublicIndexerUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicIndexer));
         }
 
-        [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedInternalIndexerUsingMonoCecil()
-        {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalIndexer));
-        }
+        //[TestMethod]
+        //public void TestStaticClassWithNestedAbstractClassWithSealedOverrideIndexerUsingMonoCecil()
+        //{
+        //    TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideIndexer));
+        //}
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPublicIndexerUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithVirtualIndexerUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicIndexer));
-        }
-
-        [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithSealedOverrideIndexerUsingMonoCecil()
-        {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideIndexer));
-        }
-
-        [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithVirtualIndexerUsingMonoCecil()
-        {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualIndexer));
         }
     }
 }

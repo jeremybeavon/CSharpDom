@@ -8,93 +8,93 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_SealedClasses_Events_EventProperties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
+        public void TestSealedClassWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith1AccessorAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestSealedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithEventPropertyWith1AttributeUsingMonoCecil()
+        public void TestSealedClassWithEventPropertyWith1AttributeUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithEventPropertyWithGenericDelegateUsingMonoCecil()
+        public void TestSealedClassWithEventPropertyWithGenericDelegateUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithEventPropertyWithGenericDelegate));
+            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithInternalEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithInternalEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithInternalEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNewEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithNewEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNewEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNewEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNewStaticEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithNewStaticEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNewStaticEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNewStaticEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithOverrideEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithOverrideEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithOverrideEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithOverrideEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithPrivateEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithPrivateEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithPrivateEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithPrivateEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithProtectedEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithProtectedEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithProtectedEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithProtectedEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithProtectedInternalEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithProtectedInternalEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithProtectedInternalEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithProtectedInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithPublicEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithPublicEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithPublicEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithPublicEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithSealedOverrideEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithSealedOverrideEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithSealedOverrideEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithSealedOverrideEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithStaticEventPropertyUsingMonoCecil()
+        public void TestSealedClassWithStaticEventPropertyUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithStaticEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithStaticEventProperty));
         }
     }
 }

@@ -8,123 +8,123 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedSealedClasses_OperatorOverloads_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithAndOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithAndOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithAndOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithAndOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithBitwiseNotOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithBitwiseNotOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithBitwiseNotOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithDecrementOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithDecrementOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithDecrementOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithDivideOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithDivideOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithDivideOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithEqualAndNotEqualOperatorOverloadsUsingReflection()
+        public void TestStructWithNestedSealedClassWithEqualAndNotEqualOperatorOverloadsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithEqualAndNotEqualOperatorOverloads));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithExclusiveOrOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithExclusiveOrOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithExclusiveOrOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithIncrementOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithIncrementOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithIncrementOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithLeftShiftOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithLeftShiftOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithLeftShiftOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
+        public void TestStructWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
+        public void TestStructWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithLogicalNotOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithLogicalNotOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithLogicalNotOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithMinusOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithMinusOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithMinusOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithModuloOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithModuloOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithModuloOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithMultiplyOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithMultiplyOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithMultiplyOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithOrOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithOrOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithOrOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithOrOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithPlusOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithPlusOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithPlusOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithRightShiftOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithRightShiftOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithRightShiftOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithTrueAndFalseOperatorOverloadsUsingReflection()
+        public void TestStructWithNestedSealedClassWithTrueAndFalseOperatorOverloadsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithTrueAndFalseOperatorOverloads));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithUnaryMinusOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithUnaryMinusOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithUnaryMinusOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithUnaryPlusOperatorOverloadUsingReflection()
+        public void TestStructWithNestedSealedClassWithUnaryPlusOperatorOverloadUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithUnaryPlusOperatorOverload));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithUnaryPlusOperatorOverload));
         }
     }
 }

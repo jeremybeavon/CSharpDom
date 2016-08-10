@@ -8,9 +8,9 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_AbstractClasses_Destructors_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithDestructorUsingReflection()
+        public void TestAbstractClassWithDestructorUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithDestructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithDestructor));
         }
     }
 }

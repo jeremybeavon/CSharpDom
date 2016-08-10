@@ -99,9 +99,9 @@ namespace CSharpDom.Mono.Cecil
             get { return nestedClass.Structs; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedClass.TypeDefinition.StaticClassMemberVisibility(); }
+            get { return nestedClass.TypeDefinition.ClassMemberVisibility(); }
         }
     }
 }

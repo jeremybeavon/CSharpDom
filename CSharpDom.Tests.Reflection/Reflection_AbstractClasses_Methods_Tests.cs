@@ -8,171 +8,171 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_AbstractClasses_Methods_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWith1AttributeUsingReflection()
+        public void TestAbstractClassWithMethodWith1AttributeUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWith1GenericParameterUsingReflection()
+        public void TestAbstractClassWithMethodWith1GenericParameterUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWith1GenericParameter));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWith1GenericParameter));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWith1ReturnAttributeUsingReflection()
+        public void TestAbstractClassWithMethodWith1ReturnAttributeUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWith1ReturnAttribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestAbstractClassWithMethodWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWith2GenericParametersUsingReflection()
+        public void TestAbstractClassWithMethodWith2GenericParametersUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWith2GenericParameters));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWith2GenericParameters));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
+        public void TestAbstractClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterBaseClassConstraintUsingReflection()
+        public void TestAbstractClassWithMethodWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterBaseClassConstraint));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
+        public void TestAbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
+        public void TestAbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterClassConstraintUsingReflection()
+        public void TestAbstractClassWithMethodWithGenericParameterClassConstraintUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassConstraint));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingReflection()
+        public void TestAbstractClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterEmptyConstructorConstraint));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterGenericParameterConstraintUsingReflection()
+        public void TestAbstractClassWithMethodWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterGenericParameterConstraint));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterInterfaceConstraintUsingReflection()
+        public void TestAbstractClassWithMethodWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterInterfaceConstraint));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithGenericParameterStructConstraintUsingReflection()
+        public void TestAbstractClassWithMethodWithGenericParameterStructConstraintUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterStructConstraint));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithInternalMethodUsingReflection()
+        public void TestAbstractClassWithInternalMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithInternalMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithInternalMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewMethodUsingReflection()
+        public void TestAbstractClassWithNewMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewStaticMethodUsingReflection()
+        public void TestAbstractClassWithNewStaticMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewStaticMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewVirtualMethodUsingReflection()
+        public void TestAbstractClassWithNewVirtualMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithOverrideMethodUsingReflection()
+        public void TestAbstractClassWithOverrideMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithOverrideMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithOverrideMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithParametersWithAttributesUsingReflection()
+        public void TestAbstractClassWithMethodWithParametersWithAttributesUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithParametersWithAttributes));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMethodWithParametersWithModifiersUsingReflection()
+        public void TestAbstractClassWithMethodWithParametersWithModifiersUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMethodWithParametersWithModifiers));
+            TestAbstractClassAsync(typeof(AbstractClassWithMethodWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPrivateMethodUsingReflection()
+        public void TestAbstractClassWithPrivateMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithPrivateMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedMethodUsingReflection()
+        public void TestAbstractClassWithProtectedMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedInternalMethodUsingReflection()
+        public void TestAbstractClassWithProtectedInternalMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPublicMethodUsingReflection()
+        public void TestAbstractClassWithPublicMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPublicMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithPublicMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithSealedOverrideMethodUsingReflection()
+        public void TestAbstractClassWithSealedOverrideMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithStaticMethodUsingReflection()
+        public void TestAbstractClassWithStaticMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithStaticMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithStaticMethod));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithVirtualMethodUsingReflection()
+        public void TestAbstractClassWithVirtualMethodUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithVirtualMethod));
+            TestAbstractClassAsync(typeof(AbstractClassWithVirtualMethod));
         }
     }
 }

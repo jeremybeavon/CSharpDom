@@ -8,105 +8,105 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_SealedClasses_NestedClasses_Indexers_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith1AccessorAttributeUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith1AccessorAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith1AttributeUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithIndexerWith1AttributeUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2ParametersUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithIndexerWith2ParametersUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2Parameters));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithInternalIndexerUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithInternalIndexerUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithInternalIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithNewIndexerUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithNewIndexerUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewIndexer));
+        }
+
+        //[TestMethod]
+        //public void TestSealedClassWithNestedClassWithNewVirtualIndexerUsingMonoCecil()
+        //{
+        //    TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewVirtualIndexer));
+        //}
+
+        [TestMethod]
+        public void TestSealedClassWithNestedClassWithOverrideIndexerUsingMonoCecil()
+        {
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithNewVirtualIndexerUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithPrivateIndexerUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewVirtualIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithOverrideIndexerUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithProtectedIndexerUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithOverrideIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithPrivateIndexerUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithProtectedInternalIndexerUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPrivateIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithProtectedIndexerUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithPublicIndexerUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPublicIndexer));
         }
 
-        [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithProtectedInternalIndexerUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedInternalIndexer));
-        }
+        //[TestMethod]
+        //public void TestSealedClassWithNestedClassWithSealedOverrideIndexerUsingMonoCecil()
+        //{
+        //    TestSealedClassAsync(typeof(SealedClassWithNestedClassWithSealedOverrideIndexer));
+        //}
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithPublicIndexerUsingMonoCecil()
+        public void TestSealedClassWithNestedClassWithVirtualIndexerUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPublicIndexer));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithSealedOverrideIndexerUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithSealedOverrideIndexer));
-        }
-
-        [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithVirtualIndexerUsingMonoCecil()
-        {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithVirtualIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithVirtualIndexer));
         }
     }
 }

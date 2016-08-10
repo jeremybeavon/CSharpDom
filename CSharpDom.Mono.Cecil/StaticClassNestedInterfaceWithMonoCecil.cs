@@ -69,9 +69,9 @@ namespace CSharpDom.Mono.Cecil
             get { return nestedInterface.Properties; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedInterface.TypeDefinition.StaticClassMemberVisibility(); }
+            get { return nestedInterface.TypeDefinition.ClassMemberVisibility(); }
         }
     }
 }

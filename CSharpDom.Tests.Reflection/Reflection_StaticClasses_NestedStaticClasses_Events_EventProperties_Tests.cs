@@ -8,51 +8,51 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_StaticClasses_NestedStaticClasses_Events_EventProperties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithEventPropertyWith1AccessorAttributeUsingReflection()
+        public void TestStaticClassWithNestedStaticClassWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith1AccessorAttribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        public void TestStaticClassWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStaticClassWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithEventPropertyWith1AttributeUsingReflection()
+        public void TestStaticClassWithNestedStaticClassWithEventPropertyWith1AttributeUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithEventPropertyWithGenericDelegateUsingReflection()
+        public void TestStaticClassWithNestedStaticClassWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWithGenericDelegate));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithInternalEventPropertyUsingReflection()
+        public void TestStaticClassWithNestedStaticClassWithInternalEventPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithInternalEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithPrivateEventPropertyUsingReflection()
+        public void TestStaticClassWithNestedStaticClassWithPrivateEventPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPrivateEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPrivateEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithPublicEventPropertyUsingReflection()
+        public void TestStaticClassWithNestedStaticClassWithPublicEventPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPublicEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPublicEventProperty));
         }
     }
 }

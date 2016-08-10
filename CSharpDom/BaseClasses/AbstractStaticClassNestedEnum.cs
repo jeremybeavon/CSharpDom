@@ -11,7 +11,7 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : IStaticType
         where TNestedEnumMember : INestedEnumMember
     {
-        public abstract StaticClassMemberVisibilityModifier Visibility { get; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

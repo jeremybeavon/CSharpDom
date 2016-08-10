@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_SealedClasses_NestedSealedClasses_Properties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithInternalPropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithInternalPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithInternalProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithNewPropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithNewPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithNewStaticPropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithNewStaticPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewStaticProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithOverridePropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithOverridePropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithOverrideProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithPrivatePropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithPrivatePropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPrivateProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithProtectedPropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithProtectedPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithProtectedInternalPropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithProtectedInternalPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedInternalProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithPublicPropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithPublicPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithSealedOverridePropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithSealedOverridePropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithSealedOverrideProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithStaticPropertyUsingReflection()
+        public void TestSealedClassWithNestedSealedClassWithStaticPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithStaticProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithStaticProperty));
         }
     }
 }

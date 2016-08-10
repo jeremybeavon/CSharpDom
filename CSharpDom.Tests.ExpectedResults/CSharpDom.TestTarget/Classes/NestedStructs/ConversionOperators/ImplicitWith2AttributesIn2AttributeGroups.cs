@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Classes.NestedStructs.ConversionOperators
 {
-    public class ClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups
+    public class ClassWithNestedStructWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups
     {
         public struct Struct
         {

@@ -8,21 +8,21 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_NestedStaticClasses_Properties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithInternalPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedStaticClassWithInternalPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithInternalProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithPrivatePropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedStaticClassWithPrivatePropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPrivateProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithPublicPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedStaticClassWithPublicPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPublicProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPublicProperty));
         }
     }
 }

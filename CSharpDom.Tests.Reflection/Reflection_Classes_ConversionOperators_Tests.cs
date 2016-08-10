@@ -8,87 +8,87 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Classes_ConversionOperators_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestClassWithExplicitConversionOperatorWith1ParameterAttributeUsingReflection()
+        public void TestClassWithExplicitConversionOperatorWith1ParameterAttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith1ParameterAttribute));
+            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitConversionOperatorWith1ReturnAttributeUsingReflection()
+        public void TestClassWithExplicitConversionOperatorWith1ReturnAttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith1ReturnAttribute));
+            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitConversionOperatorWith1AttributeUsingReflection()
+        public void TestClassWithExplicitConversionOperatorWith1AttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith1Attribute));
+            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithImplicitConversionOperatorUsingReflection()
+        public void TestClassWithImplicitConversionOperatorUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithImplicitConversionOperator));
+            TestClassAsync(typeof(ClassWithImplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestClassWithImplicitConversionOperatorWith1AttributeUsingReflection()
+        public void TestClassWithImplicitConversionOperatorWith1AttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith1Attribute));
+            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithImplicitConversionOperatorWith1ParameterAttributeUsingReflection()
+        public void TestClassWithImplicitConversionOperatorWith1ParameterAttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith1ParameterAttribute));
+            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithImplicitConversionOperatorWith1ReturnAttributeUsingReflection()
+        public void TestClassWithImplicitConversionOperatorWith1ReturnAttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith1ReturnAttribute));
+            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitConversionOperatorUsingReflection()
+        public void TestClassWithExplicitConversionOperatorUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitConversionOperator));
+            TestClassAsync(typeof(ClassWithExplicitConversionOperator));
         }
     }
 }

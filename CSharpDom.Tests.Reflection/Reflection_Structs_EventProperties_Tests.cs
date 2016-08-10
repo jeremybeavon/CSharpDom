@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_EventProperties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithInternalEventPropertyUsingReflection()
+        public void TestStructWithInternalEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithInternalEventProperty));
+            TestStructAsync(typeof(StructWithInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateEventPropertyUsingReflection()
+        public void TestStructWithPrivateEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithPrivateEventProperty));
+            TestStructAsync(typeof(StructWithPrivateEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicEventPropertyUsingReflection()
+        public void TestStructWithPublicEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithPublicEventProperty));
+            TestStructAsync(typeof(StructWithPublicEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithStaticEventPropertyUsingReflection()
+        public void TestStructWithStaticEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithStaticEventProperty));
+            TestStructAsync(typeof(StructWithStaticEventProperty));
         }
     }
 }

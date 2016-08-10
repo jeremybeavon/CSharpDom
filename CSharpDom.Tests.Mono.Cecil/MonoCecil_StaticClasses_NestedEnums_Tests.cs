@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_NestedEnums_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedEnumWith1AttributeUsingMonoCecil()
+        public void TestStaticClassWithNestedEnumWith1AttributeUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedEnumWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStaticClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalNestedEnumUsingMonoCecil()
+        public void TestStaticClassWithInternalNestedEnumUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateNestedEnumUsingMonoCecil()
+        public void TestStaticClassWithPrivateNestedEnumUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithProtectedNestedEnumUsingMonoCecil()
+        public void TestStaticClassWithProtectedNestedEnumUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithProtectedNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithProtectedInternalNestedEnumUsingMonoCecil()
+        public void TestStaticClassWithProtectedInternalNestedEnumUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithProtectedInternalNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicNestedEnumUsingMonoCecil()
+        public void TestStaticClassWithPublicNestedEnumUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithPublicNestedEnum));
         }
     }
 }

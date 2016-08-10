@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_AbstractClasses_Properties_AutoProperties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithInternalAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithInternalAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithInternalAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNewAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewStaticAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNewStaticAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewStaticAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewVirtualAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithNewVirtualAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithOverrideAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithOverrideAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithOverrideAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPrivateAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithPrivateAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithProtectedAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedInternalAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithProtectedInternalAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPublicAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithPublicAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPublicAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithSealedOverrideAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithSealedOverrideAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithStaticAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithStaticAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithStaticAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithVirtualAutoPropertyUsingMonoCecil()
+        public void TestAbstractClassWithVirtualAutoPropertyUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithVirtualAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithVirtualAutoProperty));
         }
     }
 }

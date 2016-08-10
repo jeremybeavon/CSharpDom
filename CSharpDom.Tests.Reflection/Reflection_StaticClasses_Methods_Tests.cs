@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_StaticClasses_Methods_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithMethodWith1AttributeUsingReflection()
+        public void TestStaticClassWithMethodWith1AttributeUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWith1GenericParameterUsingReflection()
+        public void TestStaticClassWithMethodWith1GenericParameterUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWith1GenericParameter));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWith1GenericParameter));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWith1ReturnAttributeUsingReflection()
+        public void TestStaticClassWithMethodWith1ReturnAttributeUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWith1ReturnAttribute));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStaticClassWithMethodWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWith2GenericParametersUsingReflection()
+        public void TestStaticClassWithMethodWith2GenericParametersUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWith2GenericParameters));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWith2GenericParameters));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
+        public void TestStaticClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithGenericParameterBaseSealedClassConstraintUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterBaseSealedClassConstraintUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterBaseSealedClassConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterBaseSealedClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraintsUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraints));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraints));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithGenericParameterSealedClassConstraintUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterSealedClassConstraintUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterEmptyConstructorConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithGenericParameterGenericParameterConstraintUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterGenericParameterConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithGenericParameterInterfaceConstraintUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterInterfaceConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithGenericParameterStructConstraintUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterStructConstraintUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterStructConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalMethodUsingReflection()
+        public void TestStaticClassWithInternalMethodUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalMethod));
+            TestStaticClassAsync(typeof(StaticClassWithInternalMethod));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithParametersWithAttributesUsingReflection()
+        public void TestStaticClassWithMethodWithParametersWithAttributesUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithParametersWithAttributes));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithMethodWithParametersWithModifiersUsingReflection()
+        public void TestStaticClassWithMethodWithParametersWithModifiersUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithMethodWithParametersWithModifiers));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateMethodUsingReflection()
+        public void TestStaticClassWithPrivateMethodUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateMethod));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateMethod));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicMethodUsingReflection()
+        public void TestStaticClassWithPublicMethodUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicMethod));
+            TestStaticClassAsync(typeof(StaticClassWithPublicMethod));
         }
     }
 }

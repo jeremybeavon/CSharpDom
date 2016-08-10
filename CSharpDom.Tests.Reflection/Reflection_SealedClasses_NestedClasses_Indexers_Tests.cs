@@ -8,105 +8,105 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_SealedClasses_NestedClasses_Indexers_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith1AccessorAttributeUsingReflection()
+        public void TestSealedClassWithNestedClassWithIndexerWith1AccessorAttributeUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith1AccessorAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith1AttributeUsingReflection()
+        public void TestSealedClassWithNestedClassWithIndexerWith1AttributeUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        public void TestSealedClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestSealedClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2ParametersUsingReflection()
+        public void TestSealedClassWithNestedClassWithIndexerWith2ParametersUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2Parameters));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2ParametersWithAttributesUsingReflection()
+        public void TestSealedClassWithNestedClassWithIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithIndexerWith2ParametersWithModifiersUsingReflection()
+        public void TestSealedClassWithNestedClassWithIndexerWith2ParametersWithModifiersUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithInternalIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithInternalIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithInternalIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithNewIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithNewIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithNewVirtualIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithNewVirtualIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewVirtualIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewVirtualIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithOverrideIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithOverrideIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithOverrideIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithPrivateIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithPrivateIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPrivateIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithProtectedIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithProtectedIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithProtectedInternalIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithProtectedInternalIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedInternalIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithPublicIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithPublicIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPublicIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPublicIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithSealedOverrideIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithSealedOverrideIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithSealedOverrideIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithSealedOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedClassWithVirtualIndexerUsingReflection()
+        public void TestSealedClassWithNestedClassWithVirtualIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedClassWithVirtualIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithVirtualIndexer));
         }
     }
 }

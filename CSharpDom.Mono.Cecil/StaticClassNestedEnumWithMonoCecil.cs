@@ -44,9 +44,9 @@ namespace CSharpDom.Mono.Cecil
             get { return nestedEnum.Name; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedEnum.TypeDefinition.StaticClassMemberVisibility(); }
+            get { return nestedEnum.TypeDefinition.ClassMemberVisibility(); }
         }
     }
 }

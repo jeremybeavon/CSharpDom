@@ -8,81 +8,81 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_StaticClasses_NestedSealedClasses_Events_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithEventWith1AttributeUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithEventWith1AttributeUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithEventWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithEventWithGenericDelegateUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithEventWithGenericDelegateUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithEventWithGenericDelegate));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithInternalEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithInternalEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNewEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithNewEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNewStaticEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithNewStaticEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewStaticEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithOverrideEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithOverrideEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithOverrideEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithPrivateEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithPrivateEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithProtectedEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithProtectedEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithProtectedInternalEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithProtectedInternalEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithPublicEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithPublicEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPublicEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPublicEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithSealedOverrideEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithSealedOverrideEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithSealedOverrideEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithStaticEventUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithStaticEventUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithStaticEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithStaticEvent));
         }
     }
 }

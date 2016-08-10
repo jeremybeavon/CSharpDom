@@ -8,9 +8,9 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_SealedClasses_Destructors_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithDestructorUsingMonoCecil()
+        public void TestSealedClassWithDestructorUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithDestructor));
+            TestSealedClassAsync(typeof(SealedClassWithDestructor));
         }
     }
 }

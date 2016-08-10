@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.SealedClasses.NestedSealedClasses.ConversionOperators
 {
-    public sealed class SealedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups
+    public sealed class SealedClassWithNestedSealedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups
     {
         public sealed class Class
         {

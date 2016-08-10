@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_NestedStructs_Properties_AutoProperties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedStructWithInternalAutoPropertyUsingMonoCecil()
+        public void TestStructWithNestedStructWithInternalAutoPropertyUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithInternalAutoProperty));
+            TestStructAsync(typeof(StructWithNestedStructWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPrivateAutoPropertyUsingMonoCecil()
+        public void TestStructWithNestedStructWithPrivateAutoPropertyUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPrivateAutoProperty));
+            TestStructAsync(typeof(StructWithNestedStructWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPublicAutoPropertyUsingMonoCecil()
+        public void TestStructWithNestedStructWithPublicAutoPropertyUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPublicAutoProperty));
+            TestStructAsync(typeof(StructWithNestedStructWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithStaticAutoPropertyUsingMonoCecil()
+        public void TestStructWithNestedStructWithStaticAutoPropertyUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithStaticAutoProperty));
+            TestStructAsync(typeof(StructWithNestedStructWithStaticAutoProperty));
         }
     }
 }

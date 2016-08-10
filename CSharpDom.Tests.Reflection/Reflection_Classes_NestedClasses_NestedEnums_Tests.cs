@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Classes_NestedClasses_NestedEnums_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedEnumWith1AttributeUsingReflection()
+        public void TestClassWithNestedClassWithNestedEnumWith1AttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedEnumWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithInternalNestedEnumUsingReflection()
+        public void TestClassWithNestedClassWithInternalNestedEnumUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithInternalNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedClassWithInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithPrivateNestedEnumUsingReflection()
+        public void TestClassWithNestedClassWithPrivateNestedEnumUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithPrivateNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithProtectedNestedEnumUsingReflection()
+        public void TestClassWithNestedClassWithProtectedNestedEnumUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithProtectedNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithProtectedInternalNestedEnumUsingReflection()
+        public void TestClassWithNestedClassWithProtectedInternalNestedEnumUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithPublicNestedEnumUsingReflection()
+        public void TestClassWithNestedClassWithPublicNestedEnumUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithPublicNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedClassWithPublicNestedEnum));
         }
     }
 }

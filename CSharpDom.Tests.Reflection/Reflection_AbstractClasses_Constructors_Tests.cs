@@ -13,69 +13,69 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith1AttributeUsingReflection()
+        public void TestAbstractClassWithConstructorWith1AttributeUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith1ParameterUsingReflection()
+        public void TestAbstractClassWithConstructorWith1ParameterUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Parameter));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith2ParametersUsingReflection()
+        public void TestAbstractClassWithConstructorWith2ParametersUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2Parameters));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithInternalConstructorUsingReflection()
+        public void TestAbstractClassWithInternalConstructorUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWithParametersWithAttributesUsingReflection()
+        public void TestAbstractClassWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWithParametersWithModifiersUsingReflection()
+        public void TestAbstractClassWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPrivateConstructorUsingReflection()
+        public void TestAbstractClassWithPrivateConstructorUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedConstructorUsingReflection()
+        public void TestAbstractClassWithProtectedConstructorUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedInternalConstructorUsingReflection()
+        public void TestAbstractClassWithProtectedInternalConstructorUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPublicConstructorUsingReflection()
+        public void TestAbstractClassWithPublicConstructorUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPublicConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithPublicConstructor));
         }
     }
 }

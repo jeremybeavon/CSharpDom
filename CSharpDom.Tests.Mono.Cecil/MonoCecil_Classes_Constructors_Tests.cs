@@ -13,69 +13,69 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
+        public void TestClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWithParametersWithAttributes));
+            TestClassAsync(typeof(ClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWith1AttributeUsingMonoCecil()
+        public void TestClassWithConstructorWith1AttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWith1Attribute));
+            TestClassAsync(typeof(ClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
+        public void TestClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWithParametersWithModifiers));
+            TestClassAsync(typeof(ClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWith2ParametersUsingMonoCecil()
+        public void TestClassWithConstructorWith2ParametersUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWith2Parameters));
+            TestClassAsync(typeof(ClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestClassWithConstructorWith1ParameterUsingMonoCecil()
+        public void TestClassWithConstructorWith1ParameterUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithConstructorWith1Parameter));
+            TestClassAsync(typeof(ClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicConstructorUsingMonoCecil()
+        public void TestClassWithPublicConstructorUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithPublicConstructor));
+            TestClassAsync(typeof(ClassWithPublicConstructor));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedConstructorUsingMonoCecil()
+        public void TestClassWithProtectedConstructorUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithProtectedConstructor));
+            TestClassAsync(typeof(ClassWithProtectedConstructor));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalConstructorUsingMonoCecil()
+        public void TestClassWithProtectedInternalConstructorUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalConstructor));
+            TestClassAsync(typeof(ClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivateConstructorUsingMonoCecil()
+        public void TestClassWithPrivateConstructorUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithPrivateConstructor));
+            TestClassAsync(typeof(ClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestClassWithInternalConstructorUsingMonoCecil()
+        public void TestClassWithInternalConstructorUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithInternalConstructor));
+            TestClassAsync(typeof(ClassWithInternalConstructor));
         }
     }
 }

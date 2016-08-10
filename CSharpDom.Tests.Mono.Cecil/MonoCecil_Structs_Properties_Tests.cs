@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_Properties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStructWithInternalPropertyUsingMonoCecil()
+        public void TestStructWithInternalPropertyUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithInternalProperty));
+            TestStructAsync(typeof(StructWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivatePropertyUsingMonoCecil()
+        public void TestStructWithPrivatePropertyUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithPrivateProperty));
+            TestStructAsync(typeof(StructWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicPropertyUsingMonoCecil()
+        public void TestStructWithPublicPropertyUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithPublicProperty));
+            TestStructAsync(typeof(StructWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithStaticPropertyUsingMonoCecil()
+        public void TestStructWithStaticPropertyUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithStaticProperty));
+            TestStructAsync(typeof(StructWithStaticProperty));
         }
     }
 }

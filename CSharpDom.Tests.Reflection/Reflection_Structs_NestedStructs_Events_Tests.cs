@@ -8,39 +8,39 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedStructs_Events_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedStructWithEventWith1AttributeUsingReflection()
+        public void TestStructWithNestedStructWithEventWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithEventWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedStructWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedStructWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithEventWithGenericDelegateUsingReflection()
+        public void TestStructWithNestedStructWithEventWithGenericDelegateUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithEventWithGenericDelegate));
+            TestStructAsync(typeof(StructWithNestedStructWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithInternalEventUsingReflection()
+        public void TestStructWithNestedStructWithInternalEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithInternalEvent));
+            TestStructAsync(typeof(StructWithNestedStructWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPrivateEventUsingReflection()
+        public void TestStructWithNestedStructWithPrivateEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPrivateEvent));
+            TestStructAsync(typeof(StructWithNestedStructWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPublicEventUsingReflection()
+        public void TestStructWithNestedStructWithPublicEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPublicEvent));
+            TestStructAsync(typeof(StructWithNestedStructWithPublicEvent));
         }
     }
 }

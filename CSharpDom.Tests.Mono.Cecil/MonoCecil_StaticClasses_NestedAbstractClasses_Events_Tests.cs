@@ -8,93 +8,93 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_NestedAbstractClasses_Events_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithEventWith1AttributeUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithEventWith1AttributeUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithEventWithGenericDelegateUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithEventWithGenericDelegateUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWithGenericDelegate));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithInternalEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithInternalEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNewEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithNewEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNewStaticEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithNewStaticEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewStaticEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewStaticEvent));
         }
 
         //[TestMethod]
-        //public async Task TestStaticClassWithNestedAbstractClassWithNewVirtualEventUsingMonoCecil()
+        //public void TestStaticClassWithNestedAbstractClassWithNewVirtualEventUsingMonoCecil()
         //{
-        //    await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualEvent));
+        //    TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualEvent));
         //}
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithOverrideEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithOverrideEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPrivateEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithPrivateEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedInternalEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedInternalEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPublicEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithPublicEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithSealedOverrideEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithSealedOverrideEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithStaticEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithStaticEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithStaticEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithVirtualEventUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithVirtualEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualEvent));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualEvent));
         }
     }
 }

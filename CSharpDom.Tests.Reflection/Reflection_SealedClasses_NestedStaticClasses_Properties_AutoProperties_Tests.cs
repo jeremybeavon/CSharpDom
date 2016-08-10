@@ -8,21 +8,21 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_SealedClasses_NestedStaticClasses_Properties_AutoProperties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedStaticClassWithInternalAutoPropertyUsingReflection()
+        public void TestSealedClassWithNestedStaticClassWithInternalAutoPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithInternalAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStaticClassWithPrivateAutoPropertyUsingReflection()
+        public void TestSealedClassWithNestedStaticClassWithPrivateAutoPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPrivateAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStaticClassWithPublicAutoPropertyUsingReflection()
+        public void TestSealedClassWithNestedStaticClassWithPublicAutoPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPublicAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPublicAutoProperty));
         }
     }
 }

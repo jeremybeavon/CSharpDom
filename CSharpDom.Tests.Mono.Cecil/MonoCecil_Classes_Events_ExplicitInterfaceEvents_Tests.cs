@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Classes_Events_ExplicitInterfaceEvents_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith1AccessorAttributeUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceEventWith1AccessorAttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith1AttributeUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceEventWith1AttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEvent));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWithGenericDelegateUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceEventWithGenericDelegateUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWithGenericInterfaceUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceEventWithGenericInterfaceUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

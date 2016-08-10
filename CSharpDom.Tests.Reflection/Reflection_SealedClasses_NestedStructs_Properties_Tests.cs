@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_SealedClasses_NestedStructs_Properties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithInternalPropertyUsingReflection()
+        public void TestSealedClassWithNestedStructWithInternalPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithPrivatePropertyUsingReflection()
+        public void TestSealedClassWithNestedStructWithPrivatePropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithPublicPropertyUsingReflection()
+        public void TestSealedClassWithNestedStructWithPublicPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithStaticPropertyUsingReflection()
+        public void TestSealedClassWithNestedStructWithStaticPropertyUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticProperty));
         }
     }
 }

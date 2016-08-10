@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Common
 {
-    public interface IStaticClassMember : IVisitable<IGenericVisitor>, IHasStaticClassMemberVisibilityModifier
+    public interface IStaticClassMember : IVisitable<IGenericVisitor>
     {
     }
 }

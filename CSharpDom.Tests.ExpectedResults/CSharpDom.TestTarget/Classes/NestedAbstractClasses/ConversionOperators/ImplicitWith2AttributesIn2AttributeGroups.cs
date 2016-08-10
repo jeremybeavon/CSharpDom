@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Classes.NestedAbstractClasses.ConversionOperators
 {
-    public class ClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups
+    public class ClassWithNestedAbstractClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups
     {
         public abstract class Class
         {

@@ -8,123 +8,123 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStructWith1AttributeUsingMonoCecil()
+        public void TestStructWith1AttributeUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWith1Attribute));
+            TestStructAsync(typeof(StructWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWith1GenericParameterUsingMonoCecil()
+        public void TestStructWith1GenericParameterUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWith1GenericParameter<>));
+            TestStructAsync(typeof(StructWith1GenericParameter<>));
         }
 
         [TestMethod]
-        public async Task TestStructWith1ImplementedInterfaceUsingMonoCecil()
+        public void TestStructWith1ImplementedInterfaceUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWith1ImplementedInterface));
+            TestStructAsync(typeof(StructWith1ImplementedInterface));
         }
 
         [TestMethod]
-        public async Task TestStructWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStructWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWith2GenericParametersUsingMonoCecil()
+        public void TestStructWith2GenericParametersUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWith2GenericParameters<,>));
+            TestStructAsync(typeof(StructWith2GenericParameters<,>));
         }
 
         [TestMethod]
-        public async Task TestStructWith2ImplementedInterfacesUsingMonoCecil()
+        public void TestStructWith2ImplementedInterfacesUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWith2ImplementedInterfaces));
+            TestStructAsync(typeof(StructWith2ImplementedInterfaces));
         }
 
         [TestMethod]
-        public async Task TestStructWithExplicitConversionOperatorUsingMonoCecil()
+        public void TestStructWithExplicitConversionOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithExplicitConversionOperator));
+            TestStructAsync(typeof(StructWithExplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterBaseClassConstraintUsingMonoCecil()
+        public void TestStructWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterBaseClassConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestStructWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestStructAsync(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestStructAsync(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterClassConstraintUsingMonoCecil()
+        public void TestStructWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterClassConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
+        public void TestStructWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterGenericParameterConstraintUsingMonoCecil()
+        public void TestStructWithGenericParameterGenericParameterConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
+            TestStructAsync(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterInterfaceConstraintUsingMonoCecil()
+        public void TestStructWithGenericParameterInterfaceConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterInterfaceConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterStructConstraintUsingMonoCecil()
+        public void TestStructWithGenericParameterStructConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterStructConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithImplicitConversionOperatorUsingMonoCecil()
+        public void TestStructWithImplicitConversionOperatorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithImplicitConversionOperator));
+            TestStructAsync(typeof(StructWithImplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateIndexerUsingMonoCecil()
+        public void TestStructWithPrivateIndexerUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithPrivateIndexer));
+            TestStructAsync(typeof(StructWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicIndexerUsingMonoCecil()
+        public void TestStructWithPublicIndexerUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithPublicIndexer));
+            TestStructAsync(typeof(StructWithPublicIndexer));
         }
 
         [TestMethod]
-        public async Task TestInternalStructUsingMonoCecil()
+        public void TestInternalStructUsingMonoCecil()
         {
-            await TestStructAsync(typeof(InternalStruct));
+            TestStructAsync(typeof(InternalStruct));
         }
 
         [TestMethod]
-        public async Task TestPublicStructUsingMonoCecil()
+        public void TestPublicStructUsingMonoCecil()
         {
-            await TestStructAsync(typeof(PublicStruct));
+            TestStructAsync(typeof(PublicStruct));
         }
     }
 }

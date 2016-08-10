@@ -8,39 +8,39 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_NestedStaticClasses_Fields_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithConstFieldUsingMonoCecil()
+        public void TestStaticClassWithNestedStaticClassWithConstFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithConstField));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithConstField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithInternalFieldUsingMonoCecil()
+        public void TestStaticClassWithNestedStaticClassWithInternalFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithInternalField));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithInternalField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithPrivateFieldUsingMonoCecil()
+        public void TestStaticClassWithNestedStaticClassWithPrivateFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPrivateField));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPrivateField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithPublicFieldUsingMonoCecil()
+        public void TestStaticClassWithNestedStaticClassWithPublicFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPublicField));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithPublicField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithReadOnlyFieldUsingMonoCecil()
+        public void TestStaticClassWithNestedStaticClassWithReadOnlyFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithReadOnlyField));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedStaticClassWithVolatileFieldUsingMonoCecil()
+        public void TestStaticClassWithNestedStaticClassWithVolatileFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithVolatileField));
+            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithVolatileField));
         }
     }
 }

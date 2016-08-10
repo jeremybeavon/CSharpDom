@@ -13,57 +13,57 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWith1AttributeUsingReflection()
+        public void TestAbstractClassWithNestedStructWithConstructorWith1AttributeUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWith1ParameterUsingReflection()
+        public void TestAbstractClassWithNestedStructWithConstructorWith1ParameterUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Parameter));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestAbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWith2ParametersUsingReflection()
+        public void TestAbstractClassWithNestedStructWithConstructorWith2ParametersUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2Parameters));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithInternalConstructorUsingReflection()
+        public void TestAbstractClassWithNestedStructWithInternalConstructorUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWithParametersWithAttributesUsingReflection()
+        public void TestAbstractClassWithNestedStructWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithAttributes));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWithParametersWithModifiersUsingReflection()
+        public void TestAbstractClassWithNestedStructWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithModifiers));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithPrivateConstructorUsingReflection()
+        public void TestAbstractClassWithNestedStructWithPrivateConstructorUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPrivateConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithPublicConstructorUsingReflection()
+        public void TestAbstractClassWithNestedStructWithPublicConstructorUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPublicConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPublicConstructor));
         }
     }
 }

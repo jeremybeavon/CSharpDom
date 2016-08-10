@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.StaticClasses.NestedAbstractClasses.Events
 {
-    public sealed class AbstractClassW⁬ithNestedAbstractClassWithEventWith2AttributesIn1AttributeGroup
+    public static class StaticClassW⁬ithNestedAbstractClassWithEventWith2AttributesIn1AttributeGroup
     {
         public abstract class Class
         {

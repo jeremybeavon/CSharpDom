@@ -13,57 +13,57 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWith1AttributeUsingReflection()
+        public void TestSealedClassWithConstructorWith1AttributeUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWith1ParameterUsingReflection()
+        public void TestSealedClassWithConstructorWith1ParameterUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Parameter));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWith2ParametersUsingReflection()
+        public void TestSealedClassWithConstructorWith2ParametersUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWith2Parameters));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithInternalConstructorUsingReflection()
+        public void TestSealedClassWithInternalConstructorUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithInternalConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWithParametersWithAttributesUsingReflection()
+        public void TestSealedClassWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithAttributes));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWithParametersWithModifiersUsingReflection()
+        public void TestSealedClassWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithModifiers));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithPrivateConstructorUsingReflection()
+        public void TestSealedClassWithPrivateConstructorUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithPrivateConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithPublicConstructorUsingReflection()
+        public void TestSealedClassWithPublicConstructorUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithPublicConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithPublicConstructor));
         }
     }
 }

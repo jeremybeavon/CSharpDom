@@ -8,57 +8,57 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_SealedClasses_NestedStructs_Fields_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithConstFieldUsingReflection()
+        public void TestSealedClassWithNestedStructWithConstFieldUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithConstField));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithConstField));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithInternalFieldUsingReflection()
+        public void TestSealedClassWithNestedStructWithInternalFieldUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalField));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalField));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithPrivateFieldUsingReflection()
+        public void TestSealedClassWithNestedStructWithPrivateFieldUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateField));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateField));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithPublicFieldUsingReflection()
+        public void TestSealedClassWithNestedStructWithPublicFieldUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicField));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicField));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithReadOnlyFieldUsingReflection()
+        public void TestSealedClassWithNestedStructWithReadOnlyFieldUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithReadOnlyField));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithStaticFieldUsingReflection()
+        public void TestSealedClassWithNestedStructWithStaticFieldUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticField));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticField));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithStaticReadOnlyFieldUsingReflection()
+        public void TestSealedClassWithNestedStructWithStaticReadOnlyFieldUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticReadOnlyField));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithStaticVolatileFieldUsingReflection()
+        public void TestSealedClassWithNestedStructWithStaticVolatileFieldUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticVolatileField));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticVolatileField));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithVolatileFieldUsingReflection()
+        public void TestSealedClassWithNestedStructWithVolatileFieldUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithVolatileField));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithVolatileField));
         }
     }
 }

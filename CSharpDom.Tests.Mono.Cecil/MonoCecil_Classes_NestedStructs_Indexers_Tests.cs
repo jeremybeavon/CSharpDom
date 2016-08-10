@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Classes_NestedStructs_Indexers_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedStructWithIndexerWith1AccessorAttributeUsingMonoCecil()
+        public void TestClassWithNestedStructWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithIndexerWith1AttributeUsingMonoCecil()
+        public void TestClassWithNestedStructWithIndexerWith1AttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithIndexerWith2ParametersUsingMonoCecil()
+        public void TestClassWithNestedStructWithIndexerWith2ParametersUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2Parameters));
+            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
+        public void TestClassWithNestedStructWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithAttributes));
+            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
+        public void TestClassWithNestedStructWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithModifiers));
+            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithInternalIndexerUsingMonoCecil()
+        public void TestClassWithNestedStructWithInternalIndexerUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithInternalIndexer));
+            TestClassAsync(typeof(ClassWithNestedStructWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithPrivateIndexerUsingMonoCecil()
+        public void TestClassWithNestedStructWithPrivateIndexerUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithPrivateIndexer));
+            TestClassAsync(typeof(ClassWithNestedStructWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedStructWithPublicIndexerUsingMonoCecil()
+        public void TestClassWithNestedStructWithPublicIndexerUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedStructWithPublicIndexer));
+            TestClassAsync(typeof(ClassWithNestedStructWithPublicIndexer));
         }
     }
 }

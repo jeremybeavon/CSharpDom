@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_StaticClasses_NestedSealedClasses_Properties_AutoProperties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithInternalAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithInternalAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNewAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithNewAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNewStaticAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithNewStaticAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewStaticAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithOverrideAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithOverrideAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithOverrideAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithPrivateAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithPrivateAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithProtectedAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithProtectedAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithProtectedInternalAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithProtectedInternalAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithPublicAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithPublicAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPublicAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithSealedOverrideAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithSealedOverrideAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithSealedOverrideAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithStaticAutoPropertyUsingReflection()
+        public void TestStaticClassWithNestedSealedClassWithStaticAutoPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithStaticAutoProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithStaticAutoProperty));
         }
     }
 }

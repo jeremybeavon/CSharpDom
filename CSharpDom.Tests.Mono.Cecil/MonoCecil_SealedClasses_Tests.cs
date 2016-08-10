@@ -8,105 +8,105 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_SealedClasses_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestSealedClassWith1AttributeUsingMonoCecil()
+        public void TestSealedClassWith1AttributeUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith1GenericParameterUsingMonoCecil()
+        public void TestSealedClassWith1GenericParameterUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith1GenericParameter<>));
+            TestSealedClassAsync(typeof(SealedClassWith1GenericParameter<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith1ImplementedInterfaceUsingMonoCecil()
+        public void TestSealedClassWith1ImplementedInterfaceUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith1ImplementedInterface));
+            TestSealedClassAsync(typeof(SealedClassWith1ImplementedInterface));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestSealedClassWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith2GenericParametersUsingMonoCecil()
+        public void TestSealedClassWith2GenericParametersUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith2GenericParameters<,>));
+            TestSealedClassAsync(typeof(SealedClassWith2GenericParameters<,>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith2ImplementedInterfacesUsingMonoCecil()
+        public void TestSealedClassWith2ImplementedInterfacesUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith2ImplementedInterfaces));
+            TestSealedClassAsync(typeof(SealedClassWith2ImplementedInterfaces));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithBaseClassUsingMonoCecil()
+        public void TestSealedClassWithBaseClassUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithBaseClass));
+            TestSealedClassAsync(typeof(SealedClassWithBaseClass));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterBaseClassConstraintUsingMonoCecil()
+        public void TestSealedClassWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterBaseClassConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestSealedClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterClassConstraintUsingMonoCecil()
+        public void TestSealedClassWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
+        public void TestSealedClassWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterEmptyConstructorConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterGenericParameterConstraintUsingMonoCecil()
+        public void TestSealedClassWithGenericParameterGenericParameterConstraintUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterGenericParameterConstraint<,>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterInterfaceConstraintUsingMonoCecil()
+        public void TestSealedClassWithGenericParameterInterfaceConstraintUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterInterfaceConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterStructConstraintUsingMonoCecil()
+        public void TestSealedClassWithGenericParameterStructConstraintUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterStructConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestInternalSealedClassUsingMonoCecil()
+        public void TestInternalSealedClassUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(InternalSealedClass));
+            TestSealedClassAsync(typeof(InternalSealedClass));
         }
 
         [TestMethod]
-        public async Task TestPublicSealedClassUsingMonoCecil()
+        public void TestPublicSealedClassUsingMonoCecil()
         {
-            await TestSealedClassAsync(typeof(PublicSealedClass));
+            TestSealedClassAsync(typeof(PublicSealedClass));
         }
     }
 }

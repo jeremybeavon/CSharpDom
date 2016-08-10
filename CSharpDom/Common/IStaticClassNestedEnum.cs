@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStaticClassNestedEnum : IStaticClassMember, INestedEnum
+    public interface IStaticClassNestedEnum : IStaticClassMember, INestedEnum, IHasClassMemberVisibilityModifier
     {
     }
 }

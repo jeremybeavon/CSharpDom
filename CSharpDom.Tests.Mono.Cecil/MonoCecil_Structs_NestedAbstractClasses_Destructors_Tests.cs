@@ -8,21 +8,21 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_NestedAbstractClasses_Destructors_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorWith1AttributeUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithDestructorWith1AttributeUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithDestructorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructor));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructor));
         }
     }
 }

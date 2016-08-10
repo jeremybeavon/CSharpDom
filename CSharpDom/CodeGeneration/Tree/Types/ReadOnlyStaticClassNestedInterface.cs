@@ -79,7 +79,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return properties; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
             get { return nestedInterface.Visibility; }
         }

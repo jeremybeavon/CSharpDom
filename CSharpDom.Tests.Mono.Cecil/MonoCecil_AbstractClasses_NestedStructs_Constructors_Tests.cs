@@ -13,57 +13,57 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWith1AttributeUsingMonoCecil()
+        public void TestAbstractClassWithNestedStructWithConstructorWith1AttributeUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWith1ParameterUsingMonoCecil()
+        public void TestAbstractClassWithNestedStructWithConstructorWith1ParameterUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Parameter));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestAbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWith2ParametersUsingMonoCecil()
+        public void TestAbstractClassWithNestedStructWithConstructorWith2ParametersUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2Parameters));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithInternalConstructorUsingMonoCecil()
+        public void TestAbstractClassWithNestedStructWithInternalConstructorUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWithParametersWithAttributesUsingMonoCecil()
+        public void TestAbstractClassWithNestedStructWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithAttributes));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithConstructorWithParametersWithModifiersUsingMonoCecil()
+        public void TestAbstractClassWithNestedStructWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithModifiers));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithPrivateConstructorUsingMonoCecil()
+        public void TestAbstractClassWithNestedStructWithPrivateConstructorUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPrivateConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructWithPublicConstructorUsingMonoCecil()
+        public void TestAbstractClassWithNestedStructWithPublicConstructorUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPublicConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPublicConstructor));
         }
     }
 }

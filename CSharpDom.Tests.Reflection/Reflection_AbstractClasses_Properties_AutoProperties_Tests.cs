@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_AbstractClasses_Properties_AutoProperties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithInternalAutoPropertyUsingReflection()
+        public void TestAbstractClassWithInternalAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithInternalAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewAutoPropertyUsingReflection()
+        public void TestAbstractClassWithNewAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewStaticAutoPropertyUsingReflection()
+        public void TestAbstractClassWithNewStaticAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewStaticAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewVirtualAutoPropertyUsingReflection()
+        public void TestAbstractClassWithNewVirtualAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithOverrideAutoPropertyUsingReflection()
+        public void TestAbstractClassWithOverrideAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithOverrideAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPrivateAutoPropertyUsingReflection()
+        public void TestAbstractClassWithPrivateAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedAutoPropertyUsingReflection()
+        public void TestAbstractClassWithProtectedAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedInternalAutoPropertyUsingReflection()
+        public void TestAbstractClassWithProtectedInternalAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPublicAutoPropertyUsingReflection()
+        public void TestAbstractClassWithPublicAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPublicAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithSealedOverrideAutoPropertyUsingReflection()
+        public void TestAbstractClassWithSealedOverrideAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithStaticAutoPropertyUsingReflection()
+        public void TestAbstractClassWithStaticAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithStaticAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithVirtualAutoPropertyUsingReflection()
+        public void TestAbstractClassWithVirtualAutoPropertyUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithVirtualAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithVirtualAutoProperty));
         }
     }
 }

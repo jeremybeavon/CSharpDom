@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStaticClassNestedStaticClass : IStaticClassMember, INestedStaticClass
+    public interface IStaticClassNestedStaticClass : IStaticClassMember, INestedStaticClass, IHasClassMemberVisibilityModifier
     {
     }
 }

@@ -8,123 +8,123 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_AbstractClasses_OperatorOverloads_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithAndOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithAndOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithAndOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithAndOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithBitwiseNotOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithBitwiseNotOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithBitwiseNotOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithDecrementOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithDecrementOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithDecrementOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithDivideOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithDivideOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithDivideOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithEqualAndNotEqualOperatorOverloadsUsingReflection()
+        public void TestAbstractClassWithEqualAndNotEqualOperatorOverloadsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEqualAndNotEqualOperatorOverloads));
+            TestAbstractClassAsync(typeof(AbstractClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithExclusiveOrOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithExclusiveOrOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithExclusiveOrOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithIncrementOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithIncrementOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithIncrementOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithLeftShiftOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithLeftShiftOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithLeftShiftOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
+        public void TestAbstractClassWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestAbstractClassAsync(typeof(AbstractClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
+        public void TestAbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestAbstractClassAsync(typeof(AbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithLogicalNotOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithLogicalNotOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithLogicalNotOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMinusOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithMinusOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMinusOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithModuloOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithModuloOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithModuloOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithMultiplyOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithMultiplyOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithMultiplyOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithOrOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithOrOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithOrOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithOrOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPlusOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithPlusOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPlusOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithRightShiftOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithRightShiftOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithRightShiftOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithTrueAndFalseOperatorOverloadsUsingReflection()
+        public void TestAbstractClassWithTrueAndFalseOperatorOverloadsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithTrueAndFalseOperatorOverloads));
+            TestAbstractClassAsync(typeof(AbstractClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithUnaryMinusOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithUnaryMinusOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithUnaryMinusOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithUnaryPlusOperatorOverloadUsingReflection()
+        public void TestAbstractClassWithUnaryPlusOperatorOverloadUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithUnaryPlusOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithUnaryPlusOperatorOverload));
         }
     }
 }

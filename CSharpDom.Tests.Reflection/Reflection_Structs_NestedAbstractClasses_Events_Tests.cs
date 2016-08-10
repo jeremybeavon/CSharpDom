@@ -8,93 +8,93 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedAbstractClasses_Events_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithEventWith1AttributeUsingReflection()
+        public void TestStructWithNestedAbstractClassWithEventWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithEventWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithEventWithGenericDelegateUsingReflection()
+        public void TestStructWithNestedAbstractClassWithEventWithGenericDelegateUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithEventWithGenericDelegate));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithInternalEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithInternalEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithInternalEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNewEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithNewEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNewEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNewStaticEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithNewStaticEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNewStaticEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNewVirtualEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithNewVirtualEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNewVirtualEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewVirtualEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithOverrideEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithOverrideEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithOverrideEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithPrivateEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithPrivateEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithPrivateEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithProtectedEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithProtectedEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithProtectedInternalEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithProtectedInternalEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedInternalEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithPublicEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithPublicEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithPublicEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithPublicEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithSealedOverrideEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithSealedOverrideEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithSealedOverrideEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithStaticEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithStaticEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithStaticEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithVirtualEventUsingReflection()
+        public void TestStructWithNestedAbstractClassWithVirtualEventUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithVirtualEvent));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithVirtualEvent));
         }
     }
 }

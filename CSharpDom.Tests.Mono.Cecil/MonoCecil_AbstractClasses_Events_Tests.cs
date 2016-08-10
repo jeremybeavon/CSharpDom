@@ -8,93 +8,93 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_AbstractClasses_Events_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithEventWith1AttributeUsingMonoCecil()
+        public void TestAbstractClassWithEventWith1AttributeUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEventWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEventWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithEventWithGenericDelegateUsingMonoCecil()
+        public void TestAbstractClassWithEventWithGenericDelegateUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEventWithGenericDelegate));
+            TestAbstractClassAsync(typeof(AbstractClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithInternalEventUsingMonoCecil()
+        public void TestAbstractClassWithInternalEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithInternalEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewEventUsingMonoCecil()
+        public void TestAbstractClassWithNewEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewStaticEventUsingMonoCecil()
+        public void TestAbstractClassWithNewStaticEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewStaticEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticEvent));
         }
 
         //[TestMethod]
-        //public async Task TestAbstractClassWithNewVirtualEventUsingMonoCecil()
+        //public void TestAbstractClassWithNewVirtualEventUsingMonoCecil()
         //{
-        //    await TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualEvent));
+        //    TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualEvent));
         //}
 
         [TestMethod]
-        public async Task TestAbstractClassWithOverrideEventUsingMonoCecil()
+        public void TestAbstractClassWithOverrideEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithOverrideEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPrivateEventUsingMonoCecil()
+        public void TestAbstractClassWithPrivateEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedEventUsingMonoCecil()
+        public void TestAbstractClassWithProtectedEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedInternalEventUsingMonoCecil()
+        public void TestAbstractClassWithProtectedInternalEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPublicEventUsingMonoCecil()
+        public void TestAbstractClassWithPublicEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPublicEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithPublicEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithSealedOverrideEventUsingMonoCecil()
+        public void TestAbstractClassWithSealedOverrideEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithStaticEventUsingMonoCecil()
+        public void TestAbstractClassWithStaticEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithStaticEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithVirtualEventUsingMonoCecil()
+        public void TestAbstractClassWithVirtualEventUsingMonoCecil()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithVirtualEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithVirtualEvent));
         }
     }
 }

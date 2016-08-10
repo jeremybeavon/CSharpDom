@@ -12,18 +12,17 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Tests.Common
 {
-    public abstract class AbstractSolutionTests<TProject>
-        where TProject : IProject
+    public abstract class AbstractSolutionTests
     {
-        public abstract ISolution<TProject> Solution { get; }
+        public abstract TypeCache TypeCache { get; }
 
         protected bool IsConstructorTest { get; set; }
 
         protected bool IsNestedConstructorTest { get; set; }
 
-        protected async Task TestClassAsync(Type type)
+        protected void TestClassAsync(Type type)
         {
-            IClass @class = await Solution.Find().ClassByNameAsync<IClass>(type.Name());
+            IClass @class = TypeCache.Classes[type.Name()];
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
             LoadedDocument document = CreateLoadedDocument(new ClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
@@ -31,9 +30,9 @@ namespace CSharpDom.Tests.Common
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
-        protected async Task TestAbstractClassAsync(Type type)
+        protected void TestAbstractClassAsync(Type type)
         {
-            IAbstractClass @class = await Solution.Find().AbstractClassByNameAsync<IAbstractClass>(type.Name());
+            IAbstractClass @class = TypeCache.AbstractClasses[type.Name()];
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
             LoadedDocument document = CreateLoadedDocument(new AbstractClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
@@ -43,9 +42,9 @@ namespace CSharpDom.Tests.Common
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
-        protected async Task TestSealedClassAsync(Type type)
+        protected void TestSealedClassAsync(Type type)
         {
-            ISealedClass @class = await Solution.Find().SealedClassByNameAsync<ISealedClass>(type.Name());
+            ISealedClass @class = TypeCache.SealedClasses[type.Name()];
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
             LoadedDocument document = CreateLoadedDocument(new SealedClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
@@ -53,9 +52,9 @@ namespace CSharpDom.Tests.Common
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
-        protected async Task TestStaticClassAsync(Type type)
+        protected void TestStaticClassAsync(Type type)
         {
-            IStaticClass @class = await Solution.Find().StaticClassByNameAsync<IStaticClass>(type.Name());
+            IStaticClass @class = TypeCache.StaticClasses[type.Name()];
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
             LoadedDocument document = CreateLoadedDocument(new StaticClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
@@ -63,9 +62,9 @@ namespace CSharpDom.Tests.Common
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
-        protected async Task TestStructAsync(Type type)
+        protected void TestStructAsync(Type type)
         {
-            IStruct @struct = await Solution.Find().StructByNameAsync<IStruct>(type.Name());
+            IStruct @struct = TypeCache.Structs[type.Name()];
             string namespaceName = new FindNamespaceForStructVisitor(@struct).Result;
             LoadedDocument document = CreateLoadedDocument(new StructFactory(@struct).Value, namespaceName);
             string documentText = document.ToSourceCode();

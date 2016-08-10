@@ -8,21 +8,21 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedAbstractClasses_Destructors_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorWith1AttributeUsingReflection()
+        public void TestStructWithNestedAbstractClassWithDestructorWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorUsingReflection()
+        public void TestStructWithNestedAbstractClassWithDestructorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructor));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructor));
         }
     }
 }

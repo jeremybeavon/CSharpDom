@@ -8,33 +8,33 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedStructs_NestedEnums_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedStructWithNestedEnumWith1AttributeUsingReflection()
+        public void TestStructWithNestedStructWithNestedEnumWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithNestedEnumWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedStructWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithInternalNestedEnumUsingReflection()
+        public void TestStructWithNestedStructWithInternalNestedEnumUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithInternalNestedEnum));
+            TestStructAsync(typeof(StructWithNestedStructWithInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPrivateNestedEnumUsingReflection()
+        public void TestStructWithNestedStructWithPrivateNestedEnumUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPrivateNestedEnum));
+            TestStructAsync(typeof(StructWithNestedStructWithPrivateNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPublicNestedEnumUsingReflection()
+        public void TestStructWithNestedStructWithPublicNestedEnumUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPublicNestedEnum));
+            TestStructAsync(typeof(StructWithNestedStructWithPublicNestedEnum));
         }
     }
 }

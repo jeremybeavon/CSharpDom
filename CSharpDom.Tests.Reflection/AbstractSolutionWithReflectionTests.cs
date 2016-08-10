@@ -1,19 +1,17 @@
-﻿using CSharpDom.Common;
-using CSharpDom.Reflection;
-using CSharpDom.Reflection.Internal;
+﻿using CSharpDom.Reflection;
 using CSharpDom.Tests.Common;
 using CSharpDom.TestTarget.Classes;
 
 namespace CSharpDom.Tests.Reflection
 {
-    public abstract class AbstractSolutionWithReflectionTests : AbstractSolutionTests<ProjectWithReflection>
+    public abstract class AbstractSolutionWithReflectionTests : AbstractSolutionTests
     {
-        private static readonly ISolution<ProjectWithReflection> solution =
-            new AssemblyWithReflection(typeof(PublicClass).Assembly).AsSolution();
+        private static readonly TypeCache typeCache =
+            new TypeCache(new AssemblyWithReflection(typeof(PublicClass).Assembly).AsSolution());
 
-        public sealed override ISolution<ProjectWithReflection> Solution
+        public sealed override TypeCache TypeCache
         {
-            get { return solution; }
+            get { return typeCache; }
         }
     }
 }

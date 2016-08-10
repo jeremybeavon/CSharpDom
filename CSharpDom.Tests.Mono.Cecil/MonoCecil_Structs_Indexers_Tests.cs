@@ -8,9 +8,9 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_Indexers_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStructWithInternalIndexerUsingMonoCecil()
+        public void TestStructWithInternalIndexerUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithInternalIndexer));
+            TestStructAsync(typeof(StructWithInternalIndexer));
         }
     }
 }

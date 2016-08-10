@@ -8,51 +8,51 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_Events_EventProperties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
+        public void TestStaticClassWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith1AttributeUsingMonoCecil()
+        public void TestStaticClassWithEventPropertyWith1AttributeUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWithGenericDelegateUsingMonoCecil()
+        public void TestStaticClassWithEventPropertyWithGenericDelegateUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWithGenericDelegate));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalEventPropertyUsingMonoCecil()
+        public void TestStaticClassWithInternalEventPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateEventPropertyUsingMonoCecil()
+        public void TestStaticClassWithPrivateEventPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicEventPropertyUsingMonoCecil()
+        public void TestStaticClassWithPublicEventPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithPublicEventProperty));
         }
     }
 }

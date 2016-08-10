@@ -8,81 +8,81 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Classes_NestedSealedClasses_Events_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithEventWith1AttributeUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithEventWith1AttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithEventWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithEventWithGenericDelegateUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithEventWithGenericDelegateUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithEventWithGenericDelegate));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithInternalEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithInternalEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithInternalEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNewEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithNewEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNewEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithNewEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNewStaticEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithNewStaticEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNewStaticEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithNewStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithOverrideEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithOverrideEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithOverrideEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithPrivateEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithPrivateEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithPrivateEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithProtectedEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithProtectedEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithProtectedInternalEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithProtectedInternalEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedInternalEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithPublicEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithPublicEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithPublicEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithPublicEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithSealedOverrideEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithSealedOverrideEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithSealedOverrideEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithStaticEventUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithStaticEventUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithStaticEvent));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithStaticEvent));
         }
     }
 }

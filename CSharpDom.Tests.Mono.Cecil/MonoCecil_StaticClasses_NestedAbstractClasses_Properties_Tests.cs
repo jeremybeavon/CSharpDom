@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_NestedAbstractClasses_Properties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithInternalPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithInternalPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNewPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithNewPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNewStaticPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithNewStaticPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewStaticProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewStaticProperty));
         }
 
         //[TestMethod]
-        //public async Task TestStaticClassWithNestedAbstractClassWithNewVirtualPropertyUsingMonoCecil()
+        //public void TestStaticClassWithNestedAbstractClassWithNewVirtualPropertyUsingMonoCecil()
         //{
-        //    await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualProperty));
+        //    TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualProperty));
         //}
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithOverridePropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithOverridePropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPrivatePropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithPrivatePropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedInternalPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedInternalPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPublicPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithPublicPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithSealedOverridePropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithSealedOverridePropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithStaticPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithStaticPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithStaticProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithVirtualPropertyUsingMonoCecil()
+        public void TestStaticClassWithNestedAbstractClassWithVirtualPropertyUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualProperty));
         }
     }
 }

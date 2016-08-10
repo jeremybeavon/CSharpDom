@@ -8,9 +8,9 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_Indexers_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithInternalIndexerUsingReflection()
+        public void TestStructWithInternalIndexerUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithInternalIndexer));
+            TestStructAsync(typeof(StructWithInternalIndexer));
         }
     }
 }

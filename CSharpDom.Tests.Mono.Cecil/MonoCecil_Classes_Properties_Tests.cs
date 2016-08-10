@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Classes_Properties_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestClassWithInternalPropertyUsingMonoCecil()
+        public void TestClassWithInternalPropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithInternalProperty));
+            TestClassAsync(typeof(ClassWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewPropertyUsingMonoCecil()
+        public void TestClassWithNewPropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNewProperty));
+            TestClassAsync(typeof(ClassWithNewProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewStaticPropertyUsingMonoCecil()
+        public void TestClassWithNewStaticPropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNewStaticProperty));
+            TestClassAsync(typeof(ClassWithNewStaticProperty));
         }
 
         //[TestMethod]
-        //public async Task TestClassWithNewVirtualPropertyUsingMonoCecil()
+        //public void TestClassWithNewVirtualPropertyUsingMonoCecil()
         //{
-        //    await TestClassAsync(typeof(ClassWithNewVirtualProperty));
+        //    TestClassAsync(typeof(ClassWithNewVirtualProperty));
         //}
 
         [TestMethod]
-        public async Task TestClassWithOverridePropertyUsingMonoCecil()
+        public void TestClassWithOverridePropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithOverrideProperty));
+            TestClassAsync(typeof(ClassWithOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivatePropertyUsingMonoCecil()
+        public void TestClassWithPrivatePropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithPrivateProperty));
+            TestClassAsync(typeof(ClassWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedPropertyUsingMonoCecil()
+        public void TestClassWithProtectedPropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithProtectedProperty));
+            TestClassAsync(typeof(ClassWithProtectedProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalPropertyUsingMonoCecil()
+        public void TestClassWithProtectedInternalPropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalProperty));
+            TestClassAsync(typeof(ClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicPropertyUsingMonoCecil()
+        public void TestClassWithPublicPropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithPublicProperty));
+            TestClassAsync(typeof(ClassWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithSealedOverridePropertyUsingMonoCecil()
+        public void TestClassWithSealedOverridePropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithSealedOverrideProperty));
+            TestClassAsync(typeof(ClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithStaticPropertyUsingMonoCecil()
+        public void TestClassWithStaticPropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithStaticProperty));
+            TestClassAsync(typeof(ClassWithStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithVirtualPropertyUsingMonoCecil()
+        public void TestClassWithVirtualPropertyUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithVirtualProperty));
+            TestClassAsync(typeof(ClassWithVirtualProperty));
         }
     }
 }

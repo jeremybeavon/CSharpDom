@@ -8,123 +8,123 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWith1AttributeUsingReflection()
+        public void TestStructWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWith1Attribute));
+            TestStructAsync(typeof(StructWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWith1GenericParameterUsingReflection()
+        public void TestStructWith1GenericParameterUsingReflection()
         {
-            await TestStructAsync(typeof(StructWith1GenericParameter<>));
+            TestStructAsync(typeof(StructWith1GenericParameter<>));
         }
 
         [TestMethod]
-        public async Task TestStructWith1ImplementedInterfaceUsingReflection()
+        public void TestStructWith1ImplementedInterfaceUsingReflection()
         {
-            await TestStructAsync(typeof(StructWith1ImplementedInterface));
+            TestStructAsync(typeof(StructWith1ImplementedInterface));
         }
 
         [TestMethod]
-        public async Task TestStructWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWith2GenericParametersUsingReflection()
+        public void TestStructWith2GenericParametersUsingReflection()
         {
-            await TestStructAsync(typeof(StructWith2GenericParameters<,>));
+            TestStructAsync(typeof(StructWith2GenericParameters<,>));
         }
 
         [TestMethod]
-        public async Task TestStructWith2ImplementedInterfacesUsingReflection()
+        public void TestStructWith2ImplementedInterfacesUsingReflection()
         {
-            await TestStructAsync(typeof(StructWith2ImplementedInterfaces));
+            TestStructAsync(typeof(StructWith2ImplementedInterfaces));
         }
 
         [TestMethod]
-        public async Task TestStructWithExplicitConversionOperatorUsingReflection()
+        public void TestStructWithExplicitConversionOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithExplicitConversionOperator));
+            TestStructAsync(typeof(StructWithExplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterBaseClassConstraintUsingReflection()
+        public void TestStructWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterBaseClassConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
+        public void TestStructWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestStructAsync(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
+        public void TestStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestStructAsync(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterClassConstraintUsingReflection()
+        public void TestStructWithGenericParameterClassConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterClassConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterEmptyConstructorConstraintUsingReflection()
+        public void TestStructWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterGenericParameterConstraintUsingReflection()
+        public void TestStructWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
+            TestStructAsync(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterInterfaceConstraintUsingReflection()
+        public void TestStructWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterInterfaceConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterStructConstraintUsingReflection()
+        public void TestStructWithGenericParameterStructConstraintUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterStructConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithImplicitConversionOperatorUsingReflection()
+        public void TestStructWithImplicitConversionOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithImplicitConversionOperator));
+            TestStructAsync(typeof(StructWithImplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateIndexerUsingReflection()
+        public void TestStructWithPrivateIndexerUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithPrivateIndexer));
+            TestStructAsync(typeof(StructWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicIndexerUsingReflection()
+        public void TestStructWithPublicIndexerUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithPublicIndexer));
+            TestStructAsync(typeof(StructWithPublicIndexer));
         }
 
         [TestMethod]
-        public async Task TestInternalStructUsingReflection()
+        public void TestInternalStructUsingReflection()
         {
-            await TestStructAsync(typeof(InternalStruct));
+            TestStructAsync(typeof(InternalStruct));
         }
 
         [TestMethod]
-        public async Task TestPublicStructUsingReflection()
+        public void TestPublicStructUsingReflection()
         {
-            await TestStructAsync(typeof(PublicStruct));
+            TestStructAsync(typeof(PublicStruct));
         }
     }
 }

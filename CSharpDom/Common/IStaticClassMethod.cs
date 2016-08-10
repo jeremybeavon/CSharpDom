@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStaticClassMethod : IStaticClassMember, IMethod
+    public interface IStaticClassMethod : IStaticClassMember, IMethod, IHasStaticClassMemberVisibilityModifier
     {
     }
 }

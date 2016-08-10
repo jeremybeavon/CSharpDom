@@ -8,51 +8,51 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_StaticClasses_Events_EventProperties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith1AccessorAttributeUsingReflection()
+        public void TestStaticClassWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        public void TestStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith1AttributeUsingReflection()
+        public void TestStaticClassWithEventPropertyWith1AttributeUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWithGenericDelegateUsingReflection()
+        public void TestStaticClassWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWithGenericDelegate));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalEventPropertyUsingReflection()
+        public void TestStaticClassWithInternalEventPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateEventPropertyUsingReflection()
+        public void TestStaticClassWithPrivateEventPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicEventPropertyUsingReflection()
+        public void TestStaticClassWithPublicEventPropertyUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithPublicEventProperty));
         }
     }
 }

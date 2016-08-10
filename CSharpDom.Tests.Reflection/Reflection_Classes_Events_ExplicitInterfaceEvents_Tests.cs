@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Classes_Events_ExplicitInterfaceEvents_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith1AccessorAttributeUsingReflection()
+        public void TestClassWithExplicitInterfaceEventWith1AccessorAttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith1AttributeUsingReflection()
+        public void TestClassWithExplicitInterfaceEventWith1AttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventUsingReflection()
+        public void TestClassWithExplicitInterfaceEventUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEvent));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWithGenericDelegateUsingReflection()
+        public void TestClassWithExplicitInterfaceEventWithGenericDelegateUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWithGenericInterfaceUsingReflection()
+        public void TestClassWithExplicitInterfaceEventWithGenericInterfaceUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

@@ -8,105 +8,105 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_NestedClasses_Events_EventProperties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedClassWithEventPropertyWith1AccessorAttributeUsingReflection()
+        public void TestStructWithNestedClassWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWith1AccessorAttribute));
+            TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithEventPropertyWith1AttributeUsingReflection()
+        public void TestStructWithNestedClassWithEventPropertyWith1AttributeUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithEventPropertyWithGenericDelegateUsingReflection()
+        public void TestStructWithNestedClassWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWithGenericDelegate));
+            TestStructAsync(typeof(StructWithNestedClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithInternalEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithInternalEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithInternalEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNewEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithNewEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNewEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithNewEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNewStaticEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithNewStaticEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNewStaticEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithNewStaticEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithNewVirtualEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithNewVirtualEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithNewVirtualEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithNewVirtualEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithOverrideEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithOverrideEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithOverrideEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithOverrideEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithPrivateEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithPrivateEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithPrivateEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithPrivateEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithProtectedEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithProtectedEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithProtectedEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithProtectedEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithProtectedInternalEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithProtectedInternalEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithPublicEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithPublicEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithPublicEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithPublicEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithSealedOverrideEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithSealedOverrideEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithSealedOverrideEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithSealedOverrideEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithStaticEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithStaticEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithStaticEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithStaticEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithVirtualEventPropertyUsingReflection()
+        public void TestStructWithNestedClassWithVirtualEventPropertyUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithVirtualEventProperty));
+            TestStructAsync(typeof(StructWithNestedClassWithVirtualEventProperty));
         }
     }
 }

@@ -8,99 +8,99 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Classes_Fields_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestClassWithConstFieldUsingReflection()
+        public void TestClassWithConstFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithConstField));
+            TestClassAsync(typeof(ClassWithConstField));
         }
 
         [TestMethod]
-        public async Task TestClassWithInternalFieldUsingReflection()
+        public void TestClassWithInternalFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithInternalField));
+            TestClassAsync(typeof(ClassWithInternalField));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewFieldUsingReflection()
+        public void TestClassWithNewFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewField));
+            TestClassAsync(typeof(ClassWithNewField));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewStaticFieldUsingReflection()
+        public void TestClassWithNewStaticFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewStaticField));
+            TestClassAsync(typeof(ClassWithNewStaticField));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewStaticReadOnlyFieldUsingReflection()
+        public void TestClassWithNewStaticReadOnlyFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewStaticReadOnlyField));
+            TestClassAsync(typeof(ClassWithNewStaticReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewStaticVolatileFieldUsingReflection()
+        public void TestClassWithNewStaticVolatileFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewStaticVolatileField));
+            TestClassAsync(typeof(ClassWithNewStaticVolatileField));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewVolatileFieldUsingReflection()
+        public void TestClassWithNewVolatileFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewVolatileField));
+            TestClassAsync(typeof(ClassWithNewVolatileField));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivateFieldUsingReflection()
+        public void TestClassWithPrivateFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithPrivateField));
+            TestClassAsync(typeof(ClassWithPrivateField));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedFieldUsingReflection()
+        public void TestClassWithProtectedFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithProtectedField));
+            TestClassAsync(typeof(ClassWithProtectedField));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalFieldUsingReflection()
+        public void TestClassWithProtectedInternalFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalField));
+            TestClassAsync(typeof(ClassWithProtectedInternalField));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicFieldUsingReflection()
+        public void TestClassWithPublicFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithPublicField));
+            TestClassAsync(typeof(ClassWithPublicField));
         }
 
         [TestMethod]
-        public async Task TestClassWithReadOnlyFieldUsingReflection()
+        public void TestClassWithReadOnlyFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithReadOnlyField));
+            TestClassAsync(typeof(ClassWithReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestClassWithStaticFieldUsingReflection()
+        public void TestClassWithStaticFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithStaticField));
+            TestClassAsync(typeof(ClassWithStaticField));
         }
 
         [TestMethod]
-        public async Task TestClassWithStaticReadOnlyFieldUsingReflection()
+        public void TestClassWithStaticReadOnlyFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithStaticReadOnlyField));
+            TestClassAsync(typeof(ClassWithStaticReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestClassWithStaticVolatileFieldUsingReflection()
+        public void TestClassWithStaticVolatileFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithStaticVolatileField));
+            TestClassAsync(typeof(ClassWithStaticVolatileField));
         }
 
         [TestMethod]
-        public async Task TestClassWithVolatileFieldUsingReflection()
+        public void TestClassWithVolatileFieldUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithVolatileField));
+            TestClassAsync(typeof(ClassWithVolatileField));
         }
     }
 }

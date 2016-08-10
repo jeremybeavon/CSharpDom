@@ -8,39 +8,39 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_NestedStaticClasses_Events_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithEventWith1AttributeUsingMonoCecil()
+        public void TestStructWithNestedStaticClassWithEventWith1AttributeUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStructWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithEventWithGenericDelegateUsingMonoCecil()
+        public void TestStructWithNestedStaticClassWithEventWithGenericDelegateUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithEventWithGenericDelegate));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithInternalEventUsingMonoCecil()
+        public void TestStructWithNestedStaticClassWithInternalEventUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithInternalEvent));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithPrivateEventUsingMonoCecil()
+        public void TestStructWithNestedStaticClassWithPrivateEventUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithPrivateEvent));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithPublicEventUsingMonoCecil()
+        public void TestStructWithNestedStaticClassWithPublicEventUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithPublicEvent));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithPublicEvent));
         }
     }
 }

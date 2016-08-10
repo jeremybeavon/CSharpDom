@@ -8,39 +8,39 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Classes_Methods_ExplicitInterfaceMethods_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWith1AttributeUsingReflection()
+        public void TestClassWithExplicitInterfaceMethodWith1AttributeUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1Attribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWith1GenericParameterUsingReflection()
+        public void TestClassWithExplicitInterfaceMethodWith1GenericParameterUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1GenericParameter));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1GenericParameter));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWith2GenericParametersUsingReflection()
+        public void TestClassWithExplicitInterfaceMethodWith2GenericParametersUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2GenericParameters));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2GenericParameters));
         }
 
         [TestMethod]
-        public async Task TestClassExplicitInterfaceMethodWithParametersWithAttributesUsingReflection()
+        public void TestClassExplicitInterfaceMethodWithParametersWithAttributesUsingReflection()
         {
-            await TestClassAsync(typeof(ClassExplicitInterfaceMethodWithParametersWithAttributes));
+            TestClassAsync(typeof(ClassExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWithParametersWithModifiersUsingReflection()
+        public void TestClassWithExplicitInterfaceMethodWithParametersWithModifiersUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithModifiers));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithModifiers));
         }
     }
 }

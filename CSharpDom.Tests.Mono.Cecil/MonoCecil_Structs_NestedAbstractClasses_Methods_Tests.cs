@@ -8,171 +8,171 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_NestedAbstractClasses_Methods_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWith1AttributeUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWith1AttributeUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWith1GenericParameterUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWith1GenericParameterUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith1GenericParameter));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith1GenericParameter));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWith1ReturnAttributeUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWith1ReturnAttributeUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith1ReturnAttribute));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWith2GenericParametersUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWith2GenericParametersUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2GenericParameters));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2GenericParameters));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithGenericParameterBaseClassConstraintUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterBaseClassConstraint));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithGenericParameterClassConstraintUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterClassConstraint));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterEmptyConstructorConstraint));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithGenericParameterGenericParameterConstraintUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithGenericParameterGenericParameterConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterGenericParameterConstraint));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithGenericParameterInterfaceConstraintUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithGenericParameterInterfaceConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterInterfaceConstraint));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithGenericParameterStructConstraintUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithGenericParameterStructConstraintUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterStructConstraint));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithInternalMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithInternalMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithInternalMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithInternalMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNewMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithNewMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNewMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNewStaticMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithNewStaticMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNewStaticMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewStaticMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNewVirtualMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithNewVirtualMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNewVirtualMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewVirtualMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithOverrideMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithOverrideMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithOverrideMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithOverrideMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithParametersWithAttributesUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithParametersWithAttributesUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithParametersWithAttributes));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithMethodWithParametersWithModifiersUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithMethodWithParametersWithModifiersUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithParametersWithModifiers));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithMethodWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithPrivateMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithPrivateMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithPrivateMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithPrivateMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithProtectedMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithProtectedMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithProtectedInternalMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithProtectedInternalMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedInternalMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedInternalMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithPublicMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithPublicMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithPublicMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithPublicMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithSealedOverrideMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithSealedOverrideMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithSealedOverrideMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithSealedOverrideMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithStaticMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithStaticMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithStaticMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithStaticMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithVirtualMethodUsingMonoCecil()
+        public void TestStructWithNestedAbstractClassWithVirtualMethodUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithVirtualMethod));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithVirtualMethod));
         }
     }
 }

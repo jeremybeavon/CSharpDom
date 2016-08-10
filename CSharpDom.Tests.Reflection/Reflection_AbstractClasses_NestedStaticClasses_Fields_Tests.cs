@@ -8,39 +8,39 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_AbstractClasses_NestedStaticClasses_Fields_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithConstFieldUsingReflection()
+        public void TestAbstractClassWithNestedStaticClassWithConstFieldUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithConstField));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithConstField));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithInternalFieldUsingReflection()
+        public void TestAbstractClassWithNestedStaticClassWithInternalFieldUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithInternalField));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithInternalField));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithPrivateFieldUsingReflection()
+        public void TestAbstractClassWithNestedStaticClassWithPrivateFieldUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPrivateField));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPrivateField));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithPublicFieldUsingReflection()
+        public void TestAbstractClassWithNestedStaticClassWithPublicFieldUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPublicField));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPublicField));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithReadOnlyFieldUsingReflection()
+        public void TestAbstractClassWithNestedStaticClassWithReadOnlyFieldUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithReadOnlyField));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithVolatileFieldUsingReflection()
+        public void TestAbstractClassWithNestedStaticClassWithVolatileFieldUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithVolatileField));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithVolatileField));
         }
     }
 }

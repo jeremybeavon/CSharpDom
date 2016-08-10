@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_OperatorOverloads_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithAndOperatorUsingReflection()
+        public void TestStructWithAndOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithAndOperator));
+            TestStructAsync(typeof(StructWithAndOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithBitwiseNotOperatorUsingReflection()
+        public void TestStructWithBitwiseNotOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithBitwiseNotOperator));
+            TestStructAsync(typeof(StructWithBitwiseNotOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithDecrementOperatorUsingReflection()
+        public void TestStructWithDecrementOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithDecrementOperator));
+            TestStructAsync(typeof(StructWithDecrementOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithEqualAndNotEqualOperatorsUsingReflection()
+        public void TestStructWithEqualAndNotEqualOperatorsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithEqualAndNotEqualOperators));
+            TestStructAsync(typeof(StructWithEqualAndNotEqualOperators));
         }
 
         [TestMethod]
-        public async Task TestStructWithExclusiveOrOperatorUsingReflection()
+        public void TestStructWithExclusiveOrOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithExclusiveOrOperator));
+            TestStructAsync(typeof(StructWithExclusiveOrOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithIncrementOperatorUsingReflection()
+        public void TestStructWithIncrementOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithIncrementOperator));
+            TestStructAsync(typeof(StructWithIncrementOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithLeftShiftOperatorUsingReflection()
+        public void TestStructWithLeftShiftOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithLeftShiftOperator));
+            TestStructAsync(typeof(StructWithLeftShiftOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithLessThanAndGreaterThanOperatorsUsingReflection()
+        public void TestStructWithLessThanAndGreaterThanOperatorsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithLessThanAndGreaterThanOperators));
+            TestStructAsync(typeof(StructWithLessThanAndGreaterThanOperators));
         }
 
         [TestMethod]
-        public async Task TestStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorsUsingReflection()
+        public void TestStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithLessThanOrEqualAndGreaterThanOrEqualOperators));
+            TestStructAsync(typeof(StructWithLessThanOrEqualAndGreaterThanOrEqualOperators));
         }
 
         [TestMethod]
-        public async Task TestStructWithLogicalNotOperatorUsingReflection()
+        public void TestStructWithLogicalNotOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithLogicalNotOperator));
+            TestStructAsync(typeof(StructWithLogicalNotOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithMinusOperatorUsingReflection()
+        public void TestStructWithMinusOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithMinusOperator));
+            TestStructAsync(typeof(StructWithMinusOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithModuloOperatorUsingReflection()
+        public void TestStructWithModuloOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithModuloOperator));
+            TestStructAsync(typeof(StructWithModuloOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithMultiplyOperatorUsingReflection()
+        public void TestStructWithMultiplyOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithMultiplyOperator));
+            TestStructAsync(typeof(StructWithMultiplyOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithOrOperatorUsingReflection()
+        public void TestStructWithOrOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithOrOperator));
+            TestStructAsync(typeof(StructWithOrOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithPlusOperatorUsingReflection()
+        public void TestStructWithPlusOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithPlusOperator));
+            TestStructAsync(typeof(StructWithPlusOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithRightShiftOperatorUsingReflection()
+        public void TestStructWithRightShiftOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithRightShiftOperator));
+            TestStructAsync(typeof(StructWithRightShiftOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithTrueAndFalseOperatorsUsingReflection()
+        public void TestStructWithTrueAndFalseOperatorsUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithTrueAndFalseOperators));
+            TestStructAsync(typeof(StructWithTrueAndFalseOperators));
         }
 
         [TestMethod]
-        public async Task TestStructWithUnaryMinusOperatorUsingReflection()
+        public void TestStructWithUnaryMinusOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithUnaryMinusOperator));
+            TestStructAsync(typeof(StructWithUnaryMinusOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithUnaryPlusOperatorUsingReflection()
+        public void TestStructWithUnaryPlusOperatorUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithUnaryPlusOperator));
+            TestStructAsync(typeof(StructWithUnaryPlusOperator));
         }
     }
 }

@@ -8,93 +8,93 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_AbstractClasses_Events_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithEventWith1AttributeUsingReflection()
+        public void TestAbstractClassWithEventWith1AttributeUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEventWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithEventWithGenericDelegateUsingReflection()
-        {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEventWithGenericDelegate));
+        public void TestAbstractClassWithEventWithGenericDelegateUsingReflection()
+        { 
+            TestAbstractClassAsync(typeof(AbstractClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithInternalEventUsingReflection()
+        public void TestAbstractClassWithInternalEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithInternalEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewEventUsingReflection()
+        public void TestAbstractClassWithNewEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewStaticEventUsingReflection()
+        public void TestAbstractClassWithNewStaticEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewStaticEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewVirtualEventUsingReflection()
+        public void TestAbstractClassWithNewVirtualEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithOverrideEventUsingReflection()
+        public void TestAbstractClassWithOverrideEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithOverrideEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPrivateEventUsingReflection()
+        public void TestAbstractClassWithPrivateEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedEventUsingReflection()
+        public void TestAbstractClassWithProtectedEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedInternalEventUsingReflection()
+        public void TestAbstractClassWithProtectedInternalEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPublicEventUsingReflection()
+        public void TestAbstractClassWithPublicEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPublicEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithPublicEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithSealedOverrideEventUsingReflection()
+        public void TestAbstractClassWithSealedOverrideEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithStaticEventUsingReflection()
+        public void TestAbstractClassWithStaticEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithStaticEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithVirtualEventUsingReflection()
+        public void TestAbstractClassWithVirtualEventUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithVirtualEvent));
+            TestAbstractClassAsync(typeof(AbstractClassWithVirtualEvent));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithEventWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithEventWith2AttributesIn2AttributeGroups));
         }
     }
 }

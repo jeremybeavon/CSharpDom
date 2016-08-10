@@ -14,7 +14,7 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public string Name { get; set; }
 
-        public StaticClassMemberVisibilityModifier Visibility { get; set; }
+        public ClassMemberVisibilityModifier Visibility { get; set; }
         
         public Collection<GenericParameter> GenericParameters { get; set; }
 

@@ -8,39 +8,39 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_Events_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithEventWith1AttributeUsingMonoCecil()
+        public void TestStaticClassWithEventWith1AttributeUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventWithGenericDelegateUsingMonoCecil()
+        public void TestStaticClassWithEventWithGenericDelegateUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventWithGenericDelegate));
+            TestStaticClassAsync(typeof(StaticClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalEventUsingMonoCecil()
+        public void TestStaticClassWithInternalEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalEvent));
+            TestStaticClassAsync(typeof(StaticClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateEventUsingMonoCecil()
+        public void TestStaticClassWithPrivateEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateEvent));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicEventUsingMonoCecil()
+        public void TestStaticClassWithPublicEventUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicEvent));
+            TestStaticClassAsync(typeof(StaticClassWithPublicEvent));
         }
     }
 }

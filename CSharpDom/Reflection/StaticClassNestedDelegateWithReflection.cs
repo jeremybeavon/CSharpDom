@@ -50,9 +50,9 @@ namespace CSharpDom.Reflection
             get { return nestedDelegate.ReturnType; }
         }
 
-        public override StaticClassMemberVisibilityModifier Visibility
+        public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedDelegate.Type.StaticClassMemberVisibility(); }
+            get { return nestedDelegate.Type.ClassMemberVisibility(); }
         }
     }
 }

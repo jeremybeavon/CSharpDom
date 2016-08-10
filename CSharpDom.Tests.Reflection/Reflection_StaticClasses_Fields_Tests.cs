@@ -8,39 +8,39 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_StaticClasses_Fields_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithConstrFieldUsingReflection()
+        public void TestStaticClassWithConstrFieldUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithConstrField));
+            TestStaticClassAsync(typeof(StaticClassWithConstrField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalFieldUsingReflection()
+        public void TestStaticClassWithInternalFieldUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalField));
+            TestStaticClassAsync(typeof(StaticClassWithInternalField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateFieldUsingReflection()
+        public void TestStaticClassWithPrivateFieldUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateField));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicFieldUsingReflection()
+        public void TestStaticClassWithPublicFieldUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicField));
+            TestStaticClassAsync(typeof(StaticClassWithPublicField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithReadOnlyFieldUsingReflection()
+        public void TestStaticClassWithReadOnlyFieldUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithReadOnlyField));
+            TestStaticClassAsync(typeof(StaticClassWithReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithVolatileFieldUsingReflection()
+        public void TestStaticClassWithVolatileFieldUsingReflection()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithVolatileField));
+            TestStaticClassAsync(typeof(StaticClassWithVolatileField));
         }
     }
 }

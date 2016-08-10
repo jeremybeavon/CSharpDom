@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_Methods_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestStructWithInternalMethodUsingReflection()
+        public void TestStructWithInternalMethodUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithInternalMethod));
+            TestStructAsync(typeof(StructWithInternalMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateMethodUsingReflection()
+        public void TestStructWithPrivateMethodUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithPrivateMethod));
+            TestStructAsync(typeof(StructWithPrivateMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicMethodUsingReflection()
+        public void TestStructWithPublicMethodUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithPublicMethod));
+            TestStructAsync(typeof(StructWithPublicMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithStaticMethodUsingReflection()
+        public void TestStructWithStaticMethodUsingReflection()
         {
-            await TestStructAsync(typeof(StructWithStaticMethod));
+            TestStructAsync(typeof(StructWithStaticMethod));
         }
     }
 }

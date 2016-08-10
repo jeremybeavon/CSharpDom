@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Classes_Properties_AutoProperties_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestClassWithInternalAutoPropertyUsingReflection()
+        public void TestClassWithInternalAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithInternalAutoProperty));
+            TestClassAsync(typeof(ClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewAutoPropertyUsingReflection()
+        public void TestClassWithNewAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewAutoProperty));
+            TestClassAsync(typeof(ClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewStaticAutoPropertyUsingReflection()
+        public void TestClassWithNewStaticAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewStaticAutoProperty));
+            TestClassAsync(typeof(ClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewVirtualAutoPropertyUsingReflection()
+        public void TestClassWithNewVirtualAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithNewVirtualAutoProperty));
+            TestClassAsync(typeof(ClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithOverrideAutoPropertyUsingReflection()
+        public void TestClassWithOverrideAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithOverrideAutoProperty));
+            TestClassAsync(typeof(ClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivateAutoPropertyUsingReflection()
+        public void TestClassWithPrivateAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithPrivateAutoProperty));
+            TestClassAsync(typeof(ClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedAutoPropertyUsingReflection()
+        public void TestClassWithProtectedAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithProtectedAutoProperty));
+            TestClassAsync(typeof(ClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalAutoPropertyUsingReflection()
+        public void TestClassWithProtectedInternalAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalAutoProperty));
+            TestClassAsync(typeof(ClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicAutoPropertyUsingReflection()
+        public void TestClassWithPublicAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithPublicAutoProperty));
+            TestClassAsync(typeof(ClassWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithSealedOverrideAutoPropertyUsingReflection()
+        public void TestClassWithSealedOverrideAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithSealedOverrideAutoProperty));
+            TestClassAsync(typeof(ClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithStaticAutoPropertyUsingReflection()
+        public void TestClassWithStaticAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithStaticAutoProperty));
+            TestClassAsync(typeof(ClassWithStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithVirtualAutoPropertyUsingReflection()
+        public void TestClassWithVirtualAutoPropertyUsingReflection()
         {
-            await TestClassAsync(typeof(ClassWithVirtualAutoProperty));
+            TestClassAsync(typeof(ClassWithVirtualAutoProperty));
         }
     }
 }

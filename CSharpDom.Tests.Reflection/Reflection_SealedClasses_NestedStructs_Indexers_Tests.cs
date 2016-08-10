@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_SealedClasses_NestedStructs_Indexers_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithIndexerWith1AccessorAttributeUsingReflection()
+        public void TestSealedClassWithNestedStructWithIndexerWith1AccessorAttributeUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith1AccessorAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithIndexerWith1AttributeUsingReflection()
+        public void TestSealedClassWithNestedStructWithIndexerWith1AttributeUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
+        public void TestSealedClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestSealedClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithIndexerWith2ParametersUsingReflection()
+        public void TestSealedClassWithNestedStructWithIndexerWith2ParametersUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2Parameters));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithIndexerWith2ParametersWithAttributesUsingReflection()
+        public void TestSealedClassWithNestedStructWithIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2ParametersWithAttributes));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithIndexerWith2ParametersWithModifiersUsingReflection()
+        public void TestSealedClassWithNestedStructWithIndexerWith2ParametersWithModifiersUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2ParametersWithModifiers));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithInternalIndexerUsingReflection()
+        public void TestSealedClassWithNestedStructWithInternalIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithPrivateIndexerUsingReflection()
+        public void TestSealedClassWithNestedStructWithPrivateIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedStructWithPublicIndexerUsingReflection()
+        public void TestSealedClassWithNestedStructWithPublicIndexerUsingReflection()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicIndexer));
+            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicIndexer));
         }
     }
 }

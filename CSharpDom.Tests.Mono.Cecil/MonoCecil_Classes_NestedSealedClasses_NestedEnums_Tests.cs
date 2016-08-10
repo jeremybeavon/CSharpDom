@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Classes_NestedSealedClasses_NestedEnums_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNestedEnumWith1AttributeUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithNestedEnumWith1AttributeUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedEnumWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithInternalNestedEnumUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithInternalNestedEnumUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithInternalNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithPrivateNestedEnumUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithPrivateNestedEnumUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithPrivateNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithProtectedNestedEnumUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithProtectedNestedEnumUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithProtectedInternalNestedEnumUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithProtectedInternalNestedEnumUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedInternalNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedSealedClassWithPublicNestedEnumUsingMonoCecil()
+        public void TestClassWithNestedSealedClassWithPublicNestedEnumUsingMonoCecil()
         {
-            await TestClassAsync(typeof(ClassWithNestedSealedClassWithPublicNestedEnum));
+            TestClassAsync(typeof(ClassWithNestedSealedClassWithPublicNestedEnum));
         }
     }
 }

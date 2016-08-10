@@ -13,57 +13,57 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith1AttributeUsingMonoCecil()
+        public void TestStructWithConstructorWith1AttributeUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith1Attribute));
+            TestStructAsync(typeof(StructWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith1ParameterUsingMonoCecil()
+        public void TestStructWithConstructorWith1ParameterUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith1Parameter));
+            TestStructAsync(typeof(StructWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
+        public void TestStructWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith2ParametersUsingMonoCecil()
+        public void TestStructWithConstructorWith2ParametersUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith2Parameters));
+            TestStructAsync(typeof(StructWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestStructWithInternalConstructorUsingMonoCecil()
+        public void TestStructWithInternalConstructorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithInternalConstructor));
+            TestStructAsync(typeof(StructWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWithParametersWithAttributesUsingMonoCecil()
+        public void TestStructWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithConstructorWithParametersWithAttributes));
+            TestStructAsync(typeof(StructWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWithParametersWithModifiersUsingMonoCecil()
+        public void TestStructWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithConstructorWithParametersWithModifiers));
+            TestStructAsync(typeof(StructWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateConstructorUsingMonoCecil()
+        public void TestStructWithPrivateConstructorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithPrivateConstructor));
+            TestStructAsync(typeof(StructWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicConstructorUsingMonoCecil()
+        public void TestStructWithPublicConstructorUsingMonoCecil()
         {
-            await TestStructAsync(typeof(StructWithPublicConstructor));
+            TestStructAsync(typeof(StructWithPublicConstructor));
         }
     }
 }

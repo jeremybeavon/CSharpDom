@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStaticClassConstant : IStaticClassMember, IConstantGroup
+    public interface IStaticClassConstant : IStaticClassMember, IConstantGroup, IHasStaticClassMemberVisibilityModifier
     {
     }
 }

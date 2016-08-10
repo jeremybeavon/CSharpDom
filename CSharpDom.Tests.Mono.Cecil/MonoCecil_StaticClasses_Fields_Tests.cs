@@ -8,39 +8,39 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_StaticClasses_Fields_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithConstrFieldUsingMonoCecil()
+        public void TestStaticClassWithConstrFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithConstrField));
+            TestStaticClassAsync(typeof(StaticClassWithConstrField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalFieldUsingMonoCecil()
+        public void TestStaticClassWithInternalFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalField));
+            TestStaticClassAsync(typeof(StaticClassWithInternalField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateFieldUsingMonoCecil()
+        public void TestStaticClassWithPrivateFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateField));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicFieldUsingMonoCecil()
+        public void TestStaticClassWithPublicFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicField));
+            TestStaticClassAsync(typeof(StaticClassWithPublicField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithReadOnlyFieldUsingMonoCecil()
+        public void TestStaticClassWithReadOnlyFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithReadOnlyField));
+            TestStaticClassAsync(typeof(StaticClassWithReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithVolatileFieldUsingMonoCecil()
+        public void TestStaticClassWithVolatileFieldUsingMonoCecil()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithVolatileField));
+            TestStaticClassAsync(typeof(StaticClassWithVolatileField));
         }
     }
 }
