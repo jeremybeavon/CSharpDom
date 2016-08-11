@@ -2,7 +2,8 @@
 {
     public interface IStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> : 
         IStructMethod,
-        IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>
+        IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>,
+        IHasStructMemberInheritanceModifier
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStructType
         where TGenericParameter : IGenericParameterDeclaration

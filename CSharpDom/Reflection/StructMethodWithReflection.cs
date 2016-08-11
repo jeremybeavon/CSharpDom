@@ -43,6 +43,11 @@ namespace CSharpDom.Reflection
             get { return method.GenericParameters; }
         }
 
+        public override StructMemberInheritanceModifier InheritanceModifier
+        {
+            get { return method.MethodInfo.IsStatic ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
+        }
+
         public override bool IsAsync
         {
             get { return method.IsAsync; }

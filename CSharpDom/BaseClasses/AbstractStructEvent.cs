@@ -11,6 +11,8 @@ namespace CSharpDom.BaseClasses
         where TDeclaringType : IStructType
         where TDelegateReference : IDelegateReference
     {
+        public abstract StructMemberInheritanceModifier InheritanceModifier { get; }
+
         public abstract StructMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)

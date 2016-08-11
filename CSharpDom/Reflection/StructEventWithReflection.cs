@@ -34,7 +34,12 @@ namespace CSharpDom.Reflection
         {
             get { return @event.EventType; }
         }
-        
+
+        public override StructMemberInheritanceModifier InheritanceModifier
+        {
+            get { return @event.EventInfo.AddMethod.IsStatic ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
+        }
+
         public override string Name
         {
             get { return @event.Name; }
