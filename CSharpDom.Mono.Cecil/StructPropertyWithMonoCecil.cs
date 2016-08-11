@@ -67,5 +67,10 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return property.PropertyDefinition.StructVisibility(); }
         }
+
+        public override StructMemberInheritanceModifier InheritanceModifier
+        {
+            get { return property.PropertyDefinition.Method().IsStatic ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
+        }
     }
 }

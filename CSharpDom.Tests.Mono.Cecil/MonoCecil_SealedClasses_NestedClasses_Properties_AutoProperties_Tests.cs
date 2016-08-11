@@ -61,11 +61,11 @@ namespace CSharpDom.Tests.Mono.Cecil
             TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPublicAutoProperty));
         }
 
-        [TestMethod]
-        public void TestSealedClassWithNestedClassWithSealedOverrideAutoPropertyUsingMonoCecil()
-        {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithSealedOverrideAutoProperty));
-        }
+        //[TestMethod]
+        //public void TestSealedClassWithNestedClassWithSealedOverrideAutoPropertyUsingMonoCecil()
+        //{
+        //    TestSealedClassAsync(typeof(SealedClassWithNestedClassWithSealedOverrideAutoProperty));
+        //}
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithStaticAutoPropertyUsingMonoCecil()

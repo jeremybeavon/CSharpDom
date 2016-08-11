@@ -91,11 +91,11 @@ namespace CSharpDom.Tests.Mono.Cecil
             TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPublicEventProperty));
         }
 
-        [TestMethod]
-        public void TestStaticClassWithNestedClassWithSealedOverrideEventPropertyUsingMonoCecil()
-        {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithSealedOverrideEventProperty));
-        }
+        //[TestMethod]
+        //public void TestStaticClassWithNestedClassWithSealedOverrideEventPropertyUsingMonoCecil()
+        //{
+        //    TestStaticClassAsync(typeof(StaticClassWithNestedClassWithSealedOverrideEventProperty));
+        //}
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithStaticEventPropertyUsingMonoCecil()

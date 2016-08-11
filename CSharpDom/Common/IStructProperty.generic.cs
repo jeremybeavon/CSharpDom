@@ -2,7 +2,8 @@
 {
     public interface IStructProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
         IStructProperty,
-        IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+        IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
+        IHasStructMemberInheritanceModifier
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStructType
         where TTypeReference : ITypeReference

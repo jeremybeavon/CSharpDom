@@ -20,6 +20,8 @@ namespace CSharpDom.Serialization
 
         public StructAccessor GetAccessor { get; set; }
 
+        public StructMemberInheritanceModifier InheritanceModifier { get; set; }
+
         public string Name { get; set; }
 
         public TypeReference PropertyType { get; set; }

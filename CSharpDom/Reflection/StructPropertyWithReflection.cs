@@ -66,5 +66,10 @@ namespace CSharpDom.Reflection
         {
             get { return property.PropertyInfo.StructVisibility(); }
         }
+
+        public override StructMemberInheritanceModifier InheritanceModifier
+        {
+            get { return property.PropertyInfo.Method().IsStatic ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
+        }
     }
 }

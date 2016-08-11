@@ -8884,6 +8884,18 @@
     <EmbeddedResource Include="CSharpDom.TestTarget\StaticClasses\NestedStaticClasses\NestedAbstractClasses\GenericParameterClassAndEmptyConstructorConstraints.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\StaticClasses\NestedStaticClasses\NestedAbstractClasses\GenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\StaticClasses\NestedStaticClasses\NestedAbstractClasses\GenericParameterClassConstraint.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\Internal.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\New.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\NewStatic.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\NewVirtual.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\Override.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\Private.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\Protected.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\ProtectedInternal.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\Public.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\SealedOverride.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\Static.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\Virtual.cs" />
     <Compile Include="ExpectedResultsType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

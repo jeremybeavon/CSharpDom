@@ -16,6 +16,7 @@ namespace CSharpDom.Serialization.Factories
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
                 GetAccessor = new StructAccessorFactory(property.GetAccessor).Value,
+                InheritanceModifier = property.InheritanceModifier,
                 Name = property.Name,
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value,
                 SetAccessor = new StructAccessorFactory(property.SetAccessor).Value,

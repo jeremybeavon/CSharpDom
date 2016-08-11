@@ -74,9 +74,9 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public void TestStructWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
+        public void TestStructWithNestedAbstractClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]

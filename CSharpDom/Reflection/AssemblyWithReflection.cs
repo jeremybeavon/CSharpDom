@@ -51,7 +51,7 @@ namespace CSharpDom.Reflection
         {
             this.assembly = assembly;
             ConcurrentDictionary<string, NamespaceContainer> namespaces = new ConcurrentDictionary<string, NamespaceContainer>();
-            foreach (Type type in assembly.GetTypes())
+            foreach (Type type in assembly.GetTypes().Where(type => type.DeclaringType == null))
             {
                 NamespaceContainer namespaceContainer = namespaces.GetOrAdd(
                     type.Namespace ?? string.Empty,
