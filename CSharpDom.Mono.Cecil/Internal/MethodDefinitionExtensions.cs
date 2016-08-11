@@ -46,7 +46,7 @@ namespace CSharpDom.Mono.Cecil.Internal
                 return ClassMemberInheritanceModifier.SealedOverride;
             }
 
-            if (method.IsReuseSlot)
+            if (method.IsVirtual && method.IsReuseSlot)
             {
                 return ClassMemberInheritanceModifier.Override;
             }
@@ -81,7 +81,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public static ClassMemberInheritanceModifier PropertyOrEventInheritanceModifier(this MethodDefinition method, Func<bool> isHidden)
         {
-            if (method.IsReuseSlot)
+            if (method.IsVirtual && method.IsReuseSlot)
             {
                 return ClassMemberInheritanceModifier.Override;
             }
