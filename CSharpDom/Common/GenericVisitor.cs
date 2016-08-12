@@ -829,6 +829,7 @@ namespace CSharpDom.Common
             VisitCollection(@struct.Attributes, visitor);
             VisitCollection(@struct.GenericParameters, visitor);
             VisitCollection(@struct.ImplementedInterfaces, visitor);
+            VisitStructTypeChildren(@struct, visitor);
         }
 
         public static void VisitStructReferenceChildren<TGenericParameter>(

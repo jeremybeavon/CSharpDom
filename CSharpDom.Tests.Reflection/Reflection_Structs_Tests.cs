@@ -1,4 +1,5 @@
 using CSharpDom.TestTarget.Structs;
+using CSharpDom.TestTarget.Structs.ConversionOperators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 
@@ -101,18 +102,6 @@ namespace CSharpDom.Tests.Reflection
         public void TestStructWithImplicitConversionOperatorUsingReflection()
         {
             TestStructAsync(typeof(StructWithImplicitConversionOperator));
-        }
-
-        [TestMethod]
-        public void TestStructWithPrivateIndexerUsingReflection()
-        {
-            TestStructAsync(typeof(StructWithPrivateIndexer));
-        }
-
-        [TestMethod]
-        public void TestStructWithPublicIndexerUsingReflection()
-        {
-            TestStructAsync(typeof(StructWithPublicIndexer));
         }
 
         [TestMethod]

@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithExclusiveOrOperator
+    public struct StructWithExclusiveOrOperatorOverload
     {
-        public static StructWithExclusiveOrOperator operator ^(StructWithExclusiveOrOperator parameter1, StructWithExclusiveOrOperator parameter2)
+        public static StructWithExclusiveOrOperatorOverload operator ^(StructWithExclusiveOrOperatorOverload parameter1, StructWithExclusiveOrOperatorOverload parameter2)
         {
-            return parameter1;
+            return default(StructWithExclusiveOrOperatorOverload);
         }
     }
 }

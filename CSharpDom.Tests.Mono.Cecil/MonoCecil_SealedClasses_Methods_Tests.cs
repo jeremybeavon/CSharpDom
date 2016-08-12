@@ -44,27 +44,27 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public void TestSealedClassWithMethodWithGenericParameterBaseSealedClassConstraintUsingMonoCecil()
+        public void TestSealedClassWithMethodWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterBaseSealedClassConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public void TestSealedClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestSealedClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraints));
+            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public void TestSealedClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestSealedClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraints));
+            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public void TestSealedClassWithMethodWithGenericParameterSealedClassConstraintUsingMonoCecil()
+        public void TestSealedClassWithMethodWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterSealedClassConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]

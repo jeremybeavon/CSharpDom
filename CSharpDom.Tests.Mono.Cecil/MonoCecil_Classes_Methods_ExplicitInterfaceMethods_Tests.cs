@@ -32,9 +32,9 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public void TestClassExplicitInterfaceMethodWithParametersWithAttributesUsingMonoCecil()
+        public void TestClassWithExplicitInterfaceMethodWithParametersWithAttributesUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassExplicitInterfaceMethodWithParametersWithAttributes));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]

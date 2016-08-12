@@ -44,27 +44,27 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public void TestSealedClassWithMethodWithGenericParameterBaseSealedClassConstraintUsingReflection()
+        public void TestSealedClassWithMethodWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterBaseSealedClassConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public void TestSealedClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraintsUsingReflection()
+        public void TestSealedClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraints));
+            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public void TestSealedClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
+        public void TestSealedClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraints));
+            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public void TestSealedClassWithMethodWithGenericParameterSealedClassConstraintUsingReflection()
+        public void TestSealedClassWithMethodWithGenericParameterClassConstraintUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterSealedClassConstraint));
+            TestSealedClassAsync(typeof(SealedClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]

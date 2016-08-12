@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithPlusOperator
+    public struct StructWithPlusOperatorOverload
     {
-        public static StructWithPlusOperator operator +(StructWithPlusOperator parameter1, StructWithPlusOperator parameter2)
+        public static StructWithPlusOperatorOverload operator +(StructWithPlusOperatorOverload parameter1, StructWithPlusOperatorOverload parameter2)
         {
-            return default(StructWithPlusOperator);
+            return default(StructWithPlusOperatorOverload);
         }
     }
 }

@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_Structs_OperatorOverloads_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public void TestStructWithAndOperatorUsingMonoCecil()
+        public void TestStructWithAndOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithAndOperator));
+            TestStructAsync(typeof(StructWithAndOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithBitwiseNotOperatorUsingMonoCecil()
+        public void TestStructWithBitwiseNotOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithBitwiseNotOperator));
+            TestStructAsync(typeof(StructWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithDecrementOperatorUsingMonoCecil()
+        public void TestStructWithDecrementOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithDecrementOperator));
+            TestStructAsync(typeof(StructWithDecrementOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithEqualAndNotEqualOperatorsUsingMonoCecil()
+        public void TestStructWithEqualAndNotEqualOperatorOverloadsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithEqualAndNotEqualOperators));
+            TestStructAsync(typeof(StructWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public void TestStructWithExclusiveOrOperatorUsingMonoCecil()
+        public void TestStructWithExclusiveOrOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithExclusiveOrOperator));
+            TestStructAsync(typeof(StructWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithIncrementOperatorUsingMonoCecil()
+        public void TestStructWithIncrementOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithIncrementOperator));
+            TestStructAsync(typeof(StructWithIncrementOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithLeftShiftOperatorUsingMonoCecil()
+        public void TestStructWithLeftShiftOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithLeftShiftOperator));
+            TestStructAsync(typeof(StructWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithLessThanAndGreaterThanOperatorsUsingMonoCecil()
+        public void TestStructWithLessThanAndGreaterThanOperatorOverloadsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithLessThanAndGreaterThanOperators));
+            TestStructAsync(typeof(StructWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
-        public void TestStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorsUsingMonoCecil()
+        public void TestStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithLessThanOrEqualAndGreaterThanOrEqualOperators));
+            TestStructAsync(typeof(StructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public void TestStructWithLogicalNotOperatorUsingMonoCecil()
+        public void TestStructWithLogicalNotOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithLogicalNotOperator));
+            TestStructAsync(typeof(StructWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithMinusOperatorUsingMonoCecil()
+        public void TestStructWithMinusOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithMinusOperator));
+            TestStructAsync(typeof(StructWithMinusOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithModuloOperatorUsingMonoCecil()
+        public void TestStructWithModuloOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithModuloOperator));
+            TestStructAsync(typeof(StructWithModuloOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithMultiplyOperatorUsingMonoCecil()
+        public void TestStructWithMultiplyOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithMultiplyOperator));
+            TestStructAsync(typeof(StructWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithOrOperatorUsingMonoCecil()
+        public void TestStructWithOrOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithOrOperator));
+            TestStructAsync(typeof(StructWithOrOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithPlusOperatorUsingMonoCecil()
+        public void TestStructWithPlusOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithPlusOperator));
+            TestStructAsync(typeof(StructWithPlusOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithRightShiftOperatorUsingMonoCecil()
+        public void TestStructWithRightShiftOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithRightShiftOperator));
+            TestStructAsync(typeof(StructWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithTrueAndFalseOperatorsUsingMonoCecil()
+        public void TestStructWithTrueAndFalseOperatorOverloadsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithTrueAndFalseOperators));
+            TestStructAsync(typeof(StructWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
-        public void TestStructWithUnaryMinusOperatorUsingMonoCecil()
+        public void TestStructWithUnaryMinusOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithUnaryMinusOperator));
+            TestStructAsync(typeof(StructWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithUnaryPlusOperatorUsingMonoCecil()
+        public void TestStructWithUnaryPlusOperatorOverloadUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithUnaryPlusOperator));
+            TestStructAsync(typeof(StructWithUnaryPlusOperatorOverload));
         }
     }
 }

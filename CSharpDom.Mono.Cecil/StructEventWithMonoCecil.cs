@@ -35,7 +35,12 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return @event.EventType; }
         }
-        
+
+        public override StructMemberInheritanceModifier InheritanceModifier
+        {
+            get { return @event.EventDefinition.AddMethod.IsStatic ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
+        }
+
         public override string Name
         {
             get { return @event.Name; }

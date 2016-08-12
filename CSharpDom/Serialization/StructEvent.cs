@@ -20,6 +20,8 @@ namespace CSharpDom.Serialization
 
         public DelegateReference EventType { get; set; }
 
+        public StructMemberInheritanceModifier InheritanceModifier { get; set; }
+
         public string Name { get; set; }
 
         public StructMemberVisibilityModifier Visibility { get; set; }

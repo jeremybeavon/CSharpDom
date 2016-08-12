@@ -56,12 +56,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return new AttributeGroupNotSupported[0]; }
         }
-
-        public ClassMemberInheritanceModifier InheritanceModifier
-        {
-            get { return structEvent.IsStatic ? ClassMemberInheritanceModifier.Static : ClassMemberInheritanceModifier.None; }
-        }
-
+        
         public string Name
         {
             get { return structEvent.Name; }
@@ -85,6 +80,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public IReadOnlyCollection<AttributeGroupNotSupported> RemoveAttributes
         {
             get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public StructMemberInheritanceModifier InheritanceModifier
+        {
+            get { return structEvent.IsStatic ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
         }
 
         public void Accept(IGenericVisitor visitor)

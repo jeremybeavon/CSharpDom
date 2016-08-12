@@ -8,9 +8,9 @@ namespace CSharpDom.Tests.Mono.Cecil
     public sealed class MonoCecil_SealedClasses_Fields_Tests : AbstractSolutionWithMonoCecilTests
     {
         [TestMethod]
-        public void TestSealedClassWithConstrFieldUsingMonoCecil()
+        public void TestSealedClassWithConstFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithConstrField));
+            TestSealedClassAsync(typeof(SealedClassWithConstField));
         }
 
         [TestMethod]

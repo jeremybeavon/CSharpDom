@@ -44,27 +44,27 @@ namespace CSharpDom.Tests.Mono.Cecil
         }
 
         [TestMethod]
-        public void TestStaticClassWithMethodWithGenericParameterBaseSealedClassConstraintUsingMonoCecil()
+        public void TestStaticClassWithMethodWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterBaseSealedClassConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public void TestStaticClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestStaticClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraints));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public void TestStaticClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
+        public void TestStaticClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraints));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public void TestStaticClassWithMethodWithGenericParameterSealedClassConstraintUsingMonoCecil()
+        public void TestStaticClassWithMethodWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]

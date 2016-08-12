@@ -1,8 +1,8 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithLogicalNotOperator
+    public struct StructWithLogicalNotOperatorOverload
     {
-        public static bool operator !(StructWithLogicalNotOperator parameter1)
+        public static bool operator !(StructWithLogicalNotOperatorOverload parameter1)
         {
             return default(bool);
         }

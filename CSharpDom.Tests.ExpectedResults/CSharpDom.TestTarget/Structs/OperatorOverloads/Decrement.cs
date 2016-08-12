@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithDecrementOperator
+    public struct StructWithDecrementOperatorOverload
     {
-        public static StructWithDecrementOperator operator --(StructWithDecrementOperator parameter1)
+        public static StructWithDecrementOperatorOverload operator --(StructWithDecrementOperatorOverload parameter1)
         {
-            return default(StructWithDecrementOperator);
+            return default(StructWithDecrementOperatorOverload);
         }
     }
 }

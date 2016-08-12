@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedAbstractClasses.NestedDelegates
 {
-    public struct StructWithNestedAbstractClassWithNestedClassWithNestedDelegateWithParametersWithAttributes
+    public struct StructWithNestedAbstractClassWithNestedDelegateWithParametersWithAttributes
     {
         public abstract class Class
         {

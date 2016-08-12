@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithMinusOperator
+    public struct StructWithMinusOperatorOverload
     {
-        public static StructWithMinusOperator operator -(StructWithMinusOperator parameter1, StructWithMinusOperator parameter2)
+        public static StructWithMinusOperatorOverload operator -(StructWithMinusOperatorOverload parameter1, StructWithMinusOperatorOverload parameter2)
         {
-            return default(StructWithMinusOperator);
+            return default(StructWithMinusOperatorOverload);
         }
     }
 }

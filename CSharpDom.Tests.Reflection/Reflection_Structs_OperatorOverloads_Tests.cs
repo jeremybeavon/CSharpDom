@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_OperatorOverloads_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public void TestStructWithAndOperatorUsingReflection()
+        public void TestStructWithAndOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithAndOperator));
+            TestStructAsync(typeof(StructWithAndOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithBitwiseNotOperatorUsingReflection()
+        public void TestStructWithBitwiseNotOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithBitwiseNotOperator));
+            TestStructAsync(typeof(StructWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithDecrementOperatorUsingReflection()
+        public void TestStructWithDecrementOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithDecrementOperator));
+            TestStructAsync(typeof(StructWithDecrementOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithEqualAndNotEqualOperatorsUsingReflection()
+        public void TestStructWithEqualAndNotEqualOperatorOverloadsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithEqualAndNotEqualOperators));
+            TestStructAsync(typeof(StructWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public void TestStructWithExclusiveOrOperatorUsingReflection()
+        public void TestStructWithExclusiveOrOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithExclusiveOrOperator));
+            TestStructAsync(typeof(StructWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithIncrementOperatorUsingReflection()
+        public void TestStructWithIncrementOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithIncrementOperator));
+            TestStructAsync(typeof(StructWithIncrementOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithLeftShiftOperatorUsingReflection()
+        public void TestStructWithLeftShiftOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithLeftShiftOperator));
+            TestStructAsync(typeof(StructWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithLessThanAndGreaterThanOperatorsUsingReflection()
+        public void TestStructWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithLessThanAndGreaterThanOperators));
+            TestStructAsync(typeof(StructWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
-        public void TestStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorsUsingReflection()
+        public void TestStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithLessThanOrEqualAndGreaterThanOrEqualOperators));
+            TestStructAsync(typeof(StructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public void TestStructWithLogicalNotOperatorUsingReflection()
+        public void TestStructWithLogicalNotOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithLogicalNotOperator));
+            TestStructAsync(typeof(StructWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithMinusOperatorUsingReflection()
+        public void TestStructWithMinusOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithMinusOperator));
+            TestStructAsync(typeof(StructWithMinusOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithModuloOperatorUsingReflection()
+        public void TestStructWithModuloOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithModuloOperator));
+            TestStructAsync(typeof(StructWithModuloOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithMultiplyOperatorUsingReflection()
+        public void TestStructWithMultiplyOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithMultiplyOperator));
+            TestStructAsync(typeof(StructWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithOrOperatorUsingReflection()
+        public void TestStructWithOrOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithOrOperator));
+            TestStructAsync(typeof(StructWithOrOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithPlusOperatorUsingReflection()
+        public void TestStructWithPlusOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithPlusOperator));
+            TestStructAsync(typeof(StructWithPlusOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithRightShiftOperatorUsingReflection()
+        public void TestStructWithRightShiftOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithRightShiftOperator));
+            TestStructAsync(typeof(StructWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithTrueAndFalseOperatorsUsingReflection()
+        public void TestStructWithTrueAndFalseOperatorOverloadsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithTrueAndFalseOperators));
+            TestStructAsync(typeof(StructWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
-        public void TestStructWithUnaryMinusOperatorUsingReflection()
+        public void TestStructWithUnaryMinusOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithUnaryMinusOperator));
+            TestStructAsync(typeof(StructWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
-        public void TestStructWithUnaryPlusOperatorUsingReflection()
+        public void TestStructWithUnaryPlusOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithUnaryPlusOperator));
+            TestStructAsync(typeof(StructWithUnaryPlusOperatorOverload));
         }
     }
 }

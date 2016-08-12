@@ -18,6 +18,7 @@ namespace CSharpDom.Serialization.Factories
                 AddBody = new MethodBodyFactory(eventProperty.AddBody).Value,
                 Attributes = eventProperty.Attributes.ToAttributeListUsingFactory(),
                 EventType = new DelegateReferenceFactory(eventProperty.EventType).Value,
+                InheritanceModifier = eventProperty.InheritanceModifier,
                 Name = eventProperty.Name,
                 RemoveAttributes = eventProperty.RemoveAttributes.ToAttributeListUsingFactory(),
                 RemoveBody = new MethodBodyFactory(eventProperty.RemoveBody).Value,

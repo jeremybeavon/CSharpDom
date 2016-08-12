@@ -1,13 +1,13 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithLessThanAndGreaterThanOperators
+    public struct StructWithLessThanAndGreaterThanOperatorOverloads
     {
-        public static bool operator <(StructWithLessThanAndGreaterThanOperators parameter1, StructWithLessThanAndGreaterThanOperators parameter2)
+        public static bool operator <(StructWithLessThanAndGreaterThanOperatorOverloads parameter1, StructWithLessThanAndGreaterThanOperatorOverloads parameter2)
         {
             return default(bool);
         }
 
-        public static bool operator >(StructWithLessThanAndGreaterThanOperators parameter1, StructWithLessThanAndGreaterThanOperators parameter2)
+        public static bool operator >(StructWithLessThanAndGreaterThanOperatorOverloads parameter1, StructWithLessThanAndGreaterThanOperatorOverloads parameter2)
         {
             return default(bool);
         }

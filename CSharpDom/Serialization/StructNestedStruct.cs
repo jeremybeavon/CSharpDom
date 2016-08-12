@@ -135,7 +135,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            //GenericVisitor.VisitNestedStructChildren(this, visitor);
+            GenericVisitor.VisitStructNestedStructChildren(this, visitor);
         }
     }
 }

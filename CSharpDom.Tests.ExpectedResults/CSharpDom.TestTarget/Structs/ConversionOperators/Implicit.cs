@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Structs
+﻿namespace CSharpDom.TestTarget.Structs.ConversionOperators
 {
     public struct StructWithImplicitConversionOperator
     {

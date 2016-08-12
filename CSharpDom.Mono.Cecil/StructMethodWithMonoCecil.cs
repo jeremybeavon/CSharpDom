@@ -44,6 +44,11 @@ namespace CSharpDom.Mono.Cecil
             get { return method.GenericParameters; }
         }
 
+        public override StructMemberInheritanceModifier InheritanceModifier
+        {
+            get { return method.MethodDefinition.IsStatic ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
+        }
+
         public override bool IsAsync
         {
             get { return method.IsAsync; }

@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithModuloOperator
+    public struct StructWithModuloOperatorOverload
     {
-        public static StructWithModuloOperator operator %(StructWithModuloOperator parameter1, StructWithModuloOperator parameter2)
+        public static StructWithModuloOperatorOverload operator %(StructWithModuloOperatorOverload parameter1, StructWithModuloOperatorOverload parameter2)
         {
-            return default(StructWithModuloOperator);
+            return default(StructWithModuloOperatorOverload);
         }
     }
 }

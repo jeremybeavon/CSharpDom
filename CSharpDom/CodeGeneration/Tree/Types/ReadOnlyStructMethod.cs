@@ -49,28 +49,6 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return genericParameters; }
         }
-
-        /*public override ClassMemberInheritanceModifier InheritanceModifier
-        {
-            get
-            {
-                switch (method.InheritanceModifier)
-                {
-                    case StructMethodInheritanceModifier.None:
-                        return CSharpDom.ClassMemberInheritanceModifier.None;
-                    case StructMethodInheritanceModifier.New:
-                        return CSharpDom.ClassMemberInheritanceModifier.New;
-                    case StructMethodInheritanceModifier.NewStatic:
-                        return CSharpDom.ClassMemberInheritanceModifier.NewStatic;
-                    case StructMethodInheritanceModifier.Override:
-                        return CSharpDom.ClassMemberInheritanceModifier.Override;
-                    case StructMethodInheritanceModifier.Static:
-                        return CSharpDom.ClassMemberInheritanceModifier.Static;
-                    default:
-                        throw new NotSupportedException();
-                }
-            }
-        }*/
         
         public override string Name
         {
@@ -100,6 +78,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public override IReadOnlyCollection<AttributeGroupNotSupported> ReturnAttributes
         {
             get { return new AttributeGroupNotSupported[0]; }
+        }
+
+        public override StructMemberInheritanceModifier InheritanceModifier
+        {
+            get { return method.InheritanceModifier == StructMethodInheritanceModifier.Static ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
         }
     }
 }

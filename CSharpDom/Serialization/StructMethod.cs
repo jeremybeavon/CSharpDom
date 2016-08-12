@@ -26,6 +26,8 @@ namespace CSharpDom.Serialization
 
         public List<GenericParameterDeclaration> GenericParameters { get; set; }
 
+        public StructMemberInheritanceModifier InheritanceModifier { get; set; }
+
         public bool IsAsync { get; set; }
         
         public string Name { get; set; }

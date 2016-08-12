@@ -8,6 +8,18 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_Structs_Indexers_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
+        public void TestStructWithPrivateIndexerUsingReflection()
+        {
+            TestStructAsync(typeof(StructWithPrivateIndexer));
+        }
+
+        [TestMethod]
+        public void TestStructWithPublicIndexerUsingReflection()
+        {
+            TestStructAsync(typeof(StructWithPublicIndexer));
+        }
+
+        [TestMethod]
         public void TestStructWithInternalIndexerUsingReflection()
         {
             TestStructAsync(typeof(StructWithInternalIndexer));

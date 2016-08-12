@@ -27,12 +27,12 @@ namespace CSharpDom.Serialization.Factories
                 GenericParameters = nestedClass.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 ImplementedInterfaces = nestedClass.ImplementedInterfaces.ToList(@interface => new InterfaceReferenceFactory(@interface).Value),
                 Indexers = new ClassIndexerCollectionFactory(nestedClass.Indexers).Value,
-                //Interfaces = nestedClass.Interfaces.ToList(@interface => new ClassNestedInterfaceFactory(@interface).Value),
+                Interfaces = new ClassNestedInterfaceCollectionFactory(nestedClass.Interfaces).Value,
                 Methods = new ClassMethodCollectionFactory(nestedClass.Methods).Value,
                 Name = nestedClass.Name,
                 OperatorOverloads = nestedClass.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),
                 Properties = new ClassPropertyCollectionFactory(nestedClass.Properties).Value,
-                //Structs = nestedClass.Structs.ToList(@struct => new ClassNestedStructFactory(@struct).Value),
+                Structs = new ClassNestedStructCollectionFactory(nestedClass.Structs).Value,
                 Visibility = nestedClass.Visibility
             };
             if (Value.Destructor != null)

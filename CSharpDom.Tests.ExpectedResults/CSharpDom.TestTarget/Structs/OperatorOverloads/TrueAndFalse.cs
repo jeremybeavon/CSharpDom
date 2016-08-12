@@ -1,13 +1,13 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithTrueAndFalseOperators
+    public struct StructWithTrueAndFalseOperatorOverloads
     {
-        public static bool operator true(StructWithTrueAndFalseOperators parameter1)
+        public static bool operator true(StructWithTrueAndFalseOperatorOverloads parameter1)
         {
             return default(bool);
         }
 
-        public static bool operator false(StructWithTrueAndFalseOperators parameter1)
+        public static bool operator false(StructWithTrueAndFalseOperatorOverloads parameter1)
         {
             return default(bool);
         }

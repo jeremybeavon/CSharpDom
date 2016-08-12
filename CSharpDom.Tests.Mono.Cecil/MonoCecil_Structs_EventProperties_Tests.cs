@@ -1,4 +1,4 @@
-using CSharpDom.TestTarget.Structs.EventProperties;
+using CSharpDom.TestTarget.Structs.Events.EventProperties;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 

@@ -2,7 +2,7 @@
 {
     public struct StructWithInternalIndexer
     {
-        internal string this [int index]
+        internal string this[int index]
         {
             set { }
         }

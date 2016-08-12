@@ -7250,6 +7250,8 @@
     <Compile Include="Structs\Constructors\ParametersWithModifiers.cs" />
     <Compile Include="Structs\Constructors\Private.cs" />
     <Compile Include="Structs\Constructors\Public.cs" />
+    <Compile Include="Structs\ConversionOperators\Explicit.cs" />
+    <Compile Include="Structs\ConversionOperators\Implicit.cs" />
     <Compile Include="Structs\Events\EventProperties\Internal.cs" />
     <Compile Include="Structs\Events\EventProperties\Private.cs" />
     <Compile Include="Structs\Events\EventProperties\Public.cs" />
@@ -7258,7 +7260,6 @@
     <Compile Include="Structs\Events\Private.cs" />
     <Compile Include="Structs\Events\Public.cs" />
     <Compile Include="Structs\Events\Static.cs" />
-    <Compile Include="Structs\ExplicitConversionOperator.cs" />
     <Compile Include="Structs\GenericParameterBaseClassConstraint.cs" />
     <Compile Include="Structs\GenericParameterClassAndEmptyConstructorConstraints.cs" />
     <Compile Include="Structs\GenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
@@ -7267,7 +7268,6 @@
     <Compile Include="Structs\GenericParameterGenericParameterConstraint.cs" />
     <Compile Include="Structs\GenericParameterInterfaceConstraint.cs" />
     <Compile Include="Structs\GenericParameterStructConstraint.cs" />
-    <Compile Include="Structs\ImplicitConversionOperator.cs" />
     <Compile Include="Structs\Indexers\Internal.cs" />
     <Compile Include="Structs\Indexers\Private.cs" />
     <Compile Include="Structs\Indexers\Public.cs" />

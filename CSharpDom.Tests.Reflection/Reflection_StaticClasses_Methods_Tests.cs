@@ -44,27 +44,27 @@ namespace CSharpDom.Tests.Reflection
         }
 
         [TestMethod]
-        public void TestStaticClassWithMethodWithGenericParameterBaseSealedClassConstraintUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterBaseSealedClassConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public void TestStaticClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraintsUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassAndEmptyConstructorConstraints));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public void TestStaticClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassAndInterfaceAndEmptyConstructorConstraints));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public void TestStaticClassWithMethodWithGenericParameterSealedClassConstraintUsingReflection()
+        public void TestStaticClassWithMethodWithGenericParameterClassConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterSealedClassConstraint));
+            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]

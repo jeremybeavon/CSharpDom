@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithIncrementOperator
+    public struct StructWithIncrementOperatorOverload
     {
-        public static StructWithIncrementOperator operator ++(StructWithIncrementOperator parameter1)
+        public static StructWithIncrementOperatorOverload operator ++(StructWithIncrementOperatorOverload parameter1)
         {
-            return default(StructWithIncrementOperator);
+            return default(StructWithIncrementOperatorOverload);
         }
     }
 }

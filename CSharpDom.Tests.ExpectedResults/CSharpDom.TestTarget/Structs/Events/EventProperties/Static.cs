@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Structs.EventProperties
+﻿namespace CSharpDom.TestTarget.Structs.Events.EventProperties
 {
     public struct StructWithStaticEventProperty
     {
@@ -7,6 +7,5 @@
             add { }
             remove { }
         }
-
     }
 }

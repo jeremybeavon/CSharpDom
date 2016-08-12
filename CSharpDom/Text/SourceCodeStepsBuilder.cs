@@ -395,6 +395,7 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(@event.Attributes);
             Steps.AddStructMemberVisibilityModifierSteps(@event.Visibility);
+            Steps.AddStructMemberInheritanceModifierSteps(@event.InheritanceModifier);
             VisitEvent(@event);
         }
 
@@ -441,6 +442,7 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(eventProperty.Attributes);
             Steps.AddStructMemberVisibilityModifierSteps(eventProperty.Visibility);
+            Steps.AddStructMemberInheritanceModifierSteps(eventProperty.InheritanceModifier);
             VisitEventProperty(eventProperty);
         }
 
@@ -763,6 +765,7 @@ namespace CSharpDom.Text
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
             Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
             Steps.AddStructMemberVisibilityModifierSteps(method.Visibility);
+            Steps.AddStructMemberInheritanceModifierSteps(method.InheritanceModifier);
             VisitMethod(method);
         }
 
@@ -1338,6 +1341,7 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(property.Attributes);
             Steps.AddStructMemberVisibilityModifierSteps(property.Visibility);
+            Steps.AddStructMemberInheritanceModifierSteps(property.InheritanceModifier);
             VisitProperty(property);
         }
 

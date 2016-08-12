@@ -409,6 +409,19 @@ namespace CSharpDom.Text
             steps.Add(new WriteWhitespace());
         }
 
+        internal static void AddStructMemberInheritanceModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            StructMemberInheritanceModifier modifier)
+        {
+            if (modifier == StructMemberInheritanceModifier.None)
+            {
+                return;
+            }
+
+            steps.Add(new WriteStatic());
+            steps.Add(new WriteWhitespace());
+        }
+
         internal static void AddClassMemberInheritanceModifierSteps(
             this List<ISourceCodeBuilderStep> steps,
             ClassMemberInheritanceModifier inheritanceModifer)

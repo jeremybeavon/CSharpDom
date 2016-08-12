@@ -6972,7 +6972,6 @@
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Constructors\ParametersWithModifiers.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Constructors\Private.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Constructors\Public.cs" />
-    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\ExplicitConversionOperator.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\GenericParameterBaseClassConstraint.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\GenericParameterClassAndEmptyConstructorConstraints.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\GenericParameterClassAndInterfaceAndEmptyConstructorConstraints.cs" />
@@ -6981,7 +6980,6 @@
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\GenericParameterGenericParameterConstraint.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\GenericParameterInterfaceConstraint.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\GenericParameterStructConstraint.cs" />
-    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\ImplicitConversionOperator.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Internal.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\NestedAbstractClasses\1Attribute.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Structs\NestedAbstractClasses\1GenericParameter.cs" />
@@ -8896,16 +8894,50 @@
     <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\SealedOverride.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\Static.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget\Classes\Properties\AutoProperties\Virtual.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\And.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\BitwiseNot.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\Decrement.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\EqualAndNotEqual.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\ExclusiveOr.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\Increment.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\LeftShift.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\LessThanAndGreaterThan.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\LessThanOrEqualAndGreaterThanOrEqual.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\LogicalNot.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\Minus.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\Modulo.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\Multiply.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\Or.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\Plus.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\RightShift.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\TrueAndFalse.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\UnaryMinus.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\OperatorOverloads\UnaryPlus.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Events\EventProperties\Internal.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Events\EventProperties\Private.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Events\EventProperties\Public.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Events\EventProperties\Static.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Events\Internal.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Events\Private.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Events\Public.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Events\Static.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Indexers\Internal.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Indexers\Private.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Indexers\Public.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Methods\Internal.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Methods\Private.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Methods\Public.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Methods\Static.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Properties\Internal.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Properties\Private.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Properties\Public.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\Properties\Static.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\ConversionOperators\Explicit.cs" />
+    <EmbeddedResource Include="CSharpDom.TestTarget\Structs\ConversionOperators\Implicit.cs" />
     <Compile Include="ExpectedResultsType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="CSharpDom.TestTarget\Structs\Events\" />
-    <Folder Include="CSharpDom.TestTarget\Structs\Indexers\" />
-    <Folder Include="CSharpDom.TestTarget\Structs\Methods\" />
-    <Folder Include="CSharpDom.TestTarget\Structs\OperatorOverloads\" />
-    <Folder Include="CSharpDom.TestTarget\Structs\Properties\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="CSharpDom.snk" />
   </ItemGroup>

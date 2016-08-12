@@ -9,7 +9,7 @@ namespace CSharpDom.Tests.Reflection
     {
         public Reflection_Structs_Constructors_Tests()
         {
-            IsNestedConstructorTest = true;
+            IsConstructorTest = true;
         }
 
         [TestMethod]

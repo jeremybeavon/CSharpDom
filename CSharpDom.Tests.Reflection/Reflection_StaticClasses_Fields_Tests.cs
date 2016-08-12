@@ -8,9 +8,9 @@ namespace CSharpDom.Tests.Reflection
     public sealed class Reflection_StaticClasses_Fields_Tests : AbstractSolutionWithReflectionTests
     {
         [TestMethod]
-        public void TestStaticClassWithConstrFieldUsingReflection()
+        public void TestStaticClassWithConstFieldUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithConstrField));
+            TestStaticClassAsync(typeof(StaticClassWithConstField));
         }
 
         [TestMethod]

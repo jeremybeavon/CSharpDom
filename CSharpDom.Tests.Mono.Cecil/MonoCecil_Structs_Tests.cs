@@ -1,4 +1,5 @@
 using CSharpDom.TestTarget.Structs;
+using CSharpDom.TestTarget.Structs.ConversionOperators;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 
@@ -101,18 +102,6 @@ namespace CSharpDom.Tests.Mono.Cecil
         public void TestStructWithImplicitConversionOperatorUsingMonoCecil()
         {
             TestStructAsync(typeof(StructWithImplicitConversionOperator));
-        }
-
-        [TestMethod]
-        public void TestStructWithPrivateIndexerUsingMonoCecil()
-        {
-            TestStructAsync(typeof(StructWithPrivateIndexer));
-        }
-
-        [TestMethod]
-        public void TestStructWithPublicIndexerUsingMonoCecil()
-        {
-            TestStructAsync(typeof(StructWithPublicIndexer));
         }
 
         [TestMethod]

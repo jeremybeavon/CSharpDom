@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.TestTarget.Structs
+﻿namespace CSharpDom.TestTarget.Structs.Indexers
 {
     public struct StructWithPublicIndexer
     {

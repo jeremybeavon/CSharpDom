@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithBitwiseNotOperator
+    public struct StructWithBitwiseNotOperatorOverload
     {
-        public static StructWithBitwiseNotOperator operator ~(StructWithBitwiseNotOperator parameter1)
+        public static StructWithBitwiseNotOperatorOverload operator ~(StructWithBitwiseNotOperatorOverload parameter1)
         {
-            return default(StructWithBitwiseNotOperator);
+            return default(StructWithBitwiseNotOperatorOverload);
         }
     }
 }

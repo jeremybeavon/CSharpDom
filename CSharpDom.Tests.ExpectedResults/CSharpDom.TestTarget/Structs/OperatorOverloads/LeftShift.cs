@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Structs.OperatorOverloads
 {
-    public struct StructWithLeftShiftOperator
+    public struct StructWithLeftShiftOperatorOverload
     {
-        public static StructWithLeftShiftOperator operator <<(StructWithLeftShiftOperator parameter1, int parameter2)
+        public static StructWithLeftShiftOperatorOverload operator <<(StructWithLeftShiftOperatorOverload parameter1, int parameter2)
         {
-            return parameter1;
+            return default(StructWithLeftShiftOperatorOverload);
         }
     }
 }
