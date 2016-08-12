@@ -3,7 +3,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers
 {
-    public interface IBuiltInTypeReferenceWrapper : IBuiltInTypeReference
+    public interface IBuiltInTypeReferenceWrapper : IBuiltInTypeReference, ITypeReferenceWrapper
 
     {
     }

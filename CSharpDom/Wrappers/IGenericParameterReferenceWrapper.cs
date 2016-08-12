@@ -3,8 +3,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers
 {
-    public interface IGenericParameterReferenceWrapper : IGenericParameterReference
-
+    public interface IGenericParameterReferenceWrapper : IGenericParameterReference, ITypeReferenceWrapper
     {
     }
 }

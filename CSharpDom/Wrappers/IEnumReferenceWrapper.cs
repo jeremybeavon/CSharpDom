@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Wrappers
 {
-    public interface IEnumReferenceWrapper : IEnumReference
+    public interface IEnumReferenceWrapper : IEnumReference, ITypeReferenceWrapper
 
     {
     }
