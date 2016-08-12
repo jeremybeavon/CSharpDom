@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using CSharpDom.Common;
+
+namespace CSharpDom.Wrappers
+{
+    public interface ISealedClassWrapper :
+        ISealedClass<
+            INamespaceWrapper,
+            IDocumentWrapper,
+            IProjectWrapper,
+            ISolutionWrapper,
+            IAttributeGroupWrapper,
+            IGenericParameterDeclarationWrapper,
+            IClassReferenceWrapper,
+            IInterfaceReferenceWrapper,
+            ISealedClassEventCollectionWrapper,
+            ISealedClassPropertyCollectionWrapper,
+            ISealedClassIndexerCollectionWrapper,
+            ISealedClassMethodCollectionWrapper,
+            IClassFieldCollectionWrapper,
+            IClassConstructorWrapper,
+            IOperatorOverloadWrapper,
+            IConversionOperatorWrapper,
+            IClassNestedClassCollectionWrapper,
+            IClassNestedDelegateWrapper,
+            IClassNestedEnumWrapper,
+            IClassNestedInterfaceCollectionWrapper,
+            IClassNestedStructCollectionWrapper,
+            IDestructorWrapper,
+            IStaticConstructorWrapper>
+    {
+    }
+}

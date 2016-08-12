@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IAccessor<TAttributeGroup> : IHasAttributes<TAttributeGroup>
+    public interface IAccessor<TAttributeGroup> : IAccessor, IHasAttributes<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup
     {
     }

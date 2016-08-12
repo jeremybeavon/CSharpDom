@@ -8,12 +8,12 @@ namespace CSharpDom.BaseClasses
         IInterfaceAccessor<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup
     {
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitInterfaceAccessor(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitInterfaceAccessorChildren(this, visitor);
         }

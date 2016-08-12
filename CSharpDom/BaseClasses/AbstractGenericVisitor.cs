@@ -2107,5 +2107,10 @@ namespace CSharpDom.BaseClasses
         {
             Visit(method);
         }
+
+        public virtual void VisitTypeReference(ITypeReference typeReference)
+        {
+            Visit(typeReference);
+        }
     }
 }

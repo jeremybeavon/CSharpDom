@@ -9,12 +9,12 @@ namespace CSharpDom.BaseClasses
         IAbstractAccessor<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup
     {
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitAbstractAccessor(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAbstractAccessorChildren(this, visitor);
         }

@@ -77,7 +77,30 @@ namespace CSharpDom.Common
             VisitCollection(@class.ImplementedInterfaces, visitor);
             VisitCollection(@class.Attributes, visitor);
             VisitCollection(@class.GenericParameters, visitor);
-            new TypeWrapper<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(@class).Accept(visitor);
+            new ClassTypeWrapper<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(@class).Accept(visitor);
+        }
+
+        public static void VisitClassTypeChildren<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
+            IClassType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor, TDestructor> @class,
+            IGenericVisitor visitor)
+            where TEventCollection : IClassEventCollection
+            where TPropertyCollection : IClassPropertyCollection
+            where TIndexerCollection : IClassIndexerCollection
+            where TMethodCollection : IClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TDestructor : IDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            VisitIfNotNull(@class.Destructor, visitor);
+            new ClassTypeWrapper<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(@class).Accept(visitor);
         }
 
         public static void VisitClassReferenceChildren<TGenericParameter>(
@@ -86,6 +109,7 @@ namespace CSharpDom.Common
             where TGenericParameter : IGenericParameter
         {
             VisitCollection(classReference.GenericParameters, visitor);
+            new TypeReferenceWrapper(classReference).Accept(visitor);
         }
 
         public static void VisitClassConstructorChildren<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(

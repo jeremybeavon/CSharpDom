@@ -12,12 +12,12 @@ namespace CSharpDom.BaseClasses
     {
         public abstract TMethodBody Body { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitAccessor(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAccessor(this, visitor);
         }

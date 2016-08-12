@@ -1559,5 +1559,7 @@ namespace CSharpDom.Common
 
         void VisitNestedStaticClassMethodCollection<TMethod>(INestedStaticClassMethodCollection<TMethod> methodCollection)
             where TMethod : IStaticClassMethod;
+
+        void VisitTypeReference(ITypeReference typeReference);
     }
 }

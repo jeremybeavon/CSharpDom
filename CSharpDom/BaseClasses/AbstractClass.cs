@@ -28,7 +28,7 @@ namespace CSharpDom.BaseClasses
         TNestedStructCollection,
         TDestructor,
         TStaticConstructor> :
-        AbstractType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        AbstractClassType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>,
         IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -57,9 +57,7 @@ namespace CSharpDom.BaseClasses
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
 
         public abstract TClassReference BaseClass { get; }
-
-        public abstract TDestructor Destructor { get; }
-
+        
         public abstract TDocument Document { get; }
 
         public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }

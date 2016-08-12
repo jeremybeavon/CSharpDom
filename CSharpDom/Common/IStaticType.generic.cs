@@ -11,7 +11,7 @@
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        IType,
+        IStaticType,
         IHasEventCollection<TEventCollection>,
         IHasProperties<TProperty>,
         IHasMethodCollection<TMethodCollection>,
