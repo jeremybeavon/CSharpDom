@@ -1,24 +1,81 @@
-﻿using CSharpDom.Common;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    internal sealed class ClassNestedClassCollectionWrapper : AbstractWrapper<IClassNestedClassCollection>
+    internal sealed class ClassNestedClassCollectionWrapper : AbstractWrapper<IClassNestedClassCollection>, IClassNestedClassCollectionWrapper
     {
         public ClassNestedClassCollectionWrapper(IClassNestedClassCollection collection)
             : base(collection)
         {
         }
 
+        public IReadOnlyCollection<IClassNestedAbstractClassWrapper> AbstractClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int Count
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IPartialClassCollection PartialClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IClassNestedSealedClassWrapper> SealedClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IClassNestedStaticClassWrapper> StaticClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Accept(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<IClassNestedClassWrapper> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void VisitClassNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
             IClassNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> classCollection)
         {
-            Value = new ClassNestedClassCollection()
-            {
-                AbstractClasses = classCollection.AbstractClasses.ToList(@class => new ClassNestedAbstractClassWrapper(@class).Value),
-                Classes = classCollection.ToList(@class => new ClassNestedClassWrapper(@class).Value),
-                SealedClasses = classCollection.SealedClasses.ToList(@class => new ClassNestedSealedClassWrapper(@class).Value),
-                StaticClasses = classCollection.StaticClasses.ToList(@class => new ClassNestedStaticClassWrapper(@class).Value)
-            };
+     
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

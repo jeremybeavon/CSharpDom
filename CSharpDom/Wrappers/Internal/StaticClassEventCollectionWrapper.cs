@@ -1,23 +1,56 @@
-﻿using CSharpDom.Common;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class StaticClassEventCollectionWrapper :
-        AbstractWrapper<IStaticClassEventCollection>
+    public class StaticClassEventCollectionWrapper : AbstractWrapper<IStaticClassEventCollection>, IStaticClassEventCollectionWrapper
     {
         public StaticClassEventCollectionWrapper(IStaticClassEventCollection eventCollection)
             : base(eventCollection)
         {
         }
 
+        public int Count
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IStaticClassEventPropertyWrapper> EventProperties
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Accept(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<IStaticClassEventWrapper> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void VisitStaticClassEventCollection<TEvent, TEventProperty>(
             IStaticClassEventCollection<TEvent, TEventProperty> eventCollection)
         {
-            Value = new StaticClassEventCollection()
-            {
-                Events = eventCollection.ToList(@event => new StaticClassEventWrapper(@event).Value),
-                EventProperties = eventCollection.EventProperties.ToList(@event => new StaticClassEventPropertyWrapper(@event).Value)
-            };
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -40,13 +40,14 @@ namespace CSharpDom.Wrappers.Internal
             throw new NotImplementedException();
         }
 
-        public override async Task VisitProjectAsync<TSolution, TDocument, TLoadedProject>(
+        public override Task VisitProjectAsync<TSolution, TDocument, TLoadedProject>(
             IProject<TSolution, TDocument, TLoadedProject> project)
         {
             documents = () => new ReadOnlyCollectionWrapper<TDocument, IDocumentWrapper>(
                 project.Documents,
                 input => new DocumentWrapper(input));
             solution = () => new SolutionWrapper(project.Solution);
+            return EmptyTask;
         }
     }
 }

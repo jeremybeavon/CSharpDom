@@ -1,29 +1,109 @@
-﻿using CSharpDom.Common;
+﻿using System;
+using System.Collections.Generic;
+using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    internal sealed class StructNestedInterfaceWrapper : AbstractWrapper<IStructNestedInterface>
+    internal sealed class StructNestedInterfaceWrapper : AbstractWrapper<IStructNestedInterface>, IStructNestedInterfaceWrapper
     {
         public StructNestedInterfaceWrapper(IStructNestedInterface @interface)
             : base(@interface)
         {
         }
 
+        public IReadOnlyCollection<IAttributeGroupWrapper> Attributes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructTypeWrapper DeclaringType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IInterfaceEventWrapper> Events
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyList<IGenericParameterDeclarationWrapper> GenericParameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IInterfaceIndexerWrapper> Indexers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IInterfaceReferenceWrapper> Interfaces
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IInterfaceMethodWrapper> Methods
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IInterfacePropertyWrapper> Properties
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public StructMemberVisibilityModifier Visibility
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Accept(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void VisitStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
             IStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
         {
-            Value = new StructNestedInterface()
-            {
-                Attributes = @interface.Attributes.ToAttributeListUsingWrapper(),
-                Events = @interface.Events.ToList(@event => new InterfaceEventWrapper(@event).Value),
-                GenericParameters = @interface.GenericParameters.ToGenericParameterDeclarationListUsingWrapper(),
-                Indexers = @interface.Indexers.ToList(indexer => new InterfaceIndexerWrapper(indexer).Value),
-                Interfaces = @interface.Interfaces.ToList(baseInterface => new InterfaceReferenceWrapper(baseInterface).Value),
-                Methods = @interface.Methods.ToList(method => new InterfaceMethodWrapper(method).Value),
-                Name = @interface.Name,
-                Properties = @interface.Properties.ToList(property => new InterfacePropertyWrapper(property).Value),
-                Visibility = @interface.Visibility
-            };
         }
     }
 }

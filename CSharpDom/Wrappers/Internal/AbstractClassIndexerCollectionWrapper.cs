@@ -1,24 +1,66 @@
-﻿using CSharpDom.Common;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class AbstractClassIndexerCollectionWrapper :
-        AbstractWrapper<IAbstractClassIndexerCollection>
+    public class AbstractClassIndexerCollectionWrapper : AbstractWrapper<IAbstractClassIndexerCollection>,
+        IAbstractClassIndexerCollectionWrapper
     {
         public AbstractClassIndexerCollectionWrapper(IAbstractClassIndexerCollection indexerCollection)
             : base(indexerCollection)
         {
         }
 
+        public IReadOnlyCollection<IAbstractIndexerWrapper> AbstractIndexers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int Count
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IExplicitInterfaceIndexerWrapper> ExplicitInterfaceIndexers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Accept(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<IClassIndexerWrapper> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void VisitAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer>(
             IAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer> indexerCollection)
         {
-            Value = new AbstractClassIndexerCollection()
-            {
-                Indexers = indexerCollection.ToList(indexer => new ClassIndexerWrapper(indexer).Value),
-                AbstractIndexers = indexerCollection.AbstractIndexers.ToList(indexer => new AbstractIndexerWrapper(indexer).Value),
-                ExplicitInterfaceIndexers = indexerCollection.ExplicitInterfaceIndexers.ToList(indexer => new ExplicitInterfaceIndexerWrapper(indexer).Value)
-            };
+            
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

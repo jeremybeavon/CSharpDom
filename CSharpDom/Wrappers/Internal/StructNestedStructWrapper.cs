@@ -1,43 +1,189 @@
-﻿using CSharpDom.Common;
+﻿using System;
+using System.Collections.Generic;
+using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    internal sealed class StructNestedStructWrapper : AbstractWrapper<IStructNestedStruct>
+    internal sealed class StructNestedStructWrapper : AbstractWrapper<IStructNestedStruct>, IStructNestedStructWrapper
     {
         public StructNestedStructWrapper(IStructNestedStruct nestedStruct)
             : base(nestedStruct)
         {
         }
 
+        public IReadOnlyCollection<IAttributeGroupWrapper> Attributes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructNestedClassCollectionWrapper Classes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IStructConstructorWrapper> Constructors
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IConversionOperatorWrapper> ConversionOperators
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructTypeWrapper DeclaringType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IStructNestedDelegateWrapper> Delegates
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IStructNestedEnumWrapper> Enums
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructEventCollectionWrapper Events
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructFieldCollectionWrapper Fields
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyList<IGenericParameterDeclarationWrapper> GenericParameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IInterfaceReferenceWrapper> ImplementedInterfaces
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructIndexerCollectionWrapper Indexers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructNestedInterfaceCollectionWrapper Interfaces
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructMethodCollectionWrapper Methods
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IOperatorOverloadWrapper> OperatorOverloads
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructPropertyCollectionWrapper Properties
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStaticConstructorWrapper StaticConstructor
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStructNestedStructCollectionWrapper Structs
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public StructMemberVisibilityModifier Visibility
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Accept(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void VisitStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
             IStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedStruct)
         {
-            Value = new StructNestedStruct()
-            {
-                Attributes = nestedStruct.Attributes.ToAttributeListUsingWrapper(),
-                Classes = new StructNestedClassCollectionWrapper(nestedStruct.Classes).Value,
-                Constructors = nestedStruct.Constructors.ToList(constructor => new StructConstructorWrapper(constructor).Value),
-                ConversionOperators = nestedStruct.ConversionOperators.ToList(@operator => new ConversionOperatorWrapper(@operator).Value),
-                Delegates = nestedStruct.Delegates.ToList(@delegate => new StructNestedDelegateWrapper(@delegate).Value),
-                Enums = nestedStruct.Enums.ToList(@enum => new StructNestedEnumWrapper(@enum).Value),
-                Events = new StructEventCollectionWrapper(nestedStruct.Events).Value,
-                Fields = new StructFieldCollectionWrapper(nestedStruct.Fields).Value,
-                GenericParameters = nestedStruct.GenericParameters.ToGenericParameterDeclarationListUsingWrapper(),
-                ImplementedInterfaces = nestedStruct.ImplementedInterfaces.ToList(@interface => new InterfaceReferenceWrapper(@interface).Value),
-                Indexers = new StructIndexerCollectionWrapper(nestedStruct.Indexers).Value,
-                Interfaces = new StructNestedInterfaceCollectionWrapper(nestedStruct.Interfaces).Value,
-                Methods = new StructMethodCollectionWrapper(nestedStruct.Methods).Value,
-                Name = nestedStruct.Name,
-                OperatorOverloads = nestedStruct.OperatorOverloads.ToList(@operator => new OperatorOverloadWrapper(@operator).Value),
-                Properties = new StructPropertyCollectionWrapper(nestedStruct.Properties).Value,
-                Structs = new StructNestedStructCollectionWrapper(nestedStruct.Structs).Value,
-                StaticConstructor = new StaticConstructorWrapper(nestedStruct.StaticConstructor).Value,
-                Visibility = nestedStruct.Visibility
-            };
-            foreach (StructConstructor constructor in Value.Constructors)
-            {
-                constructor.AttachDeclaringType(nestedStruct);
-            }
         }
     }
 }

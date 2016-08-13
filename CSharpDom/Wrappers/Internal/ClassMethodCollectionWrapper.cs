@@ -1,23 +1,57 @@
-﻿using CSharpDom.Common;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class ClassMethodCollectionWrapper :
-        AbstractWrapper<IClassMethodCollection>
+    public class ClassMethodCollectionWrapper : AbstractWrapper<IClassMethodCollection>, IClassMethodCollectionWrapper
     {
         public ClassMethodCollectionWrapper(IClassMethodCollection methodCollection)
             : base(methodCollection)
         {
         }
 
+        public int Count
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IExplicitInterfaceMethodWrapper> ExplicitInterfaceMethods
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Accept(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerator<IClassMethodWrapper> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void VisitClassMethodCollection<TMethod, TExplicitInterfaceMethod>(
             IClassMethodCollection<TMethod, TExplicitInterfaceMethod> methodCollection)
         {
-            Value = new ClassMethodCollection()
-            {
-                Methods = methodCollection.ToList(method => new ClassMethodWrapper(method).Value),
-                ExplicitInterfaceMethods = methodCollection.ExplicitInterfaceMethods.ToList(method => new ExplicitInterfaceMethodWrapper(method).Value)
-            };
+         
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            throw new NotImplementedException();
         }
     }
 }

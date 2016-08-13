@@ -59,7 +59,7 @@ namespace CSharpDom.Wrappers.Internal
             IAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent> eventCollection)
         {
             abstractEvents = () => new ReadOnlyCollectionWrapper<TAbstractEvent, IAbstractEventWrapper>(
-                eventCollection.EventProperties,
+                eventCollection.AbstractEvents,
                 input => new AbstractEventWrapper(input));
             count = () => eventCollection.Count;
             eventProperties = () => new ReadOnlyCollectionWrapper<TEventProperty, IClassEventPropertyWrapper>(

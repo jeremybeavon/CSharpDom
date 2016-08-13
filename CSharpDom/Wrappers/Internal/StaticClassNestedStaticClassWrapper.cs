@@ -1,38 +1,149 @@
-﻿using CSharpDom.Common;
+﻿using System;
+using System.Collections.Generic;
+using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    internal sealed class StaticClassNestedStaticClassWrapper : AbstractWrapper<IStaticClassNestedStaticClass>
+    internal sealed class StaticClassNestedStaticClassWrapper : AbstractWrapper<IStaticClassNestedStaticClass>, IStaticClassNestedStaticClassWrapper
     {
         public StaticClassNestedStaticClassWrapper(IStaticClassNestedStaticClass nestedClass)
             : base(nestedClass)
         {
         }
 
+        public IReadOnlyCollection<IAttributeGroupWrapper> Attributes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStaticClassNestedClassCollectionWrapper Classes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStaticTypeWrapper DeclaringType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IStaticClassNestedDelegateWrapper> Delegates
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IStaticClassNestedEnumWrapper> Enums
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStaticClassEventCollectionWrapper Events
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStaticClassFieldCollectionWrapper Fields
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyList<IGenericParameterDeclarationWrapper> GenericParameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStaticClassNestedInterfaceCollectionWrapper Interfaces
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public INestedStaticClassMethodCollectionWrapper Methods
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<IStaticClassPropertyWrapper> Properties
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStaticConstructorWrapper StaticConstructor
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IStaticClassNestedStructCollectionWrapper Structs
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public ClassMemberVisibilityModifier Visibility
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public void Accept(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void VisitStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
             IStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedClass)
         {
-            Value = new StaticClassNestedStaticClass()
-            {
-                Attributes = nestedClass.Attributes.ToAttributeListUsingWrapper(),
-                Classes = new StaticClassNestedClassCollectionWrapper(nestedClass.Classes).Value,
-                Delegates = nestedClass.Delegates.ToList(@delegate => new StaticClassNestedDelegateWrapper(@delegate).Value),
-                Enums = nestedClass.Enums.ToList(@enum => new StaticClassNestedEnumWrapper(@enum).Value),
-                Events = new StaticClassEventCollectionWrapper(nestedClass.Events).Value,
-                Fields = new StaticClassFieldCollectionWrapper(nestedClass.Fields).Value,
-                GenericParameters = nestedClass.GenericParameters.ToGenericParameterDeclarationListUsingWrapper(),
-                Interfaces = new StaticClassNestedInterfaceCollectionWrapper(nestedClass.Interfaces).Value,
-                Methods = new NestedStaticClassMethodCollectionWrapper(nestedClass.Methods).Value,
-                Name = nestedClass.Name,
-                Properties = nestedClass.Properties.ToList(property => new StaticClassPropertyWrapper(property).Value),
-                StaticConstructor = new StaticConstructorWrapper(nestedClass.StaticConstructor).Value,
-                Structs = new StaticClassNestedStructCollectionWrapper(nestedClass.Structs).Value,
-                Visibility = nestedClass.Visibility
-            };
-            if (Value.StaticConstructor != null)
-            {
-                Value.StaticConstructor.AttachDeclaringType(nestedClass);
-            }
         }
     }
 }
