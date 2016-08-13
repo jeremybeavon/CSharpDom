@@ -1,23 +1,31 @@
 ﻿using CSharpDom.BaseClasses;
-using CSharpDom.Common;
-using System;
+using System.Threading.Tasks;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public abstract class AbstractWrapper<TInput> : AbstractGenericVisitor
-        where TInput : IVisitable<IGenericVisitor>
+    public abstract class AbstractWrapper : AbstractGenericVisitor
     {
-        protected AbstractWrapper(TInput input)
+        public static readonly Task EmptyTask = Task.FromResult<object>(null);
+        private readonly object input;
+
+        protected AbstractWrapper(object input)
         {
-            if (input != null)
-            {
-                input.Accept(this);
-            }
+            this.input = input;
         }
-        
-        public sealed override void Visit(IVisitable<IGenericVisitor> node)
+
+        public sealed override int GetHashCode()
         {
-            throw new InvalidOperationException();
+            return input == null ? 0 : input.GetHashCode();
+        }
+
+        public sealed override bool Equals(object obj)
+        {
+            return input != null && input.Equals(obj);
+        }
+
+        public sealed override string ToString()
+        {
+            return input?.ToString();
         }
     }
 }

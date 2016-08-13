@@ -5,30 +5,21 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public abstract class AbstractAsyncWrapper<TInput, TOutput> : AbstractGenericVisitor
+    public abstract class AbstractAsyncWrapper<TInput> : AbstractWrapper
         where TInput : IAsyncVisitable<IGenericVisitor>
-        where TOutput : TInput
     {
         private TInput input;
 
         protected AbstractAsyncWrapper(TInput input)
-        {
-            this.input = input;
-        }
-
-        public async Task<TOutput> ValueAsync()
+            : base(input)
         {
             if (input != null)
             {
-                await input.AcceptAsync(this);
+                input.AcceptAsync(this).Wait();
             }
-
-            return Value;
         }
 
-        protected TOutput Value { get; set; }
-
-        public sealed override void Visit(IVisitable<IGenericVisitor> node)
+        public sealed override Task VisitAsync(IAsyncVisitable<IGenericVisitor> node)
         {
             throw new InvalidOperationException();
         }

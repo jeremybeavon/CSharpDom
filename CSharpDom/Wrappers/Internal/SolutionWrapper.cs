@@ -1,28 +1,40 @@
 ﻿using CSharpDom.Common;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    internal sealed class SolutionWrapper : AbstractAsyncWrapper<ISolution, Solution>
+    internal sealed class SolutionWrapper : AbstractAsyncWrapper<ISolution>, ISolutionWrapper
     {
+        private Func<IReadOnlyCollection<IProjectWrapper>> projects;
+
         public SolutionWrapper(ISolution solution)
             : base(solution)
         {
         }
 
-        public override async Task VisitSolutionAsync<TProject>(ISolution<TProject> solution)
+        public IReadOnlyCollection<IProjectWrapper> Projects
         {
-            List<Project> projects = new List<Project>();
-            foreach (TProject project in solution.Projects)
-            {
-                projects.Add(await new ProjectWrapper(project).ValueAsync());
-            }
+            get { return projects(); }
+        }
 
-            Value = new Solution()
-            {
-                Projects = projects
-            };
+        public Task AcceptAsync(IGenericVisitor visitor)
+        {
+            return visitor.VisitSolutionAsync(this);
+        }
+
+        public Task AcceptChildrenAsync(IGenericVisitor visitor)
+        {
+            return GenericVisitor.VisitSolutionChildrenAsync(this, visitor);
+        }
+
+        public override Task VisitSolutionAsync<TProject>(ISolution<TProject> solution)
+        {
+            projects = () => new ReadOnlyCollectionWrapper<TProject, IProjectWrapper>(
+                solution.Projects,
+                input => new ProjectWrapper(input));
+            return Task.FromResult<object>(null);
         }
     }
 }
