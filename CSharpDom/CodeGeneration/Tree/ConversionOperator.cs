@@ -6,9 +6,12 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public ConversionOperator()
         {
+            Attributes = new Collection<AttributeGroup>();
             Body = new Collection<Statement>();
             ParameterName = "parameter";
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public ConversionOperatorType OperatorType { get; set; }
 

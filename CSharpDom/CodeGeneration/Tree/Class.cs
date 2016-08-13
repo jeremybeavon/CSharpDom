@@ -10,10 +10,13 @@ namespace CSharpDom.CodeGeneration.Tree
         public Class(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
             GenericParameters = new Collection<GenericParameter>();
             Interfaces = new Collection<InterfaceReference>();
             Body = new ClassBody();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public string Name { get; set; }
 

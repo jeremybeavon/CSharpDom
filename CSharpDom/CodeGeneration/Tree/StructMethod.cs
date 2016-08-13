@@ -7,10 +7,13 @@ namespace CSharpDom.CodeGeneration.Tree
         public StructMethod(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
             GenericParameters = new Collection<GenericParameter>();
             Parameters = new Collection<MethodParameter>();
             Body = new Collection<Statement>();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public string Name { get; set; }
 

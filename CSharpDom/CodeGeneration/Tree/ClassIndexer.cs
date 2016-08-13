@@ -11,9 +11,12 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public ClassIndexer()
         {
+            Attributes = new Collection<AttributeGroup>();
             Parameters = new Collection<MethodParameter>();
         }
-        
+
+        public Collection<AttributeGroup> Attributes { get; set; }
+
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
         public IndexerInheritanceModifier InheritanceModifier { get; set; }

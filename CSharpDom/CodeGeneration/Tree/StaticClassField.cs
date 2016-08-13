@@ -7,8 +7,11 @@ namespace CSharpDom.CodeGeneration.Tree
         public StaticClassField(TypeReference type)
         {
             Type = type;
+            Attributes = new Collection<AttributeGroup>();
             Fields = new Collection<Field>();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public StaticClassMemberVisibilityModifier Visibility { get; set; }
 

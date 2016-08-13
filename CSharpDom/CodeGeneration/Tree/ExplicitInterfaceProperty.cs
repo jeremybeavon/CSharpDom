@@ -7,7 +7,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public ExplicitInterfaceProperty(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public string Name { get; set; }
 

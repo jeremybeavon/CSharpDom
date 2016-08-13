@@ -7,9 +7,12 @@ namespace CSharpDom.CodeGeneration.Tree
         public StructNestedDelegate(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
             GenericParameters = new Collection<GenericParameter>();
             Parameters = new Collection<MethodParameter>();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 

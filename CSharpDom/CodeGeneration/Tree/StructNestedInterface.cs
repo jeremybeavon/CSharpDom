@@ -7,10 +7,13 @@ namespace CSharpDom.CodeGeneration.Tree
         public StructNestedInterface(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
             GenericParameters = new Collection<GenericParameter>();
             Interfaces = new Collection<InterfaceReference>();
             Body = new InterfaceBody();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public string Name { get; set; }
 

@@ -1,4 +1,6 @@
-﻿namespace CSharpDom.CodeGeneration.Tree
+﻿using System.Collections.ObjectModel;
+
+namespace CSharpDom.CodeGeneration.Tree
 {
     public sealed class InterfaceProperty
     {
@@ -15,6 +17,8 @@
                 SetAccessor = new InterfaceAccessor();
             }
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public string Name { get; set; }
 

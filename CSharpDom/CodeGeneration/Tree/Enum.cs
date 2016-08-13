@@ -7,8 +7,11 @@ namespace CSharpDom.CodeGeneration.Tree
         public Enum(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
             Fields = new Collection<EnumField>();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public TypeVisibilityModifier Visibility { get; set; }
 

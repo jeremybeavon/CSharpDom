@@ -7,8 +7,11 @@ namespace CSharpDom.CodeGeneration.Tree
         public ClassNestedEnum(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
             Fields = new Collection<EnumField>();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
 

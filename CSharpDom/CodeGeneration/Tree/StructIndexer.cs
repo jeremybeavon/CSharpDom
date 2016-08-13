@@ -6,8 +6,11 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public StructIndexer()
         {
+            Attributes = new Collection<AttributeGroup>();
             Parameters = new Collection<MethodParameter>();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 

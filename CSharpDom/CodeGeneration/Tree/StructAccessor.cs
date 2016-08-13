@@ -6,8 +6,11 @@ namespace CSharpDom.CodeGeneration.Tree
     {
         public StructAccessor()
         {
+            Attributes = new Collection<AttributeGroup>();
             Body = new Collection<Statement>();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public StructAccessorVisibilityModifier Visibility { get; set; }
 

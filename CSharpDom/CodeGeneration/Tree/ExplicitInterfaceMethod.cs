@@ -7,9 +7,12 @@ namespace CSharpDom.CodeGeneration.Tree
         public ExplicitInterfaceMethod(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
             Parameters = new Collection<MethodParameter>();
             Body = new Collection<Statement>();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public string Name { get; set; }
 

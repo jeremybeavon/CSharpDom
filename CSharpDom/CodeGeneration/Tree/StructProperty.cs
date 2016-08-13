@@ -1,4 +1,6 @@
-﻿namespace CSharpDom.CodeGeneration.Tree
+﻿using System.Collections.ObjectModel;
+
+namespace CSharpDom.CodeGeneration.Tree
 {
     public sealed class StructProperty
     {
@@ -9,8 +11,11 @@
         public StructProperty(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
             emptyAccessors = new EmptyStructPropertyAccessors();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public string Name { get; set; }
 

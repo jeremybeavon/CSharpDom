@@ -295,6 +295,10 @@
     <Compile Include="BaseClasses\Wrappers\StructTypeWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\ClassTypeWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\TypeWrapper.cs" />
+    <Compile Include="CodeGeneration\Tree\Attribute.cs" />
+    <Compile Include="CodeGeneration\Tree\AttributeGroup.cs" />
+    <Compile Include="CodeGeneration\Tree\Builder\CodeGenerationTreeBuilder.cs" />
+    <Compile Include="CodeGeneration\Tree\Builder\DictionaryExtensions.cs" />
     <Compile Include="CodeGeneration\Tree\EmptyStaticClassPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclaration.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclarationExpression.cs" />
@@ -1607,8 +1611,6 @@
     <Compile Include="CodeGeneration\Tree\RawStatement.cs" />
     <Compile Include="CodeGeneration\Tree\ReturnStatement.cs" />
     <Compile Include="CodeGeneration\Tree\SingleLineComment.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeExpressionBuilder.cs" />
-    <Compile Include="CodeGeneration\Tree\SourceCodeTextBuilder.cs" />
     <Compile Include="CodeGeneration\Tree\Struct.cs" />
     <Compile Include="CodeGeneration\Tree\StructBody.cs" />
     <Compile Include="CodeGeneration\Tree\StructEvent.cs" />
@@ -2586,6 +2588,7 @@
     <Compile Include="Wrappers\ITypeWrapper.cs" />
     <Compile Include="Wrappers\IUnnamedAttributeValueWrapper.cs" />
     <Compile Include="Wrappers\IUnspecifiedTypeReferenceWrapper.cs" />
+    <Compile Include="Wrappers\WrapperFactory.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

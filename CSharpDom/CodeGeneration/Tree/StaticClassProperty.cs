@@ -1,4 +1,6 @@
-﻿namespace CSharpDom.CodeGeneration.Tree
+﻿using System.Collections.ObjectModel;
+
+namespace CSharpDom.CodeGeneration.Tree
 {
     public sealed class StaticClassProperty
     {
@@ -9,8 +11,11 @@
         public StaticClassProperty(string name)
         {
             Name = name;
+            Attributes = new Collection<AttributeGroup>();
             emptyAccessors = new EmptyStaticClassPropertyAccessors();
         }
+
+        public Collection<AttributeGroup> Attributes { get; set; }
 
         public string Name { get; set; }
 
