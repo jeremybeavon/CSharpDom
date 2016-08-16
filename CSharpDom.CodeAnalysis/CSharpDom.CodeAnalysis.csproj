@@ -30,55 +30,62 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>CSharpDom.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.CodeAnalysis, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.1.1.1\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis, Version=1.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Common.1.3.2\lib\net45\Microsoft.CodeAnalysis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.1.1.1\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp, Version=1.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.1.3.2\lib\net45\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Workspaces.1.1.1\lib\net45\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces, Version=1.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.CSharp.Workspaces.1.3.2\lib\net45\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.Workspaces, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.Common.1.1.1\lib\net45\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces, Version=1.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.Common.1.3.2\lib\net45\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.CodeAnalysis.Workspaces.Desktop, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.Common.1.1.1\lib\net45\Microsoft.CodeAnalysis.Workspaces.Desktop.dll</HintPath>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces.Desktop, Version=1.3.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeAnalysis.Workspaces.Common.1.3.2\lib\net45\Microsoft.CodeAnalysis.Workspaces.Desktop.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Collections.Immutable, Version=1.1.37.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Collections.Immutable.1.1.37\lib\dotnet\System.Collections.Immutable.dll</HintPath>
+    <Reference Include="System.Collections.Immutable, Version=1.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Collections.Immutable.1.2.0\lib\portable-net45+win8+wp8+wpa81\System.Collections.Immutable.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Composition.AttributedModel, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Composition.AttributedModel, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.AttributedModel.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Composition.Convention, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.Convention.dll</HintPath>
+    <Reference Include="System.Composition.Convention, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Convention.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Composition.Hosting, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.Hosting.dll</HintPath>
+    <Reference Include="System.Composition.Hosting, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Hosting.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Composition.Runtime, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.Runtime.dll</HintPath>
+    <Reference Include="System.Composition.Runtime, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Composition.TypedParts, Version=1.0.27.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Composition.1.0.27\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
+    <Reference Include="System.Composition.TypedParts, Version=1.0.30.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Composition.1.0.30\lib\portable-net45+win8+wp8+wpa81\System.Composition.TypedParts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Core" />
-    <Reference Include="System.Reflection.Metadata, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Reflection.Metadata.1.1.0\lib\dotnet5.2\System.Reflection.Metadata.dll</HintPath>
+    <Reference Include="System.Reflection.Metadata, Version=1.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Reflection.Metadata.1.3.0\lib\portable-net45+win8\System.Reflection.Metadata.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
@@ -89,67 +96,312 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractAsyncNode.cs" />
-    <Compile Include="AbstractBasicMemberNode.cs" />
-    <Compile Include="AbstractMemberNode.cs" />
-    <Compile Include="AbstractNode.cs" />
-    <Compile Include="AbstractNode.generic.cs" />
-    <Compile Include="BasicMemberContainer.cs" />
-    <Compile Include="BasicTypeNode.cs" />
+    <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassWithCodeAnalysis.cs" />
+    <Compile Include="AbstractEventWithCodeAnalysis.cs" />
+    <Compile Include="AbstractIndexerWithCodeAnalysis.cs" />
+    <Compile Include="AbstractMethodWithCodeAnalysis.cs" />
+    <Compile Include="AbstractPropertyWithCodeAnalysis.cs" />
+    <Compile Include="AccessorWithCodeAnalysis.cs" />
+    <Compile Include="ArrayTypeReferenceWithCodeAnalysis.cs" />
+    <Compile Include="AssemblyWithCodeAnalysis.cs" />
+    <Compile Include="AttributeGroupWithCodeAnalysis.cs" />
+    <Compile Include="BuiltInTypeReferenceWithCodeAnalysis.cs" />
+    <Compile Include="ClassAccessorWithCodeAnalysis.cs" />
+    <Compile Include="ClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassConstantWithCodeAnalysis.cs" />
+    <Compile Include="ClassConstructorWithCodeAnalysis.cs" />
+    <Compile Include="ClassEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassEventPropertyWithCodeAnalysis.cs" />
+    <Compile Include="ClassEventWithCodeAnalysis.cs" />
+    <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassFieldWithCodeAnalysis.cs" />
+    <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassIndexerWithCodeAnalysis.cs" />
+    <Compile Include="ClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassMethodWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedAbstractClassWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedClassWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedDelegateWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedEnumWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedInterfaceCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedInterfaceWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedSealedClassWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedStaticClassWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassNestedStructWithCodeAnalysis.cs" />
+    <Compile Include="ClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassPropertyWithCodeAnalysis.cs" />
+    <Compile Include="ClassReferenceWithCodeAnalysis.cs" />
+    <Compile Include="ClassWithCodeAnalysis.cs" />
+    <Compile Include="ConstructorParameterWithCodeAnalysis.cs" />
+    <Compile Include="ConversionOperatorWithCodeAnalysis.cs" />
+    <Compile Include="DelegateParameterWithCodeAnalysis.cs" />
+    <Compile Include="DelegateReferenceWithCodeAnalysis.cs" />
+    <Compile Include="DelegateWithCodeAnalysis.cs" />
+    <Compile Include="DestructorWithCodeAnalysis.cs" />
+    <Compile Include="EnumMemberWithCodeAnalysis.cs" />
+    <Compile Include="EnumReferenceWithCodeAnalysis.cs" />
+    <Compile Include="EnumWithCodeAnalysis.cs" />
+    <Compile Include="ExplicitInterfaceEventWithCodeAnalysis.cs" />
+    <Compile Include="ExplicitInterfaceIndexerWithCodeAnalysis.cs" />
+    <Compile Include="ExplicitInterfaceMethodWithCodeAnalysis.cs" />
+    <Compile Include="ExplicitInterfacePropertyWithCodeAnalysis.cs" />
+    <Compile Include="ExtensionMethodWithCodeAnalysis.cs" />
+    <Compile Include="ExtensionParameterWithCodeAnalysis.cs" />
+    <Compile Include="FieldInfoExtensions.cs" />
+    <Compile Include="GenericParameterDeclarationWithCodeAnalysis.cs" />
+    <Compile Include="GenericParameterReferenceWithCodeAnalysis.cs" />
+    <Compile Include="GenericParameterWithCodeAnalysis.cs" />
+    <Compile Include="IAttributeWithCodeAnalysis.cs" />
+    <Compile Include="IBasicTypeWithCodeAnalysis.cs" />
+    <Compile Include="IClassTypeWithCodeAnalysis.cs" />
+    <Compile Include="IConstantWithCodeAnalysis.cs" />
+    <Compile Include="IFieldWithCodeAnalysis.cs" />
+    <Compile Include="IHasAssembly.cs" />
+    <Compile Include="IHasAssemblyDefinition.cs" />
+    <Compile Include="IHasEventDefinition.cs" />
+    <Compile Include="IHasFieldDefinition.cs" />
+    <Compile Include="IHasMethodDefinition.cs" />
+    <Compile Include="IHasParameterDefinition.cs" />
+    <Compile Include="IHasPropertyDefinition.cs" />
+    <Compile Include="IHasTypeDefinition.cs" />
+    <Compile Include="IHasTypeReference.cs" />
+    <Compile Include="IndexerParameterWithCodeAnalysis.cs" />
+    <Compile Include="InterfaceAccessorWithCodeAnalysis.cs" />
+    <Compile Include="InterfaceCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InterfaceEventWithCodeAnalysis.cs" />
+    <Compile Include="InterfaceIndexerWithCodeAnalysis.cs" />
+    <Compile Include="InterfaceMethodWithCodeAnalysis.cs" />
+    <Compile Include="InterfacePropertyWithCodeAnalysis.cs" />
+    <Compile Include="InterfaceReferenceWithCodeAnalysis.cs" />
+    <Compile Include="InterfaceWithCodeAnalysis.cs" />
+    <Compile Include="Internal\AbstractClassFieldCollection.cs" />
+    <Compile Include="Internal\AbstractClassNestedClassCollection.cs" />
+    <Compile Include="Internal\AbstractClassNestedInterfaceCollection.cs" />
+    <Compile Include="Internal\AbstractClassNestedStructCollection.cs" />
+    <Compile Include="Internal\AssemblyWithCodeAnalysisExtensions.cs" />
+    <Compile Include="Internal\Attributes.cs" />
+    <Compile Include="Internal\BasicTypeWithCodeAnalysis.cs" />
+    <Compile Include="Internal\ClassFieldCollection.cs" />
+    <Compile Include="Internal\ClassNestedClassCollection.cs" />
+    <Compile Include="Internal\ClassNestedInterfaceCollection.cs" />
+    <Compile Include="Internal\ClassNestedStructCollection.cs" />
+    <Compile Include="Internal\ClassTypeWithCodeAnalysis.cs" />
+    <Compile Include="Internal\ConstantGroupWithCodeAnalysis.cs" />
+    <Compile Include="Internal\ConstructorWithCodeAnalysis.cs" />
+    <Compile Include="Internal\CustomAttributeProviderExtensions.cs" />
+    <Compile Include="Internal\DocumentWithCodeAnalysis.cs" />
+    <Compile Include="Internal\EventCollection.cs" />
+    <Compile Include="Internal\EventDefinitionExtensions.cs" />
+    <Compile Include="Internal\EventPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Internal\Events.cs" />
+    <Compile Include="Internal\EventWithCodeAnalysis.cs" />
+    <Compile Include="Internal\FieldCollection.cs" />
+    <Compile Include="Internal\FieldGroupWithCodeAnalysis.cs" />
+    <Compile Include="Internal\FieldInfoExtensions.cs" />
+    <Compile Include="Internal\Fields.cs" />
+    <Compile Include="Internal\ForwardingGenericVisitor.cs" />
+    <Compile Include="Internal\GenericParameterDeclarations.cs" />
+    <Compile Include="Internal\GenericParameters.cs" />
+    <Compile Include="Internal\Hiding\AccessorSignature.cs" />
+    <Compile Include="Internal\Hiding\EmptyMethodBody.cs" />
+    <Compile Include="Internal\Hiding\HiddenMembersAnalyzer.cs" />
+    <Compile Include="Internal\Hiding\IndexerSignature.cs" />
+    <Compile Include="Internal\Hiding\MethodSignature.cs" />
+    <Compile Include="Internal\Hiding\ParameterSignature.cs" />
+    <Compile Include="Internal\Hiding\ReturnTypeSignature.cs" />
+    <Compile Include="Internal\IEventFactory.cs" />
+    <Compile Include="Internal\IFieldFactory.cs" />
+    <Compile Include="Internal\IInternalTypeWithCodeAnalysis.cs" />
+    <Compile Include="Internal\IndexerWithCodeAnalysis.cs" />
+    <Compile Include="Internal\INestedTypeFactory.cs" />
+    <Compile Include="Internal\InterfaceProperties.cs" />
+    <Compile Include="Internal\InterfaceReferences.cs" />
+    <Compile Include="Internal\InternalAttributeWithCodeAnalysis.cs" />
+    <Compile Include="Internal\InternalConstantWithCodeAnalysis.cs" />
+    <Compile Include="Internal\InternalFieldWithCodeAnalysis.cs" />
+    <Compile Include="Internal\IPropertyFactory.cs" />
+    <Compile Include="Internal\MethodCollection.cs" />
+    <Compile Include="Internal\MethodDefinitionExtensions.cs" />
+    <Compile Include="Internal\Methods.cs" />
+    <Compile Include="Internal\MethodWithCodeAnalysis.cs" />
+    <Compile Include="Internal\NamespaceContainer.cs" />
+    <Compile Include="Internal\NestedAbstractClassWithCodeAnalysis.cs" />
+    <Compile Include="Internal\NestedClassWithCodeAnalysis.cs" />
+    <Compile Include="Internal\NestedDelegateWithCodeAnalysis.cs" />
+    <Compile Include="Internal\NestedEnumWithCodeAnalysis.cs" />
+    <Compile Include="Internal\NestedInterfaceWithCodeAnalysis.cs" />
+    <Compile Include="Internal\NestedSealedClassWithCodeAnalysis.cs" />
+    <Compile Include="Internal\NestedStaticClassWithCodeAnalysis.cs" />
+    <Compile Include="Internal\NestedStructWithCodeAnalysis.cs" />
+    <Compile Include="Internal\NestedTypeCollection.cs" />
+    <Compile Include="Internal\NestedTypes.cs" />
+    <Compile Include="Internal\ParameterInfoExtensions.cs" />
+    <Compile Include="Internal\Parameters.cs" />
+    <Compile Include="Internal\ProjectWithCodeAnalysis.cs" />
+    <Compile Include="Internal\Properties.cs" />
+    <Compile Include="Internal\PropertyCollection.cs" />
+    <Compile Include="Internal\PropertyDefinitionExtensions.cs" />
+    <Compile Include="Internal\PropertyWithCodeAnalysis.cs" />
+    <Compile Include="Internal\SealedClassFieldCollection.cs" />
+    <Compile Include="Internal\SealedClassNestedClassCollection.cs" />
+    <Compile Include="Internal\SealedClassNestedInterfaceCollection.cs" />
+    <Compile Include="Internal\SealedClassNestedStructCollection.cs" />
+    <Compile Include="Internal\SealedTypeWithCodeAnalysis.cs" />
+    <Compile Include="Internal\SolutionWithCodeAnalysis.cs" />
+    <Compile Include="Internal\StaticClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Internal\StaticTypeWithCodeAnalysis.cs" />
+    <Compile Include="Internal\StructTypeWithCodeAnalysis.cs" />
+    <Compile Include="Internal\TypeClassification.cs" />
+    <Compile Include="Internal\TypeContainer.cs" />
+    <Compile Include="Internal\TypeReferenceExtensions.cs" />
+    <Compile Include="Internal\TypeWithCodeAnalysis.cs" />
+    <Compile Include="ITypeReferenceWithCodeAnalysis.cs" />
+    <Compile Include="ITypeWithCodeAnalysis.cs" />
+    <Compile Include="MemberInfoExtensions.cs" />
+    <Compile Include="MemberReferenceExtensions.cs" />
+    <Compile Include="MethodBodyWithCodeAnalysis.cs" />
+    <Compile Include="MethodParameterWithCodeAnalysis.cs" />
+    <Compile Include="NamedAttributeValueWithCodeAnalysis.cs" />
+    <Compile Include="NamespaceWithCodeAnalysis.cs" />
+    <Compile Include="NestedDestructorWithCodeAnalysis.cs" />
+    <Compile Include="NestedEnumMemberWithCodeAnalysis.cs" />
+    <Compile Include="NestedStaticClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="NestedTypeReferenceWithCodeAnalysis.cs" />
+    <Compile Include="OldBase\AbstractAsyncNode.cs" />
+    <Compile Include="OldBase\AbstractBasicMemberNode.cs" />
+    <Compile Include="OldBase\AbstractMemberNode.cs" />
+    <Compile Include="OldBase\AbstractNode.cs" />
+    <Compile Include="OldBase\AbstractNode.generic.cs" />
+    <Compile Include="OldBase\BasicMemberContainer.cs" />
+    <Compile Include="OldBase\BasicTypeNode.cs" />
     <Compile Include="Builder\ClassContainer.cs" />
     <Compile Include="Builder\InterfaceContainer.cs" />
     <Compile Include="Builder\NamespaceContainer.cs" />
     <Compile Include="Builder\StructContainer.cs" />
     <Compile Include="Builder\SyntaxBuilder.cs" />
-    <Compile Include="ClassDeclarationNode.cs" />
-    <Compile Include="ClassNode.cs" />
-    <Compile Include="LineHelper.cs" />
-    <Compile Include="ConstructorNode.cs" />
-    <Compile Include="ConversionOperatorNode.cs" />
-    <Compile Include="DelegateNode.cs" />
-    <Compile Include="DestructorNode.cs" />
-    <Compile Include="DocumentNode.cs" />
-    <Compile Include="EnumMemberNode.cs" />
-    <Compile Include="EnumNode.cs" />
-    <Compile Include="EventNode.cs" />
-    <Compile Include="EventPropertyNode.cs" />
-    <Compile Include="FieldNode.cs" />
-    <Compile Include="IBasicCompositeType.cs" />
-    <Compile Include="IBasicMemberContainer.cs" />
-    <Compile Include="ICompositeType.cs" />
-    <Compile Include="IHasBasicCompositeType.cs" />
-    <Compile Include="IHasCompositeType.cs" />
-    <Compile Include="IHasSyntaxNode.cs" />
-    <Compile Include="IMemberContainer.cs" />
-    <Compile Include="IMemberModifier.cs" />
-    <Compile Include="IMethodModifier.cs" />
-    <Compile Include="IndexerNode.cs" />
-    <Compile Include="INodeFactory.cs" />
-    <Compile Include="InterfaceDeclarationNode.cs" />
-    <Compile Include="InterfaceNode.cs" />
-    <Compile Include="IPropertyModifier.cs" />
-    <Compile Include="ITypeContainer.cs" />
-    <Compile Include="ITypeModifier.cs" />
-    <Compile Include="ITypeName.cs" />
-    <Compile Include="IWrapper.cs" />
-    <Compile Include="LoadedDocumentNode.cs" />
-    <Compile Include="LoadedProjectNode.cs" />
-    <Compile Include="MemberContainer.cs" />
-    <Compile Include="MethodNode.cs" />
-    <Compile Include="NamespaceNode.cs" />
-    <Compile Include="NodeVisitor.cs" />
-    <Compile Include="OperatorOverloadNode.cs" />
-    <Compile Include="ProjectNode.cs" />
+    <Compile Include="OldBase\ClassDeclarationNode.cs" />
+    <Compile Include="OldBase\ClassNode.cs" />
+    <Compile Include="OldBase\LineHelper.cs" />
+    <Compile Include="OldBase\ConstructorNode.cs" />
+    <Compile Include="OldBase\ConversionOperatorNode.cs" />
+    <Compile Include="OldBase\DelegateNode.cs" />
+    <Compile Include="OldBase\DestructorNode.cs" />
+    <Compile Include="OldBase\DocumentNode.cs" />
+    <Compile Include="OldBase\EnumMemberNode.cs" />
+    <Compile Include="OldBase\EnumNode.cs" />
+    <Compile Include="OldBase\EventNode.cs" />
+    <Compile Include="OldBase\EventPropertyNode.cs" />
+    <Compile Include="OldBase\FieldNode.cs" />
+    <Compile Include="OldBase\IBasicCompositeType.cs" />
+    <Compile Include="OldBase\IBasicMemberContainer.cs" />
+    <Compile Include="OldBase\ICompositeType.cs" />
+    <Compile Include="OldBase\IHasBasicCompositeType.cs" />
+    <Compile Include="OldBase\IHasCompositeType.cs" />
+    <Compile Include="OldBase\IHasSyntaxNode.cs" />
+    <Compile Include="OldBase\IMemberContainer.cs" />
+    <Compile Include="OldBase\IMemberModifier.cs" />
+    <Compile Include="OldBase\IMethodModifier.cs" />
+    <Compile Include="OldBase\IndexerNode.cs" />
+    <Compile Include="OldBase\INodeFactory.cs" />
+    <Compile Include="OldBase\InterfaceDeclarationNode.cs" />
+    <Compile Include="OldBase\InterfaceNode.cs" />
+    <Compile Include="OldBase\IPropertyModifier.cs" />
+    <Compile Include="OldBase\ITypeContainer.cs" />
+    <Compile Include="OldBase\ITypeModifier.cs" />
+    <Compile Include="OldBase\ITypeName.cs" />
+    <Compile Include="OldBase\IWrapper.cs" />
+    <Compile Include="OldBase\LoadedDocumentNode.cs" />
+    <Compile Include="OldBase\LoadedProjectNode.cs" />
+    <Compile Include="OldBase\MemberContainer.cs" />
+    <Compile Include="OldBase\MethodNode.cs" />
+    <Compile Include="OldBase\NamespaceNode.cs" />
+    <Compile Include="OldBase\NodeVisitor.cs" />
+    <Compile Include="OldBase\OperatorOverloadNode.cs" />
+    <Compile Include="OldBase\ProjectNode.cs" />
+    <Compile Include="OperatorOverloadWithCodeAnalysis.cs" />
+    <Compile Include="OperatorParameterWithCodeAnalysis.cs" />
+    <Compile Include="ParameterWithCodeAnalysis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PropertyNode.cs" />
-    <Compile Include="ReadOnlyAggregateCollection.cs" />
-    <Compile Include="ReadOnlyNodeCollection.cs" />
-    <Compile Include="SolutionNode.cs" />
-    <Compile Include="StructDeclarationNode.cs" />
-    <Compile Include="StructNode.cs" />
-    <Compile Include="TypeContainer.cs" />
-    <Compile Include="TypeNameNode.cs" />
-    <Compile Include="TypeNode.cs" />
+    <Compile Include="OldBase\PropertyNode.cs" />
+    <Compile Include="OldBase\ReadOnlyAggregateCollection.cs" />
+    <Compile Include="OldBase\ReadOnlyNodeCollection.cs" />
+    <Compile Include="OldBase\SolutionNode.cs" />
+    <Compile Include="OldBase\StructDeclarationNode.cs" />
+    <Compile Include="OldBase\StructNode.cs" />
+    <Compile Include="OldBase\TypeContainer.cs" />
+    <Compile Include="OldBase\TypeNameNode.cs" />
+    <Compile Include="OldBase\TypeNode.cs" />
+    <Compile Include="SealedClassEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassEventPropertyWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassEventWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassIndexerWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassMethodWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassPropertyWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassAccessorWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassConstantWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassEventPropertyWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassEventWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassFieldCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassFieldWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassMethodWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedAbstractClassWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedClassWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedDelegateWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedEnumWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedInterfaceCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedInterfaceWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedSealedClassWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedStaticClassWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassNestedStructWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassPropertyWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassWithCodeAnalysis.cs" />
+    <Compile Include="StaticConstructorWithCodeAnalysis.cs" />
+    <Compile Include="StructAccessorWithCodeAnalysis.cs" />
+    <Compile Include="StructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructConstantWithCodeAnalysis.cs" />
+    <Compile Include="StructConstructorWithCodeAnalysis.cs" />
+    <Compile Include="StructEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructEventPropertyWithCodeAnalysis.cs" />
+    <Compile Include="StructEventWithCodeAnalysis.cs" />
+    <Compile Include="StructFieldCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructFieldWithCodeAnalysis.cs" />
+    <Compile Include="StructIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructIndexerWithCodeAnalysis.cs" />
+    <Compile Include="StructMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructMethodWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedAbstractClassWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedClassWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedDelegateWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedEnumWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedInterfaceCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedInterfaceWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedSealedClassWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedStaticClassWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructNestedStructWithCodeAnalysis.cs" />
+    <Compile Include="StructPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructPropertyWithCodeAnalysis.cs" />
+    <Compile Include="StructReferenceWithCodeAnalysis.cs" />
+    <Compile Include="StructWithCodeAnalysis.cs" />
+    <Compile Include="TypeReferenceWithCodeAnalysisFactory.cs" />
+    <Compile Include="UnnamedAttributeValueWithCodeAnalysis.cs" />
+    <Compile Include="UnspecifiedTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="WithSymbols\AbstractAsyncSymbolNode.cs" />
     <Compile Include="WithSymbols\AbstractAsyncSymbolNode.generic.cs" />
     <Compile Include="WithSymbols\AbstractSymbolNode.cs" />
@@ -353,6 +605,8 @@
     <Compile Include="WithSyntax\TypeWithSyntax.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
+    <None Include="CSharpDom.snk" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

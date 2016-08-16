@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    internal sealed class ReadOnlyListWrapper<TInput, TOutput> : ReadOnlyCollectionWrapper<TInput, TOutput>, IReadOnlyList<TOutput>
+    public sealed class ReadOnlyListWrapper<TInput, TOutput> : ReadOnlyCollectionWrapper<TInput, TOutput>, IReadOnlyList<TOutput>
     {
         private readonly IReadOnlyList<TInput> input;
         private readonly Func<TInput, TOutput> converter;
