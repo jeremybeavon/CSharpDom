@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -13,32 +14,32 @@ namespace CSharpDom.Editable
         where TAbstractEvent : IAbstractEvent
         where TExplicitInterfaceEvent : IExplicitInterfaceEvent
     {
-        public virtual Collection<TAbstractEvent> AbstractEvents { get; set; }
+        public virtual ICollection<TAbstractEvent> AbstractEvents { get; set; }
 
         public int Count
         {
             get { return Events.Count + EventProperties.Count + AbstractEvents.Count + ExplicitInterfaceEvents.Count; }
         }
 
-        public virtual Collection<TEventProperty> EventProperties { get; set; }
+        public virtual ICollection<TEventProperty> EventProperties { get; set; }
 
-        public virtual Collection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
+        public virtual ICollection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
 
-        protected virtual Collection<TEvent> Events { get; set; }
+        protected virtual ICollection<TEvent> Events { get; set; }
 
         IReadOnlyCollection<TAbstractEvent> IHasAbstractEvents<TAbstractEvent>.AbstractEvents
         {
-            get { return AbstractEvents; }
+            get { return new ReadOnlyCollectionWrapper<TAbstractEvent>(AbstractEvents); }
         }
 
         IReadOnlyCollection<TEventProperty> IHasEventProperties<TEventProperty>.EventProperties
         {
-            get { return EventProperties; }
+            get { return new ReadOnlyCollectionWrapper<TEventProperty>(EventProperties); }
         }
 
         IReadOnlyCollection<TExplicitInterfaceEvent> IHasExplicitInterfaceEvents<TExplicitInterfaceEvent>.ExplicitInterfaceEvents
         {
-            get { return ExplicitInterfaceEvents; }
+            get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceEvent>(ExplicitInterfaceEvents); }
         }
 
         public void Accept(IGenericVisitor visitor)

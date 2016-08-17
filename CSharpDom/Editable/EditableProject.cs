@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -11,9 +12,14 @@ namespace CSharpDom.Editable
         where TDocument : IDocument
         where TLoadedProject : ILoadedProject
     {
-        public virtual IReadOnlyCollection<TDocument> Documents { get; set; }
+        public virtual ICollection<TDocument> Documents { get; set; }
 
         public virtual TSolution Solution { get; set; }
+
+        IReadOnlyCollection<TDocument> IHasDocuments<TDocument>.Documents
+        {
+            get { return new ReadOnlyCollectionWrapper<TDocument>(Documents); }
+        }
 
         public Task AcceptAsync(IGenericVisitor visitor)
         {

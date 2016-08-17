@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CSharpDom.Common;
 using System.Collections.ObjectModel;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -12,25 +13,25 @@ namespace CSharpDom.Editable
         where TAbstractIndexer : IAbstractIndexer
         where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
     {
-        public virtual Collection<TAbstractIndexer> AbstractIndexers { get; set; }
+        public virtual ICollection<TAbstractIndexer> AbstractIndexers { get; set; }
 
         public int Count
         {
             get { return Indexers.Count + AbstractIndexers.Count + ExplicitInterfaceIndexers.Count; }
         }
 
-        public virtual Collection<TExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
+        public virtual ICollection<TExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
 
-        protected virtual Collection<TIndexer> Indexers { get; set; }
+        protected virtual ICollection<TIndexer> Indexers { get; set; }
 
         IReadOnlyCollection<TAbstractIndexer> IHasAbstractIndexers<TAbstractIndexer>.AbstractIndexers
         {
-            get { return AbstractIndexers; }
+            get { return new ReadOnlyCollectionWrapper<TAbstractIndexer>(AbstractIndexers); }
         }
 
         IReadOnlyCollection<TExplicitInterfaceIndexer> IHasExplicitInterfaceIndexers<TExplicitInterfaceIndexer>.ExplicitInterfaceIndexers
         {
-            get { return ExplicitInterfaceIndexers; }
+            get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceIndexer>(ExplicitInterfaceIndexers); }
         }
 
         public void Accept(IGenericVisitor visitor)

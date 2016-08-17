@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -11,16 +12,26 @@ namespace CSharpDom.Editable
         where TAbstractMethod : IAbstractMethod
         where TExplicitInterfaceMethod : IExplicitInterfaceMethod
     {
-        public virtual IReadOnlyCollection<TAbstractMethod> AbstractMethods { get; set; }
+        public virtual ICollection<TAbstractMethod> AbstractMethods { get; set; }
 
         public int Count
         {
             get { return Methods.Count + AbstractMethods.Count + ExplicitInterfaceMethods.Count; }
         }
 
-        public virtual IReadOnlyCollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
+        public virtual ICollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
 
-        protected virtual IReadOnlyCollection<TMethod> Methods { get; set; }
+        protected virtual ICollection<TMethod> Methods { get; set; }
+
+        IReadOnlyCollection<TAbstractMethod> IHasAbstractMethods<TAbstractMethod>.AbstractMethods
+        {
+            get { return new ReadOnlyCollectionWrapper<TAbstractMethod>(AbstractMethods); }
+        }
+
+        IReadOnlyCollection<TExplicitInterfaceMethod> IHasExplicitInterfaceMethods<TExplicitInterfaceMethod>.ExplicitInterfaceMethods
+        {
+            get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceMethod>(ExplicitInterfaceMethods); }
+        }
 
         public void Accept(IGenericVisitor visitor)
         {

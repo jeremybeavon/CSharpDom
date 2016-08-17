@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
@@ -54,15 +56,15 @@ namespace CSharpDom.Editable
         where TDestructor : IDestructor
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual IReadOnlyCollection<TAttributeGroup> Attributes { get; set; }
+        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
 
         public virtual TClassReference BaseClass { get; set; }
         
         public virtual TDocument Document { get; set; }
 
-        public virtual IReadOnlyList<TGenericParameter> GenericParameters { get; set; }
+        public virtual IList<TGenericParameter> GenericParameters { get; set; }
 
-        public virtual IReadOnlyCollection<TInterfaceReference> ImplementedInterfaces { get; set; }
+        public virtual ICollection<TInterfaceReference> ImplementedInterfaces { get; set; }
         
         public virtual string Name { get; set; }
 
@@ -73,6 +75,21 @@ namespace CSharpDom.Editable
         public virtual TSolution Solution { get; set; }
 
         public virtual TypeVisibilityModifier Visibility { get; set; }
+
+        IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
+        }
+
+        IReadOnlyList<TGenericParameter> IHasGenericParameters<TGenericParameter>.GenericParameters
+        {
+            get { return new ReadOnlyCollection<TGenericParameter>(GenericParameters); }
+        }
+
+        IReadOnlyCollection<TInterfaceReference> IHasImplementedInterfaces<TInterfaceReference>.ImplementedInterfaces
+        {
+            get { return new ReadOnlyCollectionWrapper<TInterfaceReference>(ImplementedInterfaces); }
+        }
 
         public override void Accept(IGenericVisitor visitor)
         {

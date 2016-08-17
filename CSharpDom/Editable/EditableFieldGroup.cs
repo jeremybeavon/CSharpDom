@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -11,14 +12,24 @@ namespace CSharpDom.Editable
         where TTypeReference : ITypeReference
         where TField : IField
     {
-        public virtual IReadOnlyCollection<TAttributeGroup> Attributes { get; set; }
+        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
 
         public virtual TDeclaringType DeclaringType { get; set; }
 
-        public virtual IReadOnlyCollection<TField> Fields { get; set; }
+        public virtual ICollection<TField> Fields { get; set; }
 
         public virtual TTypeReference FieldType { get; set; }
-        
+
+        IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
+        }
+
+        IReadOnlyCollection<TField> IHasFields<TField>.Fields
+        {
+            get { return new ReadOnlyCollectionWrapper<TField>(Fields); }
+        }
+
         public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitFieldGroup(this);

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -29,21 +30,21 @@ namespace CSharpDom.Editable
         where TInterfaceCollection : IInterfaceCollection
         where TStructCollection : IStructCollection
     {
-        public virtual IReadOnlyCollection<TAttributeGroup> AssemblyAttributes { get; set; }
+        public virtual ICollection<TAttributeGroup> AssemblyAttributes { get; set; }
 
         public virtual TClassCollection Classes { get; set; }
 
-        public virtual IReadOnlyCollection<TDelegate> Delegates { get; set; }
+        public virtual ICollection<TDelegate> Delegates { get; set; }
 
         public virtual TDocument Document { get; set; }
 
-        public virtual IReadOnlyCollection<TEnum> Enums { get; set; }
+        public virtual ICollection<TEnum> Enums { get; set; }
 
         public virtual TInterfaceCollection Interfaces { get; set; }
 
-        public virtual IReadOnlyCollection<TAttributeGroup> ModuleAttributes { get; set; }
+        public virtual ICollection<TAttributeGroup> ModuleAttributes { get; set; }
 
-        public virtual IReadOnlyCollection<TNamespace> Namespaces { get; set; }
+        public virtual ICollection<TNamespace> Namespaces { get; set; }
 
         public virtual TProject Project { get; set; }
 
@@ -51,7 +52,37 @@ namespace CSharpDom.Editable
 
         public virtual TStructCollection Structs { get; set; }
 
-        public virtual IReadOnlyCollection<TUsingDirective> UsingDirectives { get; set; }
+        public virtual ICollection<TUsingDirective> UsingDirectives { get; set; }
+
+        IReadOnlyCollection<TAttributeGroup> IHasAssemblyAttributes<TAttributeGroup>.AssemblyAttributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(AssemblyAttributes); }
+        }
+
+        IReadOnlyCollection<TDelegate> IHasDelegates<TDelegate>.Delegates
+        {
+            get { return new ReadOnlyCollectionWrapper<TDelegate>(Delegates); }
+        }
+
+        IReadOnlyCollection<TEnum> IHasEnums<TEnum>.Enums
+        {
+            get { return new ReadOnlyCollectionWrapper<TEnum>(Enums); }
+        }
+
+        IReadOnlyCollection<TAttributeGroup> IHasModuleAttributes<TAttributeGroup>.ModuleAttributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(ModuleAttributes); }
+        }
+
+        IReadOnlyCollection<TNamespace> IHasNamespaces<TNamespace>.Namespaces
+        {
+            get { return new ReadOnlyCollectionWrapper<TNamespace>(Namespaces); }
+        }
+
+        IReadOnlyCollection<TUsingDirective> IHasUsingDirectives<TUsingDirective>.UsingDirectives
+        {
+            get { return new ReadOnlyCollectionWrapper<TUsingDirective>(UsingDirectives); }
+        }
 
         public void Accept(IGenericVisitor visitor)
         {

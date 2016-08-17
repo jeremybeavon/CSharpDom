@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -10,13 +11,18 @@ namespace CSharpDom.Editable
         where TDeclaringType : IBasicType
         where TDelegateReference : IDelegateReference
     {
-        public virtual IReadOnlyCollection<TAttributeGroup> Attributes { get; set; }
+        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
 
         public virtual TDeclaringType DeclaringType { get; set; }
 
         public virtual TDelegateReference EventType { get; set; }
         
         public virtual string Name { get; set; }
+
+        IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
+        }
 
         public virtual void Accept(IGenericVisitor visitor)
         {

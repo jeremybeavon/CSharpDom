@@ -2523,7 +2523,8 @@
     <Compile Include="Wrappers\Internal\OperatorOverloadWrapper.cs" />
     <Compile Include="Wrappers\Internal\OperatorParameterWrapper.cs" />
     <Compile Include="Wrappers\Internal\ProjectWrapper.cs" />
-    <Compile Include="Wrappers\Internal\ReadOnlyCollectionWrapper.cs" />
+    <Compile Include="Wrappers\Internal\ReadOnlyCollectionWrapper.generic.cs" />
+    <Compile Include="Wrappers\Internal\ReadOnlyCollectionWrapper.generic2.cs" />
     <Compile Include="Wrappers\Internal\ReadOnlyCollectionWrapperExtensions.cs" />
     <Compile Include="Wrappers\Internal\ReadOnlyListWrapper.cs" />
     <Compile Include="Wrappers\Internal\SealedClassEventCollectionWrapper.cs" />

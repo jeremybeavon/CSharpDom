@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
@@ -23,17 +25,17 @@ namespace CSharpDom.Editable
         where TTypeReference : ITypeReference
         where TParameter : IDelegateParameter
     {
-        public virtual IReadOnlyCollection<TAttributeGroup> Attributes { get; set; }
+        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
 
         public virtual TDocument Document { get; set; }
 
-        public virtual IReadOnlyList<TGenericParameter> GenericParameters { get; set; }
+        public virtual IList<TGenericParameter> GenericParameters { get; set; }
 
         public virtual string Name { get; set; }
 
         public virtual TNamespace Namespace { get; set; }
 
-        public virtual IReadOnlyList<TParameter> Parameters { get; set; }
+        public virtual IList<TParameter> Parameters { get; set; }
 
         public virtual TProject Project { get; set; }
 
@@ -42,6 +44,21 @@ namespace CSharpDom.Editable
         public virtual TSolution Solution { get; set; }
 
         public virtual TypeVisibilityModifier Visibility { get; set; }
+
+        IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
+        }
+
+        IReadOnlyList<TGenericParameter> IHasGenericParameters<TGenericParameter>.GenericParameters
+        {
+            get { return new ReadOnlyCollection<TGenericParameter>(GenericParameters); }
+        }
+
+        IReadOnlyList<TParameter> IHasParameters<TParameter>.Parameters
+        {
+            get { return new ReadOnlyCollection<TParameter>(Parameters); }
+        }
 
         public void Accept(IGenericVisitor visitor)
         {

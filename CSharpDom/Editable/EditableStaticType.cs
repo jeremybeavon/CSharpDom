@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -29,9 +30,9 @@ namespace CSharpDom.Editable
     {
         public virtual TNestedClassCollection Classes { get; set; }
         
-        public virtual IReadOnlyCollection<TNestedDelegate> Delegates { get; set; }
+        public virtual ICollection<TNestedDelegate> Delegates { get; set; }
 
-        public virtual IReadOnlyCollection<TNestedEnum> Enums { get; set; }
+        public virtual ICollection<TNestedEnum> Enums { get; set; }
 
         public virtual TEventCollection Events { get; set; }
 
@@ -41,11 +42,26 @@ namespace CSharpDom.Editable
 
         public virtual TMethodCollection Methods { get; set; }
 
-        public virtual IReadOnlyCollection<TProperty> Properties { get; set; }
+        public virtual ICollection<TProperty> Properties { get; set; }
 
         public virtual TStaticConstructor StaticConstructor { get; set; }
 
         public virtual TNestedStructCollection Structs { get; set; }
+
+        IReadOnlyCollection<TNestedDelegate> IHasDelegates<TNestedDelegate>.Delegates
+        {
+            get { return new ReadOnlyCollectionWrapper<TNestedDelegate>(Delegates); }
+        }
+
+        IReadOnlyCollection<TNestedEnum> IHasEnums<TNestedEnum>.Enums
+        {
+            get { return new ReadOnlyCollectionWrapper<TNestedEnum>(Enums); }
+        }
+
+        IReadOnlyCollection<TProperty> IHasProperties<TProperty>.Properties
+        {
+            get { return new ReadOnlyCollectionWrapper<TProperty>(Properties); }
+        }
 
         public virtual void Accept(IGenericVisitor visitor)
         {

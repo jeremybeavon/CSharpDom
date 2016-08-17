@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -16,11 +17,21 @@ namespace CSharpDom.Editable
             get { return Events.Count + EventProperties.Count + ExplicitInterfaceEvents.Count; }
         }
 
-        public virtual IReadOnlyCollection<TEventProperty> EventProperties { get; set; }
+        public virtual ICollection<TEventProperty> EventProperties { get; set; }
 
-        public virtual IReadOnlyCollection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
+        public virtual ICollection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
 
-        protected virtual IReadOnlyCollection<TEvent> Events { get; set; }
+        public virtual ICollection<TEvent> Events { get; set; }
+
+        IReadOnlyCollection<TEventProperty> IHasEventProperties<TEventProperty>.EventProperties
+        {
+            get { return new ReadOnlyCollectionWrapper<TEventProperty>(EventProperties); }
+        }
+
+        IReadOnlyCollection<TExplicitInterfaceEvent> IHasExplicitInterfaceEvents<TExplicitInterfaceEvent>.ExplicitInterfaceEvents
+        {
+            get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceEvent>(ExplicitInterfaceEvents); }
+        }
 
         public void Accept(IGenericVisitor visitor)
         {

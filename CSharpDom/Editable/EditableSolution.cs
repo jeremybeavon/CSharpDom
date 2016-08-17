@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
     public class EditableSolution<TProject> : ISolution<TProject>
         where TProject : IProject
     {
-        public virtual IReadOnlyCollection<TProject> Projects { get; set; }
+        public virtual ICollection<TProject> Projects { get; set; }
+
+        IReadOnlyCollection<TProject> ISolution<TProject>.Projects
+        {
+            get { return new ReadOnlyCollectionWrapper<TProject>(Projects); }
+        }
 
         public Task AcceptAsync(IGenericVisitor visitor)
         {

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
@@ -12,9 +14,19 @@ namespace CSharpDom.Editable
     {
         public virtual TClassReference AttributeType { get; set; }
 
-        public virtual IReadOnlyCollection<TNamedAttributeValue> NamedValues { get; set; }
+        public virtual ICollection<TNamedAttributeValue> NamedValues { get; set; }
 
-        public virtual IReadOnlyList<TUnnamedAttributeValue> UnnamedValues { get; set; }
+        public virtual IList<TUnnamedAttributeValue> UnnamedValues { get; set; }
+
+        IReadOnlyCollection<TNamedAttributeValue> IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>.NamedValues
+        {
+            get { return new ReadOnlyCollectionWrapper<TNamedAttributeValue>(NamedValues); }
+        }
+
+        IReadOnlyList<TUnnamedAttributeValue> IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>.UnnamedValues
+        {
+            get { return new ReadOnlyCollection<TUnnamedAttributeValue>(UnnamedValues); }
+        }
 
         public void Accept(IGenericVisitor visitor)
         {

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -15,9 +16,14 @@ namespace CSharpDom.Editable
             get { return Methods.Count + ExtensionMethods.Count; }
         }
 
-        public virtual IReadOnlyCollection<TExtensionMethod> ExtensionMethods { get; set; }
+        public virtual ICollection<TExtensionMethod> ExtensionMethods { get; set; }
 
-        protected virtual IReadOnlyCollection<TMethod> Methods { get; set; }
+        public virtual ICollection<TMethod> Methods { get; set; }
+
+        IReadOnlyCollection<TExtensionMethod> IHasExtensionMethods<TExtensionMethod>.ExtensionMethods
+        {
+            get { return new ReadOnlyCollectionWrapper<TExtensionMethod>(ExtensionMethods); }
+        }
 
         public void Accept(IGenericVisitor visitor)
         {

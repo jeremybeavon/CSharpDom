@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -12,7 +13,7 @@ namespace CSharpDom.Editable
         where TParameter : IOperatorParameter
         where TMethodBody : IMethodBody
     {
-        public virtual IReadOnlyCollection<TAttributeGroup> Attributes { get; set; }
+        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
 
         public virtual TMethodBody Body { get; set; }
 
@@ -22,9 +23,19 @@ namespace CSharpDom.Editable
 
         public virtual TParameter Parameter { get; set; }
         
-        public virtual IReadOnlyCollection<TAttributeGroup> ReturnAttributes { get; set; }
+        public virtual ICollection<TAttributeGroup> ReturnAttributes { get; set; }
 
         public virtual TTypeReference ReturnType { get; set; }
+
+        IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
+        }
+
+        IReadOnlyCollection<TAttributeGroup> IHasReturnAttributes<TAttributeGroup>.ReturnAttributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(ReturnAttributes); }
+        }
 
         public void Accept(IGenericVisitor visitor)
         {

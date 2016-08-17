@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Common.Partial;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -16,9 +17,14 @@ namespace CSharpDom.Editable
             get { return PartialInterfaces.Count + Interfaces.Count; }
         }
 
-        public virtual IReadOnlyCollection<TPartialInterface> PartialInterfaces { get; set; }
+        public virtual ICollection<TPartialInterface> PartialInterfaces { get; set; }
 
-        protected virtual IReadOnlyCollection<TInterface> Interfaces { get; set; }
+        public virtual ICollection<TInterface> Interfaces { get; set; }
+
+        IReadOnlyCollection<TPartialInterface> IHasPartialInterfaces<TPartialInterface>.PartialInterfaces
+        {
+            get { return new ReadOnlyCollectionWrapper<TPartialInterface>(PartialInterfaces); }
+        }
 
         public virtual void Accept(IGenericVisitor visitor)
         {

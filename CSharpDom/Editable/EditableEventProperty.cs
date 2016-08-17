@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
@@ -11,11 +12,11 @@ namespace CSharpDom.Editable
         where TDelegateReference : IDelegateReference
         where TMethodBody : IMethodBody
     {
-        public virtual IReadOnlyCollection<TAttributeGroup> AddAttributes { get; set; }
+        public virtual ICollection<TAttributeGroup> AddAttributes { get; set; }
 
         public virtual TMethodBody AddBody { get; set; }
 
-        public virtual IReadOnlyCollection<TAttributeGroup> Attributes { get; set; }
+        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
 
         public virtual TDeclaringType DeclaringType { get; set; }
 
@@ -23,9 +24,24 @@ namespace CSharpDom.Editable
         
         public virtual string Name { get; set; }
 
-        public virtual IReadOnlyCollection<TAttributeGroup> RemoveAttributes { get; set; }
+        public virtual ICollection<TAttributeGroup> RemoveAttributes { get; set; }
 
         public virtual TMethodBody RemoveBody { get; set; }
+
+        IReadOnlyCollection<TAttributeGroup> IHasEventPropertyBodyAttributes<TAttributeGroup>.AddAttributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(AddAttributes); }
+        }
+
+        IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
+        }
+
+        IReadOnlyCollection<TAttributeGroup> IHasEventPropertyBodyAttributes<TAttributeGroup>.RemoveAttributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(RemoveAttributes); }
+        }
 
         public virtual void Accept(IGenericVisitor visitor)
         {
