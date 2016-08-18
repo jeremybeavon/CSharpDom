@@ -1,6 +1,5 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.Common;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Reflection;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractAccessorWithCodeAnalysis :
-        AbstractAbstractAccessor<AttributeGroupWithCodeAnalysis>,
+        EditableAbstractAccessor<AttributeGroupWithCodeAnalysis>,
         //IVisitable<IReflectionVisitor>,
         IStructAccessor
     {
@@ -20,9 +19,10 @@ namespace CSharpDom.CodeAnalysis
             this.accessor = accessor;
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return accessor.Attributes; }
+            set { accessor.Attributes = value; }
         }
         
         public AccessorDeclarationSyntax Syntax

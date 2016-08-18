@@ -2,7 +2,7 @@
 
 namespace CSharpDom.CodeAnalysis
 {
-    public interface ITypeReferenceWithCodeAnalysis : ITypeReference, IHasTypeReference
+    public interface ITypeReferenceWithCodeAnalysis : ITypeReference
     {
     }
 }

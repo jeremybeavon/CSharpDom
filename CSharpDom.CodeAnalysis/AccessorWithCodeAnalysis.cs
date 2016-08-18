@@ -1,32 +1,34 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
-using CSharpDom.Wrappers.Internal;
+﻿using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Linq;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AccessorWithCodeAnalysis :
-        AbstractAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>
+        EditableAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
+        IReplaceSyntaxList<AttributeListSyntax>
     {
-        private readonly IReadOnlyCollection<AttributeGroupWithCodeAnalysis> attributes;
-        private readonly Lazy<MethodBodyWithCodeAnalysis> body;
+        private readonly ICollection<AttributeGroupWithCodeAnalysis> attributes;
+        private AccessorDeclarationSyntax syntax;
 
-        internal AccessorWithCodeAnalysis(AccessorDeclarationSyntax syntax)
+        public AccessorWithCodeAnalysis(AccessorDeclarationSyntax syntax)
         {
             Syntax = syntax;
-            attributes = new ReadOnlyCollectionWrapper<AttributeListSyntax, AttributeGroupWithCodeAnalysis>(
-                syntax.AttributeLists,
-                collection => new AttributeGroupWithCodeAnalysis(collection))
-            body = new Lazy<MethodBodyWithCodeAnalysis>(
-                () => method.IsDefined(assembly, typeof(CompilerGeneratedAttribute)) ? null : new MethodBodyWithCodeAnalysis(method));
+            attributes = new SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax>(
+                this,
+                () => syntax.AttributeLists,
+                list => new AttributeGroupWithCodeAnalysis(list));
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            get { return attributes; }
+            set
+            {
+                syntax = syntax.WithAttributeLists(new SyntaxList<AttributeListSyntax>().AddRange(value.Select(node => node.Syntax)));
+            }
         }
 
         public override MethodBodyWithCodeAnalysis Body
@@ -35,5 +37,10 @@ namespace CSharpDom.CodeAnalysis
         }
 
         public AccessorDeclarationSyntax Syntax { get; private set; }
+
+        void IReplaceSyntaxList<AttributeListSyntax>.ReplaceSyntaxList(SyntaxList<AttributeListSyntax> list)
+        {
+            syntax = syntax.WithAttributeLists(list);
+        }
     }
 }

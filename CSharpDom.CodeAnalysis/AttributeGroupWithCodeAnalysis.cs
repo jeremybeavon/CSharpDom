@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public class AttributeGroupWithCodeAnalysis :
-        AbstractAttributeGroup<IAttributeWithCodeAnalysis>
+        AbstractAttributeGroup<IAttributeWithCodeAnalysis>,
+        IHasSyntax<AttributeListSyntax>
     {
         private readonly IAttributeWithCodeAnalysis attribute;
 
@@ -18,6 +18,8 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return new IAttributeWithCodeAnalysis[] { attribute }; }
         }
+
+        public AttributeListSyntax Syntax { get; private set; }
         
         /*public void Accept(IReflectionVisitor visitor)
         {

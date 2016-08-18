@@ -100,7 +100,7 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
         {
             VisitIfNotNull(@class.Destructor, visitor);
-            new ClassTypeWrapper<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(@class).Accept(visitor);
+            new TypeWrapper<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(@class).Accept(visitor);
         }
 
         public static void VisitClassReferenceChildren<TGenericParameter>(
