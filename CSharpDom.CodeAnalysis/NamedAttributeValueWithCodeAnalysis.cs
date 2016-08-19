@@ -9,8 +9,6 @@ namespace CSharpDom.CodeAnalysis
         EditableNamedAttributeValue<IExpression>,
         IHasSyntax<AttributeArgumentSyntax>//, IVisitable<IReflectionVisitor>
     {
-        private readonly IConstantExpressionWithCodeAnalysis value;
-
         internal NamedAttributeValueWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, CustomAttributeNamedArgument attributeValue)
         {
             this.attributeValue = attributeValue;

@@ -1,46 +1,42 @@
 ﻿using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AccessorWithCodeAnalysis :
         EditableAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
-        IReplaceSyntaxList<AttributeListSyntax>
+        IHasChild<SyntaxList<AttributeListSyntax>>
     {
-        private readonly ICollection<AttributeGroupWithCodeAnalysis> attributes;
-        private AccessorDeclarationSyntax syntax;
+        private ICollection<AttributeGroupWithCodeAnalysis> attributes;
+        private IHasChild<AccessorDeclarationSyntax> parent;
 
-        public AccessorWithCodeAnalysis(AccessorDeclarationSyntax syntax)
+        internal AccessorWithCodeAnalysis(IHasChild<AccessorDeclarationSyntax> parent)
         {
-            Syntax = syntax;
+            this.parent = parent;
             attributes = new SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax>(
                 this,
-                () => syntax.AttributeLists,
                 list => new AttributeGroupWithCodeAnalysis(list));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set
-            {
-                syntax = syntax.WithAttributeLists(new SyntaxList<AttributeListSyntax>().AddRange(value.Select(node => node.Syntax)));
-            }
+            set { parent.Child = parent.Child.WithAttributeLists(SyntaxFactory.List(value.Select(node => node.Syntax))); }
+        }
+        
+        public AccessorDeclarationSyntax Syntax
+        {
+            get { return parent.Child; }
         }
 
-        public override MethodBodyWithCodeAnalysis Body
+        SyntaxList<AttributeListSyntax> IHasChild<SyntaxList<AttributeListSyntax>>.Child
         {
-            get { return body.Value; }
-        }
-
-        public AccessorDeclarationSyntax Syntax { get; private set; }
-
-        void IReplaceSyntaxList<AttributeListSyntax>.ReplaceSyntaxList(SyntaxList<AttributeListSyntax> list)
-        {
-            syntax = syntax.WithAttributeLists(list);
+            get { return parent.Child.AttributeLists; }
+            set { parent.Child = parent.Child.WithAttributeLists(value); }
         }
     }
 }

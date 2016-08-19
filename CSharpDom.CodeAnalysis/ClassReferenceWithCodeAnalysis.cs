@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using CSharpDom.Editable;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassReferenceWithCodeAnalysis :
-        AbstractClassReference<GenericParameterWithCodeAnalysis>,
+        EditableClassReference<GenericParameterWithCodeAnalysis>,
         ITypeReferenceWithCodeAnalysis//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly TypeReference type;
+        private readonly IHasChild<;
         private readonly Lazy<GenericParameters> genericParameters;
 
         internal ClassReferenceWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, TypeReference type)
