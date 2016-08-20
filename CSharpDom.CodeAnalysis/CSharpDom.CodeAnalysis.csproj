@@ -103,17 +103,13 @@
     <Compile Include="AttributeWithCodeAnalysis.cs" />
     <Compile Include="BuiltInTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="ClassReferenceWithCodeAnalysis.cs" />
-    <Compile Include="DetachedParent.cs" />
-    <Compile Include="DetachedParentWithId.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="GenericParameterWithCodeAnalysis.cs" />
     <Compile Include="IHasId.cs" />
-    <Compile Include="IHasChild.cs" />
-    <Compile Include="IHasChildWithId.cs" />
-    <Compile Include="IHasParent.cs" />
     <Compile Include="ImmutableListWrapper.cs" />
     <Compile Include="ImmutableSeparatedSyntaxListWrapper.cs" />
     <Compile Include="ImmutableSyntaxListWrapper.cs" />
+    <Compile Include="NameSyntaxExtensions.cs" />
     <Compile Include="SeparatedSyntaxListWrapper.cs" />
     <Compile Include="SyntaxListWrapper.cs" />
     <Compile Include="IHasSyntax.cs" />
@@ -121,7 +117,7 @@
     <Compile Include="MethodBodyWithCodeAnalysis.cs" />
     <Compile Include="NamedAttributeValueWithCodeAnalysis.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeReferenceWithCodeAnalysisFactory.cs" />
+    <Compile Include="TypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="UnnamedAttributeValueWithCodeAnalysis.cs" />
     <Compile Include="UnspecifiedTypeReferenceWithCodeAnalysis.cs" />
   </ItemGroup>

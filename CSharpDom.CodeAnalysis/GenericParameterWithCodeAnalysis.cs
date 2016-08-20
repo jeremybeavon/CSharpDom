@@ -1,26 +1,51 @@
 ﻿using System;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using CSharpDom.Editable;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class GenericParameterWithCodeAnalysis :
-        AbstractGenericParameter<ITypeReferenceWithCodeAnalysis>//,
-        //IVisitable<IReflectionVisitor>
+        EditableGenericParameter<TypeReferenceWithCodeAnalysis>,
+        IHasSyntax<TypeSyntax>,
+        IHasId
     {
-        private readonly ITypeReferenceWithCodeAnalysis typeReference;
+        private readonly Guid internalId;
+        private readonly Func<TypeSyntax> getType;
+        private readonly Action<TypeSyntax> setType;
+        private TypeReferenceWithCodeAnalysis typeReference;
 
-        internal GenericParameterWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, TypeReference type)
+        //public GenericParameterWithCodeAnalysis(TypeReferenceWithCodeAnalysis typeReference)
+        //    : this(new DetachedParentWithId<GenericParameterWithCodeAnalysis, TypeSyntax>(typeReference.Syntax))
+        //{
+        //}
+
+        internal GenericParameterWithCodeAnalysis(ClassReferenceWithCodeAnalysis parent)
         {
-            typeReference = TypeReferenceWithCodeAnalysisFactory.CreateReference(assembly, type, type);
+            
         }
 
-        public override ITypeReferenceWithCodeAnalysis Type
+        public override TypeReferenceWithCodeAnalysis Type
         {
             get { return typeReference; }
+            set
+            {
+                typeReference = value;
+            }
         }
-        
+
+        public TypeSyntax Syntax
+        {
+            get { return getType(); }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
+        }
+
+        internal ClassReferenceWithCodeAnalysis ClassReferenceParent { get; set; }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitGenericParameterWithCodeAnalysis(this);

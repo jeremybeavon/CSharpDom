@@ -8,26 +8,28 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal abstract class ImmutableListWrapper<T, TSyntax> : IList<T>, IHasChildWithId<T, TSyntax>, IEqualityComparer<T>
-        where T : class, IHasSyntax<TSyntax>, IHasId, IHasParent<T, TSyntax>
-        where TSyntax : SyntaxNode
+    internal abstract class ImmutableListWrapper<T, TSyntax, TParent> : IList<T>, IEqualityComparer<T>
+        where T : class, IHasSyntax<TSyntax>, IHasId
+        where TParent : class
     {
         private readonly IList<TSyntax> list;
-        private readonly Func<IHasChildWithId<T, TSyntax>, T> converter;
+        private readonly Func<T> factory;
+        private readonly TParent parent;
+        private readonly Action<T, TParent> setParent;
         private readonly IList<T> innerList;
         private readonly IDictionary<T, TSyntax> syntaxMap;
         private readonly IDictionary<TSyntax, IndexedItem> reverseSyntaxMap;
         private bool isRefreshList;
 
-        public ImmutableListWrapper(IList<TSyntax> list, Func<IHasChildWithId<T, TSyntax>, T> converter)
+        public ImmutableListWrapper(IList<TSyntax> list, Func<T> factory, TParent parent, Action<T, TParent> setParent)
         {
             this.list = list;
-            this.converter = converter;
+            this.factory = factory;
             syntaxMap = new Dictionary<T, TSyntax>(this);
             reverseSyntaxMap = new Dictionary<TSyntax, IndexedItem>();
             foreach (TSyntax syntax in list)
             {
-                InternalAdd(converter(this), syntax);
+                InternalAdd(factory(), syntax);
             }
         }
 
@@ -89,7 +91,7 @@ namespace CSharpDom.CodeAnalysis
             while (list.Count != 0)
             {
                 list.RemoveAt(0);
-                innerList[0].Parent = null;
+                setParent(innerList[0], null);
             }
 
             innerList.Clear();
@@ -154,16 +156,16 @@ namespace CSharpDom.CodeAnalysis
 
         private T CreateChild(int index, TSyntax syntax)
         {
-            T child = converter(this);
+            T child = factory();
             syntaxMap.Add(child, syntax);
             reverseSyntaxMap.Add(syntax, new IndexedItem(index, child));
-            child.Parent = this;
+            setParent(child, parent);
             return child;
         }
 
         private void InternalAdd(T item, TSyntax syntax)
         {
-            item.Parent = this;
+            setParent(item, parent);
             innerList.Add(item);
             syntaxMap.Add(item, syntax);
             reverseSyntaxMap.Add(syntax, new IndexedItem(innerList.Count - 1, item));
@@ -171,7 +173,7 @@ namespace CSharpDom.CodeAnalysis
 
         private void InternalInsert(int index, T item, TSyntax syntax)
         {
-            item.Parent = this;
+            setParent(item, parent);
             innerList.Insert(index, item);
             syntaxMap.Add(item, syntax);
             reverseSyntaxMap.Add(syntax, new IndexedItem(index, item));
@@ -186,7 +188,7 @@ namespace CSharpDom.CodeAnalysis
 
         private bool InternalRemove(T item, TSyntax syntax)
         {
-            item.Parent = null;
+            setParent(item, null);
             bool result = innerList.Remove(item);
             syntaxMap.Remove(item);
             reverseSyntaxMap.Remove(syntax);
@@ -195,7 +197,7 @@ namespace CSharpDom.CodeAnalysis
 
         private void InternalRemoveAt(int index, T item, TSyntax syntax)
         {
-            item.Parent = null;
+            setParent(item, null);
             innerList.RemoveAt(index);
             syntaxMap.Remove(item);
             reverseSyntaxMap.Remove(syntax);
@@ -205,9 +207,9 @@ namespace CSharpDom.CodeAnalysis
         {
             T oldItem = innerList[index];
             TSyntax oldSyntax = oldItem.Syntax;
-            oldItem.Parent = null;
+            setParent(oldItem, null);
             innerList[index] = item;
-            item.Parent = this;
+            setParent(item, parent);
             syntaxMap.Remove(oldItem);
             syntaxMap.Add(item, syntax);
             reverseSyntaxMap.Remove(oldSyntax);
@@ -230,7 +232,7 @@ namespace CSharpDom.CodeAnalysis
                 IndexedItem item;
                 if (!reverseSyntaxMap.TryGetValue(syntax, out item))
                 {
-                    InternalInsert(index, converter(this), syntax);
+                    InternalInsert(index, factory(), syntax);
                 }
                 else if (item.Index != index)
                 {

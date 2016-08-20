@@ -11,20 +11,23 @@ namespace CSharpDom.CodeAnalysis
     public class AttributeGroupWithCodeAnalysis :
         EditableAttributeGroup<AttributeWithCodeAnalysis>,
         IHasSyntax<AttributeListSyntax>,
-        IHasParent<AttributeGroupWithCodeAnalysis, AttributeListSyntax>,
-        IHasChild<SeparatedSyntaxList<AttributeSyntax>>,
         IHasId
     {
         private readonly Guid internalId;
-        private IHasChildWithId<AttributeGroupWithCodeAnalysis, AttributeListSyntax> parent;
-        private ICollection<AttributeWithCodeAnalysis> attributes;
+        private readonly SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis> attributes;
+        private readonly Func<AttributeListSyntax> getAttributeList;
+        private readonly Action<AttributeListSyntax> setAttributeList;
 
-        internal AttributeGroupWithCodeAnalysis(IHasChildWithId<AttributeGroupWithCodeAnalysis, AttributeListSyntax> parent)
+        internal AttributeGroupWithCodeAnalysis(AccessorWithCodeAnalysis parent)
         {
-            this.parent = parent;
-            attributes = new SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax>(
+            getAttributeList = () => parent.AttributeList.GetChild(this);
+            setAttributeList = syntax => parent.AttributeList.SetChild(this, syntax);
+            attributes = new SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis>(
+                () => getAttributeList().Attributes,
+                list => setAttributeList(getAttributeList().WithAttributes(list)),
+                () => new AttributeWithCodeAnalysis(this),
                 this,
-                list => new AttributeWithCodeAnalysis(list));
+                (child, newParent) => child.Parent = newParent);
         }
 
         public override ICollection<AttributeWithCodeAnalysis> Attributes
@@ -32,34 +35,22 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
             set
             {
-                parent.SetChild(
-                    this,
-                    parent.GetChild(this).WithAttributes(SyntaxFactory.SeparatedList(value.Select(node => node.Syntax))));
+                setAttributeList(getAttributeList().WithAttributes(SyntaxFactory.SeparatedList(value.Select(node => node.Syntax))));
             }
         }
 
         public AttributeListSyntax Syntax { get; private set; }
 
+        internal SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis> AttributeList
+        {
+             get { return attributes; }
+        }
+
         Guid IHasId.InternalId
         {
             get { return internalId; }
         }
-
-        IHasChildWithId<AttributeGroupWithCodeAnalysis, AttributeListSyntax> IHasParent<AttributeGroupWithCodeAnalysis, AttributeListSyntax>.Parent
-        {
-            get { return parent; }
-            set { parent = value; }
-        }
-
-        SeparatedSyntaxList<AttributeSyntax> IHasChild<SeparatedSyntaxList<AttributeSyntax>>.Child
-        {
-            get { return parent.GetChild(this).Attributes; }
-            set
-            {
-                throw new NotImplementedException();
-            }
-        }
-
+        
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitAttributeWithCodeAnalysis(this);

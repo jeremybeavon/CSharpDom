@@ -14,20 +14,35 @@ namespace CSharpDom.CodeAnalysis
             UnnamedAttributeValueWithCodeAnalysis,
             NamedAttributeValueWithCodeAnalysis>,
         IHasSyntax<AttributeSyntax>,
-        IHasParent<AttributeWithCodeAnalysis, AttributeSyntax>,
         IHasId
     {
         private readonly Guid internalId;
-        private IHasChildWithId<AttributeWithCodeAnalysis, AttributeSyntax> parent;
+        private readonly Func<AttributeSyntax> getAttribute;
+        private readonly Action<AttributeSyntax> setAttribute;
 
-        internal AttributeWithCodeAnalysis(IHasChildWithId<AttributeWithCodeAnalysis, AttributeSyntax> parent)
+        internal AttributeWithCodeAnalysis(AttributeGroupWithCodeAnalysis parent)
         {
-            this.parent = parent;
+            Parent = parent;
+            getAttribute = () => Parent.AttributeList.GetChild(this);
+            setAttribute = syntax => Parent.AttributeList.SetChild(this, syntax);
+        }
+
+        public override ClassReferenceWithCodeAnalysis AttributeType
+        {
+            get
+            {
+                return base.AttributeType;
+            }
+            set
+            {
+                base.AttributeType = value;
+            }
         }
 
         public AttributeSyntax Syntax
         {
-            get { return parent.GetChild(this); }
+            get { return getAttribute(); }
+            internal set { setAttribute(value); }
         }
 
         Guid IHasId.InternalId
@@ -35,10 +50,6 @@ namespace CSharpDom.CodeAnalysis
             get { return internalId; }
         }
 
-        IHasChildWithId<AttributeWithCodeAnalysis, AttributeSyntax> IHasParent<AttributeWithCodeAnalysis, AttributeSyntax>.Parent
-        {
-            get { return parent; }
-            set { parent = value; }
-        }
+        internal AttributeGroupWithCodeAnalysis Parent { get; set; }
     }
 }

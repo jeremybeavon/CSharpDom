@@ -3,12 +3,18 @@ using System;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class SeparatedSyntaxListWrapper<T, TSyntax> : ImmutableListWrapper<T, TSyntax>
-        where T : class, IHasSyntax<TSyntax>, IHasId, IHasParent<T, TSyntax>
+    internal sealed class SeparatedSyntaxListWrapper<T, TSyntax, TParent> : ImmutableListWrapper<T, TSyntax, TParent>
+        where T : class, IHasSyntax<TSyntax>, IHasId
         where TSyntax : SyntaxNode
+        where TParent : class
     {
-        public SeparatedSyntaxListWrapper(IHasChild<SeparatedSyntaxList<TSyntax>> parent, Func<IHasChildWithId<T, TSyntax>, T> converter)
-            : base(new ImmutableSeparatedSyntaxListWrapper<TSyntax>(parent), converter)
+        public SeparatedSyntaxListWrapper(
+            Func<SeparatedSyntaxList<TSyntax>> getSyntaxList,
+            Action<SeparatedSyntaxList<TSyntax>> setSyntaxList,
+            Func<T> factory,
+            TParent parent,
+            Action<T, TParent> setParent)
+            : base(new ImmutableSeparatedSyntaxListWrapper<TSyntax>(getSyntaxList, setSyntaxList), factory, parent, setParent)
         {
         }
     }

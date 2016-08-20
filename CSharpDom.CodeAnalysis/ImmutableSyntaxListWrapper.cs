@@ -11,22 +11,26 @@ namespace CSharpDom.CodeAnalysis
     internal sealed class ImmutableSyntaxListWrapper<TSyntax> : IList<TSyntax>
         where TSyntax : SyntaxNode
     {
-        private readonly IHasChild<SyntaxList<TSyntax>> parent;
+        private readonly Func<SyntaxList<TSyntax>> getList;
+        private readonly Action<SyntaxList<TSyntax>> setList;
 
-        public ImmutableSyntaxListWrapper(IHasChild<SyntaxList<TSyntax>> parent)
+        public ImmutableSyntaxListWrapper(
+            Func<SyntaxList<TSyntax>> getList,
+            Action<SyntaxList<TSyntax>> setList)
         {
-            this.parent = parent;
+            this.getList = getList;
+            this.setList = setList;
         }
 
         public TSyntax this[int index]
         {
-            get { return parent.Child[index]; }
-            set { parent.Child.Replace(this[index], value); }
+            get { return getList()[index]; }
+            set { setList(getList().Replace(this[index], value)); }
         }
 
         public int Count
         {
-            get { return parent.Child.Count; }
+            get { return getList().Count; }
         }
 
         public bool IsReadOnly
@@ -36,7 +40,7 @@ namespace CSharpDom.CodeAnalysis
 
         public void Add(TSyntax item)
         {
-            parent.Child = parent.Child.Add(item);
+            setList(getList().Add(item));
         }
 
         public void Clear()
@@ -46,7 +50,7 @@ namespace CSharpDom.CodeAnalysis
 
         public bool Contains(TSyntax item)
         {
-            return parent.Child.Contains(item);
+            return getList().Contains(item);
         }
 
         public void CopyTo(TSyntax[] array, int arrayIndex)
@@ -56,28 +60,28 @@ namespace CSharpDom.CodeAnalysis
 
         public IEnumerator<TSyntax> GetEnumerator()
         {
-            return ((IEnumerable<TSyntax>)parent.Child).GetEnumerator();
+            return ((IEnumerable<TSyntax>)getList()).GetEnumerator();
         }
 
         public int IndexOf(TSyntax item)
         {
-            return parent.Child.IndexOf(item);
+            return getList().IndexOf(item);
         }
 
         public void Insert(int index, TSyntax item)
         {
-            parent.Child = parent.Child.Insert(index, item);
+            setList(getList().Insert(index, item));
         }
 
         public bool Remove(TSyntax item)
         {
-            parent.Child = parent.Child.Remove(item);
+            setList(getList().Remove(item));
             return true;
         }
 
         public void RemoveAt(int index)
         {
-            parent.Child = parent.Child.RemoveAt(index);
+            setList(getList().RemoveAt(index));
         }
 
         IEnumerator IEnumerable.GetEnumerator()

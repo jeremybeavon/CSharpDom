@@ -1,39 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassReferenceWithCodeAnalysis :
         EditableClassReference<GenericParameterWithCodeAnalysis>,
-        ITypeReferenceWithCodeAnalysis//,
+        ITypeReferenceWithCodeAnalysis,
+        IHasSyntax<NameSyntax>
         //IVisitable<IReflectionVisitor>
     {
-        private readonly IHasChild<;
-        private readonly Lazy<GenericParameters> genericParameters;
+        private readonly Func<NameSyntax> getReference;
+        private readonly Action<NameSyntax> setReference;
+        private SeparatedSyntaxListWrapper<GenericParameterWithCodeAnalysis, TypeSyntax, ClassReferenceWithCodeAnalysis> genericParameters;
 
-        internal ClassReferenceWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, TypeReference type)
+        //public ClassReferenceWithCodeAnalysis(string name)
+        //    : this(new DetachedParent<NameSyntax>(SyntaxFactory.IdentifierName(name)))
+        //{
+        //}
+
+        internal ClassReferenceWithCodeAnalysis(AttributeWithCodeAnalysis parent)
         {
-            this.type = type;
-            genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(assembly, type));
+            ParentAttribute = parent;
+            getReference = () => ParentAttribute.Syntax.Name;
+            setReference = syntax => ParentAttribute.Syntax = parent.Syntax.WithName(syntax);
+            genericParameters = new SeparatedSyntaxListWrapper<GenericParameterWithCodeAnalysis, TypeSyntax, ClassReferenceWithCodeAnalysis>(
+                () => getReference().GetGenericParameters(),
+                list => setReference(getReference().SetGenericParameters(list)),
+                () => new GenericParameterWithCodeAnalysis(this),
+                this,
+                (child, newParent) => child.ClassReferenceParent = newParent);
         }
-
-        public override IReadOnlyList<GenericParameterWithCodeAnalysis> GenericParameters
+    
+        public NameSyntax Syntax
         {
-            get { return genericParameters.Value.GenericParametersWithCodeAnalysis; }
+            get { return getReference(); }
         }
 
         public override string Name
         {
-            get { return type.Name(); }
+            get { return getReference().ToName(); }
+            set { setReference(SyntaxFactory.IdentifierName(value)); }
         }
 
-        public TypeReference TypeReference
+        public override IList<GenericParameterWithCodeAnalysis> GenericParameters
         {
-            get { return type; }
+            get { return genericParameters; }
+            set
+            {
+                setReference(getReference().SetGenericParameters(SyntaxFactory.SeparatedList(value.Select(node => node.Syntax))));
+            }
         }
 
+        internal AttributeWithCodeAnalysis ParentAttribute { get; set; }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

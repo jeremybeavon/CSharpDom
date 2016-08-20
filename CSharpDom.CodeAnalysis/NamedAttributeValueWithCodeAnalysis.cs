@@ -9,22 +9,18 @@ namespace CSharpDom.CodeAnalysis
         EditableNamedAttributeValue<IExpression>,
         IHasSyntax<AttributeArgumentSyntax>//, IVisitable<IReflectionVisitor>
     {
-        internal NamedAttributeValueWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, CustomAttributeNamedArgument attributeValue)
-        {
-            this.attributeValue = attributeValue;
-            value = ConstantExpressionFactory.CreateExpression(assembly, attributeValue.Argument.Value);
-        }
+        
 
-        public override string Name
-        {
-            get { return Syntax.NameEquals.Name.Identifier.ValueText; }
-            set { Syntax = Syntax.WithNameEquals(Syntax.NameEquals.WithName(Syntax.NameEquals.Name.WithIdentifier(new Microsoft.CodeAnalysis.SyntaxToken().va))) }
-        }
+        //public override string Name
+        //{
+        //    get { return Syntax.NameEquals.Name.Identifier.ValueText; }
+        //    set { Syntax = Syntax.WithNameEquals(Syntax.NameEquals.WithName(Syntax.NameEquals.Name.WithIdentifier(new Microsoft.CodeAnalysis.SyntaxToken().va))) }
+        //}
 
-        public override IConstantExpressionWithCodeAnalysis Value
-        {
-            get { return value; }
-        }
+        //public override IConstantExpressionWithCodeAnalysis Value
+        //{
+        //    get { return value; }
+        //}
 
         public AttributeArgumentSyntax Syntax { get; private set; }
 

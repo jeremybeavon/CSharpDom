@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,34 +10,36 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class AccessorWithCodeAnalysis :
         EditableAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
-        IHasChild<SyntaxList<AttributeListSyntax>>
+        IHasSyntax<AccessorDeclarationSyntax>
     {
-        private ICollection<AttributeGroupWithCodeAnalysis> attributes;
-        private IHasChild<AccessorDeclarationSyntax> parent;
+        private readonly Func<AccessorDeclarationSyntax> getAccessor;
+        private readonly Action<AccessorDeclarationSyntax> setAccessor;
+        private SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AccessorWithCodeAnalysis> attributes;
 
-        internal AccessorWithCodeAnalysis(IHasChild<AccessorDeclarationSyntax> parent)
+        internal AccessorWithCodeAnalysis()
         {
-            this.parent = parent;
-            attributes = new SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax>(
+            attributes = new SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AccessorWithCodeAnalysis>(
+                () => getAccessor().AttributeLists,
+                list => setAccessor(getAccessor().WithAttributeLists(list)),
+                () => new AttributeGroupWithCodeAnalysis(this),
                 this,
-                list => new AttributeGroupWithCodeAnalysis(list));
+                (child, newParent) => { });
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { parent.Child = parent.Child.WithAttributeLists(SyntaxFactory.List(value.Select(node => node.Syntax))); }
+            set { setAccessor(getAccessor().WithAttributeLists(SyntaxFactory.List(value.Select(node => node.Syntax)))); }
         }
         
         public AccessorDeclarationSyntax Syntax
         {
-            get { return parent.Child; }
+            get { return getAccessor(); }
         }
 
-        SyntaxList<AttributeListSyntax> IHasChild<SyntaxList<AttributeListSyntax>>.Child
+        internal SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AccessorWithCodeAnalysis> AttributeList
         {
-            get { return parent.Child.AttributeLists; }
-            set { parent.Child = parent.Child.WithAttributeLists(value); }
+            get { return attributes; }
         }
     }
 }
