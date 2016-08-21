@@ -14,8 +14,9 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<NameSyntax>
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Func<NameSyntax> getReference;
-        private readonly Action<NameSyntax> setReference;
+        private object parent;
+        private Func<NameSyntax> getReference;
+        private Action<NameSyntax> setReference;
         private SeparatedSyntaxListWrapper<GenericParameterWithCodeAnalysis, TypeSyntax, ClassReferenceWithCodeAnalysis> genericParameters;
 
         //public ClassReferenceWithCodeAnalysis(string name)
@@ -26,8 +27,6 @@ namespace CSharpDom.CodeAnalysis
         internal ClassReferenceWithCodeAnalysis(AttributeWithCodeAnalysis parent)
         {
             ParentAttribute = parent;
-            getReference = () => ParentAttribute.Syntax.Name;
-            setReference = syntax => ParentAttribute.Syntax = parent.Syntax.WithName(syntax);
             genericParameters = new SeparatedSyntaxListWrapper<GenericParameterWithCodeAnalysis, TypeSyntax, ClassReferenceWithCodeAnalysis>(
                 () => getReference().GetGenericParameters(),
                 list => setReference(getReference().SetGenericParameters(list)),
@@ -56,7 +55,21 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        internal AttributeWithCodeAnalysis ParentAttribute { get; set; }
+        internal SeparatedSyntaxListWrapper<GenericParameterWithCodeAnalysis, TypeSyntax, ClassReferenceWithCodeAnalysis> GenericParameterList
+        {
+            get { return genericParameters; }
+        }
+
+        internal AttributeWithCodeAnalysis ParentAttribute
+        {
+            get { return parent as AttributeWithCodeAnalysis; }
+            set
+            {
+                parent = value;
+                getReference = () => ParentAttribute.Syntax.Name;
+                setReference = syntax => ParentAttribute.Syntax = ParentAttribute.Syntax.WithName(syntax);
+            }
+        }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

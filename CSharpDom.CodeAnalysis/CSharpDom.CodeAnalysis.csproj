@@ -107,6 +107,7 @@
     <Compile Include="GenericParameterWithCodeAnalysis.cs" />
     <Compile Include="IHasId.cs" />
     <Compile Include="ImmutableListWrapper.cs" />
+    <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />
     <Compile Include="ImmutableSeparatedSyntaxListWrapper.cs" />
     <Compile Include="ImmutableSyntaxListWrapper.cs" />
     <Compile Include="NameSyntaxExtensions.cs" />

@@ -11,9 +11,9 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private readonly Func<TypeSyntax> getType;
-        private readonly Action<TypeSyntax> setType;
-        private TypeReferenceWithCodeAnalysis typeReference;
+        private object parent;
+        private Func<TypeSyntax> getType;
+        private Action<TypeSyntax> setType;
 
         //public GenericParameterWithCodeAnalysis(TypeReferenceWithCodeAnalysis typeReference)
         //    : this(new DetachedParentWithId<GenericParameterWithCodeAnalysis, TypeSyntax>(typeReference.Syntax))
@@ -22,21 +22,13 @@ namespace CSharpDom.CodeAnalysis
 
         internal GenericParameterWithCodeAnalysis(ClassReferenceWithCodeAnalysis parent)
         {
-            
+            ClassReferenceParent = parent;
         }
-
-        public override TypeReferenceWithCodeAnalysis Type
-        {
-            get { return typeReference; }
-            set
-            {
-                typeReference = value;
-            }
-        }
-
+        
         public TypeSyntax Syntax
         {
             get { return getType(); }
+            internal set { setType(value); }
         }
 
         Guid IHasId.InternalId
@@ -44,7 +36,16 @@ namespace CSharpDom.CodeAnalysis
             get { return internalId; }
         }
 
-        internal ClassReferenceWithCodeAnalysis ClassReferenceParent { get; set; }
+        internal ClassReferenceWithCodeAnalysis ClassReferenceParent
+        {
+            get { return parent as ClassReferenceWithCodeAnalysis; }
+            set
+            {
+                parent = value;
+                getType = () => ClassReferenceParent.GenericParameterList.GetChild(this);
+                setType = list => ClassReferenceParent.GenericParameterList.SetChild(this, list);
+            }
+        }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

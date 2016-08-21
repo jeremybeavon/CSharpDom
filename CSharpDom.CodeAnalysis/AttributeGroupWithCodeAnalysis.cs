@@ -39,7 +39,11 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public AttributeListSyntax Syntax { get; private set; }
+        public AttributeListSyntax Syntax
+        {
+            get { return getAttributeList(); }
+            internal set { setAttributeList(value); }
+        }
 
         internal SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis> AttributeList
         {
