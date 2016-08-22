@@ -6,7 +6,7 @@ using CSharpDom.Editable;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class GenericParameterWithCodeAnalysis :
-        EditableGenericParameter<TypeReferenceWithCodeAnalysis>,
+        EditableGenericParameter<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<TypeSyntax>,
         IHasId
     {
@@ -14,6 +14,7 @@ namespace CSharpDom.CodeAnalysis
         private object parent;
         private Func<TypeSyntax> getType;
         private Action<TypeSyntax> setType;
+        private ChildReference<GenericParameterWithCodeAnalysis, ITypeReferenceWithCodeAnalysis> type;
 
         //public GenericParameterWithCodeAnalysis(TypeReferenceWithCodeAnalysis typeReference)
         //    : this(new DetachedParentWithId<GenericParameterWithCodeAnalysis, TypeSyntax>(typeReference.Syntax))
@@ -24,7 +25,20 @@ namespace CSharpDom.CodeAnalysis
         {
             ClassReferenceParent = parent;
         }
-        
+
+        public override ITypeReferenceWithCodeAnalysis Type
+        {
+            get
+            {
+                RefreshType();
+                return type.Child;
+            }
+            set
+            {
+                base.Type = value;
+            }
+        }
+
         public TypeSyntax Syntax
         {
             get { return getType(); }
@@ -44,6 +58,22 @@ namespace CSharpDom.CodeAnalysis
                 parent = value;
                 getType = () => ClassReferenceParent.GenericParameterList.GetChild(this);
                 setType = list => ClassReferenceParent.GenericParameterList.SetChild(this, list);
+            }
+        }
+
+        private void RefreshType()
+        {
+            TypeSyntax syntax = getType();
+            ITypeReferenceWithCodeAnalysis typeReference = base.Type;
+            ArrayTypeSyntax arrayType = syntax as ArrayTypeSyntax;
+            if (arrayType != null)
+            {
+                if (!(typeReference is ArrayTypeReferenceWithCodeAnalysis))
+                {
+                    base.Type = new ArrayTypeReferenceWithCodeAnalysis(this);
+                }
+
+                return;
             }
         }
 

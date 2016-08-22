@@ -3,7 +3,7 @@ using System;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class SyntaxListWrapper<T, TSyntax, TParent> : ImmutableListWrapper<T, TSyntax, TParent>
+    internal class SyntaxListWrapper<T, TSyntax, TParent> : ImmutableListWrapper<T, TSyntax, TParent>
         where T : class, IHasSyntax<TSyntax>, IHasId
         where TSyntax : SyntaxNode
         where TParent : class
