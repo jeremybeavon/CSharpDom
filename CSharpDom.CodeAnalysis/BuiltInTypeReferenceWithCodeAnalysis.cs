@@ -32,16 +32,11 @@ namespace CSharpDom.CodeAnalysis
             { SyntaxKind.VoidKeyword, BuiltInType.Void }
         };
 
-        private readonly Node<PredefinedTypeSyntax> node;
-        private readonly ValueNode<PredefinedTypeSyntax, BuiltInType> type;
+        private readonly Node<BuiltInTypeReferenceWithCodeAnalysis, PredefinedTypeSyntax> node;
 
         public BuiltInTypeReferenceWithCodeAnalysis()
         {
-            node = new Node<PredefinedTypeSyntax>();
-            type = new ValueNode<PredefinedTypeSyntax, BuiltInType>(
-                node,
-                syntax => map[syntax.Keyword.Kind()],
-                (syntax, value) => syntax.WithKeyword(SyntaxFactory.Token(map.First(entry => entry.Value == value).Key)));
+            node = new Node<BuiltInTypeReferenceWithCodeAnalysis, PredefinedTypeSyntax>(this);
         }
         
         public PredefinedTypeSyntax Syntax
@@ -52,8 +47,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override BuiltInType Type
         {
-            get { return type.Value; }
-            set { type.Value = value; }
+            get { return map[node.Syntax.Keyword.Kind()]; }
+            set { node.Syntax = node.Syntax.WithKeyword(SyntaxFactory.Token(map.First(entry => entry.Value == value).Key)); }
         }
     }
 }

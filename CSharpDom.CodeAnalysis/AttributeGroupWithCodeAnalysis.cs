@@ -13,18 +13,22 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<AttributeListSyntax>,
         IHasId
     {
-        private readonly Node<AttributeListSyntax> node;
+        private readonly Node<AttributeGroupWithCodeAnalysis, AttributeListSyntax> node;
         private readonly Guid internalId;
-        private readonly SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis> attributes;
+        private readonly SeparatedSyntaxListWrapper<
+            AttributeGroupWithCodeAnalysis,
+            AttributeListSyntax,
+            AttributeWithCodeAnalysis,
+            AttributeSyntax> attributes;
         
         internal AttributeGroupWithCodeAnalysis(AccessorWithCodeAnalysis parent)
         {
-            node = new Node<AttributeListSyntax>();
-            attributes = new SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis>(
-                () => node.Syntax.Attributes,
-                list => node.Syntax = node.Syntax.WithAttributes(list),
-                () => new AttributeWithCodeAnalysis(this),
-                this,
+            node = new Node<AttributeGroupWithCodeAnalysis, AttributeListSyntax>(this);
+            attributes = new SeparatedSyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AttributeWithCodeAnalysis, AttributeSyntax>(
+                node,
+                syntax => syntax.Attributes,
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributes(childSyntax),
+                newParent => new AttributeWithCodeAnalysis(newParent),
                 (child, newParent) => child.Parent = newParent);
         }
 
@@ -43,7 +47,7 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        internal SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis> AttributeList
+        internal IChildCollection<AttributeWithCodeAnalysis, AttributeSyntax> AttributeList
         {
              get { return attributes; }
         }
@@ -51,6 +55,12 @@ namespace CSharpDom.CodeAnalysis
         Guid IHasId.InternalId
         {
             get { return internalId; }
+        }
+
+        internal AccessorWithCodeAnalysis AccessorParent
+        {
+            get { return node.GetParentNode<AccessorWithCodeAnalysis>(); }
+            set { }
         }
         
         /*public void Accept(IReflectionVisitor visitor)

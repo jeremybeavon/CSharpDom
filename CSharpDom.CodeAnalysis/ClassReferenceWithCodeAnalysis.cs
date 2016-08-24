@@ -14,8 +14,12 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<NameSyntax>
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Node<NameSyntax> node;
-        private SeparatedSyntaxListWrapper<GenericParameterWithCodeAnalysis, TypeSyntax, ClassReferenceWithCodeAnalysis> genericParameters;
+        private readonly Node<ClassReferenceWithCodeAnalysis, NameSyntax> node;
+        private SeparatedSyntaxListWrapper<
+            ClassReferenceWithCodeAnalysis,
+            TypeSyntax,
+            GenericParameterWithCodeAnalysis,
+            TypeSyntax> genericParameters;
 
         //public ClassReferenceWithCodeAnalysis(string name)
         //    : this(new DetachedParent<NameSyntax>(SyntaxFactory.IdentifierName(name)))
@@ -25,12 +29,12 @@ namespace CSharpDom.CodeAnalysis
         internal ClassReferenceWithCodeAnalysis(AttributeWithCodeAnalysis parent)
         {
             ParentAttribute = parent;
-            genericParameters = new SeparatedSyntaxListWrapper<GenericParameterWithCodeAnalysis, TypeSyntax, ClassReferenceWithCodeAnalysis>(
-                () => node.Syntax.GetGenericParameters(),
+            /*genericParameters = new SeparatedSyntaxListWrapper<ClassReferenceWithCodeAnalysis, TypeSyntax, GenericParameterWithCodeAnalysis, TypeSyntax>(
+                node,
+                syntax => node.Syntax.GetGenericParameters(),
                 list => node.Syntax = node.Syntax.SetGenericParameters(list),
-                () => new GenericParameterWithCodeAnalysis(this),
-                this,
-                (child, newParent) => child.ClassReferenceParent = newParent);
+                newParent => new GenericParameterWithCodeAnalysis(newParent),
+                (child, newParent) => child.ClassReferenceParent = newParent);*/
         }
     
         public NameSyntax Syntax
@@ -51,7 +55,7 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = node.Syntax.SetGenericParameters(SyntaxFactory.SeparatedList(value.Select(node => node.Syntax))); }
         }
 
-        internal SeparatedSyntaxListWrapper<GenericParameterWithCodeAnalysis, TypeSyntax, ClassReferenceWithCodeAnalysis> GenericParameterList
+        internal IChildCollection<GenericParameterWithCodeAnalysis, TypeSyntax> GenericParameterList
         {
             get { return genericParameters; }
         }

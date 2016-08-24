@@ -12,8 +12,7 @@ namespace CSharpDom.CodeAnalysis
         ITypeReferenceWithCodeAnalysis,
         IHasSyntax<ArrayTypeSyntax>
     {
-        private readonly Node<ArrayTypeSyntax> node;
-        private readonly ValueNode<ArrayTypeSyntax, int> dimensions;
+        private readonly Node<ArrayTypeReferenceWithCodeAnalysis, ArrayTypeSyntax> node;
         private readonly int index;
 
         internal ArrayTypeReferenceWithCodeAnalysis(GenericParameterWithCodeAnalysis parent)
@@ -28,8 +27,7 @@ namespace CSharpDom.CodeAnalysis
 
         private ArrayTypeReferenceWithCodeAnalysis()
         {
-            node = new Node<ArrayTypeSyntax>();
-            dimensions = new ValueNode<ArrayTypeSyntax, int>(node, syntax => syntax.RankSpecifiers[index].Rank, SetDimensions);
+            node = new Node<ArrayTypeReferenceWithCodeAnalysis, ArrayTypeSyntax>(this);
         }
 
         public override ITypeReferenceWithCodeAnalysis ElementType
@@ -47,8 +45,16 @@ namespace CSharpDom.CodeAnalysis
 
         public override int Dimensions
         {
-            get { return dimensions.Value; }
-            set { dimensions.Value = value; }
+            get { return node.Syntax.RankSpecifiers[index].Rank; }
+            set
+            {
+                ArrayTypeSyntax syntax = node.Syntax;
+                ArrayRankSpecifierSyntax rankSyntax = syntax.RankSpecifiers[index];
+                IEnumerable<Func<ExpressionSyntax>> sizes =
+                    Enumerable.Repeat<Func<ExpressionSyntax>>(SyntaxFactory.OmittedArraySizeExpression, value);
+                ArrayRankSpecifierSyntax newRank = rankSyntax.WithSizes(SyntaxFactory.SeparatedList(sizes.Select(size => size())));
+                node.Syntax = syntax.WithRankSpecifiers(syntax.RankSpecifiers.Replace(rankSyntax, newRank));
+            }
         }
 
         public ArrayTypeSyntax Syntax
@@ -68,16 +74,7 @@ namespace CSharpDom.CodeAnalysis
                     (parentSyntax, syntax) => value.Syntax = syntax);
             }
         }
-
-        private ArrayTypeSyntax SetDimensions(ArrayTypeSyntax syntax, int value)
-        {
-            ArrayRankSpecifierSyntax rankSyntax = syntax.RankSpecifiers[index];
-            IEnumerable<Func<ExpressionSyntax>> sizes =
-                Enumerable.Repeat<Func<ExpressionSyntax>>(SyntaxFactory.OmittedArraySizeExpression, value);
-            ArrayRankSpecifierSyntax newRank = rankSyntax.WithSizes(SyntaxFactory.SeparatedList(sizes.Select(size => size())));
-            return syntax.WithRankSpecifiers(syntax.RankSpecifiers.Replace(rankSyntax, newRank));
-        }
-
+        
         private void RefreshElementType()
         {
             int rankCount = node.Syntax.RankSpecifiers.Count;

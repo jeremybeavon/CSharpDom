@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractAccessorWithCodeAnalysis :
         EditableAbstractAccessor<AttributeGroupWithCodeAnalysis>,
-        //IVisitable<IReflectionVisitor>,
+        IHasSyntax<AccessorDeclarationSyntax>,
         IStructAccessor
     {
         private AccessorWithCodeAnalysis accessor;
@@ -28,6 +28,7 @@ namespace CSharpDom.CodeAnalysis
         public AccessorDeclarationSyntax Syntax
         {
             get { return accessor.Syntax; }
+            set { accessor.Syntax = value; }
         }
         
         /*public void Accept(IReflectionVisitor visitor)

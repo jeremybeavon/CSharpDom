@@ -2,15 +2,22 @@
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class Node<TChildSyntax>
-        where TChildSyntax : class
+    internal class Node<TValue, TSyntax>
+        where TSyntax : class
     {
-        private Func<TChildSyntax> getChildSyntax;
-        private Action<TChildSyntax> setChildSyntax;
+        private Func<TSyntax> getSyntax;
+        private Action<TSyntax> setSyntax;
         private object parent;
-        private TChildSyntax syntax;
-        
-        public TChildSyntax Syntax
+        private TSyntax syntax;
+
+        public Node(TValue value)
+        {
+            Value = value;
+        }
+
+        public TValue Value { get; private set; }
+
+        public TSyntax Syntax
         {
             get
             {
@@ -24,7 +31,7 @@ namespace CSharpDom.CodeAnalysis
                     syntax = value;
                     if (parent != null)
                     {
-                        setChildSyntax(syntax);
+                        setSyntax(syntax);
                     }
                 }
             }
@@ -33,7 +40,7 @@ namespace CSharpDom.CodeAnalysis
         public TParentNode GetParentNode<TParentNode>()
             where TParentNode : class
         {
-            if (parent != null && getChildSyntax() == null)
+            if (parent != null && getSyntax() == null)
             {
                 parent = null;
             }
@@ -43,31 +50,39 @@ namespace CSharpDom.CodeAnalysis
 
         public void SetParentNode<TParentNode, TParentSyntax>(
             TParentNode parent,
-            Func<TParentSyntax, TChildSyntax> getChildSyntax,
-            Func<TParentSyntax, TChildSyntax, TParentSyntax> createChildSyntax)
+            Func<TParentSyntax, TSyntax> getChildSyntax,
+            Func<TParentSyntax, TSyntax, TParentSyntax> createChildSyntax)
             where TParentNode : class, IHasSyntax<TParentSyntax>
         {
             if (parent == null)
             {
                 RefreshSyntax();
-                this.getChildSyntax = null;
-                setChildSyntax = null;
+                this.getSyntax = null;
+                setSyntax = null;
             }
 
             this.parent = parent;
             if (parent != null)
             {
-                this.getChildSyntax = () => getChildSyntax(parent.Syntax);
-                setChildSyntax = syntax => parent.Syntax = createChildSyntax(parent.Syntax, syntax);
-                setChildSyntax(syntax);
+                this.getSyntax = () => getChildSyntax(parent.Syntax);
+                setSyntax = syntax => parent.Syntax = createChildSyntax(parent.Syntax, syntax);
+                setSyntax(syntax);
             }
+        }
+
+        public void ClearParentNode()
+        {
+            RefreshSyntax();
+            parent = null;
+            getSyntax = null;
+            setSyntax = null;
         }
         
         private void RefreshSyntax()
         {
             if (parent != null)
             {
-                syntax = getChildSyntax();
+                syntax = getSyntax();
             }
         }
     }

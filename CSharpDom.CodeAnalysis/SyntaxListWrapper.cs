@@ -3,18 +3,24 @@ using System;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class SyntaxListWrapper<T, TSyntax, TParent> : ImmutableListWrapper<T, TSyntax, TParent>
-        where T : class, IHasSyntax<TSyntax>, IHasId
-        where TSyntax : SyntaxNode
-        where TParent : class
+    internal class SyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
+        ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
+        where TParentNode : class
+        where TParentSyntax : class
+        where TChildSyntax : SyntaxNode
+        where TChildNode : class, IHasSyntax<TChildSyntax>, IHasId
     {
         public SyntaxListWrapper(
-            Func<SyntaxList<TSyntax>> getSyntaxList,
-            Action<SyntaxList<TSyntax>> setSyntaxList,
-            Func<T> factory,
-            TParent parent,
-            Action<T, TParent> setParent)
-            : base(new ImmutableSyntaxListWrapper<TSyntax>(getSyntaxList, setSyntaxList), factory, parent, setParent)
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, SyntaxList<TChildSyntax>> getList,
+            Func<TParentSyntax, SyntaxList<TChildSyntax>, TParentSyntax> createList,
+            Func<TParentNode, TChildNode> factory,
+            Action<TChildNode, TParentNode> setParent)
+            : base(
+                  node,
+                  ListFactory.CreateList(node, new ImmutableSyntaxList<TChildSyntax>(), getList, createList), 
+                  factory,
+                  setParent)
         {
         }
     }

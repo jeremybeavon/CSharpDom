@@ -12,18 +12,18 @@ namespace CSharpDom.CodeAnalysis
         EditableAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
         IHasSyntax<AccessorDeclarationSyntax>
     {
-        private readonly Node<AccessorDeclarationSyntax> node;
-        private SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AccessorWithCodeAnalysis> attributes;
+        private readonly Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> node;
+        private readonly AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> attributes;
 
         internal AccessorWithCodeAnalysis()
         {
-            node = new Node<AccessorDeclarationSyntax>();
-            attributes = new SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AccessorWithCodeAnalysis>(
-                () => node.Syntax.AttributeLists,
-                list => node.Syntax = node.Syntax.WithAttributeLists(list),
-                () => new AttributeGroupWithCodeAnalysis(this),
-                this,
-                (child, newParent) => { });
+            node = new Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(this);
+            attributes = new AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
+                node,
+                syntax => syntax.AttributeLists,
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
+                newParent => new AttributeGroupWithCodeAnalysis(newParent),
+                (child, newParent) => child.AccessorParent = newParent);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -38,9 +38,15 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        internal SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AccessorWithCodeAnalysis> AttributeList
+        internal AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> AttributeList
         {
             get { return attributes; }
+        }
+
+        internal TParent GetParent<TParent>()
+            where TParent : class
+        {
+            return node.GetParentNode<TParent>();
         }
     }
 }

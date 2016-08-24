@@ -6,20 +6,22 @@
 
 //namespace CSharpDom.CodeAnalysis
 //{
-//    public sealed class ClassPropertyWithCodeAnalysis :
-//        EditableClassProperty<
+//    public sealed class PropertyWithCodeAnalysis<TAccessor> :
+//        EditableProperty<
 //            AttributeGroupWithCodeAnalysis,
 //            IClassType,
 //            ITypeReferenceWithCodeAnalysis,
-//            ClassAccessorWithCodeAnalysis>
+//            TAccessor>
+//        where TAccessor : IAccessor
 //    {
-//        private readonly Node<PropertyDeclarationSyntax> node;
+//        private readonly Node<PropertyWithCodeAnalysis<TAccessor>, PropertyDeclarationSyntax> node;
 //        private readonly IClassType declaringType;
 //        private readonly ClassAccessorWithCodeAnalysis getAccessor;
 //        private readonly ClassAccessorWithCodeAnalysis setAccessor;
 
-//        internal ClassPropertyWithCodeAnalysis(IClassType declaringType)
+//        internal PropertyWithCodeAnalysis(IClassType declaringType)
 //        {
+//            node = new Node<PropertyWithCodeAnalysis<TAccessor>, PropertyDeclarationSyntax>(this);
 //            property = new PropertyWithCodeAnalysis(declaringType, propertyInfo);
 //            this.declaringType = declaringType;
 //            if (property.GetAccessor != null)
@@ -33,12 +35,12 @@
 //            }
 //        }
 
-//        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+//        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
 //        {
 //            get { return property.Attributes; }
 //        }
 
-//        public override ITypeWithCodeAnalysis DeclaringType
+//        public override IClassType DeclaringType
 //        {
 //            get { return property.DeclaringType; }
 //        }

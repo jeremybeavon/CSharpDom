@@ -3,18 +3,24 @@ using System;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class SeparatedSyntaxListWrapper<T, TSyntax, TParent> : ImmutableListWrapper<T, TSyntax, TParent>
-        where T : class, IHasSyntax<TSyntax>, IHasId
-        where TSyntax : SyntaxNode
-        where TParent : class
+    internal class SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
+        ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
+        where TParentNode : class
+        where TParentSyntax : class
+        where TChildSyntax : SyntaxNode
+        where TChildNode : class, IHasSyntax<TChildSyntax>, IHasId
     {
         public SeparatedSyntaxListWrapper(
-            Func<SeparatedSyntaxList<TSyntax>> getSyntaxList,
-            Action<SeparatedSyntaxList<TSyntax>> setSyntaxList,
-            Func<T> factory,
-            TParent parent,
-            Action<T, TParent> setParent)
-            : base(new ImmutableSeparatedSyntaxListWrapper<TSyntax>(getSyntaxList, setSyntaxList), factory, parent, setParent)
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
+            Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
+            Func<TParentNode, TChildNode> factory,
+            Action<TChildNode, TParentNode> setParent)
+            : base(
+                  node,
+                  ListFactory.CreateList(node, new ImmutableSeparatedSyntaxList<TChildSyntax>(), getList, createList),
+                  factory,
+                  setParent)
         {
         }
     }

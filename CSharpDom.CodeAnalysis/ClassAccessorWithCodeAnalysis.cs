@@ -1,6 +1,5 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.Common;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -9,58 +8,61 @@ using System.Reflection;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassAccessorWithCodeAnalysis :
-        AbstractClassAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
-        IHasMethodDefinition
+        EditableClassAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
+        IHasSyntax<AccessorDeclarationSyntax>
     {
-        private readonly ClassAccessorVisibilityModifier visibility;
         private readonly AccessorWithCodeAnalysis accessor;
 
-        internal ClassAccessorWithCodeAnalysis(IHasClassMemberVisibilityModifier parentVisibility, AccessorWithCodeAnalysis accessor)
+        internal ClassAccessorWithCodeAnalysis(AccessorWithCodeAnalysis accessor)
         {
             this.accessor = accessor;
-            ClassMemberVisibilityModifier classVisibility = accessor.MethodDefinition.ClassVisibility();
-            if (parentVisibility.Visibility == classVisibility)
-            {
-                visibility = ClassAccessorVisibilityModifier.None;
-            }
-            else
-            {
-                switch (classVisibility)
-                {
-                    case ClassMemberVisibilityModifier.Internal:
-                        visibility = ClassAccessorVisibilityModifier.Internal;
-                        break;
-                    case ClassMemberVisibilityModifier.ProtectedInternal:
-                        visibility = ClassAccessorVisibilityModifier.ProtectedInternal;
-                        break;
-                    case ClassMemberVisibilityModifier.Protected:
-                        visibility = ClassAccessorVisibilityModifier.Protected;
-                        break;
-                    case ClassMemberVisibilityModifier.Private:
-                        visibility = ClassAccessorVisibilityModifier.Private;
-                        break;
-                }
-            }
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return accessor.Attributes; }
-        }
-
-        public override ClassAccessorVisibilityModifier Visibility
-        {
-            get { return visibility; }
-        }
-
-        public MethodDefinition MethodDefinition
-        {
-            get { return accessor.MethodDefinition; }
+            set { accessor.Attributes = value; }
         }
 
         public override MethodBodyWithCodeAnalysis Body
         {
             get { return accessor.Body; }
+            set { accessor.Body = value; }
+        }
+
+        public override ClassAccessorVisibilityModifier Visibility
+        {
+            get
+            {
+                ClassMemberVisibilityModifier parentVisibility = accessor.GetParent<IHasClassMemberVisibilityModifier>().Visibility;
+                ClassMemberVisibilityModifier classVisibility = ClassMemberVisibilityModifier.None; //accessor.MethodDefinition.ClassVisibility();
+                if (parentVisibility == classVisibility)
+                {
+                    return ClassAccessorVisibilityModifier.None;
+                }
+                else
+                {
+                    switch (classVisibility)
+                    {
+                        case ClassMemberVisibilityModifier.Internal:
+                            return ClassAccessorVisibilityModifier.Internal;
+                        case ClassMemberVisibilityModifier.ProtectedInternal:
+                            return ClassAccessorVisibilityModifier.ProtectedInternal;
+                        case ClassMemberVisibilityModifier.Protected:
+                            return ClassAccessorVisibilityModifier.Protected;
+                        case ClassMemberVisibilityModifier.Private:
+                            return ClassAccessorVisibilityModifier.Private;
+                    }
+                }
+
+                throw new InvalidOperationException();
+            }
+        }
+        
+        public AccessorDeclarationSyntax Syntax
+        {
+            get { return accessor.Syntax; }
+            set { accessor.Syntax = value; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

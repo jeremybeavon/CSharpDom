@@ -5,8 +5,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -19,32 +17,47 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private readonly SimpleNode<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AttributeSyntax> node;
-        private readonly CachedValueNode<AttributeSyntax, ClassReferenceWithCodeAnalysis> attributeType;
-        private ImmutableListWrapper<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis> namedValues;
-        private ImmutableListWrapper<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis> unnamedValues;
+        private readonly SimpleNode<
+            AttributeGroupWithCodeAnalysis,
+            AttributeListSyntax,
+            AttributeWithCodeAnalysis,
+            AttributeSyntax> node;
+        private readonly CachedChildNode<AttributeWithCodeAnalysis, ClassReferenceWithCodeAnalysis, AttributeSyntax> attributeType;
+        private ImmutableListWrapper<
+            AttributeWithCodeAnalysis,
+            AttributeSyntax,
+            NamedAttributeValueWithCodeAnalysis,
+            AttributeArgumentSyntax> namedValues;
+        private ImmutableListWrapper<
+            AttributeWithCodeAnalysis,
+            AttributeSyntax,
+            UnnamedAttributeValueWithCodeAnalysis,
+            AttributeArgumentSyntax> unnamedValues;
 
         internal AttributeWithCodeAnalysis(AttributeGroupWithCodeAnalysis parent)
         {
             internalId = Guid.NewGuid();
-            node = new SimpleNode<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AttributeSyntax>(
+            node = new SimpleNode<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AttributeWithCodeAnalysis, AttributeSyntax>(
+                this,
                 parent,
                 syntax => Parent.AttributeList.GetChild(this),
                 (parentSyntax, childSyntax) => { Parent.AttributeList.SetChild(this, childSyntax); return parentSyntax; });
-            attributeType = new CachedValueNode<AttributeSyntax, ClassReferenceWithCodeAnalysis>(
+            /*attributeType = new CachedChildNode<AttributeWithCodeAnalysis, ClassReferenceWithCodeAnalysis, AttributeSyntax>(
+                this,
                 node,
                 syntax => new ClassReferenceWithCodeAnalysis(this),
-                (syntax, value) => syntax.WithName(value.Syntax));
+                (syntax, value) => syntax.WithName(value.Syntax),
+                (child, newParent) => child.ParentAttribute = newParent);*/
             Func<SeparatedSyntaxList<AttributeArgumentSyntax>> getArguments = () => node.Syntax.ArgumentList.Arguments;
-            namedValues = new ImmutableListWrapper<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis>(
+            namedValues = new ImmutableListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+                node,
                 new ImmutableAttributeArgumentListWrapper(getArguments, SetArguments, true),
-                () => new NamedAttributeValueWithCodeAnalysis(this),
-                this,
+                newParent => new NamedAttributeValueWithCodeAnalysis(newParent),
                 (child, newParent) => child.Parent = newParent);
-            unnamedValues = new ImmutableListWrapper<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis>(
+            unnamedValues = new ImmutableListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+                node,
                 new ImmutableAttributeArgumentListWrapper(getArguments, SetArguments, false),
-                () => new UnnamedAttributeValueWithCodeAnalysis(this),
-                this,
+                newParent => new UnnamedAttributeValueWithCodeAnalysis(newParent),
                 (child, newParent) => child.Parent = newParent);
         }
 
@@ -83,12 +96,12 @@ namespace CSharpDom.CodeAnalysis
             set { node.Parent = value; }
         }
 
-        internal ImmutableListWrapper<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis> NamedValueList
+        internal IChildCollection<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> NamedValueList
         {
             get { return namedValues; }
         }
 
-        internal ImmutableListWrapper<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis> UnnamedValueList
+        internal IChildCollection<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> UnnamedValueList
         {
             get { return unnamedValues; }
         }

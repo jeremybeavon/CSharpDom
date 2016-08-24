@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class SimpleNode<TParentNode, TParentSyntax, TChildSyntax> : Node<TChildSyntax>
+    internal class SimpleNode<TParentNode, TParentSyntax, TChildNode, TChildSyntax> : Node<TChildNode, TChildSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TChildSyntax : class
     {
@@ -14,9 +14,11 @@ namespace CSharpDom.CodeAnalysis
         private readonly Func<TParentSyntax, TChildSyntax, TParentSyntax> createChildSyntax;
 
         public SimpleNode(
+            TChildNode child,
             TParentNode parent,
             Func<TParentSyntax, TChildSyntax> getChildSyntax,
             Func<TParentSyntax, TChildSyntax, TParentSyntax> createChildSyntax)
+            : base(child)
         {
             SetParentNode(parent, getChildSyntax, createChildSyntax);
             this.getChildSyntax = getChildSyntax;
