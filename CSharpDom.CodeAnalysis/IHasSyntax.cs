@@ -2,6 +2,6 @@
 {
     public interface IHasSyntax<TSyntax>
     {
-        TSyntax Syntax { get; }
+        TSyntax Syntax { get; set; }
     }
 }

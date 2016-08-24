@@ -11,11 +11,9 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private object parent;
-        private Func<TypeSyntax> getType;
-        private Action<TypeSyntax> setType;
-        private ChildReference<GenericParameterWithCodeAnalysis, ITypeReferenceWithCodeAnalysis> type;
-
+        private readonly ChildNode<GenericParameterWithCodeAnalysis, TypeSyntax> node;
+        private readonly CachedValueNode<TypeSyntax, ITypeReferenceWithCodeAnalysis> type;
+        
         //public GenericParameterWithCodeAnalysis(TypeReferenceWithCodeAnalysis typeReference)
         //    : this(new DetachedParentWithId<GenericParameterWithCodeAnalysis, TypeSyntax>(typeReference.Syntax))
         //{
@@ -23,26 +21,21 @@ namespace CSharpDom.CodeAnalysis
 
         internal GenericParameterWithCodeAnalysis(ClassReferenceWithCodeAnalysis parent)
         {
+            internalId = Guid.NewGuid();
+            node = new ChildNode<GenericParameterWithCodeAnalysis, TypeSyntax>(this);
             ClassReferenceParent = parent;
         }
 
         public override ITypeReferenceWithCodeAnalysis Type
         {
-            get
-            {
-                RefreshType();
-                return type.Child;
-            }
-            set
-            {
-                base.Type = value;
-            }
+            get { return type.Value; }
+            set { type.Value = value; }
         }
 
         public TypeSyntax Syntax
         {
-            get { return getType(); }
-            internal set { setType(value); }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
         Guid IHasId.InternalId
@@ -52,18 +45,18 @@ namespace CSharpDom.CodeAnalysis
 
         internal ClassReferenceWithCodeAnalysis ClassReferenceParent
         {
-            get { return parent as ClassReferenceWithCodeAnalysis; }
+            get { return node.GetParentNode<ClassReferenceWithCodeAnalysis>(); }
             set
             {
-                parent = value;
-                getType = () => ClassReferenceParent.GenericParameterList.GetChild(this);
-                setType = list => ClassReferenceParent.GenericParameterList.SetChild(this, list);
+                node.SetParentNode<ClassReferenceWithCodeAnalysis, NameSyntax>(
+                    value,
+                    () => value.GenericParameterList);
             }
         }
 
         private void RefreshType()
         {
-            TypeSyntax syntax = getType();
+            TypeSyntax syntax = node.Syntax;
             ITypeReferenceWithCodeAnalysis typeReference = base.Type;
             ArrayTypeSyntax arrayType = syntax as ArrayTypeSyntax;
             if (arrayType != null)

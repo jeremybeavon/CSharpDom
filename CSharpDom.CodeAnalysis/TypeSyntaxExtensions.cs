@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal static class TypeSyntaxExtensions
     {
-        public static ChildReference<TParent, ITypeReferenceWithCodeAnalysis> ToChildReference<TParent>(
+        /*public static ChildReference<TParent, ITypeReferenceWithCodeAnalysis> ToChildReference<TParent>(
             this TypeSyntax syntax,
             ChildReference<TParent, ITypeReferenceWithCodeAnalysis> currentReference)
             where TParent : class
@@ -32,10 +32,10 @@ namespace CSharpDom.CodeAnalysis
             {
                 currentReference.SetParent(null);
 
-                //ArrayTypeReferenceWithCodeAnalysis type = new ArrayTypeReferenceWithCodeAnalysis()
+                ArrayTypeReferenceWithCodeAnalysis type = new ArrayTypeReferenceWithCodeAnalysis()
             }
 
             return currentReference;
-        }
+        }*/
     }
 }

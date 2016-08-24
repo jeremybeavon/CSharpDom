@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class ImmutableListWrapper<T, TSyntax, TParent> : IList<T>, IEqualityComparer<T>
+    internal class ImmutableListWrapper<T, TSyntax, TParent> : IList<T>, IEqualityComparer<T>, IChildCollection<T, TSyntax>
         where T : class, IHasSyntax<TSyntax>, IHasId
         where TParent : class
     {

@@ -12,20 +12,25 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private readonly Func<AttributeArgumentSyntax> getArgument;
-        private readonly Action<AttributeArgumentSyntax> setArgument;
-
+        private readonly SimpleChildNode<
+            AttributeWithCodeAnalysis,
+            AttributeSyntax,
+            UnnamedAttributeValueWithCodeAnalysis,
+            AttributeArgumentSyntax> node;
+        
         internal UnnamedAttributeValueWithCodeAnalysis(AttributeWithCodeAnalysis parent)
         {
             internalId = Guid.NewGuid();
-            Parent = parent;
-            getArgument = () => Parent.UnnamedValueList.GetChild(this);
-            setArgument = syntax => Parent.UnnamedValueList.SetChild(this, syntax);
+            node = new SimpleChildNode<AttributeWithCodeAnalysis, AttributeSyntax, UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+                parent,
+                this,
+                () => Parent.UnnamedValueList);
         }
 
         public AttributeArgumentSyntax Syntax
         {
-            get { return getArgument(); }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
         Guid IHasId.InternalId
@@ -33,6 +38,10 @@ namespace CSharpDom.CodeAnalysis
             get { return internalId; }
         }
 
-        internal AttributeWithCodeAnalysis Parent { get; set; }
+        internal AttributeWithCodeAnalysis Parent
+        {
+            get { return node.Parent; }
+            set { node.Parent = value; }
+        }
     }
 }

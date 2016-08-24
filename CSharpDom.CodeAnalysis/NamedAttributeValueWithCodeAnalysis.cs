@@ -12,25 +12,28 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private readonly Func<AttributeArgumentSyntax> getArgument;
-        private readonly Action<AttributeArgumentSyntax> setArgument;
-
-
+        private readonly SimpleChildNode<
+            AttributeWithCodeAnalysis,
+            AttributeSyntax,
+            NamedAttributeValueWithCodeAnalysis,
+            AttributeArgumentSyntax> node;
+        
         internal NamedAttributeValueWithCodeAnalysis(AttributeWithCodeAnalysis parent)
         {
             internalId = Guid.NewGuid();
-            Parent = parent;
-            getArgument = () => Parent.NamedValueList.GetChild(this);
-            setArgument = syntax => Parent.NamedValueList.SetChild(this, syntax);
+            node = new SimpleChildNode<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+                parent,
+                this,
+                () => Parent.NamedValueList);
         }
 
         public override string Name
         {
-            get { return getArgument().NameEquals.Name.Identifier.Text; }
+            get { return node.Syntax.NameEquals.Name.Identifier.Text; }
             set
             {
-                AttributeArgumentSyntax argument = getArgument();
-                setArgument(argument.WithNameEquals(argument.NameEquals.WithName(SyntaxFactory.IdentifierName(value))));
+                AttributeArgumentSyntax argument = node.Syntax;
+                node.Syntax = argument.WithNameEquals(argument.NameEquals.WithName(SyntaxFactory.IdentifierName(value)));
             }
         }
         
@@ -41,7 +44,8 @@ namespace CSharpDom.CodeAnalysis
 
         public AttributeArgumentSyntax Syntax
         {
-            get { return getArgument(); }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
         Guid IHasId.InternalId
@@ -49,7 +53,11 @@ namespace CSharpDom.CodeAnalysis
             get { return internalId; }
         }
 
-        internal AttributeWithCodeAnalysis Parent { get; set; }
+        internal AttributeWithCodeAnalysis Parent
+        {
+            get { return node.Parent; }
+            set { node.Parent = value; }
+        }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

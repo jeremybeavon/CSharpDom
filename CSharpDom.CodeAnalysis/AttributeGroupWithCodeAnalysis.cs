@@ -13,18 +13,16 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<AttributeListSyntax>,
         IHasId
     {
+        private readonly Node<AttributeListSyntax> node;
         private readonly Guid internalId;
         private readonly SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis> attributes;
-        private readonly Func<AttributeListSyntax> getAttributeList;
-        private readonly Action<AttributeListSyntax> setAttributeList;
-
+        
         internal AttributeGroupWithCodeAnalysis(AccessorWithCodeAnalysis parent)
         {
-            getAttributeList = () => parent.AttributeList.GetChild(this);
-            setAttributeList = syntax => parent.AttributeList.SetChild(this, syntax);
+            node = new Node<AttributeListSyntax>();
             attributes = new SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis>(
-                () => getAttributeList().Attributes,
-                list => setAttributeList(getAttributeList().WithAttributes(list)),
+                () => node.Syntax.Attributes,
+                list => node.Syntax = node.Syntax.WithAttributes(list),
                 () => new AttributeWithCodeAnalysis(this),
                 this,
                 (child, newParent) => child.Parent = newParent);
@@ -35,14 +33,14 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
             set
             {
-                setAttributeList(getAttributeList().WithAttributes(SyntaxFactory.SeparatedList(value.Select(node => node.Syntax))));
+                 node.Syntax = node.Syntax.WithAttributes(SyntaxFactory.SeparatedList(value.Select(node => node.Syntax)));
             }
         }
 
         public AttributeListSyntax Syntax
         {
-            get { return getAttributeList(); }
-            internal set { setAttributeList(value); }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
         internal SeparatedSyntaxListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, AttributeGroupWithCodeAnalysis> AttributeList

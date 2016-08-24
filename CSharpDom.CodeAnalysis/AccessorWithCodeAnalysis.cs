@@ -12,15 +12,15 @@ namespace CSharpDom.CodeAnalysis
         EditableAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
         IHasSyntax<AccessorDeclarationSyntax>
     {
-        private readonly Func<AccessorDeclarationSyntax> getAccessor;
-        private readonly Action<AccessorDeclarationSyntax> setAccessor;
+        private readonly Node<AccessorDeclarationSyntax> node;
         private SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AccessorWithCodeAnalysis> attributes;
 
         internal AccessorWithCodeAnalysis()
         {
+            node = new Node<AccessorDeclarationSyntax>();
             attributes = new SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AccessorWithCodeAnalysis>(
-                () => getAccessor().AttributeLists,
-                list => setAccessor(getAccessor().WithAttributeLists(list)),
+                () => node.Syntax.AttributeLists,
+                list => node.Syntax = node.Syntax.WithAttributeLists(list),
                 () => new AttributeGroupWithCodeAnalysis(this),
                 this,
                 (child, newParent) => { });
@@ -29,12 +29,13 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { setAccessor(getAccessor().WithAttributeLists(SyntaxFactory.List(value.Select(node => node.Syntax)))); }
+            set { Syntax = Syntax.WithAttributeLists(SyntaxFactory.List(value.Select(node => node.Syntax))); }
         }
         
         public AccessorDeclarationSyntax Syntax
         {
-            get { return getAccessor(); }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
         internal SyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AccessorWithCodeAnalysis> AttributeList

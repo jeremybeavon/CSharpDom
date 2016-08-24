@@ -14,6 +14,7 @@ namespace CSharpDom.CodeAnalysis
         public TypeSyntax Syntax
         {
             get { return null; }
+            set { }
         }
     }
 }

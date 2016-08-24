@@ -19,20 +19,23 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private readonly Func<AttributeSyntax> getAttribute;
-        private readonly Action<AttributeSyntax> setAttribute;
-        private ClassReferenceWithCodeAnalysis attributeType;
+        private readonly SimpleNode<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AttributeSyntax> node;
+        private readonly CachedValueNode<AttributeSyntax, ClassReferenceWithCodeAnalysis> attributeType;
         private ImmutableListWrapper<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis> namedValues;
         private ImmutableListWrapper<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis> unnamedValues;
 
         internal AttributeWithCodeAnalysis(AttributeGroupWithCodeAnalysis parent)
         {
             internalId = Guid.NewGuid();
-            Parent = parent;
-            AttributeType = new ClassReferenceWithCodeAnalysis(this);
-            getAttribute = () => Parent.AttributeList.GetChild(this);
-            setAttribute = syntax => Parent.AttributeList.SetChild(this, syntax);
-            Func<SeparatedSyntaxList<AttributeArgumentSyntax>> getArguments = () => getAttribute().ArgumentList.Arguments;
+            node = new SimpleNode<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AttributeSyntax>(
+                parent,
+                syntax => Parent.AttributeList.GetChild(this),
+                (parentSyntax, childSyntax) => { Parent.AttributeList.SetChild(this, childSyntax); return parentSyntax; });
+            attributeType = new CachedValueNode<AttributeSyntax, ClassReferenceWithCodeAnalysis>(
+                node,
+                syntax => new ClassReferenceWithCodeAnalysis(this),
+                (syntax, value) => syntax.WithName(value.Syntax));
+            Func<SeparatedSyntaxList<AttributeArgumentSyntax>> getArguments = () => node.Syntax.ArgumentList.Arguments;
             namedValues = new ImmutableListWrapper<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis>(
                 new ImmutableAttributeArgumentListWrapper(getArguments, SetArguments, true),
                 () => new NamedAttributeValueWithCodeAnalysis(this),
@@ -47,12 +50,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassReferenceWithCodeAnalysis AttributeType
         {
-            get { return attributeType; }
-            set
-            {
-                setAttribute(getAttribute().WithName(value.Syntax));
-                value.ParentAttribute = this;
-            }
+            get { return attributeType.Value; }
+            set { attributeType.Value = value; }
         }
 
         public override ICollection<NamedAttributeValueWithCodeAnalysis> NamedValues
@@ -69,8 +68,8 @@ namespace CSharpDom.CodeAnalysis
 
         public AttributeSyntax Syntax
         {
-            get { return getAttribute(); }
-            internal set { setAttribute(value); }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
         Guid IHasId.InternalId
@@ -78,7 +77,11 @@ namespace CSharpDom.CodeAnalysis
             get { return internalId; }
         }
 
-        internal AttributeGroupWithCodeAnalysis Parent { get; set; }
+        internal AttributeGroupWithCodeAnalysis Parent
+        {
+            get { return node.Parent; }
+            set { node.Parent = value; }
+        }
 
         internal ImmutableListWrapper<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax, AttributeWithCodeAnalysis> NamedValueList
         {
@@ -92,8 +95,8 @@ namespace CSharpDom.CodeAnalysis
 
         private void SetArguments(SeparatedSyntaxList<AttributeArgumentSyntax> syntax)
         {
-            AttributeSyntax attribute = getAttribute();
-            setAttribute(attribute.WithArgumentList(attribute.ArgumentList.WithArguments(syntax)));
+            AttributeSyntax attribute = node.Syntax;
+            node.Syntax = attribute.WithArgumentList(attribute.ArgumentList.WithArguments(syntax));
         }
 
         private void SetArguments(
