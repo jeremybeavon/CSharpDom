@@ -13,23 +13,26 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<AccessorDeclarationSyntax>
     {
         private readonly Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> node;
+        private readonly SyntaxKind accessorType;
         private readonly AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> attributes;
 
-        internal AccessorWithCodeAnalysis()
+        internal AccessorWithCodeAnalysis(PropertyWithCodeAnalysis parent, SyntaxKind accessorType)
         {
             node = new Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(this);
+            this.accessorType = accessorType;
             attributes = new AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 newParent => new AttributeGroupWithCodeAnalysis(newParent),
                 (child, newParent) => child.AccessorParent = newParent);
+
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { Syntax = Syntax.WithAttributeLists(SyntaxFactory.List(value.Select(node => node.Syntax))); }
+            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
         }
         
         public AccessorDeclarationSyntax Syntax
@@ -41,6 +44,17 @@ namespace CSharpDom.CodeAnalysis
         internal AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> AttributeList
         {
             get { return attributes; }
+        }
+
+        internal PropertyWithCodeAnalysis Parent
+        {
+            get { return node.GetParentNode<PropertyWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+                    value,
+                    null, null);
+            }
         }
 
         internal TParent GetParent<TParent>()

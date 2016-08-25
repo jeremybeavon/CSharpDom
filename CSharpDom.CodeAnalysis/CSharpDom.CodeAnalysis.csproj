@@ -116,7 +116,6 @@
     <Compile Include="ClassReferenceWithCodeAnalysis.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="FilteredList.cs" />
-    <Compile Include="FilteredListFactory.cs" />
     <Compile Include="GenericParameterWithCodeAnalysis.cs" />
     <Compile Include="IChildCollection.cs" />
     <Compile Include="IHasId.cs" />

@@ -3,20 +3,22 @@ using System;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class FilteredSyntaxListWrapper<T, TSyntax, TChildSyntax, TParent> : ImmutableListWrapper<T, TChildSyntax, TParent>
-        where T : class, IHasSyntax<TChildSyntax>, IHasId
-        where TSyntax : SyntaxNode
-        where TChildSyntax : TSyntax
-        where TParent : class
+    internal class FilteredSyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildBaseClassSyntax, TChildSyntax> :
+        ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
+        where TParentNode : class
+        where TParentSyntax : SyntaxNode
+        where TChildNode : class, IHasSyntax<TChildSyntax>, IHasId
+        where TChildBaseClassSyntax : SyntaxNode
+        where TChildSyntax : TChildBaseClassSyntax
     {
         public FilteredSyntaxListWrapper(
-            Func<SyntaxList<TSyntax>> getSyntaxList,
-            Action<SyntaxList<TSyntax>> setSyntaxList,
-            Func<T> factory,
-            TParent parent,
-            Action<T, TParent> setParent,
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, SyntaxList<TChildBaseClassSyntax>> getSyntaxList,
+            Func<TParentSyntax, SyntaxList<TChildBaseClassSyntax>, TParentSyntax> setSyntaxList,
+            Func<TParentNode, TChildNode> factory,
+            Action<TChildNode, TParentNode> setParent,
             Func<TChildSyntax, bool> filter = null)
-            : base(FilteredListFactory.Create(getSyntaxList, setSyntaxList, filter), factory, parent, setParent)
+            : base(node, ListFactory.CreateFilteredList(node, getSyntaxList, setSyntaxList, filter), factory, setParent)
         {
         }
     }

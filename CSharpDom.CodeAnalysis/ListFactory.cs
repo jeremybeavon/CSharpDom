@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CodeAnalysis;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +9,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal static class ListFactory
     {
-        public static ImmutableChildSyntaxListWrapper<TParentNode, TParentSyntax, TChildList, TChildSyntax>
-            CreateList<TParentNode, TParentSyntax, TChildList, TChildSyntax>(
+        public static IList<TChildSyntax> CreateList<TParentNode, TParentSyntax, TChildList, TChildSyntax>(
             Node<TParentNode, TParentSyntax> node,
             IImmutableList<TChildList, TChildSyntax> immutableList,
             Func<TParentSyntax, TChildList> getList,
@@ -22,6 +22,21 @@ namespace CSharpDom.CodeAnalysis
                 immutableList,
                 getList,
                 createList);
+        }
+
+        public static IList<TChildSyntax> CreateFilteredList<TParentNode, TParentSyntax, TChildBaseClassSyntax, TChildSyntax>(
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, SyntaxList<TChildBaseClassSyntax>> getList,
+            Func<TParentSyntax, SyntaxList<TChildBaseClassSyntax>, TParentSyntax> createList,
+            Func<TChildSyntax, bool> filter = null)
+            where TParentNode : class
+            where TParentSyntax : SyntaxNode
+            where TChildBaseClassSyntax : SyntaxNode
+            where TChildSyntax : TChildBaseClassSyntax
+        {
+            return new FilteredList<TChildBaseClassSyntax, TChildSyntax>(
+                CreateList(node, new ImmutableSyntaxList<TChildBaseClassSyntax>(), getList, createList),
+                filter);
         }
     }
 }
