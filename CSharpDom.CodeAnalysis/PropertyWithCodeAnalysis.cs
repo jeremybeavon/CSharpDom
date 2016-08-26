@@ -32,7 +32,13 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                null, null);
+                parent => new AttributeGroupWithCodeAnalysis(parent),
+                (child, parent) => child.PropertyParent = parent);
+            propertyType = new CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, ITypeReferenceWithCodeAnalysis>(
+                node,
+                syntax => syntax.Type.ToTypeReference(),
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax.Syntax),
+                null);
             getAccessor = GetAccessorNode(SyntaxKind.GetKeyword);
             setAccessor = GetAccessorNode(SyntaxKind.SetKeyword);
         }
@@ -78,48 +84,54 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
+        internal IAttributeCollection AttributeList
+        {
+            get { return attributes; }
+        }
+
         private CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, AccessorWithCodeAnalysis> GetAccessorNode(
             SyntaxKind kind)
         {
             return new CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, AccessorWithCodeAnalysis>(
                 node,
                 syntax => GetAccessorDeclaration(syntax, kind) == null ? null : new AccessorWithCodeAnalysis(this, kind),
-                (syntax, value) => CreateAccessor(syntax, value, kind),
+                (parentSyntax, childSyntax) => CreateAccessor(kind)(parentSyntax, GetAccessorDeclaration(parentSyntax, kind)),
                 (child, parent) => child.Parent = parent);
         }
         
-        private PropertyDeclarationSyntax CreateAccessor(
-            PropertyDeclarationSyntax syntax,
-            AccessorWithCodeAnalysis value,
+        internal static Func<PropertyDeclarationSyntax, AccessorDeclarationSyntax, PropertyDeclarationSyntax> CreateAccessor(
             SyntaxKind kind)
         {
-            AccessorDeclarationSyntax childSyntax = GetAccessorDeclaration(syntax, kind);
-            SyntaxList<AccessorDeclarationSyntax>? newList = null;
-            if (value == null)
+            return (PropertyDeclarationSyntax parentSyntax, AccessorDeclarationSyntax childSyntax) =>
             {
-                if (childSyntax != null)
+                AccessorDeclarationSyntax oldChildSyntax = GetAccessorDeclaration(parentSyntax, kind);
+                SyntaxList<AccessorDeclarationSyntax>? newList = null;
+                if (childSyntax == null)
                 {
-                    newList = syntax.AccessorList.Accessors.Remove(childSyntax);
+                    if (childSyntax != null)
+                    {
+                        newList = parentSyntax.AccessorList.Accessors.Remove(oldChildSyntax);
+                    }
                 }
-            }
-            else if (childSyntax == null)
-            {
-                newList = syntax.AccessorList.Accessors.Add(value.Syntax);
-            }
-            else
-            {
-                newList = syntax.AccessorList.Accessors.Replace(childSyntax, value.Syntax);
-            }
+                else if (childSyntax == null)
+                {
+                    newList = parentSyntax.AccessorList.Accessors.Add(childSyntax);
+                }
+                else
+                {
+                    newList = parentSyntax.AccessorList.Accessors.Replace(oldChildSyntax, childSyntax);
+                }
 
-            if (newList != null)
-            {
-                syntax = syntax.WithAccessorList(syntax.AccessorList.WithAccessors(newList.Value));
-            }
+                if (newList != null)
+                {
+                    parentSyntax = parentSyntax.WithAccessorList(parentSyntax.AccessorList.WithAccessors(newList.Value));
+                }
 
-            return syntax;
+                return parentSyntax;
+            };
         }
 
-        private AccessorDeclarationSyntax GetAccessorDeclaration(PropertyDeclarationSyntax syntax, SyntaxKind kind)
+        internal static AccessorDeclarationSyntax GetAccessorDeclaration(PropertyDeclarationSyntax syntax, SyntaxKind kind)
         {
             return syntax.AccessorList.Accessors.FirstOrDefault(accessor => accessor.Keyword.Kind() == kind);
         }

@@ -50,5 +50,11 @@ namespace CSharpDom.CodeAnalysis
             get { return map[node.Syntax.Keyword.Kind()]; }
             set { node.Syntax = node.Syntax.WithKeyword(SyntaxFactory.Token(map.First(entry => entry.Value == value).Key)); }
         }
+
+        TypeSyntax IHasSyntax<TypeSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (PredefinedTypeSyntax)value; }
+        }
     }
 }

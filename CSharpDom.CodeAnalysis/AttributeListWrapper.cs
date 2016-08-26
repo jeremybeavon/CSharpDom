@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeAnalysis
 {
     internal sealed class AttributeListWrapper<TParentNode, TParentSyntax> :
-        SyntaxListWrapper<TParentNode, TParentSyntax, AttributeGroupWithCodeAnalysis, AttributeListSyntax>
+        SyntaxListWrapper<TParentNode, TParentSyntax, AttributeGroupWithCodeAnalysis, AttributeListSyntax>,
+        IAttributeCollection
         where TParentNode : class
         where TParentSyntax : class
     {

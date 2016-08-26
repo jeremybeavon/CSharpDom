@@ -22,6 +22,35 @@ namespace CSharpDom.CodeAnalysis
             AttributeSyntax> attributes;
         
         internal AttributeGroupWithCodeAnalysis(AccessorWithCodeAnalysis parent)
+            : this()
+        {
+            AccessorParent = parent;
+        }
+
+        internal AttributeGroupWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent)
+            : this()
+        {
+        }
+
+        internal AttributeGroupWithCodeAnalysis(OperatorOverloadWithCodeAnalysis parent)
+            : this()
+        {
+            OperatorOverloadParent = parent;
+        }
+
+        internal AttributeGroupWithCodeAnalysis(ParameterWithCodeAnalysis parent)
+            : this()
+        {
+            ParameterParent = parent;
+        }
+
+        internal AttributeGroupWithCodeAnalysis(PropertyWithCodeAnalysis parent)
+            : this()
+        {
+            PropertyParent = parent;
+        }
+
+        private AttributeGroupWithCodeAnalysis()
         {
             node = new Node<AttributeGroupWithCodeAnalysis, AttributeListSyntax>(this);
             attributes = new SeparatedSyntaxListWrapper<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AttributeWithCodeAnalysis, AttributeSyntax>(
@@ -60,7 +89,25 @@ namespace CSharpDom.CodeAnalysis
         internal AccessorWithCodeAnalysis AccessorParent
         {
             get { return node.GetParentNode<AccessorWithCodeAnalysis>(); }
-            set { }
+            set { node.SetParentNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
+        internal OperatorOverloadWithCodeAnalysis OperatorOverloadParent
+        {
+            get { return node.GetParentNode<OperatorOverloadWithCodeAnalysis>(); }
+            set { node.SetParentNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
+        internal ParameterWithCodeAnalysis ParameterParent
+        {
+            get { return node.GetParentNode<ParameterWithCodeAnalysis>(); }
+            set { node.SetParentNode<ParameterWithCodeAnalysis, ParameterSyntax>(value, parent => parent.AttributeList); }
+        }
+
+        internal PropertyWithCodeAnalysis PropertyParent
+        {
+            get { return node.GetParentNode<PropertyWithCodeAnalysis>(); }
+            set { node.SetParentNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
         
         /*public void Accept(IReflectionVisitor visitor)

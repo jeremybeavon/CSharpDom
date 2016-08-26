@@ -9,9 +9,9 @@ namespace CSharpDom.CodeAnalysis
     public sealed class UnspecifiedTypeReferenceWithCodeAnalysis :
         EditableUnspecifiedTypeReference<GenericParameterWithCodeAnalysis>,
         ITypeReferenceWithCodeAnalysis//,
-        //IVisitable<IReflectionVisitor>
+                                      //IVisitable<IReflectionVisitor>
     {
-        
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitUnspecifiedTypeReferenceWithCodeAnalysis(this);
@@ -21,5 +21,17 @@ namespace CSharpDom.CodeAnalysis
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
         }*/
+        public TypeSyntax Syntax
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }

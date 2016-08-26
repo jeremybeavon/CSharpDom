@@ -74,7 +74,13 @@ namespace CSharpDom.CodeAnalysis
                     (parentSyntax, syntax) => value.Syntax = syntax);
             }
         }
-        
+
+        TypeSyntax IHasSyntax<TypeSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (ArrayTypeSyntax)value; }
+        }
+
         private void RefreshElementType()
         {
             int rankCount = node.Syntax.RankSpecifiers.Count;

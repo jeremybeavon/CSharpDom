@@ -1,5 +1,5 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -9,68 +9,90 @@ using System.Runtime.InteropServices;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ParameterWithCodeAnalysis :
-        AbstractParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
-        IHasParameterDefinition//,
+        EditableParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
+        IHasSyntax<ParameterSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private static readonly Type[] excludedAttributeTypes = new Type[]
-        {
-            typeof(OutAttribute),
-            typeof(ParamArrayAttribute)
-        };
-        private readonly AssemblyWithCodeAnalysis assembly;
-        private readonly ParameterDefinition parameter;
-        private readonly Lazy<Attributes> attributes;
-        private readonly ITypeReferenceWithCodeAnalysis parameterType;
+        private readonly Node<ParameterWithCodeAnalysis, ParameterSyntax> node;
+        private readonly AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax> attributes;
+        private readonly CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis> parameterType;
 
-        internal ParameterWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, ParameterDefinition parameter, MemberReference member)
+        internal ParameterWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent)
+            : this()
         {
-            this.assembly = assembly;
-            this.parameter = parameter;
-            attributes = new Lazy<Attributes>(() => new Attributes(assembly, parameter, excludedAttributeTypes));
-            parameterType = TypeReferenceWithCodeAnalysisFactory.CreateReference(assembly, parameter.ParameterType, member);
+
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        internal ParameterWithCodeAnalysis(OperatorOverloadWithCodeAnalysis parent)
+            : this()
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            OperatorOverloadParent = parent;
+        }
+
+        private ParameterWithCodeAnalysis()
+        {
+            node = new Node<ParameterWithCodeAnalysis, ParameterSyntax>(this);
+            attributes = new AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax>(
+                node,
+                syntax => syntax.AttributeLists,
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
+                parent => new AttributeGroupWithCodeAnalysis(parent),
+                (child, parent) => child.ParameterParent = parent);
+            parameterType = new CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis>(
+                node,
+                syntax => syntax.Type.ToTypeReference(),
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax.Syntax),
+                null);
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
+        {
+            get { return attributes; }
+            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
         }
 
         public override string Name
         {
-            get { return parameter.Name; }
+            get { return Syntax.Identifier.Text; }
+            set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
         }
 
         public override ITypeReferenceWithCodeAnalysis ParameterType
         {
-            get { return parameterType; }
+            get { return parameterType.Value; }
+            set { parameterType.Value = value; }
+        }
+        
+        public ParameterSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
-        public ParameterDefinition ParameterDefinition
+        internal IAttributeCollection AttributeList
         {
-            get { return parameter; }
+            get { return attributes; }
         }
 
-        internal ParameterModifier Modifier
+        internal ConversionOperatorWithCodeAnalysis ConversionOperatorParent
         {
-            get
+            get { return node.GetParentNode<ConversionOperatorWithCodeAnalysis>(); }
+            set
             {
-                if (parameter.IsOut)
-                {
-                    return ParameterModifier.Out;
-                }
+                node.SetParentNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
+                    value,
+                    parent => parent.ParameterList);
+            }
+        }
 
-                if (parameter.ParameterType.IsByReference)
-                {
-                    return ParameterModifier.Ref;
-                }
-
-                if (parameter.IsDefined(assembly, typeof(ParamArrayAttribute)))
-                {
-                    return ParameterModifier.Params;
-                }
-
-                return ParameterModifier.None;
+        internal OperatorOverloadWithCodeAnalysis OperatorOverloadParent
+        {
+            get { return node.GetParentNode<OperatorOverloadWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
+                    value,
+                    parent => parent.ParameterList);
             }
         }
 

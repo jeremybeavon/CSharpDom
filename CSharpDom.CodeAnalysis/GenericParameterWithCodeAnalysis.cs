@@ -11,7 +11,7 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private readonly ChildNode<GenericParameterWithCodeAnalysis, TypeSyntax> node;
+        private readonly Node<GenericParameterWithCodeAnalysis, TypeSyntax> node;
         private readonly CachedChildNode<GenericParameterWithCodeAnalysis, TypeSyntax, ITypeReferenceWithCodeAnalysis> type;
         
         //public GenericParameterWithCodeAnalysis(TypeReferenceWithCodeAnalysis typeReference)
@@ -22,7 +22,7 @@ namespace CSharpDom.CodeAnalysis
         internal GenericParameterWithCodeAnalysis(ClassReferenceWithCodeAnalysis parent)
         {
             internalId = Guid.NewGuid();
-            node = new ChildNode<GenericParameterWithCodeAnalysis, TypeSyntax>(this);
+            node = new Node<GenericParameterWithCodeAnalysis, TypeSyntax>(this);
             //type = new CachedChildNode<GenericParameterWithCodeAnalysis, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
             //    this,
             //    node,
@@ -56,7 +56,7 @@ namespace CSharpDom.CodeAnalysis
             {
                 node.SetParentNode<ClassReferenceWithCodeAnalysis, NameSyntax>(
                     value,
-                    () => value.GenericParameterList);
+                    parent => parent.GenericParameterList);
             }
         }
 

@@ -9,33 +9,9 @@ namespace CSharpDom.CodeAnalysis
 {
     internal static class TypeSyntaxExtensions
     {
-        /*public static ChildReference<TParent, ITypeReferenceWithCodeAnalysis> ToChildReference<TParent>(
-            this TypeSyntax syntax,
-            ChildReference<TParent, ITypeReferenceWithCodeAnalysis> currentReference)
-            where TParent : class
+        public static ITypeReferenceWithCodeAnalysis ToTypeReference(this TypeSyntax syntax)
         {
-            return ToChildReference(syntax as ArrayTypeSyntax, currentReference) ??
-                currentReference;
+            return null;
         }
-
-        public static ChildReference<TParent, ITypeReferenceWithCodeAnalysis> ToChildReference<TParent>(
-            ArrayTypeSyntax syntax,
-            ChildReference<TParent, ITypeReferenceWithCodeAnalysis> currentReference)
-            where TParent : class
-        {
-            if (syntax == null)
-            {
-                return null;
-            }
-
-            if (!(currentReference.Child is ArrayTypeReferenceWithCodeAnalysis))
-            {
-                currentReference.SetParent(null);
-
-                ArrayTypeReferenceWithCodeAnalysis type = new ArrayTypeReferenceWithCodeAnalysis()
-            }
-
-            return currentReference;
-        }*/
     }
 }

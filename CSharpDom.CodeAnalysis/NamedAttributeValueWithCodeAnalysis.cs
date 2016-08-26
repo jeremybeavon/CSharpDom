@@ -12,7 +12,7 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private readonly SimpleChildNode<
+        private readonly SimpleNode<
             AttributeWithCodeAnalysis,
             AttributeSyntax,
             NamedAttributeValueWithCodeAnalysis,
@@ -21,10 +21,10 @@ namespace CSharpDom.CodeAnalysis
         internal NamedAttributeValueWithCodeAnalysis(AttributeWithCodeAnalysis parent)
         {
             internalId = Guid.NewGuid();
-            node = new SimpleChildNode<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+            node = new SimpleNode<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
                 parent,
                 this,
-                () => Parent.NamedValueList);
+                newParent => newParent.NamedValueList);
         }
 
         public override string Name

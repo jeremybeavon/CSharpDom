@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class FilteredList<TParent, TChild> : IList<TChild>
+    internal class FilteredList<TParent, TChild> : IList<TChild>
         where TChild : TParent
     {
         private readonly IList<TParent> list;

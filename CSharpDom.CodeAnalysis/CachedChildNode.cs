@@ -2,7 +2,7 @@
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class CachedChildNode<TParentNode, TParentSyntax, TChildNode>
+    internal class CachedChildNode<TParentNode, TParentSyntax, TChildNode>
         where TParentNode : class
         where TParentSyntax : class
         where TChildNode : class

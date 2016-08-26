@@ -72,6 +72,12 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        TypeSyntax IHasSyntax<TypeSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (NameSyntax)value; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassReferenceWithCodeAnalysis(this);

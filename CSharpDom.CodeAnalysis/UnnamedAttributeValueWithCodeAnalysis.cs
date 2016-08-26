@@ -12,7 +12,7 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private readonly SimpleChildNode<
+        private readonly SimpleNode<
             AttributeWithCodeAnalysis,
             AttributeSyntax,
             UnnamedAttributeValueWithCodeAnalysis,
@@ -21,10 +21,10 @@ namespace CSharpDom.CodeAnalysis
         internal UnnamedAttributeValueWithCodeAnalysis(AttributeWithCodeAnalysis parent)
         {
             internalId = Guid.NewGuid();
-            node = new SimpleChildNode<AttributeWithCodeAnalysis, AttributeSyntax, UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+            node = new SimpleNode<AttributeWithCodeAnalysis, AttributeSyntax, UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
                 parent,
                 this,
-                () => Parent.UnnamedValueList);
+                newParent => newParent.UnnamedValueList);
         }
 
         public AttributeArgumentSyntax Syntax

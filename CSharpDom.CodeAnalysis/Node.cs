@@ -64,20 +64,35 @@ namespace CSharpDom.CodeAnalysis
             this.parent = parent;
             if (parent != null)
             {
-                this.getSyntax = () => getChildSyntax(parent.Syntax);
+                getSyntax = () => getChildSyntax(parent.Syntax);
                 setSyntax = syntax => parent.Syntax = createChildSyntax(parent.Syntax, syntax);
                 setSyntax(syntax);
             }
         }
 
-        public void ClearParentNode()
+        public void SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentNode, IChildCollection<TValue, TSyntax>> getCollection)
+            where TParentNode : class, IHasSyntax<TParentSyntax>
         {
-            RefreshSyntax();
-            parent = null;
-            getSyntax = null;
-            setSyntax = null;
+            SetParentNode(
+                parent,
+                syntax => getCollection(parent).GetChild(Value),
+                CreateChildSyntax<TParentNode, TParentSyntax>(parent, getCollection));
         }
         
+        private Func<TParentSyntax, TSyntax, TParentSyntax> CreateChildSyntax<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentNode, IChildCollection<TValue, TSyntax>> getCollection)
+            where TParentNode : IHasSyntax<TParentSyntax>
+        {
+            return (parentSyntax, childSyntax) =>
+            {
+                getCollection(parent).SetChild(Value, childSyntax);
+                return parent.Syntax;
+            };
+        }
+
         private void RefreshSyntax()
         {
             if (parent != null)

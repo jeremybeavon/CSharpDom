@@ -41,7 +41,7 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        internal AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> AttributeList
+        internal IAttributeCollection AttributeList
         {
             get { return attributes; }
         }
@@ -51,9 +51,10 @@ namespace CSharpDom.CodeAnalysis
             get { return node.GetParentNode<PropertyWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+                node.SetParentNode(
                     value,
-                    null, null);
+                    syntax => PropertyWithCodeAnalysis.GetAccessorDeclaration(syntax, accessorType),
+                    PropertyWithCodeAnalysis.CreateAccessor(accessorType));
             }
         }
 

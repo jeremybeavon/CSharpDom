@@ -1,97 +1,133 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.NotSupported;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class OperatorOverloadWithCodeAnalysis :
-        AbstractOperatorOverload<
+        EditableOperatorOverload<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IType,
             ITypeReferenceWithCodeAnalysis,
             OperatorParameterWithCodeAnalysis,
-            MethodBodyWithCodeAnalysis>//,
+            MethodBodyWithCodeAnalysis>,
+        IHasSyntax<OperatorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private static readonly IDictionary<string, OperatorOverloadType> operatorTypes =
-            new Dictionary<string, OperatorOverloadType>()
+        private static readonly IDictionary<SyntaxKind, OperatorOverloadType> operatorMap =
+            new Dictionary<SyntaxKind, OperatorOverloadType>()
             {
-                { "op_BitwiseAnd", OperatorOverloadType.And },
-                { "op_OnesComplement", OperatorOverloadType.BitwiseNot },
-                { "op_Decrement", OperatorOverloadType.Decrement },
-                { "op_Division", OperatorOverloadType.Divide },
-                { "op_Equality", OperatorOverloadType.Equal },
-                { "op_ExclusiveOr", OperatorOverloadType.ExclusiveOr },
-                { "op_False", OperatorOverloadType.False },
-                { "op_GreaterThan", OperatorOverloadType.GreaterThan },
-                { "op_GreaterThanOrEqual", OperatorOverloadType.GreaterThanOrEqual },
-                { "op_Increment", OperatorOverloadType.Increment },
-                { "op_LeftShift", OperatorOverloadType.LeftShift },
-                { "op_LessThan", OperatorOverloadType.LessThan },
-                { "op_LessThanOrEqual", OperatorOverloadType.LessThanOrEqual },
-                { "op_LogicalNot", OperatorOverloadType.LogicalNot },
-                { "op_Subtraction", OperatorOverloadType.Minus },
-                { "op_UnaryNegation", OperatorOverloadType.Minus },
-                { "op_Modulus", OperatorOverloadType.Modulo },
-                { "op_Multiply", OperatorOverloadType.Multiply },
-                { "op_Inequality", OperatorOverloadType.NotEqual },
-                { "op_BitwiseOr", OperatorOverloadType.Or },
-                { "op_Addition", OperatorOverloadType.Plus },
-                { "op_UnaryPlus", OperatorOverloadType.Plus },
-                { "op_RightShift", OperatorOverloadType.RightShift },
-                { "op_True", OperatorOverloadType.True }
+                { SyntaxKind.AmpersandToken, OperatorOverloadType.And },
+                { SyntaxKind.TildeToken, OperatorOverloadType.BitwiseNot },
+                { SyntaxKind.MinusMinusToken, OperatorOverloadType.Decrement },
+                { SyntaxKind.SlashToken, OperatorOverloadType.Divide },
+                { SyntaxKind.EqualsEqualsToken, OperatorOverloadType.Equal },
+                { SyntaxKind.CaretToken, OperatorOverloadType.ExclusiveOr },
+                { SyntaxKind.FalseKeyword, OperatorOverloadType.False },
+                { SyntaxKind.GreaterThanToken, OperatorOverloadType.GreaterThan },
+                { SyntaxKind.GreaterThanEqualsToken, OperatorOverloadType.GreaterThanOrEqual },
+                { SyntaxKind.PlusPlusToken, OperatorOverloadType.Increment },
+                { SyntaxKind.LessThanLessThanToken, OperatorOverloadType.LeftShift },
+                { SyntaxKind.LessThanToken, OperatorOverloadType.LessThan },
+                { SyntaxKind.LessThanEqualsToken, OperatorOverloadType.LessThanOrEqual },
+                { SyntaxKind.ExclamationToken, OperatorOverloadType.LogicalNot },
+                { SyntaxKind.MinusToken, OperatorOverloadType.Minus },
+                { SyntaxKind.PercentToken, OperatorOverloadType.Modulo },
+                { SyntaxKind.AsteriskToken, OperatorOverloadType.Multiply },
+                { SyntaxKind.ExclamationEqualsToken, OperatorOverloadType.NotEqual },
+                { SyntaxKind.BarToken, OperatorOverloadType.Or },
+                { SyntaxKind.PlusToken, OperatorOverloadType.Plus },
+                { SyntaxKind.GreaterThanGreaterThanToken, OperatorOverloadType.RightShift },
+                { SyntaxKind.TrueKeyword, OperatorOverloadType.True }
             };
-        private readonly ITypeWithCodeAnalysis declaringType;
-        private readonly MethodDefinition method;
-        private readonly Lazy<Attributes> attributes;
-        private readonly ITypeReferenceWithCodeAnalysis returnType;
-        private readonly Lazy<Parameters<OperatorParameterWithCodeAnalysis>> parameters;
-        private readonly Lazy<MethodBodyWithCodeAnalysis> body;
 
-        internal OperatorOverloadWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, MethodDefinition method)
+        private readonly Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> node;
+        private readonly IType declaringType;
+        private readonly AttributeListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> attributes;
+        private readonly SeparatedSyntaxListWrapper<
+            OperatorOverloadWithCodeAnalysis,
+            OperatorDeclarationSyntax,
+            OperatorParameterWithCodeAnalysis,
+            ParameterSyntax> parameters;
+        private readonly CachedChildNode<
+            OperatorOverloadWithCodeAnalysis,
+            OperatorDeclarationSyntax,
+            ITypeReferenceWithCodeAnalysis> returnType;
+
+        internal OperatorOverloadWithCodeAnalysis(IType declaringType)
         {
-            this.declaringType = declaringType; 
-            this.method = method;
-            AssemblyWithCodeAnalysis assembly = declaringType.Assembly;
-            attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
-            returnType = TypeReferenceWithCodeAnalysisFactory.CreateReference(assembly, method.ReturnType, method);
-            parameters = new Lazy<Parameters<OperatorParameterWithCodeAnalysis>>(
-                () => new Parameters<OperatorParameterWithCodeAnalysis>(assembly, method, parameter => new OperatorParameterWithCodeAnalysis(parameter)));
-            body = new Lazy<MethodBodyWithCodeAnalysis>(() => new MethodBodyWithCodeAnalysis(method));
+            node = new Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(this);
+            this.declaringType = declaringType;
+            attributes = new AttributeListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
+                node,
+                syntax => syntax.AttributeLists,
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
+                parent => new AttributeGroupWithCodeAnalysis(parent),
+                (child, parent) => child.OperatorOverloadParent = parent);
+            parameters = new SeparatedSyntaxListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis, ParameterSyntax>(
+                node,
+                syntax => syntax.ParameterList.Parameters,
+                (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
+                child => new OperatorParameterWithCodeAnalysis(child),
+                (child, parent) => child.Parameter.OperatorOverloadParent = parent);
+            returnType = new CachedChildNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis>(
+                node,
+                syntax => syntax.ReturnType.ToTypeReference(),
+                (syntax, value) => syntax.WithReturnType(value.Syntax),
+                null);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            get { return attributes; }
+            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public override IType DeclaringType
         {
             get { return declaringType; }
         }
 
         public override OperatorOverloadType OperatorType
         {
-            get { return operatorTypes[method.Name]; }
+            get { return operatorMap[Syntax.OperatorToken.Kind()]; }
+            set { Syntax = Syntax.WithOperatorToken(SyntaxFactory.Token(operatorMap.First(map => map.Value == value).Key)); }
         }
 
-        public override IReadOnlyList<OperatorParameterWithCodeAnalysis> Parameters
+        public override IList<OperatorParameterWithCodeAnalysis> Parameters
         {
-            get { return parameters.Value.ParametersWithCodeAnalysis; }
+            get { return parameters; }
+            set
+            {
+                Syntax = Syntax.WithParameterList(
+                    SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(value.Select(node => node.Syntax))));
+            }
         }
 
         public override ITypeReferenceWithCodeAnalysis ReturnType
         {
-            get { return returnType; }
+            get { return returnType.Value; }
+            set { returnType.Value = value; }
+        }
+        
+        public OperatorDeclarationSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
-        public override MethodBodyWithCodeAnalysis Body
+        internal IAttributeCollection AttributeList
         {
-            get { return body.Value; }
+            get { return attributes; }
+        }
+
+        internal IChildCollection<ParameterWithCodeAnalysis, ParameterSyntax> ParameterList
+        {
+            get { return null; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)
