@@ -1,40 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class InterfaceReferenceWithCodeAnalysis :
-        AbstractInterfaceReference<GenericParameterWithCodeAnalysis>,
+        EditableInterfaceReference<GenericParameterWithCodeAnalysis>,
+        IHasSyntax<NameSyntax>,
         ITypeReferenceWithCodeAnalysis//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly TypeReference type;
-        private readonly Lazy<GenericParameters> genericParameters;
+        private readonly Node<InterfaceReferenceWithCodeAnalysis, NameSyntax> node;
+        private readonly GenericParameterListWrapper<InterfaceReferenceWithCodeAnalysis> genericParameters;
 
-        internal InterfaceReferenceWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, TypeReference type)
+        internal InterfaceReferenceWithCodeAnalysis()
         {
-            this.type = type;
-            genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(assembly, type));
+            node = new Node<InterfaceReferenceWithCodeAnalysis, NameSyntax>(this);
+            genericParameters = new GenericParameterListWrapper<InterfaceReferenceWithCodeAnalysis>(
+                node,
+                syntax => syntax.ToGenericParameters(),
+                (parentSyntax, childSyntax) => parentSyntax.WithGenericParameters(childSyntax),
+                parent => new GenericParameterWithCodeAnalysis(parent),
+                (child, parent) => child.InterfaceReferenceParent = parent);
         }
 
-        public override IReadOnlyList<GenericParameterWithCodeAnalysis> GenericParameters
+        public override IList<GenericParameterWithCodeAnalysis> GenericParameters
         {
-            get { return genericParameters.Value.GenericParametersWithCodeAnalysis; }
+            get { return genericParameters; }
+            set { Syntax = Syntax.WithGenericParameters(value); }
         }
 
         public override string Name
         {
-            get { return type.Name(); }
-        }
-
-        public TypeReference TypeReference
-        {
-            get { return type; }
+            get { return Syntax.ToName(); }
+            set { Syntax = Syntax.WithName(value); }
         }
         
+        public NameSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        internal IChildCollection<GenericParameterWithCodeAnalysis, TypeSyntax> GenericParameterList
+        {
+            get { return genericParameters; }
+        }
+
+        TypeSyntax IHasSyntax<TypeSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (NameSyntax)value; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitInterfaceReferenceWithCodeAnalysis(this);

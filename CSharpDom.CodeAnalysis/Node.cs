@@ -75,20 +75,30 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentNode, IChildCollection<TValue, TSyntax>> getCollection)
             where TParentNode : class, IHasSyntax<TParentSyntax>
         {
+            SetParentNode<TParentNode, TParentSyntax, TValue>(parent, Value, getCollection);
+        }
+
+        public void SetParentNode<TParentNode, TParentSyntax, TChildNode>(
+            TParentNode parent,
+            TChildNode child,
+            Func<TParentNode, IChildCollection<TChildNode, TSyntax>> getCollection)
+            where TParentNode : class, IHasSyntax<TParentSyntax>
+        {
             SetParentNode(
                 parent,
-                syntax => getCollection(parent).GetChild(Value),
-                CreateChildSyntax<TParentNode, TParentSyntax>(parent, getCollection));
+                syntax => getCollection(parent).GetChild(child),
+                CreateChildSyntax<TParentNode, TParentSyntax, TChildNode>(parent, child, getCollection));
         }
         
-        private Func<TParentSyntax, TSyntax, TParentSyntax> CreateChildSyntax<TParentNode, TParentSyntax>(
+        private Func<TParentSyntax, TSyntax, TParentSyntax> CreateChildSyntax<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
-            Func<TParentNode, IChildCollection<TValue, TSyntax>> getCollection)
+            TChildNode child,
+            Func<TParentNode, IChildCollection<TChildNode, TSyntax>> getCollection)
             where TParentNode : IHasSyntax<TParentSyntax>
         {
             return (parentSyntax, childSyntax) =>
             {
-                getCollection(parent).SetChild(Value, childSyntax);
+                getCollection(parent).SetChild(child, childSyntax);
                 return parent.Syntax;
             };
         }

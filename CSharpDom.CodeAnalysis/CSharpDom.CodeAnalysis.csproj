@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="AbstractWrappedNode.cs" />
     <Compile Include="AccessorWithCodeAnalysis.cs" />
     <Compile Include="ArrayTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="AttributeGroupWithCodeAnalysis.cs" />
@@ -105,13 +106,28 @@
     <Compile Include="BuiltInTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="CachedChildNode.cs" />
     <Compile Include="ClassAccessorWithCodeAnalysis.cs" />
+    <Compile Include="ClassMethodWithCodeAnalysis.cs" />
+    <Compile Include="ConstructorParameterWithCodeAnalysis.cs" />
     <Compile Include="ConversionOperatorWithCodeAnalysis.cs" />
+    <Compile Include="ExtensionParameterWithCodeAnalysis.cs" />
     <Compile Include="FilteredAttributeList.cs" />
+    <Compile Include="GenericParameterDeclarationList.cs" />
+    <Compile Include="GenericParameterDeclarationListWrapper.cs" />
+    <Compile Include="GenericParameterDeclarationSyntax.cs" />
+    <Compile Include="GenericParameterDeclarationWithCodeAnalysis.cs" />
+    <Compile Include="GenericParameterListWrapper.cs" />
+    <Compile Include="GenericParameterReferenceWithCodeAnalysis.cs" />
     <Compile Include="IAttributeCollection.cs" />
     <Compile Include="IImmutableList.cs" />
+    <Compile Include="IInternalTypeReferenceWithCodeAnalysis.cs" />
+    <Compile Include="IndexerParameterWithCodeAnalysis.cs" />
+    <Compile Include="InterfaceReferenceWithCodeAnalysis.cs" />
     <Compile Include="ListFactory.cs" />
     <Compile Include="ImmutableSeparatedSyntaxList.cs" />
     <Compile Include="ImmutableSyntaxList.cs" />
+    <Compile Include="MethodParameterWithCodeAnalysis.cs" />
+    <Compile Include="MethodWithBodyWithCodeAnalysis.cs" />
+    <Compile Include="MethodWithCodeAnalysis.cs" />
     <Compile Include="OperatorOverloadWithCodeAnalysis.cs" />
     <Compile Include="OperatorParameterWithCodeAnalysis.cs" />
     <Compile Include="ParameterWithCodeAnalysis.cs" />
@@ -126,7 +142,7 @@
     <Compile Include="ImmutableListWrapper.cs" />
     <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />
     <Compile Include="ImmutableSeparatedSyntaxListWrapper.cs" />
-    <Compile Include="ImmutableChildSyntaxListWrapper.cs" />
+    <Compile Include="ImmutableChildListWrapper.cs" />
     <Compile Include="NodeFactory.cs" />
     <Compile Include="SimpleNode.cs" />
     <Compile Include="NameSyntaxExtensions.cs" />
@@ -143,6 +159,7 @@
     <Compile Include="TypeSyntaxExtensions.cs" />
     <Compile Include="UnnamedAttributeValueWithCodeAnalysis.cs" />
     <Compile Include="UnspecifiedTypeReferenceWithCodeAnalysis.cs" />
+    <Compile Include="WrappedNode.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

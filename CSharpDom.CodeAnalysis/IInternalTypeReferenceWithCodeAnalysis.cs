@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public interface IChildCollection<TChild, TSyntax> //: IList<TChild>
+    internal interface IInternalTypeReferenceWithCodeAnalysis : ITypeReferenceWithCodeAnalysis, IHasId
     {
-        TSyntax GetChild(TChild child);
-
-        void SetChild(TChild child, TSyntax syntax);
     }
 }

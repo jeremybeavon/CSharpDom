@@ -8,19 +8,12 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class UnspecifiedTypeReferenceWithCodeAnalysis :
         EditableUnspecifiedTypeReference<GenericParameterWithCodeAnalysis>,
-        ITypeReferenceWithCodeAnalysis//,
+        ITypeReferenceWithCodeAnalysis,
+        IHasId//,
                                       //IVisitable<IReflectionVisitor>
     {
+        private readonly Node<UnspecifiedTypeReferenceWithCodeAnalysis, TypeSyntax> node;
 
-        /*public void Accept(IReflectionVisitor visitor)
-        {
-            visitor.VisitUnspecifiedTypeReferenceWithCodeAnalysis(this);
-        }
-
-        public void AcceptChildren(IReflectionVisitor visitor)
-        {
-            AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }*/
         public TypeSyntax Syntax
         {
             get
@@ -33,5 +26,23 @@ namespace CSharpDom.CodeAnalysis
                 throw new NotImplementedException();
             }
         }
+
+        Guid IHasId.InternalId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        /*public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitUnspecifiedTypeReferenceWithCodeAnalysis(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
+        }*/
     }
 }

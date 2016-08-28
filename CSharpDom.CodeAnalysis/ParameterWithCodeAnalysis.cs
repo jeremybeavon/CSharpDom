@@ -14,24 +14,32 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly Node<ParameterWithCodeAnalysis, ParameterSyntax> node;
+        private readonly object wrapper;
         private readonly AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax> attributes;
         private readonly CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis> parameterType;
 
-        internal ParameterWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent)
-            : this()
+        internal ParameterWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent, OperatorParameterWithCodeAnalysis parameter)
+            : this(parameter)
         {
-
+            ConversionOperatorParent = parent;
         }
 
-        internal ParameterWithCodeAnalysis(OperatorOverloadWithCodeAnalysis parent)
-            : this()
+        internal ParameterWithCodeAnalysis(MethodWithCodeAnalysis parent, MethodParameterWithCodeAnalysis parameter)
+            : this(parameter)
+        {
+            MethodParent = parent;
+        }
+
+        internal ParameterWithCodeAnalysis(OperatorOverloadWithCodeAnalysis parent, OperatorParameterWithCodeAnalysis parameter)
+            : this(parameter)
         {
             OperatorOverloadParent = parent;
         }
 
-        private ParameterWithCodeAnalysis()
+        private ParameterWithCodeAnalysis(object parameter)
         {
             node = new Node<ParameterWithCodeAnalysis, ParameterSyntax>(this);
+            wrapper = parameter;
             attributes = new AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -40,8 +48,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.ParameterParent = parent);
             parameterType = new CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis>(
                 node,
-                syntax => syntax.Type.ToTypeReference(),
-                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax.Syntax),
+                parent => parent.Syntax.Type.ToTypeReference(),
+                (parent, child) => parent.Syntax.WithType(child.Syntax),
                 null);
         }
 
@@ -81,6 +89,19 @@ namespace CSharpDom.CodeAnalysis
             {
                 node.SetParentNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                     value,
+                    syntax => syntax.ParameterList.Parameters[0],
+                    WithParameter);
+            }
+        }
+
+        internal MethodWithCodeAnalysis MethodParent
+        {
+            get { return node.GetParentNode<MethodWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, MethodParameterWithCodeAnalysis>(
+                    value,
+                    (MethodParameterWithCodeAnalysis)wrapper,
                     parent => parent.ParameterList);
             }
         }
@@ -90,10 +111,19 @@ namespace CSharpDom.CodeAnalysis
             get { return node.GetParentNode<OperatorOverloadWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
+                node.SetParentNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis>(
                     value,
+                    (OperatorParameterWithCodeAnalysis)wrapper,
                     parent => parent.ParameterList);
             }
+        }
+
+        private static ConversionOperatorDeclarationSyntax WithParameter(
+            ConversionOperatorDeclarationSyntax parentSyntax,
+            ParameterSyntax childSyntax)
+        {
+            return parentSyntax.WithParameterList(
+                parentSyntax.ParameterList.WithParameters(SyntaxFactory.SeparatedList(new[] { childSyntax })));
         }
 
         /*public void Accept(IReflectionVisitor visitor)

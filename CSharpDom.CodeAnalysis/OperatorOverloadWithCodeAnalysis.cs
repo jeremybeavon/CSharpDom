@@ -76,8 +76,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.Parameter.OperatorOverloadParent = parent);
             returnType = new CachedChildNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis>(
                 node,
-                syntax => syntax.ReturnType.ToTypeReference(),
-                (syntax, value) => syntax.WithReturnType(value.Syntax),
+                parent => parent.Syntax.ReturnType.ToTypeReference(),
+                (parent, child) => parent.Syntax.WithReturnType(child.Syntax),
                 null);
         }
 
@@ -125,9 +125,9 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
         }
 
-        internal IChildCollection<ParameterWithCodeAnalysis, ParameterSyntax> ParameterList
+        internal IChildCollection<OperatorParameterWithCodeAnalysis, ParameterSyntax> ParameterList
         {
-            get { return null; }
+            get { return parameters; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

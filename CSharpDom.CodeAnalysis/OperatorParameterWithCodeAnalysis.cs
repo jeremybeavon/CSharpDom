@@ -17,13 +17,13 @@ namespace CSharpDom.CodeAnalysis
         internal OperatorParameterWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent)
             : this()
         {
-            parameter = new ParameterWithCodeAnalysis(parent);
+            parameter = new ParameterWithCodeAnalysis(parent, this);
         }
 
         internal OperatorParameterWithCodeAnalysis(OperatorOverloadWithCodeAnalysis parent)
             : this()
         {
-            parameter = new ParameterWithCodeAnalysis(parent);
+            parameter = new ParameterWithCodeAnalysis(parent, this);
         }
 
         private OperatorParameterWithCodeAnalysis()

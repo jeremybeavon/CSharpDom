@@ -25,10 +25,26 @@ namespace CSharpDom.CodeAnalysis
             SyntaxKind.StaticKeyword,
             SyntaxKind.VirtualKeyword
         });
+        private static readonly ISet<SyntaxKind> parameterModifierTokens = new HashSet<SyntaxKind>(new[]
+        {
+            SyntaxKind.OutKeyword,
+            SyntaxKind.ParamsKeyword,
+            SyntaxKind.RefKeyword
+        });
 
         public static SyntaxTokenList Add(this SyntaxTokenList tokens, SyntaxKind kind)
         {
             return tokens.Add(SyntaxFactory.Token(kind));
+        }
+
+        public static SyntaxTokenList Remove(this SyntaxTokenList tokens, SyntaxKind kind)
+        {
+            foreach (SyntaxToken token in tokens.Where(token => kind ==  token.Kind()))
+            {
+                tokens = tokens.Remove(token);
+            }
+
+            return tokens;
         }
 
         public static SyntaxTokenList Remove(this SyntaxTokenList tokens, ISet<SyntaxKind> kind)
@@ -140,6 +156,42 @@ namespace CSharpDom.CodeAnalysis
                     return tokens.Add(SyntaxKind.StaticKeyword);
                 case ClassMemberInheritanceModifier.Virtual:
                     return tokens.Add(SyntaxKind.VirtualKeyword);
+            }
+
+            return tokens;
+        }
+
+        public static ParameterModifier ToParameterModifier(this SyntaxTokenList modifiers)
+        {
+            if (modifiers.Any(SyntaxKind.OutKeyword))
+            {
+                return ParameterModifier.Out;
+            }
+
+            if (modifiers.Any(SyntaxKind.ParamsKeyword))
+            {
+                return ParameterModifier.Params;
+            }
+
+            if (modifiers.Any(SyntaxKind.RefKeyword))
+            {
+                return ParameterModifier.Ref;
+            }
+
+            return ParameterModifier.None;
+        }
+
+        public static SyntaxTokenList WithParameterModifier(this SyntaxTokenList tokens, ParameterModifier modifier)
+        {
+            tokens = tokens.Remove(parameterModifierTokens);
+            switch (modifier)
+            {
+                case ParameterModifier.Out:
+                    return tokens.Add(SyntaxKind.OutKeyword);
+                case ParameterModifier.Params:
+                    return tokens.Add(SyntaxKind.ParamsKeyword);
+                case ParameterModifier.Ref:
+                    return tokens.Add(SyntaxKind.RefKeyword);
             }
 
             return tokens;

@@ -1,24 +1,29 @@
-﻿using System.Collections.Generic;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
 using CSharpDom.Editable;
-using System;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class ClassMethodWithCodeAnalysis :
-        EditableClassMethod<
+    public sealed class MethodWithBodyWithCodeAnalysis :
+        EditableMethod<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IType,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<MethodDeclarationSyntax>
     {
-        private readonly MethodWithBodyWithCodeAnalysis method;
+        private readonly MethodWithCodeAnalysis method;
 
-        private ClassMethodWithCodeAnalysis(IClassType declaringType)
+        internal MethodWithBodyWithCodeAnalysis(IType declaringType)
         {
             base.DeclaringType = declaringType;
         }
@@ -29,13 +34,7 @@ namespace CSharpDom.CodeAnalysis
             set { method.Attributes = value; }
         }
 
-        public override MethodBodyWithCodeAnalysis Body
-        {
-            get { return method.Body; }
-            set { method.Body = value; }
-        }
-
-        public override IClassType DeclaringType
+        public override IType DeclaringType
         {
             get { return base.DeclaringType; }
             set { throw new NotSupportedException(); }
@@ -47,23 +46,24 @@ namespace CSharpDom.CodeAnalysis
             set { method.GenericParameters = value; }
         }
 
-        public override ClassMemberInheritanceModifier InheritanceModifier
-        {
-            get
-            {
-                return base.InheritanceModifier;
-            }
-
-            set
-            {
-                base.InheritanceModifier = value;
-            }
-        }
-
         public override bool IsAsync
         {
-            get { return method.IsAsync; }
-            set { method.IsAsync = value; }
+            get { return Syntax.Modifiers.Any(SyntaxKind.AsyncKeyword); }
+            set
+            {
+                if (value != IsAsync)
+                {
+                    MethodDeclarationSyntax syntax = Syntax;
+                    if (value)
+                    {
+                        Syntax = syntax.WithModifiers(syntax.Modifiers.Add(SyntaxKind.AsyncKeyword));
+                    }
+                    else
+                    {
+                        Syntax = syntax.WithModifiers(syntax.Modifiers.Remove(SyntaxKind.AsyncKeyword));
+                    }
+                }
+            }
         }
 
         public override string Name
@@ -88,19 +88,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.ReturnType; }
             set { method.ReturnType = value; }
-        }
-
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get
-            {
-                return base.Visibility;
-            }
-
-            set
-            {
-                base.Visibility = value;
-            }
         }
 
         public MethodDeclarationSyntax Syntax

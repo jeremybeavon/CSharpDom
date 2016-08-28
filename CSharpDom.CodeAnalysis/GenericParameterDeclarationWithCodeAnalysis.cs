@@ -1,105 +1,199 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class GenericParameterDeclarationWithCodeAnalysis :
-        AbstractGenericParameterDeclaration<
+        EditableGenericParameterDeclaration<
             ClassReferenceWithCodeAnalysis,
             GenericParameterReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            AttributeGroupWithCodeAnalysis>//,
+            AttributeGroupWithCodeAnalysis>,
+        IHasSyntax<GenericParameterDeclarationSyntax>,
+        IHasId//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly GenericParameter type;
-        private readonly Lazy<Attributes> attributes;
-        private readonly GenericParameterTypeConstraint typeConstraint;
-        private readonly bool hasEmptyConstructorConstraint;
-        private readonly ClassReferenceWithCodeAnalysis baseClassConstraint;
-        private readonly List<GenericParameterReferenceWithCodeAnalysis> genericParameterConstraints;
-        private readonly List<InterfaceReferenceWithCodeAnalysis> interfaceConstraints;
-        private readonly GenericParameterDeclarationDirection direction;
+        private Guid internalId;
+        private readonly Node<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax> node;
+        private readonly AttributeListWrapper<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax> attributes;
+        private readonly CachedChildNode<
+            GenericParameterDeclarationWithCodeAnalysis,
+            GenericParameterDeclarationSyntax,
+            ClassReferenceWithCodeAnalysis> baseClassConstraint;
+        private readonly SeparatedSyntaxListWrapper<
+            GenericParameterDeclarationWithCodeAnalysis,
+            GenericParameterDeclarationSyntax,
+            IInternalTypeReferenceWithCodeAnalysis,
+            TypeSyntax> constraints;
+        private readonly FilteredList<ITypeReferenceWithCodeAnalysis, GenericParameterReferenceWithCodeAnalysis> genericParameterConstraints;
+        private readonly FilteredList<ITypeReferenceWithCodeAnalysis, InterfaceReferenceWithCodeAnalysis> interfaceConstraints;
 
-        internal GenericParameterDeclarationWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, GenericParameter type)
+        internal GenericParameterDeclarationWithCodeAnalysis(MethodWithCodeAnalysis parent)
+            : this()
         {
-            this.type = type;
-            attributes = new Lazy<Attributes>(() => new Attributes(assembly, type));
-            typeConstraint = GetTypeConstraint(type);
-            direction = GetDirection(type);
-            hasEmptyConstructorConstraint = type.HasDefaultConstructorConstraint && !type.HasNotNullableValueTypeConstraint;
-            genericParameterConstraints = new List<GenericParameterReferenceWithCodeAnalysis>();
-            interfaceConstraints = new List<InterfaceReferenceWithCodeAnalysis>();
-            foreach (TypeReference constraintType in type.Constraints)
-            {
-                TypeDefinition constraintTypeDefinition = constraintType.Resolve();
-                if (constraintType.IsGenericParameter)
-                {
-                    genericParameterConstraints.Add(new GenericParameterReferenceWithCodeAnalysis(constraintType));
-                }
-                else if (constraintTypeDefinition.IsInterface)
-                {
-                    interfaceConstraints.Add(new InterfaceReferenceWithCodeAnalysis(assembly, constraintType));
-                }
-                else if (constraintTypeDefinition.IsClass)
-                {
-                    if (baseClassConstraint != null)
-                    {
-                        throw new InvalidOperationException("GenericParameterDeclaration appears to have 2 base classes.");
-                    }
-
-                    if (constraintType.FullName != "System.ValueType")
-                    {
-                        baseClassConstraint = new ClassReferenceWithCodeAnalysis(assembly, constraintType);
-                    }
-                }
-                else
-                {
-                    throw new InvalidOperationException("Unknown constraint type.");
-                }
-            }
+            MethodParent = parent;
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        private GenericParameterDeclarationWithCodeAnalysis()
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            internalId = Guid.NewGuid();
+            node = new Node<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(this);
+            attributes = new CodeAnalysis.AttributeListWrapper<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(
+                node,
+                syntax => syntax.TypeParameter.AttributeLists,
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
+                parent => new AttributeGroupWithCodeAnalysis(parent),
+                (child, parent) => child.GenericParameterParent = parent);
+            //baseClass = new CachedChildNode<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax, ClassReferenceWithCodeAnalysis>(
+            //    node,
+            //    parent => new ClassReferenceWithCodeAnalysis(parent)
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
+        {
+            get { return attributes; }
+            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
         }
 
         public override ClassReferenceWithCodeAnalysis BaseClassConstraint
         {
-            get { return baseClassConstraint; }
+            get { return baseClassConstraint.Value; }
+            set { baseClassConstraint.Value = value; }
         }
 
-        public override IReadOnlyCollection<GenericParameterReferenceWithCodeAnalysis> GenericParameterConstraints
+        public override ICollection<GenericParameterReferenceWithCodeAnalysis> GenericParameterConstraints
         {
             get { return genericParameterConstraints; }
+            set { }
         }
 
         public override bool HasEmptyConstructorConstraint
         {
-            get { return hasEmptyConstructorConstraint; }
+            get { return Syntax.Constraints.OfType<ConstructorConstraintSyntax>().Any(); }
+            set
+            {
+                if (value != HasEmptyConstructorConstraint)
+                {
+                    GenericParameterDeclarationSyntax syntax = Syntax;
+                    SeparatedSyntaxList<TypeParameterConstraintSyntax> constraints = syntax.Constraints;
+                    if (value)
+                    {
+                        Syntax = syntax.WithConstraints(constraints.Add(SyntaxFactory.ConstructorConstraint()));
+                    }
+                    else
+                    {
+                        Syntax = syntax.WithConstraints(constraints.RemoveAt(constraints.Count - 1));
+                    }
+                }
+            }
         }
 
-        public override IReadOnlyCollection<InterfaceReferenceWithCodeAnalysis> InterfaceConstraints
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> InterfaceConstraints
         {
             get { return interfaceConstraints; }
+            set { }
         }
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return Syntax.TypeParameter.Identifier.Text; }
+            set { Syntax = Syntax.WithName(value); }
         }
         
         public override GenericParameterTypeConstraint TypeConstraint
         {
-            get { return typeConstraint; }
+            get
+            {
+                return Syntax.Constraints
+                    .OfType<ClassOrStructConstraintSyntax>()
+                    .Select(ToTypeConstraint)
+                    .FirstOrDefault() ?? GenericParameterTypeConstraint.None;
+            }
+            set
+            {
+                if (value != TypeConstraint)
+                {
+                    GenericParameterDeclarationSyntax syntax = Syntax;
+                    SyntaxKind kind = SyntaxKind.ClassKeyword;
+                    switch (value)
+                    {
+                        case GenericParameterTypeConstraint.None:
+                            Syntax = syntax.WithConstraints(syntax.Constraints.RemoveAt(0));
+                            return;
+                        case GenericParameterTypeConstraint.Struct:
+                            kind = SyntaxKind.StructKeyword;
+                            break;
+                    }
+
+                    Syntax = syntax.WithConstraints(syntax.Constraints.Insert(0, SyntaxFactory.ClassOrStructConstraint(kind)));
+                }
+            }
         }
 
         public override GenericParameterDeclarationDirection Direction
         {
-            get { return direction; }
+            get
+            {
+                switch (Syntax.TypeParameter.VarianceKeyword.Kind())
+                {
+                    case SyntaxKind.InKeyword:
+                        return GenericParameterDeclarationDirection.In;
+                    case SyntaxKind.OutKeyword:
+                        return GenericParameterDeclarationDirection.Out;
+                    default:
+                        return GenericParameterDeclarationDirection.None;
+                }
+            }
+            set
+            {
+                if (value != Direction)
+                {
+                    switch (value)
+                    {
+                        case GenericParameterDeclarationDirection.None:
+                            Syntax = Syntax.WithVariance(SyntaxKind.None);
+                            break;
+                        case GenericParameterDeclarationDirection.In:
+                            Syntax = Syntax.WithVariance(SyntaxKind.InKeyword);
+                            break;
+                        case GenericParameterDeclarationDirection.Out:
+                            Syntax = Syntax.WithVariance(SyntaxKind.OutKeyword);
+                            break;
+                    }
+                }
+            }
+        }
+
+        public GenericParameterDeclarationSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        internal IAttributeCollection AttributeList
+        {
+            get { return attributes; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
+        }
+
+        internal MethodWithCodeAnalysis MethodParent
+        {
+            get { return node.GetParentNode<MethodWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                    value,
+                    parent => parent.GenericParameterList);
+            }
         }
 
         /*public void Accept(IReflectionVisitor visitor)
@@ -112,34 +206,11 @@ namespace CSharpDom.CodeAnalysis
             AcceptChildren(new ForwardingGenericVisitor(visitor));
         }*/
 
-        private static GenericParameterTypeConstraint GetTypeConstraint(GenericParameter type)
+        private static GenericParameterTypeConstraint? ToTypeConstraint(ClassOrStructConstraintSyntax syntax)
         {
-            if (type.HasReferenceTypeConstraint)
-            {
-                return GenericParameterTypeConstraint.Class;
-            }
-
-            if (type.HasNotNullableValueTypeConstraint)
-            {
-                return GenericParameterTypeConstraint.Struct;
-            }
-
-            return GenericParameterTypeConstraint.None;
-        }
-
-        private static GenericParameterDeclarationDirection GetDirection(GenericParameter type)
-        {
-            if (type.IsContravariant)
-            {
-                return GenericParameterDeclarationDirection.In;
-            }
-
-            if (type.IsCovariant)
-            {
-                return GenericParameterDeclarationDirection.Out;
-            }
-
-            return GenericParameterDeclarationDirection.None;
+            return syntax.ClassOrStructKeyword.Kind() == SyntaxKind.ClassKeyword ?
+                GenericParameterTypeConstraint.Class :
+                GenericParameterTypeConstraint.Struct;
         }
     }
 }

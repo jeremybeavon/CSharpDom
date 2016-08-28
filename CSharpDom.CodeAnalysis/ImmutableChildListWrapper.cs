@@ -8,7 +8,7 @@ using System.Collections;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class ImmutableChildSyntaxListWrapper<TParentNode, TParentSyntax, TChildList, TChildSyntax> : IList<TChildSyntax>
+    internal sealed class ImmutableChildListWrapper<TParentNode, TParentSyntax, TChildList, TChildSyntax> : IList<TChildSyntax>
         where TParentSyntax : class
         where TChildList : IReadOnlyList<TChildSyntax>
     {
@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Func<TParentSyntax, TChildList> getList;
         private readonly Func<TParentSyntax, TChildList, TParentSyntax> createList;
 
-        public ImmutableChildSyntaxListWrapper(
+        public ImmutableChildListWrapper(
             Node<TParentNode, TParentSyntax> node,
             IImmutableList<TChildList, TChildSyntax> immutableList,
             Func<TParentSyntax, TChildList> getList,

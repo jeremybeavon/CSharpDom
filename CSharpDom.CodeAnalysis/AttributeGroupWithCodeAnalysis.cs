@@ -30,6 +30,19 @@ namespace CSharpDom.CodeAnalysis
         internal AttributeGroupWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent)
             : this()
         {
+            ConversionOperatorParent = parent;
+        }
+
+        internal AttributeGroupWithCodeAnalysis(GenericParameterDeclarationWithCodeAnalysis parent)
+            : this()
+        {
+            GenericParameterParent = parent;
+        }
+
+        internal AttributeGroupWithCodeAnalysis(MethodWithCodeAnalysis parent)
+            : this()
+        {
+            MethodParent = parent;
         }
 
         internal AttributeGroupWithCodeAnalysis(OperatorOverloadWithCodeAnalysis parent)
@@ -90,6 +103,34 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.GetParentNode<AccessorWithCodeAnalysis>(); }
             set { node.SetParentNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
+        internal ConversionOperatorWithCodeAnalysis ConversionOperatorParent
+        {
+            get { return node.GetParentNode<ConversionOperatorWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
+                    value,
+                    parent => parent.AttributeList);
+            }
+        }
+
+        internal GenericParameterDeclarationWithCodeAnalysis GenericParameterParent
+        {
+            get { return node.GetParentNode<GenericParameterDeclarationWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(
+                    value,
+                    parent => parent.AttributeList);
+            }
+        }
+
+        internal MethodWithCodeAnalysis MethodParent
+        {
+            get { return node.GetParentNode<MethodWithCodeAnalysis>(); }
+            set { node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
 
         internal OperatorOverloadWithCodeAnalysis OperatorOverloadParent

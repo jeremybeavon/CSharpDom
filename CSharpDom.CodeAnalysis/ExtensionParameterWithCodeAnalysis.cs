@@ -1,32 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ExtensionParameterWithCodeAnalysis :
-        AbstractExtensionParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>
+        EditableExtensionParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
+        IHasSyntax<ParameterSyntax>
     {
-        private readonly MethodParameterWithCodeAnalysis parameter;
+        private readonly ParameterWithCodeAnalysis parameter;
 
-        internal ExtensionParameterWithCodeAnalysis(MethodParameterWithCodeAnalysis parameter)
+        internal ExtensionParameterWithCodeAnalysis()
         {
-            this.parameter = parameter;
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public ParameterWithCodeAnalysis Parameter
+        {
+            get { return parameter; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return parameter.Attributes; }
+            set { parameter.Attributes = value; }
         }
         
         public override string Name
         {
             get { return parameter.Name; }
+            set { parameter.Name = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis ParameterType
         {
             get { return parameter.ParameterType; }
+            set { parameter.ParameterType = value; }
+        }
+
+        public ParameterSyntax Syntax
+        {
+            get { return parameter.Syntax; }
+            set { parameter.Syntax = value; }
         }
     }
 }

@@ -16,11 +16,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
             Func<TParentNode, TChildNode> factory,
             Action<TChildNode, TParentNode> setParent)
-            : base(
-                  node,
-                  ListFactory.CreateList(node, new ImmutableSeparatedSyntaxList<TChildSyntax>(), getList, createList),
-                  factory,
-                  setParent)
+            : base(node, ListFactory.CreateList(node, getList, createList), factory, setParent)
         {
         }
     }

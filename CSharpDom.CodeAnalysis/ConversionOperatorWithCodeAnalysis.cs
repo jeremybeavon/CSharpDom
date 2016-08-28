@@ -23,8 +23,6 @@ namespace CSharpDom.CodeAnalysis
         private readonly AttributeListWrapper<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax> attributes;
-        private readonly FilteredAttributeList filteredAttributes;
-        private readonly FilteredAttributeList returnAttributes;
         private readonly CachedChildNode<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax,
@@ -44,24 +42,22 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => { });
-            filteredAttributes = new FilteredAttributeList(attributes, attribute => attribute.Syntax.Target == null);
-            returnAttributes = new FilteredAttributeList(attributes, attribute => attribute.Syntax.Target != null);
             parameter = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis>(
                 node,
-                syntax => new OperatorParameterWithCodeAnalysis(this),
-                (syntax, value) => syntax.WithParameterList(syntax.ParameterList.WithParameters(SyntaxFactory.SeparatedList(new[] { value.Syntax }))),
+                parent => new OperatorParameterWithCodeAnalysis(parent),
+                WithParameter,
                 (child, parent) => child.Parameter.ConversionOperatorParent = parent);
             returnType = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis>(
                 node,
-                syntax => syntax.Type.ToTypeReference(),
-                (syntax, value) => syntax.WithType(value.Syntax),
+                parent => parent.Syntax.Type.ToTypeReference(),
+                (parent, child) => parent.Syntax.WithType(child.Syntax),
                 (child, parent) => { });
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return filteredAttributes; }
-            set { Syntax = Syntax.WithAttributeLists(value.Concat(returnAttributes).ToAttributes()); }
+            get { return attributes.Attributes; }
+            set { attributes.Attributes = value; }
         }
 
         public override IType DeclaringType
@@ -94,8 +90,8 @@ namespace CSharpDom.CodeAnalysis
         
         public override ICollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
         {
-            get { return returnAttributes; }
-            set { Syntax = Syntax.WithAttributeLists(filteredAttributes.Concat(value).ToAttributes()); }
+            get { return attributes.ReturnAttributes; }
+            set { attributes.ReturnAttributes = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis ReturnType
@@ -115,11 +111,14 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
         }
 
-        internal IChildCollection<ParameterWithCodeAnalysis, ParameterSyntax> ParameterList
+        private static ConversionOperatorDeclarationSyntax WithParameter(
+            ConversionOperatorWithCodeAnalysis parent,
+            OperatorParameterWithCodeAnalysis child)
         {
-            get { return null; }
+            ConversionOperatorDeclarationSyntax syntax = parent.Syntax;
+            return syntax.WithParameterList(syntax.ParameterList.WithParameters(SyntaxFactory.SingletonSeparatedList(child.Syntax)));
         }
-
+        
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitConversionOperatorWithCodeAnalysis(this);

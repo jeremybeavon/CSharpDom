@@ -40,7 +40,12 @@ namespace CSharpDom.CodeAnalysis
             throw new NotSupportedException("Unknown class");
         }
 
-        public static SeparatedSyntaxList<TypeSyntax> GetGenericParameters(this NameSyntax syntax)
+        public static NameSyntax WithName(this NameSyntax syntax, string name)
+        {
+            return syntax;
+        }
+
+        public static SeparatedSyntaxList<TypeSyntax> ToGenericParameters(this NameSyntax syntax)
         {
             IdentifierNameSyntax identifier = syntax as IdentifierNameSyntax;
             if (identifier != null)
@@ -57,19 +62,26 @@ namespace CSharpDom.CodeAnalysis
             QualifiedNameSyntax qualifiedName = syntax as QualifiedNameSyntax;
             if (qualifiedName != null)
             {
-                return GetGenericParameters(qualifiedName.Right);
+                return ToGenericParameters(qualifiedName.Right);
             }
 
             AliasQualifiedNameSyntax alias = syntax as AliasQualifiedNameSyntax;
             if (alias != null)
             {
-                return GetGenericParameters(alias.Name);
+                return ToGenericParameters(alias.Name);
             }
 
             throw new NotSupportedException("Unknown class");
         }
 
-        public static NameSyntax SetGenericParameters(this NameSyntax syntax, SeparatedSyntaxList<TypeSyntax> genericParameters)
+        public static NameSyntax WithGenericParameters(
+            this NameSyntax syntax,
+            IEnumerable<GenericParameterWithCodeAnalysis> genericParameters)
+        {
+            return syntax.WithGenericParameters(SyntaxFactory.SeparatedList(genericParameters.Select(node => node.Syntax)));
+        }
+
+        public static NameSyntax WithGenericParameters(this NameSyntax syntax, SeparatedSyntaxList<TypeSyntax> genericParameters)
         {
             IdentifierNameSyntax identifier = syntax as IdentifierNameSyntax;
             if (identifier != null)
@@ -86,13 +98,13 @@ namespace CSharpDom.CodeAnalysis
             QualifiedNameSyntax qualifiedName = syntax as QualifiedNameSyntax;
             if (qualifiedName != null)
             {
-                return qualifiedName.WithRight((SimpleNameSyntax)SetGenericParameters(qualifiedName.Right, genericParameters));
+                return qualifiedName.WithRight((SimpleNameSyntax)WithGenericParameters(qualifiedName.Right, genericParameters));
             }
 
             AliasQualifiedNameSyntax alias = syntax as AliasQualifiedNameSyntax;
             if (alias != null)
             {
-                return alias.WithName((SimpleNameSyntax)SetGenericParameters(alias.Name, genericParameters));
+                return alias.WithName((SimpleNameSyntax)WithGenericParameters(alias.Name, genericParameters));
             }
 
             throw new NotSupportedException("Unknown class");

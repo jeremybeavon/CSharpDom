@@ -15,44 +15,41 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly Node<ClassReferenceWithCodeAnalysis, NameSyntax> node;
-        private SeparatedSyntaxListWrapper<
-            ClassReferenceWithCodeAnalysis,
-            TypeSyntax,
-            GenericParameterWithCodeAnalysis,
-            TypeSyntax> genericParameters;
-
-        //public ClassReferenceWithCodeAnalysis(string name)
-        //    : this(new DetachedParent<NameSyntax>(SyntaxFactory.IdentifierName(name)))
-        //{
-        //}
-
+        private GenericParameterListWrapper<ClassReferenceWithCodeAnalysis> genericParameters;
+        
         internal ClassReferenceWithCodeAnalysis(AttributeWithCodeAnalysis parent)
+            : this()
         {
-            ParentAttribute = parent;
-            /*genericParameters = new SeparatedSyntaxListWrapper<ClassReferenceWithCodeAnalysis, TypeSyntax, GenericParameterWithCodeAnalysis, TypeSyntax>(
+            AttributeParent = parent;
+        }
+
+        private ClassReferenceWithCodeAnalysis()
+        {
+            node = new Node<ClassReferenceWithCodeAnalysis, NameSyntax>(this);
+            genericParameters = new GenericParameterListWrapper<ClassReferenceWithCodeAnalysis>(
                 node,
-                syntax => node.Syntax.GetGenericParameters(),
-                list => node.Syntax = node.Syntax.SetGenericParameters(list),
-                newParent => new GenericParameterWithCodeAnalysis(newParent),
-                (child, newParent) => child.ClassReferenceParent = newParent);*/
+                syntax => syntax.ToGenericParameters(),
+                (parentSyntax, childSyntax) => parentSyntax.WithGenericParameters(childSyntax),
+                parent => new GenericParameterWithCodeAnalysis(parent),
+                (child, parent) => child.ClassReferenceParent = parent);
         }
     
-        public NameSyntax Syntax
-        {
-            get { return node.Syntax; }
-            set { node.Syntax = value; }
-        }
-
         public override string Name
         {
-            get { return node.Syntax.ToName(); }
-            set { node.Syntax = SyntaxFactory.IdentifierName(value); }
+            get { return Syntax.ToName(); }
+            set { Syntax = Syntax.WithName(value); }
         }
 
         public override IList<GenericParameterWithCodeAnalysis> GenericParameters
         {
             get { return genericParameters; }
-            set { node.Syntax = node.Syntax.SetGenericParameters(SyntaxFactory.SeparatedList(value.Select(node => node.Syntax))); }
+            set { Syntax = Syntax.WithGenericParameters(value); }
+        }
+
+        public NameSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
         internal IChildCollection<GenericParameterWithCodeAnalysis, TypeSyntax> GenericParameterList
@@ -60,7 +57,7 @@ namespace CSharpDom.CodeAnalysis
             get { return genericParameters; }
         }
 
-        internal AttributeWithCodeAnalysis ParentAttribute
+        internal AttributeWithCodeAnalysis AttributeParent
         {
             get { return node.GetParentNode<AttributeWithCodeAnalysis>(); }
             set
@@ -69,6 +66,18 @@ namespace CSharpDom.CodeAnalysis
                     value,
                     syntax => syntax.Name,
                     (parentSyntax, childSyntax) => parentSyntax.WithName(childSyntax));
+            }
+        }
+
+        internal GenericParameterDeclarationWithCodeAnalysis GenericParameterDeclarationParent
+        {
+            get { return node.GetParentNode<GenericParameterDeclarationWithCodeAnalysis>(); }
+            set
+            {
+                //node.SetParentNode<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(
+                //    value,
+                //    syntax => syntax.Constraints.,
+                //    (parentSyntax, childSyntax) => parentSyntax.)
             }
         }
 

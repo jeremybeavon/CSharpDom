@@ -14,22 +14,22 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<GenericParameterWithCodeAnalysis, TypeSyntax> node;
         private readonly CachedChildNode<GenericParameterWithCodeAnalysis, TypeSyntax, ITypeReferenceWithCodeAnalysis> type;
         
-        //public GenericParameterWithCodeAnalysis(TypeReferenceWithCodeAnalysis typeReference)
-        //    : this(new DetachedParentWithId<GenericParameterWithCodeAnalysis, TypeSyntax>(typeReference.Syntax))
-        //{
-        //}
-
         internal GenericParameterWithCodeAnalysis(ClassReferenceWithCodeAnalysis parent)
+            : this()
+        {
+            ClassReferenceParent = parent;
+        }
+
+        internal GenericParameterWithCodeAnalysis(InterfaceReferenceWithCodeAnalysis parent)
+            : this()
+        {
+            InterfaceReferenceParent = parent;
+        }
+
+        private GenericParameterWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
             node = new Node<GenericParameterWithCodeAnalysis, TypeSyntax>(this);
-            //type = new CachedChildNode<GenericParameterWithCodeAnalysis, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
-            //    this,
-            //    node,
-            //    syntax => null,
-            //    (syntax, value) => null,
-            //    (value, newParent) => { });
-            ClassReferenceParent = parent;
         }
 
         public override ITypeReferenceWithCodeAnalysis Type
@@ -60,22 +60,17 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        private void RefreshType()
+        internal InterfaceReferenceWithCodeAnalysis InterfaceReferenceParent
         {
-            TypeSyntax syntax = node.Syntax;
-            ITypeReferenceWithCodeAnalysis typeReference = base.Type;
-            ArrayTypeSyntax arrayType = syntax as ArrayTypeSyntax;
-            if (arrayType != null)
+            get { return node.GetParentNode<InterfaceReferenceWithCodeAnalysis>(); }
+            set
             {
-                if (!(typeReference is ArrayTypeReferenceWithCodeAnalysis))
-                {
-                    base.Type = new ArrayTypeReferenceWithCodeAnalysis(this);
-                }
-
-                return;
+                node.SetParentNode<InterfaceReferenceWithCodeAnalysis, NameSyntax>(
+                    value,
+                    parent => parent.GenericParameterList);
             }
         }
-
+        
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitGenericParameterWithCodeAnalysis(this);

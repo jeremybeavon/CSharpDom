@@ -162,16 +162,7 @@ namespace CSharpDom.CodeAnalysis
             RefreshList();
             list[list.IndexOf(child.Syntax)] = syntax;
         }
-
-        private TChildNode CreateChild(int index, TChildSyntax syntax)
-        {
-            TChildNode child = factory(node.Value);
-            syntaxMap.Add(child, syntax);
-            reverseSyntaxMap.Add(syntax, new IndexedItem(index, child));
-            setParent(child, node.Value);
-            return child;
-        }
-
+        
         private void InternalAdd(TChildNode item, TChildSyntax syntax)
         {
             setParent(item, node.Value);
