@@ -20,6 +20,12 @@ namespace CSharpDom.CodeAnalysis
             ClassReferenceParent = parent;
         }
 
+        internal GenericParameterWithCodeAnalysis(DelegateReferenceWithCodeAnalysis parent)
+            : this()
+        {
+            DelegateReferenceParent = parent;
+        }
+
         internal GenericParameterWithCodeAnalysis(InterfaceReferenceWithCodeAnalysis parent)
             : this()
         {
@@ -55,6 +61,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<ClassReferenceWithCodeAnalysis, NameSyntax>(
+                    value,
+                    parent => parent.GenericParameterList);
+            }
+        }
+
+        internal DelegateReferenceWithCodeAnalysis DelegateReferenceParent
+        {
+            get { return node.GetParentNode<DelegateReferenceWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<DelegateReferenceWithCodeAnalysis, NameSyntax>(
                     value,
                     parent => parent.GenericParameterList);
             }

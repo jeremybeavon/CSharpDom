@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -6,12 +7,16 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class ConstructorParameterWithCodeAnalysis :
         EditableConstructorParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
-        IHasSyntax<ParameterSyntax>
+        IHasSyntax<ParameterSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly ParameterWithCodeAnalysis parameter;
 
-        internal ConstructorParameterWithCodeAnalysis()
+        internal ConstructorParameterWithCodeAnalysis(ConstructorWithCodeAnalysis parent)
         {
+            internalId = Guid.NewGuid();
+            parameter = new ParameterWithCodeAnalysis(parent, this);
         }
 
         public ParameterWithCodeAnalysis Parameter
@@ -47,6 +52,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return parameter.Syntax; }
             set { parameter.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

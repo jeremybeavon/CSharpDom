@@ -18,6 +18,12 @@ namespace CSharpDom.CodeAnalysis
         private readonly AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax> attributes;
         private readonly CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis> parameterType;
 
+        internal ParameterWithCodeAnalysis(ConstructorWithCodeAnalysis parent, ConstructorParameterWithCodeAnalysis parameter)
+            : this(parameter)
+        {
+            ConstructorParent = parent;
+        }
+
         internal ParameterWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent, OperatorParameterWithCodeAnalysis parameter)
             : this(parameter)
         {
@@ -80,6 +86,18 @@ namespace CSharpDom.CodeAnalysis
         internal IAttributeCollection AttributeList
         {
             get { return attributes; }
+        }
+
+        internal ConstructorWithCodeAnalysis ConstructorParent
+        {
+            get { return node.GetParentNode<ConstructorWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax, ConstructorParameterWithCodeAnalysis>(
+                    value,
+                    (ConstructorParameterWithCodeAnalysis)wrapper,
+                    parent => parent.ParameterList);
+            }
         }
 
         internal ConversionOperatorWithCodeAnalysis ConversionOperatorParent

@@ -37,9 +37,29 @@ namespace CSharpDom.CodeAnalysis
             return tokens.Add(SyntaxFactory.Token(kind));
         }
 
+        public static SyntaxTokenList AddRange(this SyntaxTokenList tokens, IEnumerable<SyntaxKind> kinds)
+        {
+            return tokens.AddRange(kinds.Select(SyntaxFactory.Token));
+        }
+
+        public static SyntaxTokenList Insert(this SyntaxTokenList tokens, int index, SyntaxKind kind)
+        {
+            return tokens.Insert(index, SyntaxFactory.Token(kind));
+        }
+
+        public static SyntaxTokenList InsertRange(this SyntaxTokenList tokens, int index, IEnumerable<SyntaxKind> kinds)
+        {
+            return tokens.InsertRange(index, kinds.Select(SyntaxFactory.Token));
+        }
+
+        public static SyntaxTokenList InsertRange(this SyntaxTokenList tokens, int index, params SyntaxKind[] kinds)
+        {
+            return tokens.InsertRange(index, (IEnumerable<SyntaxKind>)kinds);
+        }
+
         public static SyntaxTokenList Remove(this SyntaxTokenList tokens, SyntaxKind kind)
         {
-            foreach (SyntaxToken token in tokens.Where(token => kind ==  token.Kind()))
+            foreach (SyntaxToken token in tokens.Where(token => kind == token.Kind()))
             {
                 tokens = tokens.Remove(token);
             }
@@ -92,15 +112,15 @@ namespace CSharpDom.CodeAnalysis
             switch (modifier)
             {
                 case ClassMemberVisibilityModifier.Public:
-                    return tokens.Add(SyntaxKind.PublicKeyword);
+                    return tokens.Insert(0, SyntaxKind.PublicKeyword);
                 case ClassMemberVisibilityModifier.Internal:
-                    return tokens.Add(SyntaxKind.InternalKeyword);
+                    return tokens.Insert(0, SyntaxKind.InternalKeyword);
                 case ClassMemberVisibilityModifier.ProtectedInternal:
-                    return tokens.Add(SyntaxKind.ProtectedKeyword).Add(SyntaxKind.InternalKeyword);
+                    return tokens.InsertRange(0, SyntaxKind.ProtectedKeyword, SyntaxKind.InternalKeyword);
                 case ClassMemberVisibilityModifier.Protected:
-                    return tokens.Add(SyntaxKind.ProtectedKeyword);
+                    return tokens.Insert(0, SyntaxKind.ProtectedKeyword);
                 case ClassMemberVisibilityModifier.Private:
-                    return tokens.Add(SyntaxKind.PrivateKeyword);
+                    return tokens.Insert(0, SyntaxKind.PrivateKeyword);
             }
 
             return tokens;
@@ -137,27 +157,44 @@ namespace CSharpDom.CodeAnalysis
 
         public static SyntaxTokenList WithClassMemberInheritanceModifier(
             this SyntaxTokenList tokens,
-            ClassMemberInheritanceModifier modifier)
+            ClassMemberInheritanceModifier modifier,
+            bool isAsync = false)
         {
             tokens = tokens.Remove(inheritanceModifierTokens);
+            IList<SyntaxKind> kinds = new List<SyntaxKind>();
             switch (modifier)
             {
                 case ClassMemberInheritanceModifier.New:
-                    return tokens.Add(SyntaxKind.NewKeyword);
+                    kinds.Add(SyntaxKind.NewKeyword);
+                    break;
                 case ClassMemberInheritanceModifier.NewStatic:
-                    return tokens.Add(SyntaxKind.NewKeyword).Add(SyntaxKind.StaticKeyword);
+                    kinds.Add(SyntaxKind.NewKeyword);
+                    kinds.Add(SyntaxKind.StaticKeyword);
+                    break;
                 case ClassMemberInheritanceModifier.NewVirtual:
-                    return tokens.Add(SyntaxKind.NewKeyword).Add(SyntaxKind.VirtualKeyword);
+                    kinds.Add(SyntaxKind.NewKeyword);
+                    kinds.Add(SyntaxKind.VirtualKeyword);
+                    break;
                 case ClassMemberInheritanceModifier.Override:
-                    return tokens.Add(SyntaxKind.OverrideKeyword);
+                    kinds.Add(SyntaxKind.OverrideKeyword);
+                    break;
                 case ClassMemberInheritanceModifier.SealedOverride:
-                    return tokens.Add(SyntaxKind.SealedKeyword).Add(SyntaxKind.OverrideKeyword);
+                    kinds.Add(SyntaxKind.SealedKeyword);
+                    kinds.Add(SyntaxKind.OverrideKeyword);
+                    break;
                 case ClassMemberInheritanceModifier.Static:
-                    return tokens.Add(SyntaxKind.StaticKeyword);
+                    kinds.Add(SyntaxKind.StaticKeyword);
+                    break;
                 case ClassMemberInheritanceModifier.Virtual:
-                    return tokens.Add(SyntaxKind.VirtualKeyword);
+                    kinds.Add(SyntaxKind.VirtualKeyword);
+                    break;
             }
 
+            if (kinds.Count != 0)
+            {
+                tokens = isAsync ? tokens.InsertRange(tokens.Count - 1, kinds) : tokens.AddRange(kinds);
+            }
+            
             return tokens;
         }
 

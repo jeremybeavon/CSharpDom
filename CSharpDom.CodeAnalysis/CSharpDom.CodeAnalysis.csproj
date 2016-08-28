@@ -106,9 +106,17 @@
     <Compile Include="BuiltInTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="CachedChildNode.cs" />
     <Compile Include="ClassAccessorWithCodeAnalysis.cs" />
+    <Compile Include="ClassConstructorWithCodeAnalysis.cs" />
+    <Compile Include="ClassEventPropertyWithCodeAnalysis.cs" />
     <Compile Include="ClassMethodWithCodeAnalysis.cs" />
     <Compile Include="ConstructorParameterWithCodeAnalysis.cs" />
+    <Compile Include="ConstructorWithCodeAnalysis.cs" />
     <Compile Include="ConversionOperatorWithCodeAnalysis.cs" />
+    <Compile Include="DelegateReferenceWithCodeAnalysis.cs" />
+    <Compile Include="EventDeclarationSyntaxExtensions.cs" />
+    <Compile Include="EventPropertyAttributeType.cs" />
+    <Compile Include="EventPropertyBodyType.cs" />
+    <Compile Include="EventPropertyWithCodeAnalysis.cs" />
     <Compile Include="ExtensionParameterWithCodeAnalysis.cs" />
     <Compile Include="FilteredAttributeList.cs" />
     <Compile Include="GenericParameterDeclarationList.cs" />
@@ -176,10 +184,7 @@
       <Name>CSharpDom</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Collections\" />
-    <Folder Include="Internal\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

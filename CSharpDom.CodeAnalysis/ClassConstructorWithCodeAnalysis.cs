@@ -1,55 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassConstructorWithCodeAnalysis :
-        AbstractClassConstructor<
+        EditableClassConstructor<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IClassType,
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasMethodDefinition
+        IHasSyntax<ConstructorDeclarationSyntax>
     {
         private readonly ConstructorWithCodeAnalysis constructor;
 
-        internal ClassConstructorWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, MethodDefinition constructor)
+        internal ClassConstructorWithCodeAnalysis(IClassType declaringType)
         {
-            this.constructor = new ConstructorWithCodeAnalysis(declaringType, constructor);
+            base.DeclaringType = declaringType;
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return constructor.Attributes; }
+            set { constructor.Attributes = value; }
         }
 
         public override MethodBodyWithCodeAnalysis Body
         {
             get { return constructor.Body; }
+            set { constructor.Body = value; }
         }
-
-        public MethodDefinition MethodDefinition
+        
+        public override IClassType DeclaringType
         {
-            get { return constructor.MethodDefinition; }
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return constructor.DeclaringType; }
-        }
-
-        public override IReadOnlyList<ConstructorParameterWithCodeAnalysis> Parameters
+        public override IList<ConstructorParameterWithCodeAnalysis> Parameters
         {
             get { return constructor.Parameters; }
+            set { constructor.Parameters = value; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return constructor.MethodDefinition.ClassVisibility(); }
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                ConstructorDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
+        }
+
+        public ConstructorDeclarationSyntax Syntax
+        {
+            get { return constructor.Syntax; }
+            set { constructor.Syntax = value; }
         }
     }
 }

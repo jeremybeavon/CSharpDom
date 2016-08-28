@@ -27,10 +27,33 @@ namespace CSharpDom.CodeAnalysis
             AccessorParent = parent;
         }
 
+        internal AttributeGroupWithCodeAnalysis(ConstructorWithCodeAnalysis parent)
+            : this()
+        {
+            ConstructorParent = parent;
+        }
+
         internal AttributeGroupWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent)
             : this()
         {
             ConversionOperatorParent = parent;
+        }
+
+        internal AttributeGroupWithCodeAnalysis(EventPropertyWithCodeAnalysis parent, EventPropertyAttributeType attributeType)
+            : this()
+        {
+            switch (attributeType)
+            {
+                case EventPropertyAttributeType.Normal:
+                    EventPropertyParent = parent;
+                    break;
+                case EventPropertyAttributeType.AddAccessor:
+                    EventPropertyAddAccessorParent = parent;
+                    break;
+                case EventPropertyAttributeType.RemoveAccessor:
+                    EventPropertyRemoveAccessorParent = parent;
+                    break;
+            }
         }
 
         internal AttributeGroupWithCodeAnalysis(GenericParameterDeclarationWithCodeAnalysis parent)
@@ -105,6 +128,12 @@ namespace CSharpDom.CodeAnalysis
             set { node.SetParentNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
 
+        internal ConstructorWithCodeAnalysis ConstructorParent
+        {
+            get { return node.GetParentNode<ConstructorWithCodeAnalysis>(); }
+            set { node.SetParentNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
         internal ConversionOperatorWithCodeAnalysis ConversionOperatorParent
         {
             get { return node.GetParentNode<ConversionOperatorWithCodeAnalysis>(); }
@@ -114,6 +143,24 @@ namespace CSharpDom.CodeAnalysis
                     value,
                     parent => parent.AttributeList);
             }
+        }
+
+        internal EventPropertyWithCodeAnalysis EventPropertyParent
+        {
+            get { return node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
+            set { node.SetParentNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
+        internal EventPropertyWithCodeAnalysis EventPropertyAddAccessorParent
+        {
+            get { return node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
+            set { node.SetParentNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(value, parent => parent.AddAttributeList); }
+        }
+
+        internal EventPropertyWithCodeAnalysis EventPropertyRemoveAccessorParent
+        {
+            get { return node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
+            set { node.SetParentNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(value, parent => parent.RemoveAttributeList); }
         }
 
         internal GenericParameterDeclarationWithCodeAnalysis GenericParameterParent

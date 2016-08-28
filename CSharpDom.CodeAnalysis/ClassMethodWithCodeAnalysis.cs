@@ -49,14 +49,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get
-            {
-                return base.InheritanceModifier;
-            }
-
+            get { return Syntax.Modifiers.ToClassMemberInheritanceModifier(); }
             set
             {
-                base.InheritanceModifier = value;
+                MethodDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberInheritanceModifier(value, IsAsync));
             }
         }
 
@@ -92,14 +89,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get
-            {
-                return base.Visibility;
-            }
-
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
             set
             {
-                base.Visibility = value;
+                MethodDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
 
