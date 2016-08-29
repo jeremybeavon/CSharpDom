@@ -30,6 +30,12 @@ namespace CSharpDom.CodeAnalysis
             ConversionOperatorParent = parent;
         }
 
+        internal ParameterWithCodeAnalysis(IndexerWithCodeAnalysis parent, IndexerParameterWithCodeAnalysis parameter)
+            : this(parameter)
+        {
+            IndexerParent = parent;
+        }
+
         internal ParameterWithCodeAnalysis(MethodWithCodeAnalysis parent, MethodParameterWithCodeAnalysis parameter)
             : this(parameter)
         {
@@ -109,6 +115,18 @@ namespace CSharpDom.CodeAnalysis
                     value,
                     syntax => syntax.ParameterList.Parameters[0],
                     WithParameter);
+            }
+        }
+
+        internal IndexerWithCodeAnalysis IndexerParent
+        {
+            get { return node.GetParentNode<IndexerWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, IndexerParameterWithCodeAnalysis>(
+                    value,
+                    (IndexerParameterWithCodeAnalysis)wrapper,
+                    parent => parent.ParameterList);
             }
         }
 

@@ -1,78 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
-using System.Reflection;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassIndexerWithCodeAnalysis :
-        AbstractClassIndexer<
+        EditableClassIndexer<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IClassType,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
-            ClassAccessorWithCodeAnalysis>
+            ClassAccessorWithCodeAnalysis>,
+        IHasSyntax<IndexerDeclarationSyntax>
     {
         private readonly IndexerWithCodeAnalysis indexer;
-        private readonly IInternalTypeWithCodeAnalysis declaringType;
-        private readonly ClassAccessorWithCodeAnalysis getAccessor;
-        private readonly ClassAccessorWithCodeAnalysis setAccessor;
 
-        internal ClassIndexerWithCodeAnalysis(IInternalTypeWithCodeAnalysis declaringType, PropertyDefinition indexer)
+        internal ClassIndexerWithCodeAnalysis(IClassType declaringType)
         {
-            this.indexer = new IndexerWithCodeAnalysis(declaringType, indexer);
-            this.declaringType = declaringType;
-            if (this.indexer.GetAccessor != null)
-            {
-                getAccessor = new ClassAccessorWithCodeAnalysis(this, this.indexer.GetAccessor);
-            }
-
-            if (this.indexer.SetAccessor != null)
-            {
-                setAccessor = new ClassAccessorWithCodeAnalysis(this, this.indexer.SetAccessor);
-            }
+            base.DeclaringType = declaringType;
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return indexer.Attributes; }
+            set { indexer.Attributes = value; }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public override IClassType DeclaringType
         {
-            get { return indexer.DeclaringType; }
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
         }
 
         public override ClassAccessorWithCodeAnalysis GetAccessor
         {
-            get { return getAccessor; }
+            get { return new ClassAccessorWithCodeAnalysis(indexer.GetAccessor); }
+            set { indexer.GetAccessor = value?.Accessor; }
+
         }
 
         public override ITypeReferenceWithCodeAnalysis IndexerType
         {
             get { return indexer.IndexerType; }
+            set { indexer.IndexerType = value; }
         }
 
         public override IndexerInheritanceModifier InheritanceModifier
         {
-            get { return indexer.PropertyDefinition.IndexerInheritanceModifier(declaringType); }
+            get { return Syntax.Modifiers.ToIndexerInheritanceModifier(); }
+            set
+            {
+                IndexerDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithIndexerInheritanceModifier(value));
+            }
         }
 
-        public override IReadOnlyList<IndexerParameterWithCodeAnalysis> Parameters
+        public override IList<IndexerParameterWithCodeAnalysis> Parameters
         {
             get { return indexer.Parameters; }
+            set { indexer.Parameters = value; }
         }
 
         public override ClassAccessorWithCodeAnalysis SetAccessor
         {
-            get { return setAccessor; }
+            get { return new ClassAccessorWithCodeAnalysis(indexer.SetAccessor); }
+            set { indexer.SetAccessor = value?.Accessor; }
         }
-
+        
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return indexer.PropertyDefinition.ClassVisibility(); }
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                IndexerDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
+        }
+
+        public IndexerDeclarationSyntax Syntax
+        {
+            get { return indexer.Syntax; }
+            set { indexer.Syntax = value; }
         }
     }
 }

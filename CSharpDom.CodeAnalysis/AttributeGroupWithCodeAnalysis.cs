@@ -56,10 +56,22 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        internal AttributeGroupWithCodeAnalysis(EventWithCodeAnalysis parent)
+            : this()
+        {
+            EventParent = parent;
+        }
+
         internal AttributeGroupWithCodeAnalysis(GenericParameterDeclarationWithCodeAnalysis parent)
             : this()
         {
             GenericParameterParent = parent;
+        }
+
+        internal AttributeGroupWithCodeAnalysis(IndexerWithCodeAnalysis parent)
+            : this()
+        {
+            IndexerParent = parent;
         }
 
         internal AttributeGroupWithCodeAnalysis(MethodWithCodeAnalysis parent)
@@ -145,6 +157,12 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        internal EventWithCodeAnalysis EventParent
+        {
+            get { return node.GetParentNode<EventWithCodeAnalysis>(); }
+            set { node.SetParentNode<EventWithCodeAnalysis, EventFieldDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
         internal EventPropertyWithCodeAnalysis EventPropertyParent
         {
             get { return node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
@@ -172,6 +190,12 @@ namespace CSharpDom.CodeAnalysis
                     value,
                     parent => parent.AttributeList);
             }
+        }
+
+        internal IndexerWithCodeAnalysis IndexerParent
+        {
+            get { return node.GetParentNode<IndexerWithCodeAnalysis>(); }
+            set { node.SetParentNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
 
         internal MethodWithCodeAnalysis MethodParent

@@ -21,6 +21,10 @@ namespace CSharpDom.CodeAnalysis
         private readonly AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> addAttributes;
         private readonly CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, MethodBodyWithCodeAnalysis> addBody;
         private readonly AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> attributes;
+        private readonly CachedChildNode<
+            EventPropertyWithCodeAnalysis,
+            EventDeclarationSyntax,
+            DelegateReferenceWithCodeAnalysis> eventType;
         private readonly AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> removeAttributes;
         private readonly CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, MethodBodyWithCodeAnalysis> removeBody;
 
@@ -45,6 +49,11 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent, EventPropertyAttributeType.Normal),
                 (child, parent) => child.EventPropertyParent = parent);
+            eventType = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, DelegateReferenceWithCodeAnalysis>(
+                node,
+                parent => new DelegateReferenceWithCodeAnalysis(parent),
+                (parent, child) => parent.Syntax.WithType(child.Syntax),
+                (child, parent) => child.TypeReference.EventPropertyParent = parent);
             removeAttributes = new AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 node,
                 syntax => syntax.GetAccessor(SyntaxKind.RemoveKeyword).AttributeLists,
@@ -74,6 +83,18 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return attributes; }
             set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
+        }
+
+        public override IType DeclaringType
+        {
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public override DelegateReferenceWithCodeAnalysis EventType
+        {
+            get { return eventType.Value; }
+            set { }
         }
 
         public override string Name
@@ -113,6 +134,11 @@ namespace CSharpDom.CodeAnalysis
         internal IAttributeCollection RemoveAttributeList
         {
             get { return removeAttributes; }
+        }
+
+        internal Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> Node
+        {
+            get { return node; }
         }
 
         private static EventDeclarationSyntax CreateAccessorAttributes(

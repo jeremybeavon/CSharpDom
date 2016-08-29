@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<TParentNode, TParentSyntax> node;
         private readonly Func<TParentSyntax, SyntaxList<AttributeListSyntax>, TParentSyntax> createList;
         private readonly FilteredAttributeList attributes;
-        private readonly FilteredAttributeList returnAttributes;
+        private readonly FilteredAttributeList targetedAttributes;
 
         public AttributeListWrapper(
             Node<TParentNode, TParentSyntax> node,
@@ -30,18 +30,18 @@ namespace CSharpDom.CodeAnalysis
             this.node = node;
             this.createList = createList;
             attributes = new FilteredAttributeList(this, attribute => attribute.Syntax.Target == null);
-            returnAttributes = new FilteredAttributeList(this, attribute => attribute.Syntax.Target != null);
+            targetedAttributes = new FilteredAttributeList(this, attribute => attribute.Syntax.Target != null);
         }
 
         public ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { node.Syntax = createList(node.Syntax, value.Concat(returnAttributes).ToAttributes()); }
+            set { node.Syntax = createList(node.Syntax, value.Concat(targetedAttributes).ToAttributes()); }
         }
 
-        public ICollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
+        public ICollection<AttributeGroupWithCodeAnalysis> TargetedAttributes
         {
-            get { return returnAttributes; }
+            get { return targetedAttributes; }
             set { node.Syntax = createList(node.Syntax, attributes.Concat(value).ToAttributes()); }
         }
     }

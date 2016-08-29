@@ -90,8 +90,8 @@ namespace CSharpDom.CodeAnalysis
         
         public override ICollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
         {
-            get { return attributes.ReturnAttributes; }
-            set { attributes.ReturnAttributes = value; }
+            get { return attributes.TargetedAttributes; }
+            set { attributes.TargetedAttributes = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis ReturnType

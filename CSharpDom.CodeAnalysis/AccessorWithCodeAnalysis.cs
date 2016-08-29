@@ -16,7 +16,19 @@ namespace CSharpDom.CodeAnalysis
         private readonly SyntaxKind accessorType;
         private readonly AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> attributes;
 
+        internal AccessorWithCodeAnalysis(IndexerWithCodeAnalysis parent, SyntaxKind accessorType)
+            : this(accessorType)
+        {
+            IndexerParent = parent;
+        }
+
         internal AccessorWithCodeAnalysis(PropertyWithCodeAnalysis parent, SyntaxKind accessorType)
+            : this(accessorType)
+        {
+            PropertyParent = parent;
+        }
+
+        private AccessorWithCodeAnalysis(SyntaxKind accessorType)
         {
             node = new Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(this);
             this.accessorType = accessorType;
@@ -26,9 +38,8 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 newParent => new AttributeGroupWithCodeAnalysis(newParent),
                 (child, newParent) => child.AccessorParent = newParent);
-
         }
-
+        
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
@@ -46,7 +57,19 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
         }
 
-        internal PropertyWithCodeAnalysis Parent
+        internal IndexerWithCodeAnalysis IndexerParent
+        {
+            get { return node.GetParentNode<IndexerWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode(
+                    value,
+                    syntax => IndexerWithCodeAnalysis.GetAccessorDeclaration(syntax, accessorType),
+                    IndexerWithCodeAnalysis.CreateAccessor(accessorType));
+            }
+        }
+
+        internal PropertyWithCodeAnalysis PropertyParent
         {
             get { return node.GetParentNode<PropertyWithCodeAnalysis>(); }
             set

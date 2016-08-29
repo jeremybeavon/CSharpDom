@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassEventCollectionWithCodeAnalysis :
-        AbstractClassEventCollection<
+        EditableClassEventCollection<
             ClassEventWithCodeAnalysis,
             ClassEventPropertyWithCodeAnalysis,
-            ExplicitInterfaceEventWithCodeAnalysis>
+            ExplicitInterfaceEventWithCodeAnalysis>,
+
     {
-        private readonly ClassTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly 
 
         internal ClassEventCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
         {

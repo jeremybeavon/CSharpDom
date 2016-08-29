@@ -14,22 +14,10 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<GenericParameterWithCodeAnalysis, TypeSyntax> node;
         private readonly CachedChildNode<GenericParameterWithCodeAnalysis, TypeSyntax, ITypeReferenceWithCodeAnalysis> type;
         
-        internal GenericParameterWithCodeAnalysis(ClassReferenceWithCodeAnalysis parent)
+        internal GenericParameterWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis parent)
             : this()
         {
-            ClassReferenceParent = parent;
-        }
-
-        internal GenericParameterWithCodeAnalysis(DelegateReferenceWithCodeAnalysis parent)
-            : this()
-        {
-            DelegateReferenceParent = parent;
-        }
-
-        internal GenericParameterWithCodeAnalysis(InterfaceReferenceWithCodeAnalysis parent)
-            : this()
-        {
-            InterfaceReferenceParent = parent;
+            UnspecifiedTypeReferenceParent = parent;
         }
 
         private GenericParameterWithCodeAnalysis()
@@ -54,40 +42,18 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return internalId; }
         }
-
-        internal ClassReferenceWithCodeAnalysis ClassReferenceParent
-        {
-            get { return node.GetParentNode<ClassReferenceWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassReferenceWithCodeAnalysis, NameSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
-        }
-
-        internal DelegateReferenceWithCodeAnalysis DelegateReferenceParent
-        {
-            get { return node.GetParentNode<DelegateReferenceWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<DelegateReferenceWithCodeAnalysis, NameSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
-        }
-
-        internal InterfaceReferenceWithCodeAnalysis InterfaceReferenceParent
-        {
-            get { return node.GetParentNode<InterfaceReferenceWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<InterfaceReferenceWithCodeAnalysis, NameSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
-        }
         
+        internal UnspecifiedTypeReferenceWithCodeAnalysis UnspecifiedTypeReferenceParent
+        {
+            get { return node.GetParentNode<UnspecifiedTypeReferenceWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(
+                    value,
+                    parent => parent.GenericParameterList);
+            }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitGenericParameterWithCodeAnalysis(this);

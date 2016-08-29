@@ -31,7 +31,7 @@ namespace CSharpDom.CodeAnalysis
             IInternalTypeReferenceWithCodeAnalysis,
             TypeSyntax> constraints;
         private readonly FilteredList<ITypeReferenceWithCodeAnalysis, GenericParameterReferenceWithCodeAnalysis> genericParameterConstraints;
-        private readonly FilteredList<ITypeReferenceWithCodeAnalysis, InterfaceReferenceWithCodeAnalysis> interfaceConstraints;
+        private readonly IList<InterfaceReferenceWithCodeAnalysis> interfaceConstraints;
 
         internal GenericParameterDeclarationWithCodeAnalysis(MethodWithCodeAnalysis parent)
             : this()

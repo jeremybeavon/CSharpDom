@@ -9,12 +9,21 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class IndexerParameterWithCodeAnalysis :
         EditableIndexerParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
-        IHasSyntax<ParameterSyntax>
+        IHasSyntax<ParameterSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly ParameterWithCodeAnalysis parameter;
 
-        internal IndexerParameterWithCodeAnalysis()
+        internal IndexerParameterWithCodeAnalysis(IndexerWithCodeAnalysis parent)
         {
+            internalId = Guid.NewGuid();
+            parameter = new ParameterWithCodeAnalysis(parent, this);
+        }
+        
+        public ParameterWithCodeAnalysis Parameter
+        {
+            get { return parameter; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -50,6 +59,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return parameter.Syntax; }
             set { parameter.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

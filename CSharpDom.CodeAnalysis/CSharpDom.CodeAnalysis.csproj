@@ -98,6 +98,7 @@
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
     <Compile Include="AbstractWrappedNode.cs" />
+    <Compile Include="AccessorListSyntaxExtensions.cs" />
     <Compile Include="AccessorWithCodeAnalysis.cs" />
     <Compile Include="ArrayTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="AttributeGroupWithCodeAnalysis.cs" />
@@ -108,6 +109,8 @@
     <Compile Include="ClassAccessorWithCodeAnalysis.cs" />
     <Compile Include="ClassConstructorWithCodeAnalysis.cs" />
     <Compile Include="ClassEventPropertyWithCodeAnalysis.cs" />
+    <Compile Include="ClassEventWithCodeAnalysis.cs" />
+    <Compile Include="ClassIndexerWithCodeAnalysis.cs" />
     <Compile Include="ClassMethodWithCodeAnalysis.cs" />
     <Compile Include="ConstructorParameterWithCodeAnalysis.cs" />
     <Compile Include="ConstructorWithCodeAnalysis.cs" />
@@ -117,6 +120,8 @@
     <Compile Include="EventPropertyAttributeType.cs" />
     <Compile Include="EventPropertyBodyType.cs" />
     <Compile Include="EventPropertyWithCodeAnalysis.cs" />
+    <Compile Include="EventWithCodeAnalysis.cs" />
+    <Compile Include="ExplicitInterfaceEventWithCodeAnalysis.cs" />
     <Compile Include="ExtensionParameterWithCodeAnalysis.cs" />
     <Compile Include="FilteredAttributeList.cs" />
     <Compile Include="GenericParameterDeclarationList.cs" />
@@ -129,6 +134,7 @@
     <Compile Include="IImmutableList.cs" />
     <Compile Include="IInternalTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="IndexerParameterWithCodeAnalysis.cs" />
+    <Compile Include="IndexerWithCodeAnalysis.cs" />
     <Compile Include="InterfaceReferenceWithCodeAnalysis.cs" />
     <Compile Include="ListFactory.cs" />
     <Compile Include="ImmutableSeparatedSyntaxList.cs" />

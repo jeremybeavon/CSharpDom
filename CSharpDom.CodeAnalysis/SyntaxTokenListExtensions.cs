@@ -31,6 +31,16 @@ namespace CSharpDom.CodeAnalysis
             SyntaxKind.ParamsKeyword,
             SyntaxKind.RefKeyword
         });
+        private static readonly IDictionary<ClassMemberInheritanceModifier, IndexerInheritanceModifier> indexerModifierMap =
+            new Dictionary<ClassMemberInheritanceModifier, IndexerInheritanceModifier>()
+            {
+                { ClassMemberInheritanceModifier.New, IndexerInheritanceModifier.New },
+                { ClassMemberInheritanceModifier.NewVirtual, IndexerInheritanceModifier.NewVirtual },
+                { ClassMemberInheritanceModifier.None, IndexerInheritanceModifier.None },
+                { ClassMemberInheritanceModifier.Override, IndexerInheritanceModifier.Override },
+                { ClassMemberInheritanceModifier.SealedOverride, IndexerInheritanceModifier.SealedOverride },
+                { ClassMemberInheritanceModifier.Virtual, IndexerInheritanceModifier.Virtual }
+            };
 
         public static SyntaxTokenList Add(this SyntaxTokenList tokens, SyntaxKind kind)
         {
@@ -196,6 +206,18 @@ namespace CSharpDom.CodeAnalysis
             }
             
             return tokens;
+        }
+
+        public static IndexerInheritanceModifier ToIndexerInheritanceModifier(this SyntaxTokenList modifiers)
+        {
+            return indexerModifierMap[modifiers.ToClassMemberInheritanceModifier()];
+        }
+
+        public static SyntaxTokenList WithIndexerInheritanceModifier(
+            this SyntaxTokenList tokens,
+            IndexerInheritanceModifier modifier)
+        {
+            return tokens.WithClassMemberInheritanceModifier(indexerModifierMap.First(entry => entry.Value == modifier).Key);
         }
 
         public static ParameterModifier ToParameterModifier(this SyntaxTokenList modifiers)

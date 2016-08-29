@@ -1,60 +1,80 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassEventWithCodeAnalysis :
-        AbstractClassEvent<
+        EditableClassEvent<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
-            DelegateReferenceWithCodeAnalysis>
+            IClassType,
+            DelegateReferenceWithCodeAnalysis>,
+        IHasSyntax<EventFieldDeclarationSyntax>
     {
         private readonly EventWithCodeAnalysis @event;
-        private readonly IInternalTypeWithCodeAnalysis declaringType;
 
-        internal ClassEventWithCodeAnalysis(IInternalTypeWithCodeAnalysis declaringType, EventDefinition @event)
+        internal ClassEventWithCodeAnalysis(IClassType declaringType)
         {
-            this.@event = new EventWithCodeAnalysis(declaringType, @event);
-            this.declaringType = declaringType;
+            base.DeclaringType = declaringType;
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return @event.Attributes; }
+            get { return @event.AttributeList.Attributes; }
+            set { @event.AttributeList.Attributes = value; }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public override IClassType DeclaringType
         {
-            get { return @event.DeclaringType; }
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
         }
 
         public override DelegateReferenceWithCodeAnalysis EventType
         {
             get { return @event.EventType; }
+            set { @event.EventType = value; }
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> FieldAttributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> FieldAttributes
         {
-            get { return new AttributeGroupWithCodeAnalysis[0]; }
+            get { return @event.AttributeList.TargetedAttributes; }
+            set { @event.AttributeList.TargetedAttributes = value; }
         }
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return @event.EventDefinition.InheritanceModifier(declaringType); }
+            get { return Syntax.Modifiers.ToClassMemberInheritanceModifier(); }
+            set
+            {
+                EventFieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberInheritanceModifier(value));
+            }
         }
 
         public override string Name
         {
             get { return @event.Name; }
+            set { @event.Name = value; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return @event.EventDefinition.ClassVisibility(); }
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                EventFieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
+        }
+
+        public EventFieldDeclarationSyntax Syntax
+        {
+            get { return @event.Syntax; }
+            set { @event.Syntax = value; }
         }
     }
 }
