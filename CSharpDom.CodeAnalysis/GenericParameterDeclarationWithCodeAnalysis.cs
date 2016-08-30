@@ -24,7 +24,8 @@ namespace CSharpDom.CodeAnalysis
         private readonly CachedChildNode<
             GenericParameterDeclarationWithCodeAnalysis,
             GenericParameterDeclarationSyntax,
-            ClassReferenceWithCodeAnalysis> baseClassConstraint;
+            ClassReferenceWithCodeAnalysis,
+            NameSyntax> baseClassConstraint;
         private readonly SeparatedSyntaxListWrapper<
             GenericParameterDeclarationWithCodeAnalysis,
             GenericParameterDeclarationSyntax,

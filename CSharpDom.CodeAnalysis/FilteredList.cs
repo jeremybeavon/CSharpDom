@@ -13,7 +13,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly IList<TParent> list;
         private readonly Func<TChild, bool> filter;
 
-        public FilteredList(IList<TParent> list, Func<TChild, bool> filter)
+        public FilteredList(IList<TParent> list, Func<TChild, bool> filter = null)
         {
             this.list = list;
             this.filter = filter;

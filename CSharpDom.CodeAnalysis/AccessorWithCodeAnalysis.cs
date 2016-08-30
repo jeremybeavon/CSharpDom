@@ -9,23 +9,21 @@ using System.Linq;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AccessorWithCodeAnalysis :
-        EditableAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
+        EditableAccessor<AttributeGroupWithCodeAnalysis>,
         IHasSyntax<AccessorDeclarationSyntax>
     {
         private readonly Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> node;
         private readonly SyntaxKind accessorType;
         private readonly AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> attributes;
-
-        internal AccessorWithCodeAnalysis(IndexerWithCodeAnalysis parent, SyntaxKind accessorType)
-            : this(accessorType)
+        
+        internal AccessorWithCodeAnalysis(IndexerWithCodeAnalysis parent, SyntaxKind kind)
+            : this(kind)
         {
-            IndexerParent = parent;
         }
 
-        internal AccessorWithCodeAnalysis(PropertyWithCodeAnalysis parent, SyntaxKind accessorType)
-            : this(accessorType)
+        internal AccessorWithCodeAnalysis(PropertyWithCodeAnalysis parent, SyntaxKind kind)
+            : this(kind)
         {
-            PropertyParent = parent;
         }
 
         private AccessorWithCodeAnalysis(SyntaxKind accessorType)
@@ -79,12 +77,6 @@ namespace CSharpDom.CodeAnalysis
                     syntax => PropertyWithCodeAnalysis.GetAccessorDeclaration(syntax, accessorType),
                     PropertyWithCodeAnalysis.CreateAccessor(accessorType));
             }
-        }
-
-        internal TParent GetParent<TParent>()
-            where TParent : class
-        {
-            return node.GetParentNode<TParent>();
         }
     }
 }

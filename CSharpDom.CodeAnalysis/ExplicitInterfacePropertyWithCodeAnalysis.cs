@@ -13,9 +13,9 @@ namespace CSharpDom.CodeAnalysis
             IType,
             InterfaceReferenceWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
-            AccessorWithCodeAnalysis>
+            AccessorWithBodyWithCodeAnalysis>
     {
-        private readonly PropertyWithCodeAnalysis property;
+        private readonly PropertyWithBodyWithCodeAnalysis property;
         private readonly CachedChildNode<
             PropertyWithCodeAnalysis,
             PropertyDeclarationSyntax,
@@ -39,7 +39,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IType DeclaringType
         {
-            get { return property.DeclaringType; }
+            get { return base.DeclaringType; }
             set { throw new NotSupportedException(); }
         }
 
@@ -49,7 +49,7 @@ namespace CSharpDom.CodeAnalysis
             set { explicitInterface.Value = value; }
         }
 
-        public override AccessorWithCodeAnalysis GetAccessor
+        public override AccessorWithBodyWithCodeAnalysis GetAccessor
         {
             get { return property.GetAccessor; }
             set { property.GetAccessor = value; }
@@ -67,7 +67,7 @@ namespace CSharpDom.CodeAnalysis
             set { property.PropertyType = value; }
         }
 
-        public override AccessorWithCodeAnalysis SetAccessor
+        public override AccessorWithBodyWithCodeAnalysis SetAccessor
         {
             get { return property.SetAccessor; }
             set { property.SetAccessor = value; }

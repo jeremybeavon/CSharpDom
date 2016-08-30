@@ -1,63 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using System.Reflection;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class InterfaceEventWithCodeAnalysis :
-        AbstractInterfaceEvent<
+        EditableInterfaceEvent<
             AttributeGroupWithCodeAnalysis,
-            IBasicTypeWithCodeAnalysis,
-            DelegateReferenceWithCodeAnalysis>
+            IBasicType,
+            DelegateReferenceWithCodeAnalysis>,
+        IHasSyntax<EventFieldDeclarationSyntax>
     {
-        private readonly EventDefinition @event;
-        private readonly Lazy<Attributes> attributes;
-        private readonly IBasicTypeWithCodeAnalysis declaringType;
-        private readonly DelegateReferenceWithCodeAnalysis eventType;
-
-        internal InterfaceEventWithCodeAnalysis(IBasicTypeWithCodeAnalysis declaringType, EventDefinition @event)
+        private readonly EventWithCodeAnalysis @event;
+        
+        internal InterfaceEventWithCodeAnalysis(IBasicType declaringType)
         {
-            this.@event = @event;
-            this.declaringType = declaringType;
-            AssemblyWithCodeAnalysis assembly = declaringType.Assembly;
-            attributes = new Lazy<Attributes>(() => new Attributes(assembly, @event));
-            eventType = new DelegateReferenceWithCodeAnalysis(assembly, @event.EventType);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            get { return @event.Attributes; }
+            set { @event.Attributes = value; }
         }
 
-        public override IBasicTypeWithCodeAnalysis DeclaringType
+        public override IBasicType DeclaringType
         {
-            get { return declaringType; }
+            get { return @event.DeclaringType; }
+            set { @event.DeclaringType = value; }
         }
 
         public override DelegateReferenceWithCodeAnalysis EventType
         {
-            get { return eventType; }
+            get { return @event.EventType; }
+            set { @event.EventType = value; }
         }
 
         public override InterfaceMemberInheritanceModifier InheritanceModifier
         {
-            get
-            {
-                if (@event.AddMethod.IsHideBySig)
-                {
-                    return InterfaceMemberInheritanceModifier.New;
-                }
-
-                return InterfaceMemberInheritanceModifier.None;
-            }
+            get { return Syntax.Modifiers.ToInterfaceMemberInheritanceModifier(); }
+            set { Syntax = Syntax.WithModifiers(value.ToTokens()); }
         }
 
         public override string Name
         {
             get { return @event.Name; }
+            set { @event.Name = value; }
+        }
+
+        public EventFieldDeclarationSyntax Syntax
+        {
+            get { return @event.Syntax; }
+            set { @event.Syntax = value; }
         }
     }
 }

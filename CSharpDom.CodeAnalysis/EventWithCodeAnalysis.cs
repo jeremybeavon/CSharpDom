@@ -13,8 +13,10 @@ namespace CSharpDom.CodeAnalysis
             AttributeGroupWithCodeAnalysis,
             IBasicType,
             DelegateReferenceWithCodeAnalysis>,
-        IHasSyntax<EventFieldDeclarationSyntax>
+        IHasSyntax<EventFieldDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly Node<EventWithCodeAnalysis, EventFieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax> attributes;
         private readonly CachedChildNode<
@@ -25,6 +27,7 @@ namespace CSharpDom.CodeAnalysis
 
         private EventWithCodeAnalysis(IBasicType declaringType)
         {
+            internalId = Guid.NewGuid();
             node = new Node<EventWithCodeAnalysis, EventFieldDeclarationSyntax>(this);
             base.DeclaringType = declaringType;
             attributes = new AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax>(
@@ -79,6 +82,11 @@ namespace CSharpDom.CodeAnalysis
         internal AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax> AttributeList
         {
             get { return attributes; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

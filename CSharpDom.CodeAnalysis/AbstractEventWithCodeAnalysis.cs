@@ -1,46 +1,63 @@
 ﻿using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractEventWithCodeAnalysis :
-        AbstractAbstractEvent<
+        EditableAbstractEvent<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
-            DelegateReferenceWithCodeAnalysis>
+            IAbstractType,
+            DelegateReferenceWithCodeAnalysis>,
+        IHasSyntax<EventFieldDeclarationSyntax>
     {
         private readonly EventWithCodeAnalysis @event;
 
-        internal AbstractEventWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, EventDefinition @event)
+        internal AbstractEventWithCodeAnalysis(IAbstractType declaringType)
         {
-            this.@event = new EventWithCodeAnalysis(declaringType, @event);
+            base.DeclaringType = declaringType;
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return @event.Attributes; }
+            set { @event.Attributes = value; }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public override IAbstractType DeclaringType
         {
-            get { return @event.DeclaringType; }
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
         }
 
         public override DelegateReferenceWithCodeAnalysis EventType
         {
             get { return @event.EventType; }
+            set { @event.EventType = value; }
         }
         
         public override string Name
         {
             get { return @event.Name; }
+            set { @event.Name = value; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return @event.EventDefinition.AddMethod.ClassVisibility(); }
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                EventFieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
+        }
+
+        public EventFieldDeclarationSyntax Syntax
+        {
+            get { return @event.Syntax; }
+            set { @event.Syntax = value; }
         }
     }
 }

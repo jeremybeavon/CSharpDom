@@ -1,50 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class InterfaceIndexerWithCodeAnalysis :
-        EditableInterfaceIndexer<
+    public sealed class IndexerWithBodyWithCodeAnalysis :
+        EditableIndexer<
             AttributeGroupWithCodeAnalysis,
             IBasicType,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
-            InterfaceAccessorWithCodeAnalysis>,
+            AccessorWithBodyWithCodeAnalysis>,
         IHasSyntax<IndexerDeclarationSyntax>
     {
         private readonly IndexerWithCodeAnalysis indexer;
 
+        private IndexerWithBodyWithCodeAnalysis(IBasicType declaringType)
+        {
+            
+        }
+
+        public IndexerWithCodeAnalysis Indexer
+        {
+            get { return indexer; }
+        }
+
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return indexer.Attributes; }
-            set { indexer.Attributes = value; }
+            set { indexer.Attributes = value; ; }
         }
 
         public override IBasicType DeclaringType
         {
-            get { return indexer.DeclaringType; }
-            set { indexer.DeclaringType = value; }
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
         }
 
-        public override InterfaceAccessorWithCodeAnalysis GetAccessor
+        public override AccessorWithBodyWithCodeAnalysis GetAccessor
         {
-            get { return new InterfaceAccessorWithCodeAnalysis(indexer.GetAccessor); }
+            get { return new AccessorWithBodyWithCodeAnalysis(indexer.GetAccessor); }
             set { indexer.GetAccessor = value?.Accessor; }
         }
-        
+
         public override ITypeReferenceWithCodeAnalysis IndexerType
         {
             get { return indexer.IndexerType; }
             set { indexer.IndexerType = value; }
-        }
-
-        public override InterfaceMemberInheritanceModifier InheritanceModifier
-        {
-            get { return Syntax.Modifiers.ToInterfaceMemberInheritanceModifier(); }
-            set { Syntax = Syntax.WithModifiers(value.ToTokens()); }
         }
 
         public override IList<IndexerParameterWithCodeAnalysis> Parameters
@@ -53,9 +59,9 @@ namespace CSharpDom.CodeAnalysis
             set { indexer.Parameters = value; }
         }
 
-        public override InterfaceAccessorWithCodeAnalysis SetAccessor
+        public override AccessorWithBodyWithCodeAnalysis SetAccessor
         {
-            get { return new InterfaceAccessorWithCodeAnalysis(indexer.SetAccessor); }
+            get { return new AccessorWithBodyWithCodeAnalysis(indexer.SetAccessor); }
             set { indexer.SetAccessor = value?.Accessor; }
         }
 

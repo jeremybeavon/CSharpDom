@@ -15,7 +15,7 @@ namespace CSharpDom.CodeAnalysis
             ClassAccessorWithCodeAnalysis>,
         IHasSyntax<IndexerDeclarationSyntax>
     {
-        private readonly IndexerWithCodeAnalysis indexer;
+        private readonly IndexerWithBodyWithCodeAnalysis indexer;
 
         internal ClassIndexerWithCodeAnalysis(IClassType declaringType)
         {

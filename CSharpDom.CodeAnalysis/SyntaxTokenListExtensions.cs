@@ -25,6 +25,13 @@ namespace CSharpDom.CodeAnalysis
             SyntaxKind.StaticKeyword,
             SyntaxKind.VirtualKeyword
         });
+        private static readonly ISet<SyntaxKind> classFieldModifierTokens = new HashSet<SyntaxKind>(new[]
+        {
+            SyntaxKind.NewKeyword,
+            SyntaxKind.ReadOnlyKeyword,
+            SyntaxKind.StaticKeyword,
+            SyntaxKind.VolatileKeyword
+        });
         private static readonly ISet<SyntaxKind> parameterModifierTokens = new HashSet<SyntaxKind>(new[]
         {
             SyntaxKind.OutKeyword,
@@ -50,6 +57,11 @@ namespace CSharpDom.CodeAnalysis
         public static SyntaxTokenList AddRange(this SyntaxTokenList tokens, IEnumerable<SyntaxKind> kinds)
         {
             return tokens.AddRange(kinds.Select(SyntaxFactory.Token));
+        }
+
+        public static SyntaxTokenList AddRange(this SyntaxTokenList tokens, params SyntaxKind[] kinds)
+        {
+            return tokens.AddRange((IEnumerable<SyntaxKind>)kinds);
         }
 
         public static SyntaxTokenList Insert(this SyntaxTokenList tokens, int index, SyntaxKind kind)
@@ -218,6 +230,82 @@ namespace CSharpDom.CodeAnalysis
             IndexerInheritanceModifier modifier)
         {
             return tokens.WithClassMemberInheritanceModifier(indexerModifierMap.First(entry => entry.Value == modifier).Key);
+        }
+
+        public static InterfaceMemberInheritanceModifier ToInterfaceMemberInheritanceModifier(this SyntaxTokenList modifiers)
+        {
+            return modifiers.Any(SyntaxKind.NewKeyword) ?
+                    InterfaceMemberInheritanceModifier.New :
+                    InterfaceMemberInheritanceModifier.None;
+        }
+
+        public static ClassFieldModifier ToClassFieldModifier(this SyntaxTokenList modifiers)
+        {
+            bool isNew = modifiers.Any(SyntaxKind.NewKeyword);
+            bool isStatic = modifiers.Any(SyntaxKind.StaticKeyword);
+            if (modifiers.Any(SyntaxKind.ReadOnlyKeyword))
+            {
+                if (isNew)
+                {
+                    return isStatic ? ClassFieldModifier.NewStaticReadOnly : ClassFieldModifier.NewReadOnly;
+                }
+
+                return isStatic ? ClassFieldModifier.StaticReadOnly : ClassFieldModifier.ReadOnly;
+            }
+
+            if (modifiers.Any(SyntaxKind.VolatileKeyword))
+            {
+                if (isNew)
+                {
+                    return isStatic ? ClassFieldModifier.NewStaticVolatile : ClassFieldModifier.NewVolatile;
+                }
+
+                return isStatic ? ClassFieldModifier.StaticVolatile : ClassFieldModifier.Volatile;
+            }
+
+            if (isStatic)
+            {
+                return isNew ? ClassFieldModifier.NewStatic : ClassFieldModifier.Static;
+            }
+
+            if (isNew)
+            {
+                return ClassFieldModifier.New;
+            }
+
+            return ClassFieldModifier.None;
+        }
+
+        public static SyntaxTokenList WithClassFieldModifier(this SyntaxTokenList tokens, ClassFieldModifier modifier)
+        {
+            tokens = tokens.Remove(classFieldModifierTokens);
+            switch (modifier)
+            {
+                case ClassFieldModifier.New:
+                    return tokens.Add(SyntaxKind.NewKeyword);
+                case ClassFieldModifier.NewReadOnly:
+                    return tokens.AddRange(SyntaxKind.NewKeyword, SyntaxKind.ReadOnlyKeyword);
+                case ClassFieldModifier.NewStatic:
+                    return tokens.AddRange(SyntaxKind.NewKeyword, SyntaxKind.StaticKeyword);
+                case ClassFieldModifier.NewStaticReadOnly:
+                    return tokens.AddRange(SyntaxKind.NewKeyword, SyntaxKind.StaticKeyword, SyntaxKind.ReadOnlyKeyword);
+                case ClassFieldModifier.NewStaticVolatile:
+                    return tokens.AddRange(SyntaxKind.NewKeyword, SyntaxKind.StaticKeyword, SyntaxKind.VolatileKeyword);
+                case ClassFieldModifier.NewVolatile:
+                    return tokens.AddRange(SyntaxKind.NewKeyword, SyntaxKind.VolatileKeyword);
+                case ClassFieldModifier.ReadOnly:
+                    return tokens.Add(SyntaxKind.ReadOnlyKeyword);
+                case ClassFieldModifier.Static:
+                    return tokens.Add(SyntaxKind.StaticKeyword);
+                case ClassFieldModifier.StaticReadOnly:
+                    return tokens.AddRange(SyntaxKind.StaticKeyword, SyntaxKind.ReadOnlyKeyword);
+                case ClassFieldModifier.StaticVolatile:
+                    return tokens.AddRange(SyntaxKind.StaticKeyword, SyntaxKind.VolatileKeyword);
+                case ClassFieldModifier.Volatile:
+                    return tokens.Add(SyntaxKind.VolatileKeyword);
+            }
+
+            return tokens;
         }
 
         public static ParameterModifier ToParameterModifier(this SyntaxTokenList modifiers)

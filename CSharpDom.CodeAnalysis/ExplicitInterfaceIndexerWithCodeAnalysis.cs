@@ -14,10 +14,10 @@ namespace CSharpDom.CodeAnalysis
             InterfaceReferenceWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
-            AccessorWithCodeAnalysis>,
+            AccessorWithBodyWithCodeAnalysis>,
         IHasSyntax<IndexerDeclarationSyntax>
     {
-        private readonly IndexerWithCodeAnalysis indexer;
+        private readonly IndexerWithBodyWithCodeAnalysis indexer;
         private readonly CachedChildNode<
             IndexerWithCodeAnalysis,
             IndexerDeclarationSyntax,
@@ -28,7 +28,7 @@ namespace CSharpDom.CodeAnalysis
         {
             base.DeclaringType = declaringType;
             explicitInterface = new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
-                indexer.Node,
+                indexer.Indexer.Node,
                 parent => new InterfaceReferenceWithCodeAnalysis(parent),
                 (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
                 (child, parent) => child.TypeReference.ExplicitInterfaceIndexerParent = parent);
@@ -52,7 +52,7 @@ namespace CSharpDom.CodeAnalysis
             set { explicitInterface.Value = value; }
         }
 
-        public override AccessorWithCodeAnalysis GetAccessor
+        public override AccessorWithBodyWithCodeAnalysis GetAccessor
         {
             get { return indexer.GetAccessor; }
             set { indexer.GetAccessor = value; }
@@ -70,7 +70,7 @@ namespace CSharpDom.CodeAnalysis
             set { indexer.Parameters = value; }
         }
 
-        public override AccessorWithCodeAnalysis SetAccessor
+        public override AccessorWithBodyWithCodeAnalysis SetAccessor
         {
             get { return indexer.SetAccessor; }
             set { indexer.SetAccessor = value; }

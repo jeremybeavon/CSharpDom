@@ -12,7 +12,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Guid internalId;
         private readonly Node<GenericParameterWithCodeAnalysis, TypeSyntax> node;
-        private readonly CachedChildNode<GenericParameterWithCodeAnalysis, TypeSyntax, ITypeReferenceWithCodeAnalysis> type;
+        private readonly CachedChildNode<
+            GenericParameterWithCodeAnalysis,
+            TypeSyntax,
+            ITypeReferenceWithCodeAnalysis,
+            TypeSyntax> type;
         
         internal GenericParameterWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis parent)
             : this()

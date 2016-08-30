@@ -1,21 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
 using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class InterfacePropertyWithCodeAnalysis :
-        EditableInterfaceProperty<
+    public sealed class PropertyWithBodyWithCodeAnalysis :
+        EditableProperty<
             AttributeGroupWithCodeAnalysis,
             IBasicType,
             ITypeReferenceWithCodeAnalysis,
-            InterfaceAccessorWithCodeAnalysis>,
+            AccessorWithBodyWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>
     {
         private readonly PropertyWithCodeAnalysis property;
-        
+
+        internal PropertyWithBodyWithCodeAnalysis(PropertyWithCodeAnalysis property)
+        {
+            this.property = property;
+        }
+
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return property.Attributes; }
@@ -25,21 +33,15 @@ namespace CSharpDom.CodeAnalysis
         public override IBasicType DeclaringType
         {
             get { return property.DeclaringType; }
-            set { property.DeclaringType = value; }
+            set { throw new NotSupportedException(); }
         }
 
-        public override InterfaceAccessorWithCodeAnalysis GetAccessor
+        public override AccessorWithBodyWithCodeAnalysis GetAccessor
         {
-            get { return new InterfaceAccessorWithCodeAnalysis(property.GetAccessor); }
+            get { return new AccessorWithBodyWithCodeAnalysis(property.GetAccessor); }
             set { property.GetAccessor = value?.Accessor; }
         }
-
-        public override InterfaceMemberInheritanceModifier InheritanceModifier
-        {
-            get { return Syntax.Modifiers.ToInterfaceMemberInheritanceModifier(); }
-            set { Syntax = Syntax.WithModifiers(value.ToTokens()); }
-        }
-
+        
         public override string Name
         {
             get { return property.Name; }
@@ -52,9 +54,9 @@ namespace CSharpDom.CodeAnalysis
             set { property.PropertyType = value; }
         }
 
-        public override InterfaceAccessorWithCodeAnalysis SetAccessor
+        public override AccessorWithBodyWithCodeAnalysis SetAccessor
         {
-            get { return new InterfaceAccessorWithCodeAnalysis(property.SetAccessor); }
+            get { return new AccessorWithBodyWithCodeAnalysis(property.SetAccessor); }
             set { property.SetAccessor = value?.Accessor; }
         }
 
@@ -62,6 +64,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return property.Syntax; }
             set { property.Syntax = value; }
+        }
+        
+        internal Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> Node
+        {
+            get { return property.Node; }
         }
     }
 }

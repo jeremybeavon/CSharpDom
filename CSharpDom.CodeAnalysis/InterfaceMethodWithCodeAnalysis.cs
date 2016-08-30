@@ -1,87 +1,74 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using System.Reflection;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class InterfaceMethodWithCodeAnalysis :
-        AbstractInterfaceMethod<
+        EditableInterfaceMethod<
             AttributeGroupWithCodeAnalysis,
-            IBasicTypeWithCodeAnalysis,
+            IBasicType,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
-            MethodParameterWithCodeAnalysis>
+            MethodParameterWithCodeAnalysis>,
+        IHasSyntax<MethodDeclarationSyntax>
     {
-        private readonly MethodDefinition method;
-        private readonly IBasicTypeWithCodeAnalysis declaringType;
-        private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<Attributes> returnAttributes;
-        private readonly Lazy<GenericParameterDeclarations> genericParameters;
-        private readonly ITypeReferenceWithCodeAnalysis returnType;
-        private readonly Lazy<Parameters<MethodParameterWithCodeAnalysis>> parameters;
+        private readonly MethodWithCodeAnalysis method;
 
-        internal InterfaceMethodWithCodeAnalysis(IBasicTypeWithCodeAnalysis declaringType, MethodDefinition method)
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            this.method = method;
-            this.declaringType = declaringType;
-            AssemblyWithCodeAnalysis assembly = declaringType.Assembly;
-            attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
-            returnAttributes = new Lazy<Attributes>(() => new Attributes(assembly, method.MethodReturnType));
-            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, method));
-            returnType = TypeReferenceWithCodeAnalysisFactory.CreateReference(assembly, method.ReturnType, method);
-            parameters = new Lazy<Parameters<MethodParameterWithCodeAnalysis>>(
-                () => new Parameters<MethodParameterWithCodeAnalysis>(assembly, method, parameter => new MethodParameterWithCodeAnalysis(parameter)));
+            get { return method.Attributes; }
+            set { method.Attributes = value; }
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override IBasicType DeclaringType
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            get { return method.DeclaringType; }
+            set { method.DeclaringType = value; }
         }
 
-        public override IBasicTypeWithCodeAnalysis DeclaringType
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
-            get { return declaringType; }
-        }
-
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
-        {
-            get { return genericParameters.Value.GenericParameterDeclarationsWithCodeAnalysis; }
+            get { return method.GenericParameters; }
+            set { method.GenericParameters = value; }
         }
 
         public override InterfaceMemberInheritanceModifier InheritanceModifier
         {
-            get
-            {
-                if (method.IsHideBySig)
-                {
-                    return InterfaceMemberInheritanceModifier.New;
-                }
-
-                return InterfaceMemberInheritanceModifier.None;
-            }
+            get { return Syntax.Modifiers.ToInterfaceMemberInheritanceModifier(); }
+            set { Syntax = Syntax.WithModifiers(value.ToTokens()); }
         }
         
         public override string Name
         {
             get { return method.Name; }
+            set { method.Name = value; }
         }
 
-        public override IReadOnlyList<MethodParameterWithCodeAnalysis> Parameters
+        public override IList<MethodParameterWithCodeAnalysis> Parameters
         {
-            get { return parameters.Value.ParametersWithCodeAnalysis; }
+            get { return method.Parameters; }
+            set { method.Parameters = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis ReturnType
         {
-            get { return returnType; }
+            get { return method.ReturnType; }
+            set { method.ReturnType = value; }
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
         {
-            get { return returnAttributes.Value.AttributesWithCodeAnalysis; }
+            get { return method.ReturnAttributes; }
+            set { method.ReturnAttributes = value; }
+        }
+
+        public MethodDeclarationSyntax Syntax
+        {
+            get { return method.Syntax; }
+            set { method.Syntax = value; }
         }
     }
 }

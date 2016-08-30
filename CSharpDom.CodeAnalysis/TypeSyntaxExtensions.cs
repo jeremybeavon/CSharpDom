@@ -47,7 +47,7 @@ namespace CSharpDom.CodeAnalysis
             return null;
         }
 
-        public static ITypeReferenceWithCodeAnalysis ToTypeReference(this PropertyWithCodeAnalysis parent)
+        public static ITypeReferenceWithCodeAnalysis ToTypeReference(this PropertyWithBodyWithCodeAnalysis parent)
         {
             return null;
         }

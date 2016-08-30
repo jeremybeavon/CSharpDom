@@ -1,25 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using System.Reflection;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class InterfaceAccessorWithCodeAnalysis :
-        AbstractInterfaceAccessor<AttributeGroupWithCodeAnalysis>
+        EditableInterfaceAccessor<AttributeGroupWithCodeAnalysis>
     {
-        private readonly Lazy<Attributes> attributes;
+        private readonly AccessorWithCodeAnalysis accessor;
 
-        internal InterfaceAccessorWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, MethodDefinition method)
+        internal InterfaceAccessorWithCodeAnalysis(AccessorWithCodeAnalysis accessor)
         {
-            attributes = new Lazy<Attributes>(() => new Attributes(assembly, method));
+            this.accessor = accessor;
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public AccessorWithCodeAnalysis Accessor
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            get { return accessor; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
+        {
+            get { return accessor.Attributes; }
+            set { accessor.Attributes = value; }
         }
     }
 }

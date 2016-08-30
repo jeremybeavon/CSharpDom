@@ -1,69 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
-using CSharpDom.Mono.Cecil.ConstantExpressions;
 using CSharpDom.NotSupported;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassFieldWithCodeAnalysis :
-        AbstractClassField<
+        EditableClassField<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IClassType,
             ITypeReferenceWithCodeAnalysis,
-            IFieldWithCodeAnalysis>,
-        IFieldWithCodeAnalysis
+            FieldWithCodeAnalysis>,
+        IHasSyntax<FieldDeclarationSyntax>
     {
         private readonly FieldGroupWithCodeAnalysis field;
-        private readonly IInternalTypeWithCodeAnalysis declaringType;
 
-        internal ClassFieldWithCodeAnalysis(IInternalTypeWithCodeAnalysis declaringType, FieldDefinition field)
+        internal ClassFieldWithCodeAnalysis(IClassType declaringType)
         {
-            this.field = new FieldGroupWithCodeAnalysis(declaringType, field);
-            this.declaringType = declaringType;
+            base.DeclaringType = declaringType;
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return field.Attributes; }
+            set { field.Attributes = value; }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public override IClassType DeclaringType
         {
-            get { return field.DeclaringType; }
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
         }
 
         public override ITypeReferenceWithCodeAnalysis FieldType
         {
             get { return field.FieldType; }
+            set { field.FieldType = value; }
         }
 
         public override ClassFieldModifier Modifier
         {
-            get { return field.Modifier; }
+            get { return Syntax.Modifiers.ToClassFieldModifier(); }
+            set
+            {
+                FieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassFieldModifier(value));
+            }
         }
-
-        public string Name
-        {
-            get { return field.FieldDefinition.Name; }
-        }
-
+        
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return field.FieldDefinition.ClassVisibility(); }
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                FieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
         }
 
-        public override IReadOnlyCollection<IFieldWithCodeAnalysis> Fields
+        public override ICollection<FieldWithCodeAnalysis> Fields
         {
-            get { return new IFieldWithCodeAnalysis[] { new InternalFieldWithCodeAnalysis(field.FieldDefinition) }; }
+            get { return field.Fields; }
+            set { field.Fields = value; }
         }
-
-        public ExpressionNotSupported InitialValue
+        
+        public FieldDeclarationSyntax Syntax
         {
-            get { return new ExpressionNotSupported(); }
+            get { return field.Syntax; }
+            set { field.Syntax = value; }
         }
     }
 }

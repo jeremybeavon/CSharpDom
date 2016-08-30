@@ -22,7 +22,11 @@ namespace CSharpDom.CodeAnalysis
             AttributeListSyntax,
             AttributeWithCodeAnalysis,
             AttributeSyntax> node;
-        private readonly CachedChildNode<AttributeWithCodeAnalysis, AttributeSyntax, ClassReferenceWithCodeAnalysis> attributeType;
+        private readonly CachedChildNode<
+            AttributeWithCodeAnalysis,
+            AttributeSyntax,
+            ClassReferenceWithCodeAnalysis,
+            NameSyntax> attributeType;
         private ImmutableListWrapper<
             AttributeWithCodeAnalysis,
             AttributeSyntax,

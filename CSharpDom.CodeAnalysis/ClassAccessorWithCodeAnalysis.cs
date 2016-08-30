@@ -11,14 +11,14 @@ namespace CSharpDom.CodeAnalysis
         EditableClassAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
         IHasSyntax<AccessorDeclarationSyntax>
     {
-        private readonly AccessorWithCodeAnalysis accessor;
+        private readonly AccessorWithBodyWithCodeAnalysis accessor;
 
-        internal ClassAccessorWithCodeAnalysis(AccessorWithCodeAnalysis accessor)
+        internal ClassAccessorWithCodeAnalysis(AccessorWithBodyWithCodeAnalysis accessor)
         {
             this.accessor = accessor;
         }
 
-        public AccessorWithCodeAnalysis Accessor
+        public AccessorWithBodyWithCodeAnalysis Accessor
         {
             get { return accessor; }
         }
@@ -39,28 +39,41 @@ namespace CSharpDom.CodeAnalysis
         {
             get
             {
-                ClassMemberVisibilityModifier parentVisibility = accessor.GetParent<IHasClassMemberVisibilityModifier>().Visibility;
-                ClassMemberVisibilityModifier classVisibility = ClassMemberVisibilityModifier.None; //accessor.MethodDefinition.ClassVisibility();
-                if (parentVisibility == classVisibility)
+                switch (Syntax.Modifiers.ToClassMemberVisibilityModifier())
                 {
-                    return ClassAccessorVisibilityModifier.None;
-                }
-                else
-                {
-                    switch (classVisibility)
-                    {
-                        case ClassMemberVisibilityModifier.Internal:
-                            return ClassAccessorVisibilityModifier.Internal;
-                        case ClassMemberVisibilityModifier.ProtectedInternal:
-                            return ClassAccessorVisibilityModifier.ProtectedInternal;
-                        case ClassMemberVisibilityModifier.Protected:
-                            return ClassAccessorVisibilityModifier.Protected;
-                        case ClassMemberVisibilityModifier.Private:
-                            return ClassAccessorVisibilityModifier.Private;
-                    }
+                    case ClassMemberVisibilityModifier.Internal:
+                        return ClassAccessorVisibilityModifier.Internal;
+                    case ClassMemberVisibilityModifier.ProtectedInternal:
+                        return ClassAccessorVisibilityModifier.ProtectedInternal;
+                    case ClassMemberVisibilityModifier.Protected:
+                        return ClassAccessorVisibilityModifier.Protected;
+                    case ClassMemberVisibilityModifier.Private:
+                        return ClassAccessorVisibilityModifier.Private;
                 }
 
-                throw new InvalidOperationException();
+                return ClassAccessorVisibilityModifier.None;
+            }
+            set
+            {
+                ClassMemberVisibilityModifier modifier = ClassMemberVisibilityModifier.None;
+                switch (value)
+                {
+                    case ClassAccessorVisibilityModifier.Internal:
+                        modifier = ClassMemberVisibilityModifier.Internal;
+                        break;
+                    case ClassAccessorVisibilityModifier.ProtectedInternal:
+                        modifier = ClassMemberVisibilityModifier.ProtectedInternal;
+                        break;
+                    case ClassAccessorVisibilityModifier.Protected:
+                        modifier = ClassMemberVisibilityModifier.Protected;
+                        break;
+                    case ClassAccessorVisibilityModifier.Private:
+                        modifier = ClassMemberVisibilityModifier.Private;
+                        break;
+                }
+
+                AccessorDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(modifier));
             }
         }
         

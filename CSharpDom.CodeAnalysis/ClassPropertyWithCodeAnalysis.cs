@@ -2,6 +2,7 @@
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -13,11 +14,11 @@ namespace CSharpDom.CodeAnalysis
             ClassAccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>
     {
-        private readonly PropertyWithCodeAnalysis property;
+        private readonly PropertyWithBodyWithCodeAnalysis property;
 
         internal ClassPropertyWithCodeAnalysis(IClassType declaringType)
         {
-            property = new PropertyWithCodeAnalysis(declaringType);
+            //property = new PropertyWithBodyWithCodeAnalysis(declaringType);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -28,7 +29,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override IClassType DeclaringType
         {
-            get { return property.DeclaringType; }
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
         }
 
         public override ClassAccessorWithCodeAnalysis GetAccessor

@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassNestedInterfaceWithCodeAnalysis :
-        AbstractClassNestedInterface<
+        EditableClassNestedInterface<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IClassType,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             InterfaceEventWithCodeAnalysis,

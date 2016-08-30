@@ -12,13 +12,12 @@ namespace CSharpDom.CodeAnalysis
     public sealed class PropertyWithCodeAnalysis :
         EditableProperty<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IBasicType,
             ITypeReferenceWithCodeAnalysis,
             AccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>
     {
         private readonly Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> node;
-        private readonly IClassType declaringType;
         private readonly AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> attributes;
         private readonly CachedChildNode<
             PropertyWithCodeAnalysis,
@@ -39,7 +38,7 @@ namespace CSharpDom.CodeAnalysis
         internal PropertyWithCodeAnalysis(IClassType declaringType)
         {
             node = new Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(this);
-            this.declaringType = declaringType;
+            base.DeclaringType = declaringType;
             attributes = new AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -61,9 +60,10 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = node.Syntax.WithAttributeLists(value.ToAttributes()); }
         }
 
-        public override IClassType DeclaringType
+        public override IBasicType DeclaringType
         {
-            get { return declaringType; }
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
         }
 
         public override AccessorWithCodeAnalysis GetAccessor

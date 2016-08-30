@@ -9,12 +9,11 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractAccessorWithCodeAnalysis :
         EditableAbstractAccessor<AttributeGroupWithCodeAnalysis>,
-        IHasSyntax<AccessorDeclarationSyntax>,
-        IStructAccessor
+        IHasSyntax<AccessorDeclarationSyntax>
     {
-        private AccessorWithCodeAnalysis accessor;
+        private AccessorWithBodyWithCodeAnalysis accessor;
 
-        internal AbstractAccessorWithCodeAnalysis(IHasClassMemberVisibilityModifier parentVisibility, AccessorWithCodeAnalysis accessor)
+        internal AbstractAccessorWithCodeAnalysis(AccessorWithBodyWithCodeAnalysis accessor)
         {
             this.accessor = accessor;
         }
