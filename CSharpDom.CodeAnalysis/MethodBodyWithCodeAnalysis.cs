@@ -30,6 +30,12 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        internal MethodBodyWithCodeAnalysis(DestructorWithCodeAnalysis parent)
+            : this()
+        {
+            DestructorParent = parent;
+        }
+
         private MethodBodyWithCodeAnalysis()
         {
             node = new Node<MethodBodyWithCodeAnalysis, BlockSyntax>(this);
@@ -39,6 +45,18 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        internal DestructorWithCodeAnalysis DestructorParent
+        {
+            get { return node.GetParentNode<DestructorWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
+                    value,
+                    syntax => syntax.Body,
+                    (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
+            }
         }
 
         internal EventPropertyWithCodeAnalysis EventPropertyAddAccessorParent

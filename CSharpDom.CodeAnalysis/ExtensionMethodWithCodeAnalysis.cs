@@ -1,5 +1,5 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +9,9 @@ using System;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ExtensionMethodWithCodeAnalysis :
-        AbstractExtensionMethod<
+        EditableExtensionMethod<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IStaticClass,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ExtensionParameterWithCodeAnalysis,

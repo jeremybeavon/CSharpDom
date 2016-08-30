@@ -26,11 +26,13 @@ namespace CSharpDom.CodeAnalysis
         private readonly CachedChildNode<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax,
-            OperatorParameterWithCodeAnalysis> parameter;
+            OperatorParameterWithCodeAnalysis,
+            ParameterSyntax> parameter;
         private readonly CachedChildNode<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis> returnType;
+            ITypeReferenceWithCodeAnalysis,
+            TypeSyntax> returnType;
 
         internal ConversionOperatorWithCodeAnalysis(IType declaringType)
         {
@@ -42,15 +44,15 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => { });
-            parameter = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis>(
+            parameter = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 parent => new OperatorParameterWithCodeAnalysis(parent),
                 WithParameter,
                 (child, parent) => child.Parameter.ConversionOperatorParent = parent);
-            returnType = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis>(
+            returnType = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
                 parent => parent.Syntax.Type.ToTypeReference(),
-                (parent, child) => parent.Syntax.WithType(child.Syntax),
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
                 (child, parent) => { });
         }
 
@@ -112,11 +114,11 @@ namespace CSharpDom.CodeAnalysis
         }
 
         private static ConversionOperatorDeclarationSyntax WithParameter(
-            ConversionOperatorWithCodeAnalysis parent,
-            OperatorParameterWithCodeAnalysis child)
+            ConversionOperatorDeclarationSyntax parentSyntax,
+            ParameterSyntax childSyntax)
         {
-            ConversionOperatorDeclarationSyntax syntax = parent.Syntax;
-            return syntax.WithParameterList(syntax.ParameterList.WithParameters(SyntaxFactory.SingletonSeparatedList(child.Syntax)));
+            return parentSyntax.WithParameterList(
+                parentSyntax.ParameterList.WithParameters(SyntaxFactory.SingletonSeparatedList(childSyntax)));
         }
         
         /*public void Accept(IReflectionVisitor visitor)

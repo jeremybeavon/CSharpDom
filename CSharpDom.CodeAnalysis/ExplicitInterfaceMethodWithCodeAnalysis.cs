@@ -1,82 +1,97 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ExplicitInterfaceMethodWithCodeAnalysis :
-        AbstractExplicitInterfaceMethod<
+        EditableExplicitInterfaceMethod<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IType,
             InterfaceReferenceWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>
     {
-        private readonly MethodWithCodeAnalysis method;
-        private readonly string name;
-        private readonly InterfaceReferenceWithCodeAnalysis explicitInterface;
+        private readonly MethodWithBodyWithCodeAnalysis method;
+        private readonly CachedChildNode<
+            MethodWithCodeAnalysis,
+            MethodDeclarationSyntax,
+            InterfaceReferenceWithCodeAnalysis,
+            NameSyntax> explicitInterface;
 
-        internal ExplicitInterfaceMethodWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, MethodDefinition method)
+        internal ExplicitInterfaceMethodWithCodeAnalysis(IType declaringType)
         {
-            this.method = new MethodWithCodeAnalysis(declaringType, method);
-            name = method.Name.Split('.').Last();
-            TypeReference interfaceType = method.FindExplicitInterface();
-            explicitInterface = new InterfaceReferenceWithCodeAnalysis(declaringType.Assembly, interfaceType);
+            base.DeclaringType = declaringType;
+            explicitInterface = new CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
+                method.Node,
+                parent => new InterfaceReferenceWithCodeAnalysis(parent),
+                (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
+                (child, parent) => child.TypeReference.ExplicitInterfaceMethodParent = parent);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return method.Attributes; }
+            set { method.Attributes = value; }
         }
 
         public override MethodBodyWithCodeAnalysis Body
         {
             get { return method.Body; }
+            set { method.Body = value; }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public override IType DeclaringType
         {
             get { return method.DeclaringType; }
+            set { method.DeclaringType = value; }
         }
 
         public override InterfaceReferenceWithCodeAnalysis ExplicitInterface
         {
-            get { return explicitInterface; }
+            get { return explicitInterface.Value; }
+            set { explicitInterface.Value = value; }
         }
 
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
             get { return method.GenericParameters; }
+            set { method.GenericParameters = value; }
         }
 
         public override bool IsAsync
         {
             get { return method.IsAsync; }
+            set { method.IsAsync = value; }
         }
 
         public override string Name
         {
-            get { return name; }
+            get { return method.Name; }
+            set { method.Name = value; }
         }
 
-        public override IReadOnlyList<MethodParameterWithCodeAnalysis> Parameters
+        public override IList<MethodParameterWithCodeAnalysis> Parameters
         {
             get { return method.Parameters; }
+            set { method.Parameters = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis ReturnType
         {
             get { return method.ReturnType; }
+            set { method.ReturnType = value; }
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
         {
             get { return method.ReturnAttributes; }
+            set { method.ReturnAttributes = value; }
         }
     }
 }

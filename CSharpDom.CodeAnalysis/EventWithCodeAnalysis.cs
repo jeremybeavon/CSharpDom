@@ -17,7 +17,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<EventWithCodeAnalysis, EventFieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax> attributes;
-        private readonly CachedChildNode<EventWithCodeAnalysis, EventFieldDeclarationSyntax, DelegateReferenceWithCodeAnalysis> eventType;
+        private readonly CachedChildNode<
+            EventWithCodeAnalysis,
+            EventFieldDeclarationSyntax,
+            DelegateReferenceWithCodeAnalysis,
+            NameSyntax> eventType;
 
         private EventWithCodeAnalysis(IBasicType declaringType)
         {
@@ -29,10 +33,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.EventParent = parent);
-            eventType = new CachedChildNode<EventWithCodeAnalysis, EventFieldDeclarationSyntax, DelegateReferenceWithCodeAnalysis>(
+            eventType = new CachedChildNode<EventWithCodeAnalysis, EventFieldDeclarationSyntax, DelegateReferenceWithCodeAnalysis, NameSyntax>(
                 node,
                 parent => new DelegateReferenceWithCodeAnalysis(parent),
-                WithEventType,
+                (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)),
                 (child, parent) => child.TypeReference.EventParent = parent);
         }
 
@@ -75,14 +79,6 @@ namespace CSharpDom.CodeAnalysis
         internal AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax> AttributeList
         {
             get { return attributes; }
-        }
-
-        private static EventFieldDeclarationSyntax WithEventType(
-            EventWithCodeAnalysis parent,
-            DelegateReferenceWithCodeAnalysis child)
-        {
-            EventFieldDeclarationSyntax syntax = parent.Syntax;
-            return syntax.WithDeclaration(syntax.Declaration.WithType(child.Syntax));
         }
     }
 }

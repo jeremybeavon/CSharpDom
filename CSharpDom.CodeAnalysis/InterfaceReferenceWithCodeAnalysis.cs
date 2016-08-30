@@ -12,6 +12,26 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
 
+        internal InterfaceReferenceWithCodeAnalysis(EventPropertyWithCodeAnalysis parent)
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis() { ExplicitInterfaceEventParent = parent })
+        { 
+        }
+
+        internal InterfaceReferenceWithCodeAnalysis(IndexerWithCodeAnalysis parent)
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis() { ExplicitInterfaceIndexerParent = parent })
+        {
+        }
+
+        internal InterfaceReferenceWithCodeAnalysis(MethodWithCodeAnalysis parent)
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis() { ExplicitInterfaceMethodParent = parent })
+        {
+        }
+
+        internal InterfaceReferenceWithCodeAnalysis(PropertyWithCodeAnalysis parent)
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis() { ExplicitInterfacePropertyParent = parent })
+        {
+        }
+
         internal InterfaceReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
             this.typeReference = typeReference;
@@ -34,7 +54,12 @@ namespace CSharpDom.CodeAnalysis
             get { return typeReference.Syntax; }
             set { typeReference.Syntax = value; }
         }
-        
+
+        internal UnspecifiedTypeReferenceWithCodeAnalysis TypeReference
+        {
+            get { return typeReference; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitInterfaceReferenceWithCodeAnalysis(this);

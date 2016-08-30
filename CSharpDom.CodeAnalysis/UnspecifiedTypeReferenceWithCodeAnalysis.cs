@@ -33,8 +33,8 @@ namespace CSharpDom.CodeAnalysis
         {
             EventParent = parent;
         }
-
-        private UnspecifiedTypeReferenceWithCodeAnalysis()
+        
+        internal UnspecifiedTypeReferenceWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
             node = new Node<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(this);
@@ -113,6 +113,54 @@ namespace CSharpDom.CodeAnalysis
                     value,
                     syntax => (NameSyntax)syntax.Declaration.Type,
                     (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)));
+            }
+        }
+
+        internal EventPropertyWithCodeAnalysis ExplicitInterfaceEventParent
+        {
+            get { return node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
+                    value,
+                    syntax => syntax.ExplicitInterfaceSpecifier.Name,
+                    (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)));
+            }
+        }
+
+        internal IndexerWithCodeAnalysis ExplicitInterfaceIndexerParent
+        {
+            get { return node.GetParentNode<IndexerWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
+                    value,
+                    syntax => syntax.ExplicitInterfaceSpecifier.Name,
+                    (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)));
+            }
+        }
+
+        internal MethodWithCodeAnalysis ExplicitInterfaceMethodParent
+        {
+            get { return node.GetParentNode<MethodWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                    value,
+                    syntax => syntax.ExplicitInterfaceSpecifier.Name,
+                    (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)));
+            }
+        }
+
+        internal PropertyWithCodeAnalysis ExplicitInterfacePropertyParent
+        {
+            get { return node.GetParentNode<PropertyWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+                    value,
+                    syntax => syntax.ExplicitInterfaceSpecifier.Name,
+                    (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)));
             }
         }
 

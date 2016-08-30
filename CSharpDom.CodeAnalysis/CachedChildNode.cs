@@ -2,21 +2,22 @@
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class CachedChildNode<TParentNode, TParentSyntax, TChildNode>
+    internal class CachedChildNode<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
         where TParentNode : class
         where TParentSyntax : class
-        where TChildNode : class
+        where TChildNode : class, IHasSyntax<TChildSyntax>
+        where TChildSyntax : class
     {
         private readonly Node<TParentNode, TParentSyntax> node;
         private readonly Func<TParentNode, TChildNode> getValue;
-        private readonly Func<TParentNode, TChildNode, TParentSyntax> setValue;
+        private readonly Func<TParentSyntax, TChildSyntax, TParentSyntax> setValue;
         private readonly Action<TChildNode, TParentNode> setParent;
         private TChildNode cachedValue;
 
         public CachedChildNode(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentNode, TChildNode> getValue,
-            Func<TParentNode, TChildNode, TParentSyntax> setValue,
+            Func<TParentSyntax, TChildSyntax, TParentSyntax> setValue,
             Action<TChildNode, TParentNode> setParent)
         {
             this.node = node;
@@ -46,7 +47,7 @@ namespace CSharpDom.CodeAnalysis
                     setParent(cachedValue, null);
                 }
 
-                node.Syntax = setValue(node.Value, value);
+                node.Syntax = setValue(node.Syntax, value?.Syntax);
                 cachedValue = getValue(node.Value);
                 if (cachedValue != null)
                 {

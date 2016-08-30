@@ -20,17 +20,18 @@ namespace CSharpDom.CodeAnalysis
         private readonly CachedChildNode<
             EventPropertyWithCodeAnalysis,
             EventDeclarationSyntax,
-            InterfaceReferenceWithCodeAnalysis> explicitInterface;
+            InterfaceReferenceWithCodeAnalysis,
+            NameSyntax> explicitInterface;
         
         private ExplicitInterfaceEventWithCodeAnalysis(EventPropertyWithCodeAnalysis @event, IType declaringType)
         {
             this.@event = @event;
             base.DeclaringType = declaringType;
-            explicitInterface = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, InterfaceReferenceWithCodeAnalysis>(
+            explicitInterface = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 @event.Node,
-                null,
-                null,
-                null);
+                parent => new InterfaceReferenceWithCodeAnalysis(parent),
+                (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
+                (child, parent) => child.TypeReference.ExplicitInterfaceEventParent = parent);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> AddAttributes

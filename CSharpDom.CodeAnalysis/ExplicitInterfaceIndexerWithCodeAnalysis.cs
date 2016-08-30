@@ -1,64 +1,85 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ExplicitInterfaceIndexerWithCodeAnalysis :
-        AbstractExplicitInterfaceIndexer<
+        EditableExplicitInterfaceIndexer<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IType,
             InterfaceReferenceWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
-            AccessorWithCodeAnalysis>
+            AccessorWithCodeAnalysis>,
+        IHasSyntax<IndexerDeclarationSyntax>
     {
         private readonly IndexerWithCodeAnalysis indexer;
-        private readonly InterfaceReferenceWithCodeAnalysis explicitInterface;
+        private readonly CachedChildNode<
+            IndexerWithCodeAnalysis,
+            IndexerDeclarationSyntax,
+            InterfaceReferenceWithCodeAnalysis,
+            NameSyntax> explicitInterface;
 
-        internal ExplicitInterfaceIndexerWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, PropertyDefinition indexer)
+        internal ExplicitInterfaceIndexerWithCodeAnalysis(IType declaringType)
         {
-            this.indexer = new IndexerWithCodeAnalysis(declaringType, indexer);
-            TypeReference interfaceType = indexer.Method().FindExplicitInterface();
-            explicitInterface = new InterfaceReferenceWithCodeAnalysis(declaringType.Assembly, interfaceType);
+            base.DeclaringType = declaringType;
+            explicitInterface = new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
+                indexer.Node,
+                parent => new InterfaceReferenceWithCodeAnalysis(parent),
+                (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
+                (child, parent) => child.TypeReference.ExplicitInterfaceIndexerParent = parent);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return indexer.Attributes; }
+            set { indexer.Attributes = value; }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public override IType DeclaringType
         {
-            get { return indexer.DeclaringType; }
+            get { return base.DeclaringType; }
+            set { throw new NotSupportedException(); }
         }
 
         public override InterfaceReferenceWithCodeAnalysis ExplicitInterface
         {
-            get { return explicitInterface; }
+            get { return explicitInterface.Value; }
+            set { explicitInterface.Value = value; }
         }
 
         public override AccessorWithCodeAnalysis GetAccessor
         {
             get { return indexer.GetAccessor; }
+            set { indexer.GetAccessor = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis IndexerType
         {
             get { return indexer.IndexerType; }
+            set { indexer.IndexerType = value; }
         }
 
-        public override IReadOnlyList<IndexerParameterWithCodeAnalysis> Parameters
+        public override IList<IndexerParameterWithCodeAnalysis> Parameters
         {
             get { return indexer.Parameters; }
+            set { indexer.Parameters = value; }
         }
 
         public override AccessorWithCodeAnalysis SetAccessor
         {
             get { return indexer.SetAccessor; }
+            set { indexer.SetAccessor = value; }
+        }
+
+        public IndexerDeclarationSyntax Syntax
+        {
+            get { return indexer.Syntax; }
+            set { indexer.Syntax = value; }
         }
     }
 }

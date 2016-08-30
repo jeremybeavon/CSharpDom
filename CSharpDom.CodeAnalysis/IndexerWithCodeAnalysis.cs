@@ -19,14 +19,26 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> node;
         private readonly AttributeListWrapper<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> attributes;
-        private readonly CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis> getAccessor;
-        private readonly CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, ITypeReferenceWithCodeAnalysis> indexerType;
+        private readonly CachedChildNode<
+            IndexerWithCodeAnalysis,
+            IndexerDeclarationSyntax,
+            AccessorWithCodeAnalysis,
+            AccessorDeclarationSyntax> getAccessor;
+        private readonly CachedChildNode<
+            IndexerWithCodeAnalysis,
+            IndexerDeclarationSyntax,
+            ITypeReferenceWithCodeAnalysis,
+            TypeSyntax> indexerType;
         private readonly SeparatedSyntaxListWrapper<
             IndexerWithCodeAnalysis,
             IndexerDeclarationSyntax,
             IndexerParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
-        private readonly CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis> setAccessor;
+        private readonly CachedChildNode<
+            IndexerWithCodeAnalysis,
+            IndexerDeclarationSyntax,
+            AccessorWithCodeAnalysis,
+            AccessorDeclarationSyntax> setAccessor;
 
         private IndexerWithCodeAnalysis(IBasicType declaringType)
         {
@@ -39,7 +51,7 @@ namespace CSharpDom.CodeAnalysis
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.IndexerParent = parent);
             getAccessor = GetAccessorNode(SyntaxKind.GetKeyword);
-            indexerType = new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, ITypeReferenceWithCodeAnalysis>(
+            indexerType = new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
                 parent => parent.Syntax.Type.ToTypeReference(),
                 null,
@@ -109,13 +121,18 @@ namespace CSharpDom.CodeAnalysis
             get { return parameters; }
         }
 
-        private CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis> GetAccessorNode(
+        internal Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> Node
+        {
+            get { return node; }
+        }
+
+        private CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax> GetAccessorNode(
             SyntaxKind kind)
         {
-            return new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis>(
+            return new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
                 node,
                 parent => GetAccessorDeclaration(parent.Syntax, kind) == null ? null : new AccessorWithCodeAnalysis(this, kind),
-                (parent, child) => CreateAccessor(kind)(parent.Syntax, GetAccessorDeclaration(parent.Syntax, kind)),
+                (parentSyntax, childSyntax) => CreateAccessor(kind)(parentSyntax, childSyntax),
                 (child, parent) => child.IndexerParent = parent);
         }
 

@@ -56,7 +56,8 @@ namespace CSharpDom.CodeAnalysis
         private readonly CachedChildNode<
             OperatorOverloadWithCodeAnalysis,
             OperatorDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis> returnType;
+            ITypeReferenceWithCodeAnalysis,
+            TypeSyntax> returnType;
 
         internal OperatorOverloadWithCodeAnalysis(IType declaringType)
         {
@@ -74,10 +75,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
                 child => new OperatorParameterWithCodeAnalysis(child),
                 (child, parent) => child.Parameter.OperatorOverloadParent = parent);
-            returnType = new CachedChildNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis>(
+            returnType = new CachedChildNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
                 parent => parent.Syntax.ReturnType.ToTypeReference(),
-                (parent, child) => parent.Syntax.WithReturnType(child.Syntax),
+                (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax),
                 null);
         }
 

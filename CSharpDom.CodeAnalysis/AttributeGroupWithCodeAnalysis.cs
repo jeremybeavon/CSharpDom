@@ -39,6 +39,12 @@ namespace CSharpDom.CodeAnalysis
             ConversionOperatorParent = parent;
         }
 
+        internal AttributeGroupWithCodeAnalysis(DestructorWithCodeAnalysis parent)
+            : this()
+        {
+            DestructorParent = parent;
+        }
+
         internal AttributeGroupWithCodeAnalysis(EventPropertyWithCodeAnalysis parent, EventPropertyAttributeType attributeType)
             : this()
         {
@@ -60,6 +66,12 @@ namespace CSharpDom.CodeAnalysis
             : this()
         {
             EventParent = parent;
+        }
+
+        internal AttributeGroupWithCodeAnalysis(FieldGroupWithCodeAnalysis parent)
+            : this()
+        {
+            FieldGroupParent = parent;
         }
 
         internal AttributeGroupWithCodeAnalysis(GenericParameterDeclarationWithCodeAnalysis parent)
@@ -157,6 +169,12 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        internal DestructorWithCodeAnalysis DestructorParent
+        {
+            get { return node.GetParentNode<DestructorWithCodeAnalysis>(); }
+            set { node.SetParentNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
         internal EventWithCodeAnalysis EventParent
         {
             get { return node.GetParentNode<EventWithCodeAnalysis>(); }
@@ -179,6 +197,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
             set { node.SetParentNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(value, parent => parent.RemoveAttributeList); }
+        }
+
+        internal FieldGroupWithCodeAnalysis FieldGroupParent
+        {
+            get { return node.GetParentNode<FieldGroupWithCodeAnalysis>(); }
+            set { node.SetParentNode<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
 
         internal GenericParameterDeclarationWithCodeAnalysis GenericParameterParent

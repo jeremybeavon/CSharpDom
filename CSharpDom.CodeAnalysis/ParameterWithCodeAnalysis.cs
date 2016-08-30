@@ -16,7 +16,11 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<ParameterWithCodeAnalysis, ParameterSyntax> node;
         private readonly object wrapper;
         private readonly AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax> attributes;
-        private readonly CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis> parameterType;
+        private readonly CachedChildNode<
+            ParameterWithCodeAnalysis,
+            ParameterSyntax,
+            ITypeReferenceWithCodeAnalysis,
+            TypeSyntax> parameterType;
 
         internal ParameterWithCodeAnalysis(ConstructorWithCodeAnalysis parent, ConstructorParameterWithCodeAnalysis parameter)
             : this(parameter)
@@ -58,10 +62,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.ParameterParent = parent);
-            parameterType = new CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis>(
+            parameterType = new CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
                 parent => parent.Syntax.Type.ToTypeReference(),
-                (parent, child) => parent.Syntax.WithType(child.Syntax),
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
                 null);
         }
 

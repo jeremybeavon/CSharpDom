@@ -27,7 +27,11 @@ namespace CSharpDom.CodeAnalysis
             MethodDeclarationSyntax,
             MethodParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
-        private readonly CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, ITypeReferenceWithCodeAnalysis> returnType;
+        private readonly CachedChildNode<
+            MethodWithCodeAnalysis,
+            MethodDeclarationSyntax,
+            ITypeReferenceWithCodeAnalysis,
+            TypeSyntax> returnType;
         
         private MethodWithCodeAnalysis(IBasicType declaringType)
         {
@@ -53,10 +57,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
                 parent => new MethodParameterWithCodeAnalysis(parent),
                 (child, parent) => child.Parameter.MethodParent = parent);
-            returnType = new CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, ITypeReferenceWithCodeAnalysis>(
+            returnType = new CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
                 parent => parent.Syntax.ReturnType.ToTypeReference(),
-                (parent, child) => parent.Syntax.WithReturnType(child.Syntax),
+                (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax),
                 null);
         }
 
@@ -134,6 +138,11 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<MethodParameterWithCodeAnalysis, ParameterSyntax> ParameterList
         {
             get { return parameters; }
+        }
+
+        internal Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> Node
+        {
+            get { return node; }
         }
     }
 }

@@ -95,5 +95,10 @@ namespace CSharpDom.CodeAnalysis
             get { return method.Syntax; }
             set { method.Syntax = value; }
         }
+
+        internal Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> Node
+        {
+            get { return method.Node; }
+        }
     }
 }
