@@ -6,6 +6,7 @@ namespace CSharpDom.Wrappers
         ISealedType<
             IAttributeGroupWrapper,
             IGenericParameterDeclarationWrapper,
+            IClassReferenceWrapper,
             IInterfaceReferenceWrapper,
             ISealedClassEventCollectionWrapper,
             ISealedClassPropertyCollectionWrapper,

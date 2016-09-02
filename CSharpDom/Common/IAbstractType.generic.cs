@@ -3,6 +3,7 @@
     public interface IAbstractType<
         TAttributeGroup,
         TGenericParameter,
+        TClassReference,
         TInterfaceReference,
         TEventCollection,
         TPropertyCollection,
@@ -19,9 +20,11 @@
         TNestedStructCollection,
         TStaticConstructor> :
         IAbstractType,
+        IHasBaseClass<TClassReference>,
         IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
+        where TClassReference : IClassReference
         where TInterfaceReference : IInterfaceReference
         where TEventCollection : IAbstractClassEventCollection
         where TPropertyCollection : IAbstractClassPropertyCollection

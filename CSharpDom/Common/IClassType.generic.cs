@@ -3,6 +3,7 @@
     public interface IClassType<
         TAttributeGroup,
         TGenericParameter,
+        TClassReference,
         TInterfaceReference,
         TEventCollection,
         TPropertyCollection,
@@ -20,10 +21,12 @@
         TStaticConstructor,
         TDestructor> :
         IClassType,
+        IHasBaseClass<TClassReference>,
         IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
         IHasDestructor<TDestructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
+        where TClassReference : IClassReference
         where TInterfaceReference : IInterfaceReference
         where TEventCollection : IClassEventCollection
         where TPropertyCollection : IClassPropertyCollection

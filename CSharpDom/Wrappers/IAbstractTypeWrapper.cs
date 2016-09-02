@@ -6,6 +6,7 @@ namespace CSharpDom.Wrappers
         IAbstractType<
             IAttributeGroupWrapper,
             IGenericParameterDeclarationWrapper,
+            IClassReferenceWrapper,
             IInterfaceReferenceWrapper,
             IAbstractClassEventCollectionWrapper,
             IAbstractClassPropertyCollectionWrapper,
