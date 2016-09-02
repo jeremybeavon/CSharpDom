@@ -15,7 +15,8 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             AccessorWithCodeAnalysis>,
-        IHasSyntax<IndexerDeclarationSyntax>
+        IHasSyntax<IndexerDeclarationSyntax>,
+        ISimpleMember
     {
         private readonly Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> node;
         private readonly AttributeListWrapper<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> attributes;
@@ -146,6 +147,11 @@ namespace CSharpDom.CodeAnalysis
         internal static AccessorDeclarationSyntax GetAccessorDeclaration(IndexerDeclarationSyntax syntax, SyntaxKind kind)
         {
             return syntax.AccessorList.GetAccessorDeclaration(kind);
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            throw new NotImplementedException();
         }
     }
 }

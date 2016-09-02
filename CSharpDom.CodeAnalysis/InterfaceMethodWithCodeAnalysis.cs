@@ -13,7 +13,8 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis>,
-        IHasSyntax<MethodDeclarationSyntax>
+        IHasSyntax<MethodDeclarationSyntax>,
+        IHasId
     {
         private readonly MethodWithCodeAnalysis method;
 
@@ -69,6 +70,14 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.Syntax; }
             set { method.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

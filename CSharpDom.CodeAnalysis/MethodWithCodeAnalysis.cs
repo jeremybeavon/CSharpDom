@@ -17,7 +17,8 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis>,
-        IHasSyntax<MethodDeclarationSyntax>
+        IHasSyntax<MethodDeclarationSyntax>,
+        ISimpleMember
     {
         private readonly Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> node;
         private readonly AttributeListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax> attributes;
@@ -143,6 +144,11 @@ namespace CSharpDom.CodeAnalysis
         internal Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> Node
         {
             get { return node; }
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            throw new NotImplementedException();
         }
     }
 }

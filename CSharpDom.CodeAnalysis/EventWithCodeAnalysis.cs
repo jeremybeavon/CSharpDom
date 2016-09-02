@@ -14,9 +14,11 @@ namespace CSharpDom.CodeAnalysis
             IBasicType,
             DelegateReferenceWithCodeAnalysis>,
         IHasSyntax<EventFieldDeclarationSyntax>,
-        IHasId
+        IHasId,
+        ISimpleMember
     {
         private readonly Guid internalId;
+        private readonly object @event;
         private readonly Node<EventWithCodeAnalysis, EventFieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax> attributes;
         private readonly CachedChildNode<
@@ -25,11 +27,16 @@ namespace CSharpDom.CodeAnalysis
             DelegateReferenceWithCodeAnalysis,
             NameSyntax> eventType;
 
-        private EventWithCodeAnalysis(IBasicType declaringType)
+        internal EventWithCodeAnalysis(NestedInterfaceWithCodeAnalysis parent, InterfaceEventWithCodeAnalysis @event)
+            : this(@event)
         {
+        }
+
+        private EventWithCodeAnalysis(object @event)
+        {
+            this.@event = @event;
             internalId = Guid.NewGuid();
             node = new Node<EventWithCodeAnalysis, EventFieldDeclarationSyntax>(this);
-            base.DeclaringType = declaringType;
             attributes = new AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -51,7 +58,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IBasicType DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return node.GetParentNode<IBasicType>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -83,10 +90,26 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return attributes; }
         }
+        
+        internal NestedInterfaceWithCodeAnalysis NestedInterfaceParent
+        {
+            get { return node.GetParentNode<NestedInterfaceWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<NestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                    value,
+                    parent => parent.EventList);
+            }
+        }
 
         Guid IHasId.InternalId
         {
             get { return internalId; }
+        }
+        
+        T ISimpleMember.Member<T>()
+        {
+            return (T)@event;
         }
     }
 }

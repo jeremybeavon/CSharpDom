@@ -15,8 +15,10 @@ namespace CSharpDom.CodeAnalysis
             IBasicType,
             ITypeReferenceWithCodeAnalysis,
             AccessorWithCodeAnalysis>,
-        IHasSyntax<PropertyDeclarationSyntax>
+        IHasSyntax<PropertyDeclarationSyntax>,
+        ISimpleMember
     {
+        private readonly object property;
         private readonly Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> node;
         private readonly AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> attributes;
         private readonly CachedChildNode<
@@ -35,10 +37,9 @@ namespace CSharpDom.CodeAnalysis
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> setAccessor;
 
-        internal PropertyWithCodeAnalysis(IClassType declaringType)
+        private PropertyWithCodeAnalysis(object property)
         {
             node = new Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(this);
-            base.DeclaringType = declaringType;
             attributes = new AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -62,7 +63,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IBasicType DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return node.GetParentNode<IBasicType>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -126,6 +127,11 @@ namespace CSharpDom.CodeAnalysis
         internal static AccessorDeclarationSyntax GetAccessorDeclaration(PropertyDeclarationSyntax syntax, SyntaxKind kind)
         {
             return syntax.AccessorList.GetAccessorDeclaration(kind);
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            return (T)property;
         }
     }
 }

@@ -106,6 +106,7 @@
     <Compile Include="AttributeGroupWithCodeAnalysis.cs" />
     <Compile Include="AttributeListWrapper.cs" />
     <Compile Include="AttributeWithCodeAnalysis.cs" />
+    <Compile Include="BasicTypeWithCodeAnalysis.cs" />
     <Compile Include="BuiltInTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="CachedChildNode.cs" />
     <Compile Include="ClassAccessorWithCodeAnalysis.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="ClassFieldWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerWithCodeAnalysis.cs" />
     <Compile Include="ClassMethodWithCodeAnalysis.cs" />
+    <Compile Include="CombinedMemberList.cs" />
     <Compile Include="ConstructorParameterWithCodeAnalysis.cs" />
     <Compile Include="ConstructorWithCodeAnalysis.cs" />
     <Compile Include="ConversionOperatorWithCodeAnalysis.cs" />
@@ -156,10 +158,12 @@
     <Compile Include="InterfaceMethodWithCodeAnalysis.cs" />
     <Compile Include="InterfacePropertyWithCodeAnalysis.cs" />
     <Compile Include="InterfaceReferenceWithCodeAnalysis.cs" />
+    <Compile Include="ISimpleMember.cs" />
     <Compile Include="ListFactory.cs" />
     <Compile Include="ImmutableSeparatedSyntaxList.cs" />
     <Compile Include="ImmutableSyntaxList.cs" />
     <Compile Include="MemberListWrapper.cs" />
+    <Compile Include="MemberWithCodeAnalysis.cs" />
     <Compile Include="MethodParameterWithCodeAnalysis.cs" />
     <Compile Include="MethodWithBodyWithCodeAnalysis.cs" />
     <Compile Include="MethodWithCodeAnalysis.cs" />

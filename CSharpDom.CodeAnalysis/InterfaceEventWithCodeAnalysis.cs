@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
@@ -13,12 +11,19 @@ namespace CSharpDom.CodeAnalysis
             AttributeGroupWithCodeAnalysis,
             IBasicType,
             DelegateReferenceWithCodeAnalysis>,
-        IHasSyntax<EventFieldDeclarationSyntax>
+        IHasSyntax<EventFieldDeclarationSyntax>,
+        IHasId
     {
         private readonly EventWithCodeAnalysis @event;
         
-        internal InterfaceEventWithCodeAnalysis(IBasicType declaringType)
+        internal InterfaceEventWithCodeAnalysis(NestedInterfaceWithCodeAnalysis parent)
         {
+            @event = new EventWithCodeAnalysis(parent, this);
+        }
+
+        public EventWithCodeAnalysis Event
+        {
+            get { return @event; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -55,6 +60,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
+        }
+
+        public Guid InternalId
+        {
+            get { return ((IHasId)@event).InternalId; }
         }
     }
 }

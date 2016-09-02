@@ -13,7 +13,8 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             InterfaceAccessorWithCodeAnalysis>,
-        IHasSyntax<IndexerDeclarationSyntax>
+        IHasSyntax<IndexerDeclarationSyntax>,
+        IHasId
     {
         private readonly IndexerWithCodeAnalysis indexer;
 
@@ -63,6 +64,14 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return indexer.Syntax; }
             set { indexer.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

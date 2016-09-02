@@ -98,6 +98,12 @@ namespace CSharpDom.CodeAnalysis
             MethodParent = parent;
         }
 
+        internal AttributeGroupWithCodeAnalysis(NestedInterfaceWithCodeAnalysis parent)
+            : this()
+        {
+            NestedInterfaceParent = parent;
+        }
+
         internal AttributeGroupWithCodeAnalysis(OperatorOverloadWithCodeAnalysis parent)
             : this()
         {
@@ -238,6 +244,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.GetParentNode<MethodWithCodeAnalysis>(); }
             set { node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
+        internal NestedInterfaceWithCodeAnalysis NestedInterfaceParent
+        {
+            get { return node.GetParentNode<NestedInterfaceWithCodeAnalysis>(); }
+            set { node.SetParentNode<NestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
 
         internal OperatorOverloadWithCodeAnalysis OperatorOverloadParent

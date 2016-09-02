@@ -20,14 +20,5 @@ namespace CSharpDom.CodeAnalysis
             : base(node, ListFactory.CreateList(node, getList, createList), factory, setParent)
         {
         }
-
-        public SyntaxListWrapper(
-            Node<TParentNode, TParentSyntax> node,
-            IList<TChildSyntax> list,
-            Func<TParentNode, TChildNode> factory,
-            Action<TChildNode, TParentNode> setParent)
-            : base(node, list, factory, setParent)
-        {
-        }
     }
 }

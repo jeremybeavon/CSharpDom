@@ -12,7 +12,8 @@ namespace CSharpDom.CodeAnalysis
             IBasicType,
             ITypeReferenceWithCodeAnalysis,
             InterfaceAccessorWithCodeAnalysis>,
-        IHasSyntax<PropertyDeclarationSyntax>
+        IHasSyntax<PropertyDeclarationSyntax>,
+        IHasId
     {
         private readonly PropertyWithCodeAnalysis property;
         
@@ -62,6 +63,14 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return property.Syntax; }
             set { property.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
