@@ -1,6 +1,9 @@
 ﻿namespace CSharpDom.Common
 {
     public interface IAbstractType<
+        TAttributeGroup,
+        TGenericParameter,
+        TInterfaceReference,
         TEventCollection,
         TPropertyCollection,
         TIndexerCollection,
@@ -16,7 +19,10 @@
         TNestedStructCollection,
         TStaticConstructor> :
         IAbstractType,
-        IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        where TAttributeGroup : IAttributeGroup
+        where TGenericParameter : IGenericParameterDeclaration
+        where TInterfaceReference : IInterfaceReference
         where TEventCollection : IAbstractClassEventCollection
         where TPropertyCollection : IAbstractClassPropertyCollection
         where TIndexerCollection : IAbstractClassIndexerCollection

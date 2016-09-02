@@ -23,7 +23,7 @@ namespace CSharpDom.BaseClasses
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        AbstractStructType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        AbstractStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
         INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -44,16 +44,8 @@ namespace CSharpDom.BaseClasses
         where TNestedStructCollection : IStructNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
-
         public abstract TDeclaringType DeclaringType { get; }
-
-        public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
-
-        public abstract IReadOnlyCollection<TInterfaceReference> ImplementedInterfaces { get; }
         
-        public abstract string Name { get; }
-
         public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedStruct(this);

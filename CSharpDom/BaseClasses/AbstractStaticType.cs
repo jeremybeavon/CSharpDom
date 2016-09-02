@@ -5,6 +5,8 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractStaticType<
+        TAttributeGroup,
+        TGenericParameter,
         TEventCollection,
         TProperty,
         TMethodCollection,
@@ -15,7 +17,9 @@ namespace CSharpDom.BaseClasses
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        IStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        where TAttributeGroup : IAttributeGroup
+        where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
         where TProperty : IStaticClassProperty
         where TMethodCollection : IStaticClassMethodCollection
@@ -27,6 +31,8 @@ namespace CSharpDom.BaseClasses
         where TNestedStructCollection : IStaticClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
+        public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
+
         public abstract TNestedClassCollection Classes { get; }
         
         public abstract IReadOnlyCollection<TNestedDelegate> Delegates { get; }
@@ -36,10 +42,14 @@ namespace CSharpDom.BaseClasses
         public abstract TEventCollection Events { get; }
 
         public abstract TFieldCollection Fields { get; }
-        
+
+        public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
+
         public abstract TNestedInterfaceCollection Interfaces { get; }
 
         public abstract TMethodCollection Methods { get; }
+
+        public abstract string Name { get; }
 
         public abstract IReadOnlyCollection<TProperty> Properties { get; }
 

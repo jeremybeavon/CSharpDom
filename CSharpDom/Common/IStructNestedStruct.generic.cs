@@ -1,6 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IStructNestedStruct<TAttributeGroup,
+    public interface IStructNestedStruct<
+        TAttributeGroup,
         TDeclaringType,
         TGenericParameter,
         TInterfaceReference,

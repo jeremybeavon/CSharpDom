@@ -84,6 +84,14 @@ namespace CSharpDom.Reflection.Internal
             get { return methods; }
         }
 
+        public override string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override StructPropertyCollectionWithReflection Properties
         {
             get { return properties; }

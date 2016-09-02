@@ -5,6 +5,9 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractStructType<
+        TAttributeGroup,
+        TGenericParameter,
+        TInterfaceReference,
         TEventCollection,
         TPropertyCollection,
         TIndexerCollection,
@@ -19,8 +22,11 @@ namespace CSharpDom.BaseClasses
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        AbstractType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
-        IStructType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        AbstractType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        IStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        where TAttributeGroup : IAttributeGroup
+        where TGenericParameter : IGenericParameterDeclaration
+        where TInterfaceReference : IInterfaceReference
         where TEventCollection : IStructEventCollection
         where TPropertyCollection : IStructPropertyCollection
         where TIndexerCollection : IStructIndexerCollection

@@ -6,6 +6,9 @@ namespace CSharpDom.Wrappers
 {
     public interface IStructTypeWrapper :
         IStructType<
+            IAttributeGroupWrapper,
+            IGenericParameterDeclarationWrapper,
+            IInterfaceReferenceWrapper,
             IStructEventCollectionWrapper,
             IStructPropertyCollectionWrapper,
             IStructIndexerCollectionWrapper,

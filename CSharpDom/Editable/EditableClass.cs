@@ -30,7 +30,7 @@ namespace CSharpDom.Editable
         TNestedStructCollection,
         TDestructor,
         TStaticConstructor> :
-        EditableClassType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>,
+        EditableClassType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>,
         IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -56,18 +56,10 @@ namespace CSharpDom.Editable
         where TDestructor : IDestructor
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
-
         public virtual TClassReference BaseClass { get; set; }
         
         public virtual TDocument Document { get; set; }
-
-        public virtual IList<TGenericParameter> GenericParameters { get; set; }
-
-        public virtual ICollection<TInterfaceReference> ImplementedInterfaces { get; set; }
         
-        public virtual string Name { get; set; }
-
         public virtual TNamespace Namespace { get; set; }
 
         public virtual TProject Project { get; set; }

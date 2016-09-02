@@ -17,9 +17,7 @@
         INestedStaticClass,
         IHasName,
         IHasDeclaringType<TDeclaringType>,
-        IHasAttributes<TAttributeGroup>,
-        IHasGenericParameters<TGenericParameter>,
-        IStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TGenericParameter : IGenericParameterDeclaration

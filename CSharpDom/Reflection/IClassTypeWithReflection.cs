@@ -4,6 +4,9 @@ namespace CSharpDom.Reflection
 {
     public interface IClassTypeWithReflection :
         IType<
+            AttributeWithReflection,
+            GenericParameterDeclarationWithReflection,
+            InterfaceReferenceWithReflection,
             ClassEventCollectionWithReflection,
             ClassPropertyCollectionWithReflection,
             ClassIndexerCollectionWithReflection,

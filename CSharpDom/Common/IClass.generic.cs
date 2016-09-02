@@ -24,17 +24,13 @@
         TDestructor,
         TStaticConstructor> :
         IClass,
-        IHasName,
         IHasTypeVisibilityModifier,
         IHasBaseClass<TClassReference>,
-        IHasImplementedInterfaces<TInterfaceReference>,
         IHasNamespace<TNamespace>,
         IHasDocument<TDocument>,
         IHasProject<TProject>,
         IHasSolution<TSolution>,
-        IHasAttributes<TAttributeGroup>,
-        IHasGenericParameters<TGenericParameter>,
-        IClassType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor, TDestructor>
+        IClassType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor, TDestructor>
         where TNamespace : INamespace
         where TDocument : IDocument
         where TProject : IProject

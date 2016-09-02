@@ -5,6 +5,9 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractType<
+        TAttributeGroup,
+        TGenericParameter,
+        TInterfaceReference,
         TEventCollection,
         TPropertyCollection,
         TIndexerCollection,
@@ -19,7 +22,10 @@ namespace CSharpDom.BaseClasses
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        where TAttributeGroup : IAttributeGroup
+        where TGenericParameter : IGenericParameterDeclaration
+        where TInterfaceReference : IInterfaceReference
         where TEventCollection : IEventCollection
         where TPropertyCollection : IPropertyCollection
         where TIndexerCollection : IIndexerCollection
@@ -35,6 +41,8 @@ namespace CSharpDom.BaseClasses
         where TNestedStructCollection : INestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
+        public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
+
         public abstract TNestedClassCollection Classes { get; }
 
         public abstract IReadOnlyCollection<TConstructor> Constructors { get; }
@@ -49,11 +57,17 @@ namespace CSharpDom.BaseClasses
 
         public abstract TFieldCollection Fields { get; }
 
+        public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
+
+        public abstract IReadOnlyCollection<TInterfaceReference> ImplementedInterfaces { get; }
+
         public abstract TIndexerCollection Indexers { get; }
 
         public abstract TNestedInterfaceCollection Interfaces { get; }
 
         public abstract TMethodCollection Methods { get; }
+
+        public abstract string Name { get; }
 
         public abstract IReadOnlyCollection<TOperatorOverload> OperatorOverloads { get; }
 

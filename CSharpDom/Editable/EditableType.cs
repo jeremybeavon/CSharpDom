@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
     public class EditableType<
+        TAttributeGroup,
+        TGenericParameter,
+        TInterfaceReference,
         TEventCollection,
         TPropertyCollection,
         TIndexerCollection,
@@ -20,7 +24,10 @@ namespace CSharpDom.Editable
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        where TAttributeGroup : IAttributeGroup
+        where TGenericParameter : IGenericParameterDeclaration
+        where TInterfaceReference : IInterfaceReference
         where TEventCollection : IEventCollection
         where TPropertyCollection : IPropertyCollection
         where TIndexerCollection : IIndexerCollection
@@ -36,6 +43,8 @@ namespace CSharpDom.Editable
         where TNestedStructCollection : INestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
+        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+
         public virtual TNestedClassCollection Classes { get; set; }
 
         public virtual ICollection<TConstructor> Constructors { get; set; }
@@ -50,11 +59,17 @@ namespace CSharpDom.Editable
 
         public virtual TFieldCollection Fields { get; set; }
 
+        public virtual IList<TGenericParameter> GenericParameters { get; set; }
+
+        public virtual ICollection<TInterfaceReference> ImplementedInterfaces { get; set; }
+
         public virtual TIndexerCollection Indexers { get; set; }
 
         public virtual TNestedInterfaceCollection Interfaces { get; set; }
 
         public virtual TMethodCollection Methods { get; set; }
+
+        public virtual string Name { get; set; }
 
         public virtual ICollection<TOperatorOverload> OperatorOverloads { get; set; }
 
@@ -63,6 +78,11 @@ namespace CSharpDom.Editable
         public virtual TStaticConstructor StaticConstructor { get; set; }
 
         public virtual TNestedStructCollection Structs { get; set; }
+
+        IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
+        {
+            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
+        }
 
         IReadOnlyCollection<TConstructor> IHasConstructors<TConstructor>.Constructors
         {
@@ -82,6 +102,16 @@ namespace CSharpDom.Editable
         IReadOnlyCollection<TNestedEnum> IHasEnums<TNestedEnum>.Enums
         {
             get { return new ReadOnlyCollectionWrapper<TNestedEnum>(Enums); }
+        }
+
+        IReadOnlyList<TGenericParameter> IHasGenericParameters<TGenericParameter>.GenericParameters
+        {
+            get { return new ReadOnlyCollection<TGenericParameter>(GenericParameters); }
+        }
+
+        IReadOnlyCollection<TInterfaceReference> IHasImplementedInterfaces<TInterfaceReference>.ImplementedInterfaces
+        {
+            get { return new ReadOnlyCollectionWrapper<TInterfaceReference>(ImplementedInterfaces); }
         }
 
         IReadOnlyCollection<TOperatorOverload> IHasOperatorOverloads<TOperatorOverload>.OperatorOverloads

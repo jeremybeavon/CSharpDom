@@ -5,6 +5,9 @@ using CSharpDom.Common;
 namespace CSharpDom.Editable
 {
     public class EditableClassType<
+        TAttributeGroup,
+        TGenericParameter,
+        TInterfaceReference,
         TEventCollection,
         TPropertyCollection,
         TIndexerCollection,
@@ -20,8 +23,11 @@ namespace CSharpDom.Editable
         TNestedStructCollection,
         TDestructor,
         TStaticConstructor> :
-        EditableType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
-        IClassType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor, TDestructor>
+        EditableType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        IClassType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor, TDestructor>
+        where TAttributeGroup : IAttributeGroup
+        where TGenericParameter : IGenericParameterDeclaration
+        where TInterfaceReference : IInterfaceReference
         where TEventCollection : IClassEventCollection
         where TPropertyCollection : IClassPropertyCollection
         where TIndexerCollection : IClassIndexerCollection

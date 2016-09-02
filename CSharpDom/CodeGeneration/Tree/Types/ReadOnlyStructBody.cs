@@ -11,6 +11,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructBody :
         IType<
+            AttributeGroupNotSupported,
+            ReadOnlyGenericParameterDeclaration,
+            ReadOnlyInterfaceReference,
             ReadOnlyStructEventCollection,
             ReadOnlyStructPropertyCollection,
             ReadOnlyStructIndexerCollection,
@@ -48,6 +51,14 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         }
 
+        public IReadOnlyCollection<AttributeGroupNotSupported> Attributes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public ReadOnlyStructNestedClassCollection Classes { get; private set; }
 
         public IReadOnlyCollection<ConstructorNotSupported> Constructors { get; private set; }
@@ -62,11 +73,35 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         
         public ReadOnlyStructFieldCollection Fields { get; private set; }
 
+        public IReadOnlyList<ReadOnlyGenericParameterDeclaration> GenericParameters
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public IReadOnlyCollection<ReadOnlyInterfaceReference> ImplementedInterfaces
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public ReadOnlyStructIndexerCollection Indexers { get; private set; }
 
         public ReadOnlyStructNestedInterfaceCollection Interfaces { get; private set; }
 
         public ReadOnlyStructMethodCollection Methods { get; private set; }
+
+        public string Name
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public IReadOnlyCollection<ReadOnlyOperatorOverload> OperatorOverloads { get; private set; }
 

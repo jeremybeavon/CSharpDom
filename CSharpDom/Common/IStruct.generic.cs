@@ -23,16 +23,12 @@
         TNestedStructCollection,
         TStaticConstructor> :
         IStruct,
-        IHasName,
         IHasTypeVisibilityModifier,
         IHasNamespace<TNamespace>,
         IHasDocument<TDocument>,
         IHasProject<TProject>,
         IHasSolution<TSolution>,
-        IHasAttributes<TAttributeGroup>,
-        IHasGenericParameters<TGenericParameter>,
-        IHasImplementedInterfaces<TInterfaceReference>,
-        IStructType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
         where TProject : IProject

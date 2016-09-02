@@ -1,6 +1,7 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface INestedClass<TAttributeGroup,
+    public interface INestedClass<
+        TAttributeGroup,
         TDeclaringType,
         TGenericParameter,
         TClassReference,
@@ -21,13 +22,10 @@
         TNestedDestructor,
         TStaticConstructor> :
         INestedClass,
-        IHasName,
         IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
-        IHasGenericParameters<TGenericParameter>,
         IHasBaseClass<TClassReference>,
-        IHasImplementedInterfaces<TInterfaceReference>,
-        IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
         IHasDestructor<TNestedDestructor>,
         IVisitable<IGenericVisitor>
         where TAttributeGroup : IAttributeGroup

@@ -25,7 +25,7 @@ namespace CSharpDom.Editable
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        EditableStructType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        EditableStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
         INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -46,31 +46,8 @@ namespace CSharpDom.Editable
         where TNestedStructCollection : IStructNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
-
         public virtual TDeclaringType DeclaringType { get; set; }
-
-        public virtual IList<TGenericParameter> GenericParameters { get; set; }
-
-        public virtual ICollection<TInterfaceReference> ImplementedInterfaces { get; set; }
         
-        public virtual string Name { get; set; }
-
-        IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
-        {
-            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
-        }
-
-        IReadOnlyList<TGenericParameter> IHasGenericParameters<TGenericParameter>.GenericParameters
-        {
-            get { return new ReadOnlyCollection<TGenericParameter>(GenericParameters); }
-        }
-
-        IReadOnlyCollection<TInterfaceReference> IHasImplementedInterfaces<TInterfaceReference>.ImplementedInterfaces
-        {
-            get { return new ReadOnlyCollectionWrapper<TInterfaceReference>(ImplementedInterfaces); }
-        }
-
         public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedStruct(this);

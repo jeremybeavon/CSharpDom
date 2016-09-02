@@ -6,6 +6,8 @@ namespace CSharpDom.Wrappers
 {
     public interface IStaticTypeWrapper :
         IStaticType<
+            IAttributeGroupWrapper,
+            IGenericParameterDeclarationWrapper,
             IStaticClassEventCollectionWrapper,
             IStaticClassPropertyWrapper,
             IStaticClassMethodCollectionWrapper,

@@ -17,15 +17,12 @@
         TNestedStructCollection,
         TStaticConstructor> :
         IStaticClass,
-        IHasName,
         IHasTypeVisibilityModifier,
         IHasNamespace<TNamespace>,
         IHasDocument<TDocument>,
         IHasProject<TProject>,
         IHasSolution<TSolution>,
-        IHasAttributes<TAttributeGroup>,
-        IHasGenericParameters<TGenericParameter>,
-        IStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
         where TProject : IProject

@@ -35,6 +35,9 @@ namespace CSharpDom.Reflection.Internal
         TNestedStructCollection,
         TNestedStruct> :
         AbstractType<
+            AttributeWithReflection,
+            GenericParameterDeclarationWithReflection,
+            InterfaceReferenceWithReflection,
             TEventCollection,
             TPropertyCollection,
             TIndexerCollection,
@@ -108,7 +111,7 @@ namespace CSharpDom.Reflection.Internal
                 () => new NestedTypes<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, this));
         }
 
-        public IReadOnlyCollection<AttributeWithReflection> Attributes
+        public override IReadOnlyCollection<AttributeWithReflection> Attributes
         {
             get { return attributes.Value.AttributesWithReflection; }
         }
@@ -142,12 +145,12 @@ namespace CSharpDom.Reflection.Internal
 
         public FieldCollection<TField, TConstant, TType> FieldCollection { get; private set; }
 
-        public IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
+        public override IReadOnlyList<GenericParameterDeclarationWithReflection> GenericParameters
         {
             get { return genericParameters.Value.GenericParameterDeclarationsWithReflection; }
         }
 
-        public IReadOnlyCollection<InterfaceReferenceWithReflection> ImplementedInterfaces
+        public override IReadOnlyCollection<InterfaceReferenceWithReflection> ImplementedInterfaces
         {
             get { return implementedInterfaces.Value.InterfaceReferencesWithReflection; }
         }

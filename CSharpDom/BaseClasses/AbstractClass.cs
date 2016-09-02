@@ -28,7 +28,7 @@ namespace CSharpDom.BaseClasses
         TNestedStructCollection,
         TDestructor,
         TStaticConstructor> :
-        AbstractClassType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>,
+        AbstractClassType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>,
         IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -54,18 +54,10 @@ namespace CSharpDom.BaseClasses
         where TDestructor : IDestructor
         where TStaticConstructor : IStaticConstructor
     {
-        public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
-
         public abstract TClassReference BaseClass { get; }
         
         public abstract TDocument Document { get; }
-
-        public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
-
-        public abstract IReadOnlyCollection<TInterfaceReference> ImplementedInterfaces { get; }
         
-        public abstract string Name { get; }
-
         public abstract TNamespace Namespace { get; }
 
         public abstract TProject Project { get; }

@@ -28,7 +28,7 @@ namespace CSharpDom.Editable
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        EditableType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        EditableType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
         IStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -52,18 +52,10 @@ namespace CSharpDom.Editable
         where TNestedStructCollection : IStructNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
-
         public virtual TDocument Document { get; set; }
 
-        public virtual IList<TGenericParameter> GenericParameters { get; set; }
-
-        public virtual ICollection<TInterfaceReference> ImplementedInterfaces { get; set; }
-
         public virtual bool IsPartial { get; set; }
-
-        public virtual string Name { get; set; }
-
+        
         public virtual TNamespace Namespace { get; set; }
 
         public virtual TProject Project { get; set; }

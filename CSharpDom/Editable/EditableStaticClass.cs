@@ -23,7 +23,7 @@ namespace CSharpDom.Editable
         TNestedInterfaceCollection,
         TNestedStructCollection,
         TStaticConstructor> :
-        EditableStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        EditableStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
         IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -42,14 +42,8 @@ namespace CSharpDom.Editable
         where TNestedStructCollection : IStaticClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
-        
         public virtual TDocument Document { get; set; }
-
-        public virtual IList<TGenericParameter> GenericParameters { get; set; }
         
-        public virtual string Name { get; set; }
-
         public virtual TNamespace Namespace { get; set; }
 
         public virtual TProject Project { get; set; }
@@ -57,17 +51,7 @@ namespace CSharpDom.Editable
         public virtual TSolution Solution { get; set; }
 
         public virtual TypeVisibilityModifier Visibility { get; set; }
-
-        IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
-        {
-            get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
-        }
-
-        IReadOnlyList<TGenericParameter> IHasGenericParameters<TGenericParameter>.GenericParameters
-        {
-            get { return new ReadOnlyCollection<TGenericParameter>(GenericParameters); }
-        }
-
+        
         public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStaticClass(this);

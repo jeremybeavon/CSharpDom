@@ -4,6 +4,9 @@ namespace CSharpDom.Mono.Cecil
 {
     public interface IClassTypeWithMonoCecil :
         IType<
+            AttributeWithMonoCecil,
+            GenericParameterDeclarationWithMonoCecil,
+            InterfaceReferenceWithMonoCecil,
             ClassEventCollectionWithMonoCecil,
             ClassPropertyCollectionWithMonoCecil,
             ClassIndexerCollectionWithMonoCecil,

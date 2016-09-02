@@ -1,11 +1,15 @@
 ﻿using CSharpDom.Common;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.BaseClasses.Wrappers
 {
-    public sealed class TypeWrapper<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> :
-        AbstractType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
-        IWrapper<IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>>
+    public sealed class TypeWrapper<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> :
+        AbstractType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        IWrapper<IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>>
+        where TAttributeGroup : IAttributeGroup
+        where TGenericParameter : IGenericParameterDeclaration
+        where TInterfaceReference : IInterfaceReference
         where TEventCollection : IEventCollection
         where TPropertyCollection : IPropertyCollection
         where TIndexerCollection : IIndexerCollection
@@ -21,9 +25,14 @@ namespace CSharpDom.BaseClasses.Wrappers
         where TNestedStructCollection : INestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public TypeWrapper(IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> type)
+        public TypeWrapper(IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> type)
         {
             WrappedObject = type;
+        }
+
+        public override IReadOnlyCollection<TAttributeGroup> Attributes
+        {
+            get { return WrappedObject.Attributes; }
         }
 
         public override TNestedClassCollection Classes
@@ -61,6 +70,16 @@ namespace CSharpDom.BaseClasses.Wrappers
             get { return WrappedObject.Fields; }
         }
 
+        public override IReadOnlyList<TGenericParameter> GenericParameters
+        {
+            get { return WrappedObject.GenericParameters; }
+        }
+
+        public override IReadOnlyCollection<TInterfaceReference> ImplementedInterfaces
+        {
+            get { return WrappedObject.ImplementedInterfaces; }
+        }
+
         public override TIndexerCollection Indexers
         {
             get { return WrappedObject.Indexers; }
@@ -74,6 +93,11 @@ namespace CSharpDom.BaseClasses.Wrappers
         public override TMethodCollection Methods
         {
             get { return WrappedObject.Methods; }
+        }
+
+        public override string Name
+        {
+            get { return WrappedObject.Name; }
         }
 
         public override IReadOnlyCollection<TOperatorOverload> OperatorOverloads
@@ -96,6 +120,6 @@ namespace CSharpDom.BaseClasses.Wrappers
             get { return WrappedObject.Structs; }
         }
 
-        public IType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> WrappedObject { get; private set; }
+        public IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> WrappedObject { get; private set; }
     }
 }

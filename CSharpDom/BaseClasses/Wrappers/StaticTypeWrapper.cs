@@ -4,9 +4,11 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses.Wrappers
 {
-    public sealed class StaticTypeWrapper<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> :
-        AbstractStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
-        IWrapper<IStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>>
+    public sealed class StaticTypeWrapper<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> :
+        AbstractStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        IWrapper<IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>>
+        where TAttributeGroup : IAttributeGroup
+        where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
         where TProperty : IStaticClassProperty
         where TMethodCollection : IStaticClassMethodCollection
@@ -18,9 +20,14 @@ namespace CSharpDom.BaseClasses.Wrappers
         where TNestedStructCollection : IStaticClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public StaticTypeWrapper(IStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> type)
+        public StaticTypeWrapper(IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> type)
         {
             WrappedObject = type;
+        }
+
+        public override IReadOnlyCollection<TAttributeGroup> Attributes
+        {
+            get { return WrappedObject.Attributes; }
         }
 
         public override TNestedClassCollection Classes
@@ -48,6 +55,11 @@ namespace CSharpDom.BaseClasses.Wrappers
             get { return WrappedObject.Fields; }
         }
 
+        public override IReadOnlyList<TGenericParameter> GenericParameters
+        {
+            get { return WrappedObject.GenericParameters; }
+        }
+
         public override TNestedInterfaceCollection Interfaces
         {
             get { return WrappedObject.Interfaces; }
@@ -56,6 +68,11 @@ namespace CSharpDom.BaseClasses.Wrappers
         public override TMethodCollection Methods
         {
             get { return WrappedObject.Methods; }
+        }
+
+        public override string Name
+        {
+            get { return WrappedObject.Name; }
         }
 
         public override IReadOnlyCollection<TProperty> Properties
@@ -73,6 +90,6 @@ namespace CSharpDom.BaseClasses.Wrappers
             get { return WrappedObject.Structs; }
         }
 
-        public IStaticType<TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> WrappedObject { get; private set; }
+        public IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> WrappedObject { get; private set; }
     }
 }

@@ -36,6 +36,9 @@ namespace CSharpDom.Mono.Cecil.Internal
         TNestedStructCollection,
         TNestedStruct> :
         AbstractType<
+            AttributeWithMonoCecil,
+            GenericParameterDeclarationWithMonoCecil,
+            InterfaceReferenceWithMonoCecil,
             TEventCollection,
             TPropertyCollection,
             TIndexerCollection,
@@ -101,7 +104,7 @@ namespace CSharpDom.Mono.Cecil.Internal
                 () => new NestedTypes<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct>(declaringType, this));
         }
 
-        public IReadOnlyCollection<AttributeWithMonoCecil> Attributes
+        public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
         {
             get { return attributes.Value.AttributesWithMonoCecil; }
         }
@@ -135,12 +138,12 @@ namespace CSharpDom.Mono.Cecil.Internal
 
         public FieldCollection<TField, TConstant, TType> FieldCollection { get; private set; }
 
-        public IReadOnlyList<GenericParameterDeclarationWithMonoCecil> GenericParameters
+        public override IReadOnlyList<GenericParameterDeclarationWithMonoCecil> GenericParameters
         {
             get { return genericParameters.Value.GenericParameterDeclarationsWithMonoCecil; }
         }
 
-        public IReadOnlyCollection<InterfaceReferenceWithMonoCecil> ImplementedInterfaces
+        public override IReadOnlyCollection<InterfaceReferenceWithMonoCecil> ImplementedInterfaces
         {
             get { return implementedInterfaces.Value.InterfaceReferencesWithMonoCecil; }
         }
@@ -153,6 +156,11 @@ namespace CSharpDom.Mono.Cecil.Internal
         public NestedTypeCollection<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> NestedTypeCollection { get; private set; }
 
         public MethodCollection<TConstructor, TMethod, TType> MethodCollection { get; private set; }
+
+        public override string Name
+        {
+            get { throw new NotImplementedException(); }
+        }
 
         public override IReadOnlyCollection<OperatorOverloadWithMonoCecil> OperatorOverloads
         {

@@ -20,12 +20,8 @@
         TNestedStructCollection,
         TStaticConstructor> :
         INestedStruct,
-        IHasName,
-        IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
-        IHasGenericParameters<TGenericParameter>,
-        IHasImplementedInterfaces<TInterfaceReference>,
-        IStructType<TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
+        IStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>,
         IVisitable<IGenericVisitor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
