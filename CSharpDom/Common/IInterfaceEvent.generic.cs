@@ -4,7 +4,7 @@
         IInterfaceEvent,
         IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IBasicType
+        where TDeclaringType : IInterfaceType
         where TDelegateReference : IDelegateReference
     {
     }

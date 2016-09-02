@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyInterfaceProperty :
-        AbstractInterfaceProperty<AttributeGroupNotSupported, IBasicType, ReadOnlyTypeReference, ReadOnlyInterfaceAccessor>
+        AbstractInterfaceProperty<AttributeGroupNotSupported, IInterfaceType, ReadOnlyTypeReference, ReadOnlyInterfaceAccessor>
     {
         private readonly InterfaceProperty interfaceProperty;
         private readonly ReadOnlyTypeReference propertyType;
@@ -37,7 +37,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
 
-        public override IBasicType DeclaringType
+        public override IInterfaceType DeclaringType
         {
             get { return null; }
         }

@@ -10,20 +10,20 @@ namespace CSharpDom.Mono.Cecil
     public sealed class InterfaceMethodWithMonoCecil :
         AbstractInterfaceMethod<
             AttributeWithMonoCecil,
-            IBasicTypeWithMonoCecil,
+            IInterfaceTypeWithMonoCecil,
             GenericParameterDeclarationWithMonoCecil,
             ITypeReferenceWithMonoCecil,
             MethodParameterWithMonoCecil>
     {
         private readonly MethodDefinition method;
-        private readonly IBasicTypeWithMonoCecil declaringType;
+        private readonly IInterfaceTypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<Attributes> returnAttributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly ITypeReferenceWithMonoCecil returnType;
         private readonly Lazy<Parameters<MethodParameterWithMonoCecil>> parameters;
 
-        internal InterfaceMethodWithMonoCecil(IBasicTypeWithMonoCecil declaringType, MethodDefinition method)
+        internal InterfaceMethodWithMonoCecil(IInterfaceTypeWithMonoCecil declaringType, MethodDefinition method)
         {
             this.method = method;
             this.declaringType = declaringType;
@@ -41,7 +41,7 @@ namespace CSharpDom.Mono.Cecil
             get { return attributes.Value.AttributesWithMonoCecil; }
         }
 
-        public override IBasicTypeWithMonoCecil DeclaringType
+        public override IInterfaceTypeWithMonoCecil DeclaringType
         {
             get { return declaringType; }
         }

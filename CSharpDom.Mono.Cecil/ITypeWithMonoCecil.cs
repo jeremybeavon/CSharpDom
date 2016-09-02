@@ -5,7 +5,7 @@ namespace CSharpDom.Mono.Cecil
     public interface ITypeWithMonoCecil :
         IType,
         IHasTypeDefinition,
-        IBasicTypeWithMonoCecil,
+        IInterfaceTypeWithMonoCecil,
         IStructType,
         IClassType,
         IAbstractType,

@@ -156,7 +156,7 @@
     <Compile Include="BaseClasses\AbstractArrayTypeReference.cs" />
     <Compile Include="BaseClasses\AbstractAttributeGroup.cs" />
     <Compile Include="BaseClasses\AbstractAttribute.cs" />
-    <Compile Include="BaseClasses\AbstractBasicType.cs" />
+    <Compile Include="BaseClasses\AbstractInterfaceType.cs" />
     <Compile Include="BaseClasses\AbstractClass.cs" />
     <Compile Include="BaseClasses\AbstractStructConstructor.cs" />
     <Compile Include="BaseClasses\AbstractStructEvent.cs" />
@@ -302,6 +302,7 @@
     <Compile Include="CodeGeneration\Tree\EmptyStaticClassPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclaration.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclarationExpression.cs" />
+    <Compile Include="Common\IBasicType.cs" />
     <Compile Include="Common\IHasAsync.cs" />
     <Compile Include="BaseClasses\IL\AbstractBranchTargetInstruction.cs" />
     <Compile Include="BaseClasses\IL\AbstractFieldInstruction.cs" />
@@ -370,7 +371,7 @@
     <Compile Include="Editable\EditableArrayTypeReference.cs" />
     <Compile Include="Editable\EditableAttribute.cs" />
     <Compile Include="Editable\EditableAttributeGroup.cs" />
-    <Compile Include="Editable\EditableBasicType.cs" />
+    <Compile Include="Editable\EditableInterfaceType.cs" />
     <Compile Include="Editable\EditableBuiltInTypeReference.cs" />
     <Compile Include="Editable\EditableClass.cs" />
     <Compile Include="Editable\EditableClassAccessor.cs" />
@@ -1541,7 +1542,7 @@
     <Compile Include="Common\IArrayTypeReference.cs" />
     <Compile Include="Common\IAttribute.cs" />
     <Compile Include="Common\IAttributeGroup.cs" />
-    <Compile Include="Common\IBasicType.cs" />
+    <Compile Include="Common\IInterfaceType.cs" />
     <Compile Include="Common\IClass.cs" />
     <Compile Include="Common\IHasBody.cs" />
     <Compile Include="Common\IHasEventPropertyBody.cs" />
@@ -2356,7 +2357,7 @@
     <Compile Include="Common\IArrayTypeReference.generic.cs" />
     <Compile Include="Common\IAttribute.generic.cs" />
     <Compile Include="Common\IAttributeGroup.generic.cs" />
-    <Compile Include="Common\IBasicType.generic.cs" />
+    <Compile Include="Common\IInterfaceType.generic.cs" />
     <Compile Include="Common\IClassReference.generic.cs" />
     <Compile Include="Common\IGenericParameter.generic.cs" />
     <Compile Include="Common\IGenericParameterDeclaration.generic.cs" />
@@ -2435,6 +2436,7 @@
     <Compile Include="Text\SourceCodeTextBuilder.cs" />
     <Compile Include="UnaryOperatorExpressionType.cs" />
     <Compile Include="Wrappers\IAccessorWrapper.cs" />
+    <Compile Include="Wrappers\IInterfaceTypeWrapper.cs" />
     <Compile Include="Wrappers\Internal\AbstractAccessorWrapper.cs" />
     <Compile Include="Wrappers\Internal\AbstractAsyncWrapper.cs" />
     <Compile Include="Wrappers\Internal\AbstractClassEventCollectionWrapper.cs" />

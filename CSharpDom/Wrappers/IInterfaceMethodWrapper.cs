@@ -7,7 +7,7 @@ namespace CSharpDom.Wrappers
     public interface IInterfaceMethodWrapper :
         IInterfaceMethod<
             IAttributeGroupWrapper,
-            ITypeWrapper,
+            IInterfaceTypeWrapper,
             IGenericParameterDeclarationWrapper,
             ITypeReferenceWrapper,
             IMethodParameterWrapper>

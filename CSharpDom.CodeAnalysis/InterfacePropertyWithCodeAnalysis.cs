@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class InterfacePropertyWithCodeAnalysis :
         EditableInterfaceProperty<
             AttributeGroupWithCodeAnalysis,
-            IBasicType,
+            IInterfaceType,
             ITypeReferenceWithCodeAnalysis,
             InterfaceAccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
@@ -22,13 +22,7 @@ namespace CSharpDom.CodeAnalysis
             get { return property.Attributes; }
             set { property.Attributes = value; }
         }
-
-        public override IBasicType DeclaringType
-        {
-            get { return property.DeclaringType; }
-            set { property.DeclaringType = value; }
-        }
-
+        
         public override InterfaceAccessorWithCodeAnalysis GetAccessor
         {
             get { return new InterfaceAccessorWithCodeAnalysis(property.GetAccessor); }

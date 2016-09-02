@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Reflection
 {
-    public interface IBasicTypeWithReflection : IBasicType, IHasType
+    public interface IBasicTypeWithReflection : IInterfaceType, IHasType
     {
     }
 }

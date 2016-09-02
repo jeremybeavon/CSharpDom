@@ -380,13 +380,13 @@ namespace CSharpDom.Common
         void VisitInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             IInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
+            where TDeclaringType : IInterfaceType
             where TDelegateReference : IDelegateReference;
 
         void VisitInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
             IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
+            where TDeclaringType : IInterfaceType
             where TTypeReference : ITypeReference
             where TParameter : IIndexerParameter
             where TAccessor : IInterfaceAccessor;
@@ -394,7 +394,7 @@ namespace CSharpDom.Common
         void VisitInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             IInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
+            where TDeclaringType : IInterfaceType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
             where TParameter : IMethodParameter;
@@ -402,7 +402,7 @@ namespace CSharpDom.Common
         void VisitInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
+            where TDeclaringType : IInterfaceType
             where TTypeReference : ITypeReference
             where TAccessor : IInterfaceAccessor;
 

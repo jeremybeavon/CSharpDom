@@ -16,7 +16,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             InterfacePropertyWithMonoCecil,
             InterfaceIndexerWithMonoCecil,
             InterfaceMethodWithMonoCecil>,
-        IBasicTypeWithMonoCecil/*,
+        IInterfaceTypeWithMonoCecil/*,
         IHasType,
         IVisitable<IReflectionVisitor>*/
     {

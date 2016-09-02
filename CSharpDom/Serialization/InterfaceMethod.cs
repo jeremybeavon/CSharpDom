@@ -5,7 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class InterfaceMethod :
-        IInterfaceMethod<AttributeGroup, IBasicType, GenericParameterDeclaration, TypeReference, MethodParameter>
+        IInterfaceMethod<AttributeGroup, IInterfaceType, GenericParameterDeclaration, TypeReference, MethodParameter>
     {
         public InterfaceMethod()
         {
@@ -17,7 +17,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
         
-        public IBasicType DeclaringType
+        public IInterfaceType DeclaringType
         {
             get { return null; }
         }

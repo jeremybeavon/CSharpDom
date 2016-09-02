@@ -4,10 +4,10 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Mono.Cecil.Internal
 {
-    internal sealed class BasicTypeWithMonoCecil : IBasicTypeWithMonoCecil
+    internal sealed class BasicTypeWithMonoCecil : IInterfaceTypeWithMonoCecil
     {
         private readonly TypeDefinition type;
-        private readonly IBasicTypeWithMonoCecil declaringType;
+        private readonly IInterfaceTypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly Lazy<InterfaceReferences> interfaces;
@@ -15,7 +15,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly Lazy<InterfaceProperties> properties;
         private readonly Lazy<IReadOnlyCollection<InterfaceMethodWithMonoCecil>> methods;
 
-        public BasicTypeWithMonoCecil(IBasicTypeWithMonoCecil declaringType, TypeDefinition type)
+        public BasicTypeWithMonoCecil(IInterfaceTypeWithMonoCecil declaringType, TypeDefinition type)
         {
             this.declaringType = declaringType;
             this.type = type;

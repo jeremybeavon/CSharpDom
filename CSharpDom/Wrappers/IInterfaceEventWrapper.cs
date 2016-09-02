@@ -5,7 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.Wrappers
 {
     public interface IInterfaceEventWrapper :
-        IInterfaceEvent<IAttributeGroupWrapper, ITypeWrapper, IDelegateReferenceWrapper>
+        IInterfaceEvent<IAttributeGroupWrapper, IInterfaceTypeWrapper, IDelegateReferenceWrapper>
     {
     }
 }

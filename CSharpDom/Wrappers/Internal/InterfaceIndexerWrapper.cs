@@ -19,7 +19,7 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
-        public ITypeWrapper DeclaringType
+        public IInterfaceTypeWrapper DeclaringType
         {
             get
             {

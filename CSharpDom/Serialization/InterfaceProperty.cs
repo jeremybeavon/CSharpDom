@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class InterfaceProperty : IInterfaceProperty<AttributeGroup, IBasicType, TypeReference, InterfaceAccessor>
+    public sealed class InterfaceProperty : IInterfaceProperty<AttributeGroup, IInterfaceType, TypeReference, InterfaceAccessor>
     {
         public InterfaceProperty()
         {
@@ -13,7 +13,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IBasicType DeclaringType
+        public IInterfaceType DeclaringType
         {
             get { return null; }
         }

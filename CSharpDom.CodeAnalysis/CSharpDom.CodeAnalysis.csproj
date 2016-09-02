@@ -106,7 +106,7 @@
     <Compile Include="AttributeGroupWithCodeAnalysis.cs" />
     <Compile Include="AttributeListWrapper.cs" />
     <Compile Include="AttributeWithCodeAnalysis.cs" />
-    <Compile Include="BasicTypeWithCodeAnalysis.cs" />
+    <Compile Include="InterfaceTypeWithCodeAnalysis.cs" />
     <Compile Include="BuiltInTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="CachedChildNode.cs" />
     <Compile Include="ClassAccessorWithCodeAnalysis.cs" />

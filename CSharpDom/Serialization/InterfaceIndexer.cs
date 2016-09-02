@@ -5,7 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class InterfaceIndexer :
-        IInterfaceIndexer<AttributeGroup, IBasicType, TypeReference, IndexerParameter, InterfaceAccessor>
+        IInterfaceIndexer<AttributeGroup, IInterfaceType, TypeReference, IndexerParameter, InterfaceAccessor>
     {
         public InterfaceIndexer()
         {
@@ -15,7 +15,7 @@ namespace CSharpDom.Serialization
         
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IBasicType DeclaringType
+        public IInterfaceType DeclaringType
         {
             get { return null; }
         }

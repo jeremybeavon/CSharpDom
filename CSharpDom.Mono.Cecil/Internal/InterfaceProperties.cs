@@ -6,7 +6,7 @@ namespace CSharpDom.Mono.Cecil.Internal
 {
     internal sealed class InterfaceProperties
     {
-        public InterfaceProperties(IBasicTypeWithMonoCecil declaringType, TypeDefinition type)
+        public InterfaceProperties(IInterfaceTypeWithMonoCecil declaringType, TypeDefinition type)
         {
             List<InterfaceIndexerWithMonoCecil> indexers = new List<InterfaceIndexerWithMonoCecil>();
             List<InterfacePropertyWithMonoCecil> properties = new List<InterfacePropertyWithMonoCecil>();

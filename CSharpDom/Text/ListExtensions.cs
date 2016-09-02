@@ -343,9 +343,12 @@ namespace CSharpDom.Text
             }
         }
 
-        internal static void AddInterfaceBodySteps<TEvent, TProperty, TIndexer, TMethod>(
+        internal static void AddInterfaceBodySteps<TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
             this List<ISourceCodeBuilderStep> steps,
-            IBasicType<TEvent, TProperty, TIndexer, TMethod> type)
+            IInterfaceType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> type)
+            where TAttributeGroup : IAttributeGroup
+            where TGenericParameter : IGenericParameterDeclaration
+            where TInterfaceReference : IInterfaceReference
             where TEvent : IInterfaceEvent
             where TProperty : IInterfaceProperty
             where TIndexer : IInterfaceIndexer

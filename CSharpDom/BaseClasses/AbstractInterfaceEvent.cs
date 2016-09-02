@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         AbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference>,
         IInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IBasicType
+        where TDeclaringType : IInterfaceType
         where TDelegateReference : IDelegateReference
     {
         public abstract InterfaceMemberInheritanceModifier InheritanceModifier { get; }

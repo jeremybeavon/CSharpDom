@@ -4,7 +4,7 @@
         IInterfaceMethod,
         IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IBasicType
+        where TDeclaringType : IInterfaceType
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
         where TParameter : IMethodParameter

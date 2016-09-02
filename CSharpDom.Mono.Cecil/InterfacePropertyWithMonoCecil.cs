@@ -10,18 +10,18 @@ namespace CSharpDom.Mono.Cecil
     public sealed class InterfacePropertyWithMonoCecil :
         AbstractInterfaceProperty<
             AttributeWithMonoCecil,
-            IBasicTypeWithMonoCecil,
+            IInterfaceTypeWithMonoCecil,
             ITypeReferenceWithMonoCecil,
             InterfaceAccessorWithMonoCecil>
     {
         private readonly PropertyDefinition property;
-        private readonly IBasicTypeWithMonoCecil declaringType;
+        private readonly IInterfaceTypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithMonoCecil propertyType;
         private readonly InterfaceAccessorWithMonoCecil getAccessor;
         private readonly InterfaceAccessorWithMonoCecil setAccessor;
 
-        internal InterfacePropertyWithMonoCecil(IBasicTypeWithMonoCecil declaringType, PropertyDefinition property)
+        internal InterfacePropertyWithMonoCecil(IInterfaceTypeWithMonoCecil declaringType, PropertyDefinition property)
         {
             this.property = property;
             this.declaringType = declaringType;
@@ -44,7 +44,7 @@ namespace CSharpDom.Mono.Cecil
             get { return attributes.Value.AttributesWithMonoCecil; }
         }
 
-        public override IBasicTypeWithMonoCecil DeclaringType
+        public override IInterfaceTypeWithMonoCecil DeclaringType
         {
             get { return declaringType; }
         }

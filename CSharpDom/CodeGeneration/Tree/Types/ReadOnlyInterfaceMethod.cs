@@ -12,7 +12,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
     public sealed class ReadOnlyInterfaceMethod :
         AbstractInterfaceMethod<
             AttributeGroupNotSupported,
-            IBasicType,
+            IInterfaceType,
             ReadOnlyGenericParameterDeclaration,
             ReadOnlyTypeReference,
             ReadOnlyMethodParameter>
@@ -35,7 +35,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return new AttributeGroupNotSupported[0]; }
         }
         
-        public override IBasicType DeclaringType
+        public override IInterfaceType DeclaringType
         {
             get { return null; }
         }

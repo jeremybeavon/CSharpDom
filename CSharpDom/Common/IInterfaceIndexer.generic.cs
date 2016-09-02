@@ -4,7 +4,7 @@
         IInterfaceIndexer,
         IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IBasicType
+        where TDeclaringType : IInterfaceType
         where TTypeReference : ITypeReference
         where TParameter : IIndexerParameter
         where TAccessor : IAccessor

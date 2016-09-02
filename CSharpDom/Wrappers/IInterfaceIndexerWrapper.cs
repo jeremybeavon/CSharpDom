@@ -7,7 +7,7 @@ namespace CSharpDom.Wrappers
     public interface IInterfaceIndexerWrapper :
         IInterfaceIndexer<
             IAttributeGroupWrapper,
-            ITypeWrapper,
+            IInterfaceTypeWrapper,
             ITypeReferenceWrapper,
             IIndexerParameterWrapper,
             IInterfaceAccessorWrapper>

@@ -246,7 +246,7 @@ namespace CSharpDom.Common
             IInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
+            where TDeclaringType : IInterfaceType
             where TDelegateReference : IDelegateReference
         {
             new EventWrapper<TAttributeGroup, TDeclaringType, TDelegateReference>(@event).Accept(visitor);
@@ -497,7 +497,7 @@ namespace CSharpDom.Common
             IInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
+            where TDeclaringType : IInterfaceType
             where TGenericParameter : IGenericParameterDeclaration
             where TTypeReference : ITypeReference
             where TParameter : IMethodParameter
@@ -1317,7 +1317,7 @@ namespace CSharpDom.Common
             IInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
+            where TDeclaringType : IInterfaceType
             where TTypeReference : ITypeReference
             where TAccessor : IInterfaceAccessor
         {
@@ -1980,7 +1980,7 @@ namespace CSharpDom.Common
             IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
+            where TDeclaringType : IInterfaceType
             where TTypeReference : ITypeReference
             where TParameter : IIndexerParameter
             where TAccessor : IInterfaceAccessor

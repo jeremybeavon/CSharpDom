@@ -10,15 +10,15 @@ namespace CSharpDom.Mono.Cecil
     public sealed class InterfaceEventWithMonoCecil :
         AbstractInterfaceEvent<
             AttributeWithMonoCecil,
-            IBasicTypeWithMonoCecil,
+            IInterfaceTypeWithMonoCecil,
             DelegateReferenceWithMonoCecil>
     {
         private readonly EventDefinition @event;
         private readonly Lazy<Attributes> attributes;
-        private readonly IBasicTypeWithMonoCecil declaringType;
+        private readonly IInterfaceTypeWithMonoCecil declaringType;
         private readonly DelegateReferenceWithMonoCecil eventType;
 
-        internal InterfaceEventWithMonoCecil(IBasicTypeWithMonoCecil declaringType, EventDefinition @event)
+        internal InterfaceEventWithMonoCecil(IInterfaceTypeWithMonoCecil declaringType, EventDefinition @event)
         {
             this.@event = @event;
             this.declaringType = declaringType;
@@ -32,7 +32,7 @@ namespace CSharpDom.Mono.Cecil
             get { return attributes.Value.AttributesWithMonoCecil; }
         }
 
-        public override IBasicTypeWithMonoCecil DeclaringType
+        public override IInterfaceTypeWithMonoCecil DeclaringType
         {
             get { return declaringType; }
         }

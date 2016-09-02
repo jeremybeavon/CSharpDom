@@ -10,20 +10,20 @@ namespace CSharpDom.Mono.Cecil
     public sealed class InterfaceIndexerWithMonoCecil :
         AbstractInterfaceIndexer<
             AttributeWithMonoCecil,
-            IBasicTypeWithMonoCecil,
+            IInterfaceTypeWithMonoCecil,
             ITypeReferenceWithMonoCecil,
             IndexerParameterWithMonoCecil,
             InterfaceAccessorWithMonoCecil>
     {
         private readonly PropertyDefinition indexer;
-        private readonly IBasicTypeWithMonoCecil declaringType;
+        private readonly IInterfaceTypeWithMonoCecil declaringType;
         private readonly Lazy<Attributes> attributes;
         private readonly ITypeReferenceWithMonoCecil indexerType;
         private readonly InterfaceAccessorWithMonoCecil getAccessor;
         private readonly InterfaceAccessorWithMonoCecil setAccessor;
         private readonly Lazy<Parameters<IndexerParameterWithMonoCecil>> parameters;
 
-        internal InterfaceIndexerWithMonoCecil(IBasicTypeWithMonoCecil declaringType, PropertyDefinition indexer)
+        internal InterfaceIndexerWithMonoCecil(IInterfaceTypeWithMonoCecil declaringType, PropertyDefinition indexer)
         {
             this.indexer = indexer;
             this.declaringType = declaringType;
@@ -48,7 +48,7 @@ namespace CSharpDom.Mono.Cecil
             get { return attributes.Value.AttributesWithMonoCecil; }
         }
 
-        public override IBasicTypeWithMonoCecil DeclaringType
+        public override IInterfaceTypeWithMonoCecil DeclaringType
         {
             get { return declaringType; }
         }

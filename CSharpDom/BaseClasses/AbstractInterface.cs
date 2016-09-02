@@ -15,7 +15,7 @@ namespace CSharpDom.BaseClasses
         TProperty,
         TIndexer,
         TMethod> :
-        AbstractBasicType<TEvent, TProperty, TIndexer, TMethod>,
+        AbstractInterfaceType<TAttributeGroup,TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>,
         IInterface<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -29,18 +29,10 @@ namespace CSharpDom.BaseClasses
         where TIndexer : IInterfaceIndexer
         where TMethod : IInterfaceMethod
     {
-        public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
-
         public abstract TDocument Document { get; }
-
-        public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
-
-        public abstract IReadOnlyCollection<TInterfaceReference> Interfaces { get; }
-
+        
         public abstract bool IsPartial { get; }
-
-        public abstract string Name { get; }
-
+        
         public abstract TNamespace Namespace { get; }
 
         public abstract TProject Project { get; }

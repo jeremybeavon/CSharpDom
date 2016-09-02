@@ -156,7 +156,7 @@
     <Compile Include="GenericParameterReferenceWithMonoCecil.cs" />
     <Compile Include="GenericParameterWithMonoCecil.cs" />
     <Compile Include="IAttributeWithMonoCecil.cs" />
-    <Compile Include="IBasicTypeWithMonoCecil.cs" />
+    <Compile Include="IInterfaceTypeWithMonoCecil.cs" />
     <Compile Include="IClassTypeWithMonoCecil.cs" />
     <Compile Include="IConstantWithMonoCecil.cs" />
     <Compile Include="IFieldWithMonoCecil.cs" />

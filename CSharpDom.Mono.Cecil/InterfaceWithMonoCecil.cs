@@ -22,7 +22,7 @@ namespace CSharpDom.Mono.Cecil
             InterfacePropertyWithMonoCecil,
             InterfaceIndexerWithMonoCecil,
             InterfaceMethodWithMonoCecil>,
-        IBasicTypeWithMonoCecil,
+        IInterfaceTypeWithMonoCecil,
         IHasTypeDefinition//,
         //IVisitable<IReflectionVisitor>
     {

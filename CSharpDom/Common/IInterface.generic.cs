@@ -12,12 +12,8 @@
         TIndexer,
         TMethod> :
         IInterface,
-        IHasName,
         IHasTypeVisibilityModifier,
-        IHasAttributes<TAttributeGroup>,
-        IHasGenericParameters<TGenericParameter>,
-        IHasInterfaces<TInterfaceReference>,
-        IBasicType<TEvent, TProperty, TIndexer, TMethod>,
+        IInterfaceType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>,
         IHasNamespace<TNamespace>,
         IHasDocument<TDocument>,
         IHasProject<TProject>,

@@ -8,7 +8,7 @@ namespace CSharpDom.Editable
         EditableEvent<TAttributeGroup, TDeclaringType, TDelegateReference>,
         IInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IBasicType
+        where TDeclaringType : IInterfaceType
         where TDelegateReference : IDelegateReference
     {
         public virtual InterfaceMemberInheritanceModifier InheritanceModifier { get; set; }

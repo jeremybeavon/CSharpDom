@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class InterfaceEvent : IInterfaceEvent<AttributeGroup, IType, DelegateReference>
+    public sealed class InterfaceEvent : IInterfaceEvent<AttributeGroup, IInterfaceType, DelegateReference>
     {
         public InterfaceEvent()
         {
@@ -13,7 +13,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public IType DeclaringType
+        public IInterfaceType DeclaringType
         {
             get { return null; }
         }
