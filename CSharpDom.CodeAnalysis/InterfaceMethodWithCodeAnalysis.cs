@@ -16,7 +16,24 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<MethodDeclarationSyntax>,
         IHasId
     {
+        private readonly Guid internalId;
         private readonly MethodWithCodeAnalysis method;
+
+        internal InterfaceMethodWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
+            : this()
+        {
+            method = new MethodWithCodeAnalysis(parent, this);
+        }
+
+        private InterfaceMethodWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public MethodWithCodeAnalysis Method
+        {
+            get { return method; }
+        }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
@@ -68,10 +85,7 @@ namespace CSharpDom.CodeAnalysis
 
         Guid IHasId.InternalId
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return internalId; }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<IndexerDeclarationSyntax>,
         ISimpleMember
     {
+        private readonly object indexer;
         private readonly Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> node;
         private readonly AttributeListWrapper<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> attributes;
         private readonly CachedChildNode<
@@ -41,10 +42,16 @@ namespace CSharpDom.CodeAnalysis
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> setAccessor;
 
-        private IndexerWithCodeAnalysis(IBasicType declaringType)
+        internal IndexerWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceIndexerWithCodeAnalysis indexer)
+            : this(indexer)
+        {
+            InterfaceParent = parent;
+        }
+
+        private IndexerWithCodeAnalysis(object indexer)
         {
             node = new Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax>(this);
-            base.DeclaringType = declaringType;
+            this.indexer = indexer;
             attributes = new AttributeListWrapper<IndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -74,7 +81,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IBasicType DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return node.GetParentNode<IBasicType>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -127,6 +134,12 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
+        internal InterfaceTypeWithCodeAnalysis InterfaceParent
+        {
+            get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
+            set { node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(value, parent => parent.IndexerList); }
+        }
+
         private CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax> GetAccessorNode(
             SyntaxKind kind)
         {
@@ -151,7 +164,7 @@ namespace CSharpDom.CodeAnalysis
 
         T ISimpleMember.Member<T>()
         {
-            throw new NotImplementedException();
+            return (T)indexer;
         }
     }
 }

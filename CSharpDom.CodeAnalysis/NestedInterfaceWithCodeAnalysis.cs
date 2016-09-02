@@ -19,100 +19,65 @@ namespace CSharpDom.CodeAnalysis
             InterfaceMethodWithCodeAnalysis>,
         IHasSyntax<InterfaceDeclarationSyntax>
     {
-        private readonly Node<NestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax> node;
-        private readonly AttributeListWrapper<NestedInterfaceWithCodeAnalysis, TypeDeclarationSyntax> attributes;
-        private readonly MemberListWrapper<
-            NestedInterfaceWithCodeAnalysis,
-            InterfaceDeclarationSyntax,
-            EventWithCodeAnalysis,
-            InterfaceEventWithCodeAnalysis,
-            EventFieldDeclarationSyntax> events;
-        private readonly MemberListWrapper<
-            NestedInterfaceWithCodeAnalysis,
-            InterfaceDeclarationSyntax,
-            PropertyWithCodeAnalysis,
-            InterfacePropertyWithCodeAnalysis,
-            PropertyDeclarationSyntax> properties;
-        private readonly MemberListWrapper<
-            NestedInterfaceWithCodeAnalysis,
-            InterfaceDeclarationSyntax,
-            IndexerWithCodeAnalysis,
-            InterfaceIndexerWithCodeAnalysis,
-            IndexerDeclarationSyntax> indexers;
-        private readonly MemberListWrapper<
-            NestedInterfaceWithCodeAnalysis,
-            InterfaceDeclarationSyntax,
-            MethodWithCodeAnalysis,
-            InterfaceMethodWithCodeAnalysis,
-            MethodDeclarationSyntax> methods;
-        private readonly CombinedMemberList combinedList;
-
-        internal NestedInterfaceWithCodeAnalysis(IType declaringType)
+        private readonly InterfaceTypeWithCodeAnalysis type;
+        
+        public InterfaceTypeWithCodeAnalysis Type
         {
-            node = new Node<NestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(this);
-            base.DeclaringType = declaringType;
-            events = new MemberListWrapper<NestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax, EventWithCodeAnalysis, InterfaceEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
-                node,
-                (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax),
-                parent => new InterfaceEventWithCodeAnalysis(parent),
-                (child, parent) => child.Event.NestedInterfaceParent = parent);
-
-            combinedList = new CombinedMemberList(members => Syntax = Syntax.WithMembers(members))
-            {
-                { nameof(events), () => events.Select(@event => @event.Syntax) },
-                { nameof(properties), () => properties.Select(property => property.Syntax) },
-                { nameof(indexers), () => indexers.Select(indexer => indexer.Syntax) },
-                { nameof(methods), () => methods.Select(method => method.Syntax) }
-            };
+            get { return type; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return attributes; }
-            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
+            get { return type.Attributes; }
+            set { type.Attributes = value; }
         }
-
-        public override IType DeclaringType
-        {
-            get { return base.DeclaringType; }
-            set { throw new NotSupportedException(); }
-        }
-
+        
         public override ICollection<InterfaceEventWithCodeAnalysis> Events
         {
-            get { return events; }
-            set { combinedList.CombineList(nameof(events), value.Select(item => item.Syntax)); }
+            get { return type.Events; }
+            set { type.Events = value; }
+        }
+
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        {
+            get { return type.GenericParameters; }
+            set { type.GenericParameters = value; }
+        }
+
+        public override ICollection<InterfaceIndexerWithCodeAnalysis> Indexers
+        {
+            get { return type.Indexers; }
+            set { type.Indexers = value; }
+        }
+
+        public override IReadOnlyCollection<InterfaceReferenceWithCodeAnalysis> Interfaces
+        {
+            get { return type.Interfaces; }
+            set { type.Interfaces = value; }
+        }
+
+        public override ICollection<InterfaceMethodWithCodeAnalysis> Methods
+        {
+            get { return type.Methods; }
+            set { type.Methods = value; }
+        }
+
+        public override string Name
+        {
+            get { return type.Name; }
+            set { type.Name = value; }
+        }
+
+        public override ICollection<InterfacePropertyWithCodeAnalysis> Properties
+        {
+            get { return type.Properties; }
+            set { type.Properties = value; }
         }
 
         public InterfaceDeclarationSyntax Syntax
         {
-            get { return node.Syntax; }
-            set { node.Syntax = value; }
-        }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> EventList
-        {
-            get { return events; }
-        }
-
-        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> IndexerList
-        {
-            get { return indexers; }
-        }
-
-        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> MethodList
-        {
-            get { return methods; }
-        }
-
-        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> PropertyList
-        {
-            get { return properties; }
+            get { return type.Syntax; }
+            set { type.Syntax = value; }
         }
     }
 }

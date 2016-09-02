@@ -20,6 +20,7 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<MethodDeclarationSyntax>,
         ISimpleMember
     {
+        private readonly object method;
         private readonly Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> node;
         private readonly AttributeListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax> attributes;
         private readonly GenericParameterDeclarationListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax> genericParameters;
@@ -34,10 +35,16 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             TypeSyntax> returnType;
         
-        private MethodWithCodeAnalysis(IBasicType declaringType)
+        internal MethodWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceMethodWithCodeAnalysis method)
+            : this(method)
+        {
+            InterfaceParent = parent;
+        }
+
+        private MethodWithCodeAnalysis(object method)
         {
             node = new Node<MethodWithCodeAnalysis, MethodDeclarationSyntax>(this);
-            base.DeclaringType = declaringType;
+            this.method = method;
             attributes = new AttributeListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -46,8 +53,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.MethodParent = parent);
             genericParameters = new GenericParameterDeclarationListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 node,
-                syntax => syntax.TypeParameterList.Parameters,
-                (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(parentSyntax.TypeParameterList.WithParameters(childSyntax)),
+                syntax => syntax.TypeParameterList,
+                (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
                 parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
@@ -80,16 +87,7 @@ namespace CSharpDom.CodeAnalysis
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
             get { return genericParameters; }
-            set
-            {
-                MethodDeclarationSyntax syntax = Syntax;
-                syntax = syntax.WithTypeParameterList(
-                    SyntaxFactory.TypeParameterList(SyntaxFactory.SeparatedList(value.Select(node => node.Syntax.TypeParameter))));
-                IEnumerable<TypeParameterConstraintClauseSyntax> constraintClauses = 
-                    value.Select(node => node.Syntax.ConstraintClause).Where(clause => clause != null);
-                Syntax = syntax.WithConstraintClauses(
-                    SyntaxFactory.List(value.Select(node => node.Syntax.ConstraintClause).Where(clause => clause != null)));
-            }
+            set { genericParameters.ReplaceList(value); }
         }
 
         public override string Name
@@ -131,7 +129,7 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
         }
 
-        internal IChildCollection<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax> GenericParameterList
+        internal IGenericParameterCollection GenericParameterList
         {
             get { return genericParameters; }
         }
@@ -146,9 +144,15 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
+        internal InterfaceTypeWithCodeAnalysis InterfaceParent
+        {
+            get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
+            set { node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(value, parent => parent.MethodList); }
+        }
+
         T ISimpleMember.Member<T>()
         {
-            throw new NotImplementedException();
+            return (T)method;
         }
     }
 }

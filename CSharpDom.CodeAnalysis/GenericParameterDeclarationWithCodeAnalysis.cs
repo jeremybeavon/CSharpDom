@@ -34,6 +34,12 @@ namespace CSharpDom.CodeAnalysis
         private readonly FilteredList<ITypeReferenceWithCodeAnalysis, GenericParameterReferenceWithCodeAnalysis> genericParameterConstraints;
         private readonly IList<InterfaceReferenceWithCodeAnalysis> interfaceConstraints;
 
+        internal GenericParameterDeclarationWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
+            : this()
+        {
+            InterfaceParent = parent;
+        }
+
         internal GenericParameterDeclarationWithCodeAnalysis(MethodWithCodeAnalysis parent)
             : this()
         {
@@ -184,6 +190,17 @@ namespace CSharpDom.CodeAnalysis
         Guid IHasId.InternalId
         {
             get { return internalId; }
+        }
+
+        internal InterfaceTypeWithCodeAnalysis InterfaceParent
+        {
+            get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                    value,
+                    parent => parent.GenericParameterList);
+            }
         }
 
         internal MethodWithCodeAnalysis MethodParent

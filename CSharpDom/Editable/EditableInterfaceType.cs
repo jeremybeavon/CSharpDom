@@ -31,7 +31,7 @@ namespace CSharpDom.Editable
 
         public virtual ICollection<TIndexer> Indexers { get; set; }
 
-        public virtual IReadOnlyCollection<TInterfaceReference> Interfaces { get; set; }
+        public virtual ICollection<TInterfaceReference> Interfaces { get; set; }
 
         public virtual ICollection<TMethod> Methods { get; set; }
 
@@ -57,6 +57,11 @@ namespace CSharpDom.Editable
         IReadOnlyCollection<TIndexer> IHasIndexers<TIndexer>.Indexers
         {
             get { return new ReadOnlyCollectionWrapper<TIndexer>(Indexers); }
+        }
+
+        IReadOnlyCollection<TInterfaceReference> IHasInterfaces<TInterfaceReference>.Interfaces
+        {
+            get { return new ReadOnlyCollectionWrapper<TInterfaceReference>(Interfaces); }
         }
 
         IReadOnlyCollection<TMethod> IHasMethods<TMethod>.Methods

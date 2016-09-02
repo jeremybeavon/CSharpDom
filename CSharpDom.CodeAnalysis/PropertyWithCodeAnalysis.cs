@@ -37,9 +37,16 @@ namespace CSharpDom.CodeAnalysis
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> setAccessor;
 
+        internal PropertyWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfacePropertyWithCodeAnalysis property)
+            : this(property)
+        {
+            InterfaceParent = parent;
+        }
+
         private PropertyWithCodeAnalysis(object property)
         {
             node = new Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(this);
+            this.property = property;
             attributes = new AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -105,6 +112,12 @@ namespace CSharpDom.CodeAnalysis
         internal Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> Node
         {
             get { return node; }
+        }
+
+        internal InterfaceTypeWithCodeAnalysis InterfaceParent
+        {
+            get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
+            set { node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(value, parent => parent.PropertyList); }
         }
 
         private CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax> GetAccessorNode(

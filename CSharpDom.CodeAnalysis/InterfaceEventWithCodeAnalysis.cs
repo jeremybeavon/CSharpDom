@@ -16,7 +16,7 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly EventWithCodeAnalysis @event;
         
-        internal InterfaceEventWithCodeAnalysis(NestedInterfaceWithCodeAnalysis parent)
+        internal InterfaceEventWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
         {
             @event = new EventWithCodeAnalysis(parent, this);
         }

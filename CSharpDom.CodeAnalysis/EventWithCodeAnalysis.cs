@@ -27,9 +27,10 @@ namespace CSharpDom.CodeAnalysis
             DelegateReferenceWithCodeAnalysis,
             NameSyntax> eventType;
 
-        internal EventWithCodeAnalysis(NestedInterfaceWithCodeAnalysis parent, InterfaceEventWithCodeAnalysis @event)
+        internal EventWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceEventWithCodeAnalysis @event)
             : this(@event)
         {
+            InterfaceParent = parent;
         }
 
         private EventWithCodeAnalysis(object @event)
@@ -91,12 +92,12 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
         }
         
-        internal NestedInterfaceWithCodeAnalysis NestedInterfaceParent
+        internal InterfaceTypeWithCodeAnalysis InterfaceParent
         {
-            get { return node.GetParentNode<NestedInterfaceWithCodeAnalysis>(); }
+            get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<NestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                     value,
                     parent => parent.EventList);
             }

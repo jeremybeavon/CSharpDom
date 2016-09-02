@@ -7,7 +7,8 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class InterfaceReferenceWithCodeAnalysis :
         EditableInterfaceReference<GenericParameterWithCodeAnalysis>,
-        IHasSyntax<NameSyntax>//,
+        IHasSyntax<NameSyntax>,
+        IHasId//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
@@ -32,7 +33,7 @@ namespace CSharpDom.CodeAnalysis
         {
         }
 
-        internal InterfaceReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
+        private InterfaceReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
             this.typeReference = typeReference;
         }
@@ -58,6 +59,14 @@ namespace CSharpDom.CodeAnalysis
         internal UnspecifiedTypeReferenceWithCodeAnalysis TypeReference
         {
             get { return typeReference; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

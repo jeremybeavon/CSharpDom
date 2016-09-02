@@ -16,7 +16,24 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<IndexerDeclarationSyntax>,
         IHasId
     {
+        private readonly Guid internalId;
         private readonly IndexerWithCodeAnalysis indexer;
+
+        internal InterfaceIndexerWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
+            : this()
+        {
+            indexer = new IndexerWithCodeAnalysis(parent, this);
+        }
+
+        private InterfaceIndexerWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public IndexerWithCodeAnalysis Indexer
+        {
+            get { return indexer; }
+        }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
@@ -62,10 +79,7 @@ namespace CSharpDom.CodeAnalysis
 
         Guid IHasId.InternalId
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return internalId; }
         }
     }
 }

@@ -1,5 +1,9 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -7,9 +11,12 @@ namespace CSharpDom.CodeAnalysis
         ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
         where TParentNode : class
         where TParentSyntax : class
-        where TChildSyntax : SyntaxNode
         where TChildNode : class, IHasSyntax<TChildSyntax>, IHasId
+        where TChildSyntax : SyntaxNode
     {
+        private readonly Node<TParentNode, TParentSyntax> node;
+        private readonly Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList;
+
         public SeparatedSyntaxListWrapper(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
@@ -18,6 +25,13 @@ namespace CSharpDom.CodeAnalysis
             Action<TChildNode, TParentNode> setParent)
             : base(node, ListFactory.CreateList(node, getList, createList), factory, setParent)
         {
+            this.node = node;
+            this.createList = createList;
+        }
+
+        public void ReplaceList(IEnumerable<TChildNode> newList)
+        {
+            node.Syntax = createList(node.Syntax, SyntaxFactory.SeparatedList(newList.Select(item => item.Syntax)));
         }
     }
 }

@@ -47,16 +47,16 @@ namespace CSharpDom.CodeAnalysis
 
         public static IList<GenericParameterDeclarationSyntax> CreateList<TParentNode, TParentSyntax>(
             Node<TParentNode, TParentSyntax> node,
-            Func<TParentSyntax, SeparatedSyntaxList<TypeParameterSyntax>> getTypeParameters,
-            Func<TParentSyntax, SeparatedSyntaxList<TypeParameterSyntax>, TParentSyntax> createTypeParameters,
+            Func<TParentSyntax, TypeParameterListSyntax> getTypeParameters,
+            Func<TParentSyntax, TypeParameterListSyntax, TParentSyntax> createTypeParameters,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>> getConstraintClauses,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses)
             where TParentSyntax : class
         {
             return new GenericParameterDeclarationList<TParentNode, TParentSyntax>(
                 node,
-                getTypeParameters,
-                createTypeParameters,
+                syntax => getTypeParameters(syntax).Parameters,
+                (parentSyntax, childSyntax) => createTypeParameters(parentSyntax, getTypeParameters(parentSyntax).WithParameters(childSyntax)),
                 getConstraintClauses,
                 createConstraintClauses);
         }
