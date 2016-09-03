@@ -12,13 +12,26 @@ namespace CSharpDom.CodeAnalysis
             IClassType,
             ITypeReferenceWithCodeAnalysis,
             ConstantWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly ConstantGroupWithCodeAnalysis constant;
 
-        internal ClassConstantWithCodeAnalysis(IClassType declaringType)
+        internal ClassConstantWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            base.DeclaringType = declaringType;
+            constant = new ConstantGroupWithCodeAnalysis(parent, this);
+        }
+
+        private ClassConstantWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public ConstantGroupWithCodeAnalysis Constant
+        {
+            get { return constant; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -59,6 +72,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return constant.Syntax; }
             set { constant.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

@@ -23,9 +23,19 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly MethodWithCodeAnalysis method;
 
-        internal MethodWithBodyWithCodeAnalysis(IType declaringType)
+        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassMethodWithCodeAnalysis method)
         {
-            base.DeclaringType = declaringType;
+            this.method = new MethodWithCodeAnalysis(parent, method);
+        }
+
+        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
+        {
+            this.method = new MethodWithCodeAnalysis(parent, method);
+        }
+
+        public MethodWithCodeAnalysis Method
+        {
+            get { return method; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

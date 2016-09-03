@@ -33,6 +33,12 @@ namespace CSharpDom.CodeAnalysis
             InterfaceParent = parent;
         }
 
+        internal EventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassEventWithCodeAnalysis @event)
+            : this(@event)
+        {
+            ClassParent = parent;
+        }
+
         private EventWithCodeAnalysis(object @event)
         {
             this.@event = @event;
@@ -54,7 +60,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
+            set { attributes.ReplaceList(value); }
         }
 
         public override IBasicType DeclaringType
@@ -92,6 +98,17 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
         }
         
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Events.EventList);
+            }
+        }
+
         internal InterfaceTypeWithCodeAnalysis InterfaceParent
         {
             get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }

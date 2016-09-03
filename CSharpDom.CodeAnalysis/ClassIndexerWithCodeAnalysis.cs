@@ -13,13 +13,26 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             ClassAccessorWithCodeAnalysis>,
-        IHasSyntax<IndexerDeclarationSyntax>
+        IHasSyntax<IndexerDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly IndexerWithBodyWithCodeAnalysis indexer;
 
-        internal ClassIndexerWithCodeAnalysis(IClassType declaringType)
+        internal ClassIndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            base.DeclaringType = declaringType;
+            indexer = new IndexerWithBodyWithCodeAnalysis(parent, this);
+        }
+
+        private ClassIndexerWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public IndexerWithBodyWithCodeAnalysis Indexer
+        {
+            get { return indexer; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -83,6 +96,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return indexer.Syntax; }
             set { indexer.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

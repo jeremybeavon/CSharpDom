@@ -15,8 +15,10 @@ namespace CSharpDom.CodeAnalysis
             IType,
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<EventDeclarationSyntax>
+        IHasSyntax<EventDeclarationSyntax>,
+        ISimpleMember
     {
+        private readonly object eventProperty;
         private readonly Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> node;
         private readonly AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> addAttributes;
         private readonly CachedChildNode<
@@ -37,10 +39,20 @@ namespace CSharpDom.CodeAnalysis
             MethodBodyWithCodeAnalysis,
             BlockSyntax> removeBody;
 
-        internal EventPropertyWithCodeAnalysis(IType declaringType)
+        internal EventPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassEventPropertyWithCodeAnalysis eventProperty)
+            : this(eventProperty)
+        {
+        }
+
+        internal EventPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceEventWithCodeAnalysis eventProperty)
+            : this(eventProperty)
+        {
+        }
+
+        private EventPropertyWithCodeAnalysis(object eventProperty)
         {
             node = new Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(this);
-            base.DeclaringType = declaringType;
+            this.eventProperty = eventProperty;
             addAttributes = new AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 node,
                 syntax => syntax.GetAccessor(SyntaxKind.AddKeyword).AttributeLists,
@@ -79,7 +91,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> AddAttributes
         {
             get { return addAttributes; }
-            set { Syntax = CreateAccessorAttributes(Syntax, value.ToAttributes(), SyntaxKind.AddKeyword); }
+            set { Syntax = CreateAccessorAttributes(Syntax, value, SyntaxKind.AddKeyword); }
         }
 
         public override MethodBodyWithCodeAnalysis AddBody
@@ -91,7 +103,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
+            set { attributes.ReplaceList(value); }
         }
 
         public override IType DeclaringType
@@ -115,7 +127,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> RemoveAttributes
         {
             get { return removeAttributes; }
-            set { Syntax = CreateAccessorAttributes(Syntax, value.ToAttributes(), SyntaxKind.RemoveKeyword); }
+            set { Syntax = CreateAccessorAttributes(Syntax, value, SyntaxKind.RemoveKeyword); }
         }
 
         public override MethodBodyWithCodeAnalysis RemoveBody
@@ -150,6 +162,36 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Events.EventPropertyList);
+            }
+        }
+
+        internal ClassTypeWithCodeAnalysis ExplicitInterfaceClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Events.ExplicitInterfaceEventList);
+            }
+        }
+
+        private static EventDeclarationSyntax CreateAccessorAttributes(
+            EventDeclarationSyntax parentSyntax,
+            IEnumerable<AttributeGroupWithCodeAnalysis> attributes,
+            SyntaxKind kind)
+        {
+            return CreateAccessorAttributes(parentSyntax, SyntaxFactory.List(attributes.Select(item => item.Syntax)), kind);
+        }
+
         private static EventDeclarationSyntax CreateAccessorAttributes(
             EventDeclarationSyntax parentSyntax,
             SyntaxList<AttributeListSyntax> childSyntax,
@@ -157,6 +199,11 @@ namespace CSharpDom.CodeAnalysis
         {
             AccessorDeclarationSyntax accessor = parentSyntax.GetAccessor(kind);
             return parentSyntax.WithAccessor(kind, accessor.WithAttributeLists(childSyntax));
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            return (T)eventProperty;
         }
     }
 }

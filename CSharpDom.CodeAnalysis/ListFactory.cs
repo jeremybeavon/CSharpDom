@@ -61,6 +61,17 @@ namespace CSharpDom.CodeAnalysis
                 createConstraintClauses);
         }
 
+        public static IList<NameSyntax> CreateBaseTypeList<TParentNode, TParentSyntax>(
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, BaseListSyntax, TParentSyntax> createList)
+            where TParentSyntax : TypeDeclarationSyntax
+        {
+            return new BaseTypeList<TParentNode, TParentSyntax>(
+                node,
+                syntax => syntax.BaseList.Types,
+                (parentSyntax, childSyntax) => createList(parentSyntax, parentSyntax.BaseList.WithTypes(childSyntax)));
+        }
+
         public static IList<TChildSyntax> CreateFilteredList<TParentNode, TParentSyntax, TChildBaseSyntax, TChildSyntax>(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<TChildBaseSyntax>> getList,

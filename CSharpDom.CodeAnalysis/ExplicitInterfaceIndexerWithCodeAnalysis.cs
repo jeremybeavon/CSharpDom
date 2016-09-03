@@ -15,8 +15,10 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             AccessorWithBodyWithCodeAnalysis>,
-        IHasSyntax<IndexerDeclarationSyntax>
+        IHasSyntax<IndexerDeclarationSyntax>,
+        IHasId
     {
+        private Guid internalId;
         private readonly IndexerWithBodyWithCodeAnalysis indexer;
         private readonly CachedChildNode<
             IndexerWithCodeAnalysis,
@@ -24,14 +26,25 @@ namespace CSharpDom.CodeAnalysis
             InterfaceReferenceWithCodeAnalysis,
             NameSyntax> explicitInterface;
 
-        internal ExplicitInterfaceIndexerWithCodeAnalysis(IType declaringType)
+        internal ExplicitInterfaceIndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            base.DeclaringType = declaringType;
+            indexer = new IndexerWithBodyWithCodeAnalysis(parent, this);
+        }
+
+        private ExplicitInterfaceIndexerWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
             explicitInterface = new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 indexer.Indexer.Node,
                 parent => new InterfaceReferenceWithCodeAnalysis(parent),
                 (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
                 (child, parent) => child.TypeReference.ExplicitInterfaceIndexerParent = parent);
+        }
+
+        public IndexerWithBodyWithCodeAnalysis Indexer
+        {
+            get { return indexer; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -80,6 +93,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return indexer.Syntax; }
             set { indexer.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

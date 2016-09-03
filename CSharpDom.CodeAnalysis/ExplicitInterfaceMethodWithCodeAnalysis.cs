@@ -15,8 +15,11 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
-            MethodBodyWithCodeAnalysis>
+            MethodBodyWithCodeAnalysis>,
+        IHasSyntax<MethodDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly MethodWithBodyWithCodeAnalysis method;
         private readonly CachedChildNode<
             MethodWithCodeAnalysis,
@@ -24,14 +27,25 @@ namespace CSharpDom.CodeAnalysis
             InterfaceReferenceWithCodeAnalysis,
             NameSyntax> explicitInterface;
 
-        internal ExplicitInterfaceMethodWithCodeAnalysis(IType declaringType)
+        internal ExplicitInterfaceMethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            base.DeclaringType = declaringType;
+            method = new MethodWithBodyWithCodeAnalysis(parent, this);
+        }
+
+        private ExplicitInterfaceMethodWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
             explicitInterface = new CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 method.Node,
                 parent => new InterfaceReferenceWithCodeAnalysis(parent),
                 (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
                 (child, parent) => child.TypeReference.ExplicitInterfaceMethodParent = parent);
+        }
+
+        public MethodWithBodyWithCodeAnalysis Method
+        {
+            get { return method; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -92,6 +106,17 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.ReturnAttributes; }
             set { method.ReturnAttributes = value; }
+        }
+
+        public MethodDeclarationSyntax Syntax
+        {
+            get { return method.Syntax; }
+            set { method.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

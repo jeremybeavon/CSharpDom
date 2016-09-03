@@ -1,28 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using System.Linq;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassMethodCollectionWithCodeAnalysis :
-        AbstractClassMethodCollection<ClassMethodWithCodeAnalysis, ExplicitInterfaceMethodWithCodeAnalysis>
+        EditableClassMethodCollection<ClassMethodWithCodeAnalysis, ExplicitInterfaceMethodWithCodeAnalysis>
     {
-        private readonly ClassTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassMemberListWrapper<
+            MethodWithCodeAnalysis,
+            ExplicitInterfaceMethodWithCodeAnalysis,
+            MethodDeclarationSyntax> explicitInterfaceMethods;
+        private readonly ClassMemberListWrapper<
+            MethodWithCodeAnalysis,
+            ClassMethodWithCodeAnalysis,
+            MethodDeclarationSyntax> methods;
 
-        internal ClassMethodCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal ClassMethodCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            explicitInterfaceMethods = new ClassMemberListWrapper<MethodWithCodeAnalysis, ExplicitInterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                classType.Node,
+                parent => new ExplicitInterfaceMethodWithCodeAnalysis(parent),
+                (child, parent) => child.Method.Method.ExplicitInterfaceClassParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier != null);
+            methods = new ClassMemberListWrapper<MethodWithCodeAnalysis, ClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                classType.Node,
+                parent => new ClassMethodWithCodeAnalysis(parent),
+                (child, parent) => child.Method.Method.ClassParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 
-        public override IReadOnlyCollection<ExplicitInterfaceMethodWithCodeAnalysis> ExplicitInterfaceMethods
+        public override ICollection<ExplicitInterfaceMethodWithCodeAnalysis> ExplicitInterfaceMethods
         {
-            get { return typeWithCodeAnalysis.MethodCollection.Methods.ExplicitInterfaceMethodsWithCodeAnalysis; }
+            get { return explicitInterfaceMethods; }
+            set { classType.Members.CombineList(nameof(ExplicitInterfaceMethods), value.Select(item => item.Syntax)); }
         }
 
-        protected override IReadOnlyCollection<ClassMethodWithCodeAnalysis> Methods
+        public override ICollection<ClassMethodWithCodeAnalysis> Methods
         {
-            get { return typeWithCodeAnalysis.MethodCollection.Methods.MethodsWithCodeAnalysis; }
+            get { return methods; }
+            set { classType.Members.CombineList(nameof(Methods), value.Select(item => item.Syntax)); }
+        }
+
+        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> ExplicitInterfaceMethodList
+        {
+            get { return explicitInterfaceMethods; }
+        }
+
+        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> MethodList
+        {
+            get { return methods; }
         }
     }
 }

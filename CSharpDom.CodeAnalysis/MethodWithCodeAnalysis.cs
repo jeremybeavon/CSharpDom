@@ -34,7 +34,19 @@ namespace CSharpDom.CodeAnalysis
             MethodDeclarationSyntax,
             ITypeReferenceWithCodeAnalysis,
             TypeSyntax> returnType;
-        
+
+        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassMethodWithCodeAnalysis method)
+            : this(method)
+        {
+            ClassParent = parent;
+        }
+
+        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
+            : this(method)
+        {
+            ExplicitInterfaceClassParent = parent;
+        }
+
         internal MethodWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceMethodWithCodeAnalysis method)
             : this(method)
         {
@@ -142,6 +154,28 @@ namespace CSharpDom.CodeAnalysis
         internal Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> Node
         {
             get { return node; }
+        }
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Methods.MethodList);
+            }
+        }
+
+        internal ClassTypeWithCodeAnalysis ExplicitInterfaceClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Methods.ExplicitInterfaceMethodList);
+            }
         }
 
         internal InterfaceTypeWithCodeAnalysis InterfaceParent

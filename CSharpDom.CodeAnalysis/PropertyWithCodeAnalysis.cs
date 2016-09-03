@@ -37,6 +37,18 @@ namespace CSharpDom.CodeAnalysis
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> setAccessor;
 
+        internal PropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassPropertyWithCodeAnalysis property)
+            : this(property)
+        {
+            ClassParent = parent;
+        }
+
+        internal PropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfacePropertyWithCodeAnalysis property)
+            : this(property)
+        {
+            ExplicitInterfaceClassParent = parent;
+        }
+
         internal PropertyWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfacePropertyWithCodeAnalysis property)
             : this(property)
         {
@@ -65,7 +77,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { node.Syntax = node.Syntax.WithAttributeLists(value.ToAttributes()); }
+            set { attributes.ReplaceList(value); }
         }
 
         public override IBasicType DeclaringType
@@ -112,6 +124,28 @@ namespace CSharpDom.CodeAnalysis
         internal Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> Node
         {
             get { return node; }
+        }
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Properties.PropertyList);
+            }
+        }
+
+        internal ClassTypeWithCodeAnalysis ExplicitInterfaceClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Properties.ExplicitInterfacePropertyList);
+            }
         }
 
         internal InterfaceTypeWithCodeAnalysis InterfaceParent

@@ -106,6 +106,17 @@
     <Compile Include="AttributeGroupWithCodeAnalysis.cs" />
     <Compile Include="AttributeListWrapper.cs" />
     <Compile Include="AttributeWithCodeAnalysis.cs" />
+    <Compile Include="BaseTypeList.cs" />
+    <Compile Include="BaseTypeListWrapper.cs" />
+    <Compile Include="ClassEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassTypeWithCodeAnalysis.cs" />
+    <Compile Include="ClassMemberListWrapper.cs" />
+    <Compile Include="MemberListSyntax.cs" />
+    <Compile Include="WrappedList.cs" />
     <Compile Include="IGenericParameterCollection.cs" />
     <Compile Include="InterfaceMemberListWrapper.cs" />
     <Compile Include="InterfaceReferenceListWrapper.cs" />
@@ -188,6 +199,7 @@
     <Compile Include="ImmutableSeparatedSyntaxListWrapper.cs" />
     <Compile Include="ImmutableChildListWrapper.cs" />
     <Compile Include="NodeFactory.cs" />
+    <Compile Include="SealedClassEventPropertyWithCodeAnalysis.cs" />
     <Compile Include="SimpleNode.cs" />
     <Compile Include="NameSyntaxExtensions.cs" />
     <Compile Include="Node.cs" />

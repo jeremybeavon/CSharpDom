@@ -14,8 +14,10 @@ namespace CSharpDom.CodeAnalysis
             InterfaceReferenceWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<EventDeclarationSyntax>
+        IHasSyntax<EventDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly EventPropertyWithCodeAnalysis @event;
         private readonly CachedChildNode<
             EventPropertyWithCodeAnalysis,
@@ -23,15 +25,25 @@ namespace CSharpDom.CodeAnalysis
             InterfaceReferenceWithCodeAnalysis,
             NameSyntax> explicitInterface;
         
-        private ExplicitInterfaceEventWithCodeAnalysis(EventPropertyWithCodeAnalysis @event, IType declaringType)
+        internal ExplicitInterfaceEventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            this.@event = @event;
-            base.DeclaringType = declaringType;
+            @event = new EventPropertyWithCodeAnalysis(parent, this);
+        }
+
+        private ExplicitInterfaceEventWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
             explicitInterface = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 @event.Node,
                 parent => new InterfaceReferenceWithCodeAnalysis(parent),
                 (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
                 (child, parent) => child.TypeReference.ExplicitInterfaceEventParent = parent);
+        }
+
+        public EventPropertyWithCodeAnalysis EventProperty
+        {
+            get { return @event; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> AddAttributes
@@ -91,6 +103,14 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
@@ -9,29 +10,72 @@ namespace CSharpDom.CodeAnalysis
         EditableClassEventCollection<
             ClassEventWithCodeAnalysis,
             ClassEventPropertyWithCodeAnalysis,
-            ExplicitInterfaceEventWithCodeAnalysis>,
-
+            ExplicitInterfaceEventWithCodeAnalysis>
     {
-        private readonly 
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassMemberListWrapper<
+            EventPropertyWithCodeAnalysis,
+            ClassEventPropertyWithCodeAnalysis,
+            EventDeclarationSyntax> eventProperties;
+        private readonly ClassMemberListWrapper<
+            EventPropertyWithCodeAnalysis,
+            ExplicitInterfaceEventWithCodeAnalysis,
+            EventDeclarationSyntax> explicitInterfaceEvents;
+        private readonly ClassMemberListWrapper<
+            EventWithCodeAnalysis,
+            ClassEventWithCodeAnalysis,
+            EventFieldDeclarationSyntax> events;
 
-        internal ClassEventCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal ClassEventCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            eventProperties = new ClassMemberListWrapper<EventPropertyWithCodeAnalysis, ClassEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
+                classType.Node,
+                parent => new ClassEventPropertyWithCodeAnalysis(parent),
+                (child, parent) => child.EventProperty.ClassParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier == null);
+            explicitInterfaceEvents = new ClassMemberListWrapper<EventPropertyWithCodeAnalysis, ExplicitInterfaceEventWithCodeAnalysis, EventDeclarationSyntax>(
+                classType.Node,
+                parent => new ExplicitInterfaceEventWithCodeAnalysis(parent),
+                (child, parent) => child.EventProperty.ExplicitInterfaceClassParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier != null);
+            events = new ClassMemberListWrapper<EventWithCodeAnalysis, ClassEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
+                classType.Node,
+                parent => new ClassEventWithCodeAnalysis(parent),
+                (child, parent) => child.Event.ClassParent = parent);
         }
 
-        public override IReadOnlyCollection<ClassEventPropertyWithCodeAnalysis> EventProperties
+        public override ICollection<ClassEventPropertyWithCodeAnalysis> EventProperties
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.EventPropertiesWithCodeAnalysis; }
+            get { return eventProperties; }
+            set { classType.Members.CombineList(nameof(EventProperties), value.Select(item => item.Syntax)); }
         }
 
-        public override IReadOnlyCollection<ExplicitInterfaceEventWithCodeAnalysis> ExplicitInterfaceEvents
+        public override ICollection<ExplicitInterfaceEventWithCodeAnalysis> ExplicitInterfaceEvents
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.ExplictInterfaceEventsWithCodeAnalysis; }
+            get { return explicitInterfaceEvents; }
+            set { classType.Members.CombineList(nameof(ExplicitInterfaceEvents), value.Select(item => item.Syntax)); }
+        }
+        
+        public override ICollection<ClassEventWithCodeAnalysis> Events
+        {
+            get { return events; }
+            set { classType.Members.CombineList(nameof(Events), value.Select(item => item.Syntax)); }
         }
 
-        protected override IReadOnlyCollection<ClassEventWithCodeAnalysis> Events
+        internal IChildCollection<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> EventPropertyList
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.EventsWithCodeAnalysis; }
+            get { return eventProperties; }
+        }
+
+        internal IChildCollection<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> ExplicitInterfaceEventList
+        {
+            get { return explicitInterfaceEvents; }
+        }
+
+        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> EventList
+        {
+            get { return events; }
         }
     }
 }

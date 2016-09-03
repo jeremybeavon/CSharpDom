@@ -50,7 +50,7 @@ namespace CSharpDom.CodeAnalysis
             set { type.Indexers = value; }
         }
 
-        public override IReadOnlyCollection<InterfaceReferenceWithCodeAnalysis> Interfaces
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> Interfaces
         {
             get { return type.Interfaces; }
             set { type.Interfaces = value; }

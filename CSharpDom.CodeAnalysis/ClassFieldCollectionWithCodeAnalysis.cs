@@ -1,34 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.Common;
-using CSharpDom.CodeAnalysis.Internal;
+using System.Linq;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassFieldCollectionWithCodeAnalysis :
-        AbstractClassFieldCollection<ClassFieldWithCodeAnalysis, ClassConstantWithCodeAnalysis>
+        EditableClassFieldCollection<ClassFieldWithCodeAnalysis, ClassConstantWithCodeAnalysis>
     {
-        private readonly AbstractClassFieldCollection fieldCollection;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassMemberListWrapper<
+            ConstantGroupWithCodeAnalysis,
+            ClassConstantWithCodeAnalysis,
+            FieldDeclarationSyntax> constants;
+        private readonly ClassMemberListWrapper<
+            FieldGroupWithCodeAnalysis,
+            ClassFieldWithCodeAnalysis,
+            FieldDeclarationSyntax> fields;
 
-        internal ClassFieldCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal ClassFieldCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            fieldCollection = new ClassFieldCollection(typeWithCodeAnalysis);
+            this.classType = classType;
+            constants = new ClassMemberListWrapper<ConstantGroupWithCodeAnalysis, ClassConstantWithCodeAnalysis, FieldDeclarationSyntax>(
+                classType.Node,
+                parent => new ClassConstantWithCodeAnalysis(parent),
+                (child, parent) => child.Constant.ClassParent = parent,
+                syntax => syntax.Modifiers.Any(SyntaxKind.ConstKeyword));
+            fields = new ClassMemberListWrapper<FieldGroupWithCodeAnalysis, ClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
+                classType.Node,
+                parent => new ClassFieldWithCodeAnalysis(parent),
+                (child, parent) => child.Field.ClassParent = parent,
+                syntax => !syntax.Modifiers.Any(SyntaxKind.ConstKeyword));
+        }
+        
+        public override ICollection<ClassConstantWithCodeAnalysis> Constants
+        {
+            get { return constants; }
+            set { classType.Members.CombineList(nameof(Constants), value.Select(item => item.Syntax)); }
         }
 
-        internal ClassFieldCollectionWithCodeAnalysis(SealedTypeWithCodeAnalysis typeWithCodeAnalysis)
+        public override ICollection<ClassFieldWithCodeAnalysis> Fields
         {
-            fieldCollection = new SealedClassFieldCollection(typeWithCodeAnalysis);
+            get { return fields; }
+            set { classType.Members.CombineList(nameof(Fields), value.Select(item => item.Syntax)); }
         }
 
-        public override IReadOnlyCollection<ClassConstantWithCodeAnalysis> Constants
+        internal IChildCollection<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> ConstantList
         {
-            get { return fieldCollection.Constants; }
+            get { return constants; }
         }
 
-        protected override IReadOnlyCollection<ClassFieldWithCodeAnalysis> Fields
+        internal IChildCollection<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> FieldList
         {
-            get { return fieldCollection; }
+            get { return fields; }
         }
     }
 }

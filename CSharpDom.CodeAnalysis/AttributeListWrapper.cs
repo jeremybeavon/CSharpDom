@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -36,13 +37,18 @@ namespace CSharpDom.CodeAnalysis
         public ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { node.Syntax = createList(node.Syntax, value.Concat(targetedAttributes).ToAttributes()); }
+            set { node.Syntax = createList(node.Syntax, ToAttributes(value.Concat(targetedAttributes))); }
         }
 
         public ICollection<AttributeGroupWithCodeAnalysis> TargetedAttributes
         {
             get { return targetedAttributes; }
-            set { node.Syntax = createList(node.Syntax, attributes.Concat(value).ToAttributes()); }
+            set { node.Syntax = createList(node.Syntax, ToAttributes(attributes.Concat(value))); }
+        }
+
+        private SyntaxList<AttributeListSyntax> ToAttributes(IEnumerable<AttributeGroupWithCodeAnalysis> attributes)
+        {
+            return SyntaxFactory.List(attributes.Select(item => item.Syntax));
         }
     }
 }

@@ -19,9 +19,19 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly PropertyWithCodeAnalysis property;
 
-        internal PropertyWithBodyWithCodeAnalysis(PropertyWithCodeAnalysis property)
+        internal PropertyWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassPropertyWithCodeAnalysis property)
         {
-            this.property = property;
+            this.property = new PropertyWithCodeAnalysis(parent, property);
+        }
+
+        internal PropertyWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfacePropertyWithCodeAnalysis property)
+        {
+            this.property = new PropertyWithCodeAnalysis(parent, property);
+        }
+
+        public PropertyWithCodeAnalysis Property
+        {
+            get { return property; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

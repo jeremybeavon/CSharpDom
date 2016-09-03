@@ -42,6 +42,18 @@ namespace CSharpDom.CodeAnalysis
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> setAccessor;
 
+        internal IndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassIndexerWithCodeAnalysis indexer)
+            : this(indexer)
+        {
+            ClassParent = parent;
+        }
+
+        internal IndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceIndexerWithCodeAnalysis indexer)
+            : this(indexer)
+        {
+            ExplicitInterfaceClassParent = parent;
+        }
+
         internal IndexerWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceIndexerWithCodeAnalysis indexer)
             : this(indexer)
         {
@@ -76,7 +88,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
+            set { attributes.ReplaceList(value); }
         }
 
         public override IBasicType DeclaringType
@@ -132,6 +144,28 @@ namespace CSharpDom.CodeAnalysis
         internal Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> Node
         {
             get { return node; }
+        }
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Indexers.IndexerList);
+            }
+        }
+
+        internal ClassTypeWithCodeAnalysis ExplicitInterfaceClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Indexers.ExplicitInterfaceIndexerList);
+            }
         }
 
         internal InterfaceTypeWithCodeAnalysis InterfaceParent

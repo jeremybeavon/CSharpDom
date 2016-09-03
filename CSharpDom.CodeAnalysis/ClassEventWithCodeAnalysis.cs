@@ -12,13 +12,26 @@ namespace CSharpDom.CodeAnalysis
             AttributeGroupWithCodeAnalysis,
             IClassType,
             DelegateReferenceWithCodeAnalysis>,
-        IHasSyntax<EventFieldDeclarationSyntax>
+        IHasSyntax<EventFieldDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly EventWithCodeAnalysis @event;
 
-        internal ClassEventWithCodeAnalysis(IClassType declaringType)
+        internal ClassEventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            base.DeclaringType = declaringType;
+            @event = new EventWithCodeAnalysis(parent, this);
+        }
+
+        private ClassEventWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public EventWithCodeAnalysis Event
+        {
+            get { return @event; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -75,6 +88,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

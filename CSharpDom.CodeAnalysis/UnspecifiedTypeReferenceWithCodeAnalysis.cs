@@ -22,10 +22,17 @@ namespace CSharpDom.CodeAnalysis
             AttributeParent = parent;
         }
 
-        internal UnspecifiedTypeReferenceWithCodeAnalysis(EventPropertyWithCodeAnalysis parent)
+        internal UnspecifiedTypeReferenceWithCodeAnalysis(EventPropertyWithCodeAnalysis parent, bool isExplicitInterface)
             : this()
         {
-            EventPropertyParent = parent;
+            if (isExplicitInterface)
+            {
+                ExplicitInterfaceEventParent = parent;
+            }
+            else
+            {
+                EventPropertyParent = parent;
+            }
         }
 
         internal UnspecifiedTypeReferenceWithCodeAnalysis(EventWithCodeAnalysis parent)
@@ -33,8 +40,26 @@ namespace CSharpDom.CodeAnalysis
         {
             EventParent = parent;
         }
-        
-        internal UnspecifiedTypeReferenceWithCodeAnalysis()
+
+        internal UnspecifiedTypeReferenceWithCodeAnalysis(IndexerWithCodeAnalysis parent)
+            : this()
+        {
+            ExplicitInterfaceIndexerParent = parent;
+        }
+
+        internal UnspecifiedTypeReferenceWithCodeAnalysis(MethodWithCodeAnalysis parent)
+            : this()
+        {
+            ExplicitInterfaceMethodParent = parent;
+        }
+
+        internal UnspecifiedTypeReferenceWithCodeAnalysis(PropertyWithCodeAnalysis parent)
+            : this()
+        {
+            ExplicitInterfacePropertyParent = parent;
+        }
+
+        private UnspecifiedTypeReferenceWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
             node = new Node<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(this);

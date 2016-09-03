@@ -14,13 +14,26 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<MethodDeclarationSyntax>
+        IHasSyntax<MethodDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly MethodWithBodyWithCodeAnalysis method;
 
-        private ClassMethodWithCodeAnalysis(IClassType declaringType)
+        internal ClassMethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            base.DeclaringType = declaringType;
+            method = new MethodWithBodyWithCodeAnalysis(parent, this);
+        }
+
+        private ClassMethodWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public MethodWithBodyWithCodeAnalysis Method
+        {
+            get { return method; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -101,6 +114,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.Syntax; }
             set { method.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

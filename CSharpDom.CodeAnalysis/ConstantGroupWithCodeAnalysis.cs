@@ -14,8 +14,10 @@ namespace CSharpDom.CodeAnalysis
             IType,
             ITypeReferenceWithCodeAnalysis,
             ConstantWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>,
+        ISimpleMember
     {
+        private readonly object constant;
         private readonly Node<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> attributes;
         private readonly SeparatedSyntaxListWrapper<
@@ -29,8 +31,15 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             TypeSyntax> constantType;
 
-        public ConstantGroupWithCodeAnalysis()
+        internal ConstantGroupWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassConstantWithCodeAnalysis constant)
+            : this(constant)
         {
+            ClassParent = parent;
+        }
+
+        private ConstantGroupWithCodeAnalysis(object constant)
+        {
+            this.constant = constant;
             node = new Node<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
@@ -54,7 +63,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
+            set { attributes.ReplaceList(value); }
         }
 
         public override IType DeclaringType
@@ -94,6 +103,22 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<ConstantWithCodeAnalysis, VariableDeclaratorSyntax> FieldList
         {
             get { return constants; }
+        }
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Fields.ConstantList);
+            }
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            return (T)constant;
         }
     }
 }

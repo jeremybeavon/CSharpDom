@@ -13,8 +13,11 @@ namespace CSharpDom.CodeAnalysis
             IType,
             InterfaceReferenceWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
-            AccessorWithBodyWithCodeAnalysis>
+            AccessorWithBodyWithCodeAnalysis>,
+        IHasSyntax<PropertyDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly PropertyWithBodyWithCodeAnalysis property;
         private readonly CachedChildNode<
             PropertyWithCodeAnalysis,
@@ -22,13 +25,25 @@ namespace CSharpDom.CodeAnalysis
             InterfaceReferenceWithCodeAnalysis,
             NameSyntax> explicitInterface;
 
-        internal ExplicitInterfacePropertyWithCodeAnalysis(IType declaringType)
+        internal ExplicitInterfacePropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
+            property = new PropertyWithBodyWithCodeAnalysis(parent, this);
+        }
+
+        private ExplicitInterfacePropertyWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
             explicitInterface = new CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 property.Node,
                 parent => new InterfaceReferenceWithCodeAnalysis(parent),
                 (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
                 (child, parent) => child.TypeReference.ExplicitInterfacePropertyParent = parent);
+        }
+
+        public PropertyWithBodyWithCodeAnalysis Property
+        {
+            get { return property; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -71,6 +86,17 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return property.SetAccessor; }
             set { property.SetAccessor = value; }
+        }
+
+        public PropertyDeclarationSyntax Syntax
+        {
+            get { return property.Syntax; }
+            set { property.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

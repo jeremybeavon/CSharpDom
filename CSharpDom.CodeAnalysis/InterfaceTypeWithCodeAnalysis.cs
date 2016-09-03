@@ -26,11 +26,7 @@ namespace CSharpDom.CodeAnalysis
             InterfaceEventWithCodeAnalysis,
             EventFieldDeclarationSyntax> events;
         private readonly GenericParameterDeclarationListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> genericParameters;
-        private readonly SeparatedSyntaxListWrapper<
-            InterfaceTypeWithCodeAnalysis,
-            InterfaceDeclarationSyntax,
-            InterfaceReferenceWithCodeAnalysis,
-            NameSyntax> interfaces;
+        private readonly BaseTypeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
         private readonly InterfaceMemberListWrapper<
             PropertyWithCodeAnalysis,
             InterfacePropertyWithCodeAnalysis,
@@ -43,7 +39,7 @@ namespace CSharpDom.CodeAnalysis
             MethodWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis,
             MethodDeclarationSyntax> methods;
-        private readonly CombinedMemberList combinedList;
+        private readonly CombinedMemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> members;
 
         public InterfaceTypeWithCodeAnalysis()
         {
@@ -66,12 +62,11 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
                 parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
                 (child, parent) => child.InterfaceParent = parent);
-            //interfaces = new SeparatedSyntaxListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
-            //    node,
-            //    syntax => syntax.BaseList.Types,
-            //    (parentSyntax, childSyntax) => parentSyntax.WithBaseList(parentSyntax.BaseList.WithTypes(childSyntax)),
-            //    parent => null,
-            //    null);
+            interfaces = new BaseTypeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax),
+                parent => null,
+                null);
             properties = new InterfaceMemberListWrapper<PropertyWithCodeAnalysis, InterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
                 parent => new InterfacePropertyWithCodeAnalysis(parent),
@@ -84,7 +79,9 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 parent => new InterfaceMethodWithCodeAnalysis(parent),
                 (child, parent) => child.Method.InterfaceParent = parent);
-            combinedList = new CombinedMemberList(members => Syntax = Syntax.WithMembers(members))
+            members = new CombinedMemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
             {
                 { nameof(events), () => events.Select(@event => @event.Syntax) },
                 { nameof(properties), () => properties.Select(property => property.Syntax) },
@@ -102,7 +99,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<InterfaceEventWithCodeAnalysis> Events
         {
             get { return events; }
-            set { combinedList.CombineList(nameof(events), value.Select(item => item.Syntax)); }
+            set { members.CombineList(nameof(events), value.Select(item => item.Syntax)); }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -114,7 +111,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<InterfaceIndexerWithCodeAnalysis> Indexers
         {
             get { return indexers; }
-            set { combinedList.CombineList(nameof(indexers), value.Select(item => item.Syntax)); }
+            set { members.CombineList(nameof(indexers), value.Select(item => item.Syntax)); }
         }
 
         public override ICollection<InterfaceReferenceWithCodeAnalysis> Interfaces
@@ -126,7 +123,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<InterfaceMethodWithCodeAnalysis> Methods
         {
             get { return methods; }
-            set { combinedList.CombineList(nameof(methods), value.Select(item => item.Syntax)); }
+            set { members.CombineList(nameof(methods), value.Select(item => item.Syntax)); }
         }
 
         public override string Name
@@ -138,7 +135,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<InterfacePropertyWithCodeAnalysis> Properties
         {
             get { return properties; }
-            set { combinedList.CombineList(nameof(properties), value.Select(item => item.Syntax)); }
+            set { members.CombineList(nameof(properties), value.Select(item => item.Syntax)); }
         }
 
         public InterfaceDeclarationSyntax Syntax

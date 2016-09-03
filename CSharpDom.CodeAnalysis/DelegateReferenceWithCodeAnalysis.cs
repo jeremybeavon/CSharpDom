@@ -13,7 +13,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
 
         internal DelegateReferenceWithCodeAnalysis(EventPropertyWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent))
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent, false))
         {
         }
 

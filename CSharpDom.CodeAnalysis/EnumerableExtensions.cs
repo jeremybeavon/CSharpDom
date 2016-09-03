@@ -12,7 +12,7 @@ namespace CSharpDom.CodeAnalysis
             where T : IHasSyntax<TSyntax>
             where TSyntax : SyntaxNode
         {
-            return new SeparatedSyntaxList<TSyntax>().AddRange(collection.Select(item => item.Syntax));
+            return SyntaxFactory.SeparatedList(collection.Select(item => item.Syntax));
         }
     }
 }

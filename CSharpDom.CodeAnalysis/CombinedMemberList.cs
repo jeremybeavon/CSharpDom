@@ -10,13 +10,18 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class CombinedMemberList : IEnumerable
+    internal sealed class CombinedMemberList<TParentNode, TParentSyntax> : IEnumerable
+        where TParentSyntax : class
     {
-        private readonly Action<SyntaxList<MemberDeclarationSyntax>> createList;
+        private readonly Node<TParentNode, TParentSyntax> node;
+        private readonly Func<TParentSyntax, SyntaxList<MemberDeclarationSyntax>, TParentSyntax> createList;
         private readonly List<KeyValuePair<string, Func<IEnumerable<MemberDeclarationSyntax>>>> list;
 
-        public CombinedMemberList(Action<SyntaxList<MemberDeclarationSyntax>> createList)
+        public CombinedMemberList(
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, SyntaxList<MemberDeclarationSyntax>, TParentSyntax> createList)
         {
+            this.node = node;
             this.createList = createList;
         }
 
@@ -27,12 +32,33 @@ namespace CSharpDom.CodeAnalysis
 
         public void CombineList(string key, IEnumerable<MemberDeclarationSyntax> syntax)
         {
-            createList(SyntaxFactory.List(list.SelectMany(entry => entry.Key == key ? syntax : entry.Value())));
+            CombineList(entry => entry.Key == key ? syntax : entry.Value());
+        }
+
+        public void CombineList(params MemberListSyntax[] syntax)
+        {
+            IDictionary<string, IEnumerable<MemberDeclarationSyntax>> syntaxDictionary =
+                syntax.ToDictionary(entry => entry.Key, entry => entry.Syntax);
+            CombineList(entry => GetSyntax(entry, syntaxDictionary));
         }
 
         public IEnumerator GetEnumerator()
         {
             return list.GetEnumerator();
+        }
+
+        private IEnumerable<MemberDeclarationSyntax> GetSyntax(
+            KeyValuePair<string, Func<IEnumerable<MemberDeclarationSyntax>>> entry,
+            IDictionary<string, IEnumerable<MemberDeclarationSyntax>> syntaxDictionary)
+        {
+            IEnumerable<MemberDeclarationSyntax> syntax;
+            return syntaxDictionary.TryGetValue(entry.Key, out syntax) ? syntax : entry.Value();
+        }
+
+        private void CombineList(
+            Func<KeyValuePair<string, Func<IEnumerable<MemberDeclarationSyntax>>>, IEnumerable<MemberDeclarationSyntax>> selectFunc)
+        {
+            node.Syntax = createList(node.Syntax, SyntaxFactory.List(list.SelectMany(selectFunc)));
         }
     }
 }

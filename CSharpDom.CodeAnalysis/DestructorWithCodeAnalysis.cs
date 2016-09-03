@@ -12,7 +12,6 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly Node<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> node;
-        private readonly IClass declaringType;
         private readonly AttributeListWrapper<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> attributes;
         private readonly CachedChildNode<
             DestructorWithCodeAnalysis,
@@ -40,7 +39,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
+            set { attributes.ReplaceList(value); }
         }
 
         public override MethodBodyWithCodeAnalysis Body

@@ -13,13 +13,26 @@ namespace CSharpDom.CodeAnalysis
             IClassType,
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<EventDeclarationSyntax>
+        IHasSyntax<EventDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly EventPropertyWithCodeAnalysis @event;
 
-        internal ClassEventPropertyWithCodeAnalysis(IClassType declaringType)
+        internal ClassEventPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            base.DeclaringType = declaringType;
+            @event = new EventPropertyWithCodeAnalysis(parent, this);
+        }
+
+        private ClassEventPropertyWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public EventPropertyWithCodeAnalysis EventProperty
+        {
+            get { return @event; }
         }
 
         public override MethodBodyWithCodeAnalysis AddBody
@@ -94,6 +107,14 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

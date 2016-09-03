@@ -1,28 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using System.Linq;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassPropertyCollectionWithCodeAnalysis :
-        AbstractClassPropertyCollection<ClassPropertyWithCodeAnalysis, ExplicitInterfacePropertyWithCodeAnalysis>
+        EditableClassPropertyCollection<ClassPropertyWithCodeAnalysis, ExplicitInterfacePropertyWithCodeAnalysis>
     {
-        private readonly ClassTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassMemberListWrapper<
+            PropertyWithCodeAnalysis,
+            ExplicitInterfacePropertyWithCodeAnalysis,
+            PropertyDeclarationSyntax> explicitInterfaceProperties;
+        private readonly ClassMemberListWrapper<
+            PropertyWithCodeAnalysis,
+            ClassPropertyWithCodeAnalysis,
+            PropertyDeclarationSyntax> properties;
 
-        internal ClassPropertyCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal ClassPropertyCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            explicitInterfaceProperties = new ClassMemberListWrapper<PropertyWithCodeAnalysis, ExplicitInterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+                classType.Node,
+                parent => new ExplicitInterfacePropertyWithCodeAnalysis(parent),
+                (child, parent) => child.Property.Property.ExplicitInterfaceClassParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier != null);
+            properties = new ClassMemberListWrapper<PropertyWithCodeAnalysis, ClassPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+                classType.Node,
+                parent => new ClassPropertyWithCodeAnalysis(parent),
+                (child, parent) => child.Property.Property.ClassParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 
-        public override IReadOnlyCollection<ExplicitInterfacePropertyWithCodeAnalysis> ExplicitInterfaceProperties
+        public override ICollection<ExplicitInterfacePropertyWithCodeAnalysis> ExplicitInterfaceProperties
         {
-            get { return typeWithCodeAnalysis.PropertyCollection.Properties.ExplicitInterfacePropertiesWithCodeAnalysis; }
+            get { return explicitInterfaceProperties; }
+            set { classType.Members.CombineList(nameof(ExplicitInterfaceProperties), value.Select(item => item.Syntax)); }
         }
 
-        protected override IReadOnlyCollection<ClassPropertyWithCodeAnalysis> Properties
+        public override ICollection<ClassPropertyWithCodeAnalysis> Properties
         {
-            get { return typeWithCodeAnalysis.PropertyCollection.Properties.PropertiesWithCodeAnalysis; }
+            get { return properties; }
+            set { classType.Members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }
+        }
+
+        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> ExplicitInterfacePropertyList
+        {
+            get { return explicitInterfaceProperties; }
+        }
+
+        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> PropertyList
+        {
+            get { return properties; }
         }
     }
 }

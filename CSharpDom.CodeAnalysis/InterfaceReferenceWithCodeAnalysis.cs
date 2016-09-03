@@ -14,22 +14,22 @@ namespace CSharpDom.CodeAnalysis
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
 
         internal InterfaceReferenceWithCodeAnalysis(EventPropertyWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis() { ExplicitInterfaceEventParent = parent })
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent, true))
         { 
         }
 
         internal InterfaceReferenceWithCodeAnalysis(IndexerWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis() { ExplicitInterfaceIndexerParent = parent })
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent))
         {
         }
 
         internal InterfaceReferenceWithCodeAnalysis(MethodWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis() { ExplicitInterfaceMethodParent = parent })
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent))
         {
         }
 
         internal InterfaceReferenceWithCodeAnalysis(PropertyWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis() { ExplicitInterfacePropertyParent = parent })
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent))
         {
         }
 

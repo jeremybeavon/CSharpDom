@@ -14,8 +14,10 @@ namespace CSharpDom.CodeAnalysis
             IType,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>,
+        ISimpleMember
     {
+        private readonly object field;
         private readonly Node<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> attributes;
         private readonly SeparatedSyntaxListWrapper<
@@ -29,8 +31,15 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             TypeSyntax> fieldType;
 
-        public FieldGroupWithCodeAnalysis()
+        internal FieldGroupWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassFieldWithCodeAnalysis field)
+            : this(field)
         {
+            ClassParent = parent;
+        }
+
+        private FieldGroupWithCodeAnalysis(object field)
+        {
+            this.field = field;
             node = new Node<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
@@ -54,7 +63,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
-            set { Syntax = Syntax.WithAttributeLists(value.ToAttributes()); }
+            set { attributes.ReplaceList(value); }
         }
 
         public override IType DeclaringType
@@ -94,6 +103,22 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<FieldWithCodeAnalysis, VariableDeclaratorSyntax> FieldList
         {
             get { return fields; }
+        }
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Fields.FieldList);
+            }
+        }
+
+        public T Member<T>()
+        {
+            return (T)field;
         }
     }
 }
