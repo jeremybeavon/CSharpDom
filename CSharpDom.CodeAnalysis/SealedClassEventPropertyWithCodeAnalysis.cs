@@ -1,76 +1,101 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using CSharpDom.BaseClasses;
-//using CSharpDom.CodeAnalysis.Internal;
-//using System.Reflection;
-//using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using System;
+using System.Collections.Generic;
+using CSharpDom.Common;
+using CSharpDom.Editable;
+using System.Reflection;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-//namespace CSharpDom.CodeAnalysis
-//{
-//    public sealed class SealedClassEventPropertyWithCodeAnalysis :
-//        AbstractSealedClassEventProperty<
-//            AttributeGroupWithCodeAnalysis,
-//            ITypeWithCodeAnalysis,
-//            DelegateReferenceWithCodeAnalysis,
-//            MethodBodyWithCodeAnalysis>
-//    {
-//        private readonly EventPropertyWithCodeAnalysis @event;
-//        private readonly IInternalTypeWithCodeAnalysis declaringType;
+namespace CSharpDom.CodeAnalysis
+{
+    public sealed class SealedClassEventPropertyWithCodeAnalysis :
+        EditableSealedClassEventProperty<
+            AttributeGroupWithCodeAnalysis,
+            ISealedType,
+            DelegateReferenceWithCodeAnalysis,
+            MethodBodyWithCodeAnalysis>,
+        IHasSyntax<EventDeclarationSyntax>,
+        IHasId
+    {
+        private readonly Guid internalId;
+        private readonly ClassEventPropertyWithCodeAnalysis @event;
 
-//        internal SealedClassEventPropertyWithCodeAnalysis(IInternalTypeWithCodeAnalysis declaringType, EventDefinition @event)
-//        {
-//            this.@event = new EventPropertyWithCodeAnalysis(declaringType, @event);
-//            this.declaringType = declaringType;
-//        }
+        private SealedClassEventPropertyWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
 
-//        public override MethodBodyWithCodeAnalysis AddBody
-//        {
-//            get { return @event.AddBody; }
-//        }
+        public EventPropertyWithCodeAnalysis EventProperty
+        {
+            get { return @event.EventProperty; }
+        }
 
-//        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
-//        {
-//            get { return @event.Attributes; }
-//        }
+        public override MethodBodyWithCodeAnalysis AddBody
+        {
+            get { return @event.AddBody; }
+            set { @event.AddBody = value; }
+        }
 
-//        public override ITypeWithCodeAnalysis DeclaringType
-//        {
-//            get { return @event.DeclaringType; }
-//        }
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
+        {
+            get { return @event.Attributes; }
+            set { @event.Attributes = value; }
+        }
+        
+        public override DelegateReferenceWithCodeAnalysis EventType
+        {
+            get { return @event.EventType; }
+            set { @event.EventType = value; }
+        }
 
-//        public override DelegateReferenceWithCodeAnalysis EventType
-//        {
-//            get { return @event.EventType; }
-//        }
+        public override SealedClassMemberInheritanceModifier InheritanceModifier
+        {
+            get { return Syntax.Modifiers.ToSealedClassMemberInheritanceModifier(); }
+            set
+            {
+                EventDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithSealedClassMemberInheritanceModifier(value));
+            }
+        }
 
-//        public override SealedClassMemberInheritanceModifier InheritanceModifier
-//        {
-//            get { return @event.EventDefinition.SealedClassInheritanceModifier(declaringType); }
-//        }
+        public override string Name
+        {
+            get { return @event.Name; }
+            set { @event.Name = value; }
+        }
 
-//        public override string Name
-//        {
-//            get { return @event.Name; }
-//        }
+        public override MethodBodyWithCodeAnalysis RemoveBody
+        {
+            get { return @event.RemoveBody; }
+            set { @event.RemoveBody = value; }
+        }
 
-//        public override MethodBodyWithCodeAnalysis RemoveBody
-//        {
-//            get { return @event.RemoveBody; }
-//        }
+        public override ClassMemberVisibilityModifier Visibility
+        {
+            get { return @event.Visibility; }
+            set { @event.Visibility = value; }
+        }
 
-//        public override ClassMemberVisibilityModifier Visibility
-//        {
-//            get { return @event.EventDefinition.AddMethod.ClassVisibility(); }
-//        }
+        public override ICollection<AttributeGroupWithCodeAnalysis> AddAttributes
+        {
+            get { return @event.AddAttributes; }
+            set { @event.AddAttributes = value; }
+        }
 
-//        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> AddAttributes
-//        {
-//            get { return @event.AddAttributes; }
-//        }
+        public override ICollection<AttributeGroupWithCodeAnalysis> RemoveAttributes
+        {
+            get { return @event.RemoveAttributes; }
+            set { @event.RemoveAttributes = value; }
+        }
 
-//        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> RemoveAttributes
-//        {
-//            get { return @event.RemoveAttributes; }
-//        }
-//    }
-//}
+        public EventDeclarationSyntax Syntax
+        {
+            get { return @event.Syntax; }
+            set { @event.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
+        }
+    }
+}

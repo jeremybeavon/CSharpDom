@@ -13,13 +13,26 @@ namespace CSharpDom.CodeAnalysis
             IClassType,
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<ConstructorDeclarationSyntax>
+        IHasSyntax<ConstructorDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly ConstructorWithCodeAnalysis constructor;
 
-        internal ClassConstructorWithCodeAnalysis(IClassType declaringType)
+        internal ClassConstructorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            base.DeclaringType = declaringType;
+            constructor = new ConstructorWithCodeAnalysis(parent, this);
+        }
+
+        private ClassConstructorWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        internal ConstructorWithCodeAnalysis Constructor
+        {
+            get { return constructor; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -60,6 +73,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return constructor.Syntax; }
             set { constructor.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

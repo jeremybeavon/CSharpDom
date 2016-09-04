@@ -15,9 +15,11 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             OperatorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<ConversionOperatorDeclarationSyntax>//,
+        IHasSyntax<ConversionOperatorDeclarationSyntax>,
+        IHasId//,
         //IVisitable<IReflectionVisitor>
     {
+        private readonly Guid internalId;
         private readonly Node<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> node;
         private readonly IType declaringType;
         private readonly AttributeListWrapper<
@@ -34,10 +36,16 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             TypeSyntax> returnType;
 
-        internal ConversionOperatorWithCodeAnalysis(IType declaringType)
+        internal ConversionOperatorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
+            ClassParent = parent;
+        }
+
+        private ConversionOperatorWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
             node = new Node<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(this);
-            this.declaringType = declaringType;
             attributes = new AttributeListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -64,7 +72,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override IType DeclaringType
         {
-            get { return declaringType; }
+            get { return node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ConversionOperatorType OperatorType
@@ -111,6 +120,22 @@ namespace CSharpDom.CodeAnalysis
         internal IAttributeCollection AttributeList
         {
             get { return attributes; }
+        }
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.ConverisonOperatorList);
+            }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
 
         private static ConversionOperatorDeclarationSyntax WithParameter(

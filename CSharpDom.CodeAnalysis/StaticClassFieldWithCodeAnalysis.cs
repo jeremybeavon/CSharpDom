@@ -1,99 +1,102 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
-using System.Reflection;
-using CSharpDom.Mono.Cecil.ConstantExpressions;
-using CSharpDom.NotSupported;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StaticClassFieldWithCodeAnalysis :
-        AbstractStaticClassField<
+        EditableStaticClassField<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IStaticType,
             ITypeReferenceWithCodeAnalysis,
-            IFieldWithCodeAnalysis>,
-        IFieldWithCodeAnalysis
+            FieldWithCodeAnalysis>,
+        IHasSyntax<FieldDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly FieldGroupWithCodeAnalysis field;
 
-        internal StaticClassFieldWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, FieldDefinition field)
+        private StaticClassFieldWithCodeAnalysis()
         {
-            this.field = new FieldGroupWithCodeAnalysis(declaringType, field);
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return field.Attributes; }
+            set { field.Attributes = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
+        
+        public override ICollection<FieldWithCodeAnalysis> Fields
         {
-            get { return field.DeclaringType; }
-        }
-
-        public override IReadOnlyCollection<IFieldWithCodeAnalysis> Fields
-        {
-            get { return new IFieldWithCodeAnalysis[] { new InternalFieldWithCodeAnalysis(field.FieldDefinition) }; }
+            get { return field.Fields; }
+            set { field.Fields = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis FieldType
         {
             get { return field.FieldType; }
+            set { field.FieldType = value; }
         }
-
-        public ExpressionNotSupported InitialValue
-        {
-            get { return new ExpressionNotSupported(); }
-        }
-
+        
         public override StaticClassFieldModifier Modifier
         {
             get
             {
-                if (field.FieldDefinition.IsInitOnly)
+                SyntaxTokenList modifiers = Syntax.Modifiers;
+                if (modifiers.Any(SyntaxKind.ReadOnlyKeyword))
                 {
                     return StaticClassFieldModifier.ReadOnly;
                 }
 
-                if (field.FieldDefinition.IsVolatile())
+                if (modifiers.Any(SyntaxKind.VolatileKeyword))
                 {
                     return StaticClassFieldModifier.Volatile;
                 }
-                
+
                 return StaticClassFieldModifier.None;
             }
-        }
+            set
+            {
+                FieldDeclarationSyntax syntax = Syntax;
+                SyntaxTokenList tokens = syntax.Modifiers.Remove(SyntaxKind.ReadOnlyKeyword).Remove(SyntaxKind.VolatileKeyword);
+                switch (value)
+                {
+                    case StaticClassFieldModifier.ReadOnly:
+                        tokens = tokens.Add(SyntaxKind.ReadOnlyKeyword);
+                        break;
+                    case StaticClassFieldModifier.Volatile:
+                        tokens = tokens.Add(SyntaxKind.VolatileKeyword);
+                        break;
+                }
 
-        public string Name
+                Syntax = syntax.WithModifiers(tokens);
+            }
+        }
+        
+        public FieldDeclarationSyntax Syntax
         {
-            get { return field.FieldDefinition.Name; }
+            get { return field.Syntax; }
+            set { field.Syntax = value; }
         }
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get
+            get { return Syntax.Modifiers.ToStaticClassMemberVisibilityModifier(); }
+            set
             {
-                FieldDefinition fieldInfo = field.FieldDefinition;
-                if (fieldInfo.IsPublic)
-                {
-                    return StaticClassMemberVisibilityModifier.Public;
-                }
-
-                if (fieldInfo.IsAssembly)
-                {
-                    return StaticClassMemberVisibilityModifier.Internal;
-                }
-                
-                if (fieldInfo.IsPrivate)
-                {
-                    return StaticClassMemberVisibilityModifier.Private;
-                }
-
-                return StaticClassMemberVisibilityModifier.None;
+                FieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

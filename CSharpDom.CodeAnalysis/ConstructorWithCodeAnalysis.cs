@@ -16,8 +16,10 @@ namespace CSharpDom.CodeAnalysis
             IType,
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<ConstructorDeclarationSyntax>
+        IHasSyntax<ConstructorDeclarationSyntax>,
+        ISimpleMember
     {
+        private readonly object constructor;
         private readonly Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> node;
         private readonly AttributeListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> attributes;
         private readonly SeparatedSyntaxListWrapper<
@@ -26,10 +28,16 @@ namespace CSharpDom.CodeAnalysis
             ConstructorParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
 
-        private ConstructorWithCodeAnalysis(IType declaringType)
+        internal ConstructorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassConstructorWithCodeAnalysis constructor)
+            : this(constructor)
+        {
+            ClassParent = parent;
+        }
+
+        private ConstructorWithCodeAnalysis(object constructor)
         {
             node = new Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(this);
-            base.DeclaringType = declaringType;
+            this.constructor = constructor;
             attributes = new AttributeListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -80,6 +88,22 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<ConstructorParameterWithCodeAnalysis, ParameterSyntax> ParameterList
         {
             get { return parameters; }
+        }
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.ConstructorList);
+            }
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            return (T)constructor;
         }
     }
 }

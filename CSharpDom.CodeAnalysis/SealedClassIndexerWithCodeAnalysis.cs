@@ -1,78 +1,85 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class SealedClassIndexerWithCodeAnalysis :
-        AbstractSealedClassIndexer<
+        EditableSealedClassIndexer<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            ISealedType,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
-            ClassAccessorWithCodeAnalysis>
+            ClassAccessorWithCodeAnalysis>,
+        IHasSyntax<IndexerDeclarationSyntax>,
+        IHasId
     {
-        private readonly IndexerWithCodeAnalysis indexer;
-        private readonly IInternalTypeWithCodeAnalysis declaringType;
-        private readonly ClassAccessorWithCodeAnalysis getAccessor;
-        private readonly ClassAccessorWithCodeAnalysis setAccessor;
-
-        internal SealedClassIndexerWithCodeAnalysis(IInternalTypeWithCodeAnalysis declaringType, PropertyDefinition indexer)
+        private readonly Guid internalId;
+        private readonly ClassIndexerWithCodeAnalysis indexer;
+        
+        private SealedClassIndexerWithCodeAnalysis()
         {
-            this.indexer = new IndexerWithCodeAnalysis(declaringType, indexer);
-            this.declaringType = declaringType;
-            if (this.indexer.GetAccessor != null)
-            {
-                getAccessor = new ClassAccessorWithCodeAnalysis(this, this.indexer.GetAccessor);
-            }
-
-            if (this.indexer.SetAccessor != null)
-            {
-                setAccessor = new ClassAccessorWithCodeAnalysis(this, this.indexer.SetAccessor);
-            }
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return indexer.Attributes; }
+            set { indexer.Attributes = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return indexer.DeclaringType; }
-        }
-
+        
         public override ClassAccessorWithCodeAnalysis GetAccessor
         {
-            get { return getAccessor; }
+            get { return indexer.GetAccessor; }
+            set { indexer.GetAccessor = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis IndexerType
         {
             get { return indexer.IndexerType; }
+            set { indexer.IndexerType = value; }
         }
 
         public override SealedClassIndexerInheritanceModifier InheritanceModifier
         {
-            get { return indexer.PropertyDefinition.SealedClassIndexerInheritanceModifier(declaringType); }
+            get { return Syntax.Modifiers.ToSealedClassIndexerInheritanceModifier(); }
+            set
+            {
+                IndexerDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithSealedClassIndexerInheritanceModifier(value));
+            }
         }
         
-        public override IReadOnlyList<IndexerParameterWithCodeAnalysis> Parameters
+        public override IList<IndexerParameterWithCodeAnalysis> Parameters
         {
             get { return indexer.Parameters; }
+            set { indexer.Parameters = value; }
         }
 
         public override ClassAccessorWithCodeAnalysis SetAccessor
         {
-            get { return setAccessor; }
+            get { return indexer.SetAccessor; }
+            set { indexer.SetAccessor = value; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return indexer.PropertyDefinition.ClassVisibility(); }
+            get { return indexer.Visibility; }
+            set { indexer.Visibility = value; }
+        }
+
+        public IndexerDeclarationSyntax Syntax
+        {
+            get { return indexer.Syntax; }
+            set { indexer.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

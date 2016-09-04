@@ -15,7 +15,8 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             OperatorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<OperatorDeclarationSyntax>//,
+        IHasSyntax<OperatorDeclarationSyntax>,
+        IHasId//,
         //IVisitable<IReflectionVisitor>
     {
         private static readonly IDictionary<SyntaxKind, OperatorOverloadType> operatorMap =
@@ -45,8 +46,8 @@ namespace CSharpDom.CodeAnalysis
                 { SyntaxKind.TrueKeyword, OperatorOverloadType.True }
             };
 
+        private readonly Guid internalId;
         private readonly Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> node;
-        private readonly IType declaringType;
         private readonly AttributeListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> attributes;
         private readonly SeparatedSyntaxListWrapper<
             OperatorOverloadWithCodeAnalysis,
@@ -59,10 +60,16 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             TypeSyntax> returnType;
 
-        internal OperatorOverloadWithCodeAnalysis(IType declaringType)
+        internal OperatorOverloadWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
+            ClassParent = parent;
+        }
+
+        private OperatorOverloadWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
             node = new Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(this);
-            this.declaringType = declaringType;
             attributes = new AttributeListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -90,7 +97,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override IType DeclaringType
         {
-            get { return declaringType; }
+            get { return node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override OperatorOverloadType OperatorType
@@ -129,6 +137,22 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<OperatorParameterWithCodeAnalysis, ParameterSyntax> ParameterList
         {
             get { return parameters; }
+        }
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.OperatorOverloadList);
+            }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

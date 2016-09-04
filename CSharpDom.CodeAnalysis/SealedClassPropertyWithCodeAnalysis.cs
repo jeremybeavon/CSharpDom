@@ -1,77 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class SealedClassPropertyWithCodeAnalysis :
-        AbstractSealedClassProperty<
+        EditableSealedClassProperty<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            ISealedType,
             ITypeReferenceWithCodeAnalysis,
-            ClassAccessorWithCodeAnalysis>
+            ClassAccessorWithCodeAnalysis>,
+        IHasSyntax<PropertyDeclarationSyntax>,
+        IHasId
     {
-        private readonly PropertyWithCodeAnalysis property;
-        private readonly IInternalTypeWithCodeAnalysis declaringType;
-        private readonly ClassAccessorWithCodeAnalysis getAccessor;
-        private readonly ClassAccessorWithCodeAnalysis setAccessor;
-
-        internal SealedClassPropertyWithCodeAnalysis(IInternalTypeWithCodeAnalysis declaringType, PropertyDefinition property)
+        private readonly Guid internalId;
+        private readonly ClassPropertyWithCodeAnalysis property;
+        
+        private SealedClassPropertyWithCodeAnalysis()
         {
-            this.property = new PropertyWithCodeAnalysis(declaringType, property);
-            this.declaringType = declaringType;
-            if (this.property.GetAccessor != null)
-            {
-                getAccessor = new ClassAccessorWithCodeAnalysis(this, this.property.GetAccessor);
-            }
-
-            if (this.property.SetAccessor != null)
-            {
-                setAccessor = new ClassAccessorWithCodeAnalysis(this, this.property.SetAccessor);
-            }
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public PropertyWithBodyWithCodeAnalysis Property
+        {
+            get { return property.Property; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return property.Attributes; }
+            set { property.Attributes = value; }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public override ISealedType DeclaringType
         {
-            get { return property.DeclaringType; }
+            get { return property.Property.Property.Node.GetParentNode<ISealedType>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ClassAccessorWithCodeAnalysis GetAccessor
         {
-            get { return getAccessor; }
+            get { return property.GetAccessor; }
+            set { property.GetAccessor = value; }
         }
 
         public override SealedClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return property.PropertyDefinition.SealedClassInheritanceModifier(declaringType); }
+            get { return Syntax.Modifiers.ToSealedClassMemberInheritanceModifier(); }
+            set
+            {
+                PropertyDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithSealedClassMemberInheritanceModifier(value));
+            }
         }
 
         public override string Name
         {
             get { return property.Name; }
+            set { property.Name = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis PropertyType
         {
             get { return property.PropertyType; }
+            set { property.PropertyType = value; }
         }
 
         public override ClassAccessorWithCodeAnalysis SetAccessor
         {
-            get { return setAccessor; }
+            get { return property.SetAccessor; }
+            set { property.SetAccessor = value; }
+        }
+
+        public PropertyDeclarationSyntax Syntax
+        {
+            get { return property.Syntax; }
+            set { property.Syntax = value; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return property.PropertyDefinition.ClassVisibility(); }
+            get { return property.Visibility; }
+            set { property.Visibility = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

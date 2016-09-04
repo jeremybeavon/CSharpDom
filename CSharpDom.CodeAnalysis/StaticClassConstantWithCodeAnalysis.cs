@@ -1,81 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using CSharpDom.NotSupported;
-using CSharpDom.CodeAnalysis.Internal;
-using CSharpDom.Mono.Cecil.ConstantExpressions;
+using CSharpDom.Editable;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StaticClassConstantWithCodeAnalysis :
-        AbstractStaticClassConstant<
+        EditableStaticClassConstant<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IStaticType,
             ITypeReferenceWithCodeAnalysis,
-            IConstantWithCodeAnalysis>,
-        IConstantWithCodeAnalysis
+            ConstantWithCodeAnalysis>,
+        IHasSyntax<FieldDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly ConstantGroupWithCodeAnalysis constant;
 
-        internal StaticClassConstantWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, FieldDefinition field)
+        private StaticClassConstantWithCodeAnalysis()
         {
-            constant = new ConstantGroupWithCodeAnalysis(declaringType, field);
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return constant.Attributes; }
+            set { constant.Attributes = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
+        
+        public override ICollection<ConstantWithCodeAnalysis> Constants
         {
-            get { return constant.DeclaringType; }
-        }
-
-        public override IReadOnlyCollection<IConstantWithCodeAnalysis> Constants
-        {
-            get { return new IConstantWithCodeAnalysis[] { new InternalConstantWithCodeAnalysis(constant) }; }
+            get { return constant.Constants; }
+            set { constant.Constants = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis FieldType
         {
             get { return constant.FieldType; }
-        }
-
-        public IConstantExpressionWithCodeAnalysis ConstantValue
-        {
-            get { return constant.ConstantValue; }
+            set { constant.FieldType = value; }
         }
         
-        public string Name
-        {
-            get { return constant.FieldDefinition.Name; }
-        }
-
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get
+            get { return Syntax.Modifiers.ToStaticClassMemberVisibilityModifier(); }
+            set
             {
-                FieldDefinition fieldInfo = constant.FieldDefinition;
-                if (fieldInfo.IsPublic)
-                {
-                    return StaticClassMemberVisibilityModifier.Public;
-                }
-
-                if (fieldInfo.IsAssembly)
-                {
-                    return StaticClassMemberVisibilityModifier.Internal;
-                }
-
-                if (fieldInfo.IsPrivate)
-                {
-                    return StaticClassMemberVisibilityModifier.Private;
-                }
-
-                return StaticClassMemberVisibilityModifier.None;
+                FieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
+        }
+
+        public FieldDeclarationSyntax Syntax
+        {
+            get { return constant.Syntax; }
+            set { constant.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

@@ -48,6 +48,32 @@ namespace CSharpDom.CodeAnalysis
                 { ClassMemberInheritanceModifier.SealedOverride, IndexerInheritanceModifier.SealedOverride },
                 { ClassMemberInheritanceModifier.Virtual, IndexerInheritanceModifier.Virtual }
             };
+        private static readonly IDictionary<ClassMemberInheritanceModifier, SealedClassMemberInheritanceModifier> sealedClassModifierMap =
+            new Dictionary<ClassMemberInheritanceModifier, SealedClassMemberInheritanceModifier>()
+            {
+                { ClassMemberInheritanceModifier.New, SealedClassMemberInheritanceModifier.New },
+                { ClassMemberInheritanceModifier.NewStatic, SealedClassMemberInheritanceModifier.NewStatic },
+                { ClassMemberInheritanceModifier.None, SealedClassMemberInheritanceModifier.None },
+                { ClassMemberInheritanceModifier.Override, SealedClassMemberInheritanceModifier.Override },
+                { ClassMemberInheritanceModifier.SealedOverride, SealedClassMemberInheritanceModifier.SealedOverride },
+                { ClassMemberInheritanceModifier.Static, SealedClassMemberInheritanceModifier.Static }
+            };
+        private static readonly IDictionary<ClassMemberInheritanceModifier, SealedClassIndexerInheritanceModifier> sealedClassIndexerModifierMap =
+            new Dictionary<ClassMemberInheritanceModifier, SealedClassIndexerInheritanceModifier>()
+            {
+                { ClassMemberInheritanceModifier.New, SealedClassIndexerInheritanceModifier.New },
+                { ClassMemberInheritanceModifier.None, SealedClassIndexerInheritanceModifier.None },
+                { ClassMemberInheritanceModifier.Override, SealedClassIndexerInheritanceModifier.Override },
+                { ClassMemberInheritanceModifier.SealedOverride, SealedClassIndexerInheritanceModifier.SealedOverride }
+            };
+        private static readonly IDictionary<ClassMemberVisibilityModifier, StaticClassMemberVisibilityModifier> staticClassVisibilityModifierMap =
+            new Dictionary<ClassMemberVisibilityModifier, StaticClassMemberVisibilityModifier>()
+            {
+                { ClassMemberVisibilityModifier.Internal, StaticClassMemberVisibilityModifier.Internal },
+                { ClassMemberVisibilityModifier.None, StaticClassMemberVisibilityModifier.None },
+                { ClassMemberVisibilityModifier.Private, StaticClassMemberVisibilityModifier.Private },
+                { ClassMemberVisibilityModifier.Public, StaticClassMemberVisibilityModifier.Public }
+            };
 
         public static SyntaxTokenList Add(this SyntaxTokenList tokens, SyntaxKind kind)
         {
@@ -230,6 +256,43 @@ namespace CSharpDom.CodeAnalysis
             IndexerInheritanceModifier modifier)
         {
             return tokens.WithClassMemberInheritanceModifier(indexerModifierMap.First(entry => entry.Value == modifier).Key);
+        }
+
+        public static SealedClassMemberInheritanceModifier ToSealedClassMemberInheritanceModifier(this SyntaxTokenList modifiers)
+        {
+            return sealedClassModifierMap[modifiers.ToClassMemberInheritanceModifier()];
+        }
+
+        public static SyntaxTokenList WithSealedClassMemberInheritanceModifier(
+            this SyntaxTokenList tokens,
+            SealedClassMemberInheritanceModifier modifier)
+        {
+            return tokens.WithClassMemberInheritanceModifier(sealedClassModifierMap.First(entry => entry.Value == modifier).Key);
+        }
+
+        public static SealedClassIndexerInheritanceModifier ToSealedClassIndexerInheritanceModifier(this SyntaxTokenList modifiers)
+        {
+            return sealedClassIndexerModifierMap[modifiers.ToClassMemberInheritanceModifier()];
+        }
+
+        public static SyntaxTokenList WithSealedClassIndexerInheritanceModifier(
+            this SyntaxTokenList tokens,
+            SealedClassIndexerInheritanceModifier modifier)
+        {
+            return tokens.WithClassMemberInheritanceModifier(sealedClassIndexerModifierMap.First(entry => entry.Value == modifier).Key);
+        }
+
+        public static StaticClassMemberVisibilityModifier ToStaticClassMemberVisibilityModifier(this SyntaxTokenList modifiers)
+        {
+            return staticClassVisibilityModifierMap[modifiers.ToClassMemberVisibilityModifier()];
+        }
+
+        public static SyntaxTokenList WithStaticClassMemberVisibilityModifier(
+            this SyntaxTokenList tokens,
+            StaticClassMemberVisibilityModifier modifier)
+        {
+            return tokens.WithClassMemberVisibilityModifier(
+                staticClassVisibilityModifierMap.First(entry => entry.Value == modifier).Key);
         }
 
         public static InterfaceMemberInheritanceModifier ToInterfaceMemberInheritanceModifier(this SyntaxTokenList modifiers)

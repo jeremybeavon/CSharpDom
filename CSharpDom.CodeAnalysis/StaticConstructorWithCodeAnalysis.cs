@@ -1,42 +1,38 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿//using System;
+//using System.Collections.Generic;
+//using CSharpDom.Common;
+//using CSharpDom.Editable;
+//using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpDom.CodeAnalysis
-{
-    public sealed class StaticConstructorWithCodeAnalysis :
-        AbstractStaticConstructor<AttributeGroupWithCodeAnalysis, ITypeWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
-        IHasMethodDefinition
-    {
-        private readonly ITypeWithCodeAnalysis declaringType;
-        private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<MethodBodyWithCodeAnalysis> body;
+//namespace CSharpDom.CodeAnalysis
+//{
+//    public sealed class StaticConstructorWithCodeAnalysis :
+//        EditableStaticConstructor<AttributeGroupWithCodeAnalysis, IType, MethodBodyWithCodeAnalysis>,
+//        IHasSyntax<ConstructorDeclarationSyntax>
+//    {
+//        private readonly Node<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> node;
+//        private readonly 
 
-        public StaticConstructorWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, MethodDefinition constructor)
-        {
-            this.declaringType = declaringType;
-            MethodDefinition = constructor;
-            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, constructor));
-            body = new Lazy<MethodBodyWithCodeAnalysis>(() => new MethodBodyWithCodeAnalysis(constructor));
-        }
+//        private StaticConstructorWithCodeAnalysis()
+//        {
+//            node = new Node<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(this);
+//        }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
-        {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
-        }
+//        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
+//        {
+//            get { return attributes.Value.AttributesWithCodeAnalysis; }
+//        }
 
-        public override MethodBodyWithCodeAnalysis Body
-        {
-            get { return body.Value; }
-        }
+//        public override MethodBodyWithCodeAnalysis Body
+//        {
+//            get { return body.Value; }
+//        }
 
-        public MethodDefinition MethodDefinition { get; private set; }
+//        public MethodDefinition MethodDefinition { get; private set; }
 
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return declaringType; }
-        }
-    }
-}
+//        public override ITypeWithCodeAnalysis DeclaringType
+//        {
+//            get { return declaringType; }
+//        }
+//    }
+//}

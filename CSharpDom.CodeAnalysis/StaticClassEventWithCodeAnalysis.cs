@@ -1,41 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StaticClassEventWithCodeAnalysis :
-        AbstractStaticClassEvent<
+        EditableStaticClassEvent<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
-            DelegateReferenceWithCodeAnalysis>
+            IStaticType,
+            DelegateReferenceWithCodeAnalysis>,
+        IHasSyntax<EventFieldDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly EventWithCodeAnalysis @event;
 
-        internal StaticClassEventWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, EventDefinition @event)
+        private StaticClassEventWithCodeAnalysis()
         {
-            this.@event = new EventWithCodeAnalysis(declaringType, @event);
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return @event.Attributes; }
+            set { @event.Attributes = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return @event.DeclaringType; }
-        }
-
+        
         public override DelegateReferenceWithCodeAnalysis EventType
         {
             get { return @event.EventType; }
+            set { @event.EventType = value; }
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> FieldAttributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> FieldAttributes
         {
             get { return new AttributeGroupWithCodeAnalysis[0]; }
         }
@@ -43,11 +43,28 @@ namespace CSharpDom.CodeAnalysis
         public override string Name
         {
             get { return @event.Name; }
+            set { @event.Name = value; }
+        }
+
+        public EventFieldDeclarationSyntax Syntax
+        {
+            get { return @event.Syntax; }
+            set { @event.Syntax = value; }
         }
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { return @event.EventDefinition.AddMethod.StaticClassVisibility(); }
+            get { return Syntax.Modifiers.ToStaticClassMemberVisibilityModifier(); }
+            set
+            {
+                EventFieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
+            }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

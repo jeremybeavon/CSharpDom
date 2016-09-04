@@ -27,6 +27,12 @@ namespace CSharpDom.CodeAnalysis
             AccessorParent = parent;
         }
 
+        internal AttributeGroupWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
+        {
+            ClassParent = parent;
+        }
+
         internal AttributeGroupWithCodeAnalysis(ConstantGroupWithCodeAnalysis parent)
             : this()
         {
@@ -164,7 +170,13 @@ namespace CSharpDom.CodeAnalysis
             get { return node.GetParentNode<AccessorWithCodeAnalysis>(); }
             set { node.SetParentNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
-        
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set { node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
         internal ConstantGroupWithCodeAnalysis ConstantGroupParent
         {
             get { return node.GetParentNode<ConstantGroupWithCodeAnalysis>(); }
