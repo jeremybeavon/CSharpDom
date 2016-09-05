@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -33,7 +34,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AbstractMethodWithCodeAnalysis> AbstractMethods
         {
             get { return abstractMethods; }
-            set { }
+            set { classType.Members.CombineList(nameof(AbstractMethods), value.Select(item => item.Syntax)); }
         }
 
         public override ICollection<ExplicitInterfaceMethodWithCodeAnalysis> ExplicitInterfaceMethods
@@ -45,7 +46,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<ClassMethodWithCodeAnalysis> Methods
         {
             get { return methods; }
-            set { }
+            set { classType.Members.CombineList(nameof(Methods), value.Select(item => item.Syntax)); }
         }
 
         internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> AbstractMethodList

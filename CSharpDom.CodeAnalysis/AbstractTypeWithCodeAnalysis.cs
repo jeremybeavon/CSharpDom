@@ -2,6 +2,7 @@
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -28,6 +29,7 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<ClassDeclarationSyntax>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassMemberList members;
         private readonly AbstractClassEventCollectionWithCodeAnalysis events;
         private readonly AbstractClassIndexerCollectionWithCodeAnalysis indexers;
         private readonly AbstractClassMethodCollectionWithCodeAnalysis methods;
@@ -36,10 +38,12 @@ namespace CSharpDom.CodeAnalysis
         private AbstractTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
+            members = classType.Members;
             events = new AbstractClassEventCollectionWithCodeAnalysis(classType);
             indexers = new AbstractClassIndexerCollectionWithCodeAnalysis(classType);
             methods = new AbstractClassMethodCollectionWithCodeAnalysis(classType);
             properties = new AbstractClassPropertyCollectionWithCodeAnalysis(classType);
+            InitializeMembers();            
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -66,6 +70,19 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ConversionOperators = value; }
         }
 
+        public override AbstractClassEventCollectionWithCodeAnalysis Events
+        {
+            get { return events; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(events.AbstractEvents), value.AbstractEvents.Select(@event => @event.Syntax)),
+                    new MemberListSyntax(nameof(events.Events), value.Events.Select(@event => @event.Syntax)),
+                    new MemberListSyntax(nameof(events.EventProperties), value.EventProperties.Select(@event => @event.Syntax)),
+                    new MemberListSyntax(nameof(events.ExplicitInterfaceEvents), value.ExplicitInterfaceEvents.Select(@event => @event.Syntax)));
+            }
+        }
+
         public override ClassFieldCollectionWithCodeAnalysis Fields
         {
             get { return classType.Fields; }
@@ -84,6 +101,30 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ImplementedInterfaces = value; }
         }
 
+        public override AbstractClassIndexerCollectionWithCodeAnalysis Indexers
+        {
+            get { return indexers; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(indexers.AbstractIndexers), value.AbstractIndexers.Select(indexer => indexer.Syntax)),
+                    new MemberListSyntax(nameof(indexers.Indexers), value.Indexers.Select(indexer => indexer.Syntax)),
+                    new MemberListSyntax(nameof(indexers.ExplicitInterfaceIndexers), value.ExplicitInterfaceIndexers.Select(indexer => indexer.Syntax)));
+            }
+        }
+
+        public override AbstractClassMethodCollectionWithCodeAnalysis Methods
+        {
+            get { return methods; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(methods.AbstractMethods), value.AbstractMethods.Select(method => method.Syntax)),
+                    new MemberListSyntax(nameof(methods.Methods), value.Methods.Select(method => method.Syntax)),
+                    new MemberListSyntax(nameof(methods.ExplicitInterfaceMethods), value.ExplicitInterfaceMethods.Select(method => method.Syntax)));
+            }
+        }
+
         public override string Name
         {
             get { return classType.Name; }
@@ -96,6 +137,18 @@ namespace CSharpDom.CodeAnalysis
             set { classType.OperatorOverloads = value; }
         }
 
+        public override AbstractClassPropertyCollectionWithCodeAnalysis Properties
+        {
+            get { return properties; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(properties.AbstractProperties), value.Properties.Select(property => property.Syntax)),
+                    new MemberListSyntax(nameof(properties.Properties), value.Properties.Select(property => property.Syntax)),
+                    new MemberListSyntax(nameof(properties.ExplicitInterfaceProperties), value.Properties.Select(property => property.Syntax)));
+            }
+        }
+
         public ClassDeclarationSyntax Syntax
         {
             get { return classType.Syntax; }
@@ -105,6 +158,30 @@ namespace CSharpDom.CodeAnalysis
         internal ClassTypeWithCodeAnalysis Type
         {
             get { return classType; }
+        }
+
+        private void InitializeMembers()
+        {
+            members.InsertBefore(
+                nameof(events.Events),
+                nameof(events.AbstractEvents),
+                () => events.AbstractEvents.Select(item => item.Syntax));
+            members.Replace(nameof(events.Events), () => events.Events.Select(item => item.Syntax));
+            members.InsertBefore(
+                nameof(indexers.Indexers),
+                nameof(indexers.AbstractIndexers),
+                () => events.AbstractEvents.Select(item => item.Syntax));
+            members.Replace(nameof(indexers.Indexers), () => indexers.Indexers.Select(item => item.Syntax));
+            members.InsertBefore(
+                nameof(methods.Methods),
+                nameof(methods.AbstractMethods),
+                () => methods.AbstractMethods.Select(item => item.Syntax));
+            members.Replace(nameof(methods.Methods), () => methods.Methods.Select(item => item.Syntax));
+            members.InsertBefore(
+                nameof(properties.Properties),
+                nameof(properties.AbstractProperties),
+                () => properties.AbstractProperties.Select(item => item.Syntax));
+            members.Replace(nameof(properties.Properties), () => properties.Properties.Select(item => item.Syntax));
         }
     }
 }

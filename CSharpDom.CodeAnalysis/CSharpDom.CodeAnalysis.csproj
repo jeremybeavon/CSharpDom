@@ -119,6 +119,7 @@
     <Compile Include="ClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassMemberList.cs" />
     <Compile Include="ClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassEventListWrapper.cs" />
     <Compile Include="ClassEventPropertyListWrapper.cs" />
@@ -164,7 +165,7 @@
     <Compile Include="ClassFieldWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerWithCodeAnalysis.cs" />
     <Compile Include="ClassMethodWithCodeAnalysis.cs" />
-    <Compile Include="CombinedMemberList.cs" />
+    <Compile Include="MemberList.cs" />
     <Compile Include="ConstructorParameterWithCodeAnalysis.cs" />
     <Compile Include="ConstructorWithCodeAnalysis.cs" />
     <Compile Include="ConversionOperatorWithCodeAnalysis.cs" />

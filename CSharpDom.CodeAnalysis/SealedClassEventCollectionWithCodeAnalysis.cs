@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -32,7 +33,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<SealedClassEventPropertyWithCodeAnalysis> EventProperties
         {
             get { return eventProperties; }
-            set { }
+            set { classType.Members.CombineList(nameof(EventProperties), value.Select(item => item.Syntax)); }
         }
 
         public override ICollection<ExplicitInterfaceEventWithCodeAnalysis> ExplicitInterfaceEvents
@@ -44,7 +45,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<SealedClassEventWithCodeAnalysis> Events
         {
             get { return events; }
-            set { }
+            set { classType.Members.CombineList(nameof(Events), value.Select(item => item.Syntax)); }
         }
 
         internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> EventList

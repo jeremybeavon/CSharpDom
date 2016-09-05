@@ -10,21 +10,22 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class CombinedMemberList<TParentNode, TParentSyntax> : IEnumerable
+    internal class MemberList<TParentNode, TParentSyntax> : IEnumerable
         where TParentSyntax : class
     {
         private readonly Node<TParentNode, TParentSyntax> node;
         private readonly Func<TParentSyntax, SyntaxList<MemberDeclarationSyntax>, TParentSyntax> createList;
         private readonly List<KeyValuePair<string, Func<IEnumerable<MemberDeclarationSyntax>>>> list;
 
-        public CombinedMemberList(
+        public MemberList(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<MemberDeclarationSyntax>, TParentSyntax> createList)
         {
             this.node = node;
             this.createList = createList;
+            list = new List<KeyValuePair<string, Func<IEnumerable<MemberDeclarationSyntax>>>>();
         }
-
+        
         public void Add(string key, Func<IEnumerable<MemberDeclarationSyntax>> syntax)
         {
             list.Add(new KeyValuePair<string, Func<IEnumerable<MemberDeclarationSyntax>>>(key, syntax));
@@ -40,6 +41,30 @@ namespace CSharpDom.CodeAnalysis
             IDictionary<string, IEnumerable<MemberDeclarationSyntax>> syntaxDictionary =
                 syntax.ToDictionary(entry => entry.Key, entry => entry.Syntax);
             CombineList(entry => GetSyntax(entry, syntaxDictionary));
+        }
+
+        public void Replace(string key, Func<IEnumerable<MemberDeclarationSyntax>> syntax)
+        {
+            for (int index = 0; index < list.Count; index++)
+            {
+                if (list[index].Key == key)
+                {
+                    list[index] = new KeyValuePair<string, Func<IEnumerable<MemberDeclarationSyntax>>>(key, syntax);
+                    break;
+                }
+            }
+        }
+
+        public void InsertBefore(string key, string newKey, Func<IEnumerable<MemberDeclarationSyntax>> syntax)
+        {
+            for (int index = 0; index < list.Count; index++)
+            {
+                if (list[index].Key == key)
+                {
+                    list.Insert(index, new KeyValuePair<string, Func<IEnumerable<MemberDeclarationSyntax>>>(newKey, syntax));
+                    break;
+                }
+            }
         }
 
         public IEnumerator GetEnumerator()

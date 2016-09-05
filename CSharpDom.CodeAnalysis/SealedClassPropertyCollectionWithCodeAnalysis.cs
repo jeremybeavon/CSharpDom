@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -32,7 +33,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<SealedClassPropertyWithCodeAnalysis> Properties
         {
             get { return properties; }
-            set { }
+            set { classType.Members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }
         }
 
         internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> PropertyList

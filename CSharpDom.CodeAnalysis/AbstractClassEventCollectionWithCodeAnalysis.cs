@@ -34,6 +34,12 @@ namespace CSharpDom.CodeAnalysis
                 syntax => syntax.Modifiers.IsAbstract());
         }
 
+        public override ICollection<AbstractEventWithCodeAnalysis> AbstractEvents
+        {
+            get { return abstractEvents; }
+            set { classType.Members.CombineList(nameof(AbstractEvents), value.Select(item => item.Syntax)); }
+        }
+
         public override ICollection<ClassEventPropertyWithCodeAnalysis> EventProperties
         {
             get { return classType.Events.EventProperties; }

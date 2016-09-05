@@ -49,7 +49,7 @@ namespace CSharpDom.CodeAnalysis
             OperatorOverloadWithCodeAnalysis,
             OperatorDeclarationSyntax> operatorOverloads;
         private readonly ClassPropertyCollectionWithCodeAnalysis properties;
-        private readonly CombinedMemberList<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> members;
+        private readonly ClassMemberList members;
 
         private ClassTypeWithCodeAnalysis()
         {
@@ -85,9 +85,7 @@ namespace CSharpDom.CodeAnalysis
                 parent => new OperatorOverloadWithCodeAnalysis(parent),
                 (child, parent) => child.ClassParent = parent);
             properties = new ClassPropertyCollectionWithCodeAnalysis(this);
-            members = new CombinedMemberList<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                node,
-                (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
+            members = new ClassMemberList(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
             {
                 { nameof(fields.Constants), () => fields.Constants.Select(constant => constant.Syntax) },
                 { nameof(fields.Fields), () => fields.Fields.Select(field => field.Syntax) },
@@ -171,7 +169,7 @@ namespace CSharpDom.CodeAnalysis
             {
                 members.CombineList(
                     new MemberListSyntax(nameof(methods.Methods), value.Methods.Select(method => method.Syntax)),
-                    new MemberListSyntax(nameof(methods.ExplicitInterfaceMethodList), value.ExplicitInterfaceMethods.Select(method => method.Syntax)));
+                    new MemberListSyntax(nameof(methods.ExplicitInterfaceMethods), value.ExplicitInterfaceMethods.Select(method => method.Syntax)));
             }
         }
 
@@ -209,7 +207,7 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
-        internal CombinedMemberList<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> Members
+        internal ClassMemberList Members
         {
             get { return members; }
         }

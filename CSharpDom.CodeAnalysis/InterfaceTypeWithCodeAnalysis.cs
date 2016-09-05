@@ -39,7 +39,7 @@ namespace CSharpDom.CodeAnalysis
             MethodWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis,
             MethodDeclarationSyntax> methods;
-        private readonly CombinedMemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> members;
+        private readonly MemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> members;
 
         public InterfaceTypeWithCodeAnalysis()
         {
@@ -79,7 +79,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 parent => new InterfaceMethodWithCodeAnalysis(parent),
                 (child, parent) => child.Method.InterfaceParent = parent);
-            members = new CombinedMemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
+            members = new MemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
             {
