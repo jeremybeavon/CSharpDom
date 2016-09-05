@@ -18,7 +18,13 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Guid internalId;
         private readonly ClassPropertyWithCodeAnalysis property;
-        
+     
+        internal SealedClassPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
+        {
+            property = new ClassPropertyWithCodeAnalysis(parent, this);
+        }
+           
         private SealedClassPropertyWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();

@@ -1,30 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class SealedClassIndexerCollectionWithCodeAnalysis :
-        AbstractSealedClassIndexerCollection<
+        EditableSealedClassIndexerCollection<
             SealedClassIndexerWithCodeAnalysis,
             ExplicitInterfaceIndexerWithCodeAnalysis>
     {
-        private readonly SealedTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassIndexerListWrapper<SealedClassIndexerWithCodeAnalysis> indexers;
 
-        internal SealedClassIndexerCollectionWithCodeAnalysis(SealedTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal SealedClassIndexerCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            indexers = new ClassIndexerListWrapper<SealedClassIndexerWithCodeAnalysis>(
+                classType.Node,
+                parent => new SealedClassIndexerWithCodeAnalysis(parent),
+                (child, parent) => child.Indexer.Indexer.SealedClassParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
         
-        public override IReadOnlyCollection<ExplicitInterfaceIndexerWithCodeAnalysis> ExplicitInterfaceIndexers
+        public override ICollection<ExplicitInterfaceIndexerWithCodeAnalysis> ExplicitInterfaceIndexers
         {
-            get { return typeWithCodeAnalysis.IndexerCollection.Indexers.ExplicitInterfaceIndexersWithCodeAnalysis; }
+            get { return classType.Indexers.ExplicitInterfaceIndexers; }
+            set { classType.Indexers.ExplicitInterfaceIndexers = value; }
         }
 
-        protected override IReadOnlyCollection<SealedClassIndexerWithCodeAnalysis> Indexers
+        public override ICollection<SealedClassIndexerWithCodeAnalysis> Indexers
         {
-            get { return typeWithCodeAnalysis.IndexerCollection.Indexers.IndexersWithCodeAnalysis; }
+            get { return indexers; }
+            set { }
+        }
+
+        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> IndexerList
+        {
+            get { return indexers; }
         }
     }
 }

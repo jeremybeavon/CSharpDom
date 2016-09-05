@@ -42,10 +42,22 @@ namespace CSharpDom.CodeAnalysis
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> setAccessor;
 
-        internal IndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassIndexerWithCodeAnalysis indexer)
+        internal IndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, AbstractIndexerWithCodeAnalysis indexer)
             : this(indexer)
         {
-            ClassParent = parent;
+            AbstractClassParent = parent;
+        }
+
+        internal IndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassIndexerWithCodeAnalysis indexer, ClassType classType)
+            : this(indexer)
+        {
+            SetClassParent(parent, classType);
+        }
+
+        internal IndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassIndexerWithCodeAnalysis indexer)
+            : this(indexer)
+        {
+            SealedClassParent = parent;
         }
 
         internal IndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceIndexerWithCodeAnalysis indexer)
@@ -146,14 +158,14 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
-        internal ClassTypeWithCodeAnalysis ClassParent
+        internal ClassTypeWithCodeAnalysis AbstractClassParent
         {
             get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
-                    parent => parent.Indexers.IndexerList);
+                    parent => parent.AbstractType.Indexers.AbstractIndexerList);
             }
         }
 
@@ -167,11 +179,22 @@ namespace CSharpDom.CodeAnalysis
                     parent => parent.Indexers.ExplicitInterfaceIndexerList);
             }
         }
-
+        
         internal InterfaceTypeWithCodeAnalysis InterfaceParent
         {
             get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
             set { node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(value, parent => parent.IndexerList); }
+        }
+
+        internal ClassTypeWithCodeAnalysis SealedClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.SealedType.Indexers.IndexerList);
+            }
         }
 
         private CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax> GetAccessorNode(
@@ -196,6 +219,23 @@ namespace CSharpDom.CodeAnalysis
             return syntax.AccessorList.GetAccessorDeclaration(kind);
         }
 
+        internal void SetClassParent(ClassTypeWithCodeAnalysis value, ClassType classType)
+        {
+            switch (classType)
+            {
+                case ClassType.Normal:
+                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                        value,
+                        parent => parent.Indexers.IndexerList);
+                    break;
+                case ClassType.Abstract:
+                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                        value,
+                        parent => parent.AbstractType.Indexers.IndexerList);
+                    break;
+            }
+        }
+        
         T ISimpleMember.Member<T>()
         {
             return (T)indexer;

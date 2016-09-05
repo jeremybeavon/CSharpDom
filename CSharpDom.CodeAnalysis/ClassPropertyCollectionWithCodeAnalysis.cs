@@ -10,27 +10,21 @@ namespace CSharpDom.CodeAnalysis
         EditableClassPropertyCollection<ClassPropertyWithCodeAnalysis, ExplicitInterfacePropertyWithCodeAnalysis>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
-        private readonly ClassMemberListWrapper<
-            PropertyWithCodeAnalysis,
-            ExplicitInterfacePropertyWithCodeAnalysis,
-            PropertyDeclarationSyntax> explicitInterfaceProperties;
-        private readonly ClassMemberListWrapper<
-            PropertyWithCodeAnalysis,
-            ClassPropertyWithCodeAnalysis,
-            PropertyDeclarationSyntax> properties;
+        private readonly ClassPropertyListWrapper<ExplicitInterfacePropertyWithCodeAnalysis> explicitInterfaceProperties;
+        private readonly ClassPropertyListWrapper<ClassPropertyWithCodeAnalysis> properties;
 
         internal ClassPropertyCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
-            explicitInterfaceProperties = new ClassMemberListWrapper<PropertyWithCodeAnalysis, ExplicitInterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+            explicitInterfaceProperties = new ClassPropertyListWrapper<ExplicitInterfacePropertyWithCodeAnalysis>(
                 classType.Node,
                 parent => new ExplicitInterfacePropertyWithCodeAnalysis(parent),
                 (child, parent) => child.Property.Property.ExplicitInterfaceClassParent = parent,
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
-            properties = new ClassMemberListWrapper<PropertyWithCodeAnalysis, ClassPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+            properties = new ClassPropertyListWrapper<ClassPropertyWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassPropertyWithCodeAnalysis(parent),
-                (child, parent) => child.Property.Property.ClassParent = parent,
+                parent => new ClassPropertyWithCodeAnalysis(parent, ClassType.Normal),
+                (child, parent) => child.Property.Property.SetClassParent(parent, ClassType.Normal),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 

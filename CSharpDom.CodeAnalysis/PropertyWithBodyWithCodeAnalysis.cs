@@ -19,12 +19,22 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly PropertyWithCodeAnalysis property;
 
-        internal PropertyWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassPropertyWithCodeAnalysis property)
+        internal PropertyWithBodyWithCodeAnalysis(
+            ClassTypeWithCodeAnalysis parent,
+            ClassPropertyWithCodeAnalysis property,
+            ClassType classType)
+        {
+            this.property = new PropertyWithCodeAnalysis(parent, property, classType);
+        }
+
+        internal PropertyWithBodyWithCodeAnalysis(
+            ClassTypeWithCodeAnalysis parent,
+            ExplicitInterfacePropertyWithCodeAnalysis property)
         {
             this.property = new PropertyWithCodeAnalysis(parent, property);
         }
 
-        internal PropertyWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfacePropertyWithCodeAnalysis property)
+        internal PropertyWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassPropertyWithCodeAnalysis property)
         {
             this.property = new PropertyWithCodeAnalysis(parent, property);
         }

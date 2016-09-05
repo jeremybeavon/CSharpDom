@@ -366,6 +366,7 @@
     <Compile Include="Editable\EditableAbstractIndexer.cs" />
     <Compile Include="Editable\EditableAbstractMethod.cs" />
     <Compile Include="Editable\EditableAbstractProperty.cs" />
+    <Compile Include="Editable\EditableAbstractType.cs" />
     <Compile Include="Editable\EditableAccessor.generic.cs" />
     <Compile Include="Editable\EditableAccessor.generic2.cs" />
     <Compile Include="Editable\EditableArrayTypeReference.cs" />
@@ -477,6 +478,7 @@
     <Compile Include="Editable\EditableSealedClassMethodCollection.cs" />
     <Compile Include="Editable\EditableSealedClassProperty.cs" />
     <Compile Include="Editable\EditableSealedClassPropertyCollection.cs" />
+    <Compile Include="Editable\EditableSealedType.cs" />
     <Compile Include="Editable\EditableSolution.cs" />
     <Compile Include="Editable\EditableStaticClass.cs" />
     <Compile Include="Editable\EditableStaticClassAccessor.cs" />

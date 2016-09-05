@@ -38,10 +38,10 @@ namespace CSharpDom.CodeAnalysis
             innerList = new List<TChildNode>();
             syntaxMap = new Dictionary<TChildNode, TChildSyntax>(this);
             reverseSyntaxMap = new Dictionary<TChildSyntax, IndexedItem>();
-            foreach (TChildSyntax syntax in list)
-            {
-                InternalAdd(factory(node.Value), syntax);
-            }
+            //foreach (TChildSyntax syntax in list)
+            //{
+            //    InternalAdd(factory(node.Value), syntax);
+            //}
         }
 
         public int Count

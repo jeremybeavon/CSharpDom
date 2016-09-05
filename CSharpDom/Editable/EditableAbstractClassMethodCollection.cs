@@ -21,7 +21,7 @@ namespace CSharpDom.Editable
 
         public virtual ICollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
 
-        protected virtual ICollection<TMethod> Methods { get; set; }
+        public virtual ICollection<TMethod> Methods { get; set; }
 
         IReadOnlyCollection<TAbstractMethod> IHasAbstractMethods<TAbstractMethod>.AbstractMethods
         {

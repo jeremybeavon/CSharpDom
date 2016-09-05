@@ -27,16 +27,28 @@ namespace CSharpDom.CodeAnalysis
             DelegateReferenceWithCodeAnalysis,
             NameSyntax> eventType;
 
+        internal EventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, AbstractEventWithCodeAnalysis @event)
+            : this(@event)
+        {
+            AbstractClassParent = parent;
+        }
+
+        internal EventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassEventWithCodeAnalysis @event, ClassType classType)
+            : this(@event)
+        {
+            SetClassParent(parent, classType);
+        }
+
+        internal EventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassEventWithCodeAnalysis @event)
+            : this(@event)
+        {
+
+        }
+
         internal EventWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceEventWithCodeAnalysis @event)
             : this(@event)
         {
             InterfaceParent = parent;
-        }
-
-        internal EventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassEventWithCodeAnalysis @event)
-            : this(@event)
-        {
-            ClassParent = parent;
         }
 
         private EventWithCodeAnalysis(object @event)
@@ -97,15 +109,15 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return attributes; }
         }
-        
-        internal ClassTypeWithCodeAnalysis ClassParent
+
+        internal ClassTypeWithCodeAnalysis AbstractClassParent
         {
             get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
-                    parent => parent.Events.EventList);
+                    parent => parent.AbstractType.Events.AbstractEventList);
             }
         }
 
@@ -120,11 +132,39 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        internal ClassTypeWithCodeAnalysis SealedClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.SealedType.Events.EventList);
+            }
+        }
+
         Guid IHasId.InternalId
         {
             get { return internalId; }
         }
         
+        internal void SetClassParent(ClassTypeWithCodeAnalysis value, ClassType classType)
+        {
+            switch (classType)
+            {
+                case ClassType.Normal:
+                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                        value,
+                        parent => parent.Events.EventList);
+                    break;
+                case ClassType.Abstract:
+                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                        value,
+                        parent => parent.AbstractType.Events.EventList);
+                    break;
+            }
+        }
+
         T ISimpleMember.Member<T>()
         {
             return (T)@event;

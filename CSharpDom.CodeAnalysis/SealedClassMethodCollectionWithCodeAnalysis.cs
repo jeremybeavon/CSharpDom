@@ -1,30 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class SealedClassMethodCollectionWithCodeAnalysis :
-        AbstractSealedClassMethodCollection<
+        EditableSealedClassMethodCollection<
             SealedClassMethodWithCodeAnalysis,
             ExplicitInterfaceMethodWithCodeAnalysis>
     {
-        private readonly SealedTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassMethodListWrapper<SealedClassMethodWithCodeAnalysis> methods;
 
-        internal SealedClassMethodCollectionWithCodeAnalysis(SealedTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal SealedClassMethodCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            methods = new ClassMethodListWrapper<SealedClassMethodWithCodeAnalysis>(
+                classType.Node,
+                parent => new SealedClassMethodWithCodeAnalysis(parent),
+                (child, parent) => child.Method.Method.SealedClassParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 
-        public override IReadOnlyCollection<ExplicitInterfaceMethodWithCodeAnalysis> ExplicitInterfaceMethods
+        public override ICollection<ExplicitInterfaceMethodWithCodeAnalysis> ExplicitInterfaceMethods
         {
-            get { return typeWithCodeAnalysis.MethodCollection.Methods.ExplicitInterfaceMethodsWithCodeAnalysis; }
+            get { return classType.Methods.ExplicitInterfaceMethods; }
+            set { classType.Methods.ExplicitInterfaceMethods = value; }
         }
 
-        protected override IReadOnlyCollection<SealedClassMethodWithCodeAnalysis> Methods
+        public override ICollection<SealedClassMethodWithCodeAnalysis> Methods
         {
-            get { return typeWithCodeAnalysis.MethodCollection.Methods.MethodsWithCodeAnalysis; }
+            get { return methods; }
+            set { }
+        }
+
+        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> MethodList
+        {
+            get { return methods; }
         }
     }
 }

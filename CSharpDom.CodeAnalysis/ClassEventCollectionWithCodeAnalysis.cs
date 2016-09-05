@@ -13,36 +13,27 @@ namespace CSharpDom.CodeAnalysis
             ExplicitInterfaceEventWithCodeAnalysis>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
-        private readonly ClassMemberListWrapper<
-            EventPropertyWithCodeAnalysis,
-            ClassEventPropertyWithCodeAnalysis,
-            EventDeclarationSyntax> eventProperties;
-        private readonly ClassMemberListWrapper<
-            EventPropertyWithCodeAnalysis,
-            ExplicitInterfaceEventWithCodeAnalysis,
-            EventDeclarationSyntax> explicitInterfaceEvents;
-        private readonly ClassMemberListWrapper<
-            EventWithCodeAnalysis,
-            ClassEventWithCodeAnalysis,
-            EventFieldDeclarationSyntax> events;
+        private readonly ClassEventPropertyListWrapper<ClassEventPropertyWithCodeAnalysis> eventProperties;
+        private readonly ClassEventPropertyListWrapper<ExplicitInterfaceEventWithCodeAnalysis> explicitInterfaceEvents;
+        private readonly ClassEventListWrapper<ClassEventWithCodeAnalysis> events;
 
         internal ClassEventCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
-            eventProperties = new ClassMemberListWrapper<EventPropertyWithCodeAnalysis, ClassEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
+            eventProperties = new ClassEventPropertyListWrapper<ClassEventPropertyWithCodeAnalysis>(
                 classType.Node,
                 parent => new ClassEventPropertyWithCodeAnalysis(parent),
                 (child, parent) => child.EventProperty.ClassParent = parent,
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
-            explicitInterfaceEvents = new ClassMemberListWrapper<EventPropertyWithCodeAnalysis, ExplicitInterfaceEventWithCodeAnalysis, EventDeclarationSyntax>(
+            explicitInterfaceEvents = new ClassEventPropertyListWrapper<ExplicitInterfaceEventWithCodeAnalysis>(
                 classType.Node,
                 parent => new ExplicitInterfaceEventWithCodeAnalysis(parent),
                 (child, parent) => child.EventProperty.ExplicitInterfaceClassParent = parent,
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
-            events = new ClassMemberListWrapper<EventWithCodeAnalysis, ClassEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
+            events = new ClassEventListWrapper<ClassEventWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassEventWithCodeAnalysis(parent),
-                (child, parent) => child.Event.ClassParent = parent);
+                parent => new ClassEventWithCodeAnalysis(parent, ClassType.Normal),
+                (child, parent) => child.Event.SetClassParent(parent, ClassType.Normal));
         }
 
         public override ICollection<ClassEventPropertyWithCodeAnalysis> EventProperties

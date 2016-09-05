@@ -22,7 +22,7 @@ namespace CSharpDom.Editable
 
         public virtual ICollection<TExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
 
-        protected virtual ICollection<TIndexer> Indexers { get; set; }
+        public virtual ICollection<TIndexer> Indexers { get; set; }
 
         IReadOnlyCollection<TAbstractIndexer> IHasAbstractIndexers<TAbstractIndexer>.AbstractIndexers
         {

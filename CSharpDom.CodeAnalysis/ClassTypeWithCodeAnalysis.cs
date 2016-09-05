@@ -214,6 +214,10 @@ namespace CSharpDom.CodeAnalysis
             get { return members; }
         }
 
+        internal AbstractTypeWithCodeAnalysis AbstractType { get; private set; }
+
+        internal SealedTypeWithCodeAnalysis SealedType { get; private set; }
+
         internal IAttributeCollection AttributeList
         {
             get { return attributes; }

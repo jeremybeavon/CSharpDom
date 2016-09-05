@@ -10,27 +10,21 @@ namespace CSharpDom.CodeAnalysis
         EditableClassIndexerCollection<ClassIndexerWithCodeAnalysis, ExplicitInterfaceIndexerWithCodeAnalysis>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
-        private readonly ClassMemberListWrapper<
-            IndexerWithCodeAnalysis,
-            ExplicitInterfaceIndexerWithCodeAnalysis,
-            IndexerDeclarationSyntax> explicitInterfaceIndexers;
-        private readonly ClassMemberListWrapper<
-            IndexerWithCodeAnalysis,
-            ClassIndexerWithCodeAnalysis,
-            IndexerDeclarationSyntax> indexers;
+        private readonly ClassIndexerListWrapper<ExplicitInterfaceIndexerWithCodeAnalysis> explicitInterfaceIndexers;
+        private readonly ClassIndexerListWrapper<ClassIndexerWithCodeAnalysis> indexers;
 
         internal ClassIndexerCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
-            explicitInterfaceIndexers = new ClassMemberListWrapper<IndexerWithCodeAnalysis, ExplicitInterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
+            explicitInterfaceIndexers = new ClassIndexerListWrapper<ExplicitInterfaceIndexerWithCodeAnalysis>(
                 classType.Node,
                 parent => new ExplicitInterfaceIndexerWithCodeAnalysis(parent),
                 (child, parent) => child.Indexer.Indexer.ExplicitInterfaceClassParent = parent,
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
-            indexers = new ClassMemberListWrapper<IndexerWithCodeAnalysis, ClassIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
+            indexers = new ClassIndexerListWrapper<ClassIndexerWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassIndexerWithCodeAnalysis(parent),
-                (child, parent) => child.Indexer.Indexer.ClassParent = parent,
+                parent => new ClassIndexerWithCodeAnalysis(parent, ClassType.Normal),
+                (child, parent) => child.Indexer.Indexer.SetClassParent(parent, ClassType.Normal),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 

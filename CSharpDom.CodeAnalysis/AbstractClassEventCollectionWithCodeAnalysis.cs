@@ -1,42 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractClassEventCollectionWithCodeAnalysis :
-        AbstractAbstractClassEventCollection<
+        EditableAbstractClassEventCollection<
             ClassEventWithCodeAnalysis,
             ClassEventPropertyWithCodeAnalysis,
             AbstractEventWithCodeAnalysis,
             ExplicitInterfaceEventWithCodeAnalysis>
     {
-        private readonly ClassTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassEventListWrapper<ClassEventWithCodeAnalysis> events;
+        private readonly ClassEventListWrapper<AbstractEventWithCodeAnalysis> abstractEvents;
 
-        internal AbstractClassEventCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal AbstractClassEventCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            events = new ClassEventListWrapper<ClassEventWithCodeAnalysis>(
+                classType.Node,
+                parent => new ClassEventWithCodeAnalysis(parent, ClassType.Abstract),
+                (child, parent) => child.Event.SetClassParent(parent, ClassType.Abstract),
+                syntax => !syntax.Modifiers.IsAbstract());
+            abstractEvents = new ClassEventListWrapper<AbstractEventWithCodeAnalysis>(
+                classType.Node,
+                parent => new AbstractEventWithCodeAnalysis(parent),
+                (child, parent) => child.Event.SetClassParent(parent, ClassType.Abstract),
+                syntax => syntax.Modifiers.IsAbstract());
         }
 
-        public override IReadOnlyCollection<AbstractEventWithCodeAnalysis> AbstractEvents
+        public override ICollection<ClassEventPropertyWithCodeAnalysis> EventProperties
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.AbstractEventsWithCodeAnalysis; }
+            get { return classType.Events.EventProperties; }
+            set { classType.Events.EventProperties = value; }
         }
 
-        public override IReadOnlyCollection<ClassEventPropertyWithCodeAnalysis> EventProperties
+        public override ICollection<ExplicitInterfaceEventWithCodeAnalysis> ExplicitInterfaceEvents
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.EventPropertiesWithCodeAnalysis; }
+            get { return classType.Events.ExplicitInterfaceEvents; }
+            set { classType.Events.ExplicitInterfaceEvents = value; }
         }
 
-        public override IReadOnlyCollection<ExplicitInterfaceEventWithCodeAnalysis> ExplicitInterfaceEvents
+        public override ICollection<ClassEventWithCodeAnalysis> Events
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.ExplictInterfaceEventsWithCodeAnalysis; }
+            get { return events; }
+            set { classType.Members.CombineList(nameof(Events), value.Select(item => item.Syntax)); }
         }
 
-        protected override IReadOnlyCollection<ClassEventWithCodeAnalysis> Events
+        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> AbstractEventList
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.EventsWithCodeAnalysis; }
+            get { return abstractEvents; }
+        }
+
+        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> EventList
+        {
+            get { return events; }
         }
     }
 }

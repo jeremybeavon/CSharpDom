@@ -1,36 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class SealedClassEventCollectionWithCodeAnalysis :
-        AbstractSealedClassEventCollection<
+        EditableSealedClassEventCollection<
             SealedClassEventWithCodeAnalysis,
             SealedClassEventPropertyWithCodeAnalysis,
             ExplicitInterfaceEventWithCodeAnalysis>
     {
-        private readonly SealedTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassEventListWrapper<SealedClassEventWithCodeAnalysis> events;
+        private readonly ClassEventPropertyListWrapper<SealedClassEventPropertyWithCodeAnalysis> eventProperties;
 
-        internal SealedClassEventCollectionWithCodeAnalysis(SealedTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal SealedClassEventCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            events = new ClassEventListWrapper<SealedClassEventWithCodeAnalysis>(
+                classType.Node,
+                parent => new SealedClassEventWithCodeAnalysis(parent),
+                (child, parent) => child.Event.SealedClassParent = parent);
+            eventProperties = new ClassEventPropertyListWrapper<SealedClassEventPropertyWithCodeAnalysis>(
+                classType.Node,
+                parent => new SealedClassEventPropertyWithCodeAnalysis(parent),
+                (child, parent) => child.EventProperty.SealedClassParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
         
-        public override IReadOnlyCollection<SealedClassEventPropertyWithCodeAnalysis> EventProperties
+        public override ICollection<SealedClassEventPropertyWithCodeAnalysis> EventProperties
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.EventPropertiesWithCodeAnalysis; }
+            get { return eventProperties; }
+            set { }
         }
 
-        public override IReadOnlyCollection<ExplicitInterfaceEventWithCodeAnalysis> ExplicitInterfaceEvents
+        public override ICollection<ExplicitInterfaceEventWithCodeAnalysis> ExplicitInterfaceEvents
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.ExplictInterfaceEventsWithCodeAnalysis; }
+            get { return classType.Events.ExplicitInterfaceEvents; }
+            set { classType.Events.ExplicitInterfaceEvents = value; }
         }
 
-        protected override IReadOnlyCollection<SealedClassEventWithCodeAnalysis> Events
+        public override ICollection<SealedClassEventWithCodeAnalysis> Events
         {
-            get { return typeWithCodeAnalysis.EventCollection.Events.EventsWithCodeAnalysis; }
+            get { return events; }
+            set { }
+        }
+
+        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> EventList
+        {
+            get { return events; }
+        }
+
+        internal IChildCollection<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> EventPropertyList
+        {
+            get { return eventProperties; }
         }
     }
 }

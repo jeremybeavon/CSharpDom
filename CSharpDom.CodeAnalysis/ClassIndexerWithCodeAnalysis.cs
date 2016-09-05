@@ -19,10 +19,16 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly IndexerWithBodyWithCodeAnalysis indexer;
 
-        internal ClassIndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+        internal ClassIndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassType classType)
             : this()
         {
-            indexer = new IndexerWithBodyWithCodeAnalysis(parent, this);
+            indexer = new IndexerWithBodyWithCodeAnalysis(parent, this, classType);
+        }
+
+        internal ClassIndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassIndexerWithCodeAnalysis indexer)
+            : this()
+        {
+            this.indexer = new IndexerWithBodyWithCodeAnalysis(parent, indexer);
         }
 
         private ClassIndexerWithCodeAnalysis()

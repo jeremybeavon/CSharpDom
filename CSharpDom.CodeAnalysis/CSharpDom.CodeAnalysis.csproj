@@ -97,7 +97,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="AbstractEventWithCodeAnalysis.cs" />
+    <Compile Include="AbstractIndexerWithCodeAnalysis.cs" />
+    <Compile Include="AbstractMethodWithCodeAnalysis.cs" />
+    <Compile Include="AbstractPropertyWithCodeAnalysis.cs" />
+    <Compile Include="AbstractTypeWithCodeAnalysis.cs" />
     <Compile Include="AbstractWrappedNode.cs" />
     <Compile Include="AccessorListSyntaxExtensions.cs" />
     <Compile Include="AccessorWithCodeAnalysis.cs" />
@@ -112,15 +120,26 @@
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassEventListWrapper.cs" />
+    <Compile Include="ClassEventPropertyListWrapper.cs" />
+    <Compile Include="ClassIndexerListWrapper.cs" />
+    <Compile Include="ClassPropertyListWrapper.cs" />
+    <Compile Include="ClassMethodListWrapper.cs" />
     <Compile Include="ClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassType.cs" />
     <Compile Include="ClassTypeWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberListWrapper.cs" />
     <Compile Include="EmptySimpleMember.cs" />
     <Compile Include="MemberListSyntax.cs" />
+    <Compile Include="SealedClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="SealedClassEventWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="SealedClassIndexerWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="SealedClassMethodWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="SealedClassPropertyWithCodeAnalysis.cs" />
+    <Compile Include="SealedTypeWithCodeAnalysis.cs" />
     <Compile Include="SimpleClassMemberListWrapper.cs" />
     <Compile Include="StaticClassAccessorWithCodeAnalysis.cs" />
     <Compile Include="StaticClassConstantWithCodeAnalysis.cs" />
@@ -212,7 +231,6 @@
     <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />
     <Compile Include="ImmutableSeparatedSyntaxListWrapper.cs" />
     <Compile Include="ImmutableChildListWrapper.cs" />
-    <Compile Include="NodeFactory.cs" />
     <Compile Include="SealedClassEventPropertyWithCodeAnalysis.cs" />
     <Compile Include="SimpleNode.cs" />
     <Compile Include="NameSyntaxExtensions.cs" />

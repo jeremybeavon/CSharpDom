@@ -10,27 +10,21 @@ namespace CSharpDom.CodeAnalysis
         EditableClassMethodCollection<ClassMethodWithCodeAnalysis, ExplicitInterfaceMethodWithCodeAnalysis>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
-        private readonly ClassMemberListWrapper<
-            MethodWithCodeAnalysis,
-            ExplicitInterfaceMethodWithCodeAnalysis,
-            MethodDeclarationSyntax> explicitInterfaceMethods;
-        private readonly ClassMemberListWrapper<
-            MethodWithCodeAnalysis,
-            ClassMethodWithCodeAnalysis,
-            MethodDeclarationSyntax> methods;
+        private readonly ClassMethodListWrapper<ExplicitInterfaceMethodWithCodeAnalysis> explicitInterfaceMethods;
+        private readonly ClassMethodListWrapper<ClassMethodWithCodeAnalysis> methods;
 
         internal ClassMethodCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
-            explicitInterfaceMethods = new ClassMemberListWrapper<MethodWithCodeAnalysis, ExplicitInterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+            explicitInterfaceMethods = new ClassMethodListWrapper<ExplicitInterfaceMethodWithCodeAnalysis>(
                 classType.Node,
                 parent => new ExplicitInterfaceMethodWithCodeAnalysis(parent),
                 (child, parent) => child.Method.Method.ExplicitInterfaceClassParent = parent,
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
-            methods = new ClassMemberListWrapper<MethodWithCodeAnalysis, ClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+            methods = new ClassMethodListWrapper<ClassMethodWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassMethodWithCodeAnalysis(parent),
-                (child, parent) => child.Method.Method.ClassParent = parent,
+                parent => new ClassMethodWithCodeAnalysis(parent, ClassType.Normal),
+                (child, parent) => child.Method.Method.SetClassParent(parent, ClassType.Normal),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 

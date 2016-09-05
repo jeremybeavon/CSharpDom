@@ -1,65 +1,95 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
-using System.Reflection;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractMethodWithCodeAnalysis :
-        AbstractAbstractMethod<
+        EditableAbstractMethod<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IAbstractType,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
-            MethodParameterWithCodeAnalysis>
+            MethodParameterWithCodeAnalysis>,
+        IHasSyntax<MethodDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly MethodWithCodeAnalysis method;
 
-        internal AbstractMethodWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, MethodDefinition method)
+        internal AbstractMethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            this.method = new MethodWithCodeAnalysis(declaringType, method);
+            method = new MethodWithCodeAnalysis(parent, this);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        private AbstractMethodWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public MethodWithCodeAnalysis Method
+        {
+            get { return method; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return method.Attributes; }
+            set { method.Attributes = value; }
         }
         
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return method.DeclaringType; }
-        }
-
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
             get { return method.GenericParameters; }
+            set { method.GenericParameters = value; }
         }
         
         public override string Name
         {
             get { return method.Name; }
+            set { method.Name = value; }
         }
 
-        public override IReadOnlyList<MethodParameterWithCodeAnalysis> Parameters
+        public override IList<MethodParameterWithCodeAnalysis> Parameters
         {
             get { return method.Parameters; }
+            set { method.Parameters = value; }
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
         {
             get { return method.ReturnAttributes; }
+            set { method.ReturnAttributes = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis ReturnType
         {
             get { return method.ReturnType; }
+            set { method.ReturnType = value; }
+        }
+
+        public MethodDeclarationSyntax Syntax
+        {
+            get { return method.Syntax; }
+            set { method.Syntax = value; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return method.MethodDefinition.ClassVisibility(); }
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                MethodDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

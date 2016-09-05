@@ -35,16 +35,30 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             TypeSyntax> returnType;
 
-        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassMethodWithCodeAnalysis method)
+        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, AbstractMethodWithCodeAnalysis method)
             : this(method)
         {
-            ClassParent = parent;
+            AbstractClassParent = parent;
         }
 
-        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
+        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassMethodWithCodeAnalysis method, ClassType classType)
+            : this(method)
+        {
+            SetClassParent(parent, classType);
+        }
+
+        internal MethodWithCodeAnalysis(
+            ClassTypeWithCodeAnalysis parent,
+            ExplicitInterfaceMethodWithCodeAnalysis method)
             : this(method)
         {
             ExplicitInterfaceClassParent = parent;
+        }
+
+        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
+            : this(method)
+        {
+            SealedClassParent = parent;
         }
 
         internal MethodWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceMethodWithCodeAnalysis method)
@@ -156,14 +170,14 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
-        internal ClassTypeWithCodeAnalysis ClassParent
+        internal ClassTypeWithCodeAnalysis AbstractClassParent
         {
             get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
-                    parent => parent.Methods.MethodList);
+                    parent => parent.AbstractType.Methods.AbstractMethodList);
             }
         }
 
@@ -173,8 +187,8 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Methods.ExplicitInterfaceMethodList);
+                        value,
+                        parent => parent.Methods.ExplicitInterfaceMethodList);
             }
         }
 
@@ -184,6 +198,34 @@ namespace CSharpDom.CodeAnalysis
             set { node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(value, parent => parent.MethodList); }
         }
 
+        internal ClassTypeWithCodeAnalysis SealedClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.SealedType.Methods.MethodList);
+            }
+        }
+
+        internal void SetClassParent(ClassTypeWithCodeAnalysis value, ClassType classType)
+        {
+            switch (classType)
+            {
+                case ClassType.Normal:
+                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                        value,
+                        parent => parent.Methods.MethodList);
+                    break;
+                case ClassType.Abstract:
+                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                        value,
+                        parent => parent.AbstractType.Methods.MethodList);
+                    break;
+            }
+        }
+        
         T ISimpleMember.Member<T>()
         {
             return (T)method;

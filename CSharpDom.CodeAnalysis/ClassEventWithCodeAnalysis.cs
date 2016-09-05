@@ -18,10 +18,16 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly EventWithCodeAnalysis @event;
 
-        internal ClassEventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+        internal ClassEventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassType classType)
             : this()
         {
-            @event = new EventWithCodeAnalysis(parent, this);
+            @event = new EventWithCodeAnalysis(parent, this, classType);
+        }
+
+        internal ClassEventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassEventWithCodeAnalysis @event)
+            : this()
+        {
+            this.@event = new EventWithCodeAnalysis(parent, @event);
         }
 
         private ClassEventWithCodeAnalysis()

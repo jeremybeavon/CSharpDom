@@ -17,6 +17,12 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly ClassEventWithCodeAnalysis @event;
         
+        internal SealedClassEventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
+        {
+            @event = new ClassEventWithCodeAnalysis(parent, this);
+        }
+
         private SealedClassEventWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();

@@ -18,10 +18,16 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly PropertyWithBodyWithCodeAnalysis property;
 
-        internal ClassPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+        internal ClassPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassType classType)
             : this()
         {
-            property = new PropertyWithBodyWithCodeAnalysis(parent, this);
+            property = new PropertyWithBodyWithCodeAnalysis(parent, this, classType);
+        }
+
+        internal ClassPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassPropertyWithCodeAnalysis property)
+            : this()
+        {
+            this.property = new PropertyWithBodyWithCodeAnalysis(parent, property);
         }
 
         private ClassPropertyWithCodeAnalysis()

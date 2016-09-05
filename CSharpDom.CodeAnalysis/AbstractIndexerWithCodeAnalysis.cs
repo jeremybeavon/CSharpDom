@@ -1,71 +1,89 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
-using System.Reflection;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractIndexerWithCodeAnalysis :
-        AbstractAbstractIndexer<
+        EditableAbstractIndexer<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IAbstractType,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
-            AbstractAccessorWithCodeAnalysis>
+            AbstractAccessorWithCodeAnalysis>,
+        IHasSyntax<IndexerDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly IndexerWithCodeAnalysis indexer;
-        private readonly AbstractAccessorWithCodeAnalysis getAccessor;
-        private readonly AbstractAccessorWithCodeAnalysis setAccessor;
         
-        internal AbstractIndexerWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, PropertyDefinition indexer)
+        internal AbstractIndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            this.indexer = new IndexerWithCodeAnalysis(declaringType, indexer);
-            if (this.indexer.GetAccessor != null)
-            {
-                getAccessor = new AbstractAccessorWithCodeAnalysis(this, this.indexer.GetAccessor);
-            }
-
-            if (this.indexer.SetAccessor != null)
-            {
-                setAccessor = new AbstractAccessorWithCodeAnalysis(this, this.indexer.SetAccessor);
-            }
+            indexer = new IndexerWithCodeAnalysis(parent, this);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        private AbstractIndexerWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        internal IndexerWithCodeAnalysis Indexer
+        {
+            get { return indexer; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return indexer.Attributes; }
-        }
-
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return indexer.DeclaringType; }
+            set { indexer.Attributes = value; }
         }
 
         public override AbstractAccessorWithCodeAnalysis GetAccessor
         {
-            get { return getAccessor; }
+            get { return new AbstractAccessorWithCodeAnalysis(indexer.GetAccessor); }
+            set { indexer.GetAccessor = value?.Accessor; }
         }
 
         public override ITypeReferenceWithCodeAnalysis IndexerType
         {
             get { return indexer.IndexerType; }
+            set { indexer.IndexerType = value; }
         }
         
-        public override IReadOnlyList<IndexerParameterWithCodeAnalysis> Parameters
+        public override IList<IndexerParameterWithCodeAnalysis> Parameters
         {
             get { return indexer.Parameters; }
+            set { indexer.Parameters = value; }
         }
 
         public override AbstractAccessorWithCodeAnalysis SetAccessor
         {
-            get { return setAccessor; }
+            get { return new AbstractAccessorWithCodeAnalysis(indexer.SetAccessor); }
+            set { indexer.SetAccessor = value?.Accessor; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return indexer.PropertyDefinition.ClassVisibility(); }
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                IndexerDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
+        }
+
+        public IndexerDeclarationSyntax Syntax
+        {
+            get { return indexer.Syntax; }
+            set { indexer.Syntax = value; }
+        }
+        
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

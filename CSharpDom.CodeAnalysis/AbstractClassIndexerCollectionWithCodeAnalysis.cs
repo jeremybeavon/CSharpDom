@@ -1,36 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractClassIndexerCollectionWithCodeAnalysis :
-        AbstractAbstractClassIndexerCollection<
+        EditableAbstractClassIndexerCollection<
             ClassIndexerWithCodeAnalysis,
             AbstractIndexerWithCodeAnalysis,
             ExplicitInterfaceIndexerWithCodeAnalysis>
     {
-        private readonly ClassTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassIndexerListWrapper<ClassIndexerWithCodeAnalysis> indexers;
+        private readonly ClassIndexerListWrapper<AbstractIndexerWithCodeAnalysis> abstractIndexers;
 
-        internal AbstractClassIndexerCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal AbstractClassIndexerCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            indexers = new ClassIndexerListWrapper<ClassIndexerWithCodeAnalysis>(
+                classType.Node,
+                parent => new ClassIndexerWithCodeAnalysis(parent, ClassType.Abstract),
+                (child, parent) => child.Indexer.Indexer.SetClassParent(parent, ClassType.Abstract),
+                syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
+            abstractIndexers = new ClassIndexerListWrapper<AbstractIndexerWithCodeAnalysis>(
+                classType.Node,
+                parent => new AbstractIndexerWithCodeAnalysis(parent),
+                (child, parent) => child.Indexer.AbstractClassParent = parent,
+                syntax => syntax.Modifiers.IsAbstract());
         }
 
-        public override IReadOnlyCollection<AbstractIndexerWithCodeAnalysis> AbstractIndexers
+        public override ICollection<AbstractIndexerWithCodeAnalysis> AbstractIndexers
         {
-            get { return typeWithCodeAnalysis.IndexerCollection.Indexers.AbstractIndexersWithCodeAnalysis; }
+            get { return abstractIndexers; }
+            set { }
         }
 
-        public override IReadOnlyCollection<ExplicitInterfaceIndexerWithCodeAnalysis> ExplicitInterfaceIndexers
+        public override ICollection<ExplicitInterfaceIndexerWithCodeAnalysis> ExplicitInterfaceIndexers
         {
-            get { return typeWithCodeAnalysis.IndexerCollection.Indexers.ExplicitInterfaceIndexersWithCodeAnalysis; }
+            get { return classType.Indexers.ExplicitInterfaceIndexers; }
+            set { classType.Indexers.ExplicitInterfaceIndexers = value; }
         }
 
-        protected override IReadOnlyCollection<ClassIndexerWithCodeAnalysis> Indexers
+        public override ICollection<ClassIndexerWithCodeAnalysis> Indexers
         {
-            get { return typeWithCodeAnalysis.IndexerCollection.Indexers.IndexersWithCodeAnalysis; }
+            get { return indexers; }
+            set { }
+        }
+
+        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> AbstractIndexerList
+        {
+            get { return abstractIndexers; }
+        }
+        
+        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> IndexerList
+        {
+            get { return indexers; }
         }
     }
 }

@@ -23,12 +23,22 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly MethodWithCodeAnalysis method;
 
-        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassMethodWithCodeAnalysis method)
+        internal MethodWithBodyWithCodeAnalysis(
+            ClassTypeWithCodeAnalysis parent,
+            ClassMethodWithCodeAnalysis method,
+            ClassType classType)
+        {
+            this.method = new MethodWithCodeAnalysis(parent, method, classType);
+        }
+
+        internal MethodWithBodyWithCodeAnalysis(
+            ClassTypeWithCodeAnalysis parent,
+            ExplicitInterfaceMethodWithCodeAnalysis method)
         {
             this.method = new MethodWithCodeAnalysis(parent, method);
         }
 
-        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
+        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
         {
             this.method = new MethodWithCodeAnalysis(parent, method);
         }

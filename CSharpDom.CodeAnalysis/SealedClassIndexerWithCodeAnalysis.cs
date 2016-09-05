@@ -20,9 +20,20 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly ClassIndexerWithCodeAnalysis indexer;
         
+        internal SealedClassIndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
+        {
+            indexer = new ClassIndexerWithCodeAnalysis(parent, this);
+        }
+
         private SealedClassIndexerWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
+        }
+
+        public IndexerWithBodyWithCodeAnalysis Indexer
+        {
+            get { return indexer.Indexer; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

@@ -25,7 +25,7 @@ namespace CSharpDom.Editable
 
         public virtual ICollection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
 
-        protected virtual ICollection<TEvent> Events { get; set; }
+        public virtual ICollection<TEvent> Events { get; set; }
 
         IReadOnlyCollection<TAbstractEvent> IHasAbstractEvents<TAbstractEvent>.AbstractEvents
         {

@@ -11,11 +11,16 @@ namespace CSharpDom.CodeAnalysis
         EditableAbstractAccessor<AttributeGroupWithCodeAnalysis>,
         IHasSyntax<AccessorDeclarationSyntax>
     {
-        private AccessorWithBodyWithCodeAnalysis accessor;
+        private AccessorWithCodeAnalysis accessor;
 
-        internal AbstractAccessorWithCodeAnalysis(AccessorWithBodyWithCodeAnalysis accessor)
+        internal AbstractAccessorWithCodeAnalysis(AccessorWithCodeAnalysis accessor)
         {
             this.accessor = accessor;
+        }
+
+        public AccessorWithCodeAnalysis Accessor
+        {
+            get { return accessor; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

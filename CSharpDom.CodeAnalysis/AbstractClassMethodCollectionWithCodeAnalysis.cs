@@ -1,36 +1,61 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractClassMethodCollectionWithCodeAnalysis :
-        AbstractAbstractClassMethodCollection<
+        EditableAbstractClassMethodCollection<
             ClassMethodWithCodeAnalysis,
             AbstractMethodWithCodeAnalysis,
             ExplicitInterfaceMethodWithCodeAnalysis>
     {
-        private readonly ClassTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassMethodListWrapper<ClassMethodWithCodeAnalysis> methods;
+        private readonly ClassMethodListWrapper<AbstractMethodWithCodeAnalysis> abstractMethods;
 
-        internal AbstractClassMethodCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal AbstractClassMethodCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            methods = new ClassMethodListWrapper<ClassMethodWithCodeAnalysis>(
+                classType.Node,
+                parent => new ClassMethodWithCodeAnalysis(parent, ClassType.Abstract),
+                (child, parent) => child.Method.Method.SetClassParent(parent, ClassType.Abstract),
+                syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
+            abstractMethods = new ClassMethodListWrapper<AbstractMethodWithCodeAnalysis>(
+                classType.Node,
+                parent => new AbstractMethodWithCodeAnalysis(parent),
+                (child, parent) => child.Method.AbstractClassParent = parent,
+                syntax => syntax.Modifiers.IsAbstract());
         }
 
-        public override IReadOnlyCollection<AbstractMethodWithCodeAnalysis> AbstractMethods
+        public override ICollection<AbstractMethodWithCodeAnalysis> AbstractMethods
         {
-            get { return typeWithCodeAnalysis.MethodCollection.Methods.AbstractMethodsWithCodeAnalysis; }
+            get { return abstractMethods; }
+            set { }
         }
 
-        public override IReadOnlyCollection<ExplicitInterfaceMethodWithCodeAnalysis> ExplicitInterfaceMethods
+        public override ICollection<ExplicitInterfaceMethodWithCodeAnalysis> ExplicitInterfaceMethods
         {
-            get { return typeWithCodeAnalysis.MethodCollection.Methods.ExplicitInterfaceMethodsWithCodeAnalysis; }
+            get { return classType.Methods.ExplicitInterfaceMethods; }
+            set { classType.Methods.ExplicitInterfaceMethods = value; }
         }
 
-        protected override IReadOnlyCollection<ClassMethodWithCodeAnalysis> Methods
+        public override ICollection<ClassMethodWithCodeAnalysis> Methods
         {
-            get { return typeWithCodeAnalysis.MethodCollection.Methods.MethodsWithCodeAnalysis; }
+            get { return methods; }
+            set { }
+        }
+
+        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> AbstractMethodList
+        {
+            get { return abstractMethods; }
+        }
+        
+        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> MethodList
+        {
+            get { return methods; }
         }
     }
 }

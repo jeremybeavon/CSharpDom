@@ -20,10 +20,16 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly MethodWithBodyWithCodeAnalysis method;
 
-        internal ClassMethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+        internal ClassMethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassType classType)
             : this()
         {
-            method = new MethodWithBodyWithCodeAnalysis(parent, this);
+            method = new MethodWithBodyWithCodeAnalysis(parent, this, classType);
+        }
+
+        internal ClassMethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
+            : this()
+        {
+            this.method = new MethodWithBodyWithCodeAnalysis(parent, method);
         }
 
         private ClassMethodWithCodeAnalysis()

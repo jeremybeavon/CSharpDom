@@ -1,36 +1,60 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class AbstractClassPropertyCollectionWithCodeAnalysis :
-        AbstractAbstractClassPropertyCollection<
+        EditableAbstractClassPropertyCollection<
             ClassPropertyWithCodeAnalysis,
             AbstractPropertyWithCodeAnalysis,
             ExplicitInterfacePropertyWithCodeAnalysis>
     {
-        private readonly ClassTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassPropertyListWrapper<ClassPropertyWithCodeAnalysis> properties;
+        private readonly ClassPropertyListWrapper<AbstractPropertyWithCodeAnalysis> abstractProperties;
 
-        internal AbstractClassPropertyCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal AbstractClassPropertyCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            properties = new ClassPropertyListWrapper<ClassPropertyWithCodeAnalysis>(
+                classType.Node,
+                parent => new ClassPropertyWithCodeAnalysis(parent, ClassType.Normal),
+                (child, parent) => child.Property.Property.SetClassParent(parent, ClassType.Normal),
+                syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
+            abstractProperties = new ClassPropertyListWrapper<AbstractPropertyWithCodeAnalysis>(
+                classType.Node,
+                parent => new AbstractPropertyWithCodeAnalysis(parent),
+                (child, parent) => child.Property.AbstractClassParent = parent,
+                syntax => syntax.Modifiers.IsAbstract());
         }
 
-        public override IReadOnlyCollection<AbstractPropertyWithCodeAnalysis> AbstractProperties
+        public override ICollection<AbstractPropertyWithCodeAnalysis> AbstractProperties
         {
-            get { return typeWithCodeAnalysis.PropertyCollection.Properties.AbstractPropertiesWithCodeAnalysis; }
+            get { return abstractProperties; }
+            set { }
         }
 
-        public override IReadOnlyCollection<ExplicitInterfacePropertyWithCodeAnalysis> ExplicitInterfaceProperties
+        public override ICollection<ExplicitInterfacePropertyWithCodeAnalysis> ExplicitInterfaceProperties
         {
-            get { return typeWithCodeAnalysis.PropertyCollection.Properties.ExplicitInterfacePropertiesWithCodeAnalysis; }
+            get { return classType.Properties.ExplicitInterfaceProperties; }
+            set { classType.Properties.ExplicitInterfaceProperties = value; }
         }
 
-        protected override IReadOnlyCollection<ClassPropertyWithCodeAnalysis> Properties
+        public override ICollection<ClassPropertyWithCodeAnalysis> Properties
         {
-            get { return typeWithCodeAnalysis.PropertyCollection.Properties.PropertiesWithCodeAnalysis; }
+            get { return properties; }
+        }
+        
+        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> AbstractPropertyList
+        {
+            get { return abstractProperties; }
+        }
+
+        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> PropertyList
+        {
+            get { return properties; }
         }
     }
 }

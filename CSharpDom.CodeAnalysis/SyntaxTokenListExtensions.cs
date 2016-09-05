@@ -406,5 +406,10 @@ namespace CSharpDom.CodeAnalysis
 
             return tokens;
         }
+
+        public static bool IsAbstract(this SyntaxTokenList tokens)
+        {
+            return tokens.Any(SyntaxKind.AbstractKeyword);
+        }
     }
 }

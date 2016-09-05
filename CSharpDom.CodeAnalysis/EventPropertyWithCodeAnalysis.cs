@@ -42,11 +42,19 @@ namespace CSharpDom.CodeAnalysis
         internal EventPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassEventPropertyWithCodeAnalysis eventProperty)
             : this(eventProperty)
         {
+            ClassParent = parent;
         }
 
         internal EventPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceEventWithCodeAnalysis eventProperty)
             : this(eventProperty)
         {
+            ExplicitInterfaceClassParent = parent;
+        }
+
+        internal EventPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassEventPropertyWithCodeAnalysis eventProperty)
+            : this(eventProperty)
+        {
+            SealedClassParent = parent;
         }
 
         private EventPropertyWithCodeAnalysis(object eventProperty)
@@ -181,6 +189,17 @@ namespace CSharpDom.CodeAnalysis
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
                     parent => parent.Events.ExplicitInterfaceEventList);
+            }
+        }
+
+        internal ClassTypeWithCodeAnalysis SealedClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.SealedType.Events.EventPropertyList);
             }
         }
 
