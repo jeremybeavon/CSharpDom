@@ -120,6 +120,8 @@
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberList.cs" />
+    <Compile Include="SimpleStaticTypeMemberListWrapper.cs" />
+    <Compile Include="StaticTypeMemberListWrapper.cs" />
     <Compile Include="ClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassEventListWrapper.cs" />
     <Compile Include="ClassEventPropertyListWrapper.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="StaticClassMethodWithCodeAnalysis.cs" />
     <Compile Include="StaticClassPropertyWithCodeAnalysis.cs" />
     <Compile Include="StaticConstructorWithCodeAnalysis.cs" />
+    <Compile Include="StaticTypeWithCodeAnalysis.cs" />
     <Compile Include="WrappedList.cs" />
     <Compile Include="IGenericParameterCollection.cs" />
     <Compile Include="InterfaceMemberListWrapper.cs" />
