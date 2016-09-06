@@ -10,9 +10,9 @@ namespace CSharpDom.CodeAnalysis
         EditableStaticType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
-            IStaticClassEventCollection,
+            StaticClassEventCollectionWithCodeAnalysis,
             StaticClassPropertyWithCodeAnalysis,
-            IStaticClassMethodCollection,
+            StaticClassMethodCollectionWithCodeAnalysis,
             IStaticClassFieldCollection,
             IStaticClassNestedClassCollection,
             IStaticClassNestedDelegate,
@@ -54,6 +54,16 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        internal Node<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax> Node
+        {
+            get { return node; }
+        }
+
+        internal MemberList<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax> Members
+        {
+            get { return members; }
         }
 
         internal IAttributeCollection AttributeList

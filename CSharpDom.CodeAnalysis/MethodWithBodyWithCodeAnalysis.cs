@@ -38,6 +38,16 @@ namespace CSharpDom.CodeAnalysis
             this.method = new MethodWithCodeAnalysis(parent, method);
         }
 
+        internal MethodWithBodyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, ExtensionMethodWithCodeAnalysis method)
+        {
+            this.method = new MethodWithCodeAnalysis(parent, method);
+        }
+
+        internal MethodWithBodyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassMethodWithCodeAnalysis method)
+        {
+            this.method = new MethodWithCodeAnalysis(parent, method);
+        }
+
         internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
         {
             this.method = new MethodWithCodeAnalysis(parent, method);

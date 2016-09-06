@@ -1,5 +1,7 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,67 +18,113 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             ExtensionParameterWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
-            MethodBodyWithCodeAnalysis>
+            MethodBodyWithCodeAnalysis>,
+        IHasSyntax<MethodDeclarationSyntax>,
+        IHasId
     {
-        private readonly MethodWithCodeAnalysis method;
+        private readonly Guid internalId;
+        private readonly MethodWithBodyWithCodeAnalysis method;
         private readonly ExtensionParameterWithCodeAnalysis extensionParameter;
-        private readonly IReadOnlyList<MethodParameterWithCodeAnalysis> parameters;
+        private readonly IList<MethodParameterWithCodeAnalysis> parameters;
 
-        internal ExtensionMethodWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, MethodDefinition method)
+        internal ExtensionMethodWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
         {
-            this.method = new MethodWithCodeAnalysis(declaringType, method);
-            extensionParameter = new ExtensionParameterWithCodeAnalysis(this.method.Parameters[0]);
-            parameters = this.method.Parameters.Skip(1).ToArray();
+            internalId = Guid.NewGuid();
+            method = new MethodWithBodyWithCodeAnalysis(parent, this);
+            extensionParameter = new ExtensionParameterWithCodeAnalysis(this);
+            parameters = new FilteredList<MethodParameterWithCodeAnalysis, MethodParameterWithCodeAnalysis>(
+                method.Parameters,
+                parameter => !parameter.Syntax.Modifiers.Any(SyntaxKind.ThisKeyword));
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public MethodWithBodyWithCodeAnalysis Method
+        {
+            get { return method; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return method.Attributes; }
+            set { method.Attributes = value; }
         }
 
         public override MethodBodyWithCodeAnalysis Body
         {
             get { return method.Body; }
+            set { method.Body = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return method.DeclaringType; }
-        }
-
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
             get { return method.GenericParameters; }
+            set { method.GenericParameters = value; }
         }
         
         public override string Name
         {
             get { return method.Name; }
+            set { method.Name = value; }
         }
 
-        public override IReadOnlyList<MethodParameterWithCodeAnalysis> Parameters
+        public override IList<MethodParameterWithCodeAnalysis> Parameters
         {
             get { return parameters; }
+            set
+            {
+                IList<MethodParameterWithCodeAnalysis> parameters = method.Parameters;
+                int parameterCount = parameters.Count - 1;
+                for (int index = 0; index < value.Count; index++)
+                {
+                    if (index < parameterCount)
+                    {
+                        parameters[index + 1] = value[index];
+                    }
+                    else
+                    {
+                        parameters.Add(value[index]);
+                    }
+                }
+
+                while (parameters.Count - 1 > value.Count)
+                {
+                    parameters.RemoveAt(value.Count);
+                }
+            }
         }
 
         public override ITypeReferenceWithCodeAnalysis ReturnType
         {
             get { return method.ReturnType; }
+            set { method.ReturnType = value; }
         }
 
         public override ExtensionParameterWithCodeAnalysis ExtensionParameter
         {
             get { return extensionParameter; }
+            set { method.Parameters[0].Syntax = value.Syntax; }
         }
 
         public override bool IsAsync
         {
             get { return method.IsAsync; }
+            set { method.IsAsync = value; }
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> ReturnAttributes
         {
             get { return method.ReturnAttributes; }
+            set { method.ReturnAttributes = value; }
+        }
+
+        public MethodDeclarationSyntax Syntax
+        {
+            get { return method.Syntax; }
+            set { method.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

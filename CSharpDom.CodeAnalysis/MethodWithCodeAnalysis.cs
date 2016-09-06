@@ -47,12 +47,22 @@ namespace CSharpDom.CodeAnalysis
             SetClassParent(parent, classType);
         }
 
-        internal MethodWithCodeAnalysis(
-            ClassTypeWithCodeAnalysis parent,
-            ExplicitInterfaceMethodWithCodeAnalysis method)
+        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
             : this(method)
         {
             ExplicitInterfaceClassParent = parent;
+        }
+
+        internal MethodWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, ExtensionMethodWithCodeAnalysis method)
+            : this(method)
+        {
+            StaticExtensionClassParent = parent;
+        }
+
+        internal MethodWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassMethodWithCodeAnalysis method)
+            : this(method)
+        {
+            StaticClassParent = parent;
         }
 
         internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
@@ -206,6 +216,28 @@ namespace CSharpDom.CodeAnalysis
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
                     parent => parent.SealedType.Methods.MethodList);
+            }
+        }
+
+        internal StaticTypeWithCodeAnalysis StaticClassParent
+        {
+            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Methods.MethodList);
+            }
+        }
+
+        internal StaticTypeWithCodeAnalysis StaticExtensionClassParent
+        {
+            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Methods.ExtensionMethodList);
             }
         }
 

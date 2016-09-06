@@ -34,6 +34,12 @@ namespace CSharpDom.CodeAnalysis
             ConversionOperatorParent = parent;
         }
 
+        internal ParameterWithCodeAnalysis(ExtensionMethodWithCodeAnalysis parent, ExtensionParameterWithCodeAnalysis parameter)
+            : this(parameter)
+        {
+            ExtensionMethodParent = parent;
+        }
+
         internal ParameterWithCodeAnalysis(IndexerWithCodeAnalysis parent, IndexerParameterWithCodeAnalysis parameter)
             : this(parameter)
         {
@@ -122,6 +128,18 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        internal ExtensionMethodWithCodeAnalysis ExtensionMethodParent
+        {
+            get { return node.GetParentNode<ExtensionMethodWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ExtensionMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                    value,
+                    syntax => syntax.ParameterList.Parameters[0],
+                    WithParameter);
+            }
+        }
+
         internal IndexerWithCodeAnalysis IndexerParent
         {
             get { return node.GetParentNode<IndexerWithCodeAnalysis>(); }
@@ -160,6 +178,14 @@ namespace CSharpDom.CodeAnalysis
 
         private static ConversionOperatorDeclarationSyntax WithParameter(
             ConversionOperatorDeclarationSyntax parentSyntax,
+            ParameterSyntax childSyntax)
+        {
+            return parentSyntax.WithParameterList(
+                parentSyntax.ParameterList.WithParameters(SyntaxFactory.SeparatedList(new[] { childSyntax })));
+        }
+
+        private static MethodDeclarationSyntax WithParameter(
+            MethodDeclarationSyntax parentSyntax,
             ParameterSyntax childSyntax)
         {
             return parentSyntax.WithParameterList(

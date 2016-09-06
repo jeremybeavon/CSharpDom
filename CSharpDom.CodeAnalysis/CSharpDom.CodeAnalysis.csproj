@@ -120,7 +120,10 @@
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberList.cs" />
+    <Compile Include="ExtensionMethodWithCodeAnalysis.cs" />
     <Compile Include="SimpleStaticTypeMemberListWrapper.cs" />
+    <Compile Include="StaticClassEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="StaticTypeMemberListWrapper.cs" />
     <Compile Include="ClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassEventListWrapper.cs" />

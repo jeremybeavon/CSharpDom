@@ -18,9 +18,20 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly EventWithCodeAnalysis @event;
 
+        internal StaticClassEventWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
+            : this()
+        {
+            @event = new EventWithCodeAnalysis(parent, this);
+        }
+
         private StaticClassEventWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
+        }
+
+        public EventWithCodeAnalysis Event
+        {
+            get { return @event; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

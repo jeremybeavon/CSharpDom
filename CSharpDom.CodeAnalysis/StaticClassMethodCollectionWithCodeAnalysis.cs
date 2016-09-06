@@ -1,30 +1,70 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StaticClassMethodCollectionWithCodeAnalysis :
-        AbstractStaticClassMethodCollection<
+        EditableStaticClassMethodCollection<
             StaticClassMethodWithCodeAnalysis,
             ExtensionMethodWithCodeAnalysis>
     {
-        private readonly StaticTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly StaticTypeWithCodeAnalysis type;
+        private readonly StaticTypeMemberListWrapper<
+            MethodWithCodeAnalysis,
+            StaticClassMethodWithCodeAnalysis,
+            MethodDeclarationSyntax> methods;
+        private readonly StaticTypeMemberListWrapper<
+            MethodWithCodeAnalysis,
+            ExtensionMethodWithCodeAnalysis,
+            MethodDeclarationSyntax> extensionMethods;
 
-        internal StaticClassMethodCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal StaticClassMethodCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis type)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.type = type;
+            methods = new StaticTypeMemberListWrapper<MethodWithCodeAnalysis, StaticClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                type.Node,
+                parent => new StaticClassMethodWithCodeAnalysis(parent),
+                (child, parent) => child.Method.Method.StaticClassParent = parent,
+                IsExtensionMethod);
+            extensionMethods = new StaticTypeMemberListWrapper<MethodWithCodeAnalysis, ExtensionMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                type.Node,
+                parent => new ExtensionMethodWithCodeAnalysis(parent),
+                (child, parent) => child.Method.Method.StaticExtensionClassParent = parent,
+                syntax => !IsExtensionMethod(syntax));
         }
 
-        public override IReadOnlyCollection<ExtensionMethodWithCodeAnalysis> ExtensionMethods
+        public override ICollection<ExtensionMethodWithCodeAnalysis> ExtensionMethods
         {
-            get { return typeWithCodeAnalysis.MethodCollection.Methods.ExtensionMethodsWithCodeAnalysis; }
+            get { return extensionMethods; }
+            set { type.Members.CombineList(nameof(ExtensionMethods), value.Select(item => item.Syntax)); }
         }
 
-        protected override IReadOnlyCollection<StaticClassMethodWithCodeAnalysis> Methods
+        public override ICollection<StaticClassMethodWithCodeAnalysis> Methods
         {
-            get { return typeWithCodeAnalysis.MethodCollection.Methods.MethodsWithCodeAnalysis; }
+            get { return methods; }
+            set { type.Members.CombineList(nameof(Methods), value.Select(item => item.Syntax)); }
+
+        }
+
+        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> ExtensionMethodList
+        {
+            get { return extensionMethods; }
+        }
+
+        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> MethodList
+        {
+            get { return methods; }
+        }
+
+        private static bool IsExtensionMethod(MethodDeclarationSyntax syntax)
+        {
+            return syntax.ParameterList.Parameters.Count != 0 &&
+                syntax.ParameterList.Parameters[0].Modifiers.Any(SyntaxKind.ThisKeyword);
         }
     }
 }

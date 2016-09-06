@@ -57,6 +57,12 @@ namespace CSharpDom.CodeAnalysis
             SealedClassParent = parent;
         }
 
+        internal EventPropertyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassEventPropertyWithCodeAnalysis eventProperty)
+            : this(eventProperty)
+        {
+            StaticClassParent = parent;
+        }
+
         private EventPropertyWithCodeAnalysis(object eventProperty)
         {
             node = new Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(this);
@@ -200,6 +206,17 @@ namespace CSharpDom.CodeAnalysis
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
                     parent => parent.SealedType.Events.EventPropertyList);
+            }
+        }
+
+        internal StaticTypeWithCodeAnalysis StaticClassParent
+        {
+            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Events.EventPropertyList);
             }
         }
 
