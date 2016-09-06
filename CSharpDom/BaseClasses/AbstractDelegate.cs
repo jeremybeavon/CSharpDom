@@ -13,6 +13,7 @@ namespace CSharpDom.BaseClasses
         TGenericParameter,
         TTypeReference,
         TParameter> :
+        AbstractDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>,
         IDelegate<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -23,32 +24,22 @@ namespace CSharpDom.BaseClasses
         where TTypeReference : ITypeReference
         where TParameter : IDelegateParameter
     {
-        public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
-
         public abstract TDocument Document { get; }
-
-        public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
-
-        public abstract string Name { get; }
-
+        
         public abstract TNamespace Namespace { get; }
-
-        public abstract IReadOnlyList<TParameter> Parameters { get; }
-
+        
         public abstract TProject Project { get; }
-
-        public abstract TTypeReference ReturnType { get; }
-
+        
         public abstract TSolution Solution { get; }
 
         public abstract TypeVisibilityModifier Visibility { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitDelegate(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitDelegateChildren(this, visitor);
         }

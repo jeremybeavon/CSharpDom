@@ -7,13 +7,26 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class DelegateParameterWithCodeAnalysis :
         EditableDelegateParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
-        IHasSyntax<ParameterSyntax>
+        IHasSyntax<ParameterSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly ParameterWithCodeAnalysis parameter;
 
-        internal DelegateParameterWithCodeAnalysis(ParameterWithCodeAnalysis parameter)
+        internal DelegateParameterWithCodeAnalysis(DelegateTypeWithCodeAnalysis parent)
+            : this()
         {
-            this.parameter = parameter;
+            parameter = new ParameterWithCodeAnalysis(parent, this);
+        }
+
+        private DelegateParameterWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public ParameterWithCodeAnalysis Parameter
+        {
+            get { return parameter; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -48,6 +61,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return parameter.Syntax; }
             set { parameter.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

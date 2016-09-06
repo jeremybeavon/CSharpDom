@@ -2,13 +2,8 @@
 {
     public interface INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> :
         INestedDelegate,
-        IHasName,
-        IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
-        IHasGenericParameters<TGenericParameter>,
-        IHasReturnType<TTypeReference>,
-        IHasParameters<TParameter>,
-        IVisitable<IGenericVisitor>
+        IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TGenericParameter : IGenericParameterDeclaration

@@ -10,16 +10,12 @@
         TTypeReference,
         TParameter> :
         IDelegate,
-        IHasName,
         IHasTypeVisibilityModifier,
         IHasNamespace<TNamespace>,
         IHasDocument<TDocument>,
         IHasProject<TProject>,
         IHasSolution<TSolution>,
-        IHasAttributes<TAttributeGroup>,
-        IHasGenericParameters<TGenericParameter>,
-        IHasReturnType<TTypeReference>,
-        IHasParameters<TParameter>
+        IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>
         where TNamespace : INamespace
         where TDocument : IDocument
         where TProject : IProject

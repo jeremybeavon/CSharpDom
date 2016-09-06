@@ -22,17 +22,18 @@ namespace CSharpDom.CodeAnalysis
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
             ConversionOperatorWithCodeAnalysis,
-            IClassNestedClassCollection,
-            IClassNestedDelegate,
+            ClassNestedClassCollectionWithCodeAnalysis,
+            ClassNestedDelegateWithCodeAnalysis,
             IClassNestedEnum,
             ClassNestedInterfaceCollectionWithCodeAnalysis,
-            IClassNestedStructCollection,
+            ClassNestedStructCollectionWithCodeAnalysis,
             DestructorWithCodeAnalysis,
             IStaticConstructor>,
         IHasSyntax<ClassDeclarationSyntax>
     {
         private readonly Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> node;
         private readonly AttributeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> attributes;
+        private readonly ClassNestedClassCollectionWithCodeAnalysis classes;
         private readonly ClassMemberListWrapper<
             ConstructorWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
@@ -40,6 +41,10 @@ namespace CSharpDom.CodeAnalysis
         private readonly SimpleClassMemberListWrapper<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax> conversionOperators;
+        private readonly ClassMemberListWrapper<
+            DelegateTypeWithCodeAnalysis,
+            ClassNestedDelegateWithCodeAnalysis,
+            DelegateDeclarationSyntax> delegates;
         private readonly ClassEventCollectionWithCodeAnalysis events;
         private readonly ClassFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> genericParameters;
@@ -50,6 +55,7 @@ namespace CSharpDom.CodeAnalysis
             OperatorOverloadWithCodeAnalysis,
             OperatorDeclarationSyntax> operatorOverloads;
         private readonly ClassPropertyCollectionWithCodeAnalysis properties;
+        private readonly ClassNestedStructCollectionWithCodeAnalysis structs;
         private readonly ClassMemberList members;
 
         private ClassTypeWithCodeAnalysis()
@@ -61,6 +67,7 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.ClassParent = parent);
+            classes = new ClassNestedClassCollectionWithCodeAnalysis(this);
             constructors = new ClassMemberListWrapper<ConstructorWithCodeAnalysis, ClassConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 parent => new ClassConstructorWithCodeAnalysis(parent),
@@ -69,6 +76,10 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 parent => new ConversionOperatorWithCodeAnalysis(parent),
                 (child, parent) => child.ClassParent = parent);
+            delegates = new ClassMemberListWrapper<DelegateTypeWithCodeAnalysis, ClassNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
+                node,
+                parent => new ClassNestedDelegateWithCodeAnalysis(parent),
+                (child, parent) => child.Delegate.Delegate.ClassParent = parent);
             events = new ClassEventCollectionWithCodeAnalysis(this);
             fields = new ClassFieldCollectionWithCodeAnalysis(this);
             genericParameters = new GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
@@ -87,10 +98,12 @@ namespace CSharpDom.CodeAnalysis
                 parent => new OperatorOverloadWithCodeAnalysis(parent),
                 (child, parent) => child.ClassParent = parent);
             properties = new ClassPropertyCollectionWithCodeAnalysis(this);
+            structs = new ClassNestedStructCollectionWithCodeAnalysis(this);
             members = new ClassMemberList(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
             {
                 { nameof(fields.Constants), () => fields.Constants.Select(item => item.Syntax) },
                 { nameof(fields.Fields), () => fields.Fields.Select(item => item.Syntax) },
+                { nameof(Delegates), () => delegates.Select(item => item.Syntax) },
                 { nameof(events.Events), () => events.Events.Select(item => item.Syntax) },
                 { nameof(events.EventProperties), () => events.EventProperties.Select(item => item.Syntax) },
                 { nameof(events.ExplicitInterfaceEvents), () => events.ExplicitInterfaceEvents.Select(item => item.Syntax) },
@@ -123,6 +136,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return conversionOperators; }
             set { members.CombineList(nameof(ConversionOperators), value.Select(item => item.Syntax)); }
+        }
+
+        public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
+        {
+            get { return delegates; }
+            set { members.CombineList(nameof(Delegates), value.Select(item => item.Syntax)); }
         }
 
         public override ClassEventCollectionWithCodeAnalysis Events
@@ -238,6 +257,11 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> ConversionOperatorList
         {
             get { return conversionOperators; }
+        }
+
+        internal IChildCollection<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> DelegateList
+        {
+            get { return delegates; }
         }
 
         internal IGenericParameterCollection GenericParameterList

@@ -34,6 +34,12 @@ namespace CSharpDom.CodeAnalysis
             ConversionOperatorParent = parent;
         }
 
+        internal ParameterWithCodeAnalysis(DelegateTypeWithCodeAnalysis parent, DelegateParameterWithCodeAnalysis parameter)
+            : this(parameter)
+        {
+            DelegateParent = parent;
+        }
+
         internal ParameterWithCodeAnalysis(ExtensionMethodWithCodeAnalysis parent, ExtensionParameterWithCodeAnalysis parameter)
             : this(parameter)
         {
@@ -125,6 +131,18 @@ namespace CSharpDom.CodeAnalysis
                     value,
                     syntax => syntax.ParameterList.Parameters[0],
                     WithParameter);
+            }
+        }
+
+        internal DelegateTypeWithCodeAnalysis DelegateParent
+        {
+            get { return node.GetParentNode<DelegateTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax, DelegateParameterWithCodeAnalysis>(
+                    value,
+                    (DelegateParameterWithCodeAnalysis)wrapper,
+                    parent => parent.ParameterList);
             }
         }
 

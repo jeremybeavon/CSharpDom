@@ -21,11 +21,11 @@ namespace CSharpDom.CodeAnalysis
             StructConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
             ConversionOperatorWithCodeAnalysis,
-            IStructNestedClassCollection,
+            StructNestedClassCollectionWithCodeAnalysis,
             IStructNestedDelegate,
             IStructNestedEnum,
             IStructNestedInterfaceCollection,
-            IStructNestedStructCollection,
+            StructNestedStructCollectionWithCodeAnalysis,
             IStaticConstructor>,
         IHasSyntax<StructDeclarationSyntax>,
         ISimpleMember
@@ -33,6 +33,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly object @struct;
         private readonly Node<StructTypeWithCodeAnalysis, StructDeclarationSyntax> node;
         private readonly AttributeListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> attributes;
+        private readonly StructNestedClassCollectionWithCodeAnalysis classes;
         private readonly StructTypeMemberListWrapper<
             ConstructorWithCodeAnalysis,
             StructConstructorWithCodeAnalysis,
@@ -49,6 +50,7 @@ namespace CSharpDom.CodeAnalysis
             OperatorOverloadWithCodeAnalysis,
             OperatorDeclarationSyntax> operatorOverloads;
         private readonly StructPropertyCollectionWithCodeAnalysis properties;
+        private readonly StructNestedStructCollectionWithCodeAnalysis structs;
         private readonly MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax> members;
 
         private StructTypeWithCodeAnalysis(object @struct)
@@ -61,6 +63,7 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.StructParent = parent);
+            classes = new StructNestedClassCollectionWithCodeAnalysis(this);
             constructors = new StructTypeMemberListWrapper<ConstructorWithCodeAnalysis, StructConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 parent => new StructConstructorWithCodeAnalysis(parent),
@@ -86,6 +89,7 @@ namespace CSharpDom.CodeAnalysis
                 parent => new OperatorOverloadWithCodeAnalysis(parent),
                 (child, parent) => child.StructParent = parent);
             properties = new StructPropertyCollectionWithCodeAnalysis(this);
+            structs = new StructNestedStructCollectionWithCodeAnalysis(this);
             members = new MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))

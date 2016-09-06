@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IDelegate : IVisitable<IGenericVisitor>
+    public interface IDelegate : IDelegateType, IVisitable<IGenericVisitor>
     {
     }
 }

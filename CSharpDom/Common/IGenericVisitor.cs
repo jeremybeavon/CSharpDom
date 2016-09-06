@@ -926,6 +926,13 @@ namespace CSharpDom.Common
             where TNestedDestructor : INestedDestructor
             where TStaticConstructor : IStaticConstructor;
 
+        void VisitDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
+            IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter> @delegate)
+            where TAttributeGroup : IAttributeGroup
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IDelegateParameter;
+
         void VisitNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate)
             where TAttributeGroup : IAttributeGroup

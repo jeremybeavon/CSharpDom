@@ -2132,5 +2132,15 @@ namespace CSharpDom.BaseClasses
         {
             Visit(typeReference);
         }
+
+        public virtual void VisitDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
+            IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter> @delegate)
+            where TAttributeGroup : IAttributeGroup
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IDelegateParameter
+        {
+            Visit(@delegate);
+        }
     }
 }

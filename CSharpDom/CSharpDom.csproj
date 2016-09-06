@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="BaseClasses\AbstractAbstractClass.cs" />
     <Compile Include="BaseClasses\AbstractClassType.cs" />
+    <Compile Include="BaseClasses\AbstractDelegateType.cs" />
     <Compile Include="BaseClasses\AbstractStaticClassNestedClassCollection.cs" />
     <Compile Include="BaseClasses\AbstractStaticClassNestedInterfaceCollection.cs" />
     <Compile Include="BaseClasses\AbstractStaticClassNestedStructCollection.cs" />
@@ -273,6 +274,7 @@
     <Compile Include="BaseClasses\Expressions\AbstractAwaitExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractArrayIndexExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractGenericExpressionVisitor.cs" />
+    <Compile Include="BaseClasses\Wrappers\DelegateTypeWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\TypeReferenceWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedStructWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedClassWrapper.cs" />
@@ -343,6 +345,8 @@
     <Compile Include="Common\IDelegateParameter.generic.cs" />
     <Compile Include="Common\IHasSealedClassIndexerInheritanceModifier.cs" />
     <Compile Include="Common\IHasTaskGenericParameter.cs" />
+    <Compile Include="Common\IDelegateType.cs" />
+    <Compile Include="Common\IDelegateType.generic.cs" />
     <Compile Include="Common\IOperatorParameter.cs" />
     <Compile Include="Common\IExtensionParameter.cs" />
     <Compile Include="Common\IOperatorParameter.generic.cs" />
@@ -450,6 +454,7 @@
     <Compile Include="Editable\EditableNestedAbstractClass.cs" />
     <Compile Include="Editable\EditableNestedClass.cs" />
     <Compile Include="Editable\EditableNestedClassCollection.cs" />
+    <Compile Include="Editable\EditableDelegateType.cs" />
     <Compile Include="Editable\EditableNestedDelegate.cs" />
     <Compile Include="Editable\EditableNestedDestructor.cs" />
     <Compile Include="Editable\EditableNestedEnum.cs" />

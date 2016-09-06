@@ -40,6 +40,12 @@ namespace CSharpDom.CodeAnalysis
             ClassParent = parent;
         }
 
+        internal GenericParameterDeclarationWithCodeAnalysis(DelegateTypeWithCodeAnalysis parent)
+            : this()
+        {
+            DelegateParent = parent;
+        }
+
         internal GenericParameterDeclarationWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
             : this()
         {
@@ -216,6 +222,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.GenericParameterList);
+            }
+        }
+
+        internal DelegateTypeWithCodeAnalysis DelegateParent
+        {
+            get { return node.GetParentNode<DelegateTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(
                     value,
                     parent => parent.GenericParameterList);
             }

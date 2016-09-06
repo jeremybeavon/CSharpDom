@@ -603,10 +603,21 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TParameter : IDelegateParameter
         {
-            VisitCollection(nestedDelegate.Attributes, visitor);
-            VisitCollection(nestedDelegate.GenericParameters, visitor);
-            VisitIfNotNull(nestedDelegate.ReturnType, visitor);
-            VisitCollection(nestedDelegate.Parameters, visitor);
+            new DelegateTypeWrapper<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(nestedDelegate).Accept(visitor);
+        }
+
+        public static void VisitDelegateTypeChildren<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
+            IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter> @delegate,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TGenericParameter : IGenericParameterDeclaration
+            where TTypeReference : ITypeReference
+            where TParameter : IDelegateParameter
+        {
+            VisitCollection(@delegate.Attributes, visitor);
+            VisitCollection(@delegate.GenericParameters, visitor);
+            VisitIfNotNull(@delegate.ReturnType, visitor);
+            VisitCollection(@delegate.Parameters, visitor);
         }
 
         public static void VisitNestedDestructorChildren<TAttributeGroup, TDeclaringType, TMethodBody>(

@@ -1,34 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using CSharpDom.NotSupported.Partial;
-using CSharpDom.CodeAnalysis.Internal;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassNestedStructCollectionWithCodeAnalysis :
-        AbstractClassNestedStructCollection<ClassNestedStructWithCodeAnalysis, PartialStructNotSupported>
+        EditableClassNestedStructCollection<IClassNestedStruct, PartialStructNotSupported>
     {
-        private readonly AbstractClassNestedStructCollection structCollection;
+        private readonly ClassTypeWithCodeAnalysis classType;
 
-        internal ClassNestedStructCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal ClassNestedStructCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            structCollection = new ClassNestedStructCollection(typeWithCodeAnalysis);
-        }
-
-        internal ClassNestedStructCollectionWithCodeAnalysis(SealedTypeWithCodeAnalysis typeWithCodeAnalysis)
-        {
-            structCollection = new SealedClassNestedStructCollection(typeWithCodeAnalysis);
-        }
-
-        public override IReadOnlyCollection<PartialStructNotSupported> PartialStructs
-        {
-            get { return structCollection.PartialStructs; }
-        }
-
-        protected override IReadOnlyCollection<ClassNestedStructWithCodeAnalysis> Structs
-        {
-            get { return structCollection; }
+            this.classType = classType;
         }
     }
 }

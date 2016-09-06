@@ -51,6 +51,12 @@ namespace CSharpDom.CodeAnalysis
             ConversionOperatorParent = parent;
         }
 
+        internal AttributeGroupWithCodeAnalysis(DelegateTypeWithCodeAnalysis parent)
+            : this()
+        {
+            DelegateParent = parent;
+        }
+
         internal AttributeGroupWithCodeAnalysis(DestructorWithCodeAnalysis parent)
             : this()
         {
@@ -216,6 +222,12 @@ namespace CSharpDom.CodeAnalysis
                     value,
                     parent => parent.AttributeList);
             }
+        }
+
+        internal DelegateTypeWithCodeAnalysis DelegateParent
+        {
+            get { return node.GetParentNode<DelegateTypeWithCodeAnalysis>(); }
+            set { node.SetParentNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
 
         internal DestructorWithCodeAnalysis DestructorParent
