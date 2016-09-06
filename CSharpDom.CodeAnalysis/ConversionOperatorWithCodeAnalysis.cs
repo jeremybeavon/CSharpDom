@@ -42,6 +42,12 @@ namespace CSharpDom.CodeAnalysis
             ClassParent = parent;
         }
 
+        internal ConversionOperatorWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            StructParent = parent;
+        }
+
         private ConversionOperatorWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
@@ -129,7 +135,18 @@ namespace CSharpDom.CodeAnalysis
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
-                    parent => parent.ConverisonOperatorList);
+                    parent => parent.ConversionOperatorList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                    value,
+                    parent => parent.ConversionOperatorList);
             }
         }
 

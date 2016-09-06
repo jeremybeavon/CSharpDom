@@ -42,7 +42,7 @@ namespace CSharpDom.CodeAnalysis
         internal EventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassEventWithCodeAnalysis @event)
             : this(@event)
         {
-
+            SealedClassParent = parent;
         }
 
         internal EventWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceEventWithCodeAnalysis @event)
@@ -55,6 +55,12 @@ namespace CSharpDom.CodeAnalysis
             : this(@event)
         {
             StaticClassParent = parent;
+        }
+
+        internal EventWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructEventWithCodeAnalysis @event)
+            : this(@event)
+        {
+            StructParent = parent;
         }
 
         private EventWithCodeAnalysis(object @event)
@@ -155,6 +161,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Events.EventList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                     value,
                     parent => parent.Events.EventList);
             }

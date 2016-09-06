@@ -31,6 +31,12 @@ namespace CSharpDom.CodeAnalysis
             property = new PropertyWithBodyWithCodeAnalysis(parent, this);
         }
 
+        internal ExplicitInterfacePropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            property = new PropertyWithBodyWithCodeAnalysis(parent, this);
+        }
+
         private ExplicitInterfacePropertyWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();

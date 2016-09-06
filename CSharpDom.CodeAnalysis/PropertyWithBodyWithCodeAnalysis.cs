@@ -44,6 +44,18 @@ namespace CSharpDom.CodeAnalysis
             this.property = new PropertyWithCodeAnalysis(parent, property);
         }
 
+        internal PropertyWithBodyWithCodeAnalysis(
+            StructTypeWithCodeAnalysis parent,
+            ExplicitInterfacePropertyWithCodeAnalysis property)
+        {
+            this.property = new PropertyWithCodeAnalysis(parent, property);
+        }
+
+        internal PropertyWithBodyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructPropertyWithCodeAnalysis property)
+        {
+            this.property = new PropertyWithCodeAnalysis(parent, property);
+        }
+
         public PropertyWithCodeAnalysis Property
         {
             get { return property; }

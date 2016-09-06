@@ -1,93 +1,94 @@
 ﻿using System;
-using System.Linq;
+using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 using Microsoft.CodeAnalysis.CSharp;
-using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class ClassTypeWithCodeAnalysis :
-        EditableClassType<
+    public sealed class StructTypeWithCodeAnalysis :
+        EditableStructType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
-            ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            ClassEventCollectionWithCodeAnalysis,
-            ClassPropertyCollectionWithCodeAnalysis,
-            ClassIndexerCollectionWithCodeAnalysis,
-            ClassMethodCollectionWithCodeAnalysis,
-            ClassFieldCollectionWithCodeAnalysis,
-            ClassConstructorWithCodeAnalysis,
+            StructEventCollectionWithCodeAnalysis,
+            StructPropertyCollectionWithCodeAnalysis,
+            StructIndexerCollectionWithCodeAnalysis,
+            StructMethodCollectionWithCodeAnalysis,
+            StructFieldCollectionWithCodeAnalysis,
+            StructConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
             ConversionOperatorWithCodeAnalysis,
-            IClassNestedClassCollection,
-            IClassNestedDelegate,
-            IClassNestedEnum,
-            ClassNestedInterfaceCollectionWithCodeAnalysis,
-            IClassNestedStructCollection,
-            DestructorWithCodeAnalysis,
+            IStructNestedClassCollection,
+            IStructNestedDelegate,
+            IStructNestedEnum,
+            IStructNestedInterfaceCollection,
+            IStructNestedStructCollection,
             IStaticConstructor>,
-        IHasSyntax<ClassDeclarationSyntax>
+        IHasSyntax<StructDeclarationSyntax>,
+        ISimpleMember
     {
-        private readonly Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> node;
-        private readonly AttributeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> attributes;
-        private readonly ClassMemberListWrapper<
+        private readonly object @struct;
+        private readonly Node<StructTypeWithCodeAnalysis, StructDeclarationSyntax> node;
+        private readonly AttributeListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> attributes;
+        private readonly StructTypeMemberListWrapper<
             ConstructorWithCodeAnalysis,
-            ClassConstructorWithCodeAnalysis,
+            StructConstructorWithCodeAnalysis,
             ConstructorDeclarationSyntax> constructors;
-        private readonly SimpleClassMemberListWrapper<
+        private readonly SimpleStructMemberListWrapper<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax> conversionOperators;
-        private readonly ClassEventCollectionWithCodeAnalysis events;
-        private readonly ClassFieldCollectionWithCodeAnalysis fields;
-        private readonly GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> genericParameters;
-        private readonly ClassIndexerCollectionWithCodeAnalysis indexers;
-        private readonly ClassNestedInterfaceCollectionWithCodeAnalysis interfaces;
-        private readonly ClassMethodCollectionWithCodeAnalysis methods;
-        private readonly SimpleClassMemberListWrapper<
+        private readonly StructEventCollectionWithCodeAnalysis events;
+        private readonly StructFieldCollectionWithCodeAnalysis fields;
+        private readonly GenericParameterDeclarationListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> genericParameters;
+        private readonly StructIndexerCollectionWithCodeAnalysis indexers;
+        private readonly StructMethodCollectionWithCodeAnalysis methods;
+        private readonly SimpleStructMemberListWrapper<
             OperatorOverloadWithCodeAnalysis,
             OperatorDeclarationSyntax> operatorOverloads;
-        private readonly ClassPropertyCollectionWithCodeAnalysis properties;
-        private readonly ClassMemberList members;
+        private readonly StructPropertyCollectionWithCodeAnalysis properties;
+        private readonly MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax> members;
 
-        private ClassTypeWithCodeAnalysis()
+        private StructTypeWithCodeAnalysis(object @struct)
         {
-            node = new Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(this);
-            attributes = new AttributeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+            node = new Node<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(this);
+            this.@struct = @struct;
+            attributes = new AttributeListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent);
-            constructors = new ClassMemberListWrapper<ConstructorWithCodeAnalysis, ClassConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                (child, parent) => child.StructParent = parent);
+            constructors = new StructTypeMemberListWrapper<ConstructorWithCodeAnalysis, StructConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
-                parent => new ClassConstructorWithCodeAnalysis(parent),
-                (child, parent) => child.Constructor.ClassParent = parent);
-            conversionOperators = new SimpleClassMemberListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
+                parent => new StructConstructorWithCodeAnalysis(parent),
+                (child, parent) => child.Constructor.StructParent = parent);
+            conversionOperators = new SimpleStructMemberListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
                 parent => new ConversionOperatorWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent);
-            events = new ClassEventCollectionWithCodeAnalysis(this);
-            fields = new ClassFieldCollectionWithCodeAnalysis(this);
-            genericParameters = new GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                (child, parent) => child.StructParent = parent);
+            events = new StructEventCollectionWithCodeAnalysis(this);
+            fields = new StructFieldCollectionWithCodeAnalysis(this);
+            genericParameters = new GenericParameterDeclarationListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
                 parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent);
-            indexers = new ClassIndexerCollectionWithCodeAnalysis(this);
-            interfaces = new ClassNestedInterfaceCollectionWithCodeAnalysis(this);
-            methods = new ClassMethodCollectionWithCodeAnalysis(this);
-            operatorOverloads = new SimpleClassMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
+                (child, parent) => child.StructParent = parent);
+            indexers = new StructIndexerCollectionWithCodeAnalysis(this);
+            methods = new StructMethodCollectionWithCodeAnalysis(this);
+            operatorOverloads = new SimpleStructMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
                 parent => new OperatorOverloadWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent);
-            properties = new ClassPropertyCollectionWithCodeAnalysis(this);
-            members = new ClassMemberList(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
+                (child, parent) => child.StructParent = parent);
+            properties = new StructPropertyCollectionWithCodeAnalysis(this);
+            members = new MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
             {
                 { nameof(fields.Constants), () => fields.Constants.Select(item => item.Syntax) },
                 { nameof(fields.Fields), () => fields.Fields.Select(item => item.Syntax) },
@@ -103,7 +104,6 @@ namespace CSharpDom.CodeAnalysis
                 { nameof(methods.ExplicitInterfaceMethods), () => methods.ExplicitInterfaceMethods.Select(item => item.Syntax) },
                 { nameof(OperatorOverloads), () => operatorOverloads.Select(item => item.Syntax) },
                 { nameof(ConversionOperators), () => conversionOperators.Select(item => item.Syntax) },
-                { nameof(interfaces.Interfaces), () => interfaces.Interfaces.Select(item => item.Syntax) }
             };
         }
 
@@ -113,19 +113,19 @@ namespace CSharpDom.CodeAnalysis
             set { attributes.ReplaceList(value); }
         }
 
-        public override ICollection<ClassConstructorWithCodeAnalysis> Constructors
+        public override ICollection<StructConstructorWithCodeAnalysis> Constructors
         {
             get { return constructors; }
-            set { members.CombineList(nameof(Constructors), value.Select(item => item.Syntax)); }
+            set { members.CombineList(nameof(Constructors), constructors.Select(item => item.Syntax)); }
         }
 
         public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
         {
             get { return conversionOperators; }
-            set { members.CombineList(nameof(ConversionOperators), value.Select(item => item.Syntax)); }
+            set { members.CombineList(nameof(ConversionOperators), conversionOperators.Select(item => item.Syntax)); }
         }
-
-        public override ClassEventCollectionWithCodeAnalysis Events
+        
+        public override StructEventCollectionWithCodeAnalysis Events
         {
             get { return events; }
             set
@@ -137,7 +137,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override ClassFieldCollectionWithCodeAnalysis Fields
+        public override StructFieldCollectionWithCodeAnalysis Fields
         {
             get { return fields; }
             set
@@ -154,7 +154,7 @@ namespace CSharpDom.CodeAnalysis
             set { genericParameters.ReplaceList(value); }
         }
 
-        public override ClassIndexerCollectionWithCodeAnalysis Indexers
+        public override StructIndexerCollectionWithCodeAnalysis Indexers
         {
             get { return indexers; }
             set
@@ -164,14 +164,8 @@ namespace CSharpDom.CodeAnalysis
                     new MemberListSyntax(nameof(indexers.ExplicitInterfaceIndexers), value.ExplicitInterfaceIndexers.Select(item => item.Syntax)));
             }
         }
-
-        public override ClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
-        {
-            get { return interfaces; }
-            set { members.CombineList(nameof(interfaces.Interfaces), value.Interfaces.Select(item => item.Syntax)); }
-        }
-
-        public override ClassMethodCollectionWithCodeAnalysis Methods
+        
+        public override StructMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
             set
@@ -194,7 +188,7 @@ namespace CSharpDom.CodeAnalysis
             set { members.CombineList(nameof(OperatorOverloads), value.Select(item => item.Syntax)); }
         }
 
-        public override ClassPropertyCollectionWithCodeAnalysis Properties
+        public override StructPropertyCollectionWithCodeAnalysis Properties
         {
             get { return properties; }
             set
@@ -205,39 +199,35 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public ClassDeclarationSyntax Syntax
+        public StructDeclarationSyntax Syntax
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
 
-        internal Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> Node
+        internal Node<StructTypeWithCodeAnalysis, StructDeclarationSyntax> Node
         {
             get { return node; }
         }
 
-        internal ClassMemberList Members
+        internal MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax> Members
         {
             get { return members; }
         }
-
-        internal AbstractTypeWithCodeAnalysis AbstractType { get; private set; }
-
-        internal SealedTypeWithCodeAnalysis SealedType { get; private set; }
 
         internal IAttributeCollection AttributeList
         {
             get { return attributes; }
         }
 
-        internal IChildCollection<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> ConstructorList
-        {
-            get { return constructors; }
-        }
-
         internal IChildCollection<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> ConversionOperatorList
         {
             get { return conversionOperators; }
+        }
+
+        internal IChildCollection<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> ConstructorList
+        {
+            get { return constructors; }
         }
 
         internal IGenericParameterCollection GenericParameterList
@@ -248,6 +238,11 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> OperatorOverloadList
         {
             get { return operatorOverloads; }
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            return (T)@struct;
         }
     }
 }

@@ -1,28 +1,59 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructIndexerCollectionWithCodeAnalysis :
-        AbstractStructIndexerCollection<StructIndexerWithCodeAnalysis, ExplicitInterfaceIndexerWithCodeAnalysis>
+        EditableStructIndexerCollection<StructIndexerWithCodeAnalysis, ExplicitInterfaceIndexerWithCodeAnalysis>
     {
-        private readonly StructTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly StructTypeWithCodeAnalysis structType;
+        private readonly StructTypeMemberListWrapper<
+            IndexerWithCodeAnalysis,
+            ExplicitInterfaceIndexerWithCodeAnalysis,
+            IndexerDeclarationSyntax> explicitInterfaceIndexers;
+        private readonly StructTypeMemberListWrapper<
+            IndexerWithCodeAnalysis,
+            StructIndexerWithCodeAnalysis,
+            IndexerDeclarationSyntax> indexers;
 
-        internal StructIndexerCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal StructIndexerCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis structType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.structType = structType;
+            explicitInterfaceIndexers = new StructTypeMemberListWrapper<IndexerWithCodeAnalysis, ExplicitInterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
+                structType.Node,
+                parent => new ExplicitInterfaceIndexerWithCodeAnalysis(parent),
+                (child, parent) => child.Indexer.Indexer.ExplicitInterfaceStructParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier != null);
+            indexers = new StructTypeMemberListWrapper<IndexerWithCodeAnalysis, StructIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
+                structType.Node,
+                parent => new StructIndexerWithCodeAnalysis(parent),
+                (child, parent) => child.Indexer.Indexer.StructParent = parent,
+                syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 
-        public override IReadOnlyCollection<ExplicitInterfaceIndexerWithCodeAnalysis> ExplicitInterfaceIndexers
+        public override ICollection<ExplicitInterfaceIndexerWithCodeAnalysis> ExplicitInterfaceIndexers
         {
-            get { return typeWithCodeAnalysis.IndexerCollection.Indexers.ExplicitInterfaceIndexersWithCodeAnalysis; }
+            get { return explicitInterfaceIndexers; }
+            set { structType.Members.CombineList(nameof(ExplicitInterfaceIndexers), value.Select(item => item.Syntax)); }
         }
 
-        protected override IReadOnlyCollection<StructIndexerWithCodeAnalysis> Indexers
+        public override ICollection<StructIndexerWithCodeAnalysis> Indexers
         {
-            get { return typeWithCodeAnalysis.IndexerCollection.Indexers.IndexersWithCodeAnalysis; }
+            get { return indexers; }
+            set { structType.Members.CombineList(nameof(Indexers), value.Select(item => item.Syntax)); }
+        }
+
+        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> ExplicitInterfaceIndexerList
+        {
+            get { return explicitInterfaceIndexers; }
+        }
+
+        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> IndexerList
+        {
+            get { return indexers; }
         }
     }
 }

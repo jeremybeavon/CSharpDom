@@ -140,6 +140,12 @@ namespace CSharpDom.CodeAnalysis
             StaticClassParent = parent;
         }
 
+        internal AttributeGroupWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            StructParent = parent;
+        }
+
         private AttributeGroupWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
@@ -305,6 +311,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
             set { node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set { node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

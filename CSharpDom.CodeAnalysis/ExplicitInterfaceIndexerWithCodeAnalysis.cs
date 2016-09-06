@@ -32,6 +32,12 @@ namespace CSharpDom.CodeAnalysis
             indexer = new IndexerWithBodyWithCodeAnalysis(parent, this);
         }
 
+        internal ExplicitInterfaceIndexerWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            indexer = new IndexerWithBodyWithCodeAnalysis(parent, this);
+        }
+
         private ExplicitInterfaceIndexerWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();

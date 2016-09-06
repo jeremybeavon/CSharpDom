@@ -19,6 +19,12 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly ConstantGroupWithCodeAnalysis constant;
 
+        internal StructConstantWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            constant = new ConstantGroupWithCodeAnalysis(parent, this);
+        }
+
         private StructConstantWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();

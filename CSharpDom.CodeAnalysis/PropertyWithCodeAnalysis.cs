@@ -52,9 +52,7 @@ namespace CSharpDom.CodeAnalysis
             SetClassParent(parent, classType);
         }
 
-        internal PropertyWithCodeAnalysis(
-            ClassTypeWithCodeAnalysis parent,
-            ExplicitInterfacePropertyWithCodeAnalysis property)
+        internal PropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfacePropertyWithCodeAnalysis property)
             : this(property)
         {
             ExplicitInterfaceClassParent = parent;
@@ -76,6 +74,18 @@ namespace CSharpDom.CodeAnalysis
             : this(property)
         {
             StaticClassParent = parent;
+        }
+
+        internal PropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfacePropertyWithCodeAnalysis property)
+            : this(property)
+        {
+            ExplicitInterfaceStructParent = parent;
+        }
+
+        internal PropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructPropertyWithCodeAnalysis property)
+            : this(property)
+        {
+            StructParent = parent;
         }
 
         private PropertyWithCodeAnalysis(object property)
@@ -170,7 +180,18 @@ namespace CSharpDom.CodeAnalysis
                     parent => parent.Properties.ExplicitInterfacePropertyList);
             }
         }
-        
+
+        internal StructTypeWithCodeAnalysis ExplicitInterfaceStructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                    value,
+                    parent => parent.Properties.ExplicitInterfacePropertyList);
+            }
+        }
+
         internal InterfaceTypeWithCodeAnalysis InterfaceParent
         {
             get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
@@ -196,6 +217,17 @@ namespace CSharpDom.CodeAnalysis
                 node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
                     parent => parent.PropertyList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                    value,
+                    parent => parent.Properties.PropertyList);
             }
         }
 

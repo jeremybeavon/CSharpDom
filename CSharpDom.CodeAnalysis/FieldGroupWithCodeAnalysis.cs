@@ -43,6 +43,12 @@ namespace CSharpDom.CodeAnalysis
             StaticClassParent = parent;
         }
 
+        internal FieldGroupWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructFieldWithCodeAnalysis field)
+            : this(field)
+        {
+            StructParent = parent;
+        }
+
         private FieldGroupWithCodeAnalysis(object field)
         {
             this.field = field;
@@ -128,6 +134,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Fields.FieldList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                     value,
                     parent => parent.Fields.FieldList);
             }

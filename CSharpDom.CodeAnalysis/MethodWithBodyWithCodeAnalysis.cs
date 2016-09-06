@@ -31,9 +31,12 @@ namespace CSharpDom.CodeAnalysis
             this.method = new MethodWithCodeAnalysis(parent, method, classType);
         }
 
-        internal MethodWithBodyWithCodeAnalysis(
-            ClassTypeWithCodeAnalysis parent,
-            ExplicitInterfaceMethodWithCodeAnalysis method)
+        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
+        {
+            this.method = new MethodWithCodeAnalysis(parent, method);
+        }
+
+        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
         {
             this.method = new MethodWithCodeAnalysis(parent, method);
         }
@@ -48,7 +51,12 @@ namespace CSharpDom.CodeAnalysis
             this.method = new MethodWithCodeAnalysis(parent, method);
         }
 
-        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
+        internal MethodWithBodyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
+        {
+            this.method = new MethodWithCodeAnalysis(parent, method);
+        }
+
+        internal MethodWithBodyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructMethodWithCodeAnalysis method)
         {
             this.method = new MethodWithCodeAnalysis(parent, method);
         }

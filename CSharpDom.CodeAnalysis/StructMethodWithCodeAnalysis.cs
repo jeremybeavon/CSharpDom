@@ -21,9 +21,20 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly MethodWithBodyWithCodeAnalysis method;
 
+        internal StructMethodWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            method = new MethodWithBodyWithCodeAnalysis(parent, this);
+        }
+
         private StructMethodWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
+        }
+
+        public MethodWithBodyWithCodeAnalysis Method
+        {
+            get { return method; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

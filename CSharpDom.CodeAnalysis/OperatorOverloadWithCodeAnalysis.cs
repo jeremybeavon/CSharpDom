@@ -66,6 +66,12 @@ namespace CSharpDom.CodeAnalysis
             ClassParent = parent;
         }
 
+        internal OperatorOverloadWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            StructParent = parent;
+        }
+
         private OperatorOverloadWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
@@ -145,6 +151,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.OperatorOverloadList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                     value,
                     parent => parent.OperatorOverloadList);
             }

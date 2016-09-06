@@ -33,6 +33,12 @@ namespace CSharpDom.CodeAnalysis
             method = new MethodWithBodyWithCodeAnalysis(parent, this);
         }
 
+        internal ExplicitInterfaceMethodWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            method = new MethodWithBodyWithCodeAnalysis(parent, this);
+        }
+
         private ExplicitInterfaceMethodWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();

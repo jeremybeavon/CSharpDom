@@ -63,6 +63,18 @@ namespace CSharpDom.CodeAnalysis
             StaticClassParent = parent;
         }
 
+        internal EventPropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfaceEventWithCodeAnalysis eventProperty)
+            : this(eventProperty)
+        {
+            ExplicitInterfaceStructParent = parent;
+        }
+
+        internal EventPropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructEventPropertyWithCodeAnalysis eventProperty)
+            : this(eventProperty)
+        {
+            StructParent = parent;
+        }
+
         private EventPropertyWithCodeAnalysis(object eventProperty)
         {
             node = new Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(this);
@@ -198,6 +210,17 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        internal StructTypeWithCodeAnalysis ExplicitInterfaceStructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                    value,
+                    parent => parent.Events.ExplicitInterfaceEventList);
+            }
+        }
+
         internal ClassTypeWithCodeAnalysis SealedClassParent
         {
             get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
@@ -215,6 +238,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Events.EventPropertyList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                     value,
                     parent => parent.Events.EventPropertyList);
             }

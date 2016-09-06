@@ -31,6 +31,12 @@ namespace CSharpDom.CodeAnalysis
             @event = new EventPropertyWithCodeAnalysis(parent, this);
         }
 
+        internal ExplicitInterfaceEventWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            @event = new EventPropertyWithCodeAnalysis(parent, this);
+        }
+
         private ExplicitInterfaceEventWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();

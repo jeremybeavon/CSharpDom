@@ -34,6 +34,12 @@ namespace CSharpDom.CodeAnalysis
             ClassParent = parent;
         }
 
+        internal ConstructorWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructConstructorWithCodeAnalysis constructor)
+            : this(constructor)
+        {
+            StructParent = parent;
+        }
+
         private ConstructorWithCodeAnalysis(object constructor)
         {
             node = new Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(this);
@@ -96,6 +102,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.ConstructorList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                     value,
                     parent => parent.ConstructorList);
             }

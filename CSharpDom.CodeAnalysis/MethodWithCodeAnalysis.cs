@@ -53,6 +53,18 @@ namespace CSharpDom.CodeAnalysis
             ExplicitInterfaceClassParent = parent;
         }
 
+        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
+            : this(method)
+        {
+            SealedClassParent = parent;
+        }
+
+        internal MethodWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceMethodWithCodeAnalysis method)
+            : this(method)
+        {
+            InterfaceParent = parent;
+        }
+
         internal MethodWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, ExtensionMethodWithCodeAnalysis method)
             : this(method)
         {
@@ -65,16 +77,16 @@ namespace CSharpDom.CodeAnalysis
             StaticClassParent = parent;
         }
 
-        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
+        internal MethodWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
             : this(method)
         {
-            SealedClassParent = parent;
+            ExplicitInterfaceStructParent = parent;
         }
 
-        internal MethodWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceMethodWithCodeAnalysis method)
+        internal MethodWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructMethodWithCodeAnalysis method)
             : this(method)
         {
-            InterfaceParent = parent;
+            StructParent = parent;
         }
 
         private MethodWithCodeAnalysis(object method)
@@ -202,6 +214,17 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        internal StructTypeWithCodeAnalysis ExplicitInterfaceStructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                        value,
+                        parent => parent.Methods.ExplicitInterfaceMethodList);
+            }
+        }
+
         internal InterfaceTypeWithCodeAnalysis InterfaceParent
         {
             get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
@@ -238,6 +261,17 @@ namespace CSharpDom.CodeAnalysis
                 node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
                     parent => parent.Methods.ExtensionMethodList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                    value,
+                    parent => parent.Methods.MethodList);
             }
         }
 

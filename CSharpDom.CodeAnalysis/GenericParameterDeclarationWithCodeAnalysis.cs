@@ -58,6 +58,12 @@ namespace CSharpDom.CodeAnalysis
             StaticClassParent = parent;
         }
 
+        internal GenericParameterDeclarationWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            StructParent = parent;
+        }
+
         private GenericParameterDeclarationWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
@@ -243,6 +249,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.GenericParameterList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                     value,
                     parent => parent.GenericParameterList);
             }

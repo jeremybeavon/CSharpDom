@@ -20,9 +20,20 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly IndexerWithBodyWithCodeAnalysis indexer;
         
+        internal StructIndexerWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
+            : this()
+        {
+            indexer = new IndexerWithBodyWithCodeAnalysis(parent, this);
+        }
+
         private StructIndexerWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
+        }
+
+        public IndexerWithBodyWithCodeAnalysis Indexer
+        {
+            get { return indexer; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -73,10 +84,7 @@ namespace CSharpDom.CodeAnalysis
 
         Guid IHasId.InternalId
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return internalId; }
         }
     }
 }

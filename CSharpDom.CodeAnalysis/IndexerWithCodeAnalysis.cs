@@ -72,6 +72,18 @@ namespace CSharpDom.CodeAnalysis
             InterfaceParent = parent;
         }
 
+        internal IndexerWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfaceIndexerWithCodeAnalysis indexer)
+            : this(indexer)
+        {
+            ExplicitInterfaceStructParent = parent;
+        }
+
+        internal IndexerWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructIndexerWithCodeAnalysis indexer)
+            : this(indexer)
+        {
+            StructParent = parent;
+        }
+
         private IndexerWithCodeAnalysis(object indexer)
         {
             node = new Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax>(this);
@@ -179,7 +191,18 @@ namespace CSharpDom.CodeAnalysis
                     parent => parent.Indexers.ExplicitInterfaceIndexerList);
             }
         }
-        
+
+        internal StructTypeWithCodeAnalysis ExplicitInterfaceStructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                    value,
+                    parent => parent.Indexers.ExplicitInterfaceIndexerList);
+            }
+        }
+
         internal InterfaceTypeWithCodeAnalysis InterfaceParent
         {
             get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
@@ -194,6 +217,17 @@ namespace CSharpDom.CodeAnalysis
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
                     parent => parent.SealedType.Indexers.IndexerList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                    value,
+                    parent => parent.Indexers.IndexerList);
             }
         }
 
