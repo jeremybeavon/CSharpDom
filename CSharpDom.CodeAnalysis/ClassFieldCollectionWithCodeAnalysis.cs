@@ -28,12 +28,12 @@ namespace CSharpDom.CodeAnalysis
                 classType.Node,
                 parent => new ClassConstantWithCodeAnalysis(parent),
                 (child, parent) => child.Constant.ClassParent = parent,
-                syntax => syntax.Modifiers.Any(SyntaxKind.ConstKeyword));
+                syntax => syntax.IsConstant());
             fields = new ClassMemberListWrapper<FieldGroupWithCodeAnalysis, ClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
                 classType.Node,
                 parent => new ClassFieldWithCodeAnalysis(parent),
                 (child, parent) => child.Field.ClassParent = parent,
-                syntax => !syntax.Modifiers.Any(SyntaxKind.ConstKeyword));
+                syntax => !syntax.IsConstant());
         }
         
         public override ICollection<ClassConstantWithCodeAnalysis> Constants

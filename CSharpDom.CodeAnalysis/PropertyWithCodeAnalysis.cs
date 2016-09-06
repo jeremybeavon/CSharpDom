@@ -72,6 +72,12 @@ namespace CSharpDom.CodeAnalysis
             InterfaceParent = parent;
         }
 
+        internal PropertyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassPropertyWithCodeAnalysis property)
+            : this(property)
+        {
+            StaticClassParent = parent;
+        }
+
         private PropertyWithCodeAnalysis(object property)
         {
             node = new Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(this);
@@ -179,6 +185,17 @@ namespace CSharpDom.CodeAnalysis
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
                     parent => parent.SealedType.Properties.PropertyList);
+            }
+        }
+
+        internal StaticTypeWithCodeAnalysis StaticClassParent
+        {
+            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.PropertyList);
             }
         }
 

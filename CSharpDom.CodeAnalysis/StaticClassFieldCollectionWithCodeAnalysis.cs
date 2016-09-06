@@ -1,27 +1,58 @@
 ﻿using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StaticClassFieldCollectionWithCodeAnalysis :
-        AbstractStaticClassFieldCollection<StaticClassFieldWithCodeAnalysis, StaticClassConstantWithCodeAnalysis>
+        EditableStaticClassFieldCollection<StaticClassFieldWithCodeAnalysis, StaticClassConstantWithCodeAnalysis>
     {
-        private readonly StaticTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly StaticTypeWithCodeAnalysis type;
+        private readonly StaticTypeMemberListWrapper<
+            ConstantGroupWithCodeAnalysis,
+            StaticClassConstantWithCodeAnalysis,
+            FieldDeclarationSyntax> constants;
+        private readonly StaticTypeMemberListWrapper<
+            FieldGroupWithCodeAnalysis,
+            StaticClassFieldWithCodeAnalysis,
+            FieldDeclarationSyntax> fields;
 
-        internal StaticClassFieldCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal StaticClassFieldCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis type)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.type = type;
+            constants = new StaticTypeMemberListWrapper<ConstantGroupWithCodeAnalysis, StaticClassConstantWithCodeAnalysis, FieldDeclarationSyntax>(
+                type.Node,
+                parent => new StaticClassConstantWithCodeAnalysis(parent),
+                (child, parent) => child.Constant.StaticClassParent = parent,
+                syntax => syntax.IsConstant());
+            fields = new StaticTypeMemberListWrapper<FieldGroupWithCodeAnalysis, StaticClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
+                type.Node,
+                parent => new StaticClassFieldWithCodeAnalysis(parent),
+                (child, parent) => child.Field.StaticClassParent = parent,
+                syntax => !syntax.IsConstant());
         }
         
-        public override IReadOnlyCollection<StaticClassConstantWithCodeAnalysis> Constants
+        public override ICollection<StaticClassConstantWithCodeAnalysis> Constants
         {
-            get { return typeWithCodeAnalysis.FieldCollection.Fields.ConstantsWithCodeAnalysis; }
+            get { return constants; }
+            set { type.Members.CombineList(nameof(Constants), value.Select(item => item.Syntax)); }
         }
 
-        protected override IReadOnlyCollection<StaticClassFieldWithCodeAnalysis> Fields
+        public override ICollection<StaticClassFieldWithCodeAnalysis> Fields
         {
-            get { return typeWithCodeAnalysis.FieldCollection.Fields.FieldsWithCodeAnalysis; }
+            get { return fields; }
+            set { type.Members.CombineList(nameof(Fields), value.Select(item => item.Syntax)); }
+        }
+
+        internal IChildCollection<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> ConstantList
+        {
+            get { return constants; }
+        }
+        
+        internal IChildCollection<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> FieldList
+        {
+            get { return fields; }
         }
     }
 }

@@ -1,6 +1,5 @@
-﻿using CSharpDom.BaseClasses;
+﻿using CSharpDom.Editable;
 using CSharpDom.Common;
-using CSharpDom.CodeAnalysis.Internal;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -9,52 +8,71 @@ using System.Reflection;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructAccessorWithCodeAnalysis :
-        AbstractStructAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
-        IHasMethodDefinition
+        EditableStructAccessor<AttributeGroupWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
+        IHasSyntax<AccessorDeclarationSyntax>
     {
-        private readonly StructAccessorVisibilityModifier visibility;
-        private readonly AccessorWithCodeAnalysis accessor;
+        private readonly AccessorWithBodyWithCodeAnalysis accessor;
 
-        internal StructAccessorWithCodeAnalysis(IHasStructMemberVisibilityModifier parentVisibility, AccessorWithCodeAnalysis accessor)
+        internal StructAccessorWithCodeAnalysis(AccessorWithBodyWithCodeAnalysis accessor)
         {
             this.accessor = accessor;
-            StructMemberVisibilityModifier structVisibility = accessor.MethodDefinition.StructVisibility();
-            if (parentVisibility.Visibility == structVisibility)
-            {
-                visibility = StructAccessorVisibilityModifier.None;
-            }
-            else
-            {
-                switch (structVisibility)
-                {
-                    case StructMemberVisibilityModifier.Internal:
-                        visibility = StructAccessorVisibilityModifier.Internal;
-                        break;
-                    case StructMemberVisibilityModifier.Private:
-                        visibility = StructAccessorVisibilityModifier.Private;
-                        break;
-                }
-            }
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public AccessorWithBodyWithCodeAnalysis Accessor
+        {
+            get { return accessor; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return accessor.Attributes; }
+            set { accessor.Attributes = value; }
         }
 
         public override StructAccessorVisibilityModifier Visibility
         {
-            get { return visibility; }
-        }
+            get
+            {
+                switch (Syntax.Modifiers.ToClassMemberVisibilityModifier())
+                {
+                    case ClassMemberVisibilityModifier.Internal:
+                        return StructAccessorVisibilityModifier.Internal;
+                    case ClassMemberVisibilityModifier.None:
+                        return StructAccessorVisibilityModifier.None;
+                    case ClassMemberVisibilityModifier.Private:
+                        return StructAccessorVisibilityModifier.Private;
+                    default:
+                        throw new NotSupportedException();
+                }
+            }
+            set
+            {
+                ClassMemberVisibilityModifier modifier = ClassMemberVisibilityModifier.None;
+                switch (value)
+                {
+                    case StructAccessorVisibilityModifier.Internal:
+                        modifier = ClassMemberVisibilityModifier.Internal;
+                        break;
+                    case StructAccessorVisibilityModifier.Private:
+                        modifier = ClassMemberVisibilityModifier.Private;
+                        break;
+                }
 
-        public MethodDefinition MethodDefinition
-        {
-            get { return accessor.MethodDefinition; }
+                AccessorDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(modifier));
+            }
         }
-
+        
         public override MethodBodyWithCodeAnalysis Body
         {
             get { return accessor.Body; }
+            set { accessor.Body = value; }
+        }
+
+        public AccessorDeclarationSyntax Syntax
+        {
+            get { return accessor.Syntax; }
+            set { accessor.Syntax = value; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

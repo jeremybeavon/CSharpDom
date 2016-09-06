@@ -17,8 +17,10 @@ namespace CSharpDom.CodeAnalysis
             InterfacePropertyWithCodeAnalysis,
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
-        IHasSyntax<InterfaceDeclarationSyntax>
+        IHasSyntax<InterfaceDeclarationSyntax>,
+        ISimpleMember
     {
+        private readonly object @interface;
         private readonly Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> node;
         private readonly AttributeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> attributes;
         private readonly InterfaceMemberListWrapper<
@@ -41,9 +43,16 @@ namespace CSharpDom.CodeAnalysis
             MethodDeclarationSyntax> methods;
         private readonly MemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> members;
 
-        public InterfaceTypeWithCodeAnalysis()
+        internal InterfaceTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedInterfaceWithCodeAnalysis @interface)
+            : this(@interface)
+        {
+            ClassParent = parent;
+        }
+
+        private InterfaceTypeWithCodeAnalysis(object @interface)
         {
             node = new Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(this);
+            this.@interface = @interface;
             attributes = new AttributeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -172,6 +181,22 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> PropertyList
         {
             get { return properties; }
+        }
+
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Interfaces.InterfaceList);
+            }
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            return (T)@interface;
         }
     }
 }

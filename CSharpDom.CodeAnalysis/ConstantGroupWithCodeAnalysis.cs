@@ -37,6 +37,12 @@ namespace CSharpDom.CodeAnalysis
             ClassParent = parent;
         }
 
+        internal ConstantGroupWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassConstantWithCodeAnalysis constant)
+            : this(constant)
+        {
+            StaticClassParent = parent;
+        }
+
         private ConstantGroupWithCodeAnalysis(object constant)
         {
             this.constant = constant;
@@ -111,6 +117,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Fields.ConstantList);
+            }
+        }
+
+        internal StaticTypeWithCodeAnalysis StaticClassParent
+        {
+            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
                     parent => parent.Fields.ConstantList);
             }

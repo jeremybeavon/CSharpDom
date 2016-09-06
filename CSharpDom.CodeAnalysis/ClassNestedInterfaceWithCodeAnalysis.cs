@@ -15,63 +15,91 @@ namespace CSharpDom.CodeAnalysis
             InterfaceEventWithCodeAnalysis,
             InterfacePropertyWithCodeAnalysis,
             InterfaceIndexerWithCodeAnalysis,
-            InterfaceMethodWithCodeAnalysis>
+            InterfaceMethodWithCodeAnalysis>,
+        IHasSyntax<InterfaceDeclarationSyntax>,
+        IHasId
     {
-        private readonly NestedInterfaceWithCodeAnalysis nestedInterface;
+        private readonly Guid internalId;
+        private readonly NestedInterfaceWithCodeAnalysis type;
 
-        internal ClassNestedInterfaceWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, TypeDefinition type)
+        internal ClassNestedInterfaceWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            nestedInterface = new NestedInterfaceWithCodeAnalysis(declaringType, type);
+            type = new NestedInterfaceWithCodeAnalysis(parent, this);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        private ClassNestedInterfaceWithCodeAnalysis()
         {
-            get { return nestedInterface.Attributes; }
+            internalId = Guid.NewGuid();
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public NestedInterfaceWithCodeAnalysis Interface
         {
-            get { return nestedInterface.DeclaringType; }
+            get { return type; }
         }
 
-        public override IReadOnlyCollection<InterfaceEventWithCodeAnalysis> Events
+        public NestedInterfaceWithCodeAnalysis Type
         {
-            get { return nestedInterface.Events; }
+            get { return type; }
         }
 
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return nestedInterface.GenericParameters; }
+            get { return type.Attributes; }
+            set { type.Attributes = value; }
         }
 
-        public override IReadOnlyCollection<InterfaceIndexerWithCodeAnalysis> Indexers
+        public override ICollection<InterfaceEventWithCodeAnalysis> Events
         {
-            get { return nestedInterface.Indexers; }
+            get { return type.Events; }
+            set { type.Events = value; }
         }
 
-        public override IReadOnlyCollection<InterfaceReferenceWithCodeAnalysis> Interfaces
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
-            get { return nestedInterface.Interfaces; }
+            get { return type.GenericParameters; }
+            set { type.GenericParameters = value; }
         }
-        
-        public override IReadOnlyCollection<InterfaceMethodWithCodeAnalysis> Methods
+
+        public override ICollection<InterfaceIndexerWithCodeAnalysis> Indexers
         {
-            get { return nestedInterface.Methods; }
+            get { return type.Indexers; }
+            set { type.Indexers = value; }
+        }
+
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> Interfaces
+        {
+            get { return type.Interfaces; }
+            set { type.Interfaces = value; }
+        }
+
+        public override ICollection<InterfaceMethodWithCodeAnalysis> Methods
+        {
+            get { return type.Methods; }
+            set { type.Methods = value; }
         }
 
         public override string Name
         {
-            get { return nestedInterface.Name; }
+            get { return type.Name; }
+            set { type.Name = value; }
         }
 
-        public override IReadOnlyCollection<InterfacePropertyWithCodeAnalysis> Properties
+        public override ICollection<InterfacePropertyWithCodeAnalysis> Properties
         {
-            get { return nestedInterface.Properties; }
+            get { return type.Properties; }
+            set { type.Properties = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public InterfaceDeclarationSyntax Syntax
         {
-            get { return nestedInterface.TypeDefinition.ClassMemberVisibility(); }
+            get { return type.Syntax; }
+            set { type.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

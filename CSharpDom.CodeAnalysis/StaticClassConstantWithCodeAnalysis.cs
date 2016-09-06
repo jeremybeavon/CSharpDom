@@ -18,9 +18,20 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly ConstantGroupWithCodeAnalysis constant;
 
+        internal StaticClassConstantWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
+            : this()
+        {
+            constant = new ConstantGroupWithCodeAnalysis(parent, this);
+        }
+
         private StaticClassConstantWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
+        }
+
+        public ConstantGroupWithCodeAnalysis Constant
+        {
+            get { return constant; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

@@ -20,9 +20,20 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly FieldGroupWithCodeAnalysis field;
 
+        internal StaticClassFieldWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
+            : this()
+        {
+            field = new CodeAnalysis.FieldGroupWithCodeAnalysis(parent, this);
+        }
+
         private StaticClassFieldWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
+        }
+
+        public FieldGroupWithCodeAnalysis Field
+        {
+            get { return field; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

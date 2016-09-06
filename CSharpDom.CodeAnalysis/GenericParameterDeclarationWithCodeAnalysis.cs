@@ -52,6 +52,12 @@ namespace CSharpDom.CodeAnalysis
             MethodParent = parent;
         }
 
+        internal GenericParameterDeclarationWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
+            : this()
+        {
+            StaticClassParent = parent;
+        }
+
         private GenericParameterDeclarationWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
@@ -226,6 +232,17 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                    value,
+                    parent => parent.GenericParameterList);
+            }
+        }
+
+        internal StaticTypeWithCodeAnalysis StaticClassParent
+        {
+            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                     value,
                     parent => parent.GenericParameterList);
             }

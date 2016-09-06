@@ -1,75 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructPropertyWithCodeAnalysis :
-        AbstractStructProperty<
+        EditableStructProperty<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IStructType,
             ITypeReferenceWithCodeAnalysis,
-            StructAccessorWithCodeAnalysis>
+            StructAccessorWithCodeAnalysis>,
+        IHasSyntax<PropertyDeclarationSyntax>,
+        IHasId
     {
-        private readonly PropertyWithCodeAnalysis property;
-        private readonly StructAccessorWithCodeAnalysis getAccessor;
-        private readonly StructAccessorWithCodeAnalysis setAccessor;
-
-        internal StructPropertyWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, PropertyDefinition property)
+        private readonly Guid internalId;
+        private readonly PropertyWithBodyWithCodeAnalysis property;
+        
+        private StructPropertyWithCodeAnalysis()
         {
-            this.property = new PropertyWithCodeAnalysis(declaringType, property);
-            if (this.property.GetAccessor != null)
-            {
-                getAccessor = new StructAccessorWithCodeAnalysis(this, this.property.GetAccessor);
-            }
-
-            if (this.property.SetAccessor != null)
-            {
-                setAccessor = new StructAccessorWithCodeAnalysis(this, this.property.SetAccessor);
-            }
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return property.Attributes; }
+            set { property.Attributes = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return property.DeclaringType; }
-        }
-
+        
         public override StructAccessorWithCodeAnalysis GetAccessor
         {
-            get { return getAccessor; }
+            get { return new StructAccessorWithCodeAnalysis(property.GetAccessor); }
+            set { property.GetAccessor = value?.Accessor; }
         }
 
         public override string Name
         {
             get { return property.Name; }
+            set { property.Name = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis PropertyType
         {
             get { return property.PropertyType; }
+            set { property.PropertyType = value; }
         }
 
         public override StructAccessorWithCodeAnalysis SetAccessor
         {
-            get { return setAccessor; }
+            get { return new StructAccessorWithCodeAnalysis(property.SetAccessor); }
+            set { property.SetAccessor = value?.Accessor; }
         }
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get { return property.PropertyDefinition.StructVisibility(); }
+            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
+            set
+            {
+                PropertyDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
+            }
         }
 
         public override StructMemberInheritanceModifier InheritanceModifier
         {
-            get { return property.PropertyDefinition.Method().IsStatic ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
+            get { return Syntax.Modifiers.ToStructMemberInheritanceModifier(); }
+            set
+            {
+                PropertyDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberInheritanceModifier(value));
+            }
+        }
+
+        public PropertyDeclarationSyntax Syntax
+        {
+            get { return property.Syntax; }
+            set { property.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

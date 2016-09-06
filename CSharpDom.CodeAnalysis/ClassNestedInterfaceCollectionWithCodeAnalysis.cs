@@ -1,34 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
+using CSharpDom.Editable;
 using CSharpDom.NotSupported.Partial;
-using CSharpDom.CodeAnalysis.Internal;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassNestedInterfaceCollectionWithCodeAnalysis :
-        AbstractClassNestedInterfaceCollection<ClassNestedInterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
+        EditableClassNestedInterfaceCollection<ClassNestedInterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
     {
-        private readonly AbstractClassNestedInterfaceCollection interfaceCollection;
+        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly ClassMemberListWrapper<
+            InterfaceTypeWithCodeAnalysis,
+            ClassNestedInterfaceWithCodeAnalysis,
+            InterfaceDeclarationSyntax> interfaces;
 
-        internal ClassNestedInterfaceCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal ClassNestedInterfaceCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
-            interfaceCollection = new ClassNestedInterfaceCollection(typeWithCodeAnalysis);
+            this.classType = classType;
+            interfaces = new ClassMemberListWrapper<InterfaceTypeWithCodeAnalysis, ClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                classType.Node,
+                parent => new ClassNestedInterfaceWithCodeAnalysis(parent),
+                (child, parent) => child.Interface.Interface.ClassParent = parent);
+        }
+        
+        public override ICollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces
+        {
+            get { return interfaces; }
+            set { classType.Members.CombineList(nameof(Interfaces), interfaces.Select(item => item.Syntax)); }
         }
 
-        internal ClassNestedInterfaceCollectionWithCodeAnalysis(SealedTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal IChildCollection<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> InterfaceList
         {
-            interfaceCollection = new SealedClassNestedInterfaceCollection(typeWithCodeAnalysis);
-        }
-
-        public override IReadOnlyCollection<PartialInterfaceNotSupported> PartialInterfaces
-        {
-            get { return new PartialInterfaceNotSupported[0]; }
-        }
-
-        protected override IReadOnlyCollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces
-        {
-            get { return interfaceCollection; }
+            get { return interfaces; }
         }
     }
 }

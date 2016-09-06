@@ -1,81 +1,71 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
-using System.Reflection;
-using CSharpDom.Mono.Cecil.ConstantExpressions;
-using CSharpDom.NotSupported;
+using CSharpDom.Common;
+using CSharpDom.Common.Expressions;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructConstantWithCodeAnalysis :
-        AbstractStructConstant<
+        EditableStructConstant<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IStructType,
             ITypeReferenceWithCodeAnalysis,
-            IConstantWithCodeAnalysis>,
-        IConstantWithCodeAnalysis
+            ConstantWithCodeAnalysis>,
+        IHasSyntax<FieldDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly ConstantGroupWithCodeAnalysis constant;
 
-        internal StructConstantWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, FieldDefinition field)
+        private StructConstantWithCodeAnalysis()
         {
-            this.constant = new ConstantGroupWithCodeAnalysis(declaringType, field);
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public ConstantGroupWithCodeAnalysis Constant
+        {
+            get { return constant; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return constant.Attributes; }
+            set { constant.Attributes = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
+        
+        public override ICollection<ConstantWithCodeAnalysis> Constants
         {
-            get { return constant.DeclaringType; }
-        }
-
-        public override IReadOnlyCollection<IConstantWithCodeAnalysis> Constants
-        {
-            get { return new IConstantWithCodeAnalysis[] { new InternalConstantWithCodeAnalysis(constant) }; }
+            get { return constant.Constants; }
+            set { constant.Constants = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis FieldType
         {
             get { return constant.FieldType; }
+            set { constant.FieldType = value; }
         }
-
-        public IConstantExpressionWithCodeAnalysis ConstantValue
-        {
-            get { return constant.ConstantValue; }
-        }
-
-        public string Name
-        {
-            get { return constant.FieldDefinition.Name; }
-        }
-
+        
         public override StructMemberVisibilityModifier Visibility
         {
-            get
+            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
+            set
             {
-                FieldDefinition fieldInfo = constant.FieldDefinition;
-                if (fieldInfo.IsPublic)
-                {
-                    return StructMemberVisibilityModifier.Public;
-                }
-
-                if (fieldInfo.IsAssembly)
-                {
-                    return StructMemberVisibilityModifier.Internal;
-                }
-                
-                if (fieldInfo.IsPrivate)
-                {
-                    return StructMemberVisibilityModifier.Private;
-                }
-
-                return StructMemberVisibilityModifier.None;
+                FieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
             }
+        }
+
+        public FieldDeclarationSyntax Syntax
+        {
+            get { return constant.Syntax; }
+            set { constant.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

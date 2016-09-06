@@ -25,7 +25,7 @@ namespace CSharpDom.CodeAnalysis
             IClassNestedClassCollection,
             IClassNestedDelegate,
             IClassNestedEnum,
-            IClassNestedInterfaceCollection,
+            ClassNestedInterfaceCollectionWithCodeAnalysis,
             IClassNestedStructCollection,
             DestructorWithCodeAnalysis,
             IStaticConstructor>,
@@ -44,6 +44,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly ClassFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> genericParameters;
         private readonly ClassIndexerCollectionWithCodeAnalysis indexers;
+        private readonly ClassNestedInterfaceCollectionWithCodeAnalysis interfaces;
         private readonly ClassMethodCollectionWithCodeAnalysis methods;
         private readonly SimpleClassMemberListWrapper<
             OperatorOverloadWithCodeAnalysis,
@@ -79,6 +80,7 @@ namespace CSharpDom.CodeAnalysis
                 parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
                 (child, parent) => child.ClassParent = parent);
             indexers = new ClassIndexerCollectionWithCodeAnalysis(this);
+            interfaces = new ClassNestedInterfaceCollectionWithCodeAnalysis(this);
             methods = new ClassMethodCollectionWithCodeAnalysis(this);
             operatorOverloads = new SimpleClassMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
@@ -100,7 +102,8 @@ namespace CSharpDom.CodeAnalysis
                 { nameof(methods.Methods), () => methods.Methods.Select(method => method.Syntax) },
                 { nameof(methods.ExplicitInterfaceMethods), () => methods.ExplicitInterfaceMethods.Select(method => method.Syntax) },
                 { nameof(OperatorOverloads), () => operatorOverloads.Select(@operator => @operator.Syntax) },
-                { nameof(ConversionOperators), () => conversionOperators.Select(@operator => @operator.Syntax) }
+                { nameof(ConversionOperators), () => conversionOperators.Select(@operator => @operator.Syntax) },
+                { nameof(interfaces.Interfaces), () => interfaces.Interfaces.Select(@interface => @interface.Syntax) }
             };
         }
 
@@ -160,6 +163,12 @@ namespace CSharpDom.CodeAnalysis
                     new MemberListSyntax(nameof(indexers.Indexers), value.Indexers.Select(indexer => indexer.Syntax)),
                     new MemberListSyntax(nameof(indexers.ExplicitInterfaceIndexers), value.ExplicitInterfaceIndexers.Select(indexer => indexer.Syntax)));
             }
+        }
+
+        public override ClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        {
+            get { return interfaces; }
+            set { members.CombineList(nameof(interfaces.Interfaces), value.Interfaces.Select(item => item.Syntax)); }
         }
 
         public override ClassMethodCollectionWithCodeAnalysis Methods
@@ -226,7 +235,7 @@ namespace CSharpDom.CodeAnalysis
             get { return constructors; }
         }
 
-        internal IChildCollection<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> ConverisonOperatorList
+        internal IChildCollection<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> ConversionOperatorList
         {
             get { return conversionOperators; }
         }

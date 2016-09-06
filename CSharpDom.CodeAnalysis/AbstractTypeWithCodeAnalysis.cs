@@ -23,7 +23,7 @@ namespace CSharpDom.CodeAnalysis
             IClassNestedClassCollection,
             IClassNestedDelegate,
             IClassNestedEnum,
-            IClassNestedInterfaceCollection,
+            ClassNestedInterfaceCollectionWithCodeAnalysis,
             IClassNestedStructCollection,
             IStaticConstructor>,
         IHasSyntax<ClassDeclarationSyntax>
@@ -58,6 +58,12 @@ namespace CSharpDom.CodeAnalysis
             set { classType.BaseClass = value; }
         }
 
+        public override IClassNestedClassCollection Classes
+        {
+            get { return classType.Classes; }
+            set { classType.Classes = value; }
+        }
+
         public override ICollection<ClassConstructorWithCodeAnalysis> Constructors
         {
             get { return classType.Constructors; }
@@ -68,6 +74,18 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.ConversionOperators; }
             set { classType.ConversionOperators = value; }
+        }
+
+        public override ICollection<IClassNestedDelegate> Delegates
+        {
+            get { return classType.Delegates; }
+            set { classType.Delegates = value; }
+        }
+
+        public override ICollection<IClassNestedEnum> Enums
+        {
+            get { return classType.Enums; }
+            set { classType.Enums = value; }
         }
 
         public override AbstractClassEventCollectionWithCodeAnalysis Events
@@ -113,6 +131,12 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        public override ClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        {
+            get { return classType.Interfaces; }
+            set { classType.Interfaces = value; }
+        }
+
         public override AbstractClassMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
@@ -147,6 +171,18 @@ namespace CSharpDom.CodeAnalysis
                     new MemberListSyntax(nameof(properties.Properties), value.Properties.Select(property => property.Syntax)),
                     new MemberListSyntax(nameof(properties.ExplicitInterfaceProperties), value.Properties.Select(property => property.Syntax)));
             }
+        }
+
+        public override IStaticConstructor StaticConstructor
+        {
+            get { return classType.StaticConstructor; }
+            set { classType.StaticConstructor = value; }
+        }
+
+        public override IClassNestedStructCollection Structs
+        {
+            get { return classType.Structs; }
+            set { classType.Structs = value; }
         }
 
         public ClassDeclarationSyntax Syntax

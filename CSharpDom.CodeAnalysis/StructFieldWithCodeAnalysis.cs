@@ -1,59 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
-using System.Reflection;
-using CSharpDom.Mono.Cecil.ConstantExpressions;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using CSharpDom.NotSupported;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructFieldWithCodeAnalysis :
-        AbstractStructField<
+        EditableStructField<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IStructType,
             ITypeReferenceWithCodeAnalysis,
-            IFieldWithCodeAnalysis>,
-        IFieldWithCodeAnalysis
+            FieldWithCodeAnalysis>,
+        IHasSyntax<FieldDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly FieldGroupWithCodeAnalysis field;
 
-        internal StructFieldWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, FieldDefinition field)
+        private StructFieldWithCodeAnalysis()
         {
-            this.field = new FieldGroupWithCodeAnalysis(declaringType, field);
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return field.Attributes; }
+            set { field.Attributes = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
+        
+        public override ICollection<FieldWithCodeAnalysis> Fields
         {
-            get { return field.DeclaringType; }
-        }
-
-        public override IReadOnlyCollection<IFieldWithCodeAnalysis> Fields
-        {
-            get { return new IFieldWithCodeAnalysis[] { new InternalFieldWithCodeAnalysis(field.FieldDefinition) }; }
+            get { return field.Fields; }
+            set { field.Fields = value; }
         }
 
         public override ITypeReferenceWithCodeAnalysis FieldType
         {
             get { return field.FieldType; }
+            set { field.FieldType = value; }
         }
-
-        public ExpressionNotSupported InitialValue
-        {
-            get { return new ExpressionNotSupported(); }
-        }
-
+        
         public override StructFieldModifier Modifier
         {
             get
             {
-                switch (field.Modifier)
+                switch (Syntax.Modifiers.ToClassFieldModifier())
                 {
                     case ClassFieldModifier.None:
                         return StructFieldModifier.None;
@@ -71,34 +64,52 @@ namespace CSharpDom.CodeAnalysis
                         throw new NotSupportedException();
                 }
             }
+            set
+            {
+                FieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassFieldModifier(ToClassFieldModifier(value)));
+            }
         }
-
-        public string Name
+        
+        public FieldDeclarationSyntax Syntax
         {
-            get { return field.FieldDefinition.Name; }
+            get { return field.Syntax; }
+            set { field.Syntax = value; }
         }
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get
+            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
+            set
             {
-                FieldDefinition fieldInfo = field.FieldDefinition;
-                if (fieldInfo.IsPublic)
-                {
-                    return StructMemberVisibilityModifier.Public;
-                }
+                FieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
+            }
+        }
 
-                if (fieldInfo.IsAssembly)
-                {
-                    return StructMemberVisibilityModifier.Internal;
-                }
-                
-                if (fieldInfo.IsPrivate)
-                {
-                    return StructMemberVisibilityModifier.Private;
-                }
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
+        }
 
-                return StructMemberVisibilityModifier.None;
+        private static ClassFieldModifier ToClassFieldModifier(StructFieldModifier modifier)
+        {
+            switch (modifier)
+            {
+                case StructFieldModifier.None:
+                    return ClassFieldModifier.None;
+                case StructFieldModifier.ReadOnly:
+                    return ClassFieldModifier.ReadOnly;
+                case StructFieldModifier.Static:
+                    return ClassFieldModifier.Static;
+                case StructFieldModifier.StaticReadOnly:
+                    return ClassFieldModifier.StaticReadOnly;
+                case StructFieldModifier.StaticVolatile:
+                    return ClassFieldModifier.StaticVolatile;
+                case StructFieldModifier.Volatile:
+                    return ClassFieldModifier.Volatile;
+                default:
+                    throw new NotSupportedException();
             }
         }
     }

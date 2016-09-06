@@ -74,6 +74,14 @@ namespace CSharpDom.CodeAnalysis
                 { ClassMemberVisibilityModifier.Private, StaticClassMemberVisibilityModifier.Private },
                 { ClassMemberVisibilityModifier.Public, StaticClassMemberVisibilityModifier.Public }
             };
+        private static readonly IDictionary<ClassMemberVisibilityModifier, StructMemberVisibilityModifier> structVisibilityModifierMap =
+            new Dictionary<ClassMemberVisibilityModifier, StructMemberVisibilityModifier>()
+            {
+                { ClassMemberVisibilityModifier.Internal, StructMemberVisibilityModifier.Internal },
+                { ClassMemberVisibilityModifier.None, StructMemberVisibilityModifier.None },
+                { ClassMemberVisibilityModifier.Private, StructMemberVisibilityModifier.Private },
+                { ClassMemberVisibilityModifier.Public, StructMemberVisibilityModifier.Public }
+            };
 
         public static SyntaxTokenList Add(this SyntaxTokenList tokens, SyntaxKind kind)
         {
@@ -293,6 +301,37 @@ namespace CSharpDom.CodeAnalysis
         {
             return tokens.WithClassMemberVisibilityModifier(
                 staticClassVisibilityModifierMap.First(entry => entry.Value == modifier).Key);
+        }
+
+        public static StructMemberVisibilityModifier ToStructMemberVisibilityModifier(this SyntaxTokenList modifiers)
+        {
+            return structVisibilityModifierMap[modifiers.ToClassMemberVisibilityModifier()];
+        }
+
+        public static SyntaxTokenList WithStructMemberVisibilityModifier(
+            this SyntaxTokenList tokens,
+            StructMemberVisibilityModifier modifier)
+        {
+            return tokens.WithClassMemberVisibilityModifier(
+                structVisibilityModifierMap.First(entry => entry.Value == modifier).Key);
+        }
+
+        public static StructMemberInheritanceModifier ToStructMemberInheritanceModifier(this SyntaxTokenList modifiers)
+        {
+            return modifiers.Any(SyntaxKind.StaticKeyword) ?
+                StructMemberInheritanceModifier.Static :
+                StructMemberInheritanceModifier.None;
+        }
+
+        public static SyntaxTokenList WithStructMemberInheritanceModifier(
+            this SyntaxTokenList tokens,
+            StructMemberInheritanceModifier modifier)
+        {
+            ClassMemberInheritanceModifier classModifier =
+                modifier == StructMemberInheritanceModifier.Static ?
+                ClassMemberInheritanceModifier.Static :
+                ClassMemberInheritanceModifier.None;
+            return tokens.WithClassMemberInheritanceModifier(classModifier);
         }
 
         public static InterfaceMemberInheritanceModifier ToInterfaceMemberInheritanceModifier(this SyntaxTokenList modifiers)

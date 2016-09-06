@@ -1,30 +1,31 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class EnumReferenceWithCodeAnalysis :
-        AbstractEnumReference,
-        ITypeReferenceWithCodeAnalysis//,
+        EditableEnumReference,
+        IHasSyntax<NameSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly TypeReference type;
+        private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
 
-        internal EnumReferenceWithCodeAnalysis(TypeReference type)
+        internal EnumReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
-            this.type = type;
+            this.typeReference = typeReference;
         }
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return typeReference.Name; }
+            set { typeReference.Name = value; }
         }
 
-        public TypeReference TypeReference
+        public NameSyntax Syntax
         {
-            get { return type; }
+            get { return typeReference.Syntax; }
+            set { typeReference.Syntax = value; }
         }
         
         /*public void Accept(IReflectionVisitor visitor)

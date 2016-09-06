@@ -1,71 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructIndexerWithCodeAnalysis :
-        AbstractStructIndexer<
+        EditableStructIndexer<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IStructType,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
-            StructAccessorWithCodeAnalysis>
+            StructAccessorWithCodeAnalysis>,
+        IHasSyntax<IndexerDeclarationSyntax>,
+        IHasId
     {
-        private readonly IndexerWithCodeAnalysis indexer;
-        private readonly StructAccessorWithCodeAnalysis getAccessor;
-        private readonly StructAccessorWithCodeAnalysis setAccessor;
-
-        internal StructIndexerWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, PropertyDefinition indexer)
+        private readonly Guid internalId;
+        private readonly IndexerWithBodyWithCodeAnalysis indexer;
+        
+        private StructIndexerWithCodeAnalysis()
         {
-            this.indexer = new IndexerWithCodeAnalysis(declaringType, indexer);
-            if (this.indexer.GetAccessor != null)
-            {
-                getAccessor = new StructAccessorWithCodeAnalysis(this, this.indexer.GetAccessor);
-            }
-
-            if (this.indexer.SetAccessor != null)
-            {
-                setAccessor = new StructAccessorWithCodeAnalysis(this, this.indexer.SetAccessor);
-            }
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return indexer.Attributes; }
+            set { indexer.Attributes = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return indexer.DeclaringType; }
-        }
-
+        
         public override StructAccessorWithCodeAnalysis GetAccessor
         {
-            get { return getAccessor; }
+            get { return new StructAccessorWithCodeAnalysis(indexer.GetAccessor); }
+            set { indexer.GetAccessor = value?.Accessor; }
         }
 
         public override ITypeReferenceWithCodeAnalysis IndexerType
         {
             get { return indexer.IndexerType; }
+            set { indexer.IndexerType = value; }
         }
         
-        public override IReadOnlyList<IndexerParameterWithCodeAnalysis> Parameters
+        public override IList<IndexerParameterWithCodeAnalysis> Parameters
         {
             get { return indexer.Parameters; }
+            set { indexer.Parameters = value; }
         }
 
         public override StructAccessorWithCodeAnalysis SetAccessor
         {
-            get { return setAccessor; }
+            get { return new StructAccessorWithCodeAnalysis(indexer.SetAccessor); }
+            set { indexer.SetAccessor = value?.Accessor; }
+        }
+
+        public IndexerDeclarationSyntax Syntax
+        {
+            get { return indexer.Syntax; }
+            set { indexer.Syntax = value; }
         }
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get { return indexer.PropertyDefinition.StructVisibility(); }
+            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
+            set
+            {
+                IndexerDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
+            }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

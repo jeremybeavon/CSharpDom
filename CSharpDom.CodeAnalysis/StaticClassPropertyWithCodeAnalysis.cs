@@ -18,9 +18,20 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly PropertyWithBodyWithCodeAnalysis property;
         
+        internal StaticClassPropertyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
+            : this()
+        {
+            property = new PropertyWithBodyWithCodeAnalysis(parent, this);
+        }
+
         private StaticClassPropertyWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
+        }
+
+        public PropertyWithBodyWithCodeAnalysis Property
+        {
+            get { return property; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

@@ -104,6 +104,12 @@ namespace CSharpDom.CodeAnalysis
             MethodParent = parent;
         }
 
+        internal AttributeGroupWithCodeAnalysis(NestedEnumMemberWithCodeAnalysis parent)
+            : this()
+        {
+            NestedEnumMemberParent = parent;
+        }
+
         internal AttributeGroupWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
             : this()
         {
@@ -269,6 +275,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
             set { node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
+        internal NestedEnumMemberWithCodeAnalysis NestedEnumMemberParent
+        {
+            get { return node.GetParentNode<NestedEnumMemberWithCodeAnalysis>(); }
+            set { node.SetParentNode<NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
 
         internal OperatorOverloadWithCodeAnalysis OperatorOverloadParent

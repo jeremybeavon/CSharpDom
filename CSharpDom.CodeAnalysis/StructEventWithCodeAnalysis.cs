@@ -1,53 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructEventWithCodeAnalysis :
-        AbstractStructEvent<
+        EditableStructEvent<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
-            DelegateReferenceWithCodeAnalysis>
+            IStructType,
+            DelegateReferenceWithCodeAnalysis>,
+        IHasSyntax<EventFieldDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly EventWithCodeAnalysis @event;
 
-        internal StructEventWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, EventDefinition @event)
+        private StructEventWithCodeAnalysis()
         {
-            this.@event = new EventWithCodeAnalysis(declaringType, @event);
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return @event.Attributes; }
+            set { @event.Attributes = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return @event.DeclaringType; }
-        }
-
+        
         public override DelegateReferenceWithCodeAnalysis EventType
         {
             get { return @event.EventType; }
+            set { @event.EventType = value; }
         }
 
         public override StructMemberInheritanceModifier InheritanceModifier
         {
-            get { return @event.EventDefinition.AddMethod.IsStatic ? StructMemberInheritanceModifier.Static : StructMemberInheritanceModifier.None; }
+            get { return Syntax.Modifiers.ToStructMemberInheritanceModifier(); }
+            set
+            {
+                EventFieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberInheritanceModifier(value));
+            }
         }
 
         public override string Name
         {
             get { return @event.Name; }
+            set { @event.Name = value; }
+        }
+
+        public EventFieldDeclarationSyntax Syntax
+        {
+            get { return @event.Syntax; }
+            set { @event.Syntax = value; }
         }
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get { return @event.EventDefinition.AddMethod.StructVisibility(); }
+            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
+            set
+            {
+                EventFieldDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
+            }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }
