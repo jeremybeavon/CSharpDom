@@ -76,8 +76,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.ParameterParent = parent);
             parameterType = new CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
-                parent => parent.Syntax.Type.ToTypeReference(),
                 (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
+                parent => parent.Syntax.Type.ToTypeReference(),
                 null);
         }
 

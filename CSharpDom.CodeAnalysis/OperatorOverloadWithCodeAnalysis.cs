@@ -90,8 +90,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.Parameter.OperatorOverloadParent = parent);
             returnType = new CachedChildNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
-                parent => parent.Syntax.ReturnType.ToTypeReference(),
                 (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax),
+                parent => parent.Syntax.ReturnType.ToTypeReference(),
                 null);
         }
 

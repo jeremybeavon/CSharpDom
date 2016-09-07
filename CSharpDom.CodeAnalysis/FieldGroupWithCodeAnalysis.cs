@@ -67,8 +67,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.Parent = parent);
             fieldType = new CachedChildNode<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
-                null,
                 (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)),
+                null,
                 null);
         }
 

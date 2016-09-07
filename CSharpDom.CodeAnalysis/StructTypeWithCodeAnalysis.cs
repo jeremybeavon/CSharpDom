@@ -23,10 +23,10 @@ namespace CSharpDom.CodeAnalysis
             ConversionOperatorWithCodeAnalysis,
             StructNestedClassCollectionWithCodeAnalysis,
             IStructNestedDelegate,
-            IStructNestedEnum,
+            StructNestedEnumWithCodeAnalysis,
             IStructNestedInterfaceCollection,
             StructNestedStructCollectionWithCodeAnalysis,
-            IStaticConstructor>,
+            StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
         ISimpleMember
     {
@@ -41,6 +41,10 @@ namespace CSharpDom.CodeAnalysis
         private readonly SimpleStructMemberListWrapper<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax> conversionOperators;
+        private readonly StructTypeMemberListWrapper<
+            NestedEnumWithCodeAnalysis,
+            StructNestedEnumWithCodeAnalysis,
+            EnumDeclarationSyntax> enums;
         private readonly StructEventCollectionWithCodeAnalysis events;
         private readonly StructFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> genericParameters;
@@ -50,6 +54,9 @@ namespace CSharpDom.CodeAnalysis
             OperatorOverloadWithCodeAnalysis,
             OperatorDeclarationSyntax> operatorOverloads;
         private readonly StructPropertyCollectionWithCodeAnalysis properties;
+        private readonly SimpleStructMemberListWrapper<
+            StaticConstructorWithCodeAnalysis,
+            ConstructorDeclarationSyntax> staticConstructor;
         private readonly StructNestedStructCollectionWithCodeAnalysis structs;
         private readonly MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax> members;
 
@@ -67,11 +74,16 @@ namespace CSharpDom.CodeAnalysis
             constructors = new StructTypeMemberListWrapper<ConstructorWithCodeAnalysis, StructConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 parent => new StructConstructorWithCodeAnalysis(parent),
-                (child, parent) => child.Constructor.StructParent = parent);
+                (child, parent) => child.Constructor.StructParent = parent,
+                syntax => !syntax.IsStatic());
             conversionOperators = new SimpleStructMemberListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
                 parent => new ConversionOperatorWithCodeAnalysis(parent),
                 (child, parent) => child.StructParent = parent);
+            enums = new StructTypeMemberListWrapper<NestedEnumWithCodeAnalysis, StructNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
+                node,
+                parent => new StructNestedEnumWithCodeAnalysis(parent),
+                (child, parent) => child.Enum.StructParent = parent);
             events = new StructEventCollectionWithCodeAnalysis(this);
             fields = new StructFieldCollectionWithCodeAnalysis(this);
             genericParameters = new GenericParameterDeclarationListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
@@ -89,6 +101,11 @@ namespace CSharpDom.CodeAnalysis
                 parent => new OperatorOverloadWithCodeAnalysis(parent),
                 (child, parent) => child.StructParent = parent);
             properties = new StructPropertyCollectionWithCodeAnalysis(this);
+            staticConstructor = new SimpleStructMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                node,
+                parent => new StaticConstructorWithCodeAnalysis(parent),
+                (child, parent) => child.StructParent = parent,
+                syntax => syntax.IsStatic());
             structs = new StructNestedStructCollectionWithCodeAnalysis(this);
             members = new MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                 node,
@@ -96,6 +113,7 @@ namespace CSharpDom.CodeAnalysis
             {
                 { nameof(fields.Constants), () => fields.Constants.Select(item => item.Syntax) },
                 { nameof(fields.Fields), () => fields.Fields.Select(item => item.Syntax) },
+                { nameof(Enums), () => enums.Select(item => item.Syntax) },
                 { nameof(events.Events), () => events.Events.Select(item => item.Syntax) },
                 { nameof(events.EventProperties), () => events.EventProperties.Select(item => item.Syntax) },
                 { nameof(events.ExplicitInterfaceEvents), () => events.ExplicitInterfaceEvents.Select(item => item.Syntax) },
@@ -128,7 +146,13 @@ namespace CSharpDom.CodeAnalysis
             get { return conversionOperators; }
             set { members.CombineList(nameof(ConversionOperators), conversionOperators.Select(item => item.Syntax)); }
         }
-        
+
+        public override ICollection<StructNestedEnumWithCodeAnalysis> Enums
+        {
+            get { return enums; }
+            set { members.CombineList(nameof(Enums), enums.Select(item => item.Syntax)); }
+        }
+
         public override StructEventCollectionWithCodeAnalysis Events
         {
             get { return events; }
@@ -168,7 +192,7 @@ namespace CSharpDom.CodeAnalysis
                     new MemberListSyntax(nameof(indexers.ExplicitInterfaceIndexers), value.ExplicitInterfaceIndexers.Select(item => item.Syntax)));
             }
         }
-        
+
         public override StructMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
@@ -234,6 +258,11 @@ namespace CSharpDom.CodeAnalysis
             get { return constructors; }
         }
 
+        internal IChildCollection<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> EnumList
+        {
+            get { return enums; }
+        }
+
         internal IGenericParameterCollection GenericParameterList
         {
             get { return genericParameters; }
@@ -242,6 +271,11 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> OperatorOverloadList
         {
             get { return operatorOverloads; }
+        }
+
+        internal IChildCollection<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> StaticConstructorList
+        {
+            get { return staticConstructor; }
         }
 
         T ISimpleMember.Member<T>()

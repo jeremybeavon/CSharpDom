@@ -63,8 +63,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.Parameter.DelegateParent = parent);
             returnType = new CachedChildNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
-                parent => parent.Syntax.ReturnType.ToTypeReference(),
                 (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax),
+                parent => parent.Syntax.ReturnType.ToTypeReference(),
                 null);
         }
 

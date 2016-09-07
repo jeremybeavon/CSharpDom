@@ -115,8 +115,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.Parameter.MethodParent = parent);
             returnType = new CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
-                parent => parent.Syntax.ReturnType.ToTypeReference(),
                 (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax),
+                parent => parent.Syntax.ReturnType.ToTypeReference(),
                 null);
         }
 

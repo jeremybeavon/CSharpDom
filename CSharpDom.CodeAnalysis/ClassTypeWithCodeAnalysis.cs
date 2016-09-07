@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq;
-using CSharpDom.Common;
+﻿using System.Linq;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
@@ -24,13 +22,15 @@ namespace CSharpDom.CodeAnalysis
             ConversionOperatorWithCodeAnalysis,
             ClassNestedClassCollectionWithCodeAnalysis,
             ClassNestedDelegateWithCodeAnalysis,
-            IClassNestedEnum,
+            ClassNestedEnumWithCodeAnalysis,
             ClassNestedInterfaceCollectionWithCodeAnalysis,
             ClassNestedStructCollectionWithCodeAnalysis,
             DestructorWithCodeAnalysis,
-            IStaticConstructor>,
-        IHasSyntax<ClassDeclarationSyntax>
+            StaticConstructorWithCodeAnalysis>,
+        IHasSyntax<ClassDeclarationSyntax>,
+        ISimpleMember
     {
+        private readonly object @class;
         private readonly Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> node;
         private readonly AttributeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> attributes;
         private readonly ClassNestedClassCollectionWithCodeAnalysis classes;
@@ -45,6 +45,10 @@ namespace CSharpDom.CodeAnalysis
             DelegateTypeWithCodeAnalysis,
             ClassNestedDelegateWithCodeAnalysis,
             DelegateDeclarationSyntax> delegates;
+        private readonly ClassMemberListWrapper<
+            NestedEnumWithCodeAnalysis,
+            ClassNestedEnumWithCodeAnalysis,
+            EnumDeclarationSyntax> enums;
         private readonly ClassEventCollectionWithCodeAnalysis events;
         private readonly ClassFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> genericParameters;
@@ -55,12 +59,50 @@ namespace CSharpDom.CodeAnalysis
             OperatorOverloadWithCodeAnalysis,
             OperatorDeclarationSyntax> operatorOverloads;
         private readonly ClassPropertyCollectionWithCodeAnalysis properties;
+        private readonly SimpleClassMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> staticConstructor;
         private readonly ClassNestedStructCollectionWithCodeAnalysis structs;
         private readonly ClassMemberList members;
 
-        private ClassTypeWithCodeAnalysis()
+        internal ClassTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+            SetClassParent(parent, ClassType.Normal);
+        }
+
+        internal ClassTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedAbstractClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+            SetClassParent(parent, ClassType.Abstract);
+        }
+
+        internal ClassTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedSealedClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+            SetClassParent(parent, ClassType.Sealed);
+        }
+
+        internal ClassTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+            SetStaticClassParent(parent, ClassType.Normal);
+        }
+
+        internal ClassTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedAbstractClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+            SetStaticClassParent(parent, ClassType.Abstract);
+        }
+
+        internal ClassTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedSealedClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+            SetStaticClassParent(parent, ClassType.Sealed);
+        }
+
+        private ClassTypeWithCodeAnalysis(object @class)
         {
             node = new Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(this);
+            this.@class = @class;
             attributes = new AttributeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -71,7 +113,8 @@ namespace CSharpDom.CodeAnalysis
             constructors = new ClassMemberListWrapper<ConstructorWithCodeAnalysis, ClassConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 parent => new ClassConstructorWithCodeAnalysis(parent),
-                (child, parent) => child.Constructor.ClassParent = parent);
+                (child, parent) => child.Constructor.ClassParent = parent,
+                syntax => !syntax.IsStatic());
             conversionOperators = new SimpleClassMemberListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
                 parent => new ConversionOperatorWithCodeAnalysis(parent),
@@ -80,6 +123,10 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 parent => new ClassNestedDelegateWithCodeAnalysis(parent),
                 (child, parent) => child.Delegate.Delegate.ClassParent = parent);
+            enums = new ClassMemberListWrapper<NestedEnumWithCodeAnalysis, ClassNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
+                node,
+                parent => new ClassNestedEnumWithCodeAnalysis(parent),
+                (child, parent) => child.Enum.ClassParent = parent);
             events = new ClassEventCollectionWithCodeAnalysis(this);
             fields = new ClassFieldCollectionWithCodeAnalysis(this);
             genericParameters = new GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
@@ -98,15 +145,22 @@ namespace CSharpDom.CodeAnalysis
                 parent => new OperatorOverloadWithCodeAnalysis(parent),
                 (child, parent) => child.ClassParent = parent);
             properties = new ClassPropertyCollectionWithCodeAnalysis(this);
+            staticConstructor = new SimpleClassMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                node,
+                parent => new StaticConstructorWithCodeAnalysis(parent),
+                (child, parent) => child.ClassParent = parent,
+                syntax => syntax.IsStatic());
             structs = new ClassNestedStructCollectionWithCodeAnalysis(this);
             members = new ClassMemberList(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
             {
                 { nameof(fields.Constants), () => fields.Constants.Select(item => item.Syntax) },
                 { nameof(fields.Fields), () => fields.Fields.Select(item => item.Syntax) },
+                { nameof(Enums), () => enums.Select(item => item.Syntax) },
                 { nameof(Delegates), () => delegates.Select(item => item.Syntax) },
                 { nameof(events.Events), () => events.Events.Select(item => item.Syntax) },
                 { nameof(events.EventProperties), () => events.EventProperties.Select(item => item.Syntax) },
                 { nameof(events.ExplicitInterfaceEvents), () => events.ExplicitInterfaceEvents.Select(item => item.Syntax) },
+                { nameof(StaticConstructor), () => staticConstructor.Select(item => item.Syntax) },
                 { nameof(Constructors), () => constructors.Select(item => item.Syntax) },
                 { nameof(properties.Properties), () => properties.Properties.Select(item => item.Syntax) },
                 { nameof(properties.ExplicitInterfaceProperties), () => properties.ExplicitInterfaceProperties.Select(item => item.Syntax) },
@@ -142,6 +196,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return delegates; }
             set { members.CombineList(nameof(Delegates), value.Select(item => item.Syntax)); }
+        }
+
+        public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
+        {
+            get { return enums; }
+            set { members.CombineList(nameof(Enums), value.Select(item => item.Syntax)); }
         }
 
         public override ClassEventCollectionWithCodeAnalysis Events
@@ -224,6 +284,12 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        public override StaticConstructorWithCodeAnalysis StaticConstructor
+        {
+            get { return staticConstructor.GetStaticConstructor(); }
+            set { staticConstructor.SetStaticConstructor(value); }
+        }
+
         public ClassDeclarationSyntax Syntax
         {
             get { return node.Syntax; }
@@ -264,6 +330,11 @@ namespace CSharpDom.CodeAnalysis
             get { return delegates; }
         }
 
+        internal IChildCollection<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> EnumList
+        {
+            get { return enums; }
+        }
+
         internal IGenericParameterCollection GenericParameterList
         {
             get { return genericParameters; }
@@ -272,6 +343,82 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> OperatorOverloadList
         {
             get { return operatorOverloads; }
+        }
+
+        internal IChildCollection<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> StaticConstructorList
+        {
+            get { return staticConstructor; }
+        }
+        
+        internal void SetClassParent(ClassTypeWithCodeAnalysis value, ClassType classType)
+        {
+            switch (classType)
+            {
+                case ClassType.Normal:
+                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                        value,
+                        parent => parent.Classes.ClassList);
+                    break;
+                case ClassType.Abstract:
+                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                        value,
+                        parent => parent.Classes.AbstractClassList);
+                    break;
+                case ClassType.Sealed:
+                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                        value,
+                        parent => parent.Classes.SealedClassList);
+                    break;
+            }
+        }
+
+        internal void SetStaticClassParent(StaticTypeWithCodeAnalysis value, ClassType classType)
+        {
+            //switch (classType)
+            //{
+            //    case ClassType.Normal:
+            //        node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+            //            value,
+            //            parent => parent.Classes.ClassList);
+            //        break;
+            //    case ClassType.Abstract:
+            //        node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+            //            value,
+            //            parent => parent.Classes.AbstractClassList);
+            //        break;
+            //    case ClassType.Sealed:
+            //        node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+            //            value,
+            //            parent => parent.Classes.SealedClassList);
+            //        break;
+            //}
+        }
+
+        internal void SetStructParent(StructTypeWithCodeAnalysis value, ClassType classType)
+        {
+            //switch (classType)
+            //{
+            //    case ClassType.Normal:
+            //        node.SetParentNode<StructTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+            //            value,
+            //            parent => parent.Classes.ClassList);
+            //        break;
+            //    case ClassType.Abstract:
+            //        node.SetParentNode<StructTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+            //            value,
+            //            parent => parent.Classes.AbstractClassList);
+            //        break;
+            //    case ClassType.Sealed:
+            //        node.SetParentNode<StructTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+            //            value,
+            //            parent => parent.Classes.SealedClassList);
+            //        break;
+            //}
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            return (T)@class;
         }
     }
 }

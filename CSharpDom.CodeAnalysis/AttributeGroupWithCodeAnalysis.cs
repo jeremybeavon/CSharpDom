@@ -116,6 +116,12 @@ namespace CSharpDom.CodeAnalysis
             NestedEnumMemberParent = parent;
         }
 
+        internal AttributeGroupWithCodeAnalysis(NestedEnumWithCodeAnalysis parent)
+            : this()
+        {
+            NestedEnumParent = parent;
+        }
+
         internal AttributeGroupWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
             : this()
         {
@@ -138,6 +144,12 @@ namespace CSharpDom.CodeAnalysis
             : this()
         {
             PropertyParent = parent;
+        }
+
+        internal AttributeGroupWithCodeAnalysis(StaticConstructorWithCodeAnalysis parent)
+            : this()
+        {
+            StaticConstructorParent = parent;
         }
 
         internal AttributeGroupWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
@@ -301,6 +313,12 @@ namespace CSharpDom.CodeAnalysis
             set { node.SetParentNode<NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(value, parent => parent.AttributeList); }
         }
 
+        internal NestedEnumWithCodeAnalysis NestedEnumParent
+        {
+            get { return node.GetParentNode<NestedEnumWithCodeAnalysis>(); }
+            set { node.SetParentNode<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
         internal OperatorOverloadWithCodeAnalysis OperatorOverloadParent
         {
             get { return node.GetParentNode<OperatorOverloadWithCodeAnalysis>(); }
@@ -323,6 +341,17 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
             set { node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(value, parent => parent.AttributeList); }
+        }
+
+        internal StaticConstructorWithCodeAnalysis StaticConstructorParent
+        {
+            get { return node.GetParentNode<StaticConstructorWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                    value,
+                    parent => parent.AttributeList);
+            }
         }
 
         internal StructTypeWithCodeAnalysis StructParent

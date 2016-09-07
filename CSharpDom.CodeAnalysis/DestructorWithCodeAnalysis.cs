@@ -8,16 +8,13 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class DestructorWithCodeAnalysis :
         EditableDestructor<AttributeGroupWithCodeAnalysis, IClass, MethodBodyWithCodeAnalysis>,
-        IHasSyntax<DestructorDeclarationSyntax>//,
+        IHasSyntax<DestructorDeclarationSyntax>,
+        INestedDestructor//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly Node<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> node;
         private readonly AttributeListWrapper<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> attributes;
-        private readonly CachedChildNode<
-            DestructorWithCodeAnalysis,
-            DestructorDeclarationSyntax,
-            MethodBodyWithCodeAnalysis,
-            BlockSyntax> body;
+        private readonly MethodBodyNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> body;
         
         internal DestructorWithCodeAnalysis(IClass declaringType)
         {
@@ -29,10 +26,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.DestructorParent = parent);
-            body = new CachedChildNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax, MethodBodyWithCodeAnalysis, BlockSyntax>(
+            body = new MethodBodyNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
                 node,
-                parent => new MethodBodyWithCodeAnalysis(parent),
                 (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
+                parent => new MethodBodyWithCodeAnalysis(parent),
                 (child, parent) => child.DestructorParent = parent);
         }
 

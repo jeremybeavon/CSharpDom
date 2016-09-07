@@ -87,8 +87,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.EventPropertyAddAccessorParent = parent);
             addBody = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, MethodBodyWithCodeAnalysis, BlockSyntax>(
                 node,
-                parent => new MethodBodyWithCodeAnalysis(parent, EventPropertyBodyType.AddAccessor),
                 (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax, SyntaxKind.AddKeyword),
+                parent => new MethodBodyWithCodeAnalysis(parent, EventPropertyBodyType.AddAccessor),
                 (child, parent) => child.EventPropertyAddAccessorParent = parent);
             attributes = new AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 node,
@@ -98,8 +98,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.EventPropertyParent = parent);
             eventType = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, DelegateReferenceWithCodeAnalysis, NameSyntax>(
                 node,
-                parent => new DelegateReferenceWithCodeAnalysis(parent),
                 (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
+                parent => new DelegateReferenceWithCodeAnalysis(parent),
                 (child, parent) => child.TypeReference.EventPropertyParent = parent);
             removeAttributes = new AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 node,
@@ -109,8 +109,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.EventPropertyRemoveAccessorParent = parent);
             removeBody = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, MethodBodyWithCodeAnalysis, BlockSyntax>(
                 node,
-                parent => new MethodBodyWithCodeAnalysis(parent, EventPropertyBodyType.RemoveAccessor),
                 (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax, SyntaxKind.RemoveKeyword),
+                parent => new MethodBodyWithCodeAnalysis(parent, EventPropertyBodyType.RemoveAccessor),
                 (child, parent) => child.EventPropertyRemoveAccessorParent = parent);
         }
 

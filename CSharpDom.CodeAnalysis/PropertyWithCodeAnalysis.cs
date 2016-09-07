@@ -100,8 +100,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.PropertyParent = parent);
             propertyType = new CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
-                parent => parent.Syntax.Type.ToTypeReference(),
                 (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
+                parent => parent.Syntax.Type.ToTypeReference(),
                 null);
             getAccessor = GetAccessorNode(SyntaxKind.GetKeyword);
             setAccessor = GetAccessorNode(SyntaxKind.SetKeyword);
@@ -236,8 +236,8 @@ namespace CSharpDom.CodeAnalysis
         {
             return new CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
                 node,
-                parent => GetAccessorDeclaration(parent.Syntax, kind) == null ? null : new AccessorWithCodeAnalysis(this, kind),
                 (parentSyntax, childSyntax) => CreateAccessor(kind)(parentSyntax, childSyntax),
+                parent => GetAccessorDeclaration(parent.Syntax, kind) == null ? null : new AccessorWithCodeAnalysis(this, kind),
                 (child, parent) => child.PropertyParent = parent);
         }
         

@@ -60,13 +60,13 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => { });
             parameter = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
-                parent => new OperatorParameterWithCodeAnalysis(parent),
                 WithParameter,
+                parent => new OperatorParameterWithCodeAnalysis(parent),
                 (child, parent) => child.Parameter.ConversionOperatorParent = parent);
             returnType = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
-                parent => parent.Syntax.Type.ToTypeReference(),
                 (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
+                parent => parent.Syntax.Type.ToTypeReference(),
                 (child, parent) => { });
         }
 

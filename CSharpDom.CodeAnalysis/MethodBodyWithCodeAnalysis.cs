@@ -36,6 +36,12 @@ namespace CSharpDom.CodeAnalysis
             DestructorParent = parent;
         }
 
+        internal MethodBodyWithCodeAnalysis(StaticConstructorWithCodeAnalysis parent)
+            : this()
+        {
+            StaticConstructorParent = parent;
+        }
+
         private MethodBodyWithCodeAnalysis()
         {
             node = new Node<MethodBodyWithCodeAnalysis, BlockSyntax>(this);
@@ -80,6 +86,18 @@ namespace CSharpDom.CodeAnalysis
                     value,
                     syntax => syntax.GetAccessor(SyntaxKind.RemoveKeyword).Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax, SyntaxKind.RemoveKeyword));
+            }
+        }
+
+        internal StaticConstructorWithCodeAnalysis StaticConstructorParent
+        {
+            get { return node.GetParentNode<StaticConstructorWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                    value,
+                    syntax => syntax.Body,
+                    (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
             }
         }
     }

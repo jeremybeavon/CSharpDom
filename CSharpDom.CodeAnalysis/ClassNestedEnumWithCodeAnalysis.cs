@@ -1,52 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassNestedEnumWithCodeAnalysis :
-        AbstractClassNestedEnum<
+        EditableClassNestedEnum<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
-            NestedEnumMemberWithCodeAnalysis>
+            IClassType,
+            NestedEnumMemberWithCodeAnalysis>,
+        IHasSyntax<EnumDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly NestedEnumWithCodeAnalysis nestedEnum;
 
-        internal ClassNestedEnumWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, TypeDefinition type)
+        internal ClassNestedEnumWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            nestedEnum = new NestedEnumWithCodeAnalysis(declaringType, type);
+            nestedEnum = new NestedEnumWithCodeAnalysis(parent, this);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        private ClassNestedEnumWithCodeAnalysis()
+        {
+            internalId = Guid.NewGuid();
+        }
+
+        public NestedEnumWithCodeAnalysis Enum
+        {
+            get { return nestedEnum; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return nestedEnum.Attributes; }
+            set { nestedEnum.Attributes = value; }
         }
 
         public override EnumBaseType BaseType
         {
             get { return nestedEnum.BaseType; }
+            set { nestedEnum.BaseType = value; }
         }
-
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return nestedEnum.DeclaringType; }
-        }
-
-        public override IReadOnlyList<NestedEnumMemberWithCodeAnalysis> EnumMembers
+        
+        public override IList<NestedEnumMemberWithCodeAnalysis> EnumMembers
         {
             get { return nestedEnum.EnumMembers; }
+            set { nestedEnum.EnumMembers = value; }
         }
 
         public override string Name
         {
             get { return nestedEnum.Name; }
+            set { nestedEnum.Name = value; }
+        }
+
+        public EnumDeclarationSyntax Syntax
+        {
+            get { return nestedEnum.Syntax; }
+            set { nestedEnum.Syntax = value; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedEnum.TypeDefinition.ClassMemberVisibility(); }
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                EnumDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

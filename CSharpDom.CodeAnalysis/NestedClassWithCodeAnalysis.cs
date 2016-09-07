@@ -6,10 +6,10 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class ClassNestedClassWithCodeAnalysis :
-        EditableClassNestedClass<
+    public sealed class NestedClassWithCodeAnalysis :
+        EditableNestedClass<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IType,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
@@ -28,24 +28,21 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedStructCollectionWithCodeAnalysis,
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
-        IHasSyntax<ClassDeclarationSyntax>,
-        IHasId
+        IHasSyntax<ClassDeclarationSyntax>
     {
-        private readonly Guid internalId;
-        private readonly NestedClassWithCodeAnalysis classType;
+        private readonly ClassTypeWithCodeAnalysis classType;
 
-        internal ClassNestedClassWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal NestedClassWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedClassWithCodeAnalysis @class)
         {
-            classType = new NestedClassWithCodeAnalysis(parent, this);
+            classType = new ClassTypeWithCodeAnalysis(parent, @class);
         }
 
-        private ClassNestedClassWithCodeAnalysis()
+        internal NestedClassWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedClassWithCodeAnalysis @class)
         {
-            internalId = Guid.NewGuid();
+            classType = new ClassTypeWithCodeAnalysis(parent, @class);
         }
 
-        public NestedClassWithCodeAnalysis Class
+        public ClassTypeWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -174,21 +171,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
-        }
-
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
         }
     }
 }

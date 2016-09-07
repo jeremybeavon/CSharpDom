@@ -21,12 +21,12 @@ namespace CSharpDom.CodeAnalysis
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
             ConversionOperatorWithCodeAnalysis,
-            IClassNestedClassCollection,
-            IClassNestedDelegate,
-            IClassNestedEnum,
+            ClassNestedClassCollectionWithCodeAnalysis,
+            ClassNestedDelegateWithCodeAnalysis,
+            ClassNestedEnumWithCodeAnalysis,
             ClassNestedInterfaceCollectionWithCodeAnalysis,
-            IClassNestedStructCollection,
-            IStaticConstructor>,
+            ClassNestedStructCollectionWithCodeAnalysis,
+            StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
@@ -35,6 +35,16 @@ namespace CSharpDom.CodeAnalysis
         private readonly SealedClassIndexerCollectionWithCodeAnalysis indexers;
         private readonly SealedClassMethodCollectionWithCodeAnalysis methods;
         private readonly SealedClassPropertyCollectionWithCodeAnalysis properties;
+
+        internal SealedTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedSealedClassWithCodeAnalysis @class)
+            : this(new ClassTypeWithCodeAnalysis(parent, @class))
+        {
+        }
+
+        internal SealedTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedSealedClassWithCodeAnalysis @class)
+            : this(new ClassTypeWithCodeAnalysis(parent, @class))
+        {
+        }
 
         private SealedTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
@@ -59,7 +69,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.BaseClass = value; }
         }
 
-        public override IClassNestedClassCollection Classes
+        public override ClassNestedClassCollectionWithCodeAnalysis Classes
         {
             get { return classType.Classes; }
             set { classType.Classes = value; }
@@ -77,13 +87,13 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ConversionOperators = value; }
         }
 
-        public override ICollection<IClassNestedDelegate> Delegates
+        public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return classType.Delegates; }
             set { classType.Delegates = value; }
         }
 
-        public override ICollection<IClassNestedEnum> Enums
+        public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
         {
             get { return classType.Enums; }
             set { classType.Enums = value; }
@@ -170,13 +180,13 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override IStaticConstructor StaticConstructor
+        public override StaticConstructorWithCodeAnalysis StaticConstructor
         {
             get { return classType.StaticConstructor; }
             set { classType.StaticConstructor = value; }
         }
 
-        public override IClassNestedStructCollection Structs
+        public override ClassNestedStructCollectionWithCodeAnalysis Structs
         {
             get { return classType.Structs; }
             set { classType.Structs = value; }

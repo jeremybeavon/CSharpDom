@@ -5,7 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> :
-        AbstractDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>
+        AbstractDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>,
         INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType

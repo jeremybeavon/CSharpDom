@@ -42,8 +42,8 @@ namespace CSharpDom.CodeAnalysis
             internalId = Guid.NewGuid();
             explicitInterface = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 @event.Node,
-                parent => new InterfaceReferenceWithCodeAnalysis(parent),
                 (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
+                parent => new InterfaceReferenceWithCodeAnalysis(parent),
                 (child, parent) => child.TypeReference.ExplicitInterfaceEventParent = parent);
         }
 

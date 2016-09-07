@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class ClassNestedClassWithCodeAnalysis :
-        EditableClassNestedClass<
+    public sealed class NestedAbstractClassWithCodeAnalysis :
+        EditableNestedAbstractClass<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IType,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            ClassEventCollectionWithCodeAnalysis,
-            ClassPropertyCollectionWithCodeAnalysis,
-            ClassIndexerCollectionWithCodeAnalysis,
-            ClassMethodCollectionWithCodeAnalysis,
+            AbstractClassEventCollectionWithCodeAnalysis,
+            AbstractClassPropertyCollectionWithCodeAnalysis,
+            AbstractClassIndexerCollectionWithCodeAnalysis,
+            AbstractClassMethodCollectionWithCodeAnalysis,
             ClassFieldCollectionWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
@@ -28,24 +27,21 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedStructCollectionWithCodeAnalysis,
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
-        IHasSyntax<ClassDeclarationSyntax>,
-        IHasId
+        IHasSyntax<ClassDeclarationSyntax>
     {
-        private readonly Guid internalId;
-        private readonly NestedClassWithCodeAnalysis classType;
+        private readonly AbstractTypeWithCodeAnalysis classType;
 
-        internal ClassNestedClassWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal NestedAbstractClassWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedAbstractClassWithCodeAnalysis @class)
         {
-            classType = new NestedClassWithCodeAnalysis(parent, this);
+            classType = new AbstractTypeWithCodeAnalysis(parent, @class);
         }
 
-        private ClassNestedClassWithCodeAnalysis()
+        internal NestedAbstractClassWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedAbstractClassWithCodeAnalysis @class)
         {
-            internalId = Guid.NewGuid();
+            classType = new AbstractTypeWithCodeAnalysis(parent, @class);
         }
 
-        public NestedClassWithCodeAnalysis Class
+        public AbstractTypeWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -85,20 +81,14 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Delegates; }
             set { classType.Delegates = value; }
         }
-
-        public override DestructorWithCodeAnalysis Destructor
-        {
-            get { return classType.Destructor; }
-            set { classType.Destructor = value; }
-        }
-
+        
         public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
         {
             get { return classType.Enums; }
             set { classType.Enums = value; }
         }
 
-        public override ClassEventCollectionWithCodeAnalysis Events
+        public override AbstractClassEventCollectionWithCodeAnalysis Events
         {
             get { return classType.Events; }
             set { classType.Events = value; }
@@ -122,7 +112,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ImplementedInterfaces = value; }
         }
 
-        public override ClassIndexerCollectionWithCodeAnalysis Indexers
+        public override AbstractClassIndexerCollectionWithCodeAnalysis Indexers
         {
             get { return classType.Indexers; }
             set { classType.Indexers = value; }
@@ -134,7 +124,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Interfaces = value; }
         }
 
-        public override ClassMethodCollectionWithCodeAnalysis Methods
+        public override AbstractClassMethodCollectionWithCodeAnalysis Methods
         {
             get { return classType.Methods; }
             set { classType.Methods = value; }
@@ -152,7 +142,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.OperatorOverloads = value; }
         }
 
-        public override ClassPropertyCollectionWithCodeAnalysis Properties
+        public override AbstractClassPropertyCollectionWithCodeAnalysis Properties
         {
             get { return classType.Properties; }
             set { classType.Properties = value; }
@@ -174,21 +164,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
-        }
-
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
         }
     }
 }
