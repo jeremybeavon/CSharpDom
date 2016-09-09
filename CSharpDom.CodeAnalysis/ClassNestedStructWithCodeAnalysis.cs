@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassNestedStructWithCodeAnalysis :
-        AbstractClassNestedStruct<
+        EditableClassNestedStruct<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IClassType,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             StructEventCollectionWithCodeAnalysis,
@@ -25,113 +25,158 @@ namespace CSharpDom.CodeAnalysis
             StructNestedEnumWithCodeAnalysis,
             StructNestedInterfaceCollectionWithCodeAnalysis,
             StructNestedStructCollectionWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>
+            StaticConstructorWithCodeAnalysis>,
+        IHasSyntax<StructDeclarationSyntax>,
+        IHasId
     {
+        private readonly Guid internalId;
         private readonly NestedStructWithCodeAnalysis nestedStruct;
 
-        internal ClassNestedStructWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, TypeDefinition type)
+        internal ClassNestedStructWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+            : this()
         {
-            nestedStruct = new NestedStructWithCodeAnalysis(declaringType, type);
+            nestedStruct = new NestedStructWithCodeAnalysis(parent, this);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        private ClassNestedStructWithCodeAnalysis()
         {
-            get { return nestedStruct.Attributes; }
+            internalId = Guid.NewGuid();
+        }
+
+        private readonly StructTypeWithCodeAnalysis structType;
+
+        public StructTypeWithCodeAnalysis Struct
+        {
+            get { return structType; }
+        }
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
+        {
+            get { return structType.Attributes; }
+            set { structType.Attributes = value; }
         }
 
         public override StructNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return nestedStruct.Classes; }
+            get { return structType.Classes; }
+            set { structType.Classes = value; }
         }
 
-        public override IReadOnlyCollection<StructConstructorWithCodeAnalysis> Constructors
+        public override ICollection<StructConstructorWithCodeAnalysis> Constructors
         {
-            get { return nestedStruct.Constructors; }
+            get { return structType.Constructors; }
+            set { structType.Constructors = value; }
         }
 
-        public override IReadOnlyCollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
+        public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
         {
-            get { return nestedStruct.ConversionOperators; }
+            get { return structType.ConversionOperators; }
+            set { structType.ConversionOperators = value; }
         }
 
-        public override ITypeWithCodeAnalysis DeclaringType
+        public override ICollection<StructNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return nestedStruct.DeclaringType; }
+            get { return structType.Delegates; }
+            set { structType.Delegates = value; }
         }
 
-        public override IReadOnlyCollection<StructNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<StructNestedEnumWithCodeAnalysis> Enums
         {
-            get { return nestedStruct.Delegates; }
+            get { return structType.Enums; }
+            set { structType.Enums = value; }
         }
 
-        public override IReadOnlyCollection<StructNestedEnumWithCodeAnalysis> Enums
-        {
-            get { return nestedStruct.Enums; }
-        }
-        
         public override StructEventCollectionWithCodeAnalysis Events
         {
-            get { return nestedStruct.Events; }
+            get { return structType.Events; }
+            set { structType.Events = value; }
         }
-        
+
         public override StructFieldCollectionWithCodeAnalysis Fields
         {
-            get { return nestedStruct.Fields; }
+            get { return structType.Fields; }
+            set { structType.Fields = value; }
         }
 
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
-            get { return nestedStruct.GenericParameters; }
+            get { return structType.GenericParameters; }
+            set { structType.GenericParameters = value; }
         }
 
-        public override IReadOnlyCollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
         {
-            get { return nestedStruct.ImplementedInterfaces; }
+            get { return structType.ImplementedInterfaces; }
+            set { structType.ImplementedInterfaces = value; }
         }
 
         public override StructIndexerCollectionWithCodeAnalysis Indexers
         {
-            get { return nestedStruct.Indexers; }
+            get { return structType.Indexers; }
+            set { structType.Indexers = value; }
         }
 
         public override StructNestedInterfaceCollectionWithCodeAnalysis Interfaces
         {
-            get { return nestedStruct.Interfaces; }
+            get { return structType.Interfaces; }
+            set { structType.Interfaces = value; }
         }
-        
+
         public override StructMethodCollectionWithCodeAnalysis Methods
         {
-            get { return nestedStruct.Methods; }
+            get { return structType.Methods; }
+            set { structType.Methods = value; }
         }
 
         public override string Name
         {
-            get { return nestedStruct.Name; }
+            get { return structType.Name; }
+            set { structType.Name = value; }
         }
 
-        public override IReadOnlyCollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
+        public override ICollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
-            get { return nestedStruct.OperatorOverloads; }
+            get { return structType.OperatorOverloads; }
+            set { structType.OperatorOverloads = value; }
         }
 
         public override StructPropertyCollectionWithCodeAnalysis Properties
         {
-            get { return nestedStruct.Properties; }
+            get { return structType.Properties; }
+            set { structType.Properties = value; }
         }
 
         public override StaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return nestedStruct.StaticConstructor; }
+            get { return structType.StaticConstructor; }
+            set { structType.StaticConstructor = value; }
         }
 
         public override StructNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return nestedStruct.Structs; }
+            get { return structType.Structs; }
+            set { structType.Structs = value; }
+        }
+
+        public StructDeclarationSyntax Syntax
+        {
+            get { return structType.Syntax; }
+            set { structType.Syntax = value; }
         }
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return nestedStruct.TypeDefinition.ClassMemberVisibility(); }
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                StructDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
     }
 }

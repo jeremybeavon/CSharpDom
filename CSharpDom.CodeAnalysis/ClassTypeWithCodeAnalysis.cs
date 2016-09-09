@@ -99,6 +99,24 @@ namespace CSharpDom.CodeAnalysis
             SetStaticClassParent(parent, ClassType.Sealed);
         }
 
+        internal ClassTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+            SetStructParent(parent, ClassType.Normal);
+        }
+
+        internal ClassTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedAbstractClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+            SetStructParent(parent, ClassType.Abstract);
+        }
+
+        internal ClassTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedSealedClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+            SetStructParent(parent, ClassType.Sealed);
+        }
+
         private ClassTypeWithCodeAnalysis(object @class)
         {
             node = new Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(this);

@@ -5,10 +5,10 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class ClassNestedStaticClassWithCodeAnalysis :
-        EditableClassNestedStaticClass<
+    public sealed class NestedStaticClassWithCodeAnalysis :
+        EditableNestedStaticClass<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IType,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
             StaticClassPropertyWithCodeAnalysis,
@@ -22,16 +22,21 @@ namespace CSharpDom.CodeAnalysis
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
-        private readonly NestedStaticClassWithCodeAnalysis classType;
+        private readonly StaticTypeWithCodeAnalysis classType;
 
-        internal ClassNestedStaticClassWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+        internal NestedStaticClassWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedStaticClassWithCodeAnalysis @class)
         {
-            classType = new NestedStaticClassWithCodeAnalysis(parent, this);
+            classType = new StaticTypeWithCodeAnalysis(parent, @class);
         }
 
-        public NestedStaticClassWithCodeAnalysis Class
+        internal NestedStaticClassWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedStaticClassWithCodeAnalysis @class)
         {
-            get { return classType; }
+            classType = new StaticTypeWithCodeAnalysis(parent, @class);
+        }
+
+        internal NestedStaticClassWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedStaticClassWithCodeAnalysis @class)
+        {
+            classType = new StaticTypeWithCodeAnalysis(parent, @class);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -45,13 +50,13 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Classes; }
             set { classType.Classes = value; }
         }
-
+        
         public override ICollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return classType.Delegates; }
             set { classType.Delegates = value; }
         }
-
+        
         public override ICollection<StaticClassNestedEnumWithCodeAnalysis> Enums
         {
             get { return classType.Enums; }
@@ -75,7 +80,7 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.GenericParameters; }
             set { classType.GenericParameters = value; }
         }
-
+        
         public override StaticClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
         {
             get { return classType.Interfaces; }
@@ -84,8 +89,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override NestedStaticClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return classType.Methods; }
-            set { classType.Methods = value; }
+            get { return new NestedStaticClassMethodCollectionWithCodeAnalysis(classType.Methods); }
+            set { classType.Methods.Methods = value.Methods; }
         }
 
         public override string Name
@@ -93,7 +98,7 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Name; }
             set { classType.Name = value; }
         }
-
+        
         public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
         {
             get { return classType.Properties; }
@@ -116,6 +121,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
+        }
+
+        internal StaticTypeWithCodeAnalysis Class
+        {
+            get { return classType; }
         }
     }
 }

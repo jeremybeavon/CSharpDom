@@ -22,6 +22,16 @@ namespace CSharpDom.CodeAnalysis
             type = new DelegateTypeWithCodeAnalysis(parent, @delegate);
         }
 
+        internal NestedDelegateWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedDelegateWithCodeAnalysis @delegate)
+        {
+            type = new DelegateTypeWithCodeAnalysis(parent, @delegate);
+        }
+
+        internal NestedDelegateWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedDelegateWithCodeAnalysis @delegate)
+        {
+            type = new DelegateTypeWithCodeAnalysis(parent, @delegate);
+        }
+
         public DelegateTypeWithCodeAnalysis Delegate
         {
             get { return type; }

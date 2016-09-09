@@ -1,29 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
+using CSharpDom.Editable;
 using CSharpDom.NotSupported.Partial;
-using CSharpDom.CodeAnalysis.Internal;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructNestedInterfaceCollectionWithCodeAnalysis :
-        AbstractStructNestedInterfaceCollection<StructNestedInterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
+        EditableStructNestedInterfaceCollection<StructNestedInterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
     {
-        private readonly StructTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly StructTypeWithCodeAnalysis classType;
+        private readonly StructTypeMemberListWrapper<
+            InterfaceTypeWithCodeAnalysis,
+            StructNestedInterfaceWithCodeAnalysis,
+            InterfaceDeclarationSyntax> interfaces;
 
-        internal StructNestedInterfaceCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal StructNestedInterfaceCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis classType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.classType = classType;
+            interfaces = new StructTypeMemberListWrapper<InterfaceTypeWithCodeAnalysis, StructNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                classType.Node,
+                parent => new StructNestedInterfaceWithCodeAnalysis(parent),
+                (child, parent) => child.Interface.Interface.StructParent = parent);
         }
 
-        public override IReadOnlyCollection<PartialInterfaceNotSupported> PartialInterfaces
+        public override ICollection<StructNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return new PartialInterfaceNotSupported[0]; }
+            get { return interfaces; }
+            set { classType.Members.CombineList(nameof(Interfaces), interfaces.Select(item => item.Syntax)); }
         }
 
-        protected override IReadOnlyCollection<StructNestedInterfaceWithCodeAnalysis> Interfaces
+        internal IChildCollection<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> InterfaceList
         {
-            get { return typeWithCodeAnalysis.NestedTypeCollection.NestedTypes.NestedInterfaces; }
+            get { return interfaces; }
         }
     }
 }

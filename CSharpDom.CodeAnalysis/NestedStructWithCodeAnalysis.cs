@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class StaticClassNestedStructWithCodeAnalysis :
-        EditableStaticClassNestedStruct<
+    public sealed class NestedStructWithCodeAnalysis :
+        EditableNestedStruct<
             AttributeGroupWithCodeAnalysis,
-            IStaticType,
+            IType,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             StructEventCollectionWithCodeAnalysis,
@@ -26,24 +26,24 @@ namespace CSharpDom.CodeAnalysis
             StructNestedInterfaceCollectionWithCodeAnalysis,
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
-        IHasSyntax<StructDeclarationSyntax>,
-        IHasId
+        IHasSyntax<StructDeclarationSyntax>
     {
-        private readonly Guid internalId;
-        private readonly NestedStructWithCodeAnalysis nestedStruct;
-
-        internal StaticClassNestedStructWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
-            : this()
-        {
-            nestedStruct = new NestedStructWithCodeAnalysis(parent, this);
-        }
-
-        private StaticClassNestedStructWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
         private readonly StructTypeWithCodeAnalysis structType;
+
+        internal NestedStructWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedStructWithCodeAnalysis @struct)
+        {
+            structType = new StructTypeWithCodeAnalysis(parent, @struct);
+        }
+
+        internal NestedStructWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedStructWithCodeAnalysis @struct)
+        {
+            structType = new StructTypeWithCodeAnalysis(parent, @struct);
+        }
+
+        internal NestedStructWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedStructWithCodeAnalysis @struct)
+        {
+            structType = new StructTypeWithCodeAnalysis(parent, @struct);
+        }
 
         public StructTypeWithCodeAnalysis Struct
         {
@@ -55,7 +55,7 @@ namespace CSharpDom.CodeAnalysis
             get { return structType.Attributes; }
             set { structType.Attributes = value; }
         }
-
+        
         public override StructNestedClassCollectionWithCodeAnalysis Classes
         {
             get { return structType.Classes; }
@@ -79,7 +79,7 @@ namespace CSharpDom.CodeAnalysis
             get { return structType.Delegates; }
             set { structType.Delegates = value; }
         }
-
+        
         public override ICollection<StructNestedEnumWithCodeAnalysis> Enums
         {
             get { return structType.Enums; }
@@ -162,21 +162,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return structType.Syntax; }
             set { structType.Syntax = value; }
-        }
-
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                StructDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
         }
     }
 }

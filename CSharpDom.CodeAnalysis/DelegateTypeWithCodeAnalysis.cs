@@ -37,6 +37,18 @@ namespace CSharpDom.CodeAnalysis
             ClassParent = parent;
         }
 
+        internal DelegateTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedDelegateWithCodeAnalysis @delegate)
+            : this(@delegate)
+        {
+            StaticClassParent = parent;
+        }
+
+        internal DelegateTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedDelegateWithCodeAnalysis @delegate)
+            : this(@delegate)
+        {
+            StructParent = parent;
+        }
+
         private DelegateTypeWithCodeAnalysis(object @delegate)
         {
             node = new Node<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(this);
@@ -125,6 +137,28 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.DelegateList);
+            }
+        }
+
+        internal StaticTypeWithCodeAnalysis StaticClassParent
+        {
+            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.DelegateList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                     value,
                     parent => parent.DelegateList);
             }

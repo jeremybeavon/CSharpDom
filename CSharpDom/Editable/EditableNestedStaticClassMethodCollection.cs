@@ -14,7 +14,7 @@ namespace CSharpDom.Editable
             get { return Methods.Count; }
         }
 
-        protected virtual ICollection<TMethod> Methods { get; set; }
+        public virtual ICollection<TMethod> Methods { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

@@ -22,9 +22,9 @@ namespace CSharpDom.CodeAnalysis
             OperatorOverloadWithCodeAnalysis,
             ConversionOperatorWithCodeAnalysis,
             StructNestedClassCollectionWithCodeAnalysis,
-            IStructNestedDelegate,
+            StructNestedDelegateWithCodeAnalysis,
             StructNestedEnumWithCodeAnalysis,
-            IStructNestedInterfaceCollection,
+            StructNestedInterfaceCollectionWithCodeAnalysis,
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
@@ -42,6 +42,10 @@ namespace CSharpDom.CodeAnalysis
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax> conversionOperators;
         private readonly StructTypeMemberListWrapper<
+            DelegateTypeWithCodeAnalysis,
+            StructNestedDelegateWithCodeAnalysis,
+            DelegateDeclarationSyntax> delegates;
+        private readonly StructTypeMemberListWrapper<
             NestedEnumWithCodeAnalysis,
             StructNestedEnumWithCodeAnalysis,
             EnumDeclarationSyntax> enums;
@@ -49,6 +53,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly StructFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> genericParameters;
         private readonly StructIndexerCollectionWithCodeAnalysis indexers;
+        private readonly StructNestedInterfaceCollectionWithCodeAnalysis interfaces;
         private readonly StructMethodCollectionWithCodeAnalysis methods;
         private readonly SimpleStructMemberListWrapper<
             OperatorOverloadWithCodeAnalysis,
@@ -59,6 +64,24 @@ namespace CSharpDom.CodeAnalysis
             ConstructorDeclarationSyntax> staticConstructor;
         private readonly StructNestedStructCollectionWithCodeAnalysis structs;
         private readonly MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax> members;
+
+        internal StructTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedStructWithCodeAnalysis @struct)
+            : this(@struct)
+        {
+
+        }
+
+        internal StructTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedStructWithCodeAnalysis @struct)
+            : this(@struct)
+        {
+
+        }
+
+        internal StructTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedStructWithCodeAnalysis @struct)
+            : this(@struct)
+        {
+
+        }
 
         private StructTypeWithCodeAnalysis(object @struct)
         {
@@ -80,6 +103,10 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 parent => new ConversionOperatorWithCodeAnalysis(parent),
                 (child, parent) => child.StructParent = parent);
+            delegates = new StructTypeMemberListWrapper<DelegateTypeWithCodeAnalysis, StructNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
+                node,
+                parent => new StructNestedDelegateWithCodeAnalysis(parent),
+                (child, parent) => child.Delegate.Delegate.StructParent = parent);
             enums = new StructTypeMemberListWrapper<NestedEnumWithCodeAnalysis, StructNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
                 parent => new StructNestedEnumWithCodeAnalysis(parent),
@@ -95,6 +122,7 @@ namespace CSharpDom.CodeAnalysis
                 parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
                 (child, parent) => child.StructParent = parent);
             indexers = new StructIndexerCollectionWithCodeAnalysis(this);
+            interfaces = new StructNestedInterfaceCollectionWithCodeAnalysis(this);
             methods = new StructMethodCollectionWithCodeAnalysis(this);
             operatorOverloads = new SimpleStructMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
@@ -147,6 +175,12 @@ namespace CSharpDom.CodeAnalysis
             set { members.CombineList(nameof(ConversionOperators), conversionOperators.Select(item => item.Syntax)); }
         }
 
+        public override ICollection<StructNestedDelegateWithCodeAnalysis> Delegates
+        {
+            get { return delegates; }
+            set { members.CombineList(nameof(Delegates), delegates.Select(item => item.Syntax)); }
+        }
+
         public override ICollection<StructNestedEnumWithCodeAnalysis> Enums
         {
             get { return enums; }
@@ -191,6 +225,12 @@ namespace CSharpDom.CodeAnalysis
                     new MemberListSyntax(nameof(indexers.Indexers), value.Indexers.Select(item => item.Syntax)),
                     new MemberListSyntax(nameof(indexers.ExplicitInterfaceIndexers), value.ExplicitInterfaceIndexers.Select(item => item.Syntax)));
             }
+        }
+
+        public override StructNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        {
+            get { return interfaces; }
+            set { members.CombineList(nameof(interfaces.Interfaces), value.Interfaces.Select(item => item.Syntax)); }
         }
 
         public override StructMethodCollectionWithCodeAnalysis Methods
@@ -256,6 +296,11 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> ConstructorList
         {
             get { return constructors; }
+        }
+
+        internal IChildCollection<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> DelegateList
+        {
+            get { return delegates; }
         }
 
         internal IChildCollection<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> EnumList

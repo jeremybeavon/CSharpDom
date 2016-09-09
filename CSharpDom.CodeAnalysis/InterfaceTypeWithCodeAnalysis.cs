@@ -49,6 +49,18 @@ namespace CSharpDom.CodeAnalysis
             ClassParent = parent;
         }
 
+        internal InterfaceTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedInterfaceWithCodeAnalysis @interface)
+            : this(@interface)
+        {
+            StaticClassParent = parent;
+        }
+
+        internal InterfaceTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedInterfaceWithCodeAnalysis @interface)
+            : this(@interface)
+        {
+            StructParent = parent;
+        }
+
         private InterfaceTypeWithCodeAnalysis(object @interface)
         {
             node = new Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(this);
@@ -189,6 +201,28 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Interfaces.InterfaceList);
+            }
+        }
+
+        internal StaticTypeWithCodeAnalysis StaticClassParent
+        {
+            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                    value,
+                    parent => parent.Interfaces.InterfaceList);
+            }
+        }
+
+        internal StructTypeWithCodeAnalysis StructParent
+        {
+            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                     value,
                     parent => parent.Interfaces.InterfaceList);
             }

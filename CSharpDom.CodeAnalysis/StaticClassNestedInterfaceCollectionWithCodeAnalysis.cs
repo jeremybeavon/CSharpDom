@@ -1,29 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using CSharpDom.NotSupported.Partial;
-using CSharpDom.CodeAnalysis.Internal;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StaticClassNestedInterfaceCollectionWithCodeAnalysis :
-        AbstractStaticClassNestedInterfaceCollection<StaticClassNestedInterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
+        EditableStaticClassNestedInterfaceCollection<StaticClassNestedInterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
     {
-        private readonly StaticTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly StaticTypeWithCodeAnalysis staticType;
+        private readonly StaticTypeMemberListWrapper<
+            InterfaceTypeWithCodeAnalysis,
+            StaticClassNestedInterfaceWithCodeAnalysis,
+            InterfaceDeclarationSyntax> interfaces;
 
-        internal StaticClassNestedInterfaceCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis typeWithCodeAnalysis)
+        internal StaticClassNestedInterfaceCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis staticType)
         {
-            this.typeWithCodeAnalysis = typeWithCodeAnalysis;
+            this.staticType = staticType;
+            interfaces = new StaticTypeMemberListWrapper<InterfaceTypeWithCodeAnalysis, StaticClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                staticType.Node,
+                parent => new StaticClassNestedInterfaceWithCodeAnalysis(parent),
+                (child, parent) => child.Interface.Interface.StaticClassParent = parent);
+        }
+        
+        public override ICollection<StaticClassNestedInterfaceWithCodeAnalysis> Interfaces
+        {
+            get { return interfaces; }
+            set { staticType.Members.CombineList(nameof(Interfaces), value.Select(item => item.Syntax)); }
         }
 
-        public override IReadOnlyCollection<PartialInterfaceNotSupported> PartialInterfaces
+        internal IChildCollection<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> InterfaceList
         {
-            get { return new PartialInterfaceNotSupported[0]; }
-        }
-
-        protected override IReadOnlyCollection<StaticClassNestedInterfaceWithCodeAnalysis> Interfaces
-        {
-            get { return typeWithCodeAnalysis.NestedTypeCollection.NestedTypes.NestedInterfaces; }
+            get { return interfaces; }
         }
     }
 }

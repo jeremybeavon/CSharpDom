@@ -16,16 +16,22 @@ namespace CSharpDom.CodeAnalysis
             StaticClassMethodCollectionWithCodeAnalysis,
             StaticClassFieldCollectionWithCodeAnalysis,
             StaticClassNestedClassCollectionWithCodeAnalysis,
-            IStaticClassNestedDelegate,
+            StaticClassNestedDelegateWithCodeAnalysis,
             StaticClassNestedEnumWithCodeAnalysis,
-            IStaticClassNestedInterfaceCollection,
+            StaticClassNestedInterfaceCollectionWithCodeAnalysis,
             StaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
-        IHasSyntax<ClassDeclarationSyntax>
+        IHasSyntax<ClassDeclarationSyntax>,
+        ISimpleMember
     {
         private readonly Node<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax> node;
+        private readonly object @class;
         private readonly AttributeListWrapper<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax> attributes;
         private readonly StaticClassNestedClassCollectionWithCodeAnalysis classes;
+        private readonly StaticTypeMemberListWrapper<
+            DelegateTypeWithCodeAnalysis,
+            StaticClassNestedDelegateWithCodeAnalysis,
+            DelegateDeclarationSyntax> delegates;
         private readonly StaticTypeMemberListWrapper<
             NestedEnumWithCodeAnalysis,
             StaticClassNestedEnumWithCodeAnalysis,
@@ -33,6 +39,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly StaticClassEventCollectionWithCodeAnalysis events;
         private readonly StaticClassFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax> genericParameters;
+        private readonly StaticClassNestedInterfaceCollectionWithCodeAnalysis interfaces;
         private readonly StaticClassMethodCollectionWithCodeAnalysis methods;
         private readonly StaticTypeMemberListWrapper<
             PropertyWithCodeAnalysis,
@@ -45,9 +52,28 @@ namespace CSharpDom.CodeAnalysis
         private readonly StaticClassNestedStructCollectionWithCodeAnalysis structs;
         private readonly MemberList<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax> members;
 
-        private StaticTypeWithCodeAnalysis()
+        internal StaticTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedStaticClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+
+        }
+
+        internal StaticTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedStaticClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+
+        }
+
+        internal StaticTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedStaticClassWithCodeAnalysis @class)
+            : this(@class)
+        {
+
+        }
+
+        private StaticTypeWithCodeAnalysis(object @class)
         {
             node = new Node<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(this);
+            this.@class = @class;
             attributes = new AttributeListWrapper<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -55,6 +81,10 @@ namespace CSharpDom.CodeAnalysis
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.StaticClassParent = parent);
             classes = new StaticClassNestedClassCollectionWithCodeAnalysis(this);
+            delegates = new StaticTypeMemberListWrapper<DelegateTypeWithCodeAnalysis, StaticClassNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
+                node,
+                parent => new StaticClassNestedDelegateWithCodeAnalysis(parent),
+                (child, parent) => child.Delegate.Delegate.StaticClassParent = parent);
             enums = new StaticTypeMemberListWrapper<NestedEnumWithCodeAnalysis, StaticClassNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
                 parent => new StaticClassNestedEnumWithCodeAnalysis(parent),
@@ -69,6 +99,7 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
                 parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
                 (child, parent) => child.StaticClassParent = parent);
+            interfaces = new StaticClassNestedInterfaceCollectionWithCodeAnalysis(this);
             methods = new StaticClassMethodCollectionWithCodeAnalysis(this);
             properties = new StaticTypeMemberListWrapper<PropertyWithCodeAnalysis, StaticClassPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
@@ -86,8 +117,10 @@ namespace CSharpDom.CodeAnalysis
                 { nameof(fields.Constants), () => fields.Constants.Select(item => item.Syntax) },
                 { nameof(fields.Fields), () => fields.Fields.Select(item => item.Syntax) },
                 { nameof(Enums), () => enums.Select(item => item.Syntax) },
+                { nameof(Delegates), () => delegates.Select(item => item.Syntax) },
                 { nameof(events.Events), () => events.Events.Select(item => item.Syntax) },
                 { nameof(events.EventProperties), () => events.EventProperties.Select(item => item.Syntax) },
+                { nameof(interfaces.Interfaces), () => interfaces.Interfaces.Select(item => item.Syntax) },
                 { nameof(Properties), () => Properties.Select(item => item.Syntax) },
                 { nameof(methods.ExtensionMethods), () => methods.ExtensionMethods.Select(item => item.Syntax) },
                 { nameof(methods.Methods), () => methods.Methods.Select(item => item.Syntax) }
@@ -104,6 +137,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return enums; }
             set { members.CombineList(nameof(Enums), value.Select(item => item.Syntax)); }
+        }
+
+        public override ICollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
+        {
+            get { return delegates; }
+            set { members.CombineList(nameof(Delegates), value.Select(item => item.Syntax)); }
         }
 
         public override StaticClassEventCollectionWithCodeAnalysis Events
@@ -132,6 +171,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return genericParameters; }
             set { genericParameters.ReplaceList(value); }
+        }
+
+        public override StaticClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        {
+            get { return interfaces; }
+            set { members.CombineList(nameof(interfaces.Interfaces), value.Interfaces.Select(item => item.Syntax)); }
         }
 
         public override StaticClassMethodCollectionWithCodeAnalysis Methods
@@ -178,6 +223,11 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
         }
 
+        internal IChildCollection<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> DelegateList
+        {
+            get { return delegates; }
+        }
+
         internal IChildCollection<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> EnumList
         {
             get { return enums; }
@@ -196,6 +246,11 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> StaticConstructorList
         {
             get { return staticConstructor; }
+        }
+
+        T ISimpleMember.Member<T>()
+        {
+            return (T)@class;
         }
     }
 }

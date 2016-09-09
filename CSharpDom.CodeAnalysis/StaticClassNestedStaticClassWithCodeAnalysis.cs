@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StaticClassNestedStaticClassWithCodeAnalysis :
-        AbstractStaticClassNestedStaticClass<
+        EditableStaticClassNestedStaticClass<
             AttributeGroupWithCodeAnalysis,
-            ITypeWithCodeAnalysis,
+            IStaticType,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
             StaticClassPropertyWithCodeAnalysis,
@@ -20,88 +19,103 @@ namespace CSharpDom.CodeAnalysis
             StaticClassNestedEnumWithCodeAnalysis,
             StaticClassNestedInterfaceCollectionWithCodeAnalysis,
             StaticClassNestedStructCollectionWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>
+            StaticConstructorWithCodeAnalysis>,
+        IHasSyntax<ClassDeclarationSyntax>
     {
-        private readonly NestedStaticClassWithCodeAnalysis nestedClass;
+        private readonly NestedStaticClassWithCodeAnalysis classType;
 
-        internal StaticClassNestedStaticClassWithCodeAnalysis(ITypeWithCodeAnalysis declaringType, TypeDefinition type)
+        internal StaticClassNestedStaticClassWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
         {
-            nestedClass = new NestedStaticClassWithCodeAnalysis(declaringType, type);
+            classType = new NestedStaticClassWithCodeAnalysis(parent, this);
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public NestedStaticClassWithCodeAnalysis Class
         {
-            get { return nestedClass.Attributes; }
+            get { return classType; }
         }
         
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
+        {
+            get { return classType.Attributes; }
+            set { classType.Attributes = value; }
+        }
+
         public override StaticClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return nestedClass.Classes; }
-        }
-        
-        public override ITypeWithCodeAnalysis DeclaringType
-        {
-            get { return nestedClass.DeclaringType; }
+            get { return classType.Classes; }
+            set { classType.Classes = value; }
         }
 
-        public override IReadOnlyCollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return nestedClass.Delegates; }
+            get { return classType.Delegates; }
+            set { classType.Delegates = value; }
         }
-        
-        public override IReadOnlyCollection<StaticClassNestedEnumWithCodeAnalysis> Enums
+
+        public override ICollection<StaticClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return nestedClass.Enums; }
+            get { return classType.Enums; }
+            set { classType.Enums = value; }
         }
-        
+
         public override StaticClassEventCollectionWithCodeAnalysis Events
         {
-            get { return nestedClass.Events; }
-        }
-        
-        public override StaticClassFieldCollectionWithCodeAnalysis Fields
-        {
-            get { return nestedClass.Fields; }
+            get { return classType.Events; }
+            set { classType.Events = value; }
         }
 
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override StaticClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return nestedClass.GenericParameters; }
+            get { return classType.Fields; }
+            set { classType.Fields = value; }
         }
-        
+
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        {
+            get { return classType.GenericParameters; }
+            set { classType.GenericParameters = value; }
+        }
+
         public override StaticClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
         {
-            get { return nestedClass.Interfaces; }
+            get { return classType.Interfaces; }
+            set { classType.Interfaces = value; }
         }
-        
+
         public override NestedStaticClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return nestedClass.Methods; }
+            get { return classType.Methods; }
+            set { classType.Methods = value; }
         }
 
         public override string Name
         {
-            get { return nestedClass.Name; }
+            get { return classType.Name; }
+            set { classType.Name = value; }
         }
-        
-        public override IReadOnlyCollection<StaticClassPropertyWithCodeAnalysis> Properties
+
+        public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
         {
-            get { return nestedClass.Properties; }
+            get { return classType.Properties; }
+            set { classType.Properties = value; }
         }
 
         public override StaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return nestedClass.StaticConstructor; }
+            get { return classType.StaticConstructor; }
+            set { classType.StaticConstructor = value; }
         }
 
         public override StaticClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return nestedClass.Structs; }
+            get { return classType.Structs; }
+            set { classType.Structs = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public ClassDeclarationSyntax Syntax
         {
-            get { return nestedClass.TypeDefinition.ClassMemberVisibility(); }
+            get { return classType.Syntax; }
+            set { classType.Syntax = value; }
         }
     }
 }

@@ -45,6 +45,11 @@ namespace CSharpDom.CodeAnalysis
         {
         }
 
+        internal AbstractTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedAbstractClassWithCodeAnalysis @class)
+            : this(new ClassTypeWithCodeAnalysis(parent, @class))
+        {
+        }
+
         private AbstractTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
