@@ -3,7 +3,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableInterfaceAccessor<TAttributeGroup> :
+    public abstract class EditableInterfaceAccessor<TAttributeGroup> :
         EditableAccessor<TAttributeGroup>,
         IInterfaceAccessor<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup

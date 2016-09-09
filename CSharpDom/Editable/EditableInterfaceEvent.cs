@@ -4,14 +4,14 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference> :
+    public abstract class EditableInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference> :
         EditableEvent<TAttributeGroup, TDeclaringType, TDelegateReference>,
         IInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IInterfaceType
         where TDelegateReference : IDelegateReference
     {
-        public virtual InterfaceMemberInheritanceModifier InheritanceModifier { get; set; }
+        public abstract InterfaceMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableNestedAbstractClass<
+    public abstract class EditableNestedAbstractClass<
         TAttributeGroup,
         TDeclaringType,
         TGenericParameter,

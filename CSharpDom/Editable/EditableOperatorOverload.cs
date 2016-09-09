@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> :
+    public abstract class EditableOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> :
         IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -14,17 +14,17 @@ namespace CSharpDom.Editable
         where TParameter : IOperatorParameter
         where TMethodBody : IMethodBody
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual TMethodBody Body { get; set; }
+        public abstract TMethodBody Body { get; set; }
 
-        public virtual TDeclaringType DeclaringType { get; set; }
+        public abstract TDeclaringType DeclaringType { get; set; }
 
-        public virtual OperatorOverloadType OperatorType { get; set; }
+        public abstract OperatorOverloadType OperatorType { get; set; }
 
-        public virtual IList<TParameter> Parameters { get; set; }
+        public abstract IList<TParameter> Parameters { get; set; }
 
-        public virtual TTypeReference ReturnType { get; set; }
+        public abstract TTypeReference ReturnType { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {

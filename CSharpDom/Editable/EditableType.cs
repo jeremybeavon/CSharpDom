@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableType<
+    public abstract class EditableType<
         TAttributeGroup,
         TGenericParameter,
         TInterfaceReference,
@@ -43,41 +43,41 @@ namespace CSharpDom.Editable
         where TNestedStructCollection : INestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual TNestedClassCollection Classes { get; set; }
+        public abstract TNestedClassCollection Classes { get; set; }
 
-        public virtual ICollection<TConstructor> Constructors { get; set; }
+        public abstract ICollection<TConstructor> Constructors { get; set; }
 
-        public virtual ICollection<TConversionOperator> ConversionOperators { get; set; }
+        public abstract ICollection<TConversionOperator> ConversionOperators { get; set; }
 
-        public virtual ICollection<TNestedDelegate> Delegates { get; set; }
+        public abstract ICollection<TNestedDelegate> Delegates { get; set; }
 
-        public virtual ICollection<TNestedEnum> Enums { get; set; }
+        public abstract ICollection<TNestedEnum> Enums { get; set; }
 
-        public virtual TEventCollection Events { get; set; }
+        public abstract TEventCollection Events { get; set; }
 
-        public virtual TFieldCollection Fields { get; set; }
+        public abstract TFieldCollection Fields { get; set; }
 
-        public virtual IList<TGenericParameter> GenericParameters { get; set; }
+        public abstract IList<TGenericParameter> GenericParameters { get; set; }
 
-        public virtual ICollection<TInterfaceReference> ImplementedInterfaces { get; set; }
+        public abstract ICollection<TInterfaceReference> ImplementedInterfaces { get; set; }
 
-        public virtual TIndexerCollection Indexers { get; set; }
+        public abstract TIndexerCollection Indexers { get; set; }
 
-        public virtual TNestedInterfaceCollection Interfaces { get; set; }
+        public abstract TNestedInterfaceCollection Interfaces { get; set; }
 
-        public virtual TMethodCollection Methods { get; set; }
+        public abstract TMethodCollection Methods { get; set; }
 
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
-        public virtual ICollection<TOperatorOverload> OperatorOverloads { get; set; }
+        public abstract ICollection<TOperatorOverload> OperatorOverloads { get; set; }
 
-        public virtual TPropertyCollection Properties { get; set; }
+        public abstract TPropertyCollection Properties { get; set; }
 
-        public virtual TStaticConstructor StaticConstructor { get; set; }
+        public abstract TStaticConstructor StaticConstructor { get; set; }
 
-        public virtual TNestedStructCollection Structs { get; set; }
+        public abstract TNestedStructCollection Structs { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {
@@ -119,12 +119,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TOperatorOverload>(OperatorOverloads); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+         public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitType(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitTypeChildren(this, visitor);
         }

@@ -79,7 +79,13 @@ namespace CSharpDom.CodeAnalysis
             get { return structType.Delegates; }
             set { structType.Delegates = value; }
         }
-        
+
+        public override IType DeclaringType
+        {
+            get { return structType.Node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override ICollection<StructNestedEnumWithCodeAnalysis> Enums
         {
             get { return structType.Enums; }

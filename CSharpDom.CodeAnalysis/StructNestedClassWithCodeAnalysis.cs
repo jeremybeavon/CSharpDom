@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StructNestedClassWithCodeAnalysis :
         EditableStructNestedClass<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
@@ -78,6 +78,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.ConversionOperators; }
             set { classType.ConversionOperators = value; }
+        }
+
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return classType.Class.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates

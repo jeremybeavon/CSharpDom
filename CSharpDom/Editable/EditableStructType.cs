@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableStructType<
+    public abstract class EditableStructType<
         TAttributeGroup,
         TGenericParameter,
         TInterfaceReference,

@@ -6,7 +6,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableStaticClassMethodCollection<TMethod, TExtensionMethod> :
+    public abstract class EditableStaticClassMethodCollection<TMethod, TExtensionMethod> :
         IStaticClassMethodCollection<TMethod, TExtensionMethod>
         where TMethod : IStaticClassMethod
         where TExtensionMethod : IExtensionMethod
@@ -16,9 +16,9 @@ namespace CSharpDom.Editable
             get { return Methods.Count + ExtensionMethods.Count; }
         }
 
-        public virtual ICollection<TExtensionMethod> ExtensionMethods { get; set; }
+        public abstract ICollection<TExtensionMethod> ExtensionMethods { get; set; }
 
-        public virtual ICollection<TMethod> Methods { get; set; }
+        public abstract ICollection<TMethod> Methods { get; set; }
 
         IReadOnlyCollection<TExtensionMethod> IHasExtensionMethods<TExtensionMethod>.ExtensionMethods
         {

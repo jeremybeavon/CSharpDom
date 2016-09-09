@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableNestedStaticClassMethodCollection<TMethod> :
+    public abstract class EditableNestedStaticClassMethodCollection<TMethod> :
         INestedStaticClassMethodCollection<TMethod>
         where TMethod : IStaticClassMethod
     {
@@ -14,7 +14,7 @@ namespace CSharpDom.Editable
             get { return Methods.Count; }
         }
 
-        public virtual ICollection<TMethod> Methods { get; set; }
+        public abstract ICollection<TMethod> Methods { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

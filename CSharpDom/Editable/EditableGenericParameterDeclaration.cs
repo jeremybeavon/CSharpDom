@@ -5,28 +5,28 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> :
+    public abstract class EditableGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> :
         IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>
         where TClassReference : IClassReference
         where TGenericParameterReference : IGenericParameterReference
         where TInterfaceReference : IInterfaceReference
         where TAttributeGroup : IAttributeGroup
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual TClassReference BaseClassConstraint { get; set; }
+        public abstract TClassReference BaseClassConstraint { get; set; }
 
-        public virtual GenericParameterDeclarationDirection Direction { get; set; }
+        public abstract GenericParameterDeclarationDirection Direction { get; set; }
 
-        public virtual ICollection<TGenericParameterReference> GenericParameterConstraints { get; set; }
+        public abstract ICollection<TGenericParameterReference> GenericParameterConstraints { get; set; }
 
-        public virtual bool HasEmptyConstructorConstraint { get; set; }
+        public abstract bool HasEmptyConstructorConstraint { get; set; }
 
-        public virtual ICollection<TInterfaceReference> InterfaceConstraints { get; set; }
+        public abstract ICollection<TInterfaceReference> InterfaceConstraints { get; set; }
 
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
-        public virtual GenericParameterTypeConstraint TypeConstraint { get; set; }
+        public abstract GenericParameterTypeConstraint TypeConstraint { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {

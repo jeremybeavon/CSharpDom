@@ -7,7 +7,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableNestedInterfaceCollection<TInterface, TPartialInterface> :
+    public abstract class EditableNestedInterfaceCollection<TInterface, TPartialInterface> :
         INestedInterfaceCollection<TInterface, TPartialInterface>
         where TInterface : INestedInterface
         where TPartialInterface : IPartialInterface
@@ -17,21 +17,21 @@ namespace CSharpDom.Editable
             get { return PartialInterfaces.Count + Interfaces.Count; }
         }
 
-        public virtual ICollection<TPartialInterface> PartialInterfaces { get; set; }
+        public abstract ICollection<TPartialInterface> PartialInterfaces { get; set; }
 
-        public virtual ICollection<TInterface> Interfaces { get; set; }
+        public abstract ICollection<TInterface> Interfaces { get; set; }
 
         IReadOnlyCollection<TPartialInterface> IHasPartialInterfaces<TPartialInterface>.PartialInterfaces
         {
             get { return new ReadOnlyCollectionWrapper<TPartialInterface>(PartialInterfaces); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+         public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedInterfaceCollection(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedInterfaceCollectionChildren(this, visitor);
         }

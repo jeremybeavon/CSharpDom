@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableExtensionMethod<
+    public abstract class EditableExtensionMethod<
         TAttributeGroup,
         TDeclaringType,
         TGenericParameter,
@@ -22,7 +22,7 @@ namespace CSharpDom.Editable
         where TParameter : IMethodParameter
         where TMethodBody : IMethodBody
     {
-        public virtual TExtensionParameter ExtensionParameter { get; set; }
+        public abstract TExtensionParameter ExtensionParameter { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableOperatorParameter<TAttributeGroup, TTypeReference> :
+    public abstract class EditableOperatorParameter<TAttributeGroup, TTypeReference> :
         EditableParameter<TAttributeGroup, TTypeReference>,
         IOperatorParameter<TAttributeGroup, TTypeReference>
         where TAttributeGroup : IAttributeGroup

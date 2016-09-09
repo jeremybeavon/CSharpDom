@@ -5,20 +5,20 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
+    public abstract class EditableFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
         IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TTypeReference : ITypeReference
         where TField : IField
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual TDeclaringType DeclaringType { get; set; }
+        public abstract TDeclaringType DeclaringType { get; set; }
 
-        public virtual ICollection<TField> Fields { get; set; }
+        public abstract ICollection<TField> Fields { get; set; }
 
-        public virtual TTypeReference FieldType { get; set; }
+        public abstract TTypeReference FieldType { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {
@@ -30,12 +30,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TField>(Fields); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+         public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitFieldGroup(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitFieldGroupChildren(this, visitor);
         }

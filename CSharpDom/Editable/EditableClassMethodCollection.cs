@@ -6,7 +6,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassMethodCollection<TMethod, TExplicitInterfaceMethod> :
+    public abstract class EditableClassMethodCollection<TMethod, TExplicitInterfaceMethod> :
         IClassMethodCollection<TMethod, TExplicitInterfaceMethod>
         where TMethod : IClassMethod
         where TExplicitInterfaceMethod : IExplicitInterfaceMethod
@@ -16,9 +16,9 @@ namespace CSharpDom.Editable
             get { return Methods.Count + ExplicitInterfaceMethods.Count; }
         }
 
-        public virtual ICollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
+        public abstract ICollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
 
-        public virtual ICollection<TMethod> Methods { get; set; }
+        public abstract ICollection<TMethod> Methods { get; set; }
 
         IReadOnlyCollection<TExplicitInterfaceMethod> IHasExplicitInterfaceMethods<TExplicitInterfaceMethod>.ExplicitInterfaceMethods
         {

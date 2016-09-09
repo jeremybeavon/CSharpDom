@@ -2,6 +2,7 @@
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -81,12 +82,24 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ConversionOperators = value; }
         }
 
+        public override IType DeclaringType
+        {
+            get { return classType.Type.Node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return classType.Delegates; }
             set { classType.Delegates = value; }
         }
-        
+
+        public override DestructorWithCodeAnalysis Destructor
+        {
+            get { return classType.Type.Destructor; }
+            set { classType.Type.Destructor = value; }
+        }
+
         public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
         {
             get { return classType.Enums; }

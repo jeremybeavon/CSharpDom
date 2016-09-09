@@ -5,18 +5,18 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> :
+    public abstract class EditableClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> :
         EditableEvent<TAttributeGroup, TDeclaringType, TDelegateReference>,
         IClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
         where TDelegateReference : IDelegateReference
     {
-        public virtual ICollection<TAttributeGroup> FieldAttributes { get; set; }
+        public abstract ICollection<TAttributeGroup> FieldAttributes { get; set; }
 
-        public virtual ClassMemberInheritanceModifier InheritanceModifier { get; set; }
+        public abstract ClassMemberInheritanceModifier InheritanceModifier { get; set; }
         
-        public virtual ClassMemberVisibilityModifier Visibility { get; set; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasFieldAttributes<TAttributeGroup>.FieldAttributes
         {

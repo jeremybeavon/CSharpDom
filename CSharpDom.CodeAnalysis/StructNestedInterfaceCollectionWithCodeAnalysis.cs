@@ -31,6 +31,19 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Members.CombineList(nameof(Interfaces), interfaces.Select(item => item.Syntax)); }
         }
 
+        public override ICollection<PartialInterfaceNotSupported> PartialInterfaces
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         internal IChildCollection<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> InterfaceList
         {
             get { return interfaces; }

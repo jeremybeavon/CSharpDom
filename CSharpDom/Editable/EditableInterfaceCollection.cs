@@ -7,7 +7,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableInterfaceCollection<TInterface, TPartialInterface> :
+    public abstract class EditableInterfaceCollection<TInterface, TPartialInterface> :
         IInterfaceCollection<TInterface, TPartialInterface>
         where TInterface : IInterface
         where TPartialInterface : IPartialInterface
@@ -17,9 +17,9 @@ namespace CSharpDom.Editable
             get { return PartialInterfaces.Count + Interfaces.Count; }
         }
 
-        public virtual ICollection<TPartialInterface> PartialInterfaces { get; set; }
+        public abstract ICollection<TPartialInterface> PartialInterfaces { get; set; }
 
-        public virtual ICollection<TInterface> Interfaces { get; set; }
+        public abstract ICollection<TInterface> Interfaces { get; set; }
 
         IReadOnlyCollection<TPartialInterface> IHasPartialInterfaces<TPartialInterface>.PartialInterfaces
         {

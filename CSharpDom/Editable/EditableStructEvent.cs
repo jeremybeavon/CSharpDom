@@ -4,16 +4,16 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference> :
+    public abstract class EditableStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference> :
         EditableEvent<TAttributeGroup, TDeclaringType, TDelegateReference>,
         IStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStructType
         where TDelegateReference : IDelegateReference
     {
-        public virtual StructMemberInheritanceModifier InheritanceModifier { get; set; }
+        public abstract StructMemberInheritanceModifier InheritanceModifier { get; set; }
 
-        public virtual StructMemberVisibilityModifier Visibility { get; set; }
+        public abstract StructMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

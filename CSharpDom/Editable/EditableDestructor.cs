@@ -5,17 +5,17 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableDestructor<TAttributeGroup, TDeclaringType, TMethodBody> :
+    public abstract class EditableDestructor<TAttributeGroup, TDeclaringType, TMethodBody> :
         IDestructor<TAttributeGroup, TDeclaringType, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClass
         where TMethodBody : IMethodBody
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual TMethodBody Body { get; set; }
+        public abstract TMethodBody Body { get; set; }
 
-        public virtual TDeclaringType DeclaringType { get; set; }
+        public abstract TDeclaringType DeclaringType { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {

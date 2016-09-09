@@ -5,22 +5,22 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAccessor<TAttributeGroup> : IAccessor<TAttributeGroup>
+    public abstract class EditableAccessor<TAttributeGroup> : IAccessor<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+         public virtual void Accept(IGenericVisitor visitor)
         {
             throw new NotImplementedException();
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             throw new NotImplementedException();
         }

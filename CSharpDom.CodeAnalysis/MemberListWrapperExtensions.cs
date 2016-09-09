@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -9,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
             where TParentNode : class
             where TParentSyntax : TypeDeclarationSyntax
         {
-            return list.Count == 0 ? null : list[0];
+            return list.FirstOrDefault();
         }
 
         public static void SetStaticConstructor<TParentNode, TParentSyntax>(
@@ -18,21 +19,7 @@ namespace CSharpDom.CodeAnalysis
             where TParentNode : class
             where TParentSyntax : TypeDeclarationSyntax
         {
-            if (list.Count == 0)
-            {
-                if (constructor != null)
-                {
-                    list.Add(constructor);
-                }
-            }
-            else if (constructor == null)
-            {
-                list.RemoveAt(0);
-            }
-            else
-            {
-                list[0] = constructor;
-            }
+            list.ReplaceFirst(constructor);
         }
     }
 }

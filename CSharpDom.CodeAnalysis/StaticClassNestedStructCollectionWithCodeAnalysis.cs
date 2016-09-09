@@ -7,13 +7,39 @@ using CSharpDom.NotSupported.Partial;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StaticClassNestedStructCollectionWithCodeAnalysis :
-        EditableStaticClassNestedStructCollection<IStaticClassNestedStruct, PartialStructNotSupported>
+        EditableStaticClassNestedStructCollection<StaticClassNestedStructWithCodeAnalysis, PartialStructNotSupported>
     {
         private readonly StaticTypeWithCodeAnalysis type;
 
         internal StaticClassNestedStructCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis type)
         {
             this.type = type;
+        }
+
+        public override ICollection<PartialStructNotSupported> PartialStructs
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ICollection<StaticClassNestedStructWithCodeAnalysis> Structs
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

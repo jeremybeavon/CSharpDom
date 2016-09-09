@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAbstractClass<
+    public abstract class EditableAbstractClass<
         TNamespace,
         TDocument,
         TProject,

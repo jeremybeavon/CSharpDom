@@ -53,6 +53,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly StructFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> genericParameters;
         private readonly StructIndexerCollectionWithCodeAnalysis indexers;
+        private readonly BaseTypeListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> implementedInterfaces;
         private readonly StructNestedInterfaceCollectionWithCodeAnalysis interfaces;
         private readonly StructMethodCollectionWithCodeAnalysis methods;
         private readonly SimpleStructMemberListWrapper<
@@ -121,6 +122,11 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
                 parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
                 (child, parent) => child.StructParent = parent);
+            implementedInterfaces = new BaseTypeListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax),
+                null,
+                null);
             indexers = new StructIndexerCollectionWithCodeAnalysis(this);
             interfaces = new StructNestedInterfaceCollectionWithCodeAnalysis(this);
             methods = new StructMethodCollectionWithCodeAnalysis(this);
@@ -161,6 +167,19 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return attributes; }
             set { attributes.ReplaceList(value); }
+        }
+
+        public override StructNestedClassCollectionWithCodeAnalysis Classes
+        {
+            get { return classes; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(classes.Classes), value.Classes.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.AbstractClasses), value.AbstractClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.SealedClasses), value.SealedClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.StaticClasses), value.StaticClasses.Select(item => item.Syntax)));
+            }
         }
 
         public override ICollection<StructConstructorWithCodeAnalysis> Constructors
@@ -216,6 +235,12 @@ namespace CSharpDom.CodeAnalysis
             set { genericParameters.ReplaceList(value); }
         }
 
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
+        {
+            get { return implementedInterfaces; }
+            set { implementedInterfaces.ReplaceList(value); }
+        }
+
         public override StructIndexerCollectionWithCodeAnalysis Indexers
         {
             get { return indexers; }
@@ -265,6 +290,18 @@ namespace CSharpDom.CodeAnalysis
                     new MemberListSyntax(nameof(properties.Properties), value.Properties.Select(item => item.Syntax)),
                     new MemberListSyntax(nameof(properties.ExplicitInterfaceProperties), value.Properties.Select(item => item.Syntax)));
             }
+        }
+
+        public override StaticConstructorWithCodeAnalysis StaticConstructor
+        {
+            get { return staticConstructor.GetStaticConstructor(); }
+            set { staticConstructor.SetStaticConstructor(value); }
+        }
+
+        public override StructNestedStructCollectionWithCodeAnalysis Structs
+        {
+            get { return structs; }
+            set { members.CombineList(nameof(structs.Structs), value.Structs.Select(item => item.Syntax)); }
         }
 
         public StructDeclarationSyntax Syntax

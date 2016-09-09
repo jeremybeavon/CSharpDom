@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> :
+    public abstract class EditableIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> :
         IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
@@ -14,17 +14,17 @@ namespace CSharpDom.Editable
         where TParameter : IIndexerParameter
         where TAccessor : IAccessor
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual TDeclaringType DeclaringType { get; set; }
+        public abstract TDeclaringType DeclaringType { get; set; }
 
-        public virtual TAccessor GetAccessor { get; set; }
+        public abstract TAccessor GetAccessor { get; set; }
 
-        public virtual TTypeReference IndexerType { get; set; }
+        public abstract TTypeReference IndexerType { get; set; }
 
-        public virtual IList<TParameter> Parameters { get; set; }
+        public abstract IList<TParameter> Parameters { get; set; }
 
-        public virtual TAccessor SetAccessor { get; set; }
+        public abstract TAccessor SetAccessor { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {
@@ -36,12 +36,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TParameter>(Parameters); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+         public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitIndexer(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitIndexerChildren(this, visitor);
         }

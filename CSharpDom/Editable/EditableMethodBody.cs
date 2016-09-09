@@ -5,9 +5,9 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableMethodBody<TStatement> : IMethodBody<TStatement>
+    public abstract class EditableMethodBody<TStatement> : IMethodBody<TStatement>
     {
-        public virtual IList<TStatement> Statements { get; set; }
+        public abstract IList<TStatement> Statements { get; set; }
 
         IReadOnlyList<TStatement> IMethodBody<TStatement>.Statements
         {

@@ -33,7 +33,7 @@ namespace CSharpDom.CodeAnalysis
         {
         }
 
-        private InterfaceReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
+        internal InterfaceReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
             this.typeReference = typeReference;
         }

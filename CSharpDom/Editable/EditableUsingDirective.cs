@@ -3,9 +3,9 @@ using System;
 
 namespace CSharpDom.Editable
 {
-    public class EditableUsingDirective : IUsingDirective
+    public abstract class EditableUsingDirective : IUsingDirective
     {
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

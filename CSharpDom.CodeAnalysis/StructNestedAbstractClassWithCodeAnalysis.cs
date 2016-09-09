@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StructNestedAbstractClassWithCodeAnalysis :
         EditableStructNestedAbstractClass<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
@@ -80,10 +80,22 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ConversionOperators = value; }
         }
 
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return classType.Class.Type.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return classType.Delegates; }
             set { classType.Delegates = value; }
+        }
+
+        public override DestructorWithCodeAnalysis Destructor
+        {
+            get { return classType.Destructor; }
+            set { classType.Destructor = value; }
         }
 
         public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
@@ -168,6 +180,16 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
+        }
+
+        public override StructMemberVisibilityModifier Visibility
+        {
+            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
+            set
+            {
+                ClassDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
+            }
         }
 
         Guid IHasId.InternalId

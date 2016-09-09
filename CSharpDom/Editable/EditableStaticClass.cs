@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableStaticClass<
+    public abstract class EditableStaticClass<
         TNamespace,
         TDocument,
         TProject,
@@ -42,15 +42,15 @@ namespace CSharpDom.Editable
         where TNestedStructCollection : IStaticClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual TDocument Document { get; set; }
+        public abstract TDocument Document { get; set; }
         
-        public virtual TNamespace Namespace { get; set; }
+        public abstract TNamespace Namespace { get; set; }
 
-        public virtual TProject Project { get; set; }
+        public abstract TProject Project { get; set; }
 
-        public virtual TSolution Solution { get; set; }
+        public abstract TSolution Solution { get; set; }
 
-        public virtual TypeVisibilityModifier Visibility { get; set; }
+        public abstract TypeVisibilityModifier Visibility { get; set; }
         
         public override void Accept(IGenericVisitor visitor)
         {

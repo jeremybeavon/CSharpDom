@@ -6,20 +6,20 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> :
+    public abstract class EditableConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> :
         IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TParameter : IConstructorParameter
         where TMethodBody : IMethodBody
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual TMethodBody Body { get; set; }
+        public abstract TMethodBody Body { get; set; }
 
-        public virtual TDeclaringType DeclaringType { get; set; }
+        public abstract TDeclaringType DeclaringType { get; set; }
 
-        public virtual IList<TParameter> Parameters { get; set; }
+        public abstract IList<TParameter> Parameters { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {
@@ -31,12 +31,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TParameter>(Parameters); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+         public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitConstructor(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitConstructorChildren(this, visitor);
         }

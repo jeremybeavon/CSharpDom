@@ -3,7 +3,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAbstractType<
+    public abstract class EditableAbstractType<
         TAttributeGroup,
         TGenericParameter,
         TClassReference,
@@ -43,6 +43,6 @@ namespace CSharpDom.Editable
         where TNestedStructCollection : IClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual TClassReference BaseClass { get; set; }
+        public abstract TClassReference BaseClass { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassPropertyCollection<TProperty, TExplicitInterfaceProperty> :
+    public abstract class EditableClassPropertyCollection<TProperty, TExplicitInterfaceProperty> :
         IClassPropertyCollection<TProperty, TExplicitInterfaceProperty>
         where TProperty : IClassProperty
         where TExplicitInterfaceProperty : IExplicitInterfaceProperty
@@ -16,9 +16,9 @@ namespace CSharpDom.Editable
             get { return Properties.Count + ExplicitInterfaceProperties.Count; }
         }
 
-        public virtual ICollection<TExplicitInterfaceProperty> ExplicitInterfaceProperties { get; set; }
+        public abstract ICollection<TExplicitInterfaceProperty> ExplicitInterfaceProperties { get; set; }
 
-        public virtual ICollection<TProperty> Properties { get; set; }
+        public abstract ICollection<TProperty> Properties { get; set; }
 
         IReadOnlyCollection<TExplicitInterfaceProperty> IHasExplicitInterfaceProperties<TExplicitInterfaceProperty>.ExplicitInterfaceProperties
         {

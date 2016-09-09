@@ -7,22 +7,22 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer> :
+    public abstract class EditableAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer> :
         IAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer>
         where TIndexer : IClassIndexer
         where TAbstractIndexer : IAbstractIndexer
         where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
     {
-        public virtual ICollection<TAbstractIndexer> AbstractIndexers { get; set; }
+        public abstract ICollection<TAbstractIndexer> AbstractIndexers { get; set; }
 
         public int Count
         {
             get { return Indexers.Count + AbstractIndexers.Count + ExplicitInterfaceIndexers.Count; }
         }
 
-        public virtual ICollection<TExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
+        public abstract ICollection<TExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
 
-        public virtual ICollection<TIndexer> Indexers { get; set; }
+        public abstract ICollection<TIndexer> Indexers { get; set; }
 
         IReadOnlyCollection<TAbstractIndexer> IHasAbstractIndexers<TAbstractIndexer>.AbstractIndexers
         {

@@ -4,10 +4,10 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Editable
 {
-    public class EditableUnnamedAttributeValue<TExpression> : IUnnamedAttributeValue<TExpression>
+    public abstract class EditableUnnamedAttributeValue<TExpression> : IUnnamedAttributeValue<TExpression>
         where TExpression : IExpression
     {
-        public virtual TExpression Value { get; set; }
+        public abstract TExpression Value { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

@@ -6,7 +6,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> :
+    public abstract class EditableMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> :
         IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
@@ -14,19 +14,19 @@ namespace CSharpDom.Editable
         where TTypeReference : ITypeReference
         where TParameter : IMethodParameter
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual TDeclaringType DeclaringType { get; set; }
+        public abstract TDeclaringType DeclaringType { get; set; }
 
-        public virtual IList<TGenericParameter> GenericParameters { get; set; }
+        public abstract IList<TGenericParameter> GenericParameters { get; set; }
         
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
-        public virtual IList<TParameter> Parameters { get; set; }
+        public abstract IList<TParameter> Parameters { get; set; }
 
-        public virtual ICollection<TAttributeGroup> ReturnAttributes { get; set; }
+        public abstract ICollection<TAttributeGroup> ReturnAttributes { get; set; }
 
-        public virtual TTypeReference ReturnType { get; set; }
+        public abstract TTypeReference ReturnType { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {
@@ -48,12 +48,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(ReturnAttributes); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+         public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitMethod(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitMethodChildren(this, visitor);
         }

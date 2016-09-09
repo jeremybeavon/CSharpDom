@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> :
+    public abstract class EditableClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> :
         EditableIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>,
         IClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
         where TAttributeGroup : IAttributeGroup
@@ -13,9 +13,9 @@ namespace CSharpDom.Editable
         where TParameter : IIndexerParameter
         where TAccessor : IClassAccessor
     {
-        public virtual IndexerInheritanceModifier InheritanceModifier { get; set; }
+        public abstract IndexerInheritanceModifier InheritanceModifier { get; set; }
         
-        public virtual ClassMemberVisibilityModifier Visibility { get; set; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

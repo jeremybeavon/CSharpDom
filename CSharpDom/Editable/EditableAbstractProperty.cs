@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
+    public abstract class EditableAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
         EditableProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
         IAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
         where TAttributeGroup : IAttributeGroup
@@ -12,7 +12,7 @@ namespace CSharpDom.Editable
         where TTypeReference : ITypeReference
         where TAccessor : IAbstractAccessor
     {
-        public virtual ClassMemberVisibilityModifier Visibility { get; set; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

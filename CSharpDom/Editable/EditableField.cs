@@ -4,12 +4,12 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Editable
 {
-    public class EditableField<TExpression> : IField<TExpression>
+    public abstract class EditableField<TExpression> : IField<TExpression>
         where TExpression : IExpression
     {
-        public virtual TExpression InitialValue { get; set; }
+        public abstract TExpression InitialValue { get; set; }
 
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

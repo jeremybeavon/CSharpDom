@@ -6,7 +6,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> :
+    public abstract class EditableClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> :
         IClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer>
         where TIndexer : IClassIndexer
         where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
@@ -16,9 +16,9 @@ namespace CSharpDom.Editable
             get { return Indexers.Count + ExplicitInterfaceIndexers.Count; }
         }
 
-        public virtual ICollection<TExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
+        public abstract ICollection<TExplicitInterfaceIndexer> ExplicitInterfaceIndexers { get; set; }
 
-        public virtual ICollection<TIndexer> Indexers { get; set; }
+        public abstract ICollection<TIndexer> Indexers { get; set; }
 
         IReadOnlyCollection<TExplicitInterfaceIndexer> IHasExplicitInterfaceIndexers<TExplicitInterfaceIndexer>.ExplicitInterfaceIndexers
         {

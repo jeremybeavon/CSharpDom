@@ -3,10 +3,10 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableGenericParameter<TTypeReference> : IGenericParameter<TTypeReference>
+    public abstract class EditableGenericParameter<TTypeReference> : IGenericParameter<TTypeReference>
         where TTypeReference : ITypeReference
     {
-        public virtual TTypeReference Type { get; set; }
+        public abstract TTypeReference Type { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

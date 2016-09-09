@@ -3,6 +3,7 @@ using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -32,7 +33,9 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly object @class;
         private readonly Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> node;
+        private readonly BaseTypeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> baseTypes;
         private readonly AttributeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> attributes;
+        private readonly WrappedList<InterfaceReferenceWithCodeAnalysis, ClassReferenceWithCodeAnalysis> baseClass;
         private readonly ClassNestedClassCollectionWithCodeAnalysis classes;
         private readonly ClassMemberListWrapper<
             ConstructorWithCodeAnalysis,
@@ -45,6 +48,7 @@ namespace CSharpDom.CodeAnalysis
             DelegateTypeWithCodeAnalysis,
             ClassNestedDelegateWithCodeAnalysis,
             DelegateDeclarationSyntax> delegates;
+        private readonly SimpleClassMemberListWrapper<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> destructor;
         private readonly ClassMemberListWrapper<
             NestedEnumWithCodeAnalysis,
             ClassNestedEnumWithCodeAnalysis,
@@ -52,6 +56,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly ClassEventCollectionWithCodeAnalysis events;
         private readonly ClassFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> genericParameters;
+        private readonly FilteredList<InterfaceReferenceWithCodeAnalysis> implementedInterfaces;
         private readonly ClassIndexerCollectionWithCodeAnalysis indexers;
         private readonly ClassNestedInterfaceCollectionWithCodeAnalysis interfaces;
         private readonly ClassMethodCollectionWithCodeAnalysis methods;
@@ -121,12 +126,22 @@ namespace CSharpDom.CodeAnalysis
         {
             node = new Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(this);
             this.@class = @class;
+            baseTypes = new BaseTypeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax),
+                null,
+                null);
             attributes = new AttributeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.ClassParent = parent);
+            baseClass = new WrappedList<InterfaceReferenceWithCodeAnalysis, ClassReferenceWithCodeAnalysis>(
+                baseTypes,
+                @interface => new ClassReferenceWithCodeAnalysis(@interface.TypeReference),
+                newClass => new InterfaceReferenceWithCodeAnalysis(newClass.TypeReference),
+                classToFilter => false);
             classes = new ClassNestedClassCollectionWithCodeAnalysis(this);
             constructors = new ClassMemberListWrapper<ConstructorWithCodeAnalysis, ClassConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
@@ -136,6 +151,10 @@ namespace CSharpDom.CodeAnalysis
             conversionOperators = new SimpleClassMemberListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
                 parent => new ConversionOperatorWithCodeAnalysis(parent),
+                (child, parent) => child.ClassParent = parent);
+            destructor = new SimpleClassMemberListWrapper<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
+                node,
+                parent => new DestructorWithCodeAnalysis(parent),
                 (child, parent) => child.ClassParent = parent);
             delegates = new ClassMemberListWrapper<DelegateTypeWithCodeAnalysis, ClassNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
@@ -155,6 +174,7 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
                 parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
                 (child, parent) => child.ClassParent = parent);
+            implementedInterfaces = new FilteredList<InterfaceReferenceWithCodeAnalysis>(baseTypes);
             indexers = new ClassIndexerCollectionWithCodeAnalysis(this);
             interfaces = new ClassNestedInterfaceCollectionWithCodeAnalysis(this);
             methods = new ClassMethodCollectionWithCodeAnalysis(this);
@@ -198,6 +218,25 @@ namespace CSharpDom.CodeAnalysis
             set { attributes.ReplaceList(value); }
         }
 
+        public override ClassReferenceWithCodeAnalysis BaseClass
+        {
+            get { return baseClass.FirstOrDefault(); }
+            set { baseClass.ReplaceFirst(value); }
+        }
+
+        public override ClassNestedClassCollectionWithCodeAnalysis Classes
+        {
+            get { return classes; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(classes.Classes), value.Classes.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.AbstractClasses), value.AbstractClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.SealedClasses), value.SealedClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.StaticClasses), value.StaticClasses.Select(item => item.Syntax)));
+            }
+        }
+
         public override ICollection<ClassConstructorWithCodeAnalysis> Constructors
         {
             get { return constructors; }
@@ -214,6 +253,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return delegates; }
             set { members.CombineList(nameof(Delegates), value.Select(item => item.Syntax)); }
+        }
+
+        public override DestructorWithCodeAnalysis Destructor
+        {
+            get { return destructor.FirstOrDefault(); }
+            set { destructor.ReplaceFirst(value); }
         }
 
         public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
@@ -249,6 +294,16 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return genericParameters; }
             set { genericParameters.ReplaceList(value); }
+        }
+
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
+        {
+            get { return implementedInterfaces; }
+            set
+            {
+                baseTypes.ReplaceList(
+                    baseClass.Select(@class => new InterfaceReferenceWithCodeAnalysis(@class.TypeReference)).Concat(value));
+            }
         }
 
         public override ClassIndexerCollectionWithCodeAnalysis Indexers
@@ -308,6 +363,12 @@ namespace CSharpDom.CodeAnalysis
             set { staticConstructor.SetStaticConstructor(value); }
         }
 
+        public override ClassNestedStructCollectionWithCodeAnalysis Structs
+        {
+            get { return structs; }
+            set { members.CombineList(nameof(structs.Structs), value.Structs.Select(item => item.Syntax)); }
+        }
+
         public ClassDeclarationSyntax Syntax
         {
             get { return node.Syntax; }
@@ -346,6 +407,11 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> DelegateList
         {
             get { return delegates; }
+        }
+
+        internal IChildCollection<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> DestructorList
+        {
+            get { return destructor; }
         }
 
         internal IChildCollection<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> EnumList

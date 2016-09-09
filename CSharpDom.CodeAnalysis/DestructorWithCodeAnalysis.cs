@@ -9,30 +9,39 @@ namespace CSharpDom.CodeAnalysis
     public sealed class DestructorWithCodeAnalysis :
         EditableDestructor<AttributeGroupWithCodeAnalysis, IClass, MethodBodyWithCodeAnalysis>,
         IHasSyntax<DestructorDeclarationSyntax>,
-        INestedDestructor//,
+        INestedDestructor,
+        IHasId//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Node<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> node;
+        private readonly Guid internalId;
+        private readonly SimpleNode<
+            ClassTypeWithCodeAnalysis,
+            ClassDeclarationSyntax,
+            DestructorWithCodeAnalysis,
+            DestructorDeclarationSyntax> node;
         private readonly AttributeListWrapper<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> attributes;
         private readonly MethodBodyNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> body;
         
-        internal DestructorWithCodeAnalysis(IClass declaringType)
+        internal DestructorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
         {
-            node = new Node<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(this);
-            base.DeclaringType = declaringType;
+            internalId = Guid.NewGuid();
+            node = new SimpleNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax, DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
+                parent,
+                this,
+                newParent => newParent.DestructorList);
             attributes = new AttributeListWrapper<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.DestructorParent = parent);
+                newParent => new AttributeGroupWithCodeAnalysis(newParent),
+                (child, newParent) => child.DestructorParent = newParent);
             body = new MethodBodyNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
-                parent => new MethodBodyWithCodeAnalysis(parent),
-                (child, parent) => child.DestructorParent = parent);
+                newParent => new MethodBodyWithCodeAnalysis(newParent),
+                (child, newParent) => child.DestructorParent = newParent);
         }
-
+        
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return attributes; }
@@ -47,7 +56,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IClass DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return node.GetParentNode<IClass>(); }
             set { throw new NotSupportedException(); }
         }
         
@@ -60,6 +69,17 @@ namespace CSharpDom.CodeAnalysis
         internal IAttributeCollection AttributeList
         {
             get { return attributes; }
+        }
+        
+        internal ClassTypeWithCodeAnalysis ClassParent
+        {
+            get { return node.Parent; }
+            set { node.Parent = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

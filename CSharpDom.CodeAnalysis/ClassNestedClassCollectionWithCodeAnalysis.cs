@@ -13,7 +13,7 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedClassWithCodeAnalysis,
             ClassNestedAbstractClassWithCodeAnalysis,
             ClassNestedSealedClassWithCodeAnalysis,
-            IClassNestedStaticClass,
+            ClassNestedStaticClassWithCodeAnalysis,
             PartialClassCollectionNotSupported>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
@@ -78,6 +78,32 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> SealedClassList
         {
             get { return sealedClasses; }
+        }
+
+        public override PartialClassCollectionNotSupported PartialClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ICollection<ClassNestedStaticClassWithCodeAnalysis> StaticClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

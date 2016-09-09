@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableStaticClassNestedInterface<
+    public abstract class EditableStaticClassNestedInterface<
         TAttributeGroup,
         TDeclaringType,
         TGenericParameter,
@@ -24,7 +24,7 @@ namespace CSharpDom.Editable
         where TIndexer : IInterfaceIndexer
         where TMethod : IInterfaceMethod
     {
-        public virtual ClassMemberVisibilityModifier Visibility { get; set; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

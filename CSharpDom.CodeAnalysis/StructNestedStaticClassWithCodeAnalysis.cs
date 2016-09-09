@@ -2,13 +2,14 @@
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructNestedStaticClassWithCodeAnalysis :
         EditableStructNestedStaticClass<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
             StaticClassPropertyWithCodeAnalysis,
@@ -44,6 +45,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Classes; }
             set { classType.Classes = value; }
+        }
+
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return classType.Class.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ICollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
@@ -116,6 +123,16 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
+        }
+
+        public override StructMemberVisibilityModifier Visibility
+        {
+            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
+            set
+            {
+                ClassDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
+            }
         }
     }
 }

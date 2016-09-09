@@ -6,22 +6,22 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod> :
+    public abstract class EditableAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod> :
         IAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod>
         where TMethod : IClassMethod
         where TAbstractMethod : IAbstractMethod
         where TExplicitInterfaceMethod : IExplicitInterfaceMethod
     {
-        public virtual ICollection<TAbstractMethod> AbstractMethods { get; set; }
+        public abstract ICollection<TAbstractMethod> AbstractMethods { get; set; }
 
         public int Count
         {
             get { return Methods.Count + AbstractMethods.Count + ExplicitInterfaceMethods.Count; }
         }
 
-        public virtual ICollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
+        public abstract ICollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods { get; set; }
 
-        public virtual ICollection<TMethod> Methods { get; set; }
+        public abstract ICollection<TMethod> Methods { get; set; }
 
         IReadOnlyCollection<TAbstractMethod> IHasAbstractMethods<TAbstractMethod>.AbstractMethods
         {

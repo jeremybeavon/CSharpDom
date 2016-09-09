@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StructPropertyWithCodeAnalysis :
         EditableStructProperty<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             StructAccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
@@ -40,7 +40,13 @@ namespace CSharpDom.CodeAnalysis
             get { return property.Attributes; }
             set { property.Attributes = value; }
         }
-        
+
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return property.Property.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override StructAccessorWithCodeAnalysis GetAccessor
         {
             get { return new StructAccessorWithCodeAnalysis(property.GetAccessor); }

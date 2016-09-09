@@ -4,13 +4,13 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableMethodParameter<TAttributeGroup, TTypeReference> :
+    public abstract class EditableMethodParameter<TAttributeGroup, TTypeReference> :
         EditableParameter<TAttributeGroup, TTypeReference>,
         IMethodParameter<TAttributeGroup, TTypeReference>
         where TAttributeGroup : IAttributeGroup
         where TTypeReference : ITypeReference
     {
-        public virtual ParameterModifier Modifier { get; set; }
+        public abstract ParameterModifier Modifier { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

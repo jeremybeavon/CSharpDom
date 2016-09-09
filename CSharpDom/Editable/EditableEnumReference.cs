@@ -2,9 +2,9 @@
 
 namespace CSharpDom.Editable
 {
-    public class EditableEnumReference : IEnumReference
+    public abstract class EditableEnumReference : IEnumReference
     {
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

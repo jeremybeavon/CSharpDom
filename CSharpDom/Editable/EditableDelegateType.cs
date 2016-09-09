@@ -6,22 +6,22 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter> :
+    public abstract class EditableDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter> :
         IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TTypeReference : ITypeReference
         where TParameter : IDelegateParameter
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
         
-        public virtual IList<TGenericParameter> GenericParameters { get; set; }
+        public abstract IList<TGenericParameter> GenericParameters { get; set; }
 
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
-        public virtual IList<TParameter> Parameters { get; set; }
+        public abstract IList<TParameter> Parameters { get; set; }
 
-        public virtual TTypeReference ReturnType { get; set; }
+        public abstract TTypeReference ReturnType { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {
@@ -38,12 +38,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TParameter>(Parameters); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+         public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitDelegateType(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+         public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitDelegateTypeChildren(this, visitor);
         }

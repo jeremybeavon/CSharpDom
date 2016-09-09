@@ -3,7 +3,7 @@ using CSharpDom.BaseClasses.Wrappers;
 
 namespace CSharpDom.Editable
 {
-    public class EditableExplicitInterfaceEvent<TAttributeGroup, TDeclaringType, TInterfaceReference, TDelegateReference, TMethodBody> :
+    public abstract class EditableExplicitInterfaceEvent<TAttributeGroup, TDeclaringType, TInterfaceReference, TDelegateReference, TMethodBody> :
         EditableEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>,
         IExplicitInterfaceEvent<TAttributeGroup, TDeclaringType, TInterfaceReference, TDelegateReference, TMethodBody>
         where TAttributeGroup : IAttributeGroup
@@ -12,7 +12,7 @@ namespace CSharpDom.Editable
         where TDelegateReference : IDelegateReference
         where TMethodBody : IMethodBody
     {
-        public virtual TInterfaceReference ExplicitInterface { get; set; }
+        public abstract TInterfaceReference ExplicitInterface { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

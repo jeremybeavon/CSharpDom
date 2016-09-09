@@ -3,12 +3,12 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableArrayTypeReference<TTypeReference> : IArrayTypeReference<TTypeReference>
+    public abstract class EditableArrayTypeReference<TTypeReference> : IArrayTypeReference<TTypeReference>
         where TTypeReference : ITypeReference
     {
-        public virtual int Dimensions { get; set; }
+        public abstract int Dimensions { get; set; }
 
-        public virtual TTypeReference ElementType { get; set; }
+        public abstract TTypeReference ElementType { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

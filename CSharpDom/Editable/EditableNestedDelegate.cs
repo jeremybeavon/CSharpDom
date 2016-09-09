@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> :
+    public abstract class EditableNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> :
         EditableDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>,
         INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
         where TAttributeGroup : IAttributeGroup
@@ -15,7 +15,7 @@ namespace CSharpDom.Editable
         where TTypeReference : ITypeReference
         where TParameter : IDelegateParameter
     {
-        public virtual TDeclaringType DeclaringType { get; set; }
+        public abstract TDeclaringType DeclaringType { get; set; }
         
         public override void Accept(IGenericVisitor visitor)
         {

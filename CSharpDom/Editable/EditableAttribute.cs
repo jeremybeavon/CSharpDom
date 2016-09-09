@@ -6,17 +6,17 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue> :
+    public abstract class EditableAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue> :
         IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>
         where TClassReference : IClassReference
         where TUnnamedAttributeValue : IUnnamedAttributeValue
         where TNamedAttributeValue : INamedAttributeValue
     {
-        public virtual TClassReference AttributeType { get; set; }
+        public abstract TClassReference AttributeType { get; set; }
 
-        public virtual ICollection<TNamedAttributeValue> NamedValues { get; set; }
+        public abstract ICollection<TNamedAttributeValue> NamedValues { get; set; }
 
-        public virtual IList<TUnnamedAttributeValue> UnnamedValues { get; set; }
+        public abstract IList<TUnnamedAttributeValue> UnnamedValues { get; set; }
 
         IReadOnlyCollection<TNamedAttributeValue> IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>.NamedValues
         {

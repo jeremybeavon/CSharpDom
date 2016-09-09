@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassNestedStructWithCodeAnalysis :
         EditableStaticClassNestedStruct<
             AttributeGroupWithCodeAnalysis,
-            IStaticType,
+            IStaticTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             StructEventCollectionWithCodeAnalysis,
@@ -30,12 +30,12 @@ namespace CSharpDom.CodeAnalysis
         IHasId
     {
         private readonly Guid internalId;
-        private readonly NestedStructWithCodeAnalysis nestedStruct;
+        private readonly NestedStructWithCodeAnalysis structType;
 
         internal StaticClassNestedStructWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
             : this()
         {
-            nestedStruct = new NestedStructWithCodeAnalysis(parent, this);
+            structType = new NestedStructWithCodeAnalysis(parent, this);
         }
 
         private StaticClassNestedStructWithCodeAnalysis()
@@ -43,9 +43,7 @@ namespace CSharpDom.CodeAnalysis
             internalId = Guid.NewGuid();
         }
 
-        private readonly StructTypeWithCodeAnalysis structType;
-
-        public StructTypeWithCodeAnalysis Struct
+        public NestedStructWithCodeAnalysis Struct
         {
             get { return structType; }
         }
@@ -72,6 +70,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return structType.ConversionOperators; }
             set { structType.ConversionOperators = value; }
+        }
+
+        public override IStaticTypeWithCodeAnalysis DeclaringType
+        {
+            get { return Struct.Struct.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ICollection<StructNestedDelegateWithCodeAnalysis> Delegates

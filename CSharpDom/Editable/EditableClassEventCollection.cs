@@ -6,7 +6,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> :
+    public abstract class EditableClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> :
         IClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>
         where TEvent : IClassEvent
         where TEventProperty : IClassEventProperty
@@ -17,11 +17,11 @@ namespace CSharpDom.Editable
             get { return Events.Count + EventProperties.Count + ExplicitInterfaceEvents.Count; }
         }
 
-        public virtual ICollection<TEventProperty> EventProperties { get; set; }
+        public abstract ICollection<TEventProperty> EventProperties { get; set; }
 
-        public virtual ICollection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
+        public abstract ICollection<TExplicitInterfaceEvent> ExplicitInterfaceEvents { get; set; }
 
-        public virtual ICollection<TEvent> Events { get; set; }
+        public abstract ICollection<TEvent> Events { get; set; }
 
         IReadOnlyCollection<TEventProperty> IHasEventProperties<TEventProperty>.EventProperties
         {

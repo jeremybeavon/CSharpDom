@@ -4,17 +4,17 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableDocument<TProject, TSolution, TLoadedDocument> :
+    public abstract class EditableDocument<TProject, TSolution, TLoadedDocument> :
         IDocument<TProject, TSolution, TLoadedDocument>
         where TProject : IProject
         where TSolution : ISolution
         where TLoadedDocument : ILoadedDocument
     {
-        public virtual string FullFilePath { get; set; }
+        public abstract string FullFilePath { get; set; }
 
-        public virtual TProject Project { get; set; }
+        public abstract TProject Project { get; set; }
 
-        public virtual TSolution Solution { get; set; }
+        public abstract TSolution Solution { get; set; }
 
         public Task AcceptAsync(IGenericVisitor visitor)
         {
@@ -26,9 +26,6 @@ namespace CSharpDom.Editable
             return GenericVisitor.VisitDocumentChildrenAsync(this, visitor);
         }
 
-        public virtual Task<TLoadedDocument> LoadAsync()
-        {
-            return null;
-        }
+        public abstract Task<TLoadedDocument> LoadAsync();
     }
 }

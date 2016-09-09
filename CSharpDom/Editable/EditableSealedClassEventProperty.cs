@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableSealedClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> :
+    public abstract class EditableSealedClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> :
         EditableEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>,
         ISealedClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>
         where TAttributeGroup : IAttributeGroup
@@ -12,9 +12,9 @@ namespace CSharpDom.Editable
         where TDelegateReference : IDelegateReference
         where TMethodBody : IMethodBody
     {
-        public virtual SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
+        public abstract SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
         
-        public virtual ClassMemberVisibilityModifier Visibility { get; set; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

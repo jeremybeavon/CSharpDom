@@ -6,7 +6,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> :
+    public abstract class EditableClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> :
         IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
         where TClass : IClass
         where TAbstractClass : IAbstractClass
@@ -14,20 +14,20 @@ namespace CSharpDom.Editable
         where TStaticClass : IStaticClass
         where TPartialClassCollection : IPartialClassCollection
     {
-        public virtual ICollection<TAbstractClass> AbstractClasses { get; set; }
+        public abstract ICollection<TAbstractClass> AbstractClasses { get; set; }
 
         public int Count
         {
             get { return Classes.Count + AbstractClasses.Count + SealedClasses.Count + StaticClasses.Count + PartialClasses.Count; }
         }
 
-        public virtual TPartialClassCollection PartialClasses { get; set; }
+        public abstract TPartialClassCollection PartialClasses { get; set; }
 
-        public virtual ICollection<TSealedClass> SealedClasses { get; set; }
+        public abstract ICollection<TSealedClass> SealedClasses { get; set; }
 
-        public virtual ICollection<TStaticClass> StaticClasses { get; set; }
+        public abstract ICollection<TStaticClass> StaticClasses { get; set; }
 
-        public virtual ICollection<TClass> Classes { get; set; }
+        public abstract ICollection<TClass> Classes { get; set; }
 
         IReadOnlyCollection<TAbstractClass> IHasAbstractClasses<TAbstractClass>.AbstractClasses
         {

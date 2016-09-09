@@ -5,7 +5,7 @@ using CSharpDom.BaseClasses.Wrappers;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> :
+    public abstract class EditableClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> :
         EditableConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>,
         IClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
@@ -13,7 +13,7 @@ namespace CSharpDom.Editable
         where TParameter : IConstructorParameter
         where TMethodBody : IMethodBody
     {
-        public virtual ClassMemberVisibilityModifier Visibility { get; set; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

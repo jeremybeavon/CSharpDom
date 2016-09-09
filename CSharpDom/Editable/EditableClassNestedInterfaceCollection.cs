@@ -3,7 +3,7 @@ using CSharpDom.Common.Partial;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassNestedInterfaceCollection<TInterface, TPartialInterface> :
+    public abstract class EditableClassNestedInterfaceCollection<TInterface, TPartialInterface> :
         EditableNestedInterfaceCollection<TInterface, TPartialInterface>,
         IClassNestedInterfaceCollection<TInterface, TPartialInterface>
         where TInterface : IClassNestedInterface

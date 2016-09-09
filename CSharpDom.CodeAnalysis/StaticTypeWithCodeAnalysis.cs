@@ -4,6 +4,7 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -133,6 +134,19 @@ namespace CSharpDom.CodeAnalysis
             set { attributes.ReplaceList(value); }
         }
 
+        public override StaticClassNestedClassCollectionWithCodeAnalysis Classes
+        {
+            get { return classes; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(classes.Classes), value.Classes.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.AbstractClasses), value.AbstractClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.SealedClasses), value.SealedClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.StaticClasses), value.StaticClasses.Select(item => item.Syntax)));
+            }
+        }
+
         public override ICollection<StaticClassNestedEnumWithCodeAnalysis> Enums
         {
             get { return enums; }
@@ -190,6 +204,12 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        public override string Name
+        {
+            get { return Syntax.Identifier.Text; }
+            set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
+        }
+
         public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
         {
             get { return properties; }
@@ -200,6 +220,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return staticConstructor.GetStaticConstructor(); }
             set { staticConstructor.SetStaticConstructor(value); }
+        }
+
+        public override StaticClassNestedStructCollectionWithCodeAnalysis Structs
+        {
+            get { return structs; }
+            set { members.CombineList(nameof(structs.Structs), value.Structs.Select(item => item.Syntax)); }
         }
 
         public ClassDeclarationSyntax Syntax

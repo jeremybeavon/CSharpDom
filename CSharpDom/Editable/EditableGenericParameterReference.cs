@@ -3,9 +3,9 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableGenericParameterReference : IGenericParameterReference
+    public abstract class EditableGenericParameterReference : IGenericParameterReference
     {
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

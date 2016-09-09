@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Editable
 {
-    public class EditableInterface<TNamespace,
+    public abstract class EditableInterface<TNamespace,
         TDocument,
         TProject,
         TSolution,
@@ -27,17 +27,17 @@ namespace CSharpDom.Editable
         where TIndexer : IInterfaceIndexer
         where TMethod : IInterfaceMethod
     {
-        public virtual TDocument Document { get; set; }
+        public abstract TDocument Document { get; set; }
         
-        public virtual bool IsPartial { get; set; }
+        public abstract bool IsPartial { get; set; }
         
-        public virtual TNamespace Namespace { get; set; }
+        public abstract TNamespace Namespace { get; set; }
 
-        public virtual TProject Project { get; set; }
+        public abstract TProject Project { get; set; }
 
-        public virtual TSolution Solution { get; set; }
+        public abstract TSolution Solution { get; set; }
 
-        public virtual TypeVisibilityModifier Visibility { get; set; }
+        public abstract TypeVisibilityModifier Visibility { get; set; }
         
         public void Accept(IGenericVisitor visitor)
         {

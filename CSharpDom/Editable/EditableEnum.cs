@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember> :
+    public abstract class EditableEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember> :
         IEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -15,23 +15,23 @@ namespace CSharpDom.Editable
         where TAttributeGroup : IAttributeGroup
         where TEnumMember : IEnumMember
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual EnumBaseType BaseType { get; set; }
+        public abstract EnumBaseType BaseType { get; set; }
 
-        public virtual TDocument Document { get; set; }
+        public abstract TDocument Document { get; set; }
 
-        public virtual IList<TEnumMember> EnumMembers { get; set; }
+        public abstract IList<TEnumMember> EnumMembers { get; set; }
 
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
-        public virtual TNamespace Namespace { get; set; }
+        public abstract TNamespace Namespace { get; set; }
 
-        public virtual TProject Project { get; set; }
+        public abstract TProject Project { get; set; }
 
-        public virtual TSolution Solution { get; set; }
+        public abstract TSolution Solution { get; set; }
 
-        public virtual TypeVisibilityModifier Visibility { get; set; }
+        public abstract TypeVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {

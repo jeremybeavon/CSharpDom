@@ -4,13 +4,13 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableIndexerParameter<TAttributeGroup, TTypeReference> :
+    public abstract class EditableIndexerParameter<TAttributeGroup, TTypeReference> :
         EditableParameter<TAttributeGroup, TTypeReference>,
         IIndexerParameter<TAttributeGroup, TTypeReference>
         where TAttributeGroup : IAttributeGroup
         where TTypeReference : ITypeReference
     {
-        public virtual IndexerParameterModifier Modifier { get; set; }
+        public abstract IndexerParameterModifier Modifier { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

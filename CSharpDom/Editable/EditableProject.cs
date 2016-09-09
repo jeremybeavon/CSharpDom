@@ -6,15 +6,15 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableProject<TSolution, TDocument, TLoadedProject> :
+    public abstract class EditableProject<TSolution, TDocument, TLoadedProject> :
         IProject<TSolution, TDocument, TLoadedProject>
         where TSolution : ISolution
         where TDocument : IDocument
         where TLoadedProject : ILoadedProject
     {
-        public virtual ICollection<TDocument> Documents { get; set; }
+        public abstract ICollection<TDocument> Documents { get; set; }
 
-        public virtual TSolution Solution { get; set; }
+        public abstract TSolution Solution { get; set; }
 
         IReadOnlyCollection<TDocument> IHasDocuments<TDocument>.Documents
         {
@@ -31,9 +31,6 @@ namespace CSharpDom.Editable
             return GenericVisitor.VisitProjectChildrenAsync(this, visitor);
         }
 
-        public virtual Task<TLoadedProject> LoadAsync()
-        {
-            return null;
-        }
+        public abstract Task<TLoadedProject> LoadAsync();
     }
 }

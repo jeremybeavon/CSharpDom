@@ -7,7 +7,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableStructNestedStructCollection<TStruct, TPartialStruct> :
+    public abstract class EditableStructNestedStructCollection<TStruct, TPartialStruct> :
         IStructNestedStructCollection<TStruct, TPartialStruct>
         where TStruct : IStructNestedStruct
         where TPartialStruct : IPartialStruct
@@ -17,9 +17,9 @@ namespace CSharpDom.Editable
             get { return PartialStructs.Count + Structs.Count; }
         }
 
-        public virtual ICollection<TPartialStruct> PartialStructs { get; set; }
+        public abstract ICollection<TPartialStruct> PartialStructs { get; set; }
 
-        public virtual ICollection<TStruct> Structs { get; set; }
+        public abstract ICollection<TStruct> Structs { get; set; }
 
         IReadOnlyCollection<TPartialStruct> IHasPartialStructs<TPartialStruct>.PartialStructs
         {

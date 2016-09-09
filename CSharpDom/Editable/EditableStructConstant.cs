@@ -2,7 +2,7 @@
 
 namespace CSharpDom.Editable
 {
-    public class EditableStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> :
+    public abstract class EditableStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> :
         EditableConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>,
         IStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>
         where TAttributeGroup : IAttributeGroup
@@ -10,7 +10,7 @@ namespace CSharpDom.Editable
         where TTypeReference : ITypeReference
         where TConstant : IConstant
     {
-        public virtual StructMemberVisibilityModifier Visibility { get; set; }
+        public abstract StructMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

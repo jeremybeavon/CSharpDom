@@ -4,14 +4,14 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> :
+    public abstract class EditableStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> :
         EditableNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>,
         IStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStructType
         where TNestedEnumMember : INestedEnumMember
     {
-        public virtual StructMemberVisibilityModifier Visibility { get; set; }
+        public abstract StructMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

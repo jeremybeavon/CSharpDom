@@ -6,10 +6,10 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableSolution<TProject> : ISolution<TProject>
+    public abstract class EditableSolution<TProject> : ISolution<TProject>
         where TProject : IProject
     {
-        public virtual ICollection<TProject> Projects { get; set; }
+        public abstract ICollection<TProject> Projects { get; set; }
 
         IReadOnlyCollection<TProject> ISolution<TProject>.Projects
         {

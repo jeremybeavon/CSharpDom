@@ -3,11 +3,11 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableNullableTypeReference<TStructReference> :
+    public abstract class EditableNullableTypeReference<TStructReference> :
         INullableTypeReference<TStructReference>
         where TStructReference : IStructReference
     {
-        public virtual TStructReference Type { get; set; }
+        public abstract TStructReference Type { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

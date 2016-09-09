@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableNestedStruct<
+    public abstract class EditableNestedStruct<
         TAttributeGroup,
         TDeclaringType,
         TGenericParameter,
@@ -46,7 +46,7 @@ namespace CSharpDom.Editable
         where TNestedStructCollection : IStructNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual TDeclaringType DeclaringType { get; set; }
+        public abstract TDeclaringType DeclaringType { get; set; }
         
         public override void Accept(IGenericVisitor visitor)
         {

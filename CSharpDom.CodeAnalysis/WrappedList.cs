@@ -24,7 +24,7 @@ namespace CSharpDom.CodeAnalysis
             this.toParent = toParent;
             this.filter = filter;
         }
-
+        
         public int Count
         {
             get { return ChildList.Count(); }

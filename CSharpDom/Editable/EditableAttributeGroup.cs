@@ -5,10 +5,10 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAttributeGroup<TAttribute> : IAttributeGroup<TAttribute>
+    public abstract class EditableAttributeGroup<TAttribute> : IAttributeGroup<TAttribute>
         where TAttribute : IAttribute
     {
-        public virtual ICollection<TAttribute> Attributes { get; set; }
+        public abstract ICollection<TAttribute> Attributes { get; set; }
 
         IReadOnlyCollection<TAttribute> IHasAttributes<TAttribute>.Attributes
         {

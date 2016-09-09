@@ -82,6 +82,12 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ConversionOperators = value; }
         }
 
+        public override IType DeclaringType
+        {
+            get { return classType.Node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return classType.Delegates; }

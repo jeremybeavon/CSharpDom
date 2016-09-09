@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableInterfaceMethod<
+    public abstract class EditableInterfaceMethod<
         TAttributeGroup,
         TDeclaringType,
         TGenericParameter,
@@ -18,7 +18,7 @@ namespace CSharpDom.Editable
         where TTypeReference : ITypeReference
         where TParameter : IMethodParameter
     {
-        public virtual InterfaceMemberInheritanceModifier InheritanceModifier { get; set; }
+        public abstract InterfaceMemberInheritanceModifier InheritanceModifier { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

@@ -165,6 +165,11 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
+        internal Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> Node
+        {
+            get { return node; }
+        }
+
         internal IAttributeCollection AttributeList
         {
             get { return attributes; }

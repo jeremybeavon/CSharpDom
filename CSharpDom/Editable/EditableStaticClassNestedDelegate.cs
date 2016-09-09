@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableStaticClassNestedDelegate<
+    public abstract class EditableStaticClassNestedDelegate<
         TAttributeGroup,
         TDeclaringType,
         TGenericParameter,
@@ -18,7 +18,7 @@ namespace CSharpDom.Editable
         where TTypeReference : ITypeReference
         where TParameter : IDelegateParameter
     {
-        public virtual ClassMemberVisibilityModifier Visibility { get; set; }
+        public abstract ClassMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

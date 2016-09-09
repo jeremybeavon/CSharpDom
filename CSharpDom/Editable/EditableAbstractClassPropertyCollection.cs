@@ -6,22 +6,22 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> :
+    public abstract class EditableAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> :
         IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>
         where TProperty : IClassProperty
         where TAbstractProperty : IAbstractProperty
         where TExplicitInterfaceProperty : IExplicitInterfaceProperty
     {
-        public virtual ICollection<TAbstractProperty> AbstractProperties { get; set; }
+        public abstract ICollection<TAbstractProperty> AbstractProperties { get; set; }
 
         public int Count
         {
             get { return Properties.Count + AbstractProperties.Count + ExplicitInterfaceProperties.Count; }
         }
 
-        public virtual ICollection<TExplicitInterfaceProperty> ExplicitInterfaceProperties { get; set; }
+        public abstract ICollection<TExplicitInterfaceProperty> ExplicitInterfaceProperties { get; set; }
 
-        public virtual ICollection<TProperty> Properties { get; set; }
+        public abstract ICollection<TProperty> Properties { get; set; }
 
         IReadOnlyCollection<TAbstractProperty> IHasAbstractProperties<TAbstractProperty>.AbstractProperties
         {

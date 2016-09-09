@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableExplicitInterfaceIndexer<
+    public abstract class EditableExplicitInterfaceIndexer<
         TAttributeGroup,
         TDeclaringType,
         TInterfaceReference,
@@ -20,7 +20,7 @@ namespace CSharpDom.Editable
         where TParameter : IIndexerParameter
         where TAccessor : IAccessor
     {
-        public virtual TInterfaceReference ExplicitInterface { get; set; }
+        public abstract TInterfaceReference ExplicitInterface { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

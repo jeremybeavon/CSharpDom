@@ -6,7 +6,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableStaticClassEventCollection<TEvent, TEventProperty> :
+    public abstract class EditableStaticClassEventCollection<TEvent, TEventProperty> :
         IStaticClassEventCollection<TEvent, TEventProperty>
         where TEvent : IStaticClassEvent
         where TEventProperty : IStaticClassEventProperty
@@ -16,9 +16,9 @@ namespace CSharpDom.Editable
             get { return Events.Count + EventProperties.Count; }
         }
 
-        public virtual ICollection<TEventProperty> EventProperties { get; set; }
+        public abstract ICollection<TEventProperty> EventProperties { get; set; }
 
-        public virtual ICollection<TEvent> Events { get; set; }
+        public abstract ICollection<TEvent> Events { get; set; }
 
         IReadOnlyCollection<TEventProperty> IHasEventProperties<TEventProperty>.EventProperties
         {

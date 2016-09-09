@@ -8,10 +8,10 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructNestedClassCollectionWithCodeAnalysis :
         EditableStructNestedClassCollection<
-            IStructNestedClass,
-            IStructNestedAbstractClass,
-            IStructNestedSealedClass,
-            IStructNestedStaticClass,
+            StructNestedClassWithCodeAnalysis,
+            StructNestedAbstractClassWithCodeAnalysis,
+            StructNestedSealedClassWithCodeAnalysis,
+            StructNestedStaticClassWithCodeAnalysis,
             PartialClassCollectionNotSupported>
     {
         private readonly StructTypeWithCodeAnalysis structType;
@@ -19,6 +19,71 @@ namespace CSharpDom.CodeAnalysis
         internal StructNestedClassCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis structType)
         {
             this.structType = structType;
+        }
+
+        public override ICollection<StructNestedAbstractClassWithCodeAnalysis> AbstractClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ICollection<StructNestedClassWithCodeAnalysis> Classes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override PartialClassCollectionNotSupported PartialClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ICollection<StructNestedSealedClassWithCodeAnalysis> SealedClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ICollection<StructNestedStaticClassWithCodeAnalysis> StaticClasses
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

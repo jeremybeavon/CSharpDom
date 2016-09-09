@@ -33,6 +33,19 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
+        public override IExpression Value
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         Guid IHasId.InternalId
         {
             get { return internalId; }

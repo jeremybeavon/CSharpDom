@@ -6,7 +6,7 @@ using CSharpDom.Common.Partial;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassNestedStructCollection<TStruct, TPartialStruct> :
+    public abstract class EditableClassNestedStructCollection<TStruct, TPartialStruct> :
         EditableNestedStructCollection<TStruct, TPartialStruct>,
         IClassNestedStructCollection<TStruct, TPartialStruct>
         where TStruct : IClassNestedStruct

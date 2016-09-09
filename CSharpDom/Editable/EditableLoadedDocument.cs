@@ -5,7 +5,7 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableLoadedDocument<
+    public abstract class EditableLoadedDocument<
         TSolution,
         TProject,
         TDocument,
@@ -30,29 +30,29 @@ namespace CSharpDom.Editable
         where TInterfaceCollection : IInterfaceCollection
         where TStructCollection : IStructCollection
     {
-        public virtual ICollection<TAttributeGroup> AssemblyAttributes { get; set; }
+        public abstract ICollection<TAttributeGroup> AssemblyAttributes { get; set; }
 
-        public virtual TClassCollection Classes { get; set; }
+        public abstract TClassCollection Classes { get; set; }
 
-        public virtual ICollection<TDelegate> Delegates { get; set; }
+        public abstract ICollection<TDelegate> Delegates { get; set; }
 
-        public virtual TDocument Document { get; set; }
+        public abstract TDocument Document { get; set; }
 
-        public virtual ICollection<TEnum> Enums { get; set; }
+        public abstract ICollection<TEnum> Enums { get; set; }
 
-        public virtual TInterfaceCollection Interfaces { get; set; }
+        public abstract TInterfaceCollection Interfaces { get; set; }
 
-        public virtual ICollection<TAttributeGroup> ModuleAttributes { get; set; }
+        public abstract ICollection<TAttributeGroup> ModuleAttributes { get; set; }
 
-        public virtual ICollection<TNamespace> Namespaces { get; set; }
+        public abstract ICollection<TNamespace> Namespaces { get; set; }
 
-        public virtual TProject Project { get; set; }
+        public abstract TProject Project { get; set; }
 
-        public virtual TSolution Solution { get; set; }
+        public abstract TSolution Solution { get; set; }
 
-        public virtual TStructCollection Structs { get; set; }
+        public abstract TStructCollection Structs { get; set; }
 
-        public virtual ICollection<TUsingDirective> UsingDirectives { get; set; }
+        public abstract ICollection<TUsingDirective> UsingDirectives { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAssemblyAttributes<TAttributeGroup>.AssemblyAttributes
         {

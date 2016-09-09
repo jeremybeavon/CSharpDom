@@ -3,7 +3,11 @@
 namespace CSharpDom.CodeAnalysis
 {
     public interface IClassTypeWithCodeAnalysis :
-        IType<
+        IClassType<
+            AttributeGroupWithCodeAnalysis,
+            GenericParameterDeclarationWithCodeAnalysis,
+            ClassReferenceWithCodeAnalysis,
+            InterfaceReferenceWithCodeAnalysis,
             ClassEventCollectionWithCodeAnalysis,
             ClassPropertyCollectionWithCodeAnalysis,
             ClassIndexerCollectionWithCodeAnalysis,
@@ -17,11 +21,8 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedEnumWithCodeAnalysis,
             ClassNestedInterfaceCollectionWithCodeAnalysis,
             ClassNestedStructCollectionWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>,
-        IClassType,
-        IHasAttributes<AttributeGroupWithCodeAnalysis>,
-        IHasGenericParameters<GenericParameterDeclarationWithCodeAnalysis>,
-        IHasImplementedInterfaces<InterfaceReferenceWithCodeAnalysis>
+            StaticConstructorWithCodeAnalysis,
+            DestructorWithCodeAnalysis>
     {
     }
 }

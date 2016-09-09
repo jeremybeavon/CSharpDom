@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAbstractAccessor<TAttributeGroup> : 
+    public abstract class EditableAbstractAccessor<TAttributeGroup> : 
         EditableAccessor<TAttributeGroup>,
         IAbstractAccessor<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup

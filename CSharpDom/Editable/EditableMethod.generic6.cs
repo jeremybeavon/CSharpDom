@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> :
+    public abstract class EditableMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> :
         EditableMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>,
         IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
@@ -14,9 +14,9 @@ namespace CSharpDom.Editable
         where TParameter : IMethodParameter
         where TMethodBody : IMethodBody
     {
-        public virtual TMethodBody Body { get; set; }
+        public abstract TMethodBody Body { get; set; }
 
-        public virtual bool IsAsync { get; set; }
+        public abstract bool IsAsync { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

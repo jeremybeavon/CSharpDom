@@ -5,12 +5,12 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableUnspecifiedTypeReference<TGenericParameter> : IUnspecifiedTypeReference<TGenericParameter>
+    public abstract class EditableUnspecifiedTypeReference<TGenericParameter> : IUnspecifiedTypeReference<TGenericParameter>
         where TGenericParameter : IGenericParameter
     {
-        public virtual IList<TGenericParameter> GenericParameters { get; set; }
+        public abstract IList<TGenericParameter> GenericParameters { get; set; }
 
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
         IReadOnlyList<TGenericParameter> IHasGenericParameters<TGenericParameter>.GenericParameters
         {

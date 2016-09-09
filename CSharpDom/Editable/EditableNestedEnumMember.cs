@@ -5,16 +5,16 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableNestedEnumMember<TAttributeGroup, TDeclaringType> :
+    public abstract class EditableNestedEnumMember<TAttributeGroup, TDeclaringType> :
         INestedEnumMember<TAttributeGroup, TDeclaringType>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : INestedEnum
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual TDeclaringType DeclaringType { get; set; }
+        public abstract TDeclaringType DeclaringType { get; set; }
 
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {

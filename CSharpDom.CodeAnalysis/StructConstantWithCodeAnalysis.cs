@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StructConstantWithCodeAnalysis :
         EditableStructConstant<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ConstantWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>,
@@ -45,6 +45,15 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return constant.Constants; }
             set { constant.Constants = value; }
+        }
+
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return constant.DeclaringType}
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override ITypeReferenceWithCodeAnalysis FieldType

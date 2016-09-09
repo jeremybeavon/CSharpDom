@@ -4,13 +4,13 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableAccessor<TAttributeGroup, TMethodBody> :
+    public abstract class EditableAccessor<TAttributeGroup, TMethodBody> :
         EditableAccessor<TAttributeGroup>,
         IAccessor<TAttributeGroup, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TMethodBody : IMethodBody
     {
-        public virtual TMethodBody Body { get; set; }
+        public abstract TMethodBody Body { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

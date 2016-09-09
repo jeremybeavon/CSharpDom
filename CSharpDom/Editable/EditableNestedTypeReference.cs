@@ -3,12 +3,12 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableNestedTypeReference<TTypeReference> : INestedTypeReference<TTypeReference>
+    public abstract class EditableNestedTypeReference<TTypeReference> : INestedTypeReference<TTypeReference>
         where TTypeReference : ITypeReference
     {
-        public virtual TTypeReference NestedType { get; set; }
+        public abstract TTypeReference NestedType { get; set; }
 
-        public virtual TTypeReference Type { get; set; }
+        public abstract TTypeReference Type { get; set; }
 
         public void Accept(IGenericVisitor visitor)
         {

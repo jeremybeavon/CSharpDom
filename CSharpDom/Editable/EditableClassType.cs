@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassType<
+    public abstract class EditableClassType<
         TAttributeGroup,
         TGenericParameter,
         TClassReference,
@@ -46,9 +46,9 @@ namespace CSharpDom.Editable
         where TDestructor : IDestructor
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual TClassReference BaseClass { get; set; }
+        public abstract TClassReference BaseClass { get; set; }
 
-        public virtual TDestructor Destructor { get; set; }
+        public abstract TDestructor Destructor { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

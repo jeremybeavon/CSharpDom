@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Editable
 {
-    public class EditableSealedType<
+    public abstract class EditableSealedType<
         TAttributeGroup,
         TGenericParameter,
         TClassReference,
@@ -47,7 +47,7 @@ namespace CSharpDom.Editable
         where TNestedStructCollection : IClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public virtual TClassReference BaseClass { get; set; }
+        public abstract TClassReference BaseClass { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

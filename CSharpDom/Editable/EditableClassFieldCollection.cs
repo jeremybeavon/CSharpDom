@@ -6,18 +6,18 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public class EditableClassFieldCollection<TField, TConstant> : IClassFieldCollection<TField, TConstant>
+    public abstract class EditableClassFieldCollection<TField, TConstant> : IClassFieldCollection<TField, TConstant>
         where TField : IClassField
         where TConstant : IClassConstant
     {
-        public virtual ICollection<TConstant> Constants { get; set; }
+        public abstract ICollection<TConstant> Constants { get; set; }
 
         public int Count
         {
             get { return Constants.Count + Fields.Count; }
         }
 
-        public virtual ICollection<TField> Fields { get; set; }
+        public abstract ICollection<TField> Fields { get; set; }
 
         IReadOnlyCollection<TConstant> IHasConstants<TConstant>.Constants
         {

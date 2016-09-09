@@ -2,6 +2,7 @@
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -50,7 +51,13 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Classes; }
             set { classType.Classes = value; }
         }
-        
+
+        public override IType DeclaringType
+        {
+            get { return classType.Node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override ICollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return classType.Delegates; }

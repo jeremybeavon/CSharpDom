@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public class EditableInterfaceType<
+    public abstract class EditableInterfaceType<
         TAttributeGroup,
         TGenericParameter,
         TInterfaceReference,
@@ -23,21 +23,21 @@ namespace CSharpDom.Editable
         where TIndexer : IInterfaceIndexer
         where TMethod : IInterfaceMethod
     {
-        public virtual ICollection<TAttributeGroup> Attributes { get; set; }
+        public abstract ICollection<TAttributeGroup> Attributes { get; set; }
 
-        public virtual ICollection<TEvent> Events { get; set; }
+        public abstract ICollection<TEvent> Events { get; set; }
 
-        public virtual IList<TGenericParameter> GenericParameters { get; set; }
+        public abstract IList<TGenericParameter> GenericParameters { get; set; }
 
-        public virtual ICollection<TIndexer> Indexers { get; set; }
+        public abstract ICollection<TIndexer> Indexers { get; set; }
 
-        public virtual ICollection<TInterfaceReference> Interfaces { get; set; }
+        public abstract ICollection<TInterfaceReference> Interfaces { get; set; }
 
-        public virtual ICollection<TMethod> Methods { get; set; }
+        public abstract ICollection<TMethod> Methods { get; set; }
 
-        public virtual string Name { get; set; }
+        public abstract string Name { get; set; }
 
-        public virtual ICollection<TProperty> Properties { get; set; }
+        public abstract ICollection<TProperty> Properties { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {
