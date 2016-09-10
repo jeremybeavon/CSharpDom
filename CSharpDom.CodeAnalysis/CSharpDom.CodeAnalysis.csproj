@@ -116,6 +116,8 @@
     <Compile Include="AttributeWithCodeAnalysis.cs" />
     <Compile Include="BaseTypeList.cs" />
     <Compile Include="BaseTypeListWrapper.cs" />
+    <Compile Include="CachedStatementNode.cs" />
+    <Compile Include="CachedStatementNodeBuilder.cs" />
     <Compile Include="ClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
@@ -140,9 +142,15 @@
     <Compile Include="FieldDeclarationSyntaxExtensions.cs" />
     <Compile Include="FilteredList.generic.cs" />
     <Compile Include="IAbstractTypeWithCodeAnalysis.cs" />
+    <Compile Include="IExpressionWithCodeAnalysis.cs" />
     <Compile Include="IInterfaceTypeWithCodeAnalysis.cs" />
+    <Compile Include="IInternalStatement.cs" />
     <Compile Include="InterfaceWithCodeAnalysis.cs" />
+    <Compile Include="StatementNode.cs" />
+    <Compile Include="StatementSyntaxExtensions.cs" />
+    <Compile Include="InternalStatementListWrapperBuilder.cs" />
     <Compile Include="ISealedTypeWithCodeAnalysis.cs" />
+    <Compile Include="IStatementWithCodeAnalysis.cs" />
     <Compile Include="IStaticTypeWithCodeAnalysis.cs" />
     <Compile Include="IStructTypeWithCodeAnalysis.cs" />
     <Compile Include="IClassTypeWithCodeAnalysis.cs" />
@@ -159,6 +167,10 @@
     <Compile Include="NestedStaticClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="NestedStructWithCodeAnalysis.cs" />
     <Compile Include="SimpleStructMemberListWrapper.cs" />
+    <Compile Include="InternalStatementListWrapper.cs" />
+    <Compile Include="StatementListWrapper.cs" />
+    <Compile Include="Statements\BlockStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\BreakStatementWithCodeAnalysis.cs" />
     <Compile Include="StaticClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="StaticClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="StaticClassMethodCollectionWithCodeAnalysis.cs" />
@@ -232,6 +244,7 @@
     <Compile Include="StructMethodWithCodeAnalysis.cs" />
     <Compile Include="StructPropertyWithCodeAnalysis.cs" />
     <Compile Include="StructTypeWithCodeAnalysis.cs" />
+    <Compile Include="TypedFactory.cs" />
     <Compile Include="WrappedList.cs" />
     <Compile Include="IGenericParameterCollection.cs" />
     <Compile Include="InterfaceMemberListWrapper.cs" />

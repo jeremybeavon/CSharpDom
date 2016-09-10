@@ -18,7 +18,7 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<TParentNode, TParentSyntax> node;
         private readonly IList<TChildSyntax> list;
-        private readonly Func<TParentNode, TChildNode> factory;
+        private readonly Func<TParentNode, TChildSyntax, TChildNode> factory;
         private readonly Action<TChildNode, TParentNode> setParent;
         private readonly IList<TChildNode> innerList;
         private readonly IDictionary<TChildNode, TChildSyntax> syntaxMap;
@@ -29,6 +29,15 @@ namespace CSharpDom.CodeAnalysis
             Node<TParentNode, TParentSyntax> node,
             IList<TChildSyntax> list,
             Func<TParentNode, TChildNode> factory,
+            Action<TChildNode, TParentNode> setParent)
+            : this(node, list, (parent, childSyntax) => factory(parent), setParent)
+        {
+        }
+
+        public ImmutableListWrapper(
+            Node<TParentNode, TParentSyntax> node,
+            IList<TChildSyntax> list,
+            Func<TParentNode, TChildSyntax, TChildNode> factory,
             Action<TChildNode, TParentNode> setParent)
         {
             this.node = node;
@@ -234,7 +243,7 @@ namespace CSharpDom.CodeAnalysis
                 IndexedItem item;
                 if (!reverseSyntaxMap.TryGetValue(syntax, out item))
                 {
-                    InternalInsert(index, factory(node.Value), syntax);
+                    InternalInsert(index, factory(node.Value, syntax), syntax);
                 }
                 else if (item.Index != index)
                 {

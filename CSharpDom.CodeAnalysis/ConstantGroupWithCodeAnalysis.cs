@@ -68,7 +68,7 @@ namespace CSharpDom.CodeAnalysis
             constantType = new CachedChildNode<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)),
-                null,
+                parent => null,
                 null);
         }
 

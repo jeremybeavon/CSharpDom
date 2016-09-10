@@ -10,14 +10,14 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<TParentNode, TParentSyntax> node;
         private readonly Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax;
-        private readonly Func<TParentNode, TChildNode> getValue;
+        private readonly Func<TParentNode, TChildSyntax, TChildNode> getValue;
         private readonly Action<TChildNode, TParentNode> setParent;
         private TChildNode cachedValue;
 
         public CachedChildNode(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax,
-            Func<TParentNode, TChildNode> getValue,
+            Func<TParentNode, TChildSyntax, TChildNode> getValue,
             Action<TChildNode, TParentNode> setParent)
         {
             this.node = node;
@@ -26,11 +26,20 @@ namespace CSharpDom.CodeAnalysis
             this.setParent = setParent;
         }
 
+        public CachedChildNode(
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax,
+            Func<TParentNode, TChildNode> getValue,
+            Action<TChildNode, TParentNode> setParent)
+            : this(node, createSyntax, (parent, childSyntax) => getValue(parent), setParent)
+        {
+        }
+
         public TChildNode Value
         {
             get
             {
-                TChildNode newValue = getValue(node.Value);
+                TChildNode newValue = getValue(node.Value, cachedValue?.Syntax);
                 if (cachedValue == null ||
                     (newValue == null && cachedValue != null) ||
                     (newValue != null && newValue.GetType() != cachedValue.GetType()))
@@ -48,7 +57,7 @@ namespace CSharpDom.CodeAnalysis
                 }
 
                 node.Syntax = createSyntax(node.Syntax, value?.Syntax);
-                cachedValue = getValue(node.Value);
+                cachedValue = getValue(node.Value, value?.Syntax);
                 if (cachedValue != null)
                 {
                     setParent(cachedValue, node.Value);
