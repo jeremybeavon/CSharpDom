@@ -1,5 +1,5 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -8,92 +8,131 @@ using System.Linq;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class DelegateWithCodeAnalysis :
-        AbstractDelegate<
-            NamespaceWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
+        EditableDelegate<
+            INamespace,
+            IDocument,
+            IProject,
+            ISolution,
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             DelegateParameterWithCodeAnalysis>,
-        IHasTypeDefinition//,
+        IHasSyntax<DelegateDeclarationSyntax>,
+        IHasId//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly AssemblyWithCodeAnalysis assembly;
-        private readonly NamespaceWithCodeAnalysis @namespace;
-        private readonly TypeDefinition type;
-        private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<GenericParameterDeclarations> genericParameters;
-        private readonly ITypeReferenceWithCodeAnalysis returnType;
-        private readonly Lazy<Parameters<DelegateParameterWithCodeAnalysis>> parameters;
+        private readonly Guid internalId;
+        private readonly DelegateTypeWithCodeAnalysis type;
 
-        internal DelegateWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, NamespaceWithCodeAnalysis @namespace, TypeDefinition type)
+        private DelegateWithCodeAnalysis()
         {
-            this.assembly = assembly;
-            this.@namespace = @namespace;
-            this.type = type;
-            attributes = new Lazy<Attributes>(() => new Attributes(assembly, type));
-            genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, type));
-            MethodDefinition invokeMethod = type.Methods.First(method => method.Name == "Invoke");
-            returnType = TypeReferenceWithCodeAnalysisFactory.CreateReference(assembly, invokeMethod.ReturnType, invokeMethod);
-            parameters = new Lazy<Parameters<DelegateParameterWithCodeAnalysis>>(
-                () => new Parameters<DelegateParameterWithCodeAnalysis>(assembly, invokeMethod, parameter => new DelegateParameterWithCodeAnalysis(parameter)));
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            get { return type.Attributes; }
+            set { type.Attributes = value; }
         }
 
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override IDocument Document
         {
-            get { return genericParameters.Value.GenericParameterDeclarationsWithCodeAnalysis; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        {
+            get { return type.GenericParameters; }
+            set { type.GenericParameters = value; }
         }
 
         public override string Name
         {
-            get { return type.Name(); }
+            get { return type.Name; }
+            set { type.Name = value; }
         }
 
-        public override NamespaceWithCodeAnalysis Namespace
+        public override INamespace Namespace
         {
-            get { return @namespace; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override IReadOnlyList<DelegateParameterWithCodeAnalysis> Parameters
+        public override IList<DelegateParameterWithCodeAnalysis> Parameters
         {
-            get { return parameters.Value.ParametersWithCodeAnalysis; }
+            get { return type.Parameters; }
+            set { type.Parameters = value; }
         }
 
-        public override AssemblyWithCodeAnalysis Project
+        public override IProject Project
         {
-            get { return assembly; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override ITypeReferenceWithCodeAnalysis ReturnType
         {
-            get { return returnType; }
+            get { return type.ReturnType; }
+            set { type.ReturnType = value; }
         }
 
-        public override AssemblyWithCodeAnalysis Solution
+        public override ISolution Solution
         {
-            get { return assembly; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public DelegateDeclarationSyntax Syntax
+        {
+            get { return type.Syntax; }
+            set { type.Syntax = value; }
         }
 
         public override TypeVisibilityModifier Visibility
         {
-            get { return type.Visibility(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public TypeDefinition TypeDefinition
+        Guid IHasId.InternalId
         {
-            get { return type; }
-        }
-
-        public override AssemblyWithCodeAnalysis Document
-        {
-            get { return assembly; }
+            get { return internalId; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

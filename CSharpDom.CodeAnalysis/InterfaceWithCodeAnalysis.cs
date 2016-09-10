@@ -1,5 +1,5 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class InterfaceWithCodeAnalysis :
-        AbstractInterface<
-            NamespaceWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
+        EditableInterface<
+            INamespace,
+            IDocument,
+            IProject,
+            ISolution,
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
@@ -22,101 +22,141 @@ namespace CSharpDom.CodeAnalysis
             InterfacePropertyWithCodeAnalysis,
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
-        IBasicTypeWithCodeAnalysis,
-        IHasTypeDefinition//,
+        IInterfaceTypeWithCodeAnalysis,
+        IHasSyntax<InterfaceDeclarationSyntax>,
+        IHasId//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly AssemblyWithCodeAnalysis assembly;
-        private readonly NamespaceWithCodeAnalysis @namespace;
-        private readonly TypeDefinition type;
-        private readonly BasicTypeWithCodeAnalysis basicType;
+        private readonly Guid internalId;
+        private readonly InterfaceTypeWithCodeAnalysis type;
 
-        internal InterfaceWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, NamespaceWithCodeAnalysis @namespace, TypeDefinition type)
+        private InterfaceWithCodeAnalysis()
         {
-            this.assembly = assembly;
-            this.@namespace = @namespace;
-            this.type = type;
-            basicType = new BasicTypeWithCodeAnalysis(this, type);
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return basicType.Attributes; }
+            get { return type.Attributes; }
+            set { type.Attributes = value; }
         }
 
-        public override IReadOnlyCollection<InterfaceEventWithCodeAnalysis> Events
+        public override IDocument Document
         {
-            get { return basicType.Events; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override ICollection<InterfaceEventWithCodeAnalysis> Events
         {
-            get { return basicType.GenericParameters; }
+            get { return type.Events; }
+            set { type.Events = value; }
         }
 
-        public override IReadOnlyCollection<InterfaceIndexerWithCodeAnalysis> Indexers
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
-            get { return basicType.Indexers; }
+            get { return type.GenericParameters; }
+            set { type.GenericParameters = value; }
         }
 
-        public override IReadOnlyCollection<InterfaceReferenceWithCodeAnalysis> Interfaces
+        public override ICollection<InterfaceIndexerWithCodeAnalysis> Indexers
         {
-            get { return basicType.Interfaces; }
+            get { return type.Indexers; }
+            set { type.Indexers = value; }
         }
 
-        public override bool IsPartial
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> Interfaces
         {
-            get { return false; }
+            get { return type.Interfaces; }
+            set { type.Interfaces = value; }
         }
-
-        public override IReadOnlyCollection<InterfaceMethodWithCodeAnalysis> Methods
+        
+        public override ICollection<InterfaceMethodWithCodeAnalysis> Methods
         {
-            get { return basicType.Methods; }
+            get { return type.Methods; }
+            set { type.Methods = value; }
         }
 
         public override string Name
         {
-            get { return type.Name(); }
+            get { return type.Name; }
+            set { type.Name = value; }
         }
 
-        public override NamespaceWithCodeAnalysis Namespace
+        public override INamespace Namespace
         {
-            get { return @namespace; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override AssemblyWithCodeAnalysis Project
+        public override IProject Project
         {
-            get { return assembly; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override IReadOnlyCollection<InterfacePropertyWithCodeAnalysis> Properties
+        public override ICollection<InterfacePropertyWithCodeAnalysis> Properties
         {
-            get { return basicType.Properties; }
+            get { return type.Properties; }
+            set { type.Properties = value; }
         }
 
-        public override AssemblyWithCodeAnalysis Solution
+        public override ISolution Solution
         {
-            get { return assembly; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public TypeDefinition TypeDefinition
+        public InterfaceDeclarationSyntax Syntax
         {
-            get { return type; }
+            get { return type.Syntax; }
+            set { type.Syntax = value; }
         }
 
         public override TypeVisibilityModifier Visibility
         {
-            get { return type.Visibility(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override AssemblyWithCodeAnalysis Document
+        Guid IHasId.InternalId
         {
-            get { return assembly; }
-        }
-
-        public AssemblyWithCodeAnalysis Assembly
-        {
-            get { return assembly; }
+            get { return internalId; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

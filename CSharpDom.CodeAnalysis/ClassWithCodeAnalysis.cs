@@ -1,6 +1,5 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
-using CSharpDom.Mono.Cecil.Internal.Hiding;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -9,11 +8,11 @@ using System.Reflection;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassWithCodeAnalysis :
-        AbstractClass<
-            NamespaceWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
+        EditableClass<
+            INamespace,
+            IDocument,
+            IProject,
+            ISolution,
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
@@ -33,183 +32,213 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedStructCollectionWithCodeAnalysis,
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
+        IHasSyntax<ClassDeclarationSyntax>,
         IClassTypeWithCodeAnalysis,
-        IInternalTypeWithCodeAnalysis,
-        IHasTypeDefinition//,
+        IHasId//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly AssemblyWithCodeAnalysis assembly;
-        private readonly NamespaceWithCodeAnalysis @namespace;
-        private readonly TypeDefinition type;
-        private readonly ClassReferenceWithCodeAnalysis baseClass;
-        private readonly ClassTypeWithCodeAnalysis typeWithCodeAnalysis;
-        private readonly Lazy<DestructorWithCodeAnalysis> destructor;
-        private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
+        private readonly Guid internalId;
+        private readonly ClassTypeWithCodeAnalysis classType;
 
-        internal ClassWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, NamespaceWithCodeAnalysis @namespace, TypeDefinition type)
+        private ClassWithCodeAnalysis()
         {
-            this.assembly = assembly;
-            this.@namespace = @namespace;
-            this.type = type;
-            if (type.BaseType != null && type.BaseType.FullName != "System.Object")
-            {
-                baseClass = new ClassReferenceWithCodeAnalysis(assembly, type.BaseType);
-            }
-
-            hiddenMembersAnalyzer = new HiddenMembersAnalyzer(assembly, type);
-            typeWithCodeAnalysis = new ClassTypeWithCodeAnalysis(this);
-            destructor = new Lazy<DestructorWithCodeAnalysis>(InitializeDestructor);
+            internalId = Guid.NewGuid();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return typeWithCodeAnalysis.Attributes; }
+            get { return classType.Attributes; }
+            set { classType.Attributes = value; }
         }
 
         public override ClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return typeWithCodeAnalysis.Classes; }
+            get { return classType.Classes; }
+            set { classType.Classes = value; }
         }
 
-        public override IReadOnlyCollection<ClassConstructorWithCodeAnalysis> Constructors
+        public override ICollection<ClassConstructorWithCodeAnalysis> Constructors
         {
-            get { return typeWithCodeAnalysis.Constructors; }
+            get { return classType.Constructors; }
+            set { classType.Constructors = value; }
         }
 
-        public override IReadOnlyCollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
+        public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
         {
-            get { return typeWithCodeAnalysis.ConversionOperators; }
+            get { return classType.ConversionOperators; }
+            set { classType.ConversionOperators = value; }
         }
 
-        public override IReadOnlyCollection<ClassNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return typeWithCodeAnalysis.Delegates; }
+            get { return classType.Delegates; }
+            set { classType.Delegates = value; }
         }
 
         public override DestructorWithCodeAnalysis Destructor
         {
-            get { return destructor.Value; }
+            get { return classType.Destructor; }
+            set { classType.Destructor = value; }
         }
 
-        public override IReadOnlyCollection<ClassNestedEnumWithCodeAnalysis> Enums
+        public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return typeWithCodeAnalysis.Enums; }
+            get { return classType.Enums; }
+            set { classType.Enums = value; }
         }
         
         public override ClassEventCollectionWithCodeAnalysis Events
         {
-            get { return typeWithCodeAnalysis.Events; }
+            get { return classType.Events; }
+            set { classType.Events = value; }
         }
 
         public override ClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return typeWithCodeAnalysis.Fields; }
+            get { return classType.Fields; }
+            set { classType.Fields = value; }
         }
 
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
-            get { return typeWithCodeAnalysis.GenericParameters; }
+            get { return classType.GenericParameters; }
+            set { classType.GenericParameters = value; }
         }
 
         public override ClassIndexerCollectionWithCodeAnalysis Indexers
         {
-            get { return typeWithCodeAnalysis.Indexers; }
+            get { return classType.Indexers; }
+            set { classType.Indexers = value; }
         }
 
         public override ClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
         {
-            get { return typeWithCodeAnalysis.Interfaces; }
+            get { return classType.Interfaces; }
+            set { classType.Interfaces = value; }
         }
 
         public override ClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return typeWithCodeAnalysis.Methods; }
+            get { return classType.Methods; }
+            set { classType.Methods = value; }
         }
 
         public override string Name
         {
-            get { return type.Name(); }
+            get { return classType.Name; }
+            set { classType.Name = value; }
         }
-
-        public override NamespaceWithCodeAnalysis Namespace
+        
+        public override ICollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
-            get { return @namespace; }
+            get { return classType.OperatorOverloads; }
+            set { classType.OperatorOverloads = value; }
         }
-
-        public override IReadOnlyCollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
-        {
-            get { return typeWithCodeAnalysis.OperatorOverloads; }
-        }
-
-        public override AssemblyWithCodeAnalysis Project
-        {
-            get { return assembly; }
-        }
-
+        
         public override ClassPropertyCollectionWithCodeAnalysis Properties
         {
-            get { return typeWithCodeAnalysis.Properties; }
+            get { return classType.Properties; }
+            set { classType.Properties = value; }
         }
-
-        public override AssemblyWithCodeAnalysis Solution
-        {
-            get { return assembly; }
-        }
-
+        
         public override ClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return typeWithCodeAnalysis.Structs; }
+            get { return classType.Structs; }
+            set { classType.Structs = value; }
         }
 
         public override ClassReferenceWithCodeAnalysis BaseClass
         {
-            get { return baseClass; }
+            get { return classType.BaseClass; }
+            set { classType.BaseClass = value; }
         }
 
-        public override IReadOnlyCollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
         {
-            get { return typeWithCodeAnalysis.ImplementedInterfaces; }
-        }
-        
-        public override TypeVisibilityModifier Visibility
-        {
-            get { return type.Visibility(); }
-        }
-
-        public TypeDefinition TypeDefinition
-        {
-            get { return type; }
+            get { return classType.ImplementedInterfaces; }
+            set { classType.ImplementedInterfaces = value; }
         }
         
         public override StaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return typeWithCodeAnalysis.StaticConstructor; }
+            get { return classType.StaticConstructor; }
+            set { classType.StaticConstructor = value; }
+        }
+        
+        public ClassDeclarationSyntax Syntax
+        {
+            get { return classType.Syntax; }
+            set { classType.Syntax = value; }
         }
 
-        public override AssemblyWithCodeAnalysis Document
+        Guid IHasId.InternalId
         {
-            get { return assembly; }
+            get { return internalId; }
         }
 
-        internal ClassTypeWithCodeAnalysis TypeWithCodeAnalysis
+        public override IDocument Document
         {
-            get { return typeWithCodeAnalysis; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        HiddenMembersAnalyzer IInternalTypeWithCodeAnalysis.HiddenMembersAnalyzer
+        public override INamespace Namespace
         {
-            get { return hiddenMembersAnalyzer; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public AssemblyWithCodeAnalysis Assembly
+        public override IProject Project
         {
-            get { return assembly; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        private DestructorWithCodeAnalysis InitializeDestructor()
+        public override ISolution Solution
         {
-            MethodDefinition method = typeWithCodeAnalysis.Destructor;
-            return method == null ? null : new DestructorWithCodeAnalysis(assembly, this, method);
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override TypeVisibilityModifier Visibility
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
         /*public void Accept(IReflectionVisitor visitor)
