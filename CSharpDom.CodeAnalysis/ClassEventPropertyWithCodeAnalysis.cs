@@ -117,10 +117,7 @@ namespace CSharpDom.CodeAnalysis
 
         Guid IHasId.InternalId
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return internalId; }
         }
     }
 }

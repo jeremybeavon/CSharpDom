@@ -16,6 +16,24 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<MethodBodyWithCodeAnalysis, BlockSyntax> node;
 
+        internal MethodBodyWithCodeAnalysis(AccessorWithCodeAnalysis parent)
+            : this()
+        {
+            AccessorParent = parent;
+        }
+
+        internal MethodBodyWithCodeAnalysis(ConstructorWithCodeAnalysis parent)
+            : this()
+        {
+            ConstructorParent = parent;
+        }
+
+        internal MethodBodyWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent)
+            : this()
+        {
+            ConversionOperatorParent = parent;
+        }
+
         internal MethodBodyWithCodeAnalysis(EventPropertyWithCodeAnalysis parent, EventPropertyBodyType body)
             : this()
         {
@@ -34,6 +52,18 @@ namespace CSharpDom.CodeAnalysis
             : this()
         {
             DestructorParent = parent;
+        }
+
+        internal MethodBodyWithCodeAnalysis(MethodWithCodeAnalysis parent)
+            : this()
+        {
+            MethodParent = parent;
+        }
+
+        internal MethodBodyWithCodeAnalysis(OperatorOverloadWithCodeAnalysis parent)
+            : this()
+        {
+            OperatorOverloadParent = parent;
         }
 
         internal MethodBodyWithCodeAnalysis(StaticConstructorWithCodeAnalysis parent)
@@ -64,6 +94,42 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        internal AccessorWithCodeAnalysis AccessorParent
+        {
+            get { return node.GetParentNode<AccessorWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
+                    value,
+                    syntax => syntax.Body,
+                    (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
+            }
+        }
+
+        internal ConstructorWithCodeAnalysis ConstructorParent
+        {
+            get { return node.GetParentNode<ConstructorWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                    value,
+                    syntax => syntax.Body,
+                    (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
+            }
+        }
+
+        internal ConversionOperatorWithCodeAnalysis ConversionOperatorParent
+        {
+            get { return node.GetParentNode<ConversionOperatorWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
+                    value,
+                    syntax => syntax.Body,
+                    (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
+            }
         }
 
         internal DestructorWithCodeAnalysis DestructorParent
@@ -99,6 +165,30 @@ namespace CSharpDom.CodeAnalysis
                     value,
                     syntax => syntax.GetAccessor(SyntaxKind.RemoveKeyword).Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax, SyntaxKind.RemoveKeyword));
+            }
+        }
+
+        internal MethodWithCodeAnalysis MethodParent
+        {
+            get { return node.GetParentNode<MethodWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                    value,
+                    syntax => syntax.Body,
+                    (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
+            }
+        }
+
+        internal OperatorOverloadWithCodeAnalysis OperatorOverloadParent
+        {
+            get { return node.GetParentNode<OperatorOverloadWithCodeAnalysis>(); }
+            set
+            {
+                node.SetParentNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
+                    value,
+                    syntax => syntax.Body,
+                    (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
             }
         }
 

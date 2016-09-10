@@ -22,6 +22,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly object constructor;
         private readonly Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> node;
         private readonly AttributeListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> attributes;
+        private readonly MethodBodyNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> body;
         private readonly SeparatedSyntaxListWrapper<
             ConstructorWithCodeAnalysis,
             ConstructorDeclarationSyntax,
@@ -50,6 +51,11 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.ConstructorParent = parent);
+            body = new MethodBodyNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
+                parent => new MethodBodyWithCodeAnalysis(parent),
+                (child, parent) => child.ConstructorParent = parent);
             parameters = new SeparatedSyntaxListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax, ConstructorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
@@ -66,15 +72,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override MethodBodyWithCodeAnalysis Body
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return body.Value; }
+            set { body.Value = value; }
         }
 
         public override IType DeclaringType

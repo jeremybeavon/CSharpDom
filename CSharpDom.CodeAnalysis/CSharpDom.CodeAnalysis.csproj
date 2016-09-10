@@ -290,7 +290,6 @@
     <Compile Include="ImmutableSeparatedSyntaxList.cs" />
     <Compile Include="ImmutableSyntaxList.cs" />
     <Compile Include="MemberListWrapper.cs" />
-    <Compile Include="MemberWithCodeAnalysis.cs" />
     <Compile Include="MethodParameterWithCodeAnalysis.cs" />
     <Compile Include="MethodWithBodyWithCodeAnalysis.cs" />
     <Compile Include="MethodWithCodeAnalysis.cs" />

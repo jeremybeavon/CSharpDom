@@ -13,10 +13,16 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<AccessorDeclarationSyntax>
     {
         private readonly AccessorWithCodeAnalysis accessor;
+        private readonly MethodBodyNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> body;
 
         internal AccessorWithBodyWithCodeAnalysis(AccessorWithCodeAnalysis accessor)
         {
             this.accessor = accessor;
+            body = new MethodBodyNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
+                accessor.Node,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
+                parent => new MethodBodyWithCodeAnalysis(parent),
+                (child, parent) => child.AccessorParent = parent);
         }
 
         public AccessorWithCodeAnalysis Accessor

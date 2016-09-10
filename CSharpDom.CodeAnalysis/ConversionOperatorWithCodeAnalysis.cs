@@ -21,10 +21,10 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Guid internalId;
         private readonly Node<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> node;
-        private readonly IType declaringType;
         private readonly AttributeListWrapper<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax> attributes;
+        private readonly MethodBodyNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> body;
         private readonly CachedChildNode<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax,
@@ -58,6 +58,11 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => { });
+            body = new MethodBodyNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
+                parent => new MethodBodyWithCodeAnalysis(parent),
+                (child, parent) => child.ConversionOperatorParent = parent);
             parameter = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 WithParameter,

@@ -49,6 +49,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Guid internalId;
         private readonly Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> node;
         private readonly AttributeListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> attributes;
+        private readonly MethodBodyNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> body;
         private readonly SeparatedSyntaxListWrapper<
             OperatorOverloadWithCodeAnalysis,
             OperatorDeclarationSyntax,
@@ -81,6 +82,11 @@ namespace CSharpDom.CodeAnalysis
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
+                (child, parent) => child.OperatorOverloadParent = parent);
+            body = new MethodBodyNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
+                parent => new MethodBodyWithCodeAnalysis(parent),
                 (child, parent) => child.OperatorOverloadParent = parent);
             parameters = new SeparatedSyntaxListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
