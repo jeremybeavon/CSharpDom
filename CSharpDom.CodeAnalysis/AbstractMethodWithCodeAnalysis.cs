@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class AbstractMethodWithCodeAnalysis :
         EditableAbstractMethod<
             AttributeGroupWithCodeAnalysis,
-            IAbstractType,
+            IAbstractTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis>,
@@ -40,7 +40,13 @@ namespace CSharpDom.CodeAnalysis
             get { return method.Attributes; }
             set { method.Attributes = value; }
         }
-        
+
+        public override IAbstractTypeWithCodeAnalysis DeclaringType
+        {
+            get { return method.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
             get { return method.GenericParameters; }

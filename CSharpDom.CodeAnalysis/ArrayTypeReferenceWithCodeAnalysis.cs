@@ -35,11 +35,11 @@ namespace CSharpDom.CodeAnalysis
             get
             {
                 RefreshElementType();
-                return base.ElementType;
+                throw new NotImplementedException();
             }
             set
             {
-                base.ElementType = value;
+                throw new NotImplementedException();
             }
         }
 
@@ -92,9 +92,9 @@ namespace CSharpDom.CodeAnalysis
             {
                 throw new NotSupportedException();
             }
-            else if (!(base.ElementType is ArrayTypeReferenceWithCodeAnalysis))
+            else if (!(ElementType is ArrayTypeReferenceWithCodeAnalysis))
             {
-                base.ElementType = new ArrayTypeReferenceWithCodeAnalysis(this, index + 1);
+                ElementType = new ArrayTypeReferenceWithCodeAnalysis(this, index + 1);
             }
         }
     }

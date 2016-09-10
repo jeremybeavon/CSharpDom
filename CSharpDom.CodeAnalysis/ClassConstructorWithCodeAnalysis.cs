@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class ClassConstructorWithCodeAnalysis :
         EditableClassConstructor<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IClassTypeWithCodeAnalysis,
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<ConstructorDeclarationSyntax>,
@@ -47,9 +47,9 @@ namespace CSharpDom.CodeAnalysis
             set { constructor.Body = value; }
         }
         
-        public override IClassType DeclaringType
+        public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return constructor.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

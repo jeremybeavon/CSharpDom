@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class AbstractEventWithCodeAnalysis :
         EditableAbstractEvent<
             AttributeGroupWithCodeAnalysis,
-            IAbstractType,
+            IAbstractTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
         IHasSyntax<EventFieldDeclarationSyntax>,
         IHasId
@@ -38,7 +38,13 @@ namespace CSharpDom.CodeAnalysis
             get { return @event.Attributes; }
             set { @event.Attributes = value; }
         }
-        
+
+        public override IAbstractTypeWithCodeAnalysis DeclaringType
+        {
+            get { return @event.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override DelegateReferenceWithCodeAnalysis EventType
         {
             get { return @event.EventType; }

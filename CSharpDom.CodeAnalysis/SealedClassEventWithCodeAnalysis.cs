@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class SealedClassEventWithCodeAnalysis :
         EditableSealedClassEvent<
             AttributeGroupWithCodeAnalysis,
-            ISealedType,
+            ISealedTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
         IHasSyntax<EventFieldDeclarationSyntax>,
         IHasId
@@ -38,13 +38,32 @@ namespace CSharpDom.CodeAnalysis
             get { return @event.Attributes; }
             set { @event.Attributes = value; }
         }
-        
+
+        public override ISealedTypeWithCodeAnalysis DeclaringType
+        {
+            get { return @event.Event.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override DelegateReferenceWithCodeAnalysis EventType
         {
             get { return @event.EventType; }
             set { @event.EventType = value; }
         }
-        
+
+        public override ICollection<AttributeGroupWithCodeAnalysis> FieldAttributes
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override SealedClassMemberInheritanceModifier InheritanceModifier
         {
             get { return Syntax.Modifiers.ToSealedClassMemberInheritanceModifier(); }

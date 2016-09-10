@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassConstantWithCodeAnalysis :
         EditableStaticClassConstant<
             AttributeGroupWithCodeAnalysis,
-            IStaticType,
+            IStaticTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ConstantWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>,
@@ -44,6 +44,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return constant.Constants; }
             set { constant.Constants = value; }
+        }
+
+        public override IStaticTypeWithCodeAnalysis DeclaringType
+        {
+            get { return constant.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ITypeReferenceWithCodeAnalysis FieldType

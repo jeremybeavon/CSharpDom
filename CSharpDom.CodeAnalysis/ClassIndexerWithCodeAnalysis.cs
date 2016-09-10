@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class ClassIndexerWithCodeAnalysis :
         EditableClassIndexer<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IClassTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             ClassAccessorWithCodeAnalysis>,
@@ -47,9 +47,9 @@ namespace CSharpDom.CodeAnalysis
             set { indexer.Attributes = value; }
         }
 
-        public override IClassType DeclaringType
+        public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return indexer.Indexer.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

@@ -72,9 +72,22 @@ namespace CSharpDom.CodeAnalysis
             set { method.Attributes = value; }
         }
 
+        public override MethodBodyWithCodeAnalysis Body
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override IType DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return Node.GetParentNode<IType>(); }
             set { throw new NotSupportedException(); }
         }
 

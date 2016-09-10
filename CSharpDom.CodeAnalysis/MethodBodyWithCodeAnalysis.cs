@@ -47,6 +47,19 @@ namespace CSharpDom.CodeAnalysis
             node = new Node<MethodBodyWithCodeAnalysis, BlockSyntax>(this);
         }
 
+        public override IList<IStatement> Statements
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public BlockSyntax Syntax
         {
             get { return node.Syntax; }

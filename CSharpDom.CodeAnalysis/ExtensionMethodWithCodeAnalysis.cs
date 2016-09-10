@@ -53,7 +53,20 @@ namespace CSharpDom.CodeAnalysis
             get { return method.Body; }
             set { method.Body = value; }
         }
-        
+
+        public override IStaticClass DeclaringType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
             get { return method.GenericParameters; }

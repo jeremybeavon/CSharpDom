@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StructIndexerWithCodeAnalysis :
         EditableStructIndexer<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             StructAccessorWithCodeAnalysis>,
@@ -41,7 +41,13 @@ namespace CSharpDom.CodeAnalysis
             get { return indexer.Attributes; }
             set { indexer.Attributes = value; }
         }
-        
+
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return indexer.Indexer.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override StructAccessorWithCodeAnalysis GetAccessor
         {
             get { return new StructAccessorWithCodeAnalysis(indexer.GetAccessor); }

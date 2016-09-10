@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class ClassEventWithCodeAnalysis :
         EditableClassEvent<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IClassTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
         IHasSyntax<EventFieldDeclarationSyntax>,
         IHasId
@@ -46,9 +46,9 @@ namespace CSharpDom.CodeAnalysis
             set { @event.AttributeList.Attributes = value; }
         }
 
-        public override IClassType DeclaringType
+        public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return @event.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

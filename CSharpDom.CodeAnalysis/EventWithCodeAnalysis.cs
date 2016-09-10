@@ -117,6 +117,11 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
+        internal Node<EventWithCodeAnalysis, EventFieldDeclarationSyntax> Node
+        {
+            get { return node; }
+        }
+
         internal AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax> AttributeList
         {
             get { return attributes; }

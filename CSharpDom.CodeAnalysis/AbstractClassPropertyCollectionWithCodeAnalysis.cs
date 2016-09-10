@@ -46,6 +46,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<ClassPropertyWithCodeAnalysis> Properties
         {
             get { return properties; }
+            set { classType.Members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }
         }
         
         internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> AbstractPropertyList

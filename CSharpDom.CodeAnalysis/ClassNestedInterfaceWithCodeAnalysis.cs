@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class ClassNestedInterfaceWithCodeAnalysis :
         EditableClassNestedInterface<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IClassTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             InterfaceEventWithCodeAnalysis,
@@ -47,6 +47,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return type.Attributes; }
             set { type.Attributes = value; }
+        }
+
+        public override IClassTypeWithCodeAnalysis DeclaringType
+        {
+            get { return type.Interface.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ICollection<InterfaceEventWithCodeAnalysis> Events
@@ -95,6 +101,16 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return type.Syntax; }
             set { type.Syntax = value; }
+        }
+
+        public override ClassMemberVisibilityModifier Visibility
+        {
+            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            set
+            {
+                InterfaceDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+            }
         }
 
         Guid IHasId.InternalId

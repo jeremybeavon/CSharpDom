@@ -26,6 +26,7 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return accessor.Attributes; }
+            set { accessor.Attributes = value; }
         }
 
         public override StaticClassAccessorVisibilityModifier Visibility

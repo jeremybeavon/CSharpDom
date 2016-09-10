@@ -43,6 +43,12 @@ namespace CSharpDom.CodeAnalysis
             set { type.Attributes = value; }
         }
 
+        public override IType DeclaringType
+        {
+            get { return type.Node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
             get { return type.GenericParameters; }

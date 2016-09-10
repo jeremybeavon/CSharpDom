@@ -101,6 +101,19 @@ namespace CSharpDom.CodeAnalysis
             set { attributes.ReplaceList(value); }
         }
 
+        public override MethodBodyWithCodeAnalysis Body
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override IType DeclaringType
         {
             get { return node.GetParentNode<IType>(); }

@@ -49,11 +49,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.DeclaringType}
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return constant.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ITypeReferenceWithCodeAnalysis FieldType

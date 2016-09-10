@@ -80,7 +80,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IType DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return node.GetParentNode<IType>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -105,6 +105,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        internal Node<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> Node
+        {
+            get { return node; }
         }
 
         internal IAttributeCollection AttributeList

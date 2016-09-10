@@ -116,6 +116,11 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
+        internal Node<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> Node
+        {
+            get { return node; }
+        }
+
         internal IAttributeCollection AttributeList
         {
             get { return attributes; }

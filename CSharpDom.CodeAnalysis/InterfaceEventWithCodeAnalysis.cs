@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class InterfaceEventWithCodeAnalysis :
         EditableInterfaceEvent<
             AttributeGroupWithCodeAnalysis,
-            IInterfaceType,
+            IInterfaceTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
         IHasSyntax<EventFieldDeclarationSyntax>,
         IHasId
@@ -31,7 +31,13 @@ namespace CSharpDom.CodeAnalysis
             get { return @event.Attributes; }
             set { @event.Attributes = value; }
         }
-        
+
+        public override IInterfaceTypeWithCodeAnalysis DeclaringType
+        {
+            get { return @event.Node.GetParentNode<IInterfaceTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override DelegateReferenceWithCodeAnalysis EventType
         {
             get { return @event.EventType; }

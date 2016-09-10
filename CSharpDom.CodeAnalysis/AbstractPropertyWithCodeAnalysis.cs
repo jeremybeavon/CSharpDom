@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class AbstractPropertyWithCodeAnalysis :
         EditableAbstractProperty<
             AttributeGroupWithCodeAnalysis,
-            IAbstractType,
+            IAbstractTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             AbstractAccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
@@ -39,7 +39,13 @@ namespace CSharpDom.CodeAnalysis
             get { return property.Attributes; }
             set { property.Attributes = value; }
         }
-        
+
+        public override IAbstractTypeWithCodeAnalysis DeclaringType
+        {
+            get { return property.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override AbstractAccessorWithCodeAnalysis GetAccessor
         {
             get { return new AbstractAccessorWithCodeAnalysis(property.GetAccessor); }

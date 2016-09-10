@@ -85,6 +85,7 @@ namespace CSharpDom.CodeAnalysis
         public override InterfaceReferenceWithCodeAnalysis ExplicitInterface
         {
             get { return explicitInterface.Value; }
+            set { explicitInterface.Value = value; }
         }
 
         public override string Name

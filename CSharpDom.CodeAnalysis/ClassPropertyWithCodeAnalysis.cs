@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class ClassPropertyWithCodeAnalysis :
         EditableClassProperty<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IClassTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ClassAccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
@@ -46,9 +46,9 @@ namespace CSharpDom.CodeAnalysis
             set { property.Attributes = value; }
         }
 
-        public override IClassType DeclaringType
+        public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return property.Property.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

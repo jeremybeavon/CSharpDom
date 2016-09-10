@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StructMethodWithCodeAnalysis :
         EditableStructMethod<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
@@ -48,7 +48,13 @@ namespace CSharpDom.CodeAnalysis
             get { return method.Body; }
             set { method.Body = value; }
         }
-        
+
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return method.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
             get { return method.GenericParameters; }

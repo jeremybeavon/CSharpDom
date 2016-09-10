@@ -36,11 +36,19 @@ namespace CSharpDom.CodeAnalysis
                 node.Syntax = argument.WithNameEquals(argument.NameEquals.WithName(SyntaxFactory.IdentifierName(value)));
             }
         }
-        
-        //public override IConstantExpressionWithCodeAnalysis Value
-        //{
-        //    get { return value; }
-        //}
+
+        public override IExpression Value
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public AttributeArgumentSyntax Syntax
         {

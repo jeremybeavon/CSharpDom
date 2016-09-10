@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -51,10 +52,53 @@ namespace CSharpDom.CodeAnalysis
             set { attributes.ReplaceList(value); }
         }
 
+        public override EnumBaseType BaseType
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override IType DeclaringType
+        {
+            get { return node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
+        }
+
+        public override IList<NestedEnumMemberWithCodeAnalysis> EnumMembers
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override string Name
+        {
+            get { return Syntax.Identifier.Text; }
+            set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
+        }
+
         public EnumDeclarationSyntax Syntax
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        internal Node<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> Node
+        {
+            get { return node; }
         }
 
         internal IAttributeCollection AttributeList

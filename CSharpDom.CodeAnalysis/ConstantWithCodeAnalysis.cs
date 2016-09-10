@@ -22,6 +22,19 @@ namespace CSharpDom.CodeAnalysis
                 newParent => newParent.FieldList);
         }
 
+        public override IExpression ConstantValue
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override string Name
         {
             get { return Syntax.Identifier.Text; }

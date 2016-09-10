@@ -63,6 +63,12 @@ namespace CSharpDom.CodeAnalysis
             set { body.Value = value; }
         }
 
+        public override IType DeclaringType
+        {
+            get { return node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public ConstructorDeclarationSyntax Syntax
         {
             get { return node.Syntax; }

@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class AbstractIndexerWithCodeAnalysis :
         EditableAbstractIndexer<
             AttributeGroupWithCodeAnalysis,
-            IAbstractType,
+            IAbstractTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             AbstractAccessorWithCodeAnalysis>,
@@ -39,6 +39,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return indexer.Attributes; }
             set { indexer.Attributes = value; }
+        }
+
+        public override IAbstractTypeWithCodeAnalysis DeclaringType
+        {
+            get { return indexer.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override AbstractAccessorWithCodeAnalysis GetAccessor

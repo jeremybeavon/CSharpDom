@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassNestedInterfaceWithCodeAnalysis :
         EditableStaticClassNestedInterface<
             AttributeGroupWithCodeAnalysis,
-            IStaticType,
+            IStaticTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             InterfaceEventWithCodeAnalysis,
@@ -42,7 +42,13 @@ namespace CSharpDom.CodeAnalysis
             get { return nestedInterface.Attributes; }
             set { nestedInterface.Attributes = value; }
         }
-        
+
+        public override IStaticTypeWithCodeAnalysis DeclaringType
+        {
+            get { return nestedInterface.Interface.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override ICollection<InterfaceEventWithCodeAnalysis> Events
         {
             get { return nestedInterface.Events; }

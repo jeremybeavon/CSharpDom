@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class InterfaceMethodWithCodeAnalysis :
         EditableInterfaceMethod<
             AttributeGroupWithCodeAnalysis,
-            IInterfaceType,
+            IInterfaceTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis>,
@@ -40,7 +40,13 @@ namespace CSharpDom.CodeAnalysis
             get { return method.Attributes; }
             set { method.Attributes = value; }
         }
-        
+
+        public override IInterfaceTypeWithCodeAnalysis DeclaringType
+        {
+            get { return method.Node.GetParentNode<IInterfaceTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
             get { return method.GenericParameters; }

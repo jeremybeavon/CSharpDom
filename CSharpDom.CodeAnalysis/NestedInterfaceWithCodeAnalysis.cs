@@ -46,7 +46,13 @@ namespace CSharpDom.CodeAnalysis
             get { return type.Attributes; }
             set { type.Attributes = value; }
         }
-        
+
+        public override IType DeclaringType
+        {
+            get { return type.Node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override ICollection<InterfaceEventWithCodeAnalysis> Events
         {
             get { return type.Events; }

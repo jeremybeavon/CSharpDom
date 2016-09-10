@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StructNestedEnumWithCodeAnalysis :
         EditableStructNestedEnum<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             NestedEnumMemberWithCodeAnalysis>,
         IHasSyntax<EnumDeclarationSyntax>,
         IHasId
@@ -43,6 +43,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return nestedEnum.BaseType; }
             set { nestedEnum.BaseType = value; }
+        }
+
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return nestedEnum.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override IList<NestedEnumMemberWithCodeAnalysis> EnumMembers

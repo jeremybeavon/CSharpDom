@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StructFieldWithCodeAnalysis :
         EditableStructField<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>,
@@ -40,7 +40,13 @@ namespace CSharpDom.CodeAnalysis
             get { return field.Attributes; }
             set { field.Attributes = value; }
         }
-        
+
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return field.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override ICollection<FieldWithCodeAnalysis> Fields
         {
             get { return field.Fields; }

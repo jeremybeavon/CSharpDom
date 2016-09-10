@@ -11,7 +11,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class ClassFieldWithCodeAnalysis :
         EditableClassField<
             AttributeGroupWithCodeAnalysis,
-            IClassType,
+            IClassTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>,
@@ -42,9 +42,9 @@ namespace CSharpDom.CodeAnalysis
             set { field.Attributes = value; }
         }
 
-        public override IClassType DeclaringType
+        public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return field.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

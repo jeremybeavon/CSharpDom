@@ -64,9 +64,22 @@ namespace CSharpDom.CodeAnalysis
             set { attributes.ReplaceList(value); }
         }
 
+        public override MethodBodyWithCodeAnalysis Body
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public override IType DeclaringType
         {
-            get { return base.DeclaringType; }
+            get { return node.GetParentNode<IType>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -84,6 +97,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        internal Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> Node
+        {
+            get { return node; }
         }
 
         internal IAttributeCollection AttributeList

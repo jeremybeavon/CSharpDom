@@ -30,7 +30,13 @@ namespace CSharpDom.CodeAnalysis
             get { return attributes; }
             set { attributes.ReplaceList(value); }
         }
-        
+
+        public override INestedEnum DeclaringType
+        {
+            get { return node.GetParentNode<INestedEnum>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override string Name
         {
             get { return Syntax.Identifier.Text; }

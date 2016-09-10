@@ -138,6 +138,7 @@
     <Compile Include="FieldDeclarationSyntaxExtensions.cs" />
     <Compile Include="FilteredList.generic.cs" />
     <Compile Include="IAbstractTypeWithCodeAnalysis.cs" />
+    <Compile Include="IInterfaceTypeWithCodeAnalysis.cs" />
     <Compile Include="ISealedTypeWithCodeAnalysis.cs" />
     <Compile Include="IStaticTypeWithCodeAnalysis.cs" />
     <Compile Include="IStructTypeWithCodeAnalysis.cs" />

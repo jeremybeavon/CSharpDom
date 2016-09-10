@@ -29,7 +29,20 @@ namespace CSharpDom.CodeAnalysis
             get { return accessor.Attributes; }
             set { accessor.Attributes = value; }
         }
-        
+
+        public override MethodBodyWithCodeAnalysis Body
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public AccessorDeclarationSyntax Syntax
         {
             get { return accessor.Syntax; }

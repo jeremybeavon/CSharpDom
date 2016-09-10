@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class InterfaceIndexerWithCodeAnalysis :
         EditableInterfaceIndexer<
             AttributeGroupWithCodeAnalysis,
-            IInterfaceType,
+            IInterfaceTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             InterfaceAccessorWithCodeAnalysis>,
@@ -40,7 +40,13 @@ namespace CSharpDom.CodeAnalysis
             get { return indexer.Attributes; }
             set { indexer.Attributes = value; }
         }
-        
+
+        public override IInterfaceTypeWithCodeAnalysis DeclaringType
+        {
+            get { return indexer.Node.GetParentNode<IInterfaceTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override InterfaceAccessorWithCodeAnalysis GetAccessor
         {
             get { return new InterfaceAccessorWithCodeAnalysis(indexer.GetAccessor); }

@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StructConstructorWithCodeAnalysis :
         EditableStructConstructor<
             AttributeGroupWithCodeAnalysis,
-            IStructType,
+            IStructTypeWithCodeAnalysis,
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<ConstructorDeclarationSyntax>,
@@ -46,7 +46,13 @@ namespace CSharpDom.CodeAnalysis
             get { return constructor.Body; }
             set { constructor.Body = value; }
         }
-        
+
+        public override IStructTypeWithCodeAnalysis DeclaringType
+        {
+            get { return constructor.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
         public override IList<ConstructorParameterWithCodeAnalysis> Parameters
         {
             get { return constructor.Parameters; }

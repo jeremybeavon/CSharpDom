@@ -36,5 +36,18 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return interfaces; }
         }
+
+        public override ICollection<PartialInterfaceNotSupported> PartialInterfaces
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
     }
 }
