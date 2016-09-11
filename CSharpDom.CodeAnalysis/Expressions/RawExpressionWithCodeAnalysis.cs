@@ -1,5 +1,5 @@
 ﻿using System;
-using CSharpDom.Common.Expressions;
+using CSharpDom.Editable.Expressions;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {

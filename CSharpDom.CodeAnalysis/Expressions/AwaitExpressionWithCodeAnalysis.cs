@@ -1,21 +1,55 @@
-﻿using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class AwaitExpressionWithCodeAnalysis<TExpression> : IAwaitExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class AwaitExpressionWithCodeAnalysis :
+        EditableAwaitExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<AwaitExpressionSyntax>,
+        IInternalExpression
     {
-        public abstract TExpression Expression { get; set; }
+        private readonly Guid internalId;
+        private readonly ExpressionNode<AwaitExpressionWithCodeAnalysis, AwaitExpressionSyntax> node;
+        private readonly CachedExpressionNode<AwaitExpressionWithCodeAnalysis, AwaitExpressionSyntax> expression;
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis Expression
         {
-            visitor.VisitAwaitExpression(this);
+            get { return expression.Value; }
+            set { expression.Value = value; }
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public AwaitExpressionSyntax Syntax
         {
-            GenericExpressionVisitor.VisitAwaitExpressionChildren(this, visitor);
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
+        }
+
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (AwaitExpressionSyntax)value; }
+        }
+
+        void IHasParent<IInternalExpression, ExpressionSyntax>.SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentNode, IChildCollection<IInternalExpression, ExpressionSyntax>> getCollection)
+        {
+            node.SetExpressionParentNode<TParentNode, TParentSyntax>(parent, getCollection);
+        }
+
+        void IHasParent<IInternalExpression, ExpressionSyntax>.SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentSyntax, ExpressionSyntax> getChildSyntax,
+            Func<TParentSyntax, ExpressionSyntax, TParentSyntax> createChildSyntax)
+        {
+            node.SetExpressionParentNode(parent, getChildSyntax, createChildSyntax);
         }
     }
 }

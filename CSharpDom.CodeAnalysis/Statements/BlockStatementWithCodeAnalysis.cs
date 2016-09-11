@@ -49,19 +49,19 @@ namespace CSharpDom.CodeAnalysis.Statements
             set { Syntax = (BlockSyntax)value; }
         }
 
-        void IInternalStatement.SetParentNode<TParentNode, TParentSyntax>(
+        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
             TParentNode parent,
             Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)
         {
             node.SetStatementParentNode<TParentNode, TParentSyntax>(parent, getCollection);
         }
 
-        void IInternalStatement.SetParentNode<TParentNode, TParentSyntax>(
+        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
             TParentNode parent,
             Func<TParentSyntax, StatementSyntax> getChildSyntax,
             Func<TParentSyntax, StatementSyntax, TParentSyntax> createChildSyntax)
         {
-            node.SetStatementParentNode<TParentNode, TParentSyntax>(parent, getChildSyntax, createChildSyntax);
+            node.SetStatementParentNode(parent, getChildSyntax, createChildSyntax);
         }
     }
 }

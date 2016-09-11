@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.Editable.Statements;
 using CSharpDom.Common;
-using CSharpDom.Common.Expressions;
+using CSharpDom.Editable.Expressions;
 using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.CodeAnalysis.Statements

@@ -10,11 +10,13 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasSyntax<BreakStatementSyntax>,
         IInternalStatement
     {
-        private readonly Node<BreakStatementWithCodeAnalysis, BreakStatementSyntax> node;
+        private Guid internalId;
+        private readonly StatementNode<BreakStatementWithCodeAnalysis, BreakStatementSyntax> node;
 
         public BreakStatementWithCodeAnalysis()
         {
-            node = new Node<BreakStatementWithCodeAnalysis, BreakStatementSyntax>(this);
+            internalId = Guid.NewGuid();
+            node = new StatementNode<BreakStatementWithCodeAnalysis, BreakStatementSyntax>(this);
         }
 
         public BreakStatementSyntax Syntax
@@ -25,33 +27,28 @@ namespace CSharpDom.CodeAnalysis.Statements
 
         Guid IHasId.InternalId
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return internalId; }
         }
 
         StatementSyntax IHasSyntax<StatementSyntax>.Syntax
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return Syntax; }
+            set { Syntax = (BreakStatementSyntax)value; }
         }
 
-        void IInternalStatement.SetParentNode<TParentNode, TParentSyntax>(TParentNode parent, Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)
+        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)
         {
-            throw new NotImplementedException();
+            node.SetStatementParentNode<TParentNode, TParentSyntax>(parent, getCollection);
         }
 
-        void IInternalStatement.SetParentNode<TParentNode, TParentSyntax>(TParentNode parent, Func<TParentSyntax, StatementSyntax> getChildSyntax, Func<TParentSyntax, StatementSyntax, TParentSyntax> createChildSyntax)
+        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentSyntax, StatementSyntax> getChildSyntax,
+            Func<TParentSyntax, StatementSyntax, TParentSyntax> createChildSyntax)
         {
-            throw new NotImplementedException();
+            node.SetStatementParentNode(parent, getChildSyntax, createChildSyntax);
         }
     }
 }

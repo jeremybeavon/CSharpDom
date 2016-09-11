@@ -1,30 +1,15 @@
-﻿using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class ArrayIndexExpressionWithCodeAnalysis<TExpression> : IArrayIndexExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class ArrayIndexExpressionWithCodeAnalysis :
+        EditableArrayIndexExpression<IExpressionWithCodeAnalysis>,
+        IH
     {
-        public abstract TExpression Array { get; set; }
 
-        public abstract IList<TExpression> Indexes { get; set; }
-
-        IReadOnlyList<TExpression> IArrayIndexExpression<TExpression>.Indexes
-        {
-            get { return new ReadOnlyCollection<TExpression>(Indexes); }
-        }
-
-        public void Accept(IGenericExpressionVisitor visitor)
-        {
-            visitor.VisitArrayIndexExpression(this);
-        }
-
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
-        {
-            GenericExpressionVisitor.VisitArrayIndexExpressionChildren(this, visitor);
-        }
     }
 }

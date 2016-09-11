@@ -1,9 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
@@ -22,7 +18,7 @@ namespace CSharpDom.CodeAnalysis
                   node,
                   getList,
                   createList,
-                  new InternalStatementListWrapperBuilder<TParentNode, TParentSyntax>(getCollection))
+                  InternalListWrapperBuilder.Create<TParentNode, TParentSyntax>(getCollection))
         {
         }
 
@@ -30,8 +26,8 @@ namespace CSharpDom.CodeAnalysis
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<StatementSyntax>> getList,
             Func<TParentSyntax, SyntaxList<StatementSyntax>, TParentSyntax> createList,
-            InternalStatementListWrapperBuilder<TParentNode, TParentSyntax> builder)
-            : base(node, getList, createList, builder.CreateStatement, builder.SetParent)
+            InternalListWrapperBuilder<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> builder)
+            : base(node, getList, createList, builder.CreateItem, builder.SetParent)
         {
         }
     }

@@ -2,27 +2,25 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CSharpDom.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
 {
-    public sealed class FinallyStatementWithCodeAnalysis<TStatement> : IFinallyStatement<TStatement>
-        where TStatement : IStatement
+    public sealed class FinallyStatementWithCodeAnalysis :
+        EditableFinallyStatement<IStatementWithCodeAnalysis>,
+        IHasSyntax<FinallyClauseSyntax>
     {
-        public abstract IList<TStatement> Statements { get; set; }
-
-        IReadOnlyList<TStatement> IFinallyStatement<TStatement>.Statements
+        public override IList<IStatementWithCodeAnalysis> Statements
         {
-            get { return new ReadOnlyCollection<TStatement>(Statements); }
-        }
+            get
+            {
+                throw new NotImplementedException();
+            }
 
-        public void Accept(IGenericStatementVisitor visitor)
-        {
-            visitor.VisitFinallyStatement(this);
-        }
-
-        public void AcceptChildren(IGenericStatementVisitor visitor)
-        {
-            GenericStatementVisitor.VisitFinallyStatementChildren(this, visitor);
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
