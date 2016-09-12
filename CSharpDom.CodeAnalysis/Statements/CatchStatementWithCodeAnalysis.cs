@@ -2,34 +2,80 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CSharpDom.Editable.Statements;
-using CSharpDom.Common;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Statements
 {
-    public sealed class CatchStatementWithCodeAnalysis<TTypeReference, TStatement> :
-        ICatchStatement<TTypeReference, TStatement>
-        where TTypeReference : ITypeReference
-        where TStatement : IStatement
+    public sealed class CatchStatementWithCodeAnalysis :
+        EditableCatchStatement<ITypeReferenceWithCodeAnalysis, IStatementWithCodeAnalysis>,
+        IHasSyntax<CatchClauseSyntax>,
+        IHasId
     {
-        public abstract IList<TStatement> Statements { get; set; }
+        private readonly Guid internalId;
+        private readonly Node<CatchStatementWithCodeAnalysis, CatchClauseSyntax> node;
+        private readonly StatementListWrapper<CatchStatementWithCodeAnalysis, CatchClauseSyntax> statements;
+        private readonly CachedTypeReferenceNode<CatchStatementWithCodeAnalysis, CatchClauseSyntax> type;
 
-        public abstract TTypeReference Type { get; set; }
-
-        public abstract string VariableName { get; set; }
-
-        IReadOnlyList<TStatement> ICatchStatement<TTypeReference, TStatement>.Statements
+        public CatchStatementWithCodeAnalysis()
         {
-            get { return new ReadOnlyCollection<TStatement>(Statements); }
+            internalId = Guid.NewGuid();
+            node = new Node<CatchStatementWithCodeAnalysis, CatchClauseSyntax>(this);
+            statements = new StatementListWrapper<CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
+                node,
+                syntax => syntax.Block.Statements,
+                (parentSyntax, childSyntax) => parentSyntax.WithBlock(SyntaxFactory.Block(childSyntax)),
+                parent => parent.statements);
+            //type = new TypeReferenceChildNode<CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
+            //    node,
+            //    (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)),
+            //    )
         }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override IList<IStatementWithCodeAnalysis> Statements
         {
-            visitor.VisitCatchStatement(this);
+            get { return statements; }
+            set { statements.ReplaceList(value); }
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public CatchClauseSyntax Syntax
         {
-            GenericStatementVisitor.VisitCatchStatementChildren(this, visitor);
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        public override ITypeReferenceWithCodeAnalysis Type
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override string VariableName
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

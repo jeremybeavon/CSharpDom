@@ -4,36 +4,75 @@ using CSharpDom.Editable.Statements;
 using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
 using CSharpDom.Wrappers.Internal;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
 {
-    public sealed class ForStatementWithCodeAnalysis<TExpression, TForInitializerStatement, TStatement> :
-        IForStatement<TExpression, TForInitializerStatement, TStatement>
-        where TExpression : IExpression
-        where TForInitializerStatement : IForInitializerStatement
-        where TStatement : IStatement
+    public sealed class ForStatementWithCodeAnalysis :
+        EditableForStatement<IExpressionWithCodeAnalysis, IForInitializerStatementWithCodeAnalysis, IStatementWithCodeAnalysis>,
+        IHasSyntax<ForStatementSyntax>,
+        IInternalStatement
     {
-        public abstract TExpression Condition { get; set; }
+        private readonly Guid internalId;
+        private readonly StatementNode<ForStatementWithCodeAnalysis, ForStatementSyntax> node;
+        private readonly CachedExpressionNode<ForStatementWithCodeAnalysis, ForStatementSyntax> condition;
+        private readonly ExpressionListWrapper<ForStatementWithCodeAnalysis, ForStatementSyntax> incrementExpressions;
+        private readonly CachedStatementNode<ForStatementWithCodeAnalysis, ForStatementSyntax> statement;
 
-        public abstract ICollection<TExpression> IncrementExpressions { get; set; }
-
-        public abstract TForInitializerStatement InitialValueStatement { get; set; }
-
-        public abstract TStatement Statement { get; set; }
-
-        IReadOnlyCollection<TExpression> IForStatement<TExpression, TForInitializerStatement, TStatement>.IncrementExpressions
+        public override IExpressionWithCodeAnalysis Condition
         {
-            get { return new ReadOnlyCollectionWrapper<TExpression>(IncrementExpressions); }
+            get { return condition.Value; }
+            set { condition.Value = value; }
         }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override ICollection<IExpressionWithCodeAnalysis> IncrementExpressions
         {
-            visitor.VisitForStatement(this);
+            get { return incrementExpressions; }
+            set { incrementExpressions.ReplaceList(value); }
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override IForInitializerStatementWithCodeAnalysis InitialValueStatement
         {
-            GenericStatementVisitor.VisitForStatementChildren(this, visitor);
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
+        }
+
+        public override IStatementWithCodeAnalysis Statement
+        {
+            get { return statement.Value; }
+            set { statement.Value = value; }
+        }
+
+        public ForStatementSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
+        }
+
+        StatementSyntax IHasSyntax<StatementSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (ForStatementSyntax)value; }
+        }
+
+        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)
+        {
+            node.SetStatementParentNode<TParentNode, TParentSyntax>(parent, getCollection);
+        }
+
+        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentSyntax, StatementSyntax> getChildSyntax,
+            Func<TParentSyntax, StatementSyntax, TParentSyntax> createChildSyntax)
+        {
+            node.SetStatementParentNode(parent, getChildSyntax, createChildSyntax);
         }
     }
 }

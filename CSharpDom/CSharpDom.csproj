@@ -588,7 +588,6 @@
     <Compile Include="Editable\Statements\EditableFinallyStatement.cs" />
     <Compile Include="Editable\Statements\EditableForeachStatement.cs" />
     <Compile Include="Editable\Statements\EditableForStatement.cs" />
-    <Compile Include="Editable\Statements\EditableGenericStatementVisitor.cs" />
     <Compile Include="Editable\Statements\EditableGotoCaseStatement.cs" />
     <Compile Include="Editable\Statements\EditableGotoStatement.cs" />
     <Compile Include="Editable\Statements\EditableIfStatement.cs" />

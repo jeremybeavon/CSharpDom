@@ -147,6 +147,7 @@
     <Compile Include="FilteredList.generic.cs" />
     <Compile Include="IAbstractTypeWithCodeAnalysis.cs" />
     <Compile Include="IExpressionWithCodeAnalysis.cs" />
+    <Compile Include="IForInitializerStatementWithCodeAnalysis.cs" />
     <Compile Include="IHasParent.cs" />
     <Compile Include="IInterfaceTypeWithCodeAnalysis.cs" />
     <Compile Include="IInternalExpression.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="InternalExpressionListWrapper.cs" />
     <Compile Include="SimpleChildCollection.cs" />
     <Compile Include="ExpressionNode.cs" />
+    <Compile Include="ExpressionListWrapper.cs" />
     <Compile Include="StatementNode.cs" />
     <Compile Include="StatementSyntaxExtensions.cs" />
     <Compile Include="InternalListWrapperBuilder.generic.cs" />
@@ -181,10 +183,16 @@
     <Compile Include="StatementListWrapper.cs" />
     <Compile Include="Statements\BlockStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\BreakStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\CatchStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\ContinueStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\DoStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\EmptyStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\ExpressionStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\FinallyStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\ForeachStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\ForStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\GotoCaseStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\GotoStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\IfStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\LockStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\ReturnStatementWithCodeAnalysis.cs" />
@@ -264,6 +272,7 @@
     <Compile Include="StructPropertyWithCodeAnalysis.cs" />
     <Compile Include="StructTypeWithCodeAnalysis.cs" />
     <Compile Include="TypedFactory.cs" />
+    <Compile Include="CachedTypeReferenceNode.cs" />
     <Compile Include="WrappedList.cs" />
     <Compile Include="IGenericParameterCollection.cs" />
     <Compile Include="InterfaceMemberListWrapper.cs" />
