@@ -18,31 +18,31 @@ namespace CSharpDom.CodeAnalysis
                 { typeof(PredefinedTypeSyntax), typeof(BuiltInTypeReferenceWithCodeAnalysis) }
             };
 
-        public static ITypeReferenceWithCodeAnalysis ToTypeReference(this TypeSyntax syntax)
+        public static IInternalTypeReferenceWithCodeAnalysis ToTypeReference(this TypeSyntax syntax)
         {
-            SimpleNameSyntax name = syntax as SimpleNameSyntax;
-            if (name != null)
-            {
-                return new UnspecifiedTypeReferenceWithCodeAnalysis((AttributeWithCodeAnalysis)null);
-            }
+            //SimpleNameSyntax name = syntax as SimpleNameSyntax;
+            //if (name != null)
+            //{
+            //    return new UnspecifiedTypeReferenceWithCodeAnalysis((AttributeWithCodeAnalysis)null);
+            //}
 
-            PredefinedTypeSyntax builtInType = syntax as PredefinedTypeSyntax;
-            if (builtInType != null)
-            {
-                return new BuiltInTypeReferenceWithCodeAnalysis();
-            }
+            //PredefinedTypeSyntax builtInType = syntax as PredefinedTypeSyntax;
+            //if (builtInType != null)
+            //{
+            //    return new BuiltInTypeReferenceWithCodeAnalysis();
+            //}
 
-            ArrayTypeSyntax array = syntax as ArrayTypeSyntax;
-            if (array != null)
-            {
-                return new ArrayTypeReferenceWithCodeAnalysis(null);
-            }
+            //ArrayTypeSyntax array = syntax as ArrayTypeSyntax;
+            //if (array != null)
+            //{
+            //    return new ArrayTypeReferenceWithCodeAnalysis(null);
+            //}
 
-            NullableTypeSyntax nullableType = syntax as NullableTypeSyntax;
-            if (nullableType != null)
-            {
-                return null;
-            }
+            //NullableTypeSyntax nullableType = syntax as NullableTypeSyntax;
+            //if (nullableType != null)
+            //{
+            //    return null;
+            //}
 
             return null;
         }

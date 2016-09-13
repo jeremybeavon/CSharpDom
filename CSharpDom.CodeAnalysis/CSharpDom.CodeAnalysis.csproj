@@ -148,10 +148,12 @@
     <Compile Include="IAbstractTypeWithCodeAnalysis.cs" />
     <Compile Include="IExpressionWithCodeAnalysis.cs" />
     <Compile Include="IForInitializerStatementWithCodeAnalysis.cs" />
+    <Compile Include="IHasNode.cs" />
     <Compile Include="IHasParent.cs" />
     <Compile Include="IInterfaceTypeWithCodeAnalysis.cs" />
     <Compile Include="IInternalExpression.cs" />
     <Compile Include="IInternalStatement.cs" />
+    <Compile Include="INode.cs" />
     <Compile Include="InterfaceWithCodeAnalysis.cs" />
     <Compile Include="InternalListWrapperBuilder.cs" />
     <Compile Include="InternalExpressionListWrapper.cs" />
@@ -196,6 +198,7 @@
     <Compile Include="Statements\IfStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\LockStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\ReturnStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\TryStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\UsingStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\WhileStatementWithCodeAnalysis.cs" />
     <Compile Include="StaticClassEventCollectionWithCodeAnalysis.cs" />

@@ -2,9 +2,10 @@
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class Node<TValue, TSyntax>
+    internal class Node<TValue, TSyntax> : INode<TSyntax>, IHasId
         where TSyntax : class
     {
+        private readonly Guid internalId;
         private Func<TSyntax> getSyntax;
         private Action<TSyntax> setSyntax;
         private object parent;
@@ -12,6 +13,7 @@ namespace CSharpDom.CodeAnalysis
 
         public Node(TValue value)
         {
+            internalId = Guid.NewGuid();
             Value = value;
         }
 
@@ -37,6 +39,11 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        public Guid InternalId
+        {
+            get { return internalId; }
+        }
+
         public TParentNode GetParentNode<TParentNode>()
             where TParentNode : class
         {
@@ -57,7 +64,7 @@ namespace CSharpDom.CodeAnalysis
             if (parent == null)
             {
                 RefreshSyntax();
-                this.getSyntax = null;
+                getSyntax = null;
                 setSyntax = null;
             }
 
@@ -88,6 +95,14 @@ namespace CSharpDom.CodeAnalysis
                 parent,
                 syntax => getCollection(parent).GetChild(child),
                 CreateChildSyntax<TParentNode, TParentSyntax, TChildNode>(parent, child, getCollection));
+        }
+
+        public void RemoveParentNode()
+        {
+            RefreshSyntax();
+            parent = null;
+            getSyntax = null;
+            setSyntax = null;
         }
         
         private Func<TParentSyntax, TSyntax, TParentSyntax> CreateChildSyntax<TParentNode, TParentSyntax, TChildNode>(

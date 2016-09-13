@@ -25,11 +25,7 @@ namespace CSharpDom.CodeAnalysis
             DelegateDeclarationSyntax,
             DelegateParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
-        private readonly CachedChildNode<
-            DelegateTypeWithCodeAnalysis,
-            DelegateDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis,
-            TypeSyntax> returnType;
+        private readonly CachedTypeReferenceNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> returnType;
 
         internal DelegateTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedDelegateWithCodeAnalysis @delegate)
             : this(@delegate)
@@ -73,11 +69,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
                 parent => new DelegateParameterWithCodeAnalysis(parent),
                 (child, parent) => child.Parameter.DelegateParent = parent);
-            returnType = new CachedChildNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
+            returnType = new CachedTypeReferenceNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax),
-                parent => parent.Syntax.ReturnType.ToTypeReference(),
-                null);
+                syntax => syntax.ReturnType,
+                (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

@@ -11,8 +11,10 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class MethodBodyWithCodeAnalysis : EditableMethodBody<IStatement>,
-        IHasSyntax<BlockSyntax>
+    public sealed class MethodBodyWithCodeAnalysis :
+        EditableMethodBody<IStatement>,
+        IHasSyntax<BlockSyntax>,
+        IHasNode<BlockSyntax>
     {
         private readonly Node<MethodBodyWithCodeAnalysis, BlockSyntax> node;
 
@@ -72,7 +74,7 @@ namespace CSharpDom.CodeAnalysis
             StaticConstructorParent = parent;
         }
 
-        private MethodBodyWithCodeAnalysis()
+        internal MethodBodyWithCodeAnalysis()
         {
             node = new Node<MethodBodyWithCodeAnalysis, BlockSyntax>(this);
         }
@@ -202,6 +204,11 @@ namespace CSharpDom.CodeAnalysis
                     syntax => syntax.Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
             }
+        }
+        
+        INode<BlockSyntax> IHasNode<BlockSyntax>.Node
+        {
+            get { return node; }
         }
     }
 }

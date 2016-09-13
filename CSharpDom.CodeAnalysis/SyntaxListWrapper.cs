@@ -38,6 +38,16 @@ namespace CSharpDom.CodeAnalysis
         {
         }
 
+        public SyntaxListWrapper(
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, SyntaxList<TChildSyntax>> getList,
+            Func<TParentSyntax, SyntaxList<TChildSyntax>, TParentSyntax> createList,
+            Func<TChildNode> factory,
+            Action<TChildNode, TParentNode> setParent)
+            : this(node, getList, createList, (parent, childSyntax) => factory(), setParent)
+        {
+        }
+
         public void ReplaceList(IEnumerable<TChildNode> newList)
         {
             node.Syntax = createList(node.Syntax, SyntaxFactory.List(newList.Select(item => item.Syntax)));

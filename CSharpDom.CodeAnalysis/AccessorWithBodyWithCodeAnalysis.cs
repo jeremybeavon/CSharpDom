@@ -20,9 +20,8 @@ namespace CSharpDom.CodeAnalysis
             this.accessor = accessor;
             body = new MethodBodyNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
                 accessor.Node,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
-                parent => new MethodBodyWithCodeAnalysis(parent),
-                (child, parent) => child.AccessorParent = parent);
+                syntax => syntax.Body,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
         }
 
         public AccessorWithCodeAnalysis Accessor

@@ -7,32 +7,24 @@ namespace CSharpDom.CodeAnalysis
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly CachedChildNode<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> node;
+        private readonly CachedChildNode<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> childNode;
 
         public CachedStatementNode(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, StatementSyntax> getSyntax,
             Func<TParentSyntax, StatementSyntax, TParentSyntax> createSyntax)
-            : this(node, createSyntax, CachedNodeBuilder.Create<TParentNode, TParentSyntax>(getSyntax, createSyntax))
         {
-        }
-
-        private CachedStatementNode(
-            Node<TParentNode, TParentSyntax> node,
-            Func<TParentSyntax, StatementSyntax, TParentSyntax> createSyntax,
-            CachedNodeBuilder<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> builder)
-        {
-            this.node = new CachedChildNode<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax>(
+            childNode = new CachedChildNode<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax>(
                 node,
-                createSyntax,
-                builder.GetValue,
-                builder.SetParent);
+                StatementSyntaxExtensions.ToInternalStatement,
+                getSyntax,
+                createSyntax);
         }
-
+        
         public IStatementWithCodeAnalysis Value
         {
-            get { return node.Value; }
-            set { node.Value = (IInternalStatement)value; }
+            get { return childNode.Value; }
+            set { childNode.Value = (IInternalStatement)value; }
         }
     }
 }

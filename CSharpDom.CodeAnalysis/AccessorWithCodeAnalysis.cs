@@ -10,7 +10,8 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class AccessorWithCodeAnalysis :
         EditableAccessor<AttributeGroupWithCodeAnalysis>,
-        IHasSyntax<AccessorDeclarationSyntax>
+        IHasSyntax<AccessorDeclarationSyntax>,
+        IHasNode<AccessorDeclarationSyntax>
     {
         private readonly Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> node;
         private readonly SyntaxKind accessorType;
@@ -26,7 +27,7 @@ namespace CSharpDom.CodeAnalysis
         {
         }
 
-        private AccessorWithCodeAnalysis(SyntaxKind accessorType)
+        internal AccessorWithCodeAnalysis(SyntaxKind accessorType)
         {
             node = new Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(this);
             this.accessorType = accessorType;
@@ -82,6 +83,11 @@ namespace CSharpDom.CodeAnalysis
                     syntax => PropertyWithCodeAnalysis.GetAccessorDeclaration(syntax, accessorType),
                     PropertyWithCodeAnalysis.CreateAccessor(accessorType));
             }
+        }
+
+        INode<AccessorDeclarationSyntax> IHasNode<AccessorDeclarationSyntax>.Node
+        {
+            get { return node; }
         }
     }
 }

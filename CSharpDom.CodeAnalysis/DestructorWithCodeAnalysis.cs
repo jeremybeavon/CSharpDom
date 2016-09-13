@@ -37,9 +37,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, newParent) => child.DestructorParent = newParent);
             body = new MethodBodyNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
-                newParent => new MethodBodyWithCodeAnalysis(newParent),
-                (child, newParent) => child.DestructorParent = newParent);
+                syntax => syntax.Body,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
         }
         
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

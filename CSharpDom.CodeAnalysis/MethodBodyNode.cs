@@ -7,17 +7,16 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class MethodBodyNode<TParentNode, TParentSyntax>
-        : CachedChildNode<TParentNode, TParentSyntax, MethodBodyWithCodeAnalysis, BlockSyntax>
-        where TParentNode : class
+    internal class MethodBodyNode<TParentNode, TParentSyntax> :
+        CachedChildNode<TParentNode, TParentSyntax, MethodBodyWithCodeAnalysis, BlockSyntax>
+        where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
         public MethodBodyNode(
             Node<TParentNode, TParentSyntax> node,
-            Func<TParentSyntax, BlockSyntax, TParentSyntax> createSyntax,
-            Func<TParentNode, MethodBodyWithCodeAnalysis> getValue,
-            Action<MethodBodyWithCodeAnalysis, TParentNode> setParent)
-            : base(node, createSyntax, getValue, setParent)
+            Func<TParentSyntax, BlockSyntax> getChildSyntax,
+            Func<TParentSyntax, BlockSyntax, TParentSyntax> createChildSyntax)
+            : base(node, () => new MethodBodyWithCodeAnalysis(), getChildSyntax, createChildSyntax)
         {
         }
     }

@@ -37,6 +37,11 @@ namespace CSharpDom.CodeAnalysis.Expressions
             set { Syntax = (AwaitExpressionSyntax)value; }
         }
 
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
+        {
+            get { return node; }
+        }
+
         void IHasParent<IInternalExpression, ExpressionSyntax>.SetParentNode<TParentNode, TParentSyntax>(
             TParentNode parent,
             Func<TParentNode, IChildCollection<IInternalExpression, ExpressionSyntax>> getCollection)

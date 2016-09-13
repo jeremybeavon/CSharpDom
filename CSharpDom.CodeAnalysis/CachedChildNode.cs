@@ -3,35 +3,35 @@
 namespace CSharpDom.CodeAnalysis
 {
     internal class CachedChildNode<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
-        where TParentNode : class
+        where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
-        where TChildNode : class, IHasSyntax<TChildSyntax>
+        where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : class
     {
         private readonly Node<TParentNode, TParentSyntax> node;
+        private readonly Func<TParentSyntax, TChildSyntax> getSyntax;
         private readonly Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax;
-        private readonly Func<TParentNode, TChildSyntax, TChildNode> getValue;
-        private readonly Action<TChildNode, TParentNode> setParent;
+        private readonly Func<TChildSyntax, TChildNode> createChildNode;
         private TChildNode cachedValue;
 
         public CachedChildNode(
             Node<TParentNode, TParentSyntax> node,
-            Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax,
-            Func<TParentNode, TChildSyntax, TChildNode> getValue,
-            Action<TChildNode, TParentNode> setParent)
+            Func<TChildSyntax, TChildNode> createChildNode,
+            Func<TParentSyntax, TChildSyntax> getSyntax,
+            Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax)
         {
             this.node = node;
-            this.getValue = getValue;
+            this.getSyntax = getSyntax;
             this.createSyntax = createSyntax;
-            this.setParent = setParent;
+            this.createChildNode = createChildNode;
         }
 
         public CachedChildNode(
             Node<TParentNode, TParentSyntax> node,
-            Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax,
-            Func<TParentNode, TChildNode> getValue,
-            Action<TChildNode, TParentNode> setParent)
-            : this(node, createSyntax, (parent, childSyntax) => getValue(parent), setParent)
+            Func<TChildNode> createChildNode,
+            Func<TParentSyntax, TChildSyntax> getSyntax,
+            Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax)
+            : this(node, syntax => createChildNode(), getSyntax, createSyntax)
         {
         }
 
@@ -39,7 +39,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get
             {
-                TChildNode newValue = getValue(node.Value, cachedValue?.Syntax);
+                TChildNode newValue = createChildNode(getSyntax(node.Syntax));
                 if (cachedValue == null ||
                     (newValue == null && cachedValue != null) ||
                     (newValue != null && newValue.GetType() != cachedValue.GetType()))
@@ -53,14 +53,14 @@ namespace CSharpDom.CodeAnalysis
             {
                 if (cachedValue != null)
                 {
-                    setParent(cachedValue, null);
+                    cachedValue.Node.RemoveParentNode();
                 }
 
-                node.Syntax = createSyntax(node.Syntax, value?.Syntax);
-                cachedValue = getValue(node.Value, value?.Syntax);
+                node.Syntax = createSyntax(node.Syntax, value.Node.Syntax);
+                cachedValue = createChildNode(value.Node.Syntax);
                 if (cachedValue != null)
                 {
-                    setParent(cachedValue, node.Value);
+                    cachedValue.Node.SetParentNode(node.Value, getSyntax, createSyntax);
                 }
             }
         }

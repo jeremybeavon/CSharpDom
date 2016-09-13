@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal interface IInternalExpression : IExpressionWithCodeAnalysis, IHasId, IHasParent<IInternalExpression, ExpressionSyntax>
+    internal interface IInternalExpression : IExpressionWithCodeAnalysis, IHasId,
+        IHasParent<IInternalExpression, ExpressionSyntax>,
+        IHasNode<ExpressionSyntax>
     {
     }
 }

@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class StatementNode<TValue, TSyntax> : Node<TValue, TSyntax>
+    internal class StatementNode<TValue, TSyntax> : Node<TValue, TSyntax>, INode<StatementSyntax>
         where TValue : IInternalStatement
         where TSyntax : StatementSyntax
     {
         public StatementNode(TValue value)
             : base(value)
         {
+        }
+
+        StatementSyntax IHasSyntax<StatementSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (TSyntax)value; }
         }
 
         public void SetStatementParentNode<TParentNode, TParentSyntax>(
@@ -42,6 +48,17 @@ namespace CSharpDom.CodeAnalysis
             return parent => new SimpleChildCollection<TValue, TSyntax>(
                 value => (TSyntax)getCollection(parent).GetChild(value),
                 (value, syntax) => getCollection(parent).SetChild(value, syntax));
+        }
+
+        void INode<StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentSyntax, StatementSyntax> getChildSyntax,
+            Func<TParentSyntax, StatementSyntax, TParentSyntax> createChildSyntax)
+        {
+            SetParentNode<TParentNode, TParentSyntax>(
+                parent,
+                parentSyntax => (TSyntax)getChildSyntax(parentSyntax),
+                (parentSyntax, childSyntax) => createChildSyntax(parentSyntax, childSyntax));
         }
     }
 }

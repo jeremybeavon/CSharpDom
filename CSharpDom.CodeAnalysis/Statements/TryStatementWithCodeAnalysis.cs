@@ -5,39 +5,93 @@ using CSharpDom.Editable.Statements;
 using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
 using CSharpDom.Wrappers.Internal;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
 {
-    public sealed class TryStatementWithCodeAnalysis<TStatement, TCatchStatement, TFinallyStatement> :
-        ITryStatement<TStatement, TCatchStatement, TFinallyStatement>
-        where TStatement : IStatement
-        where TCatchStatement : ICatchStatement
-        where TFinallyStatement : IFinallyStatement
+    public sealed class TryStatementWithCodeAnalysis :
+        EditableTryStatement<IStatementWithCodeAnalysis, CatchStatementWithCodeAnalysis, FinallyStatementWithCodeAnalysis>,
+        IHasSyntax<TryStatementSyntax>,
+        IInternalStatement
     {
-        public abstract ICollection<TCatchStatement> CatchStatements { get; set; }
+        private readonly Guid internalId;
+        private readonly StatementNode<TryStatementWithCodeAnalysis, TryStatementSyntax> node;
+        private readonly SyntaxListWrapper<
+            TryStatementWithCodeAnalysis,
+            TryStatementSyntax,
+            CatchStatementWithCodeAnalysis,
+            CatchClauseSyntax> catchStatements;
+        private readonly CachedChildNode<
+            TryStatementWithCodeAnalysis,
+            TryStatementSyntax,
+            FinallyStatementWithCodeAnalysis,
+            FinallyClauseSyntax> finallyStatement;
+        private readonly StatementListWrapper<TryStatementWithCodeAnalysis, TryStatementSyntax> tryStatements;
 
-        public abstract TFinallyStatement FinallyStatement { get; set; }
-
-        public abstract IList<TStatement> TryStatements { get; set; }
-
-        IReadOnlyCollection<TCatchStatement> ITryStatement<TStatement, TCatchStatement, TFinallyStatement>.CatchStatements
+        public TryStatementWithCodeAnalysis()
         {
-            get { return new ReadOnlyCollectionWrapper<TCatchStatement>(CatchStatements); }
+            internalId = Guid.NewGuid();
+            node = new StatementNode<TryStatementWithCodeAnalysis, TryStatementSyntax>(this);
+            //catchStatements = new SyntaxListWrapper<TryStatementWithCodeAnalysis, TryStatementSyntax, CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
+            //    node,
+            //    syntax => syntax,
+            //    (parentSyntax, childSyntax) => parentSyntax,
+            //    () => new CatchStatementWithCodeAnalysis(),
+            //    null);
         }
 
-        IReadOnlyList<TStatement> ITryStatement<TStatement, TCatchStatement, TFinallyStatement>.TryStatements
+        public override ICollection<CatchStatementWithCodeAnalysis> CatchStatements
         {
-            get { return new ReadOnlyCollection<TStatement>(TryStatements); }
+            get { return catchStatements; }
+            set { catchStatements.ReplaceList(value); }
         }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override FinallyStatementWithCodeAnalysis FinallyStatement
         {
-            visitor.VisitTryStatement(this);
+            get { return finallyStatement.Value; }
+            set { finallyStatement.Value = value; }
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public TryStatementSyntax Syntax
         {
-            GenericStatementVisitor.VisitTryStatementChildren(this, visitor);
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        public override IList<IStatementWithCodeAnalysis> TryStatements
+        {
+            get { return tryStatements; }
+            set { tryStatements.ReplaceList(value); }
+        }
+
+        Guid IHasId.InternalId
+        {
+            get { return internalId; }
+        }
+
+        StatementSyntax IHasSyntax<StatementSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (TryStatementSyntax)value; }
+        }
+
+        INode<StatementSyntax> IHasNode<StatementSyntax>.Node
+        {
+            get { return node; }
+        }
+
+        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)
+        {
+            node.SetStatementParentNode<TParentNode, TParentSyntax>(parent, getCollection);
+        }
+
+        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TParentSyntax, StatementSyntax> getChildSyntax, Func<TParentSyntax, StatementSyntax, TParentSyntax> createChildSyntax)
+        {
+            node.SetStatementParentNode(parent, getChildSyntax, createChildSyntax);
         }
     }
 }

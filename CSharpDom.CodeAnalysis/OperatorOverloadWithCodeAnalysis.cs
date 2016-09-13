@@ -55,11 +55,7 @@ namespace CSharpDom.CodeAnalysis
             OperatorDeclarationSyntax,
             OperatorParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
-        private readonly CachedChildNode<
-            OperatorOverloadWithCodeAnalysis,
-            OperatorDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis,
-            TypeSyntax> returnType;
+        private readonly CachedTypeReferenceNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> returnType;
 
         internal OperatorOverloadWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
             : this()
@@ -85,20 +81,18 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.OperatorOverloadParent = parent);
             body = new MethodBodyNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
-                parent => new MethodBodyWithCodeAnalysis(parent),
-                (child, parent) => child.OperatorOverloadParent = parent);
+                syntax => syntax.Body,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
             parameters = new SeparatedSyntaxListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
                 child => new OperatorParameterWithCodeAnalysis(child),
                 (child, parent) => child.Parameter.OperatorOverloadParent = parent);
-            returnType = new CachedChildNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
+            returnType = new CachedTypeReferenceNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax),
-                parent => parent.Syntax.ReturnType.ToTypeReference(),
-                null);
+                syntax => syntax.ReturnType,
+                (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

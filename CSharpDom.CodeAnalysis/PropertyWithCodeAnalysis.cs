@@ -21,11 +21,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly object property;
         private readonly Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> node;
         private readonly AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> attributes;
-        private readonly CachedChildNode<
-            PropertyWithCodeAnalysis,
-            PropertyDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis,
-            TypeSyntax> propertyType;
+        private readonly CachedTypeReferenceNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> propertyType;
         private readonly CachedChildNode<
             PropertyWithCodeAnalysis,
             PropertyDeclarationSyntax,
@@ -98,11 +94,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.PropertyParent = parent);
-            propertyType = new CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
+            propertyType = new CachedTypeReferenceNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
-                parent => parent.Syntax.Type.ToTypeReference(),
-                null);
+                syntax => syntax.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
             getAccessor = GetAccessorNode(SyntaxKind.GetKeyword);
             setAccessor = GetAccessorNode(SyntaxKind.SetKeyword);
         }
@@ -236,9 +231,9 @@ namespace CSharpDom.CodeAnalysis
         {
             return new CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => CreateAccessor(kind)(parentSyntax, childSyntax),
-                parent => GetAccessorDeclaration(parent.Syntax, kind) == null ? null : new AccessorWithCodeAnalysis(this, kind),
-                (child, parent) => child.PropertyParent = parent);
+                () => new AccessorWithCodeAnalysis(kind),
+                syntax => GetAccessorDeclaration(syntax, kind),
+                (parentSyntax, childSyntax) => CreateAccessor(kind)(parentSyntax, childSyntax));
         }
         
         internal static Func<PropertyDeclarationSyntax, AccessorDeclarationSyntax, PropertyDeclarationSyntax> CreateAccessor(

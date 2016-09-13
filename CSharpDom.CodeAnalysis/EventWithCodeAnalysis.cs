@@ -76,9 +76,9 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.EventParent = parent);
             eventType = new CachedChildNode<EventWithCodeAnalysis, EventFieldDeclarationSyntax, DelegateReferenceWithCodeAnalysis, NameSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)),
-                parent => new DelegateReferenceWithCodeAnalysis(parent),
-                (child, parent) => child.TypeReference.EventParent = parent);
+                () => new DelegateReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
+                syntax => (NameSyntax)syntax.Declaration.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

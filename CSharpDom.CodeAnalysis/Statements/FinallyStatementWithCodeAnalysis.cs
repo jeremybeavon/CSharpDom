@@ -8,7 +8,8 @@ namespace CSharpDom.CodeAnalysis.Statements
 {
     public sealed class FinallyStatementWithCodeAnalysis :
         EditableFinallyStatement<IStatementWithCodeAnalysis>,
-        IHasSyntax<FinallyClauseSyntax>
+        IHasSyntax<FinallyClauseSyntax>,
+        IHasNode<FinallyClauseSyntax>
     {
         private readonly Node<FinallyStatementWithCodeAnalysis, FinallyClauseSyntax> node;
         private readonly StatementListWrapper<FinallyStatementWithCodeAnalysis, FinallyClauseSyntax> statements;
@@ -33,6 +34,11 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        INode<FinallyClauseSyntax> IHasNode<FinallyClauseSyntax>.Node
+        {
+            get { return node; }
         }
     }
 }

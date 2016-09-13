@@ -30,11 +30,7 @@ namespace CSharpDom.CodeAnalysis
             ConversionOperatorDeclarationSyntax,
             OperatorParameterWithCodeAnalysis,
             ParameterSyntax> parameter;
-        private readonly CachedChildNode<
-            ConversionOperatorWithCodeAnalysis,
-            ConversionOperatorDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis,
-            TypeSyntax> returnType;
+        private readonly CachedTypeReferenceNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> returnType;
 
         internal ConversionOperatorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
             : this()
@@ -60,19 +56,17 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => { });
             body = new MethodBodyNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
-                parent => new MethodBodyWithCodeAnalysis(parent),
-                (child, parent) => child.ConversionOperatorParent = parent);
+                syntax => syntax.Body,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
             parameter = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
-                WithParameter,
-                parent => new OperatorParameterWithCodeAnalysis(parent),
-                (child, parent) => child.Parameter.ConversionOperatorParent = parent);
-            returnType = new CachedChildNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
+                () => new OperatorParameterWithCodeAnalysis(),
+                syntax => syntax.ParameterList.Parameters[0],
+                WithParameter);
+            returnType = new CachedTypeReferenceNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
-                parent => parent.Syntax.Type.ToTypeReference(),
-                (child, parent) => { });
+                syntax => syntax.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

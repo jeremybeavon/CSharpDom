@@ -25,11 +25,7 @@ namespace CSharpDom.CodeAnalysis
             FieldDeclarationSyntax,
             FieldWithCodeAnalysis,
             VariableDeclaratorSyntax> fields;
-        private readonly CachedChildNode<
-            FieldGroupWithCodeAnalysis,
-            FieldDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis,
-            TypeSyntax> fieldType;
+        private readonly CachedTypeReferenceNode<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> fieldType;
 
         internal FieldGroupWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassFieldWithCodeAnalysis field)
             : this(field)
@@ -65,11 +61,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithVariables(childSyntax)),
                 parent => new FieldWithCodeAnalysis(parent),
                 (child, parent) => child.Parent = parent);
-            fieldType = new CachedChildNode<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
+            fieldType = new CachedTypeReferenceNode<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)),
-                parent => null,
-                null);
+                syntax => syntax.Declaration.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

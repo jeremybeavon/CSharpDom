@@ -33,9 +33,8 @@ namespace CSharpDom.CodeAnalysis.Statements
                 (parentSyntax, childSyntax) => parentSyntax.WithStatement(childSyntax));
             type = new CachedTypeReferenceNode<ForeachStatementWithCodeAnalysis, ForEachStatementSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
-                (parent, childSyntax) => null,
-                null);
+                syntax => syntax.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
         }
 
         public override IExpressionWithCodeAnalysis Iterator
@@ -77,6 +76,11 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return Syntax; }
             set { Syntax = (ForEachStatementSyntax)value; }
+        }
+
+        INode<StatementSyntax> IHasNode<StatementSyntax>.Node
+        {
+            get { return node; }
         }
 
         void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(

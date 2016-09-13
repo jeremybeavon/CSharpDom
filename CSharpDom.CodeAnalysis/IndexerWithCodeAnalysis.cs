@@ -26,11 +26,7 @@ namespace CSharpDom.CodeAnalysis
             IndexerDeclarationSyntax,
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> getAccessor;
-        private readonly CachedChildNode<
-            IndexerWithCodeAnalysis,
-            IndexerDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis,
-            TypeSyntax> indexerType;
+        private readonly CachedTypeReferenceNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> indexerType;
         private readonly SeparatedSyntaxListWrapper<
             IndexerWithCodeAnalysis,
             IndexerDeclarationSyntax,
@@ -95,11 +91,10 @@ namespace CSharpDom.CodeAnalysis
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.IndexerParent = parent);
             getAccessor = GetAccessorNode(SyntaxKind.GetKeyword);
-            indexerType = new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
+            indexerType = new CachedTypeReferenceNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
                 node,
-                null,
-                parent => parent.Syntax.Type.ToTypeReference(),
-                null);
+                syntax => syntax.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
             parameters = new SeparatedSyntaxListWrapper<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, IndexerParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
@@ -236,9 +231,9 @@ namespace CSharpDom.CodeAnalysis
         {
             return new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => CreateAccessor(kind)(parentSyntax, childSyntax),
-                parent => GetAccessorDeclaration(parent.Syntax, kind) == null ? null : new AccessorWithCodeAnalysis(this, kind),
-                (child, parent) => child.IndexerParent = parent);
+                () => new AccessorWithCodeAnalysis(kind),
+                syntax => GetAccessorDeclaration(syntax, kind),
+                (parentSyntax, childSyntax) => CreateAccessor(kind)(parentSyntax, childSyntax));
         }
 
         internal static Func<IndexerDeclarationSyntax, AccessorDeclarationSyntax, IndexerDeclarationSyntax> CreateAccessor(

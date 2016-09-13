@@ -10,6 +10,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Func<TParentNode, IChildCollection<TChildNode, TChildSyntax>> getCollection;
 
         public InternalListWrapperBuilder(
+
             Func<TChildSyntax, TChildNode> createItem,
             Func<TParentNode, IChildCollection<TChildNode, TChildSyntax>> getCollection)
         {

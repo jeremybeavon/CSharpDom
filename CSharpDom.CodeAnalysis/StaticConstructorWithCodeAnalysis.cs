@@ -46,9 +46,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.StaticConstructorParent = parent);
             body = new MethodBodyNode<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
-                parent => new MethodBodyWithCodeAnalysis(parent),
-                (child, parent) => child.StaticConstructorParent = parent);
+                syntax => syntax.Body,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

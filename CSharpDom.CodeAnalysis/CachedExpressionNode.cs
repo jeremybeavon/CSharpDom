@@ -7,32 +7,24 @@ namespace CSharpDom.CodeAnalysis
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly CachedChildNode<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> node;
+        private readonly CachedChildNode<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> childNode;
 
         public CachedExpressionNode(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, ExpressionSyntax> getSyntax,
             Func<TParentSyntax, ExpressionSyntax, TParentSyntax> createSyntax)
-            : this(node, createSyntax, CachedNodeBuilder.Create<TParentNode, TParentSyntax>(getSyntax, createSyntax))
         {
-        }
-
-        private CachedExpressionNode(
-            Node<TParentNode, TParentSyntax> node,
-            Func<TParentSyntax, ExpressionSyntax, TParentSyntax> createSyntax,
-            CachedNodeBuilder<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> builder)
-        {
-            this.node = new CachedChildNode<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax>(
+            childNode = new CachedChildNode<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax>(
                 node,
-                createSyntax,
-                builder.GetValue,
-                builder.SetParent);
+                ExpressionSyntaxExtensions.ToInternalExpression,
+                getSyntax,
+                createSyntax);
         }
-
+        
         public IExpressionWithCodeAnalysis Value
         {
-            get { return node.Value; }
-            set { node.Value = (IInternalExpression)value; }
+            get { return childNode.Value; }
+            set { childNode.Value = (IInternalExpression)value; }
         }
     }
 }

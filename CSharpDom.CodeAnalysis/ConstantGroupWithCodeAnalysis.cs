@@ -25,11 +25,7 @@ namespace CSharpDom.CodeAnalysis
             FieldDeclarationSyntax,
             ConstantWithCodeAnalysis,
             VariableDeclaratorSyntax> constants;
-        private readonly CachedChildNode<
-            ConstantGroupWithCodeAnalysis,
-            FieldDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis,
-            TypeSyntax> constantType;
+        private readonly CachedTypeReferenceNode<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> constantType;
 
         internal ConstantGroupWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassConstantWithCodeAnalysis constant)
             : this(constant)
@@ -65,11 +61,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithVariables(childSyntax)),
                 parent => new ConstantWithCodeAnalysis(parent),
                 (child, parent) => child.Parent = parent);
-            constantType = new CachedChildNode<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
+            constantType = new CachedTypeReferenceNode<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)),
-                parent => null,
-                null);
+                syntax => syntax.Declaration.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

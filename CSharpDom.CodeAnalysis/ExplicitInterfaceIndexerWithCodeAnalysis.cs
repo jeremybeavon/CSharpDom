@@ -43,9 +43,9 @@ namespace CSharpDom.CodeAnalysis
             internalId = Guid.NewGuid();
             explicitInterface = new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 indexer.Indexer.Node,
-                (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)),
-                parent => new InterfaceReferenceWithCodeAnalysis(parent),
-                (child, parent) => child.TypeReference.ExplicitInterfaceIndexerParent = parent);
+                () => new InterfaceReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
+                syntax => syntax.ExplicitInterfaceSpecifier.Name,
+                (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)));
         }
 
         public IndexerWithBodyWithCodeAnalysis Indexer

@@ -16,11 +16,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<ParameterWithCodeAnalysis, ParameterSyntax> node;
         private readonly object wrapper;
         private readonly AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax> attributes;
-        private readonly CachedChildNode<
-            ParameterWithCodeAnalysis,
-            ParameterSyntax,
-            ITypeReferenceWithCodeAnalysis,
-            TypeSyntax> parameterType;
+        private readonly CachedTypeReferenceNode<ParameterWithCodeAnalysis, ParameterSyntax> parameterType;
 
         internal ParameterWithCodeAnalysis(ConstructorWithCodeAnalysis parent, ConstructorParameterWithCodeAnalysis parameter)
             : this(parameter)
@@ -74,11 +70,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
                 parent => new AttributeGroupWithCodeAnalysis(parent),
                 (child, parent) => child.ParameterParent = parent);
-            parameterType = new CachedChildNode<ParameterWithCodeAnalysis, ParameterSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
+            parameterType = new CachedTypeReferenceNode<ParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax),
-                parent => parent.Syntax.Type.ToTypeReference(),
-                null);
+                syntax => syntax.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -103,6 +98,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        internal Node<ParameterWithCodeAnalysis, ParameterSyntax> Node
+        {
+            get { return node; }
         }
 
         internal IAttributeCollection AttributeList

@@ -53,9 +53,8 @@ namespace CSharpDom.CodeAnalysis
                 (child, parent) => child.ConstructorParent = parent);
             body = new MethodBodyNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
-                parent => new MethodBodyWithCodeAnalysis(parent),
-                (child, parent) => child.ConstructorParent = parent);
+                syntax => syntax.Body,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
             parameters = new SeparatedSyntaxListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax, ConstructorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,

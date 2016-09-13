@@ -30,6 +30,11 @@ namespace CSharpDom.CodeAnalysis.Statements
             get { return internalId; }
         }
 
+        INode<StatementSyntax> IHasNode<StatementSyntax>.Node
+        {
+            get { return node; }
+        }
+
         StatementSyntax IHasSyntax<StatementSyntax>.Syntax
         {
             get { return Syntax; }

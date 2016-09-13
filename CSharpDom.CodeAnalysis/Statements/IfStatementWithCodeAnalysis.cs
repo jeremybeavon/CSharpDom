@@ -70,6 +70,11 @@ namespace CSharpDom.CodeAnalysis.Statements
             set { Syntax = (IfStatementSyntax)value; }
         }
 
+        INode<StatementSyntax> IHasNode<StatementSyntax>.Node
+        {
+            get { return node; }
+        }
+
         void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
             TParentNode parent,
             Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)

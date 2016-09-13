@@ -29,11 +29,7 @@ namespace CSharpDom.CodeAnalysis
             MethodDeclarationSyntax,
             MethodParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
-        private readonly CachedChildNode<
-            MethodWithCodeAnalysis,
-            MethodDeclarationSyntax,
-            ITypeReferenceWithCodeAnalysis,
-            TypeSyntax> returnType;
+        private readonly CachedTypeReferenceNode<MethodWithCodeAnalysis, MethodDeclarationSyntax> returnType;
 
         internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, AbstractMethodWithCodeAnalysis method)
             : this(method)
@@ -113,11 +109,10 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
                 parent => new MethodParameterWithCodeAnalysis(parent),
                 (child, parent) => child.Parameter.MethodParent = parent);
-            returnType = new CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, ITypeReferenceWithCodeAnalysis, TypeSyntax>(
+            returnType = new CachedTypeReferenceNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax),
-                parent => parent.Syntax.ReturnType.ToTypeReference(),
-                null);
+                syntax => syntax.ReturnType,
+                (parentSyntax, childSyntax) => parentSyntax.WithReturnType(childSyntax));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

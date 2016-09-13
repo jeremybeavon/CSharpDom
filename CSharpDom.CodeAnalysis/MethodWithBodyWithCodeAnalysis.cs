@@ -67,9 +67,8 @@ namespace CSharpDom.CodeAnalysis
             this.method = method;
             body = new MethodBodyNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 method.Node,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax),
-                parent => new MethodBodyWithCodeAnalysis(parent),
-                (child, parent) => child.MethodParent = parent);
+                syntax => syntax.Body,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
         }
 
         public MethodWithCodeAnalysis Method

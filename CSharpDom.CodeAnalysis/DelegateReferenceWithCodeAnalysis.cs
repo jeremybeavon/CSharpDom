@@ -7,7 +7,8 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class DelegateReferenceWithCodeAnalysis :
         EditableDelegateReference<GenericParameterWithCodeAnalysis>,
-        IHasSyntax<NameSyntax>//,
+        IHasSyntax<NameSyntax>,
+        IHasNode<NameSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
@@ -49,7 +50,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return typeReference; }
         }
-        
+
+        INode<NameSyntax> IHasNode<NameSyntax>.Node
+        {
+            get { return typeReference.Node; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitDelegateReferenceWithCodeAnalysis(this);

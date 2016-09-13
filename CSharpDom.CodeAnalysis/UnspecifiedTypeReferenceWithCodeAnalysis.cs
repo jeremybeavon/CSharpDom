@@ -59,7 +59,7 @@ namespace CSharpDom.CodeAnalysis
             ExplicitInterfacePropertyParent = parent;
         }
 
-        private UnspecifiedTypeReferenceWithCodeAnalysis()
+        internal UnspecifiedTypeReferenceWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
             node = new Node<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(this);
@@ -103,6 +103,11 @@ namespace CSharpDom.CodeAnalysis
         internal IChildCollection<GenericParameterWithCodeAnalysis, TypeSyntax> GenericParameterList
         {
             get { return genericParameters; }
+        }
+
+        internal Node<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax> Node
+        {
+            get { return node; }
         }
 
         internal AttributeWithCodeAnalysis AttributeParent

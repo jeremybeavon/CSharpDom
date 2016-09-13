@@ -9,7 +9,8 @@ namespace CSharpDom.CodeAnalysis
     public sealed class OperatorParameterWithCodeAnalysis :
         EditableOperatorParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<ParameterSyntax>,
-        IHasId
+        IHasId,
+        IHasNode<ParameterSyntax>
     {
         private readonly Guid internalId;
         private readonly ParameterWithCodeAnalysis parameter;
@@ -26,7 +27,7 @@ namespace CSharpDom.CodeAnalysis
             parameter = new ParameterWithCodeAnalysis(parent, this);
         }
 
-        private OperatorParameterWithCodeAnalysis()
+        internal OperatorParameterWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
         }
@@ -63,6 +64,11 @@ namespace CSharpDom.CodeAnalysis
         Guid IHasId.InternalId
         {
             get { return internalId; }
+        }
+
+        INode<ParameterSyntax> IHasNode<ParameterSyntax>.Node
+        {
+            get { return parameter.Node; }
         }
     }
 }
