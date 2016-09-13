@@ -2,7 +2,7 @@
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class Node<TValue, TSyntax> : INode<TSyntax>, IHasId
+    internal class Node<TValue, TSyntax> : INode<TSyntax>
         where TSyntax : class
     {
         private readonly Guid internalId;
@@ -76,24 +76,16 @@ namespace CSharpDom.CodeAnalysis
                 setSyntax(syntax);
             }
         }
-
-        public void SetParentNode<TParentNode, TParentSyntax>(
-            TParentNode parent,
-            Func<TParentNode, IChildCollection<TValue, TSyntax>> getCollection)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
-        {
-            SetParentNode<TParentNode, TParentSyntax, TValue>(parent, Value, getCollection);
-        }
-
+        
         public void SetParentNode<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            Func<TParentNode, IChildCollection<TChildNode, TSyntax>> getCollection)
+            IChildCollection<TChildNode, TSyntax> getCollection)
             where TParentNode : class, IHasSyntax<TParentSyntax>
         {
             SetParentNode(
                 parent,
-                syntax => getCollection(parent).GetChild(child),
+                syntax => getCollection.GetChild(child),
                 CreateChildSyntax<TParentNode, TParentSyntax, TChildNode>(parent, child, getCollection));
         }
 
@@ -108,12 +100,12 @@ namespace CSharpDom.CodeAnalysis
         private Func<TParentSyntax, TSyntax, TParentSyntax> CreateChildSyntax<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            Func<TParentNode, IChildCollection<TChildNode, TSyntax>> getCollection)
+            IChildCollection<TChildNode, TSyntax> getCollection)
             where TParentNode : IHasSyntax<TParentSyntax>
         {
             return (parentSyntax, childSyntax) =>
             {
-                getCollection(parent).SetChild(child, childSyntax);
+                getCollection.SetChild(child, childSyntax);
                 return parent.Syntax;
             };
         }

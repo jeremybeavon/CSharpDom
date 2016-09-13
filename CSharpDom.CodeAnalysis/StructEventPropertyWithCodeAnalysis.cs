@@ -14,22 +14,15 @@ namespace CSharpDom.CodeAnalysis
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<EventDeclarationSyntax>,
-        IHasId
+        IHasNode<EventDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly EventPropertyWithCodeAnalysis @event;
 
-        internal StructEventPropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
+        internal StructEventPropertyWithCodeAnalysis()
         {
-            @event = new EventPropertyWithCodeAnalysis(parent, this);
+            @event = new EventPropertyWithCodeAnalysis(this);
         }
-
-        private StructEventPropertyWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public EventPropertyWithCodeAnalysis EventProperty
         {
             get { return @event; }
@@ -108,10 +101,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<EventDeclarationSyntax> IHasNode<EventDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return @event.Node; }
         }
     }
 }

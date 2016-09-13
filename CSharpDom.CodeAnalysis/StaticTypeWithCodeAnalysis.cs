@@ -53,43 +53,21 @@ namespace CSharpDom.CodeAnalysis
         private readonly StaticClassNestedStructCollectionWithCodeAnalysis structs;
         private readonly MemberList<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax> members;
 
-        internal StaticTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedStaticClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-
-        }
-
-        internal StaticTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedStaticClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-
-        }
-
-        internal StaticTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedStaticClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-
-        }
-
-        private StaticTypeWithCodeAnalysis(object @class)
+        internal StaticTypeWithCodeAnalysis(object @class)
         {
             node = new Node<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(this);
             this.@class = @class;
             attributes = new AttributeListWrapper<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.StaticClassParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             classes = new StaticClassNestedClassCollectionWithCodeAnalysis(this);
             delegates = new StaticTypeMemberListWrapper<DelegateTypeWithCodeAnalysis, StaticClassNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
-                parent => new StaticClassNestedDelegateWithCodeAnalysis(parent),
-                (child, parent) => child.Delegate.Delegate.StaticClassParent = parent);
+                () => new StaticClassNestedDelegateWithCodeAnalysis());
             enums = new StaticTypeMemberListWrapper<NestedEnumWithCodeAnalysis, StaticClassNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
-                parent => new StaticClassNestedEnumWithCodeAnalysis(parent),
-                (child, parent) => child.Enum.StaticClassParent = parent);
+                () => new StaticClassNestedEnumWithCodeAnalysis());
             events = new StaticClassEventCollectionWithCodeAnalysis(this);
             fields = new StaticClassFieldCollectionWithCodeAnalysis(this);
             genericParameters = new GenericParameterDeclarationListWrapper<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
@@ -97,19 +75,15 @@ namespace CSharpDom.CodeAnalysis
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
-                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
-                parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
-                (child, parent) => child.StaticClassParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
             interfaces = new StaticClassNestedInterfaceCollectionWithCodeAnalysis(this);
             methods = new StaticClassMethodCollectionWithCodeAnalysis(this);
             properties = new StaticTypeMemberListWrapper<PropertyWithCodeAnalysis, StaticClassPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
-                parent => new StaticClassPropertyWithCodeAnalysis(parent),
-                (child, parent) => child.Property.Property.StaticClassParent = parent);
+                () => new StaticClassPropertyWithCodeAnalysis());
             staticConstructor = new StaticTypeMemberListWrapper<EmptySimpleMember, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
-                parent => new StaticConstructorWithCodeAnalysis(parent),
-                (child, parent) => child.StaticClassParent = parent);
+                () => new StaticConstructorWithCodeAnalysis());
             structs = new StaticClassNestedStructCollectionWithCodeAnalysis(this);
             members = new MemberList<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                 node,
@@ -243,37 +217,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return members; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IChildCollection<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> DelegateList
-        {
-            get { return delegates; }
-        }
-
-        internal IChildCollection<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> EnumList
-        {
-            get { return enums; }
-        }
-
-        internal IGenericParameterCollection GenericParameterList
-        {
-            get { return genericParameters; }
-        }
-
-        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> PropertyList
-        {
-            get { return properties; }
-        }
-
-        internal IChildCollection<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> StaticConstructorList
-        {
-            get { return staticConstructor; }
-        }
-
+        
         T ISimpleMember.Member<T>()
         {
             return (T)@class;

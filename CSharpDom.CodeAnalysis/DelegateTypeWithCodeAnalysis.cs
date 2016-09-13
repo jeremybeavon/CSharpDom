@@ -26,49 +26,26 @@ namespace CSharpDom.CodeAnalysis
             DelegateParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
         private readonly CachedTypeReferenceNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> returnType;
-
-        internal DelegateTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedDelegateWithCodeAnalysis @delegate)
-            : this(@delegate)
-        {
-            ClassParent = parent;
-        }
-
-        internal DelegateTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedDelegateWithCodeAnalysis @delegate)
-            : this(@delegate)
-        {
-            StaticClassParent = parent;
-        }
-
-        internal DelegateTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedDelegateWithCodeAnalysis @delegate)
-            : this(@delegate)
-        {
-            StructParent = parent;
-        }
-
-        private DelegateTypeWithCodeAnalysis(object @delegate)
+        
+        internal DelegateTypeWithCodeAnalysis(object @delegate)
         {
             node = new Node<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(this);
             this.@delegate = @delegate;
             attributes = new AttributeListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.DelegateParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             genericParameters = new GenericParameterDeclarationListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
-                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
-                parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
-                (child, parent) => child.DelegateParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
             parameters = new SeparatedSyntaxListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax, DelegateParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
-                parent => new DelegateParameterWithCodeAnalysis(parent),
-                (child, parent) => child.Parameter.DelegateParent = parent);
+                () => new DelegateParameterWithCodeAnalysis());
             returnType = new CachedTypeReferenceNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
                 syntax => syntax.ReturnType,
@@ -115,55 +92,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IGenericParameterCollection GenericParameterList
-        {
-            get { return genericParameters; }
-        }
-
-        internal IChildCollection<DelegateParameterWithCodeAnalysis, ParameterSyntax> ParameterList
-        {
-            get { return parameters; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.DelegateList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.DelegateList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.DelegateList);
-            }
-        }
-
+        
         T ISimpleMember.Member<T>()
         {
             return (T)@delegate;

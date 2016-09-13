@@ -6,20 +6,16 @@ using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class ConstantWithCodeAnalysis : EditableConstant<IExpression>, IHasSyntax<VariableDeclaratorSyntax>, IHasId
+    public sealed class ConstantWithCodeAnalysis :
+        EditableConstant<IExpression>,
+        IHasSyntax<VariableDeclaratorSyntax>,
+        IHasNode<VariableDeclaratorSyntax>
     {
-        private readonly SimpleNode<
-            ConstantGroupWithCodeAnalysis,
-            FieldDeclarationSyntax,
-            ConstantWithCodeAnalysis,
-            VariableDeclaratorSyntax> node;
+        private readonly Node<ConstantWithCodeAnalysis, VariableDeclaratorSyntax> node;
 
-        public ConstantWithCodeAnalysis(ConstantGroupWithCodeAnalysis parent)
+        internal ConstantWithCodeAnalysis()
         {
-            node = new SimpleNode<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax, ConstantWithCodeAnalysis, VariableDeclaratorSyntax>(
-                parent,
-                this,
-                newParent => newParent.FieldList);
+            node = new Node<ConstantWithCodeAnalysis, VariableDeclaratorSyntax>(this);
         }
 
         public override IExpression ConstantValue
@@ -46,19 +42,10 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal ConstantGroupWithCodeAnalysis Parent
+        
+        INode<VariableDeclaratorSyntax> IHasNode<VariableDeclaratorSyntax>.Node
         {
-            get { return node.Parent; }
-            set { node.Parent = value; }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return node; }
         }
     }
 }

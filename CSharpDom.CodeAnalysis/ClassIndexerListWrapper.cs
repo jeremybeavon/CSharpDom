@@ -5,14 +5,13 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class ClassIndexerListWrapper<TChildNode> :
         ClassMemberListWrapper<IndexerWithCodeAnalysis, TChildNode, IndexerDeclarationSyntax>
-        where TChildNode : class, IHasSyntax<IndexerDeclarationSyntax>, IHasId
+        where TChildNode : class, IHasNode<IndexerDeclarationSyntax>
     {
         public ClassIndexerListWrapper(
             Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> node,
-            Func<ClassTypeWithCodeAnalysis, TChildNode> factory,
-            Action<TChildNode, ClassTypeWithCodeAnalysis> setParent,
+            Func<TChildNode> factory,
             Func<IndexerDeclarationSyntax, bool> filter = null)
-            : base(node, factory, setParent, filter)
+            : base(node, factory, filter)
         {
         }
     }

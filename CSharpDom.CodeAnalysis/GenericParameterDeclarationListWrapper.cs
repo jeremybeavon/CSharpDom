@@ -14,9 +14,8 @@ namespace CSharpDom.CodeAnalysis
             TParentNode,
             TParentSyntax,
             GenericParameterDeclarationWithCodeAnalysis,
-            GenericParameterDeclarationSyntax>,
-        IGenericParameterCollection
-        where TParentNode : class
+            GenericParameterDeclarationSyntax>
+        where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly Node<TParentNode, TParentSyntax> node;
@@ -28,14 +27,11 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, TypeParameterListSyntax> getTypeParameters,
             Func<TParentSyntax, TypeParameterListSyntax, TParentSyntax> createTypeParameters,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>> getConstraintClauses,
-            Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses,
-            Func<TParentNode, GenericParameterDeclarationWithCodeAnalysis> factory,
-            Action<GenericParameterDeclarationWithCodeAnalysis, TParentNode> setParent)
+            Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses)
             : base(
                   node,
                   ListFactory.CreateList(node, getTypeParameters, createTypeParameters, getConstraintClauses, createConstraintClauses),
-                  factory,
-                  setParent)
+                  () => new GenericParameterDeclarationWithCodeAnalysis())
         {
             this.node = node;
             this.createTypeParameters = createTypeParameters;

@@ -5,15 +5,14 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class SimpleClassMemberListWrapper<TChildNode, TChildSyntax> :
         ClassMemberListWrapper<EmptySimpleMember, TChildNode, TChildSyntax>
-        where TChildNode : class, IHasSyntax<TChildSyntax>, IHasId
+        where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : MemberDeclarationSyntax
     {
         public SimpleClassMemberListWrapper(
             Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> node,
-            Func<ClassTypeWithCodeAnalysis, TChildNode> factory,
-            Action<TChildNode, ClassTypeWithCodeAnalysis> setParent,
+            Func<TChildNode> factory,
             Func<TChildSyntax, bool> filter = null)
-            : base(node, factory, setParent, filter)
+            : base(node, factory, filter)
         {
         }
     }

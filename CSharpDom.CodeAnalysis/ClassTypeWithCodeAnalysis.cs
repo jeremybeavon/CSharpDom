@@ -67,76 +67,17 @@ namespace CSharpDom.CodeAnalysis
         private readonly SimpleClassMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> staticConstructor;
         private readonly ClassNestedStructCollectionWithCodeAnalysis structs;
         private readonly ClassMemberList members;
-
-        internal ClassTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-            SetClassParent(parent, ClassType.Normal);
-        }
-
-        internal ClassTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedAbstractClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-            SetClassParent(parent, ClassType.Abstract);
-        }
-
-        internal ClassTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedSealedClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-            SetClassParent(parent, ClassType.Sealed);
-        }
-
-        internal ClassTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-            SetStaticClassParent(parent, ClassType.Normal);
-        }
-
-        internal ClassTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedAbstractClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-            SetStaticClassParent(parent, ClassType.Abstract);
-        }
-
-        internal ClassTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedSealedClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-            SetStaticClassParent(parent, ClassType.Sealed);
-        }
-
-        internal ClassTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-            SetStructParent(parent, ClassType.Normal);
-        }
-
-        internal ClassTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedAbstractClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-            SetStructParent(parent, ClassType.Abstract);
-        }
-
-        internal ClassTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedSealedClassWithCodeAnalysis @class)
-            : this(@class)
-        {
-            SetStructParent(parent, ClassType.Sealed);
-        }
-
-        private ClassTypeWithCodeAnalysis(object @class)
+        internal ClassTypeWithCodeAnalysis(object @class)
         {
             node = new Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(this);
             this.@class = @class;
             baseTypes = new BaseTypeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax),
-                null,
-                null);
+                (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax));
             attributes = new AttributeListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             baseClass = new WrappedList<InterfaceReferenceWithCodeAnalysis, ClassReferenceWithCodeAnalysis>(
                 baseTypes,
                 @interface => new ClassReferenceWithCodeAnalysis(@interface.TypeReference),
@@ -145,25 +86,20 @@ namespace CSharpDom.CodeAnalysis
             classes = new ClassNestedClassCollectionWithCodeAnalysis(this);
             constructors = new ClassMemberListWrapper<ConstructorWithCodeAnalysis, ClassConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
-                parent => new ClassConstructorWithCodeAnalysis(parent),
-                (child, parent) => child.Constructor.ClassParent = parent,
+                () => new ClassConstructorWithCodeAnalysis(),
                 syntax => !syntax.IsStatic());
             conversionOperators = new SimpleClassMemberListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
-                parent => new ConversionOperatorWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent);
+                () => new ConversionOperatorWithCodeAnalysis());
             destructor = new SimpleClassMemberListWrapper<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
                 node,
-                parent => new DestructorWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent);
+                () => new DestructorWithCodeAnalysis());
             delegates = new ClassMemberListWrapper<DelegateTypeWithCodeAnalysis, ClassNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
-                parent => new ClassNestedDelegateWithCodeAnalysis(parent),
-                (child, parent) => child.Delegate.Delegate.ClassParent = parent);
+                () => new ClassNestedDelegateWithCodeAnalysis());
             enums = new ClassMemberListWrapper<NestedEnumWithCodeAnalysis, ClassNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
-                parent => new ClassNestedEnumWithCodeAnalysis(parent),
-                (child, parent) => child.Enum.ClassParent = parent);
+                () => new ClassNestedEnumWithCodeAnalysis());
             events = new ClassEventCollectionWithCodeAnalysis(this);
             fields = new ClassFieldCollectionWithCodeAnalysis(this);
             genericParameters = new GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
@@ -171,22 +107,18 @@ namespace CSharpDom.CodeAnalysis
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
-                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
-                parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
             implementedInterfaces = new FilteredList<InterfaceReferenceWithCodeAnalysis>(baseTypes);
             indexers = new ClassIndexerCollectionWithCodeAnalysis(this);
             interfaces = new ClassNestedInterfaceCollectionWithCodeAnalysis(this);
             methods = new ClassMethodCollectionWithCodeAnalysis(this);
             operatorOverloads = new SimpleClassMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
-                parent => new OperatorOverloadWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent);
+                () => new OperatorOverloadWithCodeAnalysis());
             properties = new ClassPropertyCollectionWithCodeAnalysis(this);
             staticConstructor = new SimpleClassMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
-                parent => new StaticConstructorWithCodeAnalysis(parent),
-                (child, parent) => child.ClassParent = parent,
+                () => new StaticConstructorWithCodeAnalysis(),
                 syntax => syntax.IsStatic());
             structs = new ClassNestedStructCollectionWithCodeAnalysis(this);
             members = new ClassMemberList(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
@@ -388,118 +320,7 @@ namespace CSharpDom.CodeAnalysis
         internal AbstractTypeWithCodeAnalysis AbstractType { get; private set; }
 
         internal SealedTypeWithCodeAnalysis SealedType { get; private set; }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IChildCollection<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> ConstructorList
-        {
-            get { return constructors; }
-        }
-
-        internal IChildCollection<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> ConversionOperatorList
-        {
-            get { return conversionOperators; }
-        }
-
-        internal IChildCollection<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> DelegateList
-        {
-            get { return delegates; }
-        }
-
-        internal IChildCollection<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> DestructorList
-        {
-            get { return destructor; }
-        }
-
-        internal IChildCollection<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> EnumList
-        {
-            get { return enums; }
-        }
-
-        internal IGenericParameterCollection GenericParameterList
-        {
-            get { return genericParameters; }
-        }
-
-        internal IChildCollection<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> OperatorOverloadList
-        {
-            get { return operatorOverloads; }
-        }
-
-        internal IChildCollection<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> StaticConstructorList
-        {
-            get { return staticConstructor; }
-        }
         
-        internal void SetClassParent(ClassTypeWithCodeAnalysis value, ClassType classType)
-        {
-            switch (classType)
-            {
-                case ClassType.Normal:
-                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                        value,
-                        parent => parent.Classes.ClassList);
-                    break;
-                case ClassType.Abstract:
-                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                        value,
-                        parent => parent.Classes.AbstractClassList);
-                    break;
-                case ClassType.Sealed:
-                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                        value,
-                        parent => parent.Classes.SealedClassList);
-                    break;
-            }
-        }
-
-        internal void SetStaticClassParent(StaticTypeWithCodeAnalysis value, ClassType classType)
-        {
-            //switch (classType)
-            //{
-            //    case ClassType.Normal:
-            //        node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-            //            value,
-            //            parent => parent.Classes.ClassList);
-            //        break;
-            //    case ClassType.Abstract:
-            //        node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-            //            value,
-            //            parent => parent.Classes.AbstractClassList);
-            //        break;
-            //    case ClassType.Sealed:
-            //        node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-            //            value,
-            //            parent => parent.Classes.SealedClassList);
-            //        break;
-            //}
-        }
-
-        internal void SetStructParent(StructTypeWithCodeAnalysis value, ClassType classType)
-        {
-            //switch (classType)
-            //{
-            //    case ClassType.Normal:
-            //        node.SetParentNode<StructTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-            //            value,
-            //            parent => parent.Classes.ClassList);
-            //        break;
-            //    case ClassType.Abstract:
-            //        node.SetParentNode<StructTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-            //            value,
-            //            parent => parent.Classes.AbstractClassList);
-            //        break;
-            //    case ClassType.Sealed:
-            //        node.SetParentNode<StructTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-            //            value,
-            //            parent => parent.Classes.SealedClassList);
-            //        break;
-            //}
-        }
-
         T ISimpleMember.Member<T>()
         {
             return (T)@class;

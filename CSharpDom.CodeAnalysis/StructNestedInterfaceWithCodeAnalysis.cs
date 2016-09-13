@@ -17,9 +17,8 @@ namespace CSharpDom.CodeAnalysis
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
         IHasSyntax<InterfaceDeclarationSyntax>,
-        IHasId
+        IHasNode<InterfaceDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly NestedInterfaceWithCodeAnalysis type;
 
         internal StructNestedInterfaceWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
@@ -116,6 +115,14 @@ namespace CSharpDom.CodeAnalysis
         Guid IHasId.InternalId
         {
             get { return internalId; }
+        }
+
+        INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

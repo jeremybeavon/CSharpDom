@@ -21,27 +21,7 @@ namespace CSharpDom.CodeAnalysis
             get { return Syntax; }
             set { Syntax = (TSyntax)value; }
         }
-
-        public void SetStatementParentNode<TParentNode, TParentSyntax>(
-            TParentNode parent,
-            Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
-        {
-            SetParentNode<TParentNode, TParentSyntax>(parent, CreateChildCollection(getCollection));
-        }
-
-        public void SetStatementParentNode<TParentNode, TParentSyntax>(
-            TParentNode parent,
-            Func<TParentSyntax, StatementSyntax> getChildSyntax,
-            Func<TParentSyntax, StatementSyntax, TParentSyntax> createChildSyntax)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
-        {
-            SetParentNode<TParentNode, TParentSyntax>(
-                parent,
-                parentSyntax => (TSyntax)getChildSyntax(parentSyntax),
-                (parentSyntax, childSyntax) => createChildSyntax(parentSyntax, childSyntax));
-        }
-
+        
         private Func<TParentNode, IChildCollection<TValue, TSyntax>> CreateChildCollection<TParentNode>(
             Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)
         {
@@ -59,6 +39,14 @@ namespace CSharpDom.CodeAnalysis
                 parent,
                 parentSyntax => (TSyntax)getChildSyntax(parentSyntax),
                 (parentSyntax, childSyntax) => createChildSyntax(parentSyntax, childSyntax));
+        }
+
+        void INode<StatementSyntax>.SetParentNode<TParentNode, TParentSyntax, TChildNode>(
+            TParentNode parent,
+            TChildNode child,
+            IChildCollection<TChildNode, StatementSyntax> getCollection)
+        {
+            //SetParentNode<TParentNode, TParentSyntax>(parent, CreateChildCollection(getCollection));
         }
     }
 }

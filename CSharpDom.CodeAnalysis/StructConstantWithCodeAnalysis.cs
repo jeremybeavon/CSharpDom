@@ -14,22 +14,15 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             ConstantWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>,
-        IHasId
+        IHasNode<FieldDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly ConstantGroupWithCodeAnalysis constant;
 
-        internal StructConstantWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
+        internal StructConstantWithCodeAnalysis()
         {
-            constant = new ConstantGroupWithCodeAnalysis(parent, this);
+            constant = new ConstantGroupWithCodeAnalysis(this);
         }
-
-        private StructConstantWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public ConstantGroupWithCodeAnalysis Constant
         {
             get { return constant; }
@@ -74,10 +67,10 @@ namespace CSharpDom.CodeAnalysis
             get { return constant.Syntax; }
             set { constant.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return constant.Node; }
         }
     }
 }

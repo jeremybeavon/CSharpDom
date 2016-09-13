@@ -28,29 +28,15 @@ namespace CSharpDom.CodeAnalysis
             ConstructorDeclarationSyntax,
             ConstructorParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
-
-        internal ConstructorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassConstructorWithCodeAnalysis constructor)
-            : this(constructor)
-        {
-            ClassParent = parent;
-        }
-
-        internal ConstructorWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructConstructorWithCodeAnalysis constructor)
-            : this(constructor)
-        {
-            StructParent = parent;
-        }
-
-        private ConstructorWithCodeAnalysis(object constructor)
+        
+        internal ConstructorWithCodeAnalysis(object constructor)
         {
             node = new Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(this);
             this.constructor = constructor;
             attributes = new AttributeListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.ConstructorParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             body = new MethodBodyNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 syntax => syntax.Body,
@@ -59,8 +45,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
-                parent => new ConstructorParameterWithCodeAnalysis(parent),
-                (child, parent) => child.Parameter.ConstructorParent = parent);
+                () => new ConstructorParameterWithCodeAnalysis());
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -101,39 +86,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IChildCollection<ConstructorParameterWithCodeAnalysis, ParameterSyntax> ParameterList
-        {
-            get { return parameters; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.ConstructorList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.ConstructorList);
-            }
-        }
-
+        
         T ISimpleMember.Member<T>()
         {
             return (T)constructor;

@@ -26,41 +26,20 @@ namespace CSharpDom.CodeAnalysis
             ConstantWithCodeAnalysis,
             VariableDeclaratorSyntax> constants;
         private readonly CachedTypeReferenceNode<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> constantType;
-
-        internal ConstantGroupWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassConstantWithCodeAnalysis constant)
-            : this(constant)
-        {
-            ClassParent = parent;
-        }
-
-        internal ConstantGroupWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassConstantWithCodeAnalysis constant)
-            : this(constant)
-        {
-            StaticClassParent = parent;
-        }
-
-        internal ConstantGroupWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructConstantWithCodeAnalysis constant)
-            : this(constant)
-        {
-            StructParent = parent;
-        }
-
-        private ConstantGroupWithCodeAnalysis(object constant)
+        
+        internal ConstantGroupWithCodeAnalysis(object constant)
         {
             this.constant = constant;
             node = new Node<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.ConstantGroupParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             constants = new SeparatedSyntaxListWrapper<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax, ConstantWithCodeAnalysis, VariableDeclaratorSyntax>(
                 node,
                 syntax => syntax.Declaration.Variables,
                 (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithVariables(childSyntax)),
-                parent => new ConstantWithCodeAnalysis(parent),
-                (child, parent) => child.Parent = parent);
+                () => new ConstantWithCodeAnalysis());
             constantType = new CachedTypeReferenceNode<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
                 syntax => syntax.Declaration.Type,
@@ -106,50 +85,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IChildCollection<ConstantWithCodeAnalysis, VariableDeclaratorSyntax> FieldList
-        {
-            get { return constants; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Fields.ConstantList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Fields.ConstantList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.Fields.ConstantList);
-            }
-        }
-
+        
         T ISimpleMember.Member<T>()
         {
             return (T)constant;

@@ -15,9 +15,8 @@ namespace CSharpDom.CodeAnalysis
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<EventDeclarationSyntax>,
-        IHasId
+        IHasNode<EventDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly EventPropertyWithCodeAnalysis @event;
         private readonly CachedChildNode<
             EventPropertyWithCodeAnalysis,
@@ -25,21 +24,9 @@ namespace CSharpDom.CodeAnalysis
             InterfaceReferenceWithCodeAnalysis,
             NameSyntax> explicitInterface;
         
-        internal ExplicitInterfaceEventWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal ExplicitInterfaceEventWithCodeAnalysis()
         {
-            @event = new EventPropertyWithCodeAnalysis(parent, this);
-        }
-
-        internal ExplicitInterfaceEventWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
-        {
-            @event = new EventPropertyWithCodeAnalysis(parent, this);
-        }
-
-        private ExplicitInterfaceEventWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
+            @event = new EventPropertyWithCodeAnalysis(this);
             explicitInterface = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 @event.Node,
                 () => new InterfaceReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
@@ -111,10 +98,10 @@ namespace CSharpDom.CodeAnalysis
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<EventDeclarationSyntax> IHasNode<EventDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return @event.Node; }
         }
     }
 }

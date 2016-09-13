@@ -63,12 +63,7 @@ namespace CSharpDom.CodeAnalysis.Statements
             get { return tryStatements; }
             set { tryStatements.ReplaceList(value); }
         }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
-        }
-
+        
         StatementSyntax IHasSyntax<StatementSyntax>.Syntax
         {
             get { return Syntax; }
@@ -78,20 +73,6 @@ namespace CSharpDom.CodeAnalysis.Statements
         INode<StatementSyntax> IHasNode<StatementSyntax>.Node
         {
             get { return node; }
-        }
-
-        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
-            TParentNode parent,
-            Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)
-        {
-            node.SetStatementParentNode<TParentNode, TParentSyntax>(parent, getCollection);
-        }
-
-        void IHasParent<IInternalStatement, StatementSyntax>.SetParentNode<TParentNode, TParentSyntax>(
-            TParentNode parent,
-            Func<TParentSyntax, StatementSyntax> getChildSyntax, Func<TParentSyntax, StatementSyntax, TParentSyntax> createChildSyntax)
-        {
-            node.SetStatementParentNode(parent, getChildSyntax, createChildSyntax);
         }
     }
 }

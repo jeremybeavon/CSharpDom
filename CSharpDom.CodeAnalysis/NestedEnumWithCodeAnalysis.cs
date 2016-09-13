@@ -15,35 +15,15 @@ namespace CSharpDom.CodeAnalysis
         private readonly object @enum;
         private readonly Node<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> node;
         private readonly AttributeListWrapper<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> attributes;
-
-        internal NestedEnumWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedEnumWithCodeAnalysis @enum)
-            : this(@enum)
-        {
-            ClassParent = parent;
-        }
-
-        internal NestedEnumWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedEnumWithCodeAnalysis @enum)
-            : this(@enum)
-        {
-            StaticClassParent = parent;
-        }
-
-        internal NestedEnumWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedEnumWithCodeAnalysis @enum)
-            : this(@enum)
-        {
-            StructParent = parent;
-        }
-
-        private NestedEnumWithCodeAnalysis(object @enum)
+        
+        internal NestedEnumWithCodeAnalysis(object @enum)
         {
             node = new Node<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(this);
             this.@enum = @enum;
             attributes = new AttributeListWrapper<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.NestedEnumParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -100,45 +80,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.EnumList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.EnumList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.EnumList);
-            }
-        }
-
+        
         T ISimpleMember.Member<T>()
         {
             return (T)@enum;

@@ -14,22 +14,15 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             DelegateParameterWithCodeAnalysis>,
         IHasSyntax<DelegateDeclarationSyntax>,
-        IHasId
+        IHasNode<DelegateDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly NestedDelegateWithCodeAnalysis nestedDelegate;
 
-        internal StructNestedDelegateWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
+        internal StructNestedDelegateWithCodeAnalysis()
         {
-            nestedDelegate = new NestedDelegateWithCodeAnalysis(parent, this);
+            nestedDelegate = new NestedDelegateWithCodeAnalysis(this);
         }
-
-        private StructNestedDelegateWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public NestedDelegateWithCodeAnalysis Delegate
         {
             get { return nestedDelegate; }
@@ -86,10 +79,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<DelegateDeclarationSyntax> IHasNode<DelegateDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return nestedDelegate.Delegate.Node; }
         }
     }
 }

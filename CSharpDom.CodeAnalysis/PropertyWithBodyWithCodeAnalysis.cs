@@ -19,43 +19,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly PropertyWithCodeAnalysis property;
 
-        internal PropertyWithBodyWithCodeAnalysis(
-            ClassTypeWithCodeAnalysis parent,
-            ClassPropertyWithCodeAnalysis property,
-            ClassType classType)
+        internal PropertyWithBodyWithCodeAnalysis(object property)
         {
-            this.property = new PropertyWithCodeAnalysis(parent, property, classType);
+            this.property = new PropertyWithCodeAnalysis(property);
         }
-
-        internal PropertyWithBodyWithCodeAnalysis(
-            ClassTypeWithCodeAnalysis parent,
-            ExplicitInterfacePropertyWithCodeAnalysis property)
-        {
-            this.property = new PropertyWithCodeAnalysis(parent, property);
-        }
-
-        internal PropertyWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassPropertyWithCodeAnalysis property)
-        {
-            this.property = new PropertyWithCodeAnalysis(parent, property);
-        }
-
-        internal PropertyWithBodyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassPropertyWithCodeAnalysis property)
-        {
-            this.property = new PropertyWithCodeAnalysis(parent, property);
-        }
-
-        internal PropertyWithBodyWithCodeAnalysis(
-            StructTypeWithCodeAnalysis parent,
-            ExplicitInterfacePropertyWithCodeAnalysis property)
-        {
-            this.property = new PropertyWithCodeAnalysis(parent, property);
-        }
-
-        internal PropertyWithBodyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructPropertyWithCodeAnalysis property)
-        {
-            this.property = new PropertyWithCodeAnalysis(parent, property);
-        }
-
+        
         public PropertyWithCodeAnalysis Property
         {
             get { return property; }
@@ -101,11 +69,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return property.Syntax; }
             set { property.Syntax = value; }
-        }
-        
-        internal Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> Node
-        {
-            get { return property.Node; }
         }
     }
 }

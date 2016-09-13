@@ -42,52 +42,28 @@ namespace CSharpDom.CodeAnalysis
             InterfaceMethodWithCodeAnalysis,
             MethodDeclarationSyntax> methods;
         private readonly MemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> members;
-
-        internal InterfaceTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedInterfaceWithCodeAnalysis @interface)
-            : this(@interface)
-        {
-            ClassParent = parent;
-        }
-
-        internal InterfaceTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedInterfaceWithCodeAnalysis @interface)
-            : this(@interface)
-        {
-            StaticClassParent = parent;
-        }
-
-        internal InterfaceTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedInterfaceWithCodeAnalysis @interface)
-            : this(@interface)
-        {
-            StructParent = parent;
-        }
-
-        private InterfaceTypeWithCodeAnalysis(object @interface)
+        
+        internal InterfaceTypeWithCodeAnalysis(object @interface)
         {
             node = new Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(this);
             this.@interface = @interface;
             attributes = new AttributeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.InterfaceParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             events = new InterfaceMemberListWrapper<EventWithCodeAnalysis, InterfaceEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
                 node,
-                parent => new InterfaceEventWithCodeAnalysis(parent),
-                (child, parent) => child.Event.InterfaceParent = parent);
+                () => new InterfaceEventWithCodeAnalysis());
             genericParameters = new GenericParameterDeclarationListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
-                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
-                parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
-                (child, parent) => child.InterfaceParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
             interfaces = new BaseTypeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax),
-                parent => null,
-                null);
+                () => new InterfaceReferenceWithCodeAnalysis();
             properties = new InterfaceMemberListWrapper<PropertyWithCodeAnalysis, InterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
                 parent => new InterfacePropertyWithCodeAnalysis(parent),
@@ -169,70 +145,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> EventList
-        {
-            get { return events; }
-        }
-
-        internal IGenericParameterCollection GenericParameterList
-        {
-            get { return genericParameters; }
-        }
-
-        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> IndexerList
-        {
-            get { return indexers; }
-        }
-
-        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> MethodList
-        {
-            get { return methods; }
-        }
-
-        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> PropertyList
-        {
-            get { return properties; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Interfaces.InterfaceList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Interfaces.InterfaceList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.Interfaces.InterfaceList);
-            }
-        }
-
+        
         T ISimpleMember.Member<T>()
         {
             return (T)@interface;

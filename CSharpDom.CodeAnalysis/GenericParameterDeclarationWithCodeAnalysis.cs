@@ -15,7 +15,7 @@ namespace CSharpDom.CodeAnalysis
             InterfaceReferenceWithCodeAnalysis,
             AttributeGroupWithCodeAnalysis>,
         IHasSyntax<GenericParameterDeclarationSyntax>,
-        IHasId//,
+        IHasNode<GenericParameterDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
         private Guid internalId;
@@ -34,52 +34,14 @@ namespace CSharpDom.CodeAnalysis
         private readonly FilteredList<ITypeReferenceWithCodeAnalysis, GenericParameterReferenceWithCodeAnalysis> genericParameterConstraints;
         private readonly IList<InterfaceReferenceWithCodeAnalysis> interfaceConstraints;
 
-        internal GenericParameterDeclarationWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
-        {
-            ClassParent = parent;
-        }
-
-        internal GenericParameterDeclarationWithCodeAnalysis(DelegateTypeWithCodeAnalysis parent)
-            : this()
-        {
-            DelegateParent = parent;
-        }
-
-        internal GenericParameterDeclarationWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
-            : this()
-        {
-            InterfaceParent = parent;
-        }
-
-        internal GenericParameterDeclarationWithCodeAnalysis(MethodWithCodeAnalysis parent)
-            : this()
-        {
-            MethodParent = parent;
-        }
-
-        internal GenericParameterDeclarationWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
-            : this()
-        {
-            StaticClassParent = parent;
-        }
-
-        internal GenericParameterDeclarationWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
-        {
-            StructParent = parent;
-        }
-
-        private GenericParameterDeclarationWithCodeAnalysis()
+        internal GenericParameterDeclarationWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
             node = new Node<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(this);
-            attributes = new CodeAnalysis.AttributeListWrapper<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(
+            attributes = new AttributeListWrapper<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameter.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.GenericParameterParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             //baseClass = new CachedChildNode<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax, ClassReferenceWithCodeAnalysis>(
             //    node,
             //    parent => new ClassReferenceWithCodeAnalysis(parent)
@@ -205,81 +167,10 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal IAttributeCollection AttributeList
+        
+        INode<GenericParameterDeclarationSyntax> IHasNode<GenericParameterDeclarationSyntax>.Node
         {
-            get { return attributes; }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
-        }
-
-        internal DelegateTypeWithCodeAnalysis DelegateParent
-        {
-            get { return node.GetParentNode<DelegateTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
-        }
-
-        internal InterfaceTypeWithCodeAnalysis InterfaceParent
-        {
-            get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
-        }
-
-        internal MethodWithCodeAnalysis MethodParent
-        {
-            get { return node.GetParentNode<MethodWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
+            get { return node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

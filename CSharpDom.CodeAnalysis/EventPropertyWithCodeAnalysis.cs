@@ -38,53 +38,14 @@ namespace CSharpDom.CodeAnalysis
             EventDeclarationSyntax,
             MethodBodyWithCodeAnalysis,
             BlockSyntax> removeBody;
-
-        internal EventPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassEventPropertyWithCodeAnalysis eventProperty)
-            : this(eventProperty)
-        {
-            ClassParent = parent;
-        }
-
-        internal EventPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceEventWithCodeAnalysis eventProperty)
-            : this(eventProperty)
-        {
-            ExplicitInterfaceClassParent = parent;
-        }
-
-        internal EventPropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassEventPropertyWithCodeAnalysis eventProperty)
-            : this(eventProperty)
-        {
-            SealedClassParent = parent;
-        }
-
-        internal EventPropertyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassEventPropertyWithCodeAnalysis eventProperty)
-            : this(eventProperty)
-        {
-            StaticClassParent = parent;
-        }
-
-        internal EventPropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfaceEventWithCodeAnalysis eventProperty)
-            : this(eventProperty)
-        {
-            ExplicitInterfaceStructParent = parent;
-        }
-
-        internal EventPropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructEventPropertyWithCodeAnalysis eventProperty)
-            : this(eventProperty)
-        {
-            StructParent = parent;
-        }
-
-        private EventPropertyWithCodeAnalysis(object eventProperty)
+        internal EventPropertyWithCodeAnalysis(object eventProperty)
         {
             node = new Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(this);
             this.eventProperty = eventProperty;
             addAttributes = new AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 node,
                 syntax => syntax.GetAccessor(SyntaxKind.AddKeyword).AttributeLists,
-                (parentSyntax, childSyntax) => CreateAccessorAttributes(parentSyntax, childSyntax, SyntaxKind.AddKeyword),
-                parent => new AttributeGroupWithCodeAnalysis(parent, EventPropertyAttributeType.AddAccessor),
-                (child, parent) => child.EventPropertyAddAccessorParent = parent);
+                (parentSyntax, childSyntax) => CreateAccessorAttributes(parentSyntax, childSyntax, SyntaxKind.AddKeyword));
             addBody = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, MethodBodyWithCodeAnalysis, BlockSyntax>(
                 node,
                 () => new MethodBodyWithCodeAnalysis(),
@@ -93,9 +54,7 @@ namespace CSharpDom.CodeAnalysis
             attributes = new AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent, EventPropertyAttributeType.Normal),
-                (child, parent) => child.EventPropertyParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             eventType = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, DelegateReferenceWithCodeAnalysis, NameSyntax>(
                 node,
                 () => new DelegateReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
@@ -104,9 +63,7 @@ namespace CSharpDom.CodeAnalysis
             removeAttributes = new AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 node,
                 syntax => syntax.GetAccessor(SyntaxKind.RemoveKeyword).AttributeLists,
-                (parentSyntax, childSyntax) => CreateAccessorAttributes(parentSyntax, childSyntax, SyntaxKind.RemoveKeyword),
-                parent => new AttributeGroupWithCodeAnalysis(parent, EventPropertyAttributeType.RemoveAccessor),
-                (child, parent) => child.EventPropertyRemoveAccessorParent = parent);
+                (parentSyntax, childSyntax) => CreateAccessorAttributes(parentSyntax, childSyntax, SyntaxKind.RemoveKeyword));
             removeBody = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, MethodBodyWithCodeAnalysis, BlockSyntax>(
                 node,
                 () => new MethodBodyWithCodeAnalysis(),
@@ -167,93 +124,12 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal IAttributeCollection AddAttributeList
-        {
-            get { return addAttributes; }
-        }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IAttributeCollection RemoveAttributeList
-        {
-            get { return removeAttributes; }
-        }
-
+        
         internal Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> Node
         {
             get { return node; }
         }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Events.EventPropertyList);
-            }
-        }
-
-        internal ClassTypeWithCodeAnalysis ExplicitInterfaceClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Events.ExplicitInterfaceEventList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis ExplicitInterfaceStructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.Events.ExplicitInterfaceEventList);
-            }
-        }
-
-        internal ClassTypeWithCodeAnalysis SealedClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.SealedType.Events.EventPropertyList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Events.EventPropertyList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.Events.EventPropertyList);
-            }
-        }
-
+        
         private static EventDeclarationSyntax CreateAccessorAttributes(
             EventDeclarationSyntax parentSyntax,
             IEnumerable<AttributeGroupWithCodeAnalysis> attributes,

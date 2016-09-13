@@ -6,22 +6,18 @@ using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class FieldWithCodeAnalysis : EditableField<IExpression>, IHasSyntax<VariableDeclaratorSyntax>, IHasId
+    public sealed class FieldWithCodeAnalysis :
+        EditableField<IExpression>, 
+        IHasSyntax<VariableDeclaratorSyntax>,
+        IHasNode<VariableDeclaratorSyntax>
     {
-        private readonly SimpleNode<
-            FieldGroupWithCodeAnalysis,
-            FieldDeclarationSyntax,
-            FieldWithCodeAnalysis,
-            VariableDeclaratorSyntax> node;
+        private readonly Node<FieldWithCodeAnalysis, VariableDeclaratorSyntax> node;
 
-        public FieldWithCodeAnalysis(FieldGroupWithCodeAnalysis parent)
+        internal FieldWithCodeAnalysis()
         {
-            node = new SimpleNode<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax, FieldWithCodeAnalysis, VariableDeclaratorSyntax>(
-                parent,
-                this,
-                newParent => newParent.FieldList);
+            node = new Node<FieldWithCodeAnalysis, VariableDeclaratorSyntax>(this);
         }
-
+        
         public override IExpression InitialValue
         {
             get
@@ -46,19 +42,10 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal FieldGroupWithCodeAnalysis Parent
+        
+        INode<VariableDeclaratorSyntax> IHasNode<VariableDeclaratorSyntax>.Node
         {
-            get { return node.Parent; }
-            set { node.Parent = value; }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return node; }
         }
     }
 }

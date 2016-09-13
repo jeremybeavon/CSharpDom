@@ -8,21 +8,13 @@ namespace CSharpDom.CodeAnalysis
     public sealed class GenericParameterWithCodeAnalysis :
         EditableGenericParameter<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<TypeSyntax>,
-        IHasId
+        IHasNode<TypeSyntax>
     {
-        private readonly Guid internalId;
         private readonly Node<GenericParameterWithCodeAnalysis, TypeSyntax> node;
         private readonly CachedTypeReferenceNode<GenericParameterWithCodeAnalysis, TypeSyntax> type;
         
-        internal GenericParameterWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis parent)
-            : this()
+        internal GenericParameterWithCodeAnalysis()
         {
-            UnspecifiedTypeReferenceParent = parent;
-        }
-
-        private GenericParameterWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
             node = new Node<GenericParameterWithCodeAnalysis, TypeSyntax>(this);
         }
 
@@ -37,21 +29,10 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
-        }
         
-        internal UnspecifiedTypeReferenceWithCodeAnalysis UnspecifiedTypeReferenceParent
+        INode<TypeSyntax> IHasNode<TypeSyntax>.Node
         {
-            get { return node.GetParentNode<UnspecifiedTypeReferenceWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(
-                    value,
-                    parent => parent.GenericParameterList);
-            }
+            get { return node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

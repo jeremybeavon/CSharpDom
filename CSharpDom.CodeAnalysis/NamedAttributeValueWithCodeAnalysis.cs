@@ -7,24 +7,22 @@ using System;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class NamedAttributeValueWithCodeAnalysis :
-        EditableNamedAttributeValue<IExpression>,
+        EditableNamedAttributeValue<IExpressionWithCodeAnalysis>,
         IHasSyntax<AttributeArgumentSyntax>,
-        IHasId
+        IHasNode<AttributeArgumentSyntax>
     {
         private readonly Guid internalId;
-        private readonly SimpleNode<
-            AttributeWithCodeAnalysis,
-            AttributeSyntax,
-            NamedAttributeValueWithCodeAnalysis,
-            AttributeArgumentSyntax> node;
+        private readonly Node<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> node;
+        private readonly CachedExpressionNode<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> value;
         
-        internal NamedAttributeValueWithCodeAnalysis(AttributeWithCodeAnalysis parent)
+        internal NamedAttributeValueWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
-            node = new SimpleNode<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
-                parent,
-                this,
-                newParent => newParent.NamedValueList);
+            node = new Node<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(this);
+            value = new CachedExpressionNode<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
         }
 
         public override string Name
@@ -37,17 +35,10 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override IExpression Value
+        public override IExpressionWithCodeAnalysis Value
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return value.Value; }
+            set { this.value.Value = value; }
         }
 
         public AttributeArgumentSyntax Syntax
@@ -56,15 +47,9 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        Guid IHasId.InternalId
+        INode<AttributeArgumentSyntax> IHasNode<AttributeArgumentSyntax>.Node
         {
-            get { return internalId; }
-        }
-
-        internal AttributeWithCodeAnalysis Parent
-        {
-            get { return node.Parent; }
-            set { node.Parent = value; }
+            get { return node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

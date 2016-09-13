@@ -7,7 +7,7 @@ namespace CSharpDom.CodeAnalysis
     {
         public static StaticConstructorWithCodeAnalysis GetStaticConstructor<TParentNode, TParentSyntax>(
             this MemberListWrapper<TParentNode, TParentSyntax, EmptySimpleMember, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> list)
-            where TParentNode : class
+            where TParentNode : class, IHasSyntax<TParentSyntax>
             where TParentSyntax : TypeDeclarationSyntax
         {
             return list.FirstOrDefault();
@@ -16,7 +16,7 @@ namespace CSharpDom.CodeAnalysis
         public static void SetStaticConstructor<TParentNode, TParentSyntax>(
             this MemberListWrapper<TParentNode, TParentSyntax, EmptySimpleMember, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> list,
             StaticConstructorWithCodeAnalysis constructor)
-            where TParentNode : class
+            where TParentNode : class, IHasSyntax<TParentSyntax>
             where TParentSyntax : TypeDeclarationSyntax
         {
             list.ReplaceFirst(constructor);

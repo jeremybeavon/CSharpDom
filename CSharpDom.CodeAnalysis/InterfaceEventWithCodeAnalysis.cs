@@ -12,13 +12,13 @@ namespace CSharpDom.CodeAnalysis
             IInterfaceTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
         IHasSyntax<EventFieldDeclarationSyntax>,
-        IHasId
+        IHasNode<EventFieldDeclarationSyntax>
     {
         private readonly EventWithCodeAnalysis @event;
         
-        internal InterfaceEventWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
+        internal InterfaceEventWithCodeAnalysis()
         {
-            @event = new EventWithCodeAnalysis(parent, this);
+            @event = new EventWithCodeAnalysis(this);
         }
 
         public EventWithCodeAnalysis Event
@@ -61,10 +61,10 @@ namespace CSharpDom.CodeAnalysis
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
         }
-
-        public Guid InternalId
+        
+        INode<EventFieldDeclarationSyntax> IHasNode<EventFieldDeclarationSyntax>.Node
         {
-            get { return ((IHasId)@event).InternalId; }
+            get { return @event.Node; }
         }
     }
 }

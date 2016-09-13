@@ -17,59 +17,15 @@ namespace CSharpDom.CodeAnalysis
         private readonly object wrapper;
         private readonly AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax> attributes;
         private readonly CachedTypeReferenceNode<ParameterWithCodeAnalysis, ParameterSyntax> parameterType;
-
-        internal ParameterWithCodeAnalysis(ConstructorWithCodeAnalysis parent, ConstructorParameterWithCodeAnalysis parameter)
-            : this(parameter)
-        {
-            ConstructorParent = parent;
-        }
-
-        internal ParameterWithCodeAnalysis(ConversionOperatorWithCodeAnalysis parent, OperatorParameterWithCodeAnalysis parameter)
-            : this(parameter)
-        {
-            ConversionOperatorParent = parent;
-        }
-
-        internal ParameterWithCodeAnalysis(DelegateTypeWithCodeAnalysis parent, DelegateParameterWithCodeAnalysis parameter)
-            : this(parameter)
-        {
-            DelegateParent = parent;
-        }
-
-        internal ParameterWithCodeAnalysis(ExtensionMethodWithCodeAnalysis parent, ExtensionParameterWithCodeAnalysis parameter)
-            : this(parameter)
-        {
-            ExtensionMethodParent = parent;
-        }
-
-        internal ParameterWithCodeAnalysis(IndexerWithCodeAnalysis parent, IndexerParameterWithCodeAnalysis parameter)
-            : this(parameter)
-        {
-            IndexerParent = parent;
-        }
-
-        internal ParameterWithCodeAnalysis(MethodWithCodeAnalysis parent, MethodParameterWithCodeAnalysis parameter)
-            : this(parameter)
-        {
-            MethodParent = parent;
-        }
-
-        internal ParameterWithCodeAnalysis(OperatorOverloadWithCodeAnalysis parent, OperatorParameterWithCodeAnalysis parameter)
-            : this(parameter)
-        {
-            OperatorOverloadParent = parent;
-        }
-
-        private ParameterWithCodeAnalysis(object parameter)
+        
+        internal ParameterWithCodeAnalysis(object parameter)
         {
             node = new Node<ParameterWithCodeAnalysis, ParameterSyntax>(this);
             wrapper = parameter;
             attributes = new AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.ParameterParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             parameterType = new CachedTypeReferenceNode<ParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.Type,
@@ -104,96 +60,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal ConstructorWithCodeAnalysis ConstructorParent
-        {
-            get { return node.GetParentNode<ConstructorWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax, ConstructorParameterWithCodeAnalysis>(
-                    value,
-                    (ConstructorParameterWithCodeAnalysis)wrapper,
-                    parent => parent.ParameterList);
-            }
-        }
-
-        internal ConversionOperatorWithCodeAnalysis ConversionOperatorParent
-        {
-            get { return node.GetParentNode<ConversionOperatorWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
-                    value,
-                    syntax => syntax.ParameterList.Parameters[0],
-                    WithParameter);
-            }
-        }
-
-        internal DelegateTypeWithCodeAnalysis DelegateParent
-        {
-            get { return node.GetParentNode<DelegateTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax, DelegateParameterWithCodeAnalysis>(
-                    value,
-                    (DelegateParameterWithCodeAnalysis)wrapper,
-                    parent => parent.ParameterList);
-            }
-        }
-
-        internal ExtensionMethodWithCodeAnalysis ExtensionMethodParent
-        {
-            get { return node.GetParentNode<ExtensionMethodWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ExtensionMethodWithCodeAnalysis, MethodDeclarationSyntax>(
-                    value,
-                    syntax => syntax.ParameterList.Parameters[0],
-                    WithParameter);
-            }
-        }
-
-        internal IndexerWithCodeAnalysis IndexerParent
-        {
-            get { return node.GetParentNode<IndexerWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, IndexerParameterWithCodeAnalysis>(
-                    value,
-                    (IndexerParameterWithCodeAnalysis)wrapper,
-                    parent => parent.ParameterList);
-            }
-        }
-
-        internal MethodWithCodeAnalysis MethodParent
-        {
-            get { return node.GetParentNode<MethodWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, MethodParameterWithCodeAnalysis>(
-                    value,
-                    (MethodParameterWithCodeAnalysis)wrapper,
-                    parent => parent.ParameterList);
-            }
-        }
-
-        internal OperatorOverloadWithCodeAnalysis OperatorOverloadParent
-        {
-            get { return node.GetParentNode<OperatorOverloadWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis>(
-                    value,
-                    (OperatorParameterWithCodeAnalysis)wrapper,
-                    parent => parent.ParameterList);
-            }
-        }
-
+        
         private static ConversionOperatorDeclarationSyntax WithParameter(
             ConversionOperatorDeclarationSyntax parentSyntax,
             ParameterSyntax childSyntax)

@@ -7,24 +7,20 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class UnnamedAttributeValueWithCodeAnalysis :
-        EditableUnnamedAttributeValue<IExpression>,
+        EditableUnnamedAttributeValue<IExpressionWithCodeAnalysis>,
         IHasSyntax<AttributeArgumentSyntax>,
-        IHasId
+        IHasNode<AttributeArgumentSyntax>
     {
-        private readonly Guid internalId;
-        private readonly SimpleNode<
-            AttributeWithCodeAnalysis,
-            AttributeSyntax,
-            UnnamedAttributeValueWithCodeAnalysis,
-            AttributeArgumentSyntax> node;
+        private readonly Node<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> node;
+        private readonly CachedExpressionNode<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> value;
         
-        internal UnnamedAttributeValueWithCodeAnalysis(AttributeWithCodeAnalysis parent)
+        internal UnnamedAttributeValueWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
-            node = new SimpleNode<AttributeWithCodeAnalysis, AttributeSyntax, UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
-                parent,
-                this,
-                newParent => newParent.UnnamedValueList);
+            node = new Node<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(this);
+            value = new CachedExpressionNode<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
         }
 
         public AttributeArgumentSyntax Syntax
@@ -33,28 +29,15 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        public override IExpression Value
+        public override IExpressionWithCodeAnalysis Value
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return value.Value; }
+            set { this.value.Value = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<AttributeArgumentSyntax> IHasNode<AttributeArgumentSyntax>.Node
         {
-            get { return internalId; }
-        }
-
-        internal AttributeWithCodeAnalysis Parent
-        {
-            get { return node.Parent; }
-            set { node.Parent = value; }
+            get { return node; }
         }
     }
 }

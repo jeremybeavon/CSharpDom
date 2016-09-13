@@ -15,33 +15,20 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             AccessorWithBodyWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
-        IHasId
+        IHasNode<PropertyDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly PropertyWithBodyWithCodeAnalysis property;
         private readonly CachedChildNode<
             PropertyWithCodeAnalysis,
             PropertyDeclarationSyntax,
             InterfaceReferenceWithCodeAnalysis,
             NameSyntax> explicitInterface;
-
-        internal ExplicitInterfacePropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        
+        internal ExplicitInterfacePropertyWithCodeAnalysis()
         {
-            property = new PropertyWithBodyWithCodeAnalysis(parent, this);
-        }
-
-        internal ExplicitInterfacePropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
-        {
-            property = new PropertyWithBodyWithCodeAnalysis(parent, this);
-        }
-
-        private ExplicitInterfacePropertyWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
+            property = new PropertyWithBodyWithCodeAnalysis(this);
             explicitInterface = new CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
-                property.Node,
+                property.Property.Node,
                 () => new InterfaceReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
                 syntax => syntax.ExplicitInterfaceSpecifier.Name,
                 (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)));
@@ -99,10 +86,10 @@ namespace CSharpDom.CodeAnalysis
             get { return property.Syntax; }
             set { property.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<PropertyDeclarationSyntax> IHasNode<PropertyDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return property.Property.Node; }
         }
     }
 }

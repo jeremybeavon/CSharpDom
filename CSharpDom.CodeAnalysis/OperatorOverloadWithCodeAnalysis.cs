@@ -16,7 +16,7 @@ namespace CSharpDom.CodeAnalysis
             OperatorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<OperatorDeclarationSyntax>,
-        IHasId//,
+        IHasNode<OperatorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
         private static readonly IDictionary<SyntaxKind, OperatorOverloadType> operatorMap =
@@ -56,29 +56,15 @@ namespace CSharpDom.CodeAnalysis
             OperatorParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
         private readonly CachedTypeReferenceNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> returnType;
-
-        internal OperatorOverloadWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
-        {
-            ClassParent = parent;
-        }
-
-        internal OperatorOverloadWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
-        {
-            StructParent = parent;
-        }
-
-        private OperatorOverloadWithCodeAnalysis()
+        
+        internal OperatorOverloadWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
             node = new Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.OperatorOverloadParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             body = new MethodBodyNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
                 syntax => syntax.Body,
@@ -87,8 +73,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
-                child => new OperatorParameterWithCodeAnalysis(child),
-                (child, parent) => child.Parameter.OperatorOverloadParent = parent);
+                () => new OperatorParameterWithCodeAnalysis());
             returnType = new CachedTypeReferenceNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
                 syntax => syntax.ReturnType,
@@ -147,42 +132,10 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal IAttributeCollection AttributeList
+        
+        INode<OperatorDeclarationSyntax> IHasNode<OperatorDeclarationSyntax>.Node
         {
-            get { return attributes; }
-        }
-
-        internal IChildCollection<OperatorParameterWithCodeAnalysis, ParameterSyntax> ParameterList
-        {
-            get { return parameters; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.OperatorOverloadList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.OperatorOverloadList);
-            }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
+            get { return node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

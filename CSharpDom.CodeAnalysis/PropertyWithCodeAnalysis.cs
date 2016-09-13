@@ -32,68 +32,15 @@ namespace CSharpDom.CodeAnalysis
             PropertyDeclarationSyntax,
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> setAccessor;
-
-        internal PropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, AbstractPropertyWithCodeAnalysis property)
-            : this(property)
-        {
-            AbstractClassParent = parent;
-        }
-
-        internal PropertyWithCodeAnalysis(
-            ClassTypeWithCodeAnalysis parent,
-            ClassPropertyWithCodeAnalysis property,
-            ClassType classType)
-            : this(property)
-        {
-            SetClassParent(parent, classType);
-        }
-
-        internal PropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfacePropertyWithCodeAnalysis property)
-            : this(property)
-        {
-            ExplicitInterfaceClassParent = parent;
-        }
-
-        internal PropertyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassPropertyWithCodeAnalysis property)
-            : this(property)
-        {
-            SealedClassParent = parent;
-        }
-
-        internal PropertyWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfacePropertyWithCodeAnalysis property)
-            : this(property)
-        {
-            InterfaceParent = parent;
-        }
-
-        internal PropertyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassPropertyWithCodeAnalysis property)
-            : this(property)
-        {
-            StaticClassParent = parent;
-        }
-
-        internal PropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfacePropertyWithCodeAnalysis property)
-            : this(property)
-        {
-            ExplicitInterfaceStructParent = parent;
-        }
-
-        internal PropertyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructPropertyWithCodeAnalysis property)
-            : this(property)
-        {
-            StructParent = parent;
-        }
-
-        private PropertyWithCodeAnalysis(object property)
+        
+        internal PropertyWithCodeAnalysis(object property)
         {
             node = new Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(this);
             this.property = property;
             attributes = new AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.PropertyParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             propertyType = new CachedTypeReferenceNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
                 syntax => syntax.Type,
@@ -143,89 +90,12 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
+        
         internal Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> Node
         {
             get { return node; }
         }
-
-        internal ClassTypeWithCodeAnalysis AbstractClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.AbstractType.Properties.AbstractPropertyList);
-            }
-        }
-
-        internal ClassTypeWithCodeAnalysis ExplicitInterfaceClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Properties.ExplicitInterfacePropertyList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis ExplicitInterfaceStructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.Properties.ExplicitInterfacePropertyList);
-            }
-        }
-
-        internal InterfaceTypeWithCodeAnalysis InterfaceParent
-        {
-            get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
-            set { node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(value, parent => parent.PropertyList); }
-        }
-
-        internal ClassTypeWithCodeAnalysis SealedClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.SealedType.Properties.PropertyList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.PropertyList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.Properties.PropertyList);
-            }
-        }
-
+        
         private CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax> GetAccessorNode(
             SyntaxKind kind)
         {
@@ -246,23 +116,6 @@ namespace CSharpDom.CodeAnalysis
         internal static AccessorDeclarationSyntax GetAccessorDeclaration(PropertyDeclarationSyntax syntax, SyntaxKind kind)
         {
             return syntax.AccessorList.GetAccessorDeclaration(kind);
-        }
-
-        internal void SetClassParent(ClassTypeWithCodeAnalysis value, ClassType classType)
-        {
-            switch (classType)
-            {
-                case ClassType.Normal:
-                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                        value,
-                        parent => parent.Properties.PropertyList);
-                    break;
-                case ClassType.Abstract:
-                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                        value,
-                        parent => parent.AbstractType.Properties.PropertyList);
-                    break;
-            }
         }
         
         T ISimpleMember.Member<T>()

@@ -7,15 +7,14 @@ namespace CSharpDom.CodeAnalysis
     internal class StructTypeMemberListWrapper<TSimpleChildNode, TChildNode, TChildSyntax> :
         MemberListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax, TSimpleChildNode, TChildNode, TChildSyntax>
         where TSimpleChildNode : ISimpleMember
-        where TChildNode : class, IHasSyntax<TChildSyntax>, IHasId
+        where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : MemberDeclarationSyntax
     {
         public StructTypeMemberListWrapper(
             Node<StructTypeWithCodeAnalysis, StructDeclarationSyntax> node,
-            Func<StructTypeWithCodeAnalysis, TChildNode> factory,
-            Action<TChildNode, StructTypeWithCodeAnalysis> setParent,
+            Func<TChildNode> factory,
             Func<TChildSyntax, bool> filter = null) :
-            base(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax), factory, setParent, filter)
+            base(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax), factory, filter)
         {
         }
     }

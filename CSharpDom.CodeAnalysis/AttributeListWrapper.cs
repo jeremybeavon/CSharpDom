@@ -10,9 +10,8 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeAnalysis
 {
     internal sealed class AttributeListWrapper<TParentNode, TParentSyntax> :
-        SyntaxListWrapper<TParentNode, TParentSyntax, AttributeGroupWithCodeAnalysis, AttributeListSyntax>,
-        IAttributeCollection
-        where TParentNode : class
+        SyntaxListWrapper<TParentNode, TParentSyntax, AttributeGroupWithCodeAnalysis, AttributeListSyntax>
+        where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly Node<TParentNode, TParentSyntax> node;
@@ -23,10 +22,8 @@ namespace CSharpDom.CodeAnalysis
         public AttributeListWrapper(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<AttributeListSyntax>> getList,
-            Func<TParentSyntax, SyntaxList<AttributeListSyntax>, TParentSyntax> createList,
-            Func<TParentNode, AttributeGroupWithCodeAnalysis> factory,
-            Action<AttributeGroupWithCodeAnalysis, TParentNode> setParent)
-            : base(node, getList, createList, factory, setParent)
+            Func<TParentSyntax, SyntaxList<AttributeListSyntax>, TParentSyntax> createList)
+            : base(node, getList, createList, () => new AttributeGroupWithCodeAnalysis())
         {
             this.node = node;
             this.createList = createList;

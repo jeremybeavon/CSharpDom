@@ -16,10 +16,9 @@ namespace CSharpDom.CodeAnalysis
             OperatorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<ConversionOperatorDeclarationSyntax>,
-        IHasId//,
+        IHasNode<ConversionOperatorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Guid internalId;
         private readonly Node<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> node;
         private readonly AttributeListWrapper<
             ConversionOperatorWithCodeAnalysis,
@@ -31,29 +30,14 @@ namespace CSharpDom.CodeAnalysis
             OperatorParameterWithCodeAnalysis,
             ParameterSyntax> parameter;
         private readonly CachedTypeReferenceNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> returnType;
-
-        internal ConversionOperatorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        
+        internal ConversionOperatorWithCodeAnalysis()
         {
-            ClassParent = parent;
-        }
-
-        internal ConversionOperatorWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
-        {
-            StructParent = parent;
-        }
-
-        private ConversionOperatorWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
             node = new Node<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => { });
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             body = new MethodBodyNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
                 syntax => syntax.Body,
@@ -134,37 +118,10 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal IAttributeCollection AttributeList
+        
+        INode<ConversionOperatorDeclarationSyntax> IHasNode<ConversionOperatorDeclarationSyntax>.Node
         {
-            get { return attributes; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.ConversionOperatorList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.ConversionOperatorList);
-            }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
+            get { return node; }
         }
 
         private static ConversionOperatorDeclarationSyntax WithParameter(

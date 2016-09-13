@@ -5,14 +5,13 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class ClassEventPropertyListWrapper<TChildNode> :
         ClassMemberListWrapper<EventPropertyWithCodeAnalysis, TChildNode, EventDeclarationSyntax>
-        where TChildNode : class, IHasSyntax<EventDeclarationSyntax>, IHasId
+        where TChildNode : class, IHasNode<EventDeclarationSyntax>
     {
         public ClassEventPropertyListWrapper(
             Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> node,
-            Func<ClassTypeWithCodeAnalysis, TChildNode> factory,
-            Action<TChildNode, ClassTypeWithCodeAnalysis> setParent,
+            Func<TChildNode> factory,
             Func<EventDeclarationSyntax, bool> filter = null)
-            : base(node, factory, setParent, filter)
+            : base(node, factory, filter)
         {
         }
     }

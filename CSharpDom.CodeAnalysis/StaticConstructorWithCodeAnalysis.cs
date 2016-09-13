@@ -9,41 +9,19 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticConstructorWithCodeAnalysis :
         EditableStaticConstructor<AttributeGroupWithCodeAnalysis, IType, MethodBodyWithCodeAnalysis>,
         IHasSyntax<ConstructorDeclarationSyntax>,
-        IHasId
+        IHasNode<ConstructorDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly Node<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> node;
         private readonly AttributeListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> attributes;
         private readonly MethodBodyNode<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> body;
 
-        internal StaticConstructorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal StaticConstructorWithCodeAnalysis()
         {
-            ClassParent = parent;
-        }
-
-        internal StaticConstructorWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
-            : this()
-        {
-            StaticClassParent = parent;
-        }
-
-        internal StaticConstructorWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
-        {
-            StructParent = parent;
-        }
-
-        private StaticConstructorWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
             node = new Node<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.StaticConstructorParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             body = new MethodBodyNode<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 syntax => syntax.Body,
@@ -73,48 +51,10 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal IAttributeCollection AttributeList
+        
+        INode<ConstructorDeclarationSyntax> IHasNode<ConstructorDeclarationSyntax>.Node
         {
-            get { return attributes; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.StaticConstructorList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.StaticConstructorList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.StaticConstructorList);
-            }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
+            get { return node; }
         }
     }
 }

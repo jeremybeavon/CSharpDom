@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class CatchStatementWithCodeAnalysis :
         EditableCatchStatement<ITypeReferenceWithCodeAnalysis, IStatementWithCodeAnalysis>,
         IHasSyntax<CatchClauseSyntax>,
-        IHasId
+        IHasNode<CatchClauseSyntax>
     {
         private readonly Guid internalId;
         private readonly Node<CatchStatementWithCodeAnalysis, CatchClauseSyntax> node;
@@ -69,13 +69,10 @@ namespace CSharpDom.CodeAnalysis.Statements
                 throw new NotImplementedException();
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<CatchClauseSyntax> IHasNode<CatchClauseSyntax>.Node
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return node; }
         }
     }
 }

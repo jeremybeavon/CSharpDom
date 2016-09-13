@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class BaseTypeListWrapper<TParentNode, TParentSyntax> :
         ImmutableListWrapper<TParentNode, TParentSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>
-        where TParentNode : class
+        where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : TypeDeclarationSyntax
     {
         private readonly Node<TParentNode, TParentSyntax> node;
@@ -17,10 +17,8 @@ namespace CSharpDom.CodeAnalysis
 
         public BaseTypeListWrapper(
             Node<TParentNode, TParentSyntax> node,
-            Func<TParentSyntax, BaseListSyntax, TParentSyntax> createList,
-            Func<TParentNode, InterfaceReferenceWithCodeAnalysis> factory,
-            Action<InterfaceReferenceWithCodeAnalysis, TParentNode> setParent)
-            : base(node, ListFactory.CreateBaseTypeList(node, createList), factory, setParent)
+            Func<TParentSyntax, BaseListSyntax, TParentSyntax> createList)
+            : base(node, ListFactory.CreateBaseTypeList(node, createList), () => new InterfaceReferenceWithCodeAnalysis())
         {
             this.node = node;
             this.createList = createList;

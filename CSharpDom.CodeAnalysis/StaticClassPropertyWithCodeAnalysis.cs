@@ -13,22 +13,15 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             StaticClassAccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
-        IHasId
+        IHasNode<PropertyDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly PropertyWithBodyWithCodeAnalysis property;
         
-        internal StaticClassPropertyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
-            : this()
+        internal StaticClassPropertyWithCodeAnalysis()
         {
-            property = new PropertyWithBodyWithCodeAnalysis(parent, this);
+            property = new PropertyWithBodyWithCodeAnalysis(this);
         }
-
-        private StaticClassPropertyWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public PropertyWithBodyWithCodeAnalysis Property
         {
             get { return property; }
@@ -42,7 +35,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStaticTypeWithCodeAnalysis DeclaringType
         {
-            get { return property.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            get { return property.Property.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -85,10 +78,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<PropertyDeclarationSyntax> IHasNode<PropertyDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return property.Property.Node; }
         }
     }
 }

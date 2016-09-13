@@ -30,85 +30,26 @@ namespace CSharpDom.CodeAnalysis
             MethodParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
         private readonly CachedTypeReferenceNode<MethodWithCodeAnalysis, MethodDeclarationSyntax> returnType;
-
-        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, AbstractMethodWithCodeAnalysis method)
-            : this(method)
-        {
-            AbstractClassParent = parent;
-        }
-
-        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassMethodWithCodeAnalysis method, ClassType classType)
-            : this(method)
-        {
-            SetClassParent(parent, classType);
-        }
-
-        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
-            : this(method)
-        {
-            ExplicitInterfaceClassParent = parent;
-        }
-
-        internal MethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
-            : this(method)
-        {
-            SealedClassParent = parent;
-        }
-
-        internal MethodWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent, InterfaceMethodWithCodeAnalysis method)
-            : this(method)
-        {
-            InterfaceParent = parent;
-        }
-
-        internal MethodWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, ExtensionMethodWithCodeAnalysis method)
-            : this(method)
-        {
-            StaticExtensionClassParent = parent;
-        }
-
-        internal MethodWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassMethodWithCodeAnalysis method)
-            : this(method)
-        {
-            StaticClassParent = parent;
-        }
-
-        internal MethodWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
-            : this(method)
-        {
-            ExplicitInterfaceStructParent = parent;
-        }
-
-        internal MethodWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructMethodWithCodeAnalysis method)
-            : this(method)
-        {
-            StructParent = parent;
-        }
-
-        private MethodWithCodeAnalysis(object method)
+        
+        internal MethodWithCodeAnalysis(object method)
         {
             node = new Node<MethodWithCodeAnalysis, MethodDeclarationSyntax>(this);
             this.method = method;
             attributes = new AttributeListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.MethodParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             genericParameters = new GenericParameterDeclarationListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
-                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax),
-                parent => new GenericParameterDeclarationWithCodeAnalysis(parent),
-                (child, parent) => child.MethodParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
             parameters = new SeparatedSyntaxListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax, MethodParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
-                parent => new MethodParameterWithCodeAnalysis(parent),
-                (child, parent) => child.Parameter.MethodParent = parent);
+                () => new MethodParameterWithCodeAnalysis());
             returnType = new CachedTypeReferenceNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 node,
                 syntax => syntax.ReturnType,
@@ -167,124 +108,9 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IGenericParameterCollection GenericParameterList
-        {
-            get { return genericParameters; }
-        }
-
-        internal IChildCollection<MethodParameterWithCodeAnalysis, ParameterSyntax> ParameterList
-        {
-            get { return parameters; }
-        }
-
         internal Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> Node
         {
             get { return node; }
-        }
-
-        internal ClassTypeWithCodeAnalysis AbstractClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.AbstractType.Methods.AbstractMethodList);
-            }
-        }
-
-        internal ClassTypeWithCodeAnalysis ExplicitInterfaceClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                        value,
-                        parent => parent.Methods.ExplicitInterfaceMethodList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis ExplicitInterfaceStructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                        value,
-                        parent => parent.Methods.ExplicitInterfaceMethodList);
-            }
-        }
-
-        internal InterfaceTypeWithCodeAnalysis InterfaceParent
-        {
-            get { return node.GetParentNode<InterfaceTypeWithCodeAnalysis>(); }
-            set { node.SetParentNode<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(value, parent => parent.MethodList); }
-        }
-
-        internal ClassTypeWithCodeAnalysis SealedClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.SealedType.Methods.MethodList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Methods.MethodList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticExtensionClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Methods.ExtensionMethodList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.Methods.MethodList);
-            }
-        }
-
-        internal void SetClassParent(ClassTypeWithCodeAnalysis value, ClassType classType)
-        {
-            switch (classType)
-            {
-                case ClassType.Normal:
-                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                        value,
-                        parent => parent.Methods.MethodList);
-                    break;
-                case ClassType.Abstract:
-                    node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                        value,
-                        parent => parent.AbstractType.Methods.MethodList);
-                    break;
-            }
         }
         
         T ISimpleMember.Member<T>()

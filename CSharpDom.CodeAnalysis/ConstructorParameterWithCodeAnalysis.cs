@@ -8,15 +8,15 @@ namespace CSharpDom.CodeAnalysis
     public sealed class ConstructorParameterWithCodeAnalysis :
         EditableConstructorParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<ParameterSyntax>,
-        IHasId
+        IHasNode<ParameterSyntax>
     {
         private readonly Guid internalId;
         private readonly ParameterWithCodeAnalysis parameter;
 
-        internal ConstructorParameterWithCodeAnalysis(ConstructorWithCodeAnalysis parent)
+        internal ConstructorParameterWithCodeAnalysis()
         {
             internalId = Guid.NewGuid();
-            parameter = new ParameterWithCodeAnalysis(parent, this);
+            parameter = new ParameterWithCodeAnalysis(this);
         }
 
         public ParameterWithCodeAnalysis Parameter
@@ -54,9 +54,9 @@ namespace CSharpDom.CodeAnalysis
             set { parameter.Syntax = value; }
         }
 
-        Guid IHasId.InternalId
+        INode<ParameterSyntax> IHasNode<ParameterSyntax>.Node
         {
-            get { return internalId; }
+            get { return parameter.Node; }
         }
     }
 }

@@ -8,37 +8,21 @@ namespace CSharpDom.CodeAnalysis
     public sealed class InterfaceReferenceWithCodeAnalysis :
         EditableInterfaceReference<GenericParameterWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
-        IHasId,
         IHasNode<NameSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
-
-        internal InterfaceReferenceWithCodeAnalysis(EventPropertyWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent, true))
-        { 
-        }
-
-        internal InterfaceReferenceWithCodeAnalysis(IndexerWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent))
+        
+        internal InterfaceReferenceWithCodeAnalysis()
         {
-        }
-
-        internal InterfaceReferenceWithCodeAnalysis(MethodWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent))
-        {
-        }
-
-        internal InterfaceReferenceWithCodeAnalysis(PropertyWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent))
-        {
+            typeReference = new UnspecifiedTypeReferenceWithCodeAnalysis();
         }
 
         internal InterfaceReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
             this.typeReference = typeReference;
         }
-        
+
         public override IList<GenericParameterWithCodeAnalysis> GenericParameters
         {
             get { return typeReference.GenericParameters; }
@@ -61,12 +45,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return typeReference; }
         }
-
-        Guid IHasId.InternalId
-        {
-            get { return ((IHasId)typeReference).InternalId; }
-        }
-
+        
         INode<NameSyntax> IHasNode<NameSyntax>.Node
         {
             get { return typeReference.Node; }

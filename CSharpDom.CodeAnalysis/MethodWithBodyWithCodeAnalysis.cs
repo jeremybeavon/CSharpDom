@@ -23,50 +23,12 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly MethodWithCodeAnalysis method;
         private readonly MethodBodyNode<MethodWithCodeAnalysis, MethodDeclarationSyntax> body;
-
-        internal MethodWithBodyWithCodeAnalysis(
-            ClassTypeWithCodeAnalysis parent,
-            ClassMethodWithCodeAnalysis method,
-            ClassType classType)
-            : this(new MethodWithCodeAnalysis(parent, method, classType))
+        
+        internal MethodWithBodyWithCodeAnalysis(object method)
         {
-        }
-
-        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
-            : this(new MethodWithCodeAnalysis(parent, method))
-        {
-        }
-
-        internal MethodWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassMethodWithCodeAnalysis method)
-            : this(new MethodWithCodeAnalysis(parent, method))
-        {
-        }
-
-        internal MethodWithBodyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, ExtensionMethodWithCodeAnalysis method)
-            : this(new MethodWithCodeAnalysis(parent, method))
-        {
-        }
-
-        internal MethodWithBodyWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassMethodWithCodeAnalysis method)
-            : this(new MethodWithCodeAnalysis(parent, method))
-        {
-        }
-
-        internal MethodWithBodyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfaceMethodWithCodeAnalysis method)
-            : this(new MethodWithCodeAnalysis(parent, method))
-        {
-        }
-
-        internal MethodWithBodyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructMethodWithCodeAnalysis method)
-            : this(new MethodWithCodeAnalysis(parent, method))
-        {
-        }
-
-        private MethodWithBodyWithCodeAnalysis(MethodWithCodeAnalysis method)
-        {
-            this.method = method;
+            this.method = new MethodWithCodeAnalysis(method);
             body = new MethodBodyNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
-                method.Node,
+                this.method.Node,
                 syntax => syntax.Body,
                 (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
         }
@@ -148,11 +110,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.Syntax; }
             set { method.Syntax = value; }
-        }
-
-        internal Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> Node
-        {
-            get { return method.Node; }
         }
     }
 }

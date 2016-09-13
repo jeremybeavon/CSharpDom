@@ -26,41 +26,20 @@ namespace CSharpDom.CodeAnalysis
             FieldWithCodeAnalysis,
             VariableDeclaratorSyntax> fields;
         private readonly CachedTypeReferenceNode<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> fieldType;
-
-        internal FieldGroupWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassFieldWithCodeAnalysis field)
-            : this(field)
-        {
-            ClassParent = parent;
-        }
-
-        internal FieldGroupWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassFieldWithCodeAnalysis field)
-            : this(field)
-        {
-            StaticClassParent = parent;
-        }
-
-        internal FieldGroupWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructFieldWithCodeAnalysis field)
-            : this(field)
-        {
-            StructParent = parent;
-        }
-
-        private FieldGroupWithCodeAnalysis(object field)
+        
+        internal FieldGroupWithCodeAnalysis(object field)
         {
             this.field = field;
             node = new Node<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.FieldGroupParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             fields = new SeparatedSyntaxListWrapper<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax, FieldWithCodeAnalysis, VariableDeclaratorSyntax>(
                 node,
                 syntax => syntax.Declaration.Variables,
                 (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithVariables(childSyntax)),
-                parent => new FieldWithCodeAnalysis(parent),
-                (child, parent) => child.Parent = parent);
+                () => new FieldWithCodeAnalysis());
             fieldType = new CachedTypeReferenceNode<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
                 syntax => syntax.Declaration.Type,
@@ -106,50 +85,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
-        internal IChildCollection<FieldWithCodeAnalysis, VariableDeclaratorSyntax> FieldList
-        {
-            get { return fields; }
-        }
-
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.GetParentNode<ClassTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Fields.FieldList);
-            }
-        }
-
-        internal StaticTypeWithCodeAnalysis StaticClassParent
-        {
-            get { return node.GetParentNode<StaticTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax>(
-                    value,
-                    parent => parent.Fields.FieldList);
-            }
-        }
-
-        internal StructTypeWithCodeAnalysis StructParent
-        {
-            get { return node.GetParentNode<StructTypeWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
-                    value,
-                    parent => parent.Fields.FieldList);
-            }
-        }
-
+        
         public T Member<T>()
         {
             return (T)field;

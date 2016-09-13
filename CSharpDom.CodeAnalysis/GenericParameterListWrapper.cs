@@ -6,15 +6,13 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class GenericParameterListWrapper<TParentNode> :
         SeparatedSyntaxListWrapper<TParentNode, NameSyntax, GenericParameterWithCodeAnalysis, TypeSyntax>
-        where TParentNode : class
+        where TParentNode : class, IHasSyntax<NameSyntax>
     {
         public GenericParameterListWrapper(
             Node<TParentNode, NameSyntax> node,
             Func<NameSyntax, SeparatedSyntaxList<TypeSyntax>> getList,
-            Func<NameSyntax, SeparatedSyntaxList<TypeSyntax>, NameSyntax> createList,
-            Func<TParentNode, GenericParameterWithCodeAnalysis> factory,
-            Action<GenericParameterWithCodeAnalysis, TParentNode> setParent)
-            : base(node, getList, createList, factory, setParent)
+            Func<NameSyntax, SeparatedSyntaxList<TypeSyntax>, NameSyntax> createList)
+            : base(node, getList, createList, () => new GenericParameterWithCodeAnalysis())
         {
         }
     }

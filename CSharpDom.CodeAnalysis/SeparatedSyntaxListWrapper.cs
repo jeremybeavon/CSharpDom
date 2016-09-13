@@ -9,9 +9,9 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
         ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
-        where TParentNode : class
+        where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
-        where TChildNode : class, IHasSyntax<TChildSyntax>, IHasId
+        where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : SyntaxNode
     {
         private readonly Node<TParentNode, TParentSyntax> node;
@@ -21,9 +21,8 @@ namespace CSharpDom.CodeAnalysis
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
-            Func<TParentNode, TChildNode> factory,
-            Action<TChildNode, TParentNode> setParent)
-            : base(node, ListFactory.CreateList(node, getList, createList), factory, setParent)
+            Func<TChildSyntax, TChildNode> factory)
+            : base(node, ListFactory.CreateList(node, getList, createList), factory)
         {
             this.node = node;
             this.createList = createList;
@@ -33,9 +32,8 @@ namespace CSharpDom.CodeAnalysis
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
-            Func<TParentNode, TChildSyntax, TChildNode> factory,
-            Action<TChildNode, TParentNode> setParent)
-            : base(node, ListFactory.CreateList(node, getList, createList), factory, setParent)
+            Func<TChildNode> factory)
+            : base(node, ListFactory.CreateList(node, getList, createList), factory)
         {
             this.node = node;
             this.createList = createList;
@@ -43,7 +41,7 @@ namespace CSharpDom.CodeAnalysis
 
         public void ReplaceList(IEnumerable<TChildNode> newList)
         {
-            node.Syntax = createList(node.Syntax, SyntaxFactory.SeparatedList(newList.Select(item => item.Syntax)));
+            node.Syntax = createList(node.Syntax, SyntaxFactory.SeparatedList(newList.Select(item => item.Node.Syntax)));
         }
     }
 }

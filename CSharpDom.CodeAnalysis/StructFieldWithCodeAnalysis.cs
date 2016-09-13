@@ -14,22 +14,15 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>,
-        IHasId
+        IHasNode<FieldDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly FieldGroupWithCodeAnalysis field;
 
-        internal StructFieldWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
+        internal StructFieldWithCodeAnalysis()
         {
-            field = new FieldGroupWithCodeAnalysis(parent, this);
+            field = new FieldGroupWithCodeAnalysis(this);
         }
-
-        private StructFieldWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public FieldGroupWithCodeAnalysis Field
         {
             get { return field; }
@@ -103,10 +96,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return field.Node; }
         }
 
         private static ClassFieldModifier ToClassFieldModifier(StructFieldModifier modifier)

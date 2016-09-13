@@ -19,34 +19,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly IndexerWithCodeAnalysis indexer;
 
-        internal IndexerWithBodyWithCodeAnalysis(
-            ClassTypeWithCodeAnalysis parent,
-            ClassIndexerWithCodeAnalysis indexer,
-            ClassType classType)
+        internal IndexerWithBodyWithCodeAnalysis(object indexer)
         {
-            this.indexer = new IndexerWithCodeAnalysis(parent, indexer, classType);
+            this.indexer = new IndexerWithCodeAnalysis(indexer);
         }
-
-        internal IndexerWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ExplicitInterfaceIndexerWithCodeAnalysis indexer)
-        {
-            this.indexer = new IndexerWithCodeAnalysis(parent, indexer);
-        }
-
-        internal IndexerWithBodyWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, SealedClassIndexerWithCodeAnalysis indexer)
-        {
-            this.indexer = new IndexerWithCodeAnalysis(parent, indexer);
-        }
-
-        internal IndexerWithBodyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, ExplicitInterfaceIndexerWithCodeAnalysis indexer)
-        {
-            this.indexer = new IndexerWithCodeAnalysis(parent, indexer);
-        }
-
-        internal IndexerWithBodyWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructIndexerWithCodeAnalysis indexer)
-        {
-            this.indexer = new IndexerWithCodeAnalysis(parent, indexer);
-        }
-
+        
         public IndexerWithCodeAnalysis Indexer
         {
             get { return indexer; }

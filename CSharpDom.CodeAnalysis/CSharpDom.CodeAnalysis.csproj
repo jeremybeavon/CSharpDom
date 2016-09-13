@@ -119,7 +119,6 @@
     <Compile Include="CachedNodeBuilder.cs" />
     <Compile Include="CachedExpressionNode.cs" />
     <Compile Include="CachedStatementNode.cs" />
-    <Compile Include="CachedNodeBuilder.generic.cs" />
     <Compile Include="ClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
@@ -149,7 +148,6 @@
     <Compile Include="IExpressionWithCodeAnalysis.cs" />
     <Compile Include="IForInitializerStatementWithCodeAnalysis.cs" />
     <Compile Include="IHasNode.cs" />
-    <Compile Include="IHasParent.cs" />
     <Compile Include="IInterfaceTypeWithCodeAnalysis.cs" />
     <Compile Include="IInternalExpression.cs" />
     <Compile Include="IInternalStatement.cs" />
@@ -277,7 +275,6 @@
     <Compile Include="TypedFactory.cs" />
     <Compile Include="CachedTypeReferenceNode.cs" />
     <Compile Include="WrappedList.cs" />
-    <Compile Include="IGenericParameterCollection.cs" />
     <Compile Include="InterfaceMemberListWrapper.cs" />
     <Compile Include="InterfaceReferenceListWrapper.cs" />
     <Compile Include="InterfaceTypeWithCodeAnalysis.cs" />
@@ -319,7 +316,6 @@
     <Compile Include="GenericParameterDeclarationWithCodeAnalysis.cs" />
     <Compile Include="GenericParameterListWrapper.cs" />
     <Compile Include="GenericParameterReferenceWithCodeAnalysis.cs" />
-    <Compile Include="IAttributeCollection.cs" />
     <Compile Include="IImmutableList.cs" />
     <Compile Include="IInternalTypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="IndexerParameterWithCodeAnalysis.cs" />
@@ -352,13 +348,11 @@
     <Compile Include="FilteredList.generic2.cs" />
     <Compile Include="GenericParameterWithCodeAnalysis.cs" />
     <Compile Include="IChildCollection.cs" />
-    <Compile Include="IHasId.cs" />
     <Compile Include="ImmutableListWrapper.cs" />
     <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />
     <Compile Include="ImmutableSeparatedSyntaxListWrapper.cs" />
     <Compile Include="ImmutableChildListWrapper.cs" />
     <Compile Include="SealedClassEventPropertyWithCodeAnalysis.cs" />
-    <Compile Include="SimpleNode.cs" />
     <Compile Include="NameSyntaxExtensions.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="SeparatedSyntaxListWrapper.cs" />

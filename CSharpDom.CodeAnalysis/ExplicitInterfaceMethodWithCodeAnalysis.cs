@@ -17,31 +17,18 @@ namespace CSharpDom.CodeAnalysis
             MethodParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<MethodDeclarationSyntax>,
-        IHasId
+        IHasNode<MethodDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly MethodWithBodyWithCodeAnalysis method;
         private readonly CachedChildNode<
             MethodWithCodeAnalysis,
             MethodDeclarationSyntax,
             InterfaceReferenceWithCodeAnalysis,
             NameSyntax> explicitInterface;
-
-        internal ExplicitInterfaceMethodWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        
+        internal ExplicitInterfaceMethodWithCodeAnalysis()
         {
-            method = new MethodWithBodyWithCodeAnalysis(parent, this);
-        }
-
-        internal ExplicitInterfaceMethodWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
-        {
-            method = new MethodWithBodyWithCodeAnalysis(parent, this);
-        }
-
-        private ExplicitInterfaceMethodWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
+            method = new MethodWithBodyWithCodeAnalysis(this);
             explicitInterface = new CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 method.Node,
                 () => new InterfaceReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
@@ -119,10 +106,10 @@ namespace CSharpDom.CodeAnalysis
             get { return method.Syntax; }
             set { method.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return method.Method.Node; }
         }
     }
 }

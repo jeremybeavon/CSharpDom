@@ -10,31 +10,20 @@ namespace CSharpDom.CodeAnalysis
         EditableDestructor<AttributeGroupWithCodeAnalysis, IClass, MethodBodyWithCodeAnalysis>,
         IHasSyntax<DestructorDeclarationSyntax>,
         INestedDestructor,
-        IHasId//,
+        IHasNode<DestructorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Guid internalId;
-        private readonly SimpleNode<
-            ClassTypeWithCodeAnalysis,
-            ClassDeclarationSyntax,
-            DestructorWithCodeAnalysis,
-            DestructorDeclarationSyntax> node;
+        private readonly Node<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> node;
         private readonly AttributeListWrapper<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> attributes;
         private readonly MethodBodyNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> body;
         
-        internal DestructorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
+        internal DestructorWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
-            node = new SimpleNode<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax, DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
-                parent,
-                this,
-                newParent => newParent.DestructorList);
+            node = new Node<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                newParent => new AttributeGroupWithCodeAnalysis(newParent),
-                (child, newParent) => child.DestructorParent = newParent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             body = new MethodBodyNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
                 node,
                 syntax => syntax.Body,
@@ -65,20 +54,9 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        internal IAttributeCollection AttributeList
+        INode<DestructorDeclarationSyntax> IHasNode<DestructorDeclarationSyntax>.Node
         {
-            get { return attributes; }
-        }
-        
-        internal ClassTypeWithCodeAnalysis ClassParent
-        {
-            get { return node.Parent; }
-            set { node.Parent = value; }
-        }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
+            get { return node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)
