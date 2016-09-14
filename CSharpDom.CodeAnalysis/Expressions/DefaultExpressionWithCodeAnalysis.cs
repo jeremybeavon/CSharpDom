@@ -1,22 +1,49 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class DefaultExpressionWithCodeAnalysis<TTypeReference> :
-        IDefaultExpression<TTypeReference>
-        where TTypeReference : ITypeReference
+    public sealed class DefaultExpressionWithCodeAnalysis :
+        EditableDefaultExpression<ITypeReferenceWithCodeAnalysis>,
+        IHasSyntax<DefaultExpressionSyntax>,
+        IInternalExpression
     {
-        public abstract TTypeReference Type { get; set; }
+        private readonly ExpressionNode<DefaultExpressionWithCodeAnalysis, DefaultExpressionSyntax> node;
+        private readonly CachedTypeReferenceNode<DefaultExpressionWithCodeAnalysis, DefaultExpressionSyntax> type;
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public DefaultExpressionWithCodeAnalysis()
         {
-            visitor.VisitDefaultExpression(this);
+            node = new ExpressionNode<DefaultExpressionWithCodeAnalysis, DefaultExpressionSyntax>(this);
+            type = new CachedTypeReferenceNode<DefaultExpressionWithCodeAnalysis, DefaultExpressionSyntax>(
+                node,
+                syntax => syntax.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public DefaultExpressionSyntax Syntax
         {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        public override ITypeReferenceWithCodeAnalysis Type
+        {
+            get { return type.Value; }
+            set { type.Value = value; }
+        }
+
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
+        {
+            get { return node; }
+        }
+
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (DefaultExpressionSyntax)value; }
         }
     }
 }

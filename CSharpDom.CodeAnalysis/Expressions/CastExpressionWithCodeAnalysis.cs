@@ -1,26 +1,60 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class CastExpressionWithCodeAnalysis<TTypeReference, TExpression> :
-        ICastExpression<TTypeReference, TExpression>
-        where TTypeReference : ITypeReference
-        where TExpression : IExpression
+    public sealed class CastExpressionWithCodeAnalysis :
+        EditableCastExpression<ITypeReferenceWithCodeAnalysis, IExpressionWithCodeAnalysis>,
+        IHasSyntax<CastExpressionSyntax>,
+        IInternalExpression
     {
-        public abstract TExpression Expression { get; set; }
+        private readonly ExpressionNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax> node;
+        private readonly CachedExpressionNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax> expression;
+        private readonly CachedTypeReferenceNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax> type;
 
-        public abstract TTypeReference Type { get; set; }
-
-        public void Accept(IGenericExpressionVisitor visitor)
+        public CastExpressionWithCodeAnalysis()
         {
-            visitor.VisitCastExpression(this);
+            node = new ExpressionNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax>(this);
+            expression = new CachedExpressionNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
+            type = new CachedTypeReferenceNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax>(
+                node,
+                syntax => syntax.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis Expression
         {
-            GenericExpressionVisitor.VisitCastExpressionChildren(this, visitor);
+            get { return expression.Value; }
+            set { expression.Value = value; }
+        }
+
+        public CastExpressionSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        public override ITypeReferenceWithCodeAnalysis Type
+        {
+            get { return type.Value; }
+            set { type.Value = value; }
+        }
+        
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (CastExpressionSyntax)value; }
+        }
+
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
+        {
+            get { return node; }
         }
     }
 }

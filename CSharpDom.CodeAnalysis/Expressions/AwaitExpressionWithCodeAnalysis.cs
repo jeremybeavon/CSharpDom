@@ -13,6 +13,15 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private readonly ExpressionNode<AwaitExpressionWithCodeAnalysis, AwaitExpressionSyntax> node;
         private readonly CachedExpressionNode<AwaitExpressionWithCodeAnalysis, AwaitExpressionSyntax> expression;
 
+        public AwaitExpressionWithCodeAnalysis()
+        {
+            node = new ExpressionNode<AwaitExpressionWithCodeAnalysis, AwaitExpressionSyntax>(this);
+            expression = new CachedExpressionNode<AwaitExpressionWithCodeAnalysis, AwaitExpressionSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
+        }
+
         public override IExpressionWithCodeAnalysis Expression
         {
             get { return expression.Value; }

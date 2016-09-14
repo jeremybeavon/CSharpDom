@@ -6,25 +6,24 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class SimpleChildCollection<TChild, TSyntax> : IChildCollection<TChild, TSyntax>
+    internal sealed class SimpleChildCollection<TChild, TSyntax, TSyntaxSubClass> : IChildCollection<TChild, TSyntaxSubClass>
+        where TSyntaxSubClass : TSyntax
     {
-        private readonly Func<TChild, TSyntax> getChild;
-        private readonly Action<TChild, TSyntax> setChild;
+        private readonly IChildCollection<TChild, TSyntax> childCollection;
 
-        public SimpleChildCollection(Func<TChild, TSyntax> getChild, Action<TChild, TSyntax> setChild)
+        public SimpleChildCollection(IChildCollection<TChild, TSyntax> childCollection)
         {
-            this.getChild = getChild;
-            this.setChild = setChild;
+            this.childCollection = childCollection;
         }
 
-        public TSyntax GetChild(TChild child)
+        public TSyntaxSubClass GetChild(TChild child)
         {
-            return getChild(child);
+            return (TSyntaxSubClass)childCollection.GetChild(child);
         }
 
-        public void SetChild(TChild child, TSyntax syntax)
+        public void SetChild(TChild child, TSyntaxSubClass syntax)
         {
-            setChild(child, syntax);
+            childCollection.SetChild(child, syntax);
         }
     }
 }

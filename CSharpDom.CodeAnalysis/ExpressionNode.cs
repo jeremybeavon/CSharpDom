@@ -22,14 +22,6 @@ namespace CSharpDom.CodeAnalysis
             set { Syntax = (TSyntax)value; }
         }
         
-        private Func<TParentNode, IChildCollection<TValue, TSyntax>> CreateChildCollection<TParentNode>(
-            Func<TParentNode, IChildCollection<IInternalExpression, ExpressionSyntax>> getCollection)
-        {
-            return parent => new SimpleChildCollection<TValue, TSyntax>(
-                value => (TSyntax)getCollection(parent).GetChild(value),
-                (value, syntax) => getCollection(parent).SetChild(value, syntax));
-        }
-
         void INode<ExpressionSyntax>.SetParentNode<TParentNode, TParentSyntax>(
             TParentNode parent,
             Func<TParentSyntax, ExpressionSyntax> getChildSyntax,
@@ -44,9 +36,12 @@ namespace CSharpDom.CodeAnalysis
         void INode<ExpressionSyntax>.SetParentNode<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            IChildCollection<TChildNode, ExpressionSyntax> getCollection)
+            IChildCollection<TChildNode, ExpressionSyntax> childCollection)
         {
-            //SetParentNode<TParentNode, TParentSyntax, TChildNode>()
+            SetParentNode<TParentNode, TParentSyntax, TChildNode>(
+                parent,
+                child,
+                new SimpleChildCollection<TChildNode, ExpressionSyntax, TSyntax>(childCollection));
         }
     }
 }

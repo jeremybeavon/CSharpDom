@@ -140,6 +140,9 @@
     <Compile Include="EnumReferenceWithCodeAnalysis.cs" />
     <Compile Include="ExpressionSyntaxExtensions.cs" />
     <Compile Include="Expressions\AwaitExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\CastExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\DefaultExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\IdentifierExpressionWithCodeAnalysis.cs" />
     <Compile Include="ExtensionMethodWithCodeAnalysis.cs" />
     <Compile Include="FieldDeclarationSyntaxExtensions.cs" />
     <Compile Include="FilteredList.generic.cs" />
