@@ -18,13 +18,11 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             explicitInterfaceProperties = new ClassPropertyListWrapper<ExplicitInterfacePropertyWithCodeAnalysis>(
                 classType.Node,
-                parent => new ExplicitInterfacePropertyWithCodeAnalysis(parent),
-                (child, parent) => child.Property.Property.ExplicitInterfaceClassParent = parent,
+                () => new ExplicitInterfacePropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             properties = new ClassPropertyListWrapper<ClassPropertyWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassPropertyWithCodeAnalysis(parent, ClassType.Normal),
-                (child, parent) => child.Property.Property.SetClassParent(parent, ClassType.Normal),
+                () => new ClassPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 

@@ -30,7 +30,7 @@ namespace CSharpDom.CodeAnalysis
         {
             method = new MethodWithBodyWithCodeAnalysis(this);
             explicitInterface = new CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
-                method.Node,
+                method.Method.Node,
                 () => new InterfaceReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
                 syntax => syntax.ExplicitInterfaceSpecifier.Name,
                 (parentSyntax, childSyntax) => parentSyntax.WithExplicitInterfaceSpecifier(parentSyntax.ExplicitInterfaceSpecifier.WithName(childSyntax)));

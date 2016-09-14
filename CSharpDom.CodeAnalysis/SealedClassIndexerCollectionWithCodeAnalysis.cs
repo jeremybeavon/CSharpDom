@@ -19,8 +19,7 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             indexers = new ClassIndexerListWrapper<SealedClassIndexerWithCodeAnalysis>(
                 classType.Node,
-                parent => new SealedClassIndexerWithCodeAnalysis(parent),
-                (child, parent) => child.Indexer.Indexer.SealedClassParent = parent,
+                () => new SealedClassIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
         

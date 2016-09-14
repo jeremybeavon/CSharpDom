@@ -19,8 +19,7 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             properties = new ClassPropertyListWrapper<SealedClassPropertyWithCodeAnalysis>(
                 classType.Node,
-                parent => new SealedClassPropertyWithCodeAnalysis(parent),
-                (child, parent) => child.Property.Property.SealedClassParent = parent,
+                () => new SealedClassPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
         }
         

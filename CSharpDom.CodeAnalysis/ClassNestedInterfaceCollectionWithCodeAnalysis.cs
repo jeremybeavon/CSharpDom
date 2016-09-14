@@ -21,8 +21,7 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             interfaces = new ClassMemberListWrapper<InterfaceTypeWithCodeAnalysis, ClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 classType.Node,
-                parent => new ClassNestedInterfaceWithCodeAnalysis(parent),
-                (child, parent) => child.Interface.Interface.ClassParent = parent);
+                () => new ClassNestedInterfaceWithCodeAnalysis());
         }
         
         public override ICollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces

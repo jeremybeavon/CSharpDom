@@ -31,18 +31,15 @@ namespace CSharpDom.CodeAnalysis
             this.structType = structType;
             eventProperties = new StructTypeMemberListWrapper<EventPropertyWithCodeAnalysis, StructEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 structType.Node,
-                parent => new StructEventPropertyWithCodeAnalysis(parent),
-                (child, parent) => child.EventProperty.StructParent = parent,
+                () => new StructEventPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
             explicitInterfaceEvents = new StructTypeMemberListWrapper<EventPropertyWithCodeAnalysis, ExplicitInterfaceEventWithCodeAnalysis, EventDeclarationSyntax>(
                 structType.Node,
-                parent => new ExplicitInterfaceEventWithCodeAnalysis(parent),
-                (child, parent) => child.EventProperty.ExplicitInterfaceStructParent = parent,
+                () => new ExplicitInterfaceEventWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             events = new StructTypeMemberListWrapper<EventWithCodeAnalysis, StructEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
                 structType.Node,
-                parent => new StructEventWithCodeAnalysis(parent),
-                (child, parent) => child.Event.StructParent = parent);
+                () => new StructEventWithCodeAnalysis());
         }
 
         public override ICollection<StructEventPropertyWithCodeAnalysis> EventProperties

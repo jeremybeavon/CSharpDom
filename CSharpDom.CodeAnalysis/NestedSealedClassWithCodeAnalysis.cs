@@ -32,21 +32,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly SealedTypeWithCodeAnalysis classType;
 
-        internal NestedSealedClassWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedSealedClassWithCodeAnalysis @class)
+        internal NestedSealedClassWithCodeAnalysis(object @class)
         {
-            classType = new SealedTypeWithCodeAnalysis(parent, @class);
+            classType = new SealedTypeWithCodeAnalysis(@class);
         }
-
-        internal NestedSealedClassWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedSealedClassWithCodeAnalysis @class)
-        {
-            classType = new SealedTypeWithCodeAnalysis(parent, @class);
-        }
-
-        internal NestedSealedClassWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedSealedClassWithCodeAnalysis @class)
-        {
-            classType = new SealedTypeWithCodeAnalysis(parent, @class);
-        }
-
+        
         public SealedTypeWithCodeAnalysis Class
         {
             get { return classType; }

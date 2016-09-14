@@ -17,22 +17,15 @@ namespace CSharpDom.CodeAnalysis
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
         IHasSyntax<InterfaceDeclarationSyntax>,
-        IHasId
+        IHasNode<InterfaceDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly NestedInterfaceWithCodeAnalysis type;
 
-        internal ClassNestedInterfaceWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal ClassNestedInterfaceWithCodeAnalysis()
         {
-            type = new NestedInterfaceWithCodeAnalysis(parent, this);
+            type = new NestedInterfaceWithCodeAnalysis(this);
         }
-
-        private ClassNestedInterfaceWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public NestedInterfaceWithCodeAnalysis Interface
         {
             get { return type; }
@@ -112,10 +105,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return type.Interface.Node; }
         }
     }
 }

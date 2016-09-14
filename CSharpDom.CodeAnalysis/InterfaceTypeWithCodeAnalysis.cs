@@ -62,20 +62,16 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
             interfaces = new BaseTypeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
-                (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax),
-                () => new InterfaceReferenceWithCodeAnalysis();
+                (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax));
             properties = new InterfaceMemberListWrapper<PropertyWithCodeAnalysis, InterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
-                parent => new InterfacePropertyWithCodeAnalysis(parent),
-                (child, parent) => child.Property.InterfaceParent = parent);
+                () => new InterfacePropertyWithCodeAnalysis());
             indexers = new InterfaceMemberListWrapper<IndexerWithCodeAnalysis, InterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
                 node,
-                parent => new InterfaceIndexerWithCodeAnalysis(parent),
-                (child, parent) => child.Indexer.InterfaceParent = parent);
+                () => new InterfaceIndexerWithCodeAnalysis());
             methods = new InterfaceMemberListWrapper<MethodWithCodeAnalysis, InterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 node,
-                parent => new InterfaceMethodWithCodeAnalysis(parent),
-                (child, parent) => child.Method.InterfaceParent = parent);
+                () => new InterfaceMethodWithCodeAnalysis());
             members = new MemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))

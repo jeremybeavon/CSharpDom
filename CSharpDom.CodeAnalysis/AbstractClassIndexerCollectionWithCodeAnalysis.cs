@@ -21,13 +21,11 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             indexers = new ClassIndexerListWrapper<ClassIndexerWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassIndexerWithCodeAnalysis(parent, ClassType.Abstract),
-                (child, parent) => child.Indexer.Indexer.SetClassParent(parent, ClassType.Abstract),
+                () => new ClassIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
             abstractIndexers = new ClassIndexerListWrapper<AbstractIndexerWithCodeAnalysis>(
                 classType.Node,
-                parent => new AbstractIndexerWithCodeAnalysis(parent),
-                (child, parent) => child.Indexer.AbstractClassParent = parent,
+                () => new AbstractIndexerWithCodeAnalysis(),
                 syntax => syntax.Modifiers.IsAbstract());
         }
 

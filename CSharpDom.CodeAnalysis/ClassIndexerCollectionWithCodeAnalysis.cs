@@ -18,13 +18,11 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             explicitInterfaceIndexers = new ClassIndexerListWrapper<ExplicitInterfaceIndexerWithCodeAnalysis>(
                 classType.Node,
-                parent => new ExplicitInterfaceIndexerWithCodeAnalysis(parent),
-                (child, parent) => child.Indexer.Indexer.ExplicitInterfaceClassParent = parent,
+                () => new ExplicitInterfaceIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             indexers = new ClassIndexerListWrapper<ClassIndexerWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassIndexerWithCodeAnalysis(parent, ClassType.Normal),
-                (child, parent) => child.Indexer.Indexer.SetClassParent(parent, ClassType.Normal),
+                () => new ClassIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 

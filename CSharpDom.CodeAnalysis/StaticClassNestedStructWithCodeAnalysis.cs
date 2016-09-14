@@ -27,22 +27,15 @@ namespace CSharpDom.CodeAnalysis
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
-        IHasId
+        IHasNode<StructDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly NestedStructWithCodeAnalysis structType;
 
-        internal StaticClassNestedStructWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
-            : this()
+        internal StaticClassNestedStructWithCodeAnalysis()
         {
-            structType = new NestedStructWithCodeAnalysis(parent, this);
+            structType = new NestedStructWithCodeAnalysis(this);
         }
-
-        private StaticClassNestedStructWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public NestedStructWithCodeAnalysis Struct
         {
             get { return structType; }
@@ -177,10 +170,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return structType.Struct.Node; }
         }
     }
 }

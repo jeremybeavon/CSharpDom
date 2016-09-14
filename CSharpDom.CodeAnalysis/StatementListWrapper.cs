@@ -14,18 +14,17 @@ namespace CSharpDom.CodeAnalysis
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly InternalStatementListWrapper<TParentNode, TParentSyntax> list;
+        private readonly SyntaxListWrapper<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> list;
 
         public StatementListWrapper(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<StatementSyntax>> getList,
-            Func<TParentSyntax, SyntaxList<StatementSyntax>, TParentSyntax> createList,
-            Func<TParentNode, IChildCollection<IInternalStatement, StatementSyntax>> getCollection)
-            : this(new InternalStatementListWrapper<TParentNode, TParentSyntax>(node, getList, createList, getCollection))
+            Func<TParentSyntax, SyntaxList<StatementSyntax>, TParentSyntax> createList)
+            : this(ListFactory.CreateList(node, getList, createList, StatementSyntaxExtensions.ToInternalStatement))
         {
         }
 
-        private StatementListWrapper(InternalStatementListWrapper<TParentNode, TParentSyntax> list)
+        private StatementListWrapper(SyntaxListWrapper<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> list)
             : base(list, parent => parent, child => child as IInternalStatement)
         {
             this.list = list;

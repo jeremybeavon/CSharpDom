@@ -28,13 +28,11 @@ namespace CSharpDom.CodeAnalysis
             this.type = type;
             methods = new StaticTypeMemberListWrapper<MethodWithCodeAnalysis, StaticClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 type.Node,
-                parent => new StaticClassMethodWithCodeAnalysis(parent),
-                (child, parent) => child.Method.Method.StaticClassParent = parent,
+                () => new StaticClassMethodWithCodeAnalysis(),
                 IsExtensionMethod);
             extensionMethods = new StaticTypeMemberListWrapper<MethodWithCodeAnalysis, ExtensionMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 type.Node,
-                parent => new ExtensionMethodWithCodeAnalysis(parent),
-                (child, parent) => child.Method.Method.StaticExtensionClassParent = parent,
+                () => new ExtensionMethodWithCodeAnalysis(),
                 syntax => !IsExtensionMethod(syntax));
         }
 

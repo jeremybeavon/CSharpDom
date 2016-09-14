@@ -34,25 +34,10 @@ namespace CSharpDom.CodeAnalysis
         private readonly AbstractClassIndexerCollectionWithCodeAnalysis indexers;
         private readonly AbstractClassMethodCollectionWithCodeAnalysis methods;
         private readonly AbstractClassPropertyCollectionWithCodeAnalysis properties;
-
-        internal AbstractTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedAbstractClassWithCodeAnalysis @class)
-            : this(new ClassTypeWithCodeAnalysis(parent, @class))
+        
+        internal AbstractTypeWithCodeAnalysis(object @class)
         {
-        }
-
-        internal AbstractTypeWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedAbstractClassWithCodeAnalysis @class)
-            : this(new ClassTypeWithCodeAnalysis(parent, @class))
-        {
-        }
-
-        internal AbstractTypeWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedAbstractClassWithCodeAnalysis @class)
-            : this(new ClassTypeWithCodeAnalysis(parent, @class))
-        {
-        }
-
-        private AbstractTypeWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
-        {
-            this.classType = classType;
+            classType = new ClassTypeWithCodeAnalysis(@class);
             members = classType.Members;
             events = new AbstractClassEventCollectionWithCodeAnalysis(classType);
             indexers = new AbstractClassIndexerCollectionWithCodeAnalysis(classType);

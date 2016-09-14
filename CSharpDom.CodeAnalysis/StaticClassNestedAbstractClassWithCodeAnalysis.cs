@@ -29,22 +29,15 @@ namespace CSharpDom.CodeAnalysis
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasId
+        IHasNode<ClassDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly NestedAbstractClassWithCodeAnalysis classType;
 
-        internal StaticClassNestedAbstractClassWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
-            : this()
+        internal StaticClassNestedAbstractClassWithCodeAnalysis()
         {
-            classType = new NestedAbstractClassWithCodeAnalysis(parent, this);
+            classType = new NestedAbstractClassWithCodeAnalysis(this);
         }
-
-        private StaticClassNestedAbstractClassWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public NestedAbstractClassWithCodeAnalysis Class
         {
             get { return classType; }
@@ -191,10 +184,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return classType.Class.Type.Node; }
         }
     }
 }

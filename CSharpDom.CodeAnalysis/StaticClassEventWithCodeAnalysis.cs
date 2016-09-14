@@ -13,22 +13,15 @@ namespace CSharpDom.CodeAnalysis
             IStaticTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
         IHasSyntax<EventFieldDeclarationSyntax>,
-        IHasId
+        IHasNode<EventFieldDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly EventWithCodeAnalysis @event;
 
-        internal StaticClassEventWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
-            : this()
+        internal StaticClassEventWithCodeAnalysis()
         {
-            @event = new EventWithCodeAnalysis(parent, this);
+            @event = new EventWithCodeAnalysis(this);
         }
-
-        private StaticClassEventWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public EventWithCodeAnalysis Event
         {
             get { return @event; }
@@ -79,10 +72,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<EventFieldDeclarationSyntax> IHasNode<EventFieldDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return @event.Node; }
         }
     }
 }

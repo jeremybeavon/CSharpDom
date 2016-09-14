@@ -26,13 +26,11 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             constants = new ClassMemberListWrapper<ConstantGroupWithCodeAnalysis, ClassConstantWithCodeAnalysis, FieldDeclarationSyntax>(
                 classType.Node,
-                parent => new ClassConstantWithCodeAnalysis(parent),
-                (child, parent) => child.Constant.ClassParent = parent,
+                () => new ClassConstantWithCodeAnalysis(),
                 syntax => syntax.IsConstant());
             fields = new ClassMemberListWrapper<FieldGroupWithCodeAnalysis, ClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
                 classType.Node,
-                parent => new ClassFieldWithCodeAnalysis(parent),
-                (child, parent) => child.Field.ClassParent = parent,
+                () => new ClassFieldWithCodeAnalysis(),
                 syntax => !syntax.IsConstant());
         }
         

@@ -22,18 +22,15 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             eventProperties = new ClassEventPropertyListWrapper<ClassEventPropertyWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassEventPropertyWithCodeAnalysis(parent),
-                (child, parent) => child.EventProperty.ClassParent = parent,
+                () => new ClassEventPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
             explicitInterfaceEvents = new ClassEventPropertyListWrapper<ExplicitInterfaceEventWithCodeAnalysis>(
                 classType.Node,
-                parent => new ExplicitInterfaceEventWithCodeAnalysis(parent),
-                (child, parent) => child.EventProperty.ExplicitInterfaceClassParent = parent,
+                () => new ExplicitInterfaceEventWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             events = new ClassEventListWrapper<ClassEventWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassEventWithCodeAnalysis(parent, ClassType.Normal),
-                (child, parent) => child.Event.SetClassParent(parent, ClassType.Normal));
+                () => new ClassEventWithCodeAnalysis());
         }
 
         public override ICollection<ClassEventPropertyWithCodeAnalysis> EventProperties

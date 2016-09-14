@@ -14,22 +14,15 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis>,
         IHasSyntax<MethodDeclarationSyntax>,
-        IHasId
+        IHasNode<MethodDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly MethodWithCodeAnalysis method;
 
-        internal InterfaceMethodWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
-            : this()
+        internal InterfaceMethodWithCodeAnalysis()
         {
-            method = new MethodWithCodeAnalysis(parent, this);
+            method = new MethodWithCodeAnalysis(this);
         }
-
-        private InterfaceMethodWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public MethodWithCodeAnalysis Method
         {
             get { return method; }
@@ -88,10 +81,10 @@ namespace CSharpDom.CodeAnalysis
             get { return method.Syntax; }
             set { method.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return method.Node; }
         }
     }
 }

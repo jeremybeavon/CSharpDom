@@ -20,9 +20,7 @@ namespace CSharpDom.CodeAnalysis
             attributes = new AttributeListWrapper<NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax),
-                parent => new AttributeGroupWithCodeAnalysis(parent),
-                (child, parent) => child.NestedEnumMemberParent = parent);
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -48,12 +46,7 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal IAttributeCollection AttributeList
-        {
-            get { return attributes; }
-        }
-
+        
         /*
         public void Accept(IReflectionVisitor visitor)
         {

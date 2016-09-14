@@ -24,8 +24,7 @@ namespace CSharpDom.CodeAnalysis.Statements
             statements = new StatementListWrapper<CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
                 node,
                 syntax => syntax.Block.Statements,
-                (parentSyntax, childSyntax) => parentSyntax.WithBlock(SyntaxFactory.Block(childSyntax)),
-                parent => parent.statements);
+                (parentSyntax, childSyntax) => parentSyntax.WithBlock(SyntaxFactory.Block(childSyntax)));
             //type = new TypeReferenceChildNode<CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
             //    node,
             //    (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)),

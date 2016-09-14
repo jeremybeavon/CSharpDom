@@ -24,13 +24,11 @@ namespace CSharpDom.CodeAnalysis
             this.structType = structType;
             explicitInterfaceProperties = new StructTypeMemberListWrapper<PropertyWithCodeAnalysis, ExplicitInterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 structType.Node,
-                parent => new ExplicitInterfacePropertyWithCodeAnalysis(parent),
-                (child, parent) => child.Property.Property.ExplicitInterfaceStructParent = parent,
+                () => new ExplicitInterfacePropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             properties = new StructTypeMemberListWrapper<PropertyWithCodeAnalysis, StructPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 structType.Node,
-                parent => new StructPropertyWithCodeAnalysis(parent),
-                (child, parent) => child.Property.Property.StructParent = parent,
+                () => new StructPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 

@@ -35,16 +35,13 @@ namespace CSharpDom.CodeAnalysis
             this.type = type;
             classes = new StaticTypeMemberListWrapper<ClassTypeWithCodeAnalysis, StaticClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 type.Node,
-                parent => new StaticClassNestedClassWithCodeAnalysis(parent),
-                (child, parent) => child.Class.Class.SetStaticClassParent(parent, ClassType.Normal));
+                () => new StaticClassNestedClassWithCodeAnalysis());
             abstractClasses = new StaticTypeMemberListWrapper<ClassTypeWithCodeAnalysis, StaticClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 type.Node,
-                parent => new StaticClassNestedAbstractClassWithCodeAnalysis(parent),
-                (child, parent) => child.Class.Class.Type.SetStaticClassParent(parent, ClassType.Abstract));
+                () => new StaticClassNestedAbstractClassWithCodeAnalysis());
             sealedClasses = new StaticTypeMemberListWrapper<ClassTypeWithCodeAnalysis, StaticClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 type.Node,
-                parent => new StaticClassNestedSealedClassWithCodeAnalysis(parent),
-                (child, parent) => child.Class.Class.Type.SetStaticClassParent(parent, ClassType.Sealed));
+                () => new StaticClassNestedSealedClassWithCodeAnalysis());
         }
 
         public override ICollection<StaticClassNestedAbstractClassWithCodeAnalysis> AbstractClasses

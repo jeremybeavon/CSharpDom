@@ -116,7 +116,6 @@
     <Compile Include="AttributeWithCodeAnalysis.cs" />
     <Compile Include="BaseTypeList.cs" />
     <Compile Include="BaseTypeListWrapper.cs" />
-    <Compile Include="CachedNodeBuilder.cs" />
     <Compile Include="CachedExpressionNode.cs" />
     <Compile Include="CachedStatementNode.cs" />
     <Compile Include="ClassEventCollectionWithCodeAnalysis.cs" />
@@ -153,14 +152,12 @@
     <Compile Include="IInternalStatement.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="InterfaceWithCodeAnalysis.cs" />
-    <Compile Include="InternalListWrapperBuilder.cs" />
     <Compile Include="InternalExpressionListWrapper.cs" />
     <Compile Include="SimpleChildCollection.cs" />
     <Compile Include="ExpressionNode.cs" />
     <Compile Include="ExpressionListWrapper.cs" />
     <Compile Include="StatementNode.cs" />
     <Compile Include="StatementSyntaxExtensions.cs" />
-    <Compile Include="InternalListWrapperBuilder.generic.cs" />
     <Compile Include="ISealedTypeWithCodeAnalysis.cs" />
     <Compile Include="IStatementWithCodeAnalysis.cs" />
     <Compile Include="IStaticTypeWithCodeAnalysis.cs" />
@@ -179,7 +176,6 @@
     <Compile Include="NestedStaticClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="NestedStructWithCodeAnalysis.cs" />
     <Compile Include="SimpleStructMemberListWrapper.cs" />
-    <Compile Include="InternalStatementListWrapper.cs" />
     <Compile Include="StatementListWrapper.cs" />
     <Compile Include="Statements\BlockStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\BreakStatementWithCodeAnalysis.cs" />

@@ -21,13 +21,11 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             methods = new ClassMethodListWrapper<ClassMethodWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassMethodWithCodeAnalysis(parent, ClassType.Abstract),
-                (child, parent) => child.Method.Method.SetClassParent(parent, ClassType.Abstract),
+                () => new ClassMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
             abstractMethods = new ClassMethodListWrapper<AbstractMethodWithCodeAnalysis>(
                 classType.Node,
-                parent => new AbstractMethodWithCodeAnalysis(parent),
-                (child, parent) => child.Method.AbstractClassParent = parent,
+                () => new AbstractMethodWithCodeAnalysis(),
                 syntax => syntax.Modifiers.IsAbstract());
         }
 

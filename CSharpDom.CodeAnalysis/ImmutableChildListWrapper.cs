@@ -67,7 +67,7 @@ namespace CSharpDom.CodeAnalysis
 
         public IEnumerator<TChildSyntax> GetEnumerator()
         {
-            return ((IEnumerable<TChildSyntax>)getList(node.Syntax)).GetEnumerator();
+            return getList(node.Syntax).GetEnumerator();
         }
 
         public int IndexOf(TChildSyntax item)

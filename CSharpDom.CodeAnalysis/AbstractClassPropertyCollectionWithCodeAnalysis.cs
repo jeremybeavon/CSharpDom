@@ -21,13 +21,11 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             properties = new ClassPropertyListWrapper<ClassPropertyWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassPropertyWithCodeAnalysis(parent, ClassType.Normal),
-                (child, parent) => child.Property.Property.SetClassParent(parent, ClassType.Normal),
+                () => new ClassPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
             abstractProperties = new ClassPropertyListWrapper<AbstractPropertyWithCodeAnalysis>(
                 classType.Node,
-                parent => new AbstractPropertyWithCodeAnalysis(parent),
-                (child, parent) => child.Property.AbstractClassParent = parent,
+                () => new AbstractPropertyWithCodeAnalysis(),
                 syntax => syntax.Modifiers.IsAbstract());
         }
 

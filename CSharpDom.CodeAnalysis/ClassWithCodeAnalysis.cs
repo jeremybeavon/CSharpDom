@@ -34,15 +34,14 @@ namespace CSharpDom.CodeAnalysis
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
         IClassTypeWithCodeAnalysis,
-        IHasId//,
+        IHasNode<ClassDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Guid internalId;
         private readonly ClassTypeWithCodeAnalysis classType;
 
-        private ClassWithCodeAnalysis()
+        internal ClassWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
+            classType = new ClassTypeWithCodeAnalysis(this);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -170,12 +169,7 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
-        }
-
+        
         public override IDocument Document
         {
             get
@@ -239,6 +233,11 @@ namespace CSharpDom.CodeAnalysis
             {
                 throw new NotImplementedException();
             }
+        }
+
+        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
+        {
+            get { return classType.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

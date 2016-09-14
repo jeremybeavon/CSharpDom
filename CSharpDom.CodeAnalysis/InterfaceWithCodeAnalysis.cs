@@ -24,15 +24,14 @@ namespace CSharpDom.CodeAnalysis
             InterfaceMethodWithCodeAnalysis>,
         IInterfaceTypeWithCodeAnalysis,
         IHasSyntax<InterfaceDeclarationSyntax>,
-        IHasId//,
+        IHasNode<InterfaceDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Guid internalId;
         private readonly InterfaceTypeWithCodeAnalysis type;
 
-        private InterfaceWithCodeAnalysis()
+        internal InterfaceWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
+            type = new InterfaceTypeWithCodeAnalysis(this);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -153,10 +152,10 @@ namespace CSharpDom.CodeAnalysis
                 throw new NotImplementedException();
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return type.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

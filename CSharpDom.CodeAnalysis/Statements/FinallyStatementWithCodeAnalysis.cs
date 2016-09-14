@@ -20,8 +20,7 @@ namespace CSharpDom.CodeAnalysis.Statements
             statements = new StatementListWrapper<FinallyStatementWithCodeAnalysis, FinallyClauseSyntax>(
                 node,
                 syntax => syntax.Block.Statements,
-                (parentSyntax, childSyntax) => parentSyntax.WithBlock(parentSyntax.Block.WithStatements(childSyntax)),
-                parent => parent.statements);
+                (parentSyntax, childSyntax) => parentSyntax.WithBlock(parentSyntax.Block.WithStatements(childSyntax)));
         }
 
         public override IList<IStatementWithCodeAnalysis> Statements

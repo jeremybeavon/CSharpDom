@@ -85,7 +85,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return attributes; }
         }
-        
+
         T ISimpleMember.Member<T>()
         {
             return (T)@event;

@@ -15,22 +15,15 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>,
-        IHasId
+        IHasNode<FieldDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly FieldGroupWithCodeAnalysis field;
 
-        internal ClassFieldWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal ClassFieldWithCodeAnalysis()
         {
-            field = new FieldGroupWithCodeAnalysis(parent, this);
+            field = new FieldGroupWithCodeAnalysis(this);
         }
-
-        private ClassFieldWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public FieldGroupWithCodeAnalysis Field
         {
             get { return field; }
@@ -85,10 +78,10 @@ namespace CSharpDom.CodeAnalysis
             get { return field.Syntax; }
             set { field.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return field.Node; }
         }
     }
 }

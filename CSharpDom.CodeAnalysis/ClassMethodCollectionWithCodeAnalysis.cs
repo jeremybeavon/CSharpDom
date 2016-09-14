@@ -18,13 +18,11 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             explicitInterfaceMethods = new ClassMethodListWrapper<ExplicitInterfaceMethodWithCodeAnalysis>(
                 classType.Node,
-                parent => new ExplicitInterfaceMethodWithCodeAnalysis(parent),
-                (child, parent) => child.Method.Method.ExplicitInterfaceClassParent = parent,
+                () => new ExplicitInterfaceMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             methods = new ClassMethodListWrapper<ClassMethodWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassMethodWithCodeAnalysis(parent, ClassType.Normal),
-                (child, parent) => child.Method.Method.SetClassParent(parent, ClassType.Normal),
+                () => new ClassMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 

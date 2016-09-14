@@ -11,9 +11,9 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ParameterWithCodeAnalysis parameter;
 
-        internal ExtensionParameterWithCodeAnalysis(ExtensionMethodWithCodeAnalysis parent)
+        internal ExtensionParameterWithCodeAnalysis()
         {
-            parameter = new ParameterWithCodeAnalysis(parent, this);
+            parameter = new ParameterWithCodeAnalysis(this);
         }
 
         public ParameterWithCodeAnalysis Parameter

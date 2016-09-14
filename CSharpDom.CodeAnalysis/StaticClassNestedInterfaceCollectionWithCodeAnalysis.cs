@@ -22,8 +22,7 @@ namespace CSharpDom.CodeAnalysis
             this.staticType = staticType;
             interfaces = new StaticTypeMemberListWrapper<InterfaceTypeWithCodeAnalysis, StaticClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 staticType.Node,
-                parent => new StaticClassNestedInterfaceWithCodeAnalysis(parent),
-                (child, parent) => child.Interface.Interface.StaticClassParent = parent);
+                () => new StaticClassNestedInterfaceWithCodeAnalysis());
         }
         
         public override ICollection<StaticClassNestedInterfaceWithCodeAnalysis> Interfaces

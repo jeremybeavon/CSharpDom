@@ -16,11 +16,6 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
         
-        internal ClassReferenceWithCodeAnalysis(AttributeWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent))
-        {
-        }
-
         internal ClassReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
             this.typeReference = typeReference;

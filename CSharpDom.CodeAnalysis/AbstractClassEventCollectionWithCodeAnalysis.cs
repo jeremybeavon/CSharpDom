@@ -24,13 +24,11 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             events = new ClassEventListWrapper<ClassEventWithCodeAnalysis>(
                 classType.Node,
-                parent => new ClassEventWithCodeAnalysis(parent, ClassType.Abstract),
-                (child, parent) => child.Event.SetClassParent(parent, ClassType.Abstract),
+                () => new ClassEventWithCodeAnalysis(),
                 syntax => !syntax.Modifiers.IsAbstract());
             abstractEvents = new ClassEventListWrapper<AbstractEventWithCodeAnalysis>(
                 classType.Node,
-                parent => new AbstractEventWithCodeAnalysis(parent),
-                (child, parent) => child.Event.SetClassParent(parent, ClassType.Abstract),
+                () => new AbstractEventWithCodeAnalysis(),
                 syntax => syntax.Modifiers.IsAbstract());
         }
 

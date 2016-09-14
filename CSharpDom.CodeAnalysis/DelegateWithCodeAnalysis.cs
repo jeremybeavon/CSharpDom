@@ -18,15 +18,14 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             DelegateParameterWithCodeAnalysis>,
         IHasSyntax<DelegateDeclarationSyntax>,
-        IHasId//,
+        IHasNode<DelegateDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Guid internalId;
         private readonly DelegateTypeWithCodeAnalysis type;
 
-        private DelegateWithCodeAnalysis()
+        internal DelegateWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
+            type = new DelegateTypeWithCodeAnalysis(this);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -129,10 +128,10 @@ namespace CSharpDom.CodeAnalysis
                 throw new NotImplementedException();
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<DelegateDeclarationSyntax> IHasNode<DelegateDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return type.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

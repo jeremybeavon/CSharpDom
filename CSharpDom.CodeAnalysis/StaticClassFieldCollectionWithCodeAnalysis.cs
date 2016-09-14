@@ -23,13 +23,11 @@ namespace CSharpDom.CodeAnalysis
             this.type = type;
             constants = new StaticTypeMemberListWrapper<ConstantGroupWithCodeAnalysis, StaticClassConstantWithCodeAnalysis, FieldDeclarationSyntax>(
                 type.Node,
-                parent => new StaticClassConstantWithCodeAnalysis(parent),
-                (child, parent) => child.Constant.StaticClassParent = parent,
+                () => new StaticClassConstantWithCodeAnalysis(),
                 syntax => syntax.IsConstant());
             fields = new StaticTypeMemberListWrapper<FieldGroupWithCodeAnalysis, StaticClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
                 type.Node,
-                parent => new StaticClassFieldWithCodeAnalysis(parent),
-                (child, parent) => child.Field.StaticClassParent = parent,
+                () => new StaticClassFieldWithCodeAnalysis(),
                 syntax => !syntax.IsConstant());
         }
         

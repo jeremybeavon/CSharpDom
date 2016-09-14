@@ -13,22 +13,15 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             InterfaceAccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
-        IHasId
+        IHasNode<PropertyDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly PropertyWithCodeAnalysis property;
 
-        internal InterfacePropertyWithCodeAnalysis(InterfaceTypeWithCodeAnalysis parent)
-            : this()
+        internal InterfacePropertyWithCodeAnalysis()
         {
-            property = new PropertyWithCodeAnalysis(parent, this);
+            property = new PropertyWithCodeAnalysis(this);
         }
-
-        private InterfacePropertyWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public PropertyWithCodeAnalysis Property
         {
             get { return property; }
@@ -81,10 +74,10 @@ namespace CSharpDom.CodeAnalysis
             get { return property.Syntax; }
             set { property.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<PropertyDeclarationSyntax> IHasNode<PropertyDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return property.Node; }
         }
     }
 }

@@ -26,12 +26,10 @@ namespace CSharpDom.CodeAnalysis
             this.type = type;
             events = new StaticTypeMemberListWrapper<EventWithCodeAnalysis, StaticClassEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
                 type.Node,
-                parent => new StaticClassEventWithCodeAnalysis(parent),
-                (child, parent) => child.Event.StaticClassParent = parent);
+                () => new StaticClassEventWithCodeAnalysis());
             eventProperties = new StaticTypeMemberListWrapper<EventPropertyWithCodeAnalysis, StaticClassEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 type.Node,
-                parent => new StaticClassEventPropertyWithCodeAnalysis(parent),
-                (child, parent) => child.EventProperty.StaticClassParent = parent);
+                () => new StaticClassEventPropertyWithCodeAnalysis());
         }
         
         public override ICollection<StaticClassEventPropertyWithCodeAnalysis> EventProperties

@@ -20,18 +20,16 @@ namespace CSharpDom.CodeAnalysis
             MethodParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<MethodDeclarationSyntax>,
-        IHasId
+        IHasNode<MethodDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly MethodWithBodyWithCodeAnalysis method;
         private readonly ExtensionParameterWithCodeAnalysis extensionParameter;
         private readonly IList<MethodParameterWithCodeAnalysis> parameters;
 
-        internal ExtensionMethodWithCodeAnalysis(StaticTypeWithCodeAnalysis parent)
+        internal ExtensionMethodWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
-            method = new MethodWithBodyWithCodeAnalysis(parent, this);
-            extensionParameter = new ExtensionParameterWithCodeAnalysis(this);
+            method = new MethodWithBodyWithCodeAnalysis(this);
+            extensionParameter = new ExtensionParameterWithCodeAnalysis();
             parameters = new FilteredList<MethodParameterWithCodeAnalysis, MethodParameterWithCodeAnalysis>(
                 method.Parameters,
                 parameter => !parameter.Syntax.Modifiers.Any(SyntaxKind.ThisKeyword));
@@ -134,10 +132,10 @@ namespace CSharpDom.CodeAnalysis
             get { return method.Syntax; }
             set { method.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return method.Method.Node; }
         }
     }
 }

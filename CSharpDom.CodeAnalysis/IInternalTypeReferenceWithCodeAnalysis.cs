@@ -2,7 +2,7 @@
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal interface IInternalTypeReferenceWithCodeAnalysis : ITypeReferenceWithCodeAnalysis, IHasId, IHasNode<TypeSyntax>
+    internal interface IInternalTypeReferenceWithCodeAnalysis : ITypeReferenceWithCodeAnalysis, IHasNode<TypeSyntax>
     {
     }
 }

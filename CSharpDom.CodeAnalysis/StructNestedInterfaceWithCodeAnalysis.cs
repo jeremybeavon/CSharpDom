@@ -21,17 +21,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly NestedInterfaceWithCodeAnalysis type;
 
-        internal StructNestedInterfaceWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
+        internal StructNestedInterfaceWithCodeAnalysis()
         {
-            type = new NestedInterfaceWithCodeAnalysis(parent, this);
+            type = new NestedInterfaceWithCodeAnalysis(this);
         }
-
-        private StructNestedInterfaceWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public NestedInterfaceWithCodeAnalysis Interface
         {
             get { return type; }
@@ -111,18 +105,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
-        {
-            get { return internalId; }
-        }
-
+        
         INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return type.Interface.Node; }
         }
     }
 }

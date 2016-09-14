@@ -21,12 +21,10 @@ namespace CSharpDom.CodeAnalysis
             this.classType = classType;
             events = new ClassEventListWrapper<SealedClassEventWithCodeAnalysis>(
                 classType.Node,
-                parent => new SealedClassEventWithCodeAnalysis(parent),
-                (child, parent) => child.Event.SealedClassParent = parent);
+                () => new SealedClassEventWithCodeAnalysis());
             eventProperties = new ClassEventPropertyListWrapper<SealedClassEventPropertyWithCodeAnalysis>(
                 classType.Node,
-                parent => new SealedClassEventPropertyWithCodeAnalysis(parent),
-                (child, parent) => child.EventProperty.SealedClassParent = parent,
+                () => new SealedClassEventPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
         

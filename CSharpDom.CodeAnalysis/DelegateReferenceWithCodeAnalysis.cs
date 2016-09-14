@@ -12,17 +12,7 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
-
-        internal DelegateReferenceWithCodeAnalysis(EventPropertyWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent, false))
-        {
-        }
-
-        internal DelegateReferenceWithCodeAnalysis(EventWithCodeAnalysis parent)
-            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(parent))
-        {
-        }
-
+        
         internal DelegateReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
             this.typeReference = typeReference;

@@ -24,13 +24,11 @@ namespace CSharpDom.CodeAnalysis
             this.structType = structType;
             explicitInterfaceIndexers = new StructTypeMemberListWrapper<IndexerWithCodeAnalysis, ExplicitInterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
                 structType.Node,
-                parent => new ExplicitInterfaceIndexerWithCodeAnalysis(parent),
-                (child, parent) => child.Indexer.Indexer.ExplicitInterfaceStructParent = parent,
+                () => new ExplicitInterfaceIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             indexers = new StructTypeMemberListWrapper<IndexerWithCodeAnalysis, StructIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
                 structType.Node,
-                parent => new StructIndexerWithCodeAnalysis(parent),
-                (child, parent) => child.Indexer.Indexer.StructParent = parent,
+                () => new StructIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 

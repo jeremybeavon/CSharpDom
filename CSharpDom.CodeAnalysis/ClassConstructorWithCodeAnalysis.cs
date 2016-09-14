@@ -14,22 +14,15 @@ namespace CSharpDom.CodeAnalysis
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<ConstructorDeclarationSyntax>,
-        IHasId
+        IHasNode<ConstructorDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly ConstructorWithCodeAnalysis constructor;
 
-        internal ClassConstructorWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal ClassConstructorWithCodeAnalysis()
         {
-            constructor = new ConstructorWithCodeAnalysis(parent, this);
+            constructor = new ConstructorWithCodeAnalysis(this);
         }
-
-        private ClassConstructorWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         internal ConstructorWithCodeAnalysis Constructor
         {
             get { return constructor; }
@@ -74,10 +67,10 @@ namespace CSharpDom.CodeAnalysis
             get { return constructor.Syntax; }
             set { constructor.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<ConstructorDeclarationSyntax> IHasNode<ConstructorDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return constructor.Node; }
         }
     }
 }

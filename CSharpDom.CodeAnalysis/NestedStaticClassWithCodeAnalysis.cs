@@ -25,21 +25,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly StaticTypeWithCodeAnalysis classType;
 
-        internal NestedStaticClassWithCodeAnalysis(ClassTypeWithCodeAnalysis parent, ClassNestedStaticClassWithCodeAnalysis @class)
+        internal NestedStaticClassWithCodeAnalysis(object @class)
         {
-            classType = new StaticTypeWithCodeAnalysis(parent, @class);
+            classType = new StaticTypeWithCodeAnalysis(@class);
         }
-
-        internal NestedStaticClassWithCodeAnalysis(StaticTypeWithCodeAnalysis parent, StaticClassNestedStaticClassWithCodeAnalysis @class)
-        {
-            classType = new StaticTypeWithCodeAnalysis(parent, @class);
-        }
-
-        internal NestedStaticClassWithCodeAnalysis(StructTypeWithCodeAnalysis parent, StructNestedStaticClassWithCodeAnalysis @class)
-        {
-            classType = new StaticTypeWithCodeAnalysis(parent, @class);
-        }
-
+        
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return classType.Attributes; }

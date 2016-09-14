@@ -12,22 +12,15 @@ namespace CSharpDom.CodeAnalysis
             IClassTypeWithCodeAnalysis,
             NestedEnumMemberWithCodeAnalysis>,
         IHasSyntax<EnumDeclarationSyntax>,
-        IHasId
+        IHasNode<EnumDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly NestedEnumWithCodeAnalysis nestedEnum;
 
-        internal ClassNestedEnumWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal ClassNestedEnumWithCodeAnalysis()
         {
-            nestedEnum = new NestedEnumWithCodeAnalysis(parent, this);
+            nestedEnum = new NestedEnumWithCodeAnalysis(this);
         }
-
-        private ClassNestedEnumWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         public NestedEnumWithCodeAnalysis Enum
         {
             get { return nestedEnum; }
@@ -78,10 +71,10 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<EnumDeclarationSyntax> IHasNode<EnumDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return nestedEnum.Node; }
         }
     }
 }

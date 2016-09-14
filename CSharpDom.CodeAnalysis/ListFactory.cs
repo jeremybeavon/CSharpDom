@@ -61,6 +61,44 @@ namespace CSharpDom.CodeAnalysis
                 createConstraintClauses);
         }
 
+        public static SyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> CreateList<
+            TParentNode,
+            TParentSyntax,
+            TChildNode,
+            TChildSyntax>(
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, SyntaxList<TChildSyntax>> getList,
+            Func<TParentSyntax, SyntaxList<TChildSyntax>, TParentSyntax> createList,
+            Func<TChildSyntax, TChildNode> factory)
+            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentSyntax : class
+            where TChildNode : class, IHasNode<TChildSyntax>
+            where TChildSyntax : SyntaxNode
+        {
+            return new SyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(node, getList, createList, factory);
+        }
+
+        public static SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> CreateList<
+            TParentNode,
+            TParentSyntax,
+            TChildNode,
+            TChildSyntax>(
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
+            Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
+            Func<TChildSyntax, TChildNode> factory)
+            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentSyntax : class
+            where TChildNode : class, IHasNode<TChildSyntax>
+            where TChildSyntax : SyntaxNode
+        {
+            return new SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(
+                node,
+                getList,
+                createList,
+                factory);
+        }
+
         public static IList<NameSyntax> CreateBaseTypeList<TParentNode, TParentSyntax>(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, BaseListSyntax, TParentSyntax> createList)

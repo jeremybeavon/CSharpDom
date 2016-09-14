@@ -14,22 +14,15 @@ namespace CSharpDom.CodeAnalysis
             IndexerParameterWithCodeAnalysis,
             AbstractAccessorWithCodeAnalysis>,
         IHasSyntax<IndexerDeclarationSyntax>,
-        IHasId
+        IHasNode<IndexerDeclarationSyntax>
     {
-        private readonly Guid internalId;
         private readonly IndexerWithCodeAnalysis indexer;
         
-        internal AbstractIndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal AbstractIndexerWithCodeAnalysis()
         {
-            indexer = new IndexerWithCodeAnalysis(parent, this);
+            indexer = new IndexerWithCodeAnalysis(this);
         }
-
-        private AbstractIndexerWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
-        }
-
+        
         internal IndexerWithCodeAnalysis Indexer
         {
             get { return indexer; }
@@ -87,9 +80,9 @@ namespace CSharpDom.CodeAnalysis
             set { indexer.Syntax = value; }
         }
         
-        Guid IHasId.InternalId
+        INode<IndexerDeclarationSyntax> IHasNode<IndexerDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return indexer.Node; }
         }
     }
 }

@@ -16,9 +16,8 @@ namespace CSharpDom.CodeAnalysis
             IndexerParameterWithCodeAnalysis,
             AccessorWithBodyWithCodeAnalysis>,
         IHasSyntax<IndexerDeclarationSyntax>,
-        IHasId
+        IHasNode<IndexerDeclarationSyntax>
     {
-        private Guid internalId;
         private readonly IndexerWithBodyWithCodeAnalysis indexer;
         private readonly CachedChildNode<
             IndexerWithCodeAnalysis,
@@ -26,21 +25,9 @@ namespace CSharpDom.CodeAnalysis
             InterfaceReferenceWithCodeAnalysis,
             NameSyntax> explicitInterface;
 
-        internal ExplicitInterfaceIndexerWithCodeAnalysis(ClassTypeWithCodeAnalysis parent)
-            : this()
+        internal ExplicitInterfaceIndexerWithCodeAnalysis()
         {
-            indexer = new IndexerWithBodyWithCodeAnalysis(parent, this);
-        }
-
-        internal ExplicitInterfaceIndexerWithCodeAnalysis(StructTypeWithCodeAnalysis parent)
-            : this()
-        {
-            indexer = new IndexerWithBodyWithCodeAnalysis(parent, this);
-        }
-
-        private ExplicitInterfaceIndexerWithCodeAnalysis()
-        {
-            internalId = Guid.NewGuid();
+            indexer = new IndexerWithBodyWithCodeAnalysis(this);
             explicitInterface = new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 indexer.Indexer.Node,
                 () => new InterfaceReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
@@ -100,10 +87,10 @@ namespace CSharpDom.CodeAnalysis
             get { return indexer.Syntax; }
             set { indexer.Syntax = value; }
         }
-
-        Guid IHasId.InternalId
+        
+        INode<IndexerDeclarationSyntax> IHasNode<IndexerDeclarationSyntax>.Node
         {
-            get { return internalId; }
+            get { return indexer.Indexer.Node; }
         }
     }
 }

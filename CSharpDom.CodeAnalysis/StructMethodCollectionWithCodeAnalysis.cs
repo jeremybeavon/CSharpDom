@@ -24,13 +24,11 @@ namespace CSharpDom.CodeAnalysis
             this.structType = structType;
             explicitInterfaceMethods = new StructTypeMemberListWrapper<MethodWithCodeAnalysis, ExplicitInterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 structType.Node,
-                parent => new ExplicitInterfaceMethodWithCodeAnalysis(parent),
-                (child, parent) => child.Method.Method.ExplicitInterfaceStructParent = parent,
+                () => new ExplicitInterfaceMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             methods = new StructTypeMemberListWrapper<MethodWithCodeAnalysis, StructMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 structType.Node,
-                parent => new StructMethodWithCodeAnalysis(parent),
-                (child, parent) => child.Method.Method.StructParent = parent,
+                () => new StructMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
 
