@@ -1,33 +1,61 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class NewExpressionWithCodeAnalysis<TTypeReference, TExpression> :
-        INewExpression<TTypeReference, TExpression>
-        where TTypeReference : ITypeReference
-        where TExpression : IExpression
+    public sealed class NewExpressionWithCodeAnalysis :
+        EditableNewExpression<ITypeReferenceWithCodeAnalysis, IExpressionWithCodeAnalysis>,
+        IHasSyntax<ObjectCreationExpressionSyntax>,
+        IInternalExpression
     {
-        public abstract IList<TExpression> Parameters { get; set; }
+        private readonly ExpressionNode<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax> node;
+        private readonly ArgumentListWrapper<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax> parameters;
+        private readonly CachedTypeReferenceNode<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax> type;
 
-        public abstract TTypeReference Type { get; set; }
-
-        IReadOnlyList<TExpression> INewExpression<TTypeReference, TExpression>.Parameters
+        public NewExpressionWithCodeAnalysis()
         {
-            get { return new ReadOnlyCollection<TExpression>(Parameters); }
+            node = new ExpressionNode<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax>(this);
+            parameters = new ArgumentListWrapper<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax>(
+                node,
+                syntax => syntax.ArgumentList,
+                (parentSyntax, childSyntax) => parentSyntax.WithArgumentList(childSyntax));
+            type = new CachedTypeReferenceNode<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax>(
+                node,
+                syntax => syntax.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
         }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override IList<IExpressionWithCodeAnalysis> Parameters
         {
-            visitor.VisitNewExpression(this);
+            get { return parameters; }
+            set { parameters.ReplaceList(value); }
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public ObjectCreationExpressionSyntax Syntax
         {
-            GenericExpressionVisitor.VisitNewExpressionChildren(this, visitor);
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        public override ITypeReferenceWithCodeAnalysis Type
+        {
+            get { return type.Value; }
+            set { type.Value = value; }
+        }
+
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
+        {
+            get { return node; }
+        }
+
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (ObjectCreationExpressionSyntax)value; }
         }
     }
 }

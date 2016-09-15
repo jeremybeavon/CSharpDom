@@ -19,8 +19,8 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<OperatorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private static readonly IDictionary<SyntaxKind, OperatorOverloadType> operatorMap =
-            new Dictionary<SyntaxKind, OperatorOverloadType>()
+        private static readonly Map<SyntaxKind, OperatorOverloadType> operatorMap =
+            new Map<SyntaxKind, OperatorOverloadType>()
             {
                 { SyntaxKind.AmpersandToken, OperatorOverloadType.And },
                 { SyntaxKind.TildeToken, OperatorOverloadType.BitwiseNot },
@@ -88,15 +88,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override MethodBodyWithCodeAnalysis Body
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return body.Value; }
+            set { body.Value = value; }
         }
 
         public override IType DeclaringType
@@ -108,7 +101,7 @@ namespace CSharpDom.CodeAnalysis
         public override OperatorOverloadType OperatorType
         {
             get { return operatorMap[Syntax.OperatorToken.Kind()]; }
-            set { Syntax = Syntax.WithOperatorToken(SyntaxFactory.Token(operatorMap.First(map => map.Value == value).Key)); }
+            set { Syntax = Syntax.WithOperatorToken(SyntaxFactory.Token(operatorMap[value])); }
         }
 
         public override IList<OperatorParameterWithCodeAnalysis> Parameters

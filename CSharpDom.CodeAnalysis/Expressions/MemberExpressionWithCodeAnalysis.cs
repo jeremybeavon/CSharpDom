@@ -1,23 +1,58 @@
 ﻿using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class MemberExpressionWithCodeAnalysis<TExpression> : IMemberExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class MemberExpressionWithCodeAnalysis :
+        EditableMemberExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<MemberAccessExpressionSyntax>,
+        IInternalExpression
     {
-        public abstract string MemberName { get; set; }
+        private readonly ExpressionNode<MemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax> node;
+        private readonly CachedExpressionNode<MemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax> objectExpression;
 
-        public abstract TExpression ObjectExpression { get; set; }
-
-        public void Accept(IGenericExpressionVisitor visitor)
+        public MemberExpressionWithCodeAnalysis()
         {
-            visitor.VisitMemberExpression(this);
+            node = new ExpressionNode<MemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax>(this);
+            objectExpression = new CachedExpressionNode<MemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override string MemberName
         {
-            GenericExpressionVisitor.VisitMemberExpressionChildren(this, visitor);
+            get { return Syntax.Name.Identifier.Text; }
+            set
+            {
+                MemberAccessExpressionSyntax syntax = Syntax;
+                Syntax = syntax.WithName((SimpleNameSyntax)syntax.Name.WithName(value));
+            }
+        }
+
+        public override IExpressionWithCodeAnalysis ObjectExpression
+        {
+            get { return objectExpression.Value; }
+            set { objectExpression.Value = value; }
+        }
+
+        public MemberAccessExpressionSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
+        {
+            get { return node; }
+        }
+        
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (MemberAccessExpressionSyntax)value; }
         }
     }
 }

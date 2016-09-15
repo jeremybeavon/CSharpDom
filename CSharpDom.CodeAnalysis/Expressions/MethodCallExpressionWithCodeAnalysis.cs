@@ -1,30 +1,60 @@
 ﻿using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class MethodCallExpressionWithCodeAnalysis<TExpression> : IMethodCallExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class MethodCallExpressionWithCodeAnalysis :
+        EditableMethodCallExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<InvocationExpressionSyntax>,
+        IInternalExpression
     {
-        public abstract TExpression Expression { get; set; }
+        private readonly ExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> node;
+        private readonly CachedExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> expression;
+        private readonly ArgumentListWrapper<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> parameterExpressions;
 
-        public abstract IList<TExpression> ParameterExpressions { get; set; }
-
-        IReadOnlyList<TExpression> IMethodCallExpression<TExpression>.ParameterExpressions
+        public MethodCallExpressionWithCodeAnalysis()
         {
-            get { return new ReadOnlyCollection<TExpression>(ParameterExpressions); }
+            node = new ExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(this);
+            expression = new CachedExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
+            parameterExpressions = new ArgumentListWrapper<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(
+                node,
+                syntax => syntax.ArgumentList,
+                (parentSyntax, childSyntax) => parentSyntax.WithArgumentList(childSyntax));
         }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis Expression
         {
-            visitor.VisitMethodCallExpression(this);
+            get { return expression.Value; }
+            set { expression.Value = value; }
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IList<IExpressionWithCodeAnalysis> ParameterExpressions
         {
-            GenericExpressionVisitor.VisitMethodCallExpressionChildren(this, visitor);
+            get { return parameterExpressions; }
+            set { parameterExpressions.ReplaceList(value); }
+        }
+
+        public InvocationExpressionSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (InvocationExpressionSyntax)value; }
+        }
+
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
+        {
+            get { return node; }
         }
     }
 }

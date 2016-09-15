@@ -1,22 +1,37 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class OutExpressionWithCodeAnalysis<TExpression> : IOutExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class OutExpressionWithCodeAnalysis :
+        EditableOutExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<ArgumentSyntax>
     {
-        public abstract TExpression Expression { get; set; }
+        private readonly Node<OutExpressionWithCodeAnalysis, ArgumentSyntax> node;
+        private readonly CachedExpressionNode<OutExpressionWithCodeAnalysis, ArgumentSyntax> expression;
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public OutExpressionWithCodeAnalysis()
         {
-            visitor.VisitOutExpression(this);
+            node = new Node<OutExpressionWithCodeAnalysis, ArgumentSyntax>(this);
+            expression = new CachedExpressionNode<OutExpressionWithCodeAnalysis, ArgumentSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis Expression
         {
-            GenericExpressionVisitor.VisitOutExpressionChildren(this, visitor);
+            get { return expression.Value; }
+            set { expression.Value = value; }
+        }
+
+        public ArgumentSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
     }
 }

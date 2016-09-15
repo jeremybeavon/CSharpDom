@@ -1,22 +1,49 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class TypeofExpressionWithCodeAnalysis<TTypeReference> :
-        ITypeofExpression<TTypeReference>
-        where TTypeReference : ITypeReference
+    public sealed class TypeofExpressionWithCodeAnalysis :
+        EditableTypeofExpression<ITypeReferenceWithCodeAnalysis>,
+        IHasSyntax<TypeOfExpressionSyntax>,
+        IInternalExpression
     {
-        public abstract TTypeReference Type { get; set; }
+        private readonly ExpressionNode<TypeofExpressionWithCodeAnalysis, TypeOfExpressionSyntax> node;
+        private readonly CachedTypeReferenceNode<TypeofExpressionWithCodeAnalysis, TypeOfExpressionSyntax> type;
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public TypeofExpressionWithCodeAnalysis()
         {
-            visitor.VisitTypeofExpression(this);
+            node = new ExpressionNode<TypeofExpressionWithCodeAnalysis, TypeOfExpressionSyntax>(this);
+            type = new CachedTypeReferenceNode<TypeofExpressionWithCodeAnalysis, TypeOfExpressionSyntax>(
+                node,
+                syntax => syntax.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public TypeOfExpressionSyntax Syntax
         {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        public override ITypeReferenceWithCodeAnalysis Type
+        {
+            get { return type.Value; }
+            set { type.Value = value; }
+        }
+
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
+        {
+            get { return node; }
+        }
+
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (TypeOfExpressionSyntax)value; }
         }
     }
 }
