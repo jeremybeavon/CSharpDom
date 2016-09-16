@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StructFieldWithCodeAnalysis()
         {
-            field = new FieldGroupWithCodeAnalysis(this);
+            field = new FieldGroupWithCodeAnalysis();
         }
         
         public FieldGroupWithCodeAnalysis Field

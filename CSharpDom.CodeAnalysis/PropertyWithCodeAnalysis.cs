@@ -15,10 +15,8 @@ namespace CSharpDom.CodeAnalysis
             IBasicType,
             ITypeReferenceWithCodeAnalysis,
             AccessorWithCodeAnalysis>,
-        IHasSyntax<PropertyDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<PropertyDeclarationSyntax>
     {
-        private readonly object property;
         private readonly Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> node;
         private readonly AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> attributes;
         private readonly CachedTypeReferenceNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> propertyType;
@@ -33,10 +31,9 @@ namespace CSharpDom.CodeAnalysis
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> setAccessor;
         
-        internal PropertyWithCodeAnalysis(object property)
+        internal PropertyWithCodeAnalysis()
         {
             node = new Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(this);
-            this.property = property;
             attributes = new AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -116,11 +113,6 @@ namespace CSharpDom.CodeAnalysis
         internal static AccessorDeclarationSyntax GetAccessorDeclaration(PropertyDeclarationSyntax syntax, SyntaxKind kind)
         {
             return syntax.AccessorList.GetAccessorDeclaration(kind);
-        }
-        
-        T ISimpleMember.Member<T>()
-        {
-            return (T)property;
         }
     }
 }

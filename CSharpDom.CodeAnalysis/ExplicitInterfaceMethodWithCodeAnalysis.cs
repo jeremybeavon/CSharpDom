@@ -28,7 +28,7 @@ namespace CSharpDom.CodeAnalysis
         
         internal ExplicitInterfaceMethodWithCodeAnalysis()
         {
-            method = new MethodWithBodyWithCodeAnalysis(this);
+            method = new MethodWithBodyWithCodeAnalysis();
             explicitInterface = new CachedChildNode<MethodWithCodeAnalysis, MethodDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 method.Method.Node,
                 () => new InterfaceReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),

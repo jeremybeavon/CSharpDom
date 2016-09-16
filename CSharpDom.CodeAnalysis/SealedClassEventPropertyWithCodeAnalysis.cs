@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal SealedClassEventPropertyWithCodeAnalysis()
         {
-            @event = new ClassEventPropertyWithCodeAnalysis(this);
+            @event = new ClassEventPropertyWithCodeAnalysis();
         }
         
         public EventPropertyWithCodeAnalysis EventProperty

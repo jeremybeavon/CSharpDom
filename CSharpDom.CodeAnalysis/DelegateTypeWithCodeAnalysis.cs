@@ -13,8 +13,7 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             DelegateParameterWithCodeAnalysis>,
-        IHasSyntax<DelegateDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<DelegateDeclarationSyntax>
     {
         private readonly object @delegate;
         private readonly Node<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> node;
@@ -27,10 +26,9 @@ namespace CSharpDom.CodeAnalysis
             ParameterSyntax> parameters;
         private readonly CachedTypeReferenceNode<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> returnType;
         
-        internal DelegateTypeWithCodeAnalysis(object @delegate)
+        internal DelegateTypeWithCodeAnalysis()
         {
             node = new Node<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(this);
-            this.@delegate = @delegate;
             attributes = new AttributeListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -91,11 +89,6 @@ namespace CSharpDom.CodeAnalysis
         internal Node<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> Node
         {
             get { return node; }
-        }
-        
-        T ISimpleMember.Member<T>()
-        {
-            return (T)@delegate;
         }
     }
 }

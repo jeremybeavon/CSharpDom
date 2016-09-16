@@ -11,22 +11,18 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly StructTypeWithCodeAnalysis structType;
         private readonly StructTypeMemberListWrapper<
-            MethodWithCodeAnalysis,
             ExplicitInterfaceMethodWithCodeAnalysis,
             MethodDeclarationSyntax> explicitInterfaceMethods;
-        private readonly StructTypeMemberListWrapper<
-            MethodWithCodeAnalysis,
-            StructMethodWithCodeAnalysis,
-            MethodDeclarationSyntax> methods;
+        private readonly StructTypeMemberListWrapper<StructMethodWithCodeAnalysis, MethodDeclarationSyntax> methods;
 
         internal StructMethodCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis structType)
         {
             this.structType = structType;
-            explicitInterfaceMethods = new StructTypeMemberListWrapper<MethodWithCodeAnalysis, ExplicitInterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+            explicitInterfaceMethods = new StructTypeMemberListWrapper<ExplicitInterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 structType.Node,
                 () => new ExplicitInterfaceMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
-            methods = new StructTypeMemberListWrapper<MethodWithCodeAnalysis, StructMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+            methods = new StructTypeMemberListWrapper<StructMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 structType.Node,
                 () => new StructMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
@@ -42,16 +38,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return methods; }
             set { structType.Members.CombineList(nameof(Methods), value.Select(item => item.Syntax)); }
-        }
-
-        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> ExplicitInterfaceMethodList
-        {
-            get { return explicitInterfaceMethods; }
-        }
-
-        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> MethodList
-        {
-            get { return methods; }
         }
     }
 }

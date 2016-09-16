@@ -16,10 +16,8 @@ namespace CSharpDom.CodeAnalysis
             IType,
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<ConstructorDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<ConstructorDeclarationSyntax>
     {
-        private readonly object constructor;
         private readonly Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> node;
         private readonly AttributeListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> attributes;
         private readonly MethodBodyNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> body;
@@ -29,10 +27,9 @@ namespace CSharpDom.CodeAnalysis
             ConstructorParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
         
-        internal ConstructorWithCodeAnalysis(object constructor)
+        internal ConstructorWithCodeAnalysis()
         {
             node = new Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(this);
-            this.constructor = constructor;
             attributes = new AttributeListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -85,11 +82,6 @@ namespace CSharpDom.CodeAnalysis
         internal Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> Node
         {
             get { return node; }
-        }
-        
-        T ISimpleMember.Member<T>()
-        {
-            return (T)constructor;
         }
     }
 }

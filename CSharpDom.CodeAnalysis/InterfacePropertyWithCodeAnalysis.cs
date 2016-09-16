@@ -19,7 +19,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal InterfacePropertyWithCodeAnalysis()
         {
-            property = new PropertyWithCodeAnalysis(this);
+            property = new PropertyWithCodeAnalysis();
         }
         
         public PropertyWithCodeAnalysis Property

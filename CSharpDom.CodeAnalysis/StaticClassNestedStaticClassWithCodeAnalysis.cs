@@ -27,7 +27,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StaticClassNestedStaticClassWithCodeAnalysis()
         {
-            classType = new NestedStaticClassWithCodeAnalysis(this);
+            classType = new NestedStaticClassWithCodeAnalysis();
         }
 
         public NestedStaticClassWithCodeAnalysis Class

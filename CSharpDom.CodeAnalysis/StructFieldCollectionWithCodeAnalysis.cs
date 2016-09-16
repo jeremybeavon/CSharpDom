@@ -10,23 +10,17 @@ namespace CSharpDom.CodeAnalysis
         EditableStructFieldCollection<StructFieldWithCodeAnalysis, StructConstantWithCodeAnalysis>
     {
         private readonly StructTypeWithCodeAnalysis structType;
-        private readonly StructTypeMemberListWrapper<
-            ConstantGroupWithCodeAnalysis,
-            StructConstantWithCodeAnalysis,
-            FieldDeclarationSyntax> constants;
-        private readonly StructTypeMemberListWrapper<
-            FieldGroupWithCodeAnalysis,
-            StructFieldWithCodeAnalysis,
-            FieldDeclarationSyntax> fields;            
+        private readonly StructTypeMemberListWrapper<StructConstantWithCodeAnalysis, FieldDeclarationSyntax> constants;
+        private readonly StructTypeMemberListWrapper<StructFieldWithCodeAnalysis, FieldDeclarationSyntax> fields;            
 
         internal StructFieldCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis structType)
         {
             this.structType = structType;
-            constants = new StructTypeMemberListWrapper<ConstantGroupWithCodeAnalysis, StructConstantWithCodeAnalysis, FieldDeclarationSyntax>(
+            constants = new StructTypeMemberListWrapper<StructConstantWithCodeAnalysis, FieldDeclarationSyntax>(
                 structType.Node,
                 () => new StructConstantWithCodeAnalysis(),
                 syntax => syntax.IsConstant());
-            fields = new StructTypeMemberListWrapper<FieldGroupWithCodeAnalysis, StructFieldWithCodeAnalysis, FieldDeclarationSyntax>(
+            fields = new StructTypeMemberListWrapper<StructFieldWithCodeAnalysis, FieldDeclarationSyntax>(
                 structType.Node,
                 () => new StructFieldWithCodeAnalysis(),
                 syntax => !syntax.IsConstant());
@@ -42,16 +36,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return fields; }
             set { structType.Members.CombineList(nameof(Fields), value.Select(item => item.Syntax)); }
-        }
-
-        internal IChildCollection<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> ConstantList
-        {
-            get { return constants; }
-        }
-
-        internal IChildCollection<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> FieldList
-        {
-            get { return fields; }
         }
     }
 }

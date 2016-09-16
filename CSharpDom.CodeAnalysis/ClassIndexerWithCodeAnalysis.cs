@@ -20,14 +20,9 @@ namespace CSharpDom.CodeAnalysis
 
         internal ClassIndexerWithCodeAnalysis()
         {
-            indexer = new IndexerWithBodyWithCodeAnalysis(this);
+            indexer = new IndexerWithBodyWithCodeAnalysis();
         }
-
-        internal ClassIndexerWithCodeAnalysis(object indexer)
-        {
-            this.indexer = new IndexerWithBodyWithCodeAnalysis(indexer);
-        }
-
+        
         public IndexerWithBodyWithCodeAnalysis Indexer
         {
             get { return indexer; }

@@ -1,29 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
 using CSharpDom.NotSupported.Partial;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructCollectionWithCodeAnalysis :
-        AbstractStructCollection<StructWithCodeAnalysis, PartialStructNotSupported>
+        EditableStructCollection<StructWithCodeAnalysis, PartialStructNotSupported>
     {
-        private readonly TypeContainer typeContainer;
+        private readonly IMemberList members;
+        private readonly ICollection<StructWithCodeAnalysis> structs;
 
-        internal StructCollectionWithCodeAnalysis(TypeContainer typeContainer)
+        internal StructCollectionWithCodeAnalysis(NamespaceWithCodeAnalysis @namespace)
         {
-            this.typeContainer = typeContainer;
+            structs =
+                new NamespaceMemberListWrapper<StructWithCodeAnalysis, StructDeclarationSyntax>(
+                    @namespace.Node,
+                    () => new StructWithCodeAnalysis());
         }
 
-        public override IReadOnlyCollection<PartialStructNotSupported> PartialStructs
+        public override ICollection<PartialStructNotSupported> PartialStructs
         {
-            get { return new PartialStructNotSupported[0]; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        protected override IReadOnlyCollection<StructWithCodeAnalysis> Structs
+        public override ICollection<StructWithCodeAnalysis> Structs
         {
-            get { return typeContainer.Structs; }
+            get { return structs; }
+            set { members.CombineList(nameof(Structs), value.Select(item => item.Syntax)); }
         }
     }
 }

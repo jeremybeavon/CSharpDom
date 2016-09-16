@@ -21,7 +21,7 @@ namespace CSharpDom.CodeAnalysis
         
         internal StructIndexerWithCodeAnalysis()
         {
-            indexer = new IndexerWithBodyWithCodeAnalysis(this);
+            indexer = new IndexerWithBodyWithCodeAnalysis();
         }
 
         public IndexerWithBodyWithCodeAnalysis Indexer

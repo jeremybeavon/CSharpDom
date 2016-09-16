@@ -6,7 +6,7 @@ namespace CSharpDom.CodeAnalysis
     internal static class MemberListWrapperExtensions
     {
         public static StaticConstructorWithCodeAnalysis GetStaticConstructor<TParentNode, TParentSyntax>(
-            this MemberListWrapper<TParentNode, TParentSyntax, EmptySimpleMember, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> list)
+            this MemberListWrapper<TParentNode, TParentSyntax, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> list)
             where TParentNode : class, IHasSyntax<TParentSyntax>
             where TParentSyntax : TypeDeclarationSyntax
         {
@@ -14,7 +14,7 @@ namespace CSharpDom.CodeAnalysis
         }
 
         public static void SetStaticConstructor<TParentNode, TParentSyntax>(
-            this MemberListWrapper<TParentNode, TParentSyntax, EmptySimpleMember, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> list,
+            this MemberListWrapper<TParentNode, TParentSyntax, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> list,
             StaticConstructorWithCodeAnalysis constructor)
             where TParentNode : class, IHasSyntax<TParentSyntax>
             where TParentSyntax : TypeDeclarationSyntax

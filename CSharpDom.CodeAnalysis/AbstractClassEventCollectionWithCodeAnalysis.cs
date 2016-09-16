@@ -55,15 +55,5 @@ namespace CSharpDom.CodeAnalysis
             get { return events; }
             set { classType.Members.CombineList(nameof(Events), value.Select(item => item.Syntax)); }
         }
-
-        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> AbstractEventList
-        {
-            get { return abstractEvents; }
-        }
-
-        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> EventList
-        {
-            get { return events; }
-        }
     }
 }

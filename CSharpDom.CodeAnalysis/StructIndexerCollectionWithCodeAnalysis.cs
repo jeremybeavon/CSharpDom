@@ -11,22 +11,18 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly StructTypeWithCodeAnalysis structType;
         private readonly StructTypeMemberListWrapper<
-            IndexerWithCodeAnalysis,
             ExplicitInterfaceIndexerWithCodeAnalysis,
             IndexerDeclarationSyntax> explicitInterfaceIndexers;
-        private readonly StructTypeMemberListWrapper<
-            IndexerWithCodeAnalysis,
-            StructIndexerWithCodeAnalysis,
-            IndexerDeclarationSyntax> indexers;
+        private readonly StructTypeMemberListWrapper<StructIndexerWithCodeAnalysis, IndexerDeclarationSyntax> indexers;
 
         internal StructIndexerCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis structType)
         {
             this.structType = structType;
-            explicitInterfaceIndexers = new StructTypeMemberListWrapper<IndexerWithCodeAnalysis, ExplicitInterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
+            explicitInterfaceIndexers = new StructTypeMemberListWrapper<ExplicitInterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
                 structType.Node,
                 () => new ExplicitInterfaceIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
-            indexers = new StructTypeMemberListWrapper<IndexerWithCodeAnalysis, StructIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
+            indexers = new StructTypeMemberListWrapper<StructIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
                 structType.Node,
                 () => new StructIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
@@ -42,16 +38,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return indexers; }
             set { structType.Members.CombineList(nameof(Indexers), value.Select(item => item.Syntax)); }
-        }
-
-        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> ExplicitInterfaceIndexerList
-        {
-            get { return explicitInterfaceIndexers; }
-        }
-
-        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> IndexerList
-        {
-            get { return indexers; }
         }
     }
 }

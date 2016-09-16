@@ -12,15 +12,12 @@ namespace CSharpDom.CodeAnalysis
         EditableStaticClassNestedInterfaceCollection<StaticClassNestedInterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
     {
         private readonly StaticTypeWithCodeAnalysis staticType;
-        private readonly StaticTypeMemberListWrapper<
-            InterfaceTypeWithCodeAnalysis,
-            StaticClassNestedInterfaceWithCodeAnalysis,
-            InterfaceDeclarationSyntax> interfaces;
+        private readonly StaticTypeMemberListWrapper<StaticClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
 
         internal StaticClassNestedInterfaceCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis staticType)
         {
             this.staticType = staticType;
-            interfaces = new StaticTypeMemberListWrapper<InterfaceTypeWithCodeAnalysis, StaticClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+            interfaces = new StaticTypeMemberListWrapper<StaticClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 staticType.Node,
                 () => new StaticClassNestedInterfaceWithCodeAnalysis());
         }
@@ -30,12 +27,7 @@ namespace CSharpDom.CodeAnalysis
             get { return interfaces; }
             set { staticType.Members.CombineList(nameof(Interfaces), value.Select(item => item.Syntax)); }
         }
-
-        internal IChildCollection<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> InterfaceList
-        {
-            get { return interfaces; }
-        }
-
+        
         public override ICollection<PartialInterfaceNotSupported> PartialInterfaces
         {
             get

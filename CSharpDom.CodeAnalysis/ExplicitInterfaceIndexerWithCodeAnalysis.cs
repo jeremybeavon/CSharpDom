@@ -27,7 +27,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal ExplicitInterfaceIndexerWithCodeAnalysis()
         {
-            indexer = new IndexerWithBodyWithCodeAnalysis(this);
+            indexer = new IndexerWithBodyWithCodeAnalysis();
             explicitInterface = new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 indexer.Indexer.Node,
                 () => new InterfaceReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),

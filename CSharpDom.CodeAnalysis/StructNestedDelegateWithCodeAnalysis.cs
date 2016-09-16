@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StructNestedDelegateWithCodeAnalysis()
         {
-            nestedDelegate = new NestedDelegateWithCodeAnalysis(this);
+            nestedDelegate = new NestedDelegateWithCodeAnalysis();
         }
         
         public NestedDelegateWithCodeAnalysis Delegate

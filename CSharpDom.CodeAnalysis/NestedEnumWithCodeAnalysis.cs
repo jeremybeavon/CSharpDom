@@ -9,17 +9,14 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class NestedEnumWithCodeAnalysis :
         EditableNestedEnum<AttributeGroupWithCodeAnalysis, IType, NestedEnumMemberWithCodeAnalysis>,
-        IHasSyntax<EnumDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<EnumDeclarationSyntax>
     {
-        private readonly object @enum;
         private readonly Node<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> node;
         private readonly AttributeListWrapper<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> attributes;
         
-        internal NestedEnumWithCodeAnalysis(object @enum)
+        internal NestedEnumWithCodeAnalysis()
         {
             node = new Node<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(this);
-            this.@enum = @enum;
             attributes = new AttributeListWrapper<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -79,11 +76,6 @@ namespace CSharpDom.CodeAnalysis
         internal Node<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> Node
         {
             get { return node; }
-        }
-        
-        T ISimpleMember.Member<T>()
-        {
-            return (T)@enum;
         }
     }
 }

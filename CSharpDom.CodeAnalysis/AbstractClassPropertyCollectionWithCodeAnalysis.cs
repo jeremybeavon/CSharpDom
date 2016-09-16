@@ -46,15 +46,5 @@ namespace CSharpDom.CodeAnalysis
             get { return properties; }
             set { classType.Members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }
         }
-        
-        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> AbstractPropertyList
-        {
-            get { return abstractProperties; }
-        }
-
-        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> PropertyList
-        {
-            get { return properties; }
-        }
     }
 }

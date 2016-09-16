@@ -12,23 +12,17 @@ namespace CSharpDom.CodeAnalysis
         EditableClassFieldCollection<ClassFieldWithCodeAnalysis, ClassConstantWithCodeAnalysis>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
-        private readonly ClassMemberListWrapper<
-            ConstantGroupWithCodeAnalysis,
-            ClassConstantWithCodeAnalysis,
-            FieldDeclarationSyntax> constants;
-        private readonly ClassMemberListWrapper<
-            FieldGroupWithCodeAnalysis,
-            ClassFieldWithCodeAnalysis,
-            FieldDeclarationSyntax> fields;
+        private readonly ClassMemberListWrapper<ClassConstantWithCodeAnalysis, FieldDeclarationSyntax> constants;
+        private readonly ClassMemberListWrapper<ClassFieldWithCodeAnalysis, FieldDeclarationSyntax> fields;
 
         internal ClassFieldCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
-            constants = new ClassMemberListWrapper<ConstantGroupWithCodeAnalysis, ClassConstantWithCodeAnalysis, FieldDeclarationSyntax>(
+            constants = new ClassMemberListWrapper<ClassConstantWithCodeAnalysis, FieldDeclarationSyntax>(
                 classType.Node,
                 () => new ClassConstantWithCodeAnalysis(),
                 syntax => syntax.IsConstant());
-            fields = new ClassMemberListWrapper<FieldGroupWithCodeAnalysis, ClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
+            fields = new ClassMemberListWrapper<ClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
                 classType.Node,
                 () => new ClassFieldWithCodeAnalysis(),
                 syntax => !syntax.IsConstant());
@@ -44,16 +38,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return fields; }
             set { classType.Members.CombineList(nameof(Fields), value.Select(item => item.Syntax)); }
-        }
-
-        internal IChildCollection<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> ConstantList
-        {
-            get { return constants; }
-        }
-
-        internal IChildCollection<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> FieldList
-        {
-            get { return fields; }
         }
     }
 }

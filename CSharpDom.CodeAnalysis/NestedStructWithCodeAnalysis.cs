@@ -30,9 +30,9 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly StructTypeWithCodeAnalysis structType;
 
-        internal NestedStructWithCodeAnalysis(object @struct)
+        internal NestedStructWithCodeAnalysis()
         {
-            structType = new StructTypeWithCodeAnalysis(@struct);
+            structType = new StructTypeWithCodeAnalysis();
         }
         
         public StructTypeWithCodeAnalysis Struct

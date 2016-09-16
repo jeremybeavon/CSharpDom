@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpDom.CodeAnalysis
 {
     internal class ClassPropertyListWrapper<TChildNode> :
-        ClassMemberListWrapper<PropertyWithCodeAnalysis, TChildNode, PropertyDeclarationSyntax>
+        ClassMemberListWrapper<TChildNode, PropertyDeclarationSyntax>
         where TChildNode : class, IHasNode<PropertyDeclarationSyntax>
     {
         public ClassPropertyListWrapper(

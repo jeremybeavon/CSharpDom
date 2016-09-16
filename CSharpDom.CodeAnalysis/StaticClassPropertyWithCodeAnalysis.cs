@@ -19,7 +19,7 @@ namespace CSharpDom.CodeAnalysis
         
         internal StaticClassPropertyWithCodeAnalysis()
         {
-            property = new PropertyWithBodyWithCodeAnalysis(this);
+            property = new PropertyWithBodyWithCodeAnalysis();
         }
         
         public PropertyWithBodyWithCodeAnalysis Property

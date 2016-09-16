@@ -21,14 +21,9 @@ namespace CSharpDom.CodeAnalysis
 
         internal ClassMethodWithCodeAnalysis()
         {
-            method = new MethodWithBodyWithCodeAnalysis(this);
+            method = new MethodWithBodyWithCodeAnalysis();
         }
-
-        internal ClassMethodWithCodeAnalysis(object method)
-        {
-            this.method = new MethodWithBodyWithCodeAnalysis(method);
-        }
-
+        
         public MethodWithBodyWithCodeAnalysis Method
         {
             get { return method; }

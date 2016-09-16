@@ -13,10 +13,8 @@ namespace CSharpDom.CodeAnalysis
             AttributeGroupWithCodeAnalysis,
             IBasicType,
             DelegateReferenceWithCodeAnalysis>,
-        IHasSyntax<EventFieldDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<EventFieldDeclarationSyntax>
     {
-        private readonly object @event;
         private readonly Node<EventWithCodeAnalysis, EventFieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax> attributes;
         private readonly CachedChildNode<
@@ -25,9 +23,8 @@ namespace CSharpDom.CodeAnalysis
             DelegateReferenceWithCodeAnalysis,
             NameSyntax> eventType;
         
-        internal EventWithCodeAnalysis(object @event)
+        internal EventWithCodeAnalysis()
         {
-            this.@event = @event;
             node = new Node<EventWithCodeAnalysis, EventFieldDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax>(
                 node,
@@ -84,11 +81,6 @@ namespace CSharpDom.CodeAnalysis
         internal AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax> AttributeList
         {
             get { return attributes; }
-        }
-
-        T ISimpleMember.Member<T>()
-        {
-            return (T)@event;
         }
     }
 }

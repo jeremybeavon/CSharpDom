@@ -23,7 +23,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StructNestedInterfaceWithCodeAnalysis()
         {
-            type = new NestedInterfaceWithCodeAnalysis(this);
+            type = new NestedInterfaceWithCodeAnalysis();
         }
         
         public NestedInterfaceWithCodeAnalysis Interface

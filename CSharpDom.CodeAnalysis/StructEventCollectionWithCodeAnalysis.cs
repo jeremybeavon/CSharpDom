@@ -13,31 +13,24 @@ namespace CSharpDom.CodeAnalysis
             ExplicitInterfaceEventWithCodeAnalysis>
     {
         private readonly StructTypeWithCodeAnalysis structType;
+        private readonly StructTypeMemberListWrapper<StructEventPropertyWithCodeAnalysis, EventDeclarationSyntax> eventProperties;
         private readonly StructTypeMemberListWrapper<
-            EventPropertyWithCodeAnalysis,
-            StructEventPropertyWithCodeAnalysis,
-            EventDeclarationSyntax> eventProperties;
-        private readonly StructTypeMemberListWrapper<
-            EventPropertyWithCodeAnalysis,
             ExplicitInterfaceEventWithCodeAnalysis,
             EventDeclarationSyntax> explicitInterfaceEvents;
-        private readonly StructTypeMemberListWrapper<
-            EventWithCodeAnalysis,
-            StructEventWithCodeAnalysis,
-            EventFieldDeclarationSyntax> events;
+        private readonly StructTypeMemberListWrapper<StructEventWithCodeAnalysis, EventFieldDeclarationSyntax> events;
 
         internal StructEventCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis structType)
         {
             this.structType = structType;
-            eventProperties = new StructTypeMemberListWrapper<EventPropertyWithCodeAnalysis, StructEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
+            eventProperties = new StructTypeMemberListWrapper<StructEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 structType.Node,
                 () => new StructEventPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
-            explicitInterfaceEvents = new StructTypeMemberListWrapper<EventPropertyWithCodeAnalysis, ExplicitInterfaceEventWithCodeAnalysis, EventDeclarationSyntax>(
+            explicitInterfaceEvents = new StructTypeMemberListWrapper<ExplicitInterfaceEventWithCodeAnalysis, EventDeclarationSyntax>(
                 structType.Node,
                 () => new ExplicitInterfaceEventWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
-            events = new StructTypeMemberListWrapper<EventWithCodeAnalysis, StructEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
+            events = new StructTypeMemberListWrapper<StructEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
                 structType.Node,
                 () => new StructEventWithCodeAnalysis());
         }
@@ -58,21 +51,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return events; }
             set { structType.Members.CombineList(nameof(Events), value.Select(item => item.Syntax)); }
-        }
-
-        internal IChildCollection<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> EventPropertyList
-        {
-            get { return eventProperties; }
-        }
-
-        internal IChildCollection<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> ExplicitInterfaceEventList
-        {
-            get { return explicitInterfaceEvents; }
-        }
-
-        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> EventList
-        {
-            get { return events; }
         }
     }
 }

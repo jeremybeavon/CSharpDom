@@ -1,18 +1,16 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
-using CSharpDom.Mono.Cecil.Internal.Hiding;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StaticClassWithCodeAnalysis :
-        AbstractStaticClass<
+        EditableStaticClass<
             NamespaceWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
+            DocumentWithCodeAnalysis,
+            ProjectWithCodeAnalysis,
+            SolutionWithCodeAnalysis,
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
@@ -25,133 +23,134 @@ namespace CSharpDom.CodeAnalysis
             StaticClassNestedInterfaceCollectionWithCodeAnalysis,
             StaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
-        IInternalTypeWithCodeAnalysis,
-        IHasTypeDefinition//,
+        IHasSyntax<ClassDeclarationSyntax>,
+        IHasNode<ClassDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly AssemblyWithCodeAnalysis assembly;
-        private readonly NamespaceWithCodeAnalysis @namespace;
-        private readonly TypeDefinition type;
-        private readonly StaticTypeWithCodeAnalysis typeWithCodeAnalysis;
-        private readonly HiddenMembersAnalyzer hiddenMembersAnalyzer;
+        private readonly StaticTypeWithCodeAnalysis type;
 
-        internal StaticClassWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, NamespaceWithCodeAnalysis @namespace, TypeDefinition type)
+        internal StaticClassWithCodeAnalysis()
         {
-            this.assembly = assembly;
-            this.@namespace = @namespace;
-            this.type = type;
-            typeWithCodeAnalysis = new StaticTypeWithCodeAnalysis(this);
-            hiddenMembersAnalyzer = new HiddenMembersAnalyzer(assembly, type);
+            type = new StaticTypeWithCodeAnalysis();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return typeWithCodeAnalysis.Attributes; }
+            get { return type.Attributes; }
+            set { type.Attributes = value; }
         }
 
         public override StaticClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return typeWithCodeAnalysis.Classes; }
+            get { return type.Classes; }
+            set { type.Classes = value; }
         }
         
-        public override IReadOnlyCollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return typeWithCodeAnalysis.Delegates; }
+            get { return type.Delegates; }
+            set { type.Delegates = value; }
         }
         
-        public override IReadOnlyCollection<StaticClassNestedEnumWithCodeAnalysis> Enums
+        public override ICollection<StaticClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return typeWithCodeAnalysis.Enums; }
+            get { return type.Enums; }
+            set { type.Enums = value; }
         }
         
         public override StaticClassEventCollectionWithCodeAnalysis Events
         {
-            get { return typeWithCodeAnalysis.Events; }
+            get { return type.Events; }
+            set { type.Events = value; }
         }
 
         public override StaticClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return typeWithCodeAnalysis.Fields; }
+            get { return type.Fields; }
+            set { type.Fields = value; }
         }
 
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
-            get { return typeWithCodeAnalysis.GenericParameters; }
+            get { return type.GenericParameters; }
+            set { type.GenericParameters = value; }
         }
         
         public override StaticClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
         {
-            get { return typeWithCodeAnalysis.Interfaces; }
+            get { return type.Interfaces; }
+            set { type.Interfaces = value; }
         }
 
         public override StaticClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return typeWithCodeAnalysis.Methods; }
+            get { return type.Methods; }
+            set { type.Methods = value; }
         }
 
         public override string Name
         {
-            get { return type.Name(); }
+            get { return type.Name; }
+            set { type.Name = value; }
         }
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get { return @namespace; }
+            get { throw new NotImplementedException(); }
+            set { }
         }
         
-        public override AssemblyWithCodeAnalysis Project
+        public override ProjectWithCodeAnalysis Project
         {
-            get { return assembly; }
+            get { throw new NotImplementedException(); }
+            set { }
         }
 
-        public override IReadOnlyCollection<StaticClassPropertyWithCodeAnalysis> Properties
+        public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
         {
-            get { return typeWithCodeAnalysis.Properties; }
+            get { return type.Properties; }
+            set { type.Properties = value; }
         }
 
-        public override AssemblyWithCodeAnalysis Solution
+        public override SolutionWithCodeAnalysis Solution
         {
-            get { return assembly; }
+            get { throw new NotImplementedException(); }
+            set { }
         }
 
         public override StaticClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return typeWithCodeAnalysis.Structs; }
+            get { return type.Structs; }
+            set { type.Structs = value; }
         }
         
         public override TypeVisibilityModifier Visibility
         {
-            get { return type.Visibility(); }
-        }
-
-        public TypeDefinition TypeDefinition
-        {
-            get { return type; }
+            get { throw new NotImplementedException(); }
+            set { }
         }
         
         public override StaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return typeWithCodeAnalysis.StaticConstructor; }
+            get { return type.StaticConstructor; }
+            set { type.StaticConstructor = value; }
         }
 
-        public override AssemblyWithCodeAnalysis Document
+        public override DocumentWithCodeAnalysis Document
         {
-            get { return assembly; }
+            get { throw new NotImplementedException(); }
+            set { }
+        }
+        
+        public ClassDeclarationSyntax Syntax
+        {
+            get { return type.Syntax; }
+            set { type.Syntax = value; }
         }
 
-        internal StaticTypeWithCodeAnalysis TypeWithCodeAnalysis
+        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return typeWithCodeAnalysis; }
-        }
-
-        public AssemblyWithCodeAnalysis Assembly
-        {
-            get { return assembly; }
-        }
-
-        HiddenMembersAnalyzer IInternalTypeWithCodeAnalysis.HiddenMembersAnalyzer
-        {
-            get { return hiddenMembersAnalyzer; }
+            get { return type.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

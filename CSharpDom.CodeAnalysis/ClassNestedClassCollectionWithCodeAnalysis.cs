@@ -17,29 +17,20 @@ namespace CSharpDom.CodeAnalysis
             PartialClassCollectionNotSupported>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
-        private readonly ClassMemberListWrapper<
-            ClassTypeWithCodeAnalysis,
-            ClassNestedClassWithCodeAnalysis,
-            ClassDeclarationSyntax> classes;
-        private readonly ClassMemberListWrapper<
-            ClassTypeWithCodeAnalysis,
-            ClassNestedAbstractClassWithCodeAnalysis,
-            ClassDeclarationSyntax> abstractClasses;
-        private readonly ClassMemberListWrapper<
-            ClassTypeWithCodeAnalysis,
-            ClassNestedSealedClassWithCodeAnalysis,
-            ClassDeclarationSyntax> sealedClasses;
+        private readonly ClassMemberListWrapper<ClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax> classes;
+        private readonly ClassMemberListWrapper<ClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax> abstractClasses;
+        private readonly ClassMemberListWrapper<ClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax> sealedClasses;
 
         internal ClassNestedClassCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
-            classes = new ClassMemberListWrapper<ClassTypeWithCodeAnalysis, ClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            classes = new ClassMemberListWrapper<ClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
                 () => new ClassNestedClassWithCodeAnalysis());
-            abstractClasses = new ClassMemberListWrapper<ClassTypeWithCodeAnalysis, ClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            abstractClasses = new ClassMemberListWrapper<ClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
                 () => new ClassNestedAbstractClassWithCodeAnalysis());
-            sealedClasses = new ClassMemberListWrapper<ClassTypeWithCodeAnalysis, ClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            sealedClasses = new ClassMemberListWrapper<ClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
                 () => new ClassNestedSealedClassWithCodeAnalysis());
         }
@@ -61,22 +52,7 @@ namespace CSharpDom.CodeAnalysis
             get { return sealedClasses; }
             set { classType.Members.CombineList(nameof(SealedClasses), value.Select(item => item.Syntax)); }
         }
-
-        internal IChildCollection<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> AbstractClassList
-        {
-            get { return abstractClasses; }
-        }
-
-        internal IChildCollection<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> ClassList
-        {
-            get { return classes; }
-        }
-
-        internal IChildCollection<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> SealedClassList
-        {
-            get { return sealedClasses; }
-        }
-
+        
         public override PartialClassCollectionNotSupported PartialClasses
         {
             get

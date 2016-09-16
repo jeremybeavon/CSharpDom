@@ -12,22 +12,16 @@ namespace CSharpDom.CodeAnalysis
             StaticClassEventPropertyWithCodeAnalysis>
     {
         private readonly StaticTypeWithCodeAnalysis type;
-        private readonly StaticTypeMemberListWrapper<
-            EventWithCodeAnalysis,
-            StaticClassEventWithCodeAnalysis,
-            EventFieldDeclarationSyntax> events;
-        private readonly StaticTypeMemberListWrapper<
-            EventPropertyWithCodeAnalysis,
-            StaticClassEventPropertyWithCodeAnalysis,
-            EventDeclarationSyntax> eventProperties;
+        private readonly StaticTypeMemberListWrapper<StaticClassEventWithCodeAnalysis, EventFieldDeclarationSyntax> events;
+        private readonly StaticTypeMemberListWrapper<StaticClassEventPropertyWithCodeAnalysis, EventDeclarationSyntax> eventProperties;
 
         internal StaticClassEventCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis type)
         {
             this.type = type;
-            events = new StaticTypeMemberListWrapper<EventWithCodeAnalysis, StaticClassEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
+            events = new StaticTypeMemberListWrapper<StaticClassEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
                 type.Node,
                 () => new StaticClassEventWithCodeAnalysis());
-            eventProperties = new StaticTypeMemberListWrapper<EventPropertyWithCodeAnalysis, StaticClassEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
+            eventProperties = new StaticTypeMemberListWrapper<StaticClassEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 type.Node,
                 () => new StaticClassEventPropertyWithCodeAnalysis());
         }
@@ -42,16 +36,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return events; }
             set { type.Members.CombineList(nameof(Events), value.Select(item => item.Syntax)); }
-        }
-
-        internal IChildCollection<EventWithCodeAnalysis, EventFieldDeclarationSyntax> EventList
-        {
-            get { return events; }
-        }
-
-        internal IChildCollection<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> EventPropertyList
-        {
-            get { return eventProperties; }
         }
     }
 }

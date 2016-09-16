@@ -33,7 +33,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StaticClassNestedStructWithCodeAnalysis()
         {
-            structType = new NestedStructWithCodeAnalysis(this);
+            structType = new NestedStructWithCodeAnalysis();
         }
         
         public NestedStructWithCodeAnalysis Struct

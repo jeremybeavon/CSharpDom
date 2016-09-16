@@ -46,15 +46,5 @@ namespace CSharpDom.CodeAnalysis
             get { return indexers; }
             set { classType.Members.CombineList(nameof(Indexers), value.Select(item => item.Syntax)); }
         }
-
-        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> AbstractIndexerList
-        {
-            get { return abstractIndexers; }
-        }
-        
-        internal IChildCollection<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> IndexerList
-        {
-            get { return indexers; }
-        }
     }
 }

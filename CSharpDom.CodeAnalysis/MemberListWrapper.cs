@@ -4,12 +4,10 @@ using System;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class MemberListWrapper<TParentNode, TParentSyntax, TSimpleChildNode, TChildNode, TChildSyntax> :
-        ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>,
-        IChildCollection<TSimpleChildNode, TChildSyntax>
+    internal class MemberListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
+        ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : TypeDeclarationSyntax
-        where TSimpleChildNode : ISimpleMember
         where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : MemberDeclarationSyntax
     {
@@ -20,16 +18,6 @@ namespace CSharpDom.CodeAnalysis
             Func<TChildSyntax, bool> filter = null)
             : base(node, ListFactory.CreateFilteredList(node, syntax => syntax.Members, createList, filter), factory)
         {
-        }
-
-        public TChildSyntax GetChild(TSimpleChildNode child)
-        {
-            return GetChild(child.Member<TChildNode>());
-        }
-
-        public void SetChild(TSimpleChildNode child, TChildSyntax syntax)
-        {
-            SetChild(child.Member<TChildNode>(), syntax);
         }
     }
 }

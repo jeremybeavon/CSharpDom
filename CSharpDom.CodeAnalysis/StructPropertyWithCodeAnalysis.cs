@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
         
         internal StructPropertyWithCodeAnalysis()
         {
-            property = new PropertyWithBodyWithCodeAnalysis(this);
+            property = new PropertyWithBodyWithCodeAnalysis();
         }
         
         public PropertyWithBodyWithCodeAnalysis Property

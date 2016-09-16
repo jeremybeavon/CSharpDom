@@ -35,9 +35,9 @@ namespace CSharpDom.CodeAnalysis
         private readonly AbstractClassMethodCollectionWithCodeAnalysis methods;
         private readonly AbstractClassPropertyCollectionWithCodeAnalysis properties;
         
-        internal AbstractTypeWithCodeAnalysis(object @class)
+        internal AbstractTypeWithCodeAnalysis()
         {
-            classType = new ClassTypeWithCodeAnalysis(@class);
+            classType = new ClassTypeWithCodeAnalysis();
             members = classType.Members;
             events = new AbstractClassEventCollectionWithCodeAnalysis(classType);
             indexers = new AbstractClassIndexerCollectionWithCodeAnalysis(classType);

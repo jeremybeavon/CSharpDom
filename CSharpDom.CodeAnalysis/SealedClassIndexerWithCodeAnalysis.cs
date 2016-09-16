@@ -21,7 +21,7 @@ namespace CSharpDom.CodeAnalysis
         
         internal SealedClassIndexerWithCodeAnalysis()
         {
-            indexer = new ClassIndexerWithCodeAnalysis(this);
+            indexer = new ClassIndexerWithCodeAnalysis();
         }
         
         public IndexerWithBodyWithCodeAnalysis Indexer

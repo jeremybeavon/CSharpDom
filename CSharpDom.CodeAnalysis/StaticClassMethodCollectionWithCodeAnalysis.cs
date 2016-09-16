@@ -14,23 +14,17 @@ namespace CSharpDom.CodeAnalysis
             ExtensionMethodWithCodeAnalysis>
     {
         private readonly StaticTypeWithCodeAnalysis type;
-        private readonly StaticTypeMemberListWrapper<
-            MethodWithCodeAnalysis,
-            StaticClassMethodWithCodeAnalysis,
-            MethodDeclarationSyntax> methods;
-        private readonly StaticTypeMemberListWrapper<
-            MethodWithCodeAnalysis,
-            ExtensionMethodWithCodeAnalysis,
-            MethodDeclarationSyntax> extensionMethods;
+        private readonly StaticTypeMemberListWrapper<StaticClassMethodWithCodeAnalysis, MethodDeclarationSyntax> methods;
+        private readonly StaticTypeMemberListWrapper<ExtensionMethodWithCodeAnalysis, MethodDeclarationSyntax> extensionMethods;
 
         internal StaticClassMethodCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis type)
         {
             this.type = type;
-            methods = new StaticTypeMemberListWrapper<MethodWithCodeAnalysis, StaticClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+            methods = new StaticTypeMemberListWrapper<StaticClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 type.Node,
                 () => new StaticClassMethodWithCodeAnalysis(),
                 IsExtensionMethod);
-            extensionMethods = new StaticTypeMemberListWrapper<MethodWithCodeAnalysis, ExtensionMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+            extensionMethods = new StaticTypeMemberListWrapper<ExtensionMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 type.Node,
                 () => new ExtensionMethodWithCodeAnalysis(),
                 syntax => !IsExtensionMethod(syntax));
@@ -47,16 +41,6 @@ namespace CSharpDom.CodeAnalysis
             get { return methods; }
             set { type.Members.CombineList(nameof(Methods), value.Select(item => item.Syntax)); }
 
-        }
-
-        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> ExtensionMethodList
-        {
-            get { return extensionMethods; }
-        }
-
-        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> MethodList
-        {
-            get { return methods; }
         }
 
         private static bool IsExtensionMethod(MethodDeclarationSyntax syntax)

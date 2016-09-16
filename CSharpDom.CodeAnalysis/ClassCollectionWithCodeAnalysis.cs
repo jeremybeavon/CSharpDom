@@ -1,50 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.Common;
+using CSharpDom.Editable;
 using CSharpDom.NotSupported;
-using CSharpDom.CodeAnalysis.Internal;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassCollectionWithCodeAnalysis :
-        AbstractClassCollection<
+        EditableClassCollection<
             ClassWithCodeAnalysis,
             AbstractClassWithCodeAnalysis,
             SealedClassWithCodeAnalysis,
             StaticClassWithCodeAnalysis,
             PartialClassCollectionNotSupported>
     {
-        private readonly TypeContainer typeContainer;
+        private readonly IMemberList members;
+        private readonly ICollection<AbstractClassWithCodeAnalysis> abstractClasses;
+        private readonly ICollection<ClassWithCodeAnalysis> classes;
+        private readonly ICollection<SealedClassWithCodeAnalysis> sealedClasses;
+        private readonly ICollection<StaticClassWithCodeAnalysis> staticClasses;
 
-        internal ClassCollectionWithCodeAnalysis(TypeContainer typeContainer)
+        internal ClassCollectionWithCodeAnalysis(NamespaceWithCodeAnalysis @namespace)
         {
-            this.typeContainer = typeContainer;
+            abstractClasses = new NamespaceMemberListWrapper<AbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                @namespace.Node,
+                () => new AbstractClassWithCodeAnalysis());
+            classes = new NamespaceMemberListWrapper<ClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                @namespace.Node,
+                () => new ClassWithCodeAnalysis());
+            sealedClasses = new NamespaceMemberListWrapper<SealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                @namespace.Node,
+                () => new SealedClassWithCodeAnalysis());
+            staticClasses = new NamespaceMemberListWrapper<StaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                @namespace.Node,
+                () => new StaticClassWithCodeAnalysis());
         }
 
-        public override IReadOnlyCollection<AbstractClassWithCodeAnalysis> AbstractClasses
+        public override ICollection<AbstractClassWithCodeAnalysis> AbstractClasses
         {
-            get { return typeContainer.AbstractClasses; }
+            get { return abstractClasses; }
+            set { members.CombineList(nameof(AbstractClasses), value.Select(item => item.Syntax)); }
+        }
+
+        public override ICollection<ClassWithCodeAnalysis> Classes
+        {
+            get { return classes; }
+            set { members.CombineList(nameof(Classes), value.Select(item => item.Syntax)); }
         }
 
         public override PartialClassCollectionNotSupported PartialClasses
         {
-            get { return new PartialClassCollectionNotSupported(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override IReadOnlyCollection<SealedClassWithCodeAnalysis> SealedClasses
+        public override ICollection<SealedClassWithCodeAnalysis> SealedClasses
         {
-            get { return typeContainer.SealedClasses; }
+            get { return sealedClasses; }
+            set { members.CombineList(nameof(SealedClasses), value.Select(item => item.Syntax)); }
         }
 
-        public override IReadOnlyCollection<StaticClassWithCodeAnalysis> StaticClasses
+        public override ICollection<StaticClassWithCodeAnalysis> StaticClasses
         {
-            get { return typeContainer.StaticClasses; }
-        }
-
-        protected override IReadOnlyCollection<ClassWithCodeAnalysis> Classes
-        {
-            get { return typeContainer.Classes; }
+            get { return staticClasses; }
+            set { members.CombineList(nameof(StaticClasses), value.Select(item => item.Syntax)); }
         }
     }
 }

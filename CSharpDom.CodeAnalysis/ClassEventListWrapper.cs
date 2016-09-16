@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpDom.CodeAnalysis
 {
     internal class ClassEventListWrapper<TChildNode> :
-        ClassMemberListWrapper<EventWithCodeAnalysis, TChildNode, EventFieldDeclarationSyntax>
+        ClassMemberListWrapper<TChildNode, EventFieldDeclarationSyntax>
         where TChildNode : class, IHasNode<EventFieldDeclarationSyntax>
     {
         public ClassEventListWrapper(

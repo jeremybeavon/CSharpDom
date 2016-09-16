@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StaticClassEventPropertyWithCodeAnalysis()
         {
-            @event = new EventPropertyWithCodeAnalysis(this);
+            @event = new EventPropertyWithCodeAnalysis();
         }
         
         public EventPropertyWithCodeAnalysis EventProperty

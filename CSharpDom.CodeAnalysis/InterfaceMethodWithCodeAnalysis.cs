@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal InterfaceMethodWithCodeAnalysis()
         {
-            method = new MethodWithCodeAnalysis(this);
+            method = new MethodWithCodeAnalysis();
         }
         
         public MethodWithCodeAnalysis Method

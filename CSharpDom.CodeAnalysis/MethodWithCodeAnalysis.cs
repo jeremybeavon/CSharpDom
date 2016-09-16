@@ -17,10 +17,8 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis>,
-        IHasSyntax<MethodDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<MethodDeclarationSyntax>
     {
-        private readonly object method;
         private readonly Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> node;
         private readonly AttributeListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax> attributes;
         private readonly GenericParameterDeclarationListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax> genericParameters;
@@ -31,10 +29,9 @@ namespace CSharpDom.CodeAnalysis
             ParameterSyntax> parameters;
         private readonly CachedTypeReferenceNode<MethodWithCodeAnalysis, MethodDeclarationSyntax> returnType;
         
-        internal MethodWithCodeAnalysis(object method)
+        internal MethodWithCodeAnalysis()
         {
             node = new Node<MethodWithCodeAnalysis, MethodDeclarationSyntax>(this);
-            this.method = method;
             attributes = new AttributeListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -111,11 +108,6 @@ namespace CSharpDom.CodeAnalysis
         internal Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> Node
         {
             get { return node; }
-        }
-        
-        T ISimpleMember.Member<T>()
-        {
-            return (T)method;
         }
     }
 }

@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
      
         internal SealedClassPropertyWithCodeAnalysis()
         {
-            property = new ClassPropertyWithCodeAnalysis(this);
+            property = new ClassPropertyWithCodeAnalysis();
         }
            
         public PropertyWithBodyWithCodeAnalysis Property

@@ -27,28 +27,17 @@ namespace CSharpDom.CodeAnalysis
             StructNestedInterfaceCollectionWithCodeAnalysis,
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
-        IHasSyntax<StructDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<StructDeclarationSyntax>
     {
-        private readonly object @struct;
         private readonly Node<StructTypeWithCodeAnalysis, StructDeclarationSyntax> node;
         private readonly AttributeListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> attributes;
         private readonly StructNestedClassCollectionWithCodeAnalysis classes;
+        private readonly StructTypeMemberListWrapper<StructConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> constructors;
         private readonly StructTypeMemberListWrapper<
-            ConstructorWithCodeAnalysis,
-            StructConstructorWithCodeAnalysis,
-            ConstructorDeclarationSyntax> constructors;
-        private readonly SimpleStructMemberListWrapper<
             ConversionOperatorWithCodeAnalysis,
             ConversionOperatorDeclarationSyntax> conversionOperators;
-        private readonly StructTypeMemberListWrapper<
-            DelegateTypeWithCodeAnalysis,
-            StructNestedDelegateWithCodeAnalysis,
-            DelegateDeclarationSyntax> delegates;
-        private readonly StructTypeMemberListWrapper<
-            NestedEnumWithCodeAnalysis,
-            StructNestedEnumWithCodeAnalysis,
-            EnumDeclarationSyntax> enums;
+        private readonly StructTypeMemberListWrapper<StructNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax> delegates;
+        private readonly StructTypeMemberListWrapper<StructNestedEnumWithCodeAnalysis, EnumDeclarationSyntax> enums;
         private readonly StructEventCollectionWithCodeAnalysis events;
         private readonly StructFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> genericParameters;
@@ -56,36 +45,33 @@ namespace CSharpDom.CodeAnalysis
         private readonly BaseTypeListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> implementedInterfaces;
         private readonly StructNestedInterfaceCollectionWithCodeAnalysis interfaces;
         private readonly StructMethodCollectionWithCodeAnalysis methods;
-        private readonly SimpleStructMemberListWrapper<
-            OperatorOverloadWithCodeAnalysis,
-            OperatorDeclarationSyntax> operatorOverloads;
+        private readonly StructTypeMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> operatorOverloads;
         private readonly StructPropertyCollectionWithCodeAnalysis properties;
-        private readonly SimpleStructMemberListWrapper<
+        private readonly StructTypeMemberListWrapper<
             StaticConstructorWithCodeAnalysis,
             ConstructorDeclarationSyntax> staticConstructor;
         private readonly StructNestedStructCollectionWithCodeAnalysis structs;
         private readonly MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax> members;
 
-        internal StructTypeWithCodeAnalysis(object @struct)
+        internal StructTypeWithCodeAnalysis()
         {
             node = new Node<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(this);
-            this.@struct = @struct;
             attributes = new AttributeListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
             classes = new StructNestedClassCollectionWithCodeAnalysis(this);
-            constructors = new StructTypeMemberListWrapper<ConstructorWithCodeAnalysis, StructConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+            constructors = new StructTypeMemberListWrapper<StructConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 () => new StructConstructorWithCodeAnalysis(),
                 syntax => !syntax.IsStatic());
-            conversionOperators = new SimpleStructMemberListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
+            conversionOperators = new StructTypeMemberListWrapper<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
                 () => new ConversionOperatorWithCodeAnalysis());
-            delegates = new StructTypeMemberListWrapper<DelegateTypeWithCodeAnalysis, StructNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
+            delegates = new StructTypeMemberListWrapper<StructNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
                 () => new StructNestedDelegateWithCodeAnalysis());
-            enums = new StructTypeMemberListWrapper<NestedEnumWithCodeAnalysis, StructNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
+            enums = new StructTypeMemberListWrapper<StructNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
                 () => new StructNestedEnumWithCodeAnalysis());
             events = new StructEventCollectionWithCodeAnalysis(this);
@@ -102,11 +88,11 @@ namespace CSharpDom.CodeAnalysis
             indexers = new StructIndexerCollectionWithCodeAnalysis(this);
             interfaces = new StructNestedInterfaceCollectionWithCodeAnalysis(this);
             methods = new StructMethodCollectionWithCodeAnalysis(this);
-            operatorOverloads = new SimpleStructMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
+            operatorOverloads = new StructTypeMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
                 () => new OperatorOverloadWithCodeAnalysis());
             properties = new StructPropertyCollectionWithCodeAnalysis(this);
-            staticConstructor = new SimpleStructMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+            staticConstructor = new StructTypeMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 () => new StaticConstructorWithCodeAnalysis(),
                 syntax => syntax.IsStatic());
@@ -288,11 +274,6 @@ namespace CSharpDom.CodeAnalysis
         internal MemberList<StructTypeWithCodeAnalysis, StructDeclarationSyntax> Members
         {
             get { return members; }
-        }
-        
-        T ISimpleMember.Member<T>()
-        {
-            return (T)@struct;
         }
     }
 }

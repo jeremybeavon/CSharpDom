@@ -1,48 +1,58 @@
-﻿using CSharpDom.BaseClasses;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Reflection;
 using System;
 using System.Collections.Generic;
-using CSharpDom.CodeAnalysis.Internal;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class EnumMemberWithCodeAnalysis :
-        AbstractEnumMember<AttributeGroupWithCodeAnalysis, EnumWithCodeAnalysis>,
-        IHasFieldDefinition//,
+        EditableEnumMember<AttributeGroupWithCodeAnalysis, IEnum>,
+        IHasSyntax<EnumMemberDeclarationSyntax>,
+        IHasNode<EnumMemberDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly EnumWithCodeAnalysis declaringType;
-        private readonly FieldDefinition field;
-        private readonly Lazy<Attributes> attributes;
+        private readonly Node<EnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax> node;
+        private readonly AttributeListWrapper<EnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax> attributes;
 
-        internal EnumMemberWithCodeAnalysis(EnumWithCodeAnalysis declaringType, FieldDefinition field)
+        internal EnumMemberWithCodeAnalysis()
         {
-            this.declaringType = declaringType;
-            this.field = field;
-            attributes = new Lazy<Attributes>(() => new Attributes(declaringType.Assembly, field));
+            node = new Node<EnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(this);
+            attributes = new AttributeListWrapper<EnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(
+                node,
+                syntax => syntax.AttributeLists,
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            get { return attributes; }
+            set { attributes.ReplaceList(value); }
         }
 
-        public override EnumWithCodeAnalysis DeclaringType
+        public override IEnum DeclaringType
         {
-            get { return declaringType; }
+            get; set;
         }
 
         public override string Name
         {
-            get { return field.Name; }
+            get { return Syntax.Identifier.Text; }
+            set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
         }
 
-        public FieldDefinition FieldDefinition
+        public EnumMemberDeclarationSyntax Syntax
         {
-            get { return field; }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
+        INode<EnumMemberDeclarationSyntax> IHasNode<EnumMemberDeclarationSyntax>.Node
+        {
+            get { return node; }
+        }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

@@ -11,10 +11,10 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class InterfaceWithCodeAnalysis :
         EditableInterface<
-            INamespace,
-            IDocument,
-            IProject,
-            ISolution,
+            NamespaceWithCodeAnalysis,
+            DocumentWithCodeAnalysis,
+            ProjectWithCodeAnalysis,
+            SolutionWithCodeAnalysis,
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
@@ -31,7 +31,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal InterfaceWithCodeAnalysis()
         {
-            type = new InterfaceTypeWithCodeAnalysis(this);
+            type = new InterfaceTypeWithCodeAnalysis();
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -40,7 +40,7 @@ namespace CSharpDom.CodeAnalysis
             set { type.Attributes = value; }
         }
 
-        public override IDocument Document
+        public override DocumentWithCodeAnalysis Document
         {
             get
             {
@@ -89,7 +89,7 @@ namespace CSharpDom.CodeAnalysis
             set { type.Name = value; }
         }
 
-        public override INamespace Namespace
+        public override NamespaceWithCodeAnalysis Namespace
         {
             get
             {
@@ -102,7 +102,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override IProject Project
+        public override ProjectWithCodeAnalysis Project
         {
             get
             {
@@ -121,7 +121,7 @@ namespace CSharpDom.CodeAnalysis
             set { type.Properties = value; }
         }
 
-        public override ISolution Solution
+        public override SolutionWithCodeAnalysis Solution
         {
             get
             {

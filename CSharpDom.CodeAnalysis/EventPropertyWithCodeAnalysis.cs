@@ -15,10 +15,8 @@ namespace CSharpDom.CodeAnalysis
             IType,
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<EventDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<EventDeclarationSyntax>
     {
-        private readonly object eventProperty;
         private readonly Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> node;
         private readonly AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> addAttributes;
         private readonly CachedChildNode<
@@ -38,10 +36,10 @@ namespace CSharpDom.CodeAnalysis
             EventDeclarationSyntax,
             MethodBodyWithCodeAnalysis,
             BlockSyntax> removeBody;
-        internal EventPropertyWithCodeAnalysis(object eventProperty)
+
+        internal EventPropertyWithCodeAnalysis()
         {
             node = new Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(this);
-            this.eventProperty = eventProperty;
             addAttributes = new AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                 node,
                 syntax => syntax.GetAccessor(SyntaxKind.AddKeyword).AttributeLists,
@@ -145,11 +143,6 @@ namespace CSharpDom.CodeAnalysis
         {
             AccessorDeclarationSyntax accessor = parentSyntax.GetAccessor(kind);
             return parentSyntax.WithAccessor(kind, accessor.WithAttributeLists(childSyntax));
-        }
-
-        T ISimpleMember.Member<T>()
-        {
-            return (T)eventProperty;
         }
     }
 }

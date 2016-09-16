@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class MemberList<TParentNode, TParentSyntax> : IEnumerable
+    internal class MemberList<TParentNode, TParentSyntax> : IEnumerable, IMemberList
         where TParentSyntax : class
     {
         private readonly Node<TParentNode, TParentSyntax> node;

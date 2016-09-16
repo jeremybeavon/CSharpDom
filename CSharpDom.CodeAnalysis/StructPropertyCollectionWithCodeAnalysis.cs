@@ -11,22 +11,18 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly StructTypeWithCodeAnalysis structType;
         private readonly StructTypeMemberListWrapper<
-            PropertyWithCodeAnalysis,
             ExplicitInterfacePropertyWithCodeAnalysis,
             PropertyDeclarationSyntax> explicitInterfaceProperties;
-        private readonly StructTypeMemberListWrapper<
-            PropertyWithCodeAnalysis,
-            StructPropertyWithCodeAnalysis,
-            PropertyDeclarationSyntax> properties;
+        private readonly StructTypeMemberListWrapper<StructPropertyWithCodeAnalysis, PropertyDeclarationSyntax> properties;
 
         internal StructPropertyCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis structType)
         {
             this.structType = structType;
-            explicitInterfaceProperties = new StructTypeMemberListWrapper<PropertyWithCodeAnalysis, ExplicitInterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+            explicitInterfaceProperties = new StructTypeMemberListWrapper<ExplicitInterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 structType.Node,
                 () => new ExplicitInterfacePropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
-            properties = new StructTypeMemberListWrapper<PropertyWithCodeAnalysis, StructPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+            properties = new StructTypeMemberListWrapper<StructPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 structType.Node,
                 () => new StructPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
@@ -42,16 +38,6 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return properties; }
             set { structType.Members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }
-        }
-
-        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> ExplicitInterfacePropertyList
-        {
-            get { return explicitInterfaceProperties; }
-        }
-
-        internal IChildCollection<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> PropertyList
-        {
-            get { return properties; }
         }
     }
 }

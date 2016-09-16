@@ -17,29 +17,24 @@ namespace CSharpDom.CodeAnalysis
             PartialClassCollectionNotSupported>
     {
         private readonly StaticTypeWithCodeAnalysis type;
+        private readonly StaticTypeMemberListWrapper<StaticClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax> classes;
         private readonly StaticTypeMemberListWrapper<
-            ClassTypeWithCodeAnalysis,
-            StaticClassNestedClassWithCodeAnalysis,
-            ClassDeclarationSyntax> classes;
-        private readonly StaticTypeMemberListWrapper<
-            ClassTypeWithCodeAnalysis,
             StaticClassNestedAbstractClassWithCodeAnalysis,
             ClassDeclarationSyntax> abstractClasses;
         private readonly StaticTypeMemberListWrapper<
-            ClassTypeWithCodeAnalysis,
             StaticClassNestedSealedClassWithCodeAnalysis,
             ClassDeclarationSyntax> sealedClasses;
 
         internal StaticClassNestedClassCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis type)
         {
             this.type = type;
-            classes = new StaticTypeMemberListWrapper<ClassTypeWithCodeAnalysis, StaticClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            classes = new StaticTypeMemberListWrapper<StaticClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 type.Node,
                 () => new StaticClassNestedClassWithCodeAnalysis());
-            abstractClasses = new StaticTypeMemberListWrapper<ClassTypeWithCodeAnalysis, StaticClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            abstractClasses = new StaticTypeMemberListWrapper<StaticClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 type.Node,
                 () => new StaticClassNestedAbstractClassWithCodeAnalysis());
-            sealedClasses = new StaticTypeMemberListWrapper<ClassTypeWithCodeAnalysis, StaticClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            sealedClasses = new StaticTypeMemberListWrapper<StaticClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 type.Node,
                 () => new StaticClassNestedSealedClassWithCodeAnalysis());
         }
@@ -86,21 +81,6 @@ namespace CSharpDom.CodeAnalysis
             {
                 throw new NotImplementedException();
             }
-        }
-
-        internal IChildCollection<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> AbstractClassList
-        {
-            get { return abstractClasses; }
-        }
-
-        internal IChildCollection<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> ClassList
-        {
-            get { return classes; }
-        }
-
-        internal IChildCollection<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> SealedClassList
-        {
-            get { return sealedClasses; }
         }
     }
 }

@@ -26,7 +26,7 @@ namespace CSharpDom.CodeAnalysis
         
         internal ExplicitInterfaceEventWithCodeAnalysis()
         {
-            @event = new EventPropertyWithCodeAnalysis(this);
+            @event = new EventPropertyWithCodeAnalysis();
             explicitInterface = new CachedChildNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>(
                 @event.Node,
                 () => new InterfaceReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),

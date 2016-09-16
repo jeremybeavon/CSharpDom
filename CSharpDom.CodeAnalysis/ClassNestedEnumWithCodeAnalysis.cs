@@ -18,7 +18,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal ClassNestedEnumWithCodeAnalysis()
         {
-            nestedEnum = new NestedEnumWithCodeAnalysis(this);
+            nestedEnum = new NestedEnumWithCodeAnalysis();
         }
         
         public NestedEnumWithCodeAnalysis Enum

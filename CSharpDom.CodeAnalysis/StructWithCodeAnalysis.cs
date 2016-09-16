@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructWithCodeAnalysis :
-        AbstractStruct<
+        EditableStruct<
             NamespaceWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
+            DocumentWithCodeAnalysis,
+            ProjectWithCodeAnalysis,
+            SolutionWithCodeAnalysis,
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
@@ -29,150 +28,202 @@ namespace CSharpDom.CodeAnalysis
             StructNestedInterfaceCollectionWithCodeAnalysis,
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
-        ITypeWithCodeAnalysis//,
+        IHasSyntax<StructDeclarationSyntax>,
+        IHasNode<StructDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly AssemblyWithCodeAnalysis assembly;
-        private readonly NamespaceWithCodeAnalysis @namespace;
-        private readonly TypeDefinition type;
-        private readonly StructTypeWithCodeAnalysis typeWithCodeAnalysis;
+        private readonly StructTypeWithCodeAnalysis structType;
 
-        internal StructWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, NamespaceWithCodeAnalysis @namespace, TypeDefinition type)
+        internal StructWithCodeAnalysis()
         {
-            this.assembly = assembly;
-            this.@namespace = @namespace;
-            this.type = type;
-            typeWithCodeAnalysis = new StructTypeWithCodeAnalysis(this);
+            structType = new StructTypeWithCodeAnalysis();
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return typeWithCodeAnalysis.Attributes; }
+            get { return structType.Attributes; }
+            set { structType.Attributes = value; }
         }
 
         public override StructNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return typeWithCodeAnalysis.Classes; }
+            get { return structType.Classes; }
+            set { structType.Classes = value; }
         }
 
-        public override IReadOnlyCollection<StructConstructorWithCodeAnalysis> Constructors
+        public override ICollection<StructConstructorWithCodeAnalysis> Constructors
         {
-            get { return typeWithCodeAnalysis.Constructors; }
+            get { return structType.Constructors; }
+            set { structType.Constructors = value; }
         }
 
-        public override IReadOnlyCollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
+        public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
         {
-            get { return typeWithCodeAnalysis.ConversionOperators; }
+            get { return structType.ConversionOperators; }
+            set { structType.ConversionOperators = value; }
         }
 
-        public override IReadOnlyCollection<StructNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<StructNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return typeWithCodeAnalysis.Delegates; }
+            get { return structType.Delegates; }
+            set { structType.Delegates = value; }
         }
         
-        public override IReadOnlyCollection<StructNestedEnumWithCodeAnalysis> Enums
+        public override ICollection<StructNestedEnumWithCodeAnalysis> Enums
         {
-            get { return typeWithCodeAnalysis.Enums; }
+            get { return structType.Enums; }
+            set { structType.Enums = value; }
         }
-        
+
         public override StructEventCollectionWithCodeAnalysis Events
         {
-            get { return typeWithCodeAnalysis.Events; }
+            get { return structType.Events; }
+            set { structType.Events = value; }
         }
 
         public override StructFieldCollectionWithCodeAnalysis Fields
         {
-            get { return typeWithCodeAnalysis.Fields; }
+            get { return structType.Fields; }
+            set { structType.Fields = value; }
         }
 
-        public override IReadOnlyList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
+        public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
-            get { return typeWithCodeAnalysis.GenericParameters; }
+            get { return structType.GenericParameters; }
+            set { structType.GenericParameters = value; }
         }
 
         public override StructIndexerCollectionWithCodeAnalysis Indexers
         {
-            get { return typeWithCodeAnalysis.Indexers; }
+            get { return structType.Indexers; }
+            set { structType.Indexers = value; }
         }
 
         public override StructNestedInterfaceCollectionWithCodeAnalysis Interfaces
         {
-            get { return typeWithCodeAnalysis.Interfaces; }
+            get { return structType.Interfaces; }
+            set { structType.Interfaces = value; }
         }
 
         public override StructMethodCollectionWithCodeAnalysis Methods
         {
-            get { return typeWithCodeAnalysis.Methods; }
+            get { return structType.Methods; }
+            set { structType.Methods = value; }
         }
 
         public override string Name
         {
-            get { return type.Name(); }
+            get { return structType.Name; }
+            set { structType.Name = value; }
         }
 
-        public override NamespaceWithCodeAnalysis Namespace
+        public override ICollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
-            get { return @namespace; }
-        }
-
-        public override IReadOnlyCollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
-        {
-            get { return typeWithCodeAnalysis.OperatorOverloads; }
-        }
-
-        public override AssemblyWithCodeAnalysis Project
-        {
-            get { return assembly; }
+            get { return structType.OperatorOverloads; }
+            set { structType.OperatorOverloads = value; }
         }
 
         public override StructPropertyCollectionWithCodeAnalysis Properties
         {
-            get { return typeWithCodeAnalysis.Properties; }
-        }
-
-        public override AssemblyWithCodeAnalysis Solution
-        {
-            get { return assembly; }
+            get { return structType.Properties; }
+            set { structType.Properties = value; }
         }
 
         public override StructNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return typeWithCodeAnalysis.Structs; }
+            get { return structType.Structs; }
+            set { structType.Structs = value; }
         }
         
-        public override IReadOnlyCollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
         {
-            get { return typeWithCodeAnalysis.ImplementedInterfaces; }
-        }
-        
-        public override TypeVisibilityModifier Visibility
-        {
-            get { return type.Visibility(); }
+            get { return structType.ImplementedInterfaces; }
+            set { structType.ImplementedInterfaces = value; }
         }
 
-        public TypeDefinition TypeDefinition
-        {
-            get { return type; }
-        }
-
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
-        
         public override StaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return typeWithCodeAnalysis.StaticConstructor; }
+            get { return structType.StaticConstructor; }
+            set { structType.StaticConstructor = value; }
         }
 
-        public override AssemblyWithCodeAnalysis Document
+        public StructDeclarationSyntax Syntax
         {
-            get { return assembly; }
+            get { return structType.Syntax; }
+            set { structType.Syntax = value; }
         }
 
-        public AssemblyWithCodeAnalysis Assembly
+        public override DocumentWithCodeAnalysis Document
         {
-            get { return assembly; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override NamespaceWithCodeAnalysis Namespace
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ProjectWithCodeAnalysis Project
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override SolutionWithCodeAnalysis Solution
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override TypeVisibilityModifier Visibility
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

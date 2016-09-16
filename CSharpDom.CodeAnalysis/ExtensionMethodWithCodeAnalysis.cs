@@ -28,7 +28,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal ExtensionMethodWithCodeAnalysis()
         {
-            method = new MethodWithBodyWithCodeAnalysis(this);
+            method = new MethodWithBodyWithCodeAnalysis();
             extensionParameter = new ExtensionParameterWithCodeAnalysis();
             parameters = new FilteredList<MethodParameterWithCodeAnalysis, MethodParameterWithCodeAnalysis>(
                 method.Parameters,

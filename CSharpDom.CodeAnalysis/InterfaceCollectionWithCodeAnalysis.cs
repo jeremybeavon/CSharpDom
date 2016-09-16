@@ -1,29 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Editable;
 using CSharpDom.NotSupported.Partial;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class InterfaceCollectionWithCodeAnalysis :
-        AbstractInterfaceCollection<InterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
+        EditableInterfaceCollection<InterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
     {
-        private readonly TypeContainer typeContainer;
+        private readonly IMemberList members;
+        private readonly ICollection<InterfaceWithCodeAnalysis> interfaces;
 
-        internal InterfaceCollectionWithCodeAnalysis(TypeContainer typeContainer)
+        internal InterfaceCollectionWithCodeAnalysis(NamespaceWithCodeAnalysis @namespace)
         {
-            this.typeContainer = typeContainer;
+            interfaces =
+                new NamespaceMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                    @namespace.Node,
+                    () => new InterfaceWithCodeAnalysis());
         }
 
-        public override IReadOnlyCollection<PartialInterfaceNotSupported> PartialInterfaces
+        public override ICollection<InterfaceWithCodeAnalysis> Interfaces
         {
-            get { return new PartialInterfaceNotSupported[0]; }
+            get { return interfaces; }
+            set { members.CombineList(nameof(Interfaces), value.Select(item => item.Syntax)); }
         }
 
-        protected override IReadOnlyCollection<InterfaceWithCodeAnalysis> Interfaces
+        public override ICollection<PartialInterfaceNotSupported> PartialInterfaces
         {
-            get { return typeContainer.Interfaces; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }

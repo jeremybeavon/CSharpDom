@@ -21,7 +21,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StaticClassMethodWithCodeAnalysis()
         {
-            method = new MethodWithBodyWithCodeAnalysis(this);
+            method = new MethodWithBodyWithCodeAnalysis();
         }
         
         public MethodWithBodyWithCodeAnalysis Method

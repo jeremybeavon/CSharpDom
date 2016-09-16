@@ -53,8 +53,6 @@ namespace CSharpDom.Editable
         where TStaticConstructor : IStaticConstructor
     {
         public abstract TDocument Document { get; set; }
-
-        public abstract bool IsPartial { get; set; }
         
         public abstract TNamespace Namespace { get; set; }
 

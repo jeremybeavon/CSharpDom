@@ -1,92 +1,110 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using CSharpDom.Common;
+using CSharpDom.Editable;
 using System.Linq;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class EnumWithCodeAnalysis :
-        AbstractEnum<
+        EditableEnum<
             NamespaceWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
-            AssemblyWithCodeAnalysis,
+            DocumentWithCodeAnalysis,
+            ProjectWithCodeAnalysis,
+            SolutionWithCodeAnalysis,
             AttributeGroupWithCodeAnalysis,
             EnumMemberWithCodeAnalysis>,
-        IHasTypeDefinition,
-        ITypeWithCodeAnalysis//,
+        IHasSyntax<EnumDeclarationSyntax>,
+        IHasNode<EnumDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly AssemblyWithCodeAnalysis assembly;
-        private readonly NamespaceWithCodeAnalysis @namespace;
-        private readonly TypeDefinition type;
-        private readonly Lazy<Attributes> attributes;
-        private readonly Lazy<IReadOnlyList<EnumMemberWithCodeAnalysis>> enumMembers;
+        private readonly Node<EnumWithCodeAnalysis, EnumDeclarationSyntax> node;
+        private readonly AttributeListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax> attributes;
+        private readonly SeparatedSyntaxListWrapper<
+            EnumWithCodeAnalysis,
+            EnumDeclarationSyntax,
+            EnumMemberWithCodeAnalysis,
+            EnumMemberDeclarationSyntax> enumMembers;
 
-        internal EnumWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, NamespaceWithCodeAnalysis @namespace, TypeDefinition type)
+        internal EnumWithCodeAnalysis()
         {
-            this.assembly = assembly;
-            this.@namespace = @namespace;
-            this.type = type;
-            attributes = new Lazy<Attributes>(() => new Attributes(assembly, type));
-            enumMembers = new Lazy<IReadOnlyList<EnumMemberWithCodeAnalysis>>(InitializeEnumMembers);
+            node = new Node<EnumWithCodeAnalysis, EnumDeclarationSyntax>(this);
+            attributes = new AttributeListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax>(
+                node,
+                syntax => syntax.AttributeLists,
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
+            enumMembers = new SeparatedSyntaxListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax, EnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(
+                node,
+                syntax => syntax.Members,
+                (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax),
+                () => new EnumMemberWithCodeAnalysis());
         }
 
-        public override IReadOnlyCollection<AttributeGroupWithCodeAnalysis> Attributes
+        public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return attributes.Value.AttributesWithCodeAnalysis; }
+            get { return attributes; }
+            set { attributes.ReplaceList(value); }
         }
 
-        public override IReadOnlyList<EnumMemberWithCodeAnalysis> EnumMembers
+        public override IList<EnumMemberWithCodeAnalysis> EnumMembers
         {
-            get { return enumMembers.Value; }
+            get { return enumMembers; }
+            set { enumMembers.ReplaceList(value); }
         }
 
         public override string Name
         {
-            get { return type.Name; }
+            get { return Syntax.Identifier.Text; }
+            set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
         }
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get { return @namespace; }
+            get { throw new NotImplementedException(); }
+            set { }
         }
 
-        public override AssemblyWithCodeAnalysis Project
+        public override ProjectWithCodeAnalysis Project
         {
-            get { return assembly; }
+            get { throw new NotImplementedException(); }
+            set { }
         }
 
-        public override AssemblyWithCodeAnalysis Solution
+        public override SolutionWithCodeAnalysis Solution
         {
-            get { return assembly; }
+            get { throw new NotImplementedException(); }
+            set { }
         }
-
-        public TypeDefinition TypeDefinition
-        {
-            get { return type; }
-        }
-
+        
         public override TypeVisibilityModifier Visibility
         {
-            get { return type.Visibility(); }
+            get { throw new NotImplementedException(); }
+            set { }
         }
 
         public override EnumBaseType BaseType
         {
-            get { return GetBaseType(type); }
+            get { throw new NotImplementedException(); }
+            set { }
         }
 
-        public override AssemblyWithCodeAnalysis Document
+        public override DocumentWithCodeAnalysis Document
         {
-            get { return assembly; }
+            get { throw new NotImplementedException(); }
+            set { }
+        }
+        
+        public EnumDeclarationSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
-        public AssemblyWithCodeAnalysis Assembly
+        INode<EnumDeclarationSyntax> IHasNode<EnumDeclarationSyntax>.Node
         {
-            get { return assembly; }
+            get { return node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)
@@ -98,37 +116,5 @@ namespace CSharpDom.CodeAnalysis
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
         }*/
-
-        internal static EnumBaseType GetBaseType(TypeDefinition type)
-        {
-            throw new NotImplementedException();
-            /*switch (TypeDefinition.GetTypeCode(Enum.GetUnderlyingType(type)))
-            {
-                case TypeCode.Byte:
-                    return EnumBaseType.Byte;
-                case TypeCode.Int64:
-                    return EnumBaseType.Long;
-                case TypeCode.SByte:
-                    return EnumBaseType.SByte;
-                case TypeCode.Int16:
-                    return EnumBaseType.Short;
-                case TypeCode.UInt32:
-                    return EnumBaseType.UInt;
-                case TypeCode.UInt64:
-                    return EnumBaseType.ULong;
-                case TypeCode.UInt16:
-                    return EnumBaseType.UShort;
-                default:
-                    return EnumBaseType.None;
-            }*/
-        }
-
-        private IReadOnlyList<EnumMemberWithCodeAnalysis> InitializeEnumMembers()
-        {
-            return type.Fields
-                .Where(field => field.IsPublic && field.IsStatic)
-                .Select(field => new EnumMemberWithCodeAnalysis(this, field))
-                .ToList();
-        }
     }
 }

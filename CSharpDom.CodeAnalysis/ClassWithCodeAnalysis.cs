@@ -9,10 +9,10 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassWithCodeAnalysis :
         EditableClass<
-            INamespace,
-            IDocument,
-            IProject,
-            ISolution,
+            NamespaceWithCodeAnalysis,
+            DocumentWithCodeAnalysis,
+            ProjectWithCodeAnalysis,
+            SolutionWithCodeAnalysis,
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
@@ -41,7 +41,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal ClassWithCodeAnalysis()
         {
-            classType = new ClassTypeWithCodeAnalysis(this);
+            classType = new ClassTypeWithCodeAnalysis();
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -170,7 +170,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Syntax = value; }
         }
         
-        public override IDocument Document
+        public override DocumentWithCodeAnalysis Document
         {
             get
             {
@@ -183,7 +183,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override INamespace Namespace
+        public override NamespaceWithCodeAnalysis Namespace
         {
             get
             {
@@ -196,7 +196,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override IProject Project
+        public override ProjectWithCodeAnalysis Project
         {
             get
             {
@@ -209,7 +209,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override ISolution Solution
+        public override SolutionWithCodeAnalysis Solution
         {
             get
             {

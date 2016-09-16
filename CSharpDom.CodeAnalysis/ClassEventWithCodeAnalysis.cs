@@ -19,12 +19,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal ClassEventWithCodeAnalysis()
         {
-            @event = new EventWithCodeAnalysis(this);
-        }
-
-        internal ClassEventWithCodeAnalysis(object @event)
-        {
-            this.@event = new EventWithCodeAnalysis(@event);
+            @event = new EventWithCodeAnalysis();
         }
 
         public EventWithCodeAnalysis Event

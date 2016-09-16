@@ -25,9 +25,9 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly StaticTypeWithCodeAnalysis classType;
 
-        internal NestedStaticClassWithCodeAnalysis(object @class)
+        internal NestedStaticClassWithCodeAnalysis()
         {
-            classType = new StaticTypeWithCodeAnalysis(@class);
+            classType = new StaticTypeWithCodeAnalysis();
         }
         
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

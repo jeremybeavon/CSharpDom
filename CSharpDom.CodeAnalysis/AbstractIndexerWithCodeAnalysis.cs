@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
         
         internal AbstractIndexerWithCodeAnalysis()
         {
-            indexer = new IndexerWithCodeAnalysis(this);
+            indexer = new IndexerWithCodeAnalysis();
         }
         
         internal IndexerWithCodeAnalysis Indexer

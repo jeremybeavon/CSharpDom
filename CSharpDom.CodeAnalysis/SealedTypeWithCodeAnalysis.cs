@@ -35,9 +35,10 @@ namespace CSharpDom.CodeAnalysis
         private readonly SealedClassIndexerCollectionWithCodeAnalysis indexers;
         private readonly SealedClassMethodCollectionWithCodeAnalysis methods;
         private readonly SealedClassPropertyCollectionWithCodeAnalysis properties;
-        internal SealedTypeWithCodeAnalysis(object @class)
+
+        internal SealedTypeWithCodeAnalysis()
         {
-            classType = new ClassTypeWithCodeAnalysis(@class);
+            classType = new ClassTypeWithCodeAnalysis();
             members = classType.Members;
             events = new SealedClassEventCollectionWithCodeAnalysis(classType);
             indexers = new SealedClassIndexerCollectionWithCodeAnalysis(classType);

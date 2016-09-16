@@ -32,9 +32,9 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly AbstractTypeWithCodeAnalysis classType;
 
-        internal NestedAbstractClassWithCodeAnalysis(object @class)
+        internal NestedAbstractClassWithCodeAnalysis()
         {
-            classType = new AbstractTypeWithCodeAnalysis(@class);
+            classType = new AbstractTypeWithCodeAnalysis();
         }
         
         public AbstractTypeWithCodeAnalysis Class

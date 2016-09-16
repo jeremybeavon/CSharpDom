@@ -35,7 +35,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StaticClassNestedAbstractClassWithCodeAnalysis()
         {
-            classType = new NestedAbstractClassWithCodeAnalysis(this);
+            classType = new NestedAbstractClassWithCodeAnalysis();
         }
         
         public NestedAbstractClassWithCodeAnalysis Class

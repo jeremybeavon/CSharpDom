@@ -4,7 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpDom.CodeAnalysis
 {
     internal class ClassIndexerListWrapper<TChildNode> :
-        ClassMemberListWrapper<IndexerWithCodeAnalysis, TChildNode, IndexerDeclarationSyntax>
+        ClassMemberListWrapper<TChildNode, IndexerDeclarationSyntax>
         where TChildNode : class, IHasNode<IndexerDeclarationSyntax>
     {
         public ClassIndexerListWrapper(

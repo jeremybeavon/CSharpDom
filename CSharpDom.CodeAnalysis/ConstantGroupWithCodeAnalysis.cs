@@ -14,10 +14,8 @@ namespace CSharpDom.CodeAnalysis
             IType,
             ITypeReferenceWithCodeAnalysis,
             ConstantWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly object constant;
         private readonly Node<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> attributes;
         private readonly SeparatedSyntaxListWrapper<
@@ -27,9 +25,8 @@ namespace CSharpDom.CodeAnalysis
             VariableDeclaratorSyntax> constants;
         private readonly CachedTypeReferenceNode<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> constantType;
         
-        internal ConstantGroupWithCodeAnalysis(object constant)
+        internal ConstantGroupWithCodeAnalysis()
         {
-            this.constant = constant;
             node = new Node<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
@@ -84,11 +81,6 @@ namespace CSharpDom.CodeAnalysis
         internal Node<ConstantGroupWithCodeAnalysis, FieldDeclarationSyntax> Node
         {
             get { return node; }
-        }
-        
-        T ISimpleMember.Member<T>()
-        {
-            return (T)constant;
         }
     }
 }

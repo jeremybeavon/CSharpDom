@@ -4,9 +4,8 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class StaticTypeMemberListWrapper<TSimpleChildNode, TChildNode, TChildSyntax> :
-        MemberListWrapper<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax, TSimpleChildNode, TChildNode, TChildSyntax>
-        where TSimpleChildNode : ISimpleMember
+    internal class StaticTypeMemberListWrapper<TChildNode, TChildSyntax> :
+        MemberListWrapper<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax, TChildNode, TChildSyntax>
         where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : MemberDeclarationSyntax
     {

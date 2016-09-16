@@ -17,41 +17,26 @@ namespace CSharpDom.CodeAnalysis
             InterfacePropertyWithCodeAnalysis,
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
-        IHasSyntax<InterfaceDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<InterfaceDeclarationSyntax>
     {
-        private readonly object @interface;
         private readonly Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> node;
         private readonly AttributeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> attributes;
-        private readonly InterfaceMemberListWrapper<
-            EventWithCodeAnalysis,
-            InterfaceEventWithCodeAnalysis,
-            EventFieldDeclarationSyntax> events;
+        private readonly InterfaceMemberListWrapper<InterfaceEventWithCodeAnalysis, EventFieldDeclarationSyntax> events;
         private readonly GenericParameterDeclarationListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> genericParameters;
         private readonly BaseTypeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
-        private readonly InterfaceMemberListWrapper<
-            PropertyWithCodeAnalysis,
-            InterfacePropertyWithCodeAnalysis,
-            PropertyDeclarationSyntax> properties;
-        private readonly InterfaceMemberListWrapper<
-            IndexerWithCodeAnalysis,
-            InterfaceIndexerWithCodeAnalysis,
-            IndexerDeclarationSyntax> indexers;
-        private readonly InterfaceMemberListWrapper<
-            MethodWithCodeAnalysis,
-            InterfaceMethodWithCodeAnalysis,
-            MethodDeclarationSyntax> methods;
+        private readonly InterfaceMemberListWrapper<InterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax> properties;
+        private readonly InterfaceMemberListWrapper<InterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax> indexers;
+        private readonly InterfaceMemberListWrapper<InterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax> methods;
         private readonly MemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> members;
         
-        internal InterfaceTypeWithCodeAnalysis(object @interface)
+        internal InterfaceTypeWithCodeAnalysis()
         {
             node = new Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(this);
-            this.@interface = @interface;
             attributes = new AttributeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
-            events = new InterfaceMemberListWrapper<EventWithCodeAnalysis, InterfaceEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
+            events = new InterfaceMemberListWrapper<InterfaceEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
                 node,
                 () => new InterfaceEventWithCodeAnalysis());
             genericParameters = new GenericParameterDeclarationListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
@@ -63,13 +48,13 @@ namespace CSharpDom.CodeAnalysis
             interfaces = new BaseTypeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax));
-            properties = new InterfaceMemberListWrapper<PropertyWithCodeAnalysis, InterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+            properties = new InterfaceMemberListWrapper<InterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
                 () => new InterfacePropertyWithCodeAnalysis());
-            indexers = new InterfaceMemberListWrapper<IndexerWithCodeAnalysis, InterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
+            indexers = new InterfaceMemberListWrapper<InterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
                 node,
                 () => new InterfaceIndexerWithCodeAnalysis());
-            methods = new InterfaceMemberListWrapper<MethodWithCodeAnalysis, InterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+            methods = new InterfaceMemberListWrapper<InterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 node,
                 () => new InterfaceMethodWithCodeAnalysis());
             members = new MemberList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
@@ -140,11 +125,6 @@ namespace CSharpDom.CodeAnalysis
         internal Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> Node
         {
             get { return node; }
-        }
-        
-        T ISimpleMember.Member<T>()
-        {
-            return (T)@interface;
         }
     }
 }

@@ -15,10 +15,8 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             AccessorWithCodeAnalysis>,
-        IHasSyntax<IndexerDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<IndexerDeclarationSyntax>
     {
-        private readonly object indexer;
         private readonly Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> node;
         private readonly AttributeListWrapper<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> attributes;
         private readonly CachedChildNode<
@@ -38,10 +36,9 @@ namespace CSharpDom.CodeAnalysis
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> setAccessor;
 
-        internal IndexerWithCodeAnalysis(object indexer)
+        internal IndexerWithCodeAnalysis()
         {
             node = new Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax>(this);
-            this.indexer = indexer;
             attributes = new AttributeListWrapper<IndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -130,11 +127,6 @@ namespace CSharpDom.CodeAnalysis
         internal static AccessorDeclarationSyntax GetAccessorDeclaration(IndexerDeclarationSyntax syntax, SyntaxKind kind)
         {
             return syntax.AccessorList.GetAccessorDeclaration(kind);
-        }
-        
-        T ISimpleMember.Member<T>()
-        {
-            return (T)indexer;
         }
     }
 }

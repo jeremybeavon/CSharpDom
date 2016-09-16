@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StructConstantWithCodeAnalysis()
         {
-            constant = new ConstantGroupWithCodeAnalysis(this);
+            constant = new ConstantGroupWithCodeAnalysis();
         }
         
         public ConstantGroupWithCodeAnalysis Constant

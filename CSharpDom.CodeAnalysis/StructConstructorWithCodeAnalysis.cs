@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StructConstructorWithCodeAnalysis()
         {
-            constructor = new ConstructorWithCodeAnalysis(this);
+            constructor = new ConstructorWithCodeAnalysis();
         }
         
         public ConstructorWithCodeAnalysis Constructor

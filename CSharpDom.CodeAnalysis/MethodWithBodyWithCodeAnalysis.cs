@@ -24,9 +24,9 @@ namespace CSharpDom.CodeAnalysis
         private readonly MethodWithCodeAnalysis method;
         private readonly MethodBodyNode<MethodWithCodeAnalysis, MethodDeclarationSyntax> body;
         
-        internal MethodWithBodyWithCodeAnalysis(object method)
+        internal MethodWithBodyWithCodeAnalysis()
         {
-            this.method = new MethodWithCodeAnalysis(method);
+            this.method = new MethodWithCodeAnalysis();
             body = new MethodBodyNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 this.method.Node,
                 syntax => syntax.Body,

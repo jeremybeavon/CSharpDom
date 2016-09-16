@@ -34,10 +34,5 @@ namespace CSharpDom.CodeAnalysis
             get { return methods; }
             set { classType.Members.CombineList(nameof(Methods), value.Select(item => item.Syntax)); }
         }
-
-        internal IChildCollection<MethodWithCodeAnalysis, MethodDeclarationSyntax> MethodList
-        {
-            get { return methods; }
-        }
     }
 }

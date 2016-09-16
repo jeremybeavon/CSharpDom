@@ -19,9 +19,9 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly PropertyWithCodeAnalysis property;
 
-        internal PropertyWithBodyWithCodeAnalysis(object property)
+        internal PropertyWithBodyWithCodeAnalysis()
         {
-            this.property = new PropertyWithCodeAnalysis(property);
+            this.property = new PropertyWithCodeAnalysis();
         }
         
         public PropertyWithCodeAnalysis Property

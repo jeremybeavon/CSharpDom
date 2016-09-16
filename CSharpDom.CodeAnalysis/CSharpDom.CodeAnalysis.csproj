@@ -101,6 +101,7 @@
     <Compile Include="AbstractClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="AbstractClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="AbstractClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassWithCodeAnalysis.cs" />
     <Compile Include="AbstractEventWithCodeAnalysis.cs" />
     <Compile Include="AbstractIndexerWithCodeAnalysis.cs" />
     <Compile Include="AbstractMethodWithCodeAnalysis.cs" />
@@ -118,10 +119,13 @@
     <Compile Include="BaseTypeListWrapper.cs" />
     <Compile Include="CachedExpressionNode.cs" />
     <Compile Include="CachedStatementNode.cs" />
+    <Compile Include="ClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberList.cs" />
+    <Compile Include="IMemberList.cs" />
+    <Compile Include="NamespaceMemberListWrapper.cs" />
     <Compile Include="ClassNestedAbstractClassWithCodeAnalysis.cs" />
     <Compile Include="ClassNestedClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassNestedClassWithCodeAnalysis.cs" />
@@ -137,7 +141,10 @@
     <Compile Include="ConstructorDeclarationSyntaxExtensions.cs" />
     <Compile Include="DelegateTypeWithCodeAnalysis.cs" />
     <Compile Include="DelegateWithCodeAnalysis.cs" />
+    <Compile Include="DocumentWithCodeAnalysis.cs" />
+    <Compile Include="EnumMemberWithCodeAnalysis.cs" />
     <Compile Include="EnumReferenceWithCodeAnalysis.cs" />
+    <Compile Include="EnumWithCodeAnalysis.cs" />
     <Compile Include="ExpressionSyntaxExtensions.cs" />
     <Compile Include="Expressions\ArgumentExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\ArgumentSyntaxExtensions.cs" />
@@ -165,12 +172,19 @@
     <Compile Include="IInternalExpression.cs" />
     <Compile Include="IInternalStatement.cs" />
     <Compile Include="INode.cs" />
+    <Compile Include="InterfaceCollectionWithCodeAnalysis.cs" />
     <Compile Include="InterfaceWithCodeAnalysis.cs" />
     <Compile Include="InternalExpressionListWrapper.cs" />
+    <Compile Include="LoadedDocumentWithCodeAnalysis.cs" />
+    <Compile Include="LoadedProjectWithCodeAnalysis.cs" />
     <Compile Include="Map.cs" />
+    <Compile Include="NamespaceWithCodeAnalysis.cs" />
+    <Compile Include="ProjectWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassWithCodeAnalysis.cs" />
     <Compile Include="SimpleChildCollection.cs" />
     <Compile Include="ExpressionNode.cs" />
     <Compile Include="ExpressionListWrapper.cs" />
+    <Compile Include="SolutionWithCodeAnalysis.cs" />
     <Compile Include="StatementNode.cs" />
     <Compile Include="StatementSyntaxExtensions.cs" />
     <Compile Include="ISealedTypeWithCodeAnalysis.cs" />
@@ -190,7 +204,6 @@
     <Compile Include="NestedEnumWithCodeAnalysis.cs" />
     <Compile Include="NestedStaticClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="NestedStructWithCodeAnalysis.cs" />
-    <Compile Include="SimpleStructMemberListWrapper.cs" />
     <Compile Include="StatementListWrapper.cs" />
     <Compile Include="Statements\BlockStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\BreakStatementWithCodeAnalysis.cs" />
@@ -224,6 +237,8 @@
     <Compile Include="StaticClassNestedStaticClassWithCodeAnalysis.cs" />
     <Compile Include="StaticClassNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="StaticClassNestedStructWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassWithCodeAnalysis.cs" />
+    <Compile Include="StructCollectionWithCodeAnalysis.cs" />
     <Compile Include="StructFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="StructIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="StructMethodCollectionWithCodeAnalysis.cs" />
@@ -251,7 +266,6 @@
     <Compile Include="ClassType.cs" />
     <Compile Include="ClassTypeWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberListWrapper.cs" />
-    <Compile Include="EmptySimpleMember.cs" />
     <Compile Include="MemberListSyntax.cs" />
     <Compile Include="SealedClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="SealedClassEventWithCodeAnalysis.cs" />
@@ -262,7 +276,6 @@
     <Compile Include="SealedClassPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="SealedClassPropertyWithCodeAnalysis.cs" />
     <Compile Include="SealedTypeWithCodeAnalysis.cs" />
-    <Compile Include="SimpleClassMemberListWrapper.cs" />
     <Compile Include="StaticClassAccessorWithCodeAnalysis.cs" />
     <Compile Include="StaticClassConstantWithCodeAnalysis.cs" />
     <Compile Include="StaticClassEventPropertyWithCodeAnalysis.cs" />
@@ -283,6 +296,7 @@
     <Compile Include="StructMethodWithCodeAnalysis.cs" />
     <Compile Include="StructPropertyWithCodeAnalysis.cs" />
     <Compile Include="StructTypeWithCodeAnalysis.cs" />
+    <Compile Include="StructWithCodeAnalysis.cs" />
     <Compile Include="TypedFactory.cs" />
     <Compile Include="CachedTypeReferenceNode.cs" />
     <Compile Include="WrappedList.cs" />
@@ -339,7 +353,6 @@
     <Compile Include="InterfaceMethodWithCodeAnalysis.cs" />
     <Compile Include="InterfacePropertyWithCodeAnalysis.cs" />
     <Compile Include="InterfaceReferenceWithCodeAnalysis.cs" />
-    <Compile Include="ISimpleMember.cs" />
     <Compile Include="ListFactory.cs" />
     <Compile Include="ImmutableSeparatedSyntaxList.cs" />
     <Compile Include="ImmutableSyntaxList.cs" />

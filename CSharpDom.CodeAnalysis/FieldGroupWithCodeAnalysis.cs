@@ -14,10 +14,8 @@ namespace CSharpDom.CodeAnalysis
             IType,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>,
-        ISimpleMember
+        IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly object field;
         private readonly Node<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> attributes;
         private readonly SeparatedSyntaxListWrapper<
@@ -27,9 +25,8 @@ namespace CSharpDom.CodeAnalysis
             VariableDeclaratorSyntax> fields;
         private readonly CachedTypeReferenceNode<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> fieldType;
         
-        internal FieldGroupWithCodeAnalysis(object field)
+        internal FieldGroupWithCodeAnalysis()
         {
-            this.field = field;
             node = new Node<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax>(
                 node,
@@ -84,11 +81,6 @@ namespace CSharpDom.CodeAnalysis
         internal Node<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> Node
         {
             get { return node; }
-        }
-        
-        public T Member<T>()
-        {
-            return (T)field;
         }
     }
 }

@@ -21,7 +21,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StaticClassFieldWithCodeAnalysis()
         {
-            field = new FieldGroupWithCodeAnalysis(this);
+            field = new FieldGroupWithCodeAnalysis();
         }
         
         public FieldGroupWithCodeAnalysis Field

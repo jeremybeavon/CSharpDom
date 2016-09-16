@@ -22,7 +22,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal StructMethodWithCodeAnalysis()
         {
-            method = new MethodWithBodyWithCodeAnalysis(this);
+            method = new MethodWithBodyWithCodeAnalysis();
         }
 
         public MethodWithBodyWithCodeAnalysis Method

@@ -1,85 +1,154 @@
-﻿using CSharpDom.NotSupported;
-using CSharpDom.CodeAnalysis.Internal;
+﻿using CSharpDom.Editable;
+using CSharpDom.NotSupported;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class NamespaceWithCodeAnalysis :
-        AbstractNamespace<
+        EditableNamespace<
             UsingDirectiveNotSupported,
-            NamespaceNotSupported,
+            NamespaceWithCodeAnalysis,
             ClassCollectionWithCodeAnalysis,
             DelegateWithCodeAnalysis,
             EnumWithCodeAnalysis,
             InterfaceCollectionWithCodeAnalysis,
-            StructCollectionWithCodeAnalysis>//,
-        //IVisitable<IReflectionVisitor>
+            StructCollectionWithCodeAnalysis>,
+        IHasSyntax<NamespaceDeclarationSyntax>,
+        IHasNode<NamespaceDeclarationSyntax>//,
+                                             //IVisitable<IReflectionVisitor>
     {
-        private readonly string name;
-        private readonly TypeContainer typeContainer;
-        private readonly ClassCollectionWithCodeAnalysis classes;
-        private readonly InterfaceCollectionWithCodeAnalysis interfaces;
-        private readonly StructCollectionWithCodeAnalysis structs;
-
-        internal NamespaceWithCodeAnalysis(string name, TypeContainer typeContainer)
-        {
-            this.name = name;
-            this.typeContainer = typeContainer;
-            classes = new ClassCollectionWithCodeAnalysis(typeContainer);
-            interfaces = new InterfaceCollectionWithCodeAnalysis(typeContainer);
-            structs = new StructCollectionWithCodeAnalysis(typeContainer);
-        }
+        private readonly Node<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax> node;
 
         public override ClassCollectionWithCodeAnalysis Classes
         {
-            get { return classes; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override IReadOnlyCollection<DelegateWithCodeAnalysis> Delegates
+        public override ICollection<DelegateWithCodeAnalysis> Delegates
         {
-            get { return typeContainer.Delegates; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override IReadOnlyCollection<EnumWithCodeAnalysis> Enums
+        public override ICollection<EnumWithCodeAnalysis> Enums
         {
-            get { return typeContainer.Enums; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override InterfaceCollectionWithCodeAnalysis Interfaces
         {
-            get { return interfaces; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override string Name
         {
-            get { return name; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override IReadOnlyCollection<NamespaceNotSupported> Namespaces
+        public override ICollection<NamespaceWithCodeAnalysis> Namespaces
         {
-            get { return new NamespaceNotSupported[0]; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public override StructCollectionWithCodeAnalysis Structs
         {
-            get { return structs; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public override IReadOnlyCollection<UsingDirectiveNotSupported> UsingDirectives
+        public NamespaceDeclarationSyntax Syntax
         {
-            get { return new UsingDirectiveNotSupported[0]; }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        /*public void Accept(IReflectionVisitor visitor)
+        public override ICollection<UsingDirectiveNotSupported> UsingDirectives
         {
-            visitor.VisitNamespaceWithCodeAnalysis(this);
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
         }
 
-        public void AcceptChildren(IReflectionVisitor visitor)
+        INode<NamespaceDeclarationSyntax> IHasNode<NamespaceDeclarationSyntax>.Node
         {
-            AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }*/
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        internal Node<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax> Node
+        {
+            get { return node; }
+        }
     }
 }

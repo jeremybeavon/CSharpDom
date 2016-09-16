@@ -21,9 +21,9 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly InterfaceTypeWithCodeAnalysis type;
         
-        internal NestedInterfaceWithCodeAnalysis(object @interface)
+        internal NestedInterfaceWithCodeAnalysis()
         {
-            type = new InterfaceTypeWithCodeAnalysis(@interface);
+            type = new InterfaceTypeWithCodeAnalysis();
         }
         
         public InterfaceTypeWithCodeAnalysis Interface

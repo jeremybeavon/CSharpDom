@@ -21,7 +21,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal SealedClassMethodWithCodeAnalysis()
         {
-            method = new ClassMethodWithCodeAnalysis(this);
+            method = new ClassMethodWithCodeAnalysis();
         }
         
         public MethodWithBodyWithCodeAnalysis Method

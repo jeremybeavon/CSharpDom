@@ -11,15 +11,12 @@ namespace CSharpDom.CodeAnalysis
         EditableStructNestedInterfaceCollection<StructNestedInterfaceWithCodeAnalysis, PartialInterfaceNotSupported>
     {
         private readonly StructTypeWithCodeAnalysis classType;
-        private readonly StructTypeMemberListWrapper<
-            InterfaceTypeWithCodeAnalysis,
-            StructNestedInterfaceWithCodeAnalysis,
-            InterfaceDeclarationSyntax> interfaces;
+        private readonly StructTypeMemberListWrapper<StructNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
 
         internal StructNestedInterfaceCollectionWithCodeAnalysis(StructTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
-            interfaces = new StructTypeMemberListWrapper<InterfaceTypeWithCodeAnalysis, StructNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+            interfaces = new StructTypeMemberListWrapper<StructNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 classType.Node,
                 () => new StructNestedInterfaceWithCodeAnalysis());
         }
@@ -41,11 +38,6 @@ namespace CSharpDom.CodeAnalysis
             {
                 throw new NotImplementedException();
             }
-        }
-
-        internal IChildCollection<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> InterfaceList
-        {
-            get { return interfaces; }
         }
     }
 }

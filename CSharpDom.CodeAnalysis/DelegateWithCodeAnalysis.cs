@@ -25,7 +25,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal DelegateWithCodeAnalysis()
         {
-            type = new DelegateTypeWithCodeAnalysis(this);
+            type = new DelegateTypeWithCodeAnalysis();
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

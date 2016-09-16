@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     {
         public TKey this[TValue value]
         {
-            get { return this.First(entry => Equals(entry.Value, value)).Key }
+            get { return this.First(entry => Equals(entry.Value, value)).Key; }
         }
     }
 }
