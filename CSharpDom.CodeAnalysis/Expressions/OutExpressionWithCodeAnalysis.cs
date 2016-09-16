@@ -8,7 +8,8 @@ namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class OutExpressionWithCodeAnalysis :
         EditableOutExpression<IExpressionWithCodeAnalysis>,
-        IHasSyntax<ArgumentSyntax>
+        IHasSyntax<ArgumentSyntax>,
+        IInternalArgument
     {
         private readonly Node<OutExpressionWithCodeAnalysis, ArgumentSyntax> node;
         private readonly CachedExpressionNode<OutExpressionWithCodeAnalysis, ArgumentSyntax> expression;
@@ -32,6 +33,16 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        IExpressionWithCodeAnalysis IInternalArgument.Expression
+        {
+            get { return Expression; }
+        }
+
+        INode<ArgumentSyntax> IHasNode<ArgumentSyntax>.Node
+        {
+            get { return node; }
         }
     }
 }

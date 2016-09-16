@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
 {
     internal sealed class ArgumentExpressionWithCodeAnalysis :
         IHasSyntax<ArgumentSyntax>,
-        IHasNode<ArgumentSyntax>
+        IInternalArgument
     {
         private readonly Node<ArgumentExpressionWithCodeAnalysis, ArgumentSyntax> node;
         private readonly CachedExpressionNode<ArgumentExpressionWithCodeAnalysis, ArgumentSyntax> expression;
