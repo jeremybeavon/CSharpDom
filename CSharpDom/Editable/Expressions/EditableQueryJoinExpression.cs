@@ -4,18 +4,17 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Editable.Expressions
 {
-    public abstract class EditableQueryJoinExpression<TExpression, TIdentifierExpression> :
-        IQueryJoinExpression<TExpression, TIdentifierExpression>
+    public abstract class EditableQueryJoinExpression<TExpression> :
+        IQueryJoinExpression<TExpression>
         where TExpression : IExpression
-        where TIdentifierExpression : IIdentifierExpression
     {
         public abstract TExpression EqualsExpression { get; set; }
 
         public abstract TExpression InExpression { get; set; }
 
-        public abstract TIdentifierExpression IntoExpression { get; set; }
+        public abstract string IntoVariable { get; set; }
 
-        public abstract TIdentifierExpression JoinExpression { get; set; }
+        public abstract string JoinVariable { get; set; }
 
         public abstract TExpression OnExpression { get; set; }
 

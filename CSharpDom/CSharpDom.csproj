@@ -550,7 +550,6 @@
     <Compile Include="Editable\Expressions\EditableCastExpression.cs" />
     <Compile Include="Editable\Expressions\EditableDefaultExpression.cs" />
     <Compile Include="Editable\Expressions\EditableDoubleConstantExpression.cs" />
-    <Compile Include="Editable\Expressions\EditableGenericExpressionVisitor.cs" />
     <Compile Include="Editable\Expressions\EditableIdentifierExpression.cs" />
     <Compile Include="Editable\Expressions\EditableIntegerConstantExpression.cs" />
     <Compile Include="Editable\Expressions\EditableListInitializerExpression.cs" />

@@ -1,17 +1,36 @@
-﻿using CSharpDom.Editable.Expressions;
-using System.Collections.Generic;
+﻿using System;
+using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class NullExpressionWithCodeAnalysis : INullExpression
+    public sealed class NullExpressionWithCodeAnalysis :
+        EditableNullExpression,
+        IHasSyntax<LiteralExpressionSyntax>,
+        IInternalExpression
     {
-        public void Accept(IGenericExpressionVisitor visitor)
+        private readonly ExpressionNode<NullExpressionWithCodeAnalysis, LiteralExpressionSyntax> node;
+
+        public NullExpressionWithCodeAnalysis()
         {
-            visitor.VisitNullExpression(this);
+            node = new ExpressionNode<NullExpressionWithCodeAnalysis, LiteralExpressionSyntax>(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public LiteralExpressionSyntax Syntax
         {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
+        {
+            get { return node; }
+        }
+
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (LiteralExpressionSyntax)value; }
         }
     }
 }

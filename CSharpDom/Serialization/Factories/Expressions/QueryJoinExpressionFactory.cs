@@ -11,14 +11,14 @@ namespace CSharpDom.Serialization.Factories.Expressions
         {
         }
 
-        public override void VisitQueryJoinExpression<TExpression, TIdentifierExpresion>(IQueryJoinExpression<TExpression, TIdentifierExpresion> queryJoinExpression)
+        public override void VisitQueryJoinExpression<TExpression>(IQueryJoinExpression<TExpression> queryJoinExpression)
         {
             Value = new QueryJoinExpression()
             {
                 EqualsExpression = new ExpressionFactory(queryJoinExpression.EqualsExpression).Value,
                 InExpression = new ExpressionFactory(queryJoinExpression.InExpression).Value,
-                IntoExpression = new IdentifierExpressionFactory(queryJoinExpression.IntoExpression).Value,
-                JoinExpression = new IdentifierExpressionFactory(queryJoinExpression.JoinExpression).Value,
+                IntoVariable = queryJoinExpression.IntoVariable,
+                JoinVariable = queryJoinExpression.JoinVariable,
                 OnExpression = new ExpressionFactory(queryJoinExpression.OnExpression).Value
             };            
         }

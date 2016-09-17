@@ -180,8 +180,8 @@ namespace CSharpDom.Serialization.Factories.Expressions
             };
         }
 
-        public override void VisitQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression>(
-            IQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression> queryFromExpression)
+        public override void VisitQueryFromExpression<TExpression, TQueryExpression>(
+            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression)
         {
             Value = new Expression()
             {

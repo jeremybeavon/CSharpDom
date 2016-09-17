@@ -17,6 +17,12 @@ namespace CSharpDom.CodeAnalysis
             Value = value;
         }
 
+        public Node(TValue value, TSyntax syntax)
+            : this(value)
+        {
+            Syntax = syntax;
+        }
+
         public TValue Value { get; private set; }
 
         public TSyntax Syntax

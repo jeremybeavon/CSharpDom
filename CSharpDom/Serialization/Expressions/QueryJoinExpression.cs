@@ -4,15 +4,15 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class QueryJoinExpression : IQueryJoinExpression<Expression, IdentifierExpression>
+    public sealed class QueryJoinExpression : IQueryJoinExpression<Expression>
     {
         public Expression EqualsExpression { get; set; }
 
         public Expression InExpression { get; set; }
 
-        public IdentifierExpression IntoExpression { get; set; }
+        public string IntoVariable { get; set; }
 
-        public IdentifierExpression JoinExpression { get; set; }
+        public string JoinVariable { get; set; }
 
         public Expression OnExpression { get; set; }
 

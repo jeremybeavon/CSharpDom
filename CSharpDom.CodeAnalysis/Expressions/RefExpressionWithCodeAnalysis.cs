@@ -1,22 +1,48 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class RefExpressionWithCodeAnalysis<TExpression> : IRefExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class RefExpressionWithCodeAnalysis :
+        EditableOutExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<ArgumentSyntax>,
+        IInternalArgument
     {
-        public abstract TExpression Expression { get; set; }
+        private readonly Node<RefExpressionWithCodeAnalysis, ArgumentSyntax> node;
+        private readonly CachedExpressionNode<RefExpressionWithCodeAnalysis, ArgumentSyntax> expression;
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public RefExpressionWithCodeAnalysis()
         {
-            visitor.VisitRefExpression(this);
+            node = new Node<RefExpressionWithCodeAnalysis, ArgumentSyntax>(this);
+            expression = new CachedExpressionNode<RefExpressionWithCodeAnalysis, ArgumentSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis Expression
         {
-            GenericExpressionVisitor.VisitRefExpressionChildren(this, visitor);
+            get { return expression.Value; }
+            set { expression.Value = value; }
+        }
+
+        public ArgumentSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        IExpressionWithCodeAnalysis IInternalArgument.Expression
+        {
+            get { return Expression; }
+        }
+
+        INode<ArgumentSyntax> IHasNode<ArgumentSyntax>.Node
+        {
+            get { return node; }
         }
     }
 }

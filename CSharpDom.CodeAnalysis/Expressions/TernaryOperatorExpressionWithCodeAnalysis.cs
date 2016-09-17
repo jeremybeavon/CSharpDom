@@ -1,26 +1,69 @@
-﻿using CSharpDom.Common;
+﻿using System;
 using CSharpDom.Editable.Expressions;
-using System.Collections.Generic;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class TernaryOperatorExpressionWithCodeAnalysis<TExpression> : ITernaryOperatorExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class TernaryOperatorExpressionWithCodeAnalysis :
+        EditableTernaryOperatorExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<ConditionalExpressionSyntax>,
+        IInternalExpression
     {
-        public abstract TExpression Left { get; set; }
+        private readonly ExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax> node;
+        private readonly CachedExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax> left;
+        private readonly CachedExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax> middle;
+        private readonly CachedExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax> right;
 
-        public abstract TExpression Middle { get; set; }
-
-        public abstract TExpression Right { get; set; }
-
-        public void Accept(IGenericExpressionVisitor visitor)
+        public TernaryOperatorExpressionWithCodeAnalysis()
         {
-            visitor.VisitTernaryOperatorExpression(this);
+            node = new ExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax>(this);
+            left = new CachedExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax>(
+                node,
+                syntax => syntax.Condition,
+                (parentSyntax, childSyntax) => parentSyntax.WithCondition(childSyntax));
+            middle = new CachedExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax>(
+                node,
+                syntax => syntax.WhenTrue,
+                (parentSyntax, childSyntax) => parentSyntax.WithWhenTrue(childSyntax));
+            right = new CachedExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax>(
+                node,
+                syntax => syntax.WhenFalse,
+                (parentSyntax, childSyntax) => parentSyntax.WithWhenFalse(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis Left
         {
-            GenericExpressionVisitor.VisitTernaryOperatorExpressionChildren(this, visitor);
+            get { return left.Value; }
+            set { left.Value = value; }
+        }
+
+        public override IExpressionWithCodeAnalysis Middle
+        {
+            get { return middle.Value; }
+            set { middle.Value = value; }
+        }
+
+        public override IExpressionWithCodeAnalysis Right
+        {
+            get { return right.Value; }
+            set { right.Value = value; }
+        }
+
+        public ConditionalExpressionSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
+        {
+            get { return node; }
+        }
+
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (ConditionalExpressionSyntax)value; }
         }
     }
 }

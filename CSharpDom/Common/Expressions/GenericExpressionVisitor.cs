@@ -122,14 +122,12 @@ namespace CSharpDom.Common.Expressions
             VisitIfNotNull(parenthesisExpression.Expression, visitor);
         }
 
-        public static void VisitQueryFromExpressionChildren<TIdentifierExpression, TExpression, TQueryExpression>(
-            IQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression> queryFromExpression,
+        public static void VisitQueryFromExpressionChildren<TExpression, TQueryExpression>(
+            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression,
             IGenericExpressionVisitor visitor)
-            where TIdentifierExpression : IIdentifierExpression
             where TExpression : IExpression
             where TQueryExpression : IQueryExpression
         {
-            VisitIfNotNull(queryFromExpression.Identifier, visitor);
             VisitIfNotNull(queryFromExpression.Expression, visitor);
             VisitCollection(queryFromExpression.QueryExpressions, visitor);
         }
@@ -145,17 +143,14 @@ namespace CSharpDom.Common.Expressions
             VisitIfNotNull(queryGroupExpression.IntoExpression, visitor);
         }
 
-        public static void VisitQueryJoinExpressionChildren<TExpression, TIdentifierExpresion>(
-            IQueryJoinExpression<TExpression, TIdentifierExpresion> queryJoinExpression,
+        public static void VisitQueryJoinExpressionChildren<TExpression>(
+            IQueryJoinExpression<TExpression> queryJoinExpression,
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
-            where TIdentifierExpresion : IIdentifierExpression
         {
-            VisitIfNotNull(queryJoinExpression.JoinExpression, visitor);
             VisitIfNotNull(queryJoinExpression.InExpression, visitor);
             VisitIfNotNull(queryJoinExpression.OnExpression, visitor);
             VisitIfNotNull(queryJoinExpression.EqualsExpression, visitor);
-            VisitIfNotNull(queryJoinExpression.IntoExpression, visitor);
         }
 
         public static void VisitQueryLetExpressionChildren<TBinaryOperatorExpression>(

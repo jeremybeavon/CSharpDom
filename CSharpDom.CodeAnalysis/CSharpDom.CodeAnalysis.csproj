@@ -115,6 +115,7 @@
     <Compile Include="AttributeGroupWithCodeAnalysis.cs" />
     <Compile Include="AttributeListWrapper.cs" />
     <Compile Include="AttributeWithCodeAnalysis.cs" />
+    <Compile Include="BaseCollection.cs" />
     <Compile Include="BaseTypeList.cs" />
     <Compile Include="BaseTypeListWrapper.cs" />
     <Compile Include="CachedExpressionNode.cs" />
@@ -124,7 +125,20 @@
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberList.cs" />
+    <Compile Include="DocumentListWrapper.cs" />
+    <Compile Include="Expressions\IInternalQueryExpression.cs" />
+    <Compile Include="Expressions\QueryExpressionListWrapper.cs" />
+    <Compile Include="Expressions\QueryExpressionNode.cs" />
+    <Compile Include="Expressions\QueryClauseSyntaxExtensions.cs" />
+    <Compile Include="Expressions\IQueryExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\NullExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\QueryFromExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\QueryJoinExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\QueryWhereExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\RefExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\TernaryOperatorExpressionWithCodeAnalysis.cs" />
     <Compile Include="IMemberList.cs" />
+    <Compile Include="LoadedDocumentMemberListWrapper.cs" />
     <Compile Include="NamespaceMemberListWrapper.cs" />
     <Compile Include="ClassNestedAbstractClassWithCodeAnalysis.cs" />
     <Compile Include="ClassNestedClassCollectionWithCodeAnalysis.cs" />
@@ -179,6 +193,7 @@
     <Compile Include="LoadedProjectWithCodeAnalysis.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="NamespaceWithCodeAnalysis.cs" />
+    <Compile Include="ProjectListWrapper.cs" />
     <Compile Include="ProjectWithCodeAnalysis.cs" />
     <Compile Include="SealedClassWithCodeAnalysis.cs" />
     <Compile Include="SimpleChildCollection.cs" />

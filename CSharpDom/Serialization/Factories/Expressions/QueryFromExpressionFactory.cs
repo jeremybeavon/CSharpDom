@@ -11,13 +11,13 @@ namespace CSharpDom.Serialization.Factories.Expressions
         {
         }
 
-        public override void VisitQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression>(
-            IQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression> queryFromExpression)
+        public override void VisitQueryFromExpression<TExpression, TQueryExpression>(
+            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression)
         {
             Value = new QueryFromExpression()
             {
                 Expression = new ExpressionFactory(queryFromExpression.Expression).Value,
-                Identifier = new IdentifierExpressionFactory(queryFromExpression.Identifier).Value,
+                Identifier = queryFromExpression.Identifier,
                 QueryExpressions = queryFromExpression.QueryExpressions.ToList(expression => new QueryExpressionFactory(expression).Value)
             };
         }

@@ -179,12 +179,12 @@ namespace CSharpDom.Text
             Steps.Add(new WriteEndParenthesis());
         }
 
-        public override void VisitQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression>(
-            IQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression> queryFromExpression)
+        public override void VisitQueryFromExpression<TExpression, TQueryExpression>(
+            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression)
         {
             Steps.Add(new WriteFromKeyword());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteExpression<TIdentifierExpression>(queryFromExpression.Identifier));
+            Steps.Add(new WriteName(queryFromExpression.Identifier));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteInKeyword());
             Steps.Add(new WriteWhitespace());
@@ -215,12 +215,12 @@ namespace CSharpDom.Text
             Steps.Add(new WriteExpression<TIdentiferExpression>(queryGroupExpression.IntoExpression));
         }
 
-        public override void VisitQueryJoinExpression<TExpression, TIdentifierExpresion>(
-            IQueryJoinExpression<TExpression, TIdentifierExpresion> queryJoinExpression)
+        public override void VisitQueryJoinExpression<TExpression>(
+            IQueryJoinExpression<TExpression> queryJoinExpression)
         {
             Steps.Add(new WriteJoinKeyword());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteExpression<TIdentifierExpresion>(queryJoinExpression.JoinExpression));
+            Steps.Add(new WriteName(queryJoinExpression.JoinVariable));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteInKeyword());
             Steps.Add(new WriteWhitespace());
@@ -233,12 +233,12 @@ namespace CSharpDom.Text
             Steps.Add(new WriteEqualsKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteExpression<TExpression>(queryJoinExpression.EqualsExpression));
-            if (queryJoinExpression.IntoExpression != null)
+            if (queryJoinExpression.IntoVariable != null)
             {
                 Steps.Add(new WriteWhitespace());
                 Steps.Add(new WriteIntoKeyword());
                 Steps.Add(new WriteWhitespace());
-                Steps.Add(new WriteExpression<TIdentifierExpresion>(queryJoinExpression.IntoExpression));
+                Steps.Add(new WriteName(queryJoinExpression.IntoVariable));
             }
         }
 

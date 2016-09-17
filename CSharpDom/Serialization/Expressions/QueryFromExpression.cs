@@ -4,7 +4,7 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class QueryFromExpression : IQueryFromExpression<IdentifierExpression, Expression, QueryExpression>
+    public sealed class QueryFromExpression : IQueryFromExpression<Expression, QueryExpression>
     {
         public QueryFromExpression()
         {
@@ -13,11 +13,11 @@ namespace CSharpDom.Serialization.Expressions
 
         public Expression Expression { get; set; }
 
-        public IdentifierExpression Identifier { get; set; }
+        public string Identifier { get; set; }
 
         public List<QueryExpression> QueryExpressions { get; set; }
 
-        IReadOnlyList<QueryExpression> IQueryFromExpression<IdentifierExpression, Expression, QueryExpression>.QueryExpressions
+        IReadOnlyList<QueryExpression> IQueryFromExpression<Expression, QueryExpression>.QueryExpressions
         {
             get { return QueryExpressions; }
         }

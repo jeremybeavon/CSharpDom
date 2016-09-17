@@ -2,12 +2,11 @@
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface IQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression> : IQueryFromExpression
-        where TIdentifierExpression : IIdentifierExpression
+    public interface IQueryFromExpression<TExpression, TQueryExpression> : IQueryFromExpression
         where TExpression : IExpression
         where TQueryExpression : IQueryExpression
     {
-        TIdentifierExpression Identifier { get; }
+        string Identifier { get; }
 
         TExpression Expression { get; }
 

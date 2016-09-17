@@ -71,9 +71,8 @@ namespace CSharpDom.Common.Expressions
         void VisitParenthesisExpression<TExpression>(IParenthesisExpression<TExpression> parenthesisExpression)
             where TExpression : IExpression;
 
-        void VisitQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression>(
-            IQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression> queryFromExpression)
-            where TIdentifierExpression : IIdentifierExpression
+        void VisitQueryFromExpression<TExpression, TQueryExpression>(
+            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression)
             where TExpression : IExpression
             where TQueryExpression : IQueryExpression;
 
@@ -82,10 +81,9 @@ namespace CSharpDom.Common.Expressions
             where TExpression : IExpression
             where TIdentiferExpression : IIdentifierExpression;
 
-        void VisitQueryJoinExpression<TExpression, TIdentifierExpresion>(
-            IQueryJoinExpression<TExpression, TIdentifierExpresion> queryJoinExpression)
-            where TExpression : IExpression
-            where TIdentifierExpresion : IIdentifierExpression;
+        void VisitQueryJoinExpression<TExpression>(
+            IQueryJoinExpression<TExpression> queryJoinExpression)
+            where TExpression : IExpression;
 
         void VisitQueryLetExpression<TBinaryOperatorExpression>(IQueryLetExpression<TBinaryOperatorExpression> queryLetExpression)
             where TBinaryOperatorExpression : IBinaryOperatorExpression;

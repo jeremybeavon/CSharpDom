@@ -1,10 +1,9 @@
 ﻿namespace CSharpDom.Common.Expressions
 {
-    public interface IQueryJoinExpression<TExpression, TIdentifierExpression> : IQueryJoinExpression
+    public interface IQueryJoinExpression<TExpression> : IQueryJoinExpression
         where TExpression : IExpression
-        where TIdentifierExpression : IIdentifierExpression
     {
-        TIdentifierExpression JoinExpression { get; }
+        string JoinVariable { get; }
 
         TExpression InExpression { get; }
 
@@ -12,6 +11,6 @@
 
         TExpression EqualsExpression { get; }
 
-        TIdentifierExpression IntoExpression { get; }
+        string IntoVariable { get; }
     }
 }

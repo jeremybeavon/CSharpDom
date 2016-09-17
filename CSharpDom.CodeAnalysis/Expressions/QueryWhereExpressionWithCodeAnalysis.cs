@@ -1,22 +1,49 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class QueryWhereExpressionWithCodeAnalysis<TExpression> : IQueryWhereExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class QueryWhereExpressionWithCodeAnalysis :
+        EditableQueryWhereExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<WhereClauseSyntax>,
+        IInternalQueryExpression
     {
-        public abstract TExpression Expression { get; set; }
+        private readonly QueryExpressionNode<QueryWhereExpressionWithCodeAnalysis, WhereClauseSyntax> node;
+        private readonly CachedExpressionNode<QueryWhereExpressionWithCodeAnalysis, WhereClauseSyntax> expression;
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public QueryWhereExpressionWithCodeAnalysis()
         {
-            visitor.VisitQueryWhereExpression(this);
+            node = new QueryExpressionNode<QueryWhereExpressionWithCodeAnalysis, WhereClauseSyntax>(this);
+            expression = new CachedExpressionNode<QueryWhereExpressionWithCodeAnalysis, WhereClauseSyntax>(
+                node,
+                syntax => syntax.Condition,
+                (parentSyntax, childSyntax) => parentSyntax.WithCondition(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis Expression
         {
-            GenericExpressionVisitor.VisitQueryWhereExpressionChildren(this, visitor);
+            get { return expression.Value; }
+            set { expression.Value = value; }
+        }
+
+        public WhereClauseSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node
+        {
+            get { return node; }
+        }
+
+        QueryClauseSyntax IHasSyntax<QueryClauseSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (WhereClauseSyntax)value; }
         }
     }
 }

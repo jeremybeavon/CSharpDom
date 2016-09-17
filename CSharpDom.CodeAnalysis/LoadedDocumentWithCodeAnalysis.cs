@@ -24,9 +24,9 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax> node;
 
-        internal LoadedDocumentWithCodeAnalysis()
+        internal LoadedDocumentWithCodeAnalysis(CompilationUnitSyntax syntax)
         {
-            node = new Node<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax>(this);
+            node = new Node<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax>(this, syntax);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> AssemblyAttributes

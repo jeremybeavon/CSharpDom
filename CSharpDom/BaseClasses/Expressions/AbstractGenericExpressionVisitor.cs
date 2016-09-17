@@ -139,9 +139,8 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(parenthesisExpression);
         }
 
-        public virtual void VisitQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression>(
-            IQueryFromExpression<TIdentifierExpression, TExpression, TQueryExpression> queryFromExpression)
-            where TIdentifierExpression : IIdentifierExpression
+        public virtual void VisitQueryFromExpression<TExpression, TQueryExpression>(
+            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression)
             where TExpression : IExpression
             where TQueryExpression : IQueryExpression
         {
@@ -156,10 +155,9 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(queryGroupExpression);
         }
 
-        public virtual void VisitQueryJoinExpression<TExpression, TIdentifierExpresion>(
-            IQueryJoinExpression<TExpression, TIdentifierExpresion> queryJoinExpression)
+        public virtual void VisitQueryJoinExpression<TExpression>(
+            IQueryJoinExpression<TExpression> queryJoinExpression)
             where TExpression : IExpression
-            where TIdentifierExpresion : IIdentifierExpression
         {
             Visit(queryJoinExpression);
         }

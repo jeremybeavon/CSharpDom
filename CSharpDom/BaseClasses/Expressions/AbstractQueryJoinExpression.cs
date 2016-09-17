@@ -4,18 +4,17 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractQueryJoinExpression<TExpression, TIdentifierExpression> :
-        IQueryJoinExpression<TExpression, TIdentifierExpression>
+    public abstract class AbstractQueryJoinExpression<TExpression> :
+        IQueryJoinExpression<TExpression>
         where TExpression : IExpression
-        where TIdentifierExpression : IIdentifierExpression
     {
         public abstract TExpression EqualsExpression { get; }
 
         public abstract TExpression InExpression { get; }
 
-        public abstract TIdentifierExpression IntoExpression { get; }
+        public abstract string IntoVariable { get; }
 
-        public abstract TIdentifierExpression JoinExpression { get; }
+        public abstract string JoinVariable { get; }
 
         public abstract TExpression OnExpression { get; }
 

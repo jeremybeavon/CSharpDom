@@ -1,32 +1,92 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class QueryJoinExpressionWithCodeAnalysis<TExpression, TIdentifierExpression> :
-        IQueryJoinExpression<TExpression, TIdentifierExpression>
-        where TExpression : IExpression
-        where TIdentifierExpression : IIdentifierExpression
+    public sealed class QueryJoinExpressionWithCodeAnalysis :
+        EditableQueryJoinExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<JoinClauseSyntax>,
+        IInternalQueryExpression
     {
-        public abstract TExpression EqualsExpression { get; set; }
+        private readonly QueryExpressionNode<QueryJoinExpressionWithCodeAnalysis, JoinClauseSyntax> node;
+        private readonly CachedExpressionNode<QueryJoinExpressionWithCodeAnalysis, JoinClauseSyntax> equalsExpression;
+        private readonly CachedExpressionNode<QueryJoinExpressionWithCodeAnalysis, JoinClauseSyntax> inExpression;
+        private readonly CachedExpressionNode<QueryJoinExpressionWithCodeAnalysis, JoinClauseSyntax> onExpression;
 
-        public abstract TExpression InExpression { get; set; }
-
-        public abstract TIdentifierExpression IntoExpression { get; set; }
-
-        public abstract TIdentifierExpression JoinExpression { get; set; }
-
-        public abstract TExpression OnExpression { get; set; }
-
-        public void Accept(IGenericExpressionVisitor visitor)
+        public QueryJoinExpressionWithCodeAnalysis()
         {
-            visitor.VisitQueryJoinExpression(this);
+            node = new QueryExpressionNode<QueryJoinExpressionWithCodeAnalysis, JoinClauseSyntax>(this);
+            equalsExpression = new CachedExpressionNode<QueryJoinExpressionWithCodeAnalysis, JoinClauseSyntax>(
+                node,
+                syntax => syntax.RightExpression,
+                (parentSyntax, childSyntax) => parentSyntax.WithRightExpression(childSyntax));
+            inExpression = new CachedExpressionNode<QueryJoinExpressionWithCodeAnalysis, JoinClauseSyntax>(
+                node,
+                syntax => syntax.InExpression,
+                (parentSyntax, childSyntax) => parentSyntax.WithInExpression(childSyntax));
+            onExpression = new CachedExpressionNode<QueryJoinExpressionWithCodeAnalysis, JoinClauseSyntax>(
+                node,
+                syntax => syntax.LeftExpression,
+                (parentSyntax, childSyntax) => parentSyntax.WithLeftExpression(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis EqualsExpression
         {
-            GenericExpressionVisitor.VisitQueryJoinExpressionChildren(this, visitor);
+            get { return equalsExpression.Value; }
+            set { equalsExpression.Value = value; }
+        }
+
+        public override IExpressionWithCodeAnalysis InExpression
+        {
+            get { return inExpression.Value; }
+            set { inExpression.Value = value; }
+        }
+
+        public override string IntoVariable
+        {
+            get { return Syntax.Into?.Identifier.Text; }
+            set
+            {
+                JoinClauseSyntax syntax = Syntax;
+                JoinIntoClauseSyntax intoClause =
+                    syntax.Into == null ?
+                    SyntaxFactory.JoinIntoClause(value) :
+                    syntax.Into.WithIdentifier(SyntaxFactory.Identifier(value));
+                Syntax = syntax.WithInto(intoClause);
+            }
+        }
+
+        public override string JoinVariable
+        {
+            get { return Syntax.Identifier.Text; }
+            set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
+        }
+
+        public override IExpressionWithCodeAnalysis OnExpression
+        {
+            get { return onExpression.Value; }
+            set { onExpression.Value = value; }
+        }
+
+        public JoinClauseSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node
+        {
+            get { return node; }
+        }
+
+        QueryClauseSyntax IHasSyntax<QueryClauseSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (JoinClauseSyntax)value; }
         }
     }
 }
