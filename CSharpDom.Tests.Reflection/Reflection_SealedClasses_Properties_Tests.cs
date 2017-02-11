@@ -10,61 +10,61 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithInternalPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithInternalProperty));
+            TestSealedClass(typeof(SealedClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNewPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNewProperty));
+            TestSealedClass(typeof(SealedClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNewStaticPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNewStaticProperty));
+            TestSealedClass(typeof(SealedClassWithNewStaticProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithOverridePropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithOverrideProperty));
+            TestSealedClass(typeof(SealedClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithPrivatePropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPrivateProperty));
+            TestSealedClass(typeof(SealedClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedProperty));
+            TestSealedClass(typeof(SealedClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedInternalPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedInternalProperty));
+            TestSealedClass(typeof(SealedClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithPublicPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPublicProperty));
+            TestSealedClass(typeof(SealedClassWithPublicProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithSealedOverridePropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithSealedOverrideProperty));
+            TestSealedClass(typeof(SealedClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithStaticPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithStaticProperty));
+            TestSealedClass(typeof(SealedClassWithStaticProperty));
         }
     }
 }

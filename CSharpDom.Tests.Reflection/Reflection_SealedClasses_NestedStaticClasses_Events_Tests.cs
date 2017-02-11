@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithEventWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithEventWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithEventWithGenericDelegateUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithEventWithGenericDelegate));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithInternalEventUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithInternalEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithPrivateEventUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPrivateEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithPublicEventUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPublicEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithPublicEvent));
         }
     }
 }

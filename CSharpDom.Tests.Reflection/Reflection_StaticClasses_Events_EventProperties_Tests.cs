@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventPropertyWith1AttributeUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWithGenericDelegate));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestStaticClassWithInternalEventPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithInternalEventProperty));
+            TestStaticClass(typeof(StaticClassWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithPrivateEventPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPrivateEventProperty));
+            TestStaticClass(typeof(StaticClassWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithPublicEventPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPublicEventProperty));
+            TestStaticClass(typeof(StaticClassWithPublicEventProperty));
         }
     }
 }

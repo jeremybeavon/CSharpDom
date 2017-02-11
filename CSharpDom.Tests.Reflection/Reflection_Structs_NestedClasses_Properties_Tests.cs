@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedClassWithInternalPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithInternalProperty));
+            TestStruct(typeof(StructWithNestedClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNewPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNewProperty));
+            TestStruct(typeof(StructWithNestedClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNewStaticPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNewStaticProperty));
+            TestStruct(typeof(StructWithNestedClassWithNewStaticProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNewVirtualPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNewVirtualProperty));
+            TestStruct(typeof(StructWithNestedClassWithNewVirtualProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithOverridePropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithOverrideProperty));
+            TestStruct(typeof(StructWithNestedClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithPrivatePropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithPrivateProperty));
+            TestStruct(typeof(StructWithNestedClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithProtectedPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithProtectedProperty));
+            TestStruct(typeof(StructWithNestedClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithProtectedInternalPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalProperty));
+            TestStruct(typeof(StructWithNestedClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithPublicPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithPublicProperty));
+            TestStruct(typeof(StructWithNestedClassWithPublicProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithSealedOverridePropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithSealedOverrideProperty));
+            TestStruct(typeof(StructWithNestedClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithStaticPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithStaticProperty));
+            TestStruct(typeof(StructWithNestedClassWithStaticProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithVirtualPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithVirtualProperty));
+            TestStruct(typeof(StructWithNestedClassWithVirtualProperty));
         }
     }
 }

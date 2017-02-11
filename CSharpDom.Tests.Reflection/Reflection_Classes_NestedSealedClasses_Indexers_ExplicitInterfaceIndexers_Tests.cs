@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedSealedClassWithExplicitInterfaceIndexerWith1AccessorAttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
+            TestClass(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithExplicitInterfaceIndexerWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith1Attribute));
+            TestClass(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2ParametersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2Parameters));
+            TestClass(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
+            TestClass(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
+            TestClass(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithExplicitInterfaceIndexerUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexer));
+            TestClass(typeof(ClassWithNestedSealedClassWithExplicitInterfaceIndexer));
         }
     }
 }

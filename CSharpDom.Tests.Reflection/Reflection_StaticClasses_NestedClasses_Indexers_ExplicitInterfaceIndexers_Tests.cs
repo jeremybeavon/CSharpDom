@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceIndexerWith1AccessorAttributeUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceIndexerWith1AttributeUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2Parameters));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiersUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceIndexerUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexer));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceIndexer));
         }
     }
 }

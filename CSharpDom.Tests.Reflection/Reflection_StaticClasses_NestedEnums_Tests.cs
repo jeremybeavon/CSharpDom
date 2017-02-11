@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedEnumWith1AttributeUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedEnumWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithInternalNestedEnumUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithInternalNestedEnum));
+            TestStaticClass(typeof(StaticClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStaticClassWithPrivateNestedEnumUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPrivateNestedEnum));
+            TestStaticClass(typeof(StaticClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestStaticClassWithProtectedNestedEnumUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithProtectedNestedEnum));
+            TestStaticClass(typeof(StaticClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestStaticClassWithProtectedInternalNestedEnumUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithProtectedInternalNestedEnum));
+            TestStaticClass(typeof(StaticClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStaticClassWithPublicNestedEnumUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPublicNestedEnum));
+            TestStaticClass(typeof(StaticClassWithPublicNestedEnum));
         }
     }
 }

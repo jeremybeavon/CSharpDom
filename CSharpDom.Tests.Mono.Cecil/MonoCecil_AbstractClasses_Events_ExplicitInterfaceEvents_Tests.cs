@@ -10,44 +10,44 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithExplicitInterfaceEventWith1AccessorAttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestAbstractClass(typeof(AbstractClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithExplicitInterfaceEventWith1AttributeUsingMonoCecil()
         {
 
-            TestAbstractClassAsync(typeof(AbstractClassWithExplicitInterfaceEventWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithExplicitInterfaceEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithExplicitInterfaceEvent));
+            TestAbstractClass(typeof(AbstractClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithExplicitInterfaceEventWithGenericDelegateUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestAbstractClass(typeof(AbstractClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestAbstractClassWithExplicitInterfaceEventWithGenericInterfaceUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithExplicitInterfaceEventWithGenericInterface));
+            TestAbstractClass(typeof(AbstractClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

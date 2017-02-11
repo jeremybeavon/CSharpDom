@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedStaticClassWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithEventPropertyWith1AccessorAttribute));
+            TestStruct(typeof(StructWithNestedStaticClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithEventPropertyWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithEventPropertyWith1Attribute));
+            TestStruct(typeof(StructWithNestedStaticClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithEventPropertyWithGenericDelegate));
+            TestStruct(typeof(StructWithNestedStaticClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithInternalEventPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithInternalEventProperty));
+            TestStruct(typeof(StructWithNestedStaticClassWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithPrivateEventPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithPrivateEventProperty));
+            TestStruct(typeof(StructWithNestedStaticClassWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithPublicEventPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithPublicEventProperty));
+            TestStruct(typeof(StructWithNestedStaticClassWithPublicEventProperty));
         }
     }
 }

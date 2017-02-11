@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithIndexerWith1AccessorAttribute));
+            TestClass(typeof(ClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithIndexerWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithIndexerWith1Attribute));
+            TestClass(typeof(ClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithIndexerWith2ParametersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithIndexerWith2Parameters));
+            TestClass(typeof(ClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithAttributes));
+            TestClass(typeof(ClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithModifiers));
+            TestClass(typeof(ClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithInternalIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithInternalIndexer));
+            TestClass(typeof(ClassWithInternalIndexer));
         }
 
         [TestMethod]
         public void TestClassWithNewIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewIndexer));
+            TestClass(typeof(ClassWithNewIndexer));
         }
 
         //[TestMethod]
@@ -70,31 +70,31 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithOverrideIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithOverrideIndexer));
+            TestClass(typeof(ClassWithOverrideIndexer));
         }
 
         [TestMethod]
         public void TestClassWithPrivateIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPrivateIndexer));
+            TestClass(typeof(ClassWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestClassWithProtectedIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedIndexer));
+            TestClass(typeof(ClassWithProtectedIndexer));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalIndexer));
+            TestClass(typeof(ClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
         public void TestClassWithPublicIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPublicIndexer));
+            TestClass(typeof(ClassWithPublicIndexer));
         }
 
         //[TestMethod]
@@ -106,7 +106,7 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithVirtualIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithVirtualIndexer));
+            TestClass(typeof(ClassWithVirtualIndexer));
         }
     }
 }

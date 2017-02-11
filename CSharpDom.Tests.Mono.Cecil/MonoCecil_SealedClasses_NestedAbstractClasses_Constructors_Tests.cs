@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithConstructorWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithConstructorWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithConstructorWith1ParameterUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithConstructorWith1Parameter));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithConstructorWith2ParametersUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithConstructorWith2Parameters));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithInternalConstructorUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithInternalConstructor));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithConstructorWithParametersWithAttributes));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithConstructorWithParametersWithModifiers));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithPrivateConstructorUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPrivateConstructor));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithProtectedConstructorUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedConstructor));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithProtectedInternalConstructorUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedInternalConstructor));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithPublicConstructorUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPublicConstructor));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithPublicConstructor));
         }
     }
 }

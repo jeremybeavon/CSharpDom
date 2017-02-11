@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithConstructorWith1AttributeUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithConstructorWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithConstructorWith1ParameterUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithConstructorWith1Parameter));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithConstructorWith2ParametersUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithConstructorWith2Parameters));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithInternalConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithConstructorWithParametersWithAttributes));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithConstructorWithParametersWithModifiers));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithPrivateConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithProtectedConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithProtectedInternalConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedSealedClassWithPublicConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPublicConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedSealedClassWithPublicConstructor));
         }
     }
 }

@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWith1AccessorAttribute));
+            TestClass(typeof(ClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithEventPropertyWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWith1Attribute));
+            TestClass(typeof(ClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithEventPropertyWithGenericDelegateUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWithGenericDelegate));
+            TestClass(typeof(ClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithInternalEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithInternalEventProperty));
+            TestClass(typeof(ClassWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewEventProperty));
+            TestClass(typeof(ClassWithNewEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewStaticEventProperty));
+            TestClass(typeof(ClassWithNewStaticEventProperty));
         }
 
         //[TestMethod]
@@ -64,31 +64,31 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithOverrideEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithOverrideEventProperty));
+            TestClass(typeof(ClassWithOverrideEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithPrivateEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPrivateEventProperty));
+            TestClass(typeof(ClassWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedEventProperty));
+            TestClass(typeof(ClassWithProtectedEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalEventProperty));
+            TestClass(typeof(ClassWithProtectedInternalEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithPublicEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPublicEventProperty));
+            TestClass(typeof(ClassWithPublicEventProperty));
         }
 
         //[TestMethod]
@@ -100,13 +100,13 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithStaticEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithStaticEventProperty));
+            TestClass(typeof(ClassWithStaticEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithVirtualEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithVirtualEventProperty));
+            TestClass(typeof(ClassWithVirtualEventProperty));
         }
     }
 }

@@ -10,103 +10,103 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWith1AttributeUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWith1GenericParameterUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWith1GenericParameter));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWith2GenericParametersUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWith2GenericParameters));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithGenericParameterBaseClassConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWithGenericParameterClassConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithGenericParameterClassConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithGenericParameterEmptyConstructorConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithGenericParameterGenericParameterConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithGenericParameterInterfaceConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedStaticClassWithGenericParameterStructConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedStaticClassWithGenericParameterStructConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedStaticClassWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithInternalNestedStaticClassUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithInternalNestedStaticClass));
+            TestStaticClass(typeof(StaticClassWithInternalNestedStaticClass));
         }
 
         [TestMethod]
         public void TestStaticClassWithPrivateNestedStaticClassUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPrivateNestedStaticClass));
+            TestStaticClass(typeof(StaticClassWithPrivateNestedStaticClass));
         }
 
         [TestMethod]
         public void TestStaticClassWithProtectedNestedStaticClassUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithProtectedNestedStaticClass));
+            TestStaticClass(typeof(StaticClassWithProtectedNestedStaticClass));
         }
 
         [TestMethod]
         public void TestStaticClassWithProtectedInternalNestedStaticClassUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithProtectedInternalNestedStaticClass));
+            TestStaticClass(typeof(StaticClassWithProtectedInternalNestedStaticClass));
         }
 
         [TestMethod]
         public void TestStaticClassWithPublicNestedStaticClassUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPublicNestedStaticClass));
+            TestStaticClass(typeof(StaticClassWithPublicNestedStaticClass));
         }
     }
 }

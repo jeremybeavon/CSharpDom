@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithInternalPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithInternalProperty));
+            TestClass(typeof(ClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewProperty));
+            TestClass(typeof(ClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewStaticProperty));
+            TestClass(typeof(ClassWithNewStaticProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewVirtualPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewVirtualProperty));
+            TestClass(typeof(ClassWithNewVirtualProperty));
         }
 
         [TestMethod]
         public void TestClassWithOverridePropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithOverrideProperty));
+            TestClass(typeof(ClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestClassWithPrivatePropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPrivateProperty));
+            TestClass(typeof(ClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedProperty));
+            TestClass(typeof(ClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalProperty));
+            TestClass(typeof(ClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestClassWithPublicPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPublicProperty));
+            TestClass(typeof(ClassWithPublicProperty));
         }
 
         [TestMethod]
         public void TestClassWithSealedOverridePropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithSealedOverrideProperty));
+            TestClass(typeof(ClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
         public void TestClassWithStaticPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithStaticProperty));
+            TestClass(typeof(ClassWithStaticProperty));
         }
 
         [TestMethod]
         public void TestClassWithVirtualPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithVirtualProperty));
+            TestClass(typeof(ClassWithVirtualProperty));
         }
     }
 }

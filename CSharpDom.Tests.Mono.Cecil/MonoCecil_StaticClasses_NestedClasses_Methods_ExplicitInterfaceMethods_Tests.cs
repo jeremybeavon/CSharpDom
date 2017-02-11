@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceMethodWith1AttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceMethodWith1GenericParameterUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWith1GenericParameter));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceMethodWith2GenericParametersUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWith2GenericParameters));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceMethodWithParametersWithAttributesUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWithParametersWithAttributes));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExplicitInterfaceMethodWithParametersWithModifiersUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWithParametersWithModifiers));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExplicitInterfaceMethodWithParametersWithModifiers));
         }
     }
 }

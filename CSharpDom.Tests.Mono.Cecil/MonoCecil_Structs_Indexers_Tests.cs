@@ -10,19 +10,19 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithPrivateIndexerUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithPrivateIndexer));
+            TestStruct(typeof(StructWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestStructWithPublicIndexerUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithPublicIndexer));
+            TestStruct(typeof(StructWithPublicIndexer));
         }
 
         [TestMethod]
         public void TestStructWithInternalIndexerUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithInternalIndexer));
+            TestStruct(typeof(StructWithInternalIndexer));
         }
     }
 }

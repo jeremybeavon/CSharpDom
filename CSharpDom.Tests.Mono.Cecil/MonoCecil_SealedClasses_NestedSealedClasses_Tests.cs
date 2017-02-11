@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWith1GenericParameterUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWith1GenericParameter));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWith1ImplementedInterfaceUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWith1ImplementedInterface));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWith1ImplementedInterface));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWith2GenericParametersUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWith2GenericParameters));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWith2ImplementedInterfacesUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWith2ImplementedInterfaces));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWith2ImplementedInterfaces));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithBaseClassUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithBaseClass));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithBaseClass));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithGenericParameterBaseClassConstraint));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithGenericParameterClassConstraint));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithGenericParameterEmptyConstructorConstraint));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithGenericParameterGenericParameterConstraintUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithGenericParameterGenericParameterConstraint));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithGenericParameterInterfaceConstraintUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithGenericParameterInterfaceConstraint));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithGenericParameterStructConstraintUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithGenericParameterStructConstraint));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
         public void TestSealedClassWithInternalNestedSealedClassUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithInternalNestedSealedClass));
+            TestSealedClass(typeof(SealedClassWithInternalNestedSealedClass));
         }
 
         [TestMethod]
         public void TestSealedClassWithPrivateNestedSealedClassUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPrivateNestedSealedClass));
+            TestSealedClass(typeof(SealedClassWithPrivateNestedSealedClass));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedNestedSealedClassUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedNestedSealedClass));
+            TestSealedClass(typeof(SealedClassWithProtectedNestedSealedClass));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedInternalNestedSealedClassUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedInternalNestedSealedClass));
+            TestSealedClass(typeof(SealedClassWithProtectedInternalNestedSealedClass));
         }
 
         [TestMethod]
         public void TestSealedClassWithPublicNestedSealedClassUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPublicNestedSealedClass));
+            TestSealedClass(typeof(SealedClassWithPublicNestedSealedClass));
         }
     }
 }

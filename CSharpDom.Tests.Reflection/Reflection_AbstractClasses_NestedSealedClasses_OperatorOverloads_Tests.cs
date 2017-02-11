@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithAndOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithAndOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithAndOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithBitwiseNotOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithBitwiseNotOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithDecrementOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithDecrementOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithDivideOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithDivideOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithEqualAndNotEqualOperatorOverloadsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEqualAndNotEqualOperatorOverloads));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithExclusiveOrOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithExclusiveOrOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithIncrementOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIncrementOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithLeftShiftOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLeftShiftOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithLogicalNotOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLogicalNotOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithMinusOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithMinusOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithModuloOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithModuloOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithMultiplyOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithMultiplyOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithOrOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithOrOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithPlusOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPlusOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithRightShiftOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithRightShiftOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithTrueAndFalseOperatorOverloadsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithTrueAndFalseOperatorOverloads));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithUnaryMinusOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithUnaryMinusOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithUnaryPlusOperatorOverloadUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithUnaryPlusOperatorOverload));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithUnaryPlusOperatorOverload));
         }
     }
 }

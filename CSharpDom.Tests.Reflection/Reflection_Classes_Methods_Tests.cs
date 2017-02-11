@@ -10,169 +10,169 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithMethodWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWith1Attribute));
+            TestClass(typeof(ClassWithMethodWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithMethodWith1GenericParameterUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWith1GenericParameter));
+            TestClass(typeof(ClassWithMethodWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestClassWithMethodWith1ReturnAttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWith1ReturnAttribute));
+            TestClass(typeof(ClassWithMethodWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestClassWithMethodWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithMethodWith2GenericParametersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWith2GenericParameters));
+            TestClass(typeof(ClassWithMethodWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithGenericParameterBaseClassConstraint));
+            TestClass(typeof(ClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestClass(typeof(ClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestClass(typeof(ClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithGenericParameterClassConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithGenericParameterClassConstraint));
+            TestClass(typeof(ClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithGenericParameterEmptyConstructorConstraint));
+            TestClass(typeof(ClassWithMethodWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithGenericParameterGenericParameterConstraint));
+            TestClass(typeof(ClassWithMethodWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithGenericParameterInterfaceConstraint));
+            TestClass(typeof(ClassWithMethodWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithGenericParameterStructConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithGenericParameterStructConstraint));
+            TestClass(typeof(ClassWithMethodWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
         public void TestClassWithInternalMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithInternalMethod));
+            TestClass(typeof(ClassWithInternalMethod));
         }
 
         [TestMethod]
         public void TestClassWithNewMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewMethod));
+            TestClass(typeof(ClassWithNewMethod));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewStaticMethod));
+            TestClass(typeof(ClassWithNewStaticMethod));
         }
 
         [TestMethod]
         public void TestClassWithNewVirtualMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewVirtualMethod));
+            TestClass(typeof(ClassWithNewVirtualMethod));
         }
 
         [TestMethod]
         public void TestClassWithOverrideMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithOverrideMethod));
+            TestClass(typeof(ClassWithOverrideMethod));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithParametersWithAttributesUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithParametersWithAttributes));
+            TestClass(typeof(ClassWithMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithMethodWithParametersWithModifiersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMethodWithParametersWithModifiers));
+            TestClass(typeof(ClassWithMethodWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithPrivateMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPrivateMethod));
+            TestClass(typeof(ClassWithPrivateMethod));
         }
 
         [TestMethod]
         public void TestClassWithProtectedMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedMethod));
+            TestClass(typeof(ClassWithProtectedMethod));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalMethod));
+            TestClass(typeof(ClassWithProtectedInternalMethod));
         }
 
         [TestMethod]
         public void TestClassWithPublicMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPublicMethod));
+            TestClass(typeof(ClassWithPublicMethod));
         }
 
         [TestMethod]
         public void TestClassWithSealedOverrideMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithSealedOverrideMethod));
+            TestClass(typeof(ClassWithSealedOverrideMethod));
         }
 
         [TestMethod]
         public void TestClassWithStaticMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithStaticMethod));
+            TestClass(typeof(ClassWithStaticMethod));
         }
 
         [TestMethod]
         public void TestClassWithVirtualMethodUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithVirtualMethod));
+            TestClass(typeof(ClassWithVirtualMethod));
         }
     }
 }

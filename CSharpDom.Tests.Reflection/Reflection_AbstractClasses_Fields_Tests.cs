@@ -10,97 +10,97 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithConstFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstField));
+            TestAbstractClass(typeof(AbstractClassWithConstField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithInternalFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithInternalField));
+            TestAbstractClass(typeof(AbstractClassWithInternalField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewField));
+            TestAbstractClass(typeof(AbstractClassWithNewField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewStaticFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticField));
+            TestAbstractClass(typeof(AbstractClassWithNewStaticField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewStaticReadOnlyFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticReadOnlyField));
+            TestAbstractClass(typeof(AbstractClassWithNewStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewStaticVolatileFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticVolatileField));
+            TestAbstractClass(typeof(AbstractClassWithNewStaticVolatileField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewVolatileFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewVolatileField));
+            TestAbstractClass(typeof(AbstractClassWithNewVolatileField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPrivateFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPrivateField));
+            TestAbstractClass(typeof(AbstractClassWithPrivateField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedField));
+            TestAbstractClass(typeof(AbstractClassWithProtectedField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedInternalFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalField));
+            TestAbstractClass(typeof(AbstractClassWithProtectedInternalField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPublicFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPublicField));
+            TestAbstractClass(typeof(AbstractClassWithPublicField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithReadOnlyFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithReadOnlyField));
+            TestAbstractClass(typeof(AbstractClassWithReadOnlyField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithStaticFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithStaticField));
+            TestAbstractClass(typeof(AbstractClassWithStaticField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithStaticReadOnlyFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithStaticReadOnlyField));
+            TestAbstractClass(typeof(AbstractClassWithStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithStaticVolatileFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithStaticVolatileField));
+            TestAbstractClass(typeof(AbstractClassWithStaticVolatileField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithVolatileFieldUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithVolatileField));
+            TestAbstractClass(typeof(AbstractClassWithVolatileField));
         }
     }
 }

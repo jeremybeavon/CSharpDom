@@ -15,55 +15,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithConstructorWith1AttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithConstructorWith1ParameterUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith1Parameter));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithConstructorWith2ParametersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWith2Parameters));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithInternalConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithInternalConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithAttributes));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithModifiers));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPrivateConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPrivateConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPublicConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPublicConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPublicConstructor));
         }
     }
 }

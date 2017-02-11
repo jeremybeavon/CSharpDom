@@ -10,61 +10,61 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith1AccessorAttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith1AccessorAttribute));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith1Attribute));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2ParametersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2Parameters));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithAttributes));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2ParametersWithModifiersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithModifiers));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithInternalIndexerUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithInternalIndexer));
+            TestClass(typeof(ClassWithNestedStructWithInternalIndexer));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPrivateIndexerUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPrivateIndexer));
+            TestClass(typeof(ClassWithNestedStructWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPublicIndexerUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPublicIndexer));
+            TestClass(typeof(ClassWithNestedStructWithPublicIndexer));
         }
     }
 }

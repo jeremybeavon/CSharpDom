@@ -10,61 +10,61 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithNestedStructWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith1AccessorAttribute));
+            TestStruct(typeof(StructWithNestedStructWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithIndexerWith1AttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithIndexerWith2ParametersUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2Parameters));
+            TestStruct(typeof(StructWithNestedStructWithIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2ParametersWithAttributes));
+            TestStruct(typeof(StructWithNestedStructWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2ParametersWithModifiers));
+            TestStruct(typeof(StructWithNestedStructWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithInternalIndexerUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithInternalIndexer));
+            TestStruct(typeof(StructWithNestedStructWithInternalIndexer));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithPrivateIndexerUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithPrivateIndexer));
+            TestStruct(typeof(StructWithNestedStructWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithPublicIndexerUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithPublicIndexer));
+            TestStruct(typeof(StructWithNestedStructWithPublicIndexer));
         }
     }
 }

@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNestedEnumWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNestedEnumWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithInternalNestedEnumUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithInternalNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithPrivateNestedEnumUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPrivateNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithProtectedNestedEnumUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithProtectedInternalNestedEnumUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedInternalNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithPublicNestedEnumUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPublicNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithPublicNestedEnum));
         }
     }
 }

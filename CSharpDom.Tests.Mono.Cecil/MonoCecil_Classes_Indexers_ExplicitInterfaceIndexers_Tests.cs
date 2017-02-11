@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith1Attribute));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2ParametersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2Parameters));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexer));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexer));
         }
     }
 }

@@ -10,91 +10,91 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith1AccessorAttribute));
+            TestSealedClass(typeof(SealedClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithEventPropertyWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithEventPropertyWithGenericDelegate));
+            TestSealedClass(typeof(SealedClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestSealedClassWithInternalEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithInternalEventProperty));
+            TestSealedClass(typeof(SealedClassWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNewEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNewEventProperty));
+            TestSealedClass(typeof(SealedClassWithNewEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNewStaticEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNewStaticEventProperty));
+            TestSealedClass(typeof(SealedClassWithNewStaticEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithOverrideEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithOverrideEventProperty));
+            TestSealedClass(typeof(SealedClassWithOverrideEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithPrivateEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPrivateEventProperty));
+            TestSealedClass(typeof(SealedClassWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedEventProperty));
+            TestSealedClass(typeof(SealedClassWithProtectedEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedInternalEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedInternalEventProperty));
+            TestSealedClass(typeof(SealedClassWithProtectedInternalEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithPublicEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPublicEventProperty));
+            TestSealedClass(typeof(SealedClassWithPublicEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithSealedOverrideEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithSealedOverrideEventProperty));
+            TestSealedClass(typeof(SealedClassWithSealedOverrideEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithStaticEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithStaticEventProperty));
+            TestSealedClass(typeof(SealedClassWithStaticEventProperty));
         }
     }
 }

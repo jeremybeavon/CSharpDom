@@ -15,55 +15,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithConstructorWith1AttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithConstructorWith1Attribute));
+            TestStruct(typeof(StructWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithConstructorWith1ParameterUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithConstructorWith1Parameter));
+            TestStruct(typeof(StructWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestStructWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithConstructorWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithConstructorWith2ParametersUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithConstructorWith2Parameters));
+            TestStruct(typeof(StructWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestStructWithInternalConstructorUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithInternalConstructor));
+            TestStruct(typeof(StructWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestStructWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithConstructorWithParametersWithAttributes));
+            TestStruct(typeof(StructWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStructWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithConstructorWithParametersWithModifiers));
+            TestStruct(typeof(StructWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestStructWithPrivateConstructorUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithPrivateConstructor));
+            TestStruct(typeof(StructWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestStructWithPublicConstructorUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithPublicConstructor));
+            TestStruct(typeof(StructWithPublicConstructor));
         }
     }
 }

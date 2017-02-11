@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedClassWithAndOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithAndOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithAndOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithBitwiseNotOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithBitwiseNotOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithDecrementOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithDecrementOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithDivideOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithDivideOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithEqualAndNotEqualOperatorOverloadsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithEqualAndNotEqualOperatorOverloads));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithExclusiveOrOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithExclusiveOrOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithIncrementOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithIncrementOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithLeftShiftOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithLeftShiftOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithLessThanAndGreaterThanOperatorOverloadsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithLogicalNotOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithLogicalNotOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithMinusOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithMinusOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithModuloOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithModuloOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithMultiplyOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithMultiplyOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithOrOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithOrOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithPlusOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPlusOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithRightShiftOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithRightShiftOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithTrueAndFalseOperatorOverloadsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithTrueAndFalseOperatorOverloads));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithUnaryMinusOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithUnaryMinusOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithUnaryPlusOperatorOverloadUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithUnaryPlusOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithUnaryPlusOperatorOverload));
         }
     }
 }

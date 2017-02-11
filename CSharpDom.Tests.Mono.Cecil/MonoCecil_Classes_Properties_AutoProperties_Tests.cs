@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithInternalAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithInternalAutoProperty));
+            TestClass(typeof(ClassWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewAutoProperty));
+            TestClass(typeof(ClassWithNewAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewStaticAutoProperty));
+            TestClass(typeof(ClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewVirtualAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewVirtualAutoProperty));
+            TestClass(typeof(ClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithOverrideAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithOverrideAutoProperty));
+            TestClass(typeof(ClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithPrivateAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPrivateAutoProperty));
+            TestClass(typeof(ClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedAutoProperty));
+            TestClass(typeof(ClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalAutoProperty));
+            TestClass(typeof(ClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithPublicAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPublicAutoProperty));
+            TestClass(typeof(ClassWithPublicAutoProperty));
         }
 
         //[TestMethod]
@@ -70,13 +70,13 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithStaticAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithStaticAutoProperty));
+            TestClass(typeof(ClassWithStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithVirtualAutoPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithVirtualAutoProperty));
+            TestClass(typeof(ClassWithVirtualAutoProperty));
         }
     }
 }

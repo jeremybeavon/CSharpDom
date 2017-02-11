@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWith1AccessorAttribute));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWith1AttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWithGenericDelegateUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWithGenericDelegate));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithInternalEventPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithInternalEventProperty));
+            TestStruct(typeof(StructWithNestedStructWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithPrivateEventPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithPrivateEventProperty));
+            TestStruct(typeof(StructWithNestedStructWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithPublicEventPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithPublicEventProperty));
+            TestStruct(typeof(StructWithNestedStructWithPublicEventProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithStaticEventPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithStaticEventProperty));
+            TestStruct(typeof(StructWithNestedStructWithStaticEventProperty));
         }
     }
 }

@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithEventWith1AttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventWithGenericDelegateUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventWithGenericDelegate));
+            TestStaticClass(typeof(StaticClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestStaticClassWithInternalEventUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithInternalEvent));
+            TestStaticClass(typeof(StaticClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestStaticClassWithPrivateEventUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPrivateEvent));
+            TestStaticClass(typeof(StaticClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestStaticClassWithPublicEventUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPublicEvent));
+            TestStaticClass(typeof(StaticClassWithPublicEvent));
         }
     }
 }

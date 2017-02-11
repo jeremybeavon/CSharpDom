@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithNestedEnumWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithNestedEnumWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithInternalNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithInternalNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithPrivateNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPrivateNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithProtectedNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithProtectedNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithProtectedInternalNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithProtectedInternalNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithPublicNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPublicNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithPublicNestedEnum));
         }
     }
 }

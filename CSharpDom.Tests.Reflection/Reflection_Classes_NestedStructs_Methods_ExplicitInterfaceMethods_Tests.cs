@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith1Attribute));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWith1GenericParameterUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith1GenericParameter));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWith2GenericParametersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith2GenericParameters));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithAttributesUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithAttributes));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithModifiersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithModifiers));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithModifiers));
         }
     }
 }

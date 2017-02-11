@@ -10,97 +10,97 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithConstFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithConstField));
+            TestClass(typeof(ClassWithConstField));
         }
 
         [TestMethod]
         public void TestClassWithInternalFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithInternalField));
+            TestClass(typeof(ClassWithInternalField));
         }
 
         [TestMethod]
         public void TestClassWithNewFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewField));
+            TestClass(typeof(ClassWithNewField));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewStaticField));
+            TestClass(typeof(ClassWithNewStaticField));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticReadOnlyFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewStaticReadOnlyField));
+            TestClass(typeof(ClassWithNewStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticVolatileFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewStaticVolatileField));
+            TestClass(typeof(ClassWithNewStaticVolatileField));
         }
 
         [TestMethod]
         public void TestClassWithNewVolatileFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewVolatileField));
+            TestClass(typeof(ClassWithNewVolatileField));
         }
 
         [TestMethod]
         public void TestClassWithPrivateFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPrivateField));
+            TestClass(typeof(ClassWithPrivateField));
         }
 
         [TestMethod]
         public void TestClassWithProtectedFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedField));
+            TestClass(typeof(ClassWithProtectedField));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalField));
+            TestClass(typeof(ClassWithProtectedInternalField));
         }
 
         [TestMethod]
         public void TestClassWithPublicFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPublicField));
+            TestClass(typeof(ClassWithPublicField));
         }
 
         [TestMethod]
         public void TestClassWithReadOnlyFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithReadOnlyField));
+            TestClass(typeof(ClassWithReadOnlyField));
         }
 
         [TestMethod]
         public void TestClassWithStaticFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithStaticField));
+            TestClass(typeof(ClassWithStaticField));
         }
 
         [TestMethod]
         public void TestClassWithStaticReadOnlyFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithStaticReadOnlyField));
+            TestClass(typeof(ClassWithStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestClassWithStaticVolatileFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithStaticVolatileField));
+            TestClass(typeof(ClassWithStaticVolatileField));
         }
 
         [TestMethod]
         public void TestClassWithVolatileFieldUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithVolatileField));
+            TestClass(typeof(ClassWithVolatileField));
         }
     }
 }

@@ -10,85 +10,85 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedClassWithExplicitConversionOperatorUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithExplicitConversionOperator));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithExplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithExplicitConversionOperatorWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithExplicitConversionOperatorWith1ParameterAttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith1ParameterAttribute));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithExplicitConversionOperatorWith1ReturnAttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith1ReturnAttribute));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithImplicitConversionOperatorUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithImplicitConversionOperator));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithImplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithImplicitConversionOperatorWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithImplicitConversionOperatorWith1ParameterAttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith1ParameterAttribute));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithImplicitConversionOperatorWith1ReturnAttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith1ReturnAttribute));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
     }
 }

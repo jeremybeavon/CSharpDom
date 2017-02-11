@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithExplicitInterfaceEventWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithExplicitInterfaceEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegateUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegate));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithExplicitInterfaceEventWithGenericInterfaceUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWithGenericInterface));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

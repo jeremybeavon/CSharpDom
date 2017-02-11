@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedClassWithInternalAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithInternalAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNewAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNewAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNewStaticAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewStaticAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNewVirtualAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewVirtualAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithOverrideAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithOverrideAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithPrivateAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPrivateAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithProtectedAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithProtectedInternalAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedInternalAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithPublicAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPublicAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithPublicAutoProperty));
         }
 
         //[TestMethod]
@@ -70,13 +70,13 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedClassWithStaticAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithStaticAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithVirtualAutoPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithVirtualAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithVirtualAutoProperty));
         }
     }
 }

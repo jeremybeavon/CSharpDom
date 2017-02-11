@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceMethodWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceMethodWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceMethodWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceMethodWith1GenericParameterUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceMethodWith1GenericParameter));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceMethodWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceMethodWith2GenericParametersUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceMethodWith2GenericParameters));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceMethodWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceMethodWithParametersWithAttributesUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceMethodWithParametersWithAttributes));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceMethodWithParametersWithModifiersUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceMethodWithParametersWithModifiers));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceMethodWithParametersWithModifiers));
         }
     }
 }

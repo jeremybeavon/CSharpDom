@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWith1AttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWith1ParameterUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWith1Parameter));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWith2ParametersUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWith2Parameters));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithInternalConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWithParametersWithAttributes));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWithParametersWithModifiers));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPrivateConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedInternalConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPublicConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPublicConstructor));
         }
     }
 }

@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithConstructorWithParametersWithAttributes));
+            TestClass(typeof(ClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithConstructorWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithConstructorWith1Attribute));
+            TestClass(typeof(ClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithConstructorWithParametersWithModifiers));
+            TestClass(typeof(ClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithConstructorWith2ParametersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithConstructorWith2Parameters));
+            TestClass(typeof(ClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestClassWithConstructorWith1ParameterUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithConstructorWith1Parameter));
+            TestClass(typeof(ClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestClassWithPublicConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPublicConstructor));
+            TestClass(typeof(ClassWithPublicConstructor));
         }
 
         [TestMethod]
         public void TestClassWithProtectedConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedConstructor));
+            TestClass(typeof(ClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalConstructor));
+            TestClass(typeof(ClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestClassWithPrivateConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPrivateConstructor));
+            TestClass(typeof(ClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestClassWithInternalConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithInternalConstructor));
+            TestClass(typeof(ClassWithInternalConstructor));
         }
     }
 }

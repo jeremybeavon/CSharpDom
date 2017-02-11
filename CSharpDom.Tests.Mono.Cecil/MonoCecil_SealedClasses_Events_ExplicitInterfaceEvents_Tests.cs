@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWith1AccessorAttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEvent));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWithGenericDelegateUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWithGenericInterfaceUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWithGenericInterface));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith1AccessorAttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith1Attribute));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2ParametersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2Parameters));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerWith2ParametersWithModifiersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceIndexerUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceIndexer));
+            TestClass(typeof(ClassWithExplicitInterfaceIndexer));
         }
     }
 }

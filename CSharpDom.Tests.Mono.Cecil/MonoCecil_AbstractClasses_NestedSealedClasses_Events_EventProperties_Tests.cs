@@ -10,91 +10,91 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWith1AccessorAttribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithEventPropertyWith1AttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithEventPropertyWithGenericDelegateUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWithGenericDelegate));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithInternalEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithInternalEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithNewEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithNewEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithNewEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithNewStaticEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithNewStaticEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithNewStaticEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithOverrideEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithOverrideEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithOverrideEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithPrivateEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPrivateEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithProtectedEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithProtectedEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithProtectedEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithProtectedInternalEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithProtectedInternalEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithProtectedInternalEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithPublicEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPublicEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithPublicEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithSealedOverrideEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithSealedOverrideEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithSealedOverrideEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithStaticEventPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithStaticEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithStaticEventProperty));
         }
     }
 }

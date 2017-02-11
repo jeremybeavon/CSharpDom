@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWith1AccessorAttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEvent));
+            TestClass(typeof(ClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWithGenericDelegateUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWithGenericInterfaceUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

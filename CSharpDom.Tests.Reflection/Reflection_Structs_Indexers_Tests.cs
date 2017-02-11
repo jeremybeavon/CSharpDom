@@ -10,19 +10,19 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithPrivateIndexerUsingReflection()
         {
-            TestStructAsync(typeof(StructWithPrivateIndexer));
+            TestStruct(typeof(StructWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestStructWithPublicIndexerUsingReflection()
         {
-            TestStructAsync(typeof(StructWithPublicIndexer));
+            TestStruct(typeof(StructWithPublicIndexer));
         }
 
         [TestMethod]
         public void TestStructWithInternalIndexerUsingReflection()
         {
-            TestStructAsync(typeof(StructWithInternalIndexer));
+            TestStruct(typeof(StructWithInternalIndexer));
         }
     }
 }

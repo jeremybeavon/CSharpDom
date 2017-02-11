@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedClassWithInternalPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithInternalProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNewPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNewProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNewStaticPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNewStaticProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNewStaticProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNewVirtualPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNewVirtualProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNewVirtualProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithOverridePropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithOverrideProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithPrivatePropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPrivateProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithProtectedPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithProtectedInternalPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedInternalProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithPublicPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPublicProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithPublicProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithSealedOverridePropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithSealedOverrideProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithStaticPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithStaticProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithStaticProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithVirtualPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithVirtualProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithVirtualProperty));
         }
     }
 }

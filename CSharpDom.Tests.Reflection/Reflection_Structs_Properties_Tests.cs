@@ -10,25 +10,25 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithInternalPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithInternalProperty));
+            TestStruct(typeof(StructWithInternalProperty));
         }
 
         [TestMethod]
         public void TestStructWithPrivatePropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithPrivateProperty));
+            TestStruct(typeof(StructWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestStructWithPublicPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithPublicProperty));
+            TestStruct(typeof(StructWithPublicProperty));
         }
 
         [TestMethod]
         public void TestStructWithStaticPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithStaticProperty));
+            TestStruct(typeof(StructWithStaticProperty));
         }
     }
 }

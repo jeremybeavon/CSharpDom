@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith1Attribute));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWith1GenericParameterUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith1GenericParameter));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWith2GenericParametersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith2GenericParameters));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithAttributesUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithAttributes));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithModifiersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithModifiers));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceMethodWithParametersWithModifiers));
         }
     }
 }

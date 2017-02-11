@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWith1AccessorAttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEvent));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWithGenericDelegateUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceEventWithGenericInterfaceUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceEventWithGenericInterface));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

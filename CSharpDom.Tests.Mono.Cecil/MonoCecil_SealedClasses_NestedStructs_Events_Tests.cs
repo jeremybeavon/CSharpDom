@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventWithGenericDelegateUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventWithGenericDelegate));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithInternalEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithInternalEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPrivateEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPublicEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPublicEvent));
         }
     }
 }

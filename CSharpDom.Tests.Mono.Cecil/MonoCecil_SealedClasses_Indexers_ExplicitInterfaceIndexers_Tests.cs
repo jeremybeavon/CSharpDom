@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceIndexerWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceIndexerWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceIndexerWith2ParametersUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceIndexerWith2Parameters));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestSealedClassWithExplicitInterfaceIndexerUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithExplicitInterfaceIndexer));
+            TestSealedClass(typeof(SealedClassWithExplicitInterfaceIndexer));
         }
     }
 }

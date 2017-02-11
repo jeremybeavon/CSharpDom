@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithInternalAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithInternalAutoProperty));
+            TestClass(typeof(ClassWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewAutoProperty));
+            TestClass(typeof(ClassWithNewAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewStaticAutoProperty));
+            TestClass(typeof(ClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewVirtualAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewVirtualAutoProperty));
+            TestClass(typeof(ClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithOverrideAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithOverrideAutoProperty));
+            TestClass(typeof(ClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithPrivateAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPrivateAutoProperty));
+            TestClass(typeof(ClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedAutoProperty));
+            TestClass(typeof(ClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalAutoProperty));
+            TestClass(typeof(ClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithPublicAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPublicAutoProperty));
+            TestClass(typeof(ClassWithPublicAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithSealedOverrideAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithSealedOverrideAutoProperty));
+            TestClass(typeof(ClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithStaticAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithStaticAutoProperty));
+            TestClass(typeof(ClassWithStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithVirtualAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithVirtualAutoProperty));
+            TestClass(typeof(ClassWithVirtualAutoProperty));
         }
     }
 }

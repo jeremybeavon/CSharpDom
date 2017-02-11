@@ -10,61 +10,61 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith1AccessorAttribute));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith1Attribute));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2ParametersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2Parameters));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithAttributes));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithModifiers));
+            TestClass(typeof(ClassWithNestedStructWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithInternalIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithInternalIndexer));
+            TestClass(typeof(ClassWithNestedStructWithInternalIndexer));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPrivateIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPrivateIndexer));
+            TestClass(typeof(ClassWithNestedStructWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPublicIndexerUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPublicIndexer));
+            TestClass(typeof(ClassWithNestedStructWithPublicIndexer));
         }
     }
 }

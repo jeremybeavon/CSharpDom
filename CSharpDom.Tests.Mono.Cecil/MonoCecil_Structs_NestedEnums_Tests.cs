@@ -10,31 +10,31 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithNestedEnumWith1AttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedEnumWith1Attribute));
+            TestStruct(typeof(StructWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithInternalNestedEnumUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithInternalNestedEnum));
+            TestStruct(typeof(StructWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithPrivateNestedEnumUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithPrivateNestedEnum));
+            TestStruct(typeof(StructWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithPublicNestedEnumUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithPublicNestedEnum));
+            TestStruct(typeof(StructWithPublicNestedEnum));
         }
     }
 }

@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithConstructorWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithConstructorWith1ParameterUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith1Parameter));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithConstructorWith2ParametersUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith2Parameters));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithInternalConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithInternalConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWithParametersWithAttributes));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWithParametersWithModifiers));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithPrivateConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPrivateConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithProtectedConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithProtectedInternalConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedInternalConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithPublicConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPublicConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithPublicConstructor));
         }
     }
 }

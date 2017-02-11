@@ -10,115 +10,115 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWith1AttributeUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWith1GenericParameterUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWith1GenericParameter));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWith1ImplementedInterfaceUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWith1ImplementedInterface));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWith1ImplementedInterface));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWith2GenericParametersUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWith2GenericParameters));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWith2ImplementedInterfacesUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWith2ImplementedInterfaces));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWith2ImplementedInterfaces));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterBaseClassConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWithGenericParameterClassConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterClassConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterEmptyConstructorConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterGenericParameterConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterInterfaceConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNestedStructWithGenericParameterStructConstraintUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterStructConstraint));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNestedStructWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithInternalNestedStructUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithInternalNestedStruct));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithInternalNestedStruct));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithPrivateNestedStructUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPrivateNestedStruct));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithPrivateNestedStruct));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithProtectedNestedStructUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedNestedStruct));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithProtectedNestedStruct));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithProtectedInternalNestedStructUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedInternalNestedStruct));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithProtectedInternalNestedStruct));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithPublicNestedStructUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPublicNestedStruct));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithPublicNestedStruct));
         }
     }
 }

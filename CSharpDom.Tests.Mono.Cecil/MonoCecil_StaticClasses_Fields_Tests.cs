@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithConstFieldUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithConstField));
+            TestStaticClass(typeof(StaticClassWithConstField));
         }
 
         [TestMethod]
         public void TestStaticClassWithInternalFieldUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithInternalField));
+            TestStaticClass(typeof(StaticClassWithInternalField));
         }
 
         [TestMethod]
         public void TestStaticClassWithPrivateFieldUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPrivateField));
+            TestStaticClass(typeof(StaticClassWithPrivateField));
         }
 
         [TestMethod]
         public void TestStaticClassWithPublicFieldUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPublicField));
+            TestStaticClass(typeof(StaticClassWithPublicField));
         }
 
         [TestMethod]
         public void TestStaticClassWithReadOnlyFieldUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithReadOnlyField));
+            TestStaticClass(typeof(StaticClassWithReadOnlyField));
         }
 
         [TestMethod]
         public void TestStaticClassWithVolatileFieldUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithVolatileField));
+            TestStaticClass(typeof(StaticClassWithVolatileField));
         }
     }
 }

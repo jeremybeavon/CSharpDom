@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceIndexerWith1AccessorAttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith1AccessorAttribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceIndexerWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceIndexerWith2ParametersUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2Parameters));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceIndexerWith2ParametersWithModifiersUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceIndexerUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceIndexer));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceIndexer));
         }
     }
 }

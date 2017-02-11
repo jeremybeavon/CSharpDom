@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedClassWithAndOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithAndOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithAndOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithBitwiseNotOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithBitwiseNotOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithDecrementOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDecrementOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithDivideOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDivideOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithEqualAndNotEqualOperatorOverloadsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithEqualAndNotEqualOperatorOverloads));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithExclusiveOrOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithExclusiveOrOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithIncrementOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIncrementOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithLeftShiftOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithLeftShiftOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithLogicalNotOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithLogicalNotOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithMinusOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithMinusOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithModuloOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithModuloOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithMultiplyOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithMultiplyOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithOrOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithOrOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithPlusOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPlusOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithRightShiftOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithRightShiftOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithTrueAndFalseOperatorOverloadsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithTrueAndFalseOperatorOverloads));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithUnaryMinusOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithUnaryMinusOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithUnaryPlusOperatorOverloadUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithUnaryPlusOperatorOverload));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithUnaryPlusOperatorOverload));
         }
     }
 }

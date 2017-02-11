@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithInternalAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithInternalAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithNewAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithNewAutoProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithNewStaticAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewStaticAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithNewVirtualAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewVirtualAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithOverrideAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithOverrideAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithPrivateAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithPrivateAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithProtectedAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithProtectedInternalAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedInternalAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithPublicAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithPublicAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithPublicAutoProperty));
         }
 
         //[TestMethod]
@@ -70,13 +70,13 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithStaticAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithStaticAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithVirtualAutoPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithVirtualAutoProperty));
+            TestStruct(typeof(StructWithNestedAbstractClassWithVirtualAutoProperty));
         }
     }
 }

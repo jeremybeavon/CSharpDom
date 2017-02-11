@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1Attribute));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWith1GenericParameterUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1GenericParameter));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWith2GenericParametersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2GenericParameters));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWithParametersWithAttributesUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithAttributes));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWithParametersWithModifiersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithModifiers));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWithParametersWithModifiers));
         }
     }
 }

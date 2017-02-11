@@ -10,31 +10,31 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedStructWithNestedEnumWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithNestedEnumWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithInternalNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithInternalNestedEnum));
+            TestStruct(typeof(StructWithNestedStructWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithPrivateNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithPrivateNestedEnum));
+            TestStruct(typeof(StructWithNestedStructWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithPublicNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithPublicNestedEnum));
+            TestStruct(typeof(StructWithNestedStructWithPublicNestedEnum));
         }
     }
 }

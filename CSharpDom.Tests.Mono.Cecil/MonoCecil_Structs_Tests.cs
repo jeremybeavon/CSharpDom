@@ -11,109 +11,109 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWith1AttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWith1Attribute));
+            TestStruct(typeof(StructWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWith1GenericParameterUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWith1GenericParameter<>));
+            TestStruct(typeof(StructWith1GenericParameter<>));
         }
 
         [TestMethod]
         public void TestStructWith1ImplementedInterfaceUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWith1ImplementedInterface));
+            TestStruct(typeof(StructWith1ImplementedInterface));
         }
 
         [TestMethod]
         public void TestStructWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWith2GenericParametersUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWith2GenericParameters<,>));
+            TestStruct(typeof(StructWith2GenericParameters<,>));
         }
 
         [TestMethod]
         public void TestStructWith2ImplementedInterfacesUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWith2ImplementedInterfaces));
+            TestStruct(typeof(StructWith2ImplementedInterfaces));
         }
 
         [TestMethod]
         public void TestStructWithExplicitConversionOperatorUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithExplicitConversionOperator));
+            TestStruct(typeof(StructWithExplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithGenericParameterBaseClassConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestStruct(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestStruct(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithGenericParameterClassConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterGenericParameterConstraintUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
+            TestStruct(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterInterfaceConstraintUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithGenericParameterInterfaceConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterStructConstraintUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithGenericParameterStructConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithImplicitConversionOperatorUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithImplicitConversionOperator));
+            TestStruct(typeof(StructWithImplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestInternalStructUsingMonoCecil()
         {
-            TestStructAsync(typeof(InternalStruct));
+            TestStruct(typeof(InternalStruct));
         }
 
         [TestMethod]
         public void TestPublicStructUsingMonoCecil()
         {
-            TestStructAsync(typeof(PublicStruct));
+            TestStruct(typeof(PublicStruct));
         }
     }
 }

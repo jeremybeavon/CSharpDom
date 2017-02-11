@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedClassWithInternalAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithInternalAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNewAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNewAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNewStaticAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewStaticAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNewVirtualAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNewVirtualAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithOverrideAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithOverrideAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithPrivateAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPrivateAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithProtectedAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithProtectedInternalAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedInternalAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithPublicAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPublicAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithPublicAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithSealedOverrideAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithSealedOverrideAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithStaticAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithStaticAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithVirtualAutoPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithVirtualAutoProperty));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithVirtualAutoProperty));
         }
     }
 }

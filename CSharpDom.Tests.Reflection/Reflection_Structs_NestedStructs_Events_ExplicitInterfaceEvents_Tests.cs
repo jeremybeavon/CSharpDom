@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceEventWith1AccessorAttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceEventWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceEventWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceEventUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceEvent));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceEventWithGenericDelegateUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceEventWithGenericDelegate));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitInterfaceEventWithGenericInterfaceUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitInterfaceEventWithGenericInterface));
+            TestStruct(typeof(StructWithNestedStructWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWith1AccessorAttribute));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEventPropertyWithGenericDelegate));
+            TestStruct(typeof(StructWithNestedStructWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithInternalEventPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithInternalEventProperty));
+            TestStruct(typeof(StructWithNestedStructWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithPrivateEventPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithPrivateEventProperty));
+            TestStruct(typeof(StructWithNestedStructWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithPublicEventPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithPublicEventProperty));
+            TestStruct(typeof(StructWithNestedStructWithPublicEventProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithStaticEventPropertyUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithStaticEventProperty));
+            TestStruct(typeof(StructWithNestedStructWithStaticEventProperty));
         }
     }
 }

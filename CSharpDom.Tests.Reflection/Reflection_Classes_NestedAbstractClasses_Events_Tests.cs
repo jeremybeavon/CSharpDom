@@ -10,91 +10,91 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithEventWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithEventWith1Attribute));
+            TestClass(typeof(ClassWithNestedAbstractClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedAbstractClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithEventWithGenericDelegateUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithEventWithGenericDelegate));
+            TestClass(typeof(ClassWithNestedAbstractClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithInternalEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithInternalEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithNewEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithNewEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithNewEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithNewStaticEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithNewStaticEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithNewStaticEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithNewVirtualEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithNewVirtualEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithNewVirtualEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithOverrideEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithOverrideEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithOverrideEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithPrivateEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithPrivateEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithProtectedEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithProtectedEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithProtectedEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithProtectedInternalEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithProtectedInternalEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithPublicEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithPublicEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithPublicEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithSealedOverrideEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithSealedOverrideEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithStaticEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithStaticEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithStaticEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithVirtualEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithVirtualEvent));
+            TestClass(typeof(ClassWithNestedAbstractClassWithVirtualEvent));
         }
     }
 }

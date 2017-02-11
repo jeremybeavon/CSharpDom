@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithAndOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithAndOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithAndOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithBitwiseNotOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithBitwiseNotOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithDecrementOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithDecrementOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithDivideOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithDivideOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithEqualAndNotEqualOperatorOverloadsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithEqualAndNotEqualOperatorOverloads));
+            TestClass(typeof(ClassWithNestedAbstractClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithExclusiveOrOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithExclusiveOrOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithIncrementOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithIncrementOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithLeftShiftOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithLeftShiftOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestClass(typeof(ClassWithNestedAbstractClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestClass(typeof(ClassWithNestedAbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithLogicalNotOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithLogicalNotOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithMinusOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithMinusOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithModuloOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithModuloOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithMultiplyOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithMultiplyOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithOrOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithOrOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithPlusOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithPlusOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithRightShiftOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithRightShiftOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithTrueAndFalseOperatorOverloadsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithTrueAndFalseOperatorOverloads));
+            TestClass(typeof(ClassWithNestedAbstractClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithUnaryMinusOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithUnaryMinusOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithUnaryPlusOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithUnaryPlusOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithUnaryPlusOperatorOverload));
         }
     }
 }

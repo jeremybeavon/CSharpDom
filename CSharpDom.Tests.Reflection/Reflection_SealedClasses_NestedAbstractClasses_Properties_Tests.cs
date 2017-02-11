@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithInternalPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithInternalProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithNewPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithNewStaticPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewStaticProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithNewStaticProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithNewVirtualPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewVirtualProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithNewVirtualProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithOverridePropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithOverrideProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithPrivatePropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPrivateProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithProtectedPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithProtectedInternalPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedInternalProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithPublicPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPublicProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithPublicProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithSealedOverridePropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithSealedOverrideProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithStaticPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithStaticProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithStaticProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithVirtualPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithVirtualProperty));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithVirtualProperty));
         }
     }
 }

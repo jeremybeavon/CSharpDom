@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithNestedEnumWith1AttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithNestedEnumWith1Attribute));
+            TestStruct(typeof(StructWithNestedAbstractClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedAbstractClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithInternalNestedEnumUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithInternalNestedEnum));
+            TestStruct(typeof(StructWithNestedAbstractClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithPrivateNestedEnumUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithPrivateNestedEnum));
+            TestStruct(typeof(StructWithNestedAbstractClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithProtectedNestedEnumUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedNestedEnum));
+            TestStruct(typeof(StructWithNestedAbstractClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithProtectedInternalNestedEnumUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedInternalNestedEnum));
+            TestStruct(typeof(StructWithNestedAbstractClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedAbstractClassWithPublicNestedEnumUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedAbstractClassWithPublicNestedEnum));
+            TestStruct(typeof(StructWithNestedAbstractClassWithPublicNestedEnum));
         }
     }
 }

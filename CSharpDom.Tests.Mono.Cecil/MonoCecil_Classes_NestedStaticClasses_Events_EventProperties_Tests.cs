@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithNestedStaticClassWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithEventPropertyWith1AccessorAttribute));
+            TestClass(typeof(ClassWithNestedStaticClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithEventPropertyWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithEventPropertyWith1Attribute));
+            TestClass(typeof(ClassWithNestedStaticClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithEventPropertyWithGenericDelegateUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithEventPropertyWithGenericDelegate));
+            TestClass(typeof(ClassWithNestedStaticClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithInternalEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithInternalEventProperty));
+            TestClass(typeof(ClassWithNestedStaticClassWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithPrivateEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithPrivateEventProperty));
+            TestClass(typeof(ClassWithNestedStaticClassWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithPublicEventPropertyUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithPublicEventProperty));
+            TestClass(typeof(ClassWithNestedStaticClassWithPublicEventProperty));
         }
     }
 }

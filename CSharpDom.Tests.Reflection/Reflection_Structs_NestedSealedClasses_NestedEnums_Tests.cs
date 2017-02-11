@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedSealedClassWithNestedEnumWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithNestedEnumWith1Attribute));
+            TestStruct(typeof(StructWithNestedSealedClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedSealedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithInternalNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithInternalNestedEnum));
+            TestStruct(typeof(StructWithNestedSealedClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithPrivateNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithPrivateNestedEnum));
+            TestStruct(typeof(StructWithNestedSealedClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithProtectedNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedNestedEnum));
+            TestStruct(typeof(StructWithNestedSealedClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithProtectedInternalNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedInternalNestedEnum));
+            TestStruct(typeof(StructWithNestedSealedClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithPublicNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithPublicNestedEnum));
+            TestStruct(typeof(StructWithNestedSealedClassWithPublicNestedEnum));
         }
     }
 }

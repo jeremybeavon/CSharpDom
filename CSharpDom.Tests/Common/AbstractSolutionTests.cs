@@ -20,7 +20,7 @@ namespace CSharpDom.Tests.Common
 
         protected bool IsNestedConstructorTest { get; set; }
 
-        protected void TestClassAsync(Type type)
+        protected void TestClass(Type type)
         {
             IClass @class = TypeCache.Classes[type.Name()];
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
@@ -30,7 +30,7 @@ namespace CSharpDom.Tests.Common
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
-        protected void TestAbstractClassAsync(Type type)
+        protected void TestAbstractClass(Type type)
         {
             IAbstractClass @class = TypeCache.AbstractClasses[type.Name()];
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
@@ -42,7 +42,7 @@ namespace CSharpDom.Tests.Common
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
-        protected void TestSealedClassAsync(Type type)
+        protected void TestSealedClass(Type type)
         {
             ISealedClass @class = TypeCache.SealedClasses[type.Name()];
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
@@ -52,7 +52,7 @@ namespace CSharpDom.Tests.Common
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
-        protected void TestStaticClassAsync(Type type)
+        protected void TestStaticClass(Type type)
         {
             IStaticClass @class = TypeCache.StaticClasses[type.Name()];
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
@@ -62,7 +62,7 @@ namespace CSharpDom.Tests.Common
             documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
         }
 
-        protected void TestStructAsync(Type type)
+        protected void TestStruct(Type type)
         {
             IStruct @struct = TypeCache.Structs[type.Name()];
             string namespaceName = new FindNamespaceForStructVisitor(@struct).Result;

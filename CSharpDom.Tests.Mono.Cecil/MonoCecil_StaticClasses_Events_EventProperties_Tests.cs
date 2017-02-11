@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventPropertyWith1AttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithEventPropertyWithGenericDelegateUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWithGenericDelegate));
+            TestStaticClass(typeof(StaticClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestStaticClassWithInternalEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithInternalEventProperty));
+            TestStaticClass(typeof(StaticClassWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithPrivateEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPrivateEventProperty));
+            TestStaticClass(typeof(StaticClassWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithPublicEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPublicEventProperty));
+            TestStaticClass(typeof(StaticClassWithPublicEventProperty));
         }
     }
 }

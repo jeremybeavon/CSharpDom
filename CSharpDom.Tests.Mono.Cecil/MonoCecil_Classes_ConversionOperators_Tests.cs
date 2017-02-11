@@ -10,85 +10,85 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithExplicitConversionOperatorWith1ParameterAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith1ParameterAttribute));
+            TestClass(typeof(ClassWithExplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitConversionOperatorWith1ReturnAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith1ReturnAttribute));
+            TestClass(typeof(ClassWithExplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitConversionOperatorWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith1Attribute));
+            TestClass(typeof(ClassWithExplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithImplicitConversionOperatorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithImplicitConversionOperator));
+            TestClass(typeof(ClassWithImplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestClassWithImplicitConversionOperatorWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith1Attribute));
+            TestClass(typeof(ClassWithImplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithImplicitConversionOperatorWith1ParameterAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith1ParameterAttribute));
+            TestClass(typeof(ClassWithImplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
         public void TestClassWithImplicitConversionOperatorWith1ReturnAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith1ReturnAttribute));
+            TestClass(typeof(ClassWithImplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitConversionOperatorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitConversionOperator));
+            TestClass(typeof(ClassWithExplicitConversionOperator));
         }
     }
 }

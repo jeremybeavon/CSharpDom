@@ -10,97 +10,97 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithConstFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithConstField));
+            TestClass(typeof(ClassWithConstField));
         }
 
         [TestMethod]
         public void TestClassWithInternalFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithInternalField));
+            TestClass(typeof(ClassWithInternalField));
         }
 
         [TestMethod]
         public void TestClassWithNewFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewField));
+            TestClass(typeof(ClassWithNewField));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewStaticField));
+            TestClass(typeof(ClassWithNewStaticField));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticReadOnlyFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewStaticReadOnlyField));
+            TestClass(typeof(ClassWithNewStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticVolatileFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewStaticVolatileField));
+            TestClass(typeof(ClassWithNewStaticVolatileField));
         }
 
         [TestMethod]
         public void TestClassWithNewVolatileFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNewVolatileField));
+            TestClass(typeof(ClassWithNewVolatileField));
         }
 
         [TestMethod]
         public void TestClassWithPrivateFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPrivateField));
+            TestClass(typeof(ClassWithPrivateField));
         }
 
         [TestMethod]
         public void TestClassWithProtectedFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedField));
+            TestClass(typeof(ClassWithProtectedField));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalField));
+            TestClass(typeof(ClassWithProtectedInternalField));
         }
 
         [TestMethod]
         public void TestClassWithPublicFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPublicField));
+            TestClass(typeof(ClassWithPublicField));
         }
 
         [TestMethod]
         public void TestClassWithReadOnlyFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithReadOnlyField));
+            TestClass(typeof(ClassWithReadOnlyField));
         }
 
         [TestMethod]
         public void TestClassWithStaticFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithStaticField));
+            TestClass(typeof(ClassWithStaticField));
         }
 
         [TestMethod]
         public void TestClassWithStaticReadOnlyFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithStaticReadOnlyField));
+            TestClass(typeof(ClassWithStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestClassWithStaticVolatileFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithStaticVolatileField));
+            TestClass(typeof(ClassWithStaticVolatileField));
         }
 
         [TestMethod]
         public void TestClassWithVolatileFieldUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithVolatileField));
+            TestClass(typeof(ClassWithVolatileField));
         }
     }
 }

@@ -10,115 +10,115 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithMethodWith1AttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithMethodWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWith1GenericParameterUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWith1GenericParameter));
+            TestStaticClass(typeof(StaticClassWithMethodWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWith1ReturnAttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWith1ReturnAttribute));
+            TestStaticClass(typeof(StaticClassWithMethodWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWith2GenericParametersUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWith2GenericParameters));
+            TestStaticClass(typeof(StaticClassWithMethodWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWith2ReturnAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithMethodWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterBaseClassConstraint));
+            TestStaticClass(typeof(StaticClassWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestStaticClass(typeof(StaticClassWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestStaticClass(typeof(StaticClassWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterClassConstraint));
+            TestStaticClass(typeof(StaticClassWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterEmptyConstructorConstraint));
+            TestStaticClass(typeof(StaticClassWithMethodWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithGenericParameterGenericParameterConstraintUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterGenericParameterConstraint));
+            TestStaticClass(typeof(StaticClassWithMethodWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithGenericParameterInterfaceConstraintUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterInterfaceConstraint));
+            TestStaticClass(typeof(StaticClassWithMethodWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithGenericParameterStructConstraintUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithGenericParameterStructConstraint));
+            TestStaticClass(typeof(StaticClassWithMethodWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
         public void TestStaticClassWithInternalMethodUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithInternalMethod));
+            TestStaticClass(typeof(StaticClassWithInternalMethod));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithParametersWithAttributesUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithParametersWithAttributes));
+            TestStaticClass(typeof(StaticClassWithMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStaticClassWithMethodWithParametersWithModifiersUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithMethodWithParametersWithModifiers));
+            TestStaticClass(typeof(StaticClassWithMethodWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestStaticClassWithPrivateMethodUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPrivateMethod));
+            TestStaticClass(typeof(StaticClassWithPrivateMethod));
         }
 
         [TestMethod]
         public void TestStaticClassWithPublicMethodUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPublicMethod));
+            TestStaticClass(typeof(StaticClassWithPublicMethod));
         }
     }
 }

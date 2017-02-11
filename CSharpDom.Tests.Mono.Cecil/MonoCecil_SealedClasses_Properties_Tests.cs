@@ -10,61 +10,61 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithInternalPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithInternalProperty));
+            TestSealedClass(typeof(SealedClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNewPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNewProperty));
+            TestSealedClass(typeof(SealedClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNewStaticPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNewStaticProperty));
+            TestSealedClass(typeof(SealedClassWithNewStaticProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithOverridePropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithOverrideProperty));
+            TestSealedClass(typeof(SealedClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithPrivatePropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPrivateProperty));
+            TestSealedClass(typeof(SealedClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedProperty));
+            TestSealedClass(typeof(SealedClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedInternalPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedInternalProperty));
+            TestSealedClass(typeof(SealedClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithPublicPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPublicProperty));
+            TestSealedClass(typeof(SealedClassWithPublicProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithSealedOverridePropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithSealedOverrideProperty));
+            TestSealedClass(typeof(SealedClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithStaticPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithStaticProperty));
+            TestSealedClass(typeof(SealedClassWithStaticProperty));
         }
     }
 }

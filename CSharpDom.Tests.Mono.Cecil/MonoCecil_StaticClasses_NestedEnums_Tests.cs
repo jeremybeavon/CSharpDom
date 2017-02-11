@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedEnumWith1AttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedEnumWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithInternalNestedEnumUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithInternalNestedEnum));
+            TestStaticClass(typeof(StaticClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStaticClassWithPrivateNestedEnumUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPrivateNestedEnum));
+            TestStaticClass(typeof(StaticClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestStaticClassWithProtectedNestedEnumUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithProtectedNestedEnum));
+            TestStaticClass(typeof(StaticClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestStaticClassWithProtectedInternalNestedEnumUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithProtectedInternalNestedEnum));
+            TestStaticClass(typeof(StaticClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStaticClassWithPublicNestedEnumUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPublicNestedEnum));
+            TestStaticClass(typeof(StaticClassWithPublicNestedEnum));
         }
     }
 }

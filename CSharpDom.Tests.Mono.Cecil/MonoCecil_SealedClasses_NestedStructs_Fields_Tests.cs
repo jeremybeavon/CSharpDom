@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedStructWithConstFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithConstField));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithConstField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithInternalFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalField));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithInternalField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPrivateFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateField));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPrivateField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPublicFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicField));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPublicField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithReadOnlyFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithReadOnlyField));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithReadOnlyField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithStaticFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticField));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithStaticField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithStaticReadOnlyFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticReadOnlyField));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithStaticVolatileFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticVolatileField));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithStaticVolatileField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithVolatileFieldUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithVolatileField));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithVolatileField));
         }
     }
 }

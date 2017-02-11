@@ -10,25 +10,25 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedStructWithInternalAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithInternalAutoProperty));
+            TestClass(typeof(ClassWithNestedStructWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPrivateAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPrivateAutoProperty));
+            TestClass(typeof(ClassWithNestedStructWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPublicAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPublicAutoProperty));
+            TestClass(typeof(ClassWithNestedStructWithPublicAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithStaticAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithStaticAutoProperty));
+            TestClass(typeof(ClassWithNestedStructWithStaticAutoProperty));
         }
     }
 }

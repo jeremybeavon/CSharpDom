@@ -10,115 +10,115 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithNestedInterfaceWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith1Attribute));
+            TestClass(typeof(ClassWithNestedInterfaceWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith1GenericParameterUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith1GenericParameter));
+            TestClass(typeof(ClassWithNestedInterfaceWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith1ImplementedInterfaceUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith1ImplementedInterface));
+            TestClass(typeof(ClassWithNestedInterfaceWith1ImplementedInterface));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedInterfaceWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith2GenericParametersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith2GenericParameters));
+            TestClass(typeof(ClassWithNestedInterfaceWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith2ImplementedInterfacesUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith2ImplementedInterfaces));
+            TestClass(typeof(ClassWithNestedInterfaceWith2ImplementedInterfaces));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterBaseClassConstraintUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterBaseClassConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterClassAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterClassConstraintUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterClassConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterEmptyConstructorConstraintUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterEmptyConstructorConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterGenericParameterConstraintUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterGenericParameterConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterInterfaceConstraintUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterInterfaceConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterStructConstraintUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterStructConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
         public void TestClassWithProtectedNestedInterfaceUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedNestedInterface));
+            TestClass(typeof(ClassWithProtectedNestedInterface));
         }
 
         [TestMethod]
         public void TestClassWithPrivateNestedInterfaceUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPrivateNestedInterface));
+            TestClass(typeof(ClassWithPrivateNestedInterface));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalNestedInterfaceUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalNestedInterface));
+            TestClass(typeof(ClassWithProtectedInternalNestedInterface));
         }
 
         [TestMethod]
         public void TestClassWithInternalNestedInterfaceUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithInternalNestedInterface));
+            TestClass(typeof(ClassWithInternalNestedInterface));
         }
 
         [TestMethod]
         public void TestClassWithPublicNestedInterfaceUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPublicNestedInterface));
+            TestClass(typeof(ClassWithPublicNestedInterface));
         }
     }
 }

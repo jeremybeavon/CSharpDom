@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceEventWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith1Attribute));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceEventUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEvent));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegateUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegate));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithExplicitInterfaceEventWithGenericInterfaceUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithExplicitInterfaceEventWithGenericInterface));
+            TestClass(typeof(ClassWithNestedStructWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

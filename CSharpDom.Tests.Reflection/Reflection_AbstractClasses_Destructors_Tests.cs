@@ -10,7 +10,7 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithDestructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithDestructor));
+            TestAbstractClass(typeof(AbstractClassWithDestructor));
         }
     }
 }

@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventWithGenericDelegateUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventWithGenericDelegate));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithInternalEventUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithInternalEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPrivateEventUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPublicEventUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPublicEvent));
         }
     }
 }

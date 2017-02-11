@@ -10,103 +10,103 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWith1AccessorAttribute));
+            TestClass(typeof(ClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithEventPropertyWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWith1Attribute));
+            TestClass(typeof(ClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithEventPropertyWithGenericDelegate));
+            TestClass(typeof(ClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithInternalEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithInternalEventProperty));
+            TestClass(typeof(ClassWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewEventProperty));
+            TestClass(typeof(ClassWithNewEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewStaticEventProperty));
+            TestClass(typeof(ClassWithNewStaticEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithNewVirtualEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewVirtualEventProperty));
+            TestClass(typeof(ClassWithNewVirtualEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithOverrideEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithOverrideEventProperty));
+            TestClass(typeof(ClassWithOverrideEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithPrivateEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPrivateEventProperty));
+            TestClass(typeof(ClassWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedEventProperty));
+            TestClass(typeof(ClassWithProtectedEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalEventProperty));
+            TestClass(typeof(ClassWithProtectedInternalEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithPublicEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPublicEventProperty));
+            TestClass(typeof(ClassWithPublicEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithSealedOverrideEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithSealedOverrideEventProperty));
+            TestClass(typeof(ClassWithSealedOverrideEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithStaticEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithStaticEventProperty));
+            TestClass(typeof(ClassWithStaticEventProperty));
         }
 
         [TestMethod]
         public void TestClassWithVirtualEventPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithVirtualEventProperty));
+            TestClass(typeof(ClassWithVirtualEventProperty));
         }
     }
 }

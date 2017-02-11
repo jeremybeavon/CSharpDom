@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWith1AttributeUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWith1ParameterUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWith1Parameter));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWith2ParametersUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWith2Parameters));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithInternalConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWithParametersWithAttributes));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithConstructorWithParametersWithModifiers));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPrivateConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedInternalConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPublicConstructorUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPublicConstructor));
         }
     }
 }

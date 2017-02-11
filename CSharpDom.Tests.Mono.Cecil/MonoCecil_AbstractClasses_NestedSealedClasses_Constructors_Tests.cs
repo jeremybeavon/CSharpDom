@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithConstructorWith1AttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithConstructorWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithConstructorWith1ParameterUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithConstructorWith1Parameter));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithConstructorWith2ParametersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithConstructorWith2Parameters));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithInternalConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithInternalConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithConstructorWithParametersWithAttributes));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithConstructorWithParametersWithModifiers));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithPrivateConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPrivateConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithProtectedConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithProtectedConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithProtectedInternalConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithProtectedInternalConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithPublicConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPublicConstructor));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithPublicConstructor));
         }
     }
 }

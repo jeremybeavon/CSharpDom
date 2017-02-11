@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithNestedStaticClassWithNestedEnumWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithNestedEnumWith1Attribute));
+            TestClass(typeof(ClassWithNestedStaticClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStaticClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithInternalNestedEnumUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithInternalNestedEnum));
+            TestClass(typeof(ClassWithNestedStaticClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithPrivateNestedEnumUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithPrivateNestedEnum));
+            TestClass(typeof(ClassWithNestedStaticClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithProtectedNestedEnumUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithProtectedNestedEnum));
+            TestClass(typeof(ClassWithNestedStaticClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithProtectedInternalNestedEnumUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithProtectedInternalNestedEnum));
+            TestClass(typeof(ClassWithNestedStaticClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestClassWithNestedStaticClassWithPublicNestedEnumUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedStaticClassWithPublicNestedEnum));
+            TestClass(typeof(ClassWithNestedStaticClassWithPublicNestedEnum));
         }
     }
 }

@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithEventWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithEventWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithEventWithGenericDelegateUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithEventWithGenericDelegate));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithInternalEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithInternalEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithPrivateEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPrivateEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithPublicEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPublicEvent));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithPublicEvent));
         }
     }
 }

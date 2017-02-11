@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventPropertyWith1AccessorAttribute));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventPropertyWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventPropertyWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEventPropertyWithGenericDelegate));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithInternalEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalEventProperty));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPrivateEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateEventProperty));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPublicEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicEventProperty));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPublicEventProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithStaticEventPropertyUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithStaticEventProperty));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithStaticEventProperty));
         }
     }
 }

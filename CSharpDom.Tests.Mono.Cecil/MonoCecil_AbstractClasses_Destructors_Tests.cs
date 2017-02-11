@@ -10,7 +10,7 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithDestructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithDestructor));
+            TestAbstractClass(typeof(AbstractClassWithDestructor));
         }
     }
 }

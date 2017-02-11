@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithIndexerWith1AccessorAttribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithIndexerWith1AttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithIndexerWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithIndexerWith2ParametersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithIndexerWith2Parameters));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithInternalIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithInternalIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithInternalIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithNewIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithNewIndexer));
         }
 
         //[TestMethod]
@@ -70,31 +70,31 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithOverrideIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithOverrideIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithOverrideIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithPrivateIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPrivateIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithProtectedIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithProtectedIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithProtectedInternalIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedInternalIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithPublicIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPublicIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithPublicIndexer));
         }
 
         //[TestMethod]
@@ -106,7 +106,7 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithVirtualIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithVirtualIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithVirtualIndexer));
         }
     }
 }

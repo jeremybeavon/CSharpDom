@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventPropertyWith1AccessorAttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventPropertyWith1AccessorAttribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventPropertyWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventPropertyWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventPropertyWithGenericDelegateUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventPropertyWithGenericDelegate));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithInternalEventPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithInternalEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPrivateEventPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPrivateEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPublicEventPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPublicEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPublicEventProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithStaticEventPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithStaticEventProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithStaticEventProperty));
         }
     }
 }

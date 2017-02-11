@@ -10,19 +10,19 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithDestructorWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithDestructorWith1Attribute));
+            TestClass(typeof(ClassWithNestedAbstractClassWithDestructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithDestructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithDestructor));
+            TestClass(typeof(ClassWithNestedAbstractClassWithDestructor));
         }
     }
 }

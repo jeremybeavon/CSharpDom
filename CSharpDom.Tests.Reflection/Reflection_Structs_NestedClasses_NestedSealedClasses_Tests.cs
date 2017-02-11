@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWith1Attribute));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWith1GenericParameterUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWith1GenericParameter));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWith1ImplementedInterfaceUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWith1ImplementedInterface));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWith1ImplementedInterface));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWith2GenericParametersUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWith2GenericParameters));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWith2ImplementedInterfacesUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWith2ImplementedInterfaces));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWith2ImplementedInterfaces));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWithBaseClassUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWithBaseClass));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWithBaseClass));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterBaseClassConstraint));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWithGenericParameterClassConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterClassConstraint));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterEmptyConstructorConstraint));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterGenericParameterConstraint));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterInterfaceConstraint));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedSealedClassWithGenericParameterStructConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterStructConstraint));
+            TestStruct(typeof(StructWithNestedClassWithNestedSealedClassWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithInternalNestedSealedClassUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithInternalNestedSealedClass));
+            TestStruct(typeof(StructWithNestedClassWithInternalNestedSealedClass));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithPrivateNestedSealedClassUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithPrivateNestedSealedClass));
+            TestStruct(typeof(StructWithNestedClassWithPrivateNestedSealedClass));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithProtectedNestedSealedClassUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithProtectedNestedSealedClass));
+            TestStruct(typeof(StructWithNestedClassWithProtectedNestedSealedClass));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithProtectedInternalNestedSealedClassUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalNestedSealedClass));
+            TestStruct(typeof(StructWithNestedClassWithProtectedInternalNestedSealedClass));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithPublicNestedSealedClassUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithPublicNestedSealedClass));
+            TestStruct(typeof(StructWithNestedClassWithPublicNestedSealedClass));
         }
     }
 }

@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithAndOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithAndOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithAndOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithBitwiseNotOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithBitwiseNotOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithDecrementOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithDecrementOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithDivideOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithDivideOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithEqualAndNotEqualOperatorOverloadsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithEqualAndNotEqualOperatorOverloads));
+            TestClass(typeof(ClassWithNestedAbstractClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithExclusiveOrOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithExclusiveOrOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithIncrementOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithIncrementOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithLeftShiftOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithLeftShiftOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithLessThanAndGreaterThanOperatorOverloadsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestClass(typeof(ClassWithNestedAbstractClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestClass(typeof(ClassWithNestedAbstractClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithLogicalNotOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithLogicalNotOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithMinusOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithMinusOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithModuloOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithModuloOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithMultiplyOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithMultiplyOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithOrOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithOrOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithPlusOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithPlusOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithRightShiftOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithRightShiftOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithTrueAndFalseOperatorOverloadsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithTrueAndFalseOperatorOverloads));
+            TestClass(typeof(ClassWithNestedAbstractClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithUnaryMinusOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithUnaryMinusOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithUnaryPlusOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithUnaryPlusOperatorOverload));
+            TestClass(typeof(ClassWithNestedAbstractClassWithUnaryPlusOperatorOverload));
         }
     }
 }

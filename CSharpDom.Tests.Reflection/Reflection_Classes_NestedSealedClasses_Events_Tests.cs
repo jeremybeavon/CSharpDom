@@ -10,79 +10,79 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedSealedClassWithEventWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithEventWith1Attribute));
+            TestClass(typeof(ClassWithNestedSealedClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithEventWithGenericDelegateUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithEventWithGenericDelegate));
+            TestClass(typeof(ClassWithNestedSealedClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithInternalEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithInternalEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithNewEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithNewEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithNewEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithNewStaticEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithNewStaticEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithNewStaticEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithOverrideEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithOverrideEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithOverrideEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithPrivateEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithPrivateEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithProtectedEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithProtectedEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithProtectedInternalEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithProtectedInternalEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithPublicEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithPublicEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithPublicEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithSealedOverrideEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithSealedOverrideEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedSealedClassWithStaticEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedSealedClassWithStaticEvent));
+            TestClass(typeof(ClassWithNestedSealedClassWithStaticEvent));
         }
     }
 }

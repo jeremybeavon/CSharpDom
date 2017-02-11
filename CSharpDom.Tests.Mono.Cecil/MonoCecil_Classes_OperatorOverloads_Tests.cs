@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithAndOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithAndOperatorOverload));
+            TestClass(typeof(ClassWithAndOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithBitwiseNotOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithBitwiseNotOperatorOverload));
+            TestClass(typeof(ClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithDecrementOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithDecrementOperatorOverload));
+            TestClass(typeof(ClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithDivideOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithDivideOperatorOverload));
+            TestClass(typeof(ClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithEqualAndNotEqualOperatorOverloadsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithEqualAndNotEqualOperatorOverloads));
+            TestClass(typeof(ClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithExclusiveOrOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExclusiveOrOperatorOverload));
+            TestClass(typeof(ClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithIncrementOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithIncrementOperatorOverload));
+            TestClass(typeof(ClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithLeftShiftOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithLeftShiftOperatorOverload));
+            TestClass(typeof(ClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithLessThanAndGreaterThanOperatorOverloadsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestClass(typeof(ClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestClass(typeof(ClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithLogicalNotOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithLogicalNotOperatorOverload));
+            TestClass(typeof(ClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithMinusOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithMinusOperatorOverload));
+            TestClass(typeof(ClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithModuloOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithModuloOperatorOverload));
+            TestClass(typeof(ClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithMultiplyOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithMultiplyOperatorOverload));
+            TestClass(typeof(ClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithOrOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithOrOperatorOverload));
+            TestClass(typeof(ClassWithOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithPlusOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithPlusOperatorOverload));
+            TestClass(typeof(ClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithRightShiftOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithRightShiftOperatorOverload));
+            TestClass(typeof(ClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithTrueAndFalseOperatorOverloadsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithTrueAndFalseOperatorOverloads));
+            TestClass(typeof(ClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithUnaryMinusOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithUnaryMinusOperatorOverload));
+            TestClass(typeof(ClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithUnaryPlusOperatorOverloadUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithUnaryPlusOperatorOverload));
+            TestClass(typeof(ClassWithUnaryPlusOperatorOverload));
         }
     }
 }

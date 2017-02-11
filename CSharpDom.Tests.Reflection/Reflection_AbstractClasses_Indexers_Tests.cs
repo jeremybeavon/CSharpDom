@@ -10,103 +10,103 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithIndexerWith1AccessorAttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith1AccessorAttribute));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2ParametersUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2Parameters));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2ParametersWithAttributesUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2ParametersWithAttributes));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2ParametersWithModifiersUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2ParametersWithModifiers));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestAbstractClassWithInternalIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithInternalIndexer));
+            TestAbstractClass(typeof(AbstractClassWithInternalIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNewIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewVirtualIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNewVirtualIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithOverrideIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithOverrideIndexer));
+            TestAbstractClass(typeof(AbstractClassWithOverrideIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPrivateIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPrivateIndexer));
+            TestAbstractClass(typeof(AbstractClassWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedIndexer));
+            TestAbstractClass(typeof(AbstractClassWithProtectedIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedInternalIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalIndexer));
+            TestAbstractClass(typeof(AbstractClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPublicIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPublicIndexer));
+            TestAbstractClass(typeof(AbstractClassWithPublicIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithSealedOverrideIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideIndexer));
+            TestAbstractClass(typeof(AbstractClassWithSealedOverrideIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithVirtualIndexerUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithVirtualIndexer));
+            TestAbstractClass(typeof(AbstractClassWithVirtualIndexer));
         }
     }
 }

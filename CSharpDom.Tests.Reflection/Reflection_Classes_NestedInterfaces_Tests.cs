@@ -10,115 +10,115 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedInterfaceWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith1Attribute));
+            TestClass(typeof(ClassWithNestedInterfaceWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith1GenericParameterUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith1GenericParameter));
+            TestClass(typeof(ClassWithNestedInterfaceWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith1ImplementedInterfaceUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith1ImplementedInterface));
+            TestClass(typeof(ClassWithNestedInterfaceWith1ImplementedInterface));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedInterfaceWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith2GenericParametersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith2GenericParameters));
+            TestClass(typeof(ClassWithNestedInterfaceWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWith2ImplementedInterfacesUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWith2ImplementedInterfaces));
+            TestClass(typeof(ClassWithNestedInterfaceWith2ImplementedInterfaces));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterBaseClassConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterClassConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterClassConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterEmptyConstructorConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterGenericParameterConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterInterfaceConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
         public void TestClassWithNestedInterfaceWithGenericParameterStructConstraintUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedInterfaceWithGenericParameterStructConstraint));
+            TestClass(typeof(ClassWithNestedInterfaceWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
         public void TestClassWithProtectedNestedInterfaceUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedNestedInterface));
+            TestClass(typeof(ClassWithProtectedNestedInterface));
         }
 
         [TestMethod]
         public void TestClassWithPrivateNestedInterfaceUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPrivateNestedInterface));
+            TestClass(typeof(ClassWithPrivateNestedInterface));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalNestedInterfaceUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalNestedInterface));
+            TestClass(typeof(ClassWithProtectedInternalNestedInterface));
         }
 
         [TestMethod]
         public void TestClassWithInternalNestedInterfaceUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithInternalNestedInterface));
+            TestClass(typeof(ClassWithInternalNestedInterface));
         }
 
         [TestMethod]
         public void TestClassWithPublicNestedInterfaceUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPublicNestedInterface));
+            TestClass(typeof(ClassWithPublicNestedInterface));
         }
     }
 }

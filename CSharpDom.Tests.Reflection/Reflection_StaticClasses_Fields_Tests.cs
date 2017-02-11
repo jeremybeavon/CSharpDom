@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithConstFieldUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithConstField));
+            TestStaticClass(typeof(StaticClassWithConstField));
         }
 
         [TestMethod]
         public void TestStaticClassWithInternalFieldUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithInternalField));
+            TestStaticClass(typeof(StaticClassWithInternalField));
         }
 
         [TestMethod]
         public void TestStaticClassWithPrivateFieldUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPrivateField));
+            TestStaticClass(typeof(StaticClassWithPrivateField));
         }
 
         [TestMethod]
         public void TestStaticClassWithPublicFieldUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithPublicField));
+            TestStaticClass(typeof(StaticClassWithPublicField));
         }
 
         [TestMethod]
         public void TestStaticClassWithReadOnlyFieldUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithReadOnlyField));
+            TestStaticClass(typeof(StaticClassWithReadOnlyField));
         }
 
         [TestMethod]
         public void TestStaticClassWithVolatileFieldUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithVolatileField));
+            TestStaticClass(typeof(StaticClassWithVolatileField));
         }
     }
 }

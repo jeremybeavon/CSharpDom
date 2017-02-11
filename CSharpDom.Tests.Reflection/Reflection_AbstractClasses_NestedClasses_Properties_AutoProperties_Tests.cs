@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithInternalAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithInternalAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithNewAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithNewAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithNewStaticAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewStaticAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithNewVirtualAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithNewVirtualAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithOverrideAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithOverrideAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithPrivateAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPrivateAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithProtectedAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithProtectedInternalAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedInternalAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithPublicAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPublicAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithPublicAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithSealedOverrideAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithSealedOverrideAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithStaticAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithStaticAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedClassWithVirtualAutoPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithVirtualAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedClassWithVirtualAutoProperty));
         }
     }
 }

@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNestedEnumWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNestedEnumWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithInternalNestedEnumUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithInternalNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithPrivateNestedEnumUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPrivateNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithProtectedNestedEnumUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithProtectedInternalNestedEnumUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithProtectedInternalNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithPublicNestedEnumUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithPublicNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithPublicNestedEnum));
         }
     }
 }

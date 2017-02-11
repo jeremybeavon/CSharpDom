@@ -10,19 +10,19 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedClassWithInternalPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithInternalProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNewPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNewProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithNewStaticPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNewStaticProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithNewStaticProperty));
         }
 
         //[TestMethod]
@@ -34,31 +34,31 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedClassWithOverridePropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithOverrideProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithPrivatePropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPrivateProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithProtectedPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithProtectedInternalPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedInternalProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithPublicPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPublicProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithPublicProperty));
         }
 
         //[TestMethod]
@@ -70,13 +70,13 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedClassWithStaticPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithStaticProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithStaticProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithVirtualPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithVirtualProperty));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithVirtualProperty));
         }
     }
 }

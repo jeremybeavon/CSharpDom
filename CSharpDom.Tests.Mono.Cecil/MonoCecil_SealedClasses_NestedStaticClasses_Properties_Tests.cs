@@ -10,19 +10,19 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithInternalPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithInternalProperty));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithPrivatePropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPrivateProperty));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStaticClassWithPublicPropertyUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStaticClassWithPublicProperty));
+            TestSealedClass(typeof(SealedClassWithNestedStaticClassWithPublicProperty));
         }
     }
 }

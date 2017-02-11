@@ -10,103 +10,103 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWith1GenericParameterUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWith1GenericParameter<>));
+            TestAbstractClass(typeof(AbstractClassWith1GenericParameter<>));
         }
 
         [TestMethod]
         public void TestAbstractClassWith1ImplementedInterfaceUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWith1ImplementedInterface));
+            TestAbstractClass(typeof(AbstractClassWith1ImplementedInterface));
         }
         
         [TestMethod]
         public void TestAbstractClassWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWith2GenericParametersUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWith2GenericParameters<,>));
+            TestAbstractClass(typeof(AbstractClassWith2GenericParameters<,>));
         }
 
         [TestMethod]
         public void TestAbstractClassWith2ImplementedInterfacesUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWith2ImplementedInterfaces));
+            TestAbstractClass(typeof(AbstractClassWith2ImplementedInterfaces));
         }
 
         [TestMethod]
         public void TestAbstractClassWithBaseClassUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithBaseClass));
+            TestAbstractClass(typeof(AbstractClassWithBaseClass));
         }
 
         [TestMethod]
         public void TestAbstractClassWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithGenericParameterBaseClassConstraint<>));
+            TestAbstractClass(typeof(AbstractClassWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
         public void TestAbstractClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestAbstractClass(typeof(AbstractClassWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
         public void TestAbstractClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestAbstractClass(typeof(AbstractClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
         public void TestAbstractClassWithGenericParameterClassConstraintUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithGenericParameterClassConstraint<>));
+            TestAbstractClass(typeof(AbstractClassWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
         public void TestAbstractClassWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithGenericParameterEmptyConstructorConstraint<>));
+            TestAbstractClass(typeof(AbstractClassWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
         public void TestAbstractClassWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithGenericParameterGenericParameterConstraint<,>));
+            TestAbstractClass(typeof(AbstractClassWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
         public void TestAbstractClassWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithGenericParameterInterfaceConstraint<>));
+            TestAbstractClass(typeof(AbstractClassWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
         public void TestAbstractClassWithGenericParameterStructConstraintUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithGenericParameterStructConstraint<>));
+            TestAbstractClass(typeof(AbstractClassWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
         public void TestInternalAbstractClassUsingReflection()
         {
-            TestAbstractClassAsync(typeof(InternalAbstractClass));
+            TestAbstractClass(typeof(InternalAbstractClass));
         }
 
         [TestMethod]
         public void TestPublicAbstractClassUsingReflection()
         {
-            TestAbstractClassAsync(typeof(PublicAbstractClass));
+            TestAbstractClass(typeof(PublicAbstractClass));
         }
     }
 }

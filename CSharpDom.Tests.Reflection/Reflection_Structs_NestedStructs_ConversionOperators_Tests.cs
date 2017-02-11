@@ -10,85 +10,85 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperator));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith1ParameterAttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1ParameterAttribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith1ReturnAttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1ReturnAttribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperator));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith1ParameterAttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1ParameterAttribute));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith1ReturnAttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1ReturnAttribute));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
     }
 }

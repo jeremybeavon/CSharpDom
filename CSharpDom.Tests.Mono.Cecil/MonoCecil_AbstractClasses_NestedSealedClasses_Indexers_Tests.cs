@@ -10,85 +10,85 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIndexerWith1AccessorAttribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithIndexerWith1AttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIndexerWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithIndexerWith2ParametersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2Parameters));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2ParametersWithAttributes));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2ParametersWithModifiers));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithInternalIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithInternalIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithInternalIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithNewIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithNewIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithNewIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithOverrideIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithOverrideIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithOverrideIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithPrivateIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPrivateIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithProtectedIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithProtectedIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithProtectedIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithProtectedInternalIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithProtectedInternalIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithPublicIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPublicIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithPublicIndexer));
         }
 
         //[TestMethod]

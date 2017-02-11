@@ -10,49 +10,49 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithEventPropertyWith1AccessorAttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWith1AccessorAttribute));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithEventPropertyWith1AttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithEventPropertyWithGenericDelegateUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWithGenericDelegate));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithInternalEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithInternalEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithNewEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithNewEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithNewStaticEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewStaticEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithNewStaticEventProperty));
         }
 
         //[TestMethod]
@@ -64,31 +64,31 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithOverrideEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithOverrideEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPrivateEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPrivateEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedInternalEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPublicEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPublicEventProperty));
         }
 
         //[TestMethod]
@@ -100,13 +100,13 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithStaticEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithStaticEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithStaticEventProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithVirtualEventPropertyUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualEventProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithVirtualEventProperty));
         }
     }
 }

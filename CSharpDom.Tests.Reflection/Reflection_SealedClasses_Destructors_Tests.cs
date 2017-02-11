@@ -10,7 +10,7 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithDestructorUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithDestructor));
+            TestSealedClass(typeof(SealedClassWithDestructor));
         }
     }
 }

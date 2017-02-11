@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithConstructorWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWith1ParameterUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Parameter));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWith2ParametersUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2Parameters));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestAbstractClassWithInternalConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithInternalConstructor));
+            TestAbstractClass(typeof(AbstractClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPrivateConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPrivateConstructor));
+            TestAbstractClass(typeof(AbstractClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedConstructor));
+            TestAbstractClass(typeof(AbstractClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedInternalConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalConstructor));
+            TestAbstractClass(typeof(AbstractClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPublicConstructorUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPublicConstructor));
+            TestAbstractClass(typeof(AbstractClassWithPublicConstructor));
         }
     }
 }

@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedClassWithNestedEnumWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithNestedEnumWith1Attribute));
+            TestClass(typeof(ClassWithNestedClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithInternalNestedEnumUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithInternalNestedEnum));
+            TestClass(typeof(ClassWithNestedClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithPrivateNestedEnumUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithPrivateNestedEnum));
+            TestClass(typeof(ClassWithNestedClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithProtectedNestedEnumUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithProtectedNestedEnum));
+            TestClass(typeof(ClassWithNestedClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithProtectedInternalNestedEnumUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalNestedEnum));
+            TestClass(typeof(ClassWithNestedClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithPublicNestedEnumUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithPublicNestedEnum));
+            TestClass(typeof(ClassWithNestedClassWithPublicNestedEnum));
         }
     }
 }

@@ -8,8 +8,6 @@ namespace CSharpDom.Wrappers.Internal
     public abstract class AbstractAsyncWrapper<TInput> : AbstractWrapper
         where TInput : IAsyncVisitable<IGenericVisitor>
     {
-        private TInput input;
-
         protected AbstractAsyncWrapper(TInput input)
             : base(input)
         {

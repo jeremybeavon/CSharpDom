@@ -10,19 +10,19 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedClassWithDestructorWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithDestructorWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithDestructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedClassWithDestructorUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedClassWithDestructor));
+            TestSealedClass(typeof(SealedClassWithNestedClassWithDestructor));
         }
     }
 }

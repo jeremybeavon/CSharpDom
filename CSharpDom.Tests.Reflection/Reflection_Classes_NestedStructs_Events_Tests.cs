@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedStructWithEventWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithEventWith1Attribute));
+            TestClass(typeof(ClassWithNestedStructWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithEventWithGenericDelegateUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithEventWithGenericDelegate));
+            TestClass(typeof(ClassWithNestedStructWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithInternalEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithInternalEvent));
+            TestClass(typeof(ClassWithNestedStructWithInternalEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPrivateEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPrivateEvent));
+            TestClass(typeof(ClassWithNestedStructWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPublicEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPublicEvent));
+            TestClass(typeof(ClassWithNestedStructWithPublicEvent));
         }
     }
 }

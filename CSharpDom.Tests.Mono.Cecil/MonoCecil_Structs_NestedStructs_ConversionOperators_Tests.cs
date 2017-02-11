@@ -10,85 +10,85 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperator));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith1AttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith1ParameterAttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1ParameterAttribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith1ReturnAttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1ReturnAttribute));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperator));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith1AttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1Attribute));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith1ParameterAttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1ParameterAttribute));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith1ReturnAttributeUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1ReturnAttribute));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedStructWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
     }
 }

@@ -10,61 +10,61 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithNestedSealedClassWithInternalPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithInternalProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithNewPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithNewProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithNewStaticPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithNewStaticProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithNewStaticProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithOverridePropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithOverrideProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithPrivatePropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithPrivateProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithProtectedPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithProtectedInternalPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedInternalProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithPublicPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithPublicProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithPublicProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithSealedOverridePropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithSealedOverrideProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
         public void TestStructWithNestedSealedClassWithStaticPropertyUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithNestedSealedClassWithStaticProperty));
+            TestStruct(typeof(StructWithNestedSealedClassWithStaticProperty));
         }
     }
 }

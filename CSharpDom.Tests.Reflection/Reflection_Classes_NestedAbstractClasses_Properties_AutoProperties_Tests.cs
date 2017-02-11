@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithInternalAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithInternalAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithNewAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithNewAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithNewAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithNewStaticAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithNewStaticAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithNewVirtualAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithNewVirtualAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithOverrideAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithOverrideAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithPrivateAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithPrivateAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithProtectedAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithProtectedAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithProtectedInternalAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithProtectedInternalAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithPublicAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithPublicAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithPublicAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithSealedOverrideAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithSealedOverrideAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithStaticAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithStaticAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestClassWithNestedAbstractClassWithVirtualAutoPropertyUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedAbstractClassWithVirtualAutoProperty));
+            TestClass(typeof(ClassWithNestedAbstractClassWithVirtualAutoProperty));
         }
     }
 }

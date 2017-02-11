@@ -11,109 +11,109 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWith1Attribute));
+            TestStruct(typeof(StructWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWith1GenericParameterUsingReflection()
         {
-            TestStructAsync(typeof(StructWith1GenericParameter<>));
+            TestStruct(typeof(StructWith1GenericParameter<>));
         }
 
         [TestMethod]
         public void TestStructWith1ImplementedInterfaceUsingReflection()
         {
-            TestStructAsync(typeof(StructWith1ImplementedInterface));
+            TestStruct(typeof(StructWith1ImplementedInterface));
         }
 
         [TestMethod]
         public void TestStructWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWith2GenericParametersUsingReflection()
         {
-            TestStructAsync(typeof(StructWith2GenericParameters<,>));
+            TestStruct(typeof(StructWith2GenericParameters<,>));
         }
 
         [TestMethod]
         public void TestStructWith2ImplementedInterfacesUsingReflection()
         {
-            TestStructAsync(typeof(StructWith2ImplementedInterfaces));
+            TestStruct(typeof(StructWith2ImplementedInterfaces));
         }
 
         [TestMethod]
         public void TestStructWithExplicitConversionOperatorUsingReflection()
         {
-            TestStructAsync(typeof(StructWithExplicitConversionOperator));
+            TestStruct(typeof(StructWithExplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterBaseClassConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithGenericParameterBaseClassConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterClassAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestStruct(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestStruct(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterClassConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithGenericParameterClassConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterEmptyConstructorConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterGenericParameterConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
+            TestStruct(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterInterfaceConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithGenericParameterInterfaceConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithGenericParameterStructConstraintUsingReflection()
         {
-            TestStructAsync(typeof(StructWithGenericParameterStructConstraint<>));
+            TestStruct(typeof(StructWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
         public void TestStructWithImplicitConversionOperatorUsingReflection()
         {
-            TestStructAsync(typeof(StructWithImplicitConversionOperator));
+            TestStruct(typeof(StructWithImplicitConversionOperator));
         }
 
         [TestMethod]
         public void TestInternalStructUsingReflection()
         {
-            TestStructAsync(typeof(InternalStruct));
+            TestStruct(typeof(InternalStruct));
         }
 
         [TestMethod]
         public void TestPublicStructUsingReflection()
         {
-            TestStructAsync(typeof(PublicStruct));
+            TestStruct(typeof(PublicStruct));
         }
     }
 }

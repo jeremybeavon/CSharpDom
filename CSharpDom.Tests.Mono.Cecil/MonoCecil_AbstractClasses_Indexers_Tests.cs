@@ -10,55 +10,55 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith1AccessorAttribute));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith1AttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2ParametersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2Parameters));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2ParametersWithAttributes));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestAbstractClassWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithIndexerWith2ParametersWithModifiers));
+            TestAbstractClass(typeof(AbstractClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestAbstractClassWithInternalIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithInternalIndexer));
+            TestAbstractClass(typeof(AbstractClassWithInternalIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewIndexer));
+            TestAbstractClass(typeof(AbstractClassWithNewIndexer));
         }
 
         //[TestMethod]
@@ -70,31 +70,31 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithOverrideIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithOverrideIndexer));
+            TestAbstractClass(typeof(AbstractClassWithOverrideIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPrivateIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPrivateIndexer));
+            TestAbstractClass(typeof(AbstractClassWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedIndexer));
+            TestAbstractClass(typeof(AbstractClassWithProtectedIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedInternalIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalIndexer));
+            TestAbstractClass(typeof(AbstractClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPublicIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPublicIndexer));
+            TestAbstractClass(typeof(AbstractClassWithPublicIndexer));
         }
 
         //[TestMethod]
@@ -106,7 +106,7 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithVirtualIndexerUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithVirtualIndexer));
+            TestAbstractClass(typeof(AbstractClassWithVirtualIndexer));
         }
     }
 }

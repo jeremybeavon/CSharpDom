@@ -10,97 +10,97 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithConstFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithConstField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithConstField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithInternalFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithInternalField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithInternalField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithNewFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithNewField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithNewStaticFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewStaticField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithNewStaticField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithNewStaticReadOnlyFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewStaticReadOnlyField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithNewStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithNewStaticVolatileFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewStaticVolatileField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithNewStaticVolatileField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithNewVolatileFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewVolatileField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithNewVolatileField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithPrivateFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPrivateField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithPrivateField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithProtectedFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithProtectedField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithProtectedInternalFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedInternalField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithProtectedInternalField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithPublicFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPublicField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithPublicField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithReadOnlyFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithReadOnlyField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithReadOnlyField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithStaticFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithStaticField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithStaticField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithStaticReadOnlyFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithStaticReadOnlyField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithStaticVolatileFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithStaticVolatileField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithStaticVolatileField));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedAbstractClassWithVolatileFieldUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithVolatileField));
+            TestSealedClass(typeof(SealedClassWithNestedAbstractClassWithVolatileField));
         }
     }
 }

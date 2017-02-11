@@ -10,79 +10,79 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithEventWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithEventWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithEventWithGenericDelegateUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithEventWithGenericDelegate));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithInternalEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithInternalEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithNewEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithNewEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithNewStaticEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewStaticEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithNewStaticEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithOverrideEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithOverrideEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithOverrideEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithPrivateEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPrivateEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithProtectedEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithProtectedEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithProtectedInternalEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedInternalEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithPublicEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithPublicEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithSealedOverrideEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithSealedOverrideEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedSealedClassWithStaticEventUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithStaticEvent));
+            TestSealedClass(typeof(SealedClassWithNestedSealedClassWithStaticEvent));
         }
     }
 }

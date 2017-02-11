@@ -10,91 +10,91 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithEventWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithEventWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithEventWithGenericDelegateUsingReflection()
         { 
-            TestAbstractClassAsync(typeof(AbstractClassWithEventWithGenericDelegate));
+            TestAbstractClass(typeof(AbstractClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestAbstractClassWithInternalEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithInternalEvent));
+            TestAbstractClass(typeof(AbstractClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewEvent));
+            TestAbstractClass(typeof(AbstractClassWithNewEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewStaticEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticEvent));
+            TestAbstractClass(typeof(AbstractClassWithNewStaticEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewVirtualEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualEvent));
+            TestAbstractClass(typeof(AbstractClassWithNewVirtualEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithOverrideEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithOverrideEvent));
+            TestAbstractClass(typeof(AbstractClassWithOverrideEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPrivateEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPrivateEvent));
+            TestAbstractClass(typeof(AbstractClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedEvent));
+            TestAbstractClass(typeof(AbstractClassWithProtectedEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedInternalEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalEvent));
+            TestAbstractClass(typeof(AbstractClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPublicEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPublicEvent));
+            TestAbstractClass(typeof(AbstractClassWithPublicEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithSealedOverrideEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideEvent));
+            TestAbstractClass(typeof(AbstractClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithStaticEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithStaticEvent));
+            TestAbstractClass(typeof(AbstractClassWithStaticEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithVirtualEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithVirtualEvent));
+            TestAbstractClass(typeof(AbstractClassWithVirtualEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithEventWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithEventWith2AttributesIn2AttributeGroups));
         }
     }
 }

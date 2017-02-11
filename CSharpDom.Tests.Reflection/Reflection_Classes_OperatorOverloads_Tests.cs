@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithAndOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithAndOperatorOverload));
+            TestClass(typeof(ClassWithAndOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithBitwiseNotOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithBitwiseNotOperatorOverload));
+            TestClass(typeof(ClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithDecrementOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithDecrementOperatorOverload));
+            TestClass(typeof(ClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithDivideOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithDivideOperatorOverload));
+            TestClass(typeof(ClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithEqualAndNotEqualOperatorOverloadsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithEqualAndNotEqualOperatorOverloads));
+            TestClass(typeof(ClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithExclusiveOrOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExclusiveOrOperatorOverload));
+            TestClass(typeof(ClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithIncrementOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithIncrementOperatorOverload));
+            TestClass(typeof(ClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithLeftShiftOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithLeftShiftOperatorOverload));
+            TestClass(typeof(ClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestClass(typeof(ClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestClass(typeof(ClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithLogicalNotOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithLogicalNotOperatorOverload));
+            TestClass(typeof(ClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithMinusOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMinusOperatorOverload));
+            TestClass(typeof(ClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithModuloOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithModuloOperatorOverload));
+            TestClass(typeof(ClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithMultiplyOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithMultiplyOperatorOverload));
+            TestClass(typeof(ClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithOrOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithOrOperatorOverload));
+            TestClass(typeof(ClassWithOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithPlusOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPlusOperatorOverload));
+            TestClass(typeof(ClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithRightShiftOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithRightShiftOperatorOverload));
+            TestClass(typeof(ClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithTrueAndFalseOperatorOverloadsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithTrueAndFalseOperatorOverloads));
+            TestClass(typeof(ClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
         public void TestClassWithUnaryMinusOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithUnaryMinusOperatorOverload));
+            TestClass(typeof(ClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestClassWithUnaryPlusOperatorOverloadUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithUnaryPlusOperatorOverload));
+            TestClass(typeof(ClassWithUnaryPlusOperatorOverload));
         }
     }
 }

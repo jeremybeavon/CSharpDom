@@ -10,97 +10,97 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithConstFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithConstField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithConstField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithInternalFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithInternalField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithInternalField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithNewFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithNewField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithNewField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithNewStaticFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithNewStaticField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithNewStaticField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithNewStaticReadOnlyFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithNewStaticReadOnlyField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithNewStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithNewStaticVolatileFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithNewStaticVolatileField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithNewStaticVolatileField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithNewVolatileFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithNewVolatileField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithNewVolatileField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithPrivateFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPrivateField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithPrivateField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithProtectedFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithProtectedField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithProtectedField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithProtectedInternalFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithProtectedInternalField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithProtectedInternalField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithPublicFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPublicField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithPublicField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithReadOnlyFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithReadOnlyField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithReadOnlyField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithStaticFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithStaticField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithStaticField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithStaticReadOnlyFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithStaticReadOnlyField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithStaticReadOnlyField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithStaticVolatileFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithStaticVolatileField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithStaticVolatileField));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedSealedClassWithVolatileFieldUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithVolatileField));
+            TestAbstractClass(typeof(AbstractClassWithNestedSealedClassWithVolatileField));
         }
     }
 }

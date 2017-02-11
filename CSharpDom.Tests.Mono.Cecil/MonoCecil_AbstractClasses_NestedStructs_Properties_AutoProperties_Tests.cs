@@ -10,25 +10,25 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithInternalAutoPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithInternalAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPrivateAutoPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPrivateAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPublicAutoPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPublicAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPublicAutoProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithStaticAutoPropertyUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithStaticAutoProperty));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithStaticAutoProperty));
         }
     }
 }

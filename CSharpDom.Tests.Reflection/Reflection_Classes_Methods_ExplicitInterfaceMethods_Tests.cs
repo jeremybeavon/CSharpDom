@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1Attribute));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWith1GenericParameterUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1GenericParameter));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWith1GenericParameter));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWith2GenericParametersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2GenericParameters));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWith2GenericParameters));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWithParametersWithAttributesUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithAttributes));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceMethodWithParametersWithModifiersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithModifiers));
+            TestClass(typeof(ClassWithExplicitInterfaceMethodWithParametersWithModifiers));
         }
     }
 }

@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventWithGenericDelegateUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventWithGenericDelegate));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithInternalEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithInternalEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithInternalEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPrivateEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPrivateEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPublicEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPublicEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPublicEvent));
         }
     }
 }

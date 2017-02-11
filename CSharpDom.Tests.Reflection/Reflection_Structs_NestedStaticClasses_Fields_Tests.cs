@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedStaticClassWithConstFieldUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithConstField));
+            TestStruct(typeof(StructWithNestedStaticClassWithConstField));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithInternalFieldUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithInternalField));
+            TestStruct(typeof(StructWithNestedStaticClassWithInternalField));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithPrivateFieldUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithPrivateField));
+            TestStruct(typeof(StructWithNestedStaticClassWithPrivateField));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithPublicFieldUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithPublicField));
+            TestStruct(typeof(StructWithNestedStaticClassWithPublicField));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithReadOnlyFieldUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithReadOnlyField));
+            TestStruct(typeof(StructWithNestedStaticClassWithReadOnlyField));
         }
 
         [TestMethod]
         public void TestStructWithNestedStaticClassWithVolatileFieldUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStaticClassWithVolatileField));
+            TestStruct(typeof(StructWithNestedStaticClassWithVolatileField));
         }
     }
 }

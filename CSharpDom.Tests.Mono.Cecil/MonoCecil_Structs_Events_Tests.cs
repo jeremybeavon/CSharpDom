@@ -10,25 +10,25 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStructWithInternalEventUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithInternalEvent));
+            TestStruct(typeof(StructWithInternalEvent));
         }
 
         [TestMethod]
         public void TestStructWithPrivateEventUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithPrivateEvent));
+            TestStruct(typeof(StructWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestStructWithPublicEventUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithPublicEvent));
+            TestStruct(typeof(StructWithPublicEvent));
         }
 
         [TestMethod]
         public void TestStructWithStaticEventUsingMonoCecil()
         {
-            TestStructAsync(typeof(StructWithStaticEvent));
+            TestStruct(typeof(StructWithStaticEvent));
         }
     }
 }

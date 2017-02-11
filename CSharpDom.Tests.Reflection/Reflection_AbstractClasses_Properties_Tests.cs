@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithInternalPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithInternalProperty));
+            TestAbstractClass(typeof(AbstractClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewProperty));
+            TestAbstractClass(typeof(AbstractClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewStaticPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticProperty));
+            TestAbstractClass(typeof(AbstractClassWithNewStaticProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewVirtualPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualProperty));
+            TestAbstractClass(typeof(AbstractClassWithNewVirtualProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithOverridePropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithOverrideProperty));
+            TestAbstractClass(typeof(AbstractClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPrivatePropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPrivateProperty));
+            TestAbstractClass(typeof(AbstractClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedProperty));
+            TestAbstractClass(typeof(AbstractClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedInternalPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalProperty));
+            TestAbstractClass(typeof(AbstractClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPublicPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPublicProperty));
+            TestAbstractClass(typeof(AbstractClassWithPublicProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithSealedOverridePropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideProperty));
+            TestAbstractClass(typeof(AbstractClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithStaticPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithStaticProperty));
+            TestAbstractClass(typeof(AbstractClassWithStaticProperty));
         }
 
         [TestMethod]
         public void TestAbstractClassWithVirtualPropertyUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithVirtualProperty));
+            TestAbstractClass(typeof(AbstractClassWithVirtualProperty));
         }
     }
 }

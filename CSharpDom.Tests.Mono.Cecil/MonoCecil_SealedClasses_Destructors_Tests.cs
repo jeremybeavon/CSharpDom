@@ -10,7 +10,7 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithDestructorUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithDestructor));
+            TestSealedClass(typeof(SealedClassWithDestructor));
         }
     }
 }

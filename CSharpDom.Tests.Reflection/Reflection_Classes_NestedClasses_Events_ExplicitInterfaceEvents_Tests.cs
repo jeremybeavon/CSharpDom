@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedClassWithExplicitInterfaceEventWith1AccessorAttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestClass(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithExplicitInterfaceEventWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith1Attribute));
+            TestClass(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithExplicitInterfaceEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEvent));
+            TestClass(typeof(ClassWithNestedClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithExplicitInterfaceEventWithGenericDelegateUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestClass(typeof(ClassWithNestedClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithExplicitInterfaceEventWithGenericInterfaceUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithExplicitInterfaceEventWithGenericInterface));
+            TestClass(typeof(ClassWithNestedClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

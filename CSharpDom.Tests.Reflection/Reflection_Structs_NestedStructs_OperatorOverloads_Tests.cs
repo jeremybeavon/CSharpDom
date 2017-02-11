@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedStructWithAndOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithAndOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithAndOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithBitwiseNotOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithBitwiseNotOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithDecrementOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithDecrementOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithDecrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithDivideOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithDivideOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithDivideOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithEqualAndNotEqualOperatorOverloadsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithEqualAndNotEqualOperatorOverloads));
+            TestStruct(typeof(StructWithNestedStructWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithExclusiveOrOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithExclusiveOrOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithIncrementOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithIncrementOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithIncrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithLeftShiftOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithLeftShiftOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithLessThanAndGreaterThanOperatorOverloads));
+            TestStruct(typeof(StructWithNestedStructWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestStruct(typeof(StructWithNestedStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithLogicalNotOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithLogicalNotOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithMinusOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithMinusOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithModuloOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithModuloOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithModuloOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithMultiplyOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithMultiplyOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithOrOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithOrOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithPlusOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithPlusOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithPlusOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithRightShiftOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithRightShiftOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithTrueAndFalseOperatorOverloadsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithTrueAndFalseOperatorOverloads));
+            TestStruct(typeof(StructWithNestedStructWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithUnaryMinusOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithUnaryMinusOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestStructWithNestedStructWithUnaryPlusOperatorOverloadUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedStructWithUnaryPlusOperatorOverload));
+            TestStruct(typeof(StructWithNestedStructWithUnaryPlusOperatorOverload));
         }
     }
 }

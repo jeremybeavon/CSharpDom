@@ -10,121 +10,121 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithNestedStructWithAndOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithAndOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithAndOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithBitwiseNotOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithBitwiseNotOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithDecrementOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithDecrementOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithDecrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithDivideOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithDivideOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithDivideOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithEqualAndNotEqualOperatorOverloadsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithEqualAndNotEqualOperatorOverloads));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithExclusiveOrOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithExclusiveOrOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithIncrementOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithIncrementOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithIncrementOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithLeftShiftOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithLeftShiftOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithLessThanAndGreaterThanOperatorOverloadsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithLessThanAndGreaterThanOperatorOverloads));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithLogicalNotOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithLogicalNotOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithMinusOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithMinusOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithModuloOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithModuloOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithModuloOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithMultiplyOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithMultiplyOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithOrOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithOrOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithOrOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPlusOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPlusOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPlusOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithRightShiftOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithRightShiftOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithTrueAndFalseOperatorOverloadsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithTrueAndFalseOperatorOverloads));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithUnaryMinusOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithUnaryMinusOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithUnaryPlusOperatorOverloadUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithUnaryPlusOperatorOverload));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithUnaryPlusOperatorOverload));
         }
     }
 }

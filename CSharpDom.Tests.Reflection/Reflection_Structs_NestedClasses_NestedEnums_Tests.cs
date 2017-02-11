@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStructWithNestedClassWithNestedEnumWith1AttributeUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedEnumWith1Attribute));
+            TestStruct(typeof(StructWithNestedClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStruct(typeof(StructWithNestedClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithInternalNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithInternalNestedEnum));
+            TestStruct(typeof(StructWithNestedClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithPrivateNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithPrivateNestedEnum));
+            TestStruct(typeof(StructWithNestedClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithProtectedNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithProtectedNestedEnum));
+            TestStruct(typeof(StructWithNestedClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithProtectedInternalNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithProtectedInternalNestedEnum));
+            TestStruct(typeof(StructWithNestedClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestStructWithNestedClassWithPublicNestedEnumUsingReflection()
         {
-            TestStructAsync(typeof(StructWithNestedClassWithPublicNestedEnum));
+            TestStruct(typeof(StructWithNestedClassWithPublicNestedEnum));
         }
     }
 }

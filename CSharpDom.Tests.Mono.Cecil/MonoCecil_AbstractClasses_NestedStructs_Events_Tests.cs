@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventWith1AttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithEventWithGenericDelegateUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventWithGenericDelegate));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithInternalEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithInternalEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithInternalEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPrivateEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPrivateEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStructWithPublicEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithPublicEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStructWithPublicEvent));
         }
     }
 }

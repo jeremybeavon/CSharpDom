@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithEventWith1AttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithEventWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithEventWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithEventWithGenericDelegateUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithEventWithGenericDelegate));
+            TestAbstractClass(typeof(AbstractClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestAbstractClassWithInternalEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithInternalEvent));
+            TestAbstractClass(typeof(AbstractClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewEvent));
+            TestAbstractClass(typeof(AbstractClassWithNewEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNewStaticEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticEvent));
+            TestAbstractClass(typeof(AbstractClassWithNewStaticEvent));
         }
 
         //[TestMethod]
@@ -52,31 +52,31 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithOverrideEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithOverrideEvent));
+            TestAbstractClass(typeof(AbstractClassWithOverrideEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPrivateEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPrivateEvent));
+            TestAbstractClass(typeof(AbstractClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedEvent));
+            TestAbstractClass(typeof(AbstractClassWithProtectedEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedInternalEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalEvent));
+            TestAbstractClass(typeof(AbstractClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPublicEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPublicEvent));
+            TestAbstractClass(typeof(AbstractClassWithPublicEvent));
         }
 
         //[TestMethod]
@@ -88,13 +88,13 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithStaticEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithStaticEvent));
+            TestAbstractClass(typeof(AbstractClassWithStaticEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithVirtualEventUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithVirtualEvent));
+            TestAbstractClass(typeof(AbstractClassWithVirtualEvent));
         }
     }
 }

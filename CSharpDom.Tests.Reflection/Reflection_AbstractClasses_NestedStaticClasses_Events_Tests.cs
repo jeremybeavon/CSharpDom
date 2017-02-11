@@ -10,37 +10,37 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithEventWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithEventWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithEventWithGenericDelegateUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithEventWithGenericDelegate));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithInternalEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithInternalEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithPrivateEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPrivateEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedStaticClassWithPublicEventUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPublicEvent));
+            TestAbstractClass(typeof(AbstractClassWithNestedStaticClassWithPublicEvent));
         }
     }
 }

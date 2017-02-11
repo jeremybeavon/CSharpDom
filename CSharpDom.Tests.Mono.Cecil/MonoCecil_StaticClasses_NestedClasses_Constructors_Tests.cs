@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestStaticClassWithNestedClassWithConstructorWith1AttributeUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithConstructorWith1Attribute));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithConstructorWith1ParameterUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithConstructorWith1Parameter));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithConstructorWith2ParametersUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithConstructorWith2Parameters));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithInternalConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithInternalConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithConstructorWithParametersWithAttributes));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithConstructorWithParametersWithModifiers));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithPrivateConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPrivateConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithProtectedConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithProtectedInternalConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedInternalConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedClassWithPublicConstructorUsingMonoCecil()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPublicConstructor));
+            TestStaticClass(typeof(StaticClassWithNestedClassWithPublicConstructor));
         }
     }
 }

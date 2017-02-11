@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithInternalAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithNewAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithNewAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithNewStaticAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewStaticAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithNewVirtualAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithOverrideAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPrivateAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedInternalAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPublicAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPublicAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithSealedOverrideAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithStaticAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithStaticAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithStaticAutoProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithVirtualAutoPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualAutoProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithVirtualAutoProperty));
         }
     }
 }

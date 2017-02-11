@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestAbstractClassWithConstructorWith1AttributeUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWith1ParameterUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Parameter));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWith2ParametersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2Parameters));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestAbstractClassWithInternalConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithInternalConstructor));
+            TestAbstractClass(typeof(AbstractClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestAbstractClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
+            TestAbstractClass(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPrivateConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPrivateConstructor));
+            TestAbstractClass(typeof(AbstractClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedConstructor));
+            TestAbstractClass(typeof(AbstractClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedInternalConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalConstructor));
+            TestAbstractClass(typeof(AbstractClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPublicConstructorUsingMonoCecil()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPublicConstructor));
+            TestAbstractClass(typeof(AbstractClassWithPublicConstructor));
         }
     }
 }

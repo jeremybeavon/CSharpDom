@@ -15,55 +15,55 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestSealedClassWithConstructorWith1AttributeUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithConstructorWith1ParameterUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Parameter));
+            TestSealedClass(typeof(SealedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithConstructorWith2ParametersUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithConstructorWith2Parameters));
+            TestSealedClass(typeof(SealedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestSealedClassWithInternalConstructorUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithInternalConstructor));
+            TestSealedClass(typeof(SealedClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestSealedClassWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithAttributes));
+            TestSealedClass(typeof(SealedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestSealedClassWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithModifiers));
+            TestSealedClass(typeof(SealedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestSealedClassWithPrivateConstructorUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPrivateConstructor));
+            TestSealedClass(typeof(SealedClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestSealedClassWithPublicConstructorUsingReflection()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPublicConstructor));
+            TestSealedClass(typeof(SealedClassWithPublicConstructor));
         }
     }
 }

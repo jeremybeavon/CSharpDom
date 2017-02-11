@@ -10,31 +10,31 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithNestedStructWithNestedEnumWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithNestedEnumWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithInternalNestedEnumUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithInternalNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPrivateNestedEnumUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPrivateNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestSealedClassWithNestedStructWithPublicNestedEnumUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNestedStructWithPublicNestedEnum));
+            TestSealedClass(typeof(SealedClassWithNestedStructWithPublicNestedEnum));
         }
     }
 }

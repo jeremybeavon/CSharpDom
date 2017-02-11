@@ -15,55 +15,55 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithNestedStructWithConstructorWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithConstructorWith1Attribute));
+            TestClass(typeof(ClassWithNestedStructWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithConstructorWith1ParameterUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithConstructorWith1Parameter));
+            TestClass(typeof(ClassWithNestedStructWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedStructWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithConstructorWith2ParametersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithConstructorWith2Parameters));
+            TestClass(typeof(ClassWithNestedStructWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithInternalConstructorUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithInternalConstructor));
+            TestClass(typeof(ClassWithNestedStructWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithConstructorWithParametersWithAttributesUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithConstructorWithParametersWithAttributes));
+            TestClass(typeof(ClassWithNestedStructWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithConstructorWithParametersWithModifiersUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithConstructorWithParametersWithModifiers));
+            TestClass(typeof(ClassWithNestedStructWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPrivateConstructorUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPrivateConstructor));
+            TestClass(typeof(ClassWithNestedStructWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestClassWithNestedStructWithPublicConstructorUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNestedStructWithPublicConstructor));
+            TestClass(typeof(ClassWithNestedStructWithPublicConstructor));
         }
     }
 }

@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestAbstractClassWithNestedEnumWith1AttributeUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedEnumWith1Attribute));
+            TestAbstractClass(typeof(AbstractClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
         public void TestAbstractClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestAbstractClass(typeof(AbstractClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestAbstractClassWithInternalNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithInternalNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPrivateNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPrivateNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
         public void TestAbstractClassWithProtectedInternalNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
         public void TestAbstractClassWithPublicNestedEnumUsingReflection()
         {
-            TestAbstractClassAsync(typeof(AbstractClassWithPublicNestedEnum));
+            TestAbstractClass(typeof(AbstractClassWithPublicNestedEnum));
         }
     }
 }

@@ -15,67 +15,67 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithNestedClassWithConstructorWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithConstructorWith1Attribute));
+            TestClass(typeof(ClassWithNestedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithConstructorWith1ParameterUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithConstructorWith1Parameter));
+            TestClass(typeof(ClassWithNestedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithConstructorWith2ParametersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithConstructorWith2Parameters));
+            TestClass(typeof(ClassWithNestedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithInternalConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithInternalConstructor));
+            TestClass(typeof(ClassWithNestedClassWithInternalConstructor));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithConstructorWithParametersWithAttributesUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithConstructorWithParametersWithAttributes));
+            TestClass(typeof(ClassWithNestedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithConstructorWithParametersWithModifiersUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithConstructorWithParametersWithModifiers));
+            TestClass(typeof(ClassWithNestedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithPrivateConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithPrivateConstructor));
+            TestClass(typeof(ClassWithNestedClassWithPrivateConstructor));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithProtectedConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithProtectedConstructor));
+            TestClass(typeof(ClassWithNestedClassWithProtectedConstructor));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithProtectedInternalConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalConstructor));
+            TestClass(typeof(ClassWithNestedClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
         public void TestClassWithNestedClassWithPublicConstructorUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithNestedClassWithPublicConstructor));
+            TestClass(typeof(ClassWithNestedClassWithPublicConstructor));
         }
     }
 }

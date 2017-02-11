@@ -10,73 +10,73 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithInternalPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithInternalProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithNewPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithNewProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithNewStaticPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewStaticProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithNewStaticProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithNewVirtualPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNewVirtualProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithNewVirtualProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithOverridePropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithOverrideProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithOverrideProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPrivatePropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPrivateProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithProtectedInternalPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithPublicPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithPublicProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithSealedOverridePropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithStaticPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithStaticProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithStaticProperty));
         }
 
         [TestMethod]
         public void TestStaticClassWithNestedAbstractClassWithVirtualPropertyUsingReflection()
         {
-            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithVirtualProperty));
+            TestStaticClass(typeof(StaticClassWithNestedAbstractClassWithVirtualProperty));
         }
     }
 }

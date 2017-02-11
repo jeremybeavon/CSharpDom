@@ -10,85 +10,85 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestSealedClassWithIndexerWith1AccessorAttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithIndexerWith1AccessorAttribute));
+            TestSealedClass(typeof(SealedClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithIndexerWith1AttributeUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithIndexerWith1Attribute));
+            TestSealedClass(typeof(SealedClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
         public void TestSealedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestSealedClass(typeof(SealedClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestSealedClassWithIndexerWith2ParametersUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithIndexerWith2Parameters));
+            TestSealedClass(typeof(SealedClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
         public void TestSealedClassWithIndexerWith2ParametersWithAttributesUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithIndexerWith2ParametersWithAttributes));
+            TestSealedClass(typeof(SealedClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
         public void TestSealedClassWithIndexerWith2ParametersWithModifiersUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithIndexerWith2ParametersWithModifiers));
+            TestSealedClass(typeof(SealedClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
         public void TestSealedClassWithInternalIndexerUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithInternalIndexer));
+            TestSealedClass(typeof(SealedClassWithInternalIndexer));
         }
 
         [TestMethod]
         public void TestSealedClassWithNewIndexerUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithNewIndexer));
+            TestSealedClass(typeof(SealedClassWithNewIndexer));
         }
 
         [TestMethod]
         public void TestSealedClassWithOverrideIndexerUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithOverrideIndexer));
+            TestSealedClass(typeof(SealedClassWithOverrideIndexer));
         }
 
         [TestMethod]
         public void TestSealedClassWithPrivateIndexerUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPrivateIndexer));
+            TestSealedClass(typeof(SealedClassWithPrivateIndexer));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedIndexerUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedIndexer));
+            TestSealedClass(typeof(SealedClassWithProtectedIndexer));
         }
 
         [TestMethod]
         public void TestSealedClassWithProtectedInternalIndexerUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithProtectedInternalIndexer));
+            TestSealedClass(typeof(SealedClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
         public void TestSealedClassWithPublicIndexerUsingMonoCecil()
         {
-            TestSealedClassAsync(typeof(SealedClassWithPublicIndexer));
+            TestSealedClass(typeof(SealedClassWithPublicIndexer));
         }
 
         //[TestMethod]

@@ -10,43 +10,43 @@ namespace CSharpDom.Tests.Mono.Cecil
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWith1AccessorAttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWith1AttributeUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEvent));
+            TestClass(typeof(ClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWithGenericDelegateUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithExplicitInterfaceEventWithGenericInterfaceUsingMonoCecil()
         {
-            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
+            TestClass(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

@@ -10,91 +10,91 @@ namespace CSharpDom.Tests.Reflection
         [TestMethod]
         public void TestClassWithEventWith1AttributeUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithEventWith1Attribute));
+            TestClass(typeof(ClassWithEventWith1Attribute));
         }
 
         [TestMethod]
         public void TestClassWithEventWith2AttributesIn2AttributeGroupsUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithEventWith2AttributesIn2AttributeGroups));
+            TestClass(typeof(ClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
         public void TestClassWithEventWithGenericDelegateUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithEventWithGenericDelegate));
+            TestClass(typeof(ClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
         public void TestClassWithInternalEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithInternalEvent));
+            TestClass(typeof(ClassWithInternalEvent));
         }
 
         [TestMethod]
         public void TestClassWithNewEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewEvent));
+            TestClass(typeof(ClassWithNewEvent));
         }
 
         [TestMethod]
         public void TestClassWithNewStaticEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewStaticEvent));
+            TestClass(typeof(ClassWithNewStaticEvent));
         }
 
         [TestMethod]
         public void TestClassWithNewVirtualEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithNewVirtualEvent));
+            TestClass(typeof(ClassWithNewVirtualEvent));
         }
 
         [TestMethod]
         public void TestClassWithOverrideEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithOverrideEvent));
+            TestClass(typeof(ClassWithOverrideEvent));
         }
 
         [TestMethod]
         public void TestClassWithPrivateEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPrivateEvent));
+            TestClass(typeof(ClassWithPrivateEvent));
         }
 
         [TestMethod]
         public void TestClassWithProtectedEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedEvent));
+            TestClass(typeof(ClassWithProtectedEvent));
         }
 
         [TestMethod]
         public void TestClassWithProtectedInternalEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithProtectedInternalEvent));
+            TestClass(typeof(ClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
         public void TestClassWithPublicEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithPublicEvent));
+            TestClass(typeof(ClassWithPublicEvent));
         }
 
         [TestMethod]
         public void TestClassWithSealedOverrideEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithSealedOverrideEvent));
+            TestClass(typeof(ClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
         public void TestClassWithStaticEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithStaticEvent));
+            TestClass(typeof(ClassWithStaticEvent));
         }
 
         [TestMethod]
         public void TestClassWithVirtualEventUsingReflection()
         {
-            TestClassAsync(typeof(ClassWithVirtualEvent));
+            TestClass(typeof(ClassWithVirtualEvent));
         }
     }
 }
