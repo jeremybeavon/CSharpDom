@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -46,9 +47,9 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
-        public override Task<LoadedDocumentWithCodeAnalysis> LoadAsync()
+        public override async Task<LoadedDocumentWithCodeAnalysis> LoadAsync()
         {
-            throw new NotImplementedException();
+            return new LoadedDocumentWithCodeAnalysis(this, (CompilationUnitSyntax)await Syntax.GetSyntaxRootAsync());
         }
     }
 }

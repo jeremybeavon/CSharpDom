@@ -12,7 +12,11 @@ namespace CSharpDom.CodeAnalysis
             Node<TParentNode, NameSyntax> node,
             Func<NameSyntax, SeparatedSyntaxList<TypeSyntax>> getList,
             Func<NameSyntax, SeparatedSyntaxList<TypeSyntax>, NameSyntax> createList)
-            : base(node, getList, createList, () => new GenericParameterWithCodeAnalysis())
+            : base(
+                  node,
+                  getList,
+                  createList,
+                  () => new GenericParameterWithCodeAnalysis(null))
         {
         }
     }

@@ -13,6 +13,11 @@ namespace CSharpDom.CodeAnalysis.Expressions
     {
         private readonly ExpressionNode<IdentifierExpressionWithCodeAnalysis, IdentifierNameSyntax> node;
 
+        internal IdentifierExpressionWithCodeAnalysis()
+        {
+            node = new ExpressionNode<IdentifierExpressionWithCodeAnalysis, IdentifierNameSyntax>(this);
+        }
+
         public override string Name
         {
             get { return Syntax.Identifier.Text; }

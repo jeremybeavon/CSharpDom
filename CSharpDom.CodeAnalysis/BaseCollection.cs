@@ -9,9 +9,11 @@ namespace CSharpDom.CodeAnalysis
 {
     internal abstract class BaseCollection<T> : IList<T>
     {
-        public T this[int index]
+        public abstract T this[int index] { get; }
+
+        T IList<T>.this[int index]
         {
-            get { throw new NotSupportedException(); }
+            get { return this[index]; }
             set { throw new NotSupportedException(); }
         }
 

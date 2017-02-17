@@ -61,15 +61,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override MethodBodyWithCodeAnalysis Body
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return body.Value; }
+            set { body.Value = value; }
         }
 
         public override IType DeclaringType

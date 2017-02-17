@@ -38,12 +38,11 @@ namespace CSharpDom.CodeAnalysis
         {
             internalId = Guid.NewGuid();
             node = new Node<AttributeWithCodeAnalysis, AttributeSyntax>(this);
-            /*attributeType = new CachedChildNode<AttributeWithCodeAnalysis, ClassReferenceWithCodeAnalysis, AttributeSyntax>(
-                this,
+            attributeType = new CachedChildNode<AttributeWithCodeAnalysis, AttributeSyntax, ClassReferenceWithCodeAnalysis, NameSyntax>(
                 node,
-                syntax => new ClassReferenceWithCodeAnalysis(this),
-                (syntax, value) => syntax.WithName(value.Syntax),
-                (child, newParent) => child.ParentAttribute = newParent);*/
+                () => new ClassReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
+                syntax => syntax.Name,
+                (parentSyntax, childSyntax) => parentSyntax.WithName(childSyntax));
             Func<SeparatedSyntaxList<AttributeArgumentSyntax>> getArguments = () => node.Syntax.ArgumentList.Arguments;
             namedValues = new ImmutableListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
                 node,

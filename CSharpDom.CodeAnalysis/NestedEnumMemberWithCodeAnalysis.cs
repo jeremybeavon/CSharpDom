@@ -17,6 +17,7 @@ namespace CSharpDom.CodeAnalysis
         
         private NestedEnumMemberWithCodeAnalysis()
         {
+            node = new Node<NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,

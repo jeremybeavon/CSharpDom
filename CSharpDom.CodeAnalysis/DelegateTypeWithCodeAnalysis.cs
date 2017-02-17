@@ -15,7 +15,6 @@ namespace CSharpDom.CodeAnalysis
             DelegateParameterWithCodeAnalysis>,
         IHasSyntax<DelegateDeclarationSyntax>
     {
-        private readonly object @delegate;
         private readonly Node<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> node;
         private readonly AttributeListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> attributes;
         private readonly GenericParameterDeclarationListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> genericParameters;

@@ -2,6 +2,8 @@
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
+using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -11,17 +13,17 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<TypeSyntax>
     {
         private readonly Node<GenericParameterWithCodeAnalysis, TypeSyntax> node;
-        private readonly CachedTypeReferenceNode<GenericParameterWithCodeAnalysis, TypeSyntax> type;
         
-        internal GenericParameterWithCodeAnalysis()
+        internal GenericParameterWithCodeAnalysis(
+            IList<GenericParameterWithCodeAnalysis> parameters)
         {
             node = new Node<GenericParameterWithCodeAnalysis, TypeSyntax>(this);
         }
 
         public override ITypeReferenceWithCodeAnalysis Type
         {
-            get { return type.Value; }
-            set { type.Value = value; }
+            get { throw new NotImplementedException(); }
+            set { throw new NotImplementedException(); }
         }
 
         public TypeSyntax Syntax

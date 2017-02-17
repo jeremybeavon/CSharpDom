@@ -79,7 +79,10 @@ namespace CSharpDom.CodeAnalysis
             {
                 getSyntax = () => getChildSyntax(parent.Syntax);
                 setSyntax = syntax => parent.Syntax = createChildSyntax(parent.Syntax, syntax);
-                setSyntax(syntax);
+                if (syntax != null)
+                {
+                    setSyntax(syntax);
+                }
             }
         }
         

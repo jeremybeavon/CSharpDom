@@ -312,6 +312,7 @@
     <Compile Include="StructWithCodeAnalysis.cs" />
     <Compile Include="TypedFactory.cs" />
     <Compile Include="CachedTypeReferenceNode.cs" />
+    <Compile Include="UsingDirectiveWithCodeAnalysis.cs" />
     <Compile Include="WrappedList.cs" />
     <Compile Include="InterfaceMemberListWrapper.cs" />
     <Compile Include="InterfaceReferenceListWrapper.cs" />

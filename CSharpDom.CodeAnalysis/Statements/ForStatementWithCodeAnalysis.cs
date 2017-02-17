@@ -18,6 +18,23 @@ namespace CSharpDom.CodeAnalysis.Statements
         private readonly ExpressionListWrapper<ForStatementWithCodeAnalysis, ForStatementSyntax> incrementExpressions;
         private readonly CachedStatementNode<ForStatementWithCodeAnalysis, ForStatementSyntax> statement;
 
+        internal ForStatementWithCodeAnalysis()
+        {
+            node = new StatementNode<ForStatementWithCodeAnalysis, ForStatementSyntax>(this);
+            condition = new CachedExpressionNode<ForStatementWithCodeAnalysis, ForStatementSyntax>(
+                node,
+                syntax => syntax.Condition,
+                (parentSyntax, childSyntax) => parentSyntax.WithCondition(childSyntax));
+            incrementExpressions = new ExpressionListWrapper<ForStatementWithCodeAnalysis, ForStatementSyntax>(
+                node,
+                syntax => syntax.Incrementors,
+                (parentSyntax, childSyntax) => parentSyntax.WithIncrementors(childSyntax));
+            statement = new CachedStatementNode<ForStatementWithCodeAnalysis, ForStatementSyntax>(
+                node,
+                syntax => syntax.Statement,
+                (parentSyntax, childSyntax) => parentSyntax.WithStatement(childSyntax));
+        }
+
         public override IExpressionWithCodeAnalysis Condition
         {
             get { return condition.Value; }

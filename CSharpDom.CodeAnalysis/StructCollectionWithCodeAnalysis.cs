@@ -15,10 +15,18 @@ namespace CSharpDom.CodeAnalysis
 
         internal StructCollectionWithCodeAnalysis(NamespaceWithCodeAnalysis @namespace)
         {
-            structs =
-                new NamespaceMemberListWrapper<StructWithCodeAnalysis, StructDeclarationSyntax>(
-                    @namespace.Node,
-                    () => new StructWithCodeAnalysis());
+            members = @namespace.Members;
+            structs = new NamespaceMemberListWrapper<StructWithCodeAnalysis, StructDeclarationSyntax>(
+                @namespace.Node,
+                () => new StructWithCodeAnalysis());
+        }
+
+        internal StructCollectionWithCodeAnalysis(LoadedDocumentWithCodeAnalysis document)
+        {
+            members = document.Members;
+            structs = new LoadedDocumentMemberListWrapper<StructWithCodeAnalysis, StructDeclarationSyntax>(
+                document.Node,
+                () => new StructWithCodeAnalysis());
         }
 
         public override ICollection<PartialStructNotSupported> PartialStructs

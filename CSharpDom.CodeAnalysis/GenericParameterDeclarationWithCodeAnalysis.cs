@@ -42,9 +42,15 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.TypeParameter.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
-            //baseClass = new CachedChildNode<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax, ClassReferenceWithCodeAnalysis>(
-            //    node,
-            //    parent => new ClassReferenceWithCodeAnalysis(parent)
+            /*constraints = new SeparatedSyntaxListWrapper<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax, IInternalTypeReferenceWithCodeAnalysis, TypeSyntax>(
+                node,
+                syntax => syntax.Constraints,
+                (parentSyntax, childSyntax) => parentSyntax.WithConstraints(childSyntax),
+                () => null);*/
+            /*baseClassConstraint = new CachedChildNode<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax, ClassReferenceWithCodeAnalysis, NameSyntax>(
+                node,
+                () => new ClassReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
+                syntax => syntax.n*/
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

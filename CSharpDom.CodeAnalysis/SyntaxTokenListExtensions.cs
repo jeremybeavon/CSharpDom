@@ -133,6 +133,37 @@ namespace CSharpDom.CodeAnalysis
             return tokens;
         }
 
+        public static TypeVisibilityModifier ToTypeVisibilityModifier(this SyntaxTokenList modifiers)
+        {
+            if (modifiers.Any(SyntaxKind.PublicKeyword))
+            {
+                return TypeVisibilityModifier.Public;
+            }
+
+            if (modifiers.Any(SyntaxKind.InternalKeyword))
+            {
+                return TypeVisibilityModifier.Internal;
+            }
+            
+            return TypeVisibilityModifier.None;
+        }
+
+        public static SyntaxTokenList WithTypeVisibilityModifier(
+            this SyntaxTokenList tokens,
+            TypeVisibilityModifier modifier)
+        {
+            tokens = tokens.Remove(visibilityModifierTokens);
+            switch (modifier)
+            {
+                case TypeVisibilityModifier.Public:
+                    return tokens.Insert(0, SyntaxKind.PublicKeyword);
+                case TypeVisibilityModifier.Internal:
+                    return tokens.Insert(0, SyntaxKind.InternalKeyword);
+            }
+
+            return tokens;
+        }
+
         public static ClassMemberVisibilityModifier ToClassMemberVisibilityModifier(this SyntaxTokenList modifiers)
         {
             if (modifiers.Any(SyntaxKind.PublicKeyword))

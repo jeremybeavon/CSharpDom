@@ -15,10 +15,18 @@ namespace CSharpDom.CodeAnalysis
 
         internal InterfaceCollectionWithCodeAnalysis(NamespaceWithCodeAnalysis @namespace)
         {
-            interfaces =
-                new NamespaceMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
-                    @namespace.Node,
-                    () => new InterfaceWithCodeAnalysis());
+            members = @namespace.Members;
+            interfaces = new NamespaceMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                @namespace.Node,
+                () => new InterfaceWithCodeAnalysis());
+        }
+
+        internal InterfaceCollectionWithCodeAnalysis(LoadedDocumentWithCodeAnalysis document)
+        {
+            members = document.Members;
+            interfaces = new LoadedDocumentMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                document.Node,
+                () => new InterfaceWithCodeAnalysis());
         }
 
         public override ICollection<InterfaceWithCodeAnalysis> Interfaces

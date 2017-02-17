@@ -125,6 +125,10 @@ namespace CSharpDom.CodeAnalysis
                 { nameof(methods.ExplicitInterfaceMethods), () => methods.ExplicitInterfaceMethods.Select(item => item.Syntax) },
                 { nameof(OperatorOverloads), () => operatorOverloads.Select(item => item.Syntax) },
                 { nameof(ConversionOperators), () => conversionOperators.Select(item => item.Syntax) },
+                { nameof(classes.Classes), () => classes.Classes.Select(item => item.Syntax) },
+                { nameof(classes.AbstractClasses), () => classes.AbstractClasses.Select(item => item.Syntax) },
+                { nameof(classes.SealedClasses), () => classes.SealedClasses.Select(item => item.Syntax) },
+                { nameof(classes.StaticClasses), () => classes.StaticClasses.Select(item => item.Syntax) },
                 { nameof(interfaces.Interfaces), () => interfaces.Interfaces.Select(item => item.Syntax) }
             };
         }

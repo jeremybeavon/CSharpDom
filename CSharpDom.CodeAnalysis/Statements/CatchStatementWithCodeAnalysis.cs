@@ -25,10 +25,10 @@ namespace CSharpDom.CodeAnalysis.Statements
                 node,
                 syntax => syntax.Block.Statements,
                 (parentSyntax, childSyntax) => parentSyntax.WithBlock(SyntaxFactory.Block(childSyntax)));
-            //type = new TypeReferenceChildNode<CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
-            //    node,
-            //    (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)),
-            //    )
+            type = new CachedTypeReferenceNode<CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
+                node,
+                syntax => syntax.Declaration.Type,
+                (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithType(childSyntax)));
         }
 
         public override IList<IStatementWithCodeAnalysis> Statements

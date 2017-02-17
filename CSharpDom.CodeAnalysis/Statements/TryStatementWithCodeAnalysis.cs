@@ -32,12 +32,20 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             internalId = Guid.NewGuid();
             node = new StatementNode<TryStatementWithCodeAnalysis, TryStatementSyntax>(this);
-            //catchStatements = new SyntaxListWrapper<TryStatementWithCodeAnalysis, TryStatementSyntax, CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
-            //    node,
-            //    syntax => syntax,
-            //    (parentSyntax, childSyntax) => parentSyntax,
-            //    () => new CatchStatementWithCodeAnalysis(),
-            //    null);
+            catchStatements = new SyntaxListWrapper<TryStatementWithCodeAnalysis, TryStatementSyntax, CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
+                node,
+                syntax => syntax.Catches,
+                (parentSyntax, childSyntax) => parentSyntax.WithCatches(childSyntax),
+                () => new CatchStatementWithCodeAnalysis());
+            finallyStatement = new CachedChildNode<TryStatementWithCodeAnalysis, TryStatementSyntax, FinallyStatementWithCodeAnalysis, FinallyClauseSyntax>(
+                node,
+                () => new FinallyStatementWithCodeAnalysis(),
+                syntax => syntax.Finally,
+                (parentSyntax, childSyntax) => parentSyntax.WithFinally(childSyntax));
+            tryStatements = new StatementListWrapper<TryStatementWithCodeAnalysis, TryStatementSyntax>(
+                node,
+                syntax => syntax.Block.Statements,
+                (parentSyntax, childSyntax) => parentSyntax.WithBlock(parentSyntax.Block.WithStatements(childSyntax)));
         }
 
         public override ICollection<CatchStatementWithCodeAnalysis> CatchStatements

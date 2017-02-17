@@ -23,17 +23,35 @@ namespace CSharpDom.CodeAnalysis
 
         internal ClassCollectionWithCodeAnalysis(NamespaceWithCodeAnalysis @namespace)
         {
+            members = @namespace.Members;
             abstractClasses = new NamespaceMemberListWrapper<AbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 @namespace.Node,
-                () => new AbstractClassWithCodeAnalysis());
+                () => new AbstractClassWithCodeAnalysis(null));
             classes = new NamespaceMemberListWrapper<ClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 @namespace.Node,
-                () => new ClassWithCodeAnalysis());
+                () => new ClassWithCodeAnalysis(null));
             sealedClasses = new NamespaceMemberListWrapper<SealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 @namespace.Node,
                 () => new SealedClassWithCodeAnalysis());
             staticClasses = new NamespaceMemberListWrapper<StaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 @namespace.Node,
+                () => new StaticClassWithCodeAnalysis());
+        }
+
+        internal ClassCollectionWithCodeAnalysis(LoadedDocumentWithCodeAnalysis document)
+        {
+            members = document.Members;
+            abstractClasses = new LoadedDocumentMemberListWrapper<AbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                document.Node,
+                () => new AbstractClassWithCodeAnalysis(document.Document));
+            classes = new LoadedDocumentMemberListWrapper<ClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                document.Node,
+                () => new ClassWithCodeAnalysis(document.Document));
+            sealedClasses = new LoadedDocumentMemberListWrapper<SealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                document.Node,
+                () => new SealedClassWithCodeAnalysis());
+            staticClasses = new LoadedDocumentMemberListWrapper<StaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                document.Node,
                 () => new StaticClassWithCodeAnalysis());
         }
 

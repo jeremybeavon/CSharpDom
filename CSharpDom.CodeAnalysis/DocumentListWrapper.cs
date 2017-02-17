@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -22,6 +23,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        public override Document this[int index]
+        {
+            get { return Syntax.Documents.ElementAt(index); }
         }
 
         public override void Add(Document item)
