@@ -25,12 +25,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TExtensionMethod>(ExtensionMethods); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStaticClassMethodCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStaticClassMethodCollectionChildren(this, visitor);
         }

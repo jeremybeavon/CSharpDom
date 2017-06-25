@@ -19,12 +19,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TMethod> Methods { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStaticClassMethodCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStaticClassMethodCollectionChildren(this, visitor);
         }
@@ -32,7 +32,7 @@ namespace CSharpDom.BaseClasses
         public IEnumerator<TMethod> GetEnumerator()
         {
             return Methods.GetEnumerator();
-        }
+        } 
 
         IEnumerator IEnumerable.GetEnumerator()
         {

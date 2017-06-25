@@ -73,7 +73,7 @@ namespace CSharpDom.Tests.Common
 
         private static string ToString(string text)
         {
-            return text.Trim().Replace("\r", string.Empty);
+            return text.TrimEnd().Replace("\r", string.Empty);
         }
 
         private static void RemoveNestedConstructors(

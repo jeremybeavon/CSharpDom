@@ -10,7 +10,7 @@ namespace CSharpDom.BaseClasses
         where TMethod : IClassMethod
         where TExplicitInterfaceMethod : IExplicitInterfaceMethod
     {
-        public int Count
+        public virtual int Count
         {
             get { return Methods.Count + ExplicitInterfaceMethods.Count; }
         }
@@ -19,12 +19,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TMethod> Methods { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassMethodCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassMethodCollectionChildren(this, visitor);
         }

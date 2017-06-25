@@ -1094,6 +1094,20 @@ namespace CSharpDom.Common
             VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
         }
 
+        public static void VisitAbstractPartialClassMethodCollectionChildren<TMethod, TAbstractMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            IAbstractPartialClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : IClassMethod
+            where TAbstractMethod : IAbstractMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            new AbstractClassMethodCollectionWrapper<TMethod, TAbstractMethod, TExplicitInterfaceMethod>(methodCollection).Accept(visitor);
+            VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
+        }
+
         public static void VisitAbstractClassPropertyCollectionChildren<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(
             IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection,
             IGenericVisitor visitor)
@@ -1180,6 +1194,19 @@ namespace CSharpDom.Common
             VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
         }
 
+        public static void VisitSealedPartialClassMethodCollectionChildren<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            ISealedPartialClassMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : ISealedClassMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            new SealedClassMethodCollectionWrapper<TMethod, TExplicitInterfaceMethod>(methodCollection).Accept(visitor);
+            VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
+        }
+
         public static void VisitSealedClassPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
             ISealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection,
             IGenericVisitor visitor)
@@ -1220,6 +1247,19 @@ namespace CSharpDom.Common
         {
             VisitCollection(methodCollection, visitor);
             VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
+        }
+
+        public static void VisitPartialStructMethodCollectionChildren<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            IPartialStructMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : IStructMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            new StructMethodCollectionWrapper<TMethod, TExplicitInterfaceMethod>(methodCollection).Accept(visitor);
+            VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
         }
 
         public static void VisitStructPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
@@ -2278,12 +2318,37 @@ namespace CSharpDom.Common
             VisitCollection(methodCollection.ExtensionMethods, visitor);
         }
 
+        public static void VisitStaticPartialClassMethodCollectionChildren<TMethod, TExtensionMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            IStaticPartialClassMethodCollection<TMethod, TExtensionMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : IStaticClassMethod
+            where TExtensionMethod : IExtensionMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            new StaticClassMethodCollectionWrapper<TMethod, TExtensionMethod>(methodCollection).Accept(visitor);
+            VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
+        }
+
         public static void VisitNestedStaticClassMethodCollectionChildren<TMethod>(
             INestedStaticClassMethodCollection<TMethod> methodCollection,
             IGenericVisitor visitor)
             where TMethod : IStaticClassMethod
         {
             VisitCollection(methodCollection, visitor);
+        }
+
+        public static void VisitNestedStaticPartialClassMethodCollectionChildren<TMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            INestedStaticPartialClassMethodCollection<TMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
+            IGenericVisitor visitor)
+            where TMethod : IStaticClassMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            new NestedStaticClassMethodCollectionWrapper<TMethod>(methodCollection).Accept(visitor);
+            VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
         }
 
         public static void VisitExplicitInterfacePropertyChildren<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor>(

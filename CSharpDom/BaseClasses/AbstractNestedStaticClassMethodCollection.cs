@@ -9,19 +9,19 @@ namespace CSharpDom.BaseClasses
         INestedStaticClassMethodCollection<TMethod>
         where TMethod : IStaticClassMethod
     {
-        public int Count
+        public virtual int Count
         {
             get { return Methods.Count; }
         }
 
         protected abstract IReadOnlyCollection<TMethod> Methods { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedStaticClassMethodCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedStaticClassMethodCollectionChildren(this, visitor);
         }

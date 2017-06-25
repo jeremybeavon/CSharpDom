@@ -19,12 +19,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TMethod> Methods { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStructMethodCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStructMethodCollectionChildren(this, visitor);
         }

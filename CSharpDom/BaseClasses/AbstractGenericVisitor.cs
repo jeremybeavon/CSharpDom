@@ -2673,5 +2673,54 @@ namespace CSharpDom.BaseClasses
         {
             Visit(nestedClass);
         }
+
+        public virtual void VisitPartialClassMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            IPartialClassMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection)
+            where TMethod : IClassMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            Visit(methodCollection);
+        }
+
+        public virtual void VisitSealedPartialClassMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            ISealedPartialClassMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection)
+            where TMethod : ISealedClassMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            Visit(methodCollection);
+        }
+
+        public virtual void VisitStaticPartialClassMethodCollection<TMethod, TExtensionMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            IStaticPartialClassMethodCollection<TMethod, TExtensionMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection)
+            where TMethod : IStaticClassMethod
+            where TExtensionMethod : IExtensionMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            Visit(methodCollection);
+        }
+
+        public virtual void VisitPartialStructMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            IPartialStructMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection)
+            where TMethod : IStructMethod
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            Visit(methodCollection);
+        }
+
+        public virtual void VisitNestedStaticPartialClassMethodCollection<TMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
+            INestedStaticPartialClassMethodCollection<TMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection)
+            where TMethod : IStaticClassMethod
+            where TPartialMethodDefinition : IPartialMethodDefinition
+            where TPartialMethodImplementation : IPartialMethodImplementation
+        {
+            Visit(methodCollection);
+        }
     }
 }

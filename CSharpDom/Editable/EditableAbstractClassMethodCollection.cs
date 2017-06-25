@@ -14,7 +14,7 @@ namespace CSharpDom.Editable
     {
         public abstract ICollection<TAbstractMethod> AbstractMethods { get; set; }
 
-        public int Count
+        public virtual int Count
         {
             get { return Methods.Count + AbstractMethods.Count + ExplicitInterfaceMethods.Count; }
         }
@@ -33,12 +33,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceMethod>(ExplicitInterfaceMethods); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitAbstractClassMethodCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAbstractClassMethodCollectionChildren(this, visitor);
         }
