@@ -76,6 +76,36 @@ namespace CSharpDom.Common
             new ClassTypeWrapper<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(@class).Accept(visitor);
         }
 
+        public static void VisitPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
+            IPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> @class,
+            IGenericVisitor visitor)
+            where TNamespace : INamespace
+            where TDocument : IDocument
+            where TProject : IProject
+            where TSolution : ISolution
+            where TAttributeGroup : IAttributeGroup
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IClassEventCollection
+            where TPropertyCollection : IClassPropertyCollection
+            where TIndexerCollection : IClassIndexerCollection
+            where TMethodCollection : IPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TDestructor : IDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new ClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(@class).Accept(visitor);
+        }
+
         public static void VisitClassTypeChildren<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
             IClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor, TDestructor> @class,
             IGenericVisitor visitor)
@@ -466,6 +496,36 @@ namespace CSharpDom.Common
             where TMethodBody : IMethodBody
         {
             new MethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(method).Accept(visitor);
+            VisitIfNotNull(method.Body, visitor);
+        }
+
+        public static void VisitPartialMethodDefinitionChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter>(
+            IPartialMethodDefinition<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+        {
+            VisitCollection(method.Attributes, visitor);
+            VisitCollection(method.ReturnAttributes, visitor);
+            VisitCollection(method.GenericParameters, visitor);
+            VisitCollection(method.Parameters, visitor);
+        }
+
+        public static void VisitPartialMethodImplementationChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
+            IPartialMethodImplementation<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TParameter : IMethodParameter
+            where TMethodBody : IMethodBody
+        {
+            VisitCollection(method.Attributes, visitor);
+            VisitCollection(method.ReturnAttributes, visitor);
+            VisitCollection(method.GenericParameters, visitor);
+            VisitCollection(method.Parameters, visitor);
             VisitIfNotNull(method.Body, visitor);
         }
 
@@ -860,6 +920,34 @@ namespace CSharpDom.Common
             VisitCollection(@struct.GenericParameters, visitor);
             VisitCollection(@struct.ImplementedInterfaces, visitor);
             VisitStructTypeChildren(@struct, visitor);
+        }
+
+        public static void VisitPartialStructChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IPartialStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> @struct,
+            IGenericVisitor visitor)
+            where TNamespace : INamespace
+            where TDocument : IDocument
+            where TProject : IProject
+            where TSolution : ISolution
+            where TAttributeGroup : IAttributeGroup
+            where TGenericParameter : IGenericParameterDeclaration
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IStructEventCollection
+            where TPropertyCollection : IStructPropertyCollection
+            where TIndexerCollection : IStructIndexerCollection
+            where TMethodCollection : IPartialStructMethodCollection
+            where TFieldCollection : IStructFieldCollection
+            where TConstructor : IStructConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IStructNestedClassCollection
+            where TNestedDelegate : IStructNestedDelegate
+            where TNestedEnum : IStructNestedEnum
+            where TNestedInterfaceCollection : IStructNestedInterfaceCollection
+            where TNestedStructCollection : IStructNestedStructCollection
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StructWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(@struct).Accept(visitor);
         }
 
         public static void VisitStructReferenceChildren<TGenericParameter>(
@@ -1580,6 +1668,26 @@ namespace CSharpDom.Common
             new NestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
+        public static void VisitClassNestedStaticPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TEventCollection : IStaticClassEventCollection
+            where TProperty : IStaticClassProperty
+            where TMethodCollection : INestedStaticPartialClassMethodCollection
+            where TFieldCollection : IStaticClassFieldCollection
+            where TNestedClassCollection : IStaticClassNestedClassCollection
+            where TNestedDelegate : IStaticClassNestedDelegate
+            where TNestedEnum : IStaticClassNestedEnum
+            where TNestedInterfaceCollection : IStaticClassNestedInterfaceCollection
+            where TNestedStructCollection : IStaticClassNestedStructCollection
+            where TStaticConstructor : IStaticConstructor
+        {
+            new ClassNestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
         public static void VisitStaticClassNestedStaticClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
             IStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedClass,
             IGenericVisitor visitor)
@@ -1600,6 +1708,26 @@ namespace CSharpDom.Common
             new NestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
+        public static void VisitStaticClassNestedStaticPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TEventCollection : IStaticClassEventCollection
+            where TProperty : IStaticClassProperty
+            where TMethodCollection : INestedStaticPartialClassMethodCollection
+            where TFieldCollection : IStaticClassFieldCollection
+            where TNestedClassCollection : IStaticClassNestedClassCollection
+            where TNestedDelegate : IStaticClassNestedDelegate
+            where TNestedEnum : IStaticClassNestedEnum
+            where TNestedInterfaceCollection : IStaticClassNestedInterfaceCollection
+            where TNestedStructCollection : IStaticClassNestedStructCollection
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StaticClassNestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
         public static void VisitStructNestedStaticClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
             IStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedClass,
             IGenericVisitor visitor)
@@ -1618,6 +1746,26 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
         {
             new NestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
+        public static void VisitStructNestedStaticPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TEventCollection : IStaticClassEventCollection
+            where TProperty : IStaticClassProperty
+            where TMethodCollection : INestedStaticPartialClassMethodCollection
+            where TFieldCollection : IStaticClassFieldCollection
+            where TNestedClassCollection : IStaticClassNestedClassCollection
+            where TNestedDelegate : IStaticClassNestedDelegate
+            where TNestedEnum : IStaticClassNestedEnum
+            where TNestedInterfaceCollection : IStaticClassNestedInterfaceCollection
+            where TNestedStructCollection : IStaticClassNestedStructCollection
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StructNestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
         public static void VisitClassNestedAbstractClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
@@ -1647,6 +1795,33 @@ namespace CSharpDom.Common
             new NestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
+        public static void VisitClassNestedAbstractPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IClassNestedAbstractPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IAbstractClassEventCollection
+            where TPropertyCollection : IAbstractClassPropertyCollection
+            where TIndexerCollection : IAbstractClassIndexerCollection
+            where TMethodCollection : IAbstractPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new ClassNestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
         public static void VisitStaticClassNestedAbstractClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
             IStaticClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
             IGenericVisitor visitor)
@@ -1674,6 +1849,33 @@ namespace CSharpDom.Common
             new NestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
+        public static void VisitStaticClassNestedAbstractPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStaticClassNestedAbstractPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IAbstractClassEventCollection
+            where TPropertyCollection : IAbstractClassPropertyCollection
+            where TIndexerCollection : IAbstractClassIndexerCollection
+            where TMethodCollection : IAbstractPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StaticClassNestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
         public static void VisitStructNestedAbstractClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
             IStructNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
             IGenericVisitor visitor)
@@ -1699,6 +1901,33 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
         {
             new NestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
+        public static void VisitStructNestedAbstractPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStructNestedAbstractPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IAbstractClassEventCollection
+            where TPropertyCollection : IAbstractClassPropertyCollection
+            where TIndexerCollection : IAbstractClassIndexerCollection
+            where TMethodCollection : IAbstractPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StructNestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
         public static void VisitAbstractClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
@@ -1731,6 +1960,36 @@ namespace CSharpDom.Common
             new ClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(@class).Accept(visitor);
         }
 
+        public static void VisitAbstractPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
+            IAbstractPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> @class,
+            IGenericVisitor visitor)
+            where TNamespace : INamespace
+            where TDocument : IDocument
+            where TProject : IProject
+            where TSolution : ISolution
+            where TAttributeGroup : IAttributeGroup
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IAbstractClassEventCollection
+            where TPropertyCollection : IAbstractClassPropertyCollection
+            where TIndexerCollection : IAbstractClassIndexerCollection
+            where TMethodCollection : IAbstractPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TDestructor : IDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new AbstractClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(@class).Accept(visitor);
+        }
+
         public static void VisitSealedClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
             ISealedClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> @class,
             IGenericVisitor visitor)
@@ -1761,6 +2020,36 @@ namespace CSharpDom.Common
             new ClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(@class).Accept(visitor);
         }
 
+        public static void VisitSealedPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
+            ISealedPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> @class,
+            IGenericVisitor visitor)
+            where TNamespace : INamespace
+            where TDocument : IDocument
+            where TProject : IProject
+            where TSolution : ISolution
+            where TAttributeGroup : IAttributeGroup
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : ISealedClassEventCollection
+            where TPropertyCollection : ISealedClassPropertyCollection
+            where TIndexerCollection : ISealedClassIndexerCollection
+            where TMethodCollection : ISealedPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TDestructor : IDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new SealedClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(@class).Accept(visitor);
+        }
+
         public static void VisitStaticClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
             IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> @class,
             IGenericVisitor visitor)
@@ -1782,6 +2071,29 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
         {
             new StaticTypeWrapper<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(@class).Accept(visitor);
+        }
+
+        public static void VisitStaticPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> @class,
+            IGenericVisitor visitor)
+            where TNamespace : INamespace
+            where TDocument : IDocument
+            where TProject : IProject
+            where TSolution : ISolution
+            where TAttributeGroup : IAttributeGroup
+            where TGenericParameter : IGenericParameterDeclaration
+            where TEventCollection : IStaticClassEventCollection
+            where TProperty : IStaticClassProperty
+            where TMethodCollection : IStaticPartialClassMethodCollection
+            where TFieldCollection : IStaticClassFieldCollection
+            where TNestedClassCollection : IStaticClassNestedClassCollection
+            where TNestedDelegate : IStaticClassNestedDelegate
+            where TNestedEnum : IStaticClassNestedEnum
+            where TNestedInterfaceCollection : IStaticClassNestedInterfaceCollection
+            where TNestedStructCollection : IStaticClassNestedStructCollection
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StaticClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(@class).Accept(visitor);
         }
 
         public static void VisitClassNestedSealedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
@@ -1811,6 +2123,33 @@ namespace CSharpDom.Common
             new NestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
+        public static void VisitClassNestedSealedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IClassNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : ISealedClassEventCollection
+            where TPropertyCollection : ISealedClassPropertyCollection
+            where TIndexerCollection : ISealedClassIndexerCollection
+            where TMethodCollection : ISealedPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new ClassNestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
         public static void VisitStaticClassNestedSealedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
             IStaticClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
             IGenericVisitor visitor)
@@ -1838,6 +2177,33 @@ namespace CSharpDom.Common
             new NestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
+        public static void VisitStaticClassNestedSealedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStaticClassNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : ISealedClassEventCollection
+            where TPropertyCollection : ISealedClassPropertyCollection
+            where TIndexerCollection : ISealedClassIndexerCollection
+            where TMethodCollection : ISealedPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StaticClassNestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
         public static void VisitStructNestedSealedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
             IStructNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
             IGenericVisitor visitor)
@@ -1863,6 +2229,33 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
         {
             new NestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
+        public static void VisitStructNestedSealedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStructNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : ISealedClassEventCollection
+            where TPropertyCollection : ISealedClassPropertyCollection
+            where TIndexerCollection : ISealedClassIndexerCollection
+            where TMethodCollection : ISealedPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StructNestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
         public static void VisitStaticClassEventCollectionChildren<TEvent, TEventProperty>(
@@ -2067,6 +2460,33 @@ namespace CSharpDom.Common
             new NestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
+        public static void VisitClassNestedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IClassNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IClassEventCollection
+            where TPropertyCollection : IClassPropertyCollection
+            where TIndexerCollection : IClassIndexerCollection
+            where TMethodCollection : IPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new ClassNestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
         public static void VisitStaticClassNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
             IStaticClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
             IGenericVisitor visitor)
@@ -2094,6 +2514,33 @@ namespace CSharpDom.Common
             new NestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
+        public static void VisitStaticClassNestedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStaticClassNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IClassEventCollection
+            where TPropertyCollection : IClassPropertyCollection
+            where TIndexerCollection : IClassIndexerCollection
+            where TMethodCollection : IPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StaticClassNestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
         public static void VisitStructNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
             IStructNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
             IGenericVisitor visitor)
@@ -2119,6 +2566,33 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
         {
             new NestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
+        }
+
+        public static void VisitStructNestedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(
+            IStructNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor> nestedClass,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TClassReference : IClassReference
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IClassEventCollection
+            where TPropertyCollection : IClassPropertyCollection
+            where TIndexerCollection : IClassIndexerCollection
+            where TMethodCollection : IPartialClassMethodCollection
+            where TFieldCollection : IClassFieldCollection
+            where TConstructor : IClassConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IClassNestedClassCollection
+            where TNestedDelegate : IClassNestedDelegate
+            where TNestedEnum : IClassNestedEnum
+            where TNestedInterfaceCollection : IClassNestedInterfaceCollection
+            where TNestedStructCollection : IClassNestedStructCollection
+            where TNestedDestructor : INestedDestructor
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StructNestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>(nestedClass).Accept(visitor);
         }
 
         public static void VisitClassNestedDelegateChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
@@ -2257,6 +2731,31 @@ namespace CSharpDom.Common
             new NestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
         }
 
+        public static void VisitClassNestedPartialStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IClassNestedPartialStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedStruct,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IStructEventCollection
+            where TPropertyCollection : IStructPropertyCollection
+            where TIndexerCollection : IStructIndexerCollection
+            where TMethodCollection : IPartialStructMethodCollection
+            where TFieldCollection : IStructFieldCollection
+            where TConstructor : IStructConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IStructNestedClassCollection
+            where TNestedDelegate : IStructNestedDelegate
+            where TNestedEnum : IStructNestedEnum
+            where TNestedInterfaceCollection : IStructNestedInterfaceCollection
+            where TNestedStructCollection : IStructNestedStructCollection
+            where TStaticConstructor : IStaticConstructor
+        {
+            new ClassNestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+        }
+
         public static void VisitStaticClassNestedStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
             IStaticClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedStruct,
             IGenericVisitor visitor)
@@ -2282,6 +2781,31 @@ namespace CSharpDom.Common
             new NestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
         }
 
+        public static void VisitStaticClassNestedPartialStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStaticClassNestedPartialStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedStruct,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IStructEventCollection
+            where TPropertyCollection : IStructPropertyCollection
+            where TIndexerCollection : IStructIndexerCollection
+            where TMethodCollection : IPartialStructMethodCollection
+            where TFieldCollection : IStructFieldCollection
+            where TConstructor : IStructConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IStructNestedClassCollection
+            where TNestedDelegate : IStructNestedDelegate
+            where TNestedEnum : IStructNestedEnum
+            where TNestedInterfaceCollection : IStructNestedInterfaceCollection
+            where TNestedStructCollection : IStructNestedStructCollection
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StaticClassNestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+        }
+
         public static void VisitStructNestedStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
             IStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedStruct,
             IGenericVisitor visitor)
@@ -2305,6 +2829,31 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
         {
             new NestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+        }
+
+        public static void VisitStructNestedPartialStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(
+            IStructNestedPartialStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor> nestedStruct,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TGenericParameter : IGenericParameterDeclaration
+            where TInterfaceReference : IInterfaceReference
+            where TEventCollection : IStructEventCollection
+            where TPropertyCollection : IStructPropertyCollection
+            where TIndexerCollection : IStructIndexerCollection
+            where TMethodCollection : IPartialStructMethodCollection
+            where TFieldCollection : IStructFieldCollection
+            where TConstructor : IStructConstructor
+            where TOperatorOverload : IOperatorOverload
+            where TConversionOperator : IConversionOperator
+            where TNestedClassCollection : IStructNestedClassCollection
+            where TNestedDelegate : IStructNestedDelegate
+            where TNestedEnum : IStructNestedEnum
+            where TNestedInterfaceCollection : IStructNestedInterfaceCollection
+            where TNestedStructCollection : IStructNestedStructCollection
+            where TStaticConstructor : IStaticConstructor
+        {
+            new StructNestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
         }
     }
 }

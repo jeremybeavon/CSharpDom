@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -55,8 +56,8 @@ namespace CSharpDom.CodeAnalysis
         {
             return new GenericParameterDeclarationList<TParentNode, TParentSyntax>(
                 node,
-                syntax => getTypeParameters(syntax).Parameters,
-                (parentSyntax, childSyntax) => createTypeParameters(parentSyntax, getTypeParameters(parentSyntax).WithParameters(childSyntax)),
+                syntax => getTypeParameters(syntax)?.Parameters ?? SyntaxFactory.SeparatedList<TypeParameterSyntax>(),
+                (parentSyntax, childSyntax) => createTypeParameters(parentSyntax, (getTypeParameters(parentSyntax) ?? SyntaxFactory.TypeParameterList()).WithParameters(childSyntax)),
                 getConstraintClauses,
                 createConstraintClauses);
         }
@@ -106,8 +107,8 @@ namespace CSharpDom.CodeAnalysis
         {
             return new BaseTypeList<TParentNode, TParentSyntax>(
                 node,
-                syntax => syntax.BaseList.Types,
-                (parentSyntax, childSyntax) => createList(parentSyntax, parentSyntax.BaseList.WithTypes(childSyntax)));
+                syntax => syntax?.BaseList?.Types ?? SyntaxFactory.SeparatedList<BaseTypeSyntax>(),
+                (parentSyntax, childSyntax) => createList(parentSyntax, (parentSyntax.BaseList ?? SyntaxFactory.BaseList()).WithTypes(childSyntax)));
         }
 
         public static IList<TChildSyntax> CreateFilteredList<TParentNode, TParentSyntax, TChildBaseSyntax, TChildSyntax>(

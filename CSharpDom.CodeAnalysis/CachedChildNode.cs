@@ -12,7 +12,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Func<TParentSyntax, TChildSyntax> getSyntax;
         private readonly Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax;
         private readonly Func<TChildSyntax, TChildNode> createChildNode;
-        private TChildNode cachedValue;
+        private TChildNode cachedChildNode;
 
         public CachedChildNode(
             Node<TParentNode, TParentSyntax> node,
@@ -39,29 +39,34 @@ namespace CSharpDom.CodeAnalysis
         {
             get
             {
-                TChildNode newValue = createChildNode(getSyntax(node.Syntax));
-                if (cachedValue == null ||
-                    (newValue == null && cachedValue != null) ||
-                    (newValue != null && newValue.GetType() != cachedValue.GetType()))
+                TChildNode childNode = createChildNode(getSyntax(node.Syntax));
+                if (cachedChildNode == null ||
+                    (childNode == null && cachedChildNode != null) ||
+                    (childNode != null && childNode.GetType() != cachedChildNode.GetType()))
                 {
-                    cachedValue = newValue;
+                    CacheChildNode(childNode);
                 }
 
-                return cachedValue;
+                return cachedChildNode;
             }
             set
             {
-                if (cachedValue != null)
+                if (cachedChildNode != null)
                 {
-                    cachedValue.Node.RemoveParentNode();
+                    cachedChildNode.Node.RemoveParentNode();
                 }
 
                 node.Syntax = createSyntax(node.Syntax, value.Node.Syntax);
-                cachedValue = createChildNode(value.Node.Syntax);
-                if (cachedValue != null)
-                {
-                    cachedValue.Node.SetParentNode(node.Value, getSyntax, createSyntax);
-                }
+                CacheChildNode(createChildNode(value.Node.Syntax));
+            }
+        }
+
+        private void CacheChildNode(TChildNode childNode)
+        {
+            cachedChildNode = childNode;
+            if (cachedChildNode != null)
+            {
+                cachedChildNode.Node.SetParentNode(node.Value, getSyntax, createSyntax);
             }
         }
     }

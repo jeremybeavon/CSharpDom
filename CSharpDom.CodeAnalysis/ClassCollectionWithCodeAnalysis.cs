@@ -71,12 +71,12 @@ namespace CSharpDom.CodeAnalysis
         {
             get
             {
-                throw new NotImplementedException();
+                return new PartialClassCollectionNotSupported();
             }
 
             set
             {
-                throw new NotImplementedException();
+                throw new NotSupportedException();
             }
         }
 

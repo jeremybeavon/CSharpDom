@@ -154,11 +154,6 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return type; }
         }
-
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
         
         public override StaticConstructorWithMonoCecil StaticConstructor
         {

@@ -18,7 +18,7 @@ namespace CSharpDom.CodeAnalysis
             members = @namespace.Members;
             structs = new NamespaceMemberListWrapper<StructWithCodeAnalysis, StructDeclarationSyntax>(
                 @namespace.Node,
-                () => new StructWithCodeAnalysis());
+                () => new StructWithCodeAnalysis(null));
         }
 
         internal StructCollectionWithCodeAnalysis(LoadedDocumentWithCodeAnalysis document)
@@ -26,19 +26,19 @@ namespace CSharpDom.CodeAnalysis
             members = document.Members;
             structs = new LoadedDocumentMemberListWrapper<StructWithCodeAnalysis, StructDeclarationSyntax>(
                 document.Node,
-                () => new StructWithCodeAnalysis());
+                () => new StructWithCodeAnalysis(document.Document));
         }
 
         public override ICollection<PartialStructNotSupported> PartialStructs
         {
             get
             {
-                throw new NotImplementedException();
+                return new PartialStructNotSupported[0];
             }
 
             set
             {
-                throw new NotImplementedException();
+                throw new NotSupportedException();
             }
         }
 

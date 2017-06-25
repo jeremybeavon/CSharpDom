@@ -26,8 +26,7 @@ namespace CSharpDom.Tests.Common
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
             LoadedDocument document = CreateLoadedDocument(new ClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
-            string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
+            Verify(type, documentText);
         }
 
         protected void TestAbstractClass(Type type)
@@ -36,10 +35,7 @@ namespace CSharpDom.Tests.Common
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
             LoadedDocument document = CreateLoadedDocument(new AbstractClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
-            string expectedResult = TypeTextProvider.GetTypeText(type);
-            char[] expectedResultArray = expectedResult.ToCharArray();
-            char[] documentTextArray = documentText.ToCharArray();
-            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
+            Verify(type, documentText);
         }
 
         protected void TestSealedClass(Type type)
@@ -48,8 +44,7 @@ namespace CSharpDom.Tests.Common
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
             LoadedDocument document = CreateLoadedDocument(new SealedClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
-            string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
+            Verify(type, documentText);
         }
 
         protected void TestStaticClass(Type type)
@@ -58,8 +53,7 @@ namespace CSharpDom.Tests.Common
             string namespaceName = new FindNamespaceForClassVisitor(@class).Result;
             LoadedDocument document = CreateLoadedDocument(new StaticClassFactory(@class).Value, namespaceName);
             string documentText = document.ToSourceCode();
-            string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
+            Verify(type, documentText);
         }
 
         protected void TestStruct(Type type)
@@ -68,8 +62,18 @@ namespace CSharpDom.Tests.Common
             string namespaceName = new FindNamespaceForStructVisitor(@struct).Result;
             LoadedDocument document = CreateLoadedDocument(new StructFactory(@struct).Value, namespaceName);
             string documentText = document.ToSourceCode();
+            Verify(type, documentText);
+        }
+
+        private static void Verify(Type type, string documentText)
+        {
             string expectedResult = TypeTextProvider.GetTypeText(type);
-            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
+            ToString(documentText).Should().Be(ToString(expectedResult));
+        }
+
+        private static string ToString(string text)
+        {
+            return text.Trim().Replace("\r", string.Empty);
         }
 
         private static void RemoveNestedConstructors(

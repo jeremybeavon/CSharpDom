@@ -33,10 +33,12 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly StructTypeWithCodeAnalysis structType;
+        private readonly DocumentWithCodeAnalysis document;
 
-        internal StructWithCodeAnalysis()
+        internal StructWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             structType = new StructTypeWithCodeAnalysis();
+            this.document = document;
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -155,75 +157,41 @@ namespace CSharpDom.CodeAnalysis
 
         public override DocumentWithCodeAnalysis Document
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document; }
+            set { throw new NotSupportedException(); }
         }
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return structType.Node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ProjectWithCodeAnalysis Project
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document.Project; }
+            set { throw new NotSupportedException(); }
         }
 
         public override SolutionWithCodeAnalysis Solution
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document.Solution; }
+            set { throw new NotSupportedException(); }
         }
 
         public override TypeVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
+            get { return Syntax.Modifiers.ToTypeVisibilityModifier(); }
             set
             {
-                throw new NotImplementedException();
+                StructDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithTypeVisibilityModifier(value));
             }
         }
 
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return structType.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

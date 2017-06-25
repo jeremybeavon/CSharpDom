@@ -153,11 +153,6 @@ namespace CSharpDom.Reflection
         {
             get { return type; }
         }
-
-        public override bool IsPartial
-        {
-            get { return false; }
-        }
         
         public override StaticConstructorWithReflection StaticConstructor
         {

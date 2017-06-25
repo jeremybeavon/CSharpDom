@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common.Partial
 {
-    public interface IPartialStruct : IVisitable<IGenericVisitor>
+    public interface IPartialStruct : IStruct
     {
     }
 }

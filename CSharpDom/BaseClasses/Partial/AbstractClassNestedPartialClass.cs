@@ -1,16 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CSharpDom.Common;
+using CSharpDom.Common.Partial;
 
-namespace CSharpDom.Common.Partial
+namespace CSharpDom.BaseClasses.Partial
 {
-    public interface ICombinedClass<TNamespace,
-        TPartialClass,
-        TProject,
-        TSolution,
+    public abstract class AbstractClassNestedPartialClass<
         TAttributeGroup,
+        TDeclaringType,
         TGenericParameter,
         TClassReference,
         TInterfaceReference,
@@ -27,32 +24,19 @@ namespace CSharpDom.Common.Partial
         TNestedEnum,
         TNestedInterfaceCollection,
         TNestedStructCollection,
-        TDestructor,
+        TNestedDestructor,
         TStaticConstructor> :
-        ICombinedClass,
-        IHasName,
-        IHasTypeVisibilityModifier,
-        IHasBaseClass<TClassReference>,
-        IHasImplementedInterfaces<TInterfaceReference>,
-        IHasNamespace<TNamespace>,
-        IHasPartialClasses<TPartialClass>,
-        IHasProject<TProject>,
-        IHasSolution<TSolution>,
-        IHasAttributes<TAttributeGroup>,
-        IHasGenericParameters<TGenericParameter>,
-        IClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor, TDestructor>
-        where TNamespace : INamespace
-        where TPartialClass : IPartialClass
-        where TProject : IProject
-        where TSolution : ISolution
+        AbstractClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>,
+        IClassNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TNestedDestructor, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
+        where TDeclaringType : IClassType
         where TGenericParameter : IGenericParameterDeclaration
         where TClassReference : IClassReference
         where TInterfaceReference : IInterfaceReference
         where TEventCollection : IClassEventCollection
         where TPropertyCollection : IClassPropertyCollection
         where TIndexerCollection : IClassIndexerCollection
-        where TMethodCollection : IClassMethodCollection
+        where TMethodCollection : IPartialClassMethodCollection
         where TFieldCollection : IClassFieldCollection
         where TConstructor : IClassConstructor
         where TOperatorOverload : IOperatorOverload
@@ -62,8 +46,17 @@ namespace CSharpDom.Common.Partial
         where TNestedEnum : IClassNestedEnum
         where TNestedInterfaceCollection : IClassNestedInterfaceCollection
         where TNestedStructCollection : IClassNestedStructCollection
+        where TNestedDestructor : INestedDestructor
         where TStaticConstructor : IStaticConstructor
-        where TDestructor : IDestructor
     {
+        public override void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitClassNestedPartialClass(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitClassNestedPartialClassChildren(this, visitor);
+        }
     }
 }

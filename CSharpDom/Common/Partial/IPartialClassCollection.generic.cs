@@ -2,7 +2,8 @@
 
 namespace CSharpDom.Common.Partial
 {
-    public interface IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass>
+    public interface IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass> :
+        IPartialClassCollection
     {
         IReadOnlyCollection<TClass> Classes { get; }
 

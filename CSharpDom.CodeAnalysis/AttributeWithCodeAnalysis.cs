@@ -43,7 +43,7 @@ namespace CSharpDom.CodeAnalysis
                 () => new ClassReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
                 syntax => syntax.Name,
                 (parentSyntax, childSyntax) => parentSyntax.WithName(childSyntax));
-            Func<SeparatedSyntaxList<AttributeArgumentSyntax>> getArguments = () => node.Syntax.ArgumentList.Arguments;
+            Func<SeparatedSyntaxList<AttributeArgumentSyntax>> getArguments = () => node.Syntax.ArgumentList?.Arguments ?? SyntaxFactory.SeparatedList<AttributeArgumentSyntax>();
             namedValues = new ImmutableListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
                 node,
                 new ImmutableAttributeArgumentListWrapper(getArguments, SetArguments, true),
@@ -96,7 +96,7 @@ namespace CSharpDom.CodeAnalysis
         private void SetArguments(SeparatedSyntaxList<AttributeArgumentSyntax> syntax)
         {
             AttributeSyntax attribute = node.Syntax;
-            node.Syntax = attribute.WithArgumentList(attribute.ArgumentList.WithArguments(syntax));
+            node.Syntax = attribute.WithArgumentList((attribute.ArgumentList ?? SyntaxFactory.AttributeArgumentList()).WithArguments(syntax));
         }
 
         private void SetArguments(

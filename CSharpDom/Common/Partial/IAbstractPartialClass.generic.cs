@@ -1,7 +1,7 @@
 ﻿namespace CSharpDom.Common.Partial
 {
-    public interface IAbstractPartialClass<TNamespace,
-        TCombinedClass,
+    public interface IAbstractPartialClass<
+        TNamespace,
         TDocument,
         TProject,
         TSolution,
@@ -25,10 +25,8 @@
         TDestructor,
         TStaticConstructor> :
         IPartialClass,
-        IHasCombinedClass<TCombinedClass>,
         IAbstractClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>
         where TNamespace : INamespace
-        where TCombinedClass : ICombinedClass
         where TDocument : IDocument
         where TProject : IProject
         where TSolution : ISolution
@@ -39,7 +37,7 @@
         where TEventCollection : IAbstractClassEventCollection
         where TPropertyCollection : IAbstractClassPropertyCollection
         where TIndexerCollection : IAbstractClassIndexerCollection
-        where TMethodCollection : IAbstractClassMethodCollection
+        where TMethodCollection : IAbstractPartialClassMethodCollection
         where TFieldCollection : IClassFieldCollection
         where TConstructor : IClassConstructor
         where TOperatorOverload : IOperatorOverload

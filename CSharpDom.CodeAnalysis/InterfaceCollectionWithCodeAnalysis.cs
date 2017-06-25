@@ -39,12 +39,11 @@ namespace CSharpDom.CodeAnalysis
         {
             get
             {
-                throw new NotImplementedException();
+                return new PartialInterfaceNotSupported[0];
             }
-
             set
             {
-                throw new NotImplementedException();
+                throw new NotSupportedException();
             }
         }
     }

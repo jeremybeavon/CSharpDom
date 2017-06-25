@@ -24,6 +24,9 @@ namespace CSharpDom.CodeAnalysis
         private readonly StaticTypeMemberListWrapper<
             StaticClassNestedSealedClassWithCodeAnalysis,
             ClassDeclarationSyntax> sealedClasses;
+        private readonly StaticTypeMemberListWrapper<
+            StaticClassNestedStaticClassWithCodeAnalysis,
+            ClassDeclarationSyntax> staticClasses;
 
         internal StaticClassNestedClassCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis type)
         {
@@ -37,6 +40,9 @@ namespace CSharpDom.CodeAnalysis
             sealedClasses = new StaticTypeMemberListWrapper<StaticClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 type.Node,
                 () => new StaticClassNestedSealedClassWithCodeAnalysis());
+            staticClasses = new StaticTypeMemberListWrapper<StaticClassNestedStaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                type.Node,
+                () => new StaticClassNestedStaticClassWithCodeAnalysis());
         }
 
         public override ICollection<StaticClassNestedAbstractClassWithCodeAnalysis> AbstractClasses
@@ -59,27 +65,20 @@ namespace CSharpDom.CodeAnalysis
 
         public override ICollection<StaticClassNestedStaticClassWithCodeAnalysis> StaticClasses
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return staticClasses; }
+            set { type.Members.CombineList(nameof(StaticClasses), value.Select(item => item.Syntax)); }
         }
 
         public override PartialClassCollectionNotSupported PartialClasses
         {
             get
             {
-                throw new NotImplementedException();
+                return new PartialClassCollectionNotSupported();
             }
 
             set
             {
-                throw new NotImplementedException();
+                throw new NotSupportedException();
             }
         }
     }
