@@ -4,6 +4,6 @@ namespace CSharpDom.Common.Partial
 {
     public interface IHasPartialMethodImplementations<TPartialMethodImplementation>
     {
-        IReadOnlyCollection<TPartialMethodImplementation> PartialMethodImplementions { get; }
+        IReadOnlyCollection<TPartialMethodImplementation> PartialMethodImplementations { get; }
     }
 }

@@ -67,6 +67,18 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        public void InsertAfter(string key, string newKey, Func<IEnumerable<MemberDeclarationSyntax>> syntax)
+        {
+            for (int index = 0; index < list.Count; index++)
+            {
+                if (list[index].Key == key)
+                {
+                    list.Insert(index + 1, new KeyValuePair<string, Func<IEnumerable<MemberDeclarationSyntax>>>(newKey, syntax));
+                    break;
+                }
+            }
+        }
+
         public IEnumerator GetEnumerator()
         {
             return list.GetEnumerator();

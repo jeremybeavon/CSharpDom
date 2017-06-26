@@ -20,7 +20,7 @@ namespace CSharpDom.BaseClasses.Partial
     {
         public abstract IReadOnlyCollection<TPartialMethodDefinition> PartialMethodDefinitions { get; }
 
-        public abstract IReadOnlyCollection<TPartialMethodImplementation> PartialMethodImplementions { get; }
+        public abstract IReadOnlyCollection<TPartialMethodImplementation> PartialMethodImplementations { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

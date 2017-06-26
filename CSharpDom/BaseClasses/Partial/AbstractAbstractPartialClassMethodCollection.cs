@@ -22,12 +22,12 @@ namespace CSharpDom.BaseClasses.Partial
     {
         public override int Count
         {
-            get { return base.Count + PartialMethodDefinitions.Count + PartialMethodImplementions.Count; }
+            get { return base.Count + PartialMethodDefinitions.Count + PartialMethodImplementations.Count; }
         }
 
         public abstract IReadOnlyCollection<TPartialMethodDefinition> PartialMethodDefinitions { get; }
 
-        public abstract IReadOnlyCollection<TPartialMethodImplementation> PartialMethodImplementions { get; }
+        public abstract IReadOnlyCollection<TPartialMethodImplementation> PartialMethodImplementations { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

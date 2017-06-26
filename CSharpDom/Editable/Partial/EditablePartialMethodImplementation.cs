@@ -23,11 +23,11 @@ namespace CSharpDom.Editable.Partial
 
         public abstract ICollection<TAttributeGroup> ReturnAttributes { get; set; }
 
-        public abstract TDeclaringType DeclaringType { get; }
+        public abstract TDeclaringType DeclaringType { get; set; }
 
         public abstract IList<TGenericParameter> GenericParameters { get; set; }
 
-        public abstract IList<TParameter> Parameters { get; }
+        public abstract IList<TParameter> Parameters { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes =>
             new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes);

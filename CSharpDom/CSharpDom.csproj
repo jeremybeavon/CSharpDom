@@ -679,6 +679,7 @@
     <Compile Include="Editable\Expressions\EditableTernaryOperatorExpression.cs" />
     <Compile Include="Editable\Expressions\EditableTypeofExpression.cs" />
     <Compile Include="Editable\Expressions\EditableUnaryOperatorExpression.cs" />
+    <Compile Include="Editable\Partial\EditableSealedPartialClassMethodCollection.cs" />
     <Compile Include="Editable\Partial\EditableAbstractPartialClassMethodCollection.cs" />
     <Compile Include="Editable\Partial\EditableAbstractPartialClass.cs" />
     <Compile Include="Editable\Partial\EditableClassNestedAbstractPartialClass.cs" />

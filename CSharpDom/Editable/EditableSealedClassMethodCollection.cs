@@ -25,12 +25,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceMethod>(ExplicitInterfaceMethods); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitSealedClassMethodCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public virtual void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitSealedClassMethodCollectionChildren(this, visitor);
         }

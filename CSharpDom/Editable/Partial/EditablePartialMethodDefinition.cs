@@ -22,9 +22,9 @@ namespace CSharpDom.Editable.Partial
         
         public abstract string Name { get; set; }
 
-        public abstract IList<TParameter> Parameters { get; }
+        public abstract IList<TParameter> Parameters { get; set; }
 
-        public abstract ICollection<TAttributeGroup> ReturnAttributes { get; }
+        public abstract ICollection<TAttributeGroup> ReturnAttributes { get; set; }
 
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes =>
             new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes);

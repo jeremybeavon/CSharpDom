@@ -191,6 +191,20 @@
     <Compile Include="LoadedProjectWithCodeAnalysis.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="NamespaceWithCodeAnalysis.cs" />
+    <Compile Include="Partial\AbstractPartialClassWithCodeAnalysis.cs" />
+    <Compile Include="Partial\ClassNestedAbstractPartialClassWithCodeAnalysis.cs" />
+    <Compile Include="Partial\ClassNestedPartialClassWithCodeAnalysis.cs" />
+    <Compile Include="Partial\MemberListExtensions.cs" />
+    <Compile Include="Partial\PartialStructMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\NestedStaticPartialClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\StaticClassNestedAbstractPartialClassWithCodeAnalysis.cs" />
+    <Compile Include="Partial\StaticPartialClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\PartialClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\AbstractPartialClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\MethodDeclarationSyntaxExtensions.cs" />
+    <Compile Include="Partial\PartialMethodImplementationWithCodeAnalysis.cs" />
+    <Compile Include="Partial\PartialMethodDefinitionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\StructNestedAbstractPartialClassWithCodeAnalysis.cs" />
     <Compile Include="ProjectListWrapper.cs" />
     <Compile Include="ProjectWithCodeAnalysis.cs" />
     <Compile Include="SealedClassWithCodeAnalysis.cs" />
@@ -251,6 +265,7 @@
     <Compile Include="StaticClassNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="StaticClassNestedStructWithCodeAnalysis.cs" />
     <Compile Include="StaticClassWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassMethodListWrapper.cs" />
     <Compile Include="StructCollectionWithCodeAnalysis.cs" />
     <Compile Include="StructFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="StructIndexerCollectionWithCodeAnalysis.cs" />
@@ -267,6 +282,7 @@
     <Compile Include="StructNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="StructNestedStructWithCodeAnalysis.cs" />
     <Compile Include="StructPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructMethodListWrapper.cs" />
     <Compile Include="StructTypeMemberListWrapper.cs" />
     <Compile Include="StaticTypeMemberListWrapper.cs" />
     <Compile Include="ClassMethodCollectionWithCodeAnalysis.cs" />

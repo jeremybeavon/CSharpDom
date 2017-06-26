@@ -23,18 +23,18 @@ namespace CSharpDom.Editable.Partial
     {
         public override int Count
         {
-            get { return base.Count + PartialMethodDefinitions.Count + PartialMethodImplementions.Count; }
+            get { return base.Count + PartialMethodDefinitions.Count + PartialMethodImplementations.Count; }
         }
 
         public abstract ICollection<TPartialMethodDefinition> PartialMethodDefinitions { get; set; }
 
-        public abstract ICollection<TPartialMethodImplementation> PartialMethodImplementions { get; set; }
+        public abstract ICollection<TPartialMethodImplementation> PartialMethodImplementations { get; set; }
 
         IReadOnlyCollection<TPartialMethodDefinition> IHasPartialMethodDefinitions<TPartialMethodDefinition>.PartialMethodDefinitions =>
             new ReadOnlyCollectionWrapper<TPartialMethodDefinition>(PartialMethodDefinitions);
 
-        IReadOnlyCollection<TPartialMethodImplementation> IHasPartialMethodImplementations<TPartialMethodImplementation>.PartialMethodImplementions =>
-            new ReadOnlyCollectionWrapper<TPartialMethodImplementation>(PartialMethodImplementions);
+        IReadOnlyCollection<TPartialMethodImplementation> IHasPartialMethodImplementations<TPartialMethodImplementation>.PartialMethodImplementations =>
+            new ReadOnlyCollectionWrapper<TPartialMethodImplementation>(PartialMethodImplementations);
 
         public override void Accept(IGenericVisitor visitor)
         {

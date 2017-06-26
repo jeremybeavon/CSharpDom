@@ -7,14 +7,14 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable.Partial
 {
-    public abstract class EditablePartialStructMethodCollection<
+    public abstract class EditableSealedPartialClassMethodCollection<
         TMethod,
         TExplicitInterfaceMethod,
         TPartialMethodDefinition,
         TPartialMethodImplementation> :
-        EditableStructMethodCollection<TMethod, TExplicitInterfaceMethod>,
-        IPartialStructMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>
-        where TMethod : IStructMethod
+        EditableSealedClassMethodCollection<TMethod, TExplicitInterfaceMethod>,
+        ISealedPartialClassMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>
+        where TMethod : ISealedClassMethod
         where TExplicitInterfaceMethod : IExplicitInterfaceMethod
         where TPartialMethodDefinition : IPartialMethodDefinition
         where TPartialMethodImplementation : IPartialMethodImplementation
@@ -31,12 +31,12 @@ namespace CSharpDom.Editable.Partial
 
         public override void Accept(IGenericVisitor visitor)
         {
-            visitor.VisitPartialStructMethodCollection(this);
+            visitor.VisitSealedPartialClassMethodCollection(this);
         }
 
         public override void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitPartialStructMethodCollectionChildren(this, visitor);
+            GenericVisitor.VisitSealedPartialClassMethodCollectionChildren(this, visitor);
         }
     }
 }

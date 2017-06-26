@@ -1105,7 +1105,7 @@ namespace CSharpDom.Common
         {
             new AbstractClassMethodCollectionWrapper<TMethod, TAbstractMethod, TExplicitInterfaceMethod>(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
-            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
         public static void VisitAbstractClassPropertyCollectionChildren<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(
@@ -1204,7 +1204,7 @@ namespace CSharpDom.Common
         {
             new SealedClassMethodCollectionWrapper<TMethod, TExplicitInterfaceMethod>(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
-            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
         public static void VisitSealedClassPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
@@ -1259,7 +1259,7 @@ namespace CSharpDom.Common
         {
             new StructMethodCollectionWrapper<TMethod, TExplicitInterfaceMethod>(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
-            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
         public static void VisitStructPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
@@ -2328,7 +2328,7 @@ namespace CSharpDom.Common
         {
             new StaticClassMethodCollectionWrapper<TMethod, TExtensionMethod>(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
-            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
         public static void VisitNestedStaticClassMethodCollectionChildren<TMethod>(
@@ -2348,7 +2348,7 @@ namespace CSharpDom.Common
         {
             new NestedStaticClassMethodCollectionWrapper<TMethod>(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
-            VisitCollection(methodCollection.PartialMethodImplementions, visitor);
+            VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
         public static void VisitExplicitInterfacePropertyChildren<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor>(
