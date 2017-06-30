@@ -3,14 +3,15 @@
 namespace CSharpDom.Common.Partial
 {
     public interface IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass> :
-        IPartialClassCollection
+        IPartialClassCollection,
+        IHasClasses<TClass>,
+        IHasAbstractClasses<TAbstractClass>,
+        IHasSealedClasses<TSealedClass>,
+        IHasStaticClasses<TStaticClass>
+        where TClass : IClassType
+        where TAbstractClass : IAbstractType
+        where TSealedClass : ISealedType
+        where TStaticClass : IStaticType
     {
-        IReadOnlyCollection<TClass> Classes { get; }
-
-        IReadOnlyCollection<TAbstractClass> AbstractClasses { get; }
-
-        IReadOnlyCollection<TSealedClass> SealedClasses { get; }
-
-        IReadOnlyCollection<TStaticClass> StaticClasses { get; }
     }
 }

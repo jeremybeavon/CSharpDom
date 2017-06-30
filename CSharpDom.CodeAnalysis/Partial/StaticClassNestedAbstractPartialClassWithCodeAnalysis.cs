@@ -29,7 +29,8 @@ namespace CSharpDom.CodeAnalysis.Partial
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>
+        IHasNode<ClassDeclarationSyntax>,
+        IAbstractPartialTypeWithCodeAnalysis
     {
         private readonly StaticClassNestedAbstractClassWithCodeAnalysis classType;
         private readonly AbstractPartialClassMethodCollectionWithCodeAnalysis methods;

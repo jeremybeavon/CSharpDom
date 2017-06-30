@@ -154,8 +154,7 @@ namespace CSharpDom.BaseClasses
             Visit(field);
         }
 
-        public virtual void VisitGenericParameter<TTypeReference>(IGenericParameter<TTypeReference> genericParameter)
-            where TTypeReference : ITypeReference
+        public virtual void VisitGenericParameter(IGenericParameter genericParameter)
         {
             Visit(genericParameter);
         }
@@ -2721,6 +2720,16 @@ namespace CSharpDom.BaseClasses
             where TPartialMethodImplementation : IPartialMethodImplementation
         {
             Visit(methodCollection);
+        }
+
+        public virtual void VisitPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass>(
+            IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass> classes)
+            where TClass : IClassType
+            where TAbstractClass : IAbstractType
+            where TSealedClass : ISealedType
+            where TStaticClass : IStaticType
+        {
+            Visit(classes);
         }
     }
 }

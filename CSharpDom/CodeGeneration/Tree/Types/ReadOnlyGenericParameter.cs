@@ -18,7 +18,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             return typeReferences.ToArray(type => new ReadOnlyGenericParameter(type));
         }
 
-        public override ReadOnlyTypeReference Type
+        public ReadOnlyTypeReference Type
         {
             get { return type; }
         }

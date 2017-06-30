@@ -513,12 +513,7 @@ namespace CSharpDom.Text
             Steps.AddCommaSeparatedChildNodeSteps(field.Fields);
             Steps.Add(new WriteSemicolon());
         }
-
-        public override void VisitGenericParameter<TTypeReference>(IGenericParameter<TTypeReference> genericParameter)
-        {
-            Steps.Add(new WriteChildNode<TTypeReference>(genericParameter.Type));
-        }
-
+        
         public override void VisitGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>(
             IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> genericParameterDeclaration)
         {

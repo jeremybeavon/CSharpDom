@@ -119,10 +119,22 @@
     <Compile Include="CachedExpressionNode.cs" />
     <Compile Include="CachedStatementNode.cs" />
     <Compile Include="ClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassDeclarationSyntaxExtensions.cs" />
     <Compile Include="ClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberList.cs" />
+    <Compile Include="Partial\StructNestedPartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\StaticClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\GenericPartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\IAbstractPartialTypeWithCodeAnalysis.cs" />
+    <Compile Include="Partial\IPartialClassTypeWithCodeAnalysis.cs" />
+    <Compile Include="Partial\ISealedPartialTypeWithCodeAnalysis.cs" />
+    <Compile Include="Partial\INestedStaticPartialTypeWithCodeAnalysis.cs" />
+    <Compile Include="Partial\IStaticPartialTypeWithCodeAnalysis.cs" />
+    <Compile Include="Partial\ClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\PartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructReferenceWithCodeAnalysis.cs" />
     <Compile Include="DocumentListWrapper.cs" />
     <Compile Include="Expressions\IInternalQueryExpression.cs" />
     <Compile Include="Expressions\QueryExpressionListWrapper.cs" />
@@ -135,6 +147,7 @@
     <Compile Include="Expressions\QueryWhereExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\RefExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\TernaryOperatorExpressionWithCodeAnalysis.cs" />
+    <Compile Include="GenericParameterWithCodeAnalysis.cs" />
     <Compile Include="IMemberList.cs" />
     <Compile Include="LoadedDocumentMemberListWrapper.cs" />
     <Compile Include="NamespaceMemberListWrapper.cs" />
@@ -344,6 +357,7 @@
     <Compile Include="StructWithCodeAnalysis.cs" />
     <Compile Include="TypedFactory.cs" />
     <Compile Include="CachedTypeReferenceNode.cs" />
+    <Compile Include="TypeReferenceNode.cs" />
     <Compile Include="UsingDirectiveWithCodeAnalysis.cs" />
     <Compile Include="WrappedList.cs" />
     <Compile Include="InterfaceMemberListWrapper.cs" />
@@ -416,7 +430,6 @@
     <Compile Include="ClassReferenceWithCodeAnalysis.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="FilteredList.generic2.cs" />
-    <Compile Include="GenericParameterWithCodeAnalysis.cs" />
     <Compile Include="IChildCollection.cs" />
     <Compile Include="ImmutableListWrapper.cs" />
     <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />

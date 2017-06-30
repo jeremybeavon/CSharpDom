@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
-using CSharpDom.NotSupported;
+using CSharpDom.CodeAnalysis.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
 
@@ -14,25 +14,35 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedAbstractClassWithCodeAnalysis,
             ClassNestedSealedClassWithCodeAnalysis,
             ClassNestedStaticClassWithCodeAnalysis,
-            PartialClassCollectionNotSupported>
+            ClassNestedPartialClassCollectionWithCodeAnalysis>
     {
         private readonly ClassTypeWithCodeAnalysis classType;
         private readonly ClassMemberListWrapper<ClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax> classes;
         private readonly ClassMemberListWrapper<ClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax> abstractClasses;
         private readonly ClassMemberListWrapper<ClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax> sealedClasses;
+        private readonly ClassMemberListWrapper<ClassNestedStaticClassWithCodeAnalysis, ClassDeclarationSyntax> staticClasses;
+        private readonly ClassNestedPartialClassCollectionWithCodeAnalysis partialClasses;
 
         internal ClassNestedClassCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
         {
             this.classType = classType;
             classes = new ClassMemberListWrapper<ClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new ClassNestedClassWithCodeAnalysis());
+                () => new ClassNestedClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsAbstractClass);
             abstractClasses = new ClassMemberListWrapper<ClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new ClassNestedAbstractClassWithCodeAnalysis());
+                () => new ClassNestedAbstractClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsClass);
             sealedClasses = new ClassMemberListWrapper<ClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new ClassNestedSealedClassWithCodeAnalysis());
+                () => new ClassNestedSealedClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsSealedClass);
+            staticClasses = new ClassMemberListWrapper<ClassNestedStaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                classType.Node,
+                () => new ClassNestedStaticClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsStaticClass);
+            partialClasses = ClassNestedPartialClassCollectionWithCodeAnalysis.Create(classType);
         }
 
         public override ICollection<ClassNestedAbstractClassWithCodeAnalysis> AbstractClasses
@@ -53,30 +63,16 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Members.CombineList(nameof(SealedClasses), value.Select(item => item.Syntax)); }
         }
         
-        public override PartialClassCollectionNotSupported PartialClasses
+        public override ClassNestedPartialClassCollectionWithCodeAnalysis PartialClasses
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return partialClasses; }
+            set { partialClasses.Replace(value); }
         }
 
         public override ICollection<ClassNestedStaticClassWithCodeAnalysis> StaticClasses
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return staticClasses; }
+            set { classType.Members.CombineList(nameof(StaticClasses), value.Select(item => item.Syntax)); }
         }
     }
 }

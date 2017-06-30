@@ -1,18 +1,18 @@
 ﻿using CSharpDom.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public interface IAbstractTypeWithCodeAnalysis :
-        IAbstractType<
+    public interface IPartialClassTypeWithCodeAnalysis :
+        IClassType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            AbstractClassEventCollectionWithCodeAnalysis,
-            AbstractClassPropertyCollectionWithCodeAnalysis,
-            AbstractClassIndexerCollectionWithCodeAnalysis,
-            AbstractClassMethodCollectionWithCodeAnalysis,
+            ClassEventCollectionWithCodeAnalysis,
+            ClassPropertyCollectionWithCodeAnalysis,
+            ClassIndexerCollectionWithCodeAnalysis,
+            PartialClassMethodCollectionWithCodeAnalysis,
             ClassFieldCollectionWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
@@ -22,7 +22,8 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedEnumWithCodeAnalysis,
             ClassNestedInterfaceCollectionWithCodeAnalysis,
             ClassNestedStructCollectionWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>,
+            StaticConstructorWithCodeAnalysis,
+            DestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
     }

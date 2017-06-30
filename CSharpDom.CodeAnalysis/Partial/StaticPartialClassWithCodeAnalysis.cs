@@ -24,15 +24,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>//,
+        IHasNode<ClassDeclarationSyntax>,
+        IStaticPartialTypeWithCodeAnalysis//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly StaticClassWithCodeAnalysis type;
         private readonly StaticPartialClassMethodCollectionWithCodeAnalysis methods;
 
-        internal StaticPartialClassWithCodeAnalysis()
+        internal StaticPartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            type = new StaticClassWithCodeAnalysis();
+            type = new StaticClassWithCodeAnalysis(document);
             methods = new StaticPartialClassMethodCollectionWithCodeAnalysis(type.Type);
         }
 

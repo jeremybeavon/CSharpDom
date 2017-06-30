@@ -33,15 +33,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>//,
+        IHasNode<ClassDeclarationSyntax>,
+        ISealedPartialTypeWithCodeAnalysis//,
                                         //IVisitable<IReflectionVisitor>
     {
         private readonly SealedClassWithCodeAnalysis classType;
         private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
 
-        internal SealedPartialClassWithCodeAnalysis()
+        internal SealedPartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            classType = new SealedClassWithCodeAnalysis();
+            classType = new SealedClassWithCodeAnalysis(document);
             methods = new SealedPartialClassMethodCollectionWithCodeAnalysis(classType.Type.Type);
         }
 

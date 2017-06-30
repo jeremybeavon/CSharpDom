@@ -3,7 +3,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class GenericParameter : IGenericParameter<TypeReference>
+    public sealed class GenericParameter : IGenericParameter
     {
         public TypeReference Type { get; set; }
 
@@ -14,7 +14,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitGenericParameter(this, visitor);
+            GenericVisitor.VisitIfNotNull(Type, visitor);
         }
     }
 }

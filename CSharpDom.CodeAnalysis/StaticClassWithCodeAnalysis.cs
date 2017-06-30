@@ -28,10 +28,12 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly StaticTypeWithCodeAnalysis type;
+        private readonly DocumentWithCodeAnalysis document;
 
-        internal StaticClassWithCodeAnalysis()
+        internal StaticClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             type = new StaticTypeWithCodeAnalysis();
+            this.document = document;
         }
 
         public StaticTypeWithCodeAnalysis Type
@@ -99,40 +101,16 @@ namespace CSharpDom.CodeAnalysis
             set { type.Name = value; }
         }
 
-        public override NamespaceWithCodeAnalysis Namespace
-        {
-            get { throw new NotImplementedException(); }
-            set { }
-        }
-        
-        public override ProjectWithCodeAnalysis Project
-        {
-            get { throw new NotImplementedException(); }
-            set { }
-        }
-
         public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
         {
             get { return type.Properties; }
             set { type.Properties = value; }
         }
-
-        public override SolutionWithCodeAnalysis Solution
-        {
-            get { throw new NotImplementedException(); }
-            set { }
-        }
-
+        
         public override StaticClassNestedStructCollectionWithCodeAnalysis Structs
         {
             get { return type.Structs; }
             set { type.Structs = value; }
-        }
-        
-        public override TypeVisibilityModifier Visibility
-        {
-            get { throw new NotImplementedException(); }
-            set { }
         }
         
         public override StaticConstructorWithCodeAnalysis StaticConstructor
@@ -140,13 +118,40 @@ namespace CSharpDom.CodeAnalysis
             get { return type.StaticConstructor; }
             set { type.StaticConstructor = value; }
         }
-
         public override DocumentWithCodeAnalysis Document
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return document; }
+            set { throw new NotSupportedException(); }
         }
         
+        public override NamespaceWithCodeAnalysis Namespace
+        {
+            get { return type.Node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
+        }
+
+        public override ProjectWithCodeAnalysis Project
+        {
+            get { return document.Project; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public override SolutionWithCodeAnalysis Solution
+        {
+            get { return document.Solution; }
+            set { throw new NotSupportedException(); }
+        }
+
+        public override TypeVisibilityModifier Visibility
+        {
+            get { return Syntax.Modifiers.ToTypeVisibilityModifier(); }
+            set
+            {
+                ClassDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithTypeVisibilityModifier(value));
+            }
+        }
+
         public ClassDeclarationSyntax Syntax
         {
             get { return type.Syntax; }

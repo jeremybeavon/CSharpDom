@@ -38,10 +38,12 @@ namespace CSharpDom.CodeAnalysis
                                         //IVisitable<IReflectionVisitor>
     {
         private readonly SealedTypeWithCodeAnalysis classType;
+        private readonly DocumentWithCodeAnalysis document;
 
-        internal SealedClassWithCodeAnalysis()
+        internal SealedClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             classType = new SealedTypeWithCodeAnalysis();
+            this.document = document;
         }
 
         public SealedTypeWithCodeAnalysis Type
@@ -177,66 +179,35 @@ namespace CSharpDom.CodeAnalysis
 
         public override DocumentWithCodeAnalysis Document
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get => document;
+            set => throw new NotSupportedException();
         }
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return classType.Type.Node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ProjectWithCodeAnalysis Project
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document.Project; }
+            set { throw new NotSupportedException(); }
         }
 
         public override SolutionWithCodeAnalysis Solution
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document.Solution; }
+            set { throw new NotSupportedException(); }
         }
 
         public override TypeVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
+            get { return Syntax.Modifiers.ToTypeVisibilityModifier(); }
             set
             {
-                throw new NotImplementedException();
+                ClassDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithTypeVisibilityModifier(value));
             }
         }
 

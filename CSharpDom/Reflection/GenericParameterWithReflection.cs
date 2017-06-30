@@ -16,7 +16,7 @@ namespace CSharpDom.Reflection
             typeReference = TypeReferenceWithReflectionFactory.CreateReference(type, member);
         }
 
-        public override ITypeReferenceWithReflection Type
+        public ITypeReferenceWithReflection Type
         {
             get { return typeReference; }
         }

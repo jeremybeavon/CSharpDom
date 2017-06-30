@@ -20,23 +20,20 @@ namespace CSharpDom.CodeAnalysis
 
         public static IInternalTypeReferenceWithCodeAnalysis ToTypeReference(this TypeSyntax syntax)
         {
-            //SimpleNameSyntax name = syntax as SimpleNameSyntax;
-            //if (name != null)
-            //{
-            //    return new UnspecifiedTypeReferenceWithCodeAnalysis((AttributeWithCodeAnalysis)null);
-            //}
+            if (syntax is SimpleNameSyntax name)
+            {
+                return new UnspecifiedTypeReferenceWithCodeAnalysis();
+            }
 
-            //PredefinedTypeSyntax builtInType = syntax as PredefinedTypeSyntax;
-            //if (builtInType != null)
-            //{
-            //    return new BuiltInTypeReferenceWithCodeAnalysis();
-            //}
+            if (syntax is PredefinedTypeSyntax builtInType)
+            {
+                return new BuiltInTypeReferenceWithCodeAnalysis();
+            }
 
-            //ArrayTypeSyntax array = syntax as ArrayTypeSyntax;
-            //if (array != null)
-            //{
-            //    return new ArrayTypeReferenceWithCodeAnalysis(null);
-            //}
+            if (syntax is ArrayTypeSyntax array)
+            {
+                return new ArrayTypeReferenceWithCodeAnalysis();
+            }
 
             //NullableTypeSyntax nullableType = syntax as NullableTypeSyntax;
             //if (nullableType != null)
@@ -44,7 +41,7 @@ namespace CSharpDom.CodeAnalysis
             //    return null;
             //}
 
-            return null;
+            throw new NotSupportedException();
         }
 
         public static ITypeReferenceWithCodeAnalysis ToTypeReference(this PropertyWithBodyWithCodeAnalysis parent)

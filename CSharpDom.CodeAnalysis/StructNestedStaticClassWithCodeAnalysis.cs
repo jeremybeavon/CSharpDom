@@ -21,7 +21,8 @@ namespace CSharpDom.CodeAnalysis
             StaticClassNestedInterfaceCollectionWithCodeAnalysis,
             StaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
-        IHasSyntax<ClassDeclarationSyntax>
+        IHasSyntax<ClassDeclarationSyntax>,
+        IHasNode<ClassDeclarationSyntax>
     {
         private readonly NestedStaticClassWithCodeAnalysis classType;
 
@@ -134,5 +135,7 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
             }
         }
+
+        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Class.Node;
     }
 }

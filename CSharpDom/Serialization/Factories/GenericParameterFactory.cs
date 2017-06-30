@@ -9,11 +9,11 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitGenericParameter<TTypeReference>(IGenericParameter<TTypeReference> genericParameter)
+        public override void VisitGenericParameter(IGenericParameter genericParameter)
         {
             Value = new GenericParameter()
             {
-                Type = new TypeReferenceFactory(genericParameter.Type).Value
+                Type = new TypeReferenceFactory(genericParameter).Value
             };
         }
     }

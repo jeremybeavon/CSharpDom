@@ -62,7 +62,7 @@ namespace CSharpDom.CodeAnalysis
             moduleAttributes = new FilteredAttributeList(attributes, attribute => attribute.Syntax.Target.Identifier.Text == "module");
             namespaces = new LoadedDocumentMemberListWrapper<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax>(
                 node,
-                () => new NamespaceWithCodeAnalysis());
+                () => new NamespaceWithCodeAnalysis(document));
             structs = new StructCollectionWithCodeAnalysis(this);
             usingDirectives = new SyntaxListWrapper<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax, UsingDirectiveWithCodeAnalysis, UsingDirectiveSyntax>(
                 node,

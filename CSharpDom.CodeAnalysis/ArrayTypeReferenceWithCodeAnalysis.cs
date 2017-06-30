@@ -10,37 +10,32 @@ namespace CSharpDom.CodeAnalysis
     public sealed class ArrayTypeReferenceWithCodeAnalysis :
         EditableArrayTypeReference<ITypeReferenceWithCodeAnalysis>,
         ITypeReferenceWithCodeAnalysis,
-        IHasSyntax<ArrayTypeSyntax>
+        IHasSyntax<ArrayTypeSyntax>,
+        IInternalTypeReferenceWithCodeAnalysis
     {
-        private readonly Node<ArrayTypeReferenceWithCodeAnalysis, ArrayTypeSyntax> node;
+        private readonly TypeReferenceNode<ArrayTypeReferenceWithCodeAnalysis, ArrayTypeSyntax> node;
+        private readonly CachedTypeReferenceNode<ArrayTypeReferenceWithCodeAnalysis, ArrayTypeSyntax> elementType;
         private readonly int index;
 
-        internal ArrayTypeReferenceWithCodeAnalysis(GenericParameterWithCodeAnalysis parent)
+        internal ArrayTypeReferenceWithCodeAnalysis()
         {
-            GenericParameterParent = parent;
+            node = new TypeReferenceNode<ArrayTypeReferenceWithCodeAnalysis, ArrayTypeSyntax>(this);
+            elementType = new CachedTypeReferenceNode<ArrayTypeReferenceWithCodeAnalysis, ArrayTypeSyntax>(
+                node,
+                syntax => syntax.ElementType,
+                (parentSyntax, childSyntax) => parentSyntax.WithElementType(childSyntax));
         }
 
-        private ArrayTypeReferenceWithCodeAnalysis(ArrayTypeReferenceWithCodeAnalysis parent, int index)
+        private ArrayTypeReferenceWithCodeAnalysis(int index)
+            : this()
         {
             this.index = index;
         }
 
-        private ArrayTypeReferenceWithCodeAnalysis()
-        {
-            node = new Node<ArrayTypeReferenceWithCodeAnalysis, ArrayTypeSyntax>(this);
-        }
-
         public override ITypeReferenceWithCodeAnalysis ElementType
         {
-            get
-            {
-                RefreshElementType();
-                throw new NotImplementedException();
-            }
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return elementType.Value; }
+            set { elementType.Value = value; }
         }
 
         public override int Dimensions
@@ -62,40 +57,29 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal GenericParameterWithCodeAnalysis GenericParameterParent
-        {
-            get { return node.GetParentNode<GenericParameterWithCodeAnalysis>(); }
-            set
-            {
-                node.SetParentNode<GenericParameterWithCodeAnalysis, TypeSyntax>(
-                    value,
-                    syntax => syntax as ArrayTypeSyntax,
-                    (parentSyntax, syntax) => value.Syntax = syntax);
-            }
-        }
-
+        
         TypeSyntax IHasSyntax<TypeSyntax>.Syntax
         {
             get { return Syntax; }
             set { Syntax = (ArrayTypeSyntax)value; }
         }
 
-        private void RefreshElementType()
+        private IInternalTypeReferenceWithCodeAnalysis CreateElementType(TypeSyntax syntax)
         {
             int rankCount = node.Syntax.RankSpecifiers.Count;
             if (index + 1 == rankCount)
             {
-                //base.ElementType = getType().ElementType.ToChildReference(new ChildReference<TParent, ITypeReferenceWithCodeAnalysis>())
+                return syntax.ToTypeReference();
             }
-            else if (index > rankCount)
+
+            if (index > rankCount)
             {
                 throw new NotSupportedException();
             }
-            else if (!(ElementType is ArrayTypeReferenceWithCodeAnalysis))
-            {
-                ElementType = new ArrayTypeReferenceWithCodeAnalysis(this, index + 1);
-            }
+
+            return new ArrayTypeReferenceWithCodeAnalysis(index + 1);
         }
+
+        INode<TypeSyntax> IHasNode<TypeSyntax>.Node => node;
     }
 }

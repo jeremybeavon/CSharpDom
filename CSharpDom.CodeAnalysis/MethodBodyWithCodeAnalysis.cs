@@ -1,5 +1,6 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Common.Statements;
+using CSharpDom.CodeAnalysis.Statements;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -12,11 +13,11 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class MethodBodyWithCodeAnalysis :
-        EditableMethodBody<IStatement>,
+        EditableMethodBody<IStatementWithCodeAnalysis>,
         IHasSyntax<BlockSyntax>,
         IHasNode<BlockSyntax>
     {
-        private readonly Node<MethodBodyWithCodeAnalysis, BlockSyntax> node;
+        private readonly BlockStatementWithCodeAnalysis block;
 
         internal MethodBodyWithCodeAnalysis(AccessorWithCodeAnalysis parent)
             : this()
@@ -76,34 +77,27 @@ namespace CSharpDom.CodeAnalysis
 
         internal MethodBodyWithCodeAnalysis()
         {
-            node = new Node<MethodBodyWithCodeAnalysis, BlockSyntax>(this);
+            block = new BlockStatementWithCodeAnalysis();
         }
 
-        public override IList<IStatement> Statements
+        public override IList<IStatementWithCodeAnalysis> Statements
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return block.Statements; }
+            set { block.Statements = value; }
         }
 
         public BlockSyntax Syntax
         {
-            get { return node.Syntax; }
-            set { node.Syntax = value; }
+            get { return Node.Syntax; }
+            set { Node.Syntax = value; }
         }
 
         internal AccessorWithCodeAnalysis AccessorParent
         {
-            get { return node.GetParentNode<AccessorWithCodeAnalysis>(); }
+            get { return Node.GetParentNode<AccessorWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
+                Node.SetParentNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
                     value,
                     syntax => syntax.Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
@@ -112,10 +106,10 @@ namespace CSharpDom.CodeAnalysis
 
         internal ConstructorWithCodeAnalysis ConstructorParent
         {
-            get { return node.GetParentNode<ConstructorWithCodeAnalysis>(); }
+            get { return Node.GetParentNode<ConstructorWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                Node.SetParentNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                     value,
                     syntax => syntax.Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
@@ -124,10 +118,10 @@ namespace CSharpDom.CodeAnalysis
 
         internal ConversionOperatorWithCodeAnalysis ConversionOperatorParent
         {
-            get { return node.GetParentNode<ConversionOperatorWithCodeAnalysis>(); }
+            get { return Node.GetParentNode<ConversionOperatorWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
+                Node.SetParentNode<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                     value,
                     syntax => syntax.Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
@@ -136,10 +130,10 @@ namespace CSharpDom.CodeAnalysis
 
         internal DestructorWithCodeAnalysis DestructorParent
         {
-            get { return node.GetParentNode<DestructorWithCodeAnalysis>(); }
+            get { return Node.GetParentNode<DestructorWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
+                Node.SetParentNode<DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
                     value,
                     syntax => syntax.Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
@@ -148,10 +142,10 @@ namespace CSharpDom.CodeAnalysis
 
         internal EventPropertyWithCodeAnalysis EventPropertyAddAccessorParent
         {
-            get { return node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
+            get { return Node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
+                Node.SetParentNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                     value,
                     syntax => syntax.GetAccessor(SyntaxKind.AddKeyword).Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax, SyntaxKind.AddKeyword));
@@ -160,10 +154,10 @@ namespace CSharpDom.CodeAnalysis
 
         internal EventPropertyWithCodeAnalysis EventPropertyRemoveAccessorParent
         {
-            get { return node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
+            get { return Node.GetParentNode<EventPropertyWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
+                Node.SetParentNode<EventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
                     value,
                     syntax => syntax.GetAccessor(SyntaxKind.RemoveKeyword).Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax, SyntaxKind.RemoveKeyword));
@@ -172,10 +166,10 @@ namespace CSharpDom.CodeAnalysis
 
         internal MethodWithCodeAnalysis MethodParent
         {
-            get { return node.GetParentNode<MethodWithCodeAnalysis>(); }
+            get { return Node.GetParentNode<MethodWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                Node.SetParentNode<MethodWithCodeAnalysis, MethodDeclarationSyntax>(
                     value,
                     syntax => syntax.Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
@@ -184,10 +178,10 @@ namespace CSharpDom.CodeAnalysis
 
         internal OperatorOverloadWithCodeAnalysis OperatorOverloadParent
         {
-            get { return node.GetParentNode<OperatorOverloadWithCodeAnalysis>(); }
+            get { return Node.GetParentNode<OperatorOverloadWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
+                Node.SetParentNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                     value,
                     syntax => syntax.Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
@@ -196,10 +190,10 @@ namespace CSharpDom.CodeAnalysis
 
         internal StaticConstructorWithCodeAnalysis StaticConstructorParent
         {
-            get { return node.GetParentNode<StaticConstructorWithCodeAnalysis>(); }
+            get { return Node.GetParentNode<StaticConstructorWithCodeAnalysis>(); }
             set
             {
-                node.SetParentNode<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                Node.SetParentNode<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                     value,
                     syntax => syntax.Body,
                     (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
@@ -208,7 +202,9 @@ namespace CSharpDom.CodeAnalysis
         
         INode<BlockSyntax> IHasNode<BlockSyntax>.Node
         {
-            get { return node; }
+            get { return Node; }
         }
+
+        private StatementNode<BlockStatementWithCodeAnalysis, BlockSyntax> Node => block.Node;
     }
 }

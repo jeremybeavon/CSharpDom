@@ -32,6 +32,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ClassNestedStructCollectionWithCodeAnalysis,
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
+        IPartialClassTypeWithCodeAnalysis,
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>

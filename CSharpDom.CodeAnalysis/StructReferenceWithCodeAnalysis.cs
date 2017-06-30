@@ -1,43 +1,65 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using CSharpDom.CodeAnalysis.Internal;
+using System.Linq;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using CSharpDom.Editable;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class StructReferenceWithCodeAnalysis :
-        AbstractStructReference<GenericParameterWithCodeAnalysis>,
-        ITypeReferenceWithCodeAnalysis//,
+        EditableStructReference<GenericParameterWithCodeAnalysis>,
+        IHasSyntax<NameSyntax>,
+        IHasNode<NameSyntax>,
+        IInternalTypeReferenceWithCodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
-        private readonly TypeReference type;
-        private readonly Lazy<GenericParameters> genericParameters;
-
-        internal StructReferenceWithCodeAnalysis(AssemblyWithCodeAnalysis assembly, TypeReference type)
+        private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
+        
+        internal StructReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
-            this.type = type;
-            genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(assembly, type));
+            this.typeReference = typeReference;
         }
-
-        public override IReadOnlyList<GenericParameterWithCodeAnalysis> GenericParameters
-        {
-            get { return genericParameters.Value.GenericParametersWithCodeAnalysis; }
-        }
-
+    
         public override string Name
         {
-            get { return type.Name(); }
+            get { return typeReference.Name; }
+            set { typeReference.Name = value; }
         }
 
-        public TypeReference TypeReference
+        public override IList<GenericParameterWithCodeAnalysis> GenericParameters
         {
-            get { return type; }
+            get { return typeReference.GenericParameters; }
+            set { typeReference.GenericParameters = value; }
+        }
+
+        public NameSyntax Syntax
+        {
+            get { return typeReference.Syntax; }
+            set { typeReference.Syntax = value; }
         }
         
+        internal UnspecifiedTypeReferenceWithCodeAnalysis TypeReference
+        {
+            get { return typeReference; }
+        }
+
+        INode<NameSyntax> IHasNode<NameSyntax>.Node
+        {
+            get { return typeReference.Node; }
+        }
+
+        INode<TypeSyntax> IHasNode<TypeSyntax>.Node => typeReference.Node;
+
+        TypeSyntax IHasSyntax<TypeSyntax>.Syntax {
+            get => typeReference.Syntax;
+            set => ((IInternalTypeReferenceWithCodeAnalysis)typeReference).Syntax = value;
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
-            visitor.VisitStructReferenceWithCodeAnalysis(this);
+            visitor.VisitClassReferenceWithCodeAnalysis(this);
         }
 
         public void AcceptChildren(IReflectionVisitor visitor)

@@ -27,9 +27,9 @@ namespace CSharpDom.Wrappers.Internal
             GenericVisitor.VisitGenericParameter(this, visitor);
         }
 
-        public override void VisitGenericParameter<TTypeReference>(IGenericParameter<TTypeReference> genericParameter)
+        public override void VisitGenericParameter(IGenericParameter genericParameter)
         {
-            type = () => TypeReferenceWrapper.Create(genericParameter.Type);
+            type = () => TypeReferenceWrapper.Create(genericParameter);
         }
     }
 }

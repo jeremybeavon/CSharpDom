@@ -12,11 +12,12 @@ namespace CSharpDom.CodeAnalysis
         public CachedTypeReferenceNode(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, TypeSyntax> getChildSyntax,
-            Func<TParentSyntax, TypeSyntax, TParentSyntax> createChildSyntax)
+            Func<TParentSyntax, TypeSyntax, TParentSyntax> createChildSyntax,
+            Func<TypeSyntax, IInternalTypeReferenceWithCodeAnalysis> createChildNode = null)
         {
             childNode = new CachedChildNode<TParentNode, TParentSyntax, IInternalTypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
-                TypeSyntaxExtensions.ToTypeReference,
+                createChildNode ?? TypeSyntaxExtensions.ToTypeReference,
                 getChildSyntax,
                 createChildSyntax);
         }

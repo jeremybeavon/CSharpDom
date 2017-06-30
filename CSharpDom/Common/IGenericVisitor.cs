@@ -171,6 +171,13 @@ namespace CSharpDom.Common
             where TDestructor : IDestructor
             where TStaticConstructor : IStaticConstructor;
 
+        void VisitPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass>(
+            IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass> classes)
+            where TClass : IClassType
+            where TAbstractClass : IAbstractType
+            where TSealedClass : ISealedType
+            where TStaticClass : IStaticType;
+
         void VisitPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor>(
             IPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TDestructor, TStaticConstructor> @class)
             where TNamespace : INamespace
@@ -465,9 +472,8 @@ namespace CSharpDom.Common
             where TInterfaceReference : IInterfaceReference
             where TTypeReference : ITypeReference
             where TAccessor : IAccessor;
-        
-        void VisitGenericParameter<TTypeReference>(IGenericParameter<TTypeReference> genericParameter)
-            where TTypeReference : ITypeReference;
+
+        void VisitGenericParameter(IGenericParameter genericParameter);
 
         void VisitGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>(
             IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> genericParameterDeclaration)

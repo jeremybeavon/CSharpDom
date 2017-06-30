@@ -1,4 +1,5 @@
 ﻿using CSharpDom.Common;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -21,7 +22,8 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedEnumWithCodeAnalysis,
             ClassNestedInterfaceCollectionWithCodeAnalysis,
             ClassNestedStructCollectionWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>
+            StaticConstructorWithCodeAnalysis>,
+        IHasSyntax<ClassDeclarationSyntax>
     {
     }
 }

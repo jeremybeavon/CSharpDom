@@ -276,6 +276,7 @@
     <Compile Include="BaseClasses\Expressions\AbstractGenericExpressionVisitor.cs" />
     <Compile Include="BaseClasses\Partial\AbstractAbstractPartialClassMethodCollection.cs" />
     <Compile Include="BaseClasses\Partial\AbstractAbstractPartialClass.cs" />
+    <Compile Include="BaseClasses\Partial\AbstractPartialClassCollection.cs" />
     <Compile Include="BaseClasses\Partial\AbstractPartialClassMethodCollection.cs" />
     <Compile Include="BaseClasses\Partial\AbstractNestedStaticPartialClassMethodCollection.cs" />
     <Compile Include="BaseClasses\Partial\AbstractPartialClass.cs" />
@@ -679,6 +680,7 @@
     <Compile Include="Editable\Expressions\EditableTernaryOperatorExpression.cs" />
     <Compile Include="Editable\Expressions\EditableTypeofExpression.cs" />
     <Compile Include="Editable\Expressions\EditableUnaryOperatorExpression.cs" />
+    <Compile Include="Editable\Partial\EditablePartialClassCollection.cs" />
     <Compile Include="Editable\Partial\EditableSealedPartialClass.cs" />
     <Compile Include="Editable\Partial\EditableSealedPartialClassMethodCollection.cs" />
     <Compile Include="Editable\Partial\EditableAbstractPartialClassMethodCollection.cs" />
@@ -2548,7 +2550,6 @@
     <Compile Include="Common\IAttributeGroup.generic.cs" />
     <Compile Include="Common\IInterfaceType.generic.cs" />
     <Compile Include="Common\IClassReference.generic.cs" />
-    <Compile Include="Common\IGenericParameter.generic.cs" />
     <Compile Include="Common\IGenericParameterDeclaration.generic.cs" />
     <Compile Include="Common\IGenericVisitor.cs" />
     <Compile Include="Common\IHasAttributes.cs" />

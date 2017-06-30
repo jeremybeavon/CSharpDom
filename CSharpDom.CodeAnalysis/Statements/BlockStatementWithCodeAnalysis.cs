@@ -36,7 +36,10 @@ namespace CSharpDom.CodeAnalysis.Statements
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-        
+
+        internal StatementNode<BlockStatementWithCodeAnalysis, BlockSyntax> Node => node;
+
+
         INode<StatementSyntax> IHasNode<StatementSyntax>.Node
         {
             get { return node; }

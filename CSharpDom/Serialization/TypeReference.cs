@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class TypeReference : ITypeReference
+    public sealed class TypeReference : ITypeReference, IGenericParameter
     {
         [DefaultValue(null)]
         public ArrayTypeReference ArrayTypeReference { get; set; }

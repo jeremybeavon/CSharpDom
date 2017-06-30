@@ -8,20 +8,25 @@ namespace CSharpDom.CodeAnalysis
     public sealed class UnspecifiedTypeReferenceWithCodeAnalysis :
         EditableUnspecifiedTypeReference<GenericParameterWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
-        ITypeReferenceWithCodeAnalysis,
+        IInternalTypeReferenceWithCodeAnalysis,
         IHasNode<NameSyntax>//,
                                       //IVisitable<IReflectionVisitor>
     {
-        private readonly Node<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax> node;
-        private readonly GenericParameterListWrapper<UnspecifiedTypeReferenceWithCodeAnalysis> genericParameters;
+        private readonly TypeReferenceNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax> node;
+        private readonly SeparatedSyntaxListWrapper<
+            UnspecifiedTypeReferenceWithCodeAnalysis,
+            NameSyntax,
+            GenericParameterWithCodeAnalysis,
+            TypeSyntax> genericParameters;
         
         internal UnspecifiedTypeReferenceWithCodeAnalysis()
         {
-            node = new Node<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(this);
-            genericParameters = new GenericParameterListWrapper<UnspecifiedTypeReferenceWithCodeAnalysis>(
+            node = new TypeReferenceNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(this);
+            genericParameters = new SeparatedSyntaxListWrapper<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax, GenericParameterWithCodeAnalysis, TypeSyntax>(
                 node,
                 syntax => syntax.ToGenericParameters(),
-                (parentSyntax, childSyntax) => parentSyntax.WithGenericParameters(childSyntax));
+                (parentSyntax, childSyntax) => parentSyntax.WithGenericParameters(childSyntax),
+                () => new GenericParameterWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()));
         }
 
         public override IList<GenericParameterWithCodeAnalysis> GenericParameters
@@ -48,7 +53,7 @@ namespace CSharpDom.CodeAnalysis
             set { Syntax = (NameSyntax)value; }
         }
         
-        internal Node<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax> Node
+        internal TypeReferenceNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax> Node
         {
             get { return node; }
         }
@@ -57,6 +62,8 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
+
+        INode<TypeSyntax> IHasNode<TypeSyntax>.Node => node;
 
         /*public void Accept(IReflectionVisitor visitor)
         {

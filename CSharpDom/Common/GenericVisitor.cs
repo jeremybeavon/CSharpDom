@@ -365,12 +365,9 @@ namespace CSharpDom.Common
             VisitCollection(field.Constants, visitor);
         }
 
-        public static void VisitGenericParameter<TTypeReference>(
-            IGenericParameter<TTypeReference> genericParameter,
-            IGenericVisitor visitor)
-            where TTypeReference : ITypeReference
+        public static void VisitGenericParameter(IGenericParameter genericParameter, IGenericVisitor visitor)
         {
-            VisitIfNotNull(genericParameter.Type, visitor);
+            new TypeReferenceWrapper(genericParameter).Accept(visitor);
         }
 
         public static void VisitGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>(
@@ -2919,6 +2916,20 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
         {
             new StructNestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+        }
+
+        public static void VisitPartialClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass>(
+            IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass> classes,
+            IGenericVisitor visitor)
+            where TClass : IClassType
+            where TAbstractClass : IAbstractType
+            where TSealedClass : ISealedType
+            where TStaticClass : IStaticType
+        {
+            VisitCollection(classes.Classes, visitor);
+            VisitCollection(classes.AbstractClasses, visitor);
+            VisitCollection(classes.SealedClasses, visitor);
+            VisitCollection(classes.StaticClasses, visitor);
         }
     }
 }

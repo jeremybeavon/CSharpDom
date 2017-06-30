@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
-using CSharpDom.NotSupported;
+using CSharpDom.CodeAnalysis.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
 
@@ -14,7 +14,7 @@ namespace CSharpDom.CodeAnalysis
             StaticClassNestedAbstractClassWithCodeAnalysis,
             StaticClassNestedSealedClassWithCodeAnalysis,
             StaticClassNestedStaticClassWithCodeAnalysis,
-            PartialClassCollectionNotSupported>
+            StaticClassNestedPartialClassCollectionWithCodeAnalysis>
     {
         private readonly StaticTypeWithCodeAnalysis type;
         private readonly StaticTypeMemberListWrapper<StaticClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax> classes;
@@ -27,6 +27,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly StaticTypeMemberListWrapper<
             StaticClassNestedStaticClassWithCodeAnalysis,
             ClassDeclarationSyntax> staticClasses;
+        private readonly StaticClassNestedPartialClassCollectionWithCodeAnalysis partialClasses;
 
         internal StaticClassNestedClassCollectionWithCodeAnalysis(StaticTypeWithCodeAnalysis type)
         {
@@ -43,6 +44,7 @@ namespace CSharpDom.CodeAnalysis
             staticClasses = new StaticTypeMemberListWrapper<StaticClassNestedStaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 type.Node,
                 () => new StaticClassNestedStaticClassWithCodeAnalysis());
+            partialClasses = StaticClassNestedPartialClassCollectionWithCodeAnalysis.Create(type);
         }
 
         public override ICollection<StaticClassNestedAbstractClassWithCodeAnalysis> AbstractClasses
@@ -69,17 +71,10 @@ namespace CSharpDom.CodeAnalysis
             set { type.Members.CombineList(nameof(StaticClasses), value.Select(item => item.Syntax)); }
         }
 
-        public override PartialClassCollectionNotSupported PartialClasses
+        public override StaticClassNestedPartialClassCollectionWithCodeAnalysis PartialClasses
         {
-            get
-            {
-                return new PartialClassCollectionNotSupported();
-            }
-
-            set
-            {
-                throw new NotSupportedException();
-            }
+            get { return partialClasses; }
+            set { partialClasses.Replace(value); }
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CSharpDom.Editable;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
@@ -16,9 +17,11 @@ namespace CSharpDom.CodeAnalysis
             InterfaceCollectionWithCodeAnalysis,
             StructCollectionWithCodeAnalysis>,
         IHasSyntax<NamespaceDeclarationSyntax>,
-        IHasNode<NamespaceDeclarationSyntax>//,
+        IHasNode<NamespaceDeclarationSyntax>,
+        IHasDocument<DocumentWithCodeAnalysis>//,
                                              //IVisitable<IReflectionVisitor>
     {
+        private readonly DocumentWithCodeAnalysis document;
         private readonly Node<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax> node;
         private readonly ClassCollectionWithCodeAnalysis classes;
         private readonly NamespaceMemberListWrapper<DelegateWithCodeAnalysis, DelegateDeclarationSyntax> delegates;
@@ -33,9 +36,10 @@ namespace CSharpDom.CodeAnalysis
             UsingDirectiveSyntax> usingDirectives;
         private readonly MemberList<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax> members;
 
-        internal NamespaceWithCodeAnalysis()
+        internal NamespaceWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             node = new Node<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax>(this);
+            this.document = document;
             classes = new ClassCollectionWithCodeAnalysis(this);
             delegates = new NamespaceMemberListWrapper<DelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
@@ -46,7 +50,7 @@ namespace CSharpDom.CodeAnalysis
             interfaces = new InterfaceCollectionWithCodeAnalysis(this);
             namespaces = new NamespaceMemberListWrapper<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax>(
                 node,
-                () => new NamespaceWithCodeAnalysis());
+                () => new NamespaceWithCodeAnalysis(document));
             structs = new StructCollectionWithCodeAnalysis(this);
             usingDirectives = new SyntaxListWrapper<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax, UsingDirectiveWithCodeAnalysis, UsingDirectiveSyntax>(
                 node,
@@ -144,5 +148,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
+
+        public DocumentWithCodeAnalysis Document => document;
     }
 }

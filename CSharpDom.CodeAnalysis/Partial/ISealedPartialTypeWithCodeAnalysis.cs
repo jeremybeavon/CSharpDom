@@ -1,18 +1,18 @@
 ﻿using CSharpDom.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public interface IAbstractTypeWithCodeAnalysis :
-        IAbstractType<
+    public interface ISealedPartialTypeWithCodeAnalysis :
+        ISealedType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            AbstractClassEventCollectionWithCodeAnalysis,
-            AbstractClassPropertyCollectionWithCodeAnalysis,
-            AbstractClassIndexerCollectionWithCodeAnalysis,
-            AbstractClassMethodCollectionWithCodeAnalysis,
+            SealedClassEventCollectionWithCodeAnalysis,
+            SealedClassPropertyCollectionWithCodeAnalysis,
+            SealedClassIndexerCollectionWithCodeAnalysis,
+            SealedPartialClassMethodCollectionWithCodeAnalysis,
             ClassFieldCollectionWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,

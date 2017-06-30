@@ -10,7 +10,8 @@ namespace CSharpDom.CodeAnalysis
     public sealed class BuiltInTypeReferenceWithCodeAnalysis :
         EditableBuiltInTypeReference,
         ITypeReferenceWithCodeAnalysis,
-        IHasSyntax<PredefinedTypeSyntax>
+        IHasSyntax<PredefinedTypeSyntax>,
+        IInternalTypeReferenceWithCodeAnalysis
     {
         private static readonly IDictionary<SyntaxKind, BuiltInType> map = new Dictionary<SyntaxKind, BuiltInType>()
         {
@@ -32,11 +33,11 @@ namespace CSharpDom.CodeAnalysis
             { SyntaxKind.VoidKeyword, BuiltInType.Void }
         };
 
-        private readonly Node<BuiltInTypeReferenceWithCodeAnalysis, PredefinedTypeSyntax> node;
+        private readonly TypeReferenceNode<BuiltInTypeReferenceWithCodeAnalysis, PredefinedTypeSyntax> node;
 
         public BuiltInTypeReferenceWithCodeAnalysis()
         {
-            node = new Node<BuiltInTypeReferenceWithCodeAnalysis, PredefinedTypeSyntax>(this);
+            node = new TypeReferenceNode<BuiltInTypeReferenceWithCodeAnalysis, PredefinedTypeSyntax>(this);
         }
         
         public PredefinedTypeSyntax Syntax
@@ -56,5 +57,7 @@ namespace CSharpDom.CodeAnalysis
             get { return Syntax; }
             set { Syntax = (PredefinedTypeSyntax)value; }
         }
+
+        INode<TypeSyntax> IHasNode<TypeSyntax>.Node => node;
     }
 }

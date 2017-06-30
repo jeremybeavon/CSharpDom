@@ -1,15 +1,15 @@
 ﻿using CSharpDom.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public interface IStaticTypeWithCodeAnalysis :
+    public interface IStaticPartialTypeWithCodeAnalysis :
         IStaticType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
             StaticClassPropertyWithCodeAnalysis,
-            StaticClassMethodCollectionWithCodeAnalysis,
+            StaticPartialClassMethodCollectionWithCodeAnalysis,
             StaticClassFieldCollectionWithCodeAnalysis,
             StaticClassNestedClassCollectionWithCodeAnalysis,
             StaticClassNestedDelegateWithCodeAnalysis,

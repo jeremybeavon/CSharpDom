@@ -1,9 +1,9 @@
 ﻿using CSharpDom.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public interface IAbstractTypeWithCodeAnalysis :
+    public interface IAbstractPartialTypeWithCodeAnalysis :
         IAbstractType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
@@ -12,7 +12,7 @@ namespace CSharpDom.CodeAnalysis
             AbstractClassEventCollectionWithCodeAnalysis,
             AbstractClassPropertyCollectionWithCodeAnalysis,
             AbstractClassIndexerCollectionWithCodeAnalysis,
-            AbstractClassMethodCollectionWithCodeAnalysis,
+            AbstractPartialClassMethodCollectionWithCodeAnalysis,
             ClassFieldCollectionWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
