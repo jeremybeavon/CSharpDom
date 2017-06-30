@@ -1,22 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Common;
-using CSharpDom.Editable;
+﻿using CSharpDom.Common;
+using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class StructNestedClassWithCodeAnalysis :
-        EditableStructNestedClass<
+    public sealed class SealedPartialClassWithCodeAnalysis :
+        EditableSealedPartialClass<
+            NamespaceWithCodeAnalysis,
+            DocumentWithCodeAnalysis,
+            ProjectWithCodeAnalysis,
+            SolutionWithCodeAnalysis,
             AttributeGroupWithCodeAnalysis,
-            IStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            ClassEventCollectionWithCodeAnalysis,
-            ClassPropertyCollectionWithCodeAnalysis,
-            ClassIndexerCollectionWithCodeAnalysis,
-            ClassMethodCollectionWithCodeAnalysis,
+            SealedClassEventCollectionWithCodeAnalysis,
+            SealedClassPropertyCollectionWithCodeAnalysis,
+            SealedClassIndexerCollectionWithCodeAnalysis,
+            SealedPartialClassMethodCollectionWithCodeAnalysis,
             ClassFieldCollectionWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
@@ -29,30 +33,22 @@ namespace CSharpDom.CodeAnalysis
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>
+        IHasNode<ClassDeclarationSyntax>//,
+                                        //IVisitable<IReflectionVisitor>
     {
-        private readonly NestedClassWithCodeAnalysis classType;
+        private readonly SealedClassWithCodeAnalysis classType;
+        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
 
-        internal StructNestedClassWithCodeAnalysis()
+        internal SealedPartialClassWithCodeAnalysis()
         {
-            classType = new NestedClassWithCodeAnalysis();
-        }
-        
-        public NestedClassWithCodeAnalysis Class
-        {
-            get { return classType; }
+            classType = new SealedClassWithCodeAnalysis();
+            methods = new SealedPartialClassMethodCollectionWithCodeAnalysis(classType.Type.Type);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return classType.Attributes; }
             set { classType.Attributes = value; }
-        }
-
-        public override ClassReferenceWithCodeAnalysis BaseClass
-        {
-            get { return classType.BaseClass; }
-            set { classType.BaseClass = value; }
         }
 
         public override ClassNestedClassCollectionWithCodeAnalysis Classes
@@ -73,12 +69,6 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ConversionOperators = value; }
         }
 
-        public override IStructTypeWithCodeAnalysis DeclaringType
-        {
-            get { return classType.Class.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
-            set { throw new NotSupportedException(); }
-        }
-
         public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return classType.Delegates; }
@@ -97,7 +87,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Enums = value; }
         }
 
-        public override ClassEventCollectionWithCodeAnalysis Events
+        public override SealedClassEventCollectionWithCodeAnalysis Events
         {
             get { return classType.Events; }
             set { classType.Events = value; }
@@ -115,13 +105,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.GenericParameters = value; }
         }
 
-        public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
-        {
-            get { return classType.ImplementedInterfaces; }
-            set { classType.ImplementedInterfaces = value; }
-        }
-
-        public override ClassIndexerCollectionWithCodeAnalysis Indexers
+        public override SealedClassIndexerCollectionWithCodeAnalysis Indexers
         {
             get { return classType.Indexers; }
             set { classType.Indexers = value; }
@@ -133,10 +117,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Interfaces = value; }
         }
 
-        public override ClassMethodCollectionWithCodeAnalysis Methods
+        public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return classType.Methods; }
-            set { classType.Methods = value; }
+            get { return methods; }
+            set { methods.Replace(value); }
         }
 
         public override string Name
@@ -151,16 +135,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.OperatorOverloads = value; }
         }
 
-        public override ClassPropertyCollectionWithCodeAnalysis Properties
+        public override SealedClassPropertyCollectionWithCodeAnalysis Properties
         {
             get { return classType.Properties; }
             set { classType.Properties = value; }
-        }
-
-        public override StaticConstructorWithCodeAnalysis StaticConstructor
-        {
-            get { return classType.StaticConstructor; }
-            set { classType.StaticConstructor = value; }
         }
 
         public override ClassNestedStructCollectionWithCodeAnalysis Structs
@@ -169,25 +147,101 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Structs = value; }
         }
 
+        public override ClassReferenceWithCodeAnalysis BaseClass
+        {
+            get { return classType.BaseClass; }
+            set { classType.BaseClass = value; }
+        }
+
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
+        {
+            get { return classType.ImplementedInterfaces; }
+            set { classType.ImplementedInterfaces = value; }
+        }
+
+        public override StaticConstructorWithCodeAnalysis StaticConstructor
+        {
+            get { return classType.StaticConstructor; }
+            set { classType.StaticConstructor = value; }
+        }
+
         public ClassDeclarationSyntax Syntax
         {
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
         }
 
-        public override StructMemberVisibilityModifier Visibility
+        public override DocumentWithCodeAnalysis Document
         {
-            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
+            get
+            {
+                throw new NotImplementedException();
+            }
+
             set
             {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
+                throw new NotImplementedException();
             }
         }
-        
+
+        public override NamespaceWithCodeAnalysis Namespace
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override ProjectWithCodeAnalysis Project
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override SolutionWithCodeAnalysis Solution
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public override TypeVisibilityModifier Visibility
+        {
+            get { return classType.Visibility; }
+            set { classType.Visibility = value; }
+        }
+
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Class.Node; }
+            get { return classType.Type.Type.Node; }
         }
+
+        /*public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitClassWithCodeAnalysis(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
+        }*/
     }
 }

@@ -33,7 +33,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 classType.Node,
                 () => new PartialMethodImplementationWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body != null);
-            classType.Members.AddPartialMethods(this);
+            classType.Members.AddClassPartialMethods(this);
         }
         
         public override ICollection<ExplicitInterfaceMethodWithCodeAnalysis> ExplicitInterfaceMethods

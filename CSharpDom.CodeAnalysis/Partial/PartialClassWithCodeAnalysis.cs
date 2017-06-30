@@ -1,14 +1,14 @@
 ﻿using CSharpDom.Common;
-using CSharpDom.Editable;
+using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class SealedClassWithCodeAnalysis :
-        EditableSealedClass<
+    public sealed class PartialClassWithCodeAnalysis :
+        EditablePartialClass<
             NamespaceWithCodeAnalysis,
             DocumentWithCodeAnalysis,
             ProjectWithCodeAnalysis,
@@ -17,10 +17,10 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            SealedClassEventCollectionWithCodeAnalysis,
-            SealedClassPropertyCollectionWithCodeAnalysis,
-            SealedClassIndexerCollectionWithCodeAnalysis,
-            SealedClassMethodCollectionWithCodeAnalysis,
+            ClassEventCollectionWithCodeAnalysis,
+            ClassPropertyCollectionWithCodeAnalysis,
+            ClassIndexerCollectionWithCodeAnalysis,
+            PartialClassMethodCollectionWithCodeAnalysis,
             ClassFieldCollectionWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
@@ -33,15 +33,16 @@ namespace CSharpDom.CodeAnalysis
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        ISealedTypeWithCodeAnalysis,
         IHasNode<ClassDeclarationSyntax>//,
-                                        //IVisitable<IReflectionVisitor>
+        //IVisitable<IReflectionVisitor>
     {
-        private readonly SealedTypeWithCodeAnalysis classType;
+        private readonly ClassWithCodeAnalysis classType;
+        private readonly PartialClassMethodCollectionWithCodeAnalysis methods;
 
-        internal SealedClassWithCodeAnalysis()
+        internal PartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            classType = new SealedTypeWithCodeAnalysis();
+            classType = new ClassWithCodeAnalysis(document);
+            methods = new PartialClassMethodCollectionWithCodeAnalysis(classType.Type);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -76,8 +77,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override DestructorWithCodeAnalysis Destructor
         {
-            get { return classType.Type.Destructor; }
-            set { classType.Type.Destructor = value; }
+            get { return classType.Destructor; }
+            set { classType.Destructor = value; }
         }
 
         public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
@@ -85,8 +86,8 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Enums; }
             set { classType.Enums = value; }
         }
-
-        public override SealedClassEventCollectionWithCodeAnalysis Events
+        
+        public override ClassEventCollectionWithCodeAnalysis Events
         {
             get { return classType.Events; }
             set { classType.Events = value; }
@@ -104,7 +105,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.GenericParameters = value; }
         }
 
-        public override SealedClassIndexerCollectionWithCodeAnalysis Indexers
+        public override ClassIndexerCollectionWithCodeAnalysis Indexers
         {
             get { return classType.Indexers; }
             set { classType.Indexers = value; }
@@ -116,10 +117,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Interfaces = value; }
         }
 
-        public override SealedClassMethodCollectionWithCodeAnalysis Methods
+        public override PartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return classType.Methods; }
-            set { classType.Methods = value; }
+            get { return methods; }
+            set { methods.Replace(value); }
         }
 
         public override string Name
@@ -127,19 +128,19 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Name; }
             set { classType.Name = value; }
         }
-
+        
         public override ICollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
             get { return classType.OperatorOverloads; }
             set { classType.OperatorOverloads = value; }
         }
-
-        public override SealedClassPropertyCollectionWithCodeAnalysis Properties
+        
+        public override ClassPropertyCollectionWithCodeAnalysis Properties
         {
             get { return classType.Properties; }
             set { classType.Properties = value; }
         }
-
+        
         public override ClassNestedStructCollectionWithCodeAnalysis Structs
         {
             get { return classType.Structs; }
@@ -157,81 +158,50 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.ImplementedInterfaces; }
             set { classType.ImplementedInterfaces = value; }
         }
-
+        
         public override StaticConstructorWithCodeAnalysis StaticConstructor
         {
             get { return classType.StaticConstructor; }
             set { classType.StaticConstructor = value; }
         }
-
+        
         public ClassDeclarationSyntax Syntax
         {
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
         }
-
+        
         public override DocumentWithCodeAnalysis Document
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return classType.Document; }
+            set { classType.Document = value; }
         }
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return classType.Namespace; }
+            set { classType.Namespace = value; }
         }
 
         public override ProjectWithCodeAnalysis Project
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return classType.Project; }
+            set { classType.Project = value; }
         }
 
         public override SolutionWithCodeAnalysis Solution
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return classType.Solution; }
+            set { classType.Solution = value; }
         }
 
         public override TypeVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
+            get { return Syntax.Modifiers.ToTypeVisibilityModifier(); }
             set
             {
-                throw new NotImplementedException();
+                ClassDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithTypeVisibilityModifier(value));
             }
         }
 

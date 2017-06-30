@@ -34,6 +34,11 @@ namespace CSharpDom.CodeAnalysis
             type = new StaticTypeWithCodeAnalysis();
         }
 
+        public StaticTypeWithCodeAnalysis Type
+        {
+            get { return type; }
+        }
+
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return type.Attributes; }

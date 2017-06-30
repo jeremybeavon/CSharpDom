@@ -46,6 +46,11 @@ namespace CSharpDom.CodeAnalysis
             this.document = document;
         }
 
+        public ClassTypeWithCodeAnalysis Type
+        {
+            get { return classType; }
+        }
+
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return classType.Attributes; }

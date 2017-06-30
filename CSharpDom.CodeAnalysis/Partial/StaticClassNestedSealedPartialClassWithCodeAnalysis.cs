@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
-using CSharpDom.Editable;
+using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class StaticClassNestedClassWithCodeAnalysis :
-        EditableStaticClassNestedClass<
+    public sealed class StaticClassNestedSealedPartialClassWithCodeAnalysis :
+        EditableStaticClassNestedSealedPartialClass<
             AttributeGroupWithCodeAnalysis,
             IStaticTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            ClassEventCollectionWithCodeAnalysis,
-            ClassPropertyCollectionWithCodeAnalysis,
-            ClassIndexerCollectionWithCodeAnalysis,
-            ClassMethodCollectionWithCodeAnalysis,
+            SealedClassEventCollectionWithCodeAnalysis,
+            SealedClassPropertyCollectionWithCodeAnalysis,
+            SealedClassIndexerCollectionWithCodeAnalysis,
+            SealedPartialClassMethodCollectionWithCodeAnalysis,
             ClassFieldCollectionWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
@@ -31,14 +31,16 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly NestedClassWithCodeAnalysis classType;
+        private readonly StaticClassNestedSealedClassWithCodeAnalysis classType;
+        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
 
-        internal StaticClassNestedClassWithCodeAnalysis()
+        internal StaticClassNestedSealedPartialClassWithCodeAnalysis()
         {
-            classType = new NestedClassWithCodeAnalysis();
+            classType = new StaticClassNestedSealedClassWithCodeAnalysis();
+            methods = new SealedPartialClassMethodCollectionWithCodeAnalysis(classType.Class.Class.Type);
         }
         
-        public NestedClassWithCodeAnalysis Class
+        public StaticClassNestedSealedClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -75,8 +77,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStaticTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
-            set { throw new NotSupportedException(); }
+            get { return classType.DeclaringType; }
+            set { classType.DeclaringType = value; }
         }
 
         public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
@@ -97,7 +99,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Enums = value; }
         }
 
-        public override ClassEventCollectionWithCodeAnalysis Events
+        public override SealedClassEventCollectionWithCodeAnalysis Events
         {
             get { return classType.Events; }
             set { classType.Events = value; }
@@ -121,7 +123,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ImplementedInterfaces = value; }
         }
 
-        public override ClassIndexerCollectionWithCodeAnalysis Indexers
+        public override SealedClassIndexerCollectionWithCodeAnalysis Indexers
         {
             get { return classType.Indexers; }
             set { classType.Indexers = value; }
@@ -133,10 +135,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Interfaces = value; }
         }
 
-        public override ClassMethodCollectionWithCodeAnalysis Methods
+        public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return classType.Methods; }
-            set { classType.Methods = value; }
+            get { return methods; }
+            set { methods.Replace(value); }
         }
 
         public override string Name
@@ -151,7 +153,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.OperatorOverloads = value; }
         }
 
-        public override ClassPropertyCollectionWithCodeAnalysis Properties
+        public override SealedClassPropertyCollectionWithCodeAnalysis Properties
         {
             get { return classType.Properties; }
             set { classType.Properties = value; }
@@ -187,7 +189,7 @@ namespace CSharpDom.CodeAnalysis
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Class.Node; }
+            get { return classType.Class.Class.Type.Node; }
         }
     }
 }

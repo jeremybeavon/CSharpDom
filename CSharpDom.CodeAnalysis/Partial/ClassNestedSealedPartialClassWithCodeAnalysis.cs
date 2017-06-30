@@ -16,7 +16,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             SealedClassEventCollectionWithCodeAnalysis,
             SealedClassPropertyCollectionWithCodeAnalysis,
             SealedClassIndexerCollectionWithCodeAnalysis,
-            SealedClassMethodCollectionWithCodeAnalysis,
+            SealedPartialClassMethodCollectionWithCodeAnalysis,
             ClassFieldCollectionWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
@@ -32,13 +32,15 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasNode<ClassDeclarationSyntax>
     {
         private readonly ClassNestedSealedClassWithCodeAnalysis classType;
+        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
 
         internal ClassNestedSealedPartialClassWithCodeAnalysis()
         {
-            classType = new NestedSealedClassWithCodeAnalysis();
+            classType = new ClassNestedSealedClassWithCodeAnalysis();
+            methods = new SealedPartialClassMethodCollectionWithCodeAnalysis(classType.Class.Class.Type);
         }
         
-        public NestedSealedClassWithCodeAnalysis Class
+        public ClassNestedSealedClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -75,7 +77,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Type.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Type.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -133,10 +135,10 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Interfaces = value; }
         }
 
-        public override SealedClassMethodCollectionWithCodeAnalysis Methods
+        public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return classType.Methods; }
-            set { classType.Methods = value; }
+            get { return methods; }
+            set { methods.Replace(value); }
         }
 
         public override string Name
@@ -187,7 +189,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Class.Type.Node; }
+            get { return classType.Class.Class.Type.Node; }
         }
     }
 }

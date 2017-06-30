@@ -44,6 +44,11 @@ namespace CSharpDom.CodeAnalysis
             classType = new SealedTypeWithCodeAnalysis();
         }
 
+        public SealedTypeWithCodeAnalysis Type
+        {
+            get { return classType; }
+        }
+
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return classType.Attributes; }

@@ -1,12 +1,12 @@
-﻿using CSharpDom.Editable;
+﻿using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class StaticClassWithCodeAnalysis :
-        EditableStaticClass<
+    public sealed class StaticPartialClassWithCodeAnalysis :
+        EditableStaticPartialClass<
             NamespaceWithCodeAnalysis,
             DocumentWithCodeAnalysis,
             ProjectWithCodeAnalysis,
@@ -15,7 +15,7 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
             StaticClassPropertyWithCodeAnalysis,
-            StaticClassMethodCollectionWithCodeAnalysis,
+            StaticPartialClassMethodCollectionWithCodeAnalysis,
             StaticClassFieldCollectionWithCodeAnalysis,
             StaticClassNestedClassCollectionWithCodeAnalysis,
             StaticClassNestedDelegateWithCodeAnalysis,
@@ -27,11 +27,13 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ClassDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly StaticTypeWithCodeAnalysis type;
+        private readonly StaticClassWithCodeAnalysis type;
+        private readonly StaticPartialClassMethodCollectionWithCodeAnalysis methods;
 
-        internal StaticClassWithCodeAnalysis()
+        internal StaticPartialClassWithCodeAnalysis()
         {
-            type = new StaticTypeWithCodeAnalysis();
+            type = new StaticClassWithCodeAnalysis();
+            methods = new StaticPartialClassMethodCollectionWithCodeAnalysis(type.Type);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -82,10 +84,10 @@ namespace CSharpDom.CodeAnalysis
             set { type.Interfaces = value; }
         }
 
-        public override StaticClassMethodCollectionWithCodeAnalysis Methods
+        public override StaticPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return type.Methods; }
-            set { type.Methods = value; }
+            get { return methods; }
+            set { methods.Replace(value); }
         }
 
         public override string Name
@@ -150,7 +152,7 @@ namespace CSharpDom.CodeAnalysis
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return type.Node; }
+            get { return type.Type.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

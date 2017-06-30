@@ -1,22 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
-using CSharpDom.Editable;
+using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class StaticClassNestedSealedClassWithCodeAnalysis :
-        EditableStaticClassNestedSealedClass<
+    public sealed class StructNestedSealedPartialClassWithCodeAnalysis :
+        EditableStructNestedSealedPartialClass<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            IStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             SealedClassEventCollectionWithCodeAnalysis,
             SealedClassPropertyCollectionWithCodeAnalysis,
             SealedClassIndexerCollectionWithCodeAnalysis,
-            SealedClassMethodCollectionWithCodeAnalysis,
+            SealedPartialClassMethodCollectionWithCodeAnalysis,
             ClassFieldCollectionWithCodeAnalysis,
             ClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
@@ -31,14 +31,16 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly NestedSealedClassWithCodeAnalysis classType;
+        private readonly StructNestedSealedClassWithCodeAnalysis classType;
+        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
 
-        internal StaticClassNestedSealedClassWithCodeAnalysis()
+        internal StructNestedSealedPartialClassWithCodeAnalysis()
         {
-            classType = new NestedSealedClassWithCodeAnalysis();
+            classType = new StructNestedSealedClassWithCodeAnalysis();
+            methods = new SealedPartialClassMethodCollectionWithCodeAnalysis(classType.Class.Class.Type);
         }
         
-        public NestedSealedClassWithCodeAnalysis Class
+        public StructNestedSealedClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -73,10 +75,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ConversionOperators = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Type.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
-            set { throw new NotSupportedException(); }
+            get { return classType.DeclaringType; }
+            set { classType.DeclaringType = value; }
         }
 
         public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
@@ -133,10 +135,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Interfaces = value; }
         }
 
-        public override SealedClassMethodCollectionWithCodeAnalysis Methods
+        public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return classType.Methods; }
-            set { classType.Methods = value; }
+            get { return methods; }
+            set { methods.Replace(value); }
         }
 
         public override string Name
@@ -175,19 +177,19 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Syntax = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
             set
             {
                 ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
             }
         }
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Class.Type.Node; }
+            get { return classType.Class.Class.Type.Node; }
         }
     }
 }

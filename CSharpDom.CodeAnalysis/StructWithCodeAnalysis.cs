@@ -41,6 +41,11 @@ namespace CSharpDom.CodeAnalysis
             this.document = document;
         }
 
+        public StructTypeWithCodeAnalysis Type
+        {
+            get { return structType; }
+        }
+
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return structType.Attributes; }

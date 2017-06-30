@@ -51,5 +51,13 @@ namespace CSharpDom.CodeAnalysis.Partial
             get => partialMethodImplementations;
             set => classType.Members.CombineList(nameof(PartialMethodDefinitions), value.Select(item => item.Syntax));
         }
+
+        internal void Replace(NestedStaticPartialClassMethodCollectionWithCodeAnalysis value)
+        {
+            classType.Members.CombineList(
+                new MemberListSyntax(nameof(Methods), value.Methods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
+        }
     }
 }

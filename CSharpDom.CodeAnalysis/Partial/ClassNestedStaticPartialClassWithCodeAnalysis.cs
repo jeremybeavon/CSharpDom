@@ -1,19 +1,19 @@
 ﻿using CSharpDom.Common;
-using CSharpDom.Editable;
+using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class ClassNestedStaticClassWithCodeAnalysis :
-        EditableClassNestedStaticClass<
+    public sealed class ClassNestedStaticPartialClassWithCodeAnalysis :
+        EditableClassNestedStaticPartialClass<
             AttributeGroupWithCodeAnalysis,
             IClassTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
             StaticClassPropertyWithCodeAnalysis,
-            NestedStaticClassMethodCollectionWithCodeAnalysis,
+            NestedStaticPartialClassMethodCollectionWithCodeAnalysis,
             StaticClassFieldCollectionWithCodeAnalysis,
             StaticClassNestedClassCollectionWithCodeAnalysis,
             StaticClassNestedDelegateWithCodeAnalysis,
@@ -23,14 +23,16 @@ namespace CSharpDom.CodeAnalysis
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
-        private readonly NestedStaticClassWithCodeAnalysis classType;
+        private readonly ClassNestedStaticClassWithCodeAnalysis classType;
+        private readonly NestedStaticPartialClassMethodCollectionWithCodeAnalysis methods;
 
-        internal ClassNestedStaticClassWithCodeAnalysis()
+        internal ClassNestedStaticPartialClassWithCodeAnalysis()
         {
-            classType = new NestedStaticClassWithCodeAnalysis();
+            classType = new ClassNestedStaticClassWithCodeAnalysis();
+            methods = new NestedStaticPartialClassMethodCollectionWithCodeAnalysis(classType.Class.Class);
         }
 
-        public NestedStaticClassWithCodeAnalysis Class
+        public ClassNestedStaticClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -49,7 +51,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -89,10 +91,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Interfaces = value; }
         }
 
-        public override NestedStaticClassMethodCollectionWithCodeAnalysis Methods
+        public override NestedStaticPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return classType.Methods; }
-            set { classType.Methods = value; }
+            get { return methods; }
+            set { methods.Replace(value); }
         }
 
         public override string Name

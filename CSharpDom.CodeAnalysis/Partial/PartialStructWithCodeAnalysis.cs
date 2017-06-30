@@ -1,21 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.Common;
-using CSharpDom.Editable;
+using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class StructNestedStructWithCodeAnalysis :
-        EditableStructNestedStruct<
+    public sealed class PartialStructWithCodeAnalysis :
+        EditablePartialStruct<
+            NamespaceWithCodeAnalysis,
+            DocumentWithCodeAnalysis,
+            ProjectWithCodeAnalysis,
+            SolutionWithCodeAnalysis,
             AttributeGroupWithCodeAnalysis,
-            IStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             StructEventCollectionWithCodeAnalysis,
             StructPropertyCollectionWithCodeAnalysis,
             StructIndexerCollectionWithCodeAnalysis,
-            StructMethodCollectionWithCodeAnalysis,
+            PartialStructMethodCollectionWithCodeAnalysis,
             StructFieldCollectionWithCodeAnalysis,
             StructConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
@@ -27,16 +29,19 @@ namespace CSharpDom.CodeAnalysis
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
-        IHasNode<StructDeclarationSyntax>
+        IHasNode<StructDeclarationSyntax>//,
+        //IVisitable<IReflectionVisitor>
     {
-        private readonly NestedStructWithCodeAnalysis structType;
+        private readonly StructWithCodeAnalysis structType;
+        private readonly PartialStructMethodCollectionWithCodeAnalysis methods;
 
-        internal StructNestedStructWithCodeAnalysis()
+        internal PartialStructWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            structType = new NestedStructWithCodeAnalysis();
+            structType = new StructWithCodeAnalysis(document);
+            methods = new PartialStructMethodCollectionWithCodeAnalysis(structType.Type);
         }
-        
-        public NestedStructWithCodeAnalysis Struct
+
+        public StructWithCodeAnalysis Struct
         {
             get { return structType; }
         }
@@ -65,18 +70,12 @@ namespace CSharpDom.CodeAnalysis
             set { structType.ConversionOperators = value; }
         }
 
-        public override IStructTypeWithCodeAnalysis DeclaringType
-        {
-            get { return structType.Struct.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
-            set { throw new NotSupportedException(); }
-        }
-
         public override ICollection<StructNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return structType.Delegates; }
             set { structType.Delegates = value; }
         }
-
+        
         public override ICollection<StructNestedEnumWithCodeAnalysis> Enums
         {
             get { return structType.Enums; }
@@ -101,12 +100,6 @@ namespace CSharpDom.CodeAnalysis
             set { structType.GenericParameters = value; }
         }
 
-        public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
-        {
-            get { return structType.ImplementedInterfaces; }
-            set { structType.ImplementedInterfaces = value; }
-        }
-
         public override StructIndexerCollectionWithCodeAnalysis Indexers
         {
             get { return structType.Indexers; }
@@ -119,10 +112,10 @@ namespace CSharpDom.CodeAnalysis
             set { structType.Interfaces = value; }
         }
 
-        public override StructMethodCollectionWithCodeAnalysis Methods
+        public override PartialStructMethodCollectionWithCodeAnalysis Methods
         {
-            get { return structType.Methods; }
-            set { structType.Methods = value; }
+            get { return methods; }
+            set { methods.Replace(value); }
         }
 
         public override string Name
@@ -143,16 +136,22 @@ namespace CSharpDom.CodeAnalysis
             set { structType.Properties = value; }
         }
 
-        public override StaticConstructorWithCodeAnalysis StaticConstructor
-        {
-            get { return structType.StaticConstructor; }
-            set { structType.StaticConstructor = value; }
-        }
-
         public override StructNestedStructCollectionWithCodeAnalysis Structs
         {
             get { return structType.Structs; }
             set { structType.Structs = value; }
+        }
+        
+        public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
+        {
+            get { return structType.ImplementedInterfaces; }
+            set { structType.ImplementedInterfaces = value; }
+        }
+
+        public override StaticConstructorWithCodeAnalysis StaticConstructor
+        {
+            get { return structType.StaticConstructor; }
+            set { structType.StaticConstructor = value; }
         }
 
         public StructDeclarationSyntax Syntax
@@ -161,19 +160,49 @@ namespace CSharpDom.CodeAnalysis
             set { structType.Syntax = value; }
         }
 
-        public override StructMemberVisibilityModifier Visibility
+        public override DocumentWithCodeAnalysis Document
         {
-            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
-            set
-            {
-                StructDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
-            }
+            get { return structType.Document; }
+            set { structType.Document = value; }
         }
-        
+
+        public override NamespaceWithCodeAnalysis Namespace
+        {
+            get { return structType.Namespace; }
+            set { structType.Namespace = value; }
+        }
+
+        public override ProjectWithCodeAnalysis Project
+        {
+            get { return structType.Project; }
+            set { structType.Project = value; }
+        }
+
+        public override SolutionWithCodeAnalysis Solution
+        {
+            get { return structType.Solution; }
+            set { structType.Solution = value; }
+        }
+
+        public override TypeVisibilityModifier Visibility
+        {
+            get { return structType.Visibility; }
+            set { structType.Visibility = value; }
+        }
+
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.Struct.Node; }
+            get { return structType.Type.Node; }
         }
+
+        /*public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitStructWithCodeAnalysis(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
+        }*/
     }
 }

@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
-using CSharpDom.Editable;
+using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class ClassNestedStructWithCodeAnalysis :
-        EditableClassNestedStruct<
+    public sealed class StructNestedPartialStructWithCodeAnalysis :
+        EditableStructNestedPartialStruct<
             AttributeGroupWithCodeAnalysis,
-            IClassTypeWithCodeAnalysis,
+            IStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             StructEventCollectionWithCodeAnalysis,
             StructPropertyCollectionWithCodeAnalysis,
             StructIndexerCollectionWithCodeAnalysis,
-            StructMethodCollectionWithCodeAnalysis,
+            PartialStructMethodCollectionWithCodeAnalysis,
             StructFieldCollectionWithCodeAnalysis,
             StructConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
@@ -29,14 +29,16 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<StructDeclarationSyntax>,
         IHasNode<StructDeclarationSyntax>
     {
-        private readonly NestedStructWithCodeAnalysis structType;
+        private readonly StructNestedStructWithCodeAnalysis structType;
+        private readonly PartialStructMethodCollectionWithCodeAnalysis methods;
 
-        internal ClassNestedStructWithCodeAnalysis()
+        internal StructNestedPartialStructWithCodeAnalysis()
         {
-            structType = new NestedStructWithCodeAnalysis();
+            structType = new StructNestedStructWithCodeAnalysis();
+            methods = new PartialStructMethodCollectionWithCodeAnalysis(structType.Struct.Struct);
         }
         
-        public NestedStructWithCodeAnalysis Struct
+        public StructNestedStructWithCodeAnalysis Struct
         {
             get { return structType; }
         }
@@ -65,10 +67,10 @@ namespace CSharpDom.CodeAnalysis
             set { structType.ConversionOperators = value; }
         }
 
-        public override IClassTypeWithCodeAnalysis DeclaringType
+        public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.Struct.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
-            set { throw new NotSupportedException(); }
+            get { return structType.DeclaringType; }
+            set { structType.DeclaringType = value; }
         }
 
         public override ICollection<StructNestedDelegateWithCodeAnalysis> Delegates
@@ -119,10 +121,10 @@ namespace CSharpDom.CodeAnalysis
             set { structType.Interfaces = value; }
         }
 
-        public override StructMethodCollectionWithCodeAnalysis Methods
+        public override PartialStructMethodCollectionWithCodeAnalysis Methods
         {
-            get { return structType.Methods; }
-            set { structType.Methods = value; }
+            get { return methods; }
+            set { methods.Replace(value); }
         }
 
         public override string Name
@@ -161,19 +163,19 @@ namespace CSharpDom.CodeAnalysis
             set { structType.Syntax = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override StructMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
             set
             {
                 StructDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
             }
         }
         
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.Struct.Node; }
+            get { return structType.Struct.Struct.Node; }
         }
     }
 }
