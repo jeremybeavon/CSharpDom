@@ -11,7 +11,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassCollection,
             ReadOnlyDelegate,
             ReadOnlyEnum,
-            ReadOnlyInterfaceCollection,
+            ReadOnlyInterface,
             ReadOnlyStructCollection>
     {
         private readonly string name;
@@ -20,7 +20,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         private readonly ReadOnlyClassCollection classes;
         private readonly IReadOnlyCollection<ReadOnlyDelegate> delegates;
         private readonly IReadOnlyCollection<ReadOnlyEnum> enums;
-        private readonly ReadOnlyInterfaceCollection interfaces;
+        private readonly IReadOnlyCollection<ReadOnlyInterface> interfaces;
         private readonly ReadOnlyStructCollection structs;
 
         public ReadOnlyNamespace(Namespace @namespace)
@@ -31,7 +31,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             classes = new ReadOnlyClassCollection(@namespace.Classes);
             delegates = @namespace.Delegates.ToArray(@delegate => new ReadOnlyDelegate(@delegate));
             enums = @namespace.Enums.ToArray(@enum => new ReadOnlyEnum(@enum));
-            interfaces = new ReadOnlyInterfaceCollection(@namespace.Interfaces);
+            interfaces = @namespace.Interfaces.ToArray(@interface => new ReadOnlyInterface(@interface));
             structs = new ReadOnlyStructCollection(@namespace.Structs);
         }
 
@@ -50,7 +50,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return enums; }
         }
 
-        public override ReadOnlyInterfaceCollection Interfaces
+        public override IReadOnlyCollection<ReadOnlyInterface> Interfaces
         {
             get { return interfaces; }
         }

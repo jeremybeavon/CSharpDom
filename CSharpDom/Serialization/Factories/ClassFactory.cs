@@ -27,7 +27,7 @@ namespace CSharpDom.Serialization.Factories
                 GenericParameters = @class.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
                 ImplementedInterfaces = @class.ImplementedInterfaces.ToList(@interface => new InterfaceReferenceFactory(@interface).Value),
                 Indexers = new ClassIndexerCollectionFactory(@class.Indexers).Value,
-                Interfaces = new ClassNestedInterfaceCollectionFactory(@class.Interfaces).Value,
+                Interfaces = @class.Interfaces.ToList(@interface => new ClassNestedInterfaceFactory(@interface).Value),
                 Methods = new ClassMethodCollectionFactory(@class.Methods).Value,
                 Name = @class.Name,
                 OperatorOverloads = @class.OperatorOverloads.ToList(@operator => new OperatorOverloadFactory(@operator).Value),

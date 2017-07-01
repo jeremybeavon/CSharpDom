@@ -123,7 +123,7 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
-        public IClassNestedInterfaceWrapper Interfaces
+        public IReadOnlyCollection<IClassNestedInterfaceWrapper> Interfaces
         {
             get
             {

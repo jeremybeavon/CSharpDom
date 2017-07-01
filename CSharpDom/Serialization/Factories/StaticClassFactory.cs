@@ -21,7 +21,7 @@ namespace CSharpDom.Serialization.Factories
                 Events = new StaticClassEventCollectionFactory(@class.Events).Value,
                 Fields = new StaticClassFieldCollectionFactory(@class.Fields).Value,
                 GenericParameters = @class.GenericParameters.ToGenericParameterDeclarationListUsingFactory(),
-                Interfaces = new StaticClassNestedInterfaceCollectionFactory(@class.Interfaces).Value,
+                Interfaces = @class.Interfaces.ToList(@interface => new StaticClassNestedInterfaceFactory(@interface).Value),
                 Methods = new StaticClassMethodCollectionFactory(@class.Methods).Value,
                 Name = @class.Name,
                 Properties = @class.Properties.ToList(property => new StaticClassPropertyFactory(property).Value),

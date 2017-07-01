@@ -5,14 +5,14 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class Namespace :
-        INamespace<UsingDirective, Namespace, ClassCollection, Delegate, Enum, InterfaceCollection, StructCollection>
+        INamespace<UsingDirective, Namespace, ClassCollection, Delegate, Enum, Interface, StructCollection>
     {
         public Namespace()
         {
             Classes = new ClassCollection();
             Delegates = new List<Delegate>();
             Enums = new List<Enum>();
-            Interfaces = new InterfaceCollection();
+            Interfaces = new List<Interface>();
             Namespaces = new List<Namespace>();
             Structs = new StructCollection();
             UsingDirectives = new List<UsingDirective>();
@@ -24,7 +24,7 @@ namespace CSharpDom.Serialization
 
         public List<Enum> Enums { get; set; }
 
-        public InterfaceCollection Interfaces { get; set; }
+        public List<Interface> Interfaces { get; set; }
 
         public string Name { get; set; }
 
@@ -53,6 +53,8 @@ namespace CSharpDom.Serialization
         {
             get { return UsingDirectives; }
         }
+
+        IReadOnlyCollection<Interface> IHasInterfaces<Interface>.Interfaces => Interfaces;
 
         public void Accept(IGenericVisitor visitor)
         {

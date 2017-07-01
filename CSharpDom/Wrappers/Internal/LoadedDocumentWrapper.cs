@@ -11,7 +11,7 @@ namespace CSharpDom.Wrappers.Internal
         private Func<IReadOnlyCollection<IDelegateWrapper>> delegates;
         private Func<IDocumentWrapper> document;
         private Func<IReadOnlyCollection<IEnumWrapper>> enums;
-        private Func<IInterfaceWrapper> interfaces;
+        private Func<IReadOnlyCollection<IInterfaceWrapper>> interfaces;
         private Func<IReadOnlyCollection<IAttributeGroupWrapper>> moduleAttributes;
         private Func<IReadOnlyCollection<INamespaceWrapper>> namespaces;
         private Func<IProjectWrapper> project;
@@ -49,7 +49,7 @@ namespace CSharpDom.Wrappers.Internal
             get { return enums(); }
         }
 
-        public IInterfaceWrapper Interfaces
+        public IReadOnlyCollection<IInterfaceWrapper> Interfaces
         {
             get { return interfaces(); }
         }
@@ -106,7 +106,9 @@ namespace CSharpDom.Wrappers.Internal
             enums = () => new ReadOnlyCollectionWrapper<TEnum, IEnumWrapper>(
                 loadedDocument.Enums,
                 input => new EnumWrapper(input));
-            //s\interfaces = () => new InterfaceCollectionWrapper(loadedDocument.Interfaces);
+            interfaces = () => new ReadOnlyCollectionWrapper<TInterface, IInterfaceWrapper>(
+                loadedDocument.Interfaces,
+                input => new InterfaceWrapper(input));
             moduleAttributes = loadedDocument.ModuleAttributes.WrapAttributes();
             namespaces = () => new ReadOnlyCollectionWrapper<TNamespace, INamespaceWrapper>(
                 loadedDocument.Namespaces,

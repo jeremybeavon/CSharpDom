@@ -103,7 +103,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.Indexers; }
         }
 
-        public override ReadOnlyStructNestedInterface Interfaces
+        public override IReadOnlyCollection<ReadOnlyStructNestedInterface> Interfaces
         {
             get { return body.Interfaces; }
         }

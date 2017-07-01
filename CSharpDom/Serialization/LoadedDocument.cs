@@ -16,7 +16,7 @@ namespace CSharpDom.Serialization
             ClassCollection,
             Delegate,
             Enum,
-            InterfaceCollection,
+            Interface,
             StructCollection>
     {
         public LoadedDocument()
@@ -25,7 +25,7 @@ namespace CSharpDom.Serialization
             Classes = new ClassCollection();
             Delegates = new List<Delegate>();
             Enums = new List<Enum>();
-            Interfaces = new InterfaceCollection();
+            Interfaces = new List<Interface>();
             ModuleAttributes = new List<AttributeGroup>();
             Namespaces = new List<Namespace>();
             Structs = new StructCollection();
@@ -45,7 +45,7 @@ namespace CSharpDom.Serialization
 
         public List<Enum> Enums { get; set; }
 
-        public InterfaceCollection Interfaces { get; set; }
+        public List<Interface> Interfaces { get; set; }
 
         public List<AttributeGroup> ModuleAttributes { get; set; }
 
@@ -94,6 +94,8 @@ namespace CSharpDom.Serialization
         {
             get { return UsingDirectives; }
         }
+
+        IReadOnlyCollection<Interface> IHasInterfaces<Interface>.Interfaces => Interfaces;
 
         public void Accept(IGenericVisitor visitor)
         {

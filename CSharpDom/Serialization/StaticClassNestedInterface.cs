@@ -50,6 +50,8 @@ namespace CSharpDom.Serialization
         
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
+        public bool IsPartial { get; set; }
+
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {
             get { return Attributes; }

@@ -28,7 +28,6 @@ namespace CSharpDom.Mono.Cecil.Internal
             ClassNestedStaticClassWithMonoCecil,
             ClassNestedDelegateWithMonoCecil,
             ClassNestedEnumWithMonoCecil,
-            ClassNestedInterfaceCollectionWithMonoCecil,
             ClassNestedInterfaceWithMonoCecil,
             ClassNestedStructCollectionWithMonoCecil,
             ClassNestedStructWithMonoCecil>
@@ -37,7 +36,6 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly ClassEventCollectionWithMonoCecil events;
         private readonly ClassFieldCollectionWithMonoCecil fields;
         private readonly ClassIndexerCollectionWithMonoCecil indexers;
-        private readonly ClassNestedInterfaceCollectionWithMonoCecil interfaces;
         private readonly ClassMethodCollectionWithMonoCecil methods;
         private readonly ClassPropertyCollectionWithMonoCecil properties;
         private readonly ClassNestedStructCollectionWithMonoCecil structs;
@@ -49,7 +47,6 @@ namespace CSharpDom.Mono.Cecil.Internal
             events = new ClassEventCollectionWithMonoCecil(this);
             fields = new ClassFieldCollectionWithMonoCecil(this);
             indexers = new ClassIndexerCollectionWithMonoCecil(this);
-            interfaces = new ClassNestedInterfaceCollectionWithMonoCecil(this);
             methods = new ClassMethodCollectionWithMonoCecil(this);
             properties = new ClassPropertyCollectionWithMonoCecil(this);
             structs = new ClassNestedStructCollectionWithMonoCecil(this);
@@ -74,12 +71,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         {
             get { return indexers; }
         }
-
-        public override ClassNestedInterfaceCollectionWithMonoCecil Interfaces
-        {
-            get { return interfaces; }
-        }
-
+        
         public override ClassMethodCollectionWithMonoCecil Methods
         {
             get { return methods; }

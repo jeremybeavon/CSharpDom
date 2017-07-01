@@ -35,7 +35,7 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
-        public IInterfaceWrapper Interfaces
+        public IReadOnlyCollection<IInterfaceWrapper> Interfaces
         {
             get
             {

@@ -67,7 +67,7 @@ namespace CSharpDom.Reflection
                 .Where(@namespace => @namespace.Name.Length != 0)
                 .ToList();
             classes = new ClassCollectionWithReflection(this.typeContainer);
-            //interfaces = new InterfaceCollectionWithReflection(this.typeContainer);
+            interfaces = this.typeContainer.Interfaces;
             structs = new StructCollectionWithReflection(this.typeContainer);
         }
 

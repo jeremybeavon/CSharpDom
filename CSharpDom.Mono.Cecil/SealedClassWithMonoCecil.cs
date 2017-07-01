@@ -29,7 +29,7 @@ namespace CSharpDom.Mono.Cecil
             ClassNestedClassCollectionWithMonoCecil,
             ClassNestedDelegateWithMonoCecil,
             ClassNestedEnumWithMonoCecil,
-            ClassNestedInterfaceCollectionWithMonoCecil,
+            ClassNestedInterfaceWithMonoCecil,
             ClassNestedStructCollectionWithMonoCecil,
             DestructorWithMonoCecil,
             StaticConstructorWithMonoCecil>,
@@ -115,7 +115,7 @@ namespace CSharpDom.Mono.Cecil
             get { return typeWithMonoCecil.Indexers; }
         }
 
-        public override ClassNestedInterfaceCollectionWithMonoCecil Interfaces
+        public override IReadOnlyCollection<ClassNestedInterfaceWithMonoCecil> Interfaces
         {
             get { return typeWithMonoCecil.Interfaces; }
         }

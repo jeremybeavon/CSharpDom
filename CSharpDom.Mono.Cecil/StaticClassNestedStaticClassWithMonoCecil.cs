@@ -18,7 +18,7 @@ namespace CSharpDom.Mono.Cecil
             StaticClassNestedClassCollectionWithMonoCecil,
             StaticClassNestedDelegateWithMonoCecil,
             StaticClassNestedEnumWithMonoCecil,
-            StaticClassNestedInterfaceCollectionWithMonoCecil,
+            StaticClassNestedInterfaceWithMonoCecil,
             StaticClassNestedStructCollectionWithMonoCecil,
             StaticConstructorWithMonoCecil>
     {
@@ -69,7 +69,7 @@ namespace CSharpDom.Mono.Cecil
             get { return nestedClass.GenericParameters; }
         }
         
-        public override StaticClassNestedInterfaceCollectionWithMonoCecil Interfaces
+        public override IReadOnlyCollection<StaticClassNestedInterfaceWithMonoCecil> Interfaces
         {
             get { return nestedClass.Interfaces; }
         }

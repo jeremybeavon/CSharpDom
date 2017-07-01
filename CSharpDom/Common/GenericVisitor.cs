@@ -462,7 +462,7 @@ namespace CSharpDom.Common
             VisitIfNotNull(loadedDocument.Classes, visitor);
             VisitCollection(loadedDocument.Delegates, visitor);
             VisitCollection(loadedDocument.Enums, visitor);
-            VisitIfNotNull(loadedDocument.Interfaces, visitor);
+            VisitCollection(loadedDocument.Interfaces, visitor);
             VisitIfNotNull(loadedDocument.Structs, visitor);
         }
 
@@ -618,7 +618,7 @@ namespace CSharpDom.Common
             VisitIfNotNull(@namespace.Classes, visitor);
             VisitCollection(@namespace.Delegates, visitor);
             VisitCollection(@namespace.Enums, visitor);
-            VisitIfNotNull(@namespace.Interfaces, visitor);
+            VisitCollection(@namespace.Interfaces, visitor);
             VisitIfNotNull(@namespace.Structs, visitor);
         }
 

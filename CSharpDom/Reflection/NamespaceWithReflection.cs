@@ -28,7 +28,7 @@ namespace CSharpDom.Reflection
             this.name = name;
             this.typeContainer = typeContainer;
             classes = new ClassCollectionWithReflection(typeContainer);
-            //interfaces = new InterfaceCollectionWithReflection(typeContainer);
+            interfaces = typeContainer.Interfaces;
             structs = new StructCollectionWithReflection(typeContainer);
         }
 

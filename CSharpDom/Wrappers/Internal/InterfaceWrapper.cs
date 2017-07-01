@@ -115,6 +115,8 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
+        public bool IsPartial => throw new NotImplementedException();
+
         public void Accept(IGenericVisitor visitor)
         {
             throw new NotImplementedException();

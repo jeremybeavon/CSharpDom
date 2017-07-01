@@ -19,7 +19,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassCollection,
             ReadOnlyDelegate,
             ReadOnlyEnum,
-            ReadOnlyInterfaceCollection,
+            ReadOnlyInterface,
             ReadOnlyStructCollection>
     {
         private readonly IReadOnlyCollection<ReadOnlyUsingDeclaration> usingDeclarations;
@@ -27,7 +27,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         private readonly ReadOnlyClassCollection classes;
         private readonly IReadOnlyCollection<ReadOnlyDelegate> delegates;
         private readonly IReadOnlyCollection<ReadOnlyEnum> enums;
-        private readonly ReadOnlyInterfaceCollection interfaces;
+        private readonly IReadOnlyCollection<ReadOnlyInterface> interfaces;
         private readonly ReadOnlyStructCollection structs;
 
         public ReadOnlyCodeGenerationFile(CodeGenerationFile codeGenerationFile)
@@ -37,7 +37,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             classes = new ReadOnlyClassCollection(codeGenerationFile.Classes);
             delegates = codeGenerationFile.Delegates.ToArray(@delegate => new ReadOnlyDelegate(@delegate));
             enums = codeGenerationFile.Enums.ToArray(@enum => new ReadOnlyEnum(@enum));
-            interfaces = new ReadOnlyInterfaceCollection(codeGenerationFile.Interfaces);
+            interfaces = codeGenerationFile.Interfaces.ToArray(@interface => new ReadOnlyInterface(@interface));
             structs = new ReadOnlyStructCollection(codeGenerationFile.Structs);
         }
 
@@ -61,7 +61,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return enums; }
         }
 
-        public override ReadOnlyInterfaceCollection Interfaces
+        public override IReadOnlyCollection<ReadOnlyInterface> Interfaces
         {
             get { return interfaces; }
         }

@@ -13,14 +13,14 @@ namespace CSharpDom.Mono.Cecil
             ClassCollectionWithMonoCecil,
             DelegateWithMonoCecil,
             EnumWithMonoCecil,
-            InterfaceCollectionWithMonoCecil,
+            InterfaceWithMonoCecil,
             StructCollectionWithMonoCecil>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly string name;
         private readonly TypeContainer typeContainer;
         private readonly ClassCollectionWithMonoCecil classes;
-        private readonly InterfaceCollectionWithMonoCecil interfaces;
+        private readonly IReadOnlyCollection<InterfaceWithMonoCecil> interfaces;
         private readonly StructCollectionWithMonoCecil structs;
 
         internal NamespaceWithMonoCecil(string name, TypeContainer typeContainer)
@@ -28,7 +28,7 @@ namespace CSharpDom.Mono.Cecil
             this.name = name;
             this.typeContainer = typeContainer;
             classes = new ClassCollectionWithMonoCecil(typeContainer);
-            interfaces = new InterfaceCollectionWithMonoCecil(typeContainer);
+            interfaces = typeContainer.Interfaces;
             structs = new StructCollectionWithMonoCecil(typeContainer);
         }
 
@@ -47,7 +47,7 @@ namespace CSharpDom.Mono.Cecil
             get { return typeContainer.Enums; }
         }
 
-        public override InterfaceCollectionWithMonoCecil Interfaces
+        public override IReadOnlyCollection<InterfaceWithMonoCecil> Interfaces
         {
             get { return interfaces; }
         }

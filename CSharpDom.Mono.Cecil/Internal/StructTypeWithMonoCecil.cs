@@ -1,6 +1,7 @@
 ﻿using CSharpDom.Common;
 using Mono.Cecil;
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 
 namespace CSharpDom.Mono.Cecil.Internal
@@ -28,7 +29,6 @@ namespace CSharpDom.Mono.Cecil.Internal
             StructNestedStaticClassWithMonoCecil,
             StructNestedDelegateWithMonoCecil,
             StructNestedEnumWithMonoCecil,
-            StructNestedInterfaceCollectionWithMonoCecil,
             StructNestedInterfaceWithMonoCecil,
             StructNestedStructCollectionWithMonoCecil,
             StructNestedStructWithMonoCecil>
@@ -37,7 +37,6 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly StructEventCollectionWithMonoCecil events;
         private readonly StructFieldCollectionWithMonoCecil fields;
         private readonly StructIndexerCollectionWithMonoCecil indexers;
-        private readonly StructNestedInterfaceCollectionWithMonoCecil interfaces;
         private readonly StructMethodCollectionWithMonoCecil methods;
         private readonly StructPropertyCollectionWithMonoCecil properties;
         private readonly StructNestedStructCollectionWithMonoCecil structs;
@@ -49,7 +48,6 @@ namespace CSharpDom.Mono.Cecil.Internal
             events = new StructEventCollectionWithMonoCecil(this);
             fields = new StructFieldCollectionWithMonoCecil(this);
             indexers = new StructIndexerCollectionWithMonoCecil(this);
-            interfaces = new StructNestedInterfaceCollectionWithMonoCecil(this);
             methods = new StructMethodCollectionWithMonoCecil(this);
             properties = new StructPropertyCollectionWithMonoCecil(this);
             structs = new StructNestedStructCollectionWithMonoCecil(this);
@@ -74,12 +72,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         {
             get { return indexers; }
         }
-
-        public override StructNestedInterfaceCollectionWithMonoCecil Interfaces
-        {
-            get { return interfaces; }
-        }
-
+        
         public override StructMethodCollectionWithMonoCecil Methods
         {
             get { return methods; }

@@ -83,5 +83,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return nestedInterface.Visibility; }
         }
+
+        public override bool IsPartial => nestedInterface.ISPartial;
     }
 }

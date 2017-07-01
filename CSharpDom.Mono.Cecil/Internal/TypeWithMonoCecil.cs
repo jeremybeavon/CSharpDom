@@ -31,7 +31,6 @@ namespace CSharpDom.Mono.Cecil.Internal
         TNestedStaticClass,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterfaceCollection,
         TNestedInterface,
         TNestedStructCollection,
         TNestedStruct> :
@@ -50,7 +49,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             TNestedClassCollection,
             TNestedDelegate,
             TNestedEnum,
-            TNestedInterfaceCollection,
+            TNestedInterface,
             TNestedStructCollection,
             StaticConstructorWithMonoCecil>,
         ITypeWithMonoCecil,
@@ -76,7 +75,6 @@ namespace CSharpDom.Mono.Cecil.Internal
         where TNestedClass : INestedClass
         where TNestedDelegate : INestedDelegate
         where TNestedEnum : INestedEnum
-        where TNestedInterfaceCollection : INestedInterfaceCollection
         where TNestedInterface : INestedInterface
         where TNestedStructCollection : INestedStructCollection
         where TNestedStruct : INestedStruct
@@ -84,6 +82,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly Lazy<InterfaceReferences> implementedInterfaces;
+        private readonly Lazy<IReadOnlyCollection<TNestedInterface>> interfaces;
         
         protected TypeWithMonoCecil(TType declaringType)
         {
@@ -92,6 +91,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             attributes = new Lazy<Attributes>(() => new Attributes(assembly, TypeDefinition, typeof(DefaultMemberAttribute)));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(assembly, TypeDefinition));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(assembly, TypeDefinition));
+            interfaces = new Lazy<IReadOnlyCollection<TNestedInterface>>(() => NestedTypeCollection.NestedTypes.NestedInterfaces);
             FieldCollection = new FieldCollection<TField, TConstant, TType>(
                 () => new Fields<TField, TConstant, TType>(declaringType, this));
             EventCollection = new EventCollection<TEvent, TEventProperty, TType>(
@@ -152,6 +152,8 @@ namespace CSharpDom.Mono.Cecil.Internal
         {
             get { return PropertyCollection; }
         }
+
+        public override IReadOnlyCollection<TNestedInterface> Interfaces => interfaces.Value;
 
         public NestedTypeCollection<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> NestedTypeCollection { get; private set; }
 

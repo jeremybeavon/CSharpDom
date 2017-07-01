@@ -81,6 +81,7 @@ namespace CSharpDom.Reflection.Internal
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<GenericParameterDeclarations> genericParameters;
         private readonly Lazy<InterfaceReferences> implementedInterfaces;
+        private readonly Lazy<IReadOnlyCollection<TNestedInterface>> interfaces;
         private readonly Lazy<Constructors<TConstructor>> constructors;
         
         protected TypeWithReflection(TType declaringType)
@@ -95,6 +96,7 @@ namespace CSharpDom.Reflection.Internal
             attributes = new Lazy<Attributes>(() => new Attributes(Type, typeof(DefaultMemberAttribute)));
             genericParameters = new Lazy<GenericParameterDeclarations>(() => new GenericParameterDeclarations(Type));
             implementedInterfaces = new Lazy<InterfaceReferences>(() => new InterfaceReferences(Type));
+            interfaces = new Lazy<IReadOnlyCollection<TNestedInterface>>(() => NestedTypeCollection.NestedTypes.NestedInterfaces);
             FieldCollection = new FieldCollection<TField, TConstant, TType>(
                 () => new Fields<TField, TConstant, TType>(declaringType, this));
             constructors = new Lazy<Constructors<TConstructor>>(
@@ -156,6 +158,11 @@ namespace CSharpDom.Reflection.Internal
         public PropertyCollection<TProperty, TIndexer, TType> IndexerCollection
         {
             get { return PropertyCollection; }
+        }
+
+        public override IReadOnlyCollection<TNestedInterface> Interfaces
+        {
+            get { return interfaces.Value; }
         }
 
         public NestedTypeCollection<TNestedAbstractClass, TNestedClass, TNestedSealedClass, TNestedStaticClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct> NestedTypeCollection { get; private set; }

@@ -22,7 +22,7 @@ namespace CSharpDom.Mono.Cecil
             ClassCollectionWithMonoCecil,
             DelegateWithMonoCecil,
             EnumWithMonoCecil,
-            InterfaceCollectionWithMonoCecil,
+            InterfaceWithMonoCecil,
             StructCollectionWithMonoCecil>,
         ISolution<AssemblyWithMonoCecil>,
         IProject<AssemblyWithMonoCecil, AssemblyWithMonoCecil, AssemblyWithMonoCecil>,
@@ -34,7 +34,7 @@ namespace CSharpDom.Mono.Cecil
             ClassCollectionWithMonoCecil,
             DelegateWithMonoCecil,
             EnumWithMonoCecil,
-            InterfaceCollectionWithMonoCecil,
+            InterfaceWithMonoCecil,
             StructCollectionWithMonoCecil>,
 
         IHasAssemblyDefinition//,
@@ -44,7 +44,7 @@ namespace CSharpDom.Mono.Cecil
         private readonly TypeContainer typeContainer;
         private readonly IReadOnlyCollection<NamespaceWithMonoCecil> namespaces;
         private readonly ClassCollectionWithMonoCecil classes;
-        private readonly InterfaceCollectionWithMonoCecil interfaces;
+        private readonly IReadOnlyCollection<InterfaceWithMonoCecil> interfaces;
         private readonly StructCollectionWithMonoCecil structs;
 
         public AssemblyWithMonoCecil(AssemblyDefinition assembly)
@@ -67,7 +67,7 @@ namespace CSharpDom.Mono.Cecil
                 .Where(@namespace => @namespace.Name.Length != 0)
                 .ToList();
             classes = new ClassCollectionWithMonoCecil(this.typeContainer);
-            interfaces = new InterfaceCollectionWithMonoCecil(this.typeContainer);
+            interfaces = typeContainer.Interfaces;
             structs = new StructCollectionWithMonoCecil(this.typeContainer);
         }
 
@@ -96,7 +96,7 @@ namespace CSharpDom.Mono.Cecil
             get { throw new NotImplementedException(); }
         }
 
-        public override InterfaceCollectionWithMonoCecil Interfaces
+        public override IReadOnlyCollection<InterfaceWithMonoCecil> Interfaces
         {
             get { return interfaces; }
         }

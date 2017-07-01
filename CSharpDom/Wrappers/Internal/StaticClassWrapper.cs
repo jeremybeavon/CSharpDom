@@ -155,6 +155,8 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
+        IReadOnlyCollection<IStaticClassNestedInterfaceWrapper> IHasInterfaces<IStaticClassNestedInterfaceWrapper>.Interfaces => throw new NotImplementedException();
+
         public void Accept(IGenericVisitor visitor)
         {
             throw new NotImplementedException();

@@ -36,7 +36,6 @@ namespace CSharpDom.Reflection.Internal
         private readonly SealedClassEventCollectionWithReflection events;
         private readonly ClassFieldCollectionWithReflection fields;
         private readonly SealedClassIndexerCollectionWithReflection indexers;
-        private readonly IReadOnlyCollection<ClassNestedInterfaceWithReflection> interfaces;
         private readonly SealedClassMethodCollectionWithReflection methods;
         private readonly SealedClassPropertyCollectionWithReflection properties;
         private readonly ClassNestedStructCollectionWithReflection structs;
@@ -48,7 +47,6 @@ namespace CSharpDom.Reflection.Internal
             events = new SealedClassEventCollectionWithReflection(this);
             fields = new ClassFieldCollectionWithReflection(this);
             indexers = new SealedClassIndexerCollectionWithReflection(this);
-            //interfaces = new ClassNestedInterfaceWithReflection(this);
             methods = new SealedClassMethodCollectionWithReflection(this);
             properties = new SealedClassPropertyCollectionWithReflection(this);
             structs = new ClassNestedStructCollectionWithReflection(this);
@@ -73,12 +71,7 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return indexers; }
         }
-
-        public override IReadOnlyCollection<ClassNestedInterfaceWithReflection> Interfaces
-        {
-            get { return interfaces; }
-        }
-
+        
         public override SealedClassMethodCollectionWithReflection Methods
         {
             get { return methods; }

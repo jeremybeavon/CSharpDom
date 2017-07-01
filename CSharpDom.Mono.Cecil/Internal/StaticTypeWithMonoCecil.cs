@@ -28,7 +28,6 @@ namespace CSharpDom.Mono.Cecil.Internal
             StaticClassNestedStaticClassWithMonoCecil,
             StaticClassNestedDelegateWithMonoCecil,
             StaticClassNestedEnumWithMonoCecil,
-            StaticClassNestedInterfaceCollectionWithMonoCecil,
             StaticClassNestedInterfaceWithMonoCecil,
             StaticClassNestedStructCollectionWithMonoCecil,
             StaticClassNestedStructWithMonoCecil>
@@ -36,7 +35,6 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly StaticClassNestedClassCollectionWithMonoCecil classes;
         private readonly StaticClassEventCollectionWithMonoCecil events;
         private readonly StaticClassFieldCollectionWithMonoCecil fields;
-        private readonly StaticClassNestedInterfaceCollectionWithMonoCecil interfaces;
         private readonly StaticClassMethodCollectionWithMonoCecil methods;
         private readonly StaticClassPropertyCollectionWithMonoCecil properties;
         private readonly StaticClassNestedStructCollectionWithMonoCecil structs;
@@ -47,7 +45,6 @@ namespace CSharpDom.Mono.Cecil.Internal
             classes = new StaticClassNestedClassCollectionWithMonoCecil(this);
             events = new StaticClassEventCollectionWithMonoCecil(this);
             fields = new StaticClassFieldCollectionWithMonoCecil(this);
-            interfaces = new StaticClassNestedInterfaceCollectionWithMonoCecil(this);
             methods = new StaticClassMethodCollectionWithMonoCecil(this);
             properties = new StaticClassPropertyCollectionWithMonoCecil(this);
             structs = new StaticClassNestedStructCollectionWithMonoCecil(this);
@@ -72,12 +69,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         {
             get { throw new NotSupportedException(); }
         }
-
-        public override StaticClassNestedInterfaceCollectionWithMonoCecil Interfaces
-        {
-            get { return interfaces; }
-        }
-
+        
         public override StaticClassMethodCollectionWithMonoCecil Methods
         {
             get { return methods; }

@@ -15,6 +15,8 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public Collection<AttributeGroup> Attributes { get; set; }
 
+        public bool ISPartial { get; set; }
+
         public string Name { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }

@@ -35,7 +35,6 @@ namespace CSharpDom.Reflection.Internal
         private readonly StaticClassNestedClassCollectionWithReflection classes;
         private readonly StaticClassEventCollectionWithReflection events;
         private readonly StaticClassFieldCollectionWithReflection fields;
-        private readonly IReadOnlyCollection<StaticClassNestedInterfaceWithReflection> interfaces;
         private readonly StaticClassMethodCollectionWithReflection methods;
         private readonly StaticClassPropertyCollectionWithReflection properties;
         private readonly StaticClassNestedStructCollectionWithReflection structs;
@@ -46,7 +45,6 @@ namespace CSharpDom.Reflection.Internal
             classes = new StaticClassNestedClassCollectionWithReflection(this);
             events = new StaticClassEventCollectionWithReflection(this);
             fields = new StaticClassFieldCollectionWithReflection(this);
-            //interfaces = new StaticClassNestedInterfaceWithReflection(this);
             methods = new StaticClassMethodCollectionWithReflection(this);
             properties = new StaticClassPropertyCollectionWithReflection(this);
             structs = new StaticClassNestedStructCollectionWithReflection(this);
@@ -71,12 +69,7 @@ namespace CSharpDom.Reflection.Internal
         {
             get { throw new NotSupportedException(); }
         }
-
-        public override IReadOnlyCollection<StaticClassNestedInterfaceWithReflection> Interfaces
-        {
-            get { return interfaces; }
-        }
-
+        
         public override StaticClassMethodCollectionWithReflection Methods
         {
             get { return methods; }

@@ -118,7 +118,6 @@
     <Compile Include="ClassNestedClassWithMonoCecil.cs" />
     <Compile Include="ClassNestedDelegateWithMonoCecil.cs" />
     <Compile Include="ClassNestedEnumWithMonoCecil.cs" />
-    <Compile Include="ClassNestedInterfaceCollectionWithMonoCecil.cs" />
     <Compile Include="ClassNestedInterfaceWithMonoCecil.cs" />
     <Compile Include="ClassNestedSealedClassWithMonoCecil.cs" />
     <Compile Include="ClassNestedStaticClassWithMonoCecil.cs" />
@@ -171,7 +170,6 @@
     <Compile Include="IHasTypeDefinition.cs" />
     <Compile Include="IndexerParameterWithMonoCecil.cs" />
     <Compile Include="InterfaceAccessorWithMonoCecil.cs" />
-    <Compile Include="InterfaceCollectionWithMonoCecil.cs" />
     <Compile Include="InterfaceEventWithMonoCecil.cs" />
     <Compile Include="InterfaceIndexerWithMonoCecil.cs" />
     <Compile Include="InterfaceMethodWithMonoCecil.cs" />
@@ -180,14 +178,12 @@
     <Compile Include="InterfaceWithMonoCecil.cs" />
     <Compile Include="Internal\AbstractClassFieldCollection.cs" />
     <Compile Include="Internal\AbstractClassNestedClassCollection.cs" />
-    <Compile Include="Internal\AbstractClassNestedInterfaceCollection.cs" />
     <Compile Include="Internal\AbstractClassNestedStructCollection.cs" />
     <Compile Include="Internal\AssemblyWithMonoCecilExtensions.cs" />
     <Compile Include="Internal\Attributes.cs" />
     <Compile Include="Internal\BasicTypeWithMonoCecil.cs" />
     <Compile Include="Internal\ClassFieldCollection.cs" />
     <Compile Include="Internal\ClassNestedClassCollection.cs" />
-    <Compile Include="Internal\ClassNestedInterfaceCollection.cs" />
     <Compile Include="Internal\ClassNestedStructCollection.cs" />
     <Compile Include="Internal\ClassTypeWithMonoCecil.cs" />
     <Compile Include="Internal\ConstructorWithMonoCecil.cs" />
@@ -248,7 +244,6 @@
     <Compile Include="Internal\PropertyWithMonoCecil.cs" />
     <Compile Include="Internal\SealedClassFieldCollection.cs" />
     <Compile Include="Internal\SealedClassNestedClassCollection.cs" />
-    <Compile Include="Internal\SealedClassNestedInterfaceCollection.cs" />
     <Compile Include="Internal\SealedClassNestedStructCollection.cs" />
     <Compile Include="Internal\SealedTypeWithMonoCecil.cs" />
     <Compile Include="Internal\SolutionWithMonoCecil.cs" />
@@ -298,7 +293,6 @@
     <Compile Include="StaticClassNestedClassWithMonoCecil.cs" />
     <Compile Include="StaticClassNestedDelegateWithMonoCecil.cs" />
     <Compile Include="StaticClassNestedEnumWithMonoCecil.cs" />
-    <Compile Include="StaticClassNestedInterfaceCollectionWithMonoCecil.cs" />
     <Compile Include="StaticClassNestedInterfaceWithMonoCecil.cs" />
     <Compile Include="StaticClassNestedSealedClassWithMonoCecil.cs" />
     <Compile Include="StaticClassNestedStaticClassWithMonoCecil.cs" />
@@ -325,7 +319,6 @@
     <Compile Include="StructNestedClassWithMonoCecil.cs" />
     <Compile Include="StructNestedDelegateWithMonoCecil.cs" />
     <Compile Include="StructNestedEnumWithMonoCecil.cs" />
-    <Compile Include="StructNestedInterfaceCollectionWithMonoCecil.cs" />
     <Compile Include="StructNestedInterfaceWithMonoCecil.cs" />
     <Compile Include="StructNestedSealedClassWithMonoCecil.cs" />
     <Compile Include="StructNestedStaticClassWithMonoCecil.cs" />

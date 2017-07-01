@@ -86,6 +86,8 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return declaringType.Assembly; }
         }
 
+        public override bool IsPartial => false;
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNestedInterfaceWithMonoCecil(this);

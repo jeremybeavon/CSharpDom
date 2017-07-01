@@ -18,7 +18,7 @@ namespace CSharpDom.Serialization.Factories
                 Classes = new ClassCollectionFactory(loadedDocument.Classes).Value,
                 Delegates = loadedDocument.Delegates.ToList(@delegate => new DelegateFactory(@delegate).Value),
                 Enums = loadedDocument.Enums.ToList(@enum => new EnumFactory(@enum).Value),
-                Interfaces = new InterfaceCollectionFactory(loadedDocument.Interfaces).Value,
+                Interfaces = loadedDocument.Interfaces.ToList(@interface => new InterfaceFactory(@interface).Value),
                 ModuleAttributes = loadedDocument.ModuleAttributes.ToAttributeListUsingFactory(),
                 Namespaces = loadedDocument.Namespaces.ToList(@namespace => new NamespaceFactory(@namespace).Value),
                 Structs = new StructCollectionFactory(loadedDocument.Structs).Value,

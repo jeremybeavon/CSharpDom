@@ -715,7 +715,7 @@ namespace CSharpDom.Text
             List<ISourceCodeBuilderStep> steps = new List<ISourceCodeBuilderStep>();
             steps.AddRange(loadedDocument.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum)));
             steps.AddRange(loadedDocument.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)));
-            steps.AddIfNotEmpty(loadedDocument.Interfaces);
+            steps.AddRange(loadedDocument.Interfaces.Select(@interface => new WriteChildNode<TInterface>(@interface)));
             steps.AddIfNotEmpty(loadedDocument.Structs);
             steps.AddIfNotEmpty(loadedDocument.Classes);
             steps.AddRange(loadedDocument.Namespaces.Select(@namespace => new WriteChildNode<TNamespace>(@namespace)));
@@ -857,7 +857,7 @@ namespace CSharpDom.Text
             List<ISourceCodeBuilderStep> steps = new List<ISourceCodeBuilderStep>();
             steps.AddRange(@namespace.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum)));
             steps.AddRange(@namespace.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)));
-            steps.AddIfNotEmpty(@namespace.Interfaces);
+            steps.AddRange(@namespace.Interfaces.Select(@interface => new WriteChildNode<TInterface>(@interface)));
             steps.AddIfNotEmpty(@namespace.Structs);
             steps.AddIfNotEmpty(@namespace.Classes);
             steps.AddRange(@namespace.Namespaces.Select(inner => new WriteChildNode<TNamespace>(inner)));
@@ -1434,7 +1434,7 @@ namespace CSharpDom.Text
             typeSteps.AddIfNotEmpty(type.Classes);
             typeSteps.AddRange(type.Delegates.Select(@delegate => new WriteChildNode<TNestedDelegate>(@delegate)));
             typeSteps.AddRange(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)));
-            typeSteps.AddIfNotEmpty(type.Interfaces);
+            typeSteps.AddRange(type.Interfaces.Select(@interface => new WriteChildNode<TNestedInterface>(@interface)));
             typeSteps.AddIfNotEmpty(type.Structs);
             if (typeSteps.Any())
             {
@@ -1891,7 +1891,7 @@ namespace CSharpDom.Text
             typeSteps.AddIfNotEmpty(type.Classes);
             typeSteps.AddRange(type.Delegates.Select(@delegate => new WriteChildNode<TNestedDelegate>(@delegate)));
             typeSteps.AddRange(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)));
-            typeSteps.AddIfNotEmpty(type.Interfaces);
+            typeSteps.AddRange(type.Interfaces.Select(@interface => new WriteChildNode<TNestedInterface>(@interface)));
             typeSteps.AddIfNotEmpty(type.Structs);
             if (typeSteps.Any())
             {

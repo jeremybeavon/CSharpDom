@@ -40,7 +40,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             Events = new ReadOnlyStructEventCollection(structBody);
             Fields = new ReadOnlyStructFieldCollection(structBody);
             Indexers = new ReadOnlyStructIndexerCollection(structBody);
-            Interfaces = new ReadOnlyStructNestedInterface(structBody);
+            Interfaces = structBody.NestedInterfaces.ToArray(@interface => new ReadOnlyStructNestedInterface(@interface));
             Methods = new ReadOnlyStructMethodCollection(structBody);
             OperatorOverloads =
                 structBody.BinaryOperators.Select(@operator => new ReadOnlyOperatorOverload(@operator))
@@ -91,7 +91,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public ReadOnlyStructIndexerCollection Indexers { get; private set; }
 
-        public ReadOnlyStructNestedInterface Interfaces { get; private set; }
+        public IReadOnlyCollection<ReadOnlyStructNestedInterface> Interfaces { get; private set; }
 
         public ReadOnlyStructMethodCollection Methods { get; private set; }
 

@@ -18,7 +18,7 @@ namespace CSharpDom.Mono.Cecil
             ClassNestedClassCollectionWithMonoCecil,
             ClassNestedDelegateWithMonoCecil,
             ClassNestedEnumWithMonoCecil,
-            ClassNestedInterfaceCollectionWithMonoCecil,
+            ClassNestedInterfaceWithMonoCecil,
             ClassNestedStructCollectionWithMonoCecil,
             StaticConstructorWithMonoCecil>,
         IClassType,

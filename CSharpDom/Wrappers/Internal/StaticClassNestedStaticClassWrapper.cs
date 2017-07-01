@@ -75,7 +75,7 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
-        public IStaticClassNestedInterfaceWrapper Interfaces
+        public IReadOnlyCollection<IStaticClassNestedInterfaceWrapper> Interfaces
         {
             get
             {

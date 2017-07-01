@@ -73,5 +73,7 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return nestedInterface.TypeDefinition.ClassMemberVisibility(); }
         }
+
+        public override bool IsPartial => false;
     }
 }
