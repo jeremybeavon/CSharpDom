@@ -24,7 +24,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassNestedClassCollection,
             ReadOnlyClassNestedDelegate,
             ReadOnlyClassNestedEnum,
-            ReadOnlyClassNestedInterfaceCollection,
+            ReadOnlyClassNestedInterface,
             ReadOnlyClassNestedStructCollection,
             NestedDestructorNotSupported,
             ReadOnlyStaticConstructor>
@@ -118,7 +118,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.Indexers; }
         }
         
-        public override ReadOnlyClassNestedInterfaceCollection Interfaces
+        public override IReadOnlyCollection<ReadOnlyClassNestedInterface> Interfaces
         {
             get { return body.Interfaces; }
         }

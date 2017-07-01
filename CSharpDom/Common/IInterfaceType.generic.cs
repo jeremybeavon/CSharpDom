@@ -3,6 +3,7 @@
     public interface IInterfaceType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> :
         IInterfaceType,
         IHasName,
+        IHasPartial,
         IHasAttributes<TAttributeGroup>,
         IHasGenericParameters<TGenericParameter>,
         IHasInterfaces<TInterfaceReference>,

@@ -21,7 +21,7 @@ namespace CSharpDom.Serialization
             StructNestedClassCollection,
             StructNestedDelegate,
             StructNestedEnum,
-            StructNestedInterfaceCollection,
+            StructNestedInterface,
             StructNestedStructCollection,
             StaticConstructor>
     {
@@ -38,7 +38,7 @@ namespace CSharpDom.Serialization
             GenericParameters = new List<GenericParameterDeclaration>();
             ImplementedInterfaces = new List<InterfaceReference>();
             Indexers = new StructIndexerCollection();
-            Interfaces = new StructNestedInterfaceCollection();
+            Interfaces = new List<StructNestedInterface>();
             Methods = new StructMethodCollection();
             OperatorOverloads = new List<OperatorOverload>();
             Properties = new StructPropertyCollection();
@@ -72,7 +72,7 @@ namespace CSharpDom.Serialization
 
         public StructIndexerCollection Indexers { get; set; }
 
-        public StructNestedInterfaceCollection Interfaces { get; set; }
+        public List<StructNestedInterface> Interfaces { get; set; }
         
         public StructMethodCollection Methods { get; set; }
 
@@ -127,7 +127,9 @@ namespace CSharpDom.Serialization
         {
             get { return OperatorOverloads; }
         }
-        
+
+        IReadOnlyCollection<StructNestedInterface> IHasInterfaces<StructNestedInterface>.Interfaces => Interfaces;
+
         public void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassNestedStruct(this);

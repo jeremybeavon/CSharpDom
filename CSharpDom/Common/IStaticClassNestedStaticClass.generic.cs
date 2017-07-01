@@ -10,11 +10,11 @@
         TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterfaceCollection,
+        TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
         IStaticClassNestedStaticClass,
-        INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStaticType
         where TGenericParameter : IGenericParameterDeclaration
@@ -25,7 +25,7 @@
         where TNestedClassCollection : IStaticClassNestedClassCollection
         where TNestedDelegate : IStaticClassNestedDelegate
         where TNestedEnum : IStaticClassNestedEnum
-        where TNestedInterfaceCollection : IStaticClassNestedInterfaceCollection
+        where TNestedInterface : IStaticClassNestedInterface
         where TNestedStructCollection : IStaticClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {

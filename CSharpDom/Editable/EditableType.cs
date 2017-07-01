@@ -21,10 +21,10 @@ namespace CSharpDom.Editable
         TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterfaceCollection,
+        TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
-        IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TInterfaceReference : IInterfaceReference
@@ -39,7 +39,7 @@ namespace CSharpDom.Editable
         where TNestedClassCollection : INestedClassCollection
         where TNestedDelegate : INestedDelegate
         where TNestedEnum : INestedEnum
-        where TNestedInterfaceCollection : INestedInterfaceCollection
+        where TNestedInterface : INestedInterface
         where TNestedStructCollection : INestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
@@ -65,7 +65,7 @@ namespace CSharpDom.Editable
 
         public abstract TIndexerCollection Indexers { get; set; }
 
-        public abstract TNestedInterfaceCollection Interfaces { get; set; }
+        public abstract IList<TNestedInterface> Interfaces { get; set; }
 
         public abstract TMethodCollection Methods { get; set; }
 
@@ -119,7 +119,10 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TOperatorOverload>(OperatorOverloads); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        IReadOnlyCollection<TNestedInterface> IHasInterfaces<TNestedInterface>.Interfaces =>
+            new ReadOnlyCollectionWrapper<TNestedInterface>(Interfaces);
+
+        public virtual void Accept(IGenericVisitor visitor)
         {
             visitor.VisitType(this);
         }

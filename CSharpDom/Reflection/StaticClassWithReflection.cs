@@ -21,7 +21,7 @@ namespace CSharpDom.Reflection
             StaticClassNestedClassCollectionWithReflection,
             StaticClassNestedDelegateWithReflection,
             StaticClassNestedEnumWithReflection,
-            StaticClassNestedInterfaceCollectionWithReflection,
+            StaticClassNestedInterfaceWithReflection,
             StaticClassNestedStructCollectionWithReflection,
             StaticConstructorWithReflection>,
         IInternalTypeWithReflection,
@@ -78,7 +78,7 @@ namespace CSharpDom.Reflection
             get { return typeWithReflection.GenericParameters; }
         }
         
-        public override StaticClassNestedInterfaceCollectionWithReflection Interfaces
+        public override IReadOnlyCollection<StaticClassNestedInterfaceWithReflection> Interfaces
         {
             get { return typeWithReflection.Interfaces; }
         }

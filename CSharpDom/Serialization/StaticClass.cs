@@ -20,7 +20,7 @@ namespace CSharpDom.Serialization
             StaticClassNestedClassCollection,
             StaticClassNestedDelegate,
             StaticClassNestedEnum,
-            StaticClassNestedInterfaceCollection,
+            StaticClassNestedInterface,
             StaticClassNestedStructCollection,
             StaticConstructor>
     {
@@ -33,7 +33,7 @@ namespace CSharpDom.Serialization
             Events = new StaticClassEventCollection();
             Fields = new StaticClassFieldCollection();
             GenericParameters = new List<GenericParameterDeclaration>();
-            Interfaces = new StaticClassNestedInterfaceCollection();
+            Interfaces = new List<StaticClassNestedInterface>();
             Methods = new StaticClassMethodCollection();
             Properties = new List<StaticClassProperty>();
             Structs = new StaticClassNestedStructCollection();
@@ -64,7 +64,7 @@ namespace CSharpDom.Serialization
 
         public List<GenericParameterDeclaration> GenericParameters { get; set; }
         
-        public StaticClassNestedInterfaceCollection Interfaces { get; set; }
+        public List<StaticClassNestedInterface> Interfaces { get; set; }
         
         public string Name { get; set; }
 
@@ -113,6 +113,8 @@ namespace CSharpDom.Serialization
         {
             get { return Properties; }
         }
+
+        IReadOnlyCollection<StaticClassNestedInterface> IHasInterfaces<StaticClassNestedInterface>.Interfaces => Interfaces;
 
         public void Accept(IGenericVisitor visitor)
         {

@@ -5,7 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.Wrappers
 {
     public interface INamespaceWrapper :
-        INamespace<IUsingDirectiveWrapper, INamespaceWrapper, IClassCollectionWrapper, IDelegateWrapper, IEnumWrapper, IInterfaceCollectionWrapper, IStructCollectionWrapper>
+        INamespace<IUsingDirectiveWrapper, INamespaceWrapper, IClassCollectionWrapper, IDelegateWrapper, IEnumWrapper, IInterfaceWrapper, IStructCollectionWrapper>
     {
     }
 }

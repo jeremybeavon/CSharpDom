@@ -25,7 +25,7 @@ namespace CSharpDom.Reflection.Internal
             ClassNestedClassCollectionWithReflection,
             ClassNestedDelegateWithReflection,
             ClassNestedEnumWithReflection,
-            ClassNestedInterfaceCollectionWithReflection,
+            ClassNestedInterfaceWithReflection,
             ClassNestedStructCollectionWithReflection,
             NestedDestructorWithReflection,
             StaticConstructorWithReflection>,
@@ -118,7 +118,7 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.Indexers; }
         }
 
-        public override ClassNestedInterfaceCollectionWithReflection Interfaces
+        public override IReadOnlyCollection<ClassNestedInterfaceWithReflection> Interfaces
         {
             get { return typeWithReflection.Interfaces; }
         }

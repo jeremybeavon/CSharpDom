@@ -39,6 +39,8 @@ namespace CSharpDom.Editable
 
         public abstract ICollection<TProperty> Properties { get; set; }
 
+        public abstract bool IsPartial { get; set; }
+
         IReadOnlyCollection<TAttributeGroup> IHasAttributes<TAttributeGroup>.Attributes
         {
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }

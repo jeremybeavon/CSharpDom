@@ -11,7 +11,7 @@ namespace CSharpDom.Wrappers.Internal
         private Func<IReadOnlyCollection<IDelegateWrapper>> delegates;
         private Func<IDocumentWrapper> document;
         private Func<IReadOnlyCollection<IEnumWrapper>> enums;
-        private Func<IInterfaceCollectionWrapper> interfaces;
+        private Func<IInterfaceWrapper> interfaces;
         private Func<IReadOnlyCollection<IAttributeGroupWrapper>> moduleAttributes;
         private Func<IReadOnlyCollection<INamespaceWrapper>> namespaces;
         private Func<IProjectWrapper> project;
@@ -49,7 +49,7 @@ namespace CSharpDom.Wrappers.Internal
             get { return enums(); }
         }
 
-        public IInterfaceCollectionWrapper Interfaces
+        public IInterfaceWrapper Interfaces
         {
             get { return interfaces(); }
         }
@@ -94,8 +94,8 @@ namespace CSharpDom.Wrappers.Internal
             GenericVisitor.VisitLoadedDocumentChildren(this, visitor);
         }
 
-        public override void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>(
-            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> loadedDocument)
+        public override void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>(
+            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> loadedDocument)
         {
             assemblyAttributes = loadedDocument.AssemblyAttributes.WrapAttributes();
             classes = () => new ClassCollectionWrapper(loadedDocument.Classes);
@@ -106,7 +106,7 @@ namespace CSharpDom.Wrappers.Internal
             enums = () => new ReadOnlyCollectionWrapper<TEnum, IEnumWrapper>(
                 loadedDocument.Enums,
                 input => new EnumWrapper(input));
-            interfaces = () => new InterfaceCollectionWrapper(loadedDocument.Interfaces);
+            //s\interfaces = () => new InterfaceCollectionWrapper(loadedDocument.Interfaces);
             moduleAttributes = loadedDocument.ModuleAttributes.WrapAttributes();
             namespaces = () => new ReadOnlyCollectionWrapper<TNamespace, INamespaceWrapper>(
                 loadedDocument.Namespaces,

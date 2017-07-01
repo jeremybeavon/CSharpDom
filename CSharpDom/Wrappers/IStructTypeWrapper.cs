@@ -20,7 +20,7 @@ namespace CSharpDom.Wrappers
             IStructNestedClassCollectionWrapper,
             IStructNestedDelegateWrapper,
             IStructNestedEnumWrapper,
-            IStructNestedInterfaceCollectionWrapper,
+            IStructNestedInterfaceWrapper,
             IStructNestedStructCollectionWrapper,
             IStaticConstructorWrapper>
     {

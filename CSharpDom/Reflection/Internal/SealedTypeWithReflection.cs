@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using CSharpDom.Common;
+using System.Collections.Generic;
 
 namespace CSharpDom.Reflection.Internal
 {
@@ -27,7 +28,6 @@ namespace CSharpDom.Reflection.Internal
             ClassNestedStaticClassWithReflection,
             ClassNestedDelegateWithReflection,
             ClassNestedEnumWithReflection,
-            ClassNestedInterfaceCollectionWithReflection,
             ClassNestedInterfaceWithReflection,
             ClassNestedStructCollectionWithReflection,
             ClassNestedStructWithReflection>
@@ -36,7 +36,7 @@ namespace CSharpDom.Reflection.Internal
         private readonly SealedClassEventCollectionWithReflection events;
         private readonly ClassFieldCollectionWithReflection fields;
         private readonly SealedClassIndexerCollectionWithReflection indexers;
-        private readonly ClassNestedInterfaceCollectionWithReflection interfaces;
+        private readonly IReadOnlyCollection<ClassNestedInterfaceWithReflection> interfaces;
         private readonly SealedClassMethodCollectionWithReflection methods;
         private readonly SealedClassPropertyCollectionWithReflection properties;
         private readonly ClassNestedStructCollectionWithReflection structs;
@@ -48,7 +48,7 @@ namespace CSharpDom.Reflection.Internal
             events = new SealedClassEventCollectionWithReflection(this);
             fields = new ClassFieldCollectionWithReflection(this);
             indexers = new SealedClassIndexerCollectionWithReflection(this);
-            interfaces = new ClassNestedInterfaceCollectionWithReflection(this);
+            //interfaces = new ClassNestedInterfaceWithReflection(this);
             methods = new SealedClassMethodCollectionWithReflection(this);
             properties = new SealedClassPropertyCollectionWithReflection(this);
             structs = new ClassNestedStructCollectionWithReflection(this);
@@ -74,7 +74,7 @@ namespace CSharpDom.Reflection.Internal
             get { return indexers; }
         }
 
-        public override ClassNestedInterfaceCollectionWithReflection Interfaces
+        public override IReadOnlyCollection<ClassNestedInterfaceWithReflection> Interfaces
         {
             get { return interfaces; }
         }

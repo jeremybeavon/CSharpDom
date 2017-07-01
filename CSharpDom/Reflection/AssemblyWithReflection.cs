@@ -22,7 +22,7 @@ namespace CSharpDom.Reflection
             ClassCollectionWithReflection,
             DelegateWithReflection,
             EnumWithReflection,
-            InterfaceCollectionWithReflection,
+            InterfaceWithReflection,
             StructCollectionWithReflection>,
         ISolution<AssemblyWithReflection>,
         IProject<AssemblyWithReflection, AssemblyWithReflection, AssemblyWithReflection>,
@@ -34,7 +34,7 @@ namespace CSharpDom.Reflection
             ClassCollectionWithReflection,
             DelegateWithReflection,
             EnumWithReflection,
-            InterfaceCollectionWithReflection,
+            InterfaceWithReflection,
             StructCollectionWithReflection>,
 
         IHasAssembly//,
@@ -44,7 +44,7 @@ namespace CSharpDom.Reflection
         private readonly TypeContainer typeContainer;
         private readonly IReadOnlyCollection<NamespaceWithReflection> namespaces;
         private readonly ClassCollectionWithReflection classes;
-        private readonly InterfaceCollectionWithReflection interfaces;
+        private readonly IReadOnlyCollection<InterfaceWithReflection> interfaces;
         private readonly StructCollectionWithReflection structs;
 
         public AssemblyWithReflection(Assembly assembly)
@@ -67,7 +67,7 @@ namespace CSharpDom.Reflection
                 .Where(@namespace => @namespace.Name.Length != 0)
                 .ToList();
             classes = new ClassCollectionWithReflection(this.typeContainer);
-            interfaces = new InterfaceCollectionWithReflection(this.typeContainer);
+            //interfaces = new InterfaceCollectionWithReflection(this.typeContainer);
             structs = new StructCollectionWithReflection(this.typeContainer);
         }
 
@@ -96,7 +96,7 @@ namespace CSharpDom.Reflection
             get { return assembly.Location; }
         }
 
-        public override InterfaceCollectionWithReflection Interfaces
+        public override IReadOnlyCollection<InterfaceWithReflection> Interfaces
         {
             get { return interfaces; }
         }

@@ -13,14 +13,14 @@ namespace CSharpDom.Reflection
             ClassCollectionWithReflection,
             DelegateWithReflection,
             EnumWithReflection,
-            InterfaceCollectionWithReflection,
+            InterfaceWithReflection,
             StructCollectionWithReflection>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly string name;
         private readonly TypeContainer typeContainer;
         private readonly ClassCollectionWithReflection classes;
-        private readonly InterfaceCollectionWithReflection interfaces;
+        private readonly IReadOnlyCollection<InterfaceWithReflection> interfaces;
         private readonly StructCollectionWithReflection structs;
 
         internal NamespaceWithReflection(string name, TypeContainer typeContainer)
@@ -28,7 +28,7 @@ namespace CSharpDom.Reflection
             this.name = name;
             this.typeContainer = typeContainer;
             classes = new ClassCollectionWithReflection(typeContainer);
-            interfaces = new InterfaceCollectionWithReflection(typeContainer);
+            //interfaces = new InterfaceCollectionWithReflection(typeContainer);
             structs = new StructCollectionWithReflection(typeContainer);
         }
 
@@ -47,7 +47,7 @@ namespace CSharpDom.Reflection
             get { return typeContainer.Enums; }
         }
 
-        public override InterfaceCollectionWithReflection Interfaces
+        public override IReadOnlyCollection<InterfaceWithReflection> Interfaces
         {
             get { return interfaces; }
         }

@@ -19,7 +19,7 @@ namespace CSharpDom.Wrappers
             IStaticClassNestedClassCollectionWrapper,
             IStaticClassNestedDelegateWrapper,
             IStaticClassNestedEnumWrapper,
-            IStaticClassNestedInterfaceCollectionWrapper,
+            IStaticClassNestedInterfaceWrapper,
             IStaticClassNestedStructCollectionWrapper,
             IStaticConstructorWrapper>
     {

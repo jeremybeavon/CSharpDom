@@ -79,7 +79,9 @@ namespace CSharpDom.Reflection.Internal
         {
             get { return type; }
         }
-        
+
+        public override bool IsPartial => false;
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitNestedInterfaceWithReflection(this);

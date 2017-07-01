@@ -25,7 +25,7 @@ namespace CSharpDom.Wrappers
             IClassNestedClassCollectionWrapper,
             IClassNestedDelegateWrapper,
             IClassNestedEnumWrapper,
-            IClassNestedInterfaceCollectionWrapper,
+            IClassNestedInterfaceWrapper,
             IClassNestedStructCollectionWrapper,
             IDestructorWrapper,
             IStaticConstructorWrapper>

@@ -10,7 +10,7 @@
         TClassCollection,
         TDelegate,
         TEnum,
-        TInterfaceCollection,
+        TInterface,
         TStructCollection> :
         ILoadedDocument,
         IHasSolution<TSolution>,
@@ -23,7 +23,7 @@
         IHasClassCollection<TClassCollection>,
         IHasDelegates<TDelegate>,
         IHasEnums<TEnum>,
-        IHasInterfaceCollection<TInterfaceCollection>,
+        IHasInterfaces<TInterface>,
         IHasStructCollection<TStructCollection>
         where TSolution : ISolution
         where TProject : IProject
@@ -34,7 +34,7 @@
         where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterfaceCollection : IInterfaceCollection
+        where TInterface : IInterface
         where TStructCollection : IStructCollection
     {
     }

@@ -8,7 +8,7 @@ namespace CSharpDom.Common
         TClassCollection,
         TDelegate,
         TEnum,
-        TInterfaceCollection,
+        TInterface,
         TStructCollection> :
         INamespace,
         IHasName,
@@ -17,14 +17,14 @@ namespace CSharpDom.Common
         IHasClassCollection<TClassCollection>,
         IHasDelegates<TDelegate>,
         IHasEnums<TEnum>,
-        IHasInterfaceCollection<TInterfaceCollection>,
+        IHasInterfaces<TInterface>,
         IHasStructCollection<TStructCollection>
         where TUsingDirective : IUsingDirective
         where TNamespace : INamespace
         where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterfaceCollection : IInterfaceCollection
+        where TInterface : IInterface
         where TStructCollection : IStructCollection
     {
     }

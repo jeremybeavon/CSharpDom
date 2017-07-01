@@ -14,9 +14,9 @@ namespace CSharpDom.BaseClasses
         TClassCollection,
         TDelegate,
         TEnum,
-        TInterfaceCollection,
+        TInterface,
         TStructCollection> :
-        ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>
+        ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
         where TSolution : ISolution
         where TProject : IProject
         where TDocument : IDocument
@@ -26,7 +26,7 @@ namespace CSharpDom.BaseClasses
         where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterfaceCollection : IInterfaceCollection
+        where TInterface : IInterface
         where TStructCollection : IStructCollection
     {
         public abstract IReadOnlyCollection<TAttributeGroup> AssemblyAttributes { get; }
@@ -39,7 +39,7 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyCollection<TEnum> Enums { get; }
 
-        public abstract TInterfaceCollection Interfaces { get; }
+        public abstract IReadOnlyCollection<TInterface> Interfaces { get; }
 
         public abstract IReadOnlyCollection<TAttributeGroup> ModuleAttributes { get; }
 

@@ -14,10 +14,10 @@ namespace CSharpDom.BaseClasses
         TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterfaceCollection,
+        TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
-        IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
@@ -27,7 +27,7 @@ namespace CSharpDom.BaseClasses
         where TNestedClassCollection : IStaticClassNestedClassCollection
         where TNestedDelegate : IStaticClassNestedDelegate
         where TNestedEnum : IStaticClassNestedEnum
-        where TNestedInterfaceCollection : IStaticClassNestedInterfaceCollection
+        where TNestedInterface : IStaticClassNestedInterface
         where TNestedStructCollection : IStaticClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
@@ -45,7 +45,7 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
 
-        public abstract TNestedInterfaceCollection Interfaces { get; }
+        public abstract IReadOnlyCollection<TNestedInterface> Interfaces { get; }
 
         public abstract TMethodCollection Methods { get; }
 

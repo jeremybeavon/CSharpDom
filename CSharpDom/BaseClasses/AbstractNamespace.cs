@@ -4,14 +4,14 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractNamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> :
-        INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>
+    public abstract class AbstractNamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> :
+        INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
         where TUsingDirective : IUsingDirective
         where TNamespace : INamespace
         where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterfaceCollection : IInterfaceCollection
+        where TInterface : IInterface
         where TStructCollection : IStructCollection
     {
         public abstract TClassCollection Classes { get; }
@@ -20,7 +20,7 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyCollection<TEnum> Enums { get; }
 
-        public abstract TInterfaceCollection Interfaces { get; }
+        public abstract IReadOnlyCollection<TInterface> Interfaces { get; }
 
         public abstract string Name { get; }
 

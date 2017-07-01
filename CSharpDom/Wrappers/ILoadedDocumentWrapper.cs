@@ -15,7 +15,7 @@ namespace CSharpDom.Wrappers
             IClassCollectionWrapper,
             IDelegateWrapper,
             IEnumWrapper,
-            IInterfaceCollectionWrapper,
+            IInterfaceWrapper,
             IStructCollectionWrapper>
     {
     }

@@ -30,7 +30,6 @@ namespace CSharpDom.Reflection.Internal
         TNestedStaticClass,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterfaceCollection,
         TNestedInterface,
         TNestedStructCollection,
         TNestedStruct> :
@@ -49,7 +48,7 @@ namespace CSharpDom.Reflection.Internal
             TNestedClassCollection,
             TNestedDelegate,
             TNestedEnum,
-            TNestedInterfaceCollection,
+            TNestedInterface,
             TNestedStructCollection,
             StaticConstructorWithReflection>,
         ITypeWithReflection,
@@ -75,7 +74,6 @@ namespace CSharpDom.Reflection.Internal
         where TNestedClass : INestedClass
         where TNestedDelegate : INestedDelegate
         where TNestedEnum : INestedEnum
-        where TNestedInterfaceCollection : INestedInterfaceCollection
         where TNestedInterface : INestedInterface
         where TNestedStructCollection : INestedStructCollection
         where TNestedStruct : INestedStruct

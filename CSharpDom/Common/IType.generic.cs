@@ -15,7 +15,7 @@
         TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterfaceCollection,
+        TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
         IType,
@@ -34,7 +34,7 @@
         IHasClassCollection<TNestedClassCollection>,
         IHasDelegates<TNestedDelegate>,
         IHasEnums<TNestedEnum>,
-        IHasInterfaceCollection<TNestedInterfaceCollection>,
+        IHasInterfaces<TNestedInterface>,
         IHasStructCollection<TNestedStructCollection>,
         IHasStaticConstructor<TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
@@ -51,7 +51,7 @@
         where TNestedClassCollection : INestedClassCollection
         where TNestedDelegate : INestedDelegate
         where TNestedEnum : INestedEnum
-        where TNestedInterfaceCollection : INestedInterfaceCollection
+        where TNestedInterface : INestedInterface
         where TNestedStructCollection : INestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {

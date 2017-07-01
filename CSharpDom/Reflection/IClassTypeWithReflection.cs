@@ -18,7 +18,7 @@ namespace CSharpDom.Reflection
             ClassNestedClassCollectionWithReflection,
             ClassNestedDelegateWithReflection,
             ClassNestedEnumWithReflection,
-            ClassNestedInterfaceCollectionWithReflection,
+            ClassNestedInterfaceWithReflection,
             ClassNestedStructCollectionWithReflection,
             StaticConstructorWithReflection>,
         IClassType,

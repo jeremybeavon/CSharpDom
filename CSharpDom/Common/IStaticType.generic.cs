@@ -10,7 +10,7 @@
         TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterfaceCollection,
+        TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
         IStaticType,
@@ -24,7 +24,7 @@
         IHasClassCollection<TNestedClassCollection>,
         IHasDelegates<TNestedDelegate>,
         IHasEnums<TNestedEnum>,
-        IHasInterfaceCollection<TNestedInterfaceCollection>,
+        IHasInterfaces<TNestedInterface>,
         IHasStructCollection<TNestedStructCollection>,
         IHasStaticConstructor<TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
@@ -36,7 +36,7 @@
         where TNestedClassCollection : IStaticClassNestedClassCollection
         where TNestedDelegate : IStaticClassNestedDelegate
         where TNestedEnum : IStaticClassNestedEnum
-        where TNestedInterfaceCollection : IStaticClassNestedInterfaceCollection
+        where TNestedInterface : IStaticClassNestedInterface
         where TNestedStructCollection : IStaticClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {

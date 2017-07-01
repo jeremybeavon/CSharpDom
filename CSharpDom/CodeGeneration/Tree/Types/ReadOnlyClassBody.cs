@@ -25,7 +25,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassNestedClassCollection,
             ReadOnlyClassNestedDelegate,
             ReadOnlyClassNestedEnum,
-            ReadOnlyClassNestedInterfaceCollection,
+            ReadOnlyClassNestedInterface,
             ReadOnlyClassNestedStructCollection,
             ReadOnlyStaticConstructor>
     {
@@ -40,7 +40,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             Events = new ReadOnlyClassEventCollection(classBody);
             Fields = new ReadOnlyClassFieldCollection(classBody);
             Indexers = new ReadOnlyClassIndexerCollection(classBody);
-            Interfaces = new ReadOnlyClassNestedInterfaceCollection(classBody);
+            Interfaces = classBody.NestedInterfaces.ToArray(@interface => new ReadOnlyClassNestedInterface(@interface));
             Methods = new ReadOnlyClassMethodCollection(classBody);
             OperatorOverloads =
                 classBody.BinaryOperators.Select(@operator => new ReadOnlyOperatorOverload(@operator))
@@ -95,7 +95,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public ReadOnlyClassIndexerCollection Indexers { get; private set; }
 
-        public ReadOnlyClassNestedInterfaceCollection Interfaces { get; private set; }
+        public IReadOnlyCollection<ReadOnlyClassNestedInterface> Interfaces { get; private set; }
 
         public ReadOnlyClassMethodCollection Methods { get; private set; }
 

@@ -91,15 +91,7 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
-        public void Accept(IGenericVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AcceptChildren(IGenericVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
+        public bool IsPartial => throw new NotImplementedException();
 
         public override void VisitStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
             IStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)

@@ -22,7 +22,7 @@ namespace CSharpDom.Serialization
             ClassNestedClassCollection,
             ClassNestedDelegate,
             ClassNestedEnum,
-            ClassNestedInterfaceCollection,
+            ClassNestedInterface,
             ClassNestedStructCollection,
             NestedDestructor,
             StaticConstructor>
@@ -40,7 +40,7 @@ namespace CSharpDom.Serialization
             GenericParameters = new List<GenericParameterDeclaration>();
             ImplementedInterfaces = new List<InterfaceReference>();
             Indexers = new SealedClassIndexerCollection();
-            Interfaces = new ClassNestedInterfaceCollection();
+            Interfaces = new List<ClassNestedInterface>();
             Methods = new SealedClassMethodCollection();
             OperatorOverloads = new List<OperatorOverload>();
             Properties = new SealedClassPropertyCollection();
@@ -78,7 +78,7 @@ namespace CSharpDom.Serialization
 
         public SealedClassIndexerCollection Indexers { get; set; }
         
-        public ClassNestedInterfaceCollection Interfaces { get; set; }
+        public List<ClassNestedInterface> Interfaces { get; set; }
         
         public SealedClassMethodCollection Methods { get; set; }
 
@@ -133,7 +133,9 @@ namespace CSharpDom.Serialization
         {
             get { return OperatorOverloads; }
         }
-        
+
+        IReadOnlyCollection<ClassNestedInterface> IHasInterfaces<ClassNestedInterface>.Interfaces => Interfaces;
+
         public void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStructNestedSealedClass(this);

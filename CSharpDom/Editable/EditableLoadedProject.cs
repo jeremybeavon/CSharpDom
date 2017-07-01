@@ -5,15 +5,15 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableLoadedProject<TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> :
-        ILoadedProject<TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>
+    public abstract class EditableLoadedProject<TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> :
+        ILoadedProject<TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
         where TSolution : ISolution
         where TProject : IProject
         where TNamespace : INamespace
         where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterfaceCollection : IInterfaceCollection
+        where TInterface : IInterface
         where TStructCollection : IStructCollection
     {
         public abstract TClassCollection Classes { get; set; }
@@ -22,7 +22,7 @@ namespace CSharpDom.Editable
 
         public abstract ICollection<TEnum> Enums { get; set; }
 
-        public abstract TInterfaceCollection Interfaces { get; set; }
+        public abstract ICollection<TInterface> Interfaces { get; set; }
 
         public abstract ICollection<TNamespace> Namespaces { get; set; }
 
@@ -46,5 +46,8 @@ namespace CSharpDom.Editable
         {
             get { return new ReadOnlyCollectionWrapper<TNamespace>(Namespaces); }
         }
+
+        IReadOnlyCollection<TInterface> IHasInterfaces<TInterface>.Interfaces =>
+            new ReadOnlyCollectionWrapper<TInterface>(Interfaces);
     }
 }

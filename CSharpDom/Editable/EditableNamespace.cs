@@ -5,14 +5,14 @@ using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableNamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection> :
-        INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterfaceCollection, TStructCollection>
+    public abstract class EditableNamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> :
+        INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
         where TUsingDirective : IUsingDirective
         where TNamespace : INamespace
         where TClassCollection : IClassCollection
         where TDelegate : IDelegate
         where TEnum : IEnum
-        where TInterfaceCollection : IInterfaceCollection
+        where TInterface : IInterface
         where TStructCollection : IStructCollection
     {
         public abstract TClassCollection Classes { get; set; }
@@ -21,7 +21,7 @@ namespace CSharpDom.Editable
 
         public abstract ICollection<TEnum> Enums { get; set; }
 
-        public abstract TInterfaceCollection Interfaces { get; set; }
+        public abstract ICollection<TInterface> Interfaces { get; set; }
 
         public abstract string Name { get; set; }
 
@@ -50,6 +50,9 @@ namespace CSharpDom.Editable
         {
             get { return new ReadOnlyCollectionWrapper<TUsingDirective>(UsingDirectives); }
         }
+
+        IReadOnlyCollection<TInterface> IHasInterfaces<TInterface>.Interfaces =>
+            new ReadOnlyCollectionWrapper<TInterface>(Interfaces);
 
         public void Accept(IGenericVisitor visitor)
         {

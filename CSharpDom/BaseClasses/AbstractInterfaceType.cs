@@ -35,5 +35,7 @@ namespace CSharpDom.BaseClasses
         public abstract string Name { get; }
 
         public abstract IReadOnlyCollection<TProperty> Properties { get; }
+
+        public abstract bool IsPartial { get; }
     }
 }

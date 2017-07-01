@@ -72,5 +72,7 @@ namespace CSharpDom.Reflection
         {
             get { return nestedInterface.Type.StructMemberVisibility(); }
         }
+
+        public override bool IsPartial => false;
     }
 }

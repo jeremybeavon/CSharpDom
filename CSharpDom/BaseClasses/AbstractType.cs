@@ -19,10 +19,10 @@ namespace CSharpDom.BaseClasses
         TNestedClassCollection,
         TNestedDelegate,
         TNestedEnum,
-        TNestedInterfaceCollection,
+        TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
-        IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterfaceCollection, TNestedStructCollection, TStaticConstructor>
+        IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TInterfaceReference : IInterfaceReference
@@ -37,7 +37,7 @@ namespace CSharpDom.BaseClasses
         where TNestedClassCollection : INestedClassCollection
         where TNestedDelegate : INestedDelegate
         where TNestedEnum : INestedEnum
-        where TNestedInterfaceCollection : INestedInterfaceCollection
+        where TNestedInterface : INestedInterface
         where TNestedStructCollection : INestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
@@ -63,7 +63,7 @@ namespace CSharpDom.BaseClasses
 
         public abstract TIndexerCollection Indexers { get; }
 
-        public abstract TNestedInterfaceCollection Interfaces { get; }
+        public abstract IReadOnlyCollection<TNestedInterface> Interfaces { get; }
 
         public abstract TMethodCollection Methods { get; }
 

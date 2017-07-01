@@ -31,8 +31,6 @@ namespace CSharpDom.BaseClasses
     {
         public abstract TDocument Document { get; }
         
-        public abstract bool IsPartial { get; }
-        
         public abstract TNamespace Namespace { get; }
 
         public abstract TProject Project { get; }

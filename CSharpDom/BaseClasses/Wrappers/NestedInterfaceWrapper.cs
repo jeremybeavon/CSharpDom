@@ -67,5 +67,7 @@ namespace CSharpDom.BaseClasses.Wrappers
         }
 
         public INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> WrappedObject { get; private set; }
+
+        public override bool IsPartial => WrappedObject.IsPartial;
     }
 }
