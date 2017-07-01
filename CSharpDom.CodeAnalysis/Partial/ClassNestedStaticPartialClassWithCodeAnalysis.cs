@@ -18,7 +18,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticClassNestedClassCollectionWithCodeAnalysis,
             StaticClassNestedDelegateWithCodeAnalysis,
             StaticClassNestedEnumWithCodeAnalysis,
-            StaticClassNestedInterfaceCollectionWithCodeAnalysis,
+            StaticClassNestedInterfaceWithCodeAnalysis,
             StaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
@@ -87,7 +87,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.GenericParameters = value; }
         }
 
-        public override StaticClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        public override ICollection<StaticClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
             get { return classType.Interfaces; }
             set { classType.Interfaces = value; }

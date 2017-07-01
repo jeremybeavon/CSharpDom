@@ -24,7 +24,7 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedClassCollectionWithCodeAnalysis,
             ClassNestedDelegateWithCodeAnalysis,
             ClassNestedEnumWithCodeAnalysis,
-            ClassNestedInterfaceCollectionWithCodeAnalysis,
+            ClassNestedInterfaceWithCodeAnalysis,
             ClassNestedStructCollectionWithCodeAnalysis,
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
@@ -45,7 +45,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly GenericParameterDeclarationListWrapper<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> genericParameters;
         private readonly FilteredList<InterfaceReferenceWithCodeAnalysis> implementedInterfaces;
         private readonly ClassIndexerCollectionWithCodeAnalysis indexers;
-        private readonly ClassNestedInterfaceCollectionWithCodeAnalysis interfaces;
+        private readonly ClassMemberListWrapper<ClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
         private readonly ClassMethodCollectionWithCodeAnalysis methods;
         private readonly ClassMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> operatorOverloads;
         private readonly ClassPropertyCollectionWithCodeAnalysis properties;
@@ -95,7 +95,9 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
             implementedInterfaces = new FilteredList<InterfaceReferenceWithCodeAnalysis>(baseTypes);
             indexers = new ClassIndexerCollectionWithCodeAnalysis(this);
-            interfaces = new ClassNestedInterfaceCollectionWithCodeAnalysis(this);
+            interfaces = new ClassMemberListWrapper<ClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                node,
+                () => new ClassNestedInterfaceWithCodeAnalysis());
             methods = new ClassMethodCollectionWithCodeAnalysis(this);
             operatorOverloads = new ClassMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
@@ -129,7 +131,7 @@ namespace CSharpDom.CodeAnalysis
                 { nameof(classes.AbstractClasses), () => classes.AbstractClasses.Select(item => item.Syntax) },
                 { nameof(classes.SealedClasses), () => classes.SealedClasses.Select(item => item.Syntax) },
                 { nameof(classes.StaticClasses), () => classes.StaticClasses.Select(item => item.Syntax) },
-                { nameof(interfaces.Interfaces), () => interfaces.Interfaces.Select(item => item.Syntax) }
+                { nameof(Interfaces), () => interfaces.Select(item => item.Syntax) }
             };
         }
 
@@ -238,10 +240,10 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override ClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        public override ICollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
             get { return interfaces; }
-            set { members.CombineList(nameof(interfaces.Interfaces), value.Interfaces.Select(item => item.Syntax)); }
+            set { members.CombineList(nameof(Interfaces), interfaces.Select(item => item.Syntax)); }
         }
 
         public override ClassMethodCollectionWithCodeAnalysis Methods

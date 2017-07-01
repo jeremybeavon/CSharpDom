@@ -152,7 +152,9 @@ namespace CSharpDom.CodeAnalysis
                 throw new NotImplementedException();
             }
         }
-        
+
+        public override bool IsPartial { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
         {
             get { return type.Node; }

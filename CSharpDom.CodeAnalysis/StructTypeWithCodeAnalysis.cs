@@ -24,7 +24,7 @@ namespace CSharpDom.CodeAnalysis
             StructNestedClassCollectionWithCodeAnalysis,
             StructNestedDelegateWithCodeAnalysis,
             StructNestedEnumWithCodeAnalysis,
-            StructNestedInterfaceCollectionWithCodeAnalysis,
+            StructNestedInterfaceWithCodeAnalysis,
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>
@@ -43,7 +43,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly GenericParameterDeclarationListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> genericParameters;
         private readonly StructIndexerCollectionWithCodeAnalysis indexers;
         private readonly BaseTypeListWrapper<StructTypeWithCodeAnalysis, StructDeclarationSyntax> implementedInterfaces;
-        private readonly StructNestedInterfaceCollectionWithCodeAnalysis interfaces;
+        private readonly StructTypeMemberListWrapper<StructNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
         private readonly StructMethodCollectionWithCodeAnalysis methods;
         private readonly StructTypeMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> operatorOverloads;
         private readonly StructPropertyCollectionWithCodeAnalysis properties;
@@ -86,7 +86,9 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax));
             indexers = new StructIndexerCollectionWithCodeAnalysis(this);
-            interfaces = new StructNestedInterfaceCollectionWithCodeAnalysis(this);
+            interfaces = new StructTypeMemberListWrapper<StructNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                node,
+                () => new StructNestedInterfaceWithCodeAnalysis());
             methods = new StructMethodCollectionWithCodeAnalysis(this);
             operatorOverloads = new StructTypeMemberListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
@@ -208,10 +210,10 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override StructNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        public override ICollection<StructNestedInterfaceWithCodeAnalysis> Interfaces
         {
             get { return interfaces; }
-            set { members.CombineList(nameof(interfaces.Interfaces), value.Interfaces.Select(item => item.Syntax)); }
+            set { members.CombineList(nameof(Interfaces), interfaces.Select(item => item.Syntax)); }
         }
 
         public override StructMethodCollectionWithCodeAnalysis Methods

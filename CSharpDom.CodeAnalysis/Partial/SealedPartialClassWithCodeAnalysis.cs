@@ -28,7 +28,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ClassNestedClassCollectionWithCodeAnalysis,
             ClassNestedDelegateWithCodeAnalysis,
             ClassNestedEnumWithCodeAnalysis,
-            ClassNestedInterfaceCollectionWithCodeAnalysis,
+            ClassNestedInterfaceWithCodeAnalysis,
             ClassNestedStructCollectionWithCodeAnalysis,
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
@@ -112,7 +112,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Indexers = value; }
         }
 
-        public override ClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        public override ICollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
             get { return classType.Interfaces; }
             set { classType.Interfaces = value; }

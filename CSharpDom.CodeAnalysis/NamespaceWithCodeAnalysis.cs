@@ -14,7 +14,7 @@ namespace CSharpDom.CodeAnalysis
             ClassCollectionWithCodeAnalysis,
             DelegateWithCodeAnalysis,
             EnumWithCodeAnalysis,
-            InterfaceCollectionWithCodeAnalysis,
+            InterfaceWithCodeAnalysis,
             StructCollectionWithCodeAnalysis>,
         IHasSyntax<NamespaceDeclarationSyntax>,
         IHasNode<NamespaceDeclarationSyntax>,
@@ -26,7 +26,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly ClassCollectionWithCodeAnalysis classes;
         private readonly NamespaceMemberListWrapper<DelegateWithCodeAnalysis, DelegateDeclarationSyntax> delegates;
         private readonly NamespaceMemberListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax> enums;
-        private readonly InterfaceCollectionWithCodeAnalysis interfaces;
+        private readonly NamespaceMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
         private readonly NamespaceMemberListWrapper<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax> namespaces;
         private readonly StructCollectionWithCodeAnalysis structs;
         private readonly SyntaxListWrapper<
@@ -47,7 +47,9 @@ namespace CSharpDom.CodeAnalysis
             enums = new NamespaceMemberListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
                 () => new EnumWithCodeAnalysis());
-            interfaces = new InterfaceCollectionWithCodeAnalysis(this);
+            interfaces = new NamespaceMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                node,
+                () => new InterfaceWithCodeAnalysis());
             namespaces = new NamespaceMemberListWrapper<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax>(
                 node,
                 () => new NamespaceWithCodeAnalysis(document));
@@ -67,7 +69,7 @@ namespace CSharpDom.CodeAnalysis
                 { nameof(classes.StaticClasses), () => classes.StaticClasses.Select(item => item.Syntax) },
                 { nameof(Delegates), () => delegates.Select(item => item.Syntax) },
                 { nameof(Enums), () => enums.Select(item => item.Syntax) },
-                { nameof(interfaces.Interfaces), () => interfaces.Interfaces.Select(item => item.Syntax) },
+                { nameof(Interfaces), () => interfaces.Select(item => item.Syntax) },
                 { nameof(Namespaces), () => namespaces.Select(item => item.Syntax) },
                 { nameof(structs.Structs), () => structs.Structs.Select(item => item.Syntax) }
             };
@@ -98,10 +100,10 @@ namespace CSharpDom.CodeAnalysis
             set { members.CombineList(new MemberListSyntax(nameof(Enums), value.Select(item => item.Syntax))); }
         }
 
-        public override InterfaceCollectionWithCodeAnalysis Interfaces
+        public override ICollection<InterfaceWithCodeAnalysis> Interfaces
         {
             get { return interfaces; }
-            set { members.CombineList(new MemberListSyntax(nameof(interfaces.Interfaces), value.Interfaces.Select(item => item.Syntax))); }
+            set { members.CombineList(nameof(Interfaces), value.Select(item => item.Syntax)); }
         }
 
         public override string Name

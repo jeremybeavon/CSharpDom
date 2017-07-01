@@ -12,7 +12,7 @@ namespace CSharpDom.CodeAnalysis
             ClassCollectionWithCodeAnalysis,
             DelegateWithCodeAnalysis,
             EnumWithCodeAnalysis,
-            InterfaceCollectionWithCodeAnalysis,
+            InterfaceWithCodeAnalysis,
             StructCollectionWithCodeAnalysis>
     {
         public override ClassCollectionWithCodeAnalysis Classes
@@ -54,7 +54,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override InterfaceCollectionWithCodeAnalysis Interfaces
+        public override ICollection<InterfaceWithCodeAnalysis> Interfaces
         {
             get
             {

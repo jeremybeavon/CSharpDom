@@ -122,6 +122,8 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
+        public override bool IsPartial { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         internal Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> Node
         {
             get { return node; }

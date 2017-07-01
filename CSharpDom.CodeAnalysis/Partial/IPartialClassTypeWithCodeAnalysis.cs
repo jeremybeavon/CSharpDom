@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ClassNestedClassCollectionWithCodeAnalysis,
             ClassNestedDelegateWithCodeAnalysis,
             ClassNestedEnumWithCodeAnalysis,
-            ClassNestedInterfaceCollectionWithCodeAnalysis,
+            ClassNestedInterfaceWithCodeAnalysis,
             ClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis,
             DestructorWithCodeAnalysis>,

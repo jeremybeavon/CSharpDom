@@ -23,7 +23,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             StructNestedClassCollectionWithCodeAnalysis,
             StructNestedDelegateWithCodeAnalysis,
             StructNestedEnumWithCodeAnalysis,
-            StructNestedInterfaceCollectionWithCodeAnalysis,
+            StructNestedInterfaceWithCodeAnalysis,
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
@@ -115,7 +115,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { structType.Indexers = value; }
         }
 
-        public override StructNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        public override ICollection<StructNestedInterfaceWithCodeAnalysis> Interfaces
         {
             get { return structType.Interfaces; }
             set { structType.Interfaces = value; }

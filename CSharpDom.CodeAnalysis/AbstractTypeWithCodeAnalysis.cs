@@ -23,7 +23,7 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedClassCollectionWithCodeAnalysis,
             ClassNestedDelegateWithCodeAnalysis,
             ClassNestedEnumWithCodeAnalysis,
-            ClassNestedInterfaceCollectionWithCodeAnalysis,
+            ClassNestedInterfaceWithCodeAnalysis,
             ClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
@@ -131,7 +131,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override ClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        public override ICollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
             get { return classType.Interfaces; }
             set { classType.Interfaces = value; }

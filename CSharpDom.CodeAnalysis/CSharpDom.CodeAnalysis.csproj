@@ -156,7 +156,6 @@
     <Compile Include="ClassNestedClassWithCodeAnalysis.cs" />
     <Compile Include="ClassNestedDelegateWithCodeAnalysis.cs" />
     <Compile Include="ClassNestedEnumWithCodeAnalysis.cs" />
-    <Compile Include="ClassNestedInterfaceCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassNestedInterfaceWithCodeAnalysis.cs" />
     <Compile Include="ClassNestedSealedClassWithCodeAnalysis.cs" />
     <Compile Include="ClassNestedStaticClassWithCodeAnalysis.cs" />
@@ -197,7 +196,6 @@
     <Compile Include="IInternalExpression.cs" />
     <Compile Include="IInternalStatement.cs" />
     <Compile Include="INode.cs" />
-    <Compile Include="InterfaceCollectionWithCodeAnalysis.cs" />
     <Compile Include="InterfaceWithCodeAnalysis.cs" />
     <Compile Include="InternalExpressionListWrapper.cs" />
     <Compile Include="LoadedDocumentWithCodeAnalysis.cs" />
@@ -287,7 +285,6 @@
     <Compile Include="StaticClassNestedClassWithCodeAnalysis.cs" />
     <Compile Include="StaticClassNestedDelegateWithCodeAnalysis.cs" />
     <Compile Include="StaticClassNestedEnumWithCodeAnalysis.cs" />
-    <Compile Include="StaticClassNestedInterfaceCollectionWithCodeAnalysis.cs" />
     <Compile Include="StaticClassNestedInterfaceWithCodeAnalysis.cs" />
     <Compile Include="StaticClassNestedSealedClassWithCodeAnalysis.cs" />
     <Compile Include="StaticClassNestedStaticClassWithCodeAnalysis.cs" />
@@ -304,7 +301,6 @@
     <Compile Include="StructNestedClassWithCodeAnalysis.cs" />
     <Compile Include="StructNestedDelegateWithCodeAnalysis.cs" />
     <Compile Include="StructNestedEnumWithCodeAnalysis.cs" />
-    <Compile Include="StructNestedInterfaceCollectionWithCodeAnalysis.cs" />
     <Compile Include="StructNestedInterfaceWithCodeAnalysis.cs" />
     <Compile Include="StructNestedSealedClassWithCodeAnalysis.cs" />
     <Compile Include="StructNestedStaticClassWithCodeAnalysis.cs" />

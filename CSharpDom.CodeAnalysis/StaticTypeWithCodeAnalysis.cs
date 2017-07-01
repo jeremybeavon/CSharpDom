@@ -19,7 +19,7 @@ namespace CSharpDom.CodeAnalysis
             StaticClassNestedClassCollectionWithCodeAnalysis,
             StaticClassNestedDelegateWithCodeAnalysis,
             StaticClassNestedEnumWithCodeAnalysis,
-            StaticClassNestedInterfaceCollectionWithCodeAnalysis,
+            StaticClassNestedInterfaceWithCodeAnalysis,
             StaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
@@ -32,7 +32,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly StaticClassEventCollectionWithCodeAnalysis events;
         private readonly StaticClassFieldCollectionWithCodeAnalysis fields;
         private readonly GenericParameterDeclarationListWrapper<StaticTypeWithCodeAnalysis, ClassDeclarationSyntax> genericParameters;
-        private readonly StaticClassNestedInterfaceCollectionWithCodeAnalysis interfaces;
+        private readonly StaticTypeMemberListWrapper<StaticClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
         private readonly StaticClassMethodCollectionWithCodeAnalysis methods;
         private readonly StaticTypeMemberListWrapper<StaticClassPropertyWithCodeAnalysis, PropertyDeclarationSyntax> properties;
         private readonly StaticTypeMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> staticConstructor;
@@ -61,7 +61,9 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
-            interfaces = new StaticClassNestedInterfaceCollectionWithCodeAnalysis(this);
+            interfaces = new StaticTypeMemberListWrapper<StaticClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                node,
+                () => new StaticClassNestedInterfaceWithCodeAnalysis());
             methods = new StaticClassMethodCollectionWithCodeAnalysis(this);
             properties = new StaticTypeMemberListWrapper<StaticClassPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
                 node,
@@ -80,7 +82,7 @@ namespace CSharpDom.CodeAnalysis
                 { nameof(Delegates), () => delegates.Select(item => item.Syntax) },
                 { nameof(events.Events), () => events.Events.Select(item => item.Syntax) },
                 { nameof(events.EventProperties), () => events.EventProperties.Select(item => item.Syntax) },
-                { nameof(interfaces.Interfaces), () => interfaces.Interfaces.Select(item => item.Syntax) },
+                { nameof(Interfaces), () => interfaces.Select(item => item.Syntax) },
                 { nameof(Properties), () => Properties.Select(item => item.Syntax) },
                 { nameof(methods.ExtensionMethods), () => methods.ExtensionMethods.Select(item => item.Syntax) },
                 { nameof(methods.Methods), () => methods.Methods.Select(item => item.Syntax) }
@@ -146,10 +148,10 @@ namespace CSharpDom.CodeAnalysis
             set { genericParameters.ReplaceList(value); }
         }
 
-        public override StaticClassNestedInterfaceCollectionWithCodeAnalysis Interfaces
+        public override ICollection<StaticClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
             get { return interfaces; }
-            set { members.CombineList(nameof(interfaces.Interfaces), value.Interfaces.Select(item => item.Syntax)); }
+            set { members.CombineList(nameof(Interfaces), value.Select(item => item.Syntax)); }
         }
 
         public override StaticClassMethodCollectionWithCodeAnalysis Methods

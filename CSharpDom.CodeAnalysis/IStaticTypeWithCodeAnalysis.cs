@@ -14,7 +14,7 @@ namespace CSharpDom.CodeAnalysis
             StaticClassNestedClassCollectionWithCodeAnalysis,
             StaticClassNestedDelegateWithCodeAnalysis,
             StaticClassNestedEnumWithCodeAnalysis,
-            StaticClassNestedInterfaceCollectionWithCodeAnalysis,
+            StaticClassNestedInterfaceWithCodeAnalysis,
             StaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>

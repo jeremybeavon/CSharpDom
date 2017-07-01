@@ -47,7 +47,7 @@ namespace CSharpDom.Editable
 
         public abstract IList<TGenericParameter> GenericParameters { get; set; }
 
-        public abstract IList<TNestedInterface> Interfaces { get; set; }
+        public abstract ICollection<TNestedInterface> Interfaces { get; set; }
 
         public abstract TMethodCollection Methods { get; set; }
 

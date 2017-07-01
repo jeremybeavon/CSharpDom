@@ -105,7 +105,9 @@ namespace CSharpDom.CodeAnalysis
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-        
+
+        public override bool IsPartial { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
         INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
         {
             get { return type.Interface.Node; }
