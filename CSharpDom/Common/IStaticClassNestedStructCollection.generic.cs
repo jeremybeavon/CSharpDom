@@ -7,7 +7,7 @@ namespace CSharpDom.Common
         IStaticClassNestedStructCollection,
         INestedStructCollection<TStruct, TPartialStruct>
         where TStruct : IStaticClassNestedStruct
-        where TPartialStruct : IPartialStruct
+        where TPartialStruct : IStaticClassNestedPartialStruct
     {
     }
 }

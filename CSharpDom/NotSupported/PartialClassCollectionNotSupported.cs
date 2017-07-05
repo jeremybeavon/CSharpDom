@@ -1,4 +1,5 @@
 ﻿using CSharpDom.Common;
+using CSharpDom.Common.Partial;
 
 namespace CSharpDom.NotSupported
 {

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Common.Partial;
 using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable

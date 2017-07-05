@@ -1477,7 +1477,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitClassNestedStructCollection<TStruct, TPartialStruct>(
             IClassNestedStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : IClassNestedStruct
-            where TPartialStruct : IPartialStruct
+            where TPartialStruct : IClassNestedPartialStruct
         {
             Visit(structCollection);
         }
@@ -1632,7 +1632,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitNestedStructCollection<TStruct, TPartialStruct>(
             INestedStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : INestedStruct
-            where TPartialStruct : IPartialStruct
+            where TPartialStruct : INestedPartialStruct
         {
             Visit(structCollection);
         }
@@ -1770,7 +1770,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStaticClassNestedStructCollection<TStruct, TPartialStruct>(
             IStaticClassNestedStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : IStaticClassNestedStruct
-            where TPartialStruct : IPartialStruct
+            where TPartialStruct : IStaticClassNestedPartialStruct
         {
             Visit(structCollection);
         }
@@ -1901,7 +1901,7 @@ namespace CSharpDom.BaseClasses
         public virtual void VisitStructNestedStructCollection<TStruct, TPartialStruct>(
             IStructNestedStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : IStructNestedStruct
-            where TPartialStruct : IPartialStruct
+            where TPartialStruct : IStructNestedPartialStruct
         {
             Visit(structCollection);
         }

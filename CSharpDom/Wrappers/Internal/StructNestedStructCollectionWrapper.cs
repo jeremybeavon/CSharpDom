@@ -21,7 +21,7 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
-        public IReadOnlyCollection<IPartialStruct> PartialStructs
+        public IReadOnlyCollection<IStructNestedPartialStruct> PartialStructs
         {
             get
             {

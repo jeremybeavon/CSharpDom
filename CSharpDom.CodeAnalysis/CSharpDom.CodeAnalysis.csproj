@@ -124,6 +124,7 @@
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberList.cs" />
+    <Compile Include="InterfaceDeclarationSyntaxExtensions.cs" />
     <Compile Include="Partial\StructNestedPartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\StaticClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\GenericPartialClassCollectionWithCodeAnalysis.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Partial\IStaticPartialTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\ClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\PartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructDeclarationSyntaxExtensions.cs" />
     <Compile Include="StructReferenceWithCodeAnalysis.cs" />
     <Compile Include="DocumentListWrapper.cs" />
     <Compile Include="Expressions\IInternalQueryExpression.cs" />

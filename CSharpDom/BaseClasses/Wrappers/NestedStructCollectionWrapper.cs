@@ -9,7 +9,7 @@ namespace CSharpDom.BaseClasses.Wrappers
         AbstractNestedStructCollection<TStruct, TPartialStruct>,
         IWrapper<INestedStructCollection<TStruct, TPartialStruct>>
         where TStruct : INestedStruct
-        where TPartialStruct : IPartialStruct
+        where TPartialStruct : INestedPartialStruct
     {
         public NestedStructCollectionWrapper(INestedStructCollection<TStruct, TPartialStruct> structCollection)
         {

@@ -7,7 +7,7 @@ using CSharpDom.Common.Partial;
 namespace CSharpDom.Wrappers
 {
     public interface IClassNestedStructCollectionWrapper :
-        IClassNestedStructCollection<IClassNestedStructWrapper, IPartialStruct>
+        IClassNestedStructCollection<IClassNestedStructWrapper, IClassNestedPartialStruct>
     {
     }
 }

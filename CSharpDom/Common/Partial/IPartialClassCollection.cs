@@ -1,4 +1,4 @@
-﻿namespace CSharpDom.Common
+﻿namespace CSharpDom.Common.Partial
 {
     public interface IPartialClassCollection : IVisitable<IGenericVisitor>
     {

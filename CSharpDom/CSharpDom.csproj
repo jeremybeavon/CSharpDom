@@ -422,6 +422,8 @@
     <Compile Include="Common\Partial\IHasPartialMethodDefinitions.cs" />
     <Compile Include="Common\Partial\INestedStaticPartialClassMethodCollection.cs" />
     <Compile Include="Common\Partial\INestedStaticPartialClassMethodCollection.generic.cs" />
+    <Compile Include="Common\Partial\INestedPartialStruct.cs" />
+    <Compile Include="Common\Partial\INestedPartialStruct.generic.cs" />
     <Compile Include="Common\Partial\ISealedPartialClassMethodCollection.cs" />
     <Compile Include="Common\Partial\IPartialClassMethodCollection.cs" />
     <Compile Include="Common\Partial\ISealedPartialClassMethodCollection.generic.cs" />
@@ -877,7 +879,7 @@
     <Compile Include="Common\IHasIndexerCollection.cs" />
     <Compile Include="Common\IHasMethodCollection.cs" />
     <Compile Include="Common\IHasPropertyCollection.cs" />
-    <Compile Include="Common\IPartialClassCollection.cs" />
+    <Compile Include="Common\Partial\IPartialClassCollection.cs" />
     <Compile Include="BaseClasses\Wrappers\ConstructorWrapper.cs" />
     <Compile Include="BuiltInType.cs" />
     <Compile Include="Common\IClassEventCollection.cs" />

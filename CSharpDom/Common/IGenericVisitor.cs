@@ -1521,7 +1521,7 @@ namespace CSharpDom.Common
         void VisitClassNestedStructCollection<TStruct, TPartialStruct>(
             IClassNestedStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : IClassNestedStruct
-            where TPartialStruct : IPartialStruct;
+            where TPartialStruct : IClassNestedPartialStruct;
 
         void VisitClassPropertyCollection<TProperty, TExplicitInterfaceProperty>(
             IClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
@@ -1643,7 +1643,7 @@ namespace CSharpDom.Common
         void VisitNestedStructCollection<TStruct, TPartialStruct>(
             INestedStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : INestedStruct
-            where TPartialStruct : IPartialStruct;
+            where TPartialStruct : INestedPartialStruct;
         
         void VisitSealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>(
             ISealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection)
@@ -1826,7 +1826,7 @@ namespace CSharpDom.Common
         void VisitStaticClassNestedStructCollection<TStruct, TPartialStruct>(
             IStaticClassNestedStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : IStaticClassNestedStruct
-            where TPartialStruct : IPartialStruct;
+            where TPartialStruct : IStaticClassNestedPartialStruct;
 
         void VisitStructCollection<TStruct, TPartialStruct>(IStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : IStruct
@@ -1995,7 +1995,7 @@ namespace CSharpDom.Common
         void VisitStructNestedStructCollection<TStruct, TPartialStruct>(
             IStructNestedStructCollection<TStruct, TPartialStruct> structCollection)
             where TStruct : IStructNestedStruct
-            where TPartialStruct : IPartialStruct;
+            where TPartialStruct : IStructNestedPartialStruct;
 
         void VisitStructPropertyCollection<TProperty, TExplicitInterfaceProperty>(
             IStructPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)

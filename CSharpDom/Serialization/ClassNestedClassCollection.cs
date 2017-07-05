@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using CSharpDom.Common.Partial;
 using CSharpDom.NotSupported;
 
 namespace CSharpDom.Serialization

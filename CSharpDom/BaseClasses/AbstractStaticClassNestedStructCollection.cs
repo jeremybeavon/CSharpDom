@@ -10,7 +10,7 @@ namespace CSharpDom.BaseClasses
         AbstractNestedStructCollection<TStruct, TPartialStruct>,
         IStaticClassNestedStructCollection<TStruct, TPartialStruct>
         where TStruct : IStaticClassNestedStruct
-        where TPartialStruct : IPartialStruct
+        where TPartialStruct : IStaticClassNestedPartialStruct
     {
         public override void Accept(IGenericVisitor visitor)
         {

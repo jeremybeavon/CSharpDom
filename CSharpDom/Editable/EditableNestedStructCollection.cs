@@ -10,7 +10,7 @@ namespace CSharpDom.Editable
     public abstract class EditableNestedStructCollection<TStruct, TPartialStruct> :
         INestedStructCollection<TStruct, TPartialStruct>
         where TStruct : INestedStruct
-        where TPartialStruct : IPartialStruct
+        where TPartialStruct : INestedPartialStruct
     {
         public int Count
         {

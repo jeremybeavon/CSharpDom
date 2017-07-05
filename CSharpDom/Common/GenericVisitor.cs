@@ -1505,7 +1505,7 @@ namespace CSharpDom.Common
             INestedStructCollection<TStruct, TPartialStruct> structCollection,
             IGenericVisitor visitor)
             where TStruct : INestedStruct
-            where TPartialStruct : IPartialStruct
+            where TPartialStruct : INestedPartialStruct
         {
             VisitCollection(structCollection, visitor);
             VisitCollection(structCollection.PartialStructs, visitor);
@@ -1515,7 +1515,7 @@ namespace CSharpDom.Common
             IClassNestedStructCollection<TStruct, TPartialStruct> structCollection,
             IGenericVisitor visitor)
             where TStruct : IClassNestedStruct
-            where TPartialStruct : IPartialStruct
+            where TPartialStruct : IClassNestedPartialStruct
         {
             new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
         }
@@ -1524,7 +1524,7 @@ namespace CSharpDom.Common
             IStaticClassNestedStructCollection<TStruct, TPartialStruct> structCollection,
             IGenericVisitor visitor)
             where TStruct : IStaticClassNestedStruct
-            where TPartialStruct : IPartialStruct
+            where TPartialStruct : IStaticClassNestedPartialStruct
         {
             new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
         }
@@ -1533,7 +1533,7 @@ namespace CSharpDom.Common
             IStructNestedStructCollection<TStruct, TPartialStruct> structCollection,
             IGenericVisitor visitor)
             where TStruct : IStructNestedStruct
-            where TPartialStruct : IPartialStruct
+            where TPartialStruct : IStructNestedPartialStruct
         {
             new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
         }

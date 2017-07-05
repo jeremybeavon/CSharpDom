@@ -6,7 +6,7 @@ using CSharpDom.Common.Partial;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassNestedStructCollection : IClassNestedStructCollection<ClassNestedStruct, IPartialStruct>
+    public sealed class ClassNestedStructCollection : IClassNestedStructCollection<ClassNestedStruct, IClassNestedPartialStruct>
     {
         public ClassNestedStructCollection()
         {
@@ -20,9 +20,9 @@ namespace CSharpDom.Serialization
             get { return Structs.Count; }
         }
 
-        public IReadOnlyCollection<IPartialStruct> PartialStructs
+        public IReadOnlyCollection<IClassNestedPartialStruct> PartialStructs
         {
-            get { return new IPartialStruct[0]; }
+            get { return new IClassNestedPartialStruct[0]; }
         }
 
         public void Accept(IGenericVisitor visitor)

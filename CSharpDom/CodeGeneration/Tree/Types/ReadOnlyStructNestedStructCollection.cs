@@ -8,7 +8,7 @@ using CSharpDom.Common.Partial;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyStructNestedStructCollection :
-        AbstractStructNestedStructCollection<ReadOnlyStructNestedStruct, IPartialStruct>
+        AbstractStructNestedStructCollection<ReadOnlyStructNestedStruct, IStructNestedPartialStruct>
     {
         private readonly IReadOnlyCollection<ReadOnlyStructNestedStruct> structs;
 
@@ -17,9 +17,9 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             structs = structBody.NestedStructs.ToArray(@struct => new ReadOnlyStructNestedStruct(@struct));
         }
 
-        public override IReadOnlyCollection<IPartialStruct> PartialStructs
+        public override IReadOnlyCollection<IStructNestedPartialStruct> PartialStructs
         {
-            get { return new IPartialStruct[0]; }
+            get { return new IStructNestedPartialStruct[0]; }
         }
 
         protected override IReadOnlyCollection<ReadOnlyStructNestedStruct> Structs

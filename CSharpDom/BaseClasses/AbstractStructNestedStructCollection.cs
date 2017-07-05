@@ -9,7 +9,7 @@ namespace CSharpDom.BaseClasses
     public abstract class AbstractStructNestedStructCollection<TStruct, TPartialStruct> :
         IStructNestedStructCollection<TStruct, TPartialStruct>
         where TStruct : IStructNestedStruct
-        where TPartialStruct : IPartialStruct
+        where TPartialStruct : IStructNestedPartialStruct
     {
         public int Count
         {

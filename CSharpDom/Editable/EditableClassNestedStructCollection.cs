@@ -10,7 +10,7 @@ namespace CSharpDom.Editable
         EditableNestedStructCollection<TStruct, TPartialStruct>,
         IClassNestedStructCollection<TStruct, TPartialStruct>
         where TStruct : IClassNestedStruct
-        where TPartialStruct : IPartialStruct
+        where TPartialStruct : IClassNestedPartialStruct
     {
         public override void Accept(IGenericVisitor visitor)
         {

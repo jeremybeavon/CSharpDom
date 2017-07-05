@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using CSharpDom.Common.Partial;
 
 namespace CSharpDom.Common
 {

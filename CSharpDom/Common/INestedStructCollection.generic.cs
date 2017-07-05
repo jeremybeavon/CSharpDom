@@ -8,7 +8,7 @@ namespace CSharpDom.Common
         IReadOnlyCollection<TStruct>,
         IHasPartialStructs<TPartialStruct>
         where TStruct : INestedStruct
-        where TPartialStruct : IPartialStruct
+        where TPartialStruct : INestedPartialStruct
     {
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common.Partial
 {
-    public interface IStaticClassNestedPartialStruct : IStaticClassNestedStruct
+    public interface IStaticClassNestedPartialStruct : IStaticClassNestedStruct, INestedPartialStruct
     {
     }
 }
