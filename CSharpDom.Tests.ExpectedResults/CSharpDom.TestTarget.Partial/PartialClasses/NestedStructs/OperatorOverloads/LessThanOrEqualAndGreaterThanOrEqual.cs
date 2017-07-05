@@ -1,0 +1,18 @@
+﻿namespace CSharpDom.TestTarget.Partial.PartialClasses.NestedStructs.OperatorOverloads
+{
+    public partial class PartialClassWithNestedStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads
+    {
+        public struct Struct
+        {
+            public static bool operator <=(Struct parameter1, Struct parameter2)
+            {
+                return default(bool);
+            }
+
+            public static bool operator >=(Struct parameter1, Struct parameter2)
+            {
+                return default(bool);
+            }
+        }
+    }
+}

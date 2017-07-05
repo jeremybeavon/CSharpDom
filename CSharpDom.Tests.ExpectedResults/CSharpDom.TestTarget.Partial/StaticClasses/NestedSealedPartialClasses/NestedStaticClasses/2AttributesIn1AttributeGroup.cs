@@ -1,0 +1,13 @@
+﻿namespace CSharpDom.TestTarget.Partial.StaticClasses.NestedSealedPartialClasses.NestedStaticClasses
+{
+    public static class StaticClassWithNestedSealedPartialClassWithNestedStaticPartialClassWith2AttributesIn1AttributeGroup
+    {
+        public sealed partial class Class
+        {
+            [Attribute1, Attribute2]
+            public static class NestedClass
+            {
+            }
+        }
+    }
+}

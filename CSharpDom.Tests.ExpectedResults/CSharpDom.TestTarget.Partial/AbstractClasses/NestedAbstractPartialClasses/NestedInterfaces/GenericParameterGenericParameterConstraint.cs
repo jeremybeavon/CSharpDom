@@ -1,0 +1,13 @@
+﻿namespace CSharpDom.TestTarget.Partial.AbstractClasses.NestedAbstractPartialClasses.NestedInterfaces
+{
+    public abstract class AbstractClassWithNestedAbstractPartialClassWithNestedInterfaceWithGenericParameterGenericParameterConstraint
+    {
+        public abstract partial class Class
+        {
+            public interface Interface<TKey, TValue>
+                where TKey : TValue
+            {
+            }
+        }
+    }
+}

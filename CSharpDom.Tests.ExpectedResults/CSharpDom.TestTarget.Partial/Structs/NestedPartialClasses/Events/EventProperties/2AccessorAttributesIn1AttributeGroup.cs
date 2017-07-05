@@ -1,0 +1,16 @@
+﻿namespace CSharpDom.TestTarget.Partial.Structs.NestedPartialClasses.Events.EventProperties
+{
+    public struct StructWithNestedPartialClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroup
+    {
+        public partial class Class
+        {
+            public event EventHandler Event
+            {
+                [Attribute1, Attribute2]
+                add { }
+                [Attribute1, Attribute2]
+                remove { }
+            }
+        }
+    }
+}

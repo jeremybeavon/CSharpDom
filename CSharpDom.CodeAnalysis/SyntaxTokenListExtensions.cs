@@ -482,6 +482,11 @@ namespace CSharpDom.CodeAnalysis
             return tokens;
         }
 
+        public static bool IsPartial(this SyntaxTokenList tokens)
+        {
+            return tokens.Any(SyntaxKind.PartialKeyword);
+        }
+
         public static bool IsAbstract(this SyntaxTokenList tokens)
         {
             return tokens.Any(SyntaxKind.AbstractKeyword);

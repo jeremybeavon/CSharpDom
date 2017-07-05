@@ -1,0 +1,13 @@
+﻿namespace CSharpDom.TestTarget.Partial.StaticClasses.NestedAbstractPartialClasses.NestedEnums
+{
+    public static class StaticClassWithNestedAbstractPartialClassWithNestedEnumWith1Attribute
+    {
+        public abstract partial class Class
+        {
+            [Attribute1]
+            public enum Enum
+            {
+            }
+        }
+    }
+}
