@@ -101,7 +101,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override bool IsPartial { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override bool IsPartial { get => Syntax.IsPartial(); set => Syntax = Syntax.IsPartial(value); }
 
         INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
         {

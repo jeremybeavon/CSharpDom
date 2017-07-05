@@ -91,6 +91,6 @@ namespace CSharpDom.CodeAnalysis
             set { type.Syntax = value; }
         }
 
-        public override bool IsPartial { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override bool IsPartial { get => Syntax.IsPartial(); set => Syntax = Syntax.IsPartial(value); }
     }
 }

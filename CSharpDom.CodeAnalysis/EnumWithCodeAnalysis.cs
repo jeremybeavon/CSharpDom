@@ -21,6 +21,7 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly Node<EnumWithCodeAnalysis, EnumDeclarationSyntax> node;
+        private readonly DocumentWithCodeAnalysis document;
         private readonly AttributeListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax> attributes;
         private readonly SeparatedSyntaxListWrapper<
             EnumWithCodeAnalysis,
@@ -28,9 +29,10 @@ namespace CSharpDom.CodeAnalysis
             EnumMemberWithCodeAnalysis,
             EnumMemberDeclarationSyntax> enumMembers;
 
-        internal EnumWithCodeAnalysis()
+        internal EnumWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             node = new Node<EnumWithCodeAnalysis, EnumDeclarationSyntax>(this);
+            this.document = document;
             attributes = new AttributeListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
@@ -62,38 +64,42 @@ namespace CSharpDom.CodeAnalysis
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ProjectWithCodeAnalysis Project
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return document.Project; }
+            set { throw new NotSupportedException(); }
         }
 
         public override SolutionWithCodeAnalysis Solution
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return document.Solution; }
+            set { throw new NotSupportedException(); }
         }
         
         public override TypeVisibilityModifier Visibility
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return Syntax.Modifiers.ToTypeVisibilityModifier(); }
+            set
+            {
+                EnumDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithTypeVisibilityModifier(value));
+            }
         }
 
         public override EnumBaseType BaseType
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return Syntax.ToBaseType(); }
+            set { Syntax = Syntax.ToBaseType(value); }
         }
 
         public override DocumentWithCodeAnalysis Document
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return document; }
+            set { throw new NotSupportedException(); }
         }
         
         public EnumDeclarationSyntax Syntax

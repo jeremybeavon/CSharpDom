@@ -43,10 +43,10 @@ namespace CSharpDom.CodeAnalysis
             classes = new ClassCollectionWithCodeAnalysis(this);
             delegates = new NamespaceMemberListWrapper<DelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
-                () => new DelegateWithCodeAnalysis());
+                () => new DelegateWithCodeAnalysis(document));
             enums = new NamespaceMemberListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
-                () => new EnumWithCodeAnalysis());
+                () => new EnumWithCodeAnalysis(document));
             interfaces = new NamespaceMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 () => new InterfaceWithCodeAnalysis());
@@ -71,7 +71,8 @@ namespace CSharpDom.CodeAnalysis
                 { nameof(Enums), () => enums.Select(item => item.Syntax) },
                 { nameof(Interfaces), () => interfaces.Select(item => item.Syntax) },
                 { nameof(Namespaces), () => namespaces.Select(item => item.Syntax) },
-                { nameof(structs.Structs), () => structs.Structs.Select(item => item.Syntax) }
+                { nameof(structs.Structs), () => structs.Structs.Select(item => item.Syntax) },
+                { nameof(structs.PartialStructs), () => structs.PartialStructs.Select(item => item.Syntax) }
             };
         }
 

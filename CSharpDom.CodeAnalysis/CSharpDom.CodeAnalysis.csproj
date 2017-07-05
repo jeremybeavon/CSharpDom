@@ -124,6 +124,7 @@
     <Compile Include="ClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberList.cs" />
+    <Compile Include="EnumDeclarationSyntaxExtensions.cs" />
     <Compile Include="InterfaceDeclarationSyntaxExtensions.cs" />
     <Compile Include="Partial\StructNestedPartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\StaticClassNestedPartialClassCollectionWithCodeAnalysis.cs" />

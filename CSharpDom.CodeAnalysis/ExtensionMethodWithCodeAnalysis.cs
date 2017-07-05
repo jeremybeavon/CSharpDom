@@ -54,15 +54,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStaticClass DeclaringType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return method.Method.Node.GetParentNode<IStaticClass>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters

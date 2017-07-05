@@ -34,16 +34,20 @@ namespace CSharpDom.CodeAnalysis
             this.structType = structType;
             classes = new StructTypeMemberListWrapper<StructNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 structType.Node,
-                () => new StructNestedClassWithCodeAnalysis());
+                () => new StructNestedClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsClass);
             abstractClasses = new StructTypeMemberListWrapper<StructNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 structType.Node,
-                () => new StructNestedAbstractClassWithCodeAnalysis());
+                () => new StructNestedAbstractClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsAbstractClass);
             sealedClasses = new StructTypeMemberListWrapper<StructNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 structType.Node,
-                () => new StructNestedSealedClassWithCodeAnalysis());
+                () => new StructNestedSealedClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsSealedClass);
             staticClasses = new StructTypeMemberListWrapper<StructNestedStaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 structType.Node,
-                () => new StructNestedStaticClassWithCodeAnalysis());
+                () => new StructNestedStaticClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsStaticClass);
             partialClasses = StructNestedPartialClassCollectionWithCodeAnalysis.Create(structType);
         }
 

@@ -13,7 +13,12 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> node;
         private readonly AttributeListWrapper<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> attributes;
-        
+        private readonly SeparatedSyntaxListWrapper<
+            NestedEnumWithCodeAnalysis,
+            EnumDeclarationSyntax,
+            NestedEnumMemberWithCodeAnalysis,
+            EnumMemberDeclarationSyntax> enumMembers;
+
         internal NestedEnumWithCodeAnalysis()
         {
             node = new Node<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(this);
@@ -21,6 +26,11 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
+            enumMembers = new SeparatedSyntaxListWrapper<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax, NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(
+                node,
+                syntax => syntax.Members,
+                (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax),
+                () => new NestedEnumMemberWithCodeAnalysis());
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -31,15 +41,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override EnumBaseType BaseType
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return Syntax.ToBaseType(); }
+            set { Syntax = Syntax.ToBaseType(value); }
         }
 
         public override IType DeclaringType
@@ -50,15 +53,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override IList<NestedEnumMemberWithCodeAnalysis> EnumMembers
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return enumMembers; }
+            set { enumMembers.ReplaceList(value); }
         }
 
         public override string Name

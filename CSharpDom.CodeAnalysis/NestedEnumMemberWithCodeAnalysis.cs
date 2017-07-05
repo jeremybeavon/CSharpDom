@@ -9,13 +9,14 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class NestedEnumMemberWithCodeAnalysis :
         EditableNestedEnumMember<AttributeGroupWithCodeAnalysis, INestedEnum>,
-        IHasSyntax<EnumMemberDeclarationSyntax>//,
+        IHasSyntax<EnumMemberDeclarationSyntax>,
+        IHasNode<EnumMemberDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly Node<NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax> node;
         private readonly AttributeListWrapper<NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax> attributes;
         
-        private NestedEnumMemberWithCodeAnalysis()
+        internal NestedEnumMemberWithCodeAnalysis()
         {
             node = new Node<NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<NestedEnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(
@@ -47,6 +48,8 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
+
+        INode<EnumMemberDeclarationSyntax> IHasNode<EnumMemberDeclarationSyntax>.Node => node;
         
         /*
         public void Accept(IReflectionVisitor visitor)

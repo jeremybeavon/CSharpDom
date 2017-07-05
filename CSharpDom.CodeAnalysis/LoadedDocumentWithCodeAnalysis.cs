@@ -54,10 +54,10 @@ namespace CSharpDom.CodeAnalysis
             classes = new ClassCollectionWithCodeAnalysis(this);
             delegates = new LoadedDocumentMemberListWrapper<DelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
-                () => new DelegateWithCodeAnalysis());
+                () => new DelegateWithCodeAnalysis(document));
             enums = new LoadedDocumentMemberListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax>(
                 node,
-                () => new EnumWithCodeAnalysis());
+                () => new EnumWithCodeAnalysis(document));
             interfaces = new LoadedDocumentMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 () => new InterfaceWithCodeAnalysis());

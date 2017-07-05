@@ -9,10 +9,10 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class DelegateWithCodeAnalysis :
         EditableDelegate<
-            INamespace,
-            IDocument,
-            IProject,
-            ISolution,
+            NamespaceWithCodeAnalysis,
+            DocumentWithCodeAnalysis,
+            ProjectWithCodeAnalysis,
+            SolutionWithCodeAnalysis,
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
@@ -22,10 +22,12 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly DelegateTypeWithCodeAnalysis type;
+        private readonly DocumentWithCodeAnalysis document;
 
-        internal DelegateWithCodeAnalysis()
+        internal DelegateWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             type = new DelegateTypeWithCodeAnalysis();
+            this.document = document;
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -34,17 +36,10 @@ namespace CSharpDom.CodeAnalysis
             set { type.Attributes = value; }
         }
 
-        public override IDocument Document
+        public override DocumentWithCodeAnalysis Document
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document; }
+            set { throw new NotSupportedException(); }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -59,17 +54,10 @@ namespace CSharpDom.CodeAnalysis
             set { type.Name = value; }
         }
 
-        public override INamespace Namespace
+        public override NamespaceWithCodeAnalysis Namespace
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return type.Node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override IList<DelegateParameterWithCodeAnalysis> Parameters
@@ -78,17 +66,10 @@ namespace CSharpDom.CodeAnalysis
             set { type.Parameters = value; }
         }
 
-        public override IProject Project
+        public override ProjectWithCodeAnalysis Project
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document.Project; }
+            set { throw new NotSupportedException(); }
         }
 
         public override ITypeReferenceWithCodeAnalysis ReturnType
@@ -97,17 +78,10 @@ namespace CSharpDom.CodeAnalysis
             set { type.ReturnType = value; }
         }
 
-        public override ISolution Solution
+        public override SolutionWithCodeAnalysis Solution
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document.Solution; }
+            set { document.Solution = value; }
         }
 
         public DelegateDeclarationSyntax Syntax
@@ -118,14 +92,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override TypeVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
+            get { return Syntax.Modifiers.ToTypeVisibilityModifier(); }
             set
             {
-                throw new NotImplementedException();
+                DelegateDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithTypeVisibilityModifier(value));
             }
         }
         
