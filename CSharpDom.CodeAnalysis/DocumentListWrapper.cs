@@ -1,4 +1,5 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Text;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +33,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override void Add(Document item)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override bool Contains(Document item)

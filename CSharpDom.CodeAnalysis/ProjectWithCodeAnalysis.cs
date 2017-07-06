@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -13,6 +14,8 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<ProjectWithCodeAnalysis, Project> node;
         private readonly ImmutableListWrapper<ProjectWithCodeAnalysis, Project, DocumentWithCodeAnalysis, Document> documents;
+        private List<LoadedDocumentWithCodeAnalysis> loadedDocuments;
+        private LoadedProjectWithCodeAnalysis loadedProject;
 
         public ProjectWithCodeAnalysis()
         {
@@ -46,9 +49,17 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
-        public override Task<LoadedProjectWithCodeAnalysis> LoadAsync()
+        public override async Task<LoadedProjectWithCodeAnalysis> LoadAsync()
         {
-            throw new NotImplementedException();
+            if (loadedProject != null)
+            {
+                return loadedProject;
+            }
+
+            loadedDocuments = new List<LoadedDocumentWithCodeAnalysis>(
+                await Task.WhenAll(documents.Select(document => document.LoadAsync())));
+            loadedProject = new LoadedProjectWithCodeAnalysis(this, loadedDocuments);
+            return loadedProject;
         }
     }
 }

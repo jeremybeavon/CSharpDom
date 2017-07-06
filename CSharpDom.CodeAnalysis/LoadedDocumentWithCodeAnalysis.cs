@@ -60,7 +60,7 @@ namespace CSharpDom.CodeAnalysis
                 () => new EnumWithCodeAnalysis(document));
             interfaces = new LoadedDocumentMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
-                () => new InterfaceWithCodeAnalysis());
+                () => new InterfaceWithCodeAnalysis(document));
             moduleAttributes = new FilteredAttributeList(attributes, attribute => attribute.Syntax.Target.Identifier.Text == "module");
             namespaces = new LoadedDocumentMemberListWrapper<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax>(
                 node,

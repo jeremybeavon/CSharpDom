@@ -32,7 +32,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override void Add(Project item)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
 
         public override void Clear()

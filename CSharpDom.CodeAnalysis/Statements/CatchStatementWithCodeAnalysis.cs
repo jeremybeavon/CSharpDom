@@ -45,27 +45,17 @@ namespace CSharpDom.CodeAnalysis.Statements
 
         public override ITypeReferenceWithCodeAnalysis Type
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return type.Value; }
+            set { type.Value = value; }
         }
 
         public override string VariableName
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
+            get { return Syntax.Declaration.Identifier.Text; }
             set
             {
-                throw new NotImplementedException();
+                CatchClauseSyntax syntax = Syntax;
+                Syntax = syntax.WithDeclaration(syntax.Declaration.WithIdentifier(SyntaxFactory.Identifier(value)));
             }
         }
         

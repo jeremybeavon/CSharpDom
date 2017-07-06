@@ -28,6 +28,17 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
         }
 
+        public ArgumentListWrapper(
+            Node<TParentNode, TParentSyntax> node,
+            Func<TParentSyntax, BracketedArgumentListSyntax> getList,
+            Func<TParentSyntax, BracketedArgumentListSyntax, TParentSyntax> createList)
+            : this(
+                  node,
+                  syntax => getList(syntax).Arguments,
+                  (parentSyntax, childSyntax) => createList(parentSyntax, getList(parentSyntax).WithArguments(childSyntax)))
+        {
+        }
+
         private ArgumentListWrapper(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<ArgumentSyntax>> getList,

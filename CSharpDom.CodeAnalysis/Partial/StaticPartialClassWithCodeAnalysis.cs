@@ -99,14 +99,14 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return type.Namespace; }
+            set { type.Namespace = value; }
         }
         
         public override ProjectWithCodeAnalysis Project
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return type.Project; }
+            set { type.Project = value; }
         }
 
         public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
@@ -117,8 +117,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override SolutionWithCodeAnalysis Solution
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return type.Solution; }
+            set { type.Solution = value; }
         }
 
         public override StaticClassNestedStructCollectionWithCodeAnalysis Structs
@@ -129,8 +129,8 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         public override TypeVisibilityModifier Visibility
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return type.Visibility; }
+            set { type.Visibility = value; }
         }
         
         public override StaticConstructorWithCodeAnalysis StaticConstructor
@@ -141,8 +141,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override DocumentWithCodeAnalysis Document
         {
-            get { throw new NotImplementedException(); }
-            set { }
+            get { return type.Document; }
+            set { type.Document = value; }
         }
         
         public ClassDeclarationSyntax Syntax

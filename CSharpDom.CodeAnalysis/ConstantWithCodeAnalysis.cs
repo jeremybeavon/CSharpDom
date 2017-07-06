@@ -7,28 +7,26 @@ using Microsoft.CodeAnalysis.CSharp;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ConstantWithCodeAnalysis :
-        EditableConstant<IExpression>,
+        EditableConstant<IExpressionWithCodeAnalysis>,
         IHasSyntax<VariableDeclaratorSyntax>,
         IHasNode<VariableDeclaratorSyntax>
     {
         private readonly Node<ConstantWithCodeAnalysis, VariableDeclaratorSyntax> node;
+        private readonly CachedExpressionNode<ConstantWithCodeAnalysis, VariableDeclaratorSyntax> constantValue;
 
         internal ConstantWithCodeAnalysis()
         {
             node = new Node<ConstantWithCodeAnalysis, VariableDeclaratorSyntax>(this);
+            constantValue = new CachedExpressionNode<ConstantWithCodeAnalysis, VariableDeclaratorSyntax>(
+                node,
+                syntax => syntax.Initializer.Value,
+                VariableDeclaratorSyntaxExtensions.WithInitialValue);
         }
 
-        public override IExpression ConstantValue
+        public override IExpressionWithCodeAnalysis ConstantValue
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return constantValue.Value; }
+            set { constantValue.Value = value; }
         }
 
         public override string Name

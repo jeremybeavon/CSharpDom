@@ -174,54 +174,26 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override DocumentWithCodeAnalysis Document
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return classType.Document; }
+            set { classType.Document = value; }
         }
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return classType.Namespace; }
+            set { classType.Namespace = value; }
         }
 
         public override ProjectWithCodeAnalysis Project
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return classType.Project; }
+            set { classType.Project = value; }
         }
 
         public override SolutionWithCodeAnalysis Solution
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return classType.Solution; }
+            set { classType.Solution = value; }
         }
 
         public override TypeVisibilityModifier Visibility

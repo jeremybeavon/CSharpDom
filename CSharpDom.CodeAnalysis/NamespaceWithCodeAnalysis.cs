@@ -49,7 +49,7 @@ namespace CSharpDom.CodeAnalysis
                 () => new EnumWithCodeAnalysis(document));
             interfaces = new NamespaceMemberListWrapper<InterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
-                () => new InterfaceWithCodeAnalysis());
+                () => new InterfaceWithCodeAnalysis(document));
             namespaces = new NamespaceMemberListWrapper<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax>(
                 node,
                 () => new NamespaceWithCodeAnalysis(document));

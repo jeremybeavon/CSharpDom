@@ -46,15 +46,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override ICollection<AttributeGroupWithCodeAnalysis> FieldAttributes
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return @event.FieldAttributes; }
+            set { @event.FieldAttributes = value; }
         }
 
         public override SealedClassMemberInheritanceModifier InheritanceModifier

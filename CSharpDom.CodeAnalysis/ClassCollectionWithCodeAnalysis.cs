@@ -65,7 +65,7 @@ namespace CSharpDom.CodeAnalysis
                 ClassDeclarationSyntaxExtensions.IsStaticClass);
             partialClasses = PartialClassCollectionWithCodeAnalysis.Create(document);
         }
-
+        
         public override ICollection<AbstractClassWithCodeAnalysis> AbstractClasses
         {
             get { return abstractClasses; }

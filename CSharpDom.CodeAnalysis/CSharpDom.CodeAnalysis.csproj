@@ -118,6 +118,9 @@
     <Compile Include="BaseTypeListWrapper.cs" />
     <Compile Include="CachedExpressionNode.cs" />
     <Compile Include="CachedStatementNode.cs" />
+    <Compile Include="Expressions\ArrayIndexExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\ProjectPartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ProjectClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassDeclarationSyntaxExtensions.cs" />
     <Compile Include="ClassEventCollectionWithCodeAnalysis.cs" />
@@ -136,6 +139,10 @@
     <Compile Include="Partial\IStaticPartialTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\ClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\PartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ProjectMemberList.cs" />
+    <Compile Include="LoadedProjectMemberCollection.cs" />
+    <Compile Include="ProjectStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Statements\IInternalForStatementInitializer.cs" />
     <Compile Include="StructDeclarationSyntaxExtensions.cs" />
     <Compile Include="StructReferenceWithCodeAnalysis.cs" />
     <Compile Include="DocumentListWrapper.cs" />
@@ -193,7 +200,7 @@
     <Compile Include="FilteredList.generic.cs" />
     <Compile Include="IAbstractTypeWithCodeAnalysis.cs" />
     <Compile Include="IExpressionWithCodeAnalysis.cs" />
-    <Compile Include="IForInitializerStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\IForInitializerStatementWithCodeAnalysis.cs" />
     <Compile Include="IHasNode.cs" />
     <Compile Include="IInterfaceTypeWithCodeAnalysis.cs" />
     <Compile Include="IInternalExpression.cs" />
@@ -358,6 +365,7 @@
     <Compile Include="CachedTypeReferenceNode.cs" />
     <Compile Include="TypeReferenceNode.cs" />
     <Compile Include="UsingDirectiveWithCodeAnalysis.cs" />
+    <Compile Include="VariableDeclaratorSyntaxExtensions.cs" />
     <Compile Include="WrappedList.cs" />
     <Compile Include="InterfaceMemberListWrapper.cs" />
     <Compile Include="InterfaceReferenceListWrapper.cs" />

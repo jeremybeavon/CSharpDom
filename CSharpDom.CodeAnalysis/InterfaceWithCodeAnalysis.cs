@@ -28,10 +28,12 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly InterfaceTypeWithCodeAnalysis type;
+        private readonly DocumentWithCodeAnalysis document;
 
-        internal InterfaceWithCodeAnalysis()
+        internal InterfaceWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             type = new InterfaceTypeWithCodeAnalysis();
+            this.document = document;
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -42,15 +44,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override DocumentWithCodeAnalysis Document
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document; }
+            set { throw new NotSupportedException(); }
         }
 
         public override ICollection<InterfaceEventWithCodeAnalysis> Events
@@ -91,28 +86,14 @@ namespace CSharpDom.CodeAnalysis
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return type.Node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ProjectWithCodeAnalysis Project
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document.Project; }
+            set { throw new NotSupportedException(); }
         }
 
         public override ICollection<InterfacePropertyWithCodeAnalysis> Properties
@@ -123,15 +104,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override SolutionWithCodeAnalysis Solution
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return document.Solution; }
+            set { throw new NotSupportedException(); }
         }
 
         public InterfaceDeclarationSyntax Syntax
@@ -142,18 +116,15 @@ namespace CSharpDom.CodeAnalysis
 
         public override TypeVisibilityModifier Visibility
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
+            get { return Syntax.Modifiers.ToTypeVisibilityModifier(); }
             set
             {
-                throw new NotImplementedException();
+                InterfaceDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithTypeVisibilityModifier(value));
             }
         }
 
-        public override bool IsPartial { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public override bool IsPartial { get => type.IsPartial; set => type.IsPartial = value; }
 
         INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
         {

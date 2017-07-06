@@ -17,6 +17,9 @@ namespace CSharpDom.CodeAnalysis.Expressions
     {
         private readonly ExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax> node;
         private readonly CachedExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax> expression;
+        private readonly QueryExpressionListWrapper<
+            QueryFromExpressionWithCodeAnalysis,
+            QueryExpressionSyntax> queryExpressions;
 
         public QueryFromExpressionWithCodeAnalysis()
         {
@@ -25,6 +28,10 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 node,
                 syntax => syntax.FromClause.Expression,
                 (parentSyntax, childSyntax) => parentSyntax.WithFromClause(parentSyntax.FromClause.WithExpression(childSyntax)));
+            queryExpressions = new QueryExpressionListWrapper<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax>(
+                node,
+                syntax => syntax.Body.Clauses,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(parentSyntax.Body.WithClauses(childSyntax)));
         }
 
         public override IExpressionWithCodeAnalysis Expression
@@ -45,49 +52,25 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         public override IList<IQueryExpressionWithCodeAnalysis> QueryExpressions
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return queryExpressions; }
+            set { queryExpressions.ReplaceList(value); }
         }
 
         public QueryExpressionSyntax Syntax
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
         INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return node; }
         }
 
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return Syntax; }
+            set { Syntax = (QueryExpressionSyntax)value; }
         }
     }
 }

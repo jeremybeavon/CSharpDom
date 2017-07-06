@@ -47,8 +47,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override ICollection<AttributeGroupWithCodeAnalysis> FieldAttributes
         {
-            get { return new AttributeGroupWithCodeAnalysis[0]; }
-            set { throw new NotImplementedException(); }
+            get { return @event.AttributeList.TargetedAttributes; }
+            set { @event.AttributeList.TargetedAttributes = value; }
         }
         
         public override string Name

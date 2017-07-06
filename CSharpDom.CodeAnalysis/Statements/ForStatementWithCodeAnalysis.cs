@@ -17,6 +17,11 @@ namespace CSharpDom.CodeAnalysis.Statements
         private readonly CachedExpressionNode<ForStatementWithCodeAnalysis, ForStatementSyntax> condition;
         private readonly ExpressionListWrapper<ForStatementWithCodeAnalysis, ForStatementSyntax> incrementExpressions;
         private readonly CachedStatementNode<ForStatementWithCodeAnalysis, ForStatementSyntax> statement;
+        private readonly CachedChildNode<
+            ForStatementWithCodeAnalysis,
+            ForStatementSyntax,
+            IInternalForStatementInitializer,
+            VariableDeclarationSyntax> initialValueStatement;
 
         internal ForStatementWithCodeAnalysis()
         {
@@ -33,6 +38,11 @@ namespace CSharpDom.CodeAnalysis.Statements
                 node,
                 syntax => syntax.Statement,
                 (parentSyntax, childSyntax) => parentSyntax.WithStatement(childSyntax));
+            initialValueStatement = new CachedChildNode<ForStatementWithCodeAnalysis, ForStatementSyntax, IInternalForStatementInitializer, VariableDeclarationSyntax>(
+                node,
+                () => null,
+                syntax => syntax.Declaration,
+                (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(childSyntax));
         }
 
         public override IExpressionWithCodeAnalysis Condition
@@ -49,8 +59,8 @@ namespace CSharpDom.CodeAnalysis.Statements
 
         public override IForInitializerStatementWithCodeAnalysis InitialValueStatement
         {
-            get { throw new NotImplementedException(); }
-            set { throw new NotImplementedException(); }
+            get { return initialValueStatement.Value; }
+            set { initialValueStatement.Value = (IInternalForStatementInitializer)value; }
         }
 
         public override IStatementWithCodeAnalysis Statement

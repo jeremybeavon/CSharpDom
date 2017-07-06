@@ -11,8 +11,8 @@ namespace CSharpDom.CodeAnalysis
 {
     internal static class EnumDeclarationSyntaxExtensions
     {
-        private static readonly IDictionary<SyntaxKind, EnumBaseType> enumBaseTypeMap =
-            new Dictionary<SyntaxKind, EnumBaseType>()
+        private static readonly Map<SyntaxKind, EnumBaseType> enumBaseTypeMap =
+            new Map<SyntaxKind, EnumBaseType>()
             {
                 { SyntaxKind.ByteKeyword, EnumBaseType.Byte },
                 { SyntaxKind.SByteKeyword, EnumBaseType.SByte },
@@ -52,7 +52,7 @@ namespace CSharpDom.CodeAnalysis
                 return syntax.WithBaseList(null);
             }
 
-            SyntaxKind keyword = enumBaseTypeMap.First(entry => entry.Value == baseType).Key;
+            SyntaxKind keyword = enumBaseTypeMap[baseType];
             PredefinedTypeSyntax typeSyntax = SyntaxFactory.PredefinedType(SyntaxFactory.Token(keyword));
             SeparatedSyntaxList<BaseTypeSyntax> baseTypes =
                 SyntaxFactory.SingletonSeparatedList<BaseTypeSyntax>(SyntaxFactory.SimpleBaseType(typeSyntax));

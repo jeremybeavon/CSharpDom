@@ -1,5 +1,5 @@
 ﻿using System;
-using CSharpDom.Common.Expressions;
+using CSharpDom.CodeAnalysis.Expressions;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
@@ -7,28 +7,26 @@ using Microsoft.CodeAnalysis.CSharp;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class FieldWithCodeAnalysis :
-        EditableField<IExpression>, 
+        EditableField<IExpressionWithCodeAnalysis>, 
         IHasSyntax<VariableDeclaratorSyntax>,
         IHasNode<VariableDeclaratorSyntax>
     {
         private readonly Node<FieldWithCodeAnalysis, VariableDeclaratorSyntax> node;
+        private readonly CachedExpressionNode<FieldWithCodeAnalysis, VariableDeclaratorSyntax> initialValue;
 
         internal FieldWithCodeAnalysis()
         {
             node = new Node<FieldWithCodeAnalysis, VariableDeclaratorSyntax>(this);
+            initialValue = new CachedExpressionNode<FieldWithCodeAnalysis, VariableDeclaratorSyntax>(
+                node,
+                syntax => syntax.Initializer.Value,
+                VariableDeclaratorSyntaxExtensions.WithInitialValue);
         }
         
-        public override IExpression InitialValue
+        public override IExpressionWithCodeAnalysis InitialValue
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return initialValue.Value; }
+            set { initialValue.Value = value; }
         }
 
         public override string Name
