@@ -20,6 +20,11 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private readonly QueryExpressionListWrapper<
             QueryFromExpressionWithCodeAnalysis,
             QueryExpressionSyntax> queryExpressions;
+        private readonly CachedChildNode<
+            QueryFromExpressionWithCodeAnalysis,
+            QueryExpressionSyntax,
+            QueryIntoExpressionWithCodeAnalysis,
+            QueryContinuationSyntax> intoExpression;
 
         public QueryFromExpressionWithCodeAnalysis()
         {
@@ -32,6 +37,11 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 node,
                 syntax => syntax.Body.Clauses,
                 (parentSyntax, childSyntax) => parentSyntax.WithBody(parentSyntax.Body.WithClauses(childSyntax)));
+            intoExpression = new CachedChildNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax, QueryIntoExpressionWithCodeAnalysis, QueryContinuationSyntax>(
+                node,
+                () => new QueryIntoExpressionWithCodeAnalysis(),
+                syntax => syntax.Body.Continuation,
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(parentSyntax.Body.WithContinuation(childSyntax)));
         }
 
         public override IExpressionWithCodeAnalysis Expression
@@ -60,6 +70,12 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
+        }
+
+        internal QueryIntoExpressionWithCodeAnalysis IntoExpression
+        {
+            get { return intoExpression.Value; }
+            set { intoExpression.Value = value; }
         }
 
         INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node

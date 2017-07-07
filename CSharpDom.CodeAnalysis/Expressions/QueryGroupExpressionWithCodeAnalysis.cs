@@ -1,28 +1,53 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class QueryGroupExpressionWithCodeAnalysis<TExpression, TIdentifierExpression> :
-        IQueryGroupExpression<TExpression, TIdentifierExpression>
-        where TExpression : IExpression
-        where TIdentifierExpression : IIdentifierExpression
+    public sealed class QueryGroupExpressionWithCodeAnalysis :
+        EditableQueryGroupExpression<IExpressionWithCodeAnalysis, QueryIntoExpressionWithCodeAnalysis>,
+        IHasSyntax<GroupClauseSyntax>
     {
-        public abstract TExpression ByExpression { get; set; }
-
-        public abstract TExpression GroupExpression { get; set; }
-
-        public abstract TIdentifierExpression IntoExpression { get; set; }
-
-        public void Accept(IGenericExpressionVisitor visitor)
+        private readonly Node<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax> node;
+        private readonly CachedExpressionNode<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax> byExpression;
+        private readonly CachedExpressionNode<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax> groupExpression;
+       
+        internal QueryGroupExpressionWithCodeAnalysis()
         {
-            visitor.VisitQueryGroupExpression(this);
+            node = new Node<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax>(this);
+            byExpression = new CachedExpressionNode<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax>(
+                node,
+                syntax => syntax.ByExpression,
+                (parentSyntax, childSyntax) => parentSyntax.WithByExpression(childSyntax));
+            groupExpression = new CachedExpressionNode<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax>(
+                node,
+                syntax => syntax.GroupExpression,
+                (parentSyntax, childSyntax) => parentSyntax.WithGroupExpression(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis ByExpression
         {
-            GenericExpressionVisitor.VisitQueryGroupExpressionChildren(this, visitor);
+            get { return byExpression.Value; }
+            set { byExpression.Value = value; }
+        }
+
+        public override IExpressionWithCodeAnalysis GroupExpression
+        {
+            get { return groupExpression.Value; }
+            set { groupExpression.Value = value; }
+        }
+
+        public override QueryIntoExpressionWithCodeAnalysis IntoExpression
+        {
+            get { return node.GetParentNode<QueryFromExpressionWithCodeAnalysis>().IntoExpression; }
+            set { node.GetParentNode<QueryFromExpressionWithCodeAnalysis>().IntoExpression = value; }
+        }
+
+        public GroupClauseSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
     }
 }

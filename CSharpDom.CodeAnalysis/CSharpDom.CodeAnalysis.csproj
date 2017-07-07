@@ -119,6 +119,15 @@
     <Compile Include="CachedExpressionNode.cs" />
     <Compile Include="CachedStatementNode.cs" />
     <Compile Include="Expressions\ArrayIndexExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\BinaryOperatorExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\DoubleConstantExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\IntegerConstantExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\LiteralExpression.cs" />
+    <Compile Include="Expressions\LiteralExpressionSyntaxExtensions.cs" />
+    <Compile Include="Expressions\QueryGroupExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\QueryIntoExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\StringConstantExpressionWithCodeAnalysis.cs" />
+    <Compile Include="IInternalLiteralExpression.cs" />
     <Compile Include="Partial\ProjectPartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="ProjectClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassCollectionWithCodeAnalysis.cs" />

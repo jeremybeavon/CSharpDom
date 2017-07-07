@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class IdentifierExpressionWithCodeAnalysis :
         EditableIdentifierExpression,
         IHasSyntax<IdentifierNameSyntax>,
+        IHasNode<IdentifierNameSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<IdentifierExpressionWithCodeAnalysis, IdentifierNameSyntax> node;
@@ -29,11 +30,13 @@ namespace CSharpDom.CodeAnalysis.Expressions
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
+        
         INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
         {
             get { return node; }
         }
+
+        INode<IdentifierNameSyntax> IHasNode<IdentifierNameSyntax>.Node => node;
 
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {

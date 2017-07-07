@@ -28,7 +28,7 @@ namespace CSharpDom.Linq.Expressions
                 { ExpressionType.GreaterThan, BinaryOperatorExpressionType.GreaterThan },
                 { ExpressionType.GreaterThanOrEqual, BinaryOperatorExpressionType.GreaterThanOrEqual },
                 { ExpressionType.LeftShift, BinaryOperatorExpressionType.LeftShift },
-                { ExpressionType.LeftShiftAssign, BinaryOperatorExpressionType.LeftShfitAssign },
+                { ExpressionType.LeftShiftAssign, BinaryOperatorExpressionType.LeftShiftAssign },
                 { ExpressionType.LessThan, BinaryOperatorExpressionType.LessThan },
                 { ExpressionType.LessThanOrEqual, BinaryOperatorExpressionType.LessThanOrEqual },
                 { ExpressionType.Modulo, BinaryOperatorExpressionType.Modulo },

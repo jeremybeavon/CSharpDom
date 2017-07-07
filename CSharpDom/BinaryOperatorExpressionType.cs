@@ -17,7 +17,7 @@
         GreaterThan,
         GreaterThanOrEqual,
         LeftShift,
-        LeftShfitAssign,
+        LeftShiftAssign,
         LessThan,
         LessThanOrEqual,
         Modulo,

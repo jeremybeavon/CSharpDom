@@ -1,19 +1,38 @@
 ﻿using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class IntegerConstantExpressionWithCodeAnalysis : IIntegerConstantExpression
+    public sealed class IntegerConstantExpressionWithCodeAnalysis :
+        EditableIntegerConstantExpression,
+        IInternalLiteralExpression
     {
-        public abstract int Constant { get; set; }
+        private readonly LiteralExpression<int> expression;
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        internal IntegerConstantExpressionWithCodeAnalysis()
         {
-            visitor.VisitIntegerConstantExpression(this);
+            expression = new LiteralExpression<int>();
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override int Constant
         {
+            get { return expression.Constant; }
+            set { expression.Constant = value; }
         }
+
+        public LiteralExpressionSyntax Syntax
+        {
+            get { return expression.Syntax; }
+            set { expression.Syntax = value; }
+        }
+
+        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        {
+            get { return expression.ExpressionSyntax; }
+            set { expression.ExpressionSyntax = value; }
+        }
+
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node => expression.Node;
     }
 }

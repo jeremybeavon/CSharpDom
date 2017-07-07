@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
@@ -10,53 +11,34 @@ namespace CSharpDom.CodeAnalysis.Expressions
         IHasSyntax<LiteralExpressionSyntax>,
         IInternalExpression
     {
+        private readonly LiteralExpression<double> expression;
 
+        internal DoubleConstantExpressionWithCodeAnalysis()
+        {
+            expression = new LiteralExpression<double>();
+        }
 
         public override double Constant
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return expression.Constant; }
+            set { expression.Constant = value; }
         }
 
         public LiteralExpressionSyntax Syntax
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return expression.Syntax; }
+            set { expression.Syntax = value; }
         }
 
         INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
+            get { return expression.Node; }
         }
 
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {
-            get
-            {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
-            }
+            get { return expression.ExpressionSyntax; }
+            set { expression.ExpressionSyntax = value; }
         }
     }
 }
