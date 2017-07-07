@@ -162,18 +162,25 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(queryJoinExpression);
         }
 
-        public virtual void VisitQueryLetExpression<TBinaryOperatorExpression>(
-            IQueryLetExpression<TBinaryOperatorExpression> queryLetExpression)
-            where TBinaryOperatorExpression : IBinaryOperatorExpression
+        public virtual void VisitQueryLetExpression<TExpression>(
+            IQueryLetExpression<TExpression> queryLetExpression)
+            where TExpression : IExpression
         {
             Visit(queryLetExpression);
         }
 
-        public virtual void VisitQueryOrderByExpression<TExpression>(
-            IQueryOrderByExpression<TExpression> queryOrderByExpression)
-            where TExpression : IExpression
+        public virtual void VisitQueryOrderByExpression<TOrderingExpression>(
+            IQueryOrderByExpression<TOrderingExpression> queryOrderByExpression)
+            where TOrderingExpression : IQueryOrderingExpression
         {
             Visit(queryOrderByExpression);
+        }
+
+        public virtual void VisitQueryOrderingExpression<TExpression>(
+            IQueryOrderingExpression<TExpression> queryOrderingExpression)
+            where TExpression : IExpression
+        {
+            Visit(queryOrderingExpression);
         }
 
         public virtual void VisitQuerySelectExpression<TExpression>(

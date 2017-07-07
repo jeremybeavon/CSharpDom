@@ -4,12 +4,11 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractQueryOrderByExpression<TExpression> : IQueryOrderByExpression<TExpression>
-        where TExpression : IExpression
+    public abstract class AbstractQueryOrderByExpression<TOrderingExpression> :
+        IQueryOrderByExpression<TOrderingExpression>
+        where TOrderingExpression : IQueryOrderingExpression
     {
-        public abstract TExpression Expression { get; }
-
-        public abstract QueryOrderByType OrderByType { get; }
+        public abstract IReadOnlyList<TOrderingExpression> Orders { get; }
 
         public void Accept(IGenericExpressionVisitor visitor)
         {

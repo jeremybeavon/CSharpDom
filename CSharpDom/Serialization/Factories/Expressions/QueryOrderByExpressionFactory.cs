@@ -11,12 +11,12 @@ namespace CSharpDom.Serialization.Factories.Expressions
         {
         }
 
-        public override void VisitQueryOrderByExpression<TExpression>(IQueryOrderByExpression<TExpression> queryOrderByExpression)
+        public override void VisitQueryOrderByExpression<TOrderingExpression>(
+            IQueryOrderByExpression<TOrderingExpression> queryOrderByExpression)
         {
             Value = new QueryOrderByExpression()
             {
-                Expression = new ExpressionFactory(queryOrderByExpression.Expression).Value,
-                OrderByType = queryOrderByExpression.OrderByType
+                Orders = queryOrderByExpression.Orders.ToList(order => new QueryOrderingExpressionFactory(order).Value)
             };
         }
     }

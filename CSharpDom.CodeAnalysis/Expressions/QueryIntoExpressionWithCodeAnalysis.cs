@@ -6,6 +6,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class QueryIntoExpressionWithCodeAnalysis :
         EditableIdentifierExpression,
+        IHasSyntax<QueryContinuationSyntax>,
         IHasNode<QueryContinuationSyntax>
     {
         private readonly Node<QueryIntoExpressionWithCodeAnalysis, QueryContinuationSyntax> node;
@@ -20,6 +21,8 @@ namespace CSharpDom.CodeAnalysis.Expressions
             get { return node.Syntax.Identifier.Text; }
             set { node.Syntax = node.Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
         }
+
+        public QueryContinuationSyntax Syntax { get => node.Syntax; set => node.Syntax = value; }
 
         INode<QueryContinuationSyntax> IHasNode<QueryContinuationSyntax>.Node => node;
     }

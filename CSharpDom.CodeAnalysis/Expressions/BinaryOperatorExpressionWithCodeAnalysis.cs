@@ -1,12 +1,15 @@
 ﻿using CSharpDom.Editable.Expressions;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
 using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class BinaryOperatorExpressionWithCodeAnalysis :
         EditableBinaryOperatorExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<ExpressionSyntax>,
+        IHasSyntax<AssignmentExpressionSyntax>,
         IHasSyntax<BinaryExpressionSyntax>,
         IInternalExpression
     {
@@ -14,57 +17,61 @@ namespace CSharpDom.CodeAnalysis.Expressions
             new Map<BinaryOperatorExpressionType, SyntaxKind>()
             {
                 { BinaryOperatorExpressionType.Add, SyntaxKind.PlusToken },
-                { BinaryOperatorExpressionType.AddAssign, SyntaxKind.PlusEqualsToken },
-                { BinaryOperatorExpressionType.Assign, SyntaxKind.EqualsToken },
                 { BinaryOperatorExpressionType.BitwiseAnd, SyntaxKind.AmpersandToken },
-                { BinaryOperatorExpressionType.BitwiseAndAssign, SyntaxKind.AmpersandEqualsToken },
                 { BinaryOperatorExpressionType.BitwiseExclusiveOr, SyntaxKind.CaretToken },
-                { BinaryOperatorExpressionType.BitwiseExclusiveOrAssign, SyntaxKind.CaretEqualsToken },
                 { BinaryOperatorExpressionType.BitwiseOr, SyntaxKind.BarToken },
-                { BinaryOperatorExpressionType.BitwiseOrAssign, SyntaxKind.BarEqualsToken },
                 { BinaryOperatorExpressionType.Coalesce, SyntaxKind.QuestionQuestionToken },
                 { BinaryOperatorExpressionType.Divide, SyntaxKind.SlashToken },
-                { BinaryOperatorExpressionType.DivideAssign, SyntaxKind.SlashEqualsToken },
                 { BinaryOperatorExpressionType.Equal, SyntaxKind.EqualsEqualsToken },
                 { BinaryOperatorExpressionType.GreaterThan, SyntaxKind.GreaterThanToken },
                 { BinaryOperatorExpressionType.GreaterThanOrEqual, SyntaxKind.GreaterThanEqualsToken },
                 { BinaryOperatorExpressionType.LeftShift, SyntaxKind.LessThanLessThanToken },
-                { BinaryOperatorExpressionType.LeftShiftAssign, SyntaxKind.LessThanLessThanEqualsToken },
                 { BinaryOperatorExpressionType.LessThan, SyntaxKind.LessThanToken },
                 { BinaryOperatorExpressionType.LessThanOrEqual, SyntaxKind.LessThanEqualsToken },
                 { BinaryOperatorExpressionType.LogicalAnd, SyntaxKind.AmpersandAmpersandToken },
                 { BinaryOperatorExpressionType.LogicalOr, SyntaxKind.BarBarToken },
                 { BinaryOperatorExpressionType.Modulo, SyntaxKind.PercentToken },
-                { BinaryOperatorExpressionType.ModuloAssign, SyntaxKind.PercentEqualsToken },
                 { BinaryOperatorExpressionType.Multiply, SyntaxKind.AsteriskToken },
-                { BinaryOperatorExpressionType.MultiplyAssign, SyntaxKind.AsteriskEqualsToken },
                 { BinaryOperatorExpressionType.NotEqual, SyntaxKind.ExclamationEqualsToken },
                 { BinaryOperatorExpressionType.RightShift, SyntaxKind.GreaterThanGreaterThanToken },
-                { BinaryOperatorExpressionType.RightShiftAssign, SyntaxKind.GreaterThanGreaterThanEqualsToken },
                 { BinaryOperatorExpressionType.Subtract, SyntaxKind.MinusToken },
-                { BinaryOperatorExpressionType.SubtractAssign, SyntaxKind.MinusEqualsToken },
                 { BinaryOperatorExpressionType.TypeAs, SyntaxKind.AsKeyword },
                 { BinaryOperatorExpressionType.TypeIs, SyntaxKind.IsKeyword }
             };
-        private readonly ExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, BinaryExpressionSyntax> node;
+        private static readonly Map<BinaryOperatorExpressionType, SyntaxKind> assignmentOperatorMap =
+            new Map<BinaryOperatorExpressionType, SyntaxKind>()
+            {
+                { BinaryOperatorExpressionType.AddAssign, SyntaxKind.PlusEqualsToken },
+                { BinaryOperatorExpressionType.Assign, SyntaxKind.EqualsToken },
+                { BinaryOperatorExpressionType.BitwiseAndAssign, SyntaxKind.AmpersandEqualsToken },
+                { BinaryOperatorExpressionType.BitwiseExclusiveOrAssign, SyntaxKind.CaretEqualsToken },
+                { BinaryOperatorExpressionType.BitwiseOrAssign, SyntaxKind.BarEqualsToken },
+                { BinaryOperatorExpressionType.DivideAssign, SyntaxKind.SlashEqualsToken },
+                { BinaryOperatorExpressionType.LeftShiftAssign, SyntaxKind.LessThanLessThanEqualsToken },
+                { BinaryOperatorExpressionType.ModuloAssign, SyntaxKind.PercentEqualsToken },
+                { BinaryOperatorExpressionType.MultiplyAssign, SyntaxKind.AsteriskEqualsToken },
+                { BinaryOperatorExpressionType.RightShiftAssign, SyntaxKind.GreaterThanGreaterThanEqualsToken },
+                { BinaryOperatorExpressionType.SubtractAssign, SyntaxKind.MinusEqualsToken }
+            };
+        private readonly ExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, ExpressionSyntax> node;
         private readonly CachedExpressionNode<
             BinaryOperatorExpressionWithCodeAnalysis,
-            BinaryExpressionSyntax> left;
+            ExpressionSyntax> left;
         private readonly CachedExpressionNode<
             BinaryOperatorExpressionWithCodeAnalysis,
-            BinaryExpressionSyntax> right;
+            ExpressionSyntax> right;
 
         internal BinaryOperatorExpressionWithCodeAnalysis()
         {
-            node = new ExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, BinaryExpressionSyntax>(this);
-            left = new CachedExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, BinaryExpressionSyntax>(
+            node = new ExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, ExpressionSyntax>(this);
+            left = new CachedExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, ExpressionSyntax>(
                 node,
-                syntax => syntax.Left,
-                (parentSyntax, childSyntax) => parentSyntax.WithLeft(childSyntax));
-            right = new CachedExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, BinaryExpressionSyntax>(
+                syntax => (syntax as BinaryExpressionSyntax)?.Left ?? (syntax as AssignmentExpressionSyntax)?.Left,
+                CreateLeftOperand);
+            right = new CachedExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, ExpressionSyntax>(
                 node,
-                syntax => syntax.Right,
-                (parentSyntax, childSyntax) => parentSyntax.WithRight(childSyntax));
+                syntax => (syntax as BinaryExpressionSyntax)?.Right ?? (syntax as AssignmentExpressionSyntax)?.Right,
+                CreateRightOperand);
         }
 
         public override IExpressionWithCodeAnalysis Left
@@ -75,8 +82,46 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         public override BinaryOperatorExpressionType OperatorType
         {
-            get { return operatorMap[Syntax.OperatorToken.Kind()]; }
-            set { Syntax = Syntax.WithOperatorToken(SyntaxFactory.Token(operatorMap[value])); }
+            get
+            {
+                ExpressionSyntax syntax = Syntax;
+                if (syntax is BinaryExpressionSyntax binarySyntax)
+                {
+                    return operatorMap[binarySyntax.OperatorToken.Kind()];
+                }
+
+                if (syntax is AssignmentExpressionSyntax assignmentSyntax)
+                {
+                    return assignmentOperatorMap[assignmentSyntax.OperatorToken.Kind()];
+                }
+
+                throw new NotSupportedException();
+            }
+            set
+            {
+                ExpressionSyntax syntax = Syntax;
+                BinaryExpressionSyntax binaryExpressionSyntax = syntax as BinaryExpressionSyntax;
+                AssignmentExpressionSyntax assignmentExpressionSyntax = syntax as AssignmentExpressionSyntax;
+                bool isBinaryExpressionSyntax = binaryExpressionSyntax != null;
+                if (operatorMap.ContainsKey(value))
+                {
+                    Syntax = isBinaryExpressionSyntax ?
+                        binaryExpressionSyntax.WithOperatorToken(SyntaxFactory.Token(operatorMap[value])) :
+                        SyntaxFactory.BinaryExpression(
+                            operatorMap[value],
+                            assignmentExpressionSyntax.Left,
+                            assignmentExpressionSyntax.Right);
+                }
+                else
+                {
+                    Syntax = isBinaryExpressionSyntax ?
+                        SyntaxFactory.AssignmentExpression(
+                            assignmentOperatorMap[value],
+                            binaryExpressionSyntax.Left,
+                            binaryExpressionSyntax.Right) :
+                        assignmentExpressionSyntax.WithOperatorToken(SyntaxFactory.Token(assignmentOperatorMap[value]));
+                }
+            }
         }
 
         public override IExpressionWithCodeAnalysis Right
@@ -85,18 +130,48 @@ namespace CSharpDom.CodeAnalysis.Expressions
             set { right.Value = value; }
         }
 
-        public BinaryExpressionSyntax Syntax
+        public BinaryExpressionSyntax BinaryExpressionSyntax
+        {
+            get { return Syntax as BinaryExpressionSyntax; }
+            set { Syntax = value; }
+        }
+
+        public AssignmentExpressionSyntax AssignmentExpressionSyntax
+        {
+            get { return Syntax as AssignmentExpressionSyntax; }
+            set { Syntax = value; }
+        }
+
+        public ExpressionSyntax Syntax
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
+        
+        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node => node;
 
-        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
+        AssignmentExpressionSyntax IHasSyntax<AssignmentExpressionSyntax>.Syntax
         {
-            get { return Syntax; }
-            set { Syntax = (BinaryExpressionSyntax)value; }
+            get { return AssignmentExpressionSyntax; }
+            set { AssignmentExpressionSyntax = value; }
         }
 
-        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node => node;
+        BinaryExpressionSyntax IHasSyntax<BinaryExpressionSyntax>.Syntax
+        {
+            get { return BinaryExpressionSyntax; }
+            set { BinaryExpressionSyntax = value; }
+        }
+
+        private ExpressionSyntax CreateLeftOperand(ExpressionSyntax parentSyntax, ExpressionSyntax childSyntax)
+        {
+            return (ExpressionSyntax)(parentSyntax as BinaryExpressionSyntax)?.WithLeft(childSyntax) ??
+                (parentSyntax as AssignmentExpressionSyntax)?.WithLeft(childSyntax);
+        }
+
+        private ExpressionSyntax CreateRightOperand(ExpressionSyntax parentSyntax, ExpressionSyntax childSyntax)
+        {
+            return (ExpressionSyntax)(parentSyntax as BinaryExpressionSyntax)?.WithRight(childSyntax) ??
+                (parentSyntax as AssignmentExpressionSyntax)?.WithRight(childSyntax);
+        }
     }
 }

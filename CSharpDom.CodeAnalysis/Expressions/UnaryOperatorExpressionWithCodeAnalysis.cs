@@ -54,14 +54,12 @@ namespace CSharpDom.CodeAnalysis.Expressions
             get
             {
                 ExpressionSyntax syntax = Syntax;
-                PrefixUnaryExpressionSyntax prefixSyntax = syntax as PrefixUnaryExpressionSyntax;
-                if (prefixSyntax != null)
+                if (syntax is PrefixUnaryExpressionSyntax prefixSyntax)
                 {
                     return prefixOperatorMap[prefixSyntax.OperatorToken.Kind()];
                 }
 
-                PostfixUnaryExpressionSyntax postfixSyntax = syntax as PostfixUnaryExpressionSyntax;
-                if (postfixSyntax != null)
+                if (syntax is PostfixUnaryExpressionSyntax postfixSyntax)
                 {
                     return postfixOperatorMap[postfixSyntax.OperatorToken.Kind()];
                 }
@@ -74,7 +72,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 PrefixUnaryExpressionSyntax prefixSyntax = syntax as PrefixUnaryExpressionSyntax;
                 PostfixUnaryExpressionSyntax postfixSyntax = syntax as PostfixUnaryExpressionSyntax;
                 bool isSyntaxPrefix = prefixSyntax != null;
-                if (value == UnaryOperatorExpressionType.PostDecrement || value == UnaryOperatorExpressionType.PostIncrement)
+                if (postfixOperatorMap.ContainsValue(value))
                 {
                     Syntax = isSyntaxPrefix ?
                         SyntaxFactory.PostfixUnaryExpression(postfixOperatorMap[value], prefixSyntax.Operand) :

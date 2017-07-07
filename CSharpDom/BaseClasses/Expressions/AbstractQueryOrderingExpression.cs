@@ -4,22 +4,21 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractQueryLetExpression<TExpression> :
-        IQueryLetExpression<TExpression>
+    public abstract class AbstractQueryOrderingExpression<TExpression> : IQueryOrderingExpression<TExpression>
         where TExpression : IExpression
     {
         public abstract TExpression Expression { get; }
 
-        public abstract string Identifier { get; }
+        public abstract QueryOrderByType OrderByType { get; }
 
         public void Accept(IGenericExpressionVisitor visitor)
         {
-            visitor.VisitQueryLetExpression(this);
+            visitor.VisitQueryOrderingExpression(this);
         }
 
         public void AcceptChildren(IGenericExpressionVisitor visitor)
         {
-            GenericExpressionVisitor.VisitQueryLetExpressionChildren(this, visitor);
+            GenericExpressionVisitor.VisitQueryOrderingExpressionChildren(this, visitor);
         }
     }
 }

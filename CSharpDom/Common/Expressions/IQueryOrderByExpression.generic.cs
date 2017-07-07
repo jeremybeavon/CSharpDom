@@ -1,10 +1,10 @@
-﻿namespace CSharpDom.Common.Expressions
-{
-    public interface IQueryOrderByExpression<TExpression> : IQueryOrderByExpression
-        where TExpression : IExpression
-    {
-        TExpression Expression { get; }
+﻿using System.Collections.Generic;
 
-        QueryOrderByType OrderByType { get; }
+namespace CSharpDom.Common.Expressions
+{
+    public interface IQueryOrderByExpression<TOrderingExpression> : IQueryOrderByExpression
+        where TOrderingExpression : IQueryOrderingExpression
+    {
+        IReadOnlyList<TOrderingExpression> Orders { get; }
     }
 }

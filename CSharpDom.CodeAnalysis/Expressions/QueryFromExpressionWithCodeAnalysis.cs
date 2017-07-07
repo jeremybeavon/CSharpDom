@@ -17,9 +17,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     {
         private readonly ExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax> node;
         private readonly CachedExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax> expression;
-        private readonly QueryExpressionListWrapper<
-            QueryFromExpressionWithCodeAnalysis,
-            QueryExpressionSyntax> queryExpressions;
+        private readonly QueryExpressionList queryExpressions;
         private readonly CachedChildNode<
             QueryFromExpressionWithCodeAnalysis,
             QueryExpressionSyntax,
@@ -33,10 +31,11 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 node,
                 syntax => syntax.FromClause.Expression,
                 (parentSyntax, childSyntax) => parentSyntax.WithFromClause(parentSyntax.FromClause.WithExpression(childSyntax)));
-            queryExpressions = new QueryExpressionListWrapper<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax>(
+            queryExpressions = new QueryExpressionList(this);
+                /*new QueryExpressionListWrapper<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax>(
                 node,
                 syntax => syntax.Body.Clauses,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(parentSyntax.Body.WithClauses(childSyntax)));
+                (parentSyntax, childSyntax) => parentSyntax.WithBody(parentSyntax.Body.WithClauses(childSyntax)));*/
             intoExpression = new CachedChildNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax, QueryIntoExpressionWithCodeAnalysis, QueryContinuationSyntax>(
                 node,
                 () => new QueryIntoExpressionWithCodeAnalysis(),

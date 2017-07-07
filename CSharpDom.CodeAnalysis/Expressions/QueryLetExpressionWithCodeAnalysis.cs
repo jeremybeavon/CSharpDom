@@ -1,23 +1,52 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class QueryLetExpressionWithCodeAnalysis<TBinaryOperatorExpression> :
-        IQueryLetExpression<TBinaryOperatorExpression>
-        where TBinaryOperatorExpression : IBinaryOperatorExpression
+    public sealed class QueryLetExpressionWithCodeAnalysis :
+        EditableQueryLetExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<LetClauseSyntax>,
+        IInternalQueryExpression
     {
-        public abstract TBinaryOperatorExpression Expression { get; set; }
+        private readonly QueryExpressionNode<QueryLetExpressionWithCodeAnalysis, LetClauseSyntax> node;
+        private readonly CachedExpressionNode<QueryLetExpressionWithCodeAnalysis, LetClauseSyntax> expression;
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        internal QueryLetExpressionWithCodeAnalysis()
         {
-            visitor.VisitQueryLetExpression(this);
+            node = new QueryExpressionNode<QueryLetExpressionWithCodeAnalysis, LetClauseSyntax>(this);
+            expression = new CachedExpressionNode<QueryLetExpressionWithCodeAnalysis, LetClauseSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis Expression
         {
-            GenericExpressionVisitor.VisitQueryLetExpressionChildren(this, visitor);
+            get { return expression.Value; }
+            set { expression.Value = value; }
         }
+
+        public override string Identifier
+        {
+            get { return node.Syntax.Identifier.Text; }
+            set { node.Syntax = node.Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
+        }
+
+        public LetClauseSyntax Syntax
+        {
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
+        }
+
+        QueryClauseSyntax IHasSyntax<QueryClauseSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (LetClauseSyntax)value; }
+        }
+
+        INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node => node;
     }
 }

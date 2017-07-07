@@ -4,22 +4,21 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Editable.Expressions
 {
-    public abstract class EditableQueryLetExpression<TExpression> :
-        IQueryLetExpression<TExpression>
+    public abstract class EditableQueryOrderingExpression<TExpression> : IQueryOrderingExpression<TExpression>
         where TExpression : IExpression
     {
         public abstract TExpression Expression { get; set; }
 
-        public abstract string Identifier { get; set; }
+        public abstract QueryOrderByType OrderByType { get; set; }
 
         public void Accept(IGenericExpressionVisitor visitor)
         {
-            visitor.VisitQueryLetExpression(this);
+            visitor.VisitQueryOrderingExpression(this);
         }
 
         public void AcceptChildren(IGenericExpressionVisitor visitor)
         {
-            GenericExpressionVisitor.VisitQueryLetExpressionChildren(this, visitor);
+            GenericExpressionVisitor.VisitQueryOrderingExpressionChildren(this, visitor);
         }
     }
 }

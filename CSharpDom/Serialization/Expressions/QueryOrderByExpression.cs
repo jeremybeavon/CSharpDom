@@ -4,11 +4,16 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class QueryOrderByExpression : IQueryOrderByExpression<Expression>
+    public sealed class QueryOrderByExpression : IQueryOrderByExpression<QueryOrderingExpression>
     {
-        public Expression Expression { get; set; }
+        public QueryOrderByExpression()
+        {
+            Orders = new List<QueryOrderingExpression>();
+        }
 
-        public QueryOrderByType OrderByType { get; set; }
+        public List<QueryOrderingExpression> Orders { get; set; }
+
+        IReadOnlyList<QueryOrderingExpression> IQueryOrderByExpression<QueryOrderingExpression>.Orders => Orders;
 
         public void Accept(IGenericExpressionVisitor visitor)
         {

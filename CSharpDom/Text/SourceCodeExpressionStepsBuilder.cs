@@ -242,23 +242,32 @@ namespace CSharpDom.Text
             }
         }
 
-        public override void VisitQueryLetExpression<TBinaryOperatorExpression>(
-            IQueryLetExpression<TBinaryOperatorExpression> queryLetExpression)
+        public override void VisitQueryLetExpression<TExpression>(
+            IQueryLetExpression<TExpression> queryLetExpression)
         {
             Steps.Add(new WriteLetKeyword());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteExpression<TBinaryOperatorExpression>(queryLetExpression.Expression));
+            Steps.Add(new WriteEqualsKeyword());
+            Steps.Add(new WriteName(queryLetExpression.Identifier));
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteExpression<TExpression>(queryLetExpression.Expression));
         }
 
-        public override void VisitQueryOrderByExpression<TExpression>(IQueryOrderByExpression<TExpression> queryOrderByExpression)
+        public override void VisitQueryOrderByExpression<TOrderingExpression>(
+            IQueryOrderByExpression<TOrderingExpression> queryOrderByExpression)
         {
             Steps.Add(new WriteOrderByKeyword());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteExpression<TExpression>(queryOrderByExpression.Expression));
-            if (queryOrderByExpression.OrderByType != QueryOrderByType.None)
+            Steps.AddCommaSeparatedExpressionSteps(queryOrderByExpression.Orders);
+        }
+
+        public override void VisitQueryOrderingExpression<TExpression>(IQueryOrderingExpression<TExpression> queryOrderingExpression)
+        {
+            Steps.Add(new WriteExpression<TExpression>(queryOrderingExpression.Expression));
+            if (queryOrderingExpression.OrderByType != QueryOrderByType.None)
             {
                 Steps.Add(new WriteWhitespace());
-                Steps.Add(new WriteQueryOrderByType(queryOrderByExpression.OrderByType));
+                Steps.Add(new WriteQueryOrderByType(queryOrderingExpression.OrderByType));
             }
         }
 

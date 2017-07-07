@@ -85,10 +85,14 @@ namespace CSharpDom.Common.Expressions
             IQueryJoinExpression<TExpression> queryJoinExpression)
             where TExpression : IExpression;
 
-        void VisitQueryLetExpression<TBinaryOperatorExpression>(IQueryLetExpression<TBinaryOperatorExpression> queryLetExpression)
-            where TBinaryOperatorExpression : IBinaryOperatorExpression;
+        void VisitQueryLetExpression<TExpression>(IQueryLetExpression<TExpression> queryLetExpression)
+            where TExpression : IExpression;
 
-        void VisitQueryOrderByExpression<TExpression>(IQueryOrderByExpression<TExpression> queryOrderByExpression)
+        void VisitQueryOrderByExpression<TOrderingExpression>(
+            IQueryOrderByExpression<TOrderingExpression> queryOrderByExpression)
+            where TOrderingExpression : IQueryOrderingExpression;
+
+        void VisitQueryOrderingExpression<TExpression>(IQueryOrderingExpression<TExpression> queryOrderingExpression)
             where TExpression : IExpression;
 
         void VisitQuerySelectExpression<TExpression>(IQuerySelectExpression<TExpression> querySelectExpression)

@@ -124,8 +124,12 @@
     <Compile Include="Expressions\IntegerConstantExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\LiteralExpression.cs" />
     <Compile Include="Expressions\LiteralExpressionSyntaxExtensions.cs" />
+    <Compile Include="Expressions\QueryExpressionList.cs" />
     <Compile Include="Expressions\QueryGroupExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\QueryIntoExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\QueryLetExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\QueryOrderingExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\QueryOrderByExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\StringConstantExpressionWithCodeAnalysis.cs" />
     <Compile Include="IInternalLiteralExpression.cs" />
     <Compile Include="Partial\ProjectPartialClassCollectionWithCodeAnalysis.cs" />

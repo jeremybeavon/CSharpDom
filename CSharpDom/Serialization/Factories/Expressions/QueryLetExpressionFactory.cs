@@ -11,11 +11,12 @@ namespace CSharpDom.Serialization.Factories.Expressions
         {
         }
 
-        public override void VisitQueryLetExpression<TBinaryOperatorExpression>(IQueryLetExpression<TBinaryOperatorExpression> queryLetExpression)
+        public override void VisitQueryLetExpression<TExpression>(IQueryLetExpression<TExpression> queryLetExpression)
         {
             Value = new QueryLetExpression()
             {
-                Expression = new BinaryOperatorExpressionFactory(queryLetExpression.Expression).Value
+                Expression = new ExpressionFactory(queryLetExpression.Expression).Value,
+                Identifier = queryLetExpression.Identifier
             };
         }
     }

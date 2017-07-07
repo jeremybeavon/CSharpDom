@@ -153,20 +153,28 @@ namespace CSharpDom.Common.Expressions
             VisitIfNotNull(queryJoinExpression.EqualsExpression, visitor);
         }
 
-        public static void VisitQueryLetExpressionChildren<TBinaryOperatorExpression>(
-            IQueryLetExpression<TBinaryOperatorExpression> queryLetExpression,
+        public static void VisitQueryLetExpressionChildren<TExpression>(
+            IQueryLetExpression<TExpression> queryLetExpression,
             IGenericExpressionVisitor visitor)
-            where TBinaryOperatorExpression : IBinaryOperatorExpression
+            where TExpression : IExpression
         {
             VisitIfNotNull(queryLetExpression.Expression, visitor);
         }
 
-        public static void VisitQueryOrderByExpressionChildren<TExpression>(
-            IQueryOrderByExpression<TExpression> queryOrderByExpression,
+        public static void VisitQueryOrderByExpressionChildren<TOrderingExpression>(
+            IQueryOrderByExpression<TOrderingExpression> queryOrderByExpression,
+            IGenericExpressionVisitor visitor)
+            where TOrderingExpression : IQueryOrderingExpression
+        {
+            VisitCollection(queryOrderByExpression.Orders, visitor);
+        }
+
+        public static void VisitQueryOrderingExpressionChildren<TExpression>(
+            IQueryOrderingExpression<TExpression> queryOrderingExpression,
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
         {
-            VisitIfNotNull(queryOrderByExpression.Expression, visitor);
+            VisitIfNotNull(queryOrderingExpression.Expression, visitor);
         }
 
         public static void VisitQuerySelectExpressionChildren<TExpression>(

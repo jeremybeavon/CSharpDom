@@ -1,24 +1,46 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class QueryOrderByExpressionWithCodeAnalysis<TExpression> : IQueryOrderByExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class QueryOrderByExpressionWithCodeAnalysis :
+        EditableQueryOrderByExpression<QueryOrderingExpressionWithCodeAnalysis>,
+        IHasSyntax<OrderByClauseSyntax>,
+        IInternalQueryExpression
     {
-        public abstract TExpression Expression { get; set; }
+        private readonly QueryExpressionNode<QueryOrderByExpressionWithCodeAnalysis, OrderByClauseSyntax> node;
+        private readonly SeparatedSyntaxListWrapper<
+            QueryOrderByExpressionWithCodeAnalysis,
+            OrderByClauseSyntax,
+            QueryOrderingExpressionWithCodeAnalysis,
+            OrderingSyntax> orders;
 
-        public abstract QueryOrderByType OrderByType { get; set; }
-
-        public void Accept(IGenericExpressionVisitor visitor)
+        internal QueryOrderByExpressionWithCodeAnalysis()
         {
-            visitor.VisitQueryOrderByExpression(this);
+            node = new QueryExpressionNode<QueryOrderByExpressionWithCodeAnalysis, OrderByClauseSyntax>(this);
+            orders = new SeparatedSyntaxListWrapper<QueryOrderByExpressionWithCodeAnalysis, OrderByClauseSyntax, QueryOrderingExpressionWithCodeAnalysis, OrderingSyntax>(
+                node,
+                syntax => syntax.Orderings,
+                (parentSyntax, childSyntax) => parentSyntax.WithOrderings(childSyntax),
+                () => new QueryOrderingExpressionWithCodeAnalysis());
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IList<QueryOrderingExpressionWithCodeAnalysis> Orders
         {
-            GenericExpressionVisitor.VisitQueryOrderByExpressionChildren(this, visitor);
+            get { return orders; }
+            set { orders.ReplaceList(value); }
         }
+
+        public OrderByClauseSyntax Syntax { get => node.Syntax; set => node.Syntax = value; }
+
+        QueryClauseSyntax IHasSyntax<QueryClauseSyntax>.Syntax
+        {
+            get { return Syntax; }
+            set { Syntax = (OrderByClauseSyntax)value; }
+        }
+
+        INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node => node;
     }
 }
