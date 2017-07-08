@@ -13,34 +13,51 @@ namespace CSharpDom.CodeAnalysis.Expressions
             IExpressionWithCodeAnalysis,
             IQueryExpressionWithCodeAnalysis>,
         IHasSyntax<QueryExpressionSyntax>,
-        IInternalExpression
+        IHasSyntax<FromClauseSyntax>,
+        IInternalExpression,
+        IInternalQueryExpression,
+        IHasNode<FromClauseSyntax>
     {
+        private readonly QueryFromExpressionType expressionType;
         private readonly ExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax> node;
-        private readonly CachedExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax> expression;
+        private readonly QueryExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax> fromNode;
+        private readonly CachedExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax> expression;
         private readonly QueryExpressionList queryExpressions;
+        private readonly CachedChildNode<
+            QueryFromExpressionWithCodeAnalysis,
+            QueryExpressionSyntax,
+            QueryFromExpressionWithCodeAnalysis,
+            FromClauseSyntax> fromClause;
         private readonly CachedChildNode<
             QueryFromExpressionWithCodeAnalysis,
             QueryExpressionSyntax,
             QueryIntoExpressionWithCodeAnalysis,
             QueryContinuationSyntax> intoExpression;
 
-        public QueryFromExpressionWithCodeAnalysis()
+        internal QueryFromExpressionWithCodeAnalysis(QueryFromExpressionType expressionType)
         {
-            node = new ExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax>(this);
-            expression = new CachedExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax>(
-                node,
-                syntax => syntax.FromClause.Expression,
-                (parentSyntax, childSyntax) => parentSyntax.WithFromClause(parentSyntax.FromClause.WithExpression(childSyntax)));
-            queryExpressions = new QueryExpressionList(this);
-                /*new QueryExpressionListWrapper<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax>(
-                node,
-                syntax => syntax.Body.Clauses,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(parentSyntax.Body.WithClauses(childSyntax)));*/
-            intoExpression = new CachedChildNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax, QueryIntoExpressionWithCodeAnalysis, QueryContinuationSyntax>(
-                node,
-                () => new QueryIntoExpressionWithCodeAnalysis(),
-                syntax => syntax.Body.Continuation,
-                (parentSyntax, childSyntax) => parentSyntax.WithBody(parentSyntax.Body.WithContinuation(childSyntax)));
+            this.expressionType = expressionType;
+            if (expressionType == QueryFromExpressionType.FullQuery)
+            {
+                node = new ExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax>(this);
+                fromClause = new CachedChildNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax, QueryFromExpressionWithCodeAnalysis, FromClauseSyntax>(
+                    node,
+                    () => this,
+                    syntax => syntax.FromClause,
+                    (parentSyntax, childSyntax) => parentSyntax.WithFromClause(childSyntax));
+                intoExpression = new CachedChildNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax, QueryIntoExpressionWithCodeAnalysis, QueryContinuationSyntax>(
+                    node,
+                    () => new QueryIntoExpressionWithCodeAnalysis(),
+                    syntax => syntax.Body.Continuation,
+                    (parentSyntax, childSyntax) => parentSyntax.WithBody(parentSyntax.Body.WithContinuation(childSyntax)));
+                queryExpressions = new QueryExpressionList(this);
+            }
+
+            fromNode = new QueryExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax>(this);
+            expression = new CachedExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax>(
+                fromNode,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
         }
 
         public override IExpressionWithCodeAnalysis Expression
@@ -51,24 +68,44 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         public override string Identifier
         {
-            get { return Syntax.FromClause.Identifier.Text; }
+            get { return fromNode.Syntax.Identifier.Text; }
             set
             {
-                QueryExpressionSyntax syntax = Syntax;
-                Syntax = syntax.WithFromClause(syntax.FromClause.WithIdentifier(SyntaxFactory.Identifier(value)));
+                FromClauseSyntax syntax = fromNode.Syntax;
+                fromNode.Syntax = syntax.WithIdentifier(SyntaxFactory.Identifier(value));
             }
         }
 
         public override IList<IQueryExpressionWithCodeAnalysis> QueryExpressions
         {
-            get { return queryExpressions; }
-            set { queryExpressions.ReplaceList(value); }
+            get
+            {
+                return (IList< IQueryExpressionWithCodeAnalysis>)queryExpressions ??
+                    new IQueryExpressionWithCodeAnalysis[0];
+            }
+            set
+            {
+                if (queryExpressions == null)
+                {
+                    throw new NotSupportedException();
+                }
+
+                queryExpressions.ReplaceList(value);
+            }
         }
 
         public QueryExpressionSyntax Syntax
         {
-            get { return node.Syntax; }
-            set { node.Syntax = value; }
+            get { return node?.Syntax; }
+            set
+            {
+                if (node == null)
+                {
+                    throw new NotSupportedException();
+                }
+
+                node.Syntax = value;
+            }
         }
 
         internal QueryIntoExpressionWithCodeAnalysis IntoExpression
@@ -82,10 +119,22 @@ namespace CSharpDom.CodeAnalysis.Expressions
             get { return node; }
         }
 
+        INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node => fromNode;
+
+        INode<FromClauseSyntax> IHasNode<FromClauseSyntax>.Node => fromNode;
+
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {
             get { return Syntax; }
             set { Syntax = (QueryExpressionSyntax)value; }
+        }
+
+        FromClauseSyntax IHasSyntax<FromClauseSyntax>.Syntax { get => fromNode.Syntax; set => fromNode.Syntax = value; }
+
+        QueryClauseSyntax IHasSyntax<QueryClauseSyntax>.Syntax
+        {
+            get => fromNode.Syntax;
+            set => fromNode.Syntax = (FromClauseSyntax)value;
         }
     }
 }

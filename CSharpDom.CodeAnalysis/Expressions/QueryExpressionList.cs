@@ -16,7 +16,8 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             IndexOf,
             Insert,
-            RemoveAt
+            RemoveAt,
+            Set
         }
 
         internal QueryExpressionList(QueryFromExpressionWithCodeAnalysis expression)
@@ -24,7 +25,21 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         }
 
-        public IQueryExpressionWithCodeAnalysis this[int index] { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public IQueryExpressionWithCodeAnalysis this[int index]
+        {
+            get
+            {
+                (IQueryExpressionWithCodeAnalysis result, bool isResultSet) result = (null, false);
+                ProcessIndex(index, (list, listIndex) => result = (list[listIndex], true));
+                if (!result.isResultSet)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+
+                return result.result;
+            }
+            set { ProcessIndex(index, (list, listIndex) => list[index] = value); }
+        }
 
         public int Count => enumerable.Select(list => list.Count).Sum();
 
@@ -97,13 +112,13 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         }
 
-        private static IEnumerable<IQueryExpressionWithCodeAnalysis> GetExpressions(
+        private static IEnumerable<IList<IQueryExpressionWithCodeAnalysis>> GetExpressions(
             QueryFromExpressionWithCodeAnalysis expression)
         {
             yield break;
         }
 
-        private static IEnumerable<IQueryExpressionWithCodeAnalysis> GetExpressions(QueryBodySyntax syntax)
+        private static IEnumerable<IList<IQueryExpressionWithCodeAnalysis>> GetExpressions(QueryBodySyntax syntax)
         {
             yield break;
         }

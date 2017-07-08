@@ -9,7 +9,8 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class BlockStatementWithCodeAnalysis :
         EditableBlockStatement<IStatementWithCodeAnalysis>,
         IHasSyntax<BlockSyntax>,
-        IInternalStatement
+        IInternalStatement,
+        IHasNode<BlockSyntax>
     {
         private readonly Guid internalId;
         private readonly StatementNode<BlockStatementWithCodeAnalysis, BlockSyntax> node;
@@ -44,6 +45,8 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<BlockSyntax> IHasNode<BlockSyntax>.Node => node;
 
         StatementSyntax IHasSyntax<StatementSyntax>.Syntax
         {

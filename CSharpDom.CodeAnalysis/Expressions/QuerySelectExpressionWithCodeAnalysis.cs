@@ -1,22 +1,32 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public sealed class QuerySelectExpressionWithCodeAnalysis<TExpression> : IQuerySelectExpression<TExpression>
-        where TExpression : IExpression
+    public sealed class QuerySelectExpressionWithCodeAnalysis : 
+        EditableQuerySelectExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<SelectClauseSyntax>
     {
-        public abstract TExpression Expression { get; set; }
+        private readonly Node<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax> node;
+        private readonly CachedExpressionNode<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax> expression;
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        internal QuerySelectExpressionWithCodeAnalysis()
         {
-            visitor.VisitQuerySelectExpression(this);
+            node = new Node<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax>(this);
+            expression = new CachedExpressionNode<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax>(
+                node,
+                syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override IExpressionWithCodeAnalysis Expression
         {
-            GenericExpressionVisitor.VisitQuerySelectExpressionChildren(this, visitor);
+            get { return expression.Value; }
+            set { expression.Value = value; }
         }
+
+        public SelectClauseSyntax Syntax { get => node.Syntax; set => node.Syntax = value; }
     }
 }

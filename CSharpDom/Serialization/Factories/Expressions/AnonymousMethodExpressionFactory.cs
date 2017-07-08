@@ -17,7 +17,7 @@ namespace CSharpDom.Serialization.Factories.Expressions
             Value = new AnonymousMethodExpression()
             {
                 Body = new StatementFactory(anonymousMethod.Body).Value,
-                Parameters = anonymousMethod.Parameters.ToList(parameter => new MethodParameterFactory(parameter).Value)
+                Parameters = anonymousMethod.Parameters.ToList(parameter => new AnonymousMethodParameterFactory(parameter).Value)
             };
         }
     }

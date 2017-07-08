@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CSharpDom.Common.Statements;
+using System.Collections.Generic;
 
 namespace CSharpDom.Common.Expressions
 {
@@ -37,6 +38,15 @@ namespace CSharpDom.Common.Expressions
             where TExpression : IExpression
         {
             VisitIfNotNull(castExpression.Expression, visitor);
+        }
+
+        public static void VisitAnonymousMethodExpressionChildren<TParameter, TStatement>(
+            IAnonymousMethodExpression<TParameter, TStatement> anonymousMethodExpression,
+            IGenericExpressionVisitor visitor)
+            where TParameter : IAnonymousMethodParameter
+            where TStatement : IStatement
+        {
+            VisitCollection(anonymousMethodExpression.Parameters, visitor);
         }
 
         public static void VisitListInitializerExpressionChildren<TCreateListExpression, TExpression>(

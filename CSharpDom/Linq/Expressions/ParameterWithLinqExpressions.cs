@@ -1,14 +1,9 @@
 ﻿using CSharpDom.BaseClasses.Expressions;
 using CSharpDom.Common;
+using CSharpDom.Common.Expressions;
 using CSharpDom.NotSupported;
 using CSharpDom.Reflection;
-using CSharpDom.Reflection.Internal;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CSharpDom.Common.Expressions;
 using System.Linq.Expressions;
 
 namespace CSharpDom.Linq.Expressions
@@ -16,7 +11,8 @@ namespace CSharpDom.Linq.Expressions
     public sealed class ParameterWithLinqExpressions :
         AbstractIdentifierExpression,
         ILinqExpression<ParameterExpression>,
-        IParameter<AttributeGroupNotSupported, ITypeReferenceWithReflection>
+        IParameter<AttributeGroupNotSupported, ITypeReferenceWithReflection>,
+        IAnonymousMethodParameter<ITypeReferenceWithReflection>
     {
         private readonly ITypeReferenceWithReflection parameterType;
 
@@ -52,6 +48,9 @@ namespace CSharpDom.Linq.Expressions
         {
             get { return Expression; }
         }
+
+        AnonymousMethodParameterModifier IHasModifier<AnonymousMethodParameterModifier>.Modifier =>
+            AnonymousMethodParameterModifier.None;
 
         public void Accept(IGenericVisitor visitor)
         {

@@ -7,7 +7,7 @@ namespace CSharpDom.BaseClasses.Expressions
 {
     public abstract class AbstractAnonymousMethodExpression<TParameter, TStatement> :
         IAnonymousMethodExpression<TParameter, TStatement>
-        where TParameter : IParameter
+        where TParameter : IAnonymousMethodParameter
         where TStatement : IStatement
     {
         public abstract TStatement Body { get; }
@@ -21,6 +21,7 @@ namespace CSharpDom.BaseClasses.Expressions
 
         public void AcceptChildren(IGenericExpressionVisitor visitor)
         {
+            GenericExpressionVisitor.VisitAnonymousMethodExpressionChildren(this, visitor);
         }
     }
 }

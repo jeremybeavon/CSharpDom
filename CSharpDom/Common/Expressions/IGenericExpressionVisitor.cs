@@ -30,8 +30,12 @@ namespace CSharpDom.Common.Expressions
 
         void VisitAnonymousMethodExpression<TParameter, TStatement>(
             IAnonymousMethodExpression<TParameter, TStatement> anonymousMethodExpression)
-            where TParameter : IParameter
+            where TParameter : IAnonymousMethodParameter
             where TStatement : IStatement;
+
+        void VisitAnonymousMethodParameter<TTypeReference>(
+            IAnonymousMethodParameter<TTypeReference> anonymousMethodParameter)
+            where TTypeReference : ITypeReference;
 
         void VisitListInitializerExpression<TCreateListExpression, TExpression>(
             IListInitializerExpression<TCreateListExpression, TExpression> listInitializerExpression)

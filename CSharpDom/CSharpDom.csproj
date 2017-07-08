@@ -235,6 +235,7 @@
     <Compile Include="BaseClasses\AbstractUnnamedAttributeValue.cs" />
     <Compile Include="BaseClasses\AbstractUnspecifiedTypeReference.cs" />
     <Compile Include="BaseClasses\AbstractUsingDirective.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractAnonymousMethodParameter.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryOrderingExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractRawExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractUnaryOperatorExpression.cs" />
@@ -350,6 +351,8 @@
     <Compile Include="CodeGeneration\Tree\EmptyStaticClassPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclaration.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclarationExpression.cs" />
+    <Compile Include="Common\Expressions\IAnonymousMethodParameter.generic.cs" />
+    <Compile Include="Common\Expressions\IAnonymousMethodParameter.cs" />
     <Compile Include="Common\Expressions\IQueryOrderingExpression.generic.cs" />
     <Compile Include="Common\Expressions\IQueryOrderingExpression.cs" />
     <Compile Include="Common\IBasicType.cs" />
@@ -384,6 +387,7 @@
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyMethodParameter.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyDelegateParameter.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyIndexerParameter.cs" />
+    <Compile Include="Common\IHasParameterType.cs" />
     <Compile Include="Common\IHasPartial.cs" />
     <Compile Include="Common\IHasStructAccessorVisibilityModifier.cs" />
     <Compile Include="Common\IHasStaticClassAccessorVisibilityModifier.cs" />
@@ -642,6 +646,7 @@
     <Compile Include="Editable\EditableUnnamedAttributeValue.cs" />
     <Compile Include="Editable\EditableUnspecifiedTypeReference.cs" />
     <Compile Include="Editable\EditableUsingDirective.cs" />
+    <Compile Include="Editable\Expressions\EditableAnonymousMethodParameter.cs" />
     <Compile Include="Editable\Expressions\EditableAnonymousMethodExpression.cs" />
     <Compile Include="Editable\Expressions\EditableArrayIndexExpression.cs" />
     <Compile Include="Editable\Expressions\EditableAwaitExpression.cs" />
@@ -730,6 +735,7 @@
     <Compile Include="Editable\Statements\EditableWhileStatement.cs" />
     <Compile Include="IndexerParameterModifier.cs" />
     <Compile Include="NotSupported\ExpressionNotSupported.cs" />
+    <Compile Include="AnonymousMethodParameterModifier.cs" />
     <Compile Include="Reflection\IConstantWithReflection.cs" />
     <Compile Include="Reflection\Internal\ConstantGroupWithReflection.cs" />
     <Compile Include="Reflection\Internal\Fields.cs" />
@@ -952,7 +958,9 @@
     <Compile Include="Search\FindAbstractClassByNameVisitor.cs" />
     <Compile Include="Search\FindStructByNameVisitor.cs" />
     <Compile Include="Search\FindNamespaceForStructVisitor.cs" />
+    <Compile Include="Serialization\Expressions\AnonymousMethodParameter.cs" />
     <Compile Include="Serialization\Expressions\QueryOrderingExpression.cs" />
+    <Compile Include="Serialization\Factories\Expressions\AnonymousMethodParameterFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\QueryOrderingExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\StructAccessorFactory.cs" />
     <Compile Include="Serialization\Factories\AccessorFactory.cs" />

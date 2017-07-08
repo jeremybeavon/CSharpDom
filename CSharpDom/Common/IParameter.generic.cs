@@ -3,10 +3,10 @@
     public interface IParameter<TAttributeGroup, TTypeReference> :
         IParameter,
         IHasName, 
-        IHasAttributes<TAttributeGroup>
+        IHasAttributes<TAttributeGroup>,
+        IHasParameterType<TTypeReference>
         where TAttributeGroup : IAttributeGroup
         where TTypeReference : ITypeReference
     {
-        TTypeReference ParameterType { get; }
     }
 }

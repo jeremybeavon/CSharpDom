@@ -61,7 +61,7 @@ namespace CSharpDom.BaseClasses.Expressions
 
         public virtual void VisitAnonymousMethodExpression<TParameter, TStatement>(
             IAnonymousMethodExpression<TParameter, TStatement> anonymousMethod)
-            where TParameter : IParameter
+            where TParameter : IAnonymousMethodParameter
             where TStatement : IStatement
         {
             Visit(anonymousMethod);
@@ -230,6 +230,13 @@ namespace CSharpDom.BaseClasses.Expressions
             where TExpression : IExpression
         {
             Visit(unaryOperatorExpression);
+        }
+
+        public virtual void VisitAnonymousMethodParameter<TTypeReference>(
+            IAnonymousMethodParameter<TTypeReference> anonymousMethodParameter)
+            where TTypeReference : ITypeReference
+        {
+            Visit(anonymousMethodParameter);
         }
     }
 }

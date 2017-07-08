@@ -11,7 +11,7 @@ namespace CSharpDom.CodeAnalysis
             new Dictionary<Type, Func<IInternalExpression>>()
             {
                 //{ typeof(AliasQualifiedNameSyntax), () => },
-                //{ typeof(AnonymousMethodExpressionSyntax), () => },
+                { typeof(AnonymousMethodExpressionSyntax), () => new AnonymousMethodExpressionWithCodeAnalysis() },
                 //{ typeof(AnonymousObjectCreationExpressionSyntax), () => },
                 //{ typeof(ArrayCreationExpressionSyntax), () => new newarr },
                 //{ typeof(ArrayTypeSyntax), () => },
@@ -45,7 +45,7 @@ namespace CSharpDom.CodeAnalysis
                 { typeof(PostfixUnaryExpressionSyntax), () => new UnaryOperatorExpressionWithCodeAnalysis() },
                 //{ typeof(PredefinedTypeSyntax), () => new  },
                 { typeof(PrefixUnaryExpressionSyntax), () => new UnaryOperatorExpressionWithCodeAnalysis() },
-                { typeof(QueryExpressionSyntax), () => new QueryFromExpressionWithCodeAnalysis() },
+                { typeof(QueryExpressionSyntax), () => new QueryFromExpressionWithCodeAnalysis(QueryFromExpressionType.FullQuery) },
                 //{ typeof(RefTypeExpressionSyntax), () => },
                 //{ typeof(RefValueExpressionSyntax), () => },
                 //{ typeof(StackAllocArrayCreationExpressionSyntax), () => },
@@ -55,7 +55,7 @@ namespace CSharpDom.CodeAnalysis
                 //{ typeof(ThisExpressionSyntax), () => },
                 { typeof(TypeOfExpressionSyntax), () => new TypeofExpressionWithCodeAnalysis() },
             };
-
+        
         public static IInternalExpression ToInternalExpression(this ExpressionSyntax syntax)
         {
             if (syntax is LiteralExpressionSyntax literalExpression)

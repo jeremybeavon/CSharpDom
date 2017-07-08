@@ -9,7 +9,7 @@ namespace CSharpDom.Editable.Expressions
 {
     public abstract class EditableAnonymousMethodExpression<TParameter, TStatement> :
         IAnonymousMethodExpression<TParameter, TStatement>
-        where TParameter : IParameter
+        where TParameter : IAnonymousMethodParameter
         where TStatement : IStatement
     {
         public abstract TStatement Body { get; set; }
