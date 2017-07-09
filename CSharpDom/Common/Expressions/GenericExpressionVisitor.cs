@@ -132,24 +132,42 @@ namespace CSharpDom.Common.Expressions
             VisitIfNotNull(parenthesisExpression.Expression, visitor);
         }
 
-        public static void VisitQueryFromExpressionChildren<TExpression, TQueryExpression>(
-            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression,
+        public static void VisitQueryExpressionChildren<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression>(
+            IQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression> queryExpression,
             IGenericExpressionVisitor visitor)
-            where TExpression : IExpression
-            where TQueryExpression : IQueryExpression
+            where TQueryFromExpression : IQueryFromExpression
+            where TQueryClauseExpression : IQueryClauseExpression
+            where TQueryEndExpression : IQueryEndExpression
         {
-            VisitIfNotNull(queryFromExpression.Expression, visitor);
-            VisitCollection(queryFromExpression.QueryExpressions, visitor);
+            VisitIfNotNull(queryExpression.StartExpression, visitor);
+            VisitCollection(queryExpression.Expressions, visitor);
+            VisitIfNotNull(queryExpression.EndExpression, visitor);
         }
 
-        public static void VisitQueryGroupExpressionChildren<TExpression, TIdentiferExpression>(
-            IQueryGroupExpression<TExpression, TIdentiferExpression> queryGroupExpression,
+        public static void VisitQueryFromExpressionChildren<TExpression>(
+            IQueryFromExpression<TExpression> queryFromExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(queryFromExpression.Expression, visitor);
+        }
+
+        public static void VisitQueryGroupExpressionChildren<TExpression>(
+            IQueryGroupExpression<TExpression> queryGroupExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(queryGroupExpression.GroupExpression, visitor);
+            VisitIfNotNull(queryGroupExpression.ByExpression, visitor);
+        }
+
+        public static void VisitQueryGroupIntoExpressionChildren<TExpression, TIdentiferExpression>(
+            IQueryGroupIntoExpression<TExpression, TIdentiferExpression> queryGroupExpression,
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
             where TIdentiferExpression : IIdentifierExpression
         {
-            VisitIfNotNull(queryGroupExpression.GroupExpression, visitor);
-            VisitIfNotNull(queryGroupExpression.ByExpression, visitor);
+            VisitQueryGroupExpressionChildren(queryGroupExpression, visitor);
             VisitIfNotNull(queryGroupExpression.IntoExpression, visitor);
         }
 
@@ -193,6 +211,16 @@ namespace CSharpDom.Common.Expressions
             where TExpression : IExpression
         {
             VisitIfNotNull(querySelectExpression.Expression, visitor);
+        }
+
+        public static void VisitQuerySelectIntoExpressionChildren<TExpression, TIdentifierExpression>(
+            IQuerySelectIntoExpression<TExpression, TIdentifierExpression> querySelectExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+            where TIdentifierExpression : IIdentifierExpression
+        {
+            VisitQuerySelectExpressionChildren(querySelectExpression, visitor);
+            VisitIfNotNull(querySelectExpression.IntoExpression, visitor);
         }
 
         public static void VisitQueryWhereExpressionChildren<TExpression>(

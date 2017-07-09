@@ -6,16 +6,17 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class QueryGroupExpressionWithCodeAnalysis :
-        EditableQueryGroupExpression<IExpressionWithCodeAnalysis, QueryIntoExpressionWithCodeAnalysis>,
-        IHasSyntax<GroupClauseSyntax>
+        EditableQueryGroupExpression<IExpressionWithCodeAnalysis>,
+        IHasSyntax<GroupClauseSyntax>,
+        IInternalQueryEndExpression
     {
-        private readonly Node<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax> node;
+        private readonly QueryEndExpressionNode<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax> node;
         private readonly CachedExpressionNode<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax> byExpression;
         private readonly CachedExpressionNode<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax> groupExpression;
        
         internal QueryGroupExpressionWithCodeAnalysis()
         {
-            node = new Node<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax>(this);
+            node = new QueryEndExpressionNode<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax>(this);
             byExpression = new CachedExpressionNode<QueryGroupExpressionWithCodeAnalysis, GroupClauseSyntax>(
                 node,
                 syntax => syntax.ByExpression,
@@ -37,17 +38,15 @@ namespace CSharpDom.CodeAnalysis.Expressions
             get { return groupExpression.Value; }
             set { groupExpression.Value = value; }
         }
-
-        public override QueryIntoExpressionWithCodeAnalysis IntoExpression
-        {
-            get { return node.GetParentNode<QueryFromExpressionWithCodeAnalysis>().IntoExpression; }
-            set { node.GetParentNode<QueryFromExpressionWithCodeAnalysis>().IntoExpression = value; }
-        }
-
+        
         public GroupClauseSyntax Syntax
         {
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
+
+        SelectOrGroupClauseSyntax IHasSyntax<SelectOrGroupClauseSyntax>.Syntax { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+        INode<SelectOrGroupClauseSyntax> IHasNode<SelectOrGroupClauseSyntax>.Node => throw new System.NotImplementedException();
     }
 }

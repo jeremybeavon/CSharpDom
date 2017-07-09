@@ -1,6 +1,12 @@
-﻿namespace CSharpDom.Common.Expressions
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CSharpDom.Common.Expressions
 {
-    public interface IQueryExpression : IVisitable<IGenericExpressionVisitor>
+    public interface IQueryExpression : IExpression
     {
     }
 }

@@ -139,22 +139,6 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(parenthesisExpression);
         }
 
-        public virtual void VisitQueryFromExpression<TExpression, TQueryExpression>(
-            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression)
-            where TExpression : IExpression
-            where TQueryExpression : IQueryExpression
-        {
-            Visit(queryFromExpression);
-        }
-
-        public virtual void VisitQueryGroupExpression<TExpression, TIdentiferExpression>(
-            IQueryGroupExpression<TExpression, TIdentiferExpression> queryGroupExpression)
-            where TExpression : IExpression
-            where TIdentiferExpression : IIdentifierExpression
-        {
-            Visit(queryGroupExpression);
-        }
-
         public virtual void VisitQueryJoinExpression<TExpression>(
             IQueryJoinExpression<TExpression> queryJoinExpression)
             where TExpression : IExpression
@@ -237,6 +221,44 @@ namespace CSharpDom.BaseClasses.Expressions
             where TTypeReference : ITypeReference
         {
             Visit(anonymousMethodParameter);
+        }
+
+        public virtual void VisitQueryFromExpression<TExpression>(IQueryFromExpression<TExpression> queryFromExpression)
+            where TExpression : IExpression
+        {
+            Visit(queryFromExpression);
+        }
+
+        public virtual void VisitQueryGroupExpression<TExpression>(
+            IQueryGroupExpression<TExpression> queryGroupExpression)
+            where TExpression : IExpression
+        {
+            Visit(queryGroupExpression);
+        }
+
+        public virtual void VisitQueryGroupIntoExpression<TExpression, TIdentifierExpression>(
+            IQueryGroupIntoExpression<TExpression, TIdentifierExpression> queryGroupIntoExpression)
+            where TExpression : IExpression
+            where TIdentifierExpression : IIdentifierExpression
+        {
+            Visit(queryGroupIntoExpression);
+        }
+
+        public virtual void VisitQuerySelectIntoExpression<TExpression, TIdentifierExpression>(
+            IQuerySelectIntoExpression<TExpression, TIdentifierExpression> querySelectIntoExpression)
+            where TExpression : IExpression
+            where TIdentifierExpression : IIdentifierExpression
+        {
+            Visit(querySelectIntoExpression);
+        }
+
+        public virtual void VisitQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression>(
+            IQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression> queryExpression)
+            where TQueryFromExpression : IQueryFromExpression
+            where TQueryClauseExpression : IQueryClauseExpression
+            where TQueryEndExpression : IQueryEndExpression
+        {
+            Visit(queryExpression);
         }
     }
 }

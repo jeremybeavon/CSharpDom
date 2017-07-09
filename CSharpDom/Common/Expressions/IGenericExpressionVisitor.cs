@@ -75,13 +75,22 @@ namespace CSharpDom.Common.Expressions
         void VisitParenthesisExpression<TExpression>(IParenthesisExpression<TExpression> parenthesisExpression)
             where TExpression : IExpression;
 
-        void VisitQueryFromExpression<TExpression, TQueryExpression>(
-            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression)
-            where TExpression : IExpression
-            where TQueryExpression : IQueryExpression;
+        void VisitQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression>(
+            IQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression> queryExpression)
+            where TQueryFromExpression : IQueryFromExpression
+            where TQueryClauseExpression : IQueryClauseExpression
+            where TQueryEndExpression : IQueryEndExpression;
 
-        void VisitQueryGroupExpression<TExpression, TIdentiferExpression>(
-            IQueryGroupExpression<TExpression, TIdentiferExpression> queryGroupExpression)
+        void VisitQueryFromExpression<TExpression>(
+            IQueryFromExpression<TExpression> queryFromExpression)
+            where TExpression : IExpression;
+
+        void VisitQueryGroupExpression<TExpression>(
+            IQueryGroupExpression<TExpression> queryGroupExpression)
+            where TExpression : IExpression;
+
+        void VisitQueryGroupIntoExpression<TExpression, TIdentiferExpression>(
+            IQueryGroupIntoExpression<TExpression, TIdentiferExpression> queryGroupIntoExpression)
             where TExpression : IExpression
             where TIdentiferExpression : IIdentifierExpression;
 
@@ -101,6 +110,11 @@ namespace CSharpDom.Common.Expressions
 
         void VisitQuerySelectExpression<TExpression>(IQuerySelectExpression<TExpression> querySelectExpression)
             where TExpression : IExpression;
+
+        void VisitQuerySelectIntoExpression<TExpression, TIdentifierExpression>(
+            IQuerySelectIntoExpression<TExpression, TIdentifierExpression> querySelectIntoExpression)
+            where TExpression : IExpression
+            where TIdentifierExpression : IIdentifierExpression;
 
         void VisitQueryWhereExpression<TExpression>(IQueryWhereExpression<TExpression> queryWhereExpression)
             where TExpression : IExpression;

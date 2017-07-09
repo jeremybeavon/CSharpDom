@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private static IDictionary<Type, Func<IInternalQueryExpression>> queryClauseMap =
             new Dictionary<Type, Func<IInternalQueryExpression>>()
             {
-                { typeof(FromClauseSyntax), () => new QueryFromExpressionWithCodeAnalysis(QueryFromExpressionType.OnlyFromExpression) },
+                { typeof(FromClauseSyntax), () => new QueryFromExpressionWithCodeAnalysis() },
                 { typeof(JoinClauseSyntax), () => new QueryJoinExpressionWithCodeAnalysis() },
                 { typeof(LetClauseSyntax), () => new QueryLetExpressionWithCodeAnalysis() },
                 { typeof(OrderByClauseSyntax), () => new QueryOrderByExpressionWithCodeAnalysis() },

@@ -34,13 +34,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         public OrderByClauseSyntax Syntax { get => node.Syntax; set => node.Syntax = value; }
-
-        QueryClauseSyntax IHasSyntax<QueryClauseSyntax>.Syntax
-        {
-            get { return Syntax; }
-            set { Syntax = (OrderByClauseSyntax)value; }
-        }
-
+        
         INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node => node;
     }
 }

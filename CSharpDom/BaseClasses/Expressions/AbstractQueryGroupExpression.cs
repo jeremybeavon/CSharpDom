@@ -4,23 +4,20 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractQueryGroupExpression<TExpression, TIdentifierExpression> :
-        IQueryGroupExpression<TExpression, TIdentifierExpression>
+    public abstract class AbstractQueryGroupExpression<TExpression> :
+        IQueryGroupExpression<TExpression>
         where TExpression : IExpression
-        where TIdentifierExpression : IIdentifierExpression
     {
         public abstract TExpression ByExpression { get; }
 
         public abstract TExpression GroupExpression { get; }
 
-        public abstract TIdentifierExpression IntoExpression { get; }
-
-        public void Accept(IGenericExpressionVisitor visitor)
+        public virtual void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitQueryGroupExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public virtual void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitQueryGroupExpressionChildren(this, visitor);
         }

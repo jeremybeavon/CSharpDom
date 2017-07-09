@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common.Expressions
 {
-    public interface IQuerySelectExpression : IQueryExpression
+    public interface IQuerySelectExpression : IQueryEndExpression
     {
     }
 }

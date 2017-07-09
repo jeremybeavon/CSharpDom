@@ -112,7 +112,6 @@ namespace CSharpDom.Serialization.Expressions
                 yield return ObjectInitializerExpression;
                 yield return OutExpression;
                 yield return ParenthesisExpression;
-                yield return QueryFromExpression;
                 yield return RawExpression;
                 yield return RefExpression;
                 yield return StringConstantExpression;

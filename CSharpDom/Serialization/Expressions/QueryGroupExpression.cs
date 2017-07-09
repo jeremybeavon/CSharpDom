@@ -4,13 +4,11 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class QueryGroupExpression : IQueryGroupExpression<Expression, IdentifierExpression>
+    public sealed class QueryGroupExpression : IQueryGroupExpression<Expression>
     {
         public Expression ByExpression { get; set; }
 
         public Expression GroupExpression { get; set; }
-
-        public IdentifierExpression IntoExpression { get; set; }
 
         public void Accept(IGenericExpressionVisitor visitor)
         {

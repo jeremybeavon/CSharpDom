@@ -40,13 +40,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        QueryClauseSyntax IHasSyntax<QueryClauseSyntax>.Syntax
-        {
-            get { return Syntax; }
-            set { Syntax = (LetClauseSyntax)value; }
-        }
-
+        
         INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node => node;
     }
 }

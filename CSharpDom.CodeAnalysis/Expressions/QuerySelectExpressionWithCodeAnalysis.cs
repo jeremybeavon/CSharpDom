@@ -7,14 +7,15 @@ namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class QuerySelectExpressionWithCodeAnalysis : 
         EditableQuerySelectExpression<IExpressionWithCodeAnalysis>,
-        IHasSyntax<SelectClauseSyntax>
+        IHasSyntax<SelectClauseSyntax>,
+        IInternalQueryEndExpression
     {
-        private readonly Node<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax> node;
+        private readonly QueryEndExpressionNode<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax> node;
         private readonly CachedExpressionNode<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax> expression;
 
         internal QuerySelectExpressionWithCodeAnalysis()
         {
-            node = new Node<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax>(this);
+            node = new QueryEndExpressionNode<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax>(this);
             expression = new CachedExpressionNode<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax>(
                 node,
                 syntax => syntax.Expression,
@@ -28,5 +29,8 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         public SelectClauseSyntax Syntax { get => node.Syntax; set => node.Syntax = value; }
+        SelectOrGroupClauseSyntax IHasSyntax<SelectOrGroupClauseSyntax>.Syntax { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+        INode<SelectOrGroupClauseSyntax> IHasNode<SelectOrGroupClauseSyntax>.Node => throw new System.NotImplementedException();
     }
 }

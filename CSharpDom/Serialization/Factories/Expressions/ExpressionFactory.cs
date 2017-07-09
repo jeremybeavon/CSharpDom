@@ -179,16 +179,7 @@ namespace CSharpDom.Serialization.Factories.Expressions
                 ParenthesisExpression = new ParenthesisExpressionFactory(parenthesisExpression).Value
             };
         }
-
-        public override void VisitQueryFromExpression<TExpression, TQueryExpression>(
-            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression)
-        {
-            Value = new Expression()
-            {
-                QueryFromExpression = new QueryFromExpressionFactory(queryFromExpression).Value
-            };
-        }
-
+        
         public override void VisitRawExpression(IRawExpression rawExpression)
         {
             Value = new Expression()

@@ -82,11 +82,5 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
-
-        QueryClauseSyntax IHasSyntax<QueryClauseSyntax>.Syntax
-        {
-            get { return Syntax; }
-            set { Syntax = (JoinClauseSyntax)value; }
-        }
     }
 }

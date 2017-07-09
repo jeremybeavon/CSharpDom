@@ -4,9 +4,9 @@ using CSharpDom.Serialization.Factories.Statements;
 
 namespace CSharpDom.Serialization.Factories.Expressions
 {
-    public sealed class QueryExpressionFactory : AbstractExpressionFactory<IQueryExpression, QueryExpression>
+    public sealed class QueryClauseExpressionFactory : AbstractExpressionFactory<IQueryClauseExpression, QueryClauseExpression>
     {
-        public QueryExpressionFactory(IQueryExpression expression)
+        public QueryClauseExpressionFactory(IQueryClauseExpression expression)
             : base(expression)
         {
         }

@@ -11,13 +11,12 @@ namespace CSharpDom.Serialization.Factories.Expressions
         {
         }
 
-        public override void VisitQueryGroupExpression<TExpression, TIdentiferExpression>(IQueryGroupExpression<TExpression, TIdentiferExpression> queryGroupExpression)
+        public override void VisitQueryGroupExpression<TExpression>(IQueryGroupExpression<TExpression> queryGroupExpression)
         {
             Value = new QueryGroupExpression()
             {
                 ByExpression = new ExpressionFactory(queryGroupExpression.ByExpression).Value,
-                GroupExpression = new ExpressionFactory(queryGroupExpression.GroupExpression).Value,
-                IntoExpression = new IdentifierExpressionFactory(queryGroupExpression.IntoExpression).Value
+                GroupExpression = new ExpressionFactory(queryGroupExpression.GroupExpression).Value
             };
         }
     }

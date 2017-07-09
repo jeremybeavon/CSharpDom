@@ -179,8 +179,22 @@ namespace CSharpDom.Text
             Steps.Add(new WriteEndParenthesis());
         }
 
-        public override void VisitQueryFromExpression<TExpression, TQueryExpression>(
-            IQueryFromExpression<TExpression, TQueryExpression> queryFromExpression)
+        public override void VisitQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression>(IQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression> queryExpression)
+        {
+            Steps.Add(new WriteExpression<TQueryFromExpression>(queryExpression.StartExpression));
+            Steps.Add(new IncrementIndent());
+            foreach (TQueryClauseExpression expression in queryExpression.Expressions)
+            {
+                Steps.Add(new WriteIndentedNewLine());
+                Steps.Add(new WriteExpression<TQueryClauseExpression>(expression));
+            }
+
+            Steps.Add(new WriteExpression<TQueryEndExpression>(queryExpression.EndExpression));
+            Steps.Add(new DecrementIndent());
+        }
+
+        public override void VisitQueryFromExpression<TExpression>(
+            IQueryFromExpression<TExpression> queryFromExpression)
         {
             Steps.Add(new WriteFromKeyword());
             Steps.Add(new WriteWhitespace());
@@ -189,18 +203,10 @@ namespace CSharpDom.Text
             Steps.Add(new WriteInKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteExpression<TExpression>(queryFromExpression.Expression));
-            Steps.Add(new IncrementIndent());
-            foreach (TQueryExpression expression in queryFromExpression.QueryExpressions)
-            {
-                Steps.Add(new WriteIndentedNewLine());
-                Steps.Add(new WriteExpression<TQueryExpression>(expression));
-            }
-
-            Steps.Add(new DecrementIndent());
         }
 
-        public override void VisitQueryGroupExpression<TExpression, TIdentiferExpression>(
-            IQueryGroupExpression<TExpression, TIdentiferExpression> queryGroupExpression)
+        public override void VisitQueryGroupExpression<TExpression>(
+            IQueryGroupExpression<TExpression> queryGroupExpression)
         {
             Steps.Add(new WriteGroupKeyword());
             Steps.Add(new WriteWhitespace());
@@ -209,10 +215,16 @@ namespace CSharpDom.Text
             Steps.Add(new WriteByKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteExpression<TExpression>(queryGroupExpression.ByExpression));
+        }
+
+        public override void VisitQueryGroupIntoExpression<TExpression, TIdentifierExpression>(
+            IQueryGroupIntoExpression<TExpression, TIdentifierExpression> queryGroupIntoExpression)
+        {
+            VisitQueryGroupExpression(queryGroupIntoExpression);
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteIntoKeyword());
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteExpression<TIdentiferExpression>(queryGroupExpression.IntoExpression));
+            Steps.Add(new WriteExpression<TIdentifierExpression>(queryGroupIntoExpression.IntoExpression));
         }
 
         public override void VisitQueryJoinExpression<TExpression>(
@@ -276,6 +288,15 @@ namespace CSharpDom.Text
             Steps.Add(new WriteSelectKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteExpression<TExpression>(querySelectExpression.Expression));
+        }
+
+        public override void VisitQuerySelectIntoExpression<TExpression, TIdentifierExpression>(IQuerySelectIntoExpression<TExpression, TIdentifierExpression> querySelectIntoExpression)
+        {
+            VisitQuerySelectExpression(querySelectIntoExpression);
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteIntoKeyword());
+            Steps.Add(new WriteWhitespace());
+            Steps.Add(new WriteExpression<TIdentifierExpression>(querySelectIntoExpression.IntoExpression));
         }
 
         public override void VisitQueryWhereExpression<TExpression>(IQueryWhereExpression<TExpression> queryWhereExpression)

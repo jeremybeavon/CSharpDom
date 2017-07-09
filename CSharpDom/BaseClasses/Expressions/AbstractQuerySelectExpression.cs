@@ -9,12 +9,12 @@ namespace CSharpDom.BaseClasses.Expressions
     {
         public abstract TExpression Expression { get; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public virtual void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitQuerySelectExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public virtual void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitQuerySelectExpressionChildren(this, visitor);
         }

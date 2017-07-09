@@ -10,52 +10,19 @@ namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class QueryFromExpressionWithCodeAnalysis :
         EditableQueryFromExpression<
-            IExpressionWithCodeAnalysis,
-            IQueryExpressionWithCodeAnalysis>,
-        IHasSyntax<QueryExpressionSyntax>,
+            IExpressionWithCodeAnalysis>,
         IHasSyntax<FromClauseSyntax>,
-        IInternalExpression,
-        IInternalQueryExpression,
-        IHasNode<FromClauseSyntax>
+        IHasNode<FromClauseSyntax>,
+        IInternalQueryExpression
     {
-        private readonly QueryFromExpressionType expressionType;
-        private readonly ExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax> node;
-        private readonly QueryExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax> fromNode;
+        private readonly QueryExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax> node;
         private readonly CachedExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax> expression;
-        private readonly QueryExpressionList queryExpressions;
-        private readonly CachedChildNode<
-            QueryFromExpressionWithCodeAnalysis,
-            QueryExpressionSyntax,
-            QueryFromExpressionWithCodeAnalysis,
-            FromClauseSyntax> fromClause;
-        private readonly CachedChildNode<
-            QueryFromExpressionWithCodeAnalysis,
-            QueryExpressionSyntax,
-            QueryIntoExpressionWithCodeAnalysis,
-            QueryContinuationSyntax> intoExpression;
-
-        internal QueryFromExpressionWithCodeAnalysis(QueryFromExpressionType expressionType)
+        
+        internal QueryFromExpressionWithCodeAnalysis()
         {
-            this.expressionType = expressionType;
-            if (expressionType == QueryFromExpressionType.FullQuery)
-            {
-                node = new ExpressionNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax>(this);
-                fromClause = new CachedChildNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax, QueryFromExpressionWithCodeAnalysis, FromClauseSyntax>(
-                    node,
-                    () => this,
-                    syntax => syntax.FromClause,
-                    (parentSyntax, childSyntax) => parentSyntax.WithFromClause(childSyntax));
-                intoExpression = new CachedChildNode<QueryFromExpressionWithCodeAnalysis, QueryExpressionSyntax, QueryIntoExpressionWithCodeAnalysis, QueryContinuationSyntax>(
-                    node,
-                    () => new QueryIntoExpressionWithCodeAnalysis(),
-                    syntax => syntax.Body.Continuation,
-                    (parentSyntax, childSyntax) => parentSyntax.WithBody(parentSyntax.Body.WithContinuation(childSyntax)));
-                queryExpressions = new QueryExpressionList(this);
-            }
-
-            fromNode = new QueryExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax>(this);
+            node = new QueryExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax>(this);
             expression = new CachedExpressionNode<QueryFromExpressionWithCodeAnalysis, FromClauseSyntax>(
-                fromNode,
+                node,
                 syntax => syntax.Expression,
                 (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
         }
@@ -68,73 +35,22 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         public override string Identifier
         {
-            get { return fromNode.Syntax.Identifier.Text; }
+            get { return Syntax.Identifier.Text; }
             set
             {
-                FromClauseSyntax syntax = fromNode.Syntax;
-                fromNode.Syntax = syntax.WithIdentifier(SyntaxFactory.Identifier(value));
+                FromClauseSyntax syntax = Syntax;
+                Syntax = syntax.WithIdentifier(SyntaxFactory.Identifier(value));
             }
         }
-
-        public override IList<IQueryExpressionWithCodeAnalysis> QueryExpressions
+        
+        public FromClauseSyntax Syntax
         {
-            get
-            {
-                return (IList< IQueryExpressionWithCodeAnalysis>)queryExpressions ??
-                    new IQueryExpressionWithCodeAnalysis[0];
-            }
-            set
-            {
-                if (queryExpressions == null)
-                {
-                    throw new NotSupportedException();
-                }
-
-                queryExpressions.ReplaceList(value);
-            }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
+        
+        INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node => node;
 
-        public QueryExpressionSyntax Syntax
-        {
-            get { return node?.Syntax; }
-            set
-            {
-                if (node == null)
-                {
-                    throw new NotSupportedException();
-                }
-
-                node.Syntax = value;
-            }
-        }
-
-        internal QueryIntoExpressionWithCodeAnalysis IntoExpression
-        {
-            get { return intoExpression.Value; }
-            set { intoExpression.Value = value; }
-        }
-
-        INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
-        {
-            get { return node; }
-        }
-
-        INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node => fromNode;
-
-        INode<FromClauseSyntax> IHasNode<FromClauseSyntax>.Node => fromNode;
-
-        ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
-        {
-            get { return Syntax; }
-            set { Syntax = (QueryExpressionSyntax)value; }
-        }
-
-        FromClauseSyntax IHasSyntax<FromClauseSyntax>.Syntax { get => fromNode.Syntax; set => fromNode.Syntax = value; }
-
-        QueryClauseSyntax IHasSyntax<QueryClauseSyntax>.Syntax
-        {
-            get => fromNode.Syntax;
-            set => fromNode.Syntax = (FromClauseSyntax)value;
-        }
+        INode<FromClauseSyntax> IHasNode<FromClauseSyntax>.Node => node;
     }
 }

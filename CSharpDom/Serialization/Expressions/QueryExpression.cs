@@ -1,63 +1,39 @@
 ﻿using CSharpDom.Common.Expressions;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class QueryExpression : IQueryExpression
+    public sealed class QueryExpression : IQueryExpression<QueryFromExpression, QueryClauseExpression, QueryEndExpression>
     {
-        [DefaultValue(null)]
-        public QueryFromExpression QueryFromExpression { get; set; }
-
-        [DefaultValue(null)]
-        public QueryGroupExpression QueryGroupExpression { get; set; }
-
-        [DefaultValue(null)]
-        public QueryJoinExpression QueryJoinExpression { get; set; }
-
-        [DefaultValue(null)]
-        public QueryLetExpression QueryLetExpression { get; set; }
-
-        [DefaultValue(null)]
-        public QueryOrderByExpression QueryOrderByExpression { get; set; }
-
-        [DefaultValue(null)]
-        public QuerySelectExpression QuerySelectExpression { get; set; }
-
-        [DefaultValue(null)]
-        public QueryWhereExpression QueryWhereExpression { get; set; }
-
-        private IEnumerable<IQueryExpression> QueryExpressions
+        public QueryExpression()
         {
-            get
-            {
-                yield return QueryFromExpression;
-                yield return QueryGroupExpression;
-                yield return QueryJoinExpression;
-                yield return QueryLetExpression;
-                yield return QueryOrderByExpression;
-                yield return QuerySelectExpression;
-                yield return QueryWhereExpression;
-            }
+            Expressions = new List<QueryClauseExpression>();
+        }
+
+        public QueryFromExpression StartExpression { get; set; }
+
+        public List<QueryClauseExpression> Expressions { get; set; }
+
+        public QueryEndExpression EndExpression { get; set; }
+
+        IReadOnlyList<QueryClauseExpression> IQueryExpression<QueryFromExpression, QueryClauseExpression, QueryEndExpression>.Expressions
+        {
+            get { return new ReadOnlyCollection<QueryClauseExpression>(Expressions); }
         }
 
         public void Accept(IGenericExpressionVisitor visitor)
         {
-            IQueryExpression queryExpressions = QueryExpressions.FirstOrDefault(current => current != null);
-            if (queryExpressions != null)
-            {
-                queryExpressions.Accept(visitor);
-            }
+            visitor.VisitQueryExpression(this);
         }
 
         public void AcceptChildren(IGenericExpressionVisitor visitor)
         {
-            IQueryExpression queryExpressions = QueryExpressions.FirstOrDefault(current => current != null);
-            if (queryExpressions != null)
-            {
-                queryExpressions.AcceptChildren(visitor);
-            }
+            GenericExpressionVisitor.VisitQueryExpressionChildren(this, visitor);
         }
     }
 }

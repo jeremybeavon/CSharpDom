@@ -1,13 +1,10 @@
 ﻿namespace CSharpDom.Common.Expressions
 {
-    public interface IQueryGroupExpression<TExpression, TIdentifierExpression> : IQueryGroupExpression
+    public interface IQueryGroupExpression<TExpression> : IQueryGroupExpression
         where TExpression : IExpression
-        where TIdentifierExpression : IIdentifierExpression
     {
         TExpression GroupExpression { get; }
 
         TExpression ByExpression { get; }
-
-        TIdentifierExpression IntoExpression { get; }
     }
 }

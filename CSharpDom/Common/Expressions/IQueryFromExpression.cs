@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common.Expressions
 {
-    public interface IQueryFromExpression : IQueryExpression, IExpression
+    public interface IQueryFromExpression : IQueryClauseExpression
     {
     }
 }

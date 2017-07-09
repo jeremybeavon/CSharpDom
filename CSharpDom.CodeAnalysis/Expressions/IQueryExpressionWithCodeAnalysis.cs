@@ -3,7 +3,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public interface IQueryExpressionWithCodeAnalysis : IQueryExpression, IHasSyntax<QueryClauseSyntax>
+    public interface IQueryExpressionWithCodeAnalysis : IQueryClauseExpression
     {
     }
 }
