@@ -24,18 +24,20 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
         }
 
-        internal static ClassNestedPartialClassCollectionWithCodeAnalysis Create(ClassTypeWithCodeAnalysis classType)
+        internal static ClassNestedPartialClassCollectionWithCodeAnalysis Create<TClass>(
+            InternalClassTypeWithCodeAnalysis<TClass> classType)
+            where TClass : class, IHasSyntax<ClassDeclarationSyntax>
         {
-            var classes = new ClassMemberListWrapper<ClassNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            var classes = new ClassMemberListWrapper<TClass, ClassNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
                 () => new ClassNestedPartialClassWithCodeAnalysis());
-            var abstractClasses = new ClassMemberListWrapper<ClassNestedAbstractPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            var abstractClasses = new ClassMemberListWrapper<TClass, ClassNestedAbstractPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
                 () => new ClassNestedAbstractPartialClassWithCodeAnalysis());
-            var sealedClasses = new ClassMemberListWrapper<ClassNestedSealedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            var sealedClasses = new ClassMemberListWrapper<TClass, ClassNestedSealedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
                 () => new ClassNestedSealedPartialClassWithCodeAnalysis());
-            var staticClasses = new ClassMemberListWrapper<ClassNestedStaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            var staticClasses = new ClassMemberListWrapper<TClass, ClassNestedStaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
                 () => new ClassNestedStaticPartialClassWithCodeAnalysis());
             return new ClassNestedPartialClassCollectionWithCodeAnalysis(classType.Members, abstractClasses, classes, sealedClasses, staticClasses);

@@ -38,7 +38,8 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal ClassNestedAbstractPartialClassWithCodeAnalysis()
         {
             classType = new ClassNestedAbstractClassWithCodeAnalysis();
-            methods = new AbstractPartialClassMethodCollectionWithCodeAnalysis(classType.Class.Class.Type);
+            methods = new InternalAbstractPartialClassMethodCollectionWithCodeAnalysis<ClassNestedAbstractClassWithCodeAnalysis>(
+                classType.InternalClass.InternalClass.Type);
         }
 
         public ClassNestedAbstractClassWithCodeAnalysis Class
@@ -78,7 +79,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Class.Type.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return classType.InternalClass.InternalClass.Type.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -139,7 +140,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override AbstractPartialClassMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
-            set { methods.Replace(value); }
+            set { classType.InternalClass.InternalClass.Type.Members.Replace(value); }
         }
 
         public override string Name
@@ -186,7 +187,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Class.Class.Type.Node; }
+            get { return classType.InternalClass.InternalClass.Type.Node; }
         }
     }
 }

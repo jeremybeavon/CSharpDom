@@ -3,12 +3,13 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class ClassIndexerListWrapper<TChildNode> :
-        ClassMemberListWrapper<TChildNode, IndexerDeclarationSyntax>
+    internal class ClassIndexerListWrapper<TClass, TChildNode> :
+        ClassMemberListWrapper<TClass, TChildNode, IndexerDeclarationSyntax>
+        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
         where TChildNode : class, IHasNode<IndexerDeclarationSyntax>
     {
         public ClassIndexerListWrapper(
-            Node<ClassTypeWithCodeAnalysis, ClassDeclarationSyntax> node,
+            Node<TClass, ClassDeclarationSyntax> node,
             Func<TChildNode> factory,
             Func<IndexerDeclarationSyntax, bool> filter = null)
             : base(node, factory, filter)

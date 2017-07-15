@@ -37,12 +37,12 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ClassDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly ClassTypeWithCodeAnalysis classType;
+        private readonly InternalClassTypeWithCodeAnalysis<ClassWithCodeAnalysis> classType;
         private readonly DocumentWithCodeAnalysis document;
 
         internal ClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            classType = new ClassTypeWithCodeAnalysis();
+            classType = new InternalClassTypeWithCodeAnalysis<ClassWithCodeAnalysis>(this);
             this.document = document;
         }
 
@@ -214,6 +214,11 @@ namespace CSharpDom.CodeAnalysis
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
             get { return classType.Node; }
+        }
+
+        internal InternalClassTypeWithCodeAnalysis<ClassWithCodeAnalysis> InternalType
+        {
+            get { return classType; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -38,7 +39,8 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal ClassNestedSealedPartialClassWithCodeAnalysis()
         {
             classType = new ClassNestedSealedClassWithCodeAnalysis();
-            methods = new SealedPartialClassMethodCollectionWithCodeAnalysis(classType.Class.Class.Type);
+            methods = new InternalSealedPartialClassMethodCollectionWithCodeAnalysis<ClassNestedSealedClassWithCodeAnalysis>(
+                classType.InternalClass.InternalClass.Type);
         }
         
         public ClassNestedSealedClassWithCodeAnalysis Class
@@ -78,7 +80,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Class.Type.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return classType.InternalClass.InternalClass.Type.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -139,7 +141,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
-            set { methods.Replace(value); }
+            set { classType.InternalClass.InternalClass.Type.Members.Replace(value); }
         }
 
         public override string Name
@@ -190,7 +192,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Class.Class.Type.Node; }
+            get { return classType.InternalClass.InternalClass.Type.Node; }
         }
     }
 }

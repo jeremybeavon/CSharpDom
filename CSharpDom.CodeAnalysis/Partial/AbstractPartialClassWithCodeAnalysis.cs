@@ -44,7 +44,8 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractPartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             classType = new AbstractClassWithCodeAnalysis(document);
-            methods = new AbstractPartialClassMethodCollectionWithCodeAnalysis(classType.Class.Type);
+            methods = new InternalAbstractPartialClassMethodCollectionWithCodeAnalysis<AbstractClassWithCodeAnalysis>(
+                classType.InternalClass.Type);
         }
 
         public AbstractClassWithCodeAnalysis Class
@@ -127,7 +128,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override AbstractPartialClassMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
-            set { methods.Replace(value); }
+            set { classType.InternalClass.Type.Members.Replace(value); }
         }
 
         public override string Name
@@ -210,7 +211,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Class.Type.Node; }
+            get { return classType.InternalClass.Type.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

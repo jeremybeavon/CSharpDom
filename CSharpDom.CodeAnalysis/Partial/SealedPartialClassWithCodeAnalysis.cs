@@ -43,7 +43,8 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal SealedPartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             classType = new SealedClassWithCodeAnalysis(document);
-            methods = new SealedPartialClassMethodCollectionWithCodeAnalysis(classType.Type.Type);
+            methods = new InternalSealedPartialClassMethodCollectionWithCodeAnalysis<SealedClassWithCodeAnalysis>(
+                classType.InternalType.Type);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -121,7 +122,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
-            set { methods.Replace(value); }
+            set { classType.InternalType.Type.Members.Replace(value); }
         }
 
         public override string Name
@@ -204,7 +205,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Type.Type.Node; }
+            get { return classType.InternalType.Type.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

@@ -31,11 +31,11 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly NestedClassWithCodeAnalysis classType;
+        private readonly InternalNestedClassWithCodeAnalysis<StaticClassNestedClassWithCodeAnalysis> classType;
 
         internal StaticClassNestedClassWithCodeAnalysis()
         {
-            classType = new NestedClassWithCodeAnalysis();
+            classType = new InternalNestedClassWithCodeAnalysis<StaticClassNestedClassWithCodeAnalysis>(this);
         }
         
         public NestedClassWithCodeAnalysis Class
@@ -75,7 +75,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStaticTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            get { return classType.InternalClass.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -187,7 +187,12 @@ namespace CSharpDom.CodeAnalysis
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Class.Node; }
+            get { return classType.InternalClass.Node; }
+        }
+
+        internal InternalNestedClassWithCodeAnalysis<StaticClassNestedClassWithCodeAnalysis> InternalClass
+        {
+            get { return classType; }
         }
     }
 }

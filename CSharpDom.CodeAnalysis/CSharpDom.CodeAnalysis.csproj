@@ -98,9 +98,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="InternalAbstractTypeWithCodeAnalysis.cs" />
+    <Compile Include="InternalClassTypeWithCodeAnalysis.cs" />
+    <Compile Include="InternalAbstractClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="AbstractClassEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalAbstractClassIndexerCollectionWithCodeAnalysis.cs" />
     <Compile Include="AbstractClassIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalAbstractClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="AbstractClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalAbstractClassPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="AbstractClassPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="AbstractClassWithCodeAnalysis.cs" />
     <Compile Include="AbstractEventWithCodeAnalysis.cs" />
@@ -121,6 +127,13 @@
     <Compile Include="BaseTypeListWrapper.cs" />
     <Compile Include="CachedExpressionNode.cs" />
     <Compile Include="CachedStatementNode.cs" />
+    <Compile Include="InternalClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalClassNestedStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalClassNestedClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalClassIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalClassFieldCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\AnonymousMethodExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\AnonymousMethodParameterWithCodeAnalysis.cs" />
     <Compile Include="Expressions\ArrayIndexExpressionWithCodeAnalysis.cs" />
@@ -144,7 +157,14 @@
     <Compile Include="Expressions\QuerySelectExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\StringConstantExpressionWithCodeAnalysis.cs" />
     <Compile Include="IInternalLiteralExpression.cs" />
+    <Compile Include="InternalNestedClassWithCodeAnalysis.cs" />
+    <Compile Include="InternalNestedSealedClassWithCodeAnalysis.cs" />
+    <Compile Include="InternalNestedAbstractClassWithCodeAnalysis.cs" />
+    <Compile Include="Partial\InternalAbstractPartialClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\IClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\InternalPartialClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\ProjectPartialClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\InternalSealedPartialClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="ProjectClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassDeclarationSyntaxExtensions.cs" />
@@ -168,6 +188,11 @@
     <Compile Include="LoadedProjectMemberCollection.cs" />
     <Compile Include="ProjectStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\QueryBodyWithCodeAnalysis.cs" />
+    <Compile Include="InternalSealedTypeWithCodeAnalysis.cs" />
+    <Compile Include="InternalSealedClassIndexerCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalSealedClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalSealedClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalSealedClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="Statements\IInternalForStatementInitializer.cs" />
     <Compile Include="StructDeclarationSyntaxExtensions.cs" />
     <Compile Include="StructReferenceWithCodeAnalysis.cs" />
@@ -353,7 +378,6 @@
     <Compile Include="ClassPropertyListWrapper.cs" />
     <Compile Include="ClassMethodListWrapper.cs" />
     <Compile Include="ClassPropertyCollectionWithCodeAnalysis.cs" />
-    <Compile Include="ClassType.cs" />
     <Compile Include="ClassTypeWithCodeAnalysis.cs" />
     <Compile Include="ClassMemberListWrapper.cs" />
     <Compile Include="MemberListSyntax.cs" />

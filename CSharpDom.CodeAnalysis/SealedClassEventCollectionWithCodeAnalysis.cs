@@ -1,49 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Editable;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Linq;
+﻿using CSharpDom.Editable;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class SealedClassEventCollectionWithCodeAnalysis :
+    public abstract class SealedClassEventCollectionWithCodeAnalysis :
         EditableSealedClassEventCollection<
             SealedClassEventWithCodeAnalysis,
             SealedClassEventPropertyWithCodeAnalysis,
             ExplicitInterfaceEventWithCodeAnalysis>
     {
-        private readonly ClassTypeWithCodeAnalysis classType;
-        private readonly ClassEventListWrapper<SealedClassEventWithCodeAnalysis> events;
-        private readonly ClassEventPropertyListWrapper<SealedClassEventPropertyWithCodeAnalysis> eventProperties;
-
-        internal SealedClassEventCollectionWithCodeAnalysis(ClassTypeWithCodeAnalysis classType)
-        {
-            this.classType = classType;
-            events = new ClassEventListWrapper<SealedClassEventWithCodeAnalysis>(
-                classType.Node,
-                () => new SealedClassEventWithCodeAnalysis());
-            eventProperties = new ClassEventPropertyListWrapper<SealedClassEventPropertyWithCodeAnalysis>(
-                classType.Node,
-                () => new SealedClassEventPropertyWithCodeAnalysis(),
-                syntax => syntax.ExplicitInterfaceSpecifier == null);
-        }
-        
-        public override ICollection<SealedClassEventPropertyWithCodeAnalysis> EventProperties
-        {
-            get { return eventProperties; }
-            set { classType.Members.CombineList(nameof(EventProperties), value.Select(item => item.Syntax)); }
-        }
-
-        public override ICollection<ExplicitInterfaceEventWithCodeAnalysis> ExplicitInterfaceEvents
-        {
-            get { return classType.Events.ExplicitInterfaceEvents; }
-            set { classType.Events.ExplicitInterfaceEvents = value; }
-        }
-
-        public override ICollection<SealedClassEventWithCodeAnalysis> Events
-        {
-            get { return events; }
-            set { classType.Members.CombineList(nameof(Events), value.Select(item => item.Syntax)); }
-        }
     }
 }

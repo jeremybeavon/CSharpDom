@@ -6,11 +6,10 @@ namespace CSharpDom.CodeAnalysis.Partial
 {
     internal static class MemberListExtensions
     {
-        internal static void AddClassPartialMethods<TParentNode, TParentSyntax, TPartialMethods>(
-            this MemberList<TParentNode, TParentSyntax> members,
+        internal static void AddClassPartialMethods<TPartialMethods>(
+            this IMemberList members,
             TPartialMethods methods,
             string insertPartialMethodsAfter = "Methods")
-            where TParentSyntax : class
             where TPartialMethods : 
                 IReadOnlyCollection<ClassMethodWithCodeAnalysis>,
                 IHasPartialMethodDefinitions<PartialMethodDefinitionWithCodeAnalysis>,
@@ -27,11 +26,10 @@ namespace CSharpDom.CodeAnalysis.Partial
                 () => methods.PartialMethodImplementations.Select(item => item.Syntax));
         }
 
-        internal static void AddSealedClassPartialMethods<TParentNode, TParentSyntax, TPartialMethods>(
-            this MemberList<TParentNode, TParentSyntax> members,
+        internal static void AddSealedClassPartialMethods<TPartialMethods>(
+            this IMemberList members,
             TPartialMethods methods,
             string insertPartialMethodsAfter = "Methods")
-            where TParentSyntax : class
             where TPartialMethods :
                 IReadOnlyCollection<SealedClassMethodWithCodeAnalysis>,
                 IHasPartialMethodDefinitions<PartialMethodDefinitionWithCodeAnalysis>,
@@ -46,6 +44,34 @@ namespace CSharpDom.CodeAnalysis.Partial
                 insertPartialMethodsAfter,
                 nameof(methods.PartialMethodImplementations),
                 () => methods.PartialMethodImplementations.Select(item => item.Syntax));
+        }
+
+        internal static void Replace(this IMemberList members, AbstractPartialClassMethodCollectionWithCodeAnalysis value)
+        {
+            members.CombineList(
+                new MemberListSyntax(nameof(value.AbstractMethods), value.AbstractMethods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.Methods), value.Methods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.ExplicitInterfaceMethods), value.ExplicitInterfaceMethods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
+        }
+
+        internal static void Replace(this IMemberList members, PartialClassMethodCollectionWithCodeAnalysis value)
+        {
+            members.CombineList(
+                new MemberListSyntax(nameof(value.Methods), value.Methods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.ExplicitInterfaceMethods), value.ExplicitInterfaceMethods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
+        }
+
+        internal static void Replace(this IMemberList members, SealedPartialClassMethodCollectionWithCodeAnalysis value)
+        {
+            members.CombineList(
+                new MemberListSyntax(nameof(value.Methods), value.Methods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.ExplicitInterfaceMethods), value.ExplicitInterfaceMethods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
         }
     }
 }

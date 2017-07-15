@@ -1,9 +1,7 @@
-﻿using CSharpDom.Common;
-using CSharpDom.Editable.Partial;
+﻿using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -43,7 +41,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal PartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             classType = new ClassWithCodeAnalysis(document);
-            methods = new PartialClassMethodCollectionWithCodeAnalysis(classType.Type);
+            methods = new InternalPartialClassMethodCollectionWithCodeAnalysis<ClassWithCodeAnalysis>(classType.InternalType);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -121,7 +119,14 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override PartialClassMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
-            set { methods.Replace(value); }
+            set
+            {
+                classType.InternalType.Members.CombineList(
+                    new MemberListSyntax(nameof(Methods.Methods), value.Methods.Select(method => method.Syntax)),
+                    new MemberListSyntax(nameof(Methods.ExplicitInterfaceMethods), value.ExplicitInterfaceMethods.Select(method => method.Syntax)),
+                    new MemberListSyntax(nameof(Methods.PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
+                    new MemberListSyntax(nameof(Methods.PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
+            }
         }
 
         public override string Name
@@ -208,7 +213,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Type.Node; }
+            get { return classType.InternalType.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)
