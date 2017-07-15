@@ -1,42 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class StaticClassNestedStructWithCodeAnalysis :
-        EditableStaticClassNestedStruct<
-            AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
-            GenericParameterDeclarationWithCodeAnalysis,
-            InterfaceReferenceWithCodeAnalysis,
-            StructEventCollectionWithCodeAnalysis,
-            StructPropertyCollectionWithCodeAnalysis,
-            StructIndexerCollectionWithCodeAnalysis,
-            StructMethodCollectionWithCodeAnalysis,
-            StructFieldCollectionWithCodeAnalysis,
-            StructConstructorWithCodeAnalysis,
-            OperatorOverloadWithCodeAnalysis,
-            ConversionOperatorWithCodeAnalysis,
-            StructNestedClassCollectionWithCodeAnalysis,
-            StructNestedDelegateWithCodeAnalysis,
-            StructNestedEnumWithCodeAnalysis,
-            StructNestedInterfaceWithCodeAnalysis,
-            StructNestedStructCollectionWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>,
-        IHasSyntax<StructDeclarationSyntax>,
-        IHasNode<StructDeclarationSyntax>
+    internal sealed class InternalNestedStructWithCodeAnalysis<TStruct> :
+        NestedStructWithCodeAnalysis
+        where TStruct : class, IHasSyntax<StructDeclarationSyntax>
     {
-        private readonly InternalNestedStructWithCodeAnalysis<StaticClassNestedStructWithCodeAnalysis> structType;
+        private readonly InternalStructTypeWithCodeAnalysis<TStruct> structType;
 
-        internal StaticClassNestedStructWithCodeAnalysis()
+        internal InternalNestedStructWithCodeAnalysis(TStruct @struct)
         {
-            structType = new InternalNestedStructWithCodeAnalysis<StaticClassNestedStructWithCodeAnalysis>(this);
+            structType = new InternalStructTypeWithCodeAnalysis<TStruct>(@struct);
         }
         
-        public NestedStructWithCodeAnalysis Struct
+        public StructTypeWithCodeAnalysis Struct
         {
             get { return structType; }
         }
@@ -46,7 +27,7 @@ namespace CSharpDom.CodeAnalysis
             get { return structType.Attributes; }
             set { structType.Attributes = value; }
         }
-
+        
         public override StructNestedClassCollectionWithCodeAnalysis Classes
         {
             get { return structType.Classes; }
@@ -65,16 +46,16 @@ namespace CSharpDom.CodeAnalysis
             set { structType.ConversionOperators = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
-        {
-            get { return structType.InternalStruct.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
-            set { throw new NotSupportedException(); }
-        }
-
         public override ICollection<StructNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return structType.Delegates; }
             set { structType.Delegates = value; }
+        }
+
+        public override IType DeclaringType
+        {
+            get { return structType.Node.GetParentNode<IType>(); }
+            set { throw new NotSupportedException(); }
         }
 
         public override ICollection<StructNestedEnumWithCodeAnalysis> Enums
@@ -155,28 +136,13 @@ namespace CSharpDom.CodeAnalysis
             set { structType.Structs = value; }
         }
 
-        public StructDeclarationSyntax Syntax
+        public override StructDeclarationSyntax Syntax
         {
             get { return structType.Syntax; }
             set { structType.Syntax = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
-        {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                StructDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
-        }
-        
-        INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
-        {
-            get { return structType.InternalStruct.Node; }
-        }
-
-        internal InternalNestedStructWithCodeAnalysis<StaticClassNestedStructWithCodeAnalysis> InternalStruct
+        internal InternalStructTypeWithCodeAnalysis<TStruct> InternalStruct
         {
             get { return structType; }
         }

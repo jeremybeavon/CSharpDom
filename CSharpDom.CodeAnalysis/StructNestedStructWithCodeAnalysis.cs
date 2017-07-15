@@ -29,11 +29,11 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<StructDeclarationSyntax>,
         IHasNode<StructDeclarationSyntax>
     {
-        private readonly NestedStructWithCodeAnalysis structType;
+        private readonly InternalNestedStructWithCodeAnalysis<StructNestedStructWithCodeAnalysis> structType;
 
         internal StructNestedStructWithCodeAnalysis()
         {
-            structType = new NestedStructWithCodeAnalysis();
+            structType = new InternalNestedStructWithCodeAnalysis<StructNestedStructWithCodeAnalysis>(this);
         }
         
         public NestedStructWithCodeAnalysis Struct
@@ -67,7 +67,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.Struct.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return structType.InternalStruct.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -173,7 +173,12 @@ namespace CSharpDom.CodeAnalysis
         
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.Struct.Node; }
+            get { return structType.InternalStruct.Node; }
+        }
+
+        internal InternalNestedStructWithCodeAnalysis<StructNestedStructWithCodeAnalysis> InternalStruct
+        {
+            get { return structType; }
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -24,21 +20,23 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
         }
 
-        internal static StructNestedPartialClassCollectionWithCodeAnalysis Create(StructTypeWithCodeAnalysis structType)
+        internal static StructNestedPartialClassCollectionWithCodeAnalysis Create<TStruct>(
+            InternalStructTypeWithCodeAnalysis<TStruct> structType)
+            where TStruct : class, IHasSyntax<StructDeclarationSyntax>
         {
-            var classes = new StructTypeMemberListWrapper<StructNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            var classes = new StructTypeMemberListWrapper<TStruct, StructNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 structType.Node,
                 () => new StructNestedPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsPartialClass);
-            var abstractClasses = new StructTypeMemberListWrapper<StructNestedAbstractPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            var abstractClasses = new StructTypeMemberListWrapper<TStruct, StructNestedAbstractPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 structType.Node,
                 () => new StructNestedAbstractPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsAbstractPartialClass);
-            var sealedClasses = new StructTypeMemberListWrapper<StructNestedSealedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            var sealedClasses = new StructTypeMemberListWrapper<TStruct, StructNestedSealedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 structType.Node,
                 () => new StructNestedSealedPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsSealedPartialClass);
-            var staticClasses = new StructTypeMemberListWrapper<StructNestedStaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+            var staticClasses = new StructTypeMemberListWrapper<TStruct, StructNestedStaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 structType.Node,
                 () => new StructNestedStaticPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsStaticPartialClass);

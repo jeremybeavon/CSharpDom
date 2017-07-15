@@ -24,11 +24,11 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly NestedStaticClassWithCodeAnalysis classType;
+        private readonly InternalNestedStaticClassWithCodeAnalysis<ClassNestedStaticClassWithCodeAnalysis> classType;
 
         internal ClassNestedStaticClassWithCodeAnalysis()
         {
-            classType = new NestedStaticClassWithCodeAnalysis();
+            classType = new InternalNestedStaticClassWithCodeAnalysis<ClassNestedStaticClassWithCodeAnalysis>(this);
         }
 
         public NestedStaticClassWithCodeAnalysis Class
@@ -137,5 +137,10 @@ namespace CSharpDom.CodeAnalysis
         }
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Class.Node;
+        
+        internal InternalNestedStaticClassWithCodeAnalysis<ClassNestedStaticClassWithCodeAnalysis> InternalClass
+        {
+            get { return classType; }
+        }
     }
 }

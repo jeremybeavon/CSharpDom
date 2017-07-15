@@ -73,5 +73,31 @@ namespace CSharpDom.CodeAnalysis.Partial
                 new MemberListSyntax(nameof(value.PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
                 new MemberListSyntax(nameof(value.PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
         }
+
+        internal static void Replace(this IMemberList members, StaticPartialClassMethodCollectionWithCodeAnalysis value)
+        {
+            members.CombineList(
+                new MemberListSyntax(nameof(value.Methods), value.Methods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.ExtensionMethods), value.ExtensionMethods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
+        }
+
+        internal static void Replace(this IMemberList members, PartialStructMethodCollectionWithCodeAnalysis value)
+        {
+            members.CombineList(
+                new MemberListSyntax(nameof(value.Methods), value.Methods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.ExplicitInterfaceMethods), value.ExplicitInterfaceMethods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
+        }
+
+        internal static void Replace(this IMemberList members, NestedStaticPartialClassMethodCollectionWithCodeAnalysis value)
+        {
+            members.CombineList(
+                new MemberListSyntax(nameof(value.Methods), value.Methods.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
+                new MemberListSyntax(nameof(value.PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
+        }
     }
 }

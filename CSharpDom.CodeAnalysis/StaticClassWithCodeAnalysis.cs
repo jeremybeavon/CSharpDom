@@ -27,12 +27,12 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ClassDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly StaticTypeWithCodeAnalysis type;
+        private readonly InternalStaticTypeWithCodeAnalysis<StaticClassWithCodeAnalysis> type;
         private readonly DocumentWithCodeAnalysis document;
 
         internal StaticClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            type = new StaticTypeWithCodeAnalysis();
+            type = new InternalStaticTypeWithCodeAnalysis<StaticClassWithCodeAnalysis>(this);
             this.document = document;
         }
 
@@ -161,6 +161,11 @@ namespace CSharpDom.CodeAnalysis
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
             get { return type.Node; }
+        }
+
+        internal InternalStaticTypeWithCodeAnalysis<StaticClassWithCodeAnalysis> InternalType
+        {
+            get { return type; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

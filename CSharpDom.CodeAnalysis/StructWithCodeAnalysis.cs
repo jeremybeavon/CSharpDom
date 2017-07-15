@@ -32,12 +32,12 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<StructDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly StructTypeWithCodeAnalysis structType;
+        private readonly InternalStructTypeWithCodeAnalysis<StructWithCodeAnalysis> structType;
         private readonly DocumentWithCodeAnalysis document;
 
         internal StructWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            structType = new StructTypeWithCodeAnalysis();
+            structType = new InternalStructTypeWithCodeAnalysis<StructWithCodeAnalysis>(this);
             this.document = document;
         }
 
@@ -197,6 +197,11 @@ namespace CSharpDom.CodeAnalysis
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
             get { return structType.Node; }
+        }
+
+        internal InternalStructTypeWithCodeAnalysis<StructWithCodeAnalysis> InternalType
+        {
+            get { return structType; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)
