@@ -9,19 +9,57 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly IMemberList members;
+        private readonly SealedClassNestedClassCollectionWithCodeAnalysis classes;
+        private readonly WrappedCollection<
+            ClassConstructorWithCodeAnalysis,
+            SealedClassConstructorWithCodeAnalysis> constructors;
+        private readonly WrappedCollection<
+            ClassNestedDelegateWithCodeAnalysis,
+            SealedClassNestedDelegateWithCodeAnalysis> delegates;
+        private readonly WrappedCollection<
+            ClassNestedEnumWithCodeAnalysis,
+            SealedClassNestedEnumWithCodeAnalysis> enums;
         private readonly SealedClassEventCollectionWithCodeAnalysis events;
+        private readonly SealedClassFieldCollectionWithCodeAnalysis fields;
         private readonly SealedClassIndexerCollectionWithCodeAnalysis indexers;
+        private readonly WrappedCollection<
+            ClassNestedInterfaceWithCodeAnalysis,
+            SealedClassNestedInterfaceWithCodeAnalysis> interfaces;
         private readonly SealedClassMethodCollectionWithCodeAnalysis methods;
         private readonly SealedClassPropertyCollectionWithCodeAnalysis properties;
+        private readonly SealedClassNestedStructCollectionWithCodeAnalysis structs;
 
         internal InternalSealedTypeWithCodeAnalysis(TClass @class)
         {
             classType = new InternalClassTypeWithCodeAnalysis<TClass>(@class);
             members = classType.Members;
+            classes = new SealedClassNestedClassCollectionWithCodeAnalysis(classType.Classes);
+            constructors = new WrappedCollection<ClassConstructorWithCodeAnalysis, SealedClassConstructorWithCodeAnalysis>(
+                classType.Constructors,
+                constructor => new SealedClassConstructorWithCodeAnalysis(constructor),
+                constructor => constructor.Constructor,
+                value => classType.Constructors = value);
+            delegates = new WrappedCollection<ClassNestedDelegateWithCodeAnalysis, SealedClassNestedDelegateWithCodeAnalysis>(
+                classType.Delegates,
+                parent => new SealedClassNestedDelegateWithCodeAnalysis(parent),
+                child => child.InternalDelegate,
+                value => classType.Delegates = value);
+            enums = new WrappedCollection<ClassNestedEnumWithCodeAnalysis, SealedClassNestedEnumWithCodeAnalysis>(
+                classType.Enums,
+                parent => new SealedClassNestedEnumWithCodeAnalysis(parent),
+                child => child.InternalEnum,
+                value => classType.Enums = value);
             events = new InternalSealedClassEventCollectionWithCodeAnalysis<TClass>(classType);
+            fields = new SealedClassFieldCollectionWithCodeAnalysis(classType.Fields);
             indexers = new InternalSealedClassIndexerCollectionWithCodeAnalysis<TClass>(classType);
+            interfaces = new WrappedCollection<ClassNestedInterfaceWithCodeAnalysis, SealedClassNestedInterfaceWithCodeAnalysis>(
+                classType.Interfaces,
+                parent => new SealedClassNestedInterfaceWithCodeAnalysis(parent),
+                child => child.InternalInterface,
+                value => classType.Interfaces = value);
             methods = new InternalSealedClassMethodCollectionWithCodeAnalysis<TClass>(classType);
             properties = new InternalSealedClassPropertyCollectionWithCodeAnalysis<TClass>(classType);
+            structs = new SealedClassNestedStructCollectionWithCodeAnalysis(classType.Structs);
             InitializeMembers();
         }
 
@@ -37,16 +75,23 @@ namespace CSharpDom.CodeAnalysis
             set { classType.BaseClass = value; }
         }
 
-        public override ClassNestedClassCollectionWithCodeAnalysis Classes
+        public override SealedClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return classType.Classes; }
-            set { classType.Classes = value; }
+            get { return classes; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(classes.Classes), value.Classes.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.AbstractClasses), value.AbstractClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.SealedClasses), value.SealedClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.StaticClasses), value.StaticClasses.Select(item => item.Syntax)));
+            }
         }
 
-        public override ICollection<ClassConstructorWithCodeAnalysis> Constructors
+        public override ICollection<SealedClassConstructorWithCodeAnalysis> Constructors
         {
-            get { return classType.Constructors; }
-            set { classType.Constructors = value; }
+            get { return constructors; }
+            set { constructors.Replace(value); }
         }
 
         public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
@@ -55,16 +100,16 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ConversionOperators = value; }
         }
 
-        public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<SealedClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return classType.Delegates; }
-            set { classType.Delegates = value; }
+            get { return delegates; }
+            set { delegates.Replace(value); }
         }
 
-        public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
+        public override ICollection<SealedClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return classType.Enums; }
-            set { classType.Enums = value; }
+            get { return enums; }
+            set { enums.Replace(value); }
         }
 
         public override SealedClassEventCollectionWithCodeAnalysis Events
@@ -79,10 +124,15 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override ClassFieldCollectionWithCodeAnalysis Fields
+        public override SealedClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return classType.Fields; }
-            set { classType.Fields = value; }
+            get { return fields; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(fields.Constants), value.Constants.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(fields.Fields), value.Fields.Select(item => item.Syntax)));
+            }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -108,10 +158,10 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override ICollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces
+        public override ICollection<SealedClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return classType.Interfaces; }
-            set { classType.Interfaces = value; }
+            get { return interfaces; }
+            set { interfaces.Replace(value); }
         }
 
         public override SealedClassMethodCollectionWithCodeAnalysis Methods
@@ -154,10 +204,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.StaticConstructor = value; }
         }
 
-        public override ClassNestedStructCollectionWithCodeAnalysis Structs
+        public override SealedClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return classType.Structs; }
-            set { classType.Structs = value; }
+            get { return structs; }
+            set { members.CombineList(nameof(structs.Structs), value.Structs.Select(item => item.Syntax)); }
         }
 
         public override ClassDeclarationSyntax Syntax

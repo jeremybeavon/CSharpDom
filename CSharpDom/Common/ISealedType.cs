@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface ISealedType : IType
+    public interface ISealedType : IClassType
     {
     }
 }

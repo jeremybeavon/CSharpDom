@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IAbstractType : IType
+    public interface IAbstractType : IClassType
     {
     }
 }

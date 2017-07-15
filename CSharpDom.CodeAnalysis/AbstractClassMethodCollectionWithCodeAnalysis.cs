@@ -4,7 +4,7 @@ namespace CSharpDom.CodeAnalysis
 {
     public abstract class AbstractClassMethodCollectionWithCodeAnalysis :
         EditableAbstractClassMethodCollection<
-            ClassMethodWithCodeAnalysis,
+            AbstractClassMethodWithCodeAnalysis,
             AbstractMethodWithCodeAnalysis,
             ExplicitInterfaceMethodWithCodeAnalysis>
     {

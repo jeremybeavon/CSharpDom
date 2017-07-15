@@ -11,19 +11,57 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly IMemberList members;
+        private readonly AbstractClassNestedClassCollectionWithCodeAnalysis classes;
+        private readonly WrappedCollection<
+            ClassConstructorWithCodeAnalysis,
+            AbstractClassConstructorWithCodeAnalysis> constructors;
+        private readonly WrappedCollection<
+            ClassNestedDelegateWithCodeAnalysis,
+            AbstractClassNestedDelegateWithCodeAnalysis> delegates;
+        private readonly WrappedCollection<
+            ClassNestedEnumWithCodeAnalysis,
+            AbstractClassNestedEnumWithCodeAnalysis> enums;
         private readonly AbstractClassEventCollectionWithCodeAnalysis events;
+        private readonly AbstractClassFieldCollectionWithCodeAnalysis fields;
         private readonly AbstractClassIndexerCollectionWithCodeAnalysis indexers;
+        private readonly WrappedCollection<
+            ClassNestedInterfaceWithCodeAnalysis,
+            AbstractClassNestedInterfaceWithCodeAnalysis> interfaces;
         private readonly AbstractClassMethodCollectionWithCodeAnalysis methods;
         private readonly AbstractClassPropertyCollectionWithCodeAnalysis properties;
-        
+        private readonly AbstractClassNestedStructCollectionWithCodeAnalysis structs;
+
         internal InternalAbstractTypeWithCodeAnalysis(TClass @class)
         {
             classType = new InternalClassTypeWithCodeAnalysis<TClass>(@class);
             members = classType.Members;
-            events = new InternalAbstractClassEventCollectionWithCodeAnalysis<TClass>(classType);
+            classes = new AbstractClassNestedClassCollectionWithCodeAnalysis(classType.Classes);
+            constructors = new WrappedCollection<ClassConstructorWithCodeAnalysis, AbstractClassConstructorWithCodeAnalysis>(
+                classType.Constructors,
+                constructor => new AbstractClassConstructorWithCodeAnalysis(constructor),
+                constructor => constructor.Constructor,
+                value => classType.Constructors = value);
+            delegates = new WrappedCollection<ClassNestedDelegateWithCodeAnalysis, AbstractClassNestedDelegateWithCodeAnalysis>(
+                classType.Delegates,
+                parent => new AbstractClassNestedDelegateWithCodeAnalysis(parent),
+                child => child.InternalDelegate,
+                value => classType.Delegates = value);
+            enums = new WrappedCollection<ClassNestedEnumWithCodeAnalysis, AbstractClassNestedEnumWithCodeAnalysis>(
+                classType.Enums,
+                parent => new AbstractClassNestedEnumWithCodeAnalysis(parent),
+                child => child.InternalEnum,
+                value => classType.Enums = value);
+            events = new InternalAbstractClassEventCollectionWithCodeAnalysis<TClass>(this);
+            fields = new AbstractClassFieldCollectionWithCodeAnalysis(classType.Fields);
             indexers = new InternalAbstractClassIndexerCollectionWithCodeAnalysis<TClass>(classType);
+            interfaces = new WrappedCollection<ClassNestedInterfaceWithCodeAnalysis, AbstractClassNestedInterfaceWithCodeAnalysis>(
+                classType.Interfaces,
+                parent => new AbstractClassNestedInterfaceWithCodeAnalysis(parent),
+                child => child.InternalInterface,
+                value => classType.Interfaces = value);
             methods = new InternalAbstractClassMethodCollectionWithCodeAnalysis<TClass>(classType);
             properties = new InternalAbstractClassPropertyCollectionWithCodeAnalysis<TClass>(classType);
+            structs = new AbstractClassNestedStructCollectionWithCodeAnalysis(classType.Structs);
             InitializeMembers();            
         }
 
@@ -39,16 +77,23 @@ namespace CSharpDom.CodeAnalysis
             set { classType.BaseClass = value; }
         }
 
-        public override ClassNestedClassCollectionWithCodeAnalysis Classes
+        public override AbstractClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return classType.Classes; }
-            set { classType.Classes = value; }
+            get { return classes; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(classes.Classes), value.Classes.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.AbstractClasses), value.AbstractClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.SealedClasses), value.SealedClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.StaticClasses), value.StaticClasses.Select(item => item.Syntax)));
+            }
         }
 
-        public override ICollection<ClassConstructorWithCodeAnalysis> Constructors
+        public override ICollection<AbstractClassConstructorWithCodeAnalysis> Constructors
         {
-            get { return classType.Constructors; }
-            set { classType.Constructors = value; }
+            get { return constructors; }
+            set { constructors.Replace(value); }
         }
 
         public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
@@ -57,16 +102,16 @@ namespace CSharpDom.CodeAnalysis
             set { classType.ConversionOperators = value; }
         }
 
-        public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<AbstractClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return classType.Delegates; }
-            set { classType.Delegates = value; }
+            get { return delegates; }
+            set { delegates.Replace(value); }
         }
 
-        public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
+        public override ICollection<AbstractClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return classType.Enums; }
-            set { classType.Enums = value; }
+            get { return enums; }
+            set { enums.Replace(value); }
         }
 
         public override AbstractClassEventCollectionWithCodeAnalysis Events
@@ -82,10 +127,15 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override ClassFieldCollectionWithCodeAnalysis Fields
+        public override AbstractClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return classType.Fields; }
-            set { classType.Fields = value; }
+            get { return fields; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(fields.Constants), value.Constants.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(fields.Fields), value.Fields.Select(item => item.Syntax)));
+            }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -112,10 +162,10 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override ICollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces
+        public override ICollection<AbstractClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return classType.Interfaces; }
-            set { classType.Interfaces = value; }
+            get { return interfaces; }
+            set { interfaces.Replace(value); }
         }
 
         public override AbstractClassMethodCollectionWithCodeAnalysis Methods
@@ -160,10 +210,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.StaticConstructor = value; }
         }
 
-        public override ClassNestedStructCollectionWithCodeAnalysis Structs
+        public override AbstractClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return classType.Structs; }
-            set { classType.Structs = value; }
+            get { return structs; }
+            set { members.CombineList(nameof(structs.Structs), value.Structs.Select(item => item.Syntax)); }
         }
 
         public override ClassDeclarationSyntax Syntax
@@ -175,6 +225,16 @@ namespace CSharpDom.CodeAnalysis
         internal InternalClassTypeWithCodeAnalysis<TClass> Type
         {
             get { return classType; }
+        }
+
+        internal IMemberList Members
+        {
+            get { return members; }
+        }
+
+        internal Node<TClass, ClassDeclarationSyntax> Node
+        {
+            get { return classType.Node; }
         }
 
         private void InitializeMembers()

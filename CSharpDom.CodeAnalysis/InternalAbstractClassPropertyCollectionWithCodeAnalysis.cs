@@ -9,15 +9,15 @@ namespace CSharpDom.CodeAnalysis
         where TClass : class, IHasSyntax<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
-        private readonly ClassPropertyListWrapper<TClass, ClassPropertyWithCodeAnalysis> properties;
+        private readonly ClassPropertyListWrapper<TClass, AbstractClassPropertyWithCodeAnalysis> properties;
         private readonly ClassPropertyListWrapper<TClass, AbstractPropertyWithCodeAnalysis> abstractProperties;
 
         internal InternalAbstractClassPropertyCollectionWithCodeAnalysis(InternalClassTypeWithCodeAnalysis<TClass> classType)
         {
             this.classType = classType;
-            properties = new ClassPropertyListWrapper<TClass, ClassPropertyWithCodeAnalysis>(
+            properties = new ClassPropertyListWrapper<TClass, AbstractClassPropertyWithCodeAnalysis>(
                 classType.Node,
-                () => new ClassPropertyWithCodeAnalysis(),
+                () => new AbstractClassPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
             abstractProperties = new ClassPropertyListWrapper<TClass, AbstractPropertyWithCodeAnalysis>(
                 classType.Node,
@@ -37,7 +37,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Properties.ExplicitInterfaceProperties = value; }
         }
 
-        public override ICollection<ClassPropertyWithCodeAnalysis> Properties
+        public override ICollection<AbstractClassPropertyWithCodeAnalysis> Properties
         {
             get { return properties; }
             set { classType.Members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }

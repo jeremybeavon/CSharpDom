@@ -11,15 +11,15 @@ namespace CSharpDom.CodeAnalysis
         where TClass : class, IHasSyntax<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
-        private readonly ClassIndexerListWrapper<TClass, ClassIndexerWithCodeAnalysis> indexers;
+        private readonly ClassIndexerListWrapper<TClass, AbstractClassIndexerWithCodeAnalysis> indexers;
         private readonly ClassIndexerListWrapper<TClass, AbstractIndexerWithCodeAnalysis> abstractIndexers;
 
         internal InternalAbstractClassIndexerCollectionWithCodeAnalysis(InternalClassTypeWithCodeAnalysis<TClass> classType)
         {
             this.classType = classType;
-            indexers = new ClassIndexerListWrapper<TClass, ClassIndexerWithCodeAnalysis>(
+            indexers = new ClassIndexerListWrapper<TClass, AbstractClassIndexerWithCodeAnalysis>(
                 classType.Node,
-                () => new ClassIndexerWithCodeAnalysis(),
+                () => new AbstractClassIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
             abstractIndexers = new ClassIndexerListWrapper<TClass, AbstractIndexerWithCodeAnalysis>(
                 classType.Node,
@@ -39,7 +39,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Indexers.ExplicitInterfaceIndexers = value; }
         }
 
-        public override ICollection<ClassIndexerWithCodeAnalysis> Indexers
+        public override ICollection<AbstractClassIndexerWithCodeAnalysis> Indexers
         {
             get { return indexers; }
             set { classType.Members.CombineList(nameof(Indexers), value.Select(item => item.Syntax)); }

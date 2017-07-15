@@ -9,15 +9,15 @@ namespace CSharpDom.CodeAnalysis
         where TClass : class, IHasSyntax<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
-        private readonly ClassMethodListWrapper<TClass, ClassMethodWithCodeAnalysis> methods;
+        private readonly ClassMethodListWrapper<TClass, AbstractClassMethodWithCodeAnalysis> methods;
         private readonly ClassMethodListWrapper<TClass, AbstractMethodWithCodeAnalysis> abstractMethods;
 
         internal InternalAbstractClassMethodCollectionWithCodeAnalysis(InternalClassTypeWithCodeAnalysis<TClass> classType)
         {
             this.classType = classType;
-            methods = new ClassMethodListWrapper<TClass, ClassMethodWithCodeAnalysis>(
+            methods = new ClassMethodListWrapper<TClass, AbstractClassMethodWithCodeAnalysis>(
                 classType.Node,
-                () => new ClassMethodWithCodeAnalysis(),
+                () => new AbstractClassMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
             abstractMethods = new ClassMethodListWrapper<TClass, AbstractMethodWithCodeAnalysis>(
                 classType.Node,
@@ -37,7 +37,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Methods.ExplicitInterfaceMethods = value; }
         }
 
-        public override ICollection<ClassMethodWithCodeAnalysis> Methods
+        public override ICollection<AbstractClassMethodWithCodeAnalysis> Methods
         {
             get { return methods; }
             set { classType.Members.CombineList(nameof(Methods), value.Select(item => item.Syntax)); }

@@ -17,15 +17,15 @@ namespace CSharpDom.CodeAnalysis
             AbstractClassPropertyCollectionWithCodeAnalysis,
             AbstractClassIndexerCollectionWithCodeAnalysis,
             AbstractClassMethodCollectionWithCodeAnalysis,
-            ClassFieldCollectionWithCodeAnalysis,
-            ClassConstructorWithCodeAnalysis,
+            AbstractClassFieldCollectionWithCodeAnalysis,
+            AbstractClassConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
             ConversionOperatorWithCodeAnalysis,
-            ClassNestedClassCollectionWithCodeAnalysis,
-            ClassNestedDelegateWithCodeAnalysis,
-            ClassNestedEnumWithCodeAnalysis,
-            ClassNestedInterfaceWithCodeAnalysis,
-            ClassNestedStructCollectionWithCodeAnalysis,
+            AbstractClassNestedClassCollectionWithCodeAnalysis,
+            AbstractClassNestedDelegateWithCodeAnalysis,
+            AbstractClassNestedEnumWithCodeAnalysis,
+            AbstractClassNestedInterfaceWithCodeAnalysis,
+            AbstractClassNestedStructCollectionWithCodeAnalysis,
             DestructorWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
@@ -55,13 +55,13 @@ namespace CSharpDom.CodeAnalysis
             set { classType.BaseClass = value; }
         }
 
-        public override ClassNestedClassCollectionWithCodeAnalysis Classes
+        public override AbstractClassNestedClassCollectionWithCodeAnalysis Classes
         {
             get { return classType.Classes; }
             set { classType.Classes = value; }
         }
 
-        public override ICollection<ClassConstructorWithCodeAnalysis> Constructors
+        public override ICollection<AbstractClassConstructorWithCodeAnalysis> Constructors
         {
             get { return classType.Constructors; }
             set { classType.Constructors = value; }
@@ -79,7 +79,7 @@ namespace CSharpDom.CodeAnalysis
             set { throw new NotSupportedException(); }
         }
 
-        public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<AbstractClassNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return classType.Delegates; }
             set { classType.Delegates = value; }
@@ -91,7 +91,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Destructor = value; }
         }
 
-        public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
+        public override ICollection<AbstractClassNestedEnumWithCodeAnalysis> Enums
         {
             get { return classType.Enums; }
             set { classType.Enums = value; }
@@ -103,7 +103,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Events = value; }
         }
 
-        public override ClassFieldCollectionWithCodeAnalysis Fields
+        public override AbstractClassFieldCollectionWithCodeAnalysis Fields
         {
             get { return classType.Fields; }
             set { classType.Fields = value; }
@@ -127,7 +127,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Indexers = value; }
         }
 
-        public override ICollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces
+        public override ICollection<AbstractClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
             get { return classType.Interfaces; }
             set { classType.Interfaces = value; }
@@ -163,7 +163,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.StaticConstructor = value; }
         }
 
-        public override ClassNestedStructCollectionWithCodeAnalysis Structs
+        public override AbstractClassNestedStructCollectionWithCodeAnalysis Structs
         {
             get { return classType.Structs; }
             set { classType.Structs = value; }

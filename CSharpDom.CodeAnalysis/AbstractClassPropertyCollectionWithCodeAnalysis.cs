@@ -4,7 +4,7 @@ namespace CSharpDom.CodeAnalysis
 {
     public abstract class AbstractClassPropertyCollectionWithCodeAnalysis :
         EditableAbstractClassPropertyCollection<
-            ClassPropertyWithCodeAnalysis,
+            AbstractClassPropertyWithCodeAnalysis,
             AbstractPropertyWithCodeAnalysis,
             ExplicitInterfacePropertyWithCodeAnalysis>
     {

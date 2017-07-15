@@ -4,7 +4,7 @@ namespace CSharpDom.CodeAnalysis
 {
     public abstract class AbstractClassIndexerCollectionWithCodeAnalysis :
         EditableAbstractClassIndexerCollection<
-            ClassIndexerWithCodeAnalysis,
+            AbstractClassIndexerWithCodeAnalysis,
             AbstractIndexerWithCodeAnalysis,
             ExplicitInterfaceIndexerWithCodeAnalysis>
     {
