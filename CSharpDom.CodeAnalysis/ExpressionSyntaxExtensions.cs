@@ -25,6 +25,7 @@ namespace CSharpDom.CodeAnalysis
                 { typeof(DefaultExpressionSyntax), () => new DefaultExpressionWithCodeAnalysis() },
                 //{ typeof(ElementBindingExpressionSyntax), () => },
                 { typeof(ElementAccessExpressionSyntax), () => new ArrayIndexExpressionWithCodeAnalysis() },
+                { typeof(IdentifierNameSyntax), () => new IdentifierExpressionWithCodeAnalysis() },
                 //{ typeof(ImplicitArrayCreationExpressionSyntax), () => },
                 //{ typeof(ImplicitElementAccessSyntax), () => },
                 //{ typeof(InitializerExpressionSyntax), () => },
