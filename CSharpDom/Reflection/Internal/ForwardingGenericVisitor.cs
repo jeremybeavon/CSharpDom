@@ -159,8 +159,8 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitNamespaceWithReflection((NamespaceWithReflection)(object)@namespace);
         }
 
-        public override void VisitClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor>(
-            IClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TNestedDestructor> nestedClass)
+        public override void VisitClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor>(
+            IClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TField, TConstructor, TEventProperty, TOperatorOverload, TConversionOperator, TNestedClass, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStruct, TDestructor> nestedClass)
         {
             visitor.VisitNestedClassWithReflection((NestedClassWithReflection)(object)nestedClass);
         }
@@ -171,10 +171,10 @@ namespace CSharpDom.Reflection.Internal
             visitor.VisitNestedDelegateWithReflection((NestedDelegateWithReflection)(object)nestedDelegate);
         }
 
-        public override void VisitNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
-            INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor)
+        public override void VisiTDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
+            IDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor)
         {
-            visitor.VisitNestedDestructorWithReflection((NestedDestructorWithReflection)(object)nestedDestructor);
+            visitor.VisiTDestructorWithReflection((NestedDestructorWithReflection)(object)nestedDestructor);
         }
 
         public override void VisitClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(

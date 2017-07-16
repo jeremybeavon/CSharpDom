@@ -27,8 +27,8 @@ namespace CSharpDom.Wrappers
             IClassNestedEnumWrapper,
             IClassNestedInterfaceWrapper,
             IClassNestedStructCollectionWrapper,
-            IDestructorWrapper,
-            IStaticConstructorWrapper>
+            IStaticConstructorWrapper,
+            IDestructorWrapper>
     {
     }
 }

@@ -16,9 +16,9 @@ namespace CSharpDom.CodeAnalysis
         private readonly WrappedList<InterfaceReferenceWithCodeAnalysis, ClassReferenceWithCodeAnalysis> baseClass;
         private readonly InternalClassNestedClassCollectionWithCodeAnalysis<TClass> classes;
         private readonly ClassMemberListWrapper<TClass, ClassConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> constructors;
-        private readonly ClassMemberListWrapper<TClass, ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> conversionOperators;
+        private readonly ClassMemberListWrapper<TClass, ClassConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> conversionOperators;
         private readonly ClassMemberListWrapper<TClass, ClassNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax> delegates;
-        private readonly ClassMemberListWrapper<TClass, DestructorWithCodeAnalysis, DestructorDeclarationSyntax> destructor;
+        private readonly ClassMemberListWrapper<TClass, ClassDestructorWithCodeAnalysis, DestructorDeclarationSyntax> destructor;
         private readonly ClassMemberListWrapper<TClass, ClassNestedEnumWithCodeAnalysis, EnumDeclarationSyntax> enums;
         private readonly InternalClassEventCollectionWithCodeAnalysis<TClass> events;
         private readonly InternalClassFieldCollectionWithCodeAnalysis<TClass> fields;
@@ -27,9 +27,9 @@ namespace CSharpDom.CodeAnalysis
         private readonly InternalClassIndexerCollectionWithCodeAnalysis<TClass> indexers;
         private readonly ClassMemberListWrapper<TClass, ClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
         private readonly InternalClassMethodCollectionWithCodeAnalysis<TClass> methods;
-        private readonly ClassMemberListWrapper<TClass, OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> operatorOverloads;
+        private readonly ClassMemberListWrapper<TClass, ClassOperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> operatorOverloads;
         private readonly InternalClassPropertyCollectionWithCodeAnalysis<TClass> properties;
-        private readonly ClassMemberListWrapper<TClass, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> staticConstructor;
+        private readonly ClassMemberListWrapper<TClass, ClassStaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> staticConstructor;
         private readonly InternalClassNestedStructCollectionWithCodeAnalysis<TClass> structs;
         private readonly IMemberList members;
 
@@ -53,12 +53,12 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 () => new ClassConstructorWithCodeAnalysis(),
                 syntax => !syntax.IsStatic());
-            conversionOperators = new ClassMemberListWrapper<TClass, ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
+            conversionOperators = new ClassMemberListWrapper<TClass, ClassConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,
-                () => new ConversionOperatorWithCodeAnalysis());
-            destructor = new ClassMemberListWrapper<TClass, DestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
+                () => new ClassConversionOperatorWithCodeAnalysis());
+            destructor = new ClassMemberListWrapper<TClass, ClassDestructorWithCodeAnalysis, DestructorDeclarationSyntax>(
                 node,
-                () => new DestructorWithCodeAnalysis());
+                () => new ClassDestructorWithCodeAnalysis());
             delegates = new ClassMemberListWrapper<TClass, ClassNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
                 node,
                 () => new ClassNestedDelegateWithCodeAnalysis());
@@ -79,13 +79,13 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 () => new ClassNestedInterfaceWithCodeAnalysis());
             methods = new InternalClassMethodCollectionWithCodeAnalysis<TClass>(this);
-            operatorOverloads = new ClassMemberListWrapper<TClass, OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
+            operatorOverloads = new ClassMemberListWrapper<TClass, ClassOperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,
-                () => new OperatorOverloadWithCodeAnalysis());
+                () => new ClassOperatorOverloadWithCodeAnalysis());
             properties = new InternalClassPropertyCollectionWithCodeAnalysis<TClass>(this);
-            staticConstructor = new ClassMemberListWrapper<TClass, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+            staticConstructor = new ClassMemberListWrapper<TClass, ClassStaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
-                () => new StaticConstructorWithCodeAnalysis(),
+                () => new ClassStaticConstructorWithCodeAnalysis(),
                 syntax => syntax.IsStatic());
             structs = new InternalClassNestedStructCollectionWithCodeAnalysis<TClass>(this);
             members = new ClassMemberList<TClass>(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
@@ -146,7 +146,7 @@ namespace CSharpDom.CodeAnalysis
             set { members.CombineList(nameof(Constructors), value.Select(item => item.Syntax)); }
         }
 
-        public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
+        public override ICollection<ClassConversionOperatorWithCodeAnalysis> ConversionOperators
         {
             get { return conversionOperators; }
             set { members.CombineList(nameof(ConversionOperators), value.Select(item => item.Syntax)); }
@@ -158,7 +158,7 @@ namespace CSharpDom.CodeAnalysis
             set { members.CombineList(nameof(Delegates), value.Select(item => item.Syntax)); }
         }
 
-        public override DestructorWithCodeAnalysis Destructor
+        public override ClassDestructorWithCodeAnalysis Destructor
         {
             get { return destructor.FirstOrDefault(); }
             set { destructor.ReplaceFirst(value); }
@@ -243,7 +243,7 @@ namespace CSharpDom.CodeAnalysis
             set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
         }
 
-        public override ICollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
+        public override ICollection<ClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
             get { return operatorOverloads; }
             set { members.CombineList(nameof(OperatorOverloads), value.Select(item => item.Syntax)); }
@@ -260,7 +260,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override StaticConstructorWithCodeAnalysis StaticConstructor
+        public override ClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
             get { return staticConstructor.GetStaticConstructor(); }
             set { staticConstructor.SetStaticConstructor(value); }

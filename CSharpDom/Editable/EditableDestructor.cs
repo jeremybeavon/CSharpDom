@@ -8,7 +8,7 @@ namespace CSharpDom.Editable
     public abstract class EditableDestructor<TAttributeGroup, TDeclaringType, TMethodBody> :
         IDestructor<TAttributeGroup, TDeclaringType, TMethodBody>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IClass
+        where TDeclaringType : IClassType
         where TMethodBody : IMethodBody
     {
         public abstract ICollection<TAttributeGroup> Attributes { get; set; }

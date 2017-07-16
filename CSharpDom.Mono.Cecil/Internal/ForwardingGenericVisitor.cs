@@ -174,7 +174,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         public override void VisitNestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
             INestedDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor)
         {
-            visitor.VisitNestedDestructorWithMonoCecil((NestedDestructorWithMonoCecil)(object)nestedDestructor);
+            visitor.VisitDestructorWithMonoCecil((DestructorWithMonoCecil)(object)nestedDestructor);
         }
 
         public override void VisitClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>(

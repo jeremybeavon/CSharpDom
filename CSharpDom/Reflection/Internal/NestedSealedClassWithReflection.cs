@@ -26,8 +26,8 @@ namespace CSharpDom.Reflection.Internal
             ClassNestedEnumWithReflection,
             ClassNestedInterfaceWithReflection,
             ClassNestedStructCollectionWithReflection,
-            NestedDestructorWithReflection,
-            StaticConstructorWithReflection>,
+            StaticConstructorWithReflection,
+            DestructorWithReflection>,
         ITypeWithReflection,
         IInternalTypeWithReflection,
         IHasType
@@ -79,7 +79,7 @@ namespace CSharpDom.Reflection.Internal
             get { return typeWithReflection.Delegates; }
         }
 
-        public override NestedDestructorWithReflection Destructor
+        public override DestructorWithReflection Destructor
         {
             get { return typeWithReflection.Destructor; }
         }

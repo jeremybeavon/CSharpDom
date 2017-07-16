@@ -4,9 +4,9 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class Destructor : IDestructor<AttributeGroup, IClass, MethodBody>
+    public sealed class Destructor : IDestructor<AttributeGroup, IClassType, MethodBody>
     {
-        private IClass declaringType;
+        private IClassType declaringType;
 
         public Destructor()
         {
@@ -18,7 +18,7 @@ namespace CSharpDom.Serialization
 
         public MethodBody Body { get; set; }
 
-        public IClass DeclaringType
+        public IClassType DeclaringType
         {
             get { return declaringType; }
         }
@@ -28,7 +28,7 @@ namespace CSharpDom.Serialization
             get { return Attributes; }
         }
 
-        public void AttachDeclaringType(IClass @class)
+        public void AttachDeclaringType(IClassType @class)
         {
             declaringType = @class;
         }

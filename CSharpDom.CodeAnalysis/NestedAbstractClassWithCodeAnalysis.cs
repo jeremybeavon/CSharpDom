@@ -19,15 +19,15 @@ namespace CSharpDom.CodeAnalysis
             AbstractClassMethodCollectionWithCodeAnalysis,
             AbstractClassFieldCollectionWithCodeAnalysis,
             AbstractClassConstructorWithCodeAnalysis,
-            OperatorOverloadWithCodeAnalysis,
-            ConversionOperatorWithCodeAnalysis,
+            AbstractClassOperatorOverloadWithCodeAnalysis,
+            AbstractClassConversionOperatorWithCodeAnalysis,
             AbstractClassNestedClassCollectionWithCodeAnalysis,
             AbstractClassNestedDelegateWithCodeAnalysis,
             AbstractClassNestedEnumWithCodeAnalysis,
             AbstractClassNestedInterfaceWithCodeAnalysis,
             AbstractClassNestedStructCollectionWithCodeAnalysis,
-            DestructorWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>,
+            AbstractClassStaticConstructorWithCodeAnalysis,
+            AbstractClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
         public abstract ClassDeclarationSyntax Syntax { get; set; }

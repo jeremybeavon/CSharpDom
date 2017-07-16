@@ -27,8 +27,8 @@ namespace CSharpDom.Mono.Cecil.Internal
             ClassNestedEnumWithMonoCecil,
             ClassNestedInterfaceWithMonoCecil,
             ClassNestedStructCollectionWithMonoCecil,
-            NestedDestructorWithMonoCecil,
-            StaticConstructorWithMonoCecil>,
+            StaticConstructorWithMonoCecil,
+            DestructorWithMonoCecil>,
         ITypeWithMonoCecil,
         IInternalTypeWithMonoCecil,
         IHasTypeDefinition
@@ -38,7 +38,7 @@ namespace CSharpDom.Mono.Cecil.Internal
         private readonly TypeDefinition type;
         private readonly ClassReferenceWithMonoCecil baseClass;
         private readonly ClassTypeWithMonoCecil typeWithMonoCecil;
-        private readonly Lazy<NestedDestructorWithMonoCecil> destructor;
+        private readonly Lazy<DestructorWithMonoCecil> destructor;
 
         internal NestedClassWithMonoCecil(ITypeWithMonoCecil declaringType, TypeDefinition type)
         {
@@ -51,8 +51,8 @@ namespace CSharpDom.Mono.Cecil.Internal
             }
 
             typeWithMonoCecil = new ClassTypeWithMonoCecil(this);
-            destructor = new Lazy<NestedDestructorWithMonoCecil>(
-                () => typeWithMonoCecil.Destructor == null ? null : new NestedDestructorWithMonoCecil(this, typeWithMonoCecil.Destructor));
+            destructor = new Lazy<DestructorWithMonoCecil>(
+                () => typeWithMonoCecil.Destructor == null ? null : new DestructorWithMonoCecil(null, this, typeWithMonoCecil.Destructor));
         }
 
         public override IReadOnlyCollection<AttributeWithMonoCecil> Attributes
@@ -85,7 +85,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return typeWithMonoCecil.Delegates; }
         }
 
-        public override NestedDestructorWithMonoCecil Destructor
+        public override DestructorWithMonoCecil Destructor
         {
             get { return destructor.Value; }
         }

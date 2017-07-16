@@ -28,8 +28,8 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassNestedEnum,
             ReadOnlyClassNestedInterface,
             ReadOnlyClassNestedStructCollection,
-            DestructorNotSupported,
-            ReadOnlyStaticConstructor>
+            ReadOnlyStaticConstructor,
+            DestructorNotSupported>
     {
         private readonly Class @class;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;

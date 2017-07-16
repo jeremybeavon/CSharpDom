@@ -153,7 +153,7 @@ namespace CSharpDom.Reflection
             Visit(nestedDelegate);
         }
 
-        public virtual void VisitNestedDestructorWithReflection(NestedDestructorWithReflection nestedDestructor)
+        public virtual void VisiTDestructorWithReflection(NestedDestructorWithReflection nestedDestructor)
         {
             Visit(nestedDestructor);
         }

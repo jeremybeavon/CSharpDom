@@ -21,8 +21,8 @@
         TNestedEnum,
         TNestedInterface,
         TNestedStructCollection,
-        TDestructor,
-        TStaticConstructor> :
+        TStaticConstructor,
+        TDestructor> :
         IClass,
         IHasTypeVisibilityModifier,
         IHasNamespace<TNamespace>,
@@ -51,8 +51,8 @@
         where TNestedEnum : IClassNestedEnum
         where TNestedInterface : IClassNestedInterface
         where TNestedStructCollection : IClassNestedStructCollection
-        where TDestructor : IDestructor
         where TStaticConstructor : IStaticConstructor
+        where TDestructor : IDestructor
     {
     }
 }

@@ -98,6 +98,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassConversionOperatorWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassConversionOperatorWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassDestructorWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassDestructorWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassOperatorOverloadWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassOperatorOverloadWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassStaticConstructorWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassStaticConstructorWithCodeAnalysis.cs" />
+    <Compile Include="ClassOperatorOverloadWithCodeAnalysis.cs" />
+    <Compile Include="ClassConversionOperatorWithCodeAnalysis.cs" />
+    <Compile Include="ClassDestructorWithCodeAnalysis.cs" />
     <Compile Include="Partial\SealedClassNestedAbstractPartialClassWithCodeAnalysis.cs" />
     <Compile Include="Partial\SealedClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\SealedClassNestedPartialClassWithCodeAnalysis.cs" />
@@ -251,6 +262,7 @@
     <Compile Include="InternalStaticClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticClassNestedClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticClassNestedStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="ClassStaticConstructorWithCodeAnalysis.cs" />
     <Compile Include="StructDeclarationSyntaxExtensions.cs" />
     <Compile Include="InternalStructEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStructFieldCollectionWithCodeAnalysis.cs" />

@@ -9,16 +9,16 @@ using Mono.Cecil;
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class DestructorWithMonoCecil :
-        AbstractDestructor<AttributeWithMonoCecil, IClass, ILMethodBodyWithMonoCecilCil>,
+        AbstractDestructor<AttributeWithMonoCecil, IClassType, ILMethodBodyWithMonoCecilCil>,
         IHasMethodDefinition//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly IClass declaringType;
+        private readonly IClassType declaringType;
         private readonly MethodDefinition method;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<ILMethodBodyWithMonoCecilCil> body;
 
-        internal DestructorWithMonoCecil(AssemblyWithMonoCecil assembly, IClass declaringType, MethodDefinition method)
+        internal DestructorWithMonoCecil(AssemblyWithMonoCecil assembly, IClassType declaringType, MethodDefinition method)
         {
             this.declaringType = declaringType;
             this.method = method;
@@ -31,7 +31,7 @@ namespace CSharpDom.Mono.Cecil
             get { return attributes.Value.AttributesWithMonoCecil; }
         }
 
-        public override IClass DeclaringType
+        public override IClassType DeclaringType
         {
             get { return declaringType; }
         }

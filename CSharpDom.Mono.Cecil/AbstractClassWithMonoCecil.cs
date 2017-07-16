@@ -28,8 +28,8 @@ namespace CSharpDom.Mono.Cecil
             ClassNestedEnumWithMonoCecil,
             ClassNestedInterfaceWithMonoCecil,
             ClassNestedStructCollectionWithMonoCecil,
-            DestructorWithMonoCecil,
-            StaticConstructorWithMonoCecil>,
+            StaticConstructorWithMonoCecil,
+            DestructorWithMonoCecil>,
         ITypeWithMonoCecil,
         IHasTypeDefinition//,
         //IVisitable<IReflectionVisitor>

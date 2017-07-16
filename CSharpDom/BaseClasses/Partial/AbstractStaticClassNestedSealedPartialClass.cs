@@ -24,10 +24,10 @@ namespace CSharpDom.BaseClasses.Partial
         TNestedEnum,
         TNestedInterface,
         TNestedStructCollection,
-        TNestedDestructor,
-        TStaticConstructor> :
-        AbstractStaticClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TNestedDestructor, TStaticConstructor>,
-        IStaticClassNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TNestedDestructor, TStaticConstructor>
+        TStaticConstructor,
+        TDestructor> :
+        AbstractStaticClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>,
+        IStaticClassNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStaticType
         where TGenericParameter : IGenericParameterDeclaration
@@ -46,8 +46,8 @@ namespace CSharpDom.BaseClasses.Partial
         where TNestedEnum : IClassNestedEnum
         where TNestedInterface : IClassNestedInterface
         where TNestedStructCollection : IClassNestedStructCollection
-        where TNestedDestructor : INestedDestructor
         where TStaticConstructor : IStaticConstructor
+        where TDestructor : IDestructor
     {
         public override void Accept(IGenericVisitor visitor)
         {

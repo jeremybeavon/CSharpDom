@@ -261,7 +261,6 @@
     <Compile Include="MethodParameterWithMonoCecil.cs" />
     <Compile Include="NamedAttributeValueWithMonoCecil.cs" />
     <Compile Include="NamespaceWithMonoCecil.cs" />
-    <Compile Include="NestedDestructorWithMonoCecil.cs" />
     <Compile Include="NestedEnumMemberWithMonoCecil.cs" />
     <Compile Include="NestedStaticClassMethodCollectionWithMonoCecil.cs" />
     <Compile Include="NestedTypeReferenceWithMonoCecil.cs" />

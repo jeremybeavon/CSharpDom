@@ -19,15 +19,11 @@
         TNestedEnum,
         TNestedInterface,
         TNestedStructCollection,
-        TNestedDestructor,
-        TStaticConstructor> :
+        TStaticConstructor,
+        TDestructor> :
         INestedClass,
-        IHasAttributes<TAttributeGroup>,
         IHasDeclaringType<TDeclaringType>,
-        IHasBaseClass<TClassReference>,
-        IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
-        IHasDestructor<TNestedDestructor>,
-        IVisitable<IGenericVisitor>
+        IClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
         where TGenericParameter : IGenericParameterDeclaration
@@ -46,8 +42,8 @@
         where TNestedEnum : IClassNestedEnum
         where TNestedInterface : IClassNestedInterface
         where TNestedStructCollection : IClassNestedStructCollection
-        where TNestedDestructor : INestedDestructor
         where TStaticConstructor : IStaticConstructor
+        where TDestructor : IDestructor
     {
     }
 }

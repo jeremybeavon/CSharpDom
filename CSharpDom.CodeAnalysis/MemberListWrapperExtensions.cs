@@ -5,19 +5,21 @@ namespace CSharpDom.CodeAnalysis
 {
     internal static class MemberListWrapperExtensions
     {
-        public static StaticConstructorWithCodeAnalysis GetStaticConstructor<TParentNode, TParentSyntax>(
-            this MemberListWrapper<TParentNode, TParentSyntax, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> list)
+        public static TChildNode GetStaticConstructor<TParentNode, TParentSyntax, TChildNode>(
+            this MemberListWrapper<TParentNode, TParentSyntax, TChildNode, ConstructorDeclarationSyntax> list)
             where TParentNode : class, IHasSyntax<TParentSyntax>
             where TParentSyntax : TypeDeclarationSyntax
+            where TChildNode : class, IHasNode<ConstructorDeclarationSyntax>
         {
             return list.FirstOrDefault();
         }
 
-        public static void SetStaticConstructor<TParentNode, TParentSyntax>(
-            this MemberListWrapper<TParentNode, TParentSyntax, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> list,
-            StaticConstructorWithCodeAnalysis constructor)
+        public static void SetStaticConstructor<TParentNode, TParentSyntax, TChildNode>(
+            this MemberListWrapper<TParentNode, TParentSyntax, TChildNode, ConstructorDeclarationSyntax> list,
+            TChildNode constructor)
             where TParentNode : class, IHasSyntax<TParentSyntax>
             where TParentSyntax : TypeDeclarationSyntax
+            where TChildNode : class, IHasNode<ConstructorDeclarationSyntax>
         {
             list.ReplaceFirst(constructor);
         }

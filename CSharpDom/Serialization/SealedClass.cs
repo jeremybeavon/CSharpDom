@@ -28,8 +28,8 @@ namespace CSharpDom.Serialization
             ClassNestedEnum,
             ClassNestedInterface,
             ClassNestedStructCollection,
-            Destructor,
-            StaticConstructor>
+            StaticConstructor,
+            Destructor>
     {
         public SealedClass()
         {

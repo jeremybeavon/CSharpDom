@@ -62,7 +62,7 @@ namespace CSharpDom.Reflection
 
         void VisitNestedDelegateWithReflection(NestedDelegateWithReflection nestedDelegate);
 
-        void VisitNestedDestructorWithReflection(NestedDestructorWithReflection nestedDestructor);
+        void VisiTDestructorWithReflection(NestedDestructorWithReflection nestedDestructor);
 
         void VisitNestedEnumWithReflection(NestedEnumWithReflection nestedEnum);
 

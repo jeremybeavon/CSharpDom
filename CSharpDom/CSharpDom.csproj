@@ -188,7 +188,6 @@
     <Compile Include="BaseClasses\AbstractNestedStruct.cs" />
     <Compile Include="BaseClasses\AbstractProperty.generic.cs" />
     <Compile Include="BaseClasses\AbstractMethodBody.cs" />
-    <Compile Include="BaseClasses\AbstractNestedDestructor.cs" />
     <Compile Include="BaseClasses\AbstractNestedEnumMember.cs" />
     <Compile Include="BaseClasses\AbstractNestedTypeReference.cs" />
     <Compile Include="BaseClasses\AbstractStructReference.cs" />
@@ -572,7 +571,6 @@
     <Compile Include="Editable\EditableNestedClassCollection.cs" />
     <Compile Include="Editable\EditableDelegateType.cs" />
     <Compile Include="Editable\EditableNestedDelegate.cs" />
-    <Compile Include="Editable\EditableNestedDestructor.cs" />
     <Compile Include="Editable\EditableNestedEnum.cs" />
     <Compile Include="Editable\EditableNestedEnumMember.cs" />
     <Compile Include="Editable\EditableNestedInterface.cs" />
@@ -1784,9 +1782,7 @@
     <Compile Include="Common\IHasOperatorOverloadType.cs" />
     <Compile Include="Common\INestedEnumMember.cs" />
     <Compile Include="Common\INestedEnumMember.generic.cs" />
-    <Compile Include="Common\INestedDestructor.cs" />
     <Compile Include="Common\IDestructor.cs" />
-    <Compile Include="Common\INestedDestructor.generic.cs" />
     <Compile Include="Common\IDocument.cs" />
     <Compile Include="Common\IEnum.cs" />
     <Compile Include="Common\IEnumMember.cs" />
@@ -2033,7 +2029,6 @@
     <Compile Include="NotSupported\NamespaceNotSupported.cs" />
     <Compile Include="NotSupported\NestedClassNotSupported.cs" />
     <Compile Include="NotSupported\NestedDelegateNotSupported.cs" />
-    <Compile Include="NotSupported\NestedDestructorNotSupported.cs" />
     <Compile Include="NotSupported\NestedEnumMemberNotSupported.cs" />
     <Compile Include="NotSupported\NestedEnumNotSupported.cs" />
     <Compile Include="NotSupported\NestedInterfaceNotSupported.cs" />
@@ -2175,7 +2170,6 @@
     <Compile Include="Reflection\NamespaceWithReflection.cs" />
     <Compile Include="Reflection\Internal\NestedClassWithReflection.cs" />
     <Compile Include="Reflection\Internal\NestedDelegateWithReflection.cs" />
-    <Compile Include="Reflection\NestedDestructorWithReflection.cs" />
     <Compile Include="Reflection\NestedEnumMemberWithReflection.cs" />
     <Compile Include="Reflection\Internal\NestedEnumWithReflection.cs" />
     <Compile Include="Reflection\Internal\NestedInterfaceWithReflection.cs" />
@@ -2287,7 +2281,6 @@
     <Compile Include="Serialization\Factories\ClassNestedStructFactory.cs" />
     <Compile Include="Serialization\Factories\ClassNestedClassFactory.cs" />
     <Compile Include="Serialization\Factories\ClassFactory.cs" />
-    <Compile Include="Serialization\Factories\NestedDestructorFactory.cs" />
     <Compile Include="Serialization\Factories\ClassNestedInterfaceFactory.cs" />
     <Compile Include="Serialization\Factories\InterfaceFactory.cs" />
     <Compile Include="Serialization\Factories\ClassNestedDelegateFactory.cs" />
@@ -2366,7 +2359,6 @@
     <Compile Include="Serialization\ClassMethod.cs" />
     <Compile Include="Serialization\MethodBody.cs" />
     <Compile Include="Serialization\NamedAttributeValue.cs" />
-    <Compile Include="Serialization\NestedDestructor.cs" />
     <Compile Include="Serialization\NestedEnumMember.cs" />
     <Compile Include="Serialization\Project.cs" />
     <Compile Include="Serialization\Solution.cs" />
@@ -2700,7 +2692,6 @@
     <Compile Include="Wrappers\Internal\MethodParameterWrapper.cs" />
     <Compile Include="Wrappers\Internal\NamedAttributeValueWrapper.cs" />
     <Compile Include="Wrappers\Internal\NamespaceWrapper.cs" />
-    <Compile Include="Wrappers\Internal\NestedDestructorWrapper.cs" />
     <Compile Include="Wrappers\Internal\NestedEnumMemberWrapper.cs" />
     <Compile Include="Wrappers\Internal\NestedStaticClassMethodCollectionWrapper.cs" />
     <Compile Include="Wrappers\Internal\NestedTypeReferenceWrapper.cs" />
@@ -2863,7 +2854,6 @@
     <Compile Include="Wrappers\INestedClassCollectionWrapper.cs" />
     <Compile Include="Wrappers\INestedClassWrapper.cs" />
     <Compile Include="Wrappers\INestedDelegateWrapper.cs" />
-    <Compile Include="Wrappers\INestedDestructorWrapper.cs" />
     <Compile Include="Wrappers\INestedEnumMemberWrapper.cs" />
     <Compile Include="Wrappers\INestedEnumWrapper.cs" />
     <Compile Include="Wrappers\INestedInterfaceWrapper.cs" />

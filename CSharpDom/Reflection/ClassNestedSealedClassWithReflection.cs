@@ -25,8 +25,8 @@ namespace CSharpDom.Reflection
             ClassNestedEnumWithReflection,
             ClassNestedInterfaceWithReflection,
             ClassNestedStructCollectionWithReflection,
-            NestedDestructorWithReflection,
-            StaticConstructorWithReflection>
+            StaticConstructorWithReflection,
+            DestructorWithReflection>
     {
         private readonly NestedSealedClassWithReflection nestedClass;
 
@@ -70,7 +70,7 @@ namespace CSharpDom.Reflection
             get { return nestedClass.Delegates; }
         }
 
-        public override NestedDestructorWithReflection Destructor
+        public override DestructorWithReflection Destructor
         {
             get { return nestedClass.Destructor; }
         }

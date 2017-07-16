@@ -56,5 +56,10 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
+
+        internal Node<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> Node
+        {
+            get { return node; }
+        }
     }
 }

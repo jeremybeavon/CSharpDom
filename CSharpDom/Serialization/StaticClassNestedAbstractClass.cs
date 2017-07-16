@@ -24,8 +24,8 @@ namespace CSharpDom.Serialization
             ClassNestedEnum,
             ClassNestedInterface,
             ClassNestedStructCollection,
-            NestedDestructor,
-            StaticConstructor>
+            StaticConstructor,
+            Destructor>
     {
         public StaticClassNestedAbstractClass()
         {
@@ -64,7 +64,7 @@ namespace CSharpDom.Serialization
 
         public List<ClassNestedDelegate> Delegates { get; set; }
 
-        public NestedDestructor Destructor { get; set; }
+        public Destructor Destructor { get; set; }
 
         public List<ClassNestedEnum> Enums { get; set; }
         

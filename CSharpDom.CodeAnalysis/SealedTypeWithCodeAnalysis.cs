@@ -15,14 +15,15 @@ namespace CSharpDom.CodeAnalysis
             SealedClassMethodCollectionWithCodeAnalysis,
             SealedClassFieldCollectionWithCodeAnalysis,
             SealedClassConstructorWithCodeAnalysis,
-            OperatorOverloadWithCodeAnalysis,
-            ConversionOperatorWithCodeAnalysis,
+            SealedClassOperatorOverloadWithCodeAnalysis,
+            SealedClassConversionOperatorWithCodeAnalysis,
             SealedClassNestedClassCollectionWithCodeAnalysis,
             SealedClassNestedDelegateWithCodeAnalysis,
             SealedClassNestedEnumWithCodeAnalysis,
             SealedClassNestedInterfaceWithCodeAnalysis,
             SealedClassNestedStructCollectionWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>,
+            SealedClassStaticConstructorWithCodeAnalysis,
+            SealedClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
         public abstract ClassDeclarationSyntax Syntax { get; set; }

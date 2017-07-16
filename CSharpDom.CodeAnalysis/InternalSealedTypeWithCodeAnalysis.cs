@@ -14,6 +14,9 @@ namespace CSharpDom.CodeAnalysis
             ClassConstructorWithCodeAnalysis,
             SealedClassConstructorWithCodeAnalysis> constructors;
         private readonly WrappedCollection<
+            ClassConversionOperatorWithCodeAnalysis,
+            SealedClassConversionOperatorWithCodeAnalysis> conversionOperators;
+        private readonly WrappedCollection<
             ClassNestedDelegateWithCodeAnalysis,
             SealedClassNestedDelegateWithCodeAnalysis> delegates;
         private readonly WrappedCollection<
@@ -26,6 +29,9 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedInterfaceWithCodeAnalysis,
             SealedClassNestedInterfaceWithCodeAnalysis> interfaces;
         private readonly SealedClassMethodCollectionWithCodeAnalysis methods;
+        private readonly WrappedCollection<
+            ClassOperatorOverloadWithCodeAnalysis,
+            SealedClassOperatorOverloadWithCodeAnalysis> operatorOverloads;
         private readonly SealedClassPropertyCollectionWithCodeAnalysis properties;
         private readonly SealedClassNestedStructCollectionWithCodeAnalysis structs;
 
@@ -39,6 +45,11 @@ namespace CSharpDom.CodeAnalysis
                 constructor => new SealedClassConstructorWithCodeAnalysis(constructor),
                 constructor => constructor.Constructor,
                 value => classType.Constructors = value);
+            conversionOperators = new WrappedCollection<ClassConversionOperatorWithCodeAnalysis, SealedClassConversionOperatorWithCodeAnalysis>(
+                classType.ConversionOperators,
+                parent => new SealedClassConversionOperatorWithCodeAnalysis(parent),
+                child => child.InternalConversionOperator,
+                value => classType.ConversionOperators = value);
             delegates = new WrappedCollection<ClassNestedDelegateWithCodeAnalysis, SealedClassNestedDelegateWithCodeAnalysis>(
                 classType.Delegates,
                 parent => new SealedClassNestedDelegateWithCodeAnalysis(parent),
@@ -58,6 +69,11 @@ namespace CSharpDom.CodeAnalysis
                 child => child.InternalInterface,
                 value => classType.Interfaces = value);
             methods = new InternalSealedClassMethodCollectionWithCodeAnalysis<TClass>(classType);
+            operatorOverloads = new WrappedCollection<ClassOperatorOverloadWithCodeAnalysis, SealedClassOperatorOverloadWithCodeAnalysis>(
+                classType.OperatorOverloads,
+                parent => new SealedClassOperatorOverloadWithCodeAnalysis(parent),
+                child => child.InternalOperatorOverload,
+                value => classType.OperatorOverloads = value);
             properties = new InternalSealedClassPropertyCollectionWithCodeAnalysis<TClass>(classType);
             structs = new SealedClassNestedStructCollectionWithCodeAnalysis(classType.Structs);
             InitializeMembers();
@@ -94,16 +110,22 @@ namespace CSharpDom.CodeAnalysis
             set { constructors.Replace(value); }
         }
 
-        public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
+        public override ICollection<SealedClassConversionOperatorWithCodeAnalysis> ConversionOperators
         {
-            get { return classType.ConversionOperators; }
-            set { classType.ConversionOperators = value; }
+            get { return conversionOperators; }
+            set { conversionOperators.Replace(value); }
         }
 
         public override ICollection<SealedClassNestedDelegateWithCodeAnalysis> Delegates
         {
             get { return delegates; }
             set { delegates.Replace(value); }
+        }
+
+        public override SealedClassDestructorWithCodeAnalysis Destructor
+        {
+            get { return new SealedClassDestructorWithCodeAnalysis(classType.Destructor); }
+            set { classType.Destructor = value?.InternalDestructor; }
         }
 
         public override ICollection<SealedClassNestedEnumWithCodeAnalysis> Enums
@@ -181,10 +203,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Name = value; }
         }
 
-        public override ICollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
+        public override ICollection<SealedClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
-            get { return classType.OperatorOverloads; }
-            set { classType.OperatorOverloads = value; }
+            get { return operatorOverloads; }
+            set { operatorOverloads.Replace(value); }
         }
 
         public override SealedClassPropertyCollectionWithCodeAnalysis Properties
@@ -198,10 +220,10 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        public override StaticConstructorWithCodeAnalysis StaticConstructor
+        public override SealedClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return classType.StaticConstructor; }
-            set { classType.StaticConstructor = value; }
+            get { return new SealedClassStaticConstructorWithCodeAnalysis(classType.StaticConstructor); }
+            set { classType.StaticConstructor = value?.InternalStaticConstructor; }
         }
 
         public override SealedClassNestedStructCollectionWithCodeAnalysis Structs

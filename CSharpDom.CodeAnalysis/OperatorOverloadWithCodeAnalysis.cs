@@ -131,6 +131,11 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
+        internal Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> Node
+        {
+            get { return node; }
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitOperatorOverloadWithCodeAnalysis(this);

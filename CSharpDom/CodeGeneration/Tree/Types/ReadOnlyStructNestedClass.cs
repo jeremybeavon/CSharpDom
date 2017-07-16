@@ -26,8 +26,8 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             ReadOnlyClassNestedEnum,
             ReadOnlyClassNestedInterface,
             ReadOnlyClassNestedStructCollection,
-            NestedDestructorNotSupported,
-            ReadOnlyStaticConstructor>
+            ReadOnlyStaticConstructor,
+            DestructorNotSupported>
     {
         private readonly StructNestedClass nestedClass;
         private readonly IReadOnlyList<ReadOnlyGenericParameterDeclaration> genericParameters;
@@ -83,7 +83,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             get { return body.Delegates; }
         }
 
-        public override NestedDestructorNotSupported Destructor
+        public override DestructorNotSupported Destructor
         {
             get { return null; }
         }

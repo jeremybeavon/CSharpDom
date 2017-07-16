@@ -117,6 +117,11 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
+        internal Node<ConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax> Node
+        {
+            get { return node; }
+        }
+
         private static ConversionOperatorDeclarationSyntax WithParameter(
             ConversionOperatorDeclarationSyntax parentSyntax,
             ParameterSyntax childSyntax)

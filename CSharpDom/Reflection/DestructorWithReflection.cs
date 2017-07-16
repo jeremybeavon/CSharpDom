@@ -10,16 +10,16 @@ using CSharpDom.NotSupported;
 namespace CSharpDom.Reflection
 {
     public sealed class DestructorWithReflection :
-        AbstractDestructor<AttributeWithReflection, IClass, ILMethodBodyWithReflectionEmit>,
+        AbstractDestructor<AttributeWithReflection, IClassType, ILMethodBodyWithReflectionEmit>,
         IHasMethodInfo//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly IClass declaringType;
+        private readonly IClassType declaringType;
         private readonly MethodInfo method;
         private readonly Lazy<Attributes> attributes;
         private readonly Lazy<ILMethodBodyWithReflectionEmit> body;
 
-        internal DestructorWithReflection(IClass declaringType, MethodInfo method)
+        internal DestructorWithReflection(IClassType declaringType, MethodInfo method)
         {
             this.declaringType = declaringType;
             this.method = method;
@@ -32,7 +32,7 @@ namespace CSharpDom.Reflection
             get { return attributes.Value.AttributesWithReflection; }
         }
 
-        public override IClass DeclaringType
+        public override IClassType DeclaringType
         {
             get { return declaringType; }
         }

@@ -9,7 +9,6 @@ namespace CSharpDom.CodeAnalysis
     public sealed class DestructorWithCodeAnalysis :
         EditableDestructor<AttributeGroupWithCodeAnalysis, IClass, MethodBodyWithCodeAnalysis>,
         IHasSyntax<DestructorDeclarationSyntax>,
-        INestedDestructor,
         IHasNode<DestructorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
@@ -55,6 +54,11 @@ namespace CSharpDom.CodeAnalysis
         }
 
         INode<DestructorDeclarationSyntax> IHasNode<DestructorDeclarationSyntax>.Node
+        {
+            get { return node; }
+        }
+
+        internal Node<DestructorWithCodeAnalysis, DestructorDeclarationSyntax> Node
         {
             get { return node; }
         }

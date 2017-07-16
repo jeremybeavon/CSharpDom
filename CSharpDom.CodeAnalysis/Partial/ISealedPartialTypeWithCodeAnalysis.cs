@@ -15,14 +15,15 @@ namespace CSharpDom.CodeAnalysis.Partial
             SealedPartialClassMethodCollectionWithCodeAnalysis,
             SealedClassFieldCollectionWithCodeAnalysis,
             SealedClassConstructorWithCodeAnalysis,
-            OperatorOverloadWithCodeAnalysis,
-            ConversionOperatorWithCodeAnalysis,
+            SealedClassOperatorOverloadWithCodeAnalysis,
+            SealedClassConversionOperatorWithCodeAnalysis,
             SealedClassNestedClassCollectionWithCodeAnalysis,
             SealedClassNestedDelegateWithCodeAnalysis,
             SealedClassNestedEnumWithCodeAnalysis,
             SealedClassNestedInterfaceWithCodeAnalysis,
             SealedClassNestedStructCollectionWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>,
+            SealedClassStaticConstructorWithCodeAnalysis,
+            SealedClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
     }

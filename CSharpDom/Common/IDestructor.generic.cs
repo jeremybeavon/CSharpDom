@@ -6,7 +6,7 @@
         IHasDeclaringType<TDeclaringType>,
         IHasBody<TMethodBody>
         where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IClass
+        where TDeclaringType : IClassType
         where TMethodBody : IMethodBody
     {
     }

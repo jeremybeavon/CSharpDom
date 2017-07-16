@@ -45,7 +45,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Constructors = value; }
         }
 
-        public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
+        public override ICollection<SealedClassConversionOperatorWithCodeAnalysis> ConversionOperators
         {
             get { return classType.ConversionOperators; }
             set { classType.ConversionOperators = value; }
@@ -63,10 +63,10 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Delegates = value; }
         }
 
-        public override DestructorWithCodeAnalysis Destructor
+        public override SealedClassDestructorWithCodeAnalysis Destructor
         {
-            get { return classType.Type.Destructor; }
-            set { classType.Type.Destructor = value; }
+            get { return classType.Destructor; }
+            set { classType.Destructor = value; }
         }
 
         public override ICollection<SealedClassNestedEnumWithCodeAnalysis> Enums
@@ -123,7 +123,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Name = value; }
         }
 
-        public override ICollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
+        public override ICollection<SealedClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
             get { return classType.OperatorOverloads; }
             set { classType.OperatorOverloads = value; }
@@ -135,7 +135,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Properties = value; }
         }
 
-        public override StaticConstructorWithCodeAnalysis StaticConstructor
+        public override SealedClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
             get { return classType.StaticConstructor; }
             set { classType.StaticConstructor = value; }

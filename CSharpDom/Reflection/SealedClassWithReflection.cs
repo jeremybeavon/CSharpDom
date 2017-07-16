@@ -30,8 +30,8 @@ namespace CSharpDom.Reflection
             ClassNestedEnumWithReflection,
             ClassNestedInterfaceWithReflection,
             ClassNestedStructCollectionWithReflection,
-            DestructorWithReflection,
-            StaticConstructorWithReflection>,
+            StaticConstructorWithReflection,
+            DestructorWithReflection>,
         IInternalTypeWithReflection,
         IHasType//,
         //IVisitable<IReflectionVisitor>

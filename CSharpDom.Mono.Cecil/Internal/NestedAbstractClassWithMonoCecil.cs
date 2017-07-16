@@ -27,8 +27,8 @@ namespace CSharpDom.Mono.Cecil.Internal
             ClassNestedEnumWithMonoCecil,
             ClassNestedInterfaceWithMonoCecil,
             ClassNestedStructCollectionWithMonoCecil,
-            NestedDestructorWithMonoCecil,
-            StaticConstructorWithMonoCecil>,
+            StaticConstructorWithMonoCecil,
+            DestructorWithMonoCecil>,
         ITypeWithMonoCecil,
         IInternalTypeWithMonoCecil,
         IHasTypeDefinition
@@ -78,7 +78,7 @@ namespace CSharpDom.Mono.Cecil.Internal
             get { return typeWithMonoCecil.Delegates; }
         }
 
-        public override NestedDestructorWithMonoCecil Destructor
+        public override DestructorWithMonoCecil Destructor
         {
             get { return typeWithMonoCecil.Destructor; }
         }

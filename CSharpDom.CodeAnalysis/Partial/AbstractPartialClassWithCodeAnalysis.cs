@@ -24,15 +24,15 @@ namespace CSharpDom.CodeAnalysis.Partial
             AbstractPartialClassMethodCollectionWithCodeAnalysis,
             AbstractClassFieldCollectionWithCodeAnalysis,
             AbstractClassConstructorWithCodeAnalysis,
-            OperatorOverloadWithCodeAnalysis,
-            ConversionOperatorWithCodeAnalysis,
+            AbstractClassOperatorOverloadWithCodeAnalysis,
+            AbstractClassConversionOperatorWithCodeAnalysis,
             AbstractClassNestedClassCollectionWithCodeAnalysis,
             AbstractClassNestedDelegateWithCodeAnalysis,
             AbstractClassNestedEnumWithCodeAnalysis,
             AbstractClassNestedInterfaceWithCodeAnalysis,
             AbstractClassNestedStructCollectionWithCodeAnalysis,
-            DestructorWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>,
+            AbstractClassStaticConstructorWithCodeAnalysis,
+            AbstractClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>,
         IAbstractPartialTypeWithCodeAnalysis//,
@@ -71,7 +71,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Constructors = value; }
         }
 
-        public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
+        public override ICollection<AbstractClassConversionOperatorWithCodeAnalysis> ConversionOperators
         {
             get { return classType.ConversionOperators; }
             set { classType.ConversionOperators = value; }
@@ -83,7 +83,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Delegates = value; }
         }
 
-        public override DestructorWithCodeAnalysis Destructor
+        public override AbstractClassDestructorWithCodeAnalysis Destructor
         {
             get { return classType.Destructor; }
             set { classType.Destructor = value; }
@@ -137,7 +137,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Name = value; }
         }
 
-        public override ICollection<OperatorOverloadWithCodeAnalysis> OperatorOverloads
+        public override ICollection<AbstractClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
             get { return classType.OperatorOverloads; }
             set { classType.OperatorOverloads = value; }
@@ -167,7 +167,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.ImplementedInterfaces = value; }
         }
 
-        public override StaticConstructorWithCodeAnalysis StaticConstructor
+        public override AbstractClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
             get { return classType.StaticConstructor; }
             set { classType.StaticConstructor = value; }
