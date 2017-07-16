@@ -6,13 +6,13 @@ using CSharpDom.Reflection;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyTypeReference : 
-        IClassReference<ReadOnlyGenericParameter>,
-        IDelegateReference<ReadOnlyGenericParameter>,
+        IClassReference<ReadOnlyTypeReference>,
+        IDelegateReference<ReadOnlyTypeReference>,
         IEnumReference,
         IGenericParameterReference,
-        IInterfaceReference<ReadOnlyGenericParameter>,
-        IStructReference<ReadOnlyGenericParameter>,
-        IUnspecifiedTypeReference<ReadOnlyGenericParameter>
+        IInterfaceReference<ReadOnlyTypeReference>,
+        IStructReference<ReadOnlyTypeReference>,
+        IUnspecifiedTypeReference<ReadOnlyTypeReference>
     {
         private const ReadOnlyTypeReferenceType classType = ReadOnlyTypeReferenceType.Class;
         private const ReadOnlyTypeReferenceType delegateType = ReadOnlyTypeReferenceType.Delegate;
@@ -74,7 +74,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             };
 
         private readonly TypeReference type;
-        private readonly IReadOnlyList<ReadOnlyGenericParameter> genericParameters;
+        private readonly IReadOnlyList<ReadOnlyTypeReference> genericParameters;
         private ReadOnlyTypeReferenceType typeReferenceType;
         private string name;
         private ITypeReferenceWithReflection typeReferenceWithReflection;
@@ -82,7 +82,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         public ReadOnlyTypeReference(TypeReference typeReference)
         {
             type = typeReference;
-            genericParameters = ReadOnlyGenericParameter.Create(typeReference.GenericParameters);
+            genericParameters = typeReference.GenericParameters.ToArray(parameter => new ReadOnlyTypeReference(parameter));
             foreach (Func<ReadOnlyTypeReference, bool> initializer in nameAndTypeBuilders)
             {
                 if (initializer(this))
@@ -92,7 +92,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             }
         }
 
-        public IReadOnlyList<ReadOnlyGenericParameter> GenericParameters
+        public IReadOnlyList<ReadOnlyTypeReference> GenericParameters
         {
             get { return genericParameters; }
         }

@@ -209,7 +209,6 @@
     <Compile Include="BaseClasses\AbstractClassEvent.cs" />
     <Compile Include="BaseClasses\AbstractClassEventProperty.cs" />
     <Compile Include="BaseClasses\AbstractClassField.cs" />
-    <Compile Include="BaseClasses\AbstractGenericParameter.cs" />
     <Compile Include="BaseClasses\AbstractGenericParameterReference.cs" />
     <Compile Include="BaseClasses\AbstractClassIndexer.cs" />
     <Compile Include="BaseClasses\AbstractInterface.cs" />
@@ -546,7 +545,6 @@
     <Compile Include="Editable\EditableExtensionParameter.cs" />
     <Compile Include="Editable\EditableField.cs" />
     <Compile Include="Editable\EditableFieldGroup.cs" />
-    <Compile Include="Editable\EditableGenericParameter.cs" />
     <Compile Include="Editable\EditableGenericParameterDeclaration.cs" />
     <Compile Include="Editable\EditableGenericParameterReference.cs" />
     <Compile Include="Editable\EditableIndexer.generic.cs" />
@@ -1640,7 +1638,6 @@
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyDelegate.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyDelegateReference.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyEnumField.cs" />
-    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyGenericParameter.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyGenericParameterDeclaration.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyGenericParameterReference.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyInterface.cs" />
@@ -1790,7 +1787,6 @@
     <Compile Include="Common\IClassEvent.cs" />
     <Compile Include="Common\IClassEventProperty.cs" />
     <Compile Include="Common\IClassField.cs" />
-    <Compile Include="Common\IGenericParameter.cs" />
     <Compile Include="Common\IGenericParameterDeclaration.cs" />
     <Compile Include="Common\IHasPropertyType.cs" />
     <Compile Include="Common\IHasIndexerType.cs" />
@@ -2016,7 +2012,6 @@
     <Compile Include="NotSupported\EventNotSupported.cs" />
     <Compile Include="NotSupported\EventPropertyNotSupported.cs" />
     <Compile Include="NotSupported\FieldNotSupported.cs" />
-    <Compile Include="NotSupported\GenericParameterNotSupported.cs" />
     <Compile Include="NotSupported\GenericParameterReferenceNotSupported.cs" />
     <Compile Include="NotSupported\IndexerNotSupported.cs" />
     <Compile Include="NotSupported\InterfaceNotSupported.cs" />
@@ -2127,7 +2122,6 @@
     <Compile Include="Reflection\Internal\FieldGroupWithReflection.cs" />
     <Compile Include="Reflection\GenericParameterDeclarationWithReflection.cs" />
     <Compile Include="Reflection\GenericParameterReferenceWithReflection.cs" />
-    <Compile Include="Reflection\GenericParameterWithReflection.cs" />
     <Compile Include="Reflection\IBasicTypeWithReflection.cs" />
     <Compile Include="Reflection\IHasAssembly.cs" />
     <Compile Include="Reflection\IHasConstructorInfo.cs" />
@@ -2310,7 +2304,6 @@
     <Compile Include="Serialization\Factories\ConstructorParameterFactory.cs" />
     <Compile Include="Serialization\Factories\StructReferenceFactory.cs" />
     <Compile Include="Serialization\Factories\ClassReferenceFactory.cs" />
-    <Compile Include="Serialization\Factories\GenericParameterFactory.cs" />
     <Compile Include="Serialization\Factories\ReadOnlyCollectionExtensions.cs" />
     <Compile Include="Serialization\Factories\ReadOnlyListExtensions.cs" />
     <Compile Include="Serialization\Factories\TypeReferenceFactory.cs" />
@@ -2348,7 +2341,6 @@
     <Compile Include="Serialization\ClassEvent.cs" />
     <Compile Include="Serialization\ClassEventProperty.cs" />
     <Compile Include="Serialization\ClassField.cs" />
-    <Compile Include="Serialization\GenericParameter.cs" />
     <Compile Include="Serialization\GenericParameterDeclaration.cs" />
     <Compile Include="Serialization\GenericParameterReference.cs" />
     <Compile Include="Serialization\IL\ILInstruction.cs" />
@@ -2678,7 +2670,6 @@
     <Compile Include="Wrappers\Internal\FieldWrapper.cs" />
     <Compile Include="Wrappers\Internal\GenericParameterDeclarationWrapper.cs" />
     <Compile Include="Wrappers\Internal\GenericParameterReferenceWrapper.cs" />
-    <Compile Include="Wrappers\Internal\GenericParameterWrapper.cs" />
     <Compile Include="Wrappers\Internal\IndexerParameterWrapper.cs" />
     <Compile Include="Wrappers\Internal\InterfaceAccessorWrapper.cs" />
     <Compile Include="Wrappers\Internal\InterfaceEventWrapper.cs" />
@@ -2834,7 +2825,6 @@
     <Compile Include="Wrappers\IFieldWrapper.cs" />
     <Compile Include="Wrappers\IGenericParameterDeclarationWrapper.cs" />
     <Compile Include="Wrappers\IGenericParameterReferenceWrapper.cs" />
-    <Compile Include="Wrappers\IGenericParameterWrapper.cs" />
     <Compile Include="Wrappers\IIndexerWrapper.cs" />
     <Compile Include="Wrappers\IIndexerParameterWrapper.cs" />
     <Compile Include="Wrappers\IInterfaceAccessorWrapper.cs" />

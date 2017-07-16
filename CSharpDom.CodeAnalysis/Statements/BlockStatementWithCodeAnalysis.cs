@@ -12,13 +12,11 @@ namespace CSharpDom.CodeAnalysis.Statements
         IInternalStatement,
         IHasNode<BlockSyntax>
     {
-        private readonly Guid internalId;
         private readonly StatementNode<BlockStatementWithCodeAnalysis, BlockSyntax> node;
         private readonly StatementListWrapper<BlockStatementWithCodeAnalysis, BlockSyntax> statements;
 
         public BlockStatementWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
             node = new StatementNode<BlockStatementWithCodeAnalysis, BlockSyntax>(this);
             statements = new StatementListWrapper<BlockStatementWithCodeAnalysis, BlockSyntax>(
                 node,
@@ -39,8 +37,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         }
 
         internal StatementNode<BlockStatementWithCodeAnalysis, BlockSyntax> Node => node;
-
-
+        
         INode<StatementSyntax> IHasNode<StatementSyntax>.Node
         {
             get { return node; }

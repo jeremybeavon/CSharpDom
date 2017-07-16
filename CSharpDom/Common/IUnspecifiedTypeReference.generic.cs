@@ -1,11 +1,11 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IUnspecifiedTypeReference<TGenericParameter> :
+    public interface IUnspecifiedTypeReference<TTypeReference> :
         IUnspecifiedTypeReference,
         ITypeReference,
         IHasName,
-        IHasGenericParameters<TGenericParameter>
-        where TGenericParameter : IGenericParameter
+        IHasGenericParameters<TTypeReference>
+        where TTypeReference : ITypeReference
     {
     }
 }

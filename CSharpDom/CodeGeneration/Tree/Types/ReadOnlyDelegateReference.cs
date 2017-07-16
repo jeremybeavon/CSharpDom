@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyDelegateReference : AbstractDelegateReference<ReadOnlyGenericParameter>
+    public sealed class ReadOnlyDelegateReference : AbstractDelegateReference<ReadOnlyTypeReference>
     {
-        private readonly IReadOnlyList<ReadOnlyGenericParameter> genericParameters;
+        private readonly IReadOnlyList<ReadOnlyTypeReference> genericParameters;
         private readonly string name;
 
         public ReadOnlyDelegateReference(DelegateReference delegateReference)
         {
-            genericParameters = ReadOnlyGenericParameter.Create(delegateReference.GenericParameters);
+            genericParameters = delegateReference.GenericParameters.ToArray(parameter => new ReadOnlyTypeReference(parameter));
             if (!string.IsNullOrWhiteSpace(delegateReference.TypeText))
             {
                 name = delegateReference.TypeText;
@@ -37,7 +37,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             }
         }
 
-        public override IReadOnlyList<ReadOnlyGenericParameter> GenericParameters
+        public override IReadOnlyList<ReadOnlyTypeReference> GenericParameters
         {
             get { return genericParameters; }
         }

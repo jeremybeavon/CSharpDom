@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class DelegateReferenceWithCodeAnalysis :
-        EditableDelegateReference<GenericParameterWithCodeAnalysis>,
+        EditableDelegateReference<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
         IHasNode<NameSyntax>//,
         //IVisitable<IReflectionVisitor>
@@ -18,7 +18,7 @@ namespace CSharpDom.CodeAnalysis
             this.typeReference = typeReference;
         }
         
-        public override IList<GenericParameterWithCodeAnalysis> GenericParameters
+        public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters
         {
             get { return typeReference.GenericParameters; }
             set { typeReference.GenericParameters = value; }

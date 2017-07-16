@@ -88,6 +88,11 @@ namespace CSharpDom.CodeAnalysis
             return tokens.Any(token => kinds.Contains(token.Kind()));
         }
 
+        public static bool All(this SyntaxTokenList tokens, params SyntaxKind[] kinds)
+        {
+            return tokens.All(token => kinds.Contains(token.Kind()));
+        }
+
         public static SyntaxTokenList Add(this SyntaxTokenList tokens, SyntaxKind kind)
         {
             return tokens.Add(SyntaxFactory.Token(kind));

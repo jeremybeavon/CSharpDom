@@ -46,8 +46,8 @@ namespace CSharpDom.BaseClasses
             Visit(attributes);
         }
         
-        public virtual void VisitClassReference<TGenericParameter>(IClassReference<TGenericParameter> classReference)
-            where TGenericParameter : IGenericParameter
+        public virtual void VisitClassReference<TTypeReference>(IClassReference<TTypeReference> classReference)
+            where TTypeReference : ITypeReference
         {
             Visit(classReference);
         }
@@ -77,8 +77,8 @@ namespace CSharpDom.BaseClasses
             Visit(@delegate);
         }
 
-        public virtual void VisitDelegateReference<TGenericParameter>(IDelegateReference<TGenericParameter> delegateReference)
-            where TGenericParameter : IGenericParameter
+        public virtual void VisitDelegateReference<TTypeReference>(IDelegateReference<TTypeReference> delegateReference)
+            where TTypeReference : ITypeReference
         {
             Visit(delegateReference);
         }
@@ -153,12 +153,7 @@ namespace CSharpDom.BaseClasses
         {
             Visit(field);
         }
-
-        public virtual void VisitGenericParameter(IGenericParameter genericParameter)
-        {
-            Visit(genericParameter);
-        }
-
+        
         public virtual void VisitGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>(
             IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> genericParameterDeclaration)
             where TClassReference : IClassReference
@@ -202,8 +197,8 @@ namespace CSharpDom.BaseClasses
             Visit(@interface);
         }
 
-        public virtual void VisitInterfaceReference<TGenericParameter>(IInterfaceReference<TGenericParameter> interfaceReference)
-            where TGenericParameter : IGenericParameter
+        public virtual void VisitInterfaceReference<TTypeReference>(IInterfaceReference<TTypeReference> interfaceReference)
+            where TTypeReference : ITypeReference
         {
             Visit(interfaceReference);
         }
@@ -449,15 +444,15 @@ namespace CSharpDom.BaseClasses
             Visit(property);
         }
 
-        public virtual void VisitStructReference<TGenericParameter>(IStructReference<TGenericParameter> structReference)
-            where TGenericParameter : IGenericParameter
+        public virtual void VisitStructReference<TTypeReference>(IStructReference<TTypeReference> structReference)
+            where TTypeReference : ITypeReference
         {
             Visit(structReference);
         }
         
-        public virtual void VisitUnspecifiedTypeReference<TGenericParameter>(
-            IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
-            where TGenericParameter : IGenericParameter
+        public virtual void VisitUnspecifiedTypeReference<TTypeReference>(
+            IUnspecifiedTypeReference<TTypeReference> unspecificTypeReference)
+            where TTypeReference : ITypeReference
         {
             Visit(unspecificTypeReference);
         }

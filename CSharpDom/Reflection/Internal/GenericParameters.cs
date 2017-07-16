@@ -10,10 +10,10 @@ namespace CSharpDom.Reflection.Internal
         public GenericParameters(Type type, MemberInfo member)
         {
             GenericParametersWithReflection = type.GetGenericArguments()
-                .Select(parameter => new GenericParameterWithReflection(parameter, member))
+                .Select(parameter => TypeReferenceWithReflectionFactory.CreateReference(parameter, member))
                 .ToList();
         }
 
-        public IReadOnlyList<GenericParameterWithReflection> GenericParametersWithReflection { get; private set; }
+        public IReadOnlyList<ITypeReferenceWithReflection> GenericParametersWithReflection { get; private set; }
     }
 }

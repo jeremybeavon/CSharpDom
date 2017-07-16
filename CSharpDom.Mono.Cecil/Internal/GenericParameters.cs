@@ -12,16 +12,16 @@ namespace CSharpDom.Mono.Cecil.Internal
             GenericInstanceType genericType = type as GenericInstanceType;
             if (genericType == null)
             {
-                GenericParametersWithMonoCecil = new List<GenericParameterWithMonoCecil>();
+                GenericParametersWithMonoCecil = new List<ITypeReferenceWithMonoCecil>();
             }
             else
             {
                 GenericParametersWithMonoCecil = genericType.GenericArguments
-                    .Select(parameter => new GenericParameterWithMonoCecil(assembly, parameter))
+                    .Select(parameter => TypeReferenceWithMonoCecilFactory.CreateReference(assembly, parameter))
                     .ToList();
             }
         }
 
-        public IReadOnlyList<GenericParameterWithMonoCecil> GenericParametersWithMonoCecil { get; private set; }
+        public IReadOnlyList<ITypeReferenceWithMonoCecil> GenericParametersWithMonoCecil { get; private set; }
     }
 }

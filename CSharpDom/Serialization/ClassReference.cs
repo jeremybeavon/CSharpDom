@@ -4,18 +4,18 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Serialization
 {
-    public sealed class ClassReference : IClassReference<GenericParameter>
+    public sealed class ClassReference : IClassReference<TypeReference>
     {
         public ClassReference()
         {
-            GenericParameters = new List<GenericParameter>();
+            GenericParameters = new List<TypeReference>();
         }
 
-        public List<GenericParameter> GenericParameters { get; set; }
+        public List<TypeReference> GenericParameters { get; set; }
 
         public string Name { get; set; }
 
-        IReadOnlyList<GenericParameter> IHasGenericParameters<GenericParameter>.GenericParameters
+        IReadOnlyList<TypeReference> IHasGenericParameters<TypeReference>.GenericParameters
         {
             get { return GenericParameters; }
         }

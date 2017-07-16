@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class InterfaceReferenceWithCodeAnalysis :
-        EditableInterfaceReference<GenericParameterWithCodeAnalysis>,
+        EditableInterfaceReference<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
         IHasNode<NameSyntax>//,
         //IVisitable<IReflectionVisitor>
@@ -23,7 +23,7 @@ namespace CSharpDom.CodeAnalysis
             this.typeReference = typeReference;
         }
 
-        public override IList<GenericParameterWithCodeAnalysis> GenericParameters
+        public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters
         {
             get { return typeReference.GenericParameters; }
             set { typeReference.GenericParameters = value; }

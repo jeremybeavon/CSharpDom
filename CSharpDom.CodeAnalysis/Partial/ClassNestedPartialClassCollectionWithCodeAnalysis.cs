@@ -33,16 +33,20 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             var classes = new ClassMemberListWrapper<TClass, ClassNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new ClassNestedPartialClassWithCodeAnalysis());
+                () => new ClassNestedPartialClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsPartialClass);
             var abstractClasses = new ClassMemberListWrapper<TClass, ClassNestedAbstractPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new ClassNestedAbstractPartialClassWithCodeAnalysis());
+                () => new ClassNestedAbstractPartialClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsAbstractPartialClass);
             var sealedClasses = new ClassMemberListWrapper<TClass, ClassNestedSealedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new ClassNestedSealedPartialClassWithCodeAnalysis());
+                () => new ClassNestedSealedPartialClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsSealedPartialClass);
             var staticClasses = new ClassMemberListWrapper<TClass, ClassNestedStaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new ClassNestedStaticPartialClassWithCodeAnalysis());
+                () => new ClassNestedStaticPartialClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsStaticPartialClass);
             return new ClassNestedPartialClassCollectionWithCodeAnalysis(classType.Members, abstractClasses, classes, sealedClasses, staticClasses);
         }
     }

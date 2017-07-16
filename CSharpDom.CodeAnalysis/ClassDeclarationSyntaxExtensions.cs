@@ -36,7 +36,7 @@ namespace CSharpDom.CodeAnalysis
 
         public static bool IsAbstractPartialClass(this ClassDeclarationSyntax syntax)
         {
-            return syntax.Modifiers.Any(SyntaxKind.AbstractKeyword, SyntaxKind.PartialKeyword);
+            return syntax.Modifiers.All(SyntaxKind.AbstractKeyword, SyntaxKind.PartialKeyword);
         }
 
         public static bool IsPartialClass(this ClassDeclarationSyntax syntax)
@@ -49,12 +49,12 @@ namespace CSharpDom.CodeAnalysis
 
         public static bool IsSealedPartialClass(this ClassDeclarationSyntax syntax)
         {
-            return syntax.Modifiers.Any(SyntaxKind.SealedKeyword, SyntaxKind.PartialKeyword);
+            return syntax.Modifiers.All(SyntaxKind.SealedKeyword, SyntaxKind.PartialKeyword);
         }
 
         public static bool IsStaticPartialClass(this ClassDeclarationSyntax syntax)
         {
-            return syntax.Modifiers.Any(SyntaxKind.StaticKeyword, SyntaxKind.PartialKeyword);
+            return syntax.Modifiers.All(SyntaxKind.StaticKeyword, SyntaxKind.PartialKeyword);
         }
     }
 }

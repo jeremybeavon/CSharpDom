@@ -6,7 +6,7 @@ namespace CSharpDom.Wrappers.Internal
 {
     internal sealed class StructReferenceWrapper : AbstractWrapper<IStructReference>, IStructReferenceWrapper
     {
-        private Func<IReadOnlyList<IGenericParameterWrapper>> genericParameters;
+        private Func<IReadOnlyList<ITypeReferenceWrapper>> genericParameters;
         private Func<string> name;
 
         public StructReferenceWrapper(IStructReference structReference)
@@ -14,7 +14,7 @@ namespace CSharpDom.Wrappers.Internal
         {
         }
 
-        public IReadOnlyList<IGenericParameterWrapper> GenericParameters
+        public IReadOnlyList<ITypeReferenceWrapper> GenericParameters
         {
             get { return genericParameters(); }
         }
@@ -36,9 +36,9 @@ namespace CSharpDom.Wrappers.Internal
 
         public override void VisitStructReference<TGenericParameter>(IStructReference<TGenericParameter> structReference)
         {
-            genericParameters = () => new ReadOnlyListWrapper<TGenericParameter, IGenericParameterWrapper>(
+            genericParameters = () => new ReadOnlyListWrapper<TGenericParameter, ITypeReferenceWrapper>(
                 structReference.GenericParameters,
-                input => new GenericParameterWrapper(input));
+                input => TypeReferenceWrapper.Create(input));
             name = () => structReference.Name;
         }
     }

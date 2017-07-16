@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.Reflection
 {
     public sealed class DelegateReferenceWithReflection :
-        AbstractDelegateReference<GenericParameterWithReflection>,
+        AbstractDelegateReference<ITypeReferenceWithReflection>,
         ITypeReferenceWithReflection//,
         //IVisitable<IReflectionVisitor>
     {
@@ -19,7 +19,7 @@ namespace CSharpDom.Reflection
             genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(type, type));
         }
 
-        public override IReadOnlyList<GenericParameterWithReflection> GenericParameters
+        public override IReadOnlyList<ITypeReferenceWithReflection> GenericParameters
         {
             get { return genericParameters.Value.GenericParametersWithReflection; }
         }

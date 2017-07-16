@@ -270,10 +270,10 @@ namespace CSharpDom.Text
             }
         }
 
-        internal static void AddGenericParameterSteps<TGenericParameter>(
+        internal static void AddGenericParameterSteps<TTypeReference>(
             this List<ISourceCodeBuilderStep> steps,
-            IReadOnlyList<TGenericParameter> genericParameters)
-            where TGenericParameter : IGenericParameter
+            IReadOnlyList<TTypeReference> genericParameters)
+            where TTypeReference : ITypeReference
         {
             if (genericParameters.Count != 0)
             {

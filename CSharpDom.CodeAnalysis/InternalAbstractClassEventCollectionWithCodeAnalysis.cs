@@ -8,17 +8,25 @@ namespace CSharpDom.CodeAnalysis
         AbstractClassEventCollectionWithCodeAnalysis
         where TClass : class, IHasSyntax<ClassDeclarationSyntax>
     {
-        private readonly InternalAbstractTypeWithCodeAnalysis<TClass> classType;
+        private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly ClassEventListWrapper<TClass, AbstractClassEventWithCodeAnalysis> events;
+        private readonly WrappedCollection<
+            ClassEventPropertyWithCodeAnalysis,
+            AbstractClassEventPropertyWithCodeAnalysis> eventProperties;
         private readonly ClassEventListWrapper<TClass, AbstractEventWithCodeAnalysis> abstractEvents;
 
-        internal InternalAbstractClassEventCollectionWithCodeAnalysis(InternalAbstractTypeWithCodeAnalysis<TClass> classType)
+        internal InternalAbstractClassEventCollectionWithCodeAnalysis(InternalClassTypeWithCodeAnalysis<TClass> classType)
         {
             this.classType = classType;
             events = new ClassEventListWrapper<TClass, AbstractClassEventWithCodeAnalysis>(
                 classType.Node,
                 () => new AbstractClassEventWithCodeAnalysis(),
                 syntax => !syntax.Modifiers.IsAbstract());
+            eventProperties = new WrappedCollection<ClassEventPropertyWithCodeAnalysis, AbstractClassEventPropertyWithCodeAnalysis>(
+                classType.Events.EventProperties,
+                parent => new AbstractClassEventPropertyWithCodeAnalysis(parent),
+                child => child.InternalEventProperty,
+                value => classType.Events.EventProperties = value);
             abstractEvents = new ClassEventListWrapper<TClass, AbstractEventWithCodeAnalysis>(
                 classType.Node,
                 () => new AbstractEventWithCodeAnalysis(),
@@ -33,8 +41,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override ICollection<AbstractClassEventPropertyWithCodeAnalysis> EventProperties
         {
-            get { return classType.Events.EventProperties; }
-            set { classType.Events.EventProperties = value; }
+            get { return eventProperties; }
+            set { eventProperties.Replace(value); }
         }
 
         public override ICollection<ExplicitInterfaceEventWithCodeAnalysis> ExplicitInterfaceEvents

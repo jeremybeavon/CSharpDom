@@ -6,7 +6,7 @@ using CSharpDom.Reflection.Internal;
 namespace CSharpDom.Reflection
 {
     public sealed class InterfaceReferenceWithReflection :
-        AbstractInterfaceReference<GenericParameterWithReflection>,
+        AbstractInterfaceReference<ITypeReferenceWithReflection>,
         ITypeReferenceWithReflection//,
         //IVisitable<IReflectionVisitor>
     {
@@ -19,7 +19,7 @@ namespace CSharpDom.Reflection
             genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(type, type));
         }
 
-        public override IReadOnlyList<GenericParameterWithReflection> GenericParameters
+        public override IReadOnlyList<ITypeReferenceWithReflection> GenericParameters
         {
             get { return genericParameters.Value.GenericParametersWithReflection; }
         }

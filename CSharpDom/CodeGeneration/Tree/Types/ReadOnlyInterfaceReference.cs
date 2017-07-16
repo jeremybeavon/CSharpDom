@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyInterfaceReference : AbstractInterfaceReference<ReadOnlyGenericParameter>
+    public sealed class ReadOnlyInterfaceReference : AbstractInterfaceReference<ReadOnlyTypeReference>
     {
         private readonly string name;
-        private readonly IReadOnlyList<ReadOnlyGenericParameter> genericParameters;
+        private readonly IReadOnlyList<ReadOnlyTypeReference> genericParameters;
 
         public ReadOnlyInterfaceReference(InterfaceReference interfaceReference)
         {
-            genericParameters = ReadOnlyGenericParameter.Create(interfaceReference.GenericParameters);
+            genericParameters = interfaceReference.GenericParameters.ToArray(parameter => new ReadOnlyTypeReference(parameter));
             if (!string.IsNullOrWhiteSpace(interfaceReference.TypeText))
             {
                 name = interfaceReference.TypeText;
@@ -39,7 +39,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             }
         }
 
-        public override IReadOnlyList<ReadOnlyGenericParameter> GenericParameters
+        public override IReadOnlyList<ReadOnlyTypeReference> GenericParameters
         {
             get { return genericParameters; }
         }

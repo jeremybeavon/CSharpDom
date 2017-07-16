@@ -7,7 +7,7 @@ using Mono.Cecil;
 namespace CSharpDom.Mono.Cecil
 {
     public sealed class ClassReferenceWithMonoCecil :
-        AbstractClassReference<GenericParameterWithMonoCecil>,
+        AbstractClassReference<ITypeReferenceWithMonoCecil>,
         ITypeReferenceWithMonoCecil//,
         //IVisitable<IReflectionVisitor>
     {
@@ -20,7 +20,7 @@ namespace CSharpDom.Mono.Cecil
             genericParameters = new Lazy<GenericParameters>(() => new GenericParameters(assembly, type));
         }
 
-        public override IReadOnlyList<GenericParameterWithMonoCecil> GenericParameters
+        public override IReadOnlyList<ITypeReferenceWithMonoCecil> GenericParameters
         {
             get { return genericParameters.Value.GenericParametersWithMonoCecil; }
         }

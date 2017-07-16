@@ -13,26 +13,22 @@ namespace CSharpDom.CodeAnalysis
     {
         public static string ToName(this NameSyntax syntax)
         {
-            IdentifierNameSyntax identifier = syntax as IdentifierNameSyntax;
-            if (identifier != null)
+            if (syntax is IdentifierNameSyntax identifier)
             {
                 return identifier.Identifier.Text;
             }
 
-            GenericNameSyntax generic = syntax as GenericNameSyntax;
-            if (generic != null)
+            if (syntax is GenericNameSyntax generic)
             {
                 return generic.Identifier.Text;
             }
 
-            QualifiedNameSyntax qualifiedName = syntax as QualifiedNameSyntax;
-            if (qualifiedName != null)
+            if (syntax is QualifiedNameSyntax qualifiedName)
             {
                 return qualifiedName.Right.ToName();
             }
 
-            AliasQualifiedNameSyntax alias = syntax as AliasQualifiedNameSyntax;
-            if (alias != null)
+            if (syntax is AliasQualifiedNameSyntax alias)
             {
                 return alias.Name.ToName();
             }
@@ -47,62 +43,47 @@ namespace CSharpDom.CodeAnalysis
 
         public static SeparatedSyntaxList<TypeSyntax> ToGenericParameters(this NameSyntax syntax)
         {
-            IdentifierNameSyntax identifier = syntax as IdentifierNameSyntax;
-            if (identifier != null)
+            if (syntax is IdentifierNameSyntax identifier)
             {
                 return SyntaxFactory.SeparatedList<TypeSyntax>();
             }
 
-            GenericNameSyntax generic = syntax as GenericNameSyntax;
-            if (generic != null)
+            if (syntax is GenericNameSyntax generic)
             {
                 return generic.TypeArgumentList.Arguments;
             }
 
-            QualifiedNameSyntax qualifiedName = syntax as QualifiedNameSyntax;
-            if (qualifiedName != null)
+            if (syntax is QualifiedNameSyntax qualifiedName)
             {
                 return ToGenericParameters(qualifiedName.Right);
             }
 
-            AliasQualifiedNameSyntax alias = syntax as AliasQualifiedNameSyntax;
-            if (alias != null)
+            if (syntax is AliasQualifiedNameSyntax alias)
             {
                 return ToGenericParameters(alias.Name);
             }
 
             throw new NotSupportedException("Unknown class");
         }
-
-        public static NameSyntax WithGenericParameters(
-            this NameSyntax syntax,
-            IEnumerable<GenericParameterWithCodeAnalysis> genericParameters)
-        {
-            return syntax.WithGenericParameters(SyntaxFactory.SeparatedList(genericParameters.Select(node => node.Syntax)));
-        }
-
+        
         public static NameSyntax WithGenericParameters(this NameSyntax syntax, SeparatedSyntaxList<TypeSyntax> genericParameters)
         {
-            IdentifierNameSyntax identifier = syntax as IdentifierNameSyntax;
-            if (identifier != null)
+            if (syntax is IdentifierNameSyntax identifier)
             {
                 return SyntaxFactory.GenericName(identifier.Identifier, SyntaxFactory.TypeArgumentList(genericParameters));
             }
 
-            GenericNameSyntax generic = syntax as GenericNameSyntax;
-            if (generic != null)
+            if (syntax is GenericNameSyntax generic)
             {
                 return generic.WithTypeArgumentList(generic.TypeArgumentList.WithArguments(genericParameters));
             }
 
-            QualifiedNameSyntax qualifiedName = syntax as QualifiedNameSyntax;
-            if (qualifiedName != null)
+            if (syntax is QualifiedNameSyntax qualifiedName)
             {
                 return qualifiedName.WithRight((SimpleNameSyntax)WithGenericParameters(qualifiedName.Right, genericParameters));
             }
 
-            AliasQualifiedNameSyntax alias = syntax as AliasQualifiedNameSyntax;
-            if (alias != null)
+            if (syntax is AliasQualifiedNameSyntax alias)
             {
                 return alias.WithName((SimpleNameSyntax)WithGenericParameters(alias.Name, genericParameters));
             }

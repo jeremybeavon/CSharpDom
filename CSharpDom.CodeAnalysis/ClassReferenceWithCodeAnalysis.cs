@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassReferenceWithCodeAnalysis :
-        EditableClassReference<GenericParameterWithCodeAnalysis>,
+        EditableClassReference<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
         IHasNode<NameSyntax>,
         IInternalTypeReferenceWithCodeAnalysis
@@ -28,7 +28,7 @@ namespace CSharpDom.CodeAnalysis
             set { typeReference.Name = value; }
         }
 
-        public override IList<GenericParameterWithCodeAnalysis> GenericParameters
+        public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters
         {
             get { return typeReference.GenericParameters; }
             set { typeReference.GenericParameters = value; }

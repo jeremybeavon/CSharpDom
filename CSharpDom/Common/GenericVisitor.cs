@@ -134,10 +134,10 @@ namespace CSharpDom.Common
             VisitIfNotNull(@class.Destructor, visitor);
         }
 
-        public static void VisitClassReferenceChildren<TGenericParameter>(
-            IClassReference<TGenericParameter> classReference,
+        public static void VisitClassReferenceChildren<TTypeReference>(
+            IClassReference<TTypeReference> classReference,
             IGenericVisitor visitor)
-            where TGenericParameter : IGenericParameter
+            where TTypeReference : ITypeReference
         {
             VisitCollection(classReference.GenericParameters, visitor);
             new TypeReferenceWrapper(classReference).Accept(visitor);
@@ -211,10 +211,10 @@ namespace CSharpDom.Common
             VisitCollection(@delegate.Parameters, visitor);
         }
 
-        public static void VisitDelegateReferenceChildren<TGenericParameter>(
-            IDelegateReference<TGenericParameter> delegateReference,
+        public static void VisitDelegateReferenceChildren<TTypeReference>(
+            IDelegateReference<TTypeReference> delegateReference,
             IGenericVisitor visitor)
-            where TGenericParameter : IGenericParameter
+            where TTypeReference : ITypeReference
         {
             VisitCollection(delegateReference.GenericParameters, visitor);
         }
@@ -364,12 +364,7 @@ namespace CSharpDom.Common
             VisitIfNotNull(field.FieldType, visitor);
             VisitCollection(field.Constants, visitor);
         }
-
-        public static void VisitGenericParameter(IGenericParameter genericParameter, IGenericVisitor visitor)
-        {
-            new TypeReferenceWrapper(genericParameter).Accept(visitor);
-        }
-
+        
         public static void VisitGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>(
             IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> genericParameterDeclaration,
             IGenericVisitor visitor)
@@ -432,10 +427,10 @@ namespace CSharpDom.Common
             VisitCollection(accessor.Attributes, visitor);
         }
 
-        public static void VisitInterfaceReferenceChildren<TGenericParameter>(
-            IInterfaceReference<TGenericParameter> interfaceReference,
+        public static void VisitInterfaceReferenceChildren<TTypeReference>(
+            IInterfaceReference<TTypeReference> interfaceReference,
             IGenericVisitor visitor)
-            where TGenericParameter : IGenericParameter
+            where TTypeReference : ITypeReference
         {
             VisitCollection(interfaceReference.GenericParameters, visitor);
         }
@@ -947,18 +942,18 @@ namespace CSharpDom.Common
             new StructWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(@struct).Accept(visitor);
         }
 
-        public static void VisitStructReferenceChildren<TGenericParameter>(
-            IStructReference<TGenericParameter> structReference,
+        public static void VisitStructReferenceChildren<TTypeReference>(
+            IStructReference<TTypeReference> structReference,
             IGenericVisitor visitor)
-            where TGenericParameter : IGenericParameter
+            where TTypeReference : ITypeReference
         {
             VisitCollection(structReference.GenericParameters, visitor);
         }
 
-        public static void VisitUnspecifiedTypeReference<TGenericParameter>(
-            IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference,
+        public static void VisitUnspecifiedTypeReference<TTypeReference>(
+            IUnspecifiedTypeReference<TTypeReference> unspecificTypeReference,
             IGenericVisitor visitor)
-            where TGenericParameter : IGenericParameter
+            where TTypeReference : ITypeReference
         {
             VisitCollection(unspecificTypeReference.GenericParameters, visitor);
         }

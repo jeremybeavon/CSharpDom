@@ -387,8 +387,8 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TAccessor : IClassAccessor;
 
-        void VisitClassReference<TGenericParameter>(IClassReference<TGenericParameter> classReference)
-            where TGenericParameter : IGenericParameter;
+        void VisitClassReference<TTypeReference>(IClassReference<TTypeReference> classReference)
+            where TTypeReference : ITypeReference;
 
         void VisitConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
             IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> conversionOperator)
@@ -409,8 +409,8 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TParameter : IDelegateParameter;
 
-        void VisitDelegateReference<TGenericParameter>(IDelegateReference<TGenericParameter> delegateReference)
-            where TGenericParameter : IGenericParameter;
+        void VisitDelegateReference<TTypeReference>(IDelegateReference<TTypeReference> delegateReference)
+            where TTypeReference : ITypeReference;
 
         void VisitDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
             IDestructor<TAttributeGroup, TDeclaringType, TMethodBody> destructor)
@@ -472,9 +472,7 @@ namespace CSharpDom.Common
             where TInterfaceReference : IInterfaceReference
             where TTypeReference : ITypeReference
             where TAccessor : IAccessor;
-
-        void VisitGenericParameter(IGenericParameter genericParameter);
-
+        
         void VisitGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>(
             IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> genericParameterDeclaration)
             where TClassReference : IClassReference
@@ -530,8 +528,8 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TAccessor : IInterfaceAccessor;
 
-        void VisitInterfaceReference<TGenericParameter>(IInterfaceReference<TGenericParameter> interfaceReference)
-            where TGenericParameter : IGenericParameter;
+        void VisitInterfaceReference<TTypeReference>(IInterfaceReference<TTypeReference> interfaceReference)
+            where TTypeReference : ITypeReference;
 
         void VisitLoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>(
             ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> loadedDocument)
@@ -1122,14 +1120,14 @@ namespace CSharpDom.Common
             where TTypeReference : ITypeReference
             where TAccessor : IStructAccessor;
 
-        void VisitStructReference<TGenericParameter>(IStructReference<TGenericParameter> structReference)
-            where TGenericParameter : IGenericParameter;
+        void VisitStructReference<TTypeReference>(IStructReference<TTypeReference> structReference)
+            where TTypeReference : ITypeReference;
 
         void VisitUnnamedAttributeValue<TExpression>(IUnnamedAttributeValue<TExpression> unnamedAttributeValue)
             where TExpression : IExpression;
 
-        void VisitUnspecifiedTypeReference<TGenericParameter>(IUnspecifiedTypeReference<TGenericParameter> unspecificTypeReference)
-            where TGenericParameter : IGenericParameter;
+        void VisitUnspecifiedTypeReference<TTypeReference>(IUnspecifiedTypeReference<TTypeReference> unspecificTypeReference)
+            where TTypeReference : ITypeReference;
 
         void VisitUsingDirective(IUsingDirective usingDirective);
         

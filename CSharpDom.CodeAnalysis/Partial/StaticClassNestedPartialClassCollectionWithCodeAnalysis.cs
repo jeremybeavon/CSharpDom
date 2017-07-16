@@ -26,16 +26,20 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             var classes = new StaticTypeMemberListWrapper<TStaticClass, StaticClassNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new StaticClassNestedPartialClassWithCodeAnalysis());
+                () => new StaticClassNestedPartialClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsPartialClass);
             var abstractClasses = new StaticTypeMemberListWrapper<TStaticClass, StaticClassNestedAbstractPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new StaticClassNestedAbstractPartialClassWithCodeAnalysis());
+                () => new StaticClassNestedAbstractPartialClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsAbstractPartialClass);
             var sealedClasses = new StaticTypeMemberListWrapper<TStaticClass, StaticClassNestedSealedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new StaticClassNestedSealedPartialClassWithCodeAnalysis());
+                () => new StaticClassNestedSealedPartialClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsSealedPartialClass);
             var staticClasses = new StaticTypeMemberListWrapper<TStaticClass, StaticClassNestedStaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.Node,
-                () => new StaticClassNestedStaticPartialClassWithCodeAnalysis());
+                () => new StaticClassNestedStaticPartialClassWithCodeAnalysis(),
+                ClassDeclarationSyntaxExtensions.IsStaticPartialClass);
             return new StaticClassNestedPartialClassCollectionWithCodeAnalysis(classType.Members, abstractClasses, classes, sealedClasses, staticClasses);
         }
     }

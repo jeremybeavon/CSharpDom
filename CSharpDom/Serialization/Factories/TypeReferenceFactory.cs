@@ -48,7 +48,7 @@ namespace CSharpDom.Serialization.Factories
                 EnumReference = new EnumReferenceFactory(enumReference).Value
             };
         }
-
+        
         public override void VisitGenericParameterReference(IGenericParameterReference genericParameterReference)
         {
             Value = new TypeReference()

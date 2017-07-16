@@ -284,7 +284,6 @@
     <Compile Include="Expressions\QueryWhereExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\RefExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\TernaryOperatorExpressionWithCodeAnalysis.cs" />
-    <Compile Include="GenericParameterWithCodeAnalysis.cs" />
     <Compile Include="IMemberList.cs" />
     <Compile Include="LoadedDocumentMemberListWrapper.cs" />
     <Compile Include="NamespaceMemberListWrapper.cs" />
@@ -533,7 +532,6 @@
     <Compile Include="GenericParameterDeclarationListWrapper.cs" />
     <Compile Include="GenericParameterDeclarationSyntax.cs" />
     <Compile Include="GenericParameterDeclarationWithCodeAnalysis.cs" />
-    <Compile Include="GenericParameterListWrapper.cs" />
     <Compile Include="GenericParameterReferenceWithCodeAnalysis.cs" />
     <Compile Include="IImmutableList.cs" />
     <Compile Include="IInternalTypeReferenceWithCodeAnalysis.cs" />

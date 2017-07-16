@@ -6,7 +6,7 @@ namespace CSharpDom.Wrappers.Internal
 {
     internal sealed class InterfaceReferenceWrapper : AbstractWrapper<IInterfaceReference>, IInterfaceReferenceWrapper
     {
-        private Func<IReadOnlyList<IGenericParameterWrapper>> genericParameters;
+        private Func<IReadOnlyList<ITypeReferenceWrapper>> genericParameters;
         private Func<string> name;
 
         public InterfaceReferenceWrapper(IInterfaceReference interfaceReference)
@@ -14,7 +14,7 @@ namespace CSharpDom.Wrappers.Internal
         {
         }
 
-        public IReadOnlyList<IGenericParameterWrapper> GenericParameters
+        public IReadOnlyList<ITypeReferenceWrapper> GenericParameters
         {
             get { return genericParameters(); }
         }
@@ -36,9 +36,9 @@ namespace CSharpDom.Wrappers.Internal
 
         public override void VisitInterfaceReference<TGenericParameter>(IInterfaceReference<TGenericParameter> interfaceReference)
         {
-            genericParameters = () => new ReadOnlyListWrapper<TGenericParameter, IGenericParameterWrapper>(
+            genericParameters = () => new ReadOnlyListWrapper<TGenericParameter, ITypeReferenceWrapper>(
                 interfaceReference.GenericParameters,
-                input => new GenericParameterWrapper(input));
+                input => TypeReferenceWrapper.Create(input));
             name = () => interfaceReference.Name;
         }
     }

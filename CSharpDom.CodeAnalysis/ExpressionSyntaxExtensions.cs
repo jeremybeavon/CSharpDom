@@ -8,8 +8,8 @@ namespace CSharpDom.CodeAnalysis
 {
     internal static class ExpressionSyntaxExtensions
     {
-        private static readonly IDictionary<Type, Func<IInternalExpression>> expressionMap =
-            new Dictionary<Type, Func<IInternalExpression>>()
+        private static readonly TypedFactory<IInternalExpression> expressionMap =
+            new TypedFactory<IInternalExpression>()
             {
                 { typeof(AnonymousMethodExpressionSyntax), () => new AnonymousMethodExpressionWithCodeAnalysis() },
                 //{ typeof(AnonymousObjectCreationExpressionSyntax), () => },
@@ -64,7 +64,7 @@ namespace CSharpDom.CodeAnalysis
                     
                 }*/
             }
-            return expressionMap[syntax.GetType()]();
+            return expressionMap.Create(syntax.GetType());
         }
     }
 }

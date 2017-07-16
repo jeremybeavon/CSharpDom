@@ -7,8 +7,12 @@ namespace CSharpDom.CodeAnalysis
     {
         public T Create(Type type)
         {
-            Func<T> factory;
-            return TryGetValue(type, out factory) ? factory() : default(T);
+            if (TryGetValue(type, out Func<T> factory))
+            {
+                return factory();
+            }
+
+            throw new InvalidOperationException("Factory not found: " + type.Name);
         }
     }
 }

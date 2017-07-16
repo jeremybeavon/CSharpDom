@@ -4,7 +4,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers
 {
-    public interface IStructReferenceWrapper : IStructReference<IGenericParameterWrapper>, ITypeReferenceWrapper
+    public interface IStructReferenceWrapper : IStructReference<ITypeReferenceWrapper>, ITypeReferenceWrapper
     {
     }
 }

@@ -124,7 +124,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override SealedClassDestructorWithCodeAnalysis Destructor
         {
-            get { return new SealedClassDestructorWithCodeAnalysis(classType.Destructor); }
+            get
+            {
+                ClassDestructorWithCodeAnalysis destructor = classType.Destructor;
+                return destructor == null ? null : new SealedClassDestructorWithCodeAnalysis(destructor);
+            }
             set { classType.Destructor = value?.InternalDestructor; }
         }
 
@@ -222,7 +226,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override SealedClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return new SealedClassStaticConstructorWithCodeAnalysis(classType.StaticConstructor); }
+            get
+            {
+                ClassStaticConstructorWithCodeAnalysis constructor = classType.StaticConstructor;
+                return constructor == null ? null : new SealedClassStaticConstructorWithCodeAnalysis(constructor);
+            }
             set { classType.StaticConstructor = value?.InternalStaticConstructor; }
         }
 

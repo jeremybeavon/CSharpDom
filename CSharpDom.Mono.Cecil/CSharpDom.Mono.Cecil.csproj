@@ -153,7 +153,6 @@
     <Compile Include="FieldInfoExtensions.cs" />
     <Compile Include="GenericParameterDeclarationWithMonoCecil.cs" />
     <Compile Include="GenericParameterReferenceWithMonoCecil.cs" />
-    <Compile Include="GenericParameterWithMonoCecil.cs" />
     <Compile Include="IAttributeWithMonoCecil.cs" />
     <Compile Include="IInterfaceTypeWithMonoCecil.cs" />
     <Compile Include="IClassTypeWithMonoCecil.cs" />

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using CSharpDom.Editable;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class UnspecifiedTypeReferenceWithCodeAnalysis :
-        EditableUnspecifiedTypeReference<GenericParameterWithCodeAnalysis>,
+        EditableUnspecifiedTypeReference<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
         IInternalTypeReferenceWithCodeAnalysis,
         IHasNode<NameSyntax>//,
@@ -16,23 +17,30 @@ namespace CSharpDom.CodeAnalysis
         private readonly SeparatedSyntaxListWrapper<
             UnspecifiedTypeReferenceWithCodeAnalysis,
             NameSyntax,
-            GenericParameterWithCodeAnalysis,
+            IInternalTypeReferenceWithCodeAnalysis,
             TypeSyntax> genericParameters;
+        private readonly WrappedList<
+            IInternalTypeReferenceWithCodeAnalysis,
+            ITypeReferenceWithCodeAnalysis> wrappedGenericParameters;
         
         internal UnspecifiedTypeReferenceWithCodeAnalysis()
         {
             node = new TypeReferenceNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(this);
-            genericParameters = new SeparatedSyntaxListWrapper<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax, GenericParameterWithCodeAnalysis, TypeSyntax>(
+            genericParameters = new SeparatedSyntaxListWrapper<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax, IInternalTypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
                 syntax => syntax.ToGenericParameters(),
                 (parentSyntax, childSyntax) => parentSyntax.WithGenericParameters(childSyntax),
-                () => new GenericParameterWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()));
+                () => new UnspecifiedTypeReferenceWithCodeAnalysis());
+            wrappedGenericParameters = new WrappedList<IInternalTypeReferenceWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>(
+                genericParameters,
+                parent => parent,
+                child => (IInternalTypeReferenceWithCodeAnalysis)child);
         }
 
-        public override IList<GenericParameterWithCodeAnalysis> GenericParameters
+        public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters
         {
-            get { return genericParameters; }
-            set { Syntax = Syntax.WithGenericParameters(value); }
+            get { return wrappedGenericParameters; }
+            set { genericParameters.ReplaceList(value.Cast<IInternalTypeReferenceWithCodeAnalysis>()); }
         }
 
         public override string Name

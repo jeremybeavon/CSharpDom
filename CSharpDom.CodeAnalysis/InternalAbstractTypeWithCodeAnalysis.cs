@@ -62,7 +62,7 @@ namespace CSharpDom.CodeAnalysis
                 parent => new AbstractClassNestedEnumWithCodeAnalysis(parent),
                 child => child.InternalEnum,
                 value => classType.Enums = value);
-            events = new InternalAbstractClassEventCollectionWithCodeAnalysis<TClass>(this);
+            events = new InternalAbstractClassEventCollectionWithCodeAnalysis<TClass>(classType);
             fields = new AbstractClassFieldCollectionWithCodeAnalysis(classType.Fields);
             indexers = new InternalAbstractClassIndexerCollectionWithCodeAnalysis<TClass>(classType);
             interfaces = new WrappedCollection<ClassNestedInterfaceWithCodeAnalysis, AbstractClassNestedInterfaceWithCodeAnalysis>(
@@ -126,7 +126,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override AbstractClassDestructorWithCodeAnalysis Destructor
         {
-            get { return new AbstractClassDestructorWithCodeAnalysis(classType.Destructor); }
+            get
+            {
+                ClassDestructorWithCodeAnalysis destructor = classType.Destructor;
+                return destructor == null ? null : new AbstractClassDestructorWithCodeAnalysis(destructor);
+            }
             set { classType.Destructor = value?.InternalDestructor; }
         }
 
@@ -228,7 +232,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override AbstractClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return new AbstractClassStaticConstructorWithCodeAnalysis(classType.StaticConstructor); }
+            get
+            {
+                ClassStaticConstructorWithCodeAnalysis constructor = classType.StaticConstructor;
+                return constructor == null ? null : new AbstractClassStaticConstructorWithCodeAnalysis(constructor);
+            }
             set { classType.StaticConstructor = value?.InternalStaticConstructor; }
         }
 

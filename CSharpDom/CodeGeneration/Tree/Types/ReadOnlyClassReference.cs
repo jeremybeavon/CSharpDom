@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyClassReference : AbstractClassReference<ReadOnlyGenericParameter>
+    public sealed class ReadOnlyClassReference : AbstractClassReference<ReadOnlyTypeReference>
     {
         private readonly string name;
-        private readonly IReadOnlyList<ReadOnlyGenericParameter> genericParameters;
+        private readonly IReadOnlyList<ReadOnlyTypeReference> genericParameters;
 
         public ReadOnlyClassReference(ClassReference classReference)
         {
-            genericParameters = ReadOnlyGenericParameter.Create(classReference.GenericParameters);
+            genericParameters = classReference.GenericParameters.ToArray(parameter => new ReadOnlyTypeReference(parameter));
             if (!string.IsNullOrWhiteSpace(classReference.TypeText))
             {
                 name = classReference.TypeText;
@@ -39,7 +39,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             }
         }
 
-        public override IReadOnlyList<ReadOnlyGenericParameter> GenericParameters
+        public override IReadOnlyList<ReadOnlyTypeReference> GenericParameters
         {
             get { return genericParameters; }
         }

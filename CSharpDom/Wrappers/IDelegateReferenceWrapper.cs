@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Wrappers
 {
-    public interface IDelegateReferenceWrapper : IDelegateReference<IGenericParameterWrapper>, ITypeReferenceWrapper
+    public interface IDelegateReferenceWrapper : IDelegateReference<ITypeReferenceWrapper>, ITypeReferenceWrapper
     {
     }
 }

@@ -4,10 +4,10 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractInterfaceReference<TGenericParameter> : IInterfaceReference<TGenericParameter>
-        where TGenericParameter : IGenericParameter
+    public abstract class AbstractInterfaceReference<TTypeReference> : IInterfaceReference<TTypeReference>
+        where TTypeReference : ITypeReference
     {
-        public abstract IReadOnlyList<TGenericParameter> GenericParameters { get; }
+        public abstract IReadOnlyList<TTypeReference> GenericParameters { get; }
 
         public abstract string Name { get; }
 
