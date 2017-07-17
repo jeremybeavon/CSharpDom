@@ -18,7 +18,7 @@ namespace CSharpDom.Tests.CodeAnalysis
             SolutionWithCodeAnalysis solution = SolutionWithCodeAnalysis.GetSolutionForSourceCode(expectedResult);
             LoadedDocumentWithCodeAnalysis document = await solution.Projects.First().Documents.First().LoadAsync();
             string documentText = document.ToSourceCode();
-            documentText.TrimEnd().Should().Be(expectedResult.TrimEnd());
+            documentText.TrimEnd().Replace("\r", string.Empty).Should().Be(expectedResult.TrimEnd().Replace("\r", string.Empty));
         }
     }
 }
