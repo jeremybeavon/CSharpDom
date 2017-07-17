@@ -1,7 +1,9 @@
 ﻿using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -27,97 +29,185 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ClassDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly InternalStaticTypeWithCodeAnalysis<StaticClassWithCodeAnalysis> type;
         private readonly DocumentWithCodeAnalysis document;
+        private readonly Node<StaticClassWithCodeAnalysis, ClassDeclarationSyntax> node;
+        private readonly AttributeListWrapper<StaticClassWithCodeAnalysis, ClassDeclarationSyntax> attributes;
+        private readonly StaticClassNestedClassCollectionWithCodeAnalysis classes;
+        private readonly StaticClassMemberListWrapper<
+            StaticClassNestedDelegateWithCodeAnalysis,
+            DelegateDeclarationSyntax> delegates;
+        private readonly StaticClassMemberListWrapper<
+            StaticClassNestedEnumWithCodeAnalysis,
+            EnumDeclarationSyntax> enums;
+        private readonly StaticClassEventCollectionWithCodeAnalysis events;
+        private readonly StaticClassFieldCollectionWithCodeAnalysis fields;
+        private readonly GenericParameterDeclarationListWrapper<
+            StaticClassWithCodeAnalysis,
+            ClassDeclarationSyntax> genericParameters;
+        private readonly StaticClassMemberListWrapper<
+            StaticClassNestedInterfaceWithCodeAnalysis,
+            InterfaceDeclarationSyntax> interfaces;
+        private readonly StaticClassMethodCollectionWithCodeAnalysis methods;
+        private readonly StaticClassMemberListWrapper<
+            StaticClassPropertyWithCodeAnalysis,
+            PropertyDeclarationSyntax> properties;
+        private readonly StaticClassMemberListWrapper<
+            StaticConstructorWithCodeAnalysis,
+            ConstructorDeclarationSyntax> staticConstructor;
+        private readonly StaticClassNestedStructCollectionWithCodeAnalysis structs;
+        private readonly MemberList<StaticClassWithCodeAnalysis, ClassDeclarationSyntax> members;
 
         internal StaticClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            type = new InternalStaticTypeWithCodeAnalysis<StaticClassWithCodeAnalysis>(this);
             this.document = document;
-        }
-
-        public StaticTypeWithCodeAnalysis Type
-        {
-            get { return type; }
+            node = new Node<StaticClassWithCodeAnalysis, ClassDeclarationSyntax>(this);
+            attributes = new AttributeListWrapper<StaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                node,
+                syntax => syntax.AttributeLists,
+                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
+            classes = new StaticClassNestedClassCollectionWithCodeAnalysis(this);
+            delegates = new StaticClassMemberListWrapper<StaticClassNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
+                node,
+                () => new StaticClassNestedDelegateWithCodeAnalysis());
+            enums = new StaticClassMemberListWrapper<StaticClassNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
+                node,
+                () => new StaticClassNestedEnumWithCodeAnalysis());
+            events = new StaticClassEventCollectionWithCodeAnalysis(this);
+            fields = new StaticClassFieldCollectionWithCodeAnalysis(this);
+            genericParameters = new GenericParameterDeclarationListWrapper<StaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                node,
+                syntax => syntax.TypeParameterList,
+                (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
+                syntax => syntax.ConstraintClauses,
+                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
+            interfaces = new StaticClassMemberListWrapper<StaticClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
+                node,
+                () => new StaticClassNestedInterfaceWithCodeAnalysis());
+            methods = new StaticClassMethodCollectionWithCodeAnalysis(this);
+            properties = new StaticClassMemberListWrapper<StaticClassPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
+                node,
+                () => new StaticClassPropertyWithCodeAnalysis());
+            staticConstructor = new StaticClassMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
+                node,
+                () => new StaticConstructorWithCodeAnalysis());
+            structs = new StaticClassNestedStructCollectionWithCodeAnalysis(this);
+            members = new MemberList<StaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
+            {
+                { nameof(fields.Constants), () => fields.Constants.Select(item => item.Syntax) },
+                { nameof(fields.Fields), () => fields.Fields.Select(item => item.Syntax) },
+                { nameof(Enums), () => enums.Select(item => item.Syntax) },
+                { nameof(Delegates), () => delegates.Select(item => item.Syntax) },
+                { nameof(events.Events), () => events.Events.Select(item => item.Syntax) },
+                { nameof(events.EventProperties), () => events.EventProperties.Select(item => item.Syntax) },
+                { nameof(Interfaces), () => interfaces.Select(item => item.Syntax) },
+                { nameof(Properties), () => Properties.Select(item => item.Syntax) },
+                { nameof(methods.ExtensionMethods), () => methods.ExtensionMethods.Select(item => item.Syntax) },
+                { nameof(methods.Methods), () => methods.Methods.Select(item => item.Syntax) }
+            };
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return type.Attributes; }
-            set { type.Attributes = value; }
+            get { return attributes; }
+            set { attributes.ReplaceList(value); }
         }
 
         public override StaticClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return type.Classes; }
-            set { type.Classes = value; }
+            get { return classes; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(classes.Classes), value.Classes.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.AbstractClasses), value.AbstractClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.SealedClasses), value.SealedClasses.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(classes.StaticClasses), value.StaticClasses.Select(item => item.Syntax)));
+            }
         }
-        
-        public override ICollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
-        {
-            get { return type.Delegates; }
-            set { type.Delegates = value; }
-        }
-        
+
         public override ICollection<StaticClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return type.Enums; }
-            set { type.Enums = value; }
+            get { return enums; }
+            set { members.CombineList(nameof(Enums), value.Select(item => item.Syntax)); }
         }
-        
+
+        public override ICollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
+        {
+            get { return delegates; }
+            set { members.CombineList(nameof(Delegates), value.Select(item => item.Syntax)); }
+        }
+
         public override StaticClassEventCollectionWithCodeAnalysis Events
         {
-            get { return type.Events; }
-            set { type.Events = value; }
+            get { return events; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(events.Events), value.Events.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(events.EventProperties), value.EventProperties.Select(item => item.Syntax)));
+            }
         }
 
         public override StaticClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return type.Fields; }
-            set { type.Fields = value; }
+            get { return fields; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(fields.Constants), value.Constants.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(fields.Fields), value.Fields.Select(item => item.Syntax)));
+            }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
-            get { return type.GenericParameters; }
-            set { type.GenericParameters = value; }
+            get { return genericParameters; }
+            set { genericParameters.ReplaceList(value); }
         }
-        
+
         public override ICollection<StaticClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return type.Interfaces; }
-            set { type.Interfaces = value; }
+            get { return interfaces; }
+            set { members.CombineList(nameof(Interfaces), value.Select(item => item.Syntax)); }
         }
 
         public override StaticClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return type.Methods; }
-            set { type.Methods = value; }
+            get { return methods; }
+            set
+            {
+                members.CombineList(
+                    new MemberListSyntax(nameof(methods.ExtensionMethods), value.ExtensionMethods.Select(item => item.Syntax)),
+                    new MemberListSyntax(nameof(methods.Methods), value.Methods.Select(item => item.Syntax)));
+            }
         }
 
         public override string Name
         {
-            get { return type.Name; }
-            set { type.Name = value; }
+            get { return Syntax.Identifier.Text; }
+            set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
         }
 
         public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
         {
-            get { return type.Properties; }
-            set { type.Properties = value; }
+            get { return properties; }
+            set { members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }
         }
-        
-        public override StaticClassNestedStructCollectionWithCodeAnalysis Structs
-        {
-            get { return type.Structs; }
-            set { type.Structs = value; }
-        }
-        
+
         public override StaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return type.StaticConstructor; }
-            set { type.StaticConstructor = value; }
+            get { return staticConstructor.GetStaticConstructor(); }
+            set { staticConstructor.SetStaticConstructor(value); }
         }
+
+        public override StaticClassNestedStructCollectionWithCodeAnalysis Structs
+        {
+            get { return structs; }
+            set { members.CombineList(nameof(structs.Structs), value.Structs.Select(item => item.Syntax)); }
+        }
+
         public override DocumentWithCodeAnalysis Document
         {
             get { return document; }
@@ -126,7 +216,7 @@ namespace CSharpDom.CodeAnalysis
         
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get { return type.Node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            get { return node.GetParentNode<NamespaceWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -154,20 +244,25 @@ namespace CSharpDom.CodeAnalysis
 
         public ClassDeclarationSyntax Syntax
         {
-            get { return type.Syntax; }
-            set { type.Syntax = value; }
+            get { return node.Syntax; }
+            set { node.Syntax = value; }
         }
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return type.Node; }
+            get { return node; }
         }
 
-        internal InternalStaticTypeWithCodeAnalysis<StaticClassWithCodeAnalysis> InternalType
+        internal Node<StaticClassWithCodeAnalysis, ClassDeclarationSyntax> Node
         {
-            get { return type; }
+            get { return node; }
         }
 
+        internal IMemberList Members
+        {
+            get { return members; }
+        }
+        
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithCodeAnalysis(this);

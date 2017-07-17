@@ -7,15 +7,15 @@ namespace CSharpDom.CodeAnalysis.Partial
         IStaticType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
-            StaticClassEventCollectionWithCodeAnalysis,
-            StaticClassPropertyWithCodeAnalysis,
+            NestedStaticPartialClassEventCollectionWithCodeAnalysis,
+            NestedStaticPartialClassPropertyWithCodeAnalysis,
             NestedStaticPartialClassMethodCollectionWithCodeAnalysis,
-            StaticClassFieldCollectionWithCodeAnalysis,
-            StaticClassNestedClassCollectionWithCodeAnalysis,
-            StaticClassNestedDelegateWithCodeAnalysis,
-            StaticClassNestedEnumWithCodeAnalysis,
-            StaticClassNestedInterfaceWithCodeAnalysis,
-            StaticClassNestedStructCollectionWithCodeAnalysis,
+            NestedStaticPartialClassFieldCollectionWithCodeAnalysis,
+            NestedStaticPartialClassNestedClassCollectionWithCodeAnalysis,
+            NestedStaticPartialClassNestedDelegateWithCodeAnalysis,
+            NestedStaticPartialClassNestedEnumWithCodeAnalysis,
+            NestedStaticPartialClassNestedInterfaceWithCodeAnalysis,
+            NestedStaticPartialClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {

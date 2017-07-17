@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassPropertyWithCodeAnalysis :
         EditableStaticClassProperty<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            StaticClassWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             StaticClassAccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
@@ -33,9 +33,9 @@ namespace CSharpDom.CodeAnalysis
             set { property.Attributes = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return property.Property.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            get { return property.Property.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

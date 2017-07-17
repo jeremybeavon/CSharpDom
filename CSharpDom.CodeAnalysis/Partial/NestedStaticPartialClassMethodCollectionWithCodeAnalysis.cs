@@ -4,7 +4,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 {
     public abstract class NestedStaticPartialClassMethodCollectionWithCodeAnalysis :
         EditableNestedStaticPartialClassMethodCollection<
-            StaticClassMethodWithCodeAnalysis,
+            NestedStaticClassMethodWithCodeAnalysis,
             PartialMethodDefinitionWithCodeAnalysis,
             PartialMethodImplementationWithCodeAnalysis>
     {

@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassNestedEnumWithCodeAnalysis :
         EditableStaticClassNestedEnum<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            StaticClassWithCodeAnalysis,
             NestedEnumMemberWithCodeAnalysis>,
         IHasSyntax<EnumDeclarationSyntax>,
         IHasNode<EnumDeclarationSyntax>
@@ -38,9 +38,9 @@ namespace CSharpDom.CodeAnalysis
             set { nestedEnum.BaseType = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return nestedEnum.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            get { return nestedEnum.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

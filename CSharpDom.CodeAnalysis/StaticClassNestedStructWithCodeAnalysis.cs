@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassNestedStructWithCodeAnalysis :
         EditableStaticClassNestedStruct<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            StaticClassWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             StructEventCollectionWithCodeAnalysis,
@@ -66,9 +66,9 @@ namespace CSharpDom.CodeAnalysis
             set { structType.ConversionOperators = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return structType.InternalStruct.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            get { return structType.InternalStruct.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

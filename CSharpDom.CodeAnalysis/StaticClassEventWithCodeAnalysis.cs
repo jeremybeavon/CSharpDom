@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassEventWithCodeAnalysis :
         EditableStaticClassEvent<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            StaticClassWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
         IHasSyntax<EventFieldDeclarationSyntax>,
         IHasNode<EventFieldDeclarationSyntax>
@@ -33,9 +33,9 @@ namespace CSharpDom.CodeAnalysis
             set { @event.Attributes = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return @event.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            get { return @event.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassMethodWithCodeAnalysis :
         EditableStaticClassMethod<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            StaticClassWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
@@ -41,9 +41,9 @@ namespace CSharpDom.CodeAnalysis
             set { method.Body = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return method.Method.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            get { return method.Method.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

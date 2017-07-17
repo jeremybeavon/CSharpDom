@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassNestedDelegateWithCodeAnalysis :
         EditableStaticClassNestedDelegate<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            StaticClassWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             DelegateParameterWithCodeAnalysis>,
@@ -34,9 +34,9 @@ namespace CSharpDom.CodeAnalysis
             set { nestedDelegate.Attributes = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return nestedDelegate.Delegate.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            get { return nestedDelegate.Delegate.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

@@ -11,7 +11,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class StaticClassFieldWithCodeAnalysis :
         EditableStaticClassField<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            StaticClassWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>,
@@ -35,9 +35,9 @@ namespace CSharpDom.CodeAnalysis
             set { field.Attributes = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return field.Node.GetParentNode<IStaticTypeWithCodeAnalysis>(); }
+            get { return field.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

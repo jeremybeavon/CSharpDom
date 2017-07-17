@@ -10,30 +10,30 @@ namespace CSharpDom.CodeAnalysis.Partial
         NestedStaticPartialClassMethodCollectionWithCodeAnalysis
         where TStaticClass : class, IHasSyntax<ClassDeclarationSyntax>
     {
-        private readonly InternalStaticTypeWithCodeAnalysis<TStaticClass> classType;
-        private readonly StaticClassMethodListWrapper<TStaticClass, StaticClassMethodWithCodeAnalysis> methods;
-        private readonly StaticClassMethodListWrapper<TStaticClass, PartialMethodDefinitionWithCodeAnalysis> partialMethodDefinitions;
-        private readonly StaticClassMethodListWrapper<TStaticClass, PartialMethodImplementationWithCodeAnalysis> partialMethodImplementations;
+        private readonly InternalNestedStaticClassWithCodeAnalysis<TStaticClass> classType;
+        private readonly ClassMethodListWrapper<TStaticClass, NestedStaticClassMethodWithCodeAnalysis> methods;
+        private readonly ClassMethodListWrapper<TStaticClass, PartialMethodDefinitionWithCodeAnalysis> partialMethodDefinitions;
+        private readonly ClassMethodListWrapper<TStaticClass, PartialMethodImplementationWithCodeAnalysis> partialMethodImplementations;
 
         internal InternalNestedStaticPartialClassMethodCollectionWithCodeAnalysis(
-            InternalStaticTypeWithCodeAnalysis<TStaticClass> classType)
+            InternalNestedStaticClassWithCodeAnalysis<TStaticClass> classType)
         {
             this.classType = classType;
-            methods = new StaticClassMethodListWrapper<TStaticClass, StaticClassMethodWithCodeAnalysis>(
+            methods = new ClassMethodListWrapper<TStaticClass, NestedStaticClassMethodWithCodeAnalysis>(
                 classType.Node,
-                () => new StaticClassMethodWithCodeAnalysis(),
+                () => new NestedStaticClassMethodWithCodeAnalysis(),
                 syntax => !syntax.IsPartial());
-            partialMethodDefinitions = new StaticClassMethodListWrapper<TStaticClass, PartialMethodDefinitionWithCodeAnalysis>(
+            partialMethodDefinitions = new ClassMethodListWrapper<TStaticClass, PartialMethodDefinitionWithCodeAnalysis>(
                 classType.Node,
                 () => new PartialMethodDefinitionWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body == null);
-            partialMethodImplementations = new StaticClassMethodListWrapper<TStaticClass, PartialMethodImplementationWithCodeAnalysis>(
+            partialMethodImplementations = new ClassMethodListWrapper<TStaticClass, PartialMethodImplementationWithCodeAnalysis>(
                 classType.Node,
                 () => new PartialMethodImplementationWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body != null);
         }
         
-        public override ICollection<StaticClassMethodWithCodeAnalysis> Methods
+        public override ICollection<NestedStaticClassMethodWithCodeAnalysis> Methods
         {
             get { return methods; }
             set { classType.Members.CombineList(nameof(Methods), value.Select(item => item.Syntax)); }

@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis.Partial
     public sealed class StaticClassNestedPartialClassWithCodeAnalysis :
         EditableStaticClassNestedPartialClass<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            StaticClassWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
@@ -80,7 +80,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { partialType.ConversionOperators = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override StaticClassWithCodeAnalysis DeclaringType
         {
             get { return classType.DeclaringType; }
             set { classType.DeclaringType = value; }

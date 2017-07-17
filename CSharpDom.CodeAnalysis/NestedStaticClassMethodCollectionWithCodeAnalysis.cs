@@ -1,25 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Common;
-using CSharpDom.Editable;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using CSharpDom.Editable;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class NestedStaticClassMethodCollectionWithCodeAnalysis :
-        EditableNestedStaticClassMethodCollection<StaticClassMethodWithCodeAnalysis>
+    public abstract class NestedStaticClassMethodCollectionWithCodeAnalysis :
+        EditableNestedStaticClassMethodCollection<NestedStaticClassMethodWithCodeAnalysis>
     {
-        private readonly StaticClassMethodCollectionWithCodeAnalysis methods;
-
-        internal NestedStaticClassMethodCollectionWithCodeAnalysis(StaticClassMethodCollectionWithCodeAnalysis methods)
-        {
-            this.methods = methods;
-        }
-        
-        public override ICollection<StaticClassMethodWithCodeAnalysis> Methods
-        {
-            get { return methods.Methods; }
-            set { methods.Methods = value; }
-        }
     }
 }

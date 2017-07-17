@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis.Partial
     public sealed class StaticClassNestedStaticPartialClassWithCodeAnalysis :
         EditableStaticClassNestedStaticPartialClass<
             AttributeGroupWithCodeAnalysis,
-            IStaticTypeWithCodeAnalysis,
+            StaticClassWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
             StaticClassPropertyWithCodeAnalysis,
@@ -22,8 +22,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>,
-        INestedStaticPartialTypeWithCodeAnalysis
+        IHasNode<ClassDeclarationSyntax>
     {
         private readonly StaticClassNestedStaticClassWithCodeAnalysis classType;
         private readonly NestedStaticPartialClassMethodCollectionWithCodeAnalysis methods;
@@ -32,7 +31,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             classType = new StaticClassNestedStaticClassWithCodeAnalysis();
             methods = new InternalNestedStaticPartialClassMethodCollectionWithCodeAnalysis<StaticClassNestedStaticClassWithCodeAnalysis>(
-                classType.InternalClass.Class);
+                classType.InternalClass);
         }
 
         public StaticClassNestedStaticClassWithCodeAnalysis Class
@@ -52,7 +51,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Classes = value; }
         }
 
-        public override IStaticTypeWithCodeAnalysis DeclaringType
+        public override StaticClassWithCodeAnalysis DeclaringType
         {
             get { return classType.DeclaringType; }
             set { classType.DeclaringType = value; }
