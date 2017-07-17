@@ -27,6 +27,7 @@ namespace CSharpDom.CodeAnalysis
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
+        IStructTypeWithCodeAnalysis,
         IHasNode<StructDeclarationSyntax>
     {
         private readonly InternalNestedStructWithCodeAnalysis<ClassNestedStructWithCodeAnalysis> structType;

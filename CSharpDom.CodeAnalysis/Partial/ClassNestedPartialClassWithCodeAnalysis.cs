@@ -13,31 +13,34 @@ namespace CSharpDom.CodeAnalysis.Partial
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            ClassEventCollectionWithCodeAnalysis,
-            ClassPropertyCollectionWithCodeAnalysis,
-            ClassIndexerCollectionWithCodeAnalysis,
+            PartialClassEventCollectionWithCodeAnalysis,
+            PartialClassPropertyCollectionWithCodeAnalysis,
+            PartialClassIndexerCollectionWithCodeAnalysis,
             PartialClassMethodCollectionWithCodeAnalysis,
-            ClassFieldCollectionWithCodeAnalysis,
-            ClassConstructorWithCodeAnalysis,
-            ClassOperatorOverloadWithCodeAnalysis,
-            ClassConversionOperatorWithCodeAnalysis,
-            ClassNestedClassCollectionWithCodeAnalysis,
-            ClassNestedDelegateWithCodeAnalysis,
-            ClassNestedEnumWithCodeAnalysis,
-            ClassNestedInterfaceWithCodeAnalysis,
-            ClassNestedStructCollectionWithCodeAnalysis,
-            ClassStaticConstructorWithCodeAnalysis,
-            ClassDestructorWithCodeAnalysis>,
+            PartialClassFieldCollectionWithCodeAnalysis,
+            PartialClassConstructorWithCodeAnalysis,
+            PartialClassOperatorOverloadWithCodeAnalysis,
+            PartialClassConversionOperatorWithCodeAnalysis,
+            PartialClassNestedClassCollectionWithCodeAnalysis,
+            PartialClassNestedDelegateWithCodeAnalysis,
+            PartialClassNestedEnumWithCodeAnalysis,
+            PartialClassNestedInterfaceWithCodeAnalysis,
+            PartialClassNestedStructCollectionWithCodeAnalysis,
+            PartialClassStaticConstructorWithCodeAnalysis,
+            PartialClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>,
         IPartialClassTypeWithCodeAnalysis
     {
         private readonly ClassNestedClassWithCodeAnalysis classType;
+        private readonly PartialClassTypeWithCodeAnalysis<ClassNestedClassWithCodeAnalysis> partialType;
         private readonly PartialClassMethodCollectionWithCodeAnalysis methods;
 
         internal ClassNestedPartialClassWithCodeAnalysis()
         {
             classType = new ClassNestedClassWithCodeAnalysis();
+            partialType = new PartialClassTypeWithCodeAnalysis<ClassNestedClassWithCodeAnalysis>(
+                classType.InternalClass.InternalClass);
             methods = new InternalPartialClassMethodCollectionWithCodeAnalysis<ClassNestedClassWithCodeAnalysis>(
                 classType.InternalClass.InternalClass);
         }
@@ -59,22 +62,22 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.BaseClass = value; }
         }
 
-        public override ClassNestedClassCollectionWithCodeAnalysis Classes
+        public override PartialClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return classType.Classes; }
-            set { classType.Classes = value; }
+            get { return partialType.Classes; }
+            set { partialType.Classes = value; }
         }
 
-        public override ICollection<ClassConstructorWithCodeAnalysis> Constructors
+        public override ICollection<PartialClassConstructorWithCodeAnalysis> Constructors
         {
-            get { return classType.Constructors; }
-            set { classType.Constructors = value; }
+            get { return partialType.Constructors; }
+            set { partialType.Constructors = value; }
         }
 
-        public override ICollection<ClassConversionOperatorWithCodeAnalysis> ConversionOperators
+        public override ICollection<PartialClassConversionOperatorWithCodeAnalysis> ConversionOperators
         {
-            get { return classType.ConversionOperators; }
-            set { classType.ConversionOperators = value; }
+            get { return partialType.ConversionOperators; }
+            set { partialType.ConversionOperators = value; }
         }
 
         public override IClassTypeWithCodeAnalysis DeclaringType
@@ -83,34 +86,34 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { throw new NotSupportedException(); }
         }
 
-        public override ICollection<ClassNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<PartialClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return classType.Delegates; }
-            set { classType.Delegates = value; }
+            get { return partialType.Delegates; }
+            set { partialType.Delegates = value; }
         }
 
-        public override ClassDestructorWithCodeAnalysis Destructor
+        public override PartialClassDestructorWithCodeAnalysis Destructor
         {
-            get { return classType.Destructor; }
-            set { classType.Destructor = value; }
+            get { return partialType.Destructor; }
+            set { partialType.Destructor = value; }
         }
 
-        public override ICollection<ClassNestedEnumWithCodeAnalysis> Enums
+        public override ICollection<PartialClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return classType.Enums; }
-            set { classType.Enums = value; }
+            get { return partialType.Enums; }
+            set { partialType.Enums = value; }
         }
 
-        public override ClassEventCollectionWithCodeAnalysis Events
+        public override PartialClassEventCollectionWithCodeAnalysis Events
         {
-            get { return classType.Events; }
-            set { classType.Events = value; }
+            get { return partialType.Events; }
+            set { partialType.Events = value; }
         }
 
-        public override ClassFieldCollectionWithCodeAnalysis Fields
+        public override PartialClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return classType.Fields; }
-            set { classType.Fields = value; }
+            get { return partialType.Fields; }
+            set { partialType.Fields = value; }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -125,16 +128,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.ImplementedInterfaces = value; }
         }
 
-        public override ClassIndexerCollectionWithCodeAnalysis Indexers
+        public override PartialClassIndexerCollectionWithCodeAnalysis Indexers
         {
-            get { return classType.Indexers; }
-            set { classType.Indexers = value; }
+            get { return partialType.Indexers; }
+            set { partialType.Indexers = value; }
         }
 
-        public override ICollection<ClassNestedInterfaceWithCodeAnalysis> Interfaces
+        public override ICollection<PartialClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return classType.Interfaces; }
-            set { classType.Interfaces = value; }
+            get { return partialType.Interfaces; }
+            set { partialType.Interfaces = value; }
         }
 
         public override PartialClassMethodCollectionWithCodeAnalysis Methods
@@ -149,28 +152,28 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Name = value; }
         }
 
-        public override ICollection<ClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
+        public override ICollection<PartialClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
-            get { return classType.OperatorOverloads; }
-            set { classType.OperatorOverloads = value; }
+            get { return partialType.OperatorOverloads; }
+            set { partialType.OperatorOverloads = value; }
         }
 
-        public override ClassPropertyCollectionWithCodeAnalysis Properties
+        public override PartialClassPropertyCollectionWithCodeAnalysis Properties
         {
-            get { return classType.Properties; }
-            set { classType.Properties = value; }
+            get { return partialType.Properties; }
+            set { partialType.Properties = value; }
         }
 
-        public override ClassStaticConstructorWithCodeAnalysis StaticConstructor
+        public override PartialClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return classType.StaticConstructor; }
-            set { classType.StaticConstructor = value; }
+            get { return partialType.StaticConstructor; }
+            set { partialType.StaticConstructor = value; }
         }
 
-        public override ClassNestedStructCollectionWithCodeAnalysis Structs
+        public override PartialClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return classType.Structs; }
-            set { classType.Structs = value; }
+            get { return partialType.Structs; }
+            set { partialType.Structs = value; }
         }
 
         public ClassDeclarationSyntax Syntax

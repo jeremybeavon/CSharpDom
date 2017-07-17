@@ -29,7 +29,8 @@ namespace CSharpDom.CodeAnalysis
             ClassStaticConstructorWithCodeAnalysis,
             ClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>
+        IHasNode<ClassDeclarationSyntax>,
+        IClassTypeWithCodeAnalysis
     {
         private readonly ClassNestedClassWithCodeAnalysis classType;
 
