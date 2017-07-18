@@ -26,8 +26,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             StructNestedInterfaceWithCodeAnalysis,
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
-        IHasSyntax<StructDeclarationSyntax>,
-        IHasNode<StructDeclarationSyntax>
+        IHasSyntax<StructDeclarationSyntax>
     {
         private readonly ClassNestedPartialStructWithCodeAnalysis structType;
 
@@ -169,11 +168,6 @@ namespace CSharpDom.CodeAnalysis.Partial
                 StructDeclarationSyntax syntax = Syntax;
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
-        }
-        
-        INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
-        {
-            get { return structType.Struct.InternalStruct.InternalStruct.Node; }
         }
 
         internal ClassNestedPartialStructWithCodeAnalysis InternalStruct

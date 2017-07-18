@@ -12,8 +12,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             StaticClassAccessorWithCodeAnalysis>,
-        IHasSyntax<PropertyDeclarationSyntax>,
-        IHasNode<PropertyDeclarationSyntax>
+        IHasSyntax<PropertyDeclarationSyntax>
     {
         private readonly PropertyWithBodyWithCodeAnalysis property;
         
@@ -77,11 +76,6 @@ namespace CSharpDom.CodeAnalysis.Partial
                 PropertyDeclarationSyntax syntax = Syntax;
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
-        }
-        
-        INode<PropertyDeclarationSyntax> IHasNode<PropertyDeclarationSyntax>.Node
-        {
-            get { return property.Property.Node; }
         }
     }
 }

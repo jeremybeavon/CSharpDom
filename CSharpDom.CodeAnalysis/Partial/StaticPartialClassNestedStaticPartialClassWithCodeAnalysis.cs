@@ -22,7 +22,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             NestedStaticPartialClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>,
         INestedStaticPartialTypeWithCodeAnalysis
     {
         private readonly StaticClassNestedStaticClassWithCodeAnalysis classType;
@@ -139,7 +138,5 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.InternalClass.Node;
     }
 }

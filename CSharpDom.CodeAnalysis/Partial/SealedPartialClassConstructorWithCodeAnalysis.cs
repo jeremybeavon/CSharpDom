@@ -13,8 +13,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ISealedPartialTypeWithCodeAnalysis,
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<ConstructorDeclarationSyntax>,
-        IHasNode<ConstructorDeclarationSyntax>
+        IHasSyntax<ConstructorDeclarationSyntax>
     {
         private readonly ClassConstructorWithCodeAnalysis constructor;
 
@@ -22,7 +21,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             this.constructor = constructor;
         }
-        
+
         internal ClassConstructorWithCodeAnalysis Constructor
         {
             get { return constructor; }
@@ -39,7 +38,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return constructor.Body; }
             set { constructor.Body = value; }
         }
-        
+
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
             get { return constructor.Constructor.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
@@ -66,11 +65,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return constructor.Syntax; }
             set { constructor.Syntax = value; }
-        }
-        
-        INode<ConstructorDeclarationSyntax> IHasNode<ConstructorDeclarationSyntax>.Node
-        {
-            get { return constructor.Constructor.Node; }
         }
     }
 }

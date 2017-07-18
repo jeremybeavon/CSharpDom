@@ -1,5 +1,6 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -40,10 +41,19 @@ namespace CSharpDom.CodeAnalysis
         private readonly InternalClassTypeWithCodeAnalysis<ClassWithCodeAnalysis> classType;
         private readonly DocumentWithCodeAnalysis document;
 
-        internal ClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
+        public ClassWithCodeAnalysis(DocumentWithCodeAnalysis document, string name)
+            : this(document, SyntaxFactory.ClassDeclaration(name))
+        {
+        }
+
+        internal ClassWithCodeAnalysis(DocumentWithCodeAnalysis document, ClassDeclarationSyntax syntax = null)
         {
             classType = new InternalClassTypeWithCodeAnalysis<ClassWithCodeAnalysis>(this);
             this.document = document;
+            if (syntax != null)
+            {
+                Syntax = syntax;
+            }
         }
 
         public ClassTypeWithCodeAnalysis Type

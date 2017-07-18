@@ -37,12 +37,12 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ClassDeclarationSyntax>//,
                                         //IVisitable<IReflectionVisitor>
     {
-        private readonly InternalAbstractTypeWithCodeAnalysis<AbstractClassWithCodeAnalysis> classType;
+        private readonly AbstractTypeWithCodeAnalysis classType;
         private readonly DocumentWithCodeAnalysis document;
 
-        internal AbstractClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
+        internal AbstractClassWithCodeAnalysis(DocumentWithCodeAnalysis document, AbstractTypeWithCodeAnalysis type = null)
         {
-            classType = new InternalAbstractTypeWithCodeAnalysis<AbstractClassWithCodeAnalysis>(this);
+            classType = type ?? new InternalAbstractTypeWithCodeAnalysis<AbstractClassWithCodeAnalysis>(this);
             this.document = document;
         }
 
@@ -185,7 +185,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get { return classType.Type.Node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            get { return classType.Node.GetParentNode<NamespaceWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -213,14 +213,9 @@ namespace CSharpDom.CodeAnalysis
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Type.Node; }
+            get { return classType.Node; }
         }
-
-        internal InternalAbstractTypeWithCodeAnalysis<AbstractClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
-        }
-
+        
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithCodeAnalysis(this);

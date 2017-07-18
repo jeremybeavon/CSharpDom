@@ -14,8 +14,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<MethodDeclarationSyntax>,
-        IHasNode<MethodDeclarationSyntax>
+        IHasSyntax<MethodDeclarationSyntax>
     {
         private readonly MethodWithBodyWithCodeAnalysis method;
 
@@ -97,11 +96,6 @@ namespace CSharpDom.CodeAnalysis.Partial
                 MethodDeclarationSyntax syntax = Syntax;
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
-        }
-        
-        INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node
-        {
-            get { return method.Method.Node; }
         }
     }
 }

@@ -10,6 +10,9 @@ namespace CSharpDom.CodeAnalysis
     {
         Guid InternalId { get; }
 
+        TParentNode GetParentNode<TParentNode>()
+            where TParentNode : class;
+
         void SetParentNode<TParentNode, TParentSyntax>(
             TParentNode parent,
             Func<TParentSyntax, TSyntax> getChildSyntax,

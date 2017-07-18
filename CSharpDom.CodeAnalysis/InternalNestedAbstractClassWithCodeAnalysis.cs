@@ -154,9 +154,13 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Syntax = value; }
         }
 
+        public override AbstractTypeWithCodeAnalysis Type => classType;
+
         internal InternalAbstractTypeWithCodeAnalysis<TClass> InternalClass
         {
             get { return classType; }
         }
+
+        internal override INode<ClassDeclarationSyntax> Node => classType.Node;
     }
 }

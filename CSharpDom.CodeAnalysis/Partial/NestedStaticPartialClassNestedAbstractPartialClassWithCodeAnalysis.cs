@@ -32,16 +32,14 @@ namespace CSharpDom.CodeAnalysis.Partial
         IAbstractPartialTypeWithCodeAnalysis
     {
         private readonly StaticClassNestedAbstractClassWithCodeAnalysis classType;
-        private readonly AbstractPartialTypeWithCodeAnalysis<StaticClassNestedAbstractClassWithCodeAnalysis> abstractType;
-        private readonly AbstractPartialClassMethodCollectionWithCodeAnalysis methods;
+        private readonly AbstractPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis> partialType;
 
         internal NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis()
         {
-            classType = new StaticClassNestedAbstractClassWithCodeAnalysis();
-            abstractType = new AbstractPartialTypeWithCodeAnalysis<StaticClassNestedAbstractClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
-            methods = new InternalAbstractPartialClassMethodCollectionWithCodeAnalysis<StaticClassNestedAbstractClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass.Type);
+            var abstractType = new InternalNestedAbstractClassWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis>(this);
+            classType = new StaticClassNestedAbstractClassWithCodeAnalysis(abstractType);
+            partialType = new AbstractPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis>(
+                abstractType.InternalClass);
         }
         
         public StaticClassNestedAbstractClassWithCodeAnalysis Class
@@ -63,56 +61,56 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override AbstractPartialClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return abstractType.Classes; }
-            set { abstractType.Classes = value; }
+            get { return partialType.Classes; }
+            set { partialType.Classes = value; }
         }
 
         public override ICollection<AbstractPartialClassConstructorWithCodeAnalysis> Constructors
         {
-            get { return abstractType.Constructors; }
-            set { abstractType.Constructors = value; }
+            get { return partialType.Constructors; }
+            set { partialType.Constructors = value; }
         }
 
         public override ICollection<AbstractPartialClassConversionOperatorWithCodeAnalysis> ConversionOperators
         {
-            get { return abstractType.ConversionOperators; }
-            set { abstractType.ConversionOperators = value; }
+            get { return partialType.ConversionOperators; }
+            set { partialType.ConversionOperators = value; }
         }
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.InternalClass.Type.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
         public override ICollection<AbstractPartialClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return abstractType.Delegates; }
-            set { abstractType.Delegates = value; }
+            get { return partialType.Delegates; }
+            set { partialType.Delegates = value; }
         }
 
         public override AbstractPartialClassDestructorWithCodeAnalysis Destructor
         {
-            get { return abstractType.Destructor; }
-            set { abstractType.Destructor = value; }
+            get { return partialType.Destructor; }
+            set { partialType.Destructor = value; }
         }
 
         public override ICollection<AbstractPartialClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return abstractType.Enums; }
-            set { abstractType.Enums = value; }
+            get { return partialType.Enums; }
+            set { partialType.Enums = value; }
         }
 
         public override AbstractPartialClassEventCollectionWithCodeAnalysis Events
         {
-            get { return abstractType.Events; }
-            set { abstractType.Events = value; }
+            get { return partialType.Events; }
+            set { partialType.Events = value; }
         }
 
         public override AbstractPartialClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return abstractType.Fields; }
-            set { abstractType.Fields = value; }
+            get { return partialType.Fields; }
+            set { partialType.Fields = value; }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -129,20 +127,20 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override AbstractPartialClassIndexerCollectionWithCodeAnalysis Indexers
         {
-            get { return abstractType.Indexers; }
-            set { abstractType.Indexers = value; }
+            get { return partialType.Indexers; }
+            set { partialType.Indexers = value; }
         }
 
         public override ICollection<AbstractPartialClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return abstractType.Interfaces; }
-            set { abstractType.Interfaces = value; }
+            get { return partialType.Interfaces; }
+            set { partialType.Interfaces = value; }
         }
 
         public override AbstractPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.InternalClass.Type.Members.Replace(value); }
+            get { return partialType.Methods; }
+            set { partialType.Methods = value; }
         }
 
         public override string Name
@@ -153,26 +151,26 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ICollection<AbstractPartialClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
-            get { return abstractType.OperatorOverloads; }
-            set { abstractType.OperatorOverloads = value; }
+            get { return partialType.OperatorOverloads; }
+            set { partialType.OperatorOverloads = value; }
         }
 
         public override AbstractPartialClassPropertyCollectionWithCodeAnalysis Properties
         {
-            get { return abstractType.Properties; }
-            set { abstractType.Properties = value; }
+            get { return partialType.Properties; }
+            set { partialType.Properties = value; }
         }
 
         public override AbstractPartialClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return abstractType.StaticConstructor; }
-            set { abstractType.StaticConstructor = value; }
+            get { return partialType.StaticConstructor; }
+            set { partialType.StaticConstructor = value; }
         }
 
         public override AbstractPartialClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return abstractType.Structs; }
-            set { abstractType.Structs = value; }
+            get { return partialType.Structs; }
+            set { partialType.Structs = value; }
         }
 
         public ClassDeclarationSyntax Syntax

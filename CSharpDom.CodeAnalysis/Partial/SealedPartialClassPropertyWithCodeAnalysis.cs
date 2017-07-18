@@ -13,8 +13,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ISealedPartialTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ClassAccessorWithCodeAnalysis>,
-        IHasSyntax<PropertyDeclarationSyntax>,
-        IHasNode<PropertyDeclarationSyntax>
+        IHasSyntax<PropertyDeclarationSyntax>
     {
         private readonly SealedClassPropertyWithCodeAnalysis property;
      
@@ -84,11 +83,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return property.Visibility; }
             set { property.Visibility = value; }
-        }
-        
-        INode<PropertyDeclarationSyntax> IHasNode<PropertyDeclarationSyntax>.Node
-        {
-            get { return property.Property.Property.Node; }
         }
 
         internal SealedClassPropertyWithCodeAnalysis InternalProperty

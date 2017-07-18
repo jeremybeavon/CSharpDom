@@ -13,8 +13,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ISealedPartialTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<EventDeclarationSyntax>,
-        IHasNode<EventDeclarationSyntax>
+        IHasSyntax<EventDeclarationSyntax>
     {
         private readonly SealedClassEventPropertyWithCodeAnalysis @event;
 
@@ -94,11 +93,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { @event.Syntax = value; }
         }
         
-        INode<EventDeclarationSyntax> IHasNode<EventDeclarationSyntax>.Node
-        {
-            get { return @event.EventProperty.Node; }
-        }
-
         internal SealedClassEventPropertyWithCodeAnalysis InternalEventProperty
         {
             get { return @event; }

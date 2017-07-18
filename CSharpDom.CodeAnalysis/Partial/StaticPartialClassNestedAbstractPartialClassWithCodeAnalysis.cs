@@ -29,20 +29,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             AbstractPartialClassStaticConstructorWithCodeAnalysis,
             AbstractPartialClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>,
         IAbstractPartialTypeWithCodeAnalysis
     {
         private readonly StaticPartialClassNestedAbstractClassWithCodeAnalysis classType;
         private readonly AbstractPartialTypeWithCodeAnalysis<StaticPartialClassNestedAbstractClassWithCodeAnalysis> abstractType;
-        private readonly AbstractPartialClassMethodCollectionWithCodeAnalysis methods;
 
         internal StaticPartialClassNestedAbstractPartialClassWithCodeAnalysis()
         {
             classType = new StaticPartialClassNestedAbstractClassWithCodeAnalysis();
             abstractType = new AbstractPartialTypeWithCodeAnalysis<StaticPartialClassNestedAbstractClassWithCodeAnalysis>(
                 classType.InternalClass.InternalClass);
-            methods = new InternalAbstractPartialClassMethodCollectionWithCodeAnalysis<StaticPartialClassNestedAbstractClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass.Type);
         }
         
         public StaticPartialClassNestedAbstractClassWithCodeAnalysis Class
@@ -142,8 +138,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override AbstractPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.InternalClass.Type.Members.Replace(value); }
+            get { return abstractType.Methods; }
+            set { abstractType.Methods = value; }
         }
 
         public override string Name
@@ -186,11 +182,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
-        }
-        
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
-        {
-            get { return classType.InternalClass.InternalClass.Type.Node; }
         }
     }
 }

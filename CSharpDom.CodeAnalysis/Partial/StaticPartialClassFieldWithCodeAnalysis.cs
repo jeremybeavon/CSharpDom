@@ -14,8 +14,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>,
-        IHasNode<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>
     {
         private readonly FieldGroupWithCodeAnalysis field;
 
@@ -102,11 +101,6 @@ namespace CSharpDom.CodeAnalysis.Partial
                 FieldDeclarationSyntax syntax = Syntax;
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
-        }
-        
-        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node
-        {
-            get { return field.Node; }
         }
     }
 }

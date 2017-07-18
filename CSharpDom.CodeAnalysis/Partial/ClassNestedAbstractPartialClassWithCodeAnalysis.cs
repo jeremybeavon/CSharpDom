@@ -34,15 +34,12 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedAbstractClassWithCodeAnalysis classType;
         private readonly AbstractPartialTypeWithCodeAnalysis<ClassNestedAbstractClassWithCodeAnalysis> abstractType;
-        private readonly AbstractPartialClassMethodCollectionWithCodeAnalysis methods;
 
         internal ClassNestedAbstractPartialClassWithCodeAnalysis()
         {
             classType = new ClassNestedAbstractClassWithCodeAnalysis();
             abstractType = new AbstractPartialTypeWithCodeAnalysis<ClassNestedAbstractClassWithCodeAnalysis>(
                 classType.InternalClass.InternalClass);
-            methods = new InternalAbstractPartialClassMethodCollectionWithCodeAnalysis<ClassNestedAbstractClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass.Type);
         }
 
         public ClassNestedAbstractClassWithCodeAnalysis Class
@@ -142,8 +139,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override AbstractPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.InternalClass.Type.Members.Replace(value); }
+            get { return abstractType.Methods; }
+            set { abstractType.Methods = value; }
         }
 
         public override string Name

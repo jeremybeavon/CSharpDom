@@ -51,11 +51,17 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly WrappedCollection<
             ClassNestedInterfaceWithCodeAnalysis,
             AbstractPartialClassNestedInterfaceWithCodeAnalysis> interfaces;
+        private readonly AbstractPartialClassMethodCollectionWithCodeAnalysis methods;
         private readonly WrappedCollection<
             ClassOperatorOverloadWithCodeAnalysis,
             AbstractPartialClassOperatorOverloadWithCodeAnalysis> operatorOverloads;
         private readonly AbstractPartialClassPropertyCollectionWithCodeAnalysis properties;
         private readonly AbstractPartialClassNestedStructCollectionWithCodeAnalysis structs;
+
+        internal AbstractPartialTypeWithCodeAnalysis(InternalNestedAbstractClassWithCodeAnalysis<TClass> classType)
+            : this(classType.InternalClass)
+        {
+        }
 
         internal AbstractPartialTypeWithCodeAnalysis(InternalAbstractTypeWithCodeAnalysis<TClass> classType)
         {
@@ -90,6 +96,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 parent => new AbstractPartialClassNestedInterfaceWithCodeAnalysis(parent),
                 child => child.InternalInterface,
                 value => classType.Type.Interfaces = value);
+            methods = new InternalAbstractPartialClassMethodCollectionWithCodeAnalysis<TClass>(classType.Type);
             operatorOverloads = new WrappedCollection<ClassOperatorOverloadWithCodeAnalysis, AbstractPartialClassOperatorOverloadWithCodeAnalysis>(
                 classType.Type.OperatorOverloads,
                 parent => new AbstractPartialClassOperatorOverloadWithCodeAnalysis(parent),
@@ -214,8 +221,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override AbstractPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { throw new NotSupportedException(); }
-            set { throw new NotSupportedException(); }
+            get { return methods; }
+            set { classType.Type.Members.Replace(value); }
         }
 
         public override string Name

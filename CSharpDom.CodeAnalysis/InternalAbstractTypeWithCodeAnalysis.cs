@@ -262,10 +262,7 @@ namespace CSharpDom.CodeAnalysis
             get { return members; }
         }
 
-        internal Node<TClass, ClassDeclarationSyntax> Node
-        {
-            get { return classType.Node; }
-        }
+        internal override INode<ClassDeclarationSyntax> Node => classType.Node;
 
         private void InitializeMembers()
         {

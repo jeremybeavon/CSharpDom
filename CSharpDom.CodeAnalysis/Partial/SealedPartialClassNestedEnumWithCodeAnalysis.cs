@@ -11,8 +11,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             ISealedPartialTypeWithCodeAnalysis,
             NestedEnumMemberWithCodeAnalysis>,
-        IHasSyntax<EnumDeclarationSyntax>,
-        IHasNode<EnumDeclarationSyntax>
+        IHasSyntax<EnumDeclarationSyntax>
     {
         private readonly ClassNestedEnumWithCodeAnalysis nestedEnum;
 
@@ -66,11 +65,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return nestedEnum.Visibility; }
             set { nestedEnum.Visibility = value; }
-        }
-        
-        INode<EnumDeclarationSyntax> IHasNode<EnumDeclarationSyntax>.Node
-        {
-            get { return nestedEnum.Enum.Node; }
         }
 
         internal ClassNestedEnumWithCodeAnalysis InternalEnum

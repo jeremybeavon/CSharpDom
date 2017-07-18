@@ -14,8 +14,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<MethodDeclarationSyntax>,
-        IHasNode<MethodDeclarationSyntax>
+        IHasSyntax<MethodDeclarationSyntax>
     {
         private readonly SealedClassMethodWithCodeAnalysis method;
 
@@ -103,11 +102,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return method.Syntax; }
             set { method.Syntax = value; }
-        }
-        
-        INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node
-        {
-            get { return method.Method.Method.Node; }
         }
 
         internal SealedClassMethodWithCodeAnalysis InternalMethod

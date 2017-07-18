@@ -31,5 +31,9 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<ClassDeclarationSyntax>
     {
         public abstract ClassDeclarationSyntax Syntax { get; set; }
+
+        public abstract AbstractTypeWithCodeAnalysis Type { get; }
+
+        internal abstract INode<ClassDeclarationSyntax> Node { get; }
     }
 }
