@@ -13,17 +13,17 @@ namespace CSharpDom.CodeAnalysis.Partial
             INestedStaticPartialTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<EventDeclarationSyntax>,
-        IHasNode<EventDeclarationSyntax>
+        IHasSyntax<EventDeclarationSyntax>
     {
-        private readonly EventPropertyWithCodeAnalysis @event;
+        private readonly NestedStaticClassEventPropertyWithCodeAnalysis @event;
 
-        internal NestedStaticPartialClassEventPropertyWithCodeAnalysis()
+        internal NestedStaticPartialClassEventPropertyWithCodeAnalysis(
+            NestedStaticClassEventPropertyWithCodeAnalysis @event)
         {
-            @event = new EventPropertyWithCodeAnalysis();
+            this.@event = @event;
         }
         
-        public EventPropertyWithCodeAnalysis EventProperty
+        public NestedStaticClassEventPropertyWithCodeAnalysis EventProperty
         {
             get { return @event; }
         }
@@ -48,7 +48,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return @event.EventProperty.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -84,17 +84,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToStaticClassMemberVisibilityModifier(); }
-            set
-            {
-                EventDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
-            }
-        }
-        
-        INode<EventDeclarationSyntax> IHasNode<EventDeclarationSyntax>.Node
-        {
-            get { return @event.Node; }
+            get { return @event.Visibility; }
+            set { @event.Visibility = value; }
         }
     }
 }

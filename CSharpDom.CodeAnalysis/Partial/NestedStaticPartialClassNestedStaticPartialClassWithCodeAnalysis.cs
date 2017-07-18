@@ -11,27 +11,26 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             INestedStaticPartialTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
-            StaticClassEventCollectionWithCodeAnalysis,
-            StaticClassPropertyWithCodeAnalysis,
+            NestedStaticPartialClassEventCollectionWithCodeAnalysis,
+            NestedStaticPartialClassPropertyWithCodeAnalysis,
             NestedStaticPartialClassMethodCollectionWithCodeAnalysis,
-            StaticClassFieldCollectionWithCodeAnalysis,
-            StaticClassNestedClassCollectionWithCodeAnalysis,
-            StaticClassNestedDelegateWithCodeAnalysis,
-            StaticClassNestedEnumWithCodeAnalysis,
-            StaticClassNestedInterfaceWithCodeAnalysis,
-            StaticClassNestedStructCollectionWithCodeAnalysis,
+            NestedStaticPartialClassFieldCollectionWithCodeAnalysis,
+            NestedStaticPartialClassNestedClassCollectionWithCodeAnalysis,
+            NestedStaticPartialClassNestedDelegateWithCodeAnalysis,
+            NestedStaticPartialClassNestedEnumWithCodeAnalysis,
+            NestedStaticPartialClassNestedInterfaceWithCodeAnalysis,
+            NestedStaticPartialClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>,
         INestedStaticPartialTypeWithCodeAnalysis
     {
         private readonly NestedStaticClassNestedStaticClassWithCodeAnalysis classType;
-        private readonly NestedStaticPartialClassMethodCollectionWithCodeAnalysis methods;
+        private readonly InternalNestedStaticPartialClassWithCodeAnalysis<NestedStaticClassNestedStaticClassWithCodeAnalysis> partialType;
 
         internal NestedStaticPartialClassNestedStaticPartialClassWithCodeAnalysis()
         {
             classType = new NestedStaticClassNestedStaticClassWithCodeAnalysis();
-            methods = new InternalNestedStaticPartialClassMethodCollectionWithCodeAnalysis<NestedStaticClassNestedStaticClassWithCodeAnalysis>(
+            partialType = new InternalNestedStaticPartialClassWithCodeAnalysis<NestedStaticClassNestedStaticClassWithCodeAnalysis>(
                 classType.InternalClass);
         }
 
@@ -46,40 +45,40 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Attributes = value; }
         }
 
-        public override StaticClassNestedClassCollectionWithCodeAnalysis Classes
+        public override NestedStaticPartialClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return classType.Classes; }
-            set { classType.Classes = value; }
+            get { return partialType.Classes; }
+            set { partialType.Classes = value; }
         }
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.DeclaringType; }
-            set { classType.DeclaringType = value; }
+            get { return classType.InternalClass.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            set { throw new NotSupportedException(); }
         }
 
-        public override ICollection<StaticClassNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<NestedStaticPartialClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return classType.Delegates; }
-            set { classType.Delegates = value; }
+            get { return partialType.Delegates; }
+            set { partialType.Delegates = value; }
         }
 
-        public override ICollection<StaticClassNestedEnumWithCodeAnalysis> Enums
+        public override ICollection<NestedStaticPartialClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return classType.Enums; }
-            set { classType.Enums = value; }
+            get { return partialType.Enums; }
+            set { partialType.Enums = value; }
         }
 
-        public override StaticClassEventCollectionWithCodeAnalysis Events
+        public override NestedStaticPartialClassEventCollectionWithCodeAnalysis Events
         {
-            get { return classType.Events; }
-            set { classType.Events = value; }
+            get { return partialType.Events; }
+            set { partialType.Events = value; }
         }
 
-        public override StaticClassFieldCollectionWithCodeAnalysis Fields
+        public override NestedStaticPartialClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return classType.Fields; }
-            set { classType.Fields = value; }
+            get { return partialType.Fields; }
+            set { partialType.Fields = value; }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -88,16 +87,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.GenericParameters = value; }
         }
 
-        public override ICollection<StaticClassNestedInterfaceWithCodeAnalysis> Interfaces
+        public override ICollection<NestedStaticPartialClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return classType.Interfaces; }
-            set { classType.Interfaces = value; }
+            get { return partialType.Interfaces; }
+            set { partialType.Interfaces = value; }
         }
 
         public override NestedStaticPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.Members.Replace(value); }
+            get { return partialType.Methods; }
+            set { partialType.Methods = value; }
         }
 
         public override string Name
@@ -106,10 +105,10 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Name = value; }
         }
 
-        public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
+        public override ICollection<NestedStaticPartialClassPropertyWithCodeAnalysis> Properties
         {
-            get { return classType.Properties; }
-            set { classType.Properties = value; }
+            get { return partialType.Properties; }
+            set { partialType.Properties = value; }
         }
 
         public override StaticConstructorWithCodeAnalysis StaticConstructor
@@ -118,10 +117,10 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.StaticConstructor = value; }
         }
 
-        public override StaticClassNestedStructCollectionWithCodeAnalysis Structs
+        public override NestedStaticPartialClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return classType.Structs; }
-            set { classType.Structs = value; }
+            get { return partialType.Structs; }
+            set { partialType.Structs = value; }
         }
 
         public ClassDeclarationSyntax Syntax
@@ -139,7 +138,5 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.InternalClass.Node;
     }
 }

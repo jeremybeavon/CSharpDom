@@ -12,8 +12,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             IAbstractPartialTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ConstantWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>,
-        IHasNode<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>
     {
         private readonly ClassConstantWithCodeAnalysis constant;
 
@@ -61,11 +60,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return constant.Syntax; }
             set { constant.Syntax = value; }
-        }
-        
-        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node
-        {
-            get { return constant.Constant.Node; }
         }
 
         internal ClassConstantWithCodeAnalysis InternalConstant

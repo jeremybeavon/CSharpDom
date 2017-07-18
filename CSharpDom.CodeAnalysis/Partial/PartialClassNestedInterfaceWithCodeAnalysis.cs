@@ -16,8 +16,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             InterfacePropertyWithCodeAnalysis,
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
-        IHasSyntax<InterfaceDeclarationSyntax>,
-        IHasNode<InterfaceDeclarationSyntax>
+        IHasSyntax<InterfaceDeclarationSyntax>
     {
         private readonly ClassNestedInterfaceWithCodeAnalysis type;
 
@@ -98,11 +97,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         }
 
         public override bool IsPartial { get => Syntax.IsPartial(); set => Syntax = Syntax.IsPartial(value); }
-
-        INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
-        {
-            get { return type.Interface.Interface.Node; }
-        }
 
         internal ClassNestedInterfaceWithCodeAnalysis InternalInterface
         {

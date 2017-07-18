@@ -13,8 +13,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             IAbstractPartialTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<EventDeclarationSyntax>,
-        IHasNode<EventDeclarationSyntax>
+        IHasSyntax<EventDeclarationSyntax>
     {
         private readonly AbstractClassEventPropertyWithCodeAnalysis @event;
 
@@ -92,11 +91,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
-        }
-        
-        INode<EventDeclarationSyntax> IHasNode<EventDeclarationSyntax>.Node
-        {
-            get { return @event.EventProperty.Node; }
         }
 
         internal AbstractClassEventPropertyWithCodeAnalysis InternalEventProperty

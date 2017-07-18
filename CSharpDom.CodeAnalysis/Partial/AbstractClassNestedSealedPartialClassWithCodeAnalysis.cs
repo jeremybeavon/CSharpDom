@@ -38,7 +38,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractClassNestedSealedPartialClassWithCodeAnalysis(
             ClassNestedSealedPartialClassWithCodeAnalysis @class)
         {
-            classType = @class ?? new ClassNestedSealedPartialClassWithCodeAnalysis();
+            classType = @class;
         }
         
         public ClassNestedSealedClassWithCodeAnalysis Class

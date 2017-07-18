@@ -11,17 +11,17 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             INestedStaticPartialTypeWithCodeAnalysis,
             NestedEnumMemberWithCodeAnalysis>,
-        IHasSyntax<EnumDeclarationSyntax>,
-        IHasNode<EnumDeclarationSyntax>
+        IHasSyntax<EnumDeclarationSyntax>
     {
-        private readonly NestedEnumWithCodeAnalysis nestedEnum;
+        private readonly NestedStaticClassNestedEnumWithCodeAnalysis nestedEnum;
 
-        internal NestedStaticPartialClassNestedEnumWithCodeAnalysis()
+        internal NestedStaticPartialClassNestedEnumWithCodeAnalysis(
+            NestedStaticClassNestedEnumWithCodeAnalysis nestedEnum)
         {
-            nestedEnum = new NestedEnumWithCodeAnalysis();
+            this.nestedEnum = nestedEnum;
         }
 
-        public NestedEnumWithCodeAnalysis Enum
+        public NestedStaticClassNestedEnumWithCodeAnalysis Enum
         {
             get { return nestedEnum; }
         }
@@ -40,7 +40,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedEnum.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return nestedEnum.Enum.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -72,9 +72,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             }
         }
 
-        INode<EnumDeclarationSyntax> IHasNode<EnumDeclarationSyntax>.Node
+        internal NestedStaticClassNestedEnumWithCodeAnalysis InternalEnum
         {
-            get { return nestedEnum.Node; }
+            get { return nestedEnum; }
         }
     }
 }

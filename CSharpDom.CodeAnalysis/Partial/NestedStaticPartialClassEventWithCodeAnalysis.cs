@@ -12,17 +12,17 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             INestedStaticPartialTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
-        IHasSyntax<EventFieldDeclarationSyntax>,
-        IHasNode<EventFieldDeclarationSyntax>
+        IHasSyntax<EventFieldDeclarationSyntax>
     {
-        private readonly EventWithCodeAnalysis @event;
+        private readonly NestedStaticClassEventWithCodeAnalysis @event;
 
-        internal NestedStaticPartialClassEventWithCodeAnalysis()
+        internal NestedStaticPartialClassEventWithCodeAnalysis(
+            NestedStaticClassEventWithCodeAnalysis @event)
         {
-            @event = new EventWithCodeAnalysis();
+            this.@event = @event;
         }
         
-        public EventWithCodeAnalysis Event
+        public NestedStaticClassEventWithCodeAnalysis Event
         {
             get { return @event; }
         }
@@ -35,7 +35,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return @event.Event.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -47,8 +47,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ICollection<AttributeGroupWithCodeAnalysis> FieldAttributes
         {
-            get { return @event.AttributeList.TargetedAttributes; }
-            set { @event.AttributeList.TargetedAttributes = value; }
+            get { return @event.FieldAttributes; }
+            set { @event.FieldAttributes = value; }
         }
         
         public override string Name
@@ -71,11 +71,6 @@ namespace CSharpDom.CodeAnalysis.Partial
                 EventFieldDeclarationSyntax syntax = Syntax;
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
-        }
-        
-        INode<EventFieldDeclarationSyntax> IHasNode<EventFieldDeclarationSyntax>.Node
-        {
-            get { return @event.Node; }
         }
     }
 }

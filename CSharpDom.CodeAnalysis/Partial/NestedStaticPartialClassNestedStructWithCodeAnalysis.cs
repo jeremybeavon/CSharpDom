@@ -27,17 +27,17 @@ namespace CSharpDom.CodeAnalysis.Partial
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
-        IStructTypeWithCodeAnalysis,
-        IHasNode<StructDeclarationSyntax>
+        IStructTypeWithCodeAnalysis
     {
-        private readonly InternalNestedStructWithCodeAnalysis<NestedStaticPartialClassNestedStructWithCodeAnalysis> structType;
+        private readonly NestedStaticClassNestedStructWithCodeAnalysis structType;
 
-        internal NestedStaticPartialClassNestedStructWithCodeAnalysis()
+        internal NestedStaticPartialClassNestedStructWithCodeAnalysis(
+            NestedStaticClassNestedStructWithCodeAnalysis structType)
         {
-            structType = new InternalNestedStructWithCodeAnalysis<NestedStaticPartialClassNestedStructWithCodeAnalysis>(this);
+            this.structType = structType;
         }
         
-        public NestedStructWithCodeAnalysis Struct
+        public NestedStaticClassNestedStructWithCodeAnalysis Struct
         {
             get { return structType; }
         }
@@ -68,7 +68,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.InternalStruct.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return structType.InternalStruct.InternalStruct.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -171,13 +171,8 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-        
-        INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
-        {
-            get { return structType.InternalStruct.Node; }
-        }
 
-        internal InternalNestedStructWithCodeAnalysis<NestedStaticPartialClassNestedStructWithCodeAnalysis> InternalStruct
+        internal NestedStaticClassNestedStructWithCodeAnalysis InternalStruct
         {
             get { return structType; }
         }

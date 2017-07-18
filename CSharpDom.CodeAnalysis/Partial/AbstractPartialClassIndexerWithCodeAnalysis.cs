@@ -13,8 +13,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             ClassAccessorWithCodeAnalysis>,
-        IHasSyntax<IndexerDeclarationSyntax>,
-        IHasNode<IndexerDeclarationSyntax>
+        IHasSyntax<IndexerDeclarationSyntax>
     {
         private readonly AbstractClassIndexerWithCodeAnalysis indexer;
 
@@ -82,12 +81,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return indexer.Syntax; }
             set { indexer.Syntax = value; }
         }
-
-        INode<IndexerDeclarationSyntax> IHasNode<IndexerDeclarationSyntax>.Node
-        {
-            get { return indexer.Indexer.Indexer.Node; }
-        }
-
+        
         internal AbstractClassIndexerWithCodeAnalysis InternalIndexer
         {
             get { return indexer; }

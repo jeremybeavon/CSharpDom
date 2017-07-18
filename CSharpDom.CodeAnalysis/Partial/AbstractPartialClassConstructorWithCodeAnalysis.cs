@@ -13,8 +13,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             IAbstractPartialTypeWithCodeAnalysis,
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<ConstructorDeclarationSyntax>,
-        IHasNode<ConstructorDeclarationSyntax>
+        IHasSyntax<ConstructorDeclarationSyntax>
     {
         private readonly ClassConstructorWithCodeAnalysis constructor;
 
@@ -66,11 +65,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return constructor.Syntax; }
             set { constructor.Syntax = value; }
-        }
-        
-        INode<ConstructorDeclarationSyntax> IHasNode<ConstructorDeclarationSyntax>.Node
-        {
-            get { return constructor.Constructor.Node; }
         }
     }
 }

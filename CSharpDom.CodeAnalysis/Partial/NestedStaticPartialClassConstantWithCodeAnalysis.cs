@@ -12,17 +12,17 @@ namespace CSharpDom.CodeAnalysis.Partial
             INestedStaticPartialTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ConstantWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>,
-        IHasNode<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly ConstantGroupWithCodeAnalysis constant;
+        private readonly NestedStaticClassConstantWithCodeAnalysis constant;
 
-        internal NestedStaticPartialClassConstantWithCodeAnalysis()
+        internal NestedStaticPartialClassConstantWithCodeAnalysis(
+            NestedStaticClassConstantWithCodeAnalysis constant)
         {
-            constant = new ConstantGroupWithCodeAnalysis();
+            this.constant = constant;
         }
         
-        public ConstantGroupWithCodeAnalysis Constant
+        public NestedStaticClassConstantWithCodeAnalysis Constant
         {
             get { return constant; }
         }
@@ -41,7 +41,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return constant.Constant.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -53,23 +53,14 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToStaticClassMemberVisibilityModifier(); }
-            set
-            {
-                FieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
-            }
+            get { return constant.Visibility; }
+            set { constant.Visibility = value; }
         }
 
         public FieldDeclarationSyntax Syntax
         {
             get { return constant.Syntax; }
             set { constant.Syntax = value; }
-        }
-        
-        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node
-        {
-            get { return constant.Node; }
         }
     }
 }

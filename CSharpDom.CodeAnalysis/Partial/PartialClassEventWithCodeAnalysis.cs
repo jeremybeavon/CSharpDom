@@ -12,8 +12,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             IPartialClassTypeWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
-        IHasSyntax<EventFieldDeclarationSyntax>,
-        IHasNode<EventFieldDeclarationSyntax>
+        IHasSyntax<EventFieldDeclarationSyntax>
     {
         private readonly ClassEventWithCodeAnalysis @event;
 
@@ -73,11 +72,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
-        }
-        
-        INode<EventFieldDeclarationSyntax> IHasNode<EventFieldDeclarationSyntax>.Node
-        {
-            get { return @event.Event.Node; }
         }
 
         internal ClassEventWithCodeAnalysis InternalEvent

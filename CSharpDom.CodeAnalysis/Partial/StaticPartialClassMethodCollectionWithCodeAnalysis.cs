@@ -31,9 +31,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassWithCodeAnalysis classType)
         {
             this.classType = classType;
-            methods = new StaticPartialClassMemberListWrapper<StaticClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+            methods = new StaticPartialClassMemberListWrapper<StaticPartialClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 classType.Node,
-                () => new StaticClassMethodWithCodeAnalysis(),
+                () => new StaticPartialClassMethodWithCodeAnalysis(),
                 syntax => !syntax.IsPartial());
             extensionMethods = new StaticPartialClassMemberListWrapper<ExtensionMethodWithCodeAnalysis, MethodDeclarationSyntax>(
                 classType.Node,
@@ -52,7 +52,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override ICollection<ExtensionMethodWithCodeAnalysis> ExtensionMethods
         {
             get { return extensionMethods; }
-            set { type.Members.CombineList(nameof(ExtensionMethods), value.Select(item => item.Syntax)); }
+            set { classType.Members.CombineList(nameof(ExtensionMethods), value.Select(item => item.Syntax)); }
         }
 
         public override ICollection<StaticPartialClassMethodWithCodeAnalysis> Methods

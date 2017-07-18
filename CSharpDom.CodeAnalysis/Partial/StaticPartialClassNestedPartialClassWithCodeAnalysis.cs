@@ -82,8 +82,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return classType.DeclaringType; }
-            set { classType.DeclaringType = value; }
+            get { return null; }// classType.DeclaringType; }
+            set { }//classType.DeclaringType = value; }
         }
 
         public override ICollection<PartialClassNestedDelegateWithCodeAnalysis> Delegates
@@ -184,17 +184,15 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return classType.Visibility; }
+            set { classType.Visibility = value; }
         }
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
             get { return classType.InternalClass.InternalClass.Node; }
         }
+
+        IClassTypeWithCodeAnalysis IPartialClassTypeWithCodeAnalysis.Class => classType;
     }
 }

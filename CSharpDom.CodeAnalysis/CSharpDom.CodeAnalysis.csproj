@@ -126,7 +126,7 @@
     <Compile Include="Partial\NestedStaticPartialClassNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassNestedStructWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassPropertyWithCodeAnalysis.cs" />
-    <Compile Include="Partial\NestedStaticPartialClassWithCodeAnalysis.cs" />
+    <Compile Include="Partial\InternalNestedStaticPartialClassWithCodeAnalysis.cs" />
     <Compile Include="Partial\SealedPartialTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\PartialClassTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\AbstractPartialTypeWithCodeAnalysis.cs" />
@@ -402,7 +402,6 @@
     <Compile Include="Partial\IPartialClassTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\ISealedPartialTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\INestedStaticPartialTypeWithCodeAnalysis.cs" />
-    <Compile Include="Partial\IStaticPartialTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\ClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\PartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="ProjectMemberList.cs" />

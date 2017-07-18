@@ -27,7 +27,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
-        IHasNode<StructDeclarationSyntax>,
         IStructTypeWithCodeAnalysis
     {
         private readonly ClassNestedStructWithCodeAnalysis structType;
@@ -168,11 +167,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { structType.Visibility = value; }
         }
         
-        INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
-        {
-            get { return structType.InternalStruct.InternalStruct.Node; }
-        }
-
         internal ClassNestedStructWithCodeAnalysis InternalStruct
         {
             get { return structType; }

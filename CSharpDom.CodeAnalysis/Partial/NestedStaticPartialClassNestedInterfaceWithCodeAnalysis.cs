@@ -16,17 +16,17 @@ namespace CSharpDom.CodeAnalysis.Partial
             InterfacePropertyWithCodeAnalysis,
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
-        IHasSyntax<InterfaceDeclarationSyntax>,
-        IHasNode<InterfaceDeclarationSyntax>
+        IHasSyntax<InterfaceDeclarationSyntax>
     {
-        private readonly NestedInterfaceWithCodeAnalysis nestedInterface;
+        private readonly NestedStaticClassNestedInterfaceWithCodeAnalysis nestedInterface;
 
-        internal NestedStaticPartialClassNestedInterfaceWithCodeAnalysis()
+        internal NestedStaticPartialClassNestedInterfaceWithCodeAnalysis(
+            NestedStaticClassNestedInterfaceWithCodeAnalysis nestedInterface)
         {
-            nestedInterface = new NestedInterfaceWithCodeAnalysis();
+            this.nestedInterface = nestedInterface;
         }
         
-        public NestedInterfaceWithCodeAnalysis Interface
+        public NestedStaticClassNestedInterfaceWithCodeAnalysis Interface
         {
             get { return nestedInterface; }
         }
@@ -39,7 +39,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedInterface.Interface.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return nestedInterface.Interface.Interface.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -93,19 +93,10 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                InterfaceDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return nestedInterface.Visibility; }
+            set { nestedInterface.Visibility = value; }
         }
 
-        public override bool IsPartial { get => Syntax.IsPartial(); set => Syntax = Syntax.IsPartial(value); }
-
-        INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
-        {
-            get { return nestedInterface.Interface.Node; }
-        }
+        public override bool IsPartial { get => nestedInterface.IsPartial; set => nestedInterface.IsPartial = value; }
     }
 }

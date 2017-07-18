@@ -26,5 +26,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             PartialClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
+        IClassTypeWithCodeAnalysis Class { get; }
     }
 }

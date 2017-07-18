@@ -14,17 +14,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             INestedStaticPartialTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>,
-        IHasNode<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly FieldGroupWithCodeAnalysis field;
+        private readonly NestedStaticClassFieldWithCodeAnalysis field;
 
-        internal NestedStaticPartialClassFieldWithCodeAnalysis()
+        internal NestedStaticPartialClassFieldWithCodeAnalysis(NestedStaticClassFieldWithCodeAnalysis field)
         {
-            field = new FieldGroupWithCodeAnalysis();
+            this.field = field;
         }
         
-        public FieldGroupWithCodeAnalysis Field
+        public NestedStaticClassFieldWithCodeAnalysis Field
         {
             get { return field; }
         }
@@ -37,7 +36,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return field.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return field.Field.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -102,11 +101,6 @@ namespace CSharpDom.CodeAnalysis.Partial
                 FieldDeclarationSyntax syntax = Syntax;
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
-        }
-        
-        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node
-        {
-            get { return field.Node; }
         }
     }
 }

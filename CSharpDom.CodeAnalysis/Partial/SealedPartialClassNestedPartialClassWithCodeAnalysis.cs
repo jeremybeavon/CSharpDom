@@ -36,12 +36,12 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         internal SealedPartialClassNestedPartialClassWithCodeAnalysis(ClassNestedPartialClassWithCodeAnalysis @class)
         {
-            classType = @class ?? new ClassNestedPartialClassWithCodeAnalysis();
+            classType = @class;
         }
         
-        public ClassNestedClassWithCodeAnalysis Class
+        public ClassNestedPartialClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -191,5 +191,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType; }
         }
+
+        IClassTypeWithCodeAnalysis IPartialClassTypeWithCodeAnalysis.Class => classType.Class;
     }
 }

@@ -30,7 +30,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             SealedPartialClassStaticConstructorWithCodeAnalysis,
             SealedPartialClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>,
         ISealedPartialTypeWithCodeAnalysis
     {
         private readonly ClassNestedSealedPartialClassWithCodeAnalysis classType;
@@ -186,11 +185,6 @@ namespace CSharpDom.CodeAnalysis.Partial
                 ClassDeclarationSyntax syntax = Syntax;
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
-        }
-        
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
-        {
-            get { return classType.Class.InternalClass.InternalClass.Type.Node; }
         }
 
         internal ClassNestedSealedPartialClassWithCodeAnalysis InternalClass

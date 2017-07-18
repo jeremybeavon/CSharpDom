@@ -29,7 +29,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             AbstractPartialClassStaticConstructorWithCodeAnalysis,
             AbstractPartialClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>,
         IAbstractPartialTypeWithCodeAnalysis
     {
         private readonly StaticClassNestedAbstractClassWithCodeAnalysis classType;
@@ -186,11 +185,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
-        }
-        
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
-        {
-            get { return classType.InternalClass.InternalClass.Type.Node; }
         }
     }
 }

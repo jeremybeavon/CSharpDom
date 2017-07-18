@@ -13,8 +13,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis>,
-        IHasSyntax<MethodDeclarationSyntax>,
-        IHasNode<MethodDeclarationSyntax>
+        IHasSyntax<MethodDeclarationSyntax>
     {
         private readonly AbstractMethodWithCodeAnalysis method;
 
@@ -80,11 +79,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return method.Visibility; }
             set { method.Visibility = value; }
-        }
-        
-        INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node
-        {
-            get { return method.Method.Node; }
         }
     }
 }

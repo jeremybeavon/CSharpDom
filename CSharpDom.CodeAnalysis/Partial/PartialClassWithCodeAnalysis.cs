@@ -213,6 +213,8 @@ namespace CSharpDom.CodeAnalysis.Partial
             }
         }
 
+        public IClassTypeWithCodeAnalysis Class => classType;
+
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
             get { return classType.InternalType.Node; }

@@ -12,8 +12,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             IAbstractPartialTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ClassAccessorWithCodeAnalysis>,
-        IHasSyntax<PropertyDeclarationSyntax>,
-        IHasNode<PropertyDeclarationSyntax>
+        IHasSyntax<PropertyDeclarationSyntax>
     {
         private readonly AbstractClassPropertyWithCodeAnalysis property;
 
@@ -81,11 +80,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { property.Visibility = value; }
         }
         
-        INode<PropertyDeclarationSyntax> IHasNode<PropertyDeclarationSyntax>.Node
-        {
-            get { return property.Property.Property.Node; }
-        }
-
         internal AbstractClassPropertyWithCodeAnalysis InternalProperty
         {
             get { return property; }

@@ -12,17 +12,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             INestedStaticPartialTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             StaticClassAccessorWithCodeAnalysis>,
-        IHasSyntax<PropertyDeclarationSyntax>,
-        IHasNode<PropertyDeclarationSyntax>
+        IHasSyntax<PropertyDeclarationSyntax>
     {
-        private readonly PropertyWithBodyWithCodeAnalysis property;
+        private readonly NestedStaticClassPropertyWithCodeAnalysis property;
         
-        internal NestedStaticPartialClassPropertyWithCodeAnalysis()
+        internal NestedStaticPartialClassPropertyWithCodeAnalysis(NestedStaticClassPropertyWithCodeAnalysis property)
         {
-            property = new PropertyWithBodyWithCodeAnalysis();
+            this.property = property;
         }
         
-        public PropertyWithBodyWithCodeAnalysis Property
+        public NestedStaticClassPropertyWithCodeAnalysis Property
         {
             get { return property; }
         }
@@ -35,14 +34,14 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return property.Property.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return property.Property.Property.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
         public override StaticClassAccessorWithCodeAnalysis GetAccessor
         {
-            get { return new StaticClassAccessorWithCodeAnalysis(property.GetAccessor); }
-            set { property.GetAccessor = value?.Accessor; }
+            get { return property.GetAccessor; }
+            set { property.GetAccessor = value; }
         }
 
         public override string Name
@@ -59,8 +58,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticClassAccessorWithCodeAnalysis SetAccessor
         {
-            get { return new StaticClassAccessorWithCodeAnalysis(property.SetAccessor); }
-            set { property.SetAccessor = value?.Accessor; }
+            get { return property.SetAccessor; }
+            set { property.SetAccessor = value; }
         }
 
         public PropertyDeclarationSyntax Syntax
@@ -71,17 +70,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToStaticClassMemberVisibilityModifier(); }
-            set
-            {
-                PropertyDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
-            }
-        }
-        
-        INode<PropertyDeclarationSyntax> IHasNode<PropertyDeclarationSyntax>.Node
-        {
-            get { return property.Property.Node; }
+            get { return property.Visibility; }
+            set { property.Visibility = value; }
         }
     }
 }

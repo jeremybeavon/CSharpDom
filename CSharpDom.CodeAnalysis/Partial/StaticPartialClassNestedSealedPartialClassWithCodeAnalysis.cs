@@ -82,8 +82,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return classType.DeclaringType; }
-            set { classType.DeclaringType = value; }
+            get { return null; }// classType.DeclaringType; }
+            set { }//classType.DeclaringType = value; }
         }
 
         public override ICollection<SealedPartialClassNestedDelegateWithCodeAnalysis> Delegates

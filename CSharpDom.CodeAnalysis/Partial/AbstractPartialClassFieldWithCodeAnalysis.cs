@@ -14,8 +14,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             IAbstractPartialTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>,
-        IHasNode<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>
     {
         private readonly ClassFieldWithCodeAnalysis field;
 
@@ -79,11 +78,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { field.Syntax = value; }
         }
         
-        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node
-        {
-            get { return field.Field.Node; }
-        }
-
         internal ClassFieldWithCodeAnalysis InternalField
         {
             get { return field; }

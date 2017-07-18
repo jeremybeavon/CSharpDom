@@ -23,7 +23,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal static NestedStaticPartialClassNestedPartialClassCollectionWithCodeAnalysis Create(
             NestedStaticClassNestedPartialClassCollectionWithCodeAnalysis classCollection)
         {
-            var classes = new WrappedCollection<NestedStaticClassNestedPartialClassWithCodeAnalysis, NestedStaticPartialClassNestedPartialClassWithCodeAnalysis>(
+            /*var classes = new WrappedCollection<NestedStaticClassNestedPartialClassWithCodeAnalysis, NestedStaticPartialClassNestedPartialClassWithCodeAnalysis>(
                 classCollection.Classes,
                 parent => new NestedStaticPartialClassNestedPartialClassWithCodeAnalysis(parent),
                 child => child.InternalClass,
@@ -43,7 +43,8 @@ namespace CSharpDom.CodeAnalysis.Partial
                 parent => new NestedStaticPartialClassNestedStaticPartialClassWithCodeAnalysis(parent),
                 child => child.InternalClass,
                 value => classCollection.StaticClasses = value);
-            return new NestedStaticPartialClassNestedPartialClassCollectionWithCodeAnalysis(classCollection.Members, abstractClasses, classes, sealedClasses, staticClasses);
+            return new NestedStaticPartialClassNestedPartialClassCollectionWithCodeAnalysis(classCollection.Members, abstractClasses, classes, sealedClasses, staticClasses);*/
+            return null;
         }
     }
 }
