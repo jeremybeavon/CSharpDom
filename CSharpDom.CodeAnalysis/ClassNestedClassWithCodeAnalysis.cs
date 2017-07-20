@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -32,11 +33,17 @@ namespace CSharpDom.CodeAnalysis
         IClassTypeWithCodeAnalysis,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly InternalNestedClassWithCodeAnalysis<ClassNestedClassWithCodeAnalysis> classType;
+        private readonly NestedClassWithCodeAnalysis classType;
 
-        internal ClassNestedClassWithCodeAnalysis()
+        public ClassNestedClassWithCodeAnalysis(string name)
+            : this()
         {
-            classType = new InternalNestedClassWithCodeAnalysis<ClassNestedClassWithCodeAnalysis>(this);
+            Syntax = SyntaxFactory.ClassDeclaration(name);
+        }
+
+        internal ClassNestedClassWithCodeAnalysis(NestedClassWithCodeAnalysis type = null)
+        {
+            classType = type ?? new InternalNestedClassWithCodeAnalysis<ClassNestedClassWithCodeAnalysis>(this);
         }
         
         public NestedClassWithCodeAnalysis Class
@@ -76,7 +83,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return classType.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -188,12 +195,7 @@ namespace CSharpDom.CodeAnalysis
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.Node; }
-        }
-
-        internal InternalNestedClassWithCodeAnalysis<ClassNestedClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
+            get { return classType.Node; }
         }
     }
 }

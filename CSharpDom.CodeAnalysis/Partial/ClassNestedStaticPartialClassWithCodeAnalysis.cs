@@ -3,6 +3,7 @@ using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -26,13 +27,19 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasNode<ClassDeclarationSyntax>
     {
         private readonly ClassNestedStaticClassWithCodeAnalysis classType;
-        private readonly InternalNestedStaticPartialClassWithCodeAnalysis<ClassNestedStaticClassWithCodeAnalysis> partialType;
+        private readonly InternalNestedStaticPartialClassWithCodeAnalysis<ClassNestedStaticPartialClassWithCodeAnalysis> partialType;
+
+        public ClassNestedStaticPartialClassWithCodeAnalysis(string name)
+            : this()
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.StaticKeyword, SyntaxKind.PartialKeyword);
+        }
 
         internal ClassNestedStaticPartialClassWithCodeAnalysis()
         {
-            classType = new ClassNestedStaticClassWithCodeAnalysis();
-            partialType = new InternalNestedStaticPartialClassWithCodeAnalysis<ClassNestedStaticClassWithCodeAnalysis>(
-                classType.InternalClass);
+            var type = new InternalNestedStaticClassWithCodeAnalysis<ClassNestedStaticPartialClassWithCodeAnalysis>(this);
+            classType = new ClassNestedStaticClassWithCodeAnalysis(type);
+            partialType = new InternalNestedStaticPartialClassWithCodeAnalysis<ClassNestedStaticPartialClassWithCodeAnalysis>(type);
         }
 
         public ClassNestedStaticClassWithCodeAnalysis Class

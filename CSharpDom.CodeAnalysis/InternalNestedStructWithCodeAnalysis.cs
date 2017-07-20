@@ -146,5 +146,9 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return structType; }
         }
+
+        internal override INode<StructDeclarationSyntax> Node => structType.Node;
+
+        internal override IMemberList Members => structType.Members;
     }
 }

@@ -39,9 +39,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             classType = @class;
         }
 
-        public ClassNestedAbstractClassWithCodeAnalysis Class
+        public ClassNestedAbstractPartialClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -76,7 +76,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.InternalClass.InternalClass.Type.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -180,11 +180,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
-        }
-
-        internal ClassNestedAbstractPartialClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
         }
     }
 }

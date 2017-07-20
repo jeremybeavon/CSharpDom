@@ -58,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccessorType.cs" />
+    <Compile Include="AccessorTypes.cs" />
     <Compile Include="BaseClasses\AbstractAbstractClass.cs" />
     <Compile Include="BaseClasses\AbstractClassType.cs" />
     <Compile Include="BaseClasses\AbstractDelegateType.cs" />

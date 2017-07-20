@@ -4,6 +4,7 @@ using CSharpDom.Common;
 using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -34,16 +35,19 @@ namespace CSharpDom.CodeAnalysis.Partial
         ISealedPartialTypeWithCodeAnalysis
     {
         private readonly ClassNestedSealedClassWithCodeAnalysis classType;
-        private readonly SealedPartialTypeWithCodeAnalysis<ClassNestedSealedClassWithCodeAnalysis> sealedType;
-        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
+        private readonly SealedPartialTypeWithCodeAnalysis<ClassNestedSealedPartialClassWithCodeAnalysis> sealedType;
+
+        public ClassNestedSealedPartialClassWithCodeAnalysis(string name)
+            : this()
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.SealedKeyword, SyntaxKind.PartialKeyword);
+        }
 
         internal ClassNestedSealedPartialClassWithCodeAnalysis()
         {
-            classType = new ClassNestedSealedClassWithCodeAnalysis();
-            sealedType = new SealedPartialTypeWithCodeAnalysis<ClassNestedSealedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
-            methods = new InternalSealedPartialClassMethodCollectionWithCodeAnalysis<ClassNestedSealedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass.Type);
+            var type = new InternalNestedSealedClassWithCodeAnalysis<ClassNestedSealedPartialClassWithCodeAnalysis>(this);
+            classType = new ClassNestedSealedClassWithCodeAnalysis(type);
+            sealedType = new SealedPartialTypeWithCodeAnalysis<ClassNestedSealedPartialClassWithCodeAnalysis>(type);
         }
         
         public ClassNestedSealedClassWithCodeAnalysis Class
@@ -83,7 +87,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.InternalClass.Type.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -143,8 +147,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.InternalClass.Type.Members.Replace(value); }
+            get { return sealedType.Methods; }
+            set { sealedType.Methods = value; }
         }
 
         public override string Name
@@ -195,7 +199,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.InternalClass.Type.Node; }
+            get { return classType.Class.Node; }
         }
     }
 }

@@ -17,13 +17,8 @@ namespace CSharpDom.CodeAnalysis
         private readonly SyntaxKind accessorType;
         private readonly AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> attributes;
         
-        internal AccessorWithCodeAnalysis(IndexerWithCodeAnalysis parent, SyntaxKind kind)
-            : this(kind)
-        {
-        }
-
-        internal AccessorWithCodeAnalysis(PropertyWithCodeAnalysis parent, SyntaxKind kind)
-            : this(kind)
+        internal AccessorWithCodeAnalysis(AccessorType type)
+            : this(type == AccessorType.Get ? SyntaxKind.GetKeyword : SyntaxKind.SetKeyword)
         {
         }
 

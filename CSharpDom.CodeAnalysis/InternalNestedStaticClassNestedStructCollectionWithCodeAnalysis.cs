@@ -24,10 +24,10 @@ namespace CSharpDom.CodeAnalysis
         {
             this.type = type;
             structs = new ClassMemberListWrapper<TStaticClass, NestedStaticClassNestedStructWithCodeAnalysis, StructDeclarationSyntax>(
-                type.Node,
+                type.InternalNode,
                 () => new NestedStaticClassNestedStructWithCodeAnalysis());
             partialStructs = new ClassMemberListWrapper<TStaticClass, NestedStaticClassNestedPartialStructWithCodeAnalysis, StructDeclarationSyntax>(
-                type.Node,
+                type.InternalNode,
                 () => new NestedStaticClassNestedPartialStructWithCodeAnalysis());
         }
 

@@ -31,14 +31,19 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedPartialStructWithCodeAnalysis structType;
 
+        public AbstractClassNestedPartialStructWithCodeAnalysis(string name)
+            : this(new ClassNestedPartialStructWithCodeAnalysis(name))
+        {
+        }
+
         internal AbstractClassNestedPartialStructWithCodeAnalysis(ClassNestedPartialStructWithCodeAnalysis @struct)
         {
-            structType = @struct ?? new ClassNestedPartialStructWithCodeAnalysis();
+            structType = @struct;
         }
         
-        public ClassNestedStructWithCodeAnalysis Struct
+        public ClassNestedPartialStructWithCodeAnalysis Struct
         {
-            get { return structType.Struct; }
+            get { return structType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -67,7 +72,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.Struct.InternalStruct.InternalStruct.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return structType.Struct.Struct.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -173,12 +178,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.Struct.InternalStruct.InternalStruct.Node; }
-        }
-
-        internal ClassNestedPartialStructWithCodeAnalysis InternalStruct
-        {
-            get { return structType; }
+            get { return structType.Struct.Struct.Node; }
         }
     }
 }

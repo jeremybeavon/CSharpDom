@@ -38,15 +38,13 @@ namespace CSharpDom.CodeAnalysis.Partial
                                         //IVisitable<IReflectionVisitor>
     {
         private readonly SealedClassWithCodeAnalysis classType;
-        private readonly SealedPartialTypeWithCodeAnalysis<SealedClassWithCodeAnalysis> sealedType;
-        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
+        private readonly SealedPartialTypeWithCodeAnalysis<SealedPartialClassWithCodeAnalysis> sealedType;
 
         internal SealedPartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            classType = new SealedClassWithCodeAnalysis(document);
-            sealedType = new SealedPartialTypeWithCodeAnalysis<SealedClassWithCodeAnalysis>(classType.InternalType);
-            methods = new InternalSealedPartialClassMethodCollectionWithCodeAnalysis<SealedClassWithCodeAnalysis>(
-                classType.InternalType.Type);
+            var type = new InternalSealedTypeWithCodeAnalysis<SealedPartialClassWithCodeAnalysis>(this);
+            classType = new SealedClassWithCodeAnalysis(document, type);
+            sealedType = new SealedPartialTypeWithCodeAnalysis<SealedPartialClassWithCodeAnalysis>(type);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -123,8 +121,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalType.Type.Members.Replace(value); }
+            get { return sealedType.Methods; }
+            set { sealedType.Methods = value; }
         }
 
         public override string Name
@@ -207,7 +205,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalType.Type.Node; }
+            get { return classType.Type.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

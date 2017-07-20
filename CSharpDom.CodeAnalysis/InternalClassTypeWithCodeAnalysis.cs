@@ -51,7 +51,7 @@ namespace CSharpDom.CodeAnalysis
             classes = new InternalClassNestedClassCollectionWithCodeAnalysis<TClass>(this);
             constructors = new ClassMemberListWrapper<TClass, ClassConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
-                () => new ClassConstructorWithCodeAnalysis(),
+                () => new ClassConstructorWithCodeAnalysis(true),
                 syntax => !syntax.IsStatic());
             conversionOperators = new ClassMemberListWrapper<TClass, ClassConversionOperatorWithCodeAnalysis, ConversionOperatorDeclarationSyntax>(
                 node,

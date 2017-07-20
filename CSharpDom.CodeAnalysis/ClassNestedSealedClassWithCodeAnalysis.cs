@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -32,11 +33,17 @@ namespace CSharpDom.CodeAnalysis
         ISealedTypeWithCodeAnalysis,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly InternalNestedSealedClassWithCodeAnalysis<ClassNestedSealedClassWithCodeAnalysis> classType;
+        private readonly NestedSealedClassWithCodeAnalysis classType;
 
-        internal ClassNestedSealedClassWithCodeAnalysis()
+        public ClassNestedSealedClassWithCodeAnalysis(string name)
+            : this()
         {
-            classType = new InternalNestedSealedClassWithCodeAnalysis<ClassNestedSealedClassWithCodeAnalysis>(this);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.SealedKeyword);
+        }
+
+        internal ClassNestedSealedClassWithCodeAnalysis(NestedSealedClassWithCodeAnalysis type = null)
+        {
+            classType = type ?? new InternalNestedSealedClassWithCodeAnalysis<ClassNestedSealedClassWithCodeAnalysis>(this);
         }
         
         public NestedSealedClassWithCodeAnalysis Class
@@ -76,7 +83,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.Type.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return classType.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -188,12 +195,7 @@ namespace CSharpDom.CodeAnalysis
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.Type.Node; }
-        }
-
-        internal InternalNestedSealedClassWithCodeAnalysis<ClassNestedSealedClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
+            get { return classType.Node; }
         }
     }
 }

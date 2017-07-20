@@ -251,6 +251,8 @@ namespace CSharpDom.CodeAnalysis
             get { return classType; }
         }
 
+        internal override INode<ClassDeclarationSyntax> Node => classType.Node;
+
         private void InitializeMembers()
         {
             members.Replace(nameof(events.Events), () => events.Events.Select(item => item.Syntax));

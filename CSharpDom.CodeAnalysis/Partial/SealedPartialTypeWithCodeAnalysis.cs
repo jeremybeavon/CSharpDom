@@ -51,11 +51,17 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly WrappedCollection<
             ClassNestedInterfaceWithCodeAnalysis,
             SealedPartialClassNestedInterfaceWithCodeAnalysis> interfaces;
+        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
         private readonly WrappedCollection<
             ClassOperatorOverloadWithCodeAnalysis,
             SealedPartialClassOperatorOverloadWithCodeAnalysis> operatorOverloads;
         private readonly SealedPartialClassPropertyCollectionWithCodeAnalysis properties;
         private readonly SealedPartialClassNestedStructCollectionWithCodeAnalysis structs;
+
+        internal SealedPartialTypeWithCodeAnalysis(InternalNestedSealedClassWithCodeAnalysis<TClass> classType)
+            : this(classType.InternalClass)
+        {
+        }
 
         internal SealedPartialTypeWithCodeAnalysis(InternalSealedTypeWithCodeAnalysis<TClass> classType)
         {
@@ -90,6 +96,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 parent => new SealedPartialClassNestedInterfaceWithCodeAnalysis(parent),
                 child => child.InternalInterface,
                 value => classType.Type.Interfaces = value);
+            methods = new InternalSealedPartialClassMethodCollectionWithCodeAnalysis<TClass>(classType.Type);
             operatorOverloads = new WrappedCollection<ClassOperatorOverloadWithCodeAnalysis, SealedPartialClassOperatorOverloadWithCodeAnalysis>(
                 classType.Type.OperatorOverloads,
                 parent => new SealedPartialClassOperatorOverloadWithCodeAnalysis(parent),
@@ -212,8 +219,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { throw new NotSupportedException(); }
-            set { throw new NotSupportedException(); }
+            get { return methods; }
+            set { classType.Type.Members.Replace(value); }
         }
 
         public override string Name

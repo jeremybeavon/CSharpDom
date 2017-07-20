@@ -76,7 +76,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.InternalClass.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -184,7 +184,7 @@ namespace CSharpDom.CodeAnalysis
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.InternalClass.Node; }
+            get { return classType.Class.Node; }
         }
 
         internal ClassNestedClassWithCodeAnalysis InternalClass

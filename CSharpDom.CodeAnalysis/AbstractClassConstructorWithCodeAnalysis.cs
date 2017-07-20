@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
 
         internal AbstractClassConstructorWithCodeAnalysis(ClassConstructorWithCodeAnalysis constructor = null)
         {
-            this.constructor = constructor ?? new ClassConstructorWithCodeAnalysis();
+            this.constructor = constructor ?? new ClassConstructorWithCodeAnalysis(true);
         }
         
         internal ClassConstructorWithCodeAnalysis Constructor

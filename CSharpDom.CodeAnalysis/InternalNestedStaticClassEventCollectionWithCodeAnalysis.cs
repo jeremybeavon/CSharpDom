@@ -25,10 +25,10 @@ namespace CSharpDom.CodeAnalysis
         {
             this.type = type;
             events = new ClassMemberListWrapper<TStaticClass, NestedStaticClassEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
-                type.Node,
+                type.InternalNode,
                 () => new NestedStaticClassEventWithCodeAnalysis());
             eventProperties = new ClassMemberListWrapper<TStaticClass, NestedStaticClassEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
-                type.Node,
+                type.InternalNode,
                 () => new NestedStaticClassEventPropertyWithCodeAnalysis());
         }
         

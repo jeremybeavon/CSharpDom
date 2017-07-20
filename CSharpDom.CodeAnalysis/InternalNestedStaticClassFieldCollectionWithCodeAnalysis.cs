@@ -24,11 +24,11 @@ namespace CSharpDom.CodeAnalysis
         {
             this.type = type;
             constants = new ClassMemberListWrapper<TStaticClass, NestedStaticClassConstantWithCodeAnalysis, FieldDeclarationSyntax>(
-                type.Node,
+                type.InternalNode,
                 () => new NestedStaticClassConstantWithCodeAnalysis(),
                 syntax => syntax.IsConstant());
             fields = new ClassMemberListWrapper<TStaticClass, NestedStaticClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
-                type.Node,
+                type.InternalNode,
                 () => new NestedStaticClassFieldWithCodeAnalysis(),
                 syntax => !syntax.IsConstant());
         }

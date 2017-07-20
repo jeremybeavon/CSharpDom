@@ -16,7 +16,15 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<PropertyDeclarationSyntax>
     {
         private readonly AbstractPropertyWithCodeAnalysis property;
-        
+
+        public AbstractPartialClassAbstractPropertyWithCodeAnalysis(
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            AccessorTypes accessors)
+            : this(new AbstractPropertyWithCodeAnalysis(type, name, accessors))
+        {
+        }
+
         internal AbstractPartialClassAbstractPropertyWithCodeAnalysis(AbstractPropertyWithCodeAnalysis property)
         {
             this.property = property;

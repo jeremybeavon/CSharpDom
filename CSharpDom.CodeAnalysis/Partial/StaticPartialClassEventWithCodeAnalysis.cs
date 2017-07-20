@@ -12,7 +12,8 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             StaticPartialClassWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
-        IHasSyntax<EventFieldDeclarationSyntax>
+        IHasSyntax<EventFieldDeclarationSyntax>,
+        IHasNode<EventFieldDeclarationSyntax>
     {
         private readonly EventWithCodeAnalysis @event;
 
@@ -71,5 +72,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
         }
+
+        INode<EventFieldDeclarationSyntax> IHasNode<EventFieldDeclarationSyntax>.Node => @event.Node;
     }
 }

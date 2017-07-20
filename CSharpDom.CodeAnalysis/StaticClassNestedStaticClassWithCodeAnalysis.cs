@@ -137,10 +137,5 @@ namespace CSharpDom.CodeAnalysis
         }
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Node;
-
-        internal InternalNestedStaticClassWithCodeAnalysis<StaticClassNestedStaticClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
-        }
     }
 }

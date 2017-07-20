@@ -35,7 +35,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             var abstractClasses = new WrappedCollection<ClassNestedAbstractPartialClassWithCodeAnalysis, AbstractPartialClassNestedAbstractPartialClassWithCodeAnalysis>(
                 classCollection.AbstractClasses,
                 parent => new AbstractPartialClassNestedAbstractPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.AbstractClasses = value);
             var sealedClasses = new WrappedCollection<ClassNestedSealedPartialClassWithCodeAnalysis, AbstractPartialClassNestedSealedPartialClassWithCodeAnalysis>(
                 classCollection.SealedClasses,

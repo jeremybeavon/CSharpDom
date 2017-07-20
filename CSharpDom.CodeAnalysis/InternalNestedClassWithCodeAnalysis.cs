@@ -157,5 +157,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType; }
         }
+
+        internal override INode<ClassDeclarationSyntax> Node => classType.Node;
     }
 }

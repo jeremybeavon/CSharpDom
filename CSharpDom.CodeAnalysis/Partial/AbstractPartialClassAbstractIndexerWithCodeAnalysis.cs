@@ -16,7 +16,15 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<IndexerDeclarationSyntax>
     {
         private readonly AbstractIndexerWithCodeAnalysis indexer;
-        
+
+        public AbstractPartialClassAbstractIndexerWithCodeAnalysis(
+            ITypeReferenceWithCodeAnalysis type,
+            IEnumerable<IndexerParameterWithCodeAnalysis> parameters,
+            AccessorTypes accessors)
+            : this(new AbstractIndexerWithCodeAnalysis(type, parameters, accessors))
+        {
+        }
+
         internal AbstractPartialClassAbstractIndexerWithCodeAnalysis(AbstractIndexerWithCodeAnalysis indexer)
         {
             this.indexer = indexer;

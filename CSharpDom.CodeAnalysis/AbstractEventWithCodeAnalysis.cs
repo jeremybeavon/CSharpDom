@@ -3,6 +3,8 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -15,6 +17,16 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<EventFieldDeclarationSyntax>
     {
         private readonly EventWithCodeAnalysis @event;
+
+        public AbstractEventWithCodeAnalysis(DelegateReferenceWithCodeAnalysis type, string name)
+            : this()
+        {
+            var variable = SyntaxFactory.VariableDeclarator(name);
+            Syntax = SyntaxFactory.EventFieldDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.AbstractKeyword)),
+                SyntaxFactory.VariableDeclaration(type.Syntax, SyntaxFactory.SingletonSeparatedList(variable)));
+        }
 
         internal AbstractEventWithCodeAnalysis()
         {

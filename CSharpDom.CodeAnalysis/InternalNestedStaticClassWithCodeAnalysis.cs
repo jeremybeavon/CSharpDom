@@ -202,10 +202,9 @@ namespace CSharpDom.CodeAnalysis
             set { throw new NotSupportedException(); }
         }
 
-        internal Node<TStaticClass, ClassDeclarationSyntax> Node
-        {
-            get { return node; }
-        }
+        internal override INode<ClassDeclarationSyntax> Node => node;
+
+        internal Node<TStaticClass, ClassDeclarationSyntax> InternalNode => node;
 
         internal IMemberList Members
         {

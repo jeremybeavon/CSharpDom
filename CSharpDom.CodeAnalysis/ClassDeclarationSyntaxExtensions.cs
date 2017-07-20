@@ -1,6 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
 //using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
@@ -55,6 +56,18 @@ namespace CSharpDom.CodeAnalysis
         public static bool IsStaticPartialClass(this ClassDeclarationSyntax syntax)
         {
             return syntax.Modifiers.All(SyntaxKind.StaticKeyword, SyntaxKind.PartialKeyword);
+        }
+
+        public static ClassDeclarationSyntax ToSyntax(string name, params SyntaxKind[] modifiers)
+        {
+            return SyntaxFactory.ClassDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                SyntaxFactory.TokenList(modifiers.Select(SyntaxFactory.Token)),
+                SyntaxFactory.Identifier(name),
+                null,
+                null,
+                default(SyntaxList<TypeParameterConstraintClauseSyntax>),
+                default(SyntaxList<MemberDeclarationSyntax>));
         }
     }
 }

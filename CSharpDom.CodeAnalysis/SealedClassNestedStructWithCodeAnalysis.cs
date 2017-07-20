@@ -68,7 +68,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.InternalStruct.InternalStruct.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return structType.Struct.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -170,7 +170,7 @@ namespace CSharpDom.CodeAnalysis
         
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.InternalStruct.InternalStruct.Node; }
+            get { return structType.Struct.Node; }
         }
 
         internal ClassNestedStructWithCodeAnalysis InternalStruct

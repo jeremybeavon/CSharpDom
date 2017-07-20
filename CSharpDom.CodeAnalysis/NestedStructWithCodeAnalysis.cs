@@ -27,5 +27,9 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<StructDeclarationSyntax>
     {
         public abstract StructDeclarationSyntax Syntax { get; set; }
+
+        internal abstract INode<StructDeclarationSyntax> Node { get; }
+
+        internal abstract IMemberList Members { get; }
     }
 }

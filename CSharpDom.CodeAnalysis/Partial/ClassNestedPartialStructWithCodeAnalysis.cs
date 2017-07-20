@@ -32,11 +32,18 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly ClassNestedStructWithCodeAnalysis structType;
         private readonly PartialStructMethodCollectionWithCodeAnalysis methods;
 
+        public ClassNestedPartialStructWithCodeAnalysis(string name)
+            : this()
+        {
+            Syntax = StructDeclarationSyntaxExtensions.ToPartialSyntax(name);
+        }
+
         internal ClassNestedPartialStructWithCodeAnalysis()
         {
-            structType = new ClassNestedStructWithCodeAnalysis();
-            methods = new InternalPartialStructMethodCollectionWithCodeAnalysis<ClassNestedStructWithCodeAnalysis>(
-                structType.InternalStruct.InternalStruct);
+            var type = new InternalNestedStructWithCodeAnalysis<ClassNestedPartialStructWithCodeAnalysis>(this);
+            structType = new ClassNestedStructWithCodeAnalysis(type);
+            methods = new InternalPartialStructMethodCollectionWithCodeAnalysis<ClassNestedPartialStructWithCodeAnalysis>(
+                type.InternalStruct);
         }
         
         public ClassNestedStructWithCodeAnalysis Struct
@@ -70,7 +77,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.InternalStruct.InternalStruct.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return structType.Struct.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -125,7 +132,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override PartialStructMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
-            set { structType.InternalStruct.InternalStruct.Members.Replace(value); }
+            set { structType.Struct.Members.Replace(value); }
         }
 
         public override string Name
@@ -176,7 +183,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.InternalStruct.InternalStruct.Node; }
+            get { return structType.Struct.Node; }
         }
     }
 }

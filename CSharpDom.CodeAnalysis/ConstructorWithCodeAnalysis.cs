@@ -26,7 +26,7 @@ namespace CSharpDom.CodeAnalysis
             ConstructorDeclarationSyntax,
             ConstructorParameterWithCodeAnalysis,
             ParameterSyntax> parameters;
-        
+
         internal ConstructorWithCodeAnalysis()
         {
             node = new Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(this);

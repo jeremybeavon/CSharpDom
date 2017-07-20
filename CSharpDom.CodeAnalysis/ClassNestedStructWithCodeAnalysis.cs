@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -30,11 +31,17 @@ namespace CSharpDom.CodeAnalysis
         IStructTypeWithCodeAnalysis,
         IHasNode<StructDeclarationSyntax>
     {
-        private readonly InternalNestedStructWithCodeAnalysis<ClassNestedStructWithCodeAnalysis> structType;
+        private readonly NestedStructWithCodeAnalysis structType;
 
-        internal ClassNestedStructWithCodeAnalysis()
+        public ClassNestedStructWithCodeAnalysis(string name)
+            : this()
         {
-            structType = new InternalNestedStructWithCodeAnalysis<ClassNestedStructWithCodeAnalysis>(this);
+            Syntax = SyntaxFactory.StructDeclaration(name);
+        }
+
+        internal ClassNestedStructWithCodeAnalysis(NestedStructWithCodeAnalysis type = null)
+        {
+            structType = type ?? new InternalNestedStructWithCodeAnalysis<ClassNestedStructWithCodeAnalysis>(this);
         }
         
         public NestedStructWithCodeAnalysis Struct
@@ -68,7 +75,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.InternalStruct.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return structType.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -174,12 +181,7 @@ namespace CSharpDom.CodeAnalysis
         
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.InternalStruct.Node; }
-        }
-
-        internal InternalNestedStructWithCodeAnalysis<ClassNestedStructWithCodeAnalysis> InternalStruct
-        {
-            get { return structType; }
+            get { return structType.Node; }
         }
     }
 }

@@ -20,15 +20,15 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             this.classType = classType;
             methods = new ClassMethodListWrapper<TStaticClass, NestedStaticClassMethodWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new NestedStaticClassMethodWithCodeAnalysis(),
                 syntax => !syntax.IsPartial());
             partialMethodDefinitions = new ClassMethodListWrapper<TStaticClass, PartialMethodDefinitionWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new PartialMethodDefinitionWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body == null);
             partialMethodImplementations = new ClassMethodListWrapper<TStaticClass, PartialMethodImplementationWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new PartialMethodImplementationWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body != null);
         }

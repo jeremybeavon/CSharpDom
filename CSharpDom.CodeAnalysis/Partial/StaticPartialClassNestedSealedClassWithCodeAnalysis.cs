@@ -29,7 +29,8 @@ namespace CSharpDom.CodeAnalysis.Partial
             SealedClassStaticConstructorWithCodeAnalysis,
             SealedClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        ISealedTypeWithCodeAnalysis
+        ISealedTypeWithCodeAnalysis,
+        IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalNestedSealedClassWithCodeAnalysis<StaticPartialClassNestedSealedClassWithCodeAnalysis> classType;
 
@@ -189,5 +190,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType; }
         }
+
+        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Node;
     }
 }

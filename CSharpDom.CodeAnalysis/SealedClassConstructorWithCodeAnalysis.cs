@@ -18,9 +18,9 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassConstructorWithCodeAnalysis constructor;
 
-        internal SealedClassConstructorWithCodeAnalysis(ClassConstructorWithCodeAnalysis constructor = null)
+        internal SealedClassConstructorWithCodeAnalysis(ClassConstructorWithCodeAnalysis constructor)
         {
-            this.constructor = constructor ?? new ClassConstructorWithCodeAnalysis();
+            this.constructor = constructor;
         }
         
         internal ClassConstructorWithCodeAnalysis Constructor

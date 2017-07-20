@@ -643,7 +643,6 @@
     <Compile Include="StaticClassMethodWithCodeAnalysis.cs" />
     <Compile Include="StaticClassPropertyWithCodeAnalysis.cs" />
     <Compile Include="StaticConstructorWithCodeAnalysis.cs" />
-    <Compile Include="StaticTypeWithCodeAnalysis.cs" />
     <Compile Include="StructAccessorWithCodeAnalysis.cs" />
     <Compile Include="StructConstantWithCodeAnalysis.cs" />
     <Compile Include="StructConstructorWithCodeAnalysis.cs" />

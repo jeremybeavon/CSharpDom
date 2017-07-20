@@ -13,6 +13,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private AccessorWithCodeAnalysis accessor;
 
+        public AbstractAccessorWithCodeAnalysis(AccessorType type)
+            : this(new AccessorWithCodeAnalysis(type))
+        {
+        }
+
         internal AbstractAccessorWithCodeAnalysis(AccessorWithCodeAnalysis accessor)
         {
             this.accessor = accessor;

@@ -17,8 +17,8 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ConstructorDeclarationSyntax>
     {
         private readonly ConstructorWithCodeAnalysis constructor;
-
-        internal ClassConstructorWithCodeAnalysis()
+        
+        internal ClassConstructorWithCodeAnalysis(bool @private)
         {
             constructor = new ConstructorWithCodeAnalysis();
         }

@@ -15,6 +15,11 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly AbstractEventWithCodeAnalysis @event;
 
+        public AbstractPartialClassAbstractEventWithCodeAnalysis(DelegateReferenceWithCodeAnalysis type, string name)
+            : this(new AbstractEventWithCodeAnalysis(type, name))
+        {
+        }
+
         internal AbstractPartialClassAbstractEventWithCodeAnalysis(AbstractEventWithCodeAnalysis @event)
         {
             this.@event = @event;

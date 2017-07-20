@@ -51,11 +51,17 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly WrappedCollection<
             ClassNestedInterfaceWithCodeAnalysis,
             PartialClassNestedInterfaceWithCodeAnalysis> interfaces;
+        private readonly PartialClassMethodCollectionWithCodeAnalysis methods;
         private readonly WrappedCollection<
             ClassOperatorOverloadWithCodeAnalysis,
             PartialClassOperatorOverloadWithCodeAnalysis> operatorOverloads;
         private readonly PartialClassPropertyCollectionWithCodeAnalysis properties;
         private readonly PartialClassNestedStructCollectionWithCodeAnalysis structs;
+
+        internal PartialClassTypeWithCodeAnalysis(InternalNestedClassWithCodeAnalysis<TClass> classType)
+            : this(classType.InternalClass)
+        {
+        }
 
         internal PartialClassTypeWithCodeAnalysis(InternalClassTypeWithCodeAnalysis<TClass> classType)
         {
@@ -95,6 +101,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 parent => new PartialClassOperatorOverloadWithCodeAnalysis(parent),
                 child => child.InternalOperatorOverload,
                 value => classType.OperatorOverloads = value);
+            methods = new InternalPartialClassMethodCollectionWithCodeAnalysis<TClass>(classType);
             properties = new PartialClassPropertyCollectionWithCodeAnalysis(classType.Properties);
             structs = new PartialClassNestedStructCollectionWithCodeAnalysis(classType.Structs);
         }
@@ -214,8 +221,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override PartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { throw new NotSupportedException(); }
-            set { throw new NotSupportedException(); }
+            get { return methods; }
+            set { classType.Members.Replace(value); }
         }
 
         public override string Name

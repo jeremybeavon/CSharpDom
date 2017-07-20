@@ -17,6 +17,14 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly AbstractMethodWithCodeAnalysis method;
 
+        public AbstractPartialClassAbstractMethodWithCodeAnalysis(
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<MethodParameterWithCodeAnalysis> parameters)
+            : this(new AbstractMethodWithCodeAnalysis(returnType, name, parameters))
+        {
+        }
+
         internal AbstractPartialClassAbstractMethodWithCodeAnalysis(AbstractMethodWithCodeAnalysis method)
         {
             this.method = method;

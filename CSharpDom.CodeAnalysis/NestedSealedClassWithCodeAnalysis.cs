@@ -33,5 +33,7 @@ namespace CSharpDom.CodeAnalysis
         public abstract SealedTypeWithCodeAnalysis Class { get; }
 
         public abstract ClassDeclarationSyntax Syntax { get; set; }
+
+        internal abstract INode<ClassDeclarationSyntax> Node { get; }
     }
 }

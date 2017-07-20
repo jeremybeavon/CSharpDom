@@ -19,7 +19,7 @@ namespace CSharpDom.CodeAnalysis
         {
             this.type = type;
             methods = new ClassMemberListWrapper<TStaticClass, NestedStaticClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
-                type.Node,
+                type.InternalNode,
                 () => new NestedStaticClassMethodWithCodeAnalysis());
         }
         

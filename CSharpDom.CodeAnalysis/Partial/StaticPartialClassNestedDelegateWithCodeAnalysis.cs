@@ -13,7 +13,8 @@ namespace CSharpDom.CodeAnalysis.Partial
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             DelegateParameterWithCodeAnalysis>,
-        IHasSyntax<DelegateDeclarationSyntax>
+        IHasSyntax<DelegateDeclarationSyntax>,
+        IHasNode<DelegateDeclarationSyntax>
     {
         private readonly NestedDelegateWithCodeAnalysis nestedDelegate;
 
@@ -78,5 +79,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
+
+        INode<DelegateDeclarationSyntax> IHasNode<DelegateDeclarationSyntax>.Node => nestedDelegate.Delegate.Node;
     }
 }

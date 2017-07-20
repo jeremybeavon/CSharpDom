@@ -29,9 +29,10 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         internal StaticClassNestedStaticPartialClassWithCodeAnalysis()
         {
+            var type = new InternalNestedStaticClassWithCodeAnalysis<StaticClassNestedStaticPartialClassWithCodeAnalysis>(this);
             classType = new StaticClassNestedStaticClassWithCodeAnalysis();
             methods = new InternalNestedStaticPartialClassMethodCollectionWithCodeAnalysis<StaticClassNestedStaticClassWithCodeAnalysis>(
-                classType.InternalClass);
+                classType);
         }
 
         public StaticClassNestedStaticClassWithCodeAnalysis Class
