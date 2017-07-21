@@ -31,6 +31,13 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedStructWithCodeAnalysis structType;
 
+        public AbstractPartialClassNestedStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedStructWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal AbstractPartialClassNestedStructWithCodeAnalysis(ClassNestedStructWithCodeAnalysis @struct)
         {
             structType = @struct;

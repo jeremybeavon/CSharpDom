@@ -22,6 +22,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly IndexerWithCodeAnalysis indexer;
 
         public AbstractIndexerWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
             ITypeReferenceWithCodeAnalysis type,
             IEnumerable<IndexerParameterWithCodeAnalysis> parameters,
             AccessorTypes accessors)
@@ -41,7 +42,7 @@ namespace CSharpDom.CodeAnalysis
 
             Syntax = SyntaxFactory.IndexerDeclaration(
                 default(SyntaxList<AttributeListSyntax>),
-                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.AbstractKeyword)),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).Add(SyntaxKind.AbstractKeyword),
                 type.Syntax,
                 null,
                 SyntaxFactory.BracketedParameterList(SyntaxFactory.SeparatedList(parameterSyntax)),

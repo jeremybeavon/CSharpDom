@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -20,6 +22,21 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<InterfaceDeclarationSyntax>
     {
         private readonly NestedInterfaceWithCodeAnalysis type;
+
+        public ClassNestedInterfaceWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = SyntaxFactory.InterfaceDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                SyntaxFactory.Identifier(name),
+                null,
+                null,
+                default(SyntaxList<TypeParameterConstraintClauseSyntax>),
+                default(SyntaxList<MemberDeclarationSyntax>));
+        }
 
         internal ClassNestedInterfaceWithCodeAnalysis()
         {

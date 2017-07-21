@@ -4,6 +4,8 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -17,6 +19,28 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<EventDeclarationSyntax>
     {
         private readonly EventPropertyWithCodeAnalysis @event;
+
+        public ClassEventPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis addAccessor,
+            MethodBodyWithCodeAnalysis removeAccessor)
+            : this()
+        {
+            IEnumerable<AccessorDeclarationSyntax> accessors = new AccessorDeclarationSyntax[]
+            {
+                SyntaxFactory.AccessorDeclaration(SyntaxKind.AddKeyword, addAccessor.Syntax),
+                SyntaxFactory.AccessorDeclaration(SyntaxKind.RemoveKeyword, removeAccessor.Syntax)
+            };
+            Syntax = SyntaxFactory.EventDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                type.Syntax,
+                null,
+                SyntaxFactory.Identifier(name),
+                SyntaxFactory.AccessorList(SyntaxFactory.List(accessors)));
+        }
 
         internal ClassEventPropertyWithCodeAnalysis()
         {

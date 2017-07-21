@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -15,6 +17,19 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<EnumDeclarationSyntax>
     {
         private readonly NestedEnumWithCodeAnalysis nestedEnum;
+
+        public ClassNestedEnumWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = SyntaxFactory.EnumDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                SyntaxFactory.Identifier(name),
+                null,
+                default(SeparatedSyntaxList<EnumMemberDeclarationSyntax>));
+        }
 
         internal ClassNestedEnumWithCodeAnalysis()
         {

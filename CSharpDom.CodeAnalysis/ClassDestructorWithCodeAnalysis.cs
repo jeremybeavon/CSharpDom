@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -13,7 +15,20 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly DestructorWithCodeAnalysis destructor;
-        
+
+        public ClassDestructorWithCodeAnalysis(
+            string name,
+            MethodBodyWithCodeAnalysis body)
+            : this()
+        {
+            Syntax = SyntaxFactory.DestructorDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList),
+                SyntaxFactory.Identifier(name),
+                SyntaxFactory.ParameterList(),
+                body.Syntax);
+        }
+
         internal ClassDestructorWithCodeAnalysis()
         {
             destructor = new DestructorWithCodeAnalysis();

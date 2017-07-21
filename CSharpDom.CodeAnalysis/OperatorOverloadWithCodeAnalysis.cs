@@ -19,7 +19,7 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<OperatorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private static readonly Map<SyntaxKind, OperatorOverloadType> operatorMap =
+        internal static readonly Map<SyntaxKind, OperatorOverloadType> OperatorMap =
             new Map<SyntaxKind, OperatorOverloadType>()
             {
                 { SyntaxKind.AmpersandToken, OperatorOverloadType.And },
@@ -100,8 +100,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override OperatorOverloadType OperatorType
         {
-            get { return operatorMap[Syntax.OperatorToken.Kind()]; }
-            set { Syntax = Syntax.WithOperatorToken(SyntaxFactory.Token(operatorMap[value])); }
+            get { return OperatorMap[Syntax.OperatorToken.Kind()]; }
+            set { Syntax = Syntax.WithOperatorToken(SyntaxFactory.Token(OperatorMap[value])); }
         }
 
         public override IList<OperatorParameterWithCodeAnalysis> Parameters

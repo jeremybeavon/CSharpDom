@@ -18,6 +18,16 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassIndexerWithCodeAnalysis indexer;
 
+        public AbstractClassIndexerWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            IEnumerable<IndexerParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+        {
+            indexer = new ClassIndexerWithCodeAnalysis(visibility, type, parameters, getAccessor, setAccessor);
+        }
+
         internal AbstractClassIndexerWithCodeAnalysis()
         {
             indexer = new ClassIndexerWithCodeAnalysis();

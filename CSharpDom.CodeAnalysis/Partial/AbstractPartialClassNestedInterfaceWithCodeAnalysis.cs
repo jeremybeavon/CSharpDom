@@ -20,6 +20,13 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedInterfaceWithCodeAnalysis type;
 
+        public AbstractPartialClassNestedInterfaceWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedInterfaceWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal AbstractPartialClassNestedInterfaceWithCodeAnalysis(ClassNestedInterfaceWithCodeAnalysis @interface)
         {
             type = @interface;

@@ -18,10 +18,11 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly AbstractIndexerWithCodeAnalysis indexer;
 
         public AbstractPartialClassAbstractIndexerWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
             ITypeReferenceWithCodeAnalysis type,
             IEnumerable<IndexerParameterWithCodeAnalysis> parameters,
             AccessorTypes accessors)
-            : this(new AbstractIndexerWithCodeAnalysis(type, parameters, accessors))
+            : this(new AbstractIndexerWithCodeAnalysis(visibility, type, parameters, accessors))
         {
         }
 

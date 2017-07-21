@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -20,7 +21,25 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly OperatorOverloadWithCodeAnalysis operatorOverload;
-        
+
+        public ClassOperatorOverloadWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorOverloadType operatorType,
+            IEnumerable<OperatorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this()
+        {
+            Syntax = SyntaxFactory.OperatorDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).Add(SyntaxKind.StaticKeyword),
+                returnType.Syntax,
+                SyntaxFactory.Token(OperatorOverloadWithCodeAnalysis.OperatorMap[operatorType]),
+                SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters.Select(parameter => parameter.Syntax))),
+                body.Syntax,
+                null);
+        }
+
         internal ClassOperatorOverloadWithCodeAnalysis()
         {
             operatorOverload = new OperatorOverloadWithCodeAnalysis();

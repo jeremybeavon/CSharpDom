@@ -15,6 +15,13 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedEnumWithCodeAnalysis nestedEnum;
 
+        public AbstractPartialClassNestedEnumWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedEnumWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal AbstractPartialClassNestedEnumWithCodeAnalysis(ClassNestedEnumWithCodeAnalysis @enum)
         {
             nestedEnum = @enum;

@@ -4,6 +4,7 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -35,10 +36,12 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly NestedAbstractClassWithCodeAnalysis classType;
 
-        public ClassNestedAbstractClassWithCodeAnalysis(string name)
+        public ClassNestedAbstractClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
             : this()
         {
-            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.AbstractKeyword);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.AbstractKeyword);
         }
 
         internal ClassNestedAbstractClassWithCodeAnalysis(NestedAbstractClassWithCodeAnalysis type = null)

@@ -35,8 +35,10 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedSealedPartialClassWithCodeAnalysis classType;
 
-        public AbstractClassNestedSealedPartialClassWithCodeAnalysis(string name)
-            : this(new ClassNestedSealedPartialClassWithCodeAnalysis(name))
+        public AbstractClassNestedSealedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedSealedPartialClassWithCodeAnalysis(visibility, name))
         {
         }
 
@@ -185,12 +187,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return classType.Visibility; }
+            set { classType.Visibility = value; }
         }
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node

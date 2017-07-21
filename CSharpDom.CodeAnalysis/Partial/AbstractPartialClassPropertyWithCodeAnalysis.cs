@@ -16,6 +16,16 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly AbstractClassPropertyWithCodeAnalysis property;
 
+        public AbstractPartialClassPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this(new AbstractClassPropertyWithCodeAnalysis(visibility, type, name, getAccessor, setAccessor))
+        {
+        }
+
         internal AbstractPartialClassPropertyWithCodeAnalysis(AbstractClassPropertyWithCodeAnalysis property)
         {
             this.property = property;

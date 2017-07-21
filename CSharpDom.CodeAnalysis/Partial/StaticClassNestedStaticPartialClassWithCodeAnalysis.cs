@@ -3,6 +3,7 @@ using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -27,12 +28,23 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly StaticClassNestedStaticClassWithCodeAnalysis classType;
         private readonly NestedStaticPartialClassMethodCollectionWithCodeAnalysis methods;
 
+        public StaticClassNestedStaticPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
+                name,
+                visibility,
+                SyntaxKind.StaticKeyword,
+                SyntaxKind.PartialKeyword);
+        }
+
         internal StaticClassNestedStaticPartialClassWithCodeAnalysis()
         {
             var type = new InternalNestedStaticClassWithCodeAnalysis<StaticClassNestedStaticPartialClassWithCodeAnalysis>(this);
             classType = new StaticClassNestedStaticClassWithCodeAnalysis();
-            methods = new InternalNestedStaticPartialClassMethodCollectionWithCodeAnalysis<StaticClassNestedStaticClassWithCodeAnalysis>(
-                classType);
+            methods = new InternalNestedStaticPartialClassMethodCollectionWithCodeAnalysis<StaticClassNestedStaticPartialClassWithCodeAnalysis>(
+                type);
         }
 
         public StaticClassNestedStaticClassWithCodeAnalysis Class
@@ -97,7 +109,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override NestedStaticPartialClassMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
-            set { classType.InternalClass.Members.Replace(value); }
+            set { classType.Class.Members.Replace(value); }
         }
 
         public override string Name
@@ -140,6 +152,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             }
         }
 
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.InternalClass.Node;
+        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Class.Node;
     }
 }

@@ -19,7 +19,17 @@ namespace CSharpDom.CodeAnalysis.Partial
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassConversionOperatorWithCodeAnalysis conversionOperator;
-        
+
+        public AbstractPartialClassConversionOperatorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ConversionOperatorType operatorType,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorParameterWithCodeAnalysis parameter,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassConversionOperatorWithCodeAnalysis(visibility, operatorType, returnType, parameter, body))
+        {
+        }
+
         internal AbstractPartialClassConversionOperatorWithCodeAnalysis(ClassConversionOperatorWithCodeAnalysis conversionOperator)
         {
             this.conversionOperator = conversionOperator;

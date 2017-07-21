@@ -17,6 +17,15 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedDelegateWithCodeAnalysis nestedDelegate;
 
+        public AbstractPartialClassNestedDelegateWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<DelegateParameterWithCodeAnalysis> parameters)
+            : this(new ClassNestedDelegateWithCodeAnalysis(visibility, returnType, name, parameters))
+        {
+        }
+
         internal AbstractPartialClassNestedDelegateWithCodeAnalysis(ClassNestedDelegateWithCodeAnalysis @delegate)
         {
             nestedDelegate = @delegate;

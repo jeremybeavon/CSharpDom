@@ -26,13 +26,14 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasNode<ClassDeclarationSyntax>
     {
         private readonly StaticClassNestedStaticClassWithCodeAnalysis classType;
-        private readonly InternalNestedStaticPartialClassWithCodeAnalysis<StaticClassNestedStaticClassWithCodeAnalysis> partialType;
+        private readonly InternalNestedStaticPartialClassWithCodeAnalysis<StaticPartialClassNestedStaticPartialClassWithCodeAnalysis> partialType;
 
         internal StaticPartialClassNestedStaticPartialClassWithCodeAnalysis()
         {
-            classType = new StaticClassNestedStaticClassWithCodeAnalysis();
-            partialType = new InternalNestedStaticPartialClassWithCodeAnalysis<StaticClassNestedStaticClassWithCodeAnalysis>(
-                classType.InternalClass);
+            var type = new InternalNestedStaticClassWithCodeAnalysis<StaticPartialClassNestedStaticPartialClassWithCodeAnalysis>(this);
+            classType = new StaticClassNestedStaticClassWithCodeAnalysis(type);
+            partialType = new InternalNestedStaticPartialClassWithCodeAnalysis<StaticPartialClassNestedStaticPartialClassWithCodeAnalysis>(
+                type);
         }
 
         public StaticClassNestedStaticClassWithCodeAnalysis Class
@@ -54,7 +55,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { partialType.DeclaringType = value; }
         }
 

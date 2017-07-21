@@ -16,6 +16,23 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassConstantWithCodeAnalysis constant;
 
+        public AbstractPartialClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            IExpressionWithCodeAnalysis value)
+            : this(new ClassConstantWithCodeAnalysis(visibility, type, name, value))
+        {
+        }
+
+        public AbstractPartialClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params ConstantWithCodeAnalysis[] constants)
+            : this(new ClassConstantWithCodeAnalysis(visibility, type, constants))
+        {
+        }
+
         internal AbstractPartialClassConstantWithCodeAnalysis(ClassConstantWithCodeAnalysis constant)
         {
             this.constant = constant;

@@ -18,13 +18,16 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly EventWithCodeAnalysis @event;
 
-        public AbstractEventWithCodeAnalysis(DelegateReferenceWithCodeAnalysis type, string name)
+        public AbstractEventWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name)
             : this()
         {
             var variable = SyntaxFactory.VariableDeclarator(name);
             Syntax = SyntaxFactory.EventFieldDeclaration(
                 default(SyntaxList<AttributeListSyntax>),
-                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.AbstractKeyword)),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).Add(SyntaxKind.AbstractKeyword),
                 SyntaxFactory.VariableDeclaration(type.Syntax, SyntaxFactory.SingletonSeparatedList(variable)));
         }
 

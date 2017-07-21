@@ -12,6 +12,13 @@ namespace CSharpDom.CodeAnalysis.Partial
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassDestructorWithCodeAnalysis destructor;
+
+        public AbstractPartialClassDestructorWithCodeAnalysis(
+            string name,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassDestructorWithCodeAnalysis(name, body))
+        {
+        }
         
         internal AbstractPartialClassDestructorWithCodeAnalysis(ClassDestructorWithCodeAnalysis destructor)
         {

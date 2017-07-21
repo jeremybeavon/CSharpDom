@@ -5,6 +5,9 @@ using CSharpDom.Editable;
 using System.Reflection;
 using CSharpDom.NotSupported;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -18,6 +21,18 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<FieldDeclarationSyntax>
     {
         private readonly FieldGroupWithCodeAnalysis field;
+
+        public ClassFieldWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this()
+        {
+            Syntax = SyntaxFactory.FieldDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                SyntaxFactory.VariableDeclaration(type.Syntax, SyntaxFactory.SeparatedList(names.Select(SyntaxFactory.VariableDeclarator))));
+        }
 
         internal ClassFieldWithCodeAnalysis()
         {

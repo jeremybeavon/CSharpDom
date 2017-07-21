@@ -14,6 +14,12 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<FieldWithCodeAnalysis, VariableDeclaratorSyntax> node;
         private readonly CachedExpressionNode<FieldWithCodeAnalysis, VariableDeclaratorSyntax> initialValue;
 
+        public FieldWithCodeAnalysis(string name)
+            : this()
+        {
+            Syntax = SyntaxFactory.VariableDeclarator(name);
+        }
+
         internal FieldWithCodeAnalysis()
         {
             node = new Node<FieldWithCodeAnalysis, VariableDeclaratorSyntax>(this);

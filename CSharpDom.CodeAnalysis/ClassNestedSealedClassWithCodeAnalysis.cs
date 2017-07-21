@@ -35,10 +35,12 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly NestedSealedClassWithCodeAnalysis classType;
 
-        public ClassNestedSealedClassWithCodeAnalysis(string name)
+        public ClassNestedSealedClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
             : this()
         {
-            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.SealedKeyword);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.SealedKeyword);
         }
 
         internal ClassNestedSealedClassWithCodeAnalysis(NestedSealedClassWithCodeAnalysis type = null)

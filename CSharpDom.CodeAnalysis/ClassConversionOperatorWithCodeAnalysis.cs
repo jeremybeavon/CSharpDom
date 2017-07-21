@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -20,7 +21,25 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly ConversionOperatorWithCodeAnalysis conversionOperator;
-        
+
+        public ClassConversionOperatorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ConversionOperatorType operatorType,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorParameterWithCodeAnalysis parameter,
+            MethodBodyWithCodeAnalysis body)
+            : this()
+        {
+            Syntax = SyntaxFactory.ConversionOperatorDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).Add(SyntaxKind.StaticKeyword),
+                SyntaxFactory.Token(operatorType == ConversionOperatorType.Implicit ? SyntaxKind.ImplicitKeyword : SyntaxKind.ExplicitKeyword),
+                returnType.Syntax,
+                SyntaxFactory.ParameterList(SyntaxFactory.SingletonSeparatedList(parameter.Syntax)),
+                body.Syntax,
+                null);
+        }
+
         internal ClassConversionOperatorWithCodeAnalysis()
         {
             conversionOperator = new ConversionOperatorWithCodeAnalysis();

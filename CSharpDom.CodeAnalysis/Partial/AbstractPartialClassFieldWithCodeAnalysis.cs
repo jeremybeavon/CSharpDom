@@ -18,6 +18,14 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassFieldWithCodeAnalysis field;
 
+        public AbstractPartialClassFieldWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this(new ClassFieldWithCodeAnalysis(visibility, type, names))
+        {
+        }
+
         internal AbstractPartialClassFieldWithCodeAnalysis(ClassFieldWithCodeAnalysis field)
         {
             this.field = field;

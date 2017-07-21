@@ -34,8 +34,10 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedAbstractPartialClassWithCodeAnalysis classType;
 
-        public AbstractClassNestedAbstractPartialClassWithCodeAnalysis(string name)
-            : this(new ClassNestedAbstractPartialClassWithCodeAnalysis(name))
+        public AbstractClassNestedAbstractPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedAbstractPartialClassWithCodeAnalysis(visibility, name))
         {
         }
 

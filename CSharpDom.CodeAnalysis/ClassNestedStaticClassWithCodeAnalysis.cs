@@ -27,10 +27,10 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly NestedStaticClassWithCodeAnalysis classType;
 
-        public ClassNestedStaticClassWithCodeAnalysis(string name)
+        public ClassNestedStaticClassWithCodeAnalysis(ClassMemberVisibilityModifier visibility, string name)
             : this()
         {
-            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.StaticKeyword);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.StaticKeyword);
         }
 
         internal ClassNestedStaticClassWithCodeAnalysis(NestedStaticClassWithCodeAnalysis type = null)

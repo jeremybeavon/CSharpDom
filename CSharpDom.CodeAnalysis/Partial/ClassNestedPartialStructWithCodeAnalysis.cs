@@ -32,10 +32,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly ClassNestedStructWithCodeAnalysis structType;
         private readonly PartialStructMethodCollectionWithCodeAnalysis methods;
 
-        public ClassNestedPartialStructWithCodeAnalysis(string name)
+        public ClassNestedPartialStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
             : this()
         {
-            Syntax = StructDeclarationSyntaxExtensions.ToPartialSyntax(name);
+            Syntax = StructDeclarationSyntaxExtensions.ToPartialSyntax(name, visibility);
         }
 
         internal ClassNestedPartialStructWithCodeAnalysis()

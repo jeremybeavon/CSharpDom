@@ -17,9 +17,17 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassEventWithCodeAnalysis @event;
 
+        public AbstractClassEventWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name)
+        {
+            @event = new ClassEventWithCodeAnalysis(visibility, type, name);
+        }
+
         internal AbstractClassEventWithCodeAnalysis()
         {
-            this.@event = new ClassEventWithCodeAnalysis();
+            @event = new ClassEventWithCodeAnalysis();
         }
 
         public EventWithCodeAnalysis Event

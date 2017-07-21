@@ -29,10 +29,14 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly ClassNestedStaticClassWithCodeAnalysis classType;
         private readonly InternalNestedStaticPartialClassWithCodeAnalysis<ClassNestedStaticPartialClassWithCodeAnalysis> partialType;
 
-        public ClassNestedStaticPartialClassWithCodeAnalysis(string name)
+        public ClassNestedStaticPartialClassWithCodeAnalysis(ClassMemberVisibilityModifier visibility, string name)
             : this()
         {
-            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.StaticKeyword, SyntaxKind.PartialKeyword);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
+                name,
+                visibility,
+                SyntaxKind.StaticKeyword,
+                SyntaxKind.PartialKeyword);
         }
 
         internal ClassNestedStaticPartialClassWithCodeAnalysis()
@@ -139,14 +143,10 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return classType.Visibility; }
+            set { classType.Visibility = value; }
         }
 
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => throw new NotImplementedException();
+        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Class.Node;
     }
 }

@@ -22,6 +22,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly MethodWithCodeAnalysis method;
 
         public AbstractMethodWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
             ITypeReferenceWithCodeAnalysis returnType,
             string name,
             IEnumerable<MethodParameterWithCodeAnalysis> parameters)
@@ -29,7 +30,7 @@ namespace CSharpDom.CodeAnalysis
         {
             Syntax = SyntaxFactory.MethodDeclaration(
                 default(SyntaxList<AttributeListSyntax>),
-                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.AbstractKeyword)),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).Add(SyntaxKind.AbstractKeyword),
                 returnType.Syntax,
                 null,
                 SyntaxFactory.Identifier(name),

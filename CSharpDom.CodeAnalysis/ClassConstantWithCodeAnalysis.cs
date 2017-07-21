@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -16,6 +19,28 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<FieldDeclarationSyntax>
     {
         private readonly ConstantGroupWithCodeAnalysis constant;
+
+        public ClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            IExpressionWithCodeAnalysis value)
+            : this(visibility, type, new ConstantWithCodeAnalysis(name, value))
+        {
+        }
+
+        public ClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params ConstantWithCodeAnalysis[] constants)
+            : this()
+        {
+            IEnumerable<VariableDeclaratorSyntax> syntax = constants.Select(constant => constant.Syntax);
+            Syntax = SyntaxFactory.FieldDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                SyntaxFactory.VariableDeclaration(type.Syntax, SyntaxFactory.SeparatedList(syntax)));
+        }
 
         internal ClassConstantWithCodeAnalysis()
         {

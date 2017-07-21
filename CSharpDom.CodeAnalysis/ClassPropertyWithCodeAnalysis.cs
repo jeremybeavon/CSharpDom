@@ -3,6 +3,8 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -16,6 +18,34 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<PropertyDeclarationSyntax>
     {
         private readonly PropertyWithBodyWithCodeAnalysis property;
+
+        public ClassPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this()
+        {
+            List<AccessorDeclarationSyntax> accessorSyntax = new List<AccessorDeclarationSyntax>();
+            if (getAccessor != null)
+            {
+                accessorSyntax.Add(SyntaxFactory.AccessorDeclaration(SyntaxKind.GetKeyword, getAccessor.Syntax));
+            }
+
+            if (setAccessor != null)
+            {
+                accessorSyntax.Add(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetKeyword, setAccessor.Syntax));
+            }
+
+            Syntax = SyntaxFactory.PropertyDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                type.Syntax,
+                null,
+                SyntaxFactory.Identifier(name),
+                SyntaxFactory.AccessorList(SyntaxFactory.List(accessorSyntax)));
+        }
 
         internal ClassPropertyWithCodeAnalysis()
         {

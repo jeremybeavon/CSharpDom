@@ -4,6 +4,9 @@ using System.Reflection;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -17,8 +20,24 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ConstructorDeclarationSyntax>
     {
         private readonly ConstructorWithCodeAnalysis constructor;
-        
-        internal ClassConstructorWithCodeAnalysis(bool @private)
+
+        public ClassConstructorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name,
+            IEnumerable<ConstructorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this()
+        {
+            Syntax = SyntaxFactory.ConstructorDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                SyntaxFactory.Identifier(name),
+                SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters.Select(parameter => parameter.Syntax))),
+                null,
+                body.Syntax);
+        }
+
+        internal ClassConstructorWithCodeAnalysis()
         {
             constructor = new ConstructorWithCodeAnalysis();
         }

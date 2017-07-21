@@ -36,10 +36,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly ClassNestedClassWithCodeAnalysis classType;
         private readonly PartialClassTypeWithCodeAnalysis<ClassNestedPartialClassWithCodeAnalysis> partialType;
 
-        public ClassNestedPartialClassWithCodeAnalysis(string name)
+        public ClassNestedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
             : this()
         {
-            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.PartialKeyword);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.PartialKeyword);
         }
 
         internal ClassNestedPartialClassWithCodeAnalysis()

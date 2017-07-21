@@ -17,6 +17,15 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassConstructorWithCodeAnalysis constructor;
 
+        public AbstractPartialClassConstructorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name,
+            IEnumerable<ConstructorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassConstructorWithCodeAnalysis(visibility, name, parameters, body))
+        {
+        }
+
         internal AbstractPartialClassConstructorWithCodeAnalysis(ClassConstructorWithCodeAnalysis constructor)
         {
             this.constructor = constructor;

@@ -17,9 +17,19 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassPropertyWithCodeAnalysis property;
 
+        public AbstractClassPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+        {
+            property = new ClassPropertyWithCodeAnalysis(visibility, type, name, getAccessor, setAccessor);
+        }
+
         internal AbstractClassPropertyWithCodeAnalysis()
         {
-            this.property = new ClassPropertyWithCodeAnalysis();
+            property = new ClassPropertyWithCodeAnalysis();
         }
         
         public PropertyWithBodyWithCodeAnalysis Property

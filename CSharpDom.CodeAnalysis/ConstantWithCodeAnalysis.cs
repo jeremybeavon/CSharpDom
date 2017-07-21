@@ -14,6 +14,15 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<ConstantWithCodeAnalysis, VariableDeclaratorSyntax> node;
         private readonly CachedExpressionNode<ConstantWithCodeAnalysis, VariableDeclaratorSyntax> constantValue;
 
+        public ConstantWithCodeAnalysis(string name, IExpressionWithCodeAnalysis value)
+            : this()
+        {
+            Syntax = SyntaxFactory.VariableDeclarator(
+                SyntaxFactory.Identifier(name),
+                null,
+                SyntaxFactory.EqualsValueClause(value.Syntax));
+        }
+
         internal ConstantWithCodeAnalysis()
         {
             node = new Node<ConstantWithCodeAnalysis, VariableDeclaratorSyntax>(this);

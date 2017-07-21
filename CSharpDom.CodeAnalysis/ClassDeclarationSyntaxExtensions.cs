@@ -58,11 +58,21 @@ namespace CSharpDom.CodeAnalysis
             return syntax.Modifiers.All(SyntaxKind.StaticKeyword, SyntaxKind.PartialKeyword);
         }
 
-        public static ClassDeclarationSyntax ToSyntax(string name, params SyntaxKind[] modifiers)
+        public static ClassDeclarationSyntax ToSyntax(
+            string name,
+            ClassMemberVisibilityModifier visibility,
+            params SyntaxKind[] modifiers)
+        {
+            return ToSyntax(
+                name,
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).AddRange(modifiers));
+        }
+        
+        public static ClassDeclarationSyntax ToSyntax(string name, SyntaxTokenList modifiers)
         {
             return SyntaxFactory.ClassDeclaration(
                 default(SyntaxList<AttributeListSyntax>),
-                SyntaxFactory.TokenList(modifiers.Select(SyntaxFactory.Token)),
+                modifiers,
                 SyntaxFactory.Identifier(name),
                 null,
                 null,

@@ -3,6 +3,7 @@ using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -24,11 +25,19 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly InternalNestedStaticClassWithCodeAnalysis<StaticClassNestedStaticClassWithCodeAnalysis> classType;
+        private readonly NestedStaticClassWithCodeAnalysis classType;
 
-        internal StaticClassNestedStaticClassWithCodeAnalysis()
+        public StaticClassNestedStaticClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
         {
-            classType = new InternalNestedStaticClassWithCodeAnalysis<StaticClassNestedStaticClassWithCodeAnalysis>(this);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.StaticKeyword);
+        }
+
+        internal StaticClassNestedStaticClassWithCodeAnalysis(NestedStaticClassWithCodeAnalysis type = null)
+        {
+            classType = type ?? new InternalNestedStaticClassWithCodeAnalysis<StaticClassNestedStaticClassWithCodeAnalysis>(this);
         }
 
         public NestedStaticClassWithCodeAnalysis Class

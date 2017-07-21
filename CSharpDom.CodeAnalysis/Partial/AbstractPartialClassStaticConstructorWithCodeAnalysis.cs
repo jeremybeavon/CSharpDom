@@ -15,6 +15,13 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassStaticConstructorWithCodeAnalysis staticConstructor;
 
+        public AbstractPartialClassStaticConstructorWithCodeAnalysis(
+            string name,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassStaticConstructorWithCodeAnalysis(name, body))
+        {
+        }
+
         internal AbstractPartialClassStaticConstructorWithCodeAnalysis(ClassStaticConstructorWithCodeAnalysis staticConstructor)
         {
             this.staticConstructor = staticConstructor;

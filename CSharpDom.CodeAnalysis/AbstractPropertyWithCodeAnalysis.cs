@@ -21,6 +21,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly PropertyWithCodeAnalysis property;
 
         public AbstractPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
             ITypeReferenceWithCodeAnalysis type,
             string name,
             AccessorTypes accessors)
@@ -39,7 +40,7 @@ namespace CSharpDom.CodeAnalysis
 
             Syntax = SyntaxFactory.PropertyDeclaration(
                 default(SyntaxList<AttributeListSyntax>),
-                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.AbstractKeyword)),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).Add(SyntaxKind.AbstractKeyword),
                 type.Syntax,
                 null,
                 SyntaxFactory.Identifier(name),

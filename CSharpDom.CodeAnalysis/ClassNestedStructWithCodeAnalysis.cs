@@ -33,10 +33,12 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly NestedStructWithCodeAnalysis structType;
 
-        public ClassNestedStructWithCodeAnalysis(string name)
+        public ClassNestedStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
             : this()
         {
-            Syntax = SyntaxFactory.StructDeclaration(name);
+            Syntax = StructDeclarationSyntaxExtensions.ToSyntax(name, visibility);
         }
 
         internal ClassNestedStructWithCodeAnalysis(NestedStructWithCodeAnalysis type = null)

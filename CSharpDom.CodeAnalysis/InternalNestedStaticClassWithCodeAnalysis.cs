@@ -205,10 +205,7 @@ namespace CSharpDom.CodeAnalysis
         internal override INode<ClassDeclarationSyntax> Node => node;
 
         internal Node<TStaticClass, ClassDeclarationSyntax> InternalNode => node;
-
-        internal IMemberList Members
-        {
-            get { return members; }
-        }
+        
+        internal override IMemberList Members => members;
     }
 }

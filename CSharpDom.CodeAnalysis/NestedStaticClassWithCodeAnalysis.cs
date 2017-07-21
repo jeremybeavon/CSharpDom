@@ -26,5 +26,7 @@ namespace CSharpDom.CodeAnalysis
         public abstract ClassDeclarationSyntax Syntax { get; set; }
 
         internal abstract INode<ClassDeclarationSyntax> Node { get; }
+
+        internal abstract IMemberList Members { get; }
     }
 }

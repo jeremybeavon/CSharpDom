@@ -18,10 +18,11 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly AbstractMethodWithCodeAnalysis method;
 
         public AbstractPartialClassAbstractMethodWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
             ITypeReferenceWithCodeAnalysis returnType,
             string name,
             IEnumerable<MethodParameterWithCodeAnalysis> parameters)
-            : this(new AbstractMethodWithCodeAnalysis(returnType, name, parameters))
+            : this(new AbstractMethodWithCodeAnalysis(visibility, returnType, name, parameters))
         {
         }
 

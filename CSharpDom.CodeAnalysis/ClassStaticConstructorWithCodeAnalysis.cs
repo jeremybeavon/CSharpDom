@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -15,6 +17,20 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ConstructorDeclarationSyntax>
     {
         private readonly StaticConstructorWithCodeAnalysis staticConstructor;
+
+        public ClassStaticConstructorWithCodeAnalysis(
+            string name,
+            MethodBodyWithCodeAnalysis body)
+            : this()
+        {
+            Syntax = SyntaxFactory.ConstructorDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.StaticKeyword)),
+                SyntaxFactory.Identifier(name),
+                SyntaxFactory.ParameterList(),
+                null,
+                body.Syntax);
+        }
 
         internal ClassStaticConstructorWithCodeAnalysis()
         {

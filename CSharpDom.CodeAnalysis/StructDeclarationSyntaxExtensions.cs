@@ -11,11 +11,26 @@ namespace CSharpDom.CodeAnalysis
             return syntax.Modifiers.Any(SyntaxKind.PartialKeyword);
         }
 
-        public static StructDeclarationSyntax ToPartialSyntax(string name)
+        public static StructDeclarationSyntax ToPartialSyntax(string name, ClassMemberVisibilityModifier visibility)
+        {
+            return ToSyntax(name, visibility, SyntaxKind.PartialKeyword);
+        }
+
+        public static StructDeclarationSyntax ToSyntax(
+            string name,
+            ClassMemberVisibilityModifier visibility,
+            params SyntaxKind[] modifiers)
+        {
+            return ToSyntax(
+                name,
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).AddRange(modifiers));
+        }
+
+        public static StructDeclarationSyntax ToSyntax(string name, SyntaxTokenList modifiers)
         {
             return SyntaxFactory.StructDeclaration(
                 default(SyntaxList<AttributeListSyntax>),
-                SyntaxFactory.TokenList(SyntaxFactory.Token(SyntaxKind.PartialKeyword)),
+                modifiers,
                 SyntaxFactory.Identifier(name),
                 SyntaxFactory.TypeParameterList(),
                 SyntaxFactory.BaseList(),

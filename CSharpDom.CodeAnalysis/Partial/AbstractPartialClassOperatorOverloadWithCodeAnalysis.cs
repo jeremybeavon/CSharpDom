@@ -19,7 +19,17 @@ namespace CSharpDom.CodeAnalysis.Partial
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassOperatorOverloadWithCodeAnalysis operatorOverload;
-        
+
+        public AbstractPartialClassOperatorOverloadWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorOverloadType operatorType,
+            IEnumerable<OperatorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassOperatorOverloadWithCodeAnalysis(visibility, returnType, operatorType, parameters, body))
+        {
+        }
+
         internal AbstractPartialClassOperatorOverloadWithCodeAnalysis(ClassOperatorOverloadWithCodeAnalysis operatorOverload)
         {
             this.operatorOverload = operatorOverload;

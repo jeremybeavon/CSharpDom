@@ -4,6 +4,7 @@ using CSharpDom.Common;
 using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -36,10 +37,16 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly ClassNestedAbstractClassWithCodeAnalysis classType;
         private readonly AbstractPartialTypeWithCodeAnalysis<ClassNestedAbstractPartialClassWithCodeAnalysis> partialType;
 
-        public ClassNestedAbstractPartialClassWithCodeAnalysis(string name)
+        public ClassNestedAbstractPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
             : this()
         {
-            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.AbstractKeyword, SyntaxKind.PartialKeyword);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
+                name,
+                visibility,
+                SyntaxKind.AbstractKeyword,
+                SyntaxKind.PartialKeyword);
         }
 
         internal ClassNestedAbstractPartialClassWithCodeAnalysis()
@@ -86,7 +93,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.Type.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -194,7 +201,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.Type.Node; }
+            get { return classType.Class.Node; }
         }
     }
 }

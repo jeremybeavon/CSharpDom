@@ -12,7 +12,7 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<AccessorDeclarationSyntax>
     {
         private readonly AccessorWithBodyWithCodeAnalysis accessor;
-
+        
         internal ClassAccessorWithCodeAnalysis(AccessorWithBodyWithCodeAnalysis accessor)
         {
             this.accessor = accessor;

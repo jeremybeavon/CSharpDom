@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -17,6 +20,35 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<IndexerDeclarationSyntax>
     {
         private readonly IndexerWithBodyWithCodeAnalysis indexer;
+
+        public ClassIndexerWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            IEnumerable<IndexerParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this()
+        {
+            var parameterSyntax = parameters.Select(parameter => parameter.Syntax);
+            List<AccessorDeclarationSyntax> accessorSyntax = new List<AccessorDeclarationSyntax>();
+            if (getAccessor != null)
+            {
+                accessorSyntax.Add(SyntaxFactory.AccessorDeclaration(SyntaxKind.GetKeyword, getAccessor.Syntax));
+            }
+
+            if (setAccessor != null)
+            {
+                accessorSyntax.Add(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetKeyword, setAccessor.Syntax));
+            }
+
+            Syntax = SyntaxFactory.IndexerDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                type.Syntax,
+                null,
+                SyntaxFactory.BracketedParameterList(SyntaxFactory.SeparatedList(parameterSyntax)),
+                SyntaxFactory.AccessorList(SyntaxFactory.List(accessorSyntax)));
+        }
 
         internal ClassIndexerWithCodeAnalysis()
         {

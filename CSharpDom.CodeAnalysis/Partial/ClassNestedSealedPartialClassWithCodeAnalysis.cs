@@ -37,10 +37,16 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly ClassNestedSealedClassWithCodeAnalysis classType;
         private readonly SealedPartialTypeWithCodeAnalysis<ClassNestedSealedPartialClassWithCodeAnalysis> sealedType;
 
-        public ClassNestedSealedPartialClassWithCodeAnalysis(string name)
+        public ClassNestedSealedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
             : this()
         {
-            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, SyntaxKind.SealedKeyword, SyntaxKind.PartialKeyword);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
+                name,
+                visibility,
+                SyntaxKind.SealedKeyword,
+                SyntaxKind.PartialKeyword);
         }
 
         internal ClassNestedSealedPartialClassWithCodeAnalysis()
@@ -189,12 +195,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return classType.Visibility; }
+            set { classType.Visibility = value; }
         }
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
