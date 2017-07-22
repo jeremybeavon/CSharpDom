@@ -67,7 +67,17 @@ namespace CSharpDom.CodeAnalysis
                 name,
                 default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).AddRange(modifiers));
         }
-        
+
+        public static ClassDeclarationSyntax ToSyntax(
+            string name,
+            TypeVisibilityModifier visibility,
+            params SyntaxKind[] modifiers)
+        {
+            return ToSyntax(
+                name,
+                default(SyntaxTokenList).WithTypeVisibilityModifier(visibility).AddRange(modifiers));
+        }
+
         public static ClassDeclarationSyntax ToSyntax(string name, SyntaxTokenList modifiers)
         {
             return SyntaxFactory.ClassDeclaration(

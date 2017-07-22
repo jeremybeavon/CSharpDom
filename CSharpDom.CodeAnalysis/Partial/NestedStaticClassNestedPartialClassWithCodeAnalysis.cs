@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -33,16 +34,21 @@ namespace CSharpDom.CodeAnalysis.Partial
         IPartialClassTypeWithCodeAnalysis
     {
         private readonly NestedStaticClassNestedClassWithCodeAnalysis classType;
-        private readonly PartialClassTypeWithCodeAnalysis<NestedStaticClassNestedClassWithCodeAnalysis> partialType;
-        private readonly PartialClassMethodCollectionWithCodeAnalysis methods;
+        private readonly PartialClassTypeWithCodeAnalysis<NestedStaticClassNestedPartialClassWithCodeAnalysis> partialType;
+
+        public NestedStaticClassNestedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.PartialKeyword);
+        }
 
         internal NestedStaticClassNestedPartialClassWithCodeAnalysis()
         {
-            classType = new NestedStaticClassNestedClassWithCodeAnalysis();
-            partialType = new PartialClassTypeWithCodeAnalysis<NestedStaticClassNestedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
-            methods = new InternalPartialClassMethodCollectionWithCodeAnalysis<NestedStaticClassNestedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
+            var type = new InternalNestedClassWithCodeAnalysis<NestedStaticClassNestedPartialClassWithCodeAnalysis>(this);
+            classType = new NestedStaticClassNestedClassWithCodeAnalysis(type);
+            partialType = new PartialClassTypeWithCodeAnalysis<NestedStaticClassNestedPartialClassWithCodeAnalysis>(type);
         }
         
         public NestedStaticClassNestedClassWithCodeAnalysis Class
@@ -142,8 +148,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override PartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.InternalClass.Members.Replace(value); }
+            get { return partialType.Methods; }
+            set { partialType.Methods = value; }
         }
 
         public override string Name
@@ -190,7 +196,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.InternalClass.Node; }
+            get { return classType.Class.Node; }
         }
 
         IClassTypeWithCodeAnalysis IPartialClassTypeWithCodeAnalysis.Class => classType;

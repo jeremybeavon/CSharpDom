@@ -16,6 +16,23 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly NestedStaticClassConstantWithCodeAnalysis constant;
 
+        public NestedStaticPartialClassConstantWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            IExpressionWithCodeAnalysis value)
+            : this(new NestedStaticClassConstantWithCodeAnalysis(visibility, type, name, value))
+        {
+        }
+
+        public NestedStaticPartialClassConstantWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params ConstantWithCodeAnalysis[] constants)
+            : this(new NestedStaticClassConstantWithCodeAnalysis(visibility, type, constants))
+        {
+        }
+
         internal NestedStaticPartialClassConstantWithCodeAnalysis(
             NestedStaticClassConstantWithCodeAnalysis constant)
         {

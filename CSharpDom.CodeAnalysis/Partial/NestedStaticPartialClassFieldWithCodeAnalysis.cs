@@ -18,6 +18,14 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly NestedStaticClassFieldWithCodeAnalysis field;
 
+        public NestedStaticPartialClassFieldWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this(new NestedStaticClassFieldWithCodeAnalysis(visibility, type, names))
+        {
+        }
+
         internal NestedStaticPartialClassFieldWithCodeAnalysis(NestedStaticClassFieldWithCodeAnalysis field)
         {
             this.field = field;

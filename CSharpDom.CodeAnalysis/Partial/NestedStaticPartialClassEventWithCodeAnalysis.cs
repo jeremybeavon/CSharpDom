@@ -16,6 +16,14 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly NestedStaticClassEventWithCodeAnalysis @event;
 
+        public NestedStaticPartialClassEventWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name) :
+            this(new NestedStaticClassEventWithCodeAnalysis(visibility, type, name))
+        {
+        }
+
         internal NestedStaticPartialClassEventWithCodeAnalysis(
             NestedStaticClassEventWithCodeAnalysis @event)
         {

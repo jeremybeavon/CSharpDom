@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -32,11 +33,19 @@ namespace CSharpDom.CodeAnalysis
         ISealedTypeWithCodeAnalysis,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly InternalNestedSealedClassWithCodeAnalysis<NestedStaticClassNestedSealedClassWithCodeAnalysis> classType;
+        private readonly NestedSealedClassWithCodeAnalysis classType;
 
-        internal NestedStaticClassNestedSealedClassWithCodeAnalysis()
+        public NestedStaticClassNestedSealedClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
         {
-            classType = new InternalNestedSealedClassWithCodeAnalysis<NestedStaticClassNestedSealedClassWithCodeAnalysis>(this);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.SealedKeyword);
+        }
+
+        internal NestedStaticClassNestedSealedClassWithCodeAnalysis(NestedSealedClassWithCodeAnalysis type = null)
+        {
+            classType = type ?? new InternalNestedSealedClassWithCodeAnalysis<NestedStaticClassNestedSealedClassWithCodeAnalysis>(this);
         }
         
         public NestedSealedClassWithCodeAnalysis Class
@@ -76,7 +85,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override INestedStaticTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.Type.Node.GetParentNode<INestedStaticTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<INestedStaticTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -188,12 +197,7 @@ namespace CSharpDom.CodeAnalysis
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.Type.Node; }
-        }
-
-        internal InternalNestedSealedClassWithCodeAnalysis<NestedStaticClassNestedSealedClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
+            get { return classType.Class.Node; }
         }
     }
 }

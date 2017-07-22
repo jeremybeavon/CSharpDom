@@ -1,5 +1,6 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable.Partial;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,19 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly AbstractClassWithCodeAnalysis classType;
         private readonly AbstractPartialTypeWithCodeAnalysis<AbstractPartialClassWithCodeAnalysis> partialType;
+
+        public AbstractPartialClassWithCodeAnalysis(
+            DocumentWithCodeAnalysis document,
+            TypeVisibilityModifier visibility,
+            string name)
+            : this(document)
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
+                name,
+                visibility,
+                SyntaxKind.AbstractKeyword,
+                SyntaxKind.PartialKeyword);
+        }
 
         internal AbstractPartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {

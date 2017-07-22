@@ -1,5 +1,6 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,15 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly AbstractTypeWithCodeAnalysis classType;
         private readonly DocumentWithCodeAnalysis document;
+
+        public AbstractClassWithCodeAnalysis(
+            DocumentWithCodeAnalysis document,
+            TypeVisibilityModifier visibility,
+            string name)
+            : this(document)
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.AbstractKeyword);
+        }
 
         internal AbstractClassWithCodeAnalysis(DocumentWithCodeAnalysis document, AbstractTypeWithCodeAnalysis type = null)
         {
