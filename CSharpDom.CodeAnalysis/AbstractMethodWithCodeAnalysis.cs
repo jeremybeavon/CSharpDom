@@ -60,7 +60,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return method.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? method.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -114,5 +114,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.Node; }
         }
+
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

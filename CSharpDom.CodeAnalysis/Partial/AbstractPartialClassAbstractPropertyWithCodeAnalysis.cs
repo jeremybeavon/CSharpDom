@@ -29,6 +29,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractPartialClassAbstractPropertyWithCodeAnalysis(AbstractPropertyWithCodeAnalysis property)
         {
             this.property = property;
+            property.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public PropertyWithCodeAnalysis Property

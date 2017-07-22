@@ -66,7 +66,7 @@ namespace CSharpDom.CodeAnalysis
         
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? constant.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -96,5 +96,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return constant.Node; }
         }
+
+        internal Func<IClassTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

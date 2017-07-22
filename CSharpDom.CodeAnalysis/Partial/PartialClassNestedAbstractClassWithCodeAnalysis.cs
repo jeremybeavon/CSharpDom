@@ -185,5 +185,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType; }
         }
+
+        IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

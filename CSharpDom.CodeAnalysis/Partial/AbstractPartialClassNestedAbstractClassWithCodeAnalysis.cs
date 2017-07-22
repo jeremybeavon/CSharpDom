@@ -31,23 +31,25 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         IAbstractTypeWithCodeAnalysis
     {
-        private readonly ClassNestedAbstractClassWithCodeAnalysis classType;
+        private readonly AbstractClassNestedAbstractClassWithCodeAnalysis classType;
 
         public AbstractPartialClassNestedAbstractClassWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             string name)
-            : this(new ClassNestedAbstractClassWithCodeAnalysis(visibility, name))
+            : this(new AbstractClassNestedAbstractClassWithCodeAnalysis(visibility, name))
         {
         }
 
-        internal AbstractPartialClassNestedAbstractClassWithCodeAnalysis(ClassNestedAbstractClassWithCodeAnalysis @class)
+        internal AbstractPartialClassNestedAbstractClassWithCodeAnalysis(
+            AbstractClassNestedAbstractClassWithCodeAnalysis @class)
         {
             classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public NestedAbstractClassWithCodeAnalysis Class
+        public AbstractClassNestedAbstractClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -82,7 +84,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -187,10 +189,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
-        
-        internal ClassNestedAbstractClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
+
+        IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class.Class.Class.Class;
     }
 }

@@ -29,6 +29,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractPartialClassAbstractIndexerWithCodeAnalysis(AbstractIndexerWithCodeAnalysis indexer)
         {
             this.indexer = indexer;
+            indexer.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         internal IndexerWithCodeAnalysis Indexer

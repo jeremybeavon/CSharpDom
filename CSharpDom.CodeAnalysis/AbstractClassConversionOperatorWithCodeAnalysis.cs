@@ -19,15 +19,26 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassConversionOperatorWithCodeAnalysis conversionOperator;
-        
+
+        public AbstractClassConversionOperatorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ConversionOperatorType operatorType,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorParameterWithCodeAnalysis parameter,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassConversionOperatorWithCodeAnalysis(visibility, operatorType, returnType, parameter, body))
+        {
+        }
+
         internal AbstractClassConversionOperatorWithCodeAnalysis(ClassConversionOperatorWithCodeAnalysis conversionOperator)
         {
             this.conversionOperator = conversionOperator;
+            conversionOperator.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public ConversionOperatorWithCodeAnalysis ConversionOperator
+        public ClassConversionOperatorWithCodeAnalysis ConversionOperator
         {
-            get { return conversionOperator.ConversionOperator; }
+            get { return conversionOperator; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -44,7 +55,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return conversionOperator.ConversionOperator.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? conversionOperator.ConversionOperator.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -78,10 +89,7 @@ namespace CSharpDom.CodeAnalysis
             set { conversionOperator.Syntax = value; }
         }
         
-        internal ClassConversionOperatorWithCodeAnalysis InternalConversionOperator
-        {
-            get { return conversionOperator; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

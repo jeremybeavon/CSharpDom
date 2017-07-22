@@ -27,11 +27,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractPartialClassEventWithCodeAnalysis(AbstractClassEventWithCodeAnalysis @event)
         {
             this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public EventWithCodeAnalysis Event
+        public AbstractClassEventWithCodeAnalysis Event
         {
-            get { return @event.Event; }
+            get { return @event; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -42,7 +43,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.Event.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return @event.Event.Event.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

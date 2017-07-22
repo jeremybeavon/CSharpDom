@@ -11,18 +11,19 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<DestructorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly ClassDestructorWithCodeAnalysis destructor;
+        private readonly AbstractClassDestructorWithCodeAnalysis destructor;
 
         public AbstractPartialClassDestructorWithCodeAnalysis(
             string name,
             MethodBodyWithCodeAnalysis body)
-            : this(new ClassDestructorWithCodeAnalysis(name, body))
+            : this(new AbstractClassDestructorWithCodeAnalysis(name, body))
         {
         }
         
-        internal AbstractPartialClassDestructorWithCodeAnalysis(ClassDestructorWithCodeAnalysis destructor)
+        internal AbstractPartialClassDestructorWithCodeAnalysis(AbstractClassDestructorWithCodeAnalysis destructor)
         {
             this.destructor = destructor;
+            destructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -39,7 +40,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return destructor.Destructor.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return destructor.Destructor.Destructor.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
         
@@ -47,11 +48,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return destructor.Syntax; }
             set { destructor.Syntax = value; }
-        }
-        
-        internal ClassDestructorWithCodeAnalysis InternalDestructor
-        {
-            get { return destructor; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

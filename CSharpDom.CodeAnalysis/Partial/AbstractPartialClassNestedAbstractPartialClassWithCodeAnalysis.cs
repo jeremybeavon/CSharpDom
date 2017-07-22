@@ -31,22 +31,23 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         IAbstractPartialTypeWithCodeAnalysis
     {
-        private readonly ClassNestedAbstractPartialClassWithCodeAnalysis classType;
+        private readonly AbstractClassNestedAbstractPartialClassWithCodeAnalysis classType;
 
         public AbstractPartialClassNestedAbstractPartialClassWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             string name)
-            : this(new ClassNestedAbstractPartialClassWithCodeAnalysis(visibility, name))
+            : this(new AbstractClassNestedAbstractPartialClassWithCodeAnalysis(visibility, name))
         {
         }
 
         internal AbstractPartialClassNestedAbstractPartialClassWithCodeAnalysis(
-            ClassNestedAbstractPartialClassWithCodeAnalysis @class)
+            AbstractClassNestedAbstractPartialClassWithCodeAnalysis @class)
         {
             classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public ClassNestedAbstractPartialClassWithCodeAnalysis Class
+        public AbstractClassNestedAbstractPartialClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -188,5 +189,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
+
+        IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

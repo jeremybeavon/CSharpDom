@@ -19,9 +19,18 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassFieldWithCodeAnalysis field;
 
+        public AbstractClassFieldWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this(new ClassFieldWithCodeAnalysis(visibility, type, names))
+        {
+        }
+
         internal AbstractClassFieldWithCodeAnalysis(ClassFieldWithCodeAnalysis field)
         {
-            this.field = field ?? new ClassFieldWithCodeAnalysis();
+            this.field = field;
+            field.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public FieldGroupWithCodeAnalysis Field
@@ -37,7 +46,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return field.Field.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? field.Field.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -49,12 +58,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassFieldModifier Modifier
         {
-            get { return Syntax.Modifiers.ToClassFieldModifier(); }
-            set
-            {
-                FieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassFieldModifier(value));
-            }
+            get { return field.Modifier; }
+            set { field.Modifier = value; }
         }
         
         public override ClassMemberVisibilityModifier Visibility
@@ -88,5 +93,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return field; }
         }
+
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

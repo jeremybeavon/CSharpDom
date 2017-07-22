@@ -41,6 +41,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractClassNestedPartialStructWithCodeAnalysis(ClassNestedPartialStructWithCodeAnalysis @struct)
         {
             structType = @struct;
+            structType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public ClassNestedPartialStructWithCodeAnalysis Struct
@@ -74,7 +75,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.Struct.Struct.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? structType.Struct.Struct.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -178,5 +179,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return structType.Struct.Struct.Node; }
         }
+
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

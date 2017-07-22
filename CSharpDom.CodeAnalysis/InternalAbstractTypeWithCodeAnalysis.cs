@@ -50,17 +50,17 @@ namespace CSharpDom.CodeAnalysis
             conversionOperators = new WrappedCollection<ClassConversionOperatorWithCodeAnalysis, AbstractClassConversionOperatorWithCodeAnalysis>(
                 classType.ConversionOperators,
                 parent => new AbstractClassConversionOperatorWithCodeAnalysis(parent),
-                child => child.InternalConversionOperator,
+                child => child.ConversionOperator,
                 value => classType.ConversionOperators = value);
             delegates = new WrappedCollection<ClassNestedDelegateWithCodeAnalysis, AbstractClassNestedDelegateWithCodeAnalysis>(
                 classType.Delegates,
                 parent => new AbstractClassNestedDelegateWithCodeAnalysis(parent),
-                child => child.InternalDelegate,
+                child => child.Delegate,
                 value => classType.Delegates = value);
             enums = new WrappedCollection<ClassNestedEnumWithCodeAnalysis, AbstractClassNestedEnumWithCodeAnalysis>(
                 classType.Enums,
                 parent => new AbstractClassNestedEnumWithCodeAnalysis(parent),
-                child => child.InternalEnum,
+                child => child.Enum,
                 value => classType.Enums = value);
             events = new InternalAbstractClassEventCollectionWithCodeAnalysis<TClass>(classType);
             fields = new AbstractClassFieldCollectionWithCodeAnalysis(classType.Fields);
@@ -68,13 +68,13 @@ namespace CSharpDom.CodeAnalysis
             interfaces = new WrappedCollection<ClassNestedInterfaceWithCodeAnalysis, AbstractClassNestedInterfaceWithCodeAnalysis>(
                 classType.Interfaces,
                 parent => new AbstractClassNestedInterfaceWithCodeAnalysis(parent),
-                child => child.InternalInterface,
+                child => child.Interface,
                 value => classType.Interfaces = value);
             methods = new InternalAbstractClassMethodCollectionWithCodeAnalysis<TClass>(classType);
             operatorOverloads = new WrappedCollection<ClassOperatorOverloadWithCodeAnalysis, AbstractClassOperatorOverloadWithCodeAnalysis>(
                 classType.OperatorOverloads,
                 parent => new AbstractClassOperatorOverloadWithCodeAnalysis(parent),
-                child => child.InternalOperatorOverload,
+                child => child.OperatorOverload,
                 value => classType.OperatorOverloads = value);
             properties = new InternalAbstractClassPropertyCollectionWithCodeAnalysis<TClass>(classType);
             structs = new AbstractClassNestedStructCollectionWithCodeAnalysis(classType.Structs);
@@ -131,7 +131,7 @@ namespace CSharpDom.CodeAnalysis
                 ClassDestructorWithCodeAnalysis destructor = classType.Destructor;
                 return destructor == null ? null : new AbstractClassDestructorWithCodeAnalysis(destructor);
             }
-            set { classType.Destructor = value?.InternalDestructor; }
+            set { classType.Destructor = value?.Destructor; }
         }
 
         public override ICollection<AbstractClassNestedEnumWithCodeAnalysis> Enums
@@ -237,7 +237,7 @@ namespace CSharpDom.CodeAnalysis
                 ClassStaticConstructorWithCodeAnalysis constructor = classType.StaticConstructor;
                 return constructor == null ? null : new AbstractClassStaticConstructorWithCodeAnalysis(constructor);
             }
-            set { classType.StaticConstructor = value?.InternalStaticConstructor; }
+            set { classType.StaticConstructor = value?.StaticConstructor; }
         }
 
         public override AbstractClassNestedStructCollectionWithCodeAnalysis Structs
@@ -251,6 +251,8 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
         }
+
+        public override IClassTypeWithCodeAnalysis Class => classType;
 
         internal InternalClassTypeWithCodeAnalysis<TClass> Type
         {

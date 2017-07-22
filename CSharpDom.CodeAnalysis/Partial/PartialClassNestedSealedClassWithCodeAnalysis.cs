@@ -180,10 +180,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
-
-        internal ClassNestedSealedClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
+        
+        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

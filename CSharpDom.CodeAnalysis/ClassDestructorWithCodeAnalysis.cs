@@ -9,7 +9,7 @@ using Microsoft.CodeAnalysis;
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ClassDestructorWithCodeAnalysis :
-        EditableDestructor<AttributeGroupWithCodeAnalysis, IClass, MethodBodyWithCodeAnalysis>,
+        EditableDestructor<AttributeGroupWithCodeAnalysis, IClassTypeWithCodeAnalysis, MethodBodyWithCodeAnalysis>,
         IHasSyntax<DestructorDeclarationSyntax>,
         IHasNode<DestructorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
@@ -51,9 +51,9 @@ namespace CSharpDom.CodeAnalysis
             set { destructor.Body = value; }
         }
 
-        public override IClass DeclaringType
+        public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return destructor.Node.GetParentNode<IClass>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? destructor.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
         
@@ -67,6 +67,8 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return destructor.Node; }
         }
+
+        internal Func<IClassTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

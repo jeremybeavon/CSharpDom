@@ -64,7 +64,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return operatorOverload.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? operatorOverload.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -93,6 +93,8 @@ namespace CSharpDom.CodeAnalysis
         }
 
         INode<OperatorDeclarationSyntax> IHasNode<OperatorDeclarationSyntax>.Node => operatorOverload.Node;
+
+        internal Func<IClassTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

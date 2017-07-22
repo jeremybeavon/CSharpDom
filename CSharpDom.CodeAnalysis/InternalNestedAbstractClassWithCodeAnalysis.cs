@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis
             classType = new InternalAbstractTypeWithCodeAnalysis<TClass>(@class);
         }
         
-        public AbstractTypeWithCodeAnalysis Class
+        public override AbstractTypeWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -153,14 +153,7 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
         }
-
-        public override AbstractTypeWithCodeAnalysis Type => classType;
-
-        internal InternalAbstractTypeWithCodeAnalysis<TClass> InternalClass
-        {
-            get { return classType; }
-        }
-
+        
         internal override INode<ClassDeclarationSyntax> Node => classType.Node;
     }
 }

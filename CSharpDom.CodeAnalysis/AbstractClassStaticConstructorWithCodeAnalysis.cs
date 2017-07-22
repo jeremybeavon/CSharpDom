@@ -15,14 +15,22 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassStaticConstructorWithCodeAnalysis staticConstructor;
 
+        public AbstractClassStaticConstructorWithCodeAnalysis(
+            string name,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassStaticConstructorWithCodeAnalysis(name, body))
+        {
+        }
+
         internal AbstractClassStaticConstructorWithCodeAnalysis(ClassStaticConstructorWithCodeAnalysis staticConstructor)
         {
             this.staticConstructor = staticConstructor;
+            staticConstructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public StaticConstructorWithCodeAnalysis StaticConstructor
+        public ClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return staticConstructor.StaticConstructor; }
+            get { return staticConstructor; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -39,7 +47,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return staticConstructor.StaticConstructor.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? staticConstructor.StaticConstructor.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -49,9 +57,6 @@ namespace CSharpDom.CodeAnalysis
             set { staticConstructor.Syntax = value; }
         }
 
-        internal ClassStaticConstructorWithCodeAnalysis InternalStaticConstructor
-        {
-            get { return staticConstructor; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

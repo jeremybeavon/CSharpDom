@@ -187,9 +187,6 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Class.Class.Node; }
         }
 
-        internal ClassNestedSealedClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
+        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

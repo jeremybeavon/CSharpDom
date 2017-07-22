@@ -33,13 +33,13 @@ namespace CSharpDom.CodeAnalysis.Partial
         IAbstractPartialTypeWithCodeAnalysis
     {
         private readonly StructNestedAbstractClassWithCodeAnalysis classType;
-        private readonly AbstractPartialTypeWithCodeAnalysis<StructNestedAbstractClassWithCodeAnalysis> abstractType;
+        private readonly AbstractPartialTypeWithCodeAnalysis<StructNestedAbstractPartialClassWithCodeAnalysis> abstractType;
 
         internal StructNestedAbstractPartialClassWithCodeAnalysis()
         {
-            classType = new StructNestedAbstractClassWithCodeAnalysis();
-            abstractType = new AbstractPartialTypeWithCodeAnalysis<StructNestedAbstractClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
+            var type = new InternalNestedAbstractClassWithCodeAnalysis<StructNestedAbstractPartialClassWithCodeAnalysis>(this);
+            classType = new StructNestedAbstractClassWithCodeAnalysis(type);
+            abstractType = new AbstractPartialTypeWithCodeAnalysis<StructNestedAbstractPartialClassWithCodeAnalysis>(type);
         }
         
         public StructNestedAbstractClassWithCodeAnalysis Class
@@ -79,7 +79,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.InternalClass.Type.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -187,7 +187,9 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.InternalClass.Type.Node; }
+            get { return classType.Class.Class.Node; }
         }
+
+        IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class;
     }
 }

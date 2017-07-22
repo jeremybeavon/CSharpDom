@@ -32,11 +32,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         IAbstractTypeWithCodeAnalysis,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly InternalNestedAbstractClassWithCodeAnalysis<StaticPartialClassNestedAbstractClassWithCodeAnalysis> classType;
+        private readonly NestedAbstractClassWithCodeAnalysis classType;
 
-        internal StaticPartialClassNestedAbstractClassWithCodeAnalysis()
+        internal StaticPartialClassNestedAbstractClassWithCodeAnalysis(
+            NestedAbstractClassWithCodeAnalysis type = null)
         {
-            classType = new InternalNestedAbstractClassWithCodeAnalysis<StaticPartialClassNestedAbstractClassWithCodeAnalysis>(this);
+            classType = type ?? new InternalNestedAbstractClassWithCodeAnalysis<StaticPartialClassNestedAbstractClassWithCodeAnalysis>(this);
         }
         
         public NestedAbstractClassWithCodeAnalysis Class
@@ -76,7 +77,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.Type.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -185,12 +186,9 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        internal InternalNestedAbstractClassWithCodeAnalysis<StaticPartialClassNestedAbstractClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
-        }
-
+        
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Node;
+
+        IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class.Class;
     }
 }

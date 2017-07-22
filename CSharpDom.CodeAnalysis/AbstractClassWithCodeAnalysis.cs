@@ -225,7 +225,9 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Node; }
         }
-        
+
+        IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class;
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithCodeAnalysis(this);

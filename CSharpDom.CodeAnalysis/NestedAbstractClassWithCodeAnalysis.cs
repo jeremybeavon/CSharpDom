@@ -32,7 +32,7 @@ namespace CSharpDom.CodeAnalysis
     {
         public abstract ClassDeclarationSyntax Syntax { get; set; }
 
-        public abstract AbstractTypeWithCodeAnalysis Type { get; }
+        public abstract AbstractTypeWithCodeAnalysis Class { get; }
 
         internal abstract INode<ClassDeclarationSyntax> Node { get; }
     }

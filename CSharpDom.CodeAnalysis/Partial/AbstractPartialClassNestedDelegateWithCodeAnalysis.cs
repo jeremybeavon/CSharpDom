@@ -15,25 +15,26 @@ namespace CSharpDom.CodeAnalysis.Partial
             DelegateParameterWithCodeAnalysis>,
         IHasSyntax<DelegateDeclarationSyntax>
     {
-        private readonly ClassNestedDelegateWithCodeAnalysis nestedDelegate;
+        private readonly AbstractClassNestedDelegateWithCodeAnalysis nestedDelegate;
 
         public AbstractPartialClassNestedDelegateWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             ITypeReferenceWithCodeAnalysis returnType,
             string name,
             IEnumerable<DelegateParameterWithCodeAnalysis> parameters)
-            : this(new ClassNestedDelegateWithCodeAnalysis(visibility, returnType, name, parameters))
+            : this(new AbstractClassNestedDelegateWithCodeAnalysis(visibility, returnType, name, parameters))
         {
         }
 
-        internal AbstractPartialClassNestedDelegateWithCodeAnalysis(ClassNestedDelegateWithCodeAnalysis @delegate)
+        internal AbstractPartialClassNestedDelegateWithCodeAnalysis(AbstractClassNestedDelegateWithCodeAnalysis @delegate)
         {
             nestedDelegate = @delegate;
+            nestedDelegate.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedDelegateWithCodeAnalysis Delegate
+        public AbstractClassNestedDelegateWithCodeAnalysis Delegate
         {
-            get { return nestedDelegate.Delegate; }
+            get { return nestedDelegate; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -44,7 +45,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedDelegate.Delegate.Delegate.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return nestedDelegate.Delegate.Delegate.Delegate.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -82,11 +83,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return nestedDelegate.Visibility; }
             set { nestedDelegate.Visibility = value; }
-        }
-
-        internal ClassNestedDelegateWithCodeAnalysis InternalDelegate
-        {
-            get { return nestedDelegate; }
         }
     }
 }

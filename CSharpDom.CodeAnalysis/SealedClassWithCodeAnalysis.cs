@@ -46,7 +46,7 @@ namespace CSharpDom.CodeAnalysis
             this.document = document;
         }
 
-        public SealedTypeWithCodeAnalysis Type
+        public SealedTypeWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -211,11 +211,15 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        
+
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
             get { return classType.Node; }
         }
-        
+
+        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class;
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithCodeAnalysis(this);

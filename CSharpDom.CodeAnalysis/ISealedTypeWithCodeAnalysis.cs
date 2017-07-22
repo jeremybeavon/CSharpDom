@@ -26,5 +26,6 @@ namespace CSharpDom.CodeAnalysis
             SealedClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
+        IClassTypeWithCodeAnalysis Class { get; }
     }
 }

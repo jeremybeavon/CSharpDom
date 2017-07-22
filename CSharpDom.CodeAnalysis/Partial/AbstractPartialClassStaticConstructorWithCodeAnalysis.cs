@@ -13,23 +13,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<ConstructorDeclarationSyntax>
     {
-        private readonly ClassStaticConstructorWithCodeAnalysis staticConstructor;
+        private readonly AbstractClassStaticConstructorWithCodeAnalysis staticConstructor;
 
         public AbstractPartialClassStaticConstructorWithCodeAnalysis(
             string name,
             MethodBodyWithCodeAnalysis body)
-            : this(new ClassStaticConstructorWithCodeAnalysis(name, body))
+            : this(new AbstractClassStaticConstructorWithCodeAnalysis(name, body))
         {
         }
 
-        internal AbstractPartialClassStaticConstructorWithCodeAnalysis(ClassStaticConstructorWithCodeAnalysis staticConstructor)
+        internal AbstractPartialClassStaticConstructorWithCodeAnalysis(
+            AbstractClassStaticConstructorWithCodeAnalysis staticConstructor)
         {
             this.staticConstructor = staticConstructor;
+            staticConstructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public StaticConstructorWithCodeAnalysis StaticConstructor
+        public AbstractClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return staticConstructor.StaticConstructor; }
+            get { return staticConstructor; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -54,11 +56,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return staticConstructor.Syntax; }
             set { staticConstructor.Syntax = value; }
-        }
-
-        internal ClassStaticConstructorWithCodeAnalysis InternalStaticConstructor
-        {
-            get { return staticConstructor; }
         }
     }
 }

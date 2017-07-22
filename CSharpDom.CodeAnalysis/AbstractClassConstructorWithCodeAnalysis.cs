@@ -18,12 +18,22 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassConstructorWithCodeAnalysis constructor;
 
+        public AbstractClassConstructorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name,
+            IEnumerable<ConstructorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassConstructorWithCodeAnalysis(visibility, name, parameters, body))
+        {
+        }
+
         internal AbstractClassConstructorWithCodeAnalysis(ClassConstructorWithCodeAnalysis constructor)
         {
             this.constructor = constructor;
+            constructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        internal ClassConstructorWithCodeAnalysis Constructor
+        public ClassConstructorWithCodeAnalysis Constructor
         {
             get { return constructor; }
         }
@@ -42,7 +52,7 @@ namespace CSharpDom.CodeAnalysis
         
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return constructor.Constructor.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? constructor.Constructor.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -72,5 +82,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return constructor.Constructor.Node; }
         }
+
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

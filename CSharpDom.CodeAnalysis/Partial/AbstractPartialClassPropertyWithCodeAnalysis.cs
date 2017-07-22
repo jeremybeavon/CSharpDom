@@ -29,11 +29,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractPartialClassPropertyWithCodeAnalysis(AbstractClassPropertyWithCodeAnalysis property)
         {
             this.property = property;
+            property.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public PropertyWithBodyWithCodeAnalysis Property
+        public AbstractClassPropertyWithCodeAnalysis Property
         {
-            get { return property.Property; }
+            get { return property; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -44,7 +45,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return property.Property.Property.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return property.Property.Property.Property.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

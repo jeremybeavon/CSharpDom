@@ -16,14 +16,22 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassNestedEnumWithCodeAnalysis nestedEnum;
 
+        public AbstractClassNestedEnumWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedEnumWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal AbstractClassNestedEnumWithCodeAnalysis(ClassNestedEnumWithCodeAnalysis @enum)
         {
-            nestedEnum = @enum ?? new ClassNestedEnumWithCodeAnalysis();
+            nestedEnum = @enum;
+            nestedEnum.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedEnumWithCodeAnalysis Enum
+        public ClassNestedEnumWithCodeAnalysis Enum
         {
-            get { return nestedEnum.Enum; }
+            get { return nestedEnum; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -40,7 +48,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedEnum.Enum.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? nestedEnum.Enum.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -73,9 +81,6 @@ namespace CSharpDom.CodeAnalysis
             get { return nestedEnum.Enum.Node; }
         }
 
-        internal ClassNestedEnumWithCodeAnalysis InternalEnum
-        {
-            get { return nestedEnum; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

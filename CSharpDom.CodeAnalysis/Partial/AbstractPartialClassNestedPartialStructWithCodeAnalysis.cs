@@ -28,23 +28,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>
     {
-        private readonly ClassNestedPartialStructWithCodeAnalysis structType;
+        private readonly AbstractClassNestedPartialStructWithCodeAnalysis structType;
 
         public AbstractPartialClassNestedPartialStructWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             string name)
-            : this(new ClassNestedPartialStructWithCodeAnalysis(visibility, name))
+            : this(new AbstractClassNestedPartialStructWithCodeAnalysis(visibility, name))
         {
         }
 
-        internal AbstractPartialClassNestedPartialStructWithCodeAnalysis(ClassNestedPartialStructWithCodeAnalysis @struct)
+        internal AbstractPartialClassNestedPartialStructWithCodeAnalysis(
+            AbstractClassNestedPartialStructWithCodeAnalysis @struct)
         {
             structType = @struct;
+            structType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ClassNestedStructWithCodeAnalysis Struct
+        public AbstractClassNestedPartialStructWithCodeAnalysis Struct
         {
-            get { return structType.Struct; }
+            get { return structType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -73,7 +75,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.Struct.Struct.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return structType.Struct.Struct.Struct.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -175,11 +177,6 @@ namespace CSharpDom.CodeAnalysis.Partial
                 StructDeclarationSyntax syntax = Syntax;
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
-        }
-
-        internal ClassNestedPartialStructWithCodeAnalysis InternalStruct
-        {
-            get { return structType; }
         }
     }
 }

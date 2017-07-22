@@ -12,12 +12,25 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassDestructorWithCodeAnalysis destructor;
-        
+
+        public AbstractClassDestructorWithCodeAnalysis(
+            string name,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassDestructorWithCodeAnalysis(name, body))
+        {
+        }
+
         internal AbstractClassDestructorWithCodeAnalysis(ClassDestructorWithCodeAnalysis destructor)
         {
             this.destructor = destructor;
+            destructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
+        public ClassDestructorWithCodeAnalysis Destructor
+        {
+            get { return destructor; }
+        }
+
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return destructor.Attributes; }
@@ -32,7 +45,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return destructor.Destructor.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? destructor.Destructor.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
         
@@ -42,10 +55,7 @@ namespace CSharpDom.CodeAnalysis
             set { destructor.Syntax = value; }
         }
         
-        internal ClassDestructorWithCodeAnalysis InternalDestructor
-        {
-            get { return destructor; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

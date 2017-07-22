@@ -23,23 +23,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
-        private readonly ClassNestedStaticClassWithCodeAnalysis classType;
+        private readonly AbstractClassNestedStaticClassWithCodeAnalysis classType;
 
         public AbstractPartialClassNestedStaticClassWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             string name)
-            : this(new ClassNestedStaticClassWithCodeAnalysis(visibility, name))
+            : this(new AbstractClassNestedStaticClassWithCodeAnalysis(visibility, name))
         {
         }
 
-        internal AbstractPartialClassNestedStaticClassWithCodeAnalysis(ClassNestedStaticClassWithCodeAnalysis @class)
+        internal AbstractPartialClassNestedStaticClassWithCodeAnalysis(
+            AbstractClassNestedStaticClassWithCodeAnalysis @class)
         {
             classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public NestedStaticClassWithCodeAnalysis Class
+        public AbstractClassNestedStaticClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -56,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -136,11 +138,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
-        }
-       
-        internal ClassNestedStaticClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
         }
     }
 }

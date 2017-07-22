@@ -14,14 +14,14 @@ namespace CSharpDom.CodeAnalysis.Partial
             ConstantWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly ClassConstantWithCodeAnalysis constant;
+        private readonly AbstractClassConstantWithCodeAnalysis constant;
 
         public AbstractPartialClassConstantWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             ITypeReferenceWithCodeAnalysis type,
             string name,
             IExpressionWithCodeAnalysis value)
-            : this(new ClassConstantWithCodeAnalysis(visibility, type, name, value))
+            : this(new AbstractClassConstantWithCodeAnalysis(visibility, type, name, value))
         {
         }
 
@@ -29,18 +29,19 @@ namespace CSharpDom.CodeAnalysis.Partial
             ClassMemberVisibilityModifier visibility,
             ITypeReferenceWithCodeAnalysis type,
             params ConstantWithCodeAnalysis[] constants)
-            : this(new ClassConstantWithCodeAnalysis(visibility, type, constants))
+            : this(new AbstractClassConstantWithCodeAnalysis(visibility, type, constants))
         {
         }
 
-        internal AbstractPartialClassConstantWithCodeAnalysis(ClassConstantWithCodeAnalysis constant)
+        internal AbstractPartialClassConstantWithCodeAnalysis(AbstractClassConstantWithCodeAnalysis constant)
         {
             this.constant = constant;
+            constant.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ConstantGroupWithCodeAnalysis Constant
+        public AbstractClassConstantWithCodeAnalysis Constant
         {
-            get { return constant.Constant; }
+            get { return constant; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -57,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.Constant.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return constant.Constant.Constant.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -77,11 +78,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return constant.Syntax; }
             set { constant.Syntax = value; }
-        }
-
-        internal ClassConstantWithCodeAnalysis InternalConstant
-        {
-            get { return constant; }
         }
     }
 }

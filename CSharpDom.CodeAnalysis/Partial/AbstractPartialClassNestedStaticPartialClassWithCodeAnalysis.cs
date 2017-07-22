@@ -24,22 +24,22 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         INestedStaticPartialTypeWithCodeAnalysis
     {
-        private readonly ClassNestedStaticPartialClassWithCodeAnalysis classType;
+        private readonly AbstractClassNestedStaticPartialClassWithCodeAnalysis classType;
 
         public AbstractPartialClassNestedStaticPartialClassWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             string name)
-            : this(new ClassNestedStaticPartialClassWithCodeAnalysis(visibility, name))
+            : this(new AbstractClassNestedStaticPartialClassWithCodeAnalysis(visibility, name))
         {
         }
 
         internal AbstractPartialClassNestedStaticPartialClassWithCodeAnalysis(
-            ClassNestedStaticPartialClassWithCodeAnalysis @class)
+            AbstractClassNestedStaticPartialClassWithCodeAnalysis @class)
         {
             classType = @class;
         }
 
-        public ClassNestedStaticPartialClassWithCodeAnalysis Class
+        public AbstractClassNestedStaticPartialClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -58,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Class.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Class.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -138,11 +138,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
-        }
-        
-        internal ClassNestedStaticPartialClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
         }
     }
 }

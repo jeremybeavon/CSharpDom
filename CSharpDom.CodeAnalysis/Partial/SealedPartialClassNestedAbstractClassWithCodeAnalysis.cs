@@ -181,9 +181,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Visibility = value; }
         }
 
-        internal ClassNestedAbstractClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
+        IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

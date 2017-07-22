@@ -76,7 +76,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.InternalClass.Type.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -185,10 +185,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        internal NestedStaticClassNestedSealedClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
+        
+        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

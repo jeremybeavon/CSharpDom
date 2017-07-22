@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -33,6 +34,18 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly StaticClassNestedAbstractClassWithCodeAnalysis classType;
         private readonly AbstractPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis> partialType;
+
+        public NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
+                name,
+                visibility,
+                SyntaxKind.AbstractKeyword,
+                SyntaxKind.PartialKeyword);
+        }
 
         internal NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis()
         {

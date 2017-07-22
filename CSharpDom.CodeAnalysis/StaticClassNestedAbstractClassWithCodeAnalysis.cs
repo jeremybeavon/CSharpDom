@@ -204,5 +204,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Node; }
         }
+
+        IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class.Class;
     }
 }

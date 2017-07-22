@@ -28,6 +28,8 @@ namespace CSharpDom.CodeAnalysis
     {
         public abstract ClassDeclarationSyntax Syntax { get; set; }
 
+        public abstract ClassTypeWithCodeAnalysis Class { get; }
+
         internal abstract INode<ClassDeclarationSyntax> Node { get; }
     }
 }

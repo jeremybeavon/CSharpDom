@@ -34,14 +34,22 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassNestedSealedClassWithCodeAnalysis classType;
 
+        public AbstractClassNestedSealedClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedSealedClassWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal AbstractClassNestedSealedClassWithCodeAnalysis(ClassNestedSealedClassWithCodeAnalysis @class)
         {
-            classType = @class ?? new ClassNestedSealedClassWithCodeAnalysis();
+            classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedSealedClassWithCodeAnalysis Class
+        public ClassNestedSealedClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -76,7 +84,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Class.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? classType.Class.Class.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -187,9 +195,8 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Class.Class.Node; }
         }
 
-        internal ClassNestedSealedClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
+        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
+
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

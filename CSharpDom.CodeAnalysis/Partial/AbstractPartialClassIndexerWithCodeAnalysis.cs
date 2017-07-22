@@ -30,11 +30,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractPartialClassIndexerWithCodeAnalysis(AbstractClassIndexerWithCodeAnalysis indexer)
         {
             this.indexer = indexer;
+            indexer.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public IndexerWithBodyWithCodeAnalysis Indexer
+        public AbstractClassIndexerWithCodeAnalysis Indexer
         {
-            get { return indexer.Indexer; }
+            get { return indexer; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -45,7 +46,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return indexer.Indexer.Indexer.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return indexer.Indexer.Indexer.Indexer.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

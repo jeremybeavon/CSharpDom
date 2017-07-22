@@ -30,12 +30,13 @@ namespace CSharpDom.CodeAnalysis
 
         internal AbstractClassEventPropertyWithCodeAnalysis(ClassEventPropertyWithCodeAnalysis @event)
         {
-            this.@event = @event ?? new ClassEventPropertyWithCodeAnalysis();
+            this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public EventPropertyWithCodeAnalysis EventProperty
+        public ClassEventPropertyWithCodeAnalysis EventProperty
         {
-            get { return @event.EventProperty; }
+            get { return @event; }
         }
 
         public override MethodBodyWithCodeAnalysis AddBody
@@ -52,7 +53,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.EventProperty.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? @event.EventProperty.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -64,12 +65,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return Syntax.Modifiers.ToClassMemberInheritanceModifier(); }
-            set
-            {
-                EventDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberInheritanceModifier(value));
-            }
+            get { return @event.InheritanceModifier; }
+            set { @event.InheritanceModifier = value; }
         }
 
         public override string Name
@@ -117,9 +114,6 @@ namespace CSharpDom.CodeAnalysis
             get { return @event.EventProperty.Node; }
         }
 
-        internal ClassEventPropertyWithCodeAnalysis InternalEventProperty
-        {
-            get { return @event; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

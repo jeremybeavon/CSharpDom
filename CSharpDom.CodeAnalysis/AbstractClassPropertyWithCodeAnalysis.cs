@@ -29,12 +29,15 @@ namespace CSharpDom.CodeAnalysis
 
         internal AbstractClassPropertyWithCodeAnalysis()
         {
-            property = new ClassPropertyWithCodeAnalysis();
+            property = new ClassPropertyWithCodeAnalysis()
+            {
+                DeclaringTypeFunc = () => DeclaringType.Class
+            };
         }
         
-        public PropertyWithBodyWithCodeAnalysis Property
+        public ClassPropertyWithCodeAnalysis Property
         {
-            get { return property.Property; }
+            get { return property; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -45,7 +48,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return property.Property.Property.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? property.Property.Property.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -96,9 +99,6 @@ namespace CSharpDom.CodeAnalysis
             get { return property.Property.Property.Node; }
         }
 
-        internal ClassPropertyWithCodeAnalysis InternalProperty
-        {
-            get { return property; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

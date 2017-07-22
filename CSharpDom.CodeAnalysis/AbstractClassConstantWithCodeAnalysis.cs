@@ -17,14 +17,31 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassConstantWithCodeAnalysis constant;
 
-        internal AbstractClassConstantWithCodeAnalysis(ClassConstantWithCodeAnalysis constant = null)
+        public AbstractClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            IExpressionWithCodeAnalysis value)
+            : this(new ClassConstantWithCodeAnalysis(visibility, type, name, value))
         {
-            this.constant = constant ?? new ClassConstantWithCodeAnalysis();
+        }
+
+        public AbstractClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params ConstantWithCodeAnalysis[] constants)
+            : this(new ClassConstantWithCodeAnalysis(visibility, type, constants))
+        {
+        }
+
+        internal AbstractClassConstantWithCodeAnalysis(ClassConstantWithCodeAnalysis constant)
+        {
+            this.constant = constant;
         }
         
-        public ConstantGroupWithCodeAnalysis Constant
+        public ClassConstantWithCodeAnalysis Constant
         {
-            get { return constant.Constant; }
+            get { return constant; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -41,7 +58,7 @@ namespace CSharpDom.CodeAnalysis
         
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.Constant.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? constant.Constant.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -68,9 +85,6 @@ namespace CSharpDom.CodeAnalysis
             get { return constant.Constant.Node; }
         }
 
-        internal ClassConstantWithCodeAnalysis InternalConstant
-        {
-            get { return constant; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

@@ -31,23 +31,24 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         ISealedTypeWithCodeAnalysis
     {
-        private readonly ClassNestedSealedClassWithCodeAnalysis classType;
+        private readonly AbstractClassNestedSealedClassWithCodeAnalysis classType;
 
         public AbstractPartialClassNestedSealedClassWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             string name)
-            : this(new ClassNestedSealedClassWithCodeAnalysis(visibility, name))
+            : this(new AbstractClassNestedSealedClassWithCodeAnalysis(visibility, name))
         {
         }
 
-        internal AbstractPartialClassNestedSealedClassWithCodeAnalysis(ClassNestedSealedClassWithCodeAnalysis @class)
+        internal AbstractPartialClassNestedSealedClassWithCodeAnalysis(
+            AbstractClassNestedSealedClassWithCodeAnalysis @class)
         {
             classType = @class;
         }
         
-        public NestedSealedClassWithCodeAnalysis Class
+        public AbstractClassNestedSealedClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -82,7 +83,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -187,10 +188,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
-
-        internal ClassNestedSealedClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
+        
+        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class.Class.Class;
     }
 }

@@ -246,6 +246,8 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Syntax = value; }
         }
 
+        public override ClassTypeWithCodeAnalysis Class => classType;
+
         internal InternalClassTypeWithCodeAnalysis<TClass> Type
         {
             get { return classType; }

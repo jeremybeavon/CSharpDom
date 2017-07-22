@@ -26,6 +26,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractPartialClassAbstractEventWithCodeAnalysis(AbstractEventWithCodeAnalysis @event)
         {
             this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public EventWithCodeAnalysis Event

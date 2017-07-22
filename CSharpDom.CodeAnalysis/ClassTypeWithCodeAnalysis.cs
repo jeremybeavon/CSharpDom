@@ -24,7 +24,8 @@ namespace CSharpDom.CodeAnalysis
             ClassNestedStructCollectionWithCodeAnalysis,
             ClassStaticConstructorWithCodeAnalysis,
             ClassDestructorWithCodeAnalysis>,
-        IHasSyntax<ClassDeclarationSyntax>
+        IHasSyntax<ClassDeclarationSyntax>,
+        IClassTypeWithCodeAnalysis
     {
         public abstract ClassDeclarationSyntax Syntax { get; set; }
     }

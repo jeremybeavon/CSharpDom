@@ -30,12 +30,15 @@ namespace CSharpDom.CodeAnalysis
 
         internal AbstractClassIndexerWithCodeAnalysis()
         {
-            indexer = new ClassIndexerWithCodeAnalysis();
+            indexer = new ClassIndexerWithCodeAnalysis()
+            {
+                DeclaringTypeFunc = () => DeclaringType.Class
+            };
         }
         
-        public IndexerWithBodyWithCodeAnalysis Indexer
+        public ClassIndexerWithCodeAnalysis Indexer
         {
-            get { return indexer.Indexer; }
+            get { return indexer; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -46,7 +49,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return indexer.Indexer.Indexer.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? indexer.Indexer.Indexer.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -98,9 +101,6 @@ namespace CSharpDom.CodeAnalysis
             get { return indexer.Indexer.Indexer.Node; }
         }
 
-        internal ClassIndexerWithCodeAnalysis InternalIndexer
-        {
-            get { return indexer; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

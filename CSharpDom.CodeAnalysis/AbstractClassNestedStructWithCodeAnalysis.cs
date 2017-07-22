@@ -32,14 +32,22 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassNestedStructWithCodeAnalysis structType;
 
+        public AbstractClassNestedStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedStructWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal AbstractClassNestedStructWithCodeAnalysis(ClassNestedStructWithCodeAnalysis @struct)
         {
-            structType = @struct ?? new ClassNestedStructWithCodeAnalysis();
+            structType = @struct;
+            structType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedStructWithCodeAnalysis Struct
+        public ClassNestedStructWithCodeAnalysis Struct
         {
-            get { return structType.Struct; }
+            get { return structType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -68,7 +76,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.Struct.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? structType.Struct.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -173,9 +181,6 @@ namespace CSharpDom.CodeAnalysis
             get { return structType.Struct.Node; }
         }
 
-        internal ClassNestedStructWithCodeAnalysis InternalStruct
-        {
-            get { return structType; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

@@ -15,23 +15,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<ConstructorDeclarationSyntax>
     {
-        private readonly ClassConstructorWithCodeAnalysis constructor;
+        private readonly AbstractClassConstructorWithCodeAnalysis constructor;
 
         public AbstractPartialClassConstructorWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             string name,
             IEnumerable<ConstructorParameterWithCodeAnalysis> parameters,
             MethodBodyWithCodeAnalysis body)
-            : this(new ClassConstructorWithCodeAnalysis(visibility, name, parameters, body))
+            : this(new AbstractClassConstructorWithCodeAnalysis(visibility, name, parameters, body))
         {
         }
 
-        internal AbstractPartialClassConstructorWithCodeAnalysis(ClassConstructorWithCodeAnalysis constructor)
+        internal AbstractPartialClassConstructorWithCodeAnalysis(AbstractClassConstructorWithCodeAnalysis constructor)
         {
             this.constructor = constructor;
+            constructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        internal ClassConstructorWithCodeAnalysis Constructor
+        public AbstractClassConstructorWithCodeAnalysis Constructor
         {
             get { return constructor; }
         }
@@ -50,7 +51,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return constructor.Constructor.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return constructor.Constructor.Constructor.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

@@ -27,12 +27,15 @@ namespace CSharpDom.CodeAnalysis
 
         internal AbstractClassEventWithCodeAnalysis()
         {
-            @event = new ClassEventWithCodeAnalysis();
+            @event = new ClassEventWithCodeAnalysis
+            {
+                DeclaringTypeFunc = () => DeclaringType.Class
+            };
         }
 
-        public EventWithCodeAnalysis Event
+        public ClassEventWithCodeAnalysis Event
         {
-            get { return @event.Event; }
+            get { return @event; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -43,7 +46,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.Event.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? @event.Event.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -61,12 +64,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassMemberInheritanceModifier InheritanceModifier
         {
-            get { return Syntax.Modifiers.ToClassMemberInheritanceModifier(); }
-            set
-            {
-                EventFieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberInheritanceModifier(value));
-            }
+            get { return @event.InheritanceModifier; }
+            set { @event.InheritanceModifier = value; }
         }
 
         public override string Name
@@ -77,12 +76,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                EventFieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return @event.Visibility; }
+            set { @event.Visibility = value; }
         }
 
         public EventFieldDeclarationSyntax Syntax
@@ -96,9 +91,6 @@ namespace CSharpDom.CodeAnalysis
             get { return @event.Event.Node; }
         }
 
-        internal ClassEventWithCodeAnalysis InternalEvent
-        {
-            get { return @event; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

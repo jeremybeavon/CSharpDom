@@ -29,6 +29,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractPartialClassAbstractMethodWithCodeAnalysis(AbstractMethodWithCodeAnalysis method)
         {
             this.method = method;
+            method.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public MethodWithCodeAnalysis Method

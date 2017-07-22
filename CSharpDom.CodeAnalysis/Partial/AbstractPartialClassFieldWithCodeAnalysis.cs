@@ -16,24 +16,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             FieldWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly ClassFieldWithCodeAnalysis field;
+        private readonly AbstractClassFieldWithCodeAnalysis field;
 
         public AbstractPartialClassFieldWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             ITypeReferenceWithCodeAnalysis type,
             params string[] names)
-            : this(new ClassFieldWithCodeAnalysis(visibility, type, names))
+            : this(new AbstractClassFieldWithCodeAnalysis(visibility, type, names))
         {
         }
 
-        internal AbstractPartialClassFieldWithCodeAnalysis(ClassFieldWithCodeAnalysis field)
+        internal AbstractPartialClassFieldWithCodeAnalysis(AbstractClassFieldWithCodeAnalysis field)
         {
             this.field = field;
         }
         
-        public FieldGroupWithCodeAnalysis Field
+        public AbstractClassFieldWithCodeAnalysis Field
         {
-            get { return field.Field; }
+            get { return field; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -84,11 +84,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return field.Syntax; }
             set { field.Syntax = value; }
-        }
-        
-        internal ClassFieldWithCodeAnalysis InternalField
-        {
-            get { return field; }
         }
     }
 }

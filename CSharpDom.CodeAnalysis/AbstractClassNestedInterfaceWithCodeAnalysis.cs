@@ -21,14 +21,22 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassNestedInterfaceWithCodeAnalysis type;
 
+        public AbstractClassNestedInterfaceWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedInterfaceWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal AbstractClassNestedInterfaceWithCodeAnalysis(ClassNestedInterfaceWithCodeAnalysis @interface)
         {
-            type = @interface ?? new ClassNestedInterfaceWithCodeAnalysis();
+            type = @interface;
+            type.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedInterfaceWithCodeAnalysis Interface
+        public ClassNestedInterfaceWithCodeAnalysis Interface
         {
-            get { return type.Interface; }
+            get { return type; }
         }
         
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -39,7 +47,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return type.Interface.Interface.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? type.Interface.Interface.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -104,9 +112,6 @@ namespace CSharpDom.CodeAnalysis
             get { return type.Interface.Interface.Node; }
         }
 
-        internal ClassNestedInterfaceWithCodeAnalysis InternalInterface
-        {
-            get { return type; }
-        }
+        internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

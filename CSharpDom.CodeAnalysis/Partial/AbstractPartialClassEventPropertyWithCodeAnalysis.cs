@@ -30,11 +30,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal AbstractPartialClassEventPropertyWithCodeAnalysis(AbstractClassEventPropertyWithCodeAnalysis @event)
         {
             this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public EventPropertyWithCodeAnalysis EventProperty
+        public AbstractClassEventPropertyWithCodeAnalysis EventProperty
         {
-            get { return @event.EventProperty; }
+            get { return @event; }
         }
 
         public override MethodBodyWithCodeAnalysis AddBody
@@ -51,7 +52,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.EventProperty.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return @event.EventProperty.EventProperty.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

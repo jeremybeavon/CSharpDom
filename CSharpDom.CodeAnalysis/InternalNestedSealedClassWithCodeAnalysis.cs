@@ -152,12 +152,7 @@ namespace CSharpDom.CodeAnalysis
             get { return classType.Syntax; }
             set { classType.Syntax = value; }
         }
-
-        internal InternalSealedTypeWithCodeAnalysis<TClass> InternalClass
-        {
-            get { return classType; }
-        }
-
+        
         internal override INode<ClassDeclarationSyntax> Node => classType.Node;
     }
 }
