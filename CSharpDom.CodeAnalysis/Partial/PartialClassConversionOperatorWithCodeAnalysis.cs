@@ -19,15 +19,26 @@ namespace CSharpDom.CodeAnalysis.Partial
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassConversionOperatorWithCodeAnalysis conversionOperator;
-        
+
+        public PartialClassConversionOperatorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ConversionOperatorType operatorType,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorParameterWithCodeAnalysis parameter,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassConversionOperatorWithCodeAnalysis(visibility, operatorType, returnType, parameter, body))
+        {
+        }
+
         internal PartialClassConversionOperatorWithCodeAnalysis(ClassConversionOperatorWithCodeAnalysis conversionOperator)
         {
             this.conversionOperator = conversionOperator;
+            conversionOperator.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public ConversionOperatorWithCodeAnalysis ConversionOperator
+        public ClassConversionOperatorWithCodeAnalysis ConversionOperator
         {
-            get { return conversionOperator.ConversionOperator; }
+            get { return conversionOperator; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -76,11 +87,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return conversionOperator.Syntax; }
             set { conversionOperator.Syntax = value; }
-        }
-        
-        internal ClassConversionOperatorWithCodeAnalysis InternalConversionOperator
-        {
-            get { return conversionOperator; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

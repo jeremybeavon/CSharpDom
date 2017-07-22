@@ -17,9 +17,20 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassIndexerWithCodeAnalysis indexer;
 
+        public PartialClassIndexerWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            IEnumerable<IndexerParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this(new ClassIndexerWithCodeAnalysis(visibility, type, parameters, getAccessor, setAccessor))
+        {
+        }
+
         internal PartialClassIndexerWithCodeAnalysis(ClassIndexerWithCodeAnalysis indexer)
         {
             this.indexer = indexer;
+            indexer.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public IndexerWithBodyWithCodeAnalysis Indexer

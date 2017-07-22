@@ -37,12 +37,12 @@ namespace CSharpDom.CodeAnalysis
             abstractClasses = new WrappedCollection<ClassNestedAbstractClassWithCodeAnalysis, SealedClassNestedAbstractClassWithCodeAnalysis>(
                 classCollection.AbstractClasses,
                 parent => new SealedClassNestedAbstractClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.AbstractClasses = value);
             sealedClasses = new WrappedCollection<ClassNestedSealedClassWithCodeAnalysis, SealedClassNestedSealedClassWithCodeAnalysis>(
                 classCollection.SealedClasses,
                 parent => new SealedClassNestedSealedClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.SealedClasses = value);
             staticClasses = new WrappedCollection<ClassNestedStaticClassWithCodeAnalysis, SealedClassNestedStaticClassWithCodeAnalysis>(
                 classCollection.StaticClasses,

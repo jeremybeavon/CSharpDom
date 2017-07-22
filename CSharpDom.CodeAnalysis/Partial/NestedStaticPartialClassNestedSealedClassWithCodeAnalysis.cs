@@ -39,9 +39,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             this.classType = classType;
         }
         
-        public NestedSealedClassWithCodeAnalysis Class
+        public NestedStaticClassNestedSealedClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

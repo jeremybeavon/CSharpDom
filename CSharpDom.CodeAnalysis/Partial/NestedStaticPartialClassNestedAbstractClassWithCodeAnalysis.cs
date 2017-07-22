@@ -46,9 +46,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             this.classType = classType;
         }
         
-        public NestedAbstractClassWithCodeAnalysis Class
+        public NestedStaticClassNestedAbstractClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

@@ -33,16 +33,13 @@ namespace CSharpDom.CodeAnalysis.Partial
         ISealedPartialTypeWithCodeAnalysis
     {
         private readonly StaticClassNestedSealedClassWithCodeAnalysis classType;
-        private readonly SealedPartialTypeWithCodeAnalysis<StaticClassNestedSealedClassWithCodeAnalysis> sealedType;
-        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
+        private readonly SealedPartialTypeWithCodeAnalysis<StaticClassNestedSealedPartialClassWithCodeAnalysis> sealedType;
 
         internal StaticClassNestedSealedPartialClassWithCodeAnalysis()
         {
-            classType = new StaticClassNestedSealedClassWithCodeAnalysis();
-            sealedType = new SealedPartialTypeWithCodeAnalysis<StaticClassNestedSealedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
-            methods = new InternalSealedPartialClassMethodCollectionWithCodeAnalysis<StaticClassNestedSealedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass.Type);
+            var type = new InternalNestedSealedClassWithCodeAnalysis<StaticClassNestedSealedPartialClassWithCodeAnalysis>(this);
+            classType = new StaticClassNestedSealedClassWithCodeAnalysis(type);
+            sealedType = new SealedPartialTypeWithCodeAnalysis<StaticClassNestedSealedPartialClassWithCodeAnalysis>(type);
         }
         
         public StaticClassNestedSealedClassWithCodeAnalysis Class
@@ -142,8 +139,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.InternalClass.Type.Members.Replace(value); }
+            get { return sealedType.Methods; }
+            set { sealedType.Methods = value; }
         }
 
         public override string Name
@@ -194,7 +191,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.InternalClass.Type.Node; }
+            get { return classType.Class.Node; }
         }
     }
 }

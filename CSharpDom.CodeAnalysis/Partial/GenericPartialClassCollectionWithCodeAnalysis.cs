@@ -69,5 +69,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 new MemberListSyntax("SealedPartialClasses", value.SealedClasses.Select(item => item.Syntax)),
                 new MemberListSyntax("StaticPartialClasses", value.StaticClasses.Select(item => item.Syntax)));
         }
+
+        internal IMemberList Members => members;
     }
 }

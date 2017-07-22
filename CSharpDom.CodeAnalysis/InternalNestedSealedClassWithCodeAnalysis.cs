@@ -154,5 +154,7 @@ namespace CSharpDom.CodeAnalysis
         }
         
         internal override INode<ClassDeclarationSyntax> Node => classType.Node;
+
+        internal InternalSealedTypeWithCodeAnalysis<TClass> InternalSealedType => classType;
     }
 }

@@ -16,14 +16,32 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassConstantWithCodeAnalysis constant;
 
+        public PartialClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            IExpressionWithCodeAnalysis value)
+            : this(new ClassConstantWithCodeAnalysis(visibility, type, name, value))
+        {
+        }
+
+        public PartialClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params ConstantWithCodeAnalysis[] constants)
+            : this(new ClassConstantWithCodeAnalysis(visibility, type, constants))
+        {
+        }
+
         internal PartialClassConstantWithCodeAnalysis(ClassConstantWithCodeAnalysis constant)
         {
             this.constant = constant;
+            constant.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ConstantGroupWithCodeAnalysis Constant
+        public ClassConstantWithCodeAnalysis Constant
         {
-            get { return constant.Constant; }
+            get { return constant; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -60,11 +78,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return constant.Syntax; }
             set { constant.Syntax = value; }
-        }
-
-        internal ClassConstantWithCodeAnalysis InternalConstant
-        {
-            get { return constant; }
         }
     }
 }

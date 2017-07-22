@@ -16,9 +16,18 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassEventWithCodeAnalysis @event;
 
+        public PartialClassEventWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name)
+            : this(new ClassEventWithCodeAnalysis(visibility, type, name))
+        {
+        }
+
         internal PartialClassEventWithCodeAnalysis(ClassEventWithCodeAnalysis @event)
         {
             this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
         public EventWithCodeAnalysis Event

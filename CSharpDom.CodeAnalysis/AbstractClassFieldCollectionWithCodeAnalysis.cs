@@ -14,7 +14,7 @@ namespace CSharpDom.CodeAnalysis
             constants = new WrappedCollection<ClassConstantWithCodeAnalysis, AbstractClassConstantWithCodeAnalysis>(
                 fieldCollection.Constants,
                 parent => new AbstractClassConstantWithCodeAnalysis(parent),
-                child => child.InternalConstant,
+                child => child.Constant,
                 value => fieldCollection.Constants = value);
             fields = new WrappedCollection<ClassFieldWithCodeAnalysis, AbstractClassFieldWithCodeAnalysis>(
                 fieldCollection.Fields,

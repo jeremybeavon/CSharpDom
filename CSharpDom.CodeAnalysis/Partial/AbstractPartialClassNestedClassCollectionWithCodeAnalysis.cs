@@ -13,41 +13,41 @@ namespace CSharpDom.CodeAnalysis.Partial
             AbstractPartialClassNestedPartialClassCollectionWithCodeAnalysis>
     {
         private readonly WrappedCollection<
-            ClassNestedClassWithCodeAnalysis,
+            AbstractClassNestedClassWithCodeAnalysis,
             AbstractPartialClassNestedClassWithCodeAnalysis> classes;
         private readonly WrappedCollection<
-            ClassNestedAbstractClassWithCodeAnalysis,
+            AbstractClassNestedAbstractClassWithCodeAnalysis,
             AbstractPartialClassNestedAbstractClassWithCodeAnalysis> abstractClasses;
         private readonly WrappedCollection<
-            ClassNestedSealedClassWithCodeAnalysis,
+            AbstractClassNestedSealedClassWithCodeAnalysis,
             AbstractPartialClassNestedSealedClassWithCodeAnalysis> sealedClasses;
         private readonly WrappedCollection<
-            ClassNestedStaticClassWithCodeAnalysis,
+            AbstractClassNestedStaticClassWithCodeAnalysis,
             AbstractPartialClassNestedStaticClassWithCodeAnalysis> staticClasses;
         private readonly AbstractPartialClassNestedPartialClassCollectionWithCodeAnalysis partialClasses;
 
         public AbstractPartialClassNestedClassCollectionWithCodeAnalysis(
-            ClassNestedClassCollectionWithCodeAnalysis classCollection)
+            AbstractClassNestedClassCollectionWithCodeAnalysis classCollection)
         {
-            classes = new WrappedCollection<ClassNestedClassWithCodeAnalysis, AbstractPartialClassNestedClassWithCodeAnalysis>(
+            classes = new WrappedCollection<AbstractClassNestedClassWithCodeAnalysis, AbstractPartialClassNestedClassWithCodeAnalysis>(
                 classCollection.Classes,
                 parent => new AbstractPartialClassNestedClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.Classes = value);
-            abstractClasses = new WrappedCollection<ClassNestedAbstractClassWithCodeAnalysis, AbstractPartialClassNestedAbstractClassWithCodeAnalysis>(
+            abstractClasses = new WrappedCollection<AbstractClassNestedAbstractClassWithCodeAnalysis, AbstractPartialClassNestedAbstractClassWithCodeAnalysis>(
                 classCollection.AbstractClasses,
                 parent => new AbstractPartialClassNestedAbstractClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.AbstractClasses = value);
-            sealedClasses = new WrappedCollection<ClassNestedSealedClassWithCodeAnalysis, AbstractPartialClassNestedSealedClassWithCodeAnalysis>(
+            sealedClasses = new WrappedCollection<AbstractClassNestedSealedClassWithCodeAnalysis, AbstractPartialClassNestedSealedClassWithCodeAnalysis>(
                 classCollection.SealedClasses,
                 parent => new AbstractPartialClassNestedSealedClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.SealedClasses = value);
-            staticClasses = new WrappedCollection<ClassNestedStaticClassWithCodeAnalysis, AbstractPartialClassNestedStaticClassWithCodeAnalysis>(
+            staticClasses = new WrappedCollection<AbstractClassNestedStaticClassWithCodeAnalysis, AbstractPartialClassNestedStaticClassWithCodeAnalysis>(
                 classCollection.StaticClasses,
                 parent => new AbstractPartialClassNestedStaticClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.StaticClasses = value);
             partialClasses = AbstractPartialClassNestedPartialClassCollectionWithCodeAnalysis.Create(
                 classCollection.PartialClasses);

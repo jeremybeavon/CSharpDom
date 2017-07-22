@@ -48,9 +48,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public ClassNestedAbstractClassWithCodeAnalysis Class
+        public ClassNestedAbstractPartialClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

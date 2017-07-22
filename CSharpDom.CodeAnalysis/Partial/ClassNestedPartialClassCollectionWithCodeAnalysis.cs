@@ -22,10 +22,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ICollection<ClassNestedStaticPartialClassWithCodeAnalysis> staticClasses)
             : base(members, abstractClasses, classes, sealedClasses, staticClasses)
         {
-            Members = members;
         }
-
-        internal IMemberList Members { get; private set; }
 
         internal static ClassNestedPartialClassCollectionWithCodeAnalysis Create<TClass>(
             InternalClassTypeWithCodeAnalysis<TClass> classType)

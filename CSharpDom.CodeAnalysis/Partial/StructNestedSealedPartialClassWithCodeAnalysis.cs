@@ -33,16 +33,13 @@ namespace CSharpDom.CodeAnalysis.Partial
         ISealedPartialTypeWithCodeAnalysis
     {
         private readonly StructNestedSealedClassWithCodeAnalysis classType;
-        private readonly SealedPartialTypeWithCodeAnalysis<StructNestedSealedClassWithCodeAnalysis> sealedType;
-        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
+        private readonly SealedPartialTypeWithCodeAnalysis<StructNestedSealedPartialClassWithCodeAnalysis> sealedType;
 
         internal StructNestedSealedPartialClassWithCodeAnalysis()
         {
-            classType = new StructNestedSealedClassWithCodeAnalysis();
-            sealedType = new SealedPartialTypeWithCodeAnalysis<StructNestedSealedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
-            methods = new InternalSealedPartialClassMethodCollectionWithCodeAnalysis<StructNestedSealedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass.Type);
+            var type = new InternalNestedSealedClassWithCodeAnalysis<StructNestedSealedPartialClassWithCodeAnalysis>(this);
+            classType = new StructNestedSealedClassWithCodeAnalysis(type);
+            sealedType = new SealedPartialTypeWithCodeAnalysis<StructNestedSealedPartialClassWithCodeAnalysis>(type);
         }
         
         public StructNestedSealedClassWithCodeAnalysis Class
@@ -142,8 +139,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.InternalClass.Type.Members.Replace(value); }
+            get { return sealedType.Methods; }
+            set { sealedType.Methods = value; }
         }
 
         public override string Name
@@ -194,7 +191,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.InternalClass.Type.Node; }
+            get { return classType.Class.Node; }
         }
     }
 }

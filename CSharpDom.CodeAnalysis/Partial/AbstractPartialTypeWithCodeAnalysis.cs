@@ -34,32 +34,32 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly IMemberList members;
         private readonly AbstractPartialClassNestedClassCollectionWithCodeAnalysis classes;
         private readonly WrappedCollection<
-            ClassConstructorWithCodeAnalysis,
+            AbstractClassConstructorWithCodeAnalysis,
             AbstractPartialClassConstructorWithCodeAnalysis> constructors;
         private readonly WrappedCollection<
-            ClassConversionOperatorWithCodeAnalysis,
+            AbstractClassConversionOperatorWithCodeAnalysis,
             AbstractPartialClassConversionOperatorWithCodeAnalysis> conversionOperators;
         private readonly WrappedCollection<
-            ClassNestedDelegateWithCodeAnalysis,
+            AbstractClassNestedDelegateWithCodeAnalysis,
             AbstractPartialClassNestedDelegateWithCodeAnalysis> delegates;
         private readonly WrappedCollection<
-            ClassNestedEnumWithCodeAnalysis,
+            AbstractClassNestedEnumWithCodeAnalysis,
             AbstractPartialClassNestedEnumWithCodeAnalysis> enums;
         private readonly AbstractPartialClassEventCollectionWithCodeAnalysis events;
         private readonly AbstractPartialClassFieldCollectionWithCodeAnalysis fields;
         private readonly AbstractPartialClassIndexerCollectionWithCodeAnalysis indexers;
         private readonly WrappedCollection<
-            ClassNestedInterfaceWithCodeAnalysis,
+            AbstractClassNestedInterfaceWithCodeAnalysis,
             AbstractPartialClassNestedInterfaceWithCodeAnalysis> interfaces;
         private readonly AbstractPartialClassMethodCollectionWithCodeAnalysis methods;
         private readonly WrappedCollection<
-            ClassOperatorOverloadWithCodeAnalysis,
+            AbstractClassOperatorOverloadWithCodeAnalysis,
             AbstractPartialClassOperatorOverloadWithCodeAnalysis> operatorOverloads;
         private readonly AbstractPartialClassPropertyCollectionWithCodeAnalysis properties;
         private readonly AbstractPartialClassNestedStructCollectionWithCodeAnalysis structs;
 
         internal AbstractPartialTypeWithCodeAnalysis(InternalNestedAbstractClassWithCodeAnalysis<TClass> classType)
-            : this(classType.InternalClass)
+            : this(classType.InternalAbstractType)
         {
         }
 
@@ -67,43 +67,43 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             this.classType = classType;
             members = classType.Members;
-            classes = new AbstractPartialClassNestedClassCollectionWithCodeAnalysis(classType.Type.Classes);
-            constructors = new WrappedCollection<ClassConstructorWithCodeAnalysis, AbstractPartialClassConstructorWithCodeAnalysis>(
-                classType.Type.Constructors,
+            classes = new AbstractPartialClassNestedClassCollectionWithCodeAnalysis(classType.Classes);
+            constructors = new WrappedCollection<AbstractClassConstructorWithCodeAnalysis, AbstractPartialClassConstructorWithCodeAnalysis>(
+                classType.Constructors,
                 constructor => new AbstractPartialClassConstructorWithCodeAnalysis(constructor),
                 constructor => constructor.Constructor,
-                value => classType.Type.Constructors = value);
-            conversionOperators = new WrappedCollection<ClassConversionOperatorWithCodeAnalysis, AbstractPartialClassConversionOperatorWithCodeAnalysis>(
-                classType.Type.ConversionOperators,
+                value => classType.Constructors = value);
+            conversionOperators = new WrappedCollection<AbstractClassConversionOperatorWithCodeAnalysis, AbstractPartialClassConversionOperatorWithCodeAnalysis>(
+                classType.ConversionOperators,
                 parent => new AbstractPartialClassConversionOperatorWithCodeAnalysis(parent),
-                child => child.InternalConversionOperator,
-                value => classType.Type.ConversionOperators = value);
-            delegates = new WrappedCollection<ClassNestedDelegateWithCodeAnalysis, AbstractPartialClassNestedDelegateWithCodeAnalysis>(
-                classType.Type.Delegates,
+                child => child.ConversionOperator,
+                value => classType.ConversionOperators = value);
+            delegates = new WrappedCollection<AbstractClassNestedDelegateWithCodeAnalysis, AbstractPartialClassNestedDelegateWithCodeAnalysis>(
+                classType.Delegates,
                 parent => new AbstractPartialClassNestedDelegateWithCodeAnalysis(parent),
-                child => child.InternalDelegate,
-                value => classType.Type.Delegates = value);
-            enums = new WrappedCollection<ClassNestedEnumWithCodeAnalysis, AbstractPartialClassNestedEnumWithCodeAnalysis>(
-                classType.Type.Enums,
+                child => child.Delegate,
+                value => classType.Delegates = value);
+            enums = new WrappedCollection<AbstractClassNestedEnumWithCodeAnalysis, AbstractPartialClassNestedEnumWithCodeAnalysis>(
+                classType.Enums,
                 parent => new AbstractPartialClassNestedEnumWithCodeAnalysis(parent),
-                child => child.InternalEnum,
-                value => classType.Type.Enums = value);
+                child => child.Enum,
+                value => classType.Enums = value);
             events = new AbstractPartialClassEventCollectionWithCodeAnalysis(classType.Events);
-            fields = new AbstractPartialClassFieldCollectionWithCodeAnalysis(classType.Type.Fields);
+            fields = new AbstractPartialClassFieldCollectionWithCodeAnalysis(classType.Fields);
             indexers = new AbstractPartialClassIndexerCollectionWithCodeAnalysis(classType.Indexers);
-            interfaces = new WrappedCollection<ClassNestedInterfaceWithCodeAnalysis, AbstractPartialClassNestedInterfaceWithCodeAnalysis>(
-                classType.Type.Interfaces,
+            interfaces = new WrappedCollection<AbstractClassNestedInterfaceWithCodeAnalysis, AbstractPartialClassNestedInterfaceWithCodeAnalysis>(
+                classType.Interfaces,
                 parent => new AbstractPartialClassNestedInterfaceWithCodeAnalysis(parent),
-                child => child.InternalInterface,
-                value => classType.Type.Interfaces = value);
+                child => child.Interface,
+                value => classType.Interfaces = value);
             methods = new InternalAbstractPartialClassMethodCollectionWithCodeAnalysis<TClass>(classType.Type);
-            operatorOverloads = new WrappedCollection<ClassOperatorOverloadWithCodeAnalysis, AbstractPartialClassOperatorOverloadWithCodeAnalysis>(
-                classType.Type.OperatorOverloads,
+            operatorOverloads = new WrappedCollection<AbstractClassOperatorOverloadWithCodeAnalysis, AbstractPartialClassOperatorOverloadWithCodeAnalysis>(
+                classType.OperatorOverloads,
                 parent => new AbstractPartialClassOperatorOverloadWithCodeAnalysis(parent),
-                child => child.InternalOperatorOverload,
-                value => classType.Type.OperatorOverloads = value);
+                child => child.OperatorOverload,
+                value => classType.OperatorOverloads = value);
             properties = new AbstractPartialClassPropertyCollectionWithCodeAnalysis(classType.Properties);
-            structs = new AbstractPartialClassNestedStructCollectionWithCodeAnalysis(classType.Type.Structs);
+            structs = new AbstractPartialClassNestedStructCollectionWithCodeAnalysis(classType.Structs);
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -153,10 +153,10 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get
             {
-                ClassDestructorWithCodeAnalysis destructor = classType.Type.Destructor;
+                AbstractClassDestructorWithCodeAnalysis destructor = classType.Destructor;
                 return destructor == null ? null : new AbstractPartialClassDestructorWithCodeAnalysis(destructor);
             }
-            set { classType.Type.Destructor = value?.InternalDestructor; }
+            set { classType.Destructor = value?.Destructor; }
         }
 
         public override ICollection<AbstractPartialClassNestedEnumWithCodeAnalysis> Enums
@@ -253,10 +253,10 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get
             {
-                ClassStaticConstructorWithCodeAnalysis constructor = classType.Type.StaticConstructor;
+                AbstractClassStaticConstructorWithCodeAnalysis constructor = classType.StaticConstructor;
                 return constructor == null ? null : new AbstractPartialClassStaticConstructorWithCodeAnalysis(constructor);
             }
-            set { classType.Type.StaticConstructor = value?.InternalStaticConstructor; }
+            set { classType.StaticConstructor = value?.StaticConstructor; }
         }
 
         public override AbstractPartialClassNestedStructCollectionWithCodeAnalysis Structs

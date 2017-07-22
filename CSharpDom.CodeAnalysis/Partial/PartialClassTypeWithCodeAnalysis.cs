@@ -76,7 +76,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             conversionOperators = new WrappedCollection<ClassConversionOperatorWithCodeAnalysis, PartialClassConversionOperatorWithCodeAnalysis>(
                 classType.ConversionOperators,
                 parent => new PartialClassConversionOperatorWithCodeAnalysis(parent),
-                child => child.InternalConversionOperator,
+                child => child.ConversionOperator,
                 value => classType.ConversionOperators = value);
             delegates = new WrappedCollection<ClassNestedDelegateWithCodeAnalysis, PartialClassNestedDelegateWithCodeAnalysis>(
                 classType.Delegates,

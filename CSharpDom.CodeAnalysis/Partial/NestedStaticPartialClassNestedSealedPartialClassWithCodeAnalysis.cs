@@ -32,16 +32,13 @@ namespace CSharpDom.CodeAnalysis.Partial
         ISealedPartialTypeWithCodeAnalysis
     {
         private readonly NestedStaticClassNestedSealedClassWithCodeAnalysis classType;
-        private readonly SealedPartialTypeWithCodeAnalysis<NestedStaticClassNestedSealedClassWithCodeAnalysis> sealedType;
-        private readonly SealedPartialClassMethodCollectionWithCodeAnalysis methods;
+        private readonly SealedPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis> sealedType;
 
         internal NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis()
         {
-            classType = new NestedStaticClassNestedSealedClassWithCodeAnalysis();
-            sealedType = new SealedPartialTypeWithCodeAnalysis<NestedStaticClassNestedSealedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
-            methods = new InternalSealedPartialClassMethodCollectionWithCodeAnalysis<NestedStaticClassNestedSealedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass.Type);
+            var type = new InternalNestedSealedClassWithCodeAnalysis<NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis>(this);
+            classType = new NestedStaticClassNestedSealedClassWithCodeAnalysis(type);
+            sealedType = new SealedPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis>(type);
         }
         
         public NestedStaticClassNestedSealedClassWithCodeAnalysis Class
@@ -81,7 +78,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.InternalClass.Type.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -141,8 +138,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.InternalClass.Type.Members.Replace(value); }
+            get { return sealedType.Methods; }
+            set { sealedType.Methods = value; }
         }
 
         public override string Name

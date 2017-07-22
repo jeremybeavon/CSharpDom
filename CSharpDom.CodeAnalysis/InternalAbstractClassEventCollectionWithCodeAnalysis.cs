@@ -25,7 +25,7 @@ namespace CSharpDom.CodeAnalysis
             eventProperties = new WrappedCollection<ClassEventPropertyWithCodeAnalysis, AbstractClassEventPropertyWithCodeAnalysis>(
                 classType.Events.EventProperties,
                 parent => new AbstractClassEventPropertyWithCodeAnalysis(parent),
-                child => child.InternalEventProperty,
+                child => child.EventProperty,
                 value => classType.Events.EventProperties = value);
             abstractEvents = new ClassEventListWrapper<TClass, AbstractEventWithCodeAnalysis>(
                 classType.Node,

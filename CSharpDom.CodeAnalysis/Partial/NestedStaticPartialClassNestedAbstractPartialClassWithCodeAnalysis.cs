@@ -51,8 +51,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             var abstractType = new InternalNestedAbstractClassWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis>(this);
             classType = new StaticClassNestedAbstractClassWithCodeAnalysis(abstractType);
-            partialType = new AbstractPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis>(
-                abstractType.InternalClass);
+            partialType = new AbstractPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis>(abstractType);
         }
         
         public StaticClassNestedAbstractClassWithCodeAnalysis Class
@@ -197,5 +196,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
+
+        IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class;
     }
 }

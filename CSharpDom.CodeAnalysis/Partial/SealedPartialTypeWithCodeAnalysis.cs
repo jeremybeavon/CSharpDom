@@ -59,7 +59,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly SealedPartialClassNestedStructCollectionWithCodeAnalysis structs;
 
         internal SealedPartialTypeWithCodeAnalysis(InternalNestedSealedClassWithCodeAnalysis<TClass> classType)
-            : this(classType.InternalClass)
+            : this(classType.InternalSealedType)
         {
         }
 

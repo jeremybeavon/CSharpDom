@@ -25,7 +25,12 @@ namespace CSharpDom.CodeAnalysis.Partial
             this.destructor = destructor;
             destructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
-        
+
+        public AbstractClassDestructorWithCodeAnalysis Destructor
+        {
+            get { return destructor; }
+        }
+
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return destructor.Attributes; }

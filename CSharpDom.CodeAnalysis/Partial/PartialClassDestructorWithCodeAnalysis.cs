@@ -12,10 +12,18 @@ namespace CSharpDom.CodeAnalysis.Partial
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassDestructorWithCodeAnalysis destructor;
-        
+
+        public PartialClassDestructorWithCodeAnalysis(
+            string name,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassDestructorWithCodeAnalysis(name, body))
+        {
+        }
+
         internal PartialClassDestructorWithCodeAnalysis(ClassDestructorWithCodeAnalysis destructor)
         {
             this.destructor = destructor;
+            destructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

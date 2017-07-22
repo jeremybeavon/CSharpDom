@@ -42,7 +42,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             sealedClasses = new WrappedCollection<ClassNestedSealedClassWithCodeAnalysis, PartialClassNestedSealedClassWithCodeAnalysis>(
                 classCollection.SealedClasses,
                 parent => new PartialClassNestedSealedClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.SealedClasses = value);
             staticClasses = new WrappedCollection<ClassNestedStaticClassWithCodeAnalysis, PartialClassNestedStaticClassWithCodeAnalysis>(
                 classCollection.StaticClasses,

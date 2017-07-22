@@ -18,14 +18,22 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassFieldWithCodeAnalysis field;
 
+        public PartialClassFieldWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this(new ClassFieldWithCodeAnalysis(visibility, type, names))
+        {
+        }
+
         internal PartialClassFieldWithCodeAnalysis(ClassFieldWithCodeAnalysis field)
         {
             this.field = field;
         }
         
-        public FieldGroupWithCodeAnalysis Field
+        public ClassFieldWithCodeAnalysis Field
         {
-            get { return field.Field; }
+            get { return field; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes

@@ -16,12 +16,12 @@ namespace CSharpDom.CodeAnalysis.Partial
             constants = new WrappedCollection<ClassConstantWithCodeAnalysis, PartialClassConstantWithCodeAnalysis>(
                 fieldCollection.Constants,
                 parent => new PartialClassConstantWithCodeAnalysis(parent),
-                child => child.InternalConstant,
+                child => child.Constant,
                 value => fieldCollection.Constants = value);
             fields = new WrappedCollection<ClassFieldWithCodeAnalysis, PartialClassFieldWithCodeAnalysis>(
                 fieldCollection.Fields,
                 parent => new PartialClassFieldWithCodeAnalysis(parent),
-                child => child.InternalField,
+                child => child.Field,
                 value => fieldCollection.Fields = value);
         }
 

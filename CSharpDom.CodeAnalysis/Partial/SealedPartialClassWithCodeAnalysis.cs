@@ -205,7 +205,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.Type.Node; }
+            get { return classType.Class.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

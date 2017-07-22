@@ -155,5 +155,7 @@ namespace CSharpDom.CodeAnalysis
         }
         
         internal override INode<ClassDeclarationSyntax> Node => classType.Node;
+
+        internal InternalAbstractTypeWithCodeAnalysis<TClass> InternalAbstractType => classType;
     }
 }
