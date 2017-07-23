@@ -40,12 +40,12 @@ namespace CSharpDom.CodeAnalysis.Partial
             var sealedClasses = new WrappedCollection<ClassNestedSealedPartialClassWithCodeAnalysis, SealedClassNestedSealedPartialClassWithCodeAnalysis>(
                 classCollection.SealedClasses,
                 parent => new SealedClassNestedSealedPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.SealedClasses = value);
             var staticClasses = new WrappedCollection<ClassNestedStaticPartialClassWithCodeAnalysis, SealedClassNestedStaticPartialClassWithCodeAnalysis>(
                 classCollection.StaticClasses,
                 parent => new SealedClassNestedStaticPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.StaticClasses = value);
             return new SealedClassNestedPartialClassCollectionWithCodeAnalysis(classCollection.Members, abstractClasses, classes, sealedClasses, staticClasses);
         }

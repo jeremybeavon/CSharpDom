@@ -34,9 +34,17 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedPartialClassWithCodeAnalysis classType;
 
+        public SealedClassNestedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedPartialClassWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal SealedClassNestedPartialClassWithCodeAnalysis(ClassNestedPartialClassWithCodeAnalysis @class)
         {
             classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public ClassNestedPartialClassWithCodeAnalysis Class

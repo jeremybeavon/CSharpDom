@@ -15,14 +15,21 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassStaticConstructorWithCodeAnalysis staticConstructor;
 
+        public PartialClassStaticConstructorWithCodeAnalysis(
+            string name,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassStaticConstructorWithCodeAnalysis(name, body))
+        {
+        }
+
         internal PartialClassStaticConstructorWithCodeAnalysis(ClassStaticConstructorWithCodeAnalysis staticConstructor)
         {
             this.staticConstructor = staticConstructor;
         }
 
-        public StaticConstructorWithCodeAnalysis StaticConstructor
+        public ClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return staticConstructor.StaticConstructor; }
+            get { return staticConstructor; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -47,11 +54,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return staticConstructor.Syntax; }
             set { staticConstructor.Syntax = value; }
-        }
-
-        internal ClassStaticConstructorWithCodeAnalysis InternalStaticConstructor
-        {
-            get { return staticConstructor; }
         }
     }
 }

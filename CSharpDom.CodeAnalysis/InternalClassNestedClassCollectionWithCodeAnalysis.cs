@@ -35,19 +35,19 @@ namespace CSharpDom.CodeAnalysis
         {
             this.classType = classType;
             classes = new ClassMemberListWrapper<TClass, ClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassNestedClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsAbstractClass);
             abstractClasses = new ClassMemberListWrapper<TClass, ClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassNestedAbstractClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsClass);
             sealedClasses = new ClassMemberListWrapper<TClass, ClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassNestedSealedClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsSealedClass);
             staticClasses = new ClassMemberListWrapper<TClass, ClassNestedStaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassNestedStaticClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsStaticClass);
             partialClasses = ClassNestedPartialClassCollectionWithCodeAnalysis.Create(classType);

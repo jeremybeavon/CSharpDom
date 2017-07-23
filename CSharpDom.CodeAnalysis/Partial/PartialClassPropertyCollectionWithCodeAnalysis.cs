@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             properties = new WrappedCollection<ClassPropertyWithCodeAnalysis, PartialClassPropertyWithCodeAnalysis>(
                 propertyCollection.Properties,
                 parent => new PartialClassPropertyWithCodeAnalysis(parent),
-                child => child.InternalProperty,
+                child => child.Property,
                 value => propertyCollection.Properties = value);
         }
         

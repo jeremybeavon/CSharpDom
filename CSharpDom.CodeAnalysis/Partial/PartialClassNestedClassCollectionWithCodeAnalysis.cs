@@ -32,12 +32,12 @@ namespace CSharpDom.CodeAnalysis.Partial
             classes = new WrappedCollection<ClassNestedClassWithCodeAnalysis, PartialClassNestedClassWithCodeAnalysis>(
                 classCollection.Classes,
                 parent => new PartialClassNestedClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.Classes = value);
             abstractClasses = new WrappedCollection<ClassNestedAbstractClassWithCodeAnalysis, PartialClassNestedAbstractClassWithCodeAnalysis>(
                 classCollection.AbstractClasses,
                 parent => new PartialClassNestedAbstractClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.AbstractClasses = value);
             sealedClasses = new WrappedCollection<ClassNestedSealedClassWithCodeAnalysis, PartialClassNestedSealedClassWithCodeAnalysis>(
                 classCollection.SealedClasses,
@@ -47,7 +47,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             staticClasses = new WrappedCollection<ClassNestedStaticClassWithCodeAnalysis, PartialClassNestedStaticClassWithCodeAnalysis>(
                 classCollection.StaticClasses,
                 parent => new PartialClassNestedStaticClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.StaticClasses = value);
             partialClasses = PartialClassNestedPartialClassCollectionWithCodeAnalysis.Create(
                 classCollection.PartialClasses);

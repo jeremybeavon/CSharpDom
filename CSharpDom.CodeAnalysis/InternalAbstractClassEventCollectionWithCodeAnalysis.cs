@@ -19,7 +19,7 @@ namespace CSharpDom.CodeAnalysis
         {
             this.classType = classType;
             events = new ClassEventListWrapper<TClass, AbstractClassEventWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new AbstractClassEventWithCodeAnalysis(),
                 syntax => !syntax.Modifiers.IsAbstract());
             eventProperties = new WrappedCollection<ClassEventPropertyWithCodeAnalysis, AbstractClassEventPropertyWithCodeAnalysis>(
@@ -28,7 +28,7 @@ namespace CSharpDom.CodeAnalysis
                 child => child.EventProperty,
                 value => classType.Events.EventProperties = value);
             abstractEvents = new ClassEventListWrapper<TClass, AbstractEventWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new AbstractEventWithCodeAnalysis(),
                 syntax => syntax.Modifiers.IsAbstract());
         }

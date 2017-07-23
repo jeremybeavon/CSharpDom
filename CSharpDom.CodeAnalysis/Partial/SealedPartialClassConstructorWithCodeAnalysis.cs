@@ -15,14 +15,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<ConstructorDeclarationSyntax>
     {
-        private readonly ClassConstructorWithCodeAnalysis constructor;
+        private readonly SealedClassConstructorWithCodeAnalysis constructor;
 
-        internal SealedPartialClassConstructorWithCodeAnalysis(ClassConstructorWithCodeAnalysis constructor)
+        public SealedPartialClassConstructorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name,
+            IEnumerable<ConstructorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new SealedClassConstructorWithCodeAnalysis(visibility, name, parameters, body))
         {
-            this.constructor = constructor;
         }
 
-        internal ClassConstructorWithCodeAnalysis Constructor
+        internal SealedPartialClassConstructorWithCodeAnalysis(SealedClassConstructorWithCodeAnalysis constructor)
+        {
+            this.constructor = constructor;
+            constructor.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+
+        internal SealedClassConstructorWithCodeAnalysis Constructor
         {
             get { return constructor; }
         }
@@ -41,7 +51,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return constructor.Constructor.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return constructor.Constructor.Constructor.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -53,12 +63,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ConstructorDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return constructor.Visibility; }
+            set { constructor.Visibility = value; }
         }
 
         public ConstructorDeclarationSyntax Syntax

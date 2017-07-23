@@ -19,15 +19,26 @@ namespace CSharpDom.CodeAnalysis.Partial
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassOperatorOverloadWithCodeAnalysis operatorOverload;
-        
+
+        public PartialClassOperatorOverloadWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorOverloadType operatorType,
+            IEnumerable<OperatorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassOperatorOverloadWithCodeAnalysis(visibility, returnType, operatorType, parameters, body))
+        {
+        }
+
         internal PartialClassOperatorOverloadWithCodeAnalysis(ClassOperatorOverloadWithCodeAnalysis operatorOverload)
         {
             this.operatorOverload = operatorOverload;
+            operatorOverload.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public OperatorOverloadWithCodeAnalysis OperatorOverload
+        public ClassOperatorOverloadWithCodeAnalysis OperatorOverload
         {
-            get { return operatorOverload.OperatorOverload; }
+            get { return operatorOverload; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -70,11 +81,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return operatorOverload.Syntax; }
             set { operatorOverload.Syntax = value; }
-        }
-
-        internal ClassOperatorOverloadWithCodeAnalysis InternalOperatorOverload
-        {
-            get { return operatorOverload; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

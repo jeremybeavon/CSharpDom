@@ -16,16 +16,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             FieldWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly ClassFieldWithCodeAnalysis field;
+        private readonly SealedClassFieldWithCodeAnalysis field;
 
-        internal SealedPartialClassFieldWithCodeAnalysis(ClassFieldWithCodeAnalysis field)
+        public SealedPartialClassFieldWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this(new SealedClassFieldWithCodeAnalysis(visibility, type, names))
+        {
+        }
+
+        internal SealedPartialClassFieldWithCodeAnalysis(SealedClassFieldWithCodeAnalysis field)
         {
             this.field = field;
+            field.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public FieldGroupWithCodeAnalysis Field
+        public SealedClassFieldWithCodeAnalysis Field
         {
-            get { return field.Field; }
+            get { return field; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -36,7 +45,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return field.Field.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return field.Field.Field.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -77,10 +86,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return field.Syntax; }
             set { field.Syntax = value; }
         }
-
-        internal ClassFieldWithCodeAnalysis InternalField
-        {
-            get { return field; }
-        }
+        
     }
 }

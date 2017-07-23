@@ -31,14 +31,22 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedStructWithCodeAnalysis structType;
 
+        public PartialClassNestedStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedStructWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal PartialClassNestedStructWithCodeAnalysis(ClassNestedStructWithCodeAnalysis @struct)
         {
             structType = @struct;
+            structType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedStructWithCodeAnalysis Struct
+        public ClassNestedStructWithCodeAnalysis Struct
         {
-            get { return structType.Struct; }
+            get { return structType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -165,11 +173,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return structType.Visibility; }
             set { structType.Visibility = value; }
-        }
-
-        internal ClassNestedStructWithCodeAnalysis InternalStruct
-        {
-            get { return structType; }
         }
     }
 }

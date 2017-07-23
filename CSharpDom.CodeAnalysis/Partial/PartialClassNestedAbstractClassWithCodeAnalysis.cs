@@ -46,9 +46,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public NestedAbstractClassWithCodeAnalysis Class
+        public ClassNestedAbstractClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -188,12 +188,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
-
-        internal ClassNestedAbstractClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
-
+        
         IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

@@ -17,15 +17,26 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<IndexerDeclarationSyntax>
     {
         private readonly SealedClassIndexerWithCodeAnalysis indexer;
-        
+
+        public SealedPartialClassIndexerWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            IEnumerable<IndexerParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this(new SealedClassIndexerWithCodeAnalysis(visibility, type, parameters, getAccessor, setAccessor))
+        {
+        }
+
         internal SealedPartialClassIndexerWithCodeAnalysis(SealedClassIndexerWithCodeAnalysis indexer)
         {
             this.indexer = indexer;
+            indexer.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public IndexerWithBodyWithCodeAnalysis Indexer
+        public SealedClassIndexerWithCodeAnalysis Indexer
         {
-            get { return indexer.Indexer; }
+            get { return indexer; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -36,7 +47,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return indexer.Indexer.Indexer.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return indexer.Indexer.Indexer.Indexer.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -80,11 +91,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return indexer.Syntax; }
             set { indexer.Syntax = value; }
-        }
-
-        internal SealedClassIndexerWithCodeAnalysis InternalIndexer
-        {
-            get { return indexer; }
         }
     }
 }

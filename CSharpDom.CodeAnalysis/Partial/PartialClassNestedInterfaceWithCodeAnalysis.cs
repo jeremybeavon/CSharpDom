@@ -20,14 +20,22 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedInterfaceWithCodeAnalysis type;
 
+        public PartialClassNestedInterfaceWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedInterfaceWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal PartialClassNestedInterfaceWithCodeAnalysis(ClassNestedInterfaceWithCodeAnalysis @interface)
         {
             type = @interface;
+            type.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedInterfaceWithCodeAnalysis Interface
+        public ClassNestedInterfaceWithCodeAnalysis Interface
         {
-            get { return type.Interface; }
+            get { return type; }
         }
         
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -97,10 +105,5 @@ namespace CSharpDom.CodeAnalysis.Partial
         }
 
         public override bool IsPartial { get => Syntax.IsPartial(); set => Syntax = Syntax.IsPartial(value); }
-
-        internal ClassNestedInterfaceWithCodeAnalysis InternalInterface
-        {
-            get { return type; }
-        }
     }
 }

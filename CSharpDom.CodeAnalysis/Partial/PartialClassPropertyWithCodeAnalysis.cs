@@ -17,14 +17,25 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassPropertyWithCodeAnalysis property;
 
+        public PartialClassPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this(new ClassPropertyWithCodeAnalysis(visibility, type, name, getAccessor, setAccessor))
+        {
+        }
+
         internal PartialClassPropertyWithCodeAnalysis(ClassPropertyWithCodeAnalysis property)
         {
             this.property = property;
+            property.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public PropertyWithBodyWithCodeAnalysis Property
+        public ClassPropertyWithCodeAnalysis Property
         {
-            get { return property.Property; }
+            get { return property; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -84,11 +95,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         INode<PropertyDeclarationSyntax> IHasNode<PropertyDeclarationSyntax>.Node
         {
             get { return property.Property.Property.Node; }
-        }
-
-        internal ClassPropertyWithCodeAnalysis InternalProperty
-        {
-            get { return property; }
         }
     }
 }

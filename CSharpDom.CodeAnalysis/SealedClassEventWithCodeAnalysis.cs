@@ -15,15 +15,24 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<EventFieldDeclarationSyntax>
     {
         private readonly ClassEventWithCodeAnalysis @event;
-        
-        internal SealedClassEventWithCodeAnalysis()
+
+        public SealedClassEventWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name)
+            : this(new ClassEventWithCodeAnalysis(visibility, type, name))
         {
-            @event = new ClassEventWithCodeAnalysis();
         }
         
-        public EventWithCodeAnalysis Event
+        internal SealedClassEventWithCodeAnalysis(ClassEventWithCodeAnalysis @event = null)
         {
-            get { return @event.Event; }
+            this.@event = @event ?? new ClassEventWithCodeAnalysis();
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+        
+        public ClassEventWithCodeAnalysis Event
+        {
+            get { return @event; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -34,7 +43,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.Event.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? @event.Event.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -82,5 +91,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return @event.Event.Node; }
         }
+
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

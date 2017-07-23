@@ -16,11 +16,11 @@ namespace CSharpDom.CodeAnalysis
         {
             this.classType = classType;
             explicitInterfaceMethods = new ClassMethodListWrapper<TClass, ExplicitInterfaceMethodWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ExplicitInterfaceMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             methods = new ClassMethodListWrapper<TClass, ClassMethodWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }

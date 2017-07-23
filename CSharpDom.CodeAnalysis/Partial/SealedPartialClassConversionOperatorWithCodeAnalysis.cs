@@ -18,16 +18,28 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ConversionOperatorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly ClassConversionOperatorWithCodeAnalysis conversionOperator;
-        
-        internal SealedPartialClassConversionOperatorWithCodeAnalysis(ClassConversionOperatorWithCodeAnalysis conversionOperator)
+        private readonly SealedClassConversionOperatorWithCodeAnalysis conversionOperator;
+
+        public SealedPartialClassConversionOperatorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ConversionOperatorType operatorType,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorParameterWithCodeAnalysis parameter,
+            MethodBodyWithCodeAnalysis body)
+            : this(new SealedClassConversionOperatorWithCodeAnalysis(visibility, operatorType, returnType, parameter, body))
         {
-            this.conversionOperator = conversionOperator;
         }
 
-        public ConversionOperatorWithCodeAnalysis ConversionOperator
+        internal SealedPartialClassConversionOperatorWithCodeAnalysis(
+            SealedClassConversionOperatorWithCodeAnalysis conversionOperator)
         {
-            get { return conversionOperator.ConversionOperator; }
+            this.conversionOperator = conversionOperator;
+            conversionOperator.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+
+        public SealedClassConversionOperatorWithCodeAnalysis ConversionOperator
+        {
+            get { return conversionOperator; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -44,7 +56,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return conversionOperator.ConversionOperator.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return conversionOperator.ConversionOperator.ConversionOperator.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -78,11 +90,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { conversionOperator.Syntax = value; }
         }
         
-        internal ClassConversionOperatorWithCodeAnalysis InternalConversionOperator
-        {
-            get { return conversionOperator; }
-        }
-
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitConversionOperatorWithCodeAnalysis(this);

@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis
         {
             this.classType = classType;
             methods = new ClassMethodListWrapper<TClass, SealedClassMethodWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new SealedClassMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }

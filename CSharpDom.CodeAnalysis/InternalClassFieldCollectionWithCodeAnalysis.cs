@@ -16,11 +16,11 @@ namespace CSharpDom.CodeAnalysis
         {
             this.classType = classType;
             constants = new ClassMemberListWrapper<TClass, ClassConstantWithCodeAnalysis, FieldDeclarationSyntax>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassConstantWithCodeAnalysis(),
                 syntax => syntax.IsConstant());
             fields = new ClassMemberListWrapper<TClass, ClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassFieldWithCodeAnalysis(),
                 syntax => !syntax.IsConstant());
         }

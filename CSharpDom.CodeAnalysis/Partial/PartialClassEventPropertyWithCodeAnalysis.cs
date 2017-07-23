@@ -33,9 +33,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public EventPropertyWithCodeAnalysis EventProperty
+        public ClassEventPropertyWithCodeAnalysis EventProperty
         {
-            get { return @event.EventProperty; }
+            get { return @event; }
         }
 
         public override MethodBodyWithCodeAnalysis AddBody
@@ -102,11 +102,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
-        }
-
-        internal ClassEventPropertyWithCodeAnalysis InternalEventProperty
-        {
-            get { return @event; }
         }
     }
 }

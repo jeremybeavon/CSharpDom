@@ -86,7 +86,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             enums = new WrappedCollection<ClassNestedEnumWithCodeAnalysis, PartialClassNestedEnumWithCodeAnalysis>(
                 classType.Enums,
                 parent => new PartialClassNestedEnumWithCodeAnalysis(parent),
-                child => child.InternalEnum,
+                child => child.Enum,
                 value => classType.Enums = value);
             events = new PartialClassEventCollectionWithCodeAnalysis(classType.Events);
             fields = new PartialClassFieldCollectionWithCodeAnalysis(classType.Fields);
@@ -94,12 +94,12 @@ namespace CSharpDom.CodeAnalysis.Partial
             interfaces = new WrappedCollection<ClassNestedInterfaceWithCodeAnalysis, PartialClassNestedInterfaceWithCodeAnalysis>(
                 classType.Interfaces,
                 parent => new PartialClassNestedInterfaceWithCodeAnalysis(parent),
-                child => child.InternalInterface,
+                child => child.Interface,
                 value => classType.Interfaces = value);
             operatorOverloads = new WrappedCollection<ClassOperatorOverloadWithCodeAnalysis, PartialClassOperatorOverloadWithCodeAnalysis>(
                 classType.OperatorOverloads,
                 parent => new PartialClassOperatorOverloadWithCodeAnalysis(parent),
-                child => child.InternalOperatorOverload,
+                child => child.OperatorOverload,
                 value => classType.OperatorOverloads = value);
             methods = new InternalPartialClassMethodCollectionWithCodeAnalysis<TClass>(classType);
             properties = new PartialClassPropertyCollectionWithCodeAnalysis(classType.Properties);
@@ -156,7 +156,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 ClassDestructorWithCodeAnalysis destructor = classType.Destructor;
                 return destructor == null ? null : new PartialClassDestructorWithCodeAnalysis(destructor);
             }
-            set { classType.Destructor = value?.InternalDestructor; }
+            set { classType.Destructor = value?.Destructor; }
         }
 
         public override ICollection<PartialClassNestedEnumWithCodeAnalysis> Enums
@@ -256,7 +256,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 ClassStaticConstructorWithCodeAnalysis constructor = classType.StaticConstructor;
                 return constructor == null ? null : new PartialClassStaticConstructorWithCodeAnalysis(constructor);
             }
-            set { classType.StaticConstructor = value?.InternalStaticConstructor; }
+            set { classType.StaticConstructor = value?.StaticConstructor; }
         }
 
         public override PartialClassNestedStructCollectionWithCodeAnalysis Structs

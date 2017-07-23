@@ -14,15 +14,24 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<EventFieldDeclarationSyntax>
     {
         private readonly SealedClassEventWithCodeAnalysis @event;
-        
+
+        public SealedPartialClassEventWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name)
+            : this(new SealedClassEventWithCodeAnalysis(visibility, type, name))
+        {
+        }
+
         internal SealedPartialClassEventWithCodeAnalysis(SealedClassEventWithCodeAnalysis @event)
         {
             this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public EventWithCodeAnalysis Event
+        public SealedClassEventWithCodeAnalysis Event
         {
-            get { return @event.Event; }
+            get { return @event; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -33,7 +42,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.Event.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return @event.Event.Event.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -71,11 +80,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
-        }
-
-        internal SealedClassEventWithCodeAnalysis InternalEvent
-        {
-            get { return @event; }
         }
     }
 }

@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             indexers = new WrappedCollection<ClassIndexerWithCodeAnalysis, PartialClassIndexerWithCodeAnalysis>(
                 indexerCollection.Indexers,
                 parent => new PartialClassIndexerWithCodeAnalysis(parent),
-                child => child.InternalIndexer,
+                child => child.Indexer,
                 value => indexerCollection.Indexers = value);
         }
         

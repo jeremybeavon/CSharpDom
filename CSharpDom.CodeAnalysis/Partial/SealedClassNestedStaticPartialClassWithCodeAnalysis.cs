@@ -26,6 +26,13 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedStaticPartialClassWithCodeAnalysis classType;
 
+        public SealedClassNestedStaticPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedStaticPartialClassWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal SealedClassNestedStaticPartialClassWithCodeAnalysis(
             ClassNestedStaticPartialClassWithCodeAnalysis @class)
         {
@@ -131,11 +138,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
-        }
-        
-        internal ClassNestedStaticPartialClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
         }
     }
 }

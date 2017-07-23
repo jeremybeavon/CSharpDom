@@ -18,14 +18,25 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassEventPropertyWithCodeAnalysis @event;
 
-        internal SealedClassEventPropertyWithCodeAnalysis()
+        public SealedClassEventPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis addAccessor,
+            MethodBodyWithCodeAnalysis removeAccessor)
+            : this(new ClassEventPropertyWithCodeAnalysis(visibility, type, name, addAccessor, removeAccessor))
         {
-            @event = new ClassEventPropertyWithCodeAnalysis();
+        }
+
+        internal SealedClassEventPropertyWithCodeAnalysis(ClassEventPropertyWithCodeAnalysis @event = null)
+        {
+            this.@event = @event ?? new ClassEventPropertyWithCodeAnalysis();
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public EventPropertyWithCodeAnalysis EventProperty
+        public ClassEventPropertyWithCodeAnalysis EventProperty
         {
-            get { return @event.EventProperty; }
+            get { return @event; }
         }
 
         public override MethodBodyWithCodeAnalysis AddBody
@@ -42,7 +53,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.EventProperty.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? @event.EventProperty.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -102,5 +113,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return @event.EventProperty.Node; }
         }
+
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

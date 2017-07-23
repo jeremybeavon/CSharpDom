@@ -18,15 +18,15 @@ namespace CSharpDom.CodeAnalysis
         {
             this.classType = classType;
             eventProperties = new ClassEventPropertyListWrapper<TClass, ClassEventPropertyWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassEventPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
             explicitInterfaceEvents = new ClassEventPropertyListWrapper<TClass, ExplicitInterfaceEventWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ExplicitInterfaceEventWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             events = new ClassEventListWrapper<TClass, ClassEventWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassEventWithCodeAnalysis());
         }
 

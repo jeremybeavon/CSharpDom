@@ -18,9 +18,19 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassConstructorWithCodeAnalysis constructor;
 
+        public SealedClassConstructorWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name,
+            IEnumerable<ConstructorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassConstructorWithCodeAnalysis(visibility, name, parameters, body))
+        {
+        }
+
         internal SealedClassConstructorWithCodeAnalysis(ClassConstructorWithCodeAnalysis constructor)
         {
             this.constructor = constructor;
+            constructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         internal ClassConstructorWithCodeAnalysis Constructor
@@ -42,7 +52,7 @@ namespace CSharpDom.CodeAnalysis
         
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return constructor.Constructor.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? constructor.Constructor.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -54,12 +64,8 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ConstructorDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return constructor.Visibility; }
+            set { constructor.Visibility = value; }
         }
 
         public ConstructorDeclarationSyntax Syntax
@@ -72,5 +78,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return constructor.Constructor.Node; }
         }
+
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

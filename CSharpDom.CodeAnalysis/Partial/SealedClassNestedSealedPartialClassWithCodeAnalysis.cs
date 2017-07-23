@@ -35,15 +35,23 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedSealedPartialClassWithCodeAnalysis classType;
 
+        public SealedClassNestedSealedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedSealedPartialClassWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal SealedClassNestedSealedPartialClassWithCodeAnalysis(
             ClassNestedSealedPartialClassWithCodeAnalysis @class)
         {
-            classType = @class ?? new ClassNestedSealedPartialClassWithCodeAnalysis();
+            classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ClassNestedSealedClassWithCodeAnalysis Class
+        public ClassNestedSealedPartialClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -191,11 +199,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
             get { return classType.Class.Class.Node; }
-        }
-
-        internal ClassNestedSealedPartialClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
         }
     }
 }

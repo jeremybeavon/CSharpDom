@@ -25,7 +25,12 @@ namespace CSharpDom.CodeAnalysis.Partial
             this.destructor = destructor;
             destructor.DeclaringTypeFunc = () => DeclaringType.Class;
         }
-        
+
+        public ClassDestructorWithCodeAnalysis Destructor
+        {
+            get { return destructor; }
+        }
+
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return destructor.Attributes; }
@@ -48,11 +53,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return destructor.Syntax; }
             set { destructor.Syntax = value; }
-        }
-        
-        internal ClassDestructorWithCodeAnalysis InternalDestructor
-        {
-            get { return destructor; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

@@ -33,9 +33,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             indexer.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public IndexerWithBodyWithCodeAnalysis Indexer
+        public ClassIndexerWithCodeAnalysis Indexer
         {
-            get { return indexer.Indexer; }
+            get { return indexer; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -91,11 +91,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return indexer.Syntax; }
             set { indexer.Syntax = value; }
-        }
-
-        internal ClassIndexerWithCodeAnalysis InternalIndexer
-        {
-            get { return indexer; }
         }
     }
 }

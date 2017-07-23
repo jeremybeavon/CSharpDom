@@ -17,14 +17,32 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassConstantWithCodeAnalysis constant;
 
-        internal SealedClassConstantWithCodeAnalysis(ClassConstantWithCodeAnalysis constant = null)
+        public SealedClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            IExpressionWithCodeAnalysis value)
+            : this(new ClassConstantWithCodeAnalysis(visibility, type, name, value))
         {
-            this.constant = constant ?? new ClassConstantWithCodeAnalysis();
+        }
+
+        public SealedClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params ConstantWithCodeAnalysis[] constants)
+            : this(new ClassConstantWithCodeAnalysis(visibility, type, constants))
+        {
+        }
+
+        internal SealedClassConstantWithCodeAnalysis(ClassConstantWithCodeAnalysis constant)
+        {
+            this.constant = constant;
+            constant.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ConstantGroupWithCodeAnalysis Constant
+        public ClassConstantWithCodeAnalysis Constant
         {
-            get { return constant.Constant; }
+            get { return constant; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -41,7 +59,7 @@ namespace CSharpDom.CodeAnalysis
         
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.Constant.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? constant.Constant.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -68,9 +86,6 @@ namespace CSharpDom.CodeAnalysis
             get { return constant.Constant.Node; }
         }
 
-        internal ClassConstantWithCodeAnalysis InternalConstant
-        {
-            get { return constant; }
-        }
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

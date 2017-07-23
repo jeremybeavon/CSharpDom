@@ -19,14 +19,23 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassFieldWithCodeAnalysis field;
 
+        public SealedClassFieldWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this(new ClassFieldWithCodeAnalysis(visibility, type, names))
+        {
+        }
+
         internal SealedClassFieldWithCodeAnalysis(ClassFieldWithCodeAnalysis field)
         {
             this.field = field ?? new ClassFieldWithCodeAnalysis();
+            field.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public FieldGroupWithCodeAnalysis Field
+        public ClassFieldWithCodeAnalysis Field
         {
-            get { return field.Field; }
+            get { return field; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -37,7 +46,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return field.Field.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? field.Field.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -49,22 +58,14 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassFieldModifier Modifier
         {
-            get { return Syntax.Modifiers.ToClassFieldModifier(); }
-            set
-            {
-                FieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassFieldModifier(value));
-            }
+            get { return field.Modifier; }
+            set { field.Modifier = value; }
         }
         
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                FieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return field.Visibility; }
+            set { field.Visibility = value; }
         }
 
         public override ICollection<FieldWithCodeAnalysis> Fields
@@ -84,9 +85,6 @@ namespace CSharpDom.CodeAnalysis
             get { return field.Field.Node; }
         }
 
-        internal ClassFieldWithCodeAnalysis InternalField
-        {
-            get { return field; }
-        }
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

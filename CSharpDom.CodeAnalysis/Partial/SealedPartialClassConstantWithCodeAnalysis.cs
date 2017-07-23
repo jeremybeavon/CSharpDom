@@ -14,16 +14,34 @@ namespace CSharpDom.CodeAnalysis.Partial
             ConstantWithCodeAnalysis>,
         IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly ClassConstantWithCodeAnalysis constant;
+        private readonly SealedClassConstantWithCodeAnalysis constant;
 
-        internal SealedPartialClassConstantWithCodeAnalysis(ClassConstantWithCodeAnalysis constant)
+        public SealedPartialClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            IExpressionWithCodeAnalysis value)
+            : this(new SealedClassConstantWithCodeAnalysis(visibility, type, name, value))
+        {
+        }
+
+        public SealedPartialClassConstantWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params ConstantWithCodeAnalysis[] constants)
+            : this(new SealedClassConstantWithCodeAnalysis(visibility, type, constants))
+        {
+        }
+
+        internal SealedPartialClassConstantWithCodeAnalysis(SealedClassConstantWithCodeAnalysis constant)
         {
             this.constant = constant;
+            constant.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ConstantGroupWithCodeAnalysis Constant
+        public SealedClassConstantWithCodeAnalysis Constant
         {
-            get { return constant.Constant; }
+            get { return constant; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -40,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.Constant.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return constant.Constant.Constant.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -60,11 +78,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return constant.Syntax; }
             set { constant.Syntax = value; }
-        }
-        
-        internal ClassConstantWithCodeAnalysis InternalConstant
-        {
-            get { return constant; }
         }
     }
 }

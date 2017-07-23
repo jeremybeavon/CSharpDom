@@ -20,11 +20,11 @@ namespace CSharpDom.CodeAnalysis
         {
             this.classType = classType;
             structs = new ClassMemberListWrapper<TClass, ClassNestedStructWithCodeAnalysis, StructDeclarationSyntax>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassNestedStructWithCodeAnalysis(),
                 syntax => !syntax.IsPartial());
             partialStructs = new ClassMemberListWrapper<TClass, ClassNestedPartialStructWithCodeAnalysis, StructDeclarationSyntax>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassNestedPartialStructWithCodeAnalysis(),
                 StructDeclarationSyntaxExtensions.IsPartial);
         }

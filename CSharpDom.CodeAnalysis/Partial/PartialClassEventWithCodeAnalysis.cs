@@ -30,9 +30,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public EventWithCodeAnalysis Event
+        public ClassEventWithCodeAnalysis Event
         {
-            get { return @event.Event; }
+            get { return @event; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -81,11 +81,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
-        }
-
-        internal ClassEventWithCodeAnalysis InternalEvent
-        {
-            get { return @event; }
         }
     }
 }

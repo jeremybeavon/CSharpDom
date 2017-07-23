@@ -16,11 +16,11 @@ namespace CSharpDom.CodeAnalysis
         {
             this.classType = classType;
             methods = new ClassMethodListWrapper<TClass, AbstractClassMethodWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new AbstractClassMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
             abstractMethods = new ClassMethodListWrapper<TClass, AbstractMethodWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new AbstractMethodWithCodeAnalysis(),
                 syntax => syntax.Modifiers.IsAbstract());
         }

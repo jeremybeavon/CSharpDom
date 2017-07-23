@@ -16,10 +16,10 @@ namespace CSharpDom.CodeAnalysis
         {
             this.classType = classType;
             events = new ClassEventListWrapper<TClass, SealedClassEventWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new SealedClassEventWithCodeAnalysis());
             eventProperties = new ClassEventPropertyListWrapper<TClass, SealedClassEventPropertyWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new SealedClassEventPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }

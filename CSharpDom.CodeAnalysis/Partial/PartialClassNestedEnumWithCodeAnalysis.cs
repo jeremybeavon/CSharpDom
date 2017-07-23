@@ -15,14 +15,21 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly ClassNestedEnumWithCodeAnalysis nestedEnum;
 
+        public PartialClassNestedEnumWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedEnumWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal PartialClassNestedEnumWithCodeAnalysis(ClassNestedEnumWithCodeAnalysis @enum)
         {
             nestedEnum = @enum;
         }
         
-        public NestedEnumWithCodeAnalysis Enum
+        public ClassNestedEnumWithCodeAnalysis Enum
         {
-            get { return nestedEnum.Enum; }
+            get { return nestedEnum; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -65,11 +72,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return nestedEnum.Visibility; }
             set { nestedEnum.Visibility = value; }
-        }
-
-        internal ClassNestedEnumWithCodeAnalysis InternalEnum
-        {
-            get { return nestedEnum; }
         }
     }
 }

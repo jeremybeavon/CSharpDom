@@ -278,10 +278,9 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        internal Node<TClass, ClassDeclarationSyntax> Node
-        {
-            get { return node; }
-        }
+        internal override INode<ClassDeclarationSyntax> Node => node;
+
+        internal Node<TClass, ClassDeclarationSyntax> InternalNode => node;
 
         internal IMemberList Members
         {

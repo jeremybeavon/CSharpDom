@@ -18,15 +18,26 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<IndexerDeclarationSyntax>
     {
         private readonly ClassIndexerWithCodeAnalysis indexer;
-        
-        internal SealedClassIndexerWithCodeAnalysis()
+
+        public SealedClassIndexerWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            IEnumerable<IndexerParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this(new ClassIndexerWithCodeAnalysis(visibility, type, parameters, getAccessor, setAccessor))
         {
-            indexer = new ClassIndexerWithCodeAnalysis();
+        }
+
+        internal SealedClassIndexerWithCodeAnalysis(ClassIndexerWithCodeAnalysis indexer = null)
+        {
+            this.indexer = indexer ?? new ClassIndexerWithCodeAnalysis();
+            indexer.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public IndexerWithBodyWithCodeAnalysis Indexer
+        public ClassIndexerWithCodeAnalysis Indexer
         {
-            get { return indexer.Indexer; }
+            get { return indexer; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -37,7 +48,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return indexer.Indexer.Indexer.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? indexer.Indexer.Indexer.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -91,5 +102,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return indexer.Indexer.Indexer.Node; }
         }
+
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

@@ -21,19 +21,19 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             this.classType = classType;
             methods = new ClassMethodListWrapper<TClass, ClassMethodWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new ClassMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract() && !syntax.IsPartial());
             abstractMethods = new ClassMethodListWrapper<TClass, AbstractMethodWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new AbstractMethodWithCodeAnalysis(),
                 syntax => syntax.Modifiers.IsAbstract());
             partialMethodDefinitions = new ClassMethodListWrapper<TClass, PartialMethodDefinitionWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new PartialMethodDefinitionWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body == null);
             partialMethodImplementations = new ClassMethodListWrapper<TClass, PartialMethodImplementationWithCodeAnalysis>(
-                classType.Node,
+                classType.InternalNode,
                 () => new PartialMethodImplementationWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body != null);
             classType.Members.AddClassPartialMethods(this);

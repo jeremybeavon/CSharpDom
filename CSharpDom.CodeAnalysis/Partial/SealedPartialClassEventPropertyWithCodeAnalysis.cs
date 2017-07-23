@@ -17,14 +17,25 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly SealedClassEventPropertyWithCodeAnalysis @event;
 
+        public SealedPartialClassEventPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis addAccessor,
+            MethodBodyWithCodeAnalysis removeAccessor)
+            : this(new SealedClassEventPropertyWithCodeAnalysis(visibility, type, name, addAccessor, removeAccessor))
+        {
+        }
+
         internal SealedPartialClassEventPropertyWithCodeAnalysis(SealedClassEventPropertyWithCodeAnalysis @event)
         {
             this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public EventPropertyWithCodeAnalysis EventProperty
+        public SealedClassEventPropertyWithCodeAnalysis EventProperty
         {
-            get { return @event.EventProperty; }
+            get { return @event; }
         }
 
         public override MethodBodyWithCodeAnalysis AddBody
@@ -41,7 +52,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.EventProperty.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return @event.EventProperty.EventProperty.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -91,11 +102,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return @event.Syntax; }
             set { @event.Syntax = value; }
-        }
-        
-        internal SealedClassEventPropertyWithCodeAnalysis InternalEventProperty
-        {
-            get { return @event; }
         }
     }
 }

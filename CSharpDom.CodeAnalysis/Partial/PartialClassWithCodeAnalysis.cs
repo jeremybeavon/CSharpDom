@@ -1,4 +1,5 @@
 ﻿using CSharpDom.Editable.Partial;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,14 +37,27 @@ namespace CSharpDom.CodeAnalysis.Partial
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassWithCodeAnalysis classType;
-        private readonly PartialClassTypeWithCodeAnalysis<ClassWithCodeAnalysis> partialType;
-        private readonly PartialClassMethodCollectionWithCodeAnalysis methods;
+        private readonly PartialClassTypeWithCodeAnalysis<PartialClassWithCodeAnalysis> partialType;
+
+        public PartialClassWithCodeAnalysis(
+            DocumentWithCodeAnalysis document,
+            TypeVisibilityModifier visibility,
+            string name)
+            : this(document)
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.PartialKeyword);
+        }
 
         internal PartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            classType = new ClassWithCodeAnalysis(document);
-            partialType = new PartialClassTypeWithCodeAnalysis<ClassWithCodeAnalysis>(classType.InternalType);
-            methods = new InternalPartialClassMethodCollectionWithCodeAnalysis<ClassWithCodeAnalysis>(classType.InternalType);
+            var type = new InternalClassTypeWithCodeAnalysis<PartialClassWithCodeAnalysis>(this);
+            classType = new ClassWithCodeAnalysis(document, type);
+            partialType = new PartialClassTypeWithCodeAnalysis<PartialClassWithCodeAnalysis>(type);
+        }
+
+        public ClassWithCodeAnalysis Class
+        {
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -120,15 +134,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override PartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set
-            {
-                classType.InternalType.Members.CombineList(
-                    new MemberListSyntax(nameof(Methods.Methods), value.Methods.Select(method => method.Syntax)),
-                    new MemberListSyntax(nameof(Methods.ExplicitInterfaceMethods), value.ExplicitInterfaceMethods.Select(method => method.Syntax)),
-                    new MemberListSyntax(nameof(Methods.PartialMethodDefinitions), value.PartialMethodDefinitions.Select(method => method.Syntax)),
-                    new MemberListSyntax(nameof(Methods.PartialMethodImplementations), value.PartialMethodImplementations.Select(method => method.Syntax)));
-            }
+            get { return partialType.Methods; }
+            set { partialType.Methods = value; }
         }
 
         public override string Name
@@ -213,12 +220,12 @@ namespace CSharpDom.CodeAnalysis.Partial
             }
         }
 
-        public IClassTypeWithCodeAnalysis Class => classType;
-
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalType.Node; }
+            get { return classType.Class.Node; }
         }
+
+        IClassTypeWithCodeAnalysis IPartialClassTypeWithCodeAnalysis.Class => classType.Class;
 
         /*public void Accept(IReflectionVisitor visitor)
         {
