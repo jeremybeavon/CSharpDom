@@ -84,7 +84,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Class.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? classType.Class.Class.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -196,5 +196,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         }
         
         IClassTypeWithCodeAnalysis IPartialClassTypeWithCodeAnalysis.Class => classType.Class;
+
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

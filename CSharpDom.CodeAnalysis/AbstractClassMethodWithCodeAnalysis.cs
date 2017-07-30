@@ -19,9 +19,20 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassMethodWithCodeAnalysis method;
 
-        internal AbstractClassMethodWithCodeAnalysis()
+        public AbstractClassMethodWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<MethodParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassMethodWithCodeAnalysis(visibility, returnType, name, parameters, body))
         {
-            method = new ClassMethodWithCodeAnalysis();
+        }
+
+        internal AbstractClassMethodWithCodeAnalysis(ClassMethodWithCodeAnalysis method = null)
+        {
+            this.method = method ?? new ClassMethodWithCodeAnalysis();
+            method.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public MethodWithBodyWithCodeAnalysis Method

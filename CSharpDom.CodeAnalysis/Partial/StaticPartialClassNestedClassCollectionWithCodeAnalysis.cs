@@ -14,62 +14,68 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassNestedStaticClassWithCodeAnalysis,
             StaticPartialClassNestedPartialClassCollectionWithCodeAnalysis>
     {
-        private readonly StaticPartialClassWithCodeAnalysis type;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassNestedClassWithCodeAnalysis,
-            ClassDeclarationSyntax> classes;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassNestedAbstractClassWithCodeAnalysis,
-            ClassDeclarationSyntax> abstractClasses;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassNestedSealedClassWithCodeAnalysis,
-            ClassDeclarationSyntax> sealedClasses;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassNestedStaticClassWithCodeAnalysis,
-            ClassDeclarationSyntax> staticClasses;
+        private readonly WrappedCollection<
+            StaticClassNestedClassWithCodeAnalysis,
+            StaticPartialClassNestedClassWithCodeAnalysis> classes;
+        private readonly WrappedCollection<
+            StaticClassNestedAbstractClassWithCodeAnalysis,
+            StaticPartialClassNestedAbstractClassWithCodeAnalysis> abstractClasses;
+        private readonly WrappedCollection<
+            StaticClassNestedSealedClassWithCodeAnalysis,
+            StaticPartialClassNestedSealedClassWithCodeAnalysis> sealedClasses;
+        private readonly WrappedCollection<
+            StaticClassNestedStaticClassWithCodeAnalysis,
+            StaticPartialClassNestedStaticClassWithCodeAnalysis> staticClasses;
         private readonly StaticPartialClassNestedPartialClassCollectionWithCodeAnalysis partialClasses;
 
         internal StaticPartialClassNestedClassCollectionWithCodeAnalysis(
-            StaticPartialClassWithCodeAnalysis type)
+            StaticClassNestedClassCollectionWithCodeAnalysis classCollection)
         {
-            this.type = type;
-            classes = new StaticPartialClassMemberListWrapper<StaticPartialClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassNestedClassWithCodeAnalysis());
-            abstractClasses = new StaticPartialClassMemberListWrapper<StaticPartialClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassNestedAbstractClassWithCodeAnalysis());
-            sealedClasses = new StaticPartialClassMemberListWrapper<StaticPartialClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassNestedSealedClassWithCodeAnalysis());
-            staticClasses = new StaticPartialClassMemberListWrapper<StaticPartialClassNestedStaticClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassNestedStaticClassWithCodeAnalysis());
-            partialClasses = StaticPartialClassNestedPartialClassCollectionWithCodeAnalysis.Create(type);
+            classes = new WrappedCollection<StaticClassNestedClassWithCodeAnalysis, StaticPartialClassNestedClassWithCodeAnalysis>(
+                classCollection.Classes,
+                parent => new StaticPartialClassNestedClassWithCodeAnalysis(parent),
+                child => child.Class,
+                value => classCollection.Classes = value);
+            abstractClasses = new WrappedCollection<StaticClassNestedAbstractClassWithCodeAnalysis, StaticPartialClassNestedAbstractClassWithCodeAnalysis>(
+                classCollection.AbstractClasses,
+                parent => new StaticPartialClassNestedAbstractClassWithCodeAnalysis(parent),
+                child => child.Class,
+                value => classCollection.AbstractClasses = value);
+            sealedClasses = new WrappedCollection<StaticClassNestedSealedClassWithCodeAnalysis, StaticPartialClassNestedSealedClassWithCodeAnalysis>(
+                classCollection.SealedClasses,
+                parent => new StaticPartialClassNestedSealedClassWithCodeAnalysis(parent),
+                child => child.Class,
+                value => classCollection.SealedClasses = value);
+            staticClasses = new WrappedCollection<StaticClassNestedStaticClassWithCodeAnalysis, StaticPartialClassNestedStaticClassWithCodeAnalysis>(
+                classCollection.StaticClasses,
+                parent => new StaticPartialClassNestedStaticClassWithCodeAnalysis(parent),
+                child => child.Class,
+                value => classCollection.StaticClasses = value);
+            partialClasses = StaticPartialClassNestedPartialClassCollectionWithCodeAnalysis.Create(classCollection.PartialClasses);
         }
 
         public override ICollection<StaticPartialClassNestedAbstractClassWithCodeAnalysis> AbstractClasses
         {
             get { return abstractClasses; }
-            set { type.Members.CombineList(nameof(AbstractClasses), value.Select(item => item.Syntax)); }
+            set { abstractClasses.Replace(value); }
         }
 
         public override ICollection<StaticPartialClassNestedClassWithCodeAnalysis> Classes
         {
             get { return classes; }
-            set { type.Members.CombineList(nameof(Classes), value.Select(item => item.Syntax)); }
+            set { classes.Replace(value); }
         }
 
         public override ICollection<StaticPartialClassNestedSealedClassWithCodeAnalysis> SealedClasses
         {
             get { return sealedClasses; }
-            set { type.Members.CombineList(nameof(SealedClasses), value.Select(item => item.Syntax)); }
+            set { sealedClasses.Replace(value); }
         }
 
         public override ICollection<StaticPartialClassNestedStaticClassWithCodeAnalysis> StaticClasses
         {
             get { return staticClasses; }
-            set { type.Members.CombineList(nameof(StaticClasses), value.Select(item => item.Syntax)); }
+            set { staticClasses.Replace(value); }
         }
 
         public override StaticPartialClassNestedPartialClassCollectionWithCodeAnalysis PartialClasses

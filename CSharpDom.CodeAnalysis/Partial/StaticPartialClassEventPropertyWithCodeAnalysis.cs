@@ -13,17 +13,27 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<EventDeclarationSyntax>,
-        IHasNode<EventDeclarationSyntax>
+        IHasSyntax<EventDeclarationSyntax>
     {
-        private readonly EventPropertyWithCodeAnalysis @event;
+        private readonly StaticClassEventPropertyWithCodeAnalysis @event;
 
-        internal StaticPartialClassEventPropertyWithCodeAnalysis()
+        public StaticPartialClassEventPropertyWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis addAccessor,
+            MethodBodyWithCodeAnalysis removeAccessor)
+            : this(new StaticClassEventPropertyWithCodeAnalysis(visibility, type, name, addAccessor, removeAccessor))
         {
-            @event = new EventPropertyWithCodeAnalysis();
+        }
+
+        internal StaticPartialClassEventPropertyWithCodeAnalysis(StaticClassEventPropertyWithCodeAnalysis @event)
+        {
+            this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public EventPropertyWithCodeAnalysis EventProperty
+        public StaticClassEventPropertyWithCodeAnalysis EventProperty
         {
             get { return @event; }
         }
@@ -48,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return @event.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return @event.EventProperty.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -91,7 +101,5 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
         }
-
-        INode<EventDeclarationSyntax> IHasNode<EventDeclarationSyntax>.Node => @event.Node;
     }
 }

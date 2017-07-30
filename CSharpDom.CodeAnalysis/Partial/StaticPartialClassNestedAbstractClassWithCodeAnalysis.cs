@@ -29,18 +29,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             AbstractClassStaticConstructorWithCodeAnalysis,
             AbstractClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IAbstractTypeWithCodeAnalysis,
-        IHasNode<ClassDeclarationSyntax>
+        IAbstractTypeWithCodeAnalysis
     {
-        private readonly NestedAbstractClassWithCodeAnalysis classType;
+        private readonly StaticClassNestedAbstractClassWithCodeAnalysis classType;
+
+        public StaticPartialClassNestedAbstractClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new StaticClassNestedAbstractClassWithCodeAnalysis(visibility, name))
+        {
+        }
 
         internal StaticPartialClassNestedAbstractClassWithCodeAnalysis(
-            NestedAbstractClassWithCodeAnalysis type = null)
+            StaticClassNestedAbstractClassWithCodeAnalysis type)
         {
-            classType = type ?? new InternalNestedAbstractClassWithCodeAnalysis<StaticPartialClassNestedAbstractClassWithCodeAnalysis>(this);
+            classType = type;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedAbstractClassWithCodeAnalysis Class
+        public StaticClassNestedAbstractClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -186,9 +193,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-        
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Node;
 
-        IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class.Class;
+        IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

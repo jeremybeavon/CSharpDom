@@ -10,35 +10,38 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassEventWithCodeAnalysis,
             StaticPartialClassEventPropertyWithCodeAnalysis>
     {
-        private readonly StaticPartialClassWithCodeAnalysis type;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassEventWithCodeAnalysis,
-            EventFieldDeclarationSyntax> events;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassEventPropertyWithCodeAnalysis,
-            EventDeclarationSyntax> eventProperties;
+        private readonly WrappedCollection<
+            StaticClassEventWithCodeAnalysis,
+            StaticPartialClassEventWithCodeAnalysis> events;
+        private readonly WrappedCollection<
+            StaticClassEventPropertyWithCodeAnalysis,
+            StaticPartialClassEventPropertyWithCodeAnalysis> eventProperties;
 
-        internal StaticPartialClassEventCollectionWithCodeAnalysis(StaticPartialClassWithCodeAnalysis type)
+        internal StaticPartialClassEventCollectionWithCodeAnalysis(
+            StaticClassEventCollectionWithCodeAnalysis eventCollection)
         {
-            this.type = type;
-            events = new StaticPartialClassMemberListWrapper<StaticPartialClassEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassEventWithCodeAnalysis());
-            eventProperties = new StaticPartialClassMemberListWrapper<StaticPartialClassEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassEventPropertyWithCodeAnalysis());
+            events = new WrappedCollection<StaticClassEventWithCodeAnalysis, StaticPartialClassEventWithCodeAnalysis>(
+                eventCollection.Events,
+                parent => new StaticPartialClassEventWithCodeAnalysis(parent),
+                child => child.Event,
+                value => eventCollection.Events = value);
+            eventProperties = new WrappedCollection<StaticClassEventPropertyWithCodeAnalysis, StaticPartialClassEventPropertyWithCodeAnalysis>(
+                eventCollection.EventProperties,
+                parent => new StaticPartialClassEventPropertyWithCodeAnalysis(parent),
+                child => child.EventProperty,
+                value => eventCollection.EventProperties = value);
         }
 
         public override ICollection<StaticPartialClassEventPropertyWithCodeAnalysis> EventProperties
         {
             get { return eventProperties; }
-            set { type.Members.CombineList(nameof(EventProperties), value.Select(item => item.Syntax)); }
+            set { eventProperties.Replace(value); }
         }
 
         public override ICollection<StaticPartialClassEventWithCodeAnalysis> Events
         {
             get { return events; }
-            set { type.Members.CombineList(nameof(Events), value.Select(item => item.Syntax)); }
+            set { events.Replace(value); }
         }
     }
 }

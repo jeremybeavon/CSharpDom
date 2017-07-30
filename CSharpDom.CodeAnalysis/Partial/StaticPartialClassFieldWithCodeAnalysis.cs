@@ -14,17 +14,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>,
-        IHasNode<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly FieldGroupWithCodeAnalysis field;
+        private readonly StaticClassFieldWithCodeAnalysis field;
 
-        internal StaticPartialClassFieldWithCodeAnalysis()
+        public StaticPartialClassFieldWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this(new StaticClassFieldWithCodeAnalysis(visibility, type, names))
         {
-            field = new FieldGroupWithCodeAnalysis();
+        }
+
+        internal StaticPartialClassFieldWithCodeAnalysis(StaticClassFieldWithCodeAnalysis field)
+        {
+            this.field = field;
+            field.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public FieldGroupWithCodeAnalysis Field
+        public StaticClassFieldWithCodeAnalysis Field
         {
             get { return field; }
         }
@@ -37,7 +45,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return field.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return field.Field.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -55,37 +63,8 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         public override StaticClassFieldModifier Modifier
         {
-            get
-            {
-                SyntaxTokenList modifiers = Syntax.Modifiers;
-                if (modifiers.Any(SyntaxKind.ReadOnlyKeyword))
-                {
-                    return StaticClassFieldModifier.ReadOnly;
-                }
-
-                if (modifiers.Any(SyntaxKind.VolatileKeyword))
-                {
-                    return StaticClassFieldModifier.Volatile;
-                }
-
-                return StaticClassFieldModifier.None;
-            }
-            set
-            {
-                FieldDeclarationSyntax syntax = Syntax;
-                SyntaxTokenList tokens = syntax.Modifiers.Remove(SyntaxKind.ReadOnlyKeyword).Remove(SyntaxKind.VolatileKeyword);
-                switch (value)
-                {
-                    case StaticClassFieldModifier.ReadOnly:
-                        tokens = tokens.Add(SyntaxKind.ReadOnlyKeyword);
-                        break;
-                    case StaticClassFieldModifier.Volatile:
-                        tokens = tokens.Add(SyntaxKind.VolatileKeyword);
-                        break;
-                }
-
-                Syntax = syntax.WithModifiers(tokens);
-            }
+            get { return field.Modifier; }
+            set { field.Modifier = value; }
         }
         
         public FieldDeclarationSyntax Syntax
@@ -96,14 +75,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToStaticClassMemberVisibilityModifier(); }
-            set
-            {
-                FieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
-            }
+            get { return field.Visibility; }
+            set { field.Visibility = value; }
         }
-
-        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node => field.Node;
     }
 }

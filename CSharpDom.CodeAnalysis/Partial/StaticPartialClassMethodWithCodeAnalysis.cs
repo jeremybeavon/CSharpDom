@@ -17,14 +17,25 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<MethodDeclarationSyntax>,
         IHasNode<MethodDeclarationSyntax>
     {
-        private readonly MethodWithBodyWithCodeAnalysis method;
+        private readonly StaticClassMethodWithCodeAnalysis method;
 
-        internal StaticPartialClassMethodWithCodeAnalysis()
+        public StaticPartialClassMethodWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<MethodParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new StaticClassMethodWithCodeAnalysis(visibility, returnType, name, parameters, body))
         {
-            method = new MethodWithBodyWithCodeAnalysis();
+        }
+
+        internal StaticPartialClassMethodWithCodeAnalysis(StaticClassMethodWithCodeAnalysis method)
+        {
+            this.method = method;
+            method.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public MethodWithBodyWithCodeAnalysis Method
+        public StaticClassMethodWithCodeAnalysis Method
         {
             get { return method; }
         }
@@ -43,7 +54,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return method.Method.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return method.Method.Method.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -99,6 +110,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             }
         }
 
-        INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node => method.Method.Node;
+        INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node => method.Method.Method.Node;
     }
 }

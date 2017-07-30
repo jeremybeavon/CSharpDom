@@ -22,17 +22,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             NestedStaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        INestedStaticTypeWithCodeAnalysis,
-        IHasNode<ClassDeclarationSyntax>
+        INestedStaticTypeWithCodeAnalysis
     {
-        private readonly InternalNestedStaticClassWithCodeAnalysis<StaticPartialClassNestedStaticClassWithCodeAnalysis> classType;
+        private readonly StaticClassNestedStaticClassWithCodeAnalysis classType;
 
-        internal StaticPartialClassNestedStaticClassWithCodeAnalysis()
+        public StaticPartialClassNestedStaticClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new StaticClassNestedStaticClassWithCodeAnalysis(visibility, name))
         {
-            classType = new InternalNestedStaticClassWithCodeAnalysis<StaticPartialClassNestedStaticClassWithCodeAnalysis>(this);
         }
 
-        public NestedStaticClassWithCodeAnalysis Class
+        internal StaticPartialClassNestedStaticClassWithCodeAnalysis(StaticClassNestedStaticClassWithCodeAnalysis type)
+        {
+            classType = type;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+
+        public StaticClassNestedStaticClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -51,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return classType.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -136,12 +143,5 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-        
-        internal InternalNestedStaticClassWithCodeAnalysis<StaticPartialClassNestedStaticClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
-        }
-
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Node;
     }
 }

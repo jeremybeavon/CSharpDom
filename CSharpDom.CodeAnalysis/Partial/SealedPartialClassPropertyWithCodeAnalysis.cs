@@ -16,15 +16,26 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<PropertyDeclarationSyntax>
     {
         private readonly SealedClassPropertyWithCodeAnalysis property;
-     
+
+        public SealedPartialClassPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this(new SealedClassPropertyWithCodeAnalysis(visibility, type, name, getAccessor, setAccessor))
+        {
+        }
+
         internal SealedPartialClassPropertyWithCodeAnalysis(SealedClassPropertyWithCodeAnalysis property)
         {
             this.property = property;
+            property.DeclaringTypeFunc = () => DeclaringType.Class;
         }
            
-        public PropertyWithBodyWithCodeAnalysis Property
+        public SealedClassPropertyWithCodeAnalysis Property
         {
-            get { return property.Property; }
+            get { return property; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -35,7 +46,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return property.Property.Property.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return property.Property.Property.Property.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -83,11 +94,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return property.Visibility; }
             set { property.Visibility = value; }
-        }
-
-        internal SealedClassPropertyWithCodeAnalysis InternalProperty
-        {
-            get { return property; }
         }
     }
 }

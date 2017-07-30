@@ -5,6 +5,7 @@ using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -18,6 +19,18 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<FieldDeclarationSyntax>
     {
         private readonly FieldGroupWithCodeAnalysis field;
+
+        public StaticClassFieldWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this()
+        {
+            Syntax = SyntaxFactory.FieldDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithStaticClassMemberVisibilityModifier(visibility),
+                SyntaxFactory.VariableDeclaration(type.Syntax, SyntaxFactory.SeparatedList(names.Select(SyntaxFactory.VariableDeclarator))));
+        }
 
         internal StaticClassFieldWithCodeAnalysis()
         {
@@ -37,7 +50,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return field.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? field.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -108,5 +121,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return field.Node; }
         }
+
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

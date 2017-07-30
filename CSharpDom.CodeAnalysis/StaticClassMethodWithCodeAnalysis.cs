@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -18,6 +21,27 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<MethodDeclarationSyntax>
     {
         private readonly MethodWithBodyWithCodeAnalysis method;
+
+        public StaticClassMethodWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<MethodParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this()
+        {
+            Syntax = SyntaxFactory.MethodDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithStaticClassMemberVisibilityModifier(visibility),
+                returnType.Syntax,
+                null,
+                SyntaxFactory.Identifier(name),
+                null,
+                SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters.Select(parameter => parameter.Syntax))),
+                default(SyntaxList<TypeParameterConstraintClauseSyntax>),
+                body.Syntax,
+                null);
+        }
 
         internal StaticClassMethodWithCodeAnalysis()
         {
@@ -43,7 +67,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return method.Method.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? method.Method.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -103,5 +127,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.Method.Node; }
         }
+
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

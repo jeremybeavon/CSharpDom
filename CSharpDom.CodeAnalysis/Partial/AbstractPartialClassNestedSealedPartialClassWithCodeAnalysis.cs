@@ -190,5 +190,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
+
+        ISealedTypeWithCodeAnalysis ISealedPartialTypeWithCodeAnalysis.Class => classType.Class.Class;
     }
 }

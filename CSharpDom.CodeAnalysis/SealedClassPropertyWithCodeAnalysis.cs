@@ -10,22 +10,33 @@ namespace CSharpDom.CodeAnalysis
     public sealed class SealedClassPropertyWithCodeAnalysis :
         EditableSealedClassProperty<
             AttributeGroupWithCodeAnalysis,
-            ISealedType,
+            ISealedTypeWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ClassAccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
         IHasNode<PropertyDeclarationSyntax>
     {
         private readonly ClassPropertyWithCodeAnalysis property;
-     
-        internal SealedClassPropertyWithCodeAnalysis()
+
+        public SealedClassPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this(new ClassPropertyWithCodeAnalysis(visibility, type, name, getAccessor, setAccessor))
         {
-            property = new ClassPropertyWithCodeAnalysis();
+        }
+
+        internal SealedClassPropertyWithCodeAnalysis(ClassPropertyWithCodeAnalysis property = null)
+        {
+            this.property = property ?? new ClassPropertyWithCodeAnalysis();
+            this.property.DeclaringTypeFunc = () => DeclaringType.Class;
         }
            
-        public PropertyWithBodyWithCodeAnalysis Property
+        public ClassPropertyWithCodeAnalysis Property
         {
-            get { return property.Property; }
+            get { return property; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -34,9 +45,9 @@ namespace CSharpDom.CodeAnalysis
             set { property.Attributes = value; }
         }
 
-        public override ISealedType DeclaringType
+        public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return property.Property.Property.Node.GetParentNode<ISealedType>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? property.Property.Property.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -90,5 +101,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return property.Property.Property.Node; }
         }
+
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

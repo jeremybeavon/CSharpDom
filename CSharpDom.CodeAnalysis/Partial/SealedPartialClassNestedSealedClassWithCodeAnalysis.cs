@@ -31,14 +31,22 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         ISealedTypeWithCodeAnalysis
     {
-        private readonly ClassNestedSealedClassWithCodeAnalysis classType;
+        private readonly SealedClassNestedSealedClassWithCodeAnalysis classType;
 
-        internal SealedPartialClassNestedSealedClassWithCodeAnalysis(ClassNestedSealedClassWithCodeAnalysis @class)
+        public SealedPartialClassNestedSealedClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new SealedClassNestedSealedClassWithCodeAnalysis(visibility, name))
+        {
+        }
+
+        internal SealedPartialClassNestedSealedClassWithCodeAnalysis(SealedClassNestedSealedClassWithCodeAnalysis @class)
         {
             classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ClassNestedSealedClassWithCodeAnalysis Class
+        public SealedClassNestedSealedClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -75,7 +83,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -181,6 +189,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Visibility = value; }
         }
 
-        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
+        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class.Class.Class;
     }
 }

@@ -26,14 +26,22 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassNestedStaticClassWithCodeAnalysis classType;
 
-        internal SealedClassNestedStaticClassWithCodeAnalysis(ClassNestedStaticClassWithCodeAnalysis @class)
+        public SealedClassNestedStaticClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new ClassNestedStaticClassWithCodeAnalysis(visibility, name))
         {
-            classType = @class ?? new ClassNestedStaticClassWithCodeAnalysis();
         }
 
-        public NestedStaticClassWithCodeAnalysis Class
+        internal SealedClassNestedStaticClassWithCodeAnalysis(ClassNestedStaticClassWithCodeAnalysis @class)
         {
-            get { return classType.Class; }
+            classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+
+        public ClassNestedStaticClassWithCodeAnalysis Class
+        {
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -50,7 +58,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? classType.Class.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -134,9 +142,6 @@ namespace CSharpDom.CodeAnalysis
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Class.Node;
         
-        internal ClassNestedStaticClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

@@ -29,16 +29,24 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<StructDeclarationSyntax>,
         IStructTypeWithCodeAnalysis
     {
-        private readonly ClassNestedStructWithCodeAnalysis structType;
+        private readonly SealedClassNestedStructWithCodeAnalysis structType;
 
-        internal SealedPartialClassNestedStructWithCodeAnalysis(ClassNestedStructWithCodeAnalysis @struct)
+        public SealedPartialClassNestedStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new SealedClassNestedStructWithCodeAnalysis(visibility, name))
+        {
+        }
+
+        internal SealedPartialClassNestedStructWithCodeAnalysis(SealedClassNestedStructWithCodeAnalysis @struct)
         {
             structType = @struct;
+            structType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedStructWithCodeAnalysis Struct
+        public SealedClassNestedStructWithCodeAnalysis Struct
         {
-            get { return structType.Struct; }
+            get { return structType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -67,7 +75,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.Struct.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return structType.Struct.Struct.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -165,11 +173,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return structType.Visibility; }
             set { structType.Visibility = value; }
-        }
-
-        internal ClassNestedStructWithCodeAnalysis InternalStruct
-        {
-            get { return structType; }
         }
     }
 }

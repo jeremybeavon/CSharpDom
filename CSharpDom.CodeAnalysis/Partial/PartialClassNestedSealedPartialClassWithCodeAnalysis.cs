@@ -194,5 +194,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
+
+        ISealedTypeWithCodeAnalysis ISealedPartialTypeWithCodeAnalysis.Class => classType.Class;
     }
 }

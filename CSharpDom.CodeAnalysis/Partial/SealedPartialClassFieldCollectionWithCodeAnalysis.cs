@@ -7,21 +7,23 @@ namespace CSharpDom.CodeAnalysis.Partial
         EditableClassFieldCollection<SealedPartialClassFieldWithCodeAnalysis, SealedPartialClassConstantWithCodeAnalysis>
     {
         private readonly WrappedCollection<
-            ClassConstantWithCodeAnalysis,
+            SealedClassConstantWithCodeAnalysis,
             SealedPartialClassConstantWithCodeAnalysis> constants;
-        private readonly WrappedCollection<ClassFieldWithCodeAnalysis, SealedPartialClassFieldWithCodeAnalysis> fields;
+        private readonly WrappedCollection<
+            SealedClassFieldWithCodeAnalysis,
+            SealedPartialClassFieldWithCodeAnalysis> fields;
 
-        public SealedPartialClassFieldCollectionWithCodeAnalysis(ClassFieldCollectionWithCodeAnalysis fieldCollection)
+        public SealedPartialClassFieldCollectionWithCodeAnalysis(SealedClassFieldCollectionWithCodeAnalysis fieldCollection)
         {
-            constants = new WrappedCollection<ClassConstantWithCodeAnalysis, SealedPartialClassConstantWithCodeAnalysis>(
+            constants = new WrappedCollection<SealedClassConstantWithCodeAnalysis, SealedPartialClassConstantWithCodeAnalysis>(
                 fieldCollection.Constants,
                 parent => new SealedPartialClassConstantWithCodeAnalysis(parent),
-                child => child.InternalConstant,
+                child => child.Constant,
                 value => fieldCollection.Constants = value);
-            fields = new WrappedCollection<ClassFieldWithCodeAnalysis, SealedPartialClassFieldWithCodeAnalysis>(
+            fields = new WrappedCollection<SealedClassFieldWithCodeAnalysis, SealedPartialClassFieldWithCodeAnalysis>(
                 fieldCollection.Fields,
                 parent => new SealedPartialClassFieldWithCodeAnalysis(parent),
-                child => child.InternalField,
+                child => child.Field,
                 value => fieldCollection.Fields = value);
         }
 

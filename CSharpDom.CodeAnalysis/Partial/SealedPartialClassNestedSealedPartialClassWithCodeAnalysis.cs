@@ -32,17 +32,25 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         ISealedPartialTypeWithCodeAnalysis
     {
-        private readonly ClassNestedSealedPartialClassWithCodeAnalysis classType;
+        private readonly SealedClassNestedSealedPartialClassWithCodeAnalysis classType;
+
+        public SealedPartialClassNestedSealedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new SealedClassNestedSealedPartialClassWithCodeAnalysis(visibility, name))
+        {
+        }
 
         internal SealedPartialClassNestedSealedPartialClassWithCodeAnalysis(
-            ClassNestedSealedPartialClassWithCodeAnalysis @class)
+            SealedClassNestedSealedPartialClassWithCodeAnalysis @class)
         {
             classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ClassNestedSealedClassWithCodeAnalysis Class
+        public SealedClassNestedSealedPartialClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -77,7 +85,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -187,9 +195,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             }
         }
 
-        internal ClassNestedSealedPartialClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
+        ISealedTypeWithCodeAnalysis ISealedPartialTypeWithCodeAnalysis.Class => classType.Class.Class;
     }
 }

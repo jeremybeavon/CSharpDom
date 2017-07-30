@@ -29,17 +29,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             ClassStaticConstructorWithCodeAnalysis,
             ClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IClassTypeWithCodeAnalysis,
-        IHasNode<ClassDeclarationSyntax>
+        IClassTypeWithCodeAnalysis
     {
-        private readonly InternalNestedClassWithCodeAnalysis<StaticPartialClassNestedClassWithCodeAnalysis> classType;
+        private readonly StaticClassNestedClassWithCodeAnalysis classType;
 
-        internal StaticPartialClassNestedClassWithCodeAnalysis()
+        public StaticPartialClassNestedClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new StaticClassNestedClassWithCodeAnalysis(visibility, name))
         {
-            classType = new InternalNestedClassWithCodeAnalysis<StaticPartialClassNestedClassWithCodeAnalysis>(this);
+        }
+
+        internal StaticPartialClassNestedClassWithCodeAnalysis(StaticClassNestedClassWithCodeAnalysis classType)
+        {
+            this.classType = classType;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedClassWithCodeAnalysis Class
+        public StaticClassNestedClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -76,7 +83,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -178,19 +185,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return classType.Visibility; }
+            set { classType.Visibility = value; }
         }
-
-        internal InternalNestedClassWithCodeAnalysis<StaticPartialClassNestedClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
-        }
-
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Node;
     }
 }

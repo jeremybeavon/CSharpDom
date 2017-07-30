@@ -16,6 +16,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly StructMethodListWrapper<TStruct, PartialMethodImplementationWithCodeAnalysis> partialMethodImplementations;
 
         internal InternalPartialStructMethodCollectionWithCodeAnalysis(
+            InternalNestedStructWithCodeAnalysis<TStruct> structType)
+            : this(structType.InternalStruct)
+        {
+        }
+
+        internal InternalPartialStructMethodCollectionWithCodeAnalysis(
             InternalStructTypeWithCodeAnalysis<TStruct> structType)
         {
             this.structType = structType;

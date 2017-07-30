@@ -24,12 +24,12 @@ namespace CSharpDom.CodeAnalysis.Partial
             events = new WrappedCollection<SealedClassEventWithCodeAnalysis, SealedPartialClassEventWithCodeAnalysis>(
                 eventCollection.Events,
                 parent => new SealedPartialClassEventWithCodeAnalysis(parent),
-                child => child.InternalEvent,
+                child => child.Event,
                 value => eventCollection.Events = value);
             eventProperties = new WrappedCollection<SealedClassEventPropertyWithCodeAnalysis, SealedPartialClassEventPropertyWithCodeAnalysis>(
                 eventCollection.EventProperties,
                 parent => new SealedPartialClassEventPropertyWithCodeAnalysis(parent),
-                child => child.InternalEventProperty,
+                child => child.EventProperty,
                 value => eventCollection.EventProperties = value);
         }
         

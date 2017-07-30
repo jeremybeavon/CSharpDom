@@ -32,11 +32,19 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly StaticClassNestedStructWithCodeAnalysis structType;
         private readonly PartialStructMethodCollectionWithCodeAnalysis methods;
 
+        public StaticClassNestedPartialStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = StructDeclarationSyntaxExtensions.ToPartialSyntax(name, visibility);
+        }
+
         internal StaticClassNestedPartialStructWithCodeAnalysis()
         {
-            structType = new StaticClassNestedStructWithCodeAnalysis();
-            methods = new InternalPartialStructMethodCollectionWithCodeAnalysis<StaticClassNestedStructWithCodeAnalysis>(
-                structType.InternalStruct.InternalStruct);
+            var type = new InternalNestedStructWithCodeAnalysis<StaticClassNestedPartialStructWithCodeAnalysis>(this);
+            structType = new StaticClassNestedStructWithCodeAnalysis(type);
+            methods = new InternalPartialStructMethodCollectionWithCodeAnalysis<StaticClassNestedPartialStructWithCodeAnalysis>(type);
         }
         
         public StaticClassNestedStructWithCodeAnalysis Struct
@@ -125,7 +133,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override PartialStructMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
-            set { structType.InternalStruct.InternalStruct.Members.Replace(value); }
+            set { structType.Struct.Members.Replace(value); }
         }
 
         public override string Name
@@ -176,7 +184,13 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.InternalStruct.InternalStruct.Node; }
+            get { return structType.Struct.Node; }
+        }
+
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc
+        {
+            get { return structType.DeclaringTypeFunc; }
+            set { structType.DeclaringTypeFunc = value; }
         }
     }
 }

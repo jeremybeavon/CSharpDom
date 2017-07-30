@@ -20,23 +20,24 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
         }
 
-        internal static StaticClassNestedPartialClassCollectionWithCodeAnalysis Create(
-            StaticClassWithCodeAnalysis classType)
+        internal static StaticClassNestedPartialClassCollectionWithCodeAnalysis Create<TClass>(
+            InternalStaticTypeWithCodeAnalysis<TClass> classType)
+            where TClass : class, IHasSyntax<ClassDeclarationSyntax>
         {
-            var classes = new StaticClassMemberListWrapper<StaticClassNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                classType.Node,
+            var classes = new ClassMemberListWrapper<TClass, StaticClassNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                classType.InternalNode,
                 () => new StaticClassNestedPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsPartialClass);
-            var abstractClasses = new StaticClassMemberListWrapper<StaticClassNestedAbstractPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                classType.Node,
+            var abstractClasses = new ClassMemberListWrapper<TClass, StaticClassNestedAbstractPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                classType.InternalNode,
                 () => new StaticClassNestedAbstractPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsAbstractPartialClass);
-            var sealedClasses = new StaticClassMemberListWrapper<StaticClassNestedSealedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                classType.Node,
+            var sealedClasses = new ClassMemberListWrapper<TClass, StaticClassNestedSealedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                classType.InternalNode,
                 () => new StaticClassNestedSealedPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsSealedPartialClass);
-            var staticClasses = new StaticClassMemberListWrapper<StaticClassNestedStaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                classType.Node,
+            var staticClasses = new ClassMemberListWrapper<TClass, StaticClassNestedStaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
+                classType.InternalNode,
                 () => new StaticClassNestedStaticPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsStaticPartialClass);
             return new StaticClassNestedPartialClassCollectionWithCodeAnalysis(classType.Members, abstractClasses, classes, sealedClasses, staticClasses);

@@ -11,17 +11,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             StaticPartialClassWithCodeAnalysis,
             NestedEnumMemberWithCodeAnalysis>,
-        IHasSyntax<EnumDeclarationSyntax>,
-        IHasNode<EnumDeclarationSyntax>
+        IHasSyntax<EnumDeclarationSyntax>
     {
-        private readonly NestedEnumWithCodeAnalysis nestedEnum;
+        private readonly StaticClassNestedEnumWithCodeAnalysis nestedEnum;
 
-        internal StaticPartialClassNestedEnumWithCodeAnalysis()
+        public StaticPartialClassNestedEnumWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new StaticClassNestedEnumWithCodeAnalysis(visibility, name))
         {
-            nestedEnum = new NestedEnumWithCodeAnalysis();
         }
 
-        public NestedEnumWithCodeAnalysis Enum
+        internal StaticPartialClassNestedEnumWithCodeAnalysis(StaticClassNestedEnumWithCodeAnalysis @enum)
+        {
+            nestedEnum = @enum;
+            nestedEnum.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+
+        public StaticClassNestedEnumWithCodeAnalysis Enum
         {
             get { return nestedEnum; }
         }
@@ -40,7 +47,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return nestedEnum.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return nestedEnum.Enum.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -71,7 +78,5 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        INode<EnumDeclarationSyntax> IHasNode<EnumDeclarationSyntax>.Node => nestedEnum.Node;
     }
 }

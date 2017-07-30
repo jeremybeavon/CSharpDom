@@ -29,17 +29,23 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<StructDeclarationSyntax>,
         IHasNode<StructDeclarationSyntax>
     {
-        private readonly StaticClassNestedStructWithCodeAnalysis structType;
-        private readonly PartialStructMethodCollectionWithCodeAnalysis methods;
+        private readonly StaticClassNestedPartialStructWithCodeAnalysis structType;
 
-        internal StaticPartialClassNestedPartialStructWithCodeAnalysis()
+        public StaticPartialClassNestedPartialStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new StaticClassNestedPartialStructWithCodeAnalysis(visibility, name))
         {
-            structType = new StaticClassNestedStructWithCodeAnalysis();
-            methods = new InternalPartialStructMethodCollectionWithCodeAnalysis<StaticClassNestedStructWithCodeAnalysis>(
-                structType.InternalStruct.InternalStruct);
+        }
+
+        internal StaticPartialClassNestedPartialStructWithCodeAnalysis(
+            StaticClassNestedPartialStructWithCodeAnalysis @struct)
+        {
+            structType = @struct;
+            structType.DeclaringTypeFunc = () => DeclaringType.Class;            
         }
         
-        public StaticClassNestedStructWithCodeAnalysis Struct
+        public StaticClassNestedPartialStructWithCodeAnalysis Struct
         {
             get { return structType; }
         }
@@ -70,7 +76,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return structType.InternalStruct.InternalStruct.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return structType.Struct.Struct.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -124,8 +130,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override PartialStructMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { structType.InternalStruct.InternalStruct.Members.Replace(value); }
+            get { return structType.Methods; }
+            set { structType.Methods = value; }
         }
 
         public override string Name
@@ -174,6 +180,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             }
         }
 
-        INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node => structType.InternalStruct.Node;
+        INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node => structType.Struct.Struct.Node;
     }
 }

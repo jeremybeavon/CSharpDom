@@ -13,16 +13,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             MethodBodyWithCodeAnalysis>,
         IHasSyntax<ConstructorDeclarationSyntax>
     {
-        private readonly ClassStaticConstructorWithCodeAnalysis staticConstructor;
+        private readonly SealedClassStaticConstructorWithCodeAnalysis staticConstructor;
 
-        internal SealedPartialClassStaticConstructorWithCodeAnalysis(ClassStaticConstructorWithCodeAnalysis staticConstructor)
+        public SealedPartialClassStaticConstructorWithCodeAnalysis(
+            string name,
+            MethodBodyWithCodeAnalysis body)
+            : this(new SealedClassStaticConstructorWithCodeAnalysis(name, body))
         {
-            this.staticConstructor = staticConstructor;
         }
 
-        public StaticConstructorWithCodeAnalysis StaticConstructor
+        internal SealedPartialClassStaticConstructorWithCodeAnalysis(
+            SealedClassStaticConstructorWithCodeAnalysis staticConstructor)
         {
-            get { return staticConstructor.StaticConstructor; }
+            this.staticConstructor = staticConstructor;
+            staticConstructor.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+
+        public SealedClassStaticConstructorWithCodeAnalysis StaticConstructor
+        {
+            get { return staticConstructor; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -39,7 +48,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return staticConstructor.StaticConstructor.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return staticConstructor.StaticConstructor.StaticConstructor.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -47,11 +56,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return staticConstructor.Syntax; }
             set { staticConstructor.Syntax = value; }
-        }
-
-        internal ClassStaticConstructorWithCodeAnalysis InternalStaticConstructor
-        {
-            get { return staticConstructor; }
         }
     }
 }

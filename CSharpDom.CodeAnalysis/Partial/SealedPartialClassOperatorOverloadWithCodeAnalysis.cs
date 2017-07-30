@@ -18,16 +18,27 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<OperatorDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly ClassOperatorOverloadWithCodeAnalysis operatorOverload;
-        
-        internal SealedPartialClassOperatorOverloadWithCodeAnalysis(ClassOperatorOverloadWithCodeAnalysis operatorOverload)
+        private readonly SealedClassOperatorOverloadWithCodeAnalysis operatorOverload;
+
+        public SealedPartialClassOperatorOverloadWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorOverloadType operatorType,
+            IEnumerable<OperatorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new SealedClassOperatorOverloadWithCodeAnalysis(visibility, returnType, operatorType, parameters, body))
+        {
+        }
+
+        internal SealedPartialClassOperatorOverloadWithCodeAnalysis(
+            SealedClassOperatorOverloadWithCodeAnalysis operatorOverload)
         {
             this.operatorOverload = operatorOverload;
         }
 
-        public OperatorOverloadWithCodeAnalysis OperatorOverload
+        public SealedClassOperatorOverloadWithCodeAnalysis OperatorOverload
         {
-            get { return operatorOverload.OperatorOverload; }
+            get { return operatorOverload; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -44,7 +55,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return operatorOverload.OperatorOverload.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return operatorOverload.OperatorOverload.OperatorOverload.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -70,11 +81,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return operatorOverload.Syntax; }
             set { operatorOverload.Syntax = value; }
-        }
-
-        internal ClassOperatorOverloadWithCodeAnalysis InternalOperatorOverload
-        {
-            get { return operatorOverload; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

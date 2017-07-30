@@ -15,16 +15,26 @@ namespace CSharpDom.CodeAnalysis.Partial
             DelegateParameterWithCodeAnalysis>,
         IHasSyntax<DelegateDeclarationSyntax>
     {
-        private readonly ClassNestedDelegateWithCodeAnalysis nestedDelegate;
+        private readonly SealedClassNestedDelegateWithCodeAnalysis nestedDelegate;
 
-        internal SealedPartialClassNestedDelegateWithCodeAnalysis(ClassNestedDelegateWithCodeAnalysis @delegate)
+        public SealedPartialClassNestedDelegateWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<DelegateParameterWithCodeAnalysis> parameters)
+            : this(new SealedClassNestedDelegateWithCodeAnalysis(visibility, returnType, name, parameters))
+        {
+        }
+
+        internal SealedPartialClassNestedDelegateWithCodeAnalysis(SealedClassNestedDelegateWithCodeAnalysis @delegate)
         {
             nestedDelegate = @delegate;
+            nestedDelegate.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedDelegateWithCodeAnalysis Delegate
+        public SealedClassNestedDelegateWithCodeAnalysis Delegate
         {
-            get { return nestedDelegate.Delegate; }
+            get { return nestedDelegate; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -35,7 +45,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedDelegate.Delegate.Delegate.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return nestedDelegate.Delegate.Delegate.Delegate.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -73,11 +83,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return nestedDelegate.Visibility; }
             set { nestedDelegate.Visibility = value; }
-        }
-
-        internal ClassNestedDelegateWithCodeAnalysis InternalDelegate
-        {
-            get { return nestedDelegate; }
         }
     }
 }

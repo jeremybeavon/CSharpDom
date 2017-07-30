@@ -29,17 +29,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             SealedClassStaticConstructorWithCodeAnalysis,
             SealedClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        ISealedTypeWithCodeAnalysis,
-        IHasNode<ClassDeclarationSyntax>
+        ISealedTypeWithCodeAnalysis
     {
-        private readonly InternalNestedSealedClassWithCodeAnalysis<StaticPartialClassNestedSealedClassWithCodeAnalysis> classType;
+        private readonly StaticClassNestedSealedClassWithCodeAnalysis classType;
 
-        internal StaticPartialClassNestedSealedClassWithCodeAnalysis()
+        internal StaticPartialClassNestedSealedClassWithCodeAnalysis(StaticClassNestedSealedClassWithCodeAnalysis type)
         {
-            classType = new InternalNestedSealedClassWithCodeAnalysis<StaticPartialClassNestedSealedClassWithCodeAnalysis>(this);
+            classType = type;
         }
         
-        public NestedSealedClassWithCodeAnalysis Class
+        public StaticClassNestedSealedClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -186,8 +185,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             }
         }
 
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Node;
-
-        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class;
+        IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

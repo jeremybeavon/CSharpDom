@@ -18,9 +18,20 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly SealedClassMethodWithCodeAnalysis method;
 
+        public SealedPartialClassMethodWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<MethodParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new SealedClassMethodWithCodeAnalysis(visibility, returnType, name, parameters, body))
+        {
+        }
+
         internal SealedPartialClassMethodWithCodeAnalysis(SealedClassMethodWithCodeAnalysis method)
         {
             this.method = method;
+            method.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public MethodWithBodyWithCodeAnalysis Method

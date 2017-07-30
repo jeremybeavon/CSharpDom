@@ -10,24 +10,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             SealedPartialClassNestedPartialStructWithCodeAnalysis>
     {
         private readonly WrappedCollection<
-            ClassNestedStructWithCodeAnalysis,
+            SealedClassNestedStructWithCodeAnalysis,
             SealedPartialClassNestedStructWithCodeAnalysis> structs;
         private readonly WrappedCollection<
-            ClassNestedPartialStructWithCodeAnalysis,
+            SealedClassNestedPartialStructWithCodeAnalysis,
             SealedPartialClassNestedPartialStructWithCodeAnalysis> partialStructs;
 
         internal SealedPartialClassNestedStructCollectionWithCodeAnalysis(
-            ClassNestedStructCollectionWithCodeAnalysis structCollection)
+            SealedClassNestedStructCollectionWithCodeAnalysis structCollection)
         {
-            structs = new WrappedCollection<ClassNestedStructWithCodeAnalysis, SealedPartialClassNestedStructWithCodeAnalysis>(
+            structs = new WrappedCollection<SealedClassNestedStructWithCodeAnalysis, SealedPartialClassNestedStructWithCodeAnalysis>(
                 structCollection.Structs,
                 parent => new SealedPartialClassNestedStructWithCodeAnalysis(parent),
-                child => child.InternalStruct,
+                child => child.Struct,
                 value => structCollection.Structs = value);
-            partialStructs = new WrappedCollection<ClassNestedPartialStructWithCodeAnalysis, SealedPartialClassNestedPartialStructWithCodeAnalysis>(
+            partialStructs = new WrappedCollection<SealedClassNestedPartialStructWithCodeAnalysis, SealedPartialClassNestedPartialStructWithCodeAnalysis>(
                 structCollection.PartialStructs,
                 parent => new SealedPartialClassNestedPartialStructWithCodeAnalysis(parent),
-                child => child.InternalStruct,
+                child => child.Struct,
                 value => structCollection.PartialStructs = value);
         }
 

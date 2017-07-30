@@ -30,11 +30,19 @@ namespace CSharpDom.CodeAnalysis
         IStructTypeWithCodeAnalysis,
         IHasNode<StructDeclarationSyntax>
     {
-        private readonly InternalNestedStructWithCodeAnalysis<StaticClassNestedStructWithCodeAnalysis> structType;
+        private readonly NestedStructWithCodeAnalysis structType;
 
-        internal StaticClassNestedStructWithCodeAnalysis()
+        public StaticClassNestedStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
         {
-            structType = new InternalNestedStructWithCodeAnalysis<StaticClassNestedStructWithCodeAnalysis>(this);
+            Syntax = StructDeclarationSyntaxExtensions.ToSyntax(name, visibility);
+        }
+
+        internal StaticClassNestedStructWithCodeAnalysis(NestedStructWithCodeAnalysis @struct = null)
+        {
+            structType = @struct ?? new InternalNestedStructWithCodeAnalysis<StaticClassNestedStructWithCodeAnalysis>(this);
         }
         
         public NestedStructWithCodeAnalysis Struct
@@ -68,7 +76,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return structType.InternalStruct.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? structType.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -174,12 +182,9 @@ namespace CSharpDom.CodeAnalysis
         
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.InternalStruct.Node; }
+            get { return structType.Node; }
         }
 
-        internal InternalNestedStructWithCodeAnalysis<StaticClassNestedStructWithCodeAnalysis> InternalStruct
-        {
-            get { return structType; }
-        }
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

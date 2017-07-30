@@ -14,12 +14,12 @@ namespace CSharpDom.CodeAnalysis
             constants = new WrappedCollection<ClassConstantWithCodeAnalysis, SealedClassConstantWithCodeAnalysis>(
                 fieldCollection.Constants,
                 parent => new SealedClassConstantWithCodeAnalysis(parent),
-                child => child.InternalConstant,
+                child => child.Constant,
                 value => fieldCollection.Constants = value);
             fields = new WrappedCollection<ClassFieldWithCodeAnalysis, SealedClassFieldWithCodeAnalysis>(
                 fieldCollection.Fields,
                 parent => new SealedClassFieldWithCodeAnalysis(parent),
-                child => child.InternalField,
+                child => child.Field,
                 value => fieldCollection.Fields = value);
         }
 

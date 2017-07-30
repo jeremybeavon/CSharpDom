@@ -16,17 +16,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             InterfacePropertyWithCodeAnalysis,
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
-        IHasSyntax<InterfaceDeclarationSyntax>,
-        IHasNode<InterfaceDeclarationSyntax>
+        IHasSyntax<InterfaceDeclarationSyntax>
     {
-        private readonly NestedInterfaceWithCodeAnalysis nestedInterface;
+        private readonly StaticClassNestedInterfaceWithCodeAnalysis nestedInterface;
 
-        internal StaticPartialClassNestedInterfaceWithCodeAnalysis()
+        public StaticPartialClassNestedInterfaceWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new StaticClassNestedInterfaceWithCodeAnalysis(visibility, name))
         {
-            nestedInterface = new NestedInterfaceWithCodeAnalysis();
+        }
+
+        internal StaticPartialClassNestedInterfaceWithCodeAnalysis(StaticClassNestedInterfaceWithCodeAnalysis @interface)
+        {
+            nestedInterface = @interface;
+            nestedInterface.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedInterfaceWithCodeAnalysis Interface
+        public StaticClassNestedInterfaceWithCodeAnalysis Interface
         {
             get { return nestedInterface; }
         }
@@ -39,7 +46,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return nestedInterface.Interface.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return nestedInterface.Interface.Interface.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -102,7 +109,5 @@ namespace CSharpDom.CodeAnalysis.Partial
         }
 
         public override bool IsPartial { get => Syntax.IsPartial(); set => Syntax = Syntax.IsPartial(value); }
-
-        INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node => nestedInterface.Interface.Node;
     }
 }

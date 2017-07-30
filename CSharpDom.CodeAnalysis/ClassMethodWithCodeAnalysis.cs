@@ -3,6 +3,9 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -19,11 +22,32 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly MethodWithBodyWithCodeAnalysis method;
 
+        public ClassMethodWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<MethodParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this()
+        {
+            Syntax = SyntaxFactory.MethodDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                returnType.Syntax,
+                null,
+                SyntaxFactory.Identifier(name),
+                null,
+                SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters.Select(parameter => parameter.Syntax))),
+                default(SyntaxList<TypeParameterConstraintClauseSyntax>),
+                body.Syntax,
+                null);
+        }
+
         internal ClassMethodWithCodeAnalysis()
         {
             method = new MethodWithBodyWithCodeAnalysis();
         }
-        
+
         public MethodWithBodyWithCodeAnalysis Method
         {
             get { return method; }
@@ -43,7 +67,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return method.Method.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? method.Method.Node.GetParentNode<IClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -108,10 +132,12 @@ namespace CSharpDom.CodeAnalysis
             get { return method.Syntax; }
             set { method.Syntax = value; }
         }
-        
+
         INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node
         {
             get { return method.Method.Node; }
         }
+
+        internal Func<IClassTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

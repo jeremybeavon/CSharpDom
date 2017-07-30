@@ -27,17 +27,17 @@ namespace CSharpDom.CodeAnalysis.Partial
             StructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
-        IStructTypeWithCodeAnalysis,
-        IHasNode<StructDeclarationSyntax>
+        IStructTypeWithCodeAnalysis
     {
-        private readonly InternalNestedStructWithCodeAnalysis<StaticPartialClassNestedStructWithCodeAnalysis> structType;
+        private readonly StaticClassNestedStructWithCodeAnalysis structType;
 
-        internal StaticPartialClassNestedStructWithCodeAnalysis()
+        internal StaticPartialClassNestedStructWithCodeAnalysis(StaticClassNestedStructWithCodeAnalysis @struct)
         {
-            structType = new InternalNestedStructWithCodeAnalysis<StaticPartialClassNestedStructWithCodeAnalysis>(this);
+            structType = @struct;
+            structType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedStructWithCodeAnalysis Struct
+        public StaticClassNestedStructWithCodeAnalysis Struct
         {
             get { return structType; }
         }
@@ -68,7 +68,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return structType.InternalStruct.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return structType.Struct.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -171,12 +171,5 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-        
-        internal InternalNestedStructWithCodeAnalysis<StaticPartialClassNestedStructWithCodeAnalysis> InternalStruct
-        {
-            get { return structType; }
-        }
-
-        INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node => structType.Node;
     }
 }

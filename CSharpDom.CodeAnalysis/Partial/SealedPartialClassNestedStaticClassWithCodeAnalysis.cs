@@ -23,16 +23,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
-        private readonly ClassNestedStaticClassWithCodeAnalysis classType;
+        private readonly SealedClassNestedStaticClassWithCodeAnalysis classType;
 
-        internal SealedPartialClassNestedStaticClassWithCodeAnalysis(ClassNestedStaticClassWithCodeAnalysis @class)
+        public SealedPartialClassNestedStaticClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new SealedClassNestedStaticClassWithCodeAnalysis(visibility, name))
         {
-            classType = @class;
         }
 
-        public NestedStaticClassWithCodeAnalysis Class
+        internal SealedPartialClassNestedStaticClassWithCodeAnalysis(SealedClassNestedStaticClassWithCodeAnalysis @class)
         {
-            get { return classType.Class; }
+            classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+
+        public SealedClassNestedStaticClassWithCodeAnalysis Class
+        {
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -49,7 +57,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -129,11 +137,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
-        }
-       
-        internal ClassNestedStaticClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
         }
     }
 }

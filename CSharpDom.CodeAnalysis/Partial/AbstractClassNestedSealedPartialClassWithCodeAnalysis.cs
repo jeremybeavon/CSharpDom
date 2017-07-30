@@ -198,5 +198,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         }
 
         internal Func<IAbstractTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
+
+        ISealedTypeWithCodeAnalysis ISealedPartialTypeWithCodeAnalysis.Class => classType.Class;
     }
 }

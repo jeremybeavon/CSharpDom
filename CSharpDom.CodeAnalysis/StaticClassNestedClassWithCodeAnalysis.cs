@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -32,11 +33,19 @@ namespace CSharpDom.CodeAnalysis
         IClassTypeWithCodeAnalysis,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly InternalNestedClassWithCodeAnalysis<StaticClassNestedClassWithCodeAnalysis> classType;
+        private readonly NestedClassWithCodeAnalysis classType;
 
-        internal StaticClassNestedClassWithCodeAnalysis()
+        public StaticClassNestedClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
         {
-            classType = new InternalNestedClassWithCodeAnalysis<StaticClassNestedClassWithCodeAnalysis>(this);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility);
+        }
+
+        internal StaticClassNestedClassWithCodeAnalysis(NestedClassWithCodeAnalysis type = null)
+        {
+            classType = type ?? new InternalNestedClassWithCodeAnalysis<StaticClassNestedClassWithCodeAnalysis>(this);
         }
         
         public NestedClassWithCodeAnalysis Class
@@ -76,7 +85,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return classType.InternalClass.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? classType.Class.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -188,12 +197,9 @@ namespace CSharpDom.CodeAnalysis
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.Node; }
+            get { return classType.Class.Node; }
         }
 
-        internal InternalNestedClassWithCodeAnalysis<StaticClassNestedClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
-        }
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

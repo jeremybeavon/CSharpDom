@@ -24,15 +24,23 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         INestedStaticPartialTypeWithCodeAnalysis
     {
-        private readonly ClassNestedStaticPartialClassWithCodeAnalysis classType;
+        private readonly SealedClassNestedStaticPartialClassWithCodeAnalysis classType;
 
-        internal SealedPartialClassNestedStaticPartialClassWithCodeAnalysis(
-            ClassNestedStaticPartialClassWithCodeAnalysis @class)
+        public SealedPartialClassNestedStaticPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new SealedClassNestedStaticPartialClassWithCodeAnalysis(visibility, name))
         {
-            classType = @class;
         }
 
-        public ClassNestedStaticPartialClassWithCodeAnalysis Class
+        internal SealedPartialClassNestedStaticPartialClassWithCodeAnalysis(
+            SealedClassNestedStaticPartialClassWithCodeAnalysis @class)
+        {
+            classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+
+        public SealedClassNestedStaticPartialClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -51,7 +59,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return null; }// return classType.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -131,11 +139,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
-        }
-
-        internal ClassNestedStaticPartialClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
         }
     }
 }

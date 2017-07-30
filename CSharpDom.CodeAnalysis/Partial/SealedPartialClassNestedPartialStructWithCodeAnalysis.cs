@@ -28,16 +28,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>
     {
-        private readonly ClassNestedPartialStructWithCodeAnalysis structType;
+        private readonly SealedClassNestedPartialStructWithCodeAnalysis structType;
 
-        internal SealedPartialClassNestedPartialStructWithCodeAnalysis(ClassNestedPartialStructWithCodeAnalysis @struct)
+        public SealedPartialClassNestedPartialStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new SealedClassNestedPartialStructWithCodeAnalysis(visibility, name))
+        {
+        }
+
+        internal SealedPartialClassNestedPartialStructWithCodeAnalysis(
+            SealedClassNestedPartialStructWithCodeAnalysis @struct)
         {
             structType = @struct;
+            structType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ClassNestedStructWithCodeAnalysis Struct
+        public SealedClassNestedPartialStructWithCodeAnalysis Struct
         {
-            get { return structType.Struct; }
+            get { return structType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -66,7 +75,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.Struct.Struct.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return structType.Struct.Struct.Struct.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -162,17 +171,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                StructDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
-        }
-
-        internal ClassNestedPartialStructWithCodeAnalysis InternalStruct
-        {
-            get { return structType; }
+            get { return structType.Visibility; }
+            set { structType.Visibility = value; }
         }
     }
 }

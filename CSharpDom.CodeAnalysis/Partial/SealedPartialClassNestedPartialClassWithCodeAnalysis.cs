@@ -31,14 +31,22 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         IPartialClassTypeWithCodeAnalysis
     {
-        private readonly ClassNestedPartialClassWithCodeAnalysis classType;
+        private readonly SealedClassNestedPartialClassWithCodeAnalysis classType;
 
-        internal SealedPartialClassNestedPartialClassWithCodeAnalysis(ClassNestedPartialClassWithCodeAnalysis @class)
+        public SealedPartialClassNestedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new SealedClassNestedPartialClassWithCodeAnalysis(visibility, name))
+        {
+        }
+
+        internal SealedPartialClassNestedPartialClassWithCodeAnalysis(SealedClassNestedPartialClassWithCodeAnalysis @class)
         {
             classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ClassNestedPartialClassWithCodeAnalysis Class
+        public SealedClassNestedPartialClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -75,7 +83,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -180,12 +188,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
-
-        internal ClassNestedPartialClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
-        }
-
-        IClassTypeWithCodeAnalysis IPartialClassTypeWithCodeAnalysis.Class => classType.Class;
+        
+        IClassTypeWithCodeAnalysis IPartialClassTypeWithCodeAnalysis.Class => classType.Class.Class;
     }
 }

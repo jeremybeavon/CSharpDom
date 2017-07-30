@@ -12,17 +12,34 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             ConstantWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>,
-        IHasNode<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>
     {
-        private readonly ConstantGroupWithCodeAnalysis constant;
+        private readonly StaticClassConstantWithCodeAnalysis constant;
 
-        internal StaticPartialClassConstantWithCodeAnalysis()
+        public StaticPartialClassConstantWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            IExpressionWithCodeAnalysis value)
+            : this(new StaticClassConstantWithCodeAnalysis(visibility, type, name, value))
         {
-            constant = new ConstantGroupWithCodeAnalysis();
+        }
+
+        public StaticPartialClassConstantWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params ConstantWithCodeAnalysis[] constants)
+            : this(new StaticClassConstantWithCodeAnalysis(visibility, type, constants))
+        {
+        }
+
+        internal StaticPartialClassConstantWithCodeAnalysis(StaticClassConstantWithCodeAnalysis constant)
+        {
+            this.constant = constant;
+            constant.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public ConstantGroupWithCodeAnalysis Constant
+        public StaticClassConstantWithCodeAnalysis Constant
         {
             get { return constant; }
         }
@@ -41,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return constant.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return constant.Constant.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -66,7 +83,5 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return constant.Syntax; }
             set { constant.Syntax = value; }
         }
-
-        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node => constant.Node;
     }
 }

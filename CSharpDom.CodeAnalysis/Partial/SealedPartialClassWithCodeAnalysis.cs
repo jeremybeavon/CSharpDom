@@ -203,6 +203,8 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Visibility = value; }
         }
 
+        public ISealedTypeWithCodeAnalysis Class => classType;
+
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
             get { return classType.Class.Node; }

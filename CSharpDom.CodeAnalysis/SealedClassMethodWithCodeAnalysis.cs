@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class SealedClassMethodWithCodeAnalysis :
         EditableSealedClassMethod<
             AttributeGroupWithCodeAnalysis,
-            ISealedType,
+            ISealedTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis,
@@ -19,9 +19,19 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassMethodWithCodeAnalysis method;
 
-        internal SealedClassMethodWithCodeAnalysis()
+        public SealedClassMethodWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<MethodParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassMethodWithCodeAnalysis(visibility, returnType, name, parameters, body))
         {
-            method = new ClassMethodWithCodeAnalysis();
+        }
+
+        internal SealedClassMethodWithCodeAnalysis(ClassMethodWithCodeAnalysis method = null)
+        {
+            this.method = method ?? new ClassMethodWithCodeAnalysis();
         }
         
         public MethodWithBodyWithCodeAnalysis Method
@@ -41,9 +51,9 @@ namespace CSharpDom.CodeAnalysis
             set { method.Body = value; }
         }
 
-        public override ISealedType DeclaringType
+        public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return Method.Method.Node.GetParentNode<ISealedType>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? Method.Method.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -109,5 +119,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.Method.Method.Node; }
         }
+
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

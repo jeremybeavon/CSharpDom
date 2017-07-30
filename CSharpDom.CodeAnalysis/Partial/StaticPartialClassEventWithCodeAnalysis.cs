@@ -12,17 +12,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             StaticPartialClassWithCodeAnalysis,
             DelegateReferenceWithCodeAnalysis>,
-        IHasSyntax<EventFieldDeclarationSyntax>,
-        IHasNode<EventFieldDeclarationSyntax>
+        IHasSyntax<EventFieldDeclarationSyntax>
     {
-        private readonly EventWithCodeAnalysis @event;
+        private readonly StaticClassEventWithCodeAnalysis @event;
 
-        internal StaticPartialClassEventWithCodeAnalysis()
+        public StaticPartialClassEventWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name)
+            : this(new StaticClassEventWithCodeAnalysis(visibility, type, name))
         {
-            @event = new EventWithCodeAnalysis();
+        }
+
+        internal StaticPartialClassEventWithCodeAnalysis(StaticClassEventWithCodeAnalysis @event)
+        {
+            this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public EventWithCodeAnalysis Event
+        public StaticClassEventWithCodeAnalysis Event
         {
             get { return @event; }
         }
@@ -35,7 +43,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return @event.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return @event.Event.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -47,8 +55,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ICollection<AttributeGroupWithCodeAnalysis> FieldAttributes
         {
-            get { return @event.AttributeList.TargetedAttributes; }
-            set { @event.AttributeList.TargetedAttributes = value; }
+            get { return @event.FieldAttributes; }
+            set { @event.FieldAttributes = value; }
         }
         
         public override string Name
@@ -72,7 +80,5 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
             }
         }
-
-        INode<EventFieldDeclarationSyntax> IHasNode<EventFieldDeclarationSyntax>.Node => @event.Node;
     }
 }

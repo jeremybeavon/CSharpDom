@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CSharpDom.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using CSharpDom.Editable;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -16,6 +19,28 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<FieldDeclarationSyntax>
     {
         private readonly ConstantGroupWithCodeAnalysis constant;
+
+        public StaticClassConstantWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            IExpressionWithCodeAnalysis value)
+            : this(visibility, type, new ConstantWithCodeAnalysis(name, value))
+        {
+        }
+
+        public StaticClassConstantWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params ConstantWithCodeAnalysis[] constants)
+            : this()
+        {
+            IEnumerable<VariableDeclaratorSyntax> syntax = constants.Select(constant => constant.Syntax);
+            Syntax = SyntaxFactory.FieldDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithStaticClassMemberVisibilityModifier(visibility),
+                SyntaxFactory.VariableDeclaration(type.Syntax, SyntaxFactory.SeparatedList(syntax)));
+        }
 
         internal StaticClassConstantWithCodeAnalysis()
         {
@@ -41,7 +66,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return constant.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? constant.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -71,5 +96,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return constant.Node; }
         }
+
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

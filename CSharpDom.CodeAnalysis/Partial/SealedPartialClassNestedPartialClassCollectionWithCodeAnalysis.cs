@@ -25,27 +25,27 @@ namespace CSharpDom.CodeAnalysis.Partial
         }
 
         internal static SealedPartialClassNestedPartialClassCollectionWithCodeAnalysis Create(
-            ClassNestedPartialClassCollectionWithCodeAnalysis classCollection)
+            SealedClassNestedPartialClassCollectionWithCodeAnalysis classCollection)
         {
-            var classes = new WrappedCollection<ClassNestedPartialClassWithCodeAnalysis, SealedPartialClassNestedPartialClassWithCodeAnalysis>(
+            var classes = new WrappedCollection<SealedClassNestedPartialClassWithCodeAnalysis, SealedPartialClassNestedPartialClassWithCodeAnalysis>(
                 classCollection.Classes,
                 parent => new SealedPartialClassNestedPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.Classes = value);
-            var abstractClasses = new WrappedCollection<ClassNestedAbstractPartialClassWithCodeAnalysis, SealedPartialClassNestedAbstractPartialClassWithCodeAnalysis>(
+            var abstractClasses = new WrappedCollection<SealedClassNestedAbstractPartialClassWithCodeAnalysis, SealedPartialClassNestedAbstractPartialClassWithCodeAnalysis>(
                 classCollection.AbstractClasses,
                 parent => new SealedPartialClassNestedAbstractPartialClassWithCodeAnalysis(parent),
                 child => child.Class,
                 value => classCollection.AbstractClasses = value);
-            var sealedClasses = new WrappedCollection<ClassNestedSealedPartialClassWithCodeAnalysis, SealedPartialClassNestedSealedPartialClassWithCodeAnalysis>(
+            var sealedClasses = new WrappedCollection<SealedClassNestedSealedPartialClassWithCodeAnalysis, SealedPartialClassNestedSealedPartialClassWithCodeAnalysis>(
                 classCollection.SealedClasses,
                 parent => new SealedPartialClassNestedSealedPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.SealedClasses = value);
-            var staticClasses = new WrappedCollection<ClassNestedStaticPartialClassWithCodeAnalysis, SealedPartialClassNestedStaticPartialClassWithCodeAnalysis>(
+            var staticClasses = new WrappedCollection<SealedClassNestedStaticPartialClassWithCodeAnalysis, SealedPartialClassNestedStaticPartialClassWithCodeAnalysis>(
                 classCollection.StaticClasses,
                 parent => new SealedPartialClassNestedStaticPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.StaticClasses = value);
             return new SealedPartialClassNestedPartialClassCollectionWithCodeAnalysis(classCollection.Members, abstractClasses, classes, sealedClasses, staticClasses);
         }

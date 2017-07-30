@@ -11,35 +11,38 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassNestedStructWithCodeAnalysis,
             StaticPartialClassNestedPartialStructWithCodeAnalysis>
     {
-        private readonly StaticPartialClassWithCodeAnalysis type;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassNestedStructWithCodeAnalysis,
-            StructDeclarationSyntax> structs;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassNestedPartialStructWithCodeAnalysis,
-            StructDeclarationSyntax> partialStructs;
+        private readonly WrappedCollection<
+            StaticClassNestedStructWithCodeAnalysis,
+            StaticPartialClassNestedStructWithCodeAnalysis> structs;
+        private readonly WrappedCollection<
+            StaticClassNestedPartialStructWithCodeAnalysis,
+            StaticPartialClassNestedPartialStructWithCodeAnalysis> partialStructs;
 
-        internal StaticPartialClassNestedStructCollectionWithCodeAnalysis(StaticPartialClassWithCodeAnalysis type)
+        internal StaticPartialClassNestedStructCollectionWithCodeAnalysis(
+            StaticClassNestedStructCollectionWithCodeAnalysis structCollection)
         {
-            this.type = type;
-            structs = new StaticPartialClassMemberListWrapper<StaticPartialClassNestedStructWithCodeAnalysis, StructDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassNestedStructWithCodeAnalysis());
-            partialStructs = new StaticPartialClassMemberListWrapper<StaticPartialClassNestedPartialStructWithCodeAnalysis, StructDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassNestedPartialStructWithCodeAnalysis());
+            structs = new WrappedCollection<StaticClassNestedStructWithCodeAnalysis, StaticPartialClassNestedStructWithCodeAnalysis>(
+                structCollection.Structs,
+                parent => new StaticPartialClassNestedStructWithCodeAnalysis(parent),
+                child => child.Struct,
+                value => structCollection.Structs = value);
+            partialStructs = new WrappedCollection<StaticClassNestedPartialStructWithCodeAnalysis, StaticPartialClassNestedPartialStructWithCodeAnalysis>(
+                structCollection.PartialStructs,
+                parent => new StaticPartialClassNestedPartialStructWithCodeAnalysis(parent),
+                child => child.Struct,
+                value => structCollection.PartialStructs = value);
         }
 
         public override ICollection<StaticPartialClassNestedPartialStructWithCodeAnalysis> PartialStructs
         {
             get { return partialStructs; }
-            set { type.Members.CombineList(nameof(PartialStructs), value.Select(item => item.Syntax)); }
+            set { partialStructs.Replace(value); }
         }
 
         public override ICollection<StaticPartialClassNestedStructWithCodeAnalysis> Structs
         {
             get { return structs; }
-            set { type.Members.CombineList(nameof(Structs), value.Select(item => item.Syntax)); }
+            set { structs.Replace(value); }
         }
     }
 }

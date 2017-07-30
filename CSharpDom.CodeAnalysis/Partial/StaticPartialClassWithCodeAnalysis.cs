@@ -30,88 +30,68 @@ namespace CSharpDom.CodeAnalysis.Partial
         //IVisitable<IReflectionVisitor>
     {
         private readonly DocumentWithCodeAnalysis document;
-        private readonly Node<StaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax> node;
-        private readonly AttributeListWrapper<StaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax> attributes;
+        private readonly StaticClassWithCodeAnalysis classType;
         private readonly StaticPartialClassNestedClassCollectionWithCodeAnalysis classes;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassNestedDelegateWithCodeAnalysis,
-            DelegateDeclarationSyntax> delegates;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassNestedEnumWithCodeAnalysis,
-            EnumDeclarationSyntax> enums;
+        private readonly WrappedCollection<
+            StaticClassNestedDelegateWithCodeAnalysis,
+            StaticPartialClassNestedDelegateWithCodeAnalysis> delegates;
+        private readonly WrappedCollection<
+            StaticClassNestedEnumWithCodeAnalysis,
+            StaticPartialClassNestedEnumWithCodeAnalysis> enums;
         private readonly StaticPartialClassEventCollectionWithCodeAnalysis events;
         private readonly StaticPartialClassFieldCollectionWithCodeAnalysis fields;
-        private readonly GenericParameterDeclarationListWrapper<
-            StaticPartialClassWithCodeAnalysis,
-            ClassDeclarationSyntax> genericParameters;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassNestedInterfaceWithCodeAnalysis,
-            InterfaceDeclarationSyntax> interfaces;
+        private readonly WrappedCollection<
+            StaticClassNestedInterfaceWithCodeAnalysis,
+            StaticPartialClassNestedInterfaceWithCodeAnalysis> interfaces;
         private readonly StaticPartialClassMethodCollectionWithCodeAnalysis methods;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassPropertyWithCodeAnalysis,
-            PropertyDeclarationSyntax> properties;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticConstructorWithCodeAnalysis,
-            ConstructorDeclarationSyntax> staticConstructor;
+        private readonly WrappedCollection<
+            StaticClassPropertyWithCodeAnalysis,
+            StaticPartialClassPropertyWithCodeAnalysis> properties;
         private readonly StaticPartialClassNestedStructCollectionWithCodeAnalysis structs;
-        private readonly MemberList<StaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax> members;
+        private readonly IMemberList members;
 
         internal StaticPartialClassWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             this.document = document;
-            node = new Node<StaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(this);
-            attributes = new AttributeListWrapper<StaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                node,
-                syntax => syntax.AttributeLists,
-                (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
-            classes = new StaticPartialClassNestedClassCollectionWithCodeAnalysis(this);
-            delegates = new StaticPartialClassMemberListWrapper<StaticPartialClassNestedDelegateWithCodeAnalysis, DelegateDeclarationSyntax>(
-                node,
-                () => new StaticPartialClassNestedDelegateWithCodeAnalysis());
-            enums = new StaticPartialClassMemberListWrapper<StaticPartialClassNestedEnumWithCodeAnalysis, EnumDeclarationSyntax>(
-                node,
-                () => new StaticPartialClassNestedEnumWithCodeAnalysis());
-            events = new StaticPartialClassEventCollectionWithCodeAnalysis(this);
-            fields = new StaticPartialClassFieldCollectionWithCodeAnalysis(this);
-            genericParameters = new GenericParameterDeclarationListWrapper<StaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                node,
-                syntax => syntax.TypeParameterList,
-                (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
-                syntax => syntax.ConstraintClauses,
-                (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
-            interfaces = new StaticPartialClassMemberListWrapper<StaticPartialClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
-                node,
-                () => new StaticPartialClassNestedInterfaceWithCodeAnalysis());
-            methods = new StaticPartialClassMethodCollectionWithCodeAnalysis(this);
-            properties = new StaticPartialClassMemberListWrapper<StaticPartialClassPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
-                node,
-                () => new StaticPartialClassPropertyWithCodeAnalysis());
-            staticConstructor = new StaticPartialClassMemberListWrapper<StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
-                node,
-                () => new StaticConstructorWithCodeAnalysis());
-            structs = new StaticPartialClassNestedStructCollectionWithCodeAnalysis(this);
-            members = new MemberList<StaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                node,
-                (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax))
-            {
-                { nameof(fields.Constants), () => fields.Constants.Select(item => item.Syntax) },
-                { nameof(fields.Fields), () => fields.Fields.Select(item => item.Syntax) },
-                { nameof(Enums), () => enums.Select(item => item.Syntax) },
-                { nameof(Delegates), () => delegates.Select(item => item.Syntax) },
-                { nameof(events.Events), () => events.Events.Select(item => item.Syntax) },
-                { nameof(events.EventProperties), () => events.EventProperties.Select(item => item.Syntax) },
-                { nameof(Interfaces), () => interfaces.Select(item => item.Syntax) },
-                { nameof(Properties), () => Properties.Select(item => item.Syntax) },
-                { nameof(methods.ExtensionMethods), () => methods.ExtensionMethods.Select(item => item.Syntax) },
-                { nameof(methods.Methods), () => methods.Methods.Select(item => item.Syntax) }
-            };
+            var type = new InternalStaticTypeWithCodeAnalysis<StaticPartialClassWithCodeAnalysis>(this);
+            classType = new StaticClassWithCodeAnalysis(document, type);
+            classes = new StaticPartialClassNestedClassCollectionWithCodeAnalysis(classType.Classes);
+            delegates = new WrappedCollection<StaticClassNestedDelegateWithCodeAnalysis, StaticPartialClassNestedDelegateWithCodeAnalysis>(
+                classType.Delegates,
+                parent => new StaticPartialClassNestedDelegateWithCodeAnalysis(parent),
+                child => child.Delegate,
+                value => classType.Delegates = value);
+            enums = new WrappedCollection<StaticClassNestedEnumWithCodeAnalysis, StaticPartialClassNestedEnumWithCodeAnalysis>(
+                classType.Enums,
+                parent => new StaticPartialClassNestedEnumWithCodeAnalysis(parent),
+                child => child.Enum,
+                value => classType.Enums = value);
+            events = new StaticPartialClassEventCollectionWithCodeAnalysis(classType.Events);
+            fields = new StaticPartialClassFieldCollectionWithCodeAnalysis(classType.Fields);
+            interfaces = new WrappedCollection<StaticClassNestedInterfaceWithCodeAnalysis, StaticPartialClassNestedInterfaceWithCodeAnalysis>(
+                classType.Interfaces,
+                parent => new StaticPartialClassNestedInterfaceWithCodeAnalysis(parent),
+                child => child.Interface,
+                value => classType.Interfaces = value);
+            methods = new StaticPartialClassMethodCollectionWithCodeAnalysis(type);
+            properties = new WrappedCollection<StaticClassPropertyWithCodeAnalysis, StaticPartialClassPropertyWithCodeAnalysis>(
+                classType.Properties,
+                parent => new StaticPartialClassPropertyWithCodeAnalysis(parent),
+                child => child.Property,
+                value => classType.Properties = value);
+            structs = new StaticPartialClassNestedStructCollectionWithCodeAnalysis(classType.Structs);
+            members = type.Members;
+        }
+
+        public StaticClassWithCodeAnalysis Class
+        {
+            get { return classType; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
-            get { return attributes; }
-            set { attributes.ReplaceList(value); }
+            get { return classType.Attributes; }
+            set { classType.Attributes = value; }
         }
 
         public override StaticPartialClassNestedClassCollectionWithCodeAnalysis Classes
@@ -163,8 +143,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
         {
-            get { return genericParameters; }
-            set { genericParameters.ReplaceList(value); }
+            get { return classType.GenericParameters; }
+            set { classType.GenericParameters = value; }
         }
 
         public override ICollection<StaticPartialClassNestedInterfaceWithCodeAnalysis> Interfaces
@@ -198,8 +178,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return staticConstructor.GetStaticConstructor(); }
-            set { staticConstructor.SetStaticConstructor(value); }
+            get { return classType.StaticConstructor; }
+            set { classType.StaticConstructor = value; }
         }
 
         public override StaticPartialClassNestedStructCollectionWithCodeAnalysis Structs
@@ -216,7 +196,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get { return node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            get { return classType.Node.GetParentNode<NamespaceWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -234,8 +214,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public ClassDeclarationSyntax Syntax
         {
-            get { return node.Syntax; }
-            set { node.Syntax = value; }
+            get { return classType.Syntax; }
+            set { classType.Syntax = value; }
         }
 
         public override TypeVisibilityModifier Visibility
@@ -250,14 +230,9 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return node; }
+            get { return classType.Node; }
         }
-
-        internal Node<StaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax> Node
-        {
-            get { return node; }
-        }
-
+        
         internal IMemberList Members
         {
             get { return members; }

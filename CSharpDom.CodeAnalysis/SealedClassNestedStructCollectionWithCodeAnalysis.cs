@@ -22,12 +22,12 @@ namespace CSharpDom.CodeAnalysis
             structs = new WrappedCollection<ClassNestedStructWithCodeAnalysis, SealedClassNestedStructWithCodeAnalysis>(
                 structCollection.Structs,
                 parent => new SealedClassNestedStructWithCodeAnalysis(parent),
-                child => child.InternalStruct,
+                child => child.Struct,
                 value => structCollection.Structs = value);
             partialStructs = new WrappedCollection<ClassNestedPartialStructWithCodeAnalysis, SealedClassNestedPartialStructWithCodeAnalysis>(
                 structCollection.PartialStructs,
                 parent => new SealedClassNestedPartialStructWithCodeAnalysis(parent),
-                child => child.InternalStruct,
+                child => child.Struct,
                 value => structCollection.PartialStructs = value);
         }
 

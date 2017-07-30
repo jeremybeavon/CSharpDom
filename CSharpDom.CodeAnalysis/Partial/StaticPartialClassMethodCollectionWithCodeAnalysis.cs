@@ -13,46 +13,42 @@ namespace CSharpDom.CodeAnalysis.Partial
             PartialMethodDefinitionWithCodeAnalysis,
             PartialMethodImplementationWithCodeAnalysis>
     {
-        private readonly StaticPartialClassWithCodeAnalysis classType;
-        private readonly StaticPartialClassMemberListWrapper<
+        private readonly InternalStaticTypeWithCodeAnalysis<StaticPartialClassWithCodeAnalysis> classType;
+        private readonly ClassMemberListWrapper<
+            StaticPartialClassWithCodeAnalysis,
             StaticPartialClassMethodWithCodeAnalysis,
             MethodDeclarationSyntax> methods;
-        private readonly StaticPartialClassMemberListWrapper<
-            ExtensionMethodWithCodeAnalysis,
-            MethodDeclarationSyntax> extensionMethods;
-        private readonly StaticPartialClassMemberListWrapper<
+        private readonly ClassMemberListWrapper<
+            StaticPartialClassWithCodeAnalysis,
             PartialMethodDefinitionWithCodeAnalysis,
             MethodDeclarationSyntax> partialMethodDefinitions;
-        private readonly StaticPartialClassMemberListWrapper<
+        private readonly ClassMemberListWrapper<
+            StaticPartialClassWithCodeAnalysis,
             PartialMethodImplementationWithCodeAnalysis,
             MethodDeclarationSyntax> partialMethodImplementations;
 
         internal StaticPartialClassMethodCollectionWithCodeAnalysis(
-            StaticPartialClassWithCodeAnalysis classType)
+            InternalStaticTypeWithCodeAnalysis<StaticPartialClassWithCodeAnalysis> classType)
         {
             this.classType = classType;
-            methods = new StaticPartialClassMemberListWrapper<StaticPartialClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
-                classType.Node,
-                () => new StaticPartialClassMethodWithCodeAnalysis(),
+            methods = new ClassMemberListWrapper<StaticPartialClassWithCodeAnalysis, StaticPartialClassMethodWithCodeAnalysis, MethodDeclarationSyntax>(
+                classType.InternalNode,
+                () => new StaticPartialClassMethodWithCodeAnalysis(new StaticClassMethodWithCodeAnalysis()),
                 syntax => !syntax.IsPartial());
-            extensionMethods = new StaticPartialClassMemberListWrapper<ExtensionMethodWithCodeAnalysis, MethodDeclarationSyntax>(
-                classType.Node,
-                () => new ExtensionMethodWithCodeAnalysis(),
-                IsExtensionMethod);
-            partialMethodDefinitions = new StaticPartialClassMemberListWrapper<PartialMethodDefinitionWithCodeAnalysis, MethodDeclarationSyntax>(
-                classType.Node,
+            partialMethodDefinitions = new ClassMemberListWrapper<StaticPartialClassWithCodeAnalysis, PartialMethodDefinitionWithCodeAnalysis, MethodDeclarationSyntax>(
+                classType.InternalNode,
                 () => new PartialMethodDefinitionWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body == null);
-            partialMethodImplementations = new StaticPartialClassMemberListWrapper<PartialMethodImplementationWithCodeAnalysis, MethodDeclarationSyntax>(
-                classType.Node,
+            partialMethodImplementations = new ClassMemberListWrapper<StaticPartialClassWithCodeAnalysis, PartialMethodImplementationWithCodeAnalysis, MethodDeclarationSyntax>(
+                classType.InternalNode,
                 () => new PartialMethodImplementationWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body != null);
         }
 
         public override ICollection<ExtensionMethodWithCodeAnalysis> ExtensionMethods
         {
-            get { return extensionMethods; }
-            set { classType.Members.CombineList(nameof(ExtensionMethods), value.Select(item => item.Syntax)); }
+            get { return classType.Methods.ExtensionMethods; }
+            set { classType.Methods.ExtensionMethods = value; }
         }
 
         public override ICollection<StaticPartialClassMethodWithCodeAnalysis> Methods

@@ -37,6 +37,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             ClassNestedStaticPartialClassWithCodeAnalysis @class)
         {
             classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
         public ClassNestedStaticPartialClassWithCodeAnalysis Class
@@ -58,7 +59,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return null; }// classType.Class.InternalClass.Class.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? classType.Class.Class.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -139,5 +140,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
+
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

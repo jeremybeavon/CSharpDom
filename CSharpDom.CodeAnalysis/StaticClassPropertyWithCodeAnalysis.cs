@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -16,7 +18,35 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<PropertyDeclarationSyntax>
     {
         private readonly PropertyWithBodyWithCodeAnalysis property;
-        
+
+        public StaticClassPropertyWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this()
+        {
+            List<AccessorDeclarationSyntax> accessorSyntax = new List<AccessorDeclarationSyntax>();
+            if (getAccessor != null)
+            {
+                accessorSyntax.Add(SyntaxFactory.AccessorDeclaration(SyntaxKind.GetKeyword, getAccessor.Syntax));
+            }
+
+            if (setAccessor != null)
+            {
+                accessorSyntax.Add(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetKeyword, setAccessor.Syntax));
+            }
+
+            Syntax = SyntaxFactory.PropertyDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                type.Syntax,
+                null,
+                SyntaxFactory.Identifier(name),
+                SyntaxFactory.AccessorList(SyntaxFactory.List(accessorSyntax)));
+        }
+
         internal StaticClassPropertyWithCodeAnalysis()
         {
             property = new PropertyWithBodyWithCodeAnalysis();
@@ -35,7 +65,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return property.Property.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? property.Property.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -83,5 +113,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return property.Property.Node; }
         }
+
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

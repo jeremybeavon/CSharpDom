@@ -8,37 +8,38 @@ namespace CSharpDom.CodeAnalysis.Partial
     public sealed class StaticPartialClassFieldCollectionWithCodeAnalysis :
         EditableStaticClassFieldCollection<StaticPartialClassFieldWithCodeAnalysis, StaticPartialClassConstantWithCodeAnalysis>
     {
-        private readonly StaticPartialClassWithCodeAnalysis type;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassConstantWithCodeAnalysis,
-            FieldDeclarationSyntax> constants;
-        private readonly StaticPartialClassMemberListWrapper<
-            StaticPartialClassFieldWithCodeAnalysis,
-            FieldDeclarationSyntax> fields;
+        private readonly WrappedCollection<
+            StaticClassConstantWithCodeAnalysis,
+            StaticPartialClassConstantWithCodeAnalysis> constants;
+        private readonly WrappedCollection<
+            StaticClassFieldWithCodeAnalysis,
+            StaticPartialClassFieldWithCodeAnalysis> fields;
 
-        internal StaticPartialClassFieldCollectionWithCodeAnalysis(StaticPartialClassWithCodeAnalysis type)
+        internal StaticPartialClassFieldCollectionWithCodeAnalysis(
+            StaticClassFieldCollectionWithCodeAnalysis fieldCollection)
         {
-            this.type = type;
-            constants = new StaticPartialClassMemberListWrapper<StaticPartialClassConstantWithCodeAnalysis, FieldDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassConstantWithCodeAnalysis(),
-                syntax => syntax.IsConstant());
-            fields = new StaticPartialClassMemberListWrapper<StaticPartialClassFieldWithCodeAnalysis, FieldDeclarationSyntax>(
-                type.Node,
-                () => new StaticPartialClassFieldWithCodeAnalysis(),
-                syntax => !syntax.IsConstant());
+            constants = new WrappedCollection<StaticClassConstantWithCodeAnalysis, StaticPartialClassConstantWithCodeAnalysis>(
+                fieldCollection.Constants,
+                parent => new StaticPartialClassConstantWithCodeAnalysis(parent),
+                child => child.Constant,
+                value => fieldCollection.Constants = value);
+            fields = new WrappedCollection<StaticClassFieldWithCodeAnalysis, StaticPartialClassFieldWithCodeAnalysis>(
+                fieldCollection.Fields,
+                parent => new StaticPartialClassFieldWithCodeAnalysis(parent),
+                child => child.Field,
+                value => fieldCollection.Fields = value);
         }
 
         public override ICollection<StaticPartialClassConstantWithCodeAnalysis> Constants
         {
             get { return constants; }
-            set { type.Members.CombineList(nameof(Constants), value.Select(item => item.Syntax)); }
+            set { constants.Replace(value); }
         }
 
         public override ICollection<StaticPartialClassFieldWithCodeAnalysis> Fields
         {
             get { return fields; }
-            set { type.Members.CombineList(nameof(Fields), value.Select(item => item.Syntax)); }
+            set { fields.Replace(value); }
         }
     }
 }

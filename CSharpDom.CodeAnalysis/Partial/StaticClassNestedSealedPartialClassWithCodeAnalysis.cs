@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -34,6 +35,18 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly StaticClassNestedSealedClassWithCodeAnalysis classType;
         private readonly SealedPartialTypeWithCodeAnalysis<StaticClassNestedSealedPartialClassWithCodeAnalysis> sealedType;
+
+        public StaticClassNestedSealedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
+                name,
+                visibility,
+                SyntaxKind.SealedKeyword,
+                SyntaxKind.PartialKeyword);
+        }
 
         internal StaticClassNestedSealedPartialClassWithCodeAnalysis()
         {
@@ -192,6 +205,14 @@ namespace CSharpDom.CodeAnalysis.Partial
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
             get { return classType.Class.Node; }
+        }
+
+        ISealedTypeWithCodeAnalysis ISealedPartialTypeWithCodeAnalysis.Class => classType;
+
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc
+        {
+            get { return classType.DeclaringTypeFunc; }
+            set { classType.DeclaringTypeFunc = value; }
         }
     }
 }

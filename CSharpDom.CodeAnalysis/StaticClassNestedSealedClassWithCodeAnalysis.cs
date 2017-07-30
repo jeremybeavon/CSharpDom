@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -33,6 +34,18 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ClassDeclarationSyntax>
     {
         private readonly NestedSealedClassWithCodeAnalysis classType;
+
+        public StaticClassNestedSealedClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
+                name,
+                visibility,
+                SyntaxKind.SealedKeyword,
+                SyntaxKind.PartialKeyword);
+        }
 
         internal StaticClassNestedSealedClassWithCodeAnalysis(NestedSealedClassWithCodeAnalysis type = null)
         {
@@ -76,7 +89,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? classType.Class.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -192,5 +205,7 @@ namespace CSharpDom.CodeAnalysis
         }
         
         IClassTypeWithCodeAnalysis ISealedTypeWithCodeAnalysis.Class => classType.Class.Class;
+
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

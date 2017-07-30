@@ -193,5 +193,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return classType.Class.Node; }
         }
+
+        ISealedTypeWithCodeAnalysis ISealedPartialTypeWithCodeAnalysis.Class => classType;
     }
 }

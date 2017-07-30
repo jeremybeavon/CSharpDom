@@ -13,16 +13,24 @@ namespace CSharpDom.CodeAnalysis.Partial
             NestedEnumMemberWithCodeAnalysis>,
         IHasSyntax<EnumDeclarationSyntax>
     {
-        private readonly ClassNestedEnumWithCodeAnalysis nestedEnum;
+        private readonly SealedClassNestedEnumWithCodeAnalysis nestedEnum;
 
-        internal SealedPartialClassNestedEnumWithCodeAnalysis(ClassNestedEnumWithCodeAnalysis @enum)
+        public SealedPartialClassNestedEnumWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new SealedClassNestedEnumWithCodeAnalysis(visibility, name))
+        {
+        }
+
+        internal SealedPartialClassNestedEnumWithCodeAnalysis(SealedClassNestedEnumWithCodeAnalysis @enum)
         {
             nestedEnum = @enum;
+            nestedEnum.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedEnumWithCodeAnalysis Enum
+        public SealedClassNestedEnumWithCodeAnalysis Enum
         {
-            get { return nestedEnum.Enum; }
+            get { return nestedEnum; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -39,7 +47,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedEnum.Enum.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return nestedEnum.Enum.Enum.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -65,11 +73,6 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             get { return nestedEnum.Visibility; }
             set { nestedEnum.Visibility = value; }
-        }
-
-        internal ClassNestedEnumWithCodeAnalysis InternalEnum
-        {
-            get { return nestedEnum; }
         }
     }
 }

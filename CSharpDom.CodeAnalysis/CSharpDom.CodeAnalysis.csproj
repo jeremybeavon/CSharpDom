@@ -103,6 +103,7 @@
     <Compile Include="InternalNestedStaticClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalNestedStaticClassNestedClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalNestedStaticClassNestedStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalStaticTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassNestedPartialClassWithCodeAnalysis.cs" />
@@ -246,7 +247,6 @@
     <Compile Include="Partial\StaticPartialClassEventWithCodeAnalysis.cs" />
     <Compile Include="Partial\StaticPartialClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\StaticPartialClassFieldWithCodeAnalysis.cs" />
-    <Compile Include="Partial\StaticPartialClassMemberListWrapper.cs" />
     <Compile Include="Partial\StaticPartialClassMethodWithCodeAnalysis.cs" />
     <Compile Include="Partial\StaticPartialClassNestedAbstractClassWithCodeAnalysis.cs" />
     <Compile Include="Partial\StaticPartialClassNestedClassCollectionWithCodeAnalysis.cs" />
@@ -434,6 +434,12 @@
     <Compile Include="NestedStaticClassNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="NestedStaticClassNestedStructWithCodeAnalysis.cs" />
     <Compile Include="NestedStaticClassPropertyWithCodeAnalysis.cs" />
+    <Compile Include="InternalStaticClassEventCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalStaticClassFieldCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalStaticClassMethodCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalStaticClassNestedClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalStaticClassNestedStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StaticTypeWithCodeAnalysis.cs" />
     <Compile Include="StructDeclarationSyntaxExtensions.cs" />
     <Compile Include="InternalStructEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStructFieldCollectionWithCodeAnalysis.cs" />
@@ -615,7 +621,6 @@
     <Compile Include="StructPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="StructMethodListWrapper.cs" />
     <Compile Include="StructTypeMemberListWrapper.cs" />
-    <Compile Include="StaticClassMemberListWrapper.cs" />
     <Compile Include="ClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="ClassEventListWrapper.cs" />
     <Compile Include="ClassEventPropertyListWrapper.cs" />

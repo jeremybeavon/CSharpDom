@@ -13,17 +13,26 @@ namespace CSharpDom.CodeAnalysis.Partial
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             DelegateParameterWithCodeAnalysis>,
-        IHasSyntax<DelegateDeclarationSyntax>,
-        IHasNode<DelegateDeclarationSyntax>
+        IHasSyntax<DelegateDeclarationSyntax>
     {
-        private readonly NestedDelegateWithCodeAnalysis nestedDelegate;
+        private readonly StaticClassNestedDelegateWithCodeAnalysis nestedDelegate;
 
-        internal StaticPartialClassNestedDelegateWithCodeAnalysis()
+        public StaticPartialClassNestedDelegateWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<DelegateParameterWithCodeAnalysis> parameters)
+            : this(new StaticClassNestedDelegateWithCodeAnalysis(visibility, returnType, name, parameters))
         {
-            nestedDelegate = new NestedDelegateWithCodeAnalysis();
+        }
+
+        internal StaticPartialClassNestedDelegateWithCodeAnalysis(StaticClassNestedDelegateWithCodeAnalysis @delegate)
+        {
+            nestedDelegate = @delegate;
+            nestedDelegate.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedDelegateWithCodeAnalysis Delegate
+        public StaticClassNestedDelegateWithCodeAnalysis Delegate
         {
             get { return nestedDelegate; }
         }
@@ -36,7 +45,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticPartialClassWithCodeAnalysis DeclaringType
         {
-            get { return nestedDelegate.Delegate.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
+            get { return nestedDelegate.Delegate.Delegate.Node.GetParentNode<StaticPartialClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -79,7 +88,5 @@ namespace CSharpDom.CodeAnalysis.Partial
                 Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
             }
         }
-
-        INode<DelegateDeclarationSyntax> IHasNode<DelegateDeclarationSyntax>.Node => nestedDelegate.Delegate.Node;
     }
 }

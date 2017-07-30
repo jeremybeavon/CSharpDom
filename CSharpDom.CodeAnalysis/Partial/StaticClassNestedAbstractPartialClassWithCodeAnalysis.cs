@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -34,6 +35,18 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly StaticClassNestedAbstractClassWithCodeAnalysis classType;
         private readonly AbstractPartialTypeWithCodeAnalysis<StaticClassNestedAbstractPartialClassWithCodeAnalysis> partialType;
+
+        public StaticClassNestedAbstractPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
+                name,
+                visibility,
+                SyntaxKind.AbstractKeyword,
+                SyntaxKind.PartialKeyword);
+        }
 
         internal StaticClassNestedAbstractPartialClassWithCodeAnalysis()
         {
@@ -80,7 +93,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? classType.Class.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -192,5 +205,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         }
 
         IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class;
+
+        internal Func<StaticClassWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

@@ -19,15 +19,26 @@ namespace CSharpDom.CodeAnalysis
         //IVisitable<IReflectionVisitor>
     {
         private readonly ClassOperatorOverloadWithCodeAnalysis operatorOverload;
+
+        public SealedClassOperatorOverloadWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            OperatorOverloadType operatorType,
+            IEnumerable<OperatorParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this(new ClassOperatorOverloadWithCodeAnalysis(visibility, returnType, operatorType, parameters, body))
+        {
+        }
         
         internal SealedClassOperatorOverloadWithCodeAnalysis(ClassOperatorOverloadWithCodeAnalysis operatorOverload)
         {
             this.operatorOverload = operatorOverload;
+            operatorOverload.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public OperatorOverloadWithCodeAnalysis OperatorOverload
+        public ClassOperatorOverloadWithCodeAnalysis OperatorOverload
         {
-            get { return operatorOverload.OperatorOverload; }
+            get { return operatorOverload; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -44,7 +55,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return operatorOverload.OperatorOverload.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? operatorOverload.OperatorOverload.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -72,10 +83,7 @@ namespace CSharpDom.CodeAnalysis
             set { operatorOverload.Syntax = value; }
         }
 
-        internal ClassOperatorOverloadWithCodeAnalysis InternalOperatorOverload
-        {
-            get { return operatorOverload; }
-        }
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

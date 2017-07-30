@@ -31,15 +31,23 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         IAbstractPartialTypeWithCodeAnalysis
     {
-        private readonly ClassNestedAbstractPartialClassWithCodeAnalysis classType;
+        private readonly SealedClassNestedAbstractPartialClassWithCodeAnalysis classType;
 
-        internal SealedPartialClassNestedAbstractPartialClassWithCodeAnalysis(
-            ClassNestedAbstractPartialClassWithCodeAnalysis @class)
+        public SealedPartialClassNestedAbstractPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new SealedClassNestedAbstractPartialClassWithCodeAnalysis(visibility, name))
         {
-            classType = @class;
         }
 
-        public ClassNestedAbstractPartialClassWithCodeAnalysis Class
+        internal SealedPartialClassNestedAbstractPartialClassWithCodeAnalysis(
+            SealedClassNestedAbstractPartialClassWithCodeAnalysis @class)
+        {
+            classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
+        }
+
+        public SealedClassNestedAbstractPartialClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -76,7 +84,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Class.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -182,6 +190,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Visibility = value; }
         }
 
-        IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
+        IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class.Class.Class;
     }
 }

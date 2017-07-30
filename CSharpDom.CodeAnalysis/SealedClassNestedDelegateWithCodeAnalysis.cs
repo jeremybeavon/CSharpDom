@@ -18,14 +18,24 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ClassNestedDelegateWithCodeAnalysis nestedDelegate;
 
+        public SealedClassNestedDelegateWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<DelegateParameterWithCodeAnalysis> parameters)
+            : this(new ClassNestedDelegateWithCodeAnalysis(visibility, returnType, name, parameters))
+        {
+        }
+
         internal SealedClassNestedDelegateWithCodeAnalysis(ClassNestedDelegateWithCodeAnalysis @delegate)
         {
-            nestedDelegate = @delegate ?? new ClassNestedDelegateWithCodeAnalysis();
+            nestedDelegate = @delegate;
+            nestedDelegate.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedDelegateWithCodeAnalysis Delegate
+        public ClassNestedDelegateWithCodeAnalysis Delegate
         {
-            get { return nestedDelegate.Delegate; }
+            get { return nestedDelegate; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -36,7 +46,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedDelegate.Delegate.Delegate.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? nestedDelegate.Delegate.Delegate.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -81,9 +91,6 @@ namespace CSharpDom.CodeAnalysis
             get { return nestedDelegate.Delegate.Delegate.Node; }
         }
 
-        internal ClassNestedDelegateWithCodeAnalysis InternalDelegate
-        {
-            get { return nestedDelegate; }
-        }
+        internal Func<ISealedTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }
