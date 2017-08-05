@@ -29,6 +29,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal NestedStaticPartialClassFieldWithCodeAnalysis(NestedStaticClassFieldWithCodeAnalysis field)
         {
             this.field = field;
+            field.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public NestedStaticClassFieldWithCodeAnalysis Field
@@ -103,12 +104,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToStaticClassMemberVisibilityModifier(); }
-            set
-            {
-                FieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
-            }
+            get { return field.Visibility; }
+            set { field.Visibility = value; }
         }
     }
 }

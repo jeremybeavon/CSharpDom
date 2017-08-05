@@ -32,29 +32,23 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         IAbstractPartialTypeWithCodeAnalysis
     {
-        private readonly StaticClassNestedAbstractClassWithCodeAnalysis classType;
-        private readonly AbstractPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis> partialType;
+        private readonly NestedStaticClassNestedAbstractPartialClassWithCodeAnalysis classType;
 
         public NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis(
             ClassMemberVisibilityModifier visibility,
             string name)
-            : this()
+            : this(new NestedStaticClassNestedAbstractPartialClassWithCodeAnalysis(visibility, name))
         {
-            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
-                name,
-                visibility,
-                SyntaxKind.AbstractKeyword,
-                SyntaxKind.PartialKeyword);
         }
 
-        internal NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis()
+        internal NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis(
+            NestedStaticClassNestedAbstractPartialClassWithCodeAnalysis classType)
         {
-            var abstractType = new InternalNestedAbstractClassWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis>(this);
-            classType = new StaticClassNestedAbstractClassWithCodeAnalysis(abstractType);
-            partialType = new AbstractPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis>(abstractType);
+            this.classType = classType;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public StaticClassNestedAbstractClassWithCodeAnalysis Class
+        public NestedStaticClassNestedAbstractPartialClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -73,56 +67,56 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override AbstractPartialClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return partialType.Classes; }
-            set { partialType.Classes = value; }
+            get { return classType.Classes; }
+            set { classType.Classes = value; }
         }
 
         public override ICollection<AbstractPartialClassConstructorWithCodeAnalysis> Constructors
         {
-            get { return partialType.Constructors; }
-            set { partialType.Constructors = value; }
+            get { return classType.Constructors; }
+            set { classType.Constructors = value; }
         }
 
         public override ICollection<AbstractPartialClassConversionOperatorWithCodeAnalysis> ConversionOperators
         {
-            get { return partialType.ConversionOperators; }
-            set { partialType.ConversionOperators = value; }
+            get { return classType.ConversionOperators; }
+            set { classType.ConversionOperators = value; }
         }
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
         public override ICollection<AbstractPartialClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return partialType.Delegates; }
-            set { partialType.Delegates = value; }
+            get { return classType.Delegates; }
+            set { classType.Delegates = value; }
         }
 
         public override AbstractPartialClassDestructorWithCodeAnalysis Destructor
         {
-            get { return partialType.Destructor; }
-            set { partialType.Destructor = value; }
+            get { return classType.Destructor; }
+            set { classType.Destructor = value; }
         }
 
         public override ICollection<AbstractPartialClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return partialType.Enums; }
-            set { partialType.Enums = value; }
+            get { return classType.Enums; }
+            set { classType.Enums = value; }
         }
 
         public override AbstractPartialClassEventCollectionWithCodeAnalysis Events
         {
-            get { return partialType.Events; }
-            set { partialType.Events = value; }
+            get { return classType.Events; }
+            set { classType.Events = value; }
         }
 
         public override AbstractPartialClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return partialType.Fields; }
-            set { partialType.Fields = value; }
+            get { return classType.Fields; }
+            set { classType.Fields = value; }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -139,20 +133,20 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override AbstractPartialClassIndexerCollectionWithCodeAnalysis Indexers
         {
-            get { return partialType.Indexers; }
-            set { partialType.Indexers = value; }
+            get { return classType.Indexers; }
+            set { classType.Indexers = value; }
         }
 
         public override ICollection<AbstractPartialClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return partialType.Interfaces; }
-            set { partialType.Interfaces = value; }
+            get { return classType.Interfaces; }
+            set { classType.Interfaces = value; }
         }
 
         public override AbstractPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return partialType.Methods; }
-            set { partialType.Methods = value; }
+            get { return classType.Methods; }
+            set { classType.Methods = value; }
         }
 
         public override string Name
@@ -163,26 +157,26 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ICollection<AbstractPartialClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
-            get { return partialType.OperatorOverloads; }
-            set { partialType.OperatorOverloads = value; }
+            get { return classType.OperatorOverloads; }
+            set { classType.OperatorOverloads = value; }
         }
 
         public override AbstractPartialClassPropertyCollectionWithCodeAnalysis Properties
         {
-            get { return partialType.Properties; }
-            set { partialType.Properties = value; }
+            get { return classType.Properties; }
+            set { classType.Properties = value; }
         }
 
         public override AbstractPartialClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return partialType.StaticConstructor; }
-            set { partialType.StaticConstructor = value; }
+            get { return classType.StaticConstructor; }
+            set { classType.StaticConstructor = value; }
         }
 
         public override AbstractPartialClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return partialType.Structs; }
-            set { partialType.Structs = value; }
+            get { return classType.Structs; }
+            set { classType.Structs = value; }
         }
 
         public ClassDeclarationSyntax Syntax
@@ -197,6 +191,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Visibility = value; }
         }
 
-        IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class;
+        IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

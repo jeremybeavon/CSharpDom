@@ -20,10 +20,18 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly NestedStaticClassNestedInterfaceWithCodeAnalysis nestedInterface;
 
+        public NestedStaticPartialClassNestedInterfaceWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new NestedStaticClassNestedInterfaceWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal NestedStaticPartialClassNestedInterfaceWithCodeAnalysis(
             NestedStaticClassNestedInterfaceWithCodeAnalysis nestedInterface)
         {
             this.nestedInterface = nestedInterface;
+            nestedInterface.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public NestedStaticClassNestedInterfaceWithCodeAnalysis Interface

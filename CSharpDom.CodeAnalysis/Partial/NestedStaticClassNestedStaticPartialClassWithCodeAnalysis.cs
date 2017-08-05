@@ -145,14 +145,18 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
+            get { return classType.Visibility; }
+            set { classType.Visibility = value; }
         }
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Class.Node;
+
+        internal Func<INestedStaticTypeWithCodeAnalysis> DeclaringTypeFunc
+        {
+            get { return classType.DeclaringTypeFunc; }
+            set { classType.DeclaringTypeFunc = value; }
+        }
+
+        INestedStaticTypeWithCodeAnalysis INestedStaticPartialTypeWithCodeAnalysis.Class => classType;
     }
 }

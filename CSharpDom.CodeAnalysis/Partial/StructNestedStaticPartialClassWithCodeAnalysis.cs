@@ -137,5 +137,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         }
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.InternalClass.Node;
+
+        INestedStaticTypeWithCodeAnalysis INestedStaticPartialTypeWithCodeAnalysis.Class => classType;
     }
 }

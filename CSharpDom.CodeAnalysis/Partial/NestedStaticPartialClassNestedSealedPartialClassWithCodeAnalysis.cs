@@ -31,17 +31,16 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<ClassDeclarationSyntax>,
         ISealedPartialTypeWithCodeAnalysis
     {
-        private readonly NestedStaticClassNestedSealedClassWithCodeAnalysis classType;
-        private readonly SealedPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis> sealedType;
+        private readonly NestedStaticClassNestedSealedPartialClassWithCodeAnalysis classType;
 
-        internal NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis()
+        internal NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis(
+            NestedStaticClassNestedSealedPartialClassWithCodeAnalysis classType)
         {
-            var type = new InternalNestedSealedClassWithCodeAnalysis<NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis>(this);
-            classType = new NestedStaticClassNestedSealedClassWithCodeAnalysis(type);
-            sealedType = new SealedPartialTypeWithCodeAnalysis<NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis>(type);
+            this.classType = classType;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public NestedStaticClassNestedSealedClassWithCodeAnalysis Class
+        public NestedStaticClassNestedSealedPartialClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -60,56 +59,56 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override SealedPartialClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return sealedType.Classes; }
-            set { sealedType.Classes = value; }
+            get { return classType.Classes; }
+            set { classType.Classes = value; }
         }
 
         public override ICollection<SealedPartialClassConstructorWithCodeAnalysis> Constructors
         {
-            get { return sealedType.Constructors; }
-            set { sealedType.Constructors = value; }
+            get { return classType.Constructors; }
+            set { classType.Constructors = value; }
         }
 
         public override ICollection<SealedPartialClassConversionOperatorWithCodeAnalysis> ConversionOperators
         {
-            get { return sealedType.ConversionOperators; }
-            set { sealedType.ConversionOperators = value; }
+            get { return classType.ConversionOperators; }
+            set { classType.ConversionOperators = value; }
         }
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
         public override ICollection<SealedPartialClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return sealedType.Delegates; }
-            set { sealedType.Delegates = value; }
+            get { return classType.Delegates; }
+            set { classType.Delegates = value; }
         }
 
         public override SealedPartialClassDestructorWithCodeAnalysis Destructor
         {
-            get { return sealedType.Destructor; }
-            set { sealedType.Destructor = value; }
+            get { return classType.Destructor; }
+            set { classType.Destructor = value; }
         }
 
         public override ICollection<SealedPartialClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return sealedType.Enums; }
-            set { sealedType.Enums = value; }
+            get { return classType.Enums; }
+            set { classType.Enums = value; }
         }
 
         public override SealedPartialClassEventCollectionWithCodeAnalysis Events
         {
-            get { return sealedType.Events; }
-            set { sealedType.Events = value; }
+            get { return classType.Events; }
+            set { classType.Events = value; }
         }
 
         public override SealedPartialClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return sealedType.Fields; }
-            set { sealedType.Fields = value; }
+            get { return classType.Fields; }
+            set { classType.Fields = value; }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -126,20 +125,20 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override SealedPartialClassIndexerCollectionWithCodeAnalysis Indexers
         {
-            get { return sealedType.Indexers; }
-            set { sealedType.Indexers = value; }
+            get { return classType.Indexers; }
+            set { classType.Indexers = value; }
         }
 
         public override ICollection<SealedPartialClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return sealedType.Interfaces; }
-            set { sealedType.Interfaces = value; }
+            get { return classType.Interfaces; }
+            set { classType.Interfaces = value; }
         }
 
         public override SealedPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return sealedType.Methods; }
-            set { sealedType.Methods = value; }
+            get { return classType.Methods; }
+            set { classType.Methods = value; }
         }
 
         public override string Name
@@ -150,26 +149,26 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ICollection<SealedPartialClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
-            get { return sealedType.OperatorOverloads; }
-            set { sealedType.OperatorOverloads = value; }
+            get { return classType.OperatorOverloads; }
+            set { classType.OperatorOverloads = value; }
         }
 
         public override SealedPartialClassPropertyCollectionWithCodeAnalysis Properties
         {
-            get { return sealedType.Properties; }
-            set { sealedType.Properties = value; }
+            get { return classType.Properties; }
+            set { classType.Properties = value; }
         }
 
         public override SealedPartialClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return sealedType.StaticConstructor; }
-            set { sealedType.StaticConstructor = value; }
+            get { return classType.StaticConstructor; }
+            set { classType.StaticConstructor = value; }
         }
 
         public override SealedPartialClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return sealedType.Structs; }
-            set { sealedType.Structs = value; }
+            get { return classType.Structs; }
+            set { classType.Structs = value; }
         }
 
         public ClassDeclarationSyntax Syntax
@@ -184,6 +183,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Visibility = value; }
         }
 
-        ISealedTypeWithCodeAnalysis ISealedPartialTypeWithCodeAnalysis.Class => classType;
+        ISealedTypeWithCodeAnalysis ISealedPartialTypeWithCodeAnalysis.Class => classType.Class;
     }
 }

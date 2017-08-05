@@ -43,7 +43,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override INestedStaticTypeWithCodeAnalysis DeclaringType
         {
-            get { return method.Method.Node.GetParentNode<INestedStaticTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? method.Method.Node.GetParentNode<INestedStaticTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -103,5 +103,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.Method.Node; }
         }
+
+        internal Func<INestedStaticTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

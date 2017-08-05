@@ -37,6 +37,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             NestedStaticClassConstantWithCodeAnalysis constant)
         {
             this.constant = constant;
+            constant.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public NestedStaticClassConstantWithCodeAnalysis Constant

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -15,6 +17,19 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<EnumDeclarationSyntax>
     {
         private readonly NestedEnumWithCodeAnalysis nestedEnum;
+
+        public NestedStaticClassNestedEnumWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = SyntaxFactory.EnumDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                SyntaxFactory.Identifier(name),
+                null,
+                default(SeparatedSyntaxList<EnumMemberDeclarationSyntax>));
+        }
 
         internal NestedStaticClassNestedEnumWithCodeAnalysis()
         {
@@ -40,7 +55,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override INestedStaticTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedEnum.Node.GetParentNode<INestedStaticTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? nestedEnum.Node.GetParentNode<INestedStaticTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -76,5 +91,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return nestedEnum.Node; }
         }
+
+        internal Func<INestedStaticTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

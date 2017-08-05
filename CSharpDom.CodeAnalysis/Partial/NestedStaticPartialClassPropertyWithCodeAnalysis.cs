@@ -15,10 +15,21 @@ namespace CSharpDom.CodeAnalysis.Partial
         IHasSyntax<PropertyDeclarationSyntax>
     {
         private readonly NestedStaticClassPropertyWithCodeAnalysis property;
-        
+
+        public NestedStaticPartialClassPropertyWithCodeAnalysis(
+            StaticClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            string name,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this(new NestedStaticClassPropertyWithCodeAnalysis(visibility, type, name, getAccessor, setAccessor))
+        {
+        }
+
         internal NestedStaticPartialClassPropertyWithCodeAnalysis(NestedStaticClassPropertyWithCodeAnalysis property)
         {
             this.property = property;
+            property.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public NestedStaticClassPropertyWithCodeAnalysis Property

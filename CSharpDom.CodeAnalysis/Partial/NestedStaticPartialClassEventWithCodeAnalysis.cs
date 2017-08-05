@@ -28,6 +28,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             NestedStaticClassEventWithCodeAnalysis @event)
         {
             this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public NestedStaticClassEventWithCodeAnalysis Event
@@ -73,12 +74,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override StaticClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToStaticClassMemberVisibilityModifier(); }
-            set
-            {
-                EventFieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassMemberVisibilityModifier(value));
-            }
+            get { return @event.Visibility; }
+            set { @event.Visibility = value; }
         }
     }
 }

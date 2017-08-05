@@ -23,28 +23,27 @@ namespace CSharpDom.CodeAnalysis.Partial
         internal static NestedStaticPartialClassNestedPartialClassCollectionWithCodeAnalysis Create(
             NestedStaticClassNestedPartialClassCollectionWithCodeAnalysis classCollection)
         {
-            /*var classes = new WrappedCollection<NestedStaticClassNestedPartialClassWithCodeAnalysis, NestedStaticPartialClassNestedPartialClassWithCodeAnalysis>(
+            var classes = new WrappedCollection<NestedStaticClassNestedPartialClassWithCodeAnalysis, NestedStaticPartialClassNestedPartialClassWithCodeAnalysis>(
                 classCollection.Classes,
                 parent => new NestedStaticPartialClassNestedPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.Classes = value);
             var abstractClasses = new WrappedCollection<NestedStaticClassNestedAbstractPartialClassWithCodeAnalysis, NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis>(
                 classCollection.AbstractClasses,
                 parent => new NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.AbstractClasses = value);
             var sealedClasses = new WrappedCollection<NestedStaticClassNestedSealedPartialClassWithCodeAnalysis, NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis>(
                 classCollection.SealedClasses,
                 parent => new NestedStaticPartialClassNestedSealedPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.SealedClasses = value);
             var staticClasses = new WrappedCollection<NestedStaticClassNestedStaticPartialClassWithCodeAnalysis, NestedStaticPartialClassNestedStaticPartialClassWithCodeAnalysis>(
                 classCollection.StaticClasses,
                 parent => new NestedStaticPartialClassNestedStaticPartialClassWithCodeAnalysis(parent),
-                child => child.InternalClass,
+                child => child.Class,
                 value => classCollection.StaticClasses = value);
-            return new NestedStaticPartialClassNestedPartialClassCollectionWithCodeAnalysis(classCollection.Members, abstractClasses, classes, sealedClasses, staticClasses);*/
-            return null;
+            return new NestedStaticPartialClassNestedPartialClassCollectionWithCodeAnalysis(classCollection.Members, abstractClasses, classes, sealedClasses, staticClasses);
         }
     }
 }

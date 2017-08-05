@@ -17,10 +17,20 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly NestedStaticClassNestedDelegateWithCodeAnalysis nestedDelegate;
 
+        public NestedStaticPartialClassNestedDelegateWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<DelegateParameterWithCodeAnalysis> parameters)
+            : this(new NestedStaticClassNestedDelegateWithCodeAnalysis(visibility, returnType, name, parameters))
+        {
+        }
+
         internal NestedStaticPartialClassNestedDelegateWithCodeAnalysis(
             NestedStaticClassNestedDelegateWithCodeAnalysis nestedDelegate)
         {
             this.nestedDelegate = nestedDelegate;
+            nestedDelegate.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public NestedStaticClassNestedDelegateWithCodeAnalysis Delegate

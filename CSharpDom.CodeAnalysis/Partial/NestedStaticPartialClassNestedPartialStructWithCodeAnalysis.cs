@@ -30,10 +30,18 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly NestedStaticClassNestedPartialStructWithCodeAnalysis structType;
 
+        public NestedStaticPartialClassNestedPartialStructWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new NestedStaticClassNestedPartialStructWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal NestedStaticPartialClassNestedPartialStructWithCodeAnalysis(
             NestedStaticClassNestedPartialStructWithCodeAnalysis structType)
         {
             this.structType = structType;
+            structType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public NestedStaticClassNestedPartialStructWithCodeAnalysis Struct

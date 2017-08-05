@@ -19,5 +19,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
+        INestedStaticTypeWithCodeAnalysis Class { get; }
     }
 }

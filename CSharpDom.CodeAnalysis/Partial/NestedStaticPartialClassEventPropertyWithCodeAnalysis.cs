@@ -31,6 +31,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             NestedStaticClassEventPropertyWithCodeAnalysis @event)
         {
             this.@event = @event;
+            @event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public NestedStaticClassEventPropertyWithCodeAnalysis EventProperty

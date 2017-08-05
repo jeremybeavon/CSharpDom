@@ -26,15 +26,23 @@ namespace CSharpDom.CodeAnalysis.Partial
     {
         private readonly NestedStaticClassNestedStaticClassWithCodeAnalysis classType;
 
+        public NestedStaticPartialClassNestedStaticClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new NestedStaticClassNestedStaticClassWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal NestedStaticPartialClassNestedStaticClassWithCodeAnalysis(
             NestedStaticClassNestedStaticClassWithCodeAnalysis classType)
         {
             this.classType = classType;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
 
-        public NestedStaticClassWithCodeAnalysis Class
+        public NestedStaticClassNestedStaticClassWithCodeAnalysis Class
         {
-            get { return classType.Class; }
+            get { return classType; }
         }
         
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -129,17 +137,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ClassMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
-            set
-            {
-                ClassDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
-            }
-        }
-        
-        internal NestedStaticClassNestedStaticClassWithCodeAnalysis InternalClass
-        {
-            get { return classType; }
+            get { return classType.Visibility; }
+            set { classType.Visibility = value; }
         }
     }
 }

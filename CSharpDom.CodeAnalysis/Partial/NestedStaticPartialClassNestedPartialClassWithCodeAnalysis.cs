@@ -32,11 +32,19 @@ namespace CSharpDom.CodeAnalysis.Partial
         IPartialClassTypeWithCodeAnalysis
     {
         private readonly NestedStaticClassNestedPartialClassWithCodeAnalysis classType;
-        
+
+        public NestedStaticPartialClassNestedPartialClassWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this(new NestedStaticClassNestedPartialClassWithCodeAnalysis(visibility, name))
+        {
+        }
+
         internal NestedStaticPartialClassNestedPartialClassWithCodeAnalysis(
             NestedStaticClassNestedPartialClassWithCodeAnalysis classType)
         {
             this.classType = classType;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public NestedStaticClassNestedPartialClassWithCodeAnalysis Class

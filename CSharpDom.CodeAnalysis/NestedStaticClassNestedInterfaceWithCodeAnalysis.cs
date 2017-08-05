@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -20,6 +22,21 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<InterfaceDeclarationSyntax>
     {
         private readonly NestedInterfaceWithCodeAnalysis nestedInterface;
+
+        public NestedStaticClassNestedInterfaceWithCodeAnalysis(
+            ClassMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = SyntaxFactory.InterfaceDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility),
+                SyntaxFactory.Identifier(name),
+                null,
+                null,
+                default(SyntaxList<TypeParameterConstraintClauseSyntax>),
+                default(SyntaxList<MemberDeclarationSyntax>));
+        }
 
         internal NestedStaticClassNestedInterfaceWithCodeAnalysis()
         {
@@ -39,7 +56,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override INestedStaticTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedInterface.Interface.Node.GetParentNode<INestedStaticTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? nestedInterface.Interface.Node.GetParentNode<INestedStaticTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -107,5 +124,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return nestedInterface.Interface.Node; }
         }
+
+        internal Func<INestedStaticTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

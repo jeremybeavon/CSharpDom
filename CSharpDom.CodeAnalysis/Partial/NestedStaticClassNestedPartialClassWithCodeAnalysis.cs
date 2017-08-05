@@ -200,5 +200,11 @@ namespace CSharpDom.CodeAnalysis.Partial
         }
 
         IClassTypeWithCodeAnalysis IPartialClassTypeWithCodeAnalysis.Class => classType;
+
+        internal Func<INestedStaticTypeWithCodeAnalysis> DeclaringTypeFunc
+        {
+            get { return classType.DeclaringTypeFunc; }
+            set { classType.DeclaringTypeFunc = value; }
+        }
     }
 }

@@ -79,8 +79,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticTypeWithCodeAnalysis DeclaringType
         {
-            get { return Struct.DeclaringType; }
-            set { Struct.DeclaringType = value; }
+            get { return structType.DeclaringType; }
+            set { structType.DeclaringType = value; }
         }
 
         public override ICollection<StructNestedDelegateWithCodeAnalysis> Delegates
@@ -186,6 +186,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
             get { return structType.Struct.Node; }
+        }
+
+        internal Func<INestedStaticTypeWithCodeAnalysis> DeclaringTypeFunc
+        {
+            get { return structType.DeclaringTypeFunc; }
+            set { structType.DeclaringTypeFunc = value; }
         }
     }
 }
