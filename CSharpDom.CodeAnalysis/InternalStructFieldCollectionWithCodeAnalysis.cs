@@ -24,11 +24,11 @@ namespace CSharpDom.CodeAnalysis
         {
             this.structType = structType;
             constants = new StructTypeMemberListWrapper<TStruct, StructConstantWithCodeAnalysis, FieldDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructConstantWithCodeAnalysis(),
                 syntax => syntax.IsConstant());
             fields = new StructTypeMemberListWrapper<TStruct, StructFieldWithCodeAnalysis, FieldDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructFieldWithCodeAnalysis(),
                 syntax => !syntax.IsConstant());
         }

@@ -25,19 +25,19 @@ namespace CSharpDom.CodeAnalysis.Partial
             where TStruct : class, IHasSyntax<StructDeclarationSyntax>
         {
             var classes = new StructTypeMemberListWrapper<TStruct, StructNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructNestedPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsPartialClass);
             var abstractClasses = new StructTypeMemberListWrapper<TStruct, StructNestedAbstractPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructNestedAbstractPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsAbstractPartialClass);
             var sealedClasses = new StructTypeMemberListWrapper<TStruct, StructNestedSealedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructNestedSealedPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsSealedPartialClass);
             var staticClasses = new StructTypeMemberListWrapper<TStruct, StructNestedStaticPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructNestedStaticPartialClassWithCodeAnalysis(),
                 ClassDeclarationSyntaxExtensions.IsStaticPartialClass);
             return new StructNestedPartialClassCollectionWithCodeAnalysis(structType.Members, abstractClasses, classes, sealedClasses, staticClasses);

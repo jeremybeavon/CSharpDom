@@ -76,7 +76,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return structType.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? structType.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

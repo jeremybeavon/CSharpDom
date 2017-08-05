@@ -26,15 +26,15 @@ namespace CSharpDom.CodeAnalysis.Partial
         {
             this.structType = structType;
             methods = new StructMethodListWrapper<TStruct, StructMethodWithCodeAnalysis>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructMethodWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract() && !syntax.IsPartial());
             partialMethodDefinitions = new StructMethodListWrapper<TStruct, PartialMethodDefinitionWithCodeAnalysis>(
-                structType.Node,
+                structType.InternalNode,
                 () => new PartialMethodDefinitionWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body == null);
             partialMethodImplementations = new StructMethodListWrapper<TStruct, PartialMethodImplementationWithCodeAnalysis>(
-                structType.Node,
+                structType.InternalNode,
                 () => new PartialMethodImplementationWithCodeAnalysis(),
                 syntax => syntax.IsPartial() && syntax.Body != null);
         }

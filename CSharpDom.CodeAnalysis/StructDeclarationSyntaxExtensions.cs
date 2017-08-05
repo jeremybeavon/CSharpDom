@@ -16,6 +16,11 @@ namespace CSharpDom.CodeAnalysis
             return ToSyntax(name, visibility, SyntaxKind.PartialKeyword);
         }
 
+        public static StructDeclarationSyntax ToPartialSyntax(string name, StructMemberVisibilityModifier visibility)
+        {
+            return ToSyntax(name, visibility, SyntaxKind.PartialKeyword);
+        }
+
         public static StructDeclarationSyntax ToSyntax(
             string name,
             ClassMemberVisibilityModifier visibility,
@@ -34,6 +39,16 @@ namespace CSharpDom.CodeAnalysis
             return ToSyntax(
                 name,
                 default(SyntaxTokenList).WithStructMemberVisibilityModifier(visibility).AddRange(modifiers));
+        }
+
+        public static StructDeclarationSyntax ToSyntax(
+            string name,
+            TypeVisibilityModifier visibility,
+            params SyntaxKind[] modifiers)
+        {
+            return ToSyntax(
+                name,
+                default(SyntaxTokenList).WithTypeVisibilityModifier(visibility).AddRange(modifiers));
         }
 
         public static StructDeclarationSyntax ToSyntax(string name, SyntaxTokenList modifiers)

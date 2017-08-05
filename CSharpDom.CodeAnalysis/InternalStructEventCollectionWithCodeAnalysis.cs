@@ -28,15 +28,15 @@ namespace CSharpDom.CodeAnalysis
         {
             this.structType = structType;
             eventProperties = new StructTypeMemberListWrapper<TStruct, StructEventPropertyWithCodeAnalysis, EventDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructEventPropertyWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
             explicitInterfaceEvents = new StructTypeMemberListWrapper<TStruct, ExplicitInterfaceEventWithCodeAnalysis, EventDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new ExplicitInterfaceEventWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             events = new StructTypeMemberListWrapper<TStruct, StructEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructEventWithCodeAnalysis());
         }
 

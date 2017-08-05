@@ -26,11 +26,11 @@ namespace CSharpDom.CodeAnalysis
         {
             this.structType = structType;
             structs = new StructTypeMemberListWrapper<TStruct, StructNestedStructWithCodeAnalysis, StructDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructNestedStructWithCodeAnalysis(),
                 syntax => !syntax.IsPartial());
             partialStructs = new StructTypeMemberListWrapper<TStruct, StructNestedPartialStructWithCodeAnalysis, StructDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructNestedPartialStructWithCodeAnalysis(),
                 StructDeclarationSyntaxExtensions.IsPartial);
         }

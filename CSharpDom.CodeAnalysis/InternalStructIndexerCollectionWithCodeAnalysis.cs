@@ -22,11 +22,11 @@ namespace CSharpDom.CodeAnalysis
         {
             this.structType = structType;
             explicitInterfaceIndexers = new StructTypeMemberListWrapper<TStruct, ExplicitInterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new ExplicitInterfaceIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier != null);
             indexers = new StructTypeMemberListWrapper<TStruct, StructIndexerWithCodeAnalysis, IndexerDeclarationSyntax>(
-                structType.Node,
+                structType.InternalNode,
                 () => new StructIndexerWithCodeAnalysis(),
                 syntax => syntax.ExplicitInterfaceSpecifier == null);
         }

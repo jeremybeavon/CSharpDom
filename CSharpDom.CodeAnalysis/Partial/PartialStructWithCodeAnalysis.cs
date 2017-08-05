@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -14,32 +15,41 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
-            StructEventCollectionWithCodeAnalysis,
-            StructPropertyCollectionWithCodeAnalysis,
-            StructIndexerCollectionWithCodeAnalysis,
+            PartialStructEventCollectionWithCodeAnalysis,
+            PartialStructPropertyCollectionWithCodeAnalysis,
+            PartialStructIndexerCollectionWithCodeAnalysis,
             PartialStructMethodCollectionWithCodeAnalysis,
-            StructFieldCollectionWithCodeAnalysis,
-            StructConstructorWithCodeAnalysis,
+            PartialStructFieldCollectionWithCodeAnalysis,
+            PartialStructConstructorWithCodeAnalysis,
             OperatorOverloadWithCodeAnalysis,
             ConversionOperatorWithCodeAnalysis,
-            StructNestedClassCollectionWithCodeAnalysis,
-            StructNestedDelegateWithCodeAnalysis,
-            StructNestedEnumWithCodeAnalysis,
-            StructNestedInterfaceWithCodeAnalysis,
-            StructNestedStructCollectionWithCodeAnalysis,
+            PartialStructNestedClassCollectionWithCodeAnalysis,
+            PartialStructNestedDelegateWithCodeAnalysis,
+            PartialStructNestedEnumWithCodeAnalysis,
+            PartialStructNestedInterfaceWithCodeAnalysis,
+            PartialStructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<StructDeclarationSyntax>,
         IHasNode<StructDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly StructWithCodeAnalysis structType;
-        private readonly PartialStructMethodCollectionWithCodeAnalysis methods;
+        private readonly PartialStructTypeWithCodeAnalysis<PartialStructWithCodeAnalysis> partialType;
+
+        public PartialStructWithCodeAnalysis(
+            DocumentWithCodeAnalysis document,
+            TypeVisibilityModifier visibility,
+            string name)
+            : this(document)
+        {
+            Syntax = StructDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.PartialKeyword);
+        }
 
         internal PartialStructWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
-            structType = new StructWithCodeAnalysis(document);
-            methods = new InternalPartialStructMethodCollectionWithCodeAnalysis<StructWithCodeAnalysis>(
-                structType.InternalType);
+            var type = new InternalStructTypeWithCodeAnalysis<PartialStructWithCodeAnalysis>(this);
+            structType = new StructWithCodeAnalysis(document, type);
+            partialType = new PartialStructTypeWithCodeAnalysis<PartialStructWithCodeAnalysis>(type);
         }
 
         public StructWithCodeAnalysis Struct
@@ -53,16 +63,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { structType.Attributes = value; }
         }
 
-        public override StructNestedClassCollectionWithCodeAnalysis Classes
+        public override PartialStructNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return structType.Classes; }
-            set { structType.Classes = value; }
+            get { return partialType.Classes; }
+            set { partialType.Classes = value; }
         }
 
-        public override ICollection<StructConstructorWithCodeAnalysis> Constructors
+        public override ICollection<PartialStructConstructorWithCodeAnalysis> Constructors
         {
-            get { return structType.Constructors; }
-            set { structType.Constructors = value; }
+            get { return partialType.Constructors; }
+            set { partialType.Constructors = value; }
         }
 
         public override ICollection<ConversionOperatorWithCodeAnalysis> ConversionOperators
@@ -71,28 +81,28 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { structType.ConversionOperators = value; }
         }
 
-        public override ICollection<StructNestedDelegateWithCodeAnalysis> Delegates
+        public override ICollection<PartialStructNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return structType.Delegates; }
-            set { structType.Delegates = value; }
+            get { return partialType.Delegates; }
+            set { partialType.Delegates = value; }
         }
         
-        public override ICollection<StructNestedEnumWithCodeAnalysis> Enums
+        public override ICollection<PartialStructNestedEnumWithCodeAnalysis> Enums
         {
-            get { return structType.Enums; }
-            set { structType.Enums = value; }
+            get { return partialType.Enums; }
+            set { partialType.Enums = value; }
         }
 
-        public override StructEventCollectionWithCodeAnalysis Events
+        public override PartialStructEventCollectionWithCodeAnalysis Events
         {
-            get { return structType.Events; }
-            set { structType.Events = value; }
+            get { return partialType.Events; }
+            set { partialType.Events = value; }
         }
 
-        public override StructFieldCollectionWithCodeAnalysis Fields
+        public override PartialStructFieldCollectionWithCodeAnalysis Fields
         {
-            get { return structType.Fields; }
-            set { structType.Fields = value; }
+            get { return partialType.Fields; }
+            set { partialType.Fields = value; }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -101,22 +111,22 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { structType.GenericParameters = value; }
         }
 
-        public override StructIndexerCollectionWithCodeAnalysis Indexers
+        public override PartialStructIndexerCollectionWithCodeAnalysis Indexers
         {
-            get { return structType.Indexers; }
-            set { structType.Indexers = value; }
+            get { return partialType.Indexers; }
+            set { partialType.Indexers = value; }
         }
 
-        public override ICollection<StructNestedInterfaceWithCodeAnalysis> Interfaces
+        public override ICollection<PartialStructNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return structType.Interfaces; }
-            set { structType.Interfaces = value; }
+            get { return partialType.Interfaces; }
+            set { partialType.Interfaces = value; }
         }
 
         public override PartialStructMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { structType.InternalType.Members.Replace(value); }
+            get { return partialType.Methods; }
+            set { partialType.Methods = value; }
         }
 
         public override string Name
@@ -131,16 +141,16 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { structType.OperatorOverloads = value; }
         }
 
-        public override StructPropertyCollectionWithCodeAnalysis Properties
+        public override PartialStructPropertyCollectionWithCodeAnalysis Properties
         {
-            get { return structType.Properties; }
-            set { structType.Properties = value; }
+            get { return partialType.Properties; }
+            set { partialType.Properties = value; }
         }
 
-        public override StructNestedStructCollectionWithCodeAnalysis Structs
+        public override PartialStructNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return structType.Structs; }
-            set { structType.Structs = value; }
+            get { return partialType.Structs; }
+            set { partialType.Structs = value; }
         }
         
         public override ICollection<InterfaceReferenceWithCodeAnalysis> ImplementedInterfaces
@@ -193,7 +203,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.InternalType.Node; }
+            get { return structType.Struct.Node; }
         }
 
         /*public void Accept(IReflectionVisitor visitor)

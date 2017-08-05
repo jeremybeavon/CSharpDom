@@ -32,6 +32,14 @@ namespace CSharpDom.CodeAnalysis.Partial
         private readonly StructNestedStructWithCodeAnalysis structType;
         private readonly PartialStructMethodCollectionWithCodeAnalysis methods;
 
+        public StructNestedPartialStructWithCodeAnalysis(
+            StructMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = StructDeclarationSyntaxExtensions.ToPartialSyntax(name, visibility);
+        }
+
         internal StructNestedPartialStructWithCodeAnalysis()
         {
             var type = new InternalNestedStructWithCodeAnalysis<StructNestedPartialStructWithCodeAnalysis>(this);
@@ -177,6 +185,12 @@ namespace CSharpDom.CodeAnalysis.Partial
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
             get { return structType.Struct.Node; }
+        }
+
+        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc
+        {
+            get { return structType.DeclaringTypeFunc; }
+            set { structType.DeclaringTypeFunc = value; }
         }
     }
 }

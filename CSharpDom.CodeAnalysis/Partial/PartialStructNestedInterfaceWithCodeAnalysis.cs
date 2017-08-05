@@ -6,57 +6,48 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class StructNestedInterfaceWithCodeAnalysis :
+    public sealed class PartialStructNestedInterfaceWithCodeAnalysis :
         EditableStructNestedInterface<
             AttributeGroupWithCodeAnalysis,
-            IStructTypeWithCodeAnalysis,
+            IPartialStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
             InterfaceEventWithCodeAnalysis,
             InterfacePropertyWithCodeAnalysis,
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
-        IHasSyntax<InterfaceDeclarationSyntax>,
-        IHasNode<InterfaceDeclarationSyntax>
+        IHasSyntax<InterfaceDeclarationSyntax>
     {
-        private readonly NestedInterfaceWithCodeAnalysis type;
+        private readonly StructNestedInterfaceWithCodeAnalysis type;
 
-        public StructNestedInterfaceWithCodeAnalysis(
+        public PartialStructNestedInterfaceWithCodeAnalysis(
             StructMemberVisibilityModifier visibility,
             string name)
-            : this()
+            : this(new StructNestedInterfaceWithCodeAnalysis(visibility, name))
         {
-            Syntax = SyntaxFactory.InterfaceDeclaration(
-                default(SyntaxList<AttributeListSyntax>),
-                default(SyntaxTokenList).WithStructMemberVisibilityModifier(visibility),
-                SyntaxFactory.Identifier(name),
-                null,
-                null,
-                default(SyntaxList<TypeParameterConstraintClauseSyntax>),
-                default(SyntaxList<MemberDeclarationSyntax>));
         }
 
-        internal StructNestedInterfaceWithCodeAnalysis()
+        internal PartialStructNestedInterfaceWithCodeAnalysis(StructNestedInterfaceWithCodeAnalysis type)
         {
-            type = new NestedInterfaceWithCodeAnalysis();
+            this.type = type;
         }
         
-        public NestedInterfaceWithCodeAnalysis Interface
+        public StructNestedInterfaceWithCodeAnalysis Interface
         {
             get { return type; }
         }
-
+        
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
         {
             get { return type.Attributes; }
             set { type.Attributes = value; }
         }
 
-        public override IStructTypeWithCodeAnalysis DeclaringType
+        public override IPartialStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return DeclaringTypeFunc?.Invoke() ?? type.Interface.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return type.Interface.Interface.Node.GetParentNode<IPartialStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -110,21 +101,10 @@ namespace CSharpDom.CodeAnalysis
 
         public override StructMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToStructMemberVisibilityModifier(); }
-            set
-            {
-                InterfaceDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStructMemberVisibilityModifier(value));
-            }
+            get { return type.Visibility; }
+            set { type.Visibility = value; }
         }
 
         public override bool IsPartial { get => Syntax.IsPartial(); set => Syntax = Syntax.IsPartial(value); }
-
-        INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node
-        {
-            get { return type.Interface.Node; }
-        }
-
-        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

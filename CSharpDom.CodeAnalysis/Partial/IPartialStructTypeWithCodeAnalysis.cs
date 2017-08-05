@@ -1,10 +1,9 @@
-﻿using CSharpDom.Editable;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using CSharpDom.Common;
 
-namespace CSharpDom.CodeAnalysis
+namespace CSharpDom.CodeAnalysis.Partial
 {
-    public abstract class StructTypeWithCodeAnalysis :
-        EditableStructType<
+    public interface IPartialStructTypeWithCodeAnalysis :
+        IStructType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
@@ -21,11 +20,8 @@ namespace CSharpDom.CodeAnalysis
             StructNestedEnumWithCodeAnalysis,
             StructNestedInterfaceWithCodeAnalysis,
             StructNestedStructCollectionWithCodeAnalysis,
-            StaticConstructorWithCodeAnalysis>,
-        IHasSyntax<StructDeclarationSyntax>
+            StaticConstructorWithCodeAnalysis>
     {
-        public abstract StructDeclarationSyntax Syntax { get; set; }
-
-        internal abstract INode<StructDeclarationSyntax> Node { get; }
+        IStructTypeWithCodeAnalysis Struct { get; }
     }
 }

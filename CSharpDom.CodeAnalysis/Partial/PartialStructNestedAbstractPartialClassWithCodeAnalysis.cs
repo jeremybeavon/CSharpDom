@@ -7,10 +7,10 @@ using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
-    public sealed class StructNestedAbstractPartialClassWithCodeAnalysis :
+    public sealed class PartialStructNestedAbstractPartialClassWithCodeAnalysis :
         EditableStructNestedAbstractPartialClass<
             AttributeGroupWithCodeAnalysis,
-            IStructTypeWithCodeAnalysis,
+            IPartialStructTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             ClassReferenceWithCodeAnalysis,
             InterfaceReferenceWithCodeAnalysis,
@@ -30,32 +30,25 @@ namespace CSharpDom.CodeAnalysis.Partial
             AbstractPartialClassStaticConstructorWithCodeAnalysis,
             AbstractPartialClassDestructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>,
-        IHasNode<ClassDeclarationSyntax>,
         IAbstractPartialTypeWithCodeAnalysis
     {
-        private readonly StructNestedAbstractClassWithCodeAnalysis classType;
-        private readonly AbstractPartialTypeWithCodeAnalysis<StructNestedAbstractPartialClassWithCodeAnalysis> abstractType;
+        private readonly StructNestedAbstractPartialClassWithCodeAnalysis classType;
 
-        public StructNestedAbstractPartialClassWithCodeAnalysis(
+        public PartialStructNestedAbstractPartialClassWithCodeAnalysis(
             StructMemberVisibilityModifier visibility,
             string name)
-            : this()
+            : this(new StructNestedAbstractPartialClassWithCodeAnalysis(visibility, name))
         {
-            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(
-                name,
-                visibility,
-                SyntaxKind.AbstractKeyword,
-                SyntaxKind.PartialKeyword);
         }
 
-        internal StructNestedAbstractPartialClassWithCodeAnalysis()
+        internal PartialStructNestedAbstractPartialClassWithCodeAnalysis(
+            StructNestedAbstractPartialClassWithCodeAnalysis classType)
         {
-            var type = new InternalNestedAbstractClassWithCodeAnalysis<StructNestedAbstractPartialClassWithCodeAnalysis>(this);
-            classType = new StructNestedAbstractClassWithCodeAnalysis(type);
-            abstractType = new AbstractPartialTypeWithCodeAnalysis<StructNestedAbstractPartialClassWithCodeAnalysis>(type);
+            this.classType = classType;
+            classType.DeclaringTypeFunc = () => DeclaringType.Struct;
         }
         
-        public StructNestedAbstractClassWithCodeAnalysis Class
+        public StructNestedAbstractPartialClassWithCodeAnalysis Class
         {
             get { return classType; }
         }
@@ -74,56 +67,56 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override AbstractPartialClassNestedClassCollectionWithCodeAnalysis Classes
         {
-            get { return abstractType.Classes; }
-            set { abstractType.Classes = value; }
+            get { return classType.Classes; }
+            set { classType.Classes = value; }
         }
 
         public override ICollection<AbstractPartialClassConstructorWithCodeAnalysis> Constructors
         {
-            get { return abstractType.Constructors; }
-            set { abstractType.Constructors = value; }
+            get { return classType.Constructors; }
+            set { classType.Constructors = value; }
         }
 
         public override ICollection<AbstractPartialClassConversionOperatorWithCodeAnalysis> ConversionOperators
         {
-            get { return abstractType.ConversionOperators; }
-            set { abstractType.ConversionOperators = value; }
+            get { return classType.ConversionOperators; }
+            set { classType.ConversionOperators = value; }
         }
 
-        public override IStructTypeWithCodeAnalysis DeclaringType
+        public override IPartialStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return DeclaringTypeFunc?.Invoke() ?? classType.Class.Class.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return classType.Class.Class.Class.Node.GetParentNode<IPartialStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
         public override ICollection<AbstractPartialClassNestedDelegateWithCodeAnalysis> Delegates
         {
-            get { return abstractType.Delegates; }
-            set { abstractType.Delegates = value; }
+            get { return classType.Delegates; }
+            set { classType.Delegates = value; }
         }
 
         public override AbstractPartialClassDestructorWithCodeAnalysis Destructor
         {
-            get { return abstractType.Destructor; }
-            set { abstractType.Destructor = value; }
+            get { return classType.Destructor; }
+            set { classType.Destructor = value; }
         }
 
         public override ICollection<AbstractPartialClassNestedEnumWithCodeAnalysis> Enums
         {
-            get { return abstractType.Enums; }
-            set { abstractType.Enums = value; }
+            get { return classType.Enums; }
+            set { classType.Enums = value; }
         }
 
         public override AbstractPartialClassEventCollectionWithCodeAnalysis Events
         {
-            get { return abstractType.Events; }
-            set { abstractType.Events = value; }
+            get { return classType.Events; }
+            set { classType.Events = value; }
         }
 
         public override AbstractPartialClassFieldCollectionWithCodeAnalysis Fields
         {
-            get { return abstractType.Fields; }
-            set { abstractType.Fields = value; }
+            get { return classType.Fields; }
+            set { classType.Fields = value; }
         }
 
         public override IList<GenericParameterDeclarationWithCodeAnalysis> GenericParameters
@@ -140,20 +133,20 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override AbstractPartialClassIndexerCollectionWithCodeAnalysis Indexers
         {
-            get { return abstractType.Indexers; }
-            set { abstractType.Indexers = value; }
+            get { return classType.Indexers; }
+            set { classType.Indexers = value; }
         }
 
         public override ICollection<AbstractPartialClassNestedInterfaceWithCodeAnalysis> Interfaces
         {
-            get { return abstractType.Interfaces; }
-            set { abstractType.Interfaces = value; }
+            get { return classType.Interfaces; }
+            set { classType.Interfaces = value; }
         }
 
         public override AbstractPartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return abstractType.Methods; }
-            set { abstractType.Methods = value; }
+            get { return classType.Methods; }
+            set { classType.Methods = value; }
         }
 
         public override string Name
@@ -164,26 +157,26 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ICollection<AbstractPartialClassOperatorOverloadWithCodeAnalysis> OperatorOverloads
         {
-            get { return abstractType.OperatorOverloads; }
-            set { abstractType.OperatorOverloads = value; }
+            get { return classType.OperatorOverloads; }
+            set { classType.OperatorOverloads = value; }
         }
 
         public override AbstractPartialClassPropertyCollectionWithCodeAnalysis Properties
         {
-            get { return abstractType.Properties; }
-            set { abstractType.Properties = value; }
+            get { return classType.Properties; }
+            set { classType.Properties = value; }
         }
 
         public override AbstractPartialClassStaticConstructorWithCodeAnalysis StaticConstructor
         {
-            get { return abstractType.StaticConstructor; }
-            set { abstractType.StaticConstructor = value; }
+            get { return classType.StaticConstructor; }
+            set { classType.StaticConstructor = value; }
         }
 
         public override AbstractPartialClassNestedStructCollectionWithCodeAnalysis Structs
         {
-            get { return abstractType.Structs; }
-            set { abstractType.Structs = value; }
+            get { return classType.Structs; }
+            set { classType.Structs = value; }
         }
 
         public ClassDeclarationSyntax Syntax
@@ -197,14 +190,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return classType.Visibility; }
             set { classType.Visibility = value; }
         }
-        
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
-        {
-            get { return classType.Class.Class.Node; }
-        }
 
-        IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class;
-
-        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
+        IAbstractTypeWithCodeAnalysis IAbstractPartialTypeWithCodeAnalysis.Class => classType.Class.Class.Class;
     }
 }

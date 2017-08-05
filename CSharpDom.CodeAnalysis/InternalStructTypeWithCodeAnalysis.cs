@@ -265,10 +265,12 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        internal Node<TStruct, StructDeclarationSyntax> Node
+        internal Node<TStruct, StructDeclarationSyntax> InternalNode
         {
             get { return node; }
         }
+
+        internal override INode<StructDeclarationSyntax> Node => node;
 
         internal IMemberList Members
         {
