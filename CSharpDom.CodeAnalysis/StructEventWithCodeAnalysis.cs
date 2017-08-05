@@ -4,6 +4,8 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -16,6 +18,19 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<EventFieldDeclarationSyntax>
     {
         private readonly EventWithCodeAnalysis @event;
+
+        public StructEventWithCodeAnalysis(
+            StructMemberVisibilityModifier visibility,
+            DelegateReferenceWithCodeAnalysis type,
+            string name)
+            : this()
+        {
+            VariableDeclaratorSyntax syntax = SyntaxFactory.VariableDeclarator(name);
+            Syntax = SyntaxFactory.EventFieldDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithStructMemberVisibilityModifier(visibility),
+                SyntaxFactory.VariableDeclaration(type.Syntax, SyntaxFactory.SingletonSeparatedList(syntax)));
+        }
 
         internal StructEventWithCodeAnalysis()
         {
@@ -35,7 +50,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return @event.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? @event.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -81,5 +96,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return @event.Node; }
         }
+
+        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

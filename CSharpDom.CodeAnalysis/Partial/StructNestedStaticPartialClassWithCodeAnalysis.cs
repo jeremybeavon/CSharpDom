@@ -26,13 +26,13 @@ namespace CSharpDom.CodeAnalysis.Partial
         INestedStaticPartialTypeWithCodeAnalysis
     {
         private readonly StructNestedStaticClassWithCodeAnalysis classType;
-        private readonly InternalNestedStaticPartialClassWithCodeAnalysis<StructNestedStaticClassWithCodeAnalysis> partialType;
+        private readonly InternalNestedStaticPartialClassWithCodeAnalysis<StructNestedStaticPartialClassWithCodeAnalysis> partialType;
 
         internal StructNestedStaticPartialClassWithCodeAnalysis()
         {
-            classType = new StructNestedStaticClassWithCodeAnalysis();
-            partialType = new InternalNestedStaticPartialClassWithCodeAnalysis<StructNestedStaticClassWithCodeAnalysis>(
-                classType.InternalClass);
+            var type = new InternalNestedStaticClassWithCodeAnalysis<StructNestedStaticPartialClassWithCodeAnalysis>(this);
+            classType = new StructNestedStaticClassWithCodeAnalysis(type);
+            partialType = new InternalNestedStaticPartialClassWithCodeAnalysis<StructNestedStaticPartialClassWithCodeAnalysis>(type);
         }
 
         public StructNestedStaticClassWithCodeAnalysis Class
@@ -136,7 +136,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Visibility = value; }
         }
 
-        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.InternalClass.Node;
+        INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Class.Node;
 
         INestedStaticTypeWithCodeAnalysis INestedStaticPartialTypeWithCodeAnalysis.Class => classType;
     }

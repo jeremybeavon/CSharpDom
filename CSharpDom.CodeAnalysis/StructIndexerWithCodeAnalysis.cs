@@ -4,6 +4,9 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Linq;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -18,7 +21,36 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<IndexerDeclarationSyntax>
     {
         private readonly IndexerWithBodyWithCodeAnalysis indexer;
-        
+
+        public StructIndexerWithCodeAnalysis(
+            StructMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            IEnumerable<IndexerParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis getAccessor,
+            MethodBodyWithCodeAnalysis setAccessor)
+            : this()
+        {
+            var parameterSyntax = parameters.Select(parameter => parameter.Syntax);
+            List<AccessorDeclarationSyntax> accessorSyntax = new List<AccessorDeclarationSyntax>();
+            if (getAccessor != null)
+            {
+                accessorSyntax.Add(SyntaxFactory.AccessorDeclaration(SyntaxKind.GetKeyword, getAccessor.Syntax));
+            }
+
+            if (setAccessor != null)
+            {
+                accessorSyntax.Add(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetKeyword, setAccessor.Syntax));
+            }
+
+            Syntax = SyntaxFactory.IndexerDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithStructMemberVisibilityModifier(visibility),
+                type.Syntax,
+                null,
+                SyntaxFactory.BracketedParameterList(SyntaxFactory.SeparatedList(parameterSyntax)),
+                SyntaxFactory.AccessorList(SyntaxFactory.List(accessorSyntax)));
+        }
+
         internal StructIndexerWithCodeAnalysis()
         {
             indexer = new IndexerWithBodyWithCodeAnalysis();
@@ -37,7 +69,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return indexer.Indexer.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? indexer.Indexer.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -85,5 +117,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return indexer.Indexer.Node; }
         }
+
+        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

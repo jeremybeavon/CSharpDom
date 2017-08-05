@@ -26,6 +26,16 @@ namespace CSharpDom.CodeAnalysis
                 default(SyntaxTokenList).WithClassMemberVisibilityModifier(visibility).AddRange(modifiers));
         }
 
+        public static StructDeclarationSyntax ToSyntax(
+            string name,
+            StructMemberVisibilityModifier visibility,
+            params SyntaxKind[] modifiers)
+        {
+            return ToSyntax(
+                name,
+                default(SyntaxTokenList).WithStructMemberVisibilityModifier(visibility).AddRange(modifiers));
+        }
+
         public static StructDeclarationSyntax ToSyntax(string name, SyntaxTokenList modifiers)
         {
             return SyntaxFactory.StructDeclaration(

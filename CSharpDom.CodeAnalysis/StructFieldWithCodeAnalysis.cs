@@ -4,6 +4,9 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using CSharpDom.NotSupported;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -17,6 +20,18 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<FieldDeclarationSyntax>
     {
         private readonly FieldGroupWithCodeAnalysis field;
+
+        public StructFieldWithCodeAnalysis(
+            StructMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis type,
+            params string[] names)
+            : this()
+        {
+            Syntax = SyntaxFactory.FieldDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithStructMemberVisibilityModifier(visibility),
+                SyntaxFactory.VariableDeclaration(type.Syntax, SyntaxFactory.SeparatedList(names.Select(SyntaxFactory.VariableDeclarator))));
+        }
 
         internal StructFieldWithCodeAnalysis()
         {
@@ -36,7 +51,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return field.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? field.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -101,6 +116,8 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return field.Node; }
         }
+
+        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
 
         private static ClassFieldModifier ToClassFieldModifier(StructFieldModifier modifier)
         {

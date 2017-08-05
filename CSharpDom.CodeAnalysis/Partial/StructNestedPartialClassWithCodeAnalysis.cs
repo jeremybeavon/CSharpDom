@@ -33,16 +33,14 @@ namespace CSharpDom.CodeAnalysis.Partial
         IPartialClassTypeWithCodeAnalysis
     {
         private readonly StructNestedClassWithCodeAnalysis classType;
-        private readonly PartialClassTypeWithCodeAnalysis<StructNestedClassWithCodeAnalysis> partialType;
+        private readonly PartialClassTypeWithCodeAnalysis<StructNestedPartialClassWithCodeAnalysis> partialType;
         private readonly PartialClassMethodCollectionWithCodeAnalysis methods;
 
         internal StructNestedPartialClassWithCodeAnalysis()
         {
-            classType = new StructNestedClassWithCodeAnalysis();
-            partialType = new PartialClassTypeWithCodeAnalysis<StructNestedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
-            methods = new InternalPartialClassMethodCollectionWithCodeAnalysis<StructNestedClassWithCodeAnalysis>(
-                classType.InternalClass.InternalClass);
+            var type = new InternalNestedClassWithCodeAnalysis<StructNestedPartialClassWithCodeAnalysis>(this);
+            classType = new StructNestedClassWithCodeAnalysis(type);
+            partialType = new PartialClassTypeWithCodeAnalysis<StructNestedPartialClassWithCodeAnalysis>(type);
         }
         
         public StructNestedClassWithCodeAnalysis Class
@@ -142,8 +140,8 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override PartialClassMethodCollectionWithCodeAnalysis Methods
         {
-            get { return methods; }
-            set { classType.InternalClass.InternalClass.Members.Replace(value); }
+            get { return partialType.Methods; }
+            set { partialType.Methods = value; }
         }
 
         public override string Name
@@ -194,7 +192,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node
         {
-            get { return classType.InternalClass.InternalClass.Node; }
+            get { return classType.Class.Class.Node; }
         }
 
         IClassTypeWithCodeAnalysis IPartialClassTypeWithCodeAnalysis.Class => classType;

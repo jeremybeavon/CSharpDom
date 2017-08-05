@@ -4,6 +4,9 @@ using CSharpDom.Common;
 using CSharpDom.Editable;
 using System.Reflection;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -19,6 +22,27 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<MethodDeclarationSyntax>
     {
         private readonly MethodWithBodyWithCodeAnalysis method;
+
+        public StructMethodWithCodeAnalysis(
+            StructMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<MethodParameterWithCodeAnalysis> parameters,
+            MethodBodyWithCodeAnalysis body)
+            : this()
+        {
+            Syntax = SyntaxFactory.MethodDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithStructMemberVisibilityModifier(visibility),
+                returnType.Syntax,
+                null,
+                SyntaxFactory.Identifier(name),
+                null,
+                SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters.Select(parameter => parameter.Syntax))),
+                default(SyntaxList<TypeParameterConstraintClauseSyntax>),
+                body.Syntax,
+                null);
+        }
 
         internal StructMethodWithCodeAnalysis()
         {
@@ -44,7 +68,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return method.Method.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? method.Method.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -114,5 +138,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return method.Method.Node; }
         }
+
+        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

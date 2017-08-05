@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -17,6 +20,23 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<DelegateDeclarationSyntax>
     {
         private readonly NestedDelegateWithCodeAnalysis nestedDelegate;
+
+        public StructNestedDelegateWithCodeAnalysis(
+            StructMemberVisibilityModifier visibility,
+            ITypeReferenceWithCodeAnalysis returnType,
+            string name,
+            IEnumerable<DelegateParameterWithCodeAnalysis> parameters)
+            : this()
+        {
+            Syntax = SyntaxFactory.DelegateDeclaration(
+                default(SyntaxList<AttributeListSyntax>),
+                default(SyntaxTokenList).WithStructMemberVisibilityModifier(visibility),
+                returnType.Syntax,
+                SyntaxFactory.Identifier(name),
+                null,
+                SyntaxFactory.ParameterList(SyntaxFactory.SeparatedList(parameters.Select(parameter => parameter.Syntax))),
+                default(SyntaxList<TypeParameterConstraintClauseSyntax>));
+        }
 
         internal StructNestedDelegateWithCodeAnalysis()
         {
@@ -36,7 +56,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedDelegate.Delegate.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? nestedDelegate.Delegate.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -84,5 +104,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return nestedDelegate.Delegate.Node; }
         }
+
+        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -33,6 +34,14 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ClassDeclarationSyntax>
     {
         private readonly NestedAbstractClassWithCodeAnalysis classType;
+
+        public StructNestedAbstractClassWithCodeAnalysis(
+            StructMemberVisibilityModifier visibility,
+            string name)
+            : this()
+        {
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.AbstractKeyword);
+        }
 
         internal StructNestedAbstractClassWithCodeAnalysis(NestedAbstractClassWithCodeAnalysis type = null)
         {
@@ -76,7 +85,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Class.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? classType.Class.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -192,5 +201,7 @@ namespace CSharpDom.CodeAnalysis
         }
 
         IClassTypeWithCodeAnalysis IAbstractTypeWithCodeAnalysis.Class => classType.Class.Class;
+
+        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }

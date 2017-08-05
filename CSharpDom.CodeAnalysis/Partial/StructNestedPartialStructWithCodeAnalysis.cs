@@ -34,9 +34,9 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         internal StructNestedPartialStructWithCodeAnalysis()
         {
-            structType = new StructNestedStructWithCodeAnalysis();
-            methods = new InternalPartialStructMethodCollectionWithCodeAnalysis<StructNestedStructWithCodeAnalysis>(
-                structType.InternalStruct.InternalStruct);
+            var type = new InternalNestedStructWithCodeAnalysis<StructNestedPartialStructWithCodeAnalysis>(this);
+            structType = new StructNestedStructWithCodeAnalysis(type);
+            methods = new InternalPartialStructMethodCollectionWithCodeAnalysis<StructNestedPartialStructWithCodeAnalysis>(type);
         }
         
         public StructNestedStructWithCodeAnalysis Struct
@@ -125,7 +125,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         public override PartialStructMethodCollectionWithCodeAnalysis Methods
         {
             get { return methods; }
-            set { structType.InternalStruct.InternalStruct.Members.Replace(value); }
+            set { structType.Struct.Members.Replace(value); }
         }
 
         public override string Name
@@ -176,7 +176,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         INode<StructDeclarationSyntax> IHasNode<StructDeclarationSyntax>.Node
         {
-            get { return structType.InternalStruct.InternalStruct.Node; }
+            get { return structType.Struct.Node; }
         }
     }
 }

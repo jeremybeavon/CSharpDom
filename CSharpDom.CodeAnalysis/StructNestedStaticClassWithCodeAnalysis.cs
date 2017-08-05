@@ -3,6 +3,7 @@ using CSharpDom.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -25,11 +26,17 @@ namespace CSharpDom.CodeAnalysis
         INestedStaticTypeWithCodeAnalysis,
         IHasNode<ClassDeclarationSyntax>
     {
-        private readonly InternalNestedStaticClassWithCodeAnalysis<StructNestedStaticClassWithCodeAnalysis> classType;
+        private readonly NestedStaticClassWithCodeAnalysis classType;
 
-        internal StructNestedStaticClassWithCodeAnalysis()
+        public StructNestedStaticClassWithCodeAnalysis(StructMemberVisibilityModifier visibility, string name)
+            : this()
         {
-            classType = new InternalNestedStaticClassWithCodeAnalysis<StructNestedStaticClassWithCodeAnalysis>(this);
+            Syntax = ClassDeclarationSyntaxExtensions.ToSyntax(name, visibility, SyntaxKind.StaticKeyword);
+        }
+
+        internal StructNestedStaticClassWithCodeAnalysis(NestedStaticClassWithCodeAnalysis type = null)
+        {
+            classType = type ?? new InternalNestedStaticClassWithCodeAnalysis<StructNestedStaticClassWithCodeAnalysis>(this);
         }
 
         public NestedStaticClassWithCodeAnalysis Class
@@ -51,7 +58,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return classType.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? classType.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 
@@ -139,9 +146,6 @@ namespace CSharpDom.CodeAnalysis
 
         INode<ClassDeclarationSyntax> IHasNode<ClassDeclarationSyntax>.Node => classType.Node;
 
-        internal InternalNestedStaticClassWithCodeAnalysis<StructNestedStaticClassWithCodeAnalysis> InternalClass
-        {
-            get { return classType; }
-        }
+        internal Func<IStructTypeWithCodeAnalysis> DeclaringTypeFunc { get; set; }
     }
 }
