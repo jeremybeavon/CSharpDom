@@ -20,6 +20,12 @@ namespace CSharpDom.Tests.CodeAnalysis
         }
 
         [TestMethod]
+        public async Task TestAbstractClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        {
+            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn1AttributeGroup));
+        }
+
+        [TestMethod]
         public async Task TestAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
             await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));

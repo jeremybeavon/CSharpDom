@@ -32,7 +32,7 @@ namespace CSharpDom.CodeAnalysis
         internal AbstractClassMethodWithCodeAnalysis(ClassMethodWithCodeAnalysis method = null)
         {
             this.method = method ?? new ClassMethodWithCodeAnalysis();
-            method.DeclaringTypeFunc = () => DeclaringType.Class;
+            this.method.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public MethodWithBodyWithCodeAnalysis Method

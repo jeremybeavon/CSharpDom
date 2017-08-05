@@ -31,7 +31,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TChildNode> createChildNode,
             Func<TParentSyntax, TChildSyntax> getSyntax,
             Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax)
-            : this(node, syntax => createChildNode(), getSyntax, createSyntax)
+            : this(node, syntax => syntax == null ? null : createChildNode(), getSyntax, createSyntax)
         {
         }
 
