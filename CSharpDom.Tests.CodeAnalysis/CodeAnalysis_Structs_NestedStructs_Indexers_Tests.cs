@@ -20,9 +20,9 @@ namespace CSharpDom.Tests.CodeAnalysis
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWithWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public async Task TestStructWithNestedStructWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWithWith2AccessorAttributesIn1AttributeGroup));
+            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
@@ -32,9 +32,9 @@ namespace CSharpDom.Tests.CodeAnalysis
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWithWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public async Task TestStructWithNestedStructWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWithWith2AttributesIn1AttributeGroup));
+            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]

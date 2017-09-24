@@ -20,9 +20,9 @@ namespace CSharpDom.Tests.CodeAnalysis
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public async Task TestSealedClassWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup));
+            await TestSealedClassAsync(typeof(SealedClassWithIndexerWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
@@ -32,9 +32,9 @@ namespace CSharpDom.Tests.CodeAnalysis
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithIndexerWithWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public async Task TestSealedClassWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithIndexerWithWith2AttributesIn1AttributeGroup));
+            await TestSealedClassAsync(typeof(SealedClassWithIndexerWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]

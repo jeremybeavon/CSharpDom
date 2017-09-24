@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.SealedClasses.Indexers
 {
-    public sealed class SealedClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup
+    public sealed class SealedClassWithIndexerWith2AccessorAttributesIn1AttributeGroup
     {
         public string this[int index]
         {

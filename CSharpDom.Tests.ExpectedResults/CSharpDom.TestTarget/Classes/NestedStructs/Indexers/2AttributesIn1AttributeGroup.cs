@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Classes.NestedStructs.Indexers
 {
-    public class ClassWithNestedStructWithIndexerWithWith2AttributesIn1AttributeGroup
+    public class ClassWithNestedStructWithIndexerWith2AttributesIn1AttributeGroup
     {
         public struct Struct
         {

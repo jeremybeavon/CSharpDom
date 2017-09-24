@@ -25,10 +25,12 @@ namespace CSharpDom.CodeAnalysis
             this.type = type;
             structs = new ClassMemberListWrapper<TStaticClass, NestedStaticClassNestedStructWithCodeAnalysis, StructDeclarationSyntax>(
                 type.InternalNode,
-                () => new NestedStaticClassNestedStructWithCodeAnalysis());
+                () => new NestedStaticClassNestedStructWithCodeAnalysis(),
+                syntax => !syntax.IsPartial());
             partialStructs = new ClassMemberListWrapper<TStaticClass, NestedStaticClassNestedPartialStructWithCodeAnalysis, StructDeclarationSyntax>(
                 type.InternalNode,
-                () => new NestedStaticClassNestedPartialStructWithCodeAnalysis());
+                () => new NestedStaticClassNestedPartialStructWithCodeAnalysis(),
+                StructDeclarationSyntaxExtensions.IsPartial);
         }
 
         public override ICollection<NestedStaticClassNestedPartialStructWithCodeAnalysis> PartialStructs

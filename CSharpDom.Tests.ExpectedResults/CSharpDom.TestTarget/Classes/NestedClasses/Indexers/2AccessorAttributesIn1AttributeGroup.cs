@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Classes.NestedClasses.Indexers
 {
-    public class ClassWithNestedClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup
+    public class ClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroup
     {
         public class Class
         {

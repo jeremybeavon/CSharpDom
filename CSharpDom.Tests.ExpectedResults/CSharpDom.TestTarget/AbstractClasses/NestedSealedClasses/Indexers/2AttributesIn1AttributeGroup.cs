@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.AbstractClasses.NestedSealedClasses.Indexers
 {
-    public abstract class AbstractClassWithNestedSealedClassWithIndexerWithWith2AttributesIn1AttributeGroup
+    public abstract class AbstractClassWithNestedSealedClassWithIndexerWith2AttributesIn1AttributeGroup
     {
         public sealed class Class
         {

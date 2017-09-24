@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.AbstractClasses.Indexers
 {
-    public abstract class AbstractClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup
+    public abstract class AbstractClassWithIndexerWith2AccessorAttributesIn1AttributeGroup
     {
         public string this[int index]
         {

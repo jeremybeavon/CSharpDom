@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedSealedClasses.Indexers
 {
-    public struct StructWithNestedSealedClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup
+    public struct StructWithNestedSealedClassWithIndexerWith2AccessorAttributesIn1AttributeGroup
     {
         public sealed class Class
         {

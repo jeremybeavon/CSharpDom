@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Structs.NestedAbstractClasses.Indexers
 {
-    public struct StructWithNestedAbstractClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup
+    public struct StructWithNestedAbstractClassWithIndexerWith2AccessorAttributesIn1AttributeGroup
     {
         public abstract class Class
         {

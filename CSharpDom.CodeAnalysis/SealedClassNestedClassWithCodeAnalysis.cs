@@ -43,10 +43,8 @@ namespace CSharpDom.CodeAnalysis
 
         internal SealedClassNestedClassWithCodeAnalysis(ClassNestedClassWithCodeAnalysis @class)
         {
-            classType = new ClassNestedClassWithCodeAnalysis
-            {
-                DeclaringTypeFunc = () => DeclaringType.Class
-            };
+            classType = @class;
+            classType.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public ClassNestedClassWithCodeAnalysis Class
