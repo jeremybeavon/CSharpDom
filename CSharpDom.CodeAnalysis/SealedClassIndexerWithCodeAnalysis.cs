@@ -32,7 +32,7 @@ namespace CSharpDom.CodeAnalysis
         internal SealedClassIndexerWithCodeAnalysis(ClassIndexerWithCodeAnalysis indexer = null)
         {
             this.indexer = indexer ?? new ClassIndexerWithCodeAnalysis();
-            indexer.DeclaringTypeFunc = () => DeclaringType.Class;
+            this.indexer.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public ClassIndexerWithCodeAnalysis Indexer

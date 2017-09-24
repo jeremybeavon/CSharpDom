@@ -32,7 +32,12 @@ namespace CSharpDom.Tests.Common
             string[] namespaces = type.Namespace.Split('.').Skip(2).Select(RemovePlural).Reverse().ToArray();
             foreach (string @namespace in namespaces)
             {
-                typeName = typeName.Replace(@namespace + "With", string.Empty);
+                string nameToReplace = @namespace;
+                if (nameToReplace == "Interface")
+                {
+                    nameToReplace = "IInterface";
+                }
+                typeName = typeName.Replace(nameToReplace + "With", string.Empty);
             }
 
             if (!typeName.EndsWith("BaseClass") && !typeName.EndsWith("Constraint") && !typeName.EndsWith("Constraints"))

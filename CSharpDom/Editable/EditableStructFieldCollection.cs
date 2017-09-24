@@ -31,7 +31,7 @@ namespace CSharpDom.Editable
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            //GenericVisitor.VisitStructFieldCollectionChildren(this, visitor);
+            GenericVisitor.VisitStructFieldCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TField> GetEnumerator()

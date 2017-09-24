@@ -752,6 +752,7 @@ namespace CSharpDom.Text
             Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
             Steps.Add(new WriteEndParenthesis());
             Steps.AddGenericParameterConstraintSteps(method.GenericParameters);
+            Steps.Add(new WriteSemicolon());
         }
 
         public override void VisitStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(

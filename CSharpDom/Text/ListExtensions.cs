@@ -354,12 +354,17 @@ namespace CSharpDom.Text
             where TIndexer : IInterfaceIndexer
             where TMethod : IInterfaceMethod
         {
-            Func<SourceCodeStepsBuilder> builderFactory = () => new SourceCodeStepsBuilder();
-            IEnumerable<ISourceCodeBuilderStep> typeSteps =
-                type.Events.Select(@event => (ISourceCodeBuilderStep)new WriteChildNode<TEvent>(@event, builderFactory()))
-                .Concat(type.Properties.Select(property => new WriteChildNode<TProperty>(property, builderFactory())))
-                .Concat(type.Indexers.Select(indexer => new WriteChildNode<TIndexer>(indexer, builderFactory())))
-                .Concat(type.Methods.Select(method => new WriteChildNode<TMethod>(method, builderFactory())));
+            ISourceCodeBuilderStep[] typeSteps =
+                type.Events.Select(@event => (ISourceCodeBuilderStep)new WriteChildNode<TEvent>(@event))
+                .Concat(type.Properties.Select(property => new WriteChildNode<TProperty>(property)))
+                .Concat(type.Indexers.Select(indexer => new WriteChildNode<TIndexer>(indexer)))
+                .Concat(type.Methods.Select(method => new WriteChildNode<TMethod>(method)))
+                .ToArray();
+            if (typeSteps.Length != 0)
+            {
+                steps.Add(new WriteIndentedNewLine());
+            }
+
             steps.AddRange(typeSteps, () => steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
         

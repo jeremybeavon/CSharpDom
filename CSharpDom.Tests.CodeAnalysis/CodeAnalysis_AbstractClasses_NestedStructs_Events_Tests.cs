@@ -14,9 +14,9 @@ namespace CSharpDom.Tests.CodeAnalysis
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStructsWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public async Task TestAbstractClassWithNestedStructWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructsWithEventWith2AttributesIn1AttributeGroup));
+            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStructWithEventWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
