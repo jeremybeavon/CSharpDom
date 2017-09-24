@@ -35,9 +35,10 @@ namespace CSharpDom.Tests.Common
                 string nameToReplace = @namespace;
                 if (nameToReplace == "Interface")
                 {
-                    nameToReplace = "IInterface";
+                    nameToReplace = "I?Interface";
                 }
-                typeName = typeName.Replace(nameToReplace + "With", string.Empty);
+
+                typeName = Regex.Replace(typeName, nameToReplace + "With", string.Empty);
             }
 
             if (!typeName.EndsWith("BaseClass") && !typeName.EndsWith("Constraint") && !typeName.EndsWith("Constraints"))
