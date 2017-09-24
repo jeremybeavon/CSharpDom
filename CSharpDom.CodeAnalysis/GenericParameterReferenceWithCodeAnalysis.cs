@@ -7,27 +7,34 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class GenericParameterReferenceWithCodeAnalysis :
         EditableGenericParameterReference,
-        ITypeReferenceWithCodeAnalysis,
+        IInternalTypeReferenceWithCodeAnalysis,
         IHasSyntax<IdentifierNameSyntax>//,
+        //IHasNode<IdentifierNameSyntax>//,
+        //IHasNode<NameSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private readonly Node<GenericParameterReferenceWithCodeAnalysis, IdentifierNameSyntax> node;
+        private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
 
-        internal GenericParameterReferenceWithCodeAnalysis()
+        internal GenericParameterReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
-            node = new Node<GenericParameterReferenceWithCodeAnalysis, IdentifierNameSyntax>(this);
+            this.typeReference = typeReference;
         }
 
         public override string Name
         {
-            get { return Syntax.Identifier.Text; }
-            set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
+            get { return typeReference.Name; }
+            set { typeReference.Name = value; }
         }
 
         public IdentifierNameSyntax Syntax
         {
-            get { return node.Syntax; }
-            set { node.Syntax = value; }
+            get { return (IdentifierNameSyntax)typeReference.Syntax; }
+            set { typeReference.Syntax = value; }
+        }
+
+        internal UnspecifiedTypeReferenceWithCodeAnalysis TypeReference
+        {
+            get { return typeReference; }
         }
 
         TypeSyntax IHasSyntax<TypeSyntax>.Syntax
@@ -35,6 +42,10 @@ namespace CSharpDom.CodeAnalysis
             get { return Syntax; }
             set { Syntax = (IdentifierNameSyntax)value; }
         }
+
+        INode<TypeSyntax> IHasNode<TypeSyntax>.Node => typeReference.Node;
+
+        //INode<NameSyntax> IHasNode<NameSyntax>.Node => throw new NotImplementedException();
 
         /*public void Accept(IReflectionVisitor visitor)
         {

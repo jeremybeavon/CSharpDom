@@ -21,6 +21,11 @@ namespace CSharpDom.CodeAnalysis
             throw new NotSupportedException();
         }
 
+        public void CombineList(params MemberListSyntax<MemberDeclarationSyntax>[] syntax)
+        {
+            throw new NotSupportedException();
+        }
+
         public void InsertAfter(string key, string newKey, Func<IEnumerable<MemberDeclarationSyntax>> syntax)
         {
             throw new NotSupportedException();

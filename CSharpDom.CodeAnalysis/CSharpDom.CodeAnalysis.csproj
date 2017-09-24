@@ -98,12 +98,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="GenericParameterConstraint.cs" />
+    <Compile Include="IMemberList.generic.cs" />
     <Compile Include="InternalNestedStaticClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalNestedStaticClassFieldCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalNestedStaticClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalNestedStaticClassNestedClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalNestedStaticClassNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticTypeWithCodeAnalysis.cs" />
+    <Compile Include="MemberList.generic3.cs" />
+    <Compile Include="MemberListSyntax.generic.cs" />
     <Compile Include="Partial\IPartialStructTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
@@ -694,6 +698,7 @@
     <Compile Include="TypedFactory.cs" />
     <Compile Include="CachedTypeReferenceNode.cs" />
     <Compile Include="TypeReferenceNode.cs" />
+    <Compile Include="TypeSyntaxVisitor.cs" />
     <Compile Include="UsingDirectiveWithCodeAnalysis.cs" />
     <Compile Include="VariableDeclaratorSyntaxExtensions.cs" />
     <Compile Include="WrappedCollection.cs" />
@@ -710,7 +715,7 @@
     <Compile Include="ClassFieldWithCodeAnalysis.cs" />
     <Compile Include="ClassIndexerWithCodeAnalysis.cs" />
     <Compile Include="ClassMethodWithCodeAnalysis.cs" />
-    <Compile Include="MemberList.cs" />
+    <Compile Include="MemberList.generic2.cs" />
     <Compile Include="ConstructorParameterWithCodeAnalysis.cs" />
     <Compile Include="ConstructorWithCodeAnalysis.cs" />
     <Compile Include="ConversionOperatorWithCodeAnalysis.cs" />

@@ -5,24 +5,43 @@ using System;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class GenericParameterDeclarationSyntax
+    public sealed class GenericParameterDeclarationSyntax : IEquatable<GenericParameterDeclarationSyntax>
     {
-        public GenericParameterDeclarationSyntax(
+        private readonly TypeParameterSyntax typeParameter;
+        private readonly TypeParameterConstraintClauseSyntax constraintClause;
+
+        internal GenericParameterDeclarationSyntax(
             TypeParameterSyntax typeParameter,
             TypeParameterConstraintClauseSyntax constraintClause)
         {
-            TypeParameter = typeParameter;
-            ConstraintClause = constraintClause;
+            this.typeParameter = typeParameter;
+            this.constraintClause = constraintClause;
         }
 
-        public TypeParameterConstraintClauseSyntax ConstraintClause { get; private set; }
+        public TypeParameterConstraintClauseSyntax ConstraintClause => constraintClause;
 
         public SeparatedSyntaxList<TypeParameterConstraintSyntax> Constraints
         {
-            get { return ConstraintClause.Constraints; }
+            get { return ConstraintClause?.Constraints ?? SyntaxFactory.SeparatedList<TypeParameterConstraintSyntax>(); }
         }
 
-        public TypeParameterSyntax TypeParameter { get; private set; }
+        public TypeParameterSyntax TypeParameter => typeParameter;
+
+        public bool Equals(GenericParameterDeclarationSyntax other)
+        {
+            return other != null && typeParameter == other.typeParameter && constraintClause == other.constraintClause;
+        }
+
+        public override int GetHashCode()
+        {
+            return new Tuple<TypeParameterSyntax, TypeParameterConstraintClauseSyntax>(typeParameter, constraintClause)
+                .GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as GenericParameterDeclarationSyntax);
+        }
 
         public GenericParameterDeclarationSyntax WithAttributeLists(SyntaxList<AttributeListSyntax> attributes)
         {

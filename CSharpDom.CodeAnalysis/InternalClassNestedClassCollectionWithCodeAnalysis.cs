@@ -37,11 +37,11 @@ namespace CSharpDom.CodeAnalysis
             classes = new ClassMemberListWrapper<TClass, ClassNestedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.InternalNode,
                 () => new ClassNestedClassWithCodeAnalysis(),
-                ClassDeclarationSyntaxExtensions.IsAbstractClass);
+                ClassDeclarationSyntaxExtensions.IsClass);
             abstractClasses = new ClassMemberListWrapper<TClass, ClassNestedAbstractClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.InternalNode,
                 () => new ClassNestedAbstractClassWithCodeAnalysis(),
-                ClassDeclarationSyntaxExtensions.IsClass);
+                ClassDeclarationSyntaxExtensions.IsAbstractClass);
             sealedClasses = new ClassMemberListWrapper<TClass, ClassNestedSealedClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.InternalNode,
                 () => new ClassNestedSealedClassWithCodeAnalysis(),

@@ -1351,7 +1351,7 @@ namespace CSharpDom.Text
             if (property.SetAccessor != null)
             {
                 WriteChildNode<TAccessor> step = new WriteChildNode<TAccessor>(
-                    property.GetAccessor,
+                    property.SetAccessor,
                     builderFactory(AccessorFlags.Set));
                 containsNewLines &= step.Steps.OfType<WriteIndentedNewLine>().Any();
                 steps.Add(step);

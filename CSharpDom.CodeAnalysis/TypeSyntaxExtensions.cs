@@ -49,9 +49,9 @@ namespace CSharpDom.CodeAnalysis
             return null;
         }
 
-        public static NameSyntax ToName(this TypeSyntax syntax)
+        public static string ToName(this TypeSyntax syntax)
         {
-            return null;
+            return syntax.Accept(new TypeSyntaxVisitor());
         }
     }
 }

@@ -122,5 +122,47 @@ namespace CSharpDom.CodeAnalysis
         {
             return new FilteredList<TChildBaseSyntax, TChildSyntax>(CreateList(node, getList, createList), filter);
         }
+
+        public static IList<TChild> CreateFilteredList<TParent, TChild>(IList<TParent> list, Func<TChild, bool> filter)
+            where TChild : class, TParent
+        {
+            return new FilteredList<TParent, TChild>(list, filter);
+        }
+
+        public static IList<TChildNode> CreateImmutableList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(
+            Node<TParentNode, TParentSyntax> node,
+            IList<TChildSyntax> list,
+            Func<TChildNode> factory)
+            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentSyntax : class
+            where TChildNode : class, IHasNode<TChildSyntax>
+            where TChildSyntax : class
+        {
+            return new ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(node, list, factory);
+        }
+
+        public static IList<TChildNode> CreateConstraintList<TChildNode>(
+            Node<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax> node,
+            Func<string, bool> filter,
+            Func<UnspecifiedTypeReferenceWithCodeAnalysis, TChildNode> getChild)
+            where TChildNode : class, IHasNode<TypeSyntax>
+        {
+            IList<TypeParameterConstraintSyntax> constraintSyntaxList = CreateList(
+                node,
+                syntax => syntax.Constraints,
+                (parentSyntax, childSyntax) => parentSyntax.WithConstraints(childSyntax));
+            IList<TypeConstraintSyntax> filteredConstraintSyntaxList =
+                new FilteredList<TypeParameterConstraintSyntax, TypeConstraintSyntax>(
+                    constraintSyntaxList,
+                    syntax => filter(syntax.Type.ToName()));
+            IList<GenericParameterConstraint> constraintList = CreateImmutableList(
+                node,
+                filteredConstraintSyntaxList,
+                () => new GenericParameterConstraint());
+            return new WrappedList<GenericParameterConstraint, TChildNode>(
+                constraintList,
+                parent => getChild(parent.Type),
+                child => child.Node.GetParentNode<GenericParameterConstraint>());
+        }
     }
 }

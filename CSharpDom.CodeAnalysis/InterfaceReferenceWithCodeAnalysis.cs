@@ -8,7 +8,8 @@ namespace CSharpDom.CodeAnalysis
     public sealed class InterfaceReferenceWithCodeAnalysis :
         EditableInterfaceReference<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
-        IHasNode<NameSyntax>//,
+        IHasNode<NameSyntax>,
+        IInternalTypeReferenceWithCodeAnalysis//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
@@ -49,6 +50,14 @@ namespace CSharpDom.CodeAnalysis
         INode<NameSyntax> IHasNode<NameSyntax>.Node
         {
             get { return typeReference.Node; }
+        }
+
+        INode<TypeSyntax> IHasNode<TypeSyntax>.Node => throw new NotImplementedException();
+
+        TypeSyntax IHasSyntax<TypeSyntax>.Syntax
+        {
+            get => typeReference.Syntax;
+            set => typeReference.Syntax = (NameSyntax)value;
         }
 
         /*public void Accept(IReflectionVisitor visitor)

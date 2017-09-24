@@ -5,6 +5,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -18,39 +19,45 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<GenericParameterDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
-        private Guid internalId;
+        private static readonly Regex interfaceMatch = new Regex(@"^I[A-Z]", RegexOptions.Compiled);
+        private static readonly Regex genericParameterMatch = new Regex("^T(?:[A-Z]|$)", RegexOptions.Compiled);
         private readonly Node<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax> node;
         private readonly AttributeListWrapper<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax> attributes;
-        private readonly CachedChildNode<
-            GenericParameterDeclarationWithCodeAnalysis,
-            GenericParameterDeclarationSyntax,
-            ClassReferenceWithCodeAnalysis,
-            NameSyntax> baseClassConstraint;
-        private readonly SeparatedSyntaxListWrapper<
-            GenericParameterDeclarationWithCodeAnalysis,
-            GenericParameterDeclarationSyntax,
-            IInternalTypeReferenceWithCodeAnalysis,
-            TypeSyntax> constraints;
-        private readonly FilteredList<ITypeReferenceWithCodeAnalysis, GenericParameterReferenceWithCodeAnalysis> genericParameterConstraints;
+        private readonly IList<ClassReferenceWithCodeAnalysis> baseClassConstraint;
+        private readonly IList<GenericParameterReferenceWithCodeAnalysis> genericParameterConstraints;
         private readonly IList<InterfaceReferenceWithCodeAnalysis> interfaceConstraints;
+        private readonly MemberList<
+            GenericParameterDeclarationWithCodeAnalysis,
+            GenericParameterDeclarationSyntax,
+            TypeParameterConstraintSyntax> members;
 
         internal GenericParameterDeclarationWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
             node = new Node<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameter.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
-            /*constraints = new SeparatedSyntaxListWrapper<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax, IInternalTypeReferenceWithCodeAnalysis, TypeSyntax>(
+            baseClassConstraint = ListFactory.CreateConstraintList(
                 node,
-                syntax => syntax.Constraints,
-                (parentSyntax, childSyntax) => parentSyntax.WithConstraints(childSyntax),
-                () => null);*/
-            /*baseClassConstraint = new CachedChildNode<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax, ClassReferenceWithCodeAnalysis, NameSyntax>(
+                name => !interfaceMatch.IsMatch(name) && !genericParameterMatch.IsMatch(name),
+                type => new ClassReferenceWithCodeAnalysis(type));
+            genericParameterConstraints = ListFactory.CreateConstraintList(
                 node,
-                () => new ClassReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
-                syntax => syntax.n*/
+                name => genericParameterMatch.IsMatch(name),
+                type => new GenericParameterReferenceWithCodeAnalysis(type));
+            interfaceConstraints = ListFactory.CreateConstraintList(
+                node,
+                name => interfaceMatch.IsMatch(name),
+                type => new InterfaceReferenceWithCodeAnalysis(type));
+            members = new MemberList<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax, TypeParameterConstraintSyntax>(
+                node,
+                (parentSyntax, childSyntax) => parentSyntax.WithConstraints(SyntaxFactory.SeparatedList(childSyntax)))
+            {
+                { nameof(BaseClassConstraint), () => baseClassConstraint.Select(item => item.TypeReference.Node.GetParentNode<TypeParameterConstraintSyntax>()) },
+                { nameof(GenericParameterConstraints), () => genericParameterConstraints.Select(item => item.TypeReference.Node.GetParentNode<TypeParameterConstraintSyntax>()) },
+                { nameof(InterfaceConstraints), () => interfaceConstraints.Select(item => item.TypeReference.Node.GetParentNode<TypeParameterConstraintSyntax>()) }
+            };
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -61,14 +68,26 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassReferenceWithCodeAnalysis BaseClassConstraint
         {
-            get { return baseClassConstraint.Value; }
-            set { baseClassConstraint.Value = value; }
+            get { return baseClassConstraint.FirstOrDefault(); }
+            set
+            {
+                TypeParameterConstraintSyntax[] parameters = new TypeParameterConstraintSyntax[]
+                {
+                    SyntaxFactory.TypeConstraint(value.Syntax)
+                };
+                members.CombineList(nameof(BaseClassConstraint), parameters);
+            }
         }
 
         public override ICollection<GenericParameterReferenceWithCodeAnalysis> GenericParameterConstraints
         {
             get { return genericParameterConstraints; }
-            set { }
+            set
+            {
+                members.CombineList(
+                    nameof(GenericParameterConstraints),
+                    value.Select(constraint => SyntaxFactory.TypeConstraint(constraint.Syntax)));
+            }
         }
 
         public override bool HasEmptyConstructorConstraint
@@ -95,7 +114,12 @@ namespace CSharpDom.CodeAnalysis
         public override ICollection<InterfaceReferenceWithCodeAnalysis> InterfaceConstraints
         {
             get { return interfaceConstraints; }
-            set { }
+            set
+            {
+                members.CombineList(
+                    nameof(InterfaceConstraints),
+                    value.Select(constraint => SyntaxFactory.TypeConstraint(constraint.Syntax)));
+            }
         }
 
         public override string Name
@@ -111,7 +135,7 @@ namespace CSharpDom.CodeAnalysis
                 return Syntax.Constraints
                     .OfType<ClassOrStructConstraintSyntax>()
                     .Select(ToTypeConstraint)
-                    .FirstOrDefault() ?? GenericParameterTypeConstraint.None;
+                    .FirstOrDefault() ?? CSharpDom.GenericParameterTypeConstraint.None;
             }
             set
             {
@@ -121,10 +145,10 @@ namespace CSharpDom.CodeAnalysis
                     SyntaxKind kind = SyntaxKind.ClassKeyword;
                     switch (value)
                     {
-                        case GenericParameterTypeConstraint.None:
+                        case CSharpDom.GenericParameterTypeConstraint.None:
                             Syntax = syntax.WithConstraints(syntax.Constraints.RemoveAt(0));
                             return;
-                        case GenericParameterTypeConstraint.Struct:
+                        case CSharpDom.GenericParameterTypeConstraint.Struct:
                             kind = SyntaxKind.StructKeyword;
                             break;
                     }
@@ -188,7 +212,7 @@ namespace CSharpDom.CodeAnalysis
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
         }*/
-
+        
         private static GenericParameterTypeConstraint? ToTypeConstraint(ClassOrStructConstraintSyntax syntax)
         {
             return syntax.ClassOrStructKeyword.Kind() == SyntaxKind.ClassKeyword ?

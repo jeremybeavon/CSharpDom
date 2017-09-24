@@ -3,16 +3,11 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class MemberListSyntax
+    internal sealed class MemberListSyntax : MemberListSyntax<MemberDeclarationSyntax>
     {
         public MemberListSyntax(string key, IEnumerable<MemberDeclarationSyntax> syntax)
+            : base(key, syntax)
         {
-            Key = key;
-            Syntax = syntax;
         }
-
-        public string Key { get; private set; }
-
-        public IEnumerable<MemberDeclarationSyntax> Syntax { get; private set; }
     }
 }
