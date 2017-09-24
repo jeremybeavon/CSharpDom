@@ -31,7 +31,7 @@ namespace CSharpDom.CodeAnalysis
         internal SealedClassEventPropertyWithCodeAnalysis(ClassEventPropertyWithCodeAnalysis @event = null)
         {
             this.@event = @event ?? new ClassEventPropertyWithCodeAnalysis();
-            @event.DeclaringTypeFunc = () => DeclaringType.Class;
+            this.@event.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
         public ClassEventPropertyWithCodeAnalysis EventProperty

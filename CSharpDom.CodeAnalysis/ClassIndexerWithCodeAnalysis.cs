@@ -74,7 +74,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassAccessorWithCodeAnalysis GetAccessor
         {
-            get { return new ClassAccessorWithCodeAnalysis(indexer.GetAccessor); }
+            get
+            {
+                AccessorWithBodyWithCodeAnalysis accessor = indexer.GetAccessor;
+                return accessor == null ? null : new ClassAccessorWithCodeAnalysis(accessor);
+            }
             set { indexer.GetAccessor = value?.Accessor; }
 
         }
@@ -103,7 +107,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassAccessorWithCodeAnalysis SetAccessor
         {
-            get { return new ClassAccessorWithCodeAnalysis(indexer.SetAccessor); }
+            get
+            {
+                AccessorWithBodyWithCodeAnalysis accessor = indexer.SetAccessor;
+                return accessor == null ? null : new ClassAccessorWithCodeAnalysis(accessor);
+            }
             set { indexer.SetAccessor = value?.Accessor; }
         }
         

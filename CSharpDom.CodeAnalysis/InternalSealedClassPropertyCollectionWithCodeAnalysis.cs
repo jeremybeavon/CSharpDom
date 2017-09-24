@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis
             properties = new ClassPropertyListWrapper<TClass, SealedClassPropertyWithCodeAnalysis>(
                 classType.InternalNode,
                 () => new SealedClassPropertyWithCodeAnalysis(),
-                syntax => syntax.ExplicitInterfaceSpecifier != null);
+                syntax => syntax.ExplicitInterfaceSpecifier == null);
         }
         
         public override ICollection<ExplicitInterfacePropertyWithCodeAnalysis> ExplicitInterfaceProperties
