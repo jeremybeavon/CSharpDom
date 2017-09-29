@@ -41,7 +41,11 @@ namespace CSharpDom.Tests.Common
                 typeName = Regex.Replace(typeName, nameToReplace + "With", string.Empty);
             }
 
-            if (!typeName.EndsWith("BaseClass") && !typeName.EndsWith("Constraint") && !typeName.EndsWith("Constraints"))
+            if (!typeName.EndsWith("BaseClass") &&
+                !typeName.EndsWith("Constraint") &&
+                !typeName.EndsWith("Constraints") &&
+                !typeName.EndsWith("ImplementedInterface") &&
+                !typeName.EndsWith("ImplementedInterfaces"))
             {
                 string lastNamespace = namespaces[0];
                 typeName = typeName
