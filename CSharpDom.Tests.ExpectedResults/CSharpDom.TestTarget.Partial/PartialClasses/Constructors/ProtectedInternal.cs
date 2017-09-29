@@ -2,7 +2,7 @@
 {
     public partial class PartialClassWithProtectedInternalConstructor
     {
-        protected internal ClassWithProtectedInternalConstructor()
+        protected internal PartialClassWithProtectedInternalConstructor()
         {
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs
 {
-    public partial struct PartialStructWithWithGenericParameterEmptyConstructorConstraint<T>
+    public partial struct PartialStructWithGenericParameterEmptyConstructorConstraint<T>
         where T : new()
     {
     }

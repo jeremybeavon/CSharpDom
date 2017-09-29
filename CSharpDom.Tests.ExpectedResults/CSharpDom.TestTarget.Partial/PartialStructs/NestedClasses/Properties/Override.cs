@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.Properties
 {
-    public partial struct PartialStructWithWithNestedClassWithOverrideProperty
+    public partial struct PartialStructWithNestedClassWithOverrideProperty
     {
         public class Class : BaseClassWithProperty
         {

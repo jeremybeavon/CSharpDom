@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.Events.ExplicitInterfaceEvents
 {
-    public partial struct PartialStructWithWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups
+    public partial struct PartialStructWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups
     {
         public class Class : IInterfaceWithEvent
         {

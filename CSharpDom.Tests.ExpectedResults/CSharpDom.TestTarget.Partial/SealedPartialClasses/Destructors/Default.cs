@@ -2,7 +2,7 @@
 {
     public sealed partial class SealedPartialClassWithDestructor
     {
-        ~SealedClassWithDestructor()
+        ~SealedPartialClassWithDestructor()
         {
         }
     }

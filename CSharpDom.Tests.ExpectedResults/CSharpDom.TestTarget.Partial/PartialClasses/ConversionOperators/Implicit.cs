@@ -2,9 +2,9 @@
 {
     public partial class PartialClassWithImplicitConversionOperator
     {
-        public static implicit operator ClassWithImplicitConversionOperator(string text)
+        public static implicit operator PartialClassWithImplicitConversionOperator(string text)
         {
-            return default(ClassWithImplicitConversionOperator);
+            return default(PartialClassWithImplicitConversionOperator);
         }
     }
 }

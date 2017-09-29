@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithImplicitConversionOperator
     {
-        public static implicit operator SealedClassWithImplicitConversionOperator(string text)
+        public static implicit operator SealedPartialClassWithImplicitConversionOperator(string text)
         {
-            return default(SealedClassWithImplicitConversionOperator);
+            return default(SealedPartialClassWithImplicitConversionOperator);
         }
     }
 }

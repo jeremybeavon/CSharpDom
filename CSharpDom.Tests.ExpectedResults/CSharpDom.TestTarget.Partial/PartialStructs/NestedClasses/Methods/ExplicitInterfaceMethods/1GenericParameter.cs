@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.Methods.ExplicitInterfaceMethods
 {
-    public partial struct PartialStructWithWithNestedClassWithExplicitInterfaceMethodWith1GenericParameter
+    public partial struct PartialStructWithNestedClassWithExplicitInterfaceMethodWith1GenericParameter
     {
         public class Class : IInterfaceWithMethodWith1GenericParameter
         {

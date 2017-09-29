@@ -2,9 +2,9 @@
 {
     public abstract partial class AbstractPartialClassWithBitwiseNotOperatorOverload
     {
-        public static AbstractClassWithBitwiseNotOperatorOverload operator ~(AbstractClassWithBitwiseNotOperatorOverload parameter1)
+        public static AbstractPartialClassWithBitwiseNotOperatorOverload operator ~(AbstractPartialClassWithBitwiseNotOperatorOverload parameter1)
         {
-            return default(AbstractClassWithBitwiseNotOperatorOverload);
+            return default(AbstractPartialClassWithBitwiseNotOperatorOverload);
         }
     }
 }

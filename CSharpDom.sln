@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26206.0
+VisualStudioVersion = 15.0.26906.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom", "CSharpDom\CSharpDom.csproj", "{EAA58A34-7E4B-4E20-BE3C-8D7AAC4B261B}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.CodeAnalysis", "CSharpDom.CodeAnalysis\CSharpDom.CodeAnalysis.csproj", "{F0EDC858-C268-419C-B185-E80815B42E57}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.Tests.CodeAnalysis", "CSharpDom.Tests.CodeAnalysis\CSharpDom.Tests.CodeAnalysis.csproj", "{382A9121-81D6-47CA-A4CD-1B9730143D0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.TestTarget.Partial", "CSharpDom.Tests.ExpectedResults\CSharpDom.TestTarget.Partial\CSharpDom.TestTarget.Partial.csproj", "{B89B360D-5888-486D-9B1B-B16C5E45713E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,8 +77,15 @@ Global
 		{382A9121-81D6-47CA-A4CD-1B9730143D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{382A9121-81D6-47CA-A4CD-1B9730143D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{382A9121-81D6-47CA-A4CD-1B9730143D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B89B360D-5888-486D-9B1B-B16C5E45713E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B89B360D-5888-486D-9B1B-B16C5E45713E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B89B360D-5888-486D-9B1B-B16C5E45713E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B89B360D-5888-486D-9B1B-B16C5E45713E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58CC7564-D2F3-47B5-8DB8-26BB93131EE7}
 	EndGlobalSection
 EndGlobal

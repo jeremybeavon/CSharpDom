@@ -2,9 +2,9 @@
 {
     public partial class PartialClassWithImplicitConversionOperatorWith1ParameterAttribute
     {
-        public static implicit operator ClassWithImplicitConversionOperatorWith1ParameterAttribute([Attribute1]string text)
+        public static implicit operator PartialClassWithImplicitConversionOperatorWith1ParameterAttribute([Attribute1]string text)
         {
-            return default(ClassWithImplicitConversionOperatorWith1ParameterAttribute);
+            return default(PartialClassWithImplicitConversionOperatorWith1ParameterAttribute);
         }
     }
 }

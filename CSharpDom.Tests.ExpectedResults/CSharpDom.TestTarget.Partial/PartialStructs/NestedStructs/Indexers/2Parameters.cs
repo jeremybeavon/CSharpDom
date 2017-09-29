@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedStructs.Indexers
 {
-    public partial struct PartialStructWithWithNestedStructWithIndexerWith2Parameters
+    public partial struct PartialStructWithNestedStructWithIndexerWith2Parameters
     {
         public struct Struct
         {

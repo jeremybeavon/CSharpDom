@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.Methods
 {
-    public partial struct PartialStructWithWithNestedClassWithMethodWith2AttributesIn2AttributeGroups
+    public partial struct PartialStructWithNestedClassWithMethodWith2AttributesIn2AttributeGroups
     {
         public class Class
         {

@@ -2,12 +2,12 @@
 {
     public partial class PartialClassWithLessThanAndGreaterThanOperatorOverloads
     {
-        public static bool operator <(ClassWithLessThanAndGreaterThanOperatorOverloads parameter1, ClassWithLessThanAndGreaterThanOperatorOverloads parameter2)
+        public static bool operator <(PartialClassWithLessThanAndGreaterThanOperatorOverloads parameter1, PartialClassWithLessThanAndGreaterThanOperatorOverloads parameter2)
         {
             return default(bool);
         }
 
-        public static bool operator >(ClassWithLessThanAndGreaterThanOperatorOverloads parameter1, ClassWithLessThanAndGreaterThanOperatorOverloads parameter2)
+        public static bool operator >(PartialClassWithLessThanAndGreaterThanOperatorOverloads parameter1, PartialClassWithLessThanAndGreaterThanOperatorOverloads parameter2)
         {
             return default(bool);
         }

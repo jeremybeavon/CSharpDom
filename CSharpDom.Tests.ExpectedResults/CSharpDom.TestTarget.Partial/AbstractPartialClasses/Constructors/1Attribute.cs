@@ -3,7 +3,7 @@
     public abstract partial class AbstractPartialClassWithConstructorWith1Attribute
     {
         [Attribute1]
-        public AbstractClassWithConstructorWith1Attribute()
+        public AbstractPartialClassWithConstructorWith1Attribute()
         {
         }
     }

@@ -4,7 +4,7 @@
     {
         [Attribute1]
         [Attribute2]
-        public AbstractClassWithConstructorWith2AttributesIn2AttributeGroups()
+        public AbstractPartialClassWithConstructorWith2AttributesIn2AttributeGroups()
         {
         }
     }

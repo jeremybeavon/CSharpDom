@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs
 {
-    public partial struct PartialStructWithWithGenericParameterInterfaceConstraint<T>
+    public partial struct PartialStructWithGenericParameterInterfaceConstraint<T>
         where T : IInterface
     {
     }

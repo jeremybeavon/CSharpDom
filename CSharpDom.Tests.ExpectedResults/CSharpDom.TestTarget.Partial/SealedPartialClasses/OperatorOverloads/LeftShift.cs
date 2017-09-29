@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithLeftShiftOperatorOverload
     {
-        public static SealedClassWithLeftShiftOperatorOverload operator <<(SealedClassWithLeftShiftOperatorOverload parameter1, int parameter2)
+        public static SealedPartialClassWithLeftShiftOperatorOverload operator <<(SealedPartialClassWithLeftShiftOperatorOverload parameter1, int parameter2)
         {
-            return default(SealedClassWithLeftShiftOperatorOverload);
+            return default(SealedPartialClassWithLeftShiftOperatorOverload);
         }
     }
 }

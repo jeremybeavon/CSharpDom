@@ -2,7 +2,7 @@
 {
     public sealed partial class SealedPartialClassWithInternalConstructor
     {
-        internal SealedClassWithInternalConstructor()
+        internal SealedPartialClassWithInternalConstructor()
         {
         }
     }

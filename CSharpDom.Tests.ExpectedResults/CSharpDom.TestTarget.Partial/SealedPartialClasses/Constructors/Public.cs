@@ -2,7 +2,7 @@
 {
     public sealed partial class SealedPartialClassWithPublicConstructor
     {
-        public SealedClassWithPublicConstructor()
+        public SealedPartialClassWithPublicConstructor()
         {
         }
     }

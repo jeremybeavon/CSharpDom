@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedAbstractClasses.Events
 {
-    public partial struct PartialStructWithWithNestedAbstractClassWithEventWith1Attribute
+    public partial struct PartialStructWithNestedAbstractClassWithEventWith1Attribute
     {
         public abstract class Class
         {

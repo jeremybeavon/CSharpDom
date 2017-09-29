@@ -3,9 +3,9 @@
     public partial class PartialClassWithExplicitConversionOperatorWith1Attribute
     {
         [Attribute1]
-        public static explicit operator ClassWithExplicitConversionOperatorWith1Attribute(string text)
+        public static explicit operator PartialClassWithExplicitConversionOperatorWith1Attribute(string text)
         {
-            return default(ClassWithExplicitConversionOperatorWith1Attribute);
+            return default(PartialClassWithExplicitConversionOperatorWith1Attribute);
         }
     }
 }

@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.OperatorOverloads
 {
-    public partial struct PartialStructWithWithRightShiftOperatorOverload
+    public partial struct PartialStructWithRightShiftOperatorOverload
     {
-        public static StructWithRightShiftOperatorOverload operator >>(StructWithRightShiftOperatorOverload parameter1, int parameter2)
+        public static PartialStructWithRightShiftOperatorOverload operator >>(PartialStructWithRightShiftOperatorOverload parameter1, int parameter2)
         {
-            return default(StructWithRightShiftOperatorOverload);
+            return default(PartialStructWithRightShiftOperatorOverload);
         }
     }
 }

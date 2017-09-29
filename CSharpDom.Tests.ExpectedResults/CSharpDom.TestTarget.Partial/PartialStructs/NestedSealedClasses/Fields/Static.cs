@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedSealedClasses.Fields
 {
-    public partial struct PartialStructWithWithNestedSealedClassWithStaticField
+    public partial struct PartialStructWithNestedSealedClassWithStaticField
     {
         public sealed class Class
         {

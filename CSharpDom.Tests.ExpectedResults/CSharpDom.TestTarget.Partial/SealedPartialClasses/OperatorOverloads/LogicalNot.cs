@@ -2,7 +2,7 @@
 {
     public sealed partial class SealedPartialClassWithLogicalNotOperatorOverload
     {
-        public static bool operator !(SealedClassWithLogicalNotOperatorOverload parameter1)
+        public static bool operator !(SealedPartialClassWithLogicalNotOperatorOverload parameter1)
         {
             return default(bool);
         }

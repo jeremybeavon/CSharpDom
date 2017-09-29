@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedAbstractClasses.Properties.AutoProperties
 {
-    public partial struct PartialStructWithWithNestedAbstractClassWithNewAutoProperty
+    public partial struct PartialStructWithNestedAbstractClassWithNewAutoProperty
     {
         public abstract class Class : BaseClassWithProperty
         {

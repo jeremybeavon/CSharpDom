@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.AbstractPartialClasses.NestedStructs.Indexers
 {
-    public abstract partial class AbstractPartialClassWithNestedStructWithIndexerWithWith2AttributesIn1AttributeGroup
+    public abstract partial class AbstractPartialClassWithNestedStructWithIndexerWith2AttributesIn1AttributeGroup
     {
         public struct Struct
         {

@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithDecrementOperatorOverload
     {
-        public static SealedClassWithDecrementOperatorOverload operator --(SealedClassWithDecrementOperatorOverload parameter1)
+        public static SealedPartialClassWithDecrementOperatorOverload operator --(SealedPartialClassWithDecrementOperatorOverload parameter1)
         {
-            return default(SealedClassWithDecrementOperatorOverload);
+            return default(SealedPartialClassWithDecrementOperatorOverload);
         }
     }
 }

@@ -2,9 +2,9 @@
 {
     public partial class PartialClassWithUnaryPlusOperatorOverload
     {
-        public static ClassWithUnaryPlusOperatorOverload operator +(ClassWithUnaryPlusOperatorOverload parameter1)
+        public static PartialClassWithUnaryPlusOperatorOverload operator +(PartialClassWithUnaryPlusOperatorOverload parameter1)
         {
-            return default(ClassWithUnaryPlusOperatorOverload);
+            return default(PartialClassWithUnaryPlusOperatorOverload);
         }
     }
 }

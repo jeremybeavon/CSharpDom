@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithBitwiseNotOperatorOverload
     {
-        public static SealedClassWithBitwiseNotOperatorOverload operator ~(SealedClassWithBitwiseNotOperatorOverload parameter1)
+        public static SealedPartialClassWithBitwiseNotOperatorOverload operator ~(SealedPartialClassWithBitwiseNotOperatorOverload parameter1)
         {
-            return default(SealedClassWithBitwiseNotOperatorOverload);
+            return default(SealedPartialClassWithBitwiseNotOperatorOverload);
         }
     }
 }

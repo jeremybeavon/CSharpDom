@@ -3,7 +3,7 @@
     public abstract partial class AbstractPartialClassWithConstructorWith2AttributesIn1AttributeGroup
     {
         [Attribute1, Attribute2]
-        public AbstractClassWithConstructorWith2AttributesIn1AttributeGroup()
+        public AbstractPartialClassWithConstructorWith2AttributesIn1AttributeGroup()
         {
         }
     }

@@ -2,9 +2,9 @@
 {
     public abstract partial class AbstractPartialClassWithLeftShiftOperatorOverload
     {
-        public static AbstractClassWithLeftShiftOperatorOverload operator <<(AbstractClassWithLeftShiftOperatorOverload parameter1, int parameter2)
+        public static AbstractPartialClassWithLeftShiftOperatorOverload operator <<(AbstractPartialClassWithLeftShiftOperatorOverload parameter1, int parameter2)
         {
-            return default(AbstractClassWithLeftShiftOperatorOverload);
+            return default(AbstractPartialClassWithLeftShiftOperatorOverload);
         }
     }
 }

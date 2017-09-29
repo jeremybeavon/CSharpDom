@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithMultiplyOperatorOverload
     {
-        public static SealedClassWithMultiplyOperatorOverload operator *(SealedClassWithMultiplyOperatorOverload parameter1, SealedClassWithMultiplyOperatorOverload parameter2)
+        public static SealedPartialClassWithMultiplyOperatorOverload operator *(SealedPartialClassWithMultiplyOperatorOverload parameter1, SealedPartialClassWithMultiplyOperatorOverload parameter2)
         {
-            return default(SealedClassWithMultiplyOperatorOverload);
+            return default(SealedPartialClassWithMultiplyOperatorOverload);
         }
     }
 }

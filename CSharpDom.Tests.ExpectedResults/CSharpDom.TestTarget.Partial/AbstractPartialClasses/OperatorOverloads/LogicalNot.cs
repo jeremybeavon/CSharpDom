@@ -2,7 +2,7 @@
 {
     public abstract partial class AbstractPartialClassWithLogicalNotOperatorOverload
     {
-        public static bool operator !(AbstractClassWithLogicalNotOperatorOverload parameter1)
+        public static bool operator !(AbstractPartialClassWithLogicalNotOperatorOverload parameter1)
         {
             return default(bool);
         }

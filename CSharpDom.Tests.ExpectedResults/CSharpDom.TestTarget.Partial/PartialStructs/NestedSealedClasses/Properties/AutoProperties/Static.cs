@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedSealedClasses.Properties.AutoProperties
 {
-    public partial struct PartialStructWithWithNestedSealedClassWithStaticAutoProperty
+    public partial struct PartialStructWithNestedSealedClassWithStaticAutoProperty
     {
         public sealed class Class
         {

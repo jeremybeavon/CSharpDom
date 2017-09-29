@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.Events.EventProperties
 {
-    public partial struct PartialStructWithWithStaticEventProperty
+    public partial struct PartialStructWithStaticEventProperty
     {
         public static event EventHandler Event
         {

@@ -1,8 +1,8 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.Constructors
 {
-    public partial struct PartialStructWithWithPrivateConstructor
+    public partial struct PartialStructWithPrivateConstructor
     {
-        private StructWithPrivateConstructor(string text)
+        private PartialStructWithPrivateConstructor(string text)
         {
         }
     }

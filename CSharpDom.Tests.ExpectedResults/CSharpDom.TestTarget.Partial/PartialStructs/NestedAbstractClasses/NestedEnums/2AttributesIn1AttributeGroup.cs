@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedAbstractClasses.NestedEnums
 {
-    public partial struct PartialStructWithWithNestedAbstractClassWithNestedEnumWith2AttributesIn1AttributeGroup
+    public partial struct PartialStructWithNestedAbstractClassWithNestedEnumWith2AttributesIn1AttributeGroup
     {
         public abstract class Class
         {

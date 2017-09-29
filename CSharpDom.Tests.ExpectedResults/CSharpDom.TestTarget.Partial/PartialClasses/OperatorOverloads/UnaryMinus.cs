@@ -2,9 +2,9 @@
 {
     public partial class PartialClassWithUnaryMinusOperatorOverload
     {
-        public static ClassWithUnaryMinusOperatorOverload operator -(ClassWithUnaryMinusOperatorOverload parameter1)
+        public static PartialClassWithUnaryMinusOperatorOverload operator -(PartialClassWithUnaryMinusOperatorOverload parameter1)
         {
-            return default(ClassWithUnaryMinusOperatorOverload);
+            return default(PartialClassWithUnaryMinusOperatorOverload);
         }
     }
 }

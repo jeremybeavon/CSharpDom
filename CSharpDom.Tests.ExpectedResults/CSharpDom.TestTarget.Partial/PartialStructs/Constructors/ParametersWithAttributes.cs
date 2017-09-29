@@ -1,8 +1,8 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.Constructors
 {
-    public partial struct PartialStructWithWithConstructorWithParametersWithAttributes
+    public partial struct PartialStructWithConstructorWithParametersWithAttributes
     {
-        public StructWithConstructorWithParametersWithAttributes([Attribute1]string parameter1, [Attribute2][Attribute3]string parameter2)
+        public PartialStructWithConstructorWithParametersWithAttributes([Attribute1]string parameter1, [Attribute2][Attribute3]string parameter2)
         {
         }
     }

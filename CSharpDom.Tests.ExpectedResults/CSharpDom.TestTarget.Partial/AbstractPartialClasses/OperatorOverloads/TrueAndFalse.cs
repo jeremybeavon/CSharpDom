@@ -2,12 +2,12 @@
 {
     public abstract partial class AbstractPartialClassWithTrueAndFalseOperatorOverloads
     {
-        public static bool operator true(AbstractClassWithTrueAndFalseOperatorOverloads parameter1)
+        public static bool operator true(AbstractPartialClassWithTrueAndFalseOperatorOverloads parameter1)
         {
             return default(bool);
         }
 
-        public static bool operator false(AbstractClassWithTrueAndFalseOperatorOverloads parameter1)
+        public static bool operator false(AbstractPartialClassWithTrueAndFalseOperatorOverloads parameter1)
         {
             return default(bool);
         }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs
 {
-    public partial struct PartialStructWithWith2GenericParameters<TKey, TValue>
+    public partial struct PartialStructWith2GenericParameters<TKey, TValue>
     {
     }
 }

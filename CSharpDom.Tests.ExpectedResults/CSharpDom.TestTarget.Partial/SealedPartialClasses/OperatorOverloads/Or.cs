@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithOrOperatorOverload
     {
-        public static SealedClassWithOrOperatorOverload operator |(SealedClassWithOrOperatorOverload parameter1, SealedClassWithOrOperatorOverload parameter2)
+        public static SealedPartialClassWithOrOperatorOverload operator |(SealedPartialClassWithOrOperatorOverload parameter1, SealedPartialClassWithOrOperatorOverload parameter2)
         {
-            return default(SealedClassWithOrOperatorOverload);
+            return default(SealedPartialClassWithOrOperatorOverload);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.Events
 {
-    public partial struct PartialStructWithWithPrivateEvent
+    public partial struct PartialStructWithPrivateEvent
     {
         private event EventHandler Event;
     }

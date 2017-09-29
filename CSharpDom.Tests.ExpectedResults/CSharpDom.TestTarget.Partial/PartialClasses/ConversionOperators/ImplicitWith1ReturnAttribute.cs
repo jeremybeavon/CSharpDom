@@ -3,9 +3,9 @@
     public partial class PartialClassWithImplicitConversionOperatorWith1ReturnAttribute
     {
         [return: Attribute1]
-        public static implicit operator ClassWithImplicitConversionOperatorWith1ReturnAttribute(string text)
+        public static implicit operator PartialClassWithImplicitConversionOperatorWith1ReturnAttribute(string text)
         {
-            return default(ClassWithImplicitConversionOperatorWith1ReturnAttribute);
+            return default(PartialClassWithImplicitConversionOperatorWith1ReturnAttribute);
         }
     }
 }

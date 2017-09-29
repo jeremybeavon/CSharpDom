@@ -2,7 +2,7 @@
 {
     public partial class PartialClassWithPrivateConstructor
     {
-        private ClassWithPrivateConstructor()
+        private PartialClassWithPrivateConstructor()
         {
         }
     }

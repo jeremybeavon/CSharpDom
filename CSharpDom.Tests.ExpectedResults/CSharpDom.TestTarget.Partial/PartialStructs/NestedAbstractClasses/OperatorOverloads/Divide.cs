@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedAbstractClasses.OperatorOverloads
 {
-    public partial struct PartialStructWithWithNestedAbstractClassWithDivideOperatorOverload
+    public partial struct PartialStructWithNestedAbstractClassWithDivideOperatorOverload
     {
         public abstract class Class
         {

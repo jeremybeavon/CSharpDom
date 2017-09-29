@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.ConversionOperators
 {
-    public partial struct PartialStructWithWithNestedClassWithImplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup
+    public partial struct PartialStructWithNestedClassWithImplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup
     {
         public class Class
         {

@@ -3,7 +3,7 @@
     public partial class PartialClassWithDestructorWith1Attribute
     {
         [Attribute1]
-        ~ClassWithDestructorWith1Attribute()
+        ~PartialClassWithDestructorWith1Attribute()
         {
         }
     }

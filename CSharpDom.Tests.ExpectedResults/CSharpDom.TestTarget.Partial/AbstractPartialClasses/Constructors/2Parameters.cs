@@ -2,7 +2,7 @@
 {
     public abstract partial class AbstractPartialClassWithConstructorWith2Parameters
     {
-        public AbstractClassWithConstructorWith2Parameters(string text, int integer)
+        public AbstractPartialClassWithConstructorWith2Parameters(string text, int integer)
         {
         }
     }

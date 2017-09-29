@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedStructs.Events.EventProperties
 {
-    public partial struct PartialStructWithWithNestedStructWithPublicEventProperty
+    public partial struct PartialStructWithNestedStructWithPublicEventProperty
     {
         public struct Struct
         {

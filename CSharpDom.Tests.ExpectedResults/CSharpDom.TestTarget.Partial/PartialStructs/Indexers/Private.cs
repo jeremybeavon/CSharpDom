@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.Indexers
 {
-    public partial struct PartialStructWithWithPrivateIndexer
+    public partial struct PartialStructWithPrivateIndexer
     {
         private string this[int index]
         {

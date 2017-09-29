@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithUnaryMinusOperatorOverload
     {
-        public static SealedClassWithUnaryMinusOperatorOverload operator -(SealedClassWithUnaryMinusOperatorOverload parameter1)
+        public static SealedPartialClassWithUnaryMinusOperatorOverload operator -(SealedPartialClassWithUnaryMinusOperatorOverload parameter1)
         {
-            return default(SealedClassWithUnaryMinusOperatorOverload);
+            return default(SealedPartialClassWithUnaryMinusOperatorOverload);
         }
     }
 }

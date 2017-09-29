@@ -4,9 +4,9 @@
     {
         [return: Attribute1]
         [return: Attribute2]
-        public static implicit operator AbstractClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups(string text)
+        public static implicit operator AbstractPartialClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups(string text)
         {
-            return default(AbstractClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups);
+            return default(AbstractPartialClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedAbstractClasses.Methods.ExplicitInterfaceMethods
 {
-    public partial struct PartialStructWithWithNestedAbstractClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups
+    public partial struct PartialStructWithNestedAbstractClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups
     {
         public abstract class Class : IInterfaceWithMethod
         {

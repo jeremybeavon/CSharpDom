@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.Structs.NestedSealedPartialClasses.Indexers
 {
-    public struct StructWithNestedSealedPartialClassWithIndexerWithWith2AttributesIn1AttributeGroup
+    public struct StructWithNestedSealedPartialClassWithIndexerWith2AttributesIn1AttributeGroup
     {
         public sealed partial class Class
         {

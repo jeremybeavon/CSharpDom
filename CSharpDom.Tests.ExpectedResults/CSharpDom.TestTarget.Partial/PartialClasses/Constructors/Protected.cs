@@ -2,7 +2,7 @@
 {
     public partial class PartialClassWithProtectedConstructor
     {
-        protected ClassWithProtectedConstructor()
+        protected PartialClassWithProtectedConstructor()
         {
         }
     }

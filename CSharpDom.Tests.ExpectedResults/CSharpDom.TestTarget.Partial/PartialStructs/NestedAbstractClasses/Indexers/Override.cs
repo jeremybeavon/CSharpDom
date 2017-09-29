@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedAbstractClasses.Indexers
 {
-    public partial struct PartialStructWithWithNestedAbstractClassWithOverrideIndexer
+    public partial struct PartialStructWithNestedAbstractClassWithOverrideIndexer
     {
         public abstract class Class : BaseClassWithIndexer
         {

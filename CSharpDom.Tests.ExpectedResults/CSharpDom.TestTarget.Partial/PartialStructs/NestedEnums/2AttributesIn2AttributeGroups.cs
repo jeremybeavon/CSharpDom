@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedEnums
 {
-    public partial struct PartialStructWithWithNestedEnumWith2AttributesIn2AttributeGroups
+    public partial struct PartialStructWithNestedEnumWith2AttributesIn2AttributeGroups
     {
         [Attribute1]
         [Attribute2]

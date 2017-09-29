@@ -2,7 +2,7 @@
 {
     public abstract partial class AbstractPartialClassWithDestructor
     {
-        ~AbstractClassWithDestructor()
+        ~AbstractPartialClassWithDestructor()
         {
         }
     }

@@ -2,7 +2,7 @@
 {
     public sealed partial class SealedPartialClassWithConstructorWith1Parameter
     {
-        public SealedClassWithConstructorWith1Parameter(string text)
+        public SealedPartialClassWithConstructorWith1Parameter(string text)
         {
         }
     }

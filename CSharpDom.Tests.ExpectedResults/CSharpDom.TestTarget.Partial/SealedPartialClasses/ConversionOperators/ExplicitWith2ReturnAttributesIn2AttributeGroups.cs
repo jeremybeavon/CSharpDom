@@ -4,9 +4,9 @@
     {
         [return: Attribute1]
         [return: Attribute2]
-        public static explicit operator SealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups(string text)
+        public static explicit operator SealedPartialClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups(string text)
         {
-            return default(SealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups);
+            return default(SealedPartialClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups);
         }
     }
 }

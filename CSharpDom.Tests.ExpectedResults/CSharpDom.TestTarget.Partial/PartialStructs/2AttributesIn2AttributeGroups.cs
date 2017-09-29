@@ -2,7 +2,7 @@
 {
     [Attribute1]
     [Attribute2]
-    public partial struct PartialStructWithWith2AttributesIn2AttributeGroups
+    public partial struct PartialStructWith2AttributesIn2AttributeGroups
     {
     }
 }

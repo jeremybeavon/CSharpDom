@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedAbstractClasses.ConversionOperators
 {
-    public partial struct PartialStructWithWithNestedAbstractClassWithImplicitConversionOperator
+    public partial struct PartialStructWithNestedAbstractClassWithImplicitConversionOperator
     {
         public abstract class Class
         {

@@ -2,7 +2,7 @@
 {
     public sealed partial class SealedPartialClassWithConstructorWithParametersWithModifiers
     {
-        public SealedClassWithConstructorWithParametersWithModifiers(ref string text, out int integer, params object[] objects)
+        public SealedPartialClassWithConstructorWithParametersWithModifiers(ref string text, out int integer, params object[] objects)
         {
             integer = default(int);
         }

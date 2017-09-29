@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialClasses.NestedClasses.Indexers
 {
-    public partial class PartialClassWithNestedClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup
+    public partial class PartialClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroup
     {
         public class Class
         {

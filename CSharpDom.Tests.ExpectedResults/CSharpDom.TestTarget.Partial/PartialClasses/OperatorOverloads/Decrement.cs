@@ -2,9 +2,9 @@
 {
     public partial class PartialClassWithDecrementOperatorOverload
     {
-        public static ClassWithDecrementOperatorOverload operator --(ClassWithDecrementOperatorOverload parameter1)
+        public static PartialClassWithDecrementOperatorOverload operator --(PartialClassWithDecrementOperatorOverload parameter1)
         {
-            return default(ClassWithDecrementOperatorOverload);
+            return default(PartialClassWithDecrementOperatorOverload);
         }
     }
 }

@@ -2,12 +2,12 @@
 {
     public sealed partial class SealedPartialClassWithLessThanAndGreaterThanOperatorOverloads
     {
-        public static bool operator <(SealedClassWithLessThanAndGreaterThanOperatorOverloads parameter1, SealedClassWithLessThanAndGreaterThanOperatorOverloads parameter2)
+        public static bool operator <(SealedPartialClassWithLessThanAndGreaterThanOperatorOverloads parameter1, SealedPartialClassWithLessThanAndGreaterThanOperatorOverloads parameter2)
         {
             return default(bool);
         }
 
-        public static bool operator >(SealedClassWithLessThanAndGreaterThanOperatorOverloads parameter1, SealedClassWithLessThanAndGreaterThanOperatorOverloads parameter2)
+        public static bool operator >(SealedPartialClassWithLessThanAndGreaterThanOperatorOverloads parameter1, SealedPartialClassWithLessThanAndGreaterThanOperatorOverloads parameter2)
         {
             return default(bool);
         }

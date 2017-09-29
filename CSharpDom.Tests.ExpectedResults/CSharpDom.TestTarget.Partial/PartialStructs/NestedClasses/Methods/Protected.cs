@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.Methods
 {
-    public partial struct PartialStructWithWithNestedClassWithProtectedMethod
+    public partial struct PartialStructWithNestedClassWithProtectedMethod
     {
         public class Class
         {

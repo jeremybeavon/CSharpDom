@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups
     {
-        public static implicit operator SealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups([Attribute1][Attribute2]string text)
+        public static implicit operator SealedPartialClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups([Attribute1][Attribute2]string text)
         {
-            return default(SealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups);
+            return default(SealedPartialClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups);
         }
     }
 }

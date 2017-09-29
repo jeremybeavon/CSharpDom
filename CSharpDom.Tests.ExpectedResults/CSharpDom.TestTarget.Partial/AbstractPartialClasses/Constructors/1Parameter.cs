@@ -2,7 +2,7 @@
 {
     public abstract partial class AbstractPartialClassWithConstructorWith1Parameter
     {
-        public AbstractClassWithConstructorWith1Parameter(string text)
+        public AbstractPartialClassWithConstructorWith1Parameter(string text)
         {
         }
     }

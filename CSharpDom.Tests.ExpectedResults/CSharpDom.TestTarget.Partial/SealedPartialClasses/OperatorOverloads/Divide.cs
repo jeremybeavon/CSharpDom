@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithDivideOperatorOverload
     {
-        public static SealedClassWithDivideOperatorOverload operator /(SealedClassWithDivideOperatorOverload parameter1, SealedClassWithDivideOperatorOverload parameter2)
+        public static SealedPartialClassWithDivideOperatorOverload operator /(SealedPartialClassWithDivideOperatorOverload parameter1, SealedPartialClassWithDivideOperatorOverload parameter2)
         {
-            return default(SealedClassWithDivideOperatorOverload);
+            return default(SealedPartialClassWithDivideOperatorOverload);
         }
     }
 }

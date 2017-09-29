@@ -3,9 +3,9 @@
     public sealed partial class SealedPartialClassWithImplicitConversionOperatorWith1Attribute
     {
         [Attribute1]
-        public static implicit operator SealedClassWithImplicitConversionOperatorWith1Attribute(string text)
+        public static implicit operator SealedPartialClassWithImplicitConversionOperatorWith1Attribute(string text)
         {
-            return default(SealedClassWithImplicitConversionOperatorWith1Attribute);
+            return default(SealedPartialClassWithImplicitConversionOperatorWith1Attribute);
         }
     }
 }

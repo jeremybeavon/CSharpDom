@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialClasses.Indexers
 {
-    public partial class PartialClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup
+    public partial class PartialClassWithIndexerWith2AccessorAttributesIn1AttributeGroup
     {
         public string this[int index]
         {

@@ -4,7 +4,7 @@
     {
         [Attribute1]
         [Attribute2]
-        public SealedClassWithConstructorWith2AttributesIn2AttributeGroups()
+        public SealedPartialClassWithConstructorWith2AttributesIn2AttributeGroups()
         {
         }
     }

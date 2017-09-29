@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithModuloOperatorOverload
     {
-        public static SealedClassWithModuloOperatorOverload operator %(SealedClassWithModuloOperatorOverload parameter1, SealedClassWithModuloOperatorOverload parameter2)
+        public static SealedPartialClassWithModuloOperatorOverload operator %(SealedPartialClassWithModuloOperatorOverload parameter1, SealedPartialClassWithModuloOperatorOverload parameter2)
         {
-            return default(SealedClassWithModuloOperatorOverload);
+            return default(SealedPartialClassWithModuloOperatorOverload);
         }
     }
 }

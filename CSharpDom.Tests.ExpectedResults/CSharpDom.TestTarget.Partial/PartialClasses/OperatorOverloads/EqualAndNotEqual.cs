@@ -2,12 +2,12 @@
 {
     public partial class PartialClassWithEqualAndNotEqualOperatorOverloads
     {
-        public static bool operator ==(ClassWithEqualAndNotEqualOperatorOverloads parameter1, ClassWithEqualAndNotEqualOperatorOverloads parameter2)
+        public static bool operator ==(PartialClassWithEqualAndNotEqualOperatorOverloads parameter1, PartialClassWithEqualAndNotEqualOperatorOverloads parameter2)
         {
             return default(bool);
         }
 
-        public static bool operator !=(ClassWithEqualAndNotEqualOperatorOverloads parameter1, ClassWithEqualAndNotEqualOperatorOverloads parameter2)
+        public static bool operator !=(PartialClassWithEqualAndNotEqualOperatorOverloads parameter1, PartialClassWithEqualAndNotEqualOperatorOverloads parameter2)
         {
             return default(bool);
         }

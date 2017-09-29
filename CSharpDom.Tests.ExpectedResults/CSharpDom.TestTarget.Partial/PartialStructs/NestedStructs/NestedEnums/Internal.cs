@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedStructs.NestedEnums
 {
-    public partial struct PartialStructWithWithNestedStructWithInternalNestedEnum
+    public partial struct PartialStructWithNestedStructWithInternalNestedEnum
     {
         public struct Struct
         {

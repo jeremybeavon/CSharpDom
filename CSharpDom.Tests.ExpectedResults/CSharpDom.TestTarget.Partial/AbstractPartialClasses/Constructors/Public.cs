@@ -2,7 +2,7 @@
 {
     public abstract partial class AbstractPartialClassWithPublicConstructor
     {
-        public AbstractClassWithPublicConstructor()
+        public AbstractPartialClassWithPublicConstructor()
         {
         }
     }

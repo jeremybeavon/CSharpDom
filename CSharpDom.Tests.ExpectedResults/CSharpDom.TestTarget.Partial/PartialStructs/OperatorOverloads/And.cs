@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.OperatorOverloads
 {
-    public partial struct PartialStructWithWithAndOperatorOverload
+    public partial struct PartialStructWithAndOperatorOverload
     {
-        public static StructWithAndOperatorOverload operator &(StructWithAndOperatorOverload parameter1, StructWithAndOperatorOverload parameter2)
+        public static PartialStructWithAndOperatorOverload operator &(PartialStructWithAndOperatorOverload parameter1, PartialStructWithAndOperatorOverload parameter2)
         {
-            return default(StructWithAndOperatorOverload);
+            return default(PartialStructWithAndOperatorOverload);
         }
     }
 }

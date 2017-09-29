@@ -2,9 +2,9 @@
 {
     public partial class PartialClassWithModuloOperatorOverload
     {
-        public static ClassWithModuloOperatorOverload operator %(ClassWithModuloOperatorOverload parameter1, ClassWithModuloOperatorOverload parameter2)
+        public static PartialClassWithModuloOperatorOverload operator %(PartialClassWithModuloOperatorOverload parameter1, PartialClassWithModuloOperatorOverload parameter2)
         {
-            return default(ClassWithModuloOperatorOverload);
+            return default(PartialClassWithModuloOperatorOverload);
         }
     }
 }

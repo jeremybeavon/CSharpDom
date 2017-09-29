@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.StaticClasses.NestedAbstractPartialClasses.Indexers
 {
-    public static class StaticClassWithNestedAbstractPartialClassWithIndexerWithWith2AttributesIn1AttributeGroup
+    public static class StaticClassWithNestedAbstractPartialClassWithIndexerWith2AttributesIn1AttributeGroup
     {
         public abstract partial class Class
         {

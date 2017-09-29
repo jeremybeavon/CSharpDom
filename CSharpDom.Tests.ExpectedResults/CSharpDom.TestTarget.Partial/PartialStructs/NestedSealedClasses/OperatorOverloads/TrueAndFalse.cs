@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedSealedClasses.OperatorOverloads
 {
-    public partial struct PartialStructWithWithNestedSealedClassWithTrueAndFalseOperatorOverloads
+    public partial struct PartialStructWithNestedSealedClassWithTrueAndFalseOperatorOverloads
     {
         public sealed class Class
         {

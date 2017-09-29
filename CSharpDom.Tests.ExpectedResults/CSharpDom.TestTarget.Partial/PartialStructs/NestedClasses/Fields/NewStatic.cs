@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.Fields
 {
-    public partial struct PartialStructWithWithNestedClassWithNewStaticField
+    public partial struct PartialStructWithNestedClassWithNewStaticField
     {
         public class Class : BaseClassWithField
         {

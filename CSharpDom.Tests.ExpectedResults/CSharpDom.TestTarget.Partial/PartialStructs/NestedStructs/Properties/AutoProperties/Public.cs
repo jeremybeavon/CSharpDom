@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedStructs.Properties.AutoProperties
 {
-    public partial struct PartialStructWithWithNestedStructWithPublicAutoProperty
+    public partial struct PartialStructWithNestedStructWithPublicAutoProperty
     {
         public struct Struct
         {

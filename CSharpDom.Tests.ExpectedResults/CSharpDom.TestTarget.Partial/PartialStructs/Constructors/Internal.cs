@@ -1,8 +1,8 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.Constructors
 {
-    public partial struct PartialStructWithWithInternalConstructor
+    public partial struct PartialStructWithInternalConstructor
     {
-        internal StructWithInternalConstructor(string text)
+        internal PartialStructWithInternalConstructor(string text)
         {
         }
     }

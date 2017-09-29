@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedSealedClasses.NestedStructs
 {
-    public partial struct PartialStructWithWithNestedSealedClassWithNestedStructWith2AttributesIn2AttributeGroups
+    public partial struct PartialStructWithNestedSealedClassWithNestedStructWith2AttributesIn2AttributeGroups
     {
         public sealed class Class
         {

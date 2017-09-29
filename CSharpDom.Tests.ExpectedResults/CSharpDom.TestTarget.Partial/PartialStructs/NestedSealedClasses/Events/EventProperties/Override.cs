@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedSealedClasses.Events.EventProperties
 {
-    public partial struct PartialStructWithWithNestedSealedClassWithOverrideEventProperty
+    public partial struct PartialStructWithNestedSealedClassWithOverrideEventProperty
     {
         public sealed class Class : BaseClassWithEvent
         {

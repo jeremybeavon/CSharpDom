@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.ConversionOperators
 {
-    public partial struct PartialStructWithWithExplicitConversionOperator
+    public partial struct PartialStructWithExplicitConversionOperator
     {
-        public static explicit operator StructWithExplicitConversionOperator(string text)
+        public static explicit operator PartialStructWithExplicitConversionOperator(string text)
         {
-            return default(StructWithExplicitConversionOperator);
+            return default(PartialStructWithExplicitConversionOperator);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs
 {
-    public partial struct PartialStructWithWith1ImplementedInterface : IInterface
+    public partial struct PartialStructWith1ImplementedInterface : IInterface
     {
     }
 }

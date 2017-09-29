@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedAbstractClasses.Indexers.ExplicitInterfaceIndexers
 {
-    public partial struct PartialStructWithWithNestedAbstractClassWithExplicitInterfaceIndexerWith1Attribute
+    public partial struct PartialStructWithNestedAbstractClassWithExplicitInterfaceIndexerWith1Attribute
     {
         public abstract class Class : IInterfaceWithIndexer
         {

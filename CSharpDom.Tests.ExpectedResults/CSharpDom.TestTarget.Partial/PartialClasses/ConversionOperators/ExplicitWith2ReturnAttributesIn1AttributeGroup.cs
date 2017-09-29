@@ -3,9 +3,9 @@
     public partial class PartialClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup
     {
         [return: Attribute1, Attribute2]
-        public static explicit operator ClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup(string text)
+        public static explicit operator PartialClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup(string text)
         {
-            return default(ClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup);
+            return default(PartialClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup);
         }
     }
 }

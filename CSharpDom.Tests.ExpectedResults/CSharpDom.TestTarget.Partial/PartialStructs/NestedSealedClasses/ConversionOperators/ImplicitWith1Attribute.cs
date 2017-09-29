@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedSealedClasses.ConversionOperators
 {
-    public partial struct PartialStructWithWithNestedSealedClassWithImplicitConversionOperatorWith1Attribute
+    public partial struct PartialStructWithNestedSealedClassWithImplicitConversionOperatorWith1Attribute
     {
         public sealed class Class
         {

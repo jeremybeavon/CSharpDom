@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.NestedSealedClasses
 {
-    public partial struct PartialStructWithWithNestedClassWithNestedSealedClassWithGenericParameterGenericParameterConstraint
+    public partial struct PartialStructWithNestedClassWithNestedSealedClassWithGenericParameterGenericParameterConstraint
     {
         public class Class
         {

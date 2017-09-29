@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedStructs.OperatorOverloads
 {
-    public partial struct PartialStructWithWithNestedStructWithBitwiseNotOperatorOverload
+    public partial struct PartialStructWithNestedStructWithBitwiseNotOperatorOverload
     {
         public struct Struct
         {

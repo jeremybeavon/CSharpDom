@@ -2,9 +2,9 @@
 {
     public abstract partial class AbstractPartialClassWithExclusiveOrOperatorOverload
     {
-        public static AbstractClassWithExclusiveOrOperatorOverload operator ^(AbstractClassWithExclusiveOrOperatorOverload parameter1, AbstractClassWithExclusiveOrOperatorOverload parameter2)
+        public static AbstractPartialClassWithExclusiveOrOperatorOverload operator ^(AbstractPartialClassWithExclusiveOrOperatorOverload parameter1, AbstractPartialClassWithExclusiveOrOperatorOverload parameter2)
         {
-            return default(AbstractClassWithExclusiveOrOperatorOverload);
+            return default(AbstractPartialClassWithExclusiveOrOperatorOverload);
         }
     }
 }

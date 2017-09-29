@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.Events
 {
-    public partial struct PartialStructWithWithNestedClassWithStaticEvent
+    public partial struct PartialStructWithNestedClassWithStaticEvent
     {
         public class Class
         {

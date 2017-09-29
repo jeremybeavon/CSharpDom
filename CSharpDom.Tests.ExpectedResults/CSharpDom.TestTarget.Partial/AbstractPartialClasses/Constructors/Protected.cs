@@ -2,7 +2,7 @@
 {
     public abstract partial class AbstractPartialClassWithProtectedConstructor
     {
-        protected AbstractClassWithProtectedConstructor()
+        protected AbstractPartialClassWithProtectedConstructor()
         {
         }
     }

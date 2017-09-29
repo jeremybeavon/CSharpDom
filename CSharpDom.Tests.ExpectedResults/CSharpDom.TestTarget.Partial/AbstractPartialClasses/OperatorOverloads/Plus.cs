@@ -2,9 +2,9 @@
 {
     public abstract partial class AbstractPartialClassWithPlusOperatorOverload
     {
-        public static AbstractClassWithPlusOperatorOverload operator +(AbstractClassWithPlusOperatorOverload parameter1, AbstractClassWithPlusOperatorOverload parameter2)
+        public static AbstractPartialClassWithPlusOperatorOverload operator +(AbstractPartialClassWithPlusOperatorOverload parameter1, AbstractPartialClassWithPlusOperatorOverload parameter2)
         {
-            return default(AbstractClassWithPlusOperatorOverload);
+            return default(AbstractPartialClassWithPlusOperatorOverload);
         }
     }
 }

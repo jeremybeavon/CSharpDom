@@ -2,7 +2,7 @@
 {
     public partial class PartialClassWithConstructorWith2Parameters
     {
-        public ClassWithConstructorWith2Parameters(string text, int integer)
+        public PartialClassWithConstructorWith2Parameters(string text, int integer)
         {
         }
     }

@@ -1,8 +1,8 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.OperatorOverloads
 {
-    public partial struct PartialStructWithWithLogicalNotOperatorOverload
+    public partial struct PartialStructWithLogicalNotOperatorOverload
     {
-        public static bool operator !(StructWithLogicalNotOperatorOverload parameter1)
+        public static bool operator !(PartialStructWithLogicalNotOperatorOverload parameter1)
         {
             return default(bool);
         }

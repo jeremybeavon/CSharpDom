@@ -2,9 +2,9 @@
 {
     public partial class PartialClassWithMultiplyOperatorOverload
     {
-        public static ClassWithMultiplyOperatorOverload operator *(ClassWithMultiplyOperatorOverload parameter1, ClassWithMultiplyOperatorOverload parameter2)
+        public static PartialClassWithMultiplyOperatorOverload operator *(PartialClassWithMultiplyOperatorOverload parameter1, PartialClassWithMultiplyOperatorOverload parameter2)
         {
-            return default(ClassWithMultiplyOperatorOverload);
+            return default(PartialClassWithMultiplyOperatorOverload);
         }
     }
 }

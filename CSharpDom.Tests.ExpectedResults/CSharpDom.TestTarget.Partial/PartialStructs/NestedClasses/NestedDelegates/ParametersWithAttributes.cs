@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.NestedDelegates
 {
-    public partial struct PartialStructWithWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithAttributes
+    public partial struct PartialStructWithNestedClassWithNestedClassWithNestedDelegateWithParametersWithAttributes
     {
         public class Class
         {

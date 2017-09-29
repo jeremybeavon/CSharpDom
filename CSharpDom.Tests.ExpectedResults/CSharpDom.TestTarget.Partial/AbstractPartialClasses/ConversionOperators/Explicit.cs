@@ -2,9 +2,9 @@
 {
     public abstract partial class AbstractPartialClassWithExplicitConversionOperator
     {
-        public static explicit operator AbstractClassWithExplicitConversionOperator(string text)
+        public static explicit operator AbstractPartialClassWithExplicitConversionOperator(string text)
         {
-            return default(AbstractClassWithExplicitConversionOperator);
+            return default(AbstractPartialClassWithExplicitConversionOperator);
         }
     }
 }

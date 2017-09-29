@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedStaticClasses.NestedClasses
 {
-    public partial struct PartialStructWithWithNestedStaticClassWithProtectedInternalNestedClass
+    public partial struct PartialStructWithNestedStaticClassWithProtectedInternalNestedClass
     {
         public static class Class
         {

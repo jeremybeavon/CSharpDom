@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.AbstractPartialClasses.Indexers
 {
-    public abstract partial class AbstractPartialClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup
+    public abstract partial class AbstractPartialClassWithIndexerWith2AccessorAttributesIn1AttributeGroup
     {
         public string this[int index]
         {

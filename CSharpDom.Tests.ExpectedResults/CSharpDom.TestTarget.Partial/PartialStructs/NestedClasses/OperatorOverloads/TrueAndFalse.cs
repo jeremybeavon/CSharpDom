@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedClasses.OperatorOverloads
 {
-    public partial struct PartialStructWithWithNestedClassWithTrueAndFalseOperatorOverloads
+    public partial struct PartialStructWithNestedClassWithTrueAndFalseOperatorOverloads
     {
         public class Class
         {

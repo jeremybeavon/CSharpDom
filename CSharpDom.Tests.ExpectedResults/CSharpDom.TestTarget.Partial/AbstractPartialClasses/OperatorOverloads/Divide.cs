@@ -2,9 +2,9 @@
 {
     public abstract partial class AbstractPartialClassWithDivideOperatorOverload
     {
-        public static AbstractClassWithDivideOperatorOverload operator /(AbstractClassWithDivideOperatorOverload parameter1, AbstractClassWithDivideOperatorOverload parameter2)
+        public static AbstractPartialClassWithDivideOperatorOverload operator /(AbstractPartialClassWithDivideOperatorOverload parameter1, AbstractPartialClassWithDivideOperatorOverload parameter2)
         {
-            return default(AbstractClassWithDivideOperatorOverload);
+            return default(AbstractPartialClassWithDivideOperatorOverload);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.Properties
 {
-    public partial struct PartialStructWithWithInternalProperty
+    public partial struct PartialStructWithInternalProperty
     {
         internal string Property { get; set; }
     }

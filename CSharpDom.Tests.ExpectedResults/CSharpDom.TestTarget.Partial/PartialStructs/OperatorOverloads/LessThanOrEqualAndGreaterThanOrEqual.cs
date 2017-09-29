@@ -1,13 +1,13 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.OperatorOverloads
 {
-    public partial struct PartialStructWithWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads
+    public partial struct PartialStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads
     {
-        public static bool operator <=(StructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads parameter1, StructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads parameter2)
+        public static bool operator <=(PartialStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads parameter1, PartialStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads parameter2)
         {
             return default(bool);
         }
 
-        public static bool operator >=(StructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads parameter1, StructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads parameter2)
+        public static bool operator >=(PartialStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads parameter1, PartialStructWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads parameter2)
         {
             return default(bool);
         }

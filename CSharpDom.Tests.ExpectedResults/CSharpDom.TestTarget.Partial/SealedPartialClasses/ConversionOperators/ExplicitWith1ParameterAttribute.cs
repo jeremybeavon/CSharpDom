@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithExplicitConversionOperatorWith1ParameterAttribute
     {
-        public static explicit operator SealedClassWithExplicitConversionOperatorWith1ParameterAttribute([Attribute1]string text)
+        public static explicit operator SealedPartialClassWithExplicitConversionOperatorWith1ParameterAttribute([Attribute1]string text)
         {
-            return default(SealedClassWithExplicitConversionOperatorWith1ParameterAttribute);
+            return default(SealedPartialClassWithExplicitConversionOperatorWith1ParameterAttribute);
         }
     }
 }

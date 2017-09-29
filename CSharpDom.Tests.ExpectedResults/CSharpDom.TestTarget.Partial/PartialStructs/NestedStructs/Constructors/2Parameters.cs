@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedStructs.Constructors
 {
-    public partial struct PartialStructWithWithNestedStructWithConstructorWith2Parameters
+    public partial struct PartialStructWithNestedStructWithConstructorWith2Parameters
     {
         public struct Struct
         {

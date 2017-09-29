@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.NestedDelegates
 {
-    public partial struct PartialStructWithWithInternalNestedDelegate
+    public partial struct PartialStructWithInternalNestedDelegate
     {
         internal delegate void InternalDelegate();
     }

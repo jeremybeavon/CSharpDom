@@ -2,7 +2,7 @@
 {
     public abstract partial class AbstractPartialClassWithProtectedInternalConstructor
     {
-        protected internal AbstractClassWithProtectedInternalConstructor()
+        protected internal AbstractPartialClassWithProtectedInternalConstructor()
         {
         }
     }

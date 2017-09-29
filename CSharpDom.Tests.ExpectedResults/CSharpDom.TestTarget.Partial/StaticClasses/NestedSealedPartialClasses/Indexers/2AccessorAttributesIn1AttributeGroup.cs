@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.StaticClasses.NestedSealedPartialClasses.Indexers
 {
-    public static class StaticClassWithNestedSealedPartialClassWithIndexerWithWith2AccessorAttributesIn1AttributeGroup
+    public static class StaticClassWithNestedSealedPartialClassWithIndexerWith2AccessorAttributesIn1AttributeGroup
     {
         public sealed partial class Class
         {

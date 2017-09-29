@@ -3,9 +3,9 @@
     public sealed partial class SealedPartialClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup
     {
         [return: Attribute1, Attribute2]
-        public static explicit operator SealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup(string text)
+        public static explicit operator SealedPartialClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup(string text)
         {
-            return default(SealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup);
+            return default(SealedPartialClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup);
         }
     }
 }

@@ -4,7 +4,7 @@
     {
         [Attribute1]
         [Attribute2]
-        public ClassWithConstructorWith2AttributesIn2AttributeGroups()
+        public PartialClassWithConstructorWith2AttributesIn2AttributeGroups()
         {
         }
     }

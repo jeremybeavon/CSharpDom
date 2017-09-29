@@ -4,7 +4,7 @@
     {
         [Attribute1]
         [Attribute2]
-        ~ClassWithDestructorWith2AttributesIn2AttributeGroups()
+        ~PartialClassWithDestructorWith2AttributesIn2AttributeGroups()
         {
         }
     }

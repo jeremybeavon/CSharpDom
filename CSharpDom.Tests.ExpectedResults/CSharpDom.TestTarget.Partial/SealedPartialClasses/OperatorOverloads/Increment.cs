@@ -2,9 +2,9 @@
 {
     public sealed partial class SealedPartialClassWithIncrementOperatorOverload
     {
-        public static SealedClassWithIncrementOperatorOverload operator ++(SealedClassWithIncrementOperatorOverload parameter1)
+        public static SealedPartialClassWithIncrementOperatorOverload operator ++(SealedPartialClassWithIncrementOperatorOverload parameter1)
         {
-            return default(SealedClassWithIncrementOperatorOverload);
+            return default(SealedPartialClassWithIncrementOperatorOverload);
         }
     }
 }

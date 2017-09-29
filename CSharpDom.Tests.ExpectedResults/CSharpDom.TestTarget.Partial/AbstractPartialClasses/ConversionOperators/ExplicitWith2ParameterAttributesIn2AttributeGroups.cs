@@ -2,9 +2,9 @@
 {
     public abstract partial class AbstractPartialClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups
     {
-        public static explicit operator AbstractClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups([Attribute1][Attribute2]string text)
+        public static explicit operator AbstractPartialClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups([Attribute1][Attribute2]string text)
         {
-            return default(AbstractClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups);
+            return default(AbstractPartialClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups);
         }
     }
 }

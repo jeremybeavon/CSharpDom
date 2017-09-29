@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.OperatorOverloads
 {
-    public partial struct PartialStructWithWithBitwiseNotOperatorOverload
+    public partial struct PartialStructWithBitwiseNotOperatorOverload
     {
-        public static StructWithBitwiseNotOperatorOverload operator ~(StructWithBitwiseNotOperatorOverload parameter1)
+        public static PartialStructWithBitwiseNotOperatorOverload operator ~(PartialStructWithBitwiseNotOperatorOverload parameter1)
         {
-            return default(StructWithBitwiseNotOperatorOverload);
+            return default(PartialStructWithBitwiseNotOperatorOverload);
         }
     }
 }

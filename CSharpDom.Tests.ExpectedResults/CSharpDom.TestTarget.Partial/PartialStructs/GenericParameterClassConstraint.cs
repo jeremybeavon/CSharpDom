@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs
 {
-    public partial struct PartialStructWithWithGenericParameterClassConstraint<T>
+    public partial struct PartialStructWithGenericParameterClassConstraint<T>
         where T : class
     {
     }

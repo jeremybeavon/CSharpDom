@@ -1,10 +1,10 @@
 ﻿namespace CSharpDom.TestTarget.Partial.PartialStructs.OperatorOverloads
 {
-    public partial struct PartialStructWithWithMinusOperatorOverload
+    public partial struct PartialStructWithMinusOperatorOverload
     {
-        public static StructWithMinusOperatorOverload operator -(StructWithMinusOperatorOverload parameter1, StructWithMinusOperatorOverload parameter2)
+        public static PartialStructWithMinusOperatorOverload operator -(PartialStructWithMinusOperatorOverload parameter1, PartialStructWithMinusOperatorOverload parameter2)
         {
-            return default(StructWithMinusOperatorOverload);
+            return default(PartialStructWithMinusOperatorOverload);
         }
     }
 }
