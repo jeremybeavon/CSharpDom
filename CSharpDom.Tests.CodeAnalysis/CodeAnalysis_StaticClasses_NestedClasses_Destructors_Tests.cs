@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_StaticClasses_NestedClasses_Destructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithDestructorWith1AttributeUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithDestructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDestructorWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDestructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithDestructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithDestructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDestructorWith2AttributesIn1AttributeGroup));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDestructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithDestructorUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithDestructorUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDestructor));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithDestructor));
         }
     }
 }

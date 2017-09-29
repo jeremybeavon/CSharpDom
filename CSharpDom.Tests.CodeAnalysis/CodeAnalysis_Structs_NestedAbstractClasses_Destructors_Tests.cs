@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_NestedAbstractClasses_Destructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorWith1AttributeUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithDestructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithDestructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith2AttributesIn1AttributeGroup));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithDestructorUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithDestructorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructor));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithDestructor));
         }
     }
 }

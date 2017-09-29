@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_Properties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithInternalPropertyUsingCodeAnalysis()
+        public void TestClassWithInternalPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithInternalProperty));
+            TestClassAsync(typeof(ClassWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewPropertyUsingCodeAnalysis()
+        public void TestClassWithNewPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewProperty));
+            TestClassAsync(typeof(ClassWithNewProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewStaticPropertyUsingCodeAnalysis()
+        public void TestClassWithNewStaticPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewStaticProperty));
+            TestClassAsync(typeof(ClassWithNewStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewVirtualPropertyUsingCodeAnalysis()
+        public void TestClassWithNewVirtualPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewVirtualProperty));
+            TestClassAsync(typeof(ClassWithNewVirtualProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithOverridePropertyUsingCodeAnalysis()
+        public void TestClassWithOverridePropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithOverrideProperty));
+            TestClassAsync(typeof(ClassWithOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivatePropertyUsingCodeAnalysis()
+        public void TestClassWithPrivatePropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPrivateProperty));
+            TestClassAsync(typeof(ClassWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedPropertyUsingCodeAnalysis()
+        public void TestClassWithProtectedPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedProperty));
+            TestClassAsync(typeof(ClassWithProtectedProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalPropertyUsingCodeAnalysis()
+        public void TestClassWithProtectedInternalPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalProperty));
+            TestClassAsync(typeof(ClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicPropertyUsingCodeAnalysis()
+        public void TestClassWithPublicPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPublicProperty));
+            TestClassAsync(typeof(ClassWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithSealedOverridePropertyUsingCodeAnalysis()
+        public void TestClassWithSealedOverridePropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithSealedOverrideProperty));
+            TestClassAsync(typeof(ClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithStaticPropertyUsingCodeAnalysis()
+        public void TestClassWithStaticPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithStaticProperty));
+            TestClassAsync(typeof(ClassWithStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithVirtualPropertyUsingCodeAnalysis()
+        public void TestClassWithVirtualPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithVirtualProperty));
+            TestClassAsync(typeof(ClassWithVirtualProperty));
         }
     }
 }

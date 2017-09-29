@@ -8,111 +8,111 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_NestedClasses_NestedStaticClasses_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWith1AttributeUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWith1GenericParameterUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWith1GenericParameterUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith1GenericParameter));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith1GenericParameter));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWith2GenericParametersUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWith2GenericParametersUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith2GenericParameters));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWith2GenericParameters));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterBaseClassConstraint));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWithGenericParameterClassConstraintUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWithGenericParameterClassConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterClassConstraint));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterEmptyConstructorConstraint));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterGenericParameterConstraint));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterInterfaceConstraint));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNestedStaticClassWithGenericParameterStructConstraintUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNestedStaticClassWithGenericParameterStructConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterStructConstraint));
+            TestClassAsync(typeof(ClassWithNestedClassWithNestedStaticClassWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithInternalNestedStaticClassUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithInternalNestedStaticClassUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithInternalNestedStaticClass));
+            TestClassAsync(typeof(ClassWithNestedClassWithInternalNestedStaticClass));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithPrivateNestedStaticClassUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithPrivateNestedStaticClassUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithPrivateNestedStaticClass));
+            TestClassAsync(typeof(ClassWithNestedClassWithPrivateNestedStaticClass));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithProtectedNestedStaticClassUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithProtectedNestedStaticClassUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithProtectedNestedStaticClass));
+            TestClassAsync(typeof(ClassWithNestedClassWithProtectedNestedStaticClass));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithProtectedInternalNestedStaticClassUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithProtectedInternalNestedStaticClassUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalNestedStaticClass));
+            TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalNestedStaticClass));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithPublicNestedStaticClassUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithPublicNestedStaticClassUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithPublicNestedStaticClass));
+            TestClassAsync(typeof(ClassWithNestedClassWithPublicNestedStaticClass));
         }
     }
 }

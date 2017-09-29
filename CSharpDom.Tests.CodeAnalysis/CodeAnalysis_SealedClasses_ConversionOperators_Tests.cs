@@ -8,123 +8,123 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_SealedClasses_ConversionOperators_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperator));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorWith1AttributeUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorWith1AttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorWith1ParameterAttributeUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorWith1ParameterAttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith1ParameterAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorWith1ReturnAttributeUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorWith1ReturnAttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith1ReturnAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2AttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorWith2ParameterAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorWith2ParameterAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2ParameterAttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2ParameterAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithExplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperator));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorWith1AttributeUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorWith1AttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorWith1ParameterAttributeUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorWith1ParameterAttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith1ParameterAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith1ParameterAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorWith1ReturnAttributeUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorWith1ReturnAttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith1ReturnAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith1ReturnAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2AttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2ParameterAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2ReturnAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithImplicitConversionOperatorWith2ReturnAttributesIn2AttributeGroups));
         }
     }
 }

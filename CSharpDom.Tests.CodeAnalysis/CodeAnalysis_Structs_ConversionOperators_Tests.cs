@@ -8,15 +8,15 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_ConversionOperators_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithExplicitConversionOperatorUsingCodeAnalysis()
+        public void TestStructWithExplicitConversionOperatorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithExplicitConversionOperator));
+            TestStructAsync(typeof(StructWithExplicitConversionOperator));
         }
 
         [TestMethod]
-        public async Task TestStructWithImplicitConversionOperatorUsingCodeAnalysis()
+        public void TestStructWithImplicitConversionOperatorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithImplicitConversionOperator));
+            TestStructAsync(typeof(StructWithImplicitConversionOperator));
         }
     }
 }

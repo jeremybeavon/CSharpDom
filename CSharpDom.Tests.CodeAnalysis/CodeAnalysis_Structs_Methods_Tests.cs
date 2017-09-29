@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_Methods_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithInternalMethodUsingCodeAnalysis()
+        public void TestStructWithInternalMethodUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithInternalMethod));
+            TestStructAsync(typeof(StructWithInternalMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateMethodUsingCodeAnalysis()
+        public void TestStructWithPrivateMethodUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPrivateMethod));
+            TestStructAsync(typeof(StructWithPrivateMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicMethodUsingCodeAnalysis()
+        public void TestStructWithPublicMethodUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPublicMethod));
+            TestStructAsync(typeof(StructWithPublicMethod));
         }
 
         [TestMethod]
-        public async Task TestStructWithStaticMethodUsingCodeAnalysis()
+        public void TestStructWithStaticMethodUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithStaticMethod));
+            TestStructAsync(typeof(StructWithStaticMethod));
         }
     }
 }

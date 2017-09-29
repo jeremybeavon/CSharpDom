@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_AbstractClasses_NestedClasses_Destructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithDestructorWith1AttributeUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithDestructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithDestructorWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithDestructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithDestructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithDestructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithDestructorWith2AttributesIn1AttributeGroup));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithDestructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithDestructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithDestructorUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithDestructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithDestructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithDestructor));
         }
     }
 }

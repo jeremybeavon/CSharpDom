@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_NestedSealedClasses_Constructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithConstructorWith1AttributeUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithConstructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithConstructorWith1ParameterUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithConstructorWith1ParameterUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith1Parameter));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith2AttributesIn1AttributeGroup));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithConstructorWith2ParametersUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithConstructorWith2ParametersUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith2Parameters));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithInternalConstructorUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithInternalConstructorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithInternalConstructor));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWithParametersWithAttributes));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWithParametersWithModifiers));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithPrivateConstructorUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithPrivateConstructorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithPrivateConstructor));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithProtectedConstructorUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithProtectedConstructorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedConstructor));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithProtectedInternalConstructorUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithProtectedInternalConstructorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedInternalConstructor));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedSealedClassWithPublicConstructorUsingCodeAnalysis()
+        public void TestStructWithNestedSealedClassWithPublicConstructorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedSealedClassWithPublicConstructor));
+            TestStructAsync(typeof(StructWithNestedSealedClassWithPublicConstructor));
         }
     }
 }

@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_Methods_ExplicitInterfaceMethods_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWith1AttributeUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceMethodWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1Attribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWith1GenericParameterUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceMethodWith1GenericParameterUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1GenericParameter));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith1GenericParameter));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceMethodWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWith2GenericParametersUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceMethodWith2GenericParametersUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2GenericParameters));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWith2GenericParameters));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWithParametersWithAttributesUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceMethodWithParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithAttributes));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceMethodWithParametersWithModifiersUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceMethodWithParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithModifiers));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceMethodWithParametersWithModifiers));
         }
     }
 }

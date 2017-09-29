@@ -8,111 +8,111 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWith1AttributeUsingCodeAnalysis()
+        public void TestClassWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWith1Attribute));
+            TestClassAsync(typeof(ClassWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWith1GenericParameterUsingCodeAnalysis()
+        public void TestClassWith1GenericParameterUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWith1GenericParameter<>));
+            TestClassAsync(typeof(ClassWith1GenericParameter<>));
         }
 
         [TestMethod]
-        public async Task TestClassWith1ImplementedInterfaceUsingCodeAnalysis()
+        public void TestClassWith1ImplementedInterfaceUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWith1ImplementedInterface));
+            TestClassAsync(typeof(ClassWith1ImplementedInterface));
         }
 
         [TestMethod]
-        public async Task TestClassWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWith2GenericParametersUsingCodeAnalysis()
+        public void TestClassWith2GenericParametersUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWith2GenericParameters<,>));
+            TestClassAsync(typeof(ClassWith2GenericParameters<,>));
         }
 
         [TestMethod]
-        public async Task TestClassWith2ImplementedInterfacesUsingCodeAnalysis()
+        public void TestClassWith2ImplementedInterfacesUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWith2ImplementedInterfaces));
+            TestClassAsync(typeof(ClassWith2ImplementedInterfaces));
         }
 
         [TestMethod]
-        public async Task TestClassWithBaseClassUsingCodeAnalysis()
+        public void TestClassWithBaseClassUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithBaseClass));
+            TestClassAsync(typeof(ClassWithBaseClass));
         }
 
         [TestMethod]
-        public async Task TestClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestClassAsync(typeof(ClassWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestClassAsync(typeof(ClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestClassWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
+        public void TestClassWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithGenericParameterBaseClassConstraint<>));
+            TestClassAsync(typeof(ClassWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestClassWithGenericParameterClassConstraintUsingCodeAnalysis()
+        public void TestClassWithGenericParameterClassConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithGenericParameterClassConstraint<>));
+            TestClassAsync(typeof(ClassWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestClassWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
+        public void TestClassWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithGenericParameterEmptyConstructorConstraint<>));
+            TestClassAsync(typeof(ClassWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestClassWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
+        public void TestClassWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithGenericParameterGenericParameterConstraint<,>));
+            TestClassAsync(typeof(ClassWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
-        public async Task TestClassWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
+        public void TestClassWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithGenericParameterInterfaceConstraint<>));
+            TestClassAsync(typeof(ClassWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestClassWithGenericParameterStructConstraintUsingCodeAnalysis()
+        public void TestClassWithGenericParameterStructConstraintUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithGenericParameterStructConstraint<>));
+            TestClassAsync(typeof(ClassWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestInternalClassUsingCodeAnalysis()
+        public void TestInternalClassUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(InternalClass));
+            TestClassAsync(typeof(InternalClass));
         }
 
         [TestMethod]
-        public async Task TestPublicClassUsingCodeAnalysis()
+        public void TestPublicClassUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(PublicClass));
+            TestClassAsync(typeof(PublicClass));
         }
     }
 }

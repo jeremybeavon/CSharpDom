@@ -8,123 +8,123 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_AbstractClasses_NestedSealedClasses_OperatorOverloads_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithAndOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithAndOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithAndOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithAndOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithBitwiseNotOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithBitwiseNotOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithBitwiseNotOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithBitwiseNotOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithDecrementOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithDecrementOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithDecrementOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithDecrementOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithDivideOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithDivideOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithDivideOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithDivideOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithEqualAndNotEqualOperatorOverloadsUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithEqualAndNotEqualOperatorOverloadsUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEqualAndNotEqualOperatorOverloads));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithEqualAndNotEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithExclusiveOrOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithExclusiveOrOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithExclusiveOrOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithExclusiveOrOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithIncrementOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithIncrementOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIncrementOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithIncrementOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithLeftShiftOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithLeftShiftOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLeftShiftOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLeftShiftOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloadsUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloadsUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloads));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLessThanAndGreaterThanOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloadsUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLessThanOrEqualAndGreaterThanOrEqualOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithLogicalNotOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithLogicalNotOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLogicalNotOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithLogicalNotOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithMinusOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithMinusOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithMinusOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithMinusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithModuloOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithModuloOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithModuloOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithModuloOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithMultiplyOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithMultiplyOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithMultiplyOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithMultiplyOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithOrOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithOrOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithOrOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithOrOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithPlusOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithPlusOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPlusOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithPlusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithRightShiftOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithRightShiftOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithRightShiftOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithRightShiftOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithTrueAndFalseOperatorOverloadsUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithTrueAndFalseOperatorOverloadsUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithTrueAndFalseOperatorOverloads));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithTrueAndFalseOperatorOverloads));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithUnaryMinusOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithUnaryMinusOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithUnaryMinusOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithUnaryMinusOperatorOverload));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedSealedClassWithUnaryPlusOperatorOverloadUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedSealedClassWithUnaryPlusOperatorOverloadUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithUnaryPlusOperatorOverload));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedSealedClassWithUnaryPlusOperatorOverload));
         }
     }
 }

@@ -8,51 +8,51 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_StaticClasses_NestedAbstractClasses_NestedEnums_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNestedEnumWith1AttributeUsingCodeAnalysis()
+        public void TestStaticClassWithNestedAbstractClassWithNestedEnumWith1AttributeUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedEnumWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNestedEnumWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStaticClassWithNestedAbstractClassWithNestedEnumWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedEnumWith2AttributesIn1AttributeGroup));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedEnumWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStaticClassWithNestedAbstractClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithInternalNestedEnumUsingCodeAnalysis()
+        public void TestStaticClassWithNestedAbstractClassWithInternalNestedEnumUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPrivateNestedEnumUsingCodeAnalysis()
+        public void TestStaticClassWithNestedAbstractClassWithPrivateNestedEnumUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedNestedEnumUsingCodeAnalysis()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedNestedEnumUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithProtectedInternalNestedEnumUsingCodeAnalysis()
+        public void TestStaticClassWithNestedAbstractClassWithProtectedInternalNestedEnumUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedAbstractClassWithPublicNestedEnumUsingCodeAnalysis()
+        public void TestStaticClassWithNestedAbstractClassWithPublicNestedEnumUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicNestedEnum));
+            TestStaticClassAsync(typeof(StaticClassWithNestedAbstractClassWithPublicNestedEnum));
         }
     }
 }

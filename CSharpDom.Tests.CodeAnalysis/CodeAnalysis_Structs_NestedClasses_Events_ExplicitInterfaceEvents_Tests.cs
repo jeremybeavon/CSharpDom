@@ -8,57 +8,57 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_NestedClasses_Events_ExplicitInterfaceEvents_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceEventWith1AccessorAttributeUsingCodeAnalysis()
+        public void TestStructWithNestedClassWithExplicitInterfaceEventWith1AccessorAttributeUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceEventWith1AttributeUsingCodeAnalysis()
+        public void TestStructWithNestedClassWithExplicitInterfaceEventWith1AttributeUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStructWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroup));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStructWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStructWithNestedClassWithExplicitInterfaceEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith2AttributesIn1AttributeGroup));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStructWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceEventUsingCodeAnalysis()
+        public void TestStructWithNestedClassWithExplicitInterfaceEventUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEvent));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceEventWithGenericDelegateUsingCodeAnalysis()
+        public void TestStructWithNestedClassWithExplicitInterfaceEventWithGenericDelegateUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedClassWithExplicitInterfaceEventWithGenericInterfaceUsingCodeAnalysis()
+        public void TestStructWithNestedClassWithExplicitInterfaceEventWithGenericInterfaceUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWithGenericInterface));
+            TestStructAsync(typeof(StructWithNestedClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

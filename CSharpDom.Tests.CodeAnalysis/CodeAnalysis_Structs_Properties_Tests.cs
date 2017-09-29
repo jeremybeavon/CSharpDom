@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_Properties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithInternalPropertyUsingCodeAnalysis()
+        public void TestStructWithInternalPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithInternalProperty));
+            TestStructAsync(typeof(StructWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivatePropertyUsingCodeAnalysis()
+        public void TestStructWithPrivatePropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPrivateProperty));
+            TestStructAsync(typeof(StructWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicPropertyUsingCodeAnalysis()
+        public void TestStructWithPublicPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPublicProperty));
+            TestStructAsync(typeof(StructWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithStaticPropertyUsingCodeAnalysis()
+        public void TestStructWithStaticPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithStaticProperty));
+            TestStructAsync(typeof(StructWithStaticProperty));
         }
     }
 }

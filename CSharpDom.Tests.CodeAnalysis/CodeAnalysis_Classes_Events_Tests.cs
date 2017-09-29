@@ -8,99 +8,99 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_Events_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithEventWith1AttributeUsingCodeAnalysis()
+        public void TestClassWithEventWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithEventWith1Attribute));
+            TestClassAsync(typeof(ClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithEventWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithEventWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithEventWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithEventWithGenericDelegateUsingCodeAnalysis()
+        public void TestClassWithEventWithGenericDelegateUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithEventWithGenericDelegate));
+            TestClassAsync(typeof(ClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestClassWithInternalEventUsingCodeAnalysis()
+        public void TestClassWithInternalEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithInternalEvent));
+            TestClassAsync(typeof(ClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewEventUsingCodeAnalysis()
+        public void TestClassWithNewEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewEvent));
+            TestClassAsync(typeof(ClassWithNewEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewStaticEventUsingCodeAnalysis()
+        public void TestClassWithNewStaticEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewStaticEvent));
+            TestClassAsync(typeof(ClassWithNewStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewVirtualEventUsingCodeAnalysis()
+        public void TestClassWithNewVirtualEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewVirtualEvent));
+            TestClassAsync(typeof(ClassWithNewVirtualEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithOverrideEventUsingCodeAnalysis()
+        public void TestClassWithOverrideEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithOverrideEvent));
+            TestClassAsync(typeof(ClassWithOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivateEventUsingCodeAnalysis()
+        public void TestClassWithPrivateEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPrivateEvent));
+            TestClassAsync(typeof(ClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedEventUsingCodeAnalysis()
+        public void TestClassWithProtectedEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedEvent));
+            TestClassAsync(typeof(ClassWithProtectedEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalEventUsingCodeAnalysis()
+        public void TestClassWithProtectedInternalEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalEvent));
+            TestClassAsync(typeof(ClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicEventUsingCodeAnalysis()
+        public void TestClassWithPublicEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPublicEvent));
+            TestClassAsync(typeof(ClassWithPublicEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithSealedOverrideEventUsingCodeAnalysis()
+        public void TestClassWithSealedOverrideEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithSealedOverrideEvent));
+            TestClassAsync(typeof(ClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithStaticEventUsingCodeAnalysis()
+        public void TestClassWithStaticEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithStaticEvent));
+            TestClassAsync(typeof(ClassWithStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithVirtualEventUsingCodeAnalysis()
+        public void TestClassWithVirtualEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithVirtualEvent));
+            TestClassAsync(typeof(ClassWithVirtualEvent));
         }
     }
 }

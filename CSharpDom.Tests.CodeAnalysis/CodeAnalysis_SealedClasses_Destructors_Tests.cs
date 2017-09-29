@@ -8,9 +8,9 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_SealedClasses_Destructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithDestructorUsingCodeAnalysis()
+        public void TestSealedClassWithDestructorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithDestructor));
+            TestSealedClassAsync(typeof(SealedClassWithDestructor));
         }
     }
 }

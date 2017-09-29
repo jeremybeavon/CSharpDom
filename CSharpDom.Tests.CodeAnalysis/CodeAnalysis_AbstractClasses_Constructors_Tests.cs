@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_AbstractClasses_Constructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith1AttributeUsingCodeAnalysis()
+        public void TestAbstractClassWithConstructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith1ParameterUsingCodeAnalysis()
+        public void TestAbstractClassWithConstructorWith1ParameterUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Parameter));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestAbstractClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn1AttributeGroup));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestAbstractClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWith2ParametersUsingCodeAnalysis()
+        public void TestAbstractClassWithConstructorWith2ParametersUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2Parameters));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithInternalConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithInternalConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
+        public void TestAbstractClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
+        public void TestAbstractClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
+            TestAbstractClassAsync(typeof(AbstractClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPrivateConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithPrivateConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithProtectedConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedInternalConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithProtectedInternalConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPublicConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithPublicConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPublicConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithPublicConstructor));
         }
     }
 }

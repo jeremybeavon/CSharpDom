@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_AbstractClasses_NestedClasses_Constructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithConstructorWith1AttributeUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithConstructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith1Attribute));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithConstructorWith1ParameterUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithConstructorWith1ParameterUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith1Parameter));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith2AttributesIn1AttributeGroup));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithConstructorWith2ParametersUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithConstructorWith2ParametersUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith2Parameters));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithInternalConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithInternalConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWithParametersWithAttributes));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWithParametersWithModifiers));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithPrivateConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithPrivateConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPrivateConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithProtectedConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithProtectedConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithProtectedInternalConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithProtectedInternalConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedInternalConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedClassWithPublicConstructorUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedClassWithPublicConstructorUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPublicConstructor));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedClassWithPublicConstructor));
         }
     }
 }

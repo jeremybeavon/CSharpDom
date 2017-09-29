@@ -8,99 +8,99 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_NestedClasses_Events_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedClassWithEventWith1AttributeUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithEventWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithEventWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithEventWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithNestedClassWithEventWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithEventWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithEventWithGenericDelegateUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithEventWithGenericDelegateUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithEventWithGenericDelegate));
+            TestClassAsync(typeof(ClassWithNestedClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithInternalEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithInternalEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithInternalEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNewEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNewEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNewEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithNewEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNewStaticEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNewStaticEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNewStaticEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithNewStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNewVirtualEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNewVirtualEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNewVirtualEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithNewVirtualEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithOverrideEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithOverrideEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithOverrideEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithPrivateEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithPrivateEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithPrivateEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithProtectedEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithProtectedEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithProtectedEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithProtectedEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithProtectedInternalEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithProtectedInternalEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithPublicEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithPublicEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithPublicEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithPublicEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithSealedOverrideEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithSealedOverrideEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithSealedOverrideEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithSealedOverrideEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithStaticEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithStaticEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithStaticEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithStaticEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithVirtualEventUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithVirtualEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithVirtualEvent));
+            TestClassAsync(typeof(ClassWithNestedClassWithVirtualEvent));
         }
     }
 }

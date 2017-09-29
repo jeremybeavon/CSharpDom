@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_SealedClasses_Constructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWith1AttributeUsingCodeAnalysis()
+        public void TestSealedClassWithConstructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWith1ParameterUsingCodeAnalysis()
+        public void TestSealedClassWithConstructorWith1ParameterUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Parameter));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWith2AttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWith2ParametersUsingCodeAnalysis()
+        public void TestSealedClassWithConstructorWith2ParametersUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWith2Parameters));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithInternalConstructorUsingCodeAnalysis()
+        public void TestSealedClassWithInternalConstructorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithInternalConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
+        public void TestSealedClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithAttributes));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
+        public void TestSealedClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithModifiers));
+            TestSealedClassAsync(typeof(SealedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithPrivateConstructorUsingCodeAnalysis()
+        public void TestSealedClassWithPrivateConstructorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithPrivateConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithPublicConstructorUsingCodeAnalysis()
+        public void TestSealedClassWithPublicConstructorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithPublicConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithPublicConstructor));
         }
     }
 }

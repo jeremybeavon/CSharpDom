@@ -8,21 +8,21 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_AbstractClasses_NestedStaticClasses_Properties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithInternalPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedStaticClassWithInternalPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithInternalProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithPrivatePropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedStaticClassWithPrivatePropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPrivateProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNestedStaticClassWithPublicPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithNestedStaticClassWithPublicPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPublicProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNestedStaticClassWithPublicProperty));
         }
     }
 }

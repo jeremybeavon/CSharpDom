@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_StaticClasses_Events_EventProperties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith1AccessorAttributeUsingCodeAnalysis()
+        public void TestStaticClassWithEventPropertyWith1AccessorAttributeUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith1AttributeUsingCodeAnalysis()
+        public void TestStaticClassWithEventPropertyWith1AttributeUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStaticClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroup));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStaticClassWithEventPropertyWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn1AttributeGroup));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStaticClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventPropertyWithGenericDelegateUsingCodeAnalysis()
+        public void TestStaticClassWithEventPropertyWithGenericDelegateUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventPropertyWithGenericDelegate));
+            TestStaticClassAsync(typeof(StaticClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalEventPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithInternalEventPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateEventPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithPrivateEventPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicEventPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithPublicEventPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicEventProperty));
+            TestStaticClassAsync(typeof(StaticClassWithPublicEventProperty));
         }
     }
 }

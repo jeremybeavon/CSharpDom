@@ -8,33 +8,33 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Enums_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestEnumWith1AttributeUsingCodeAnalysis()
+        public void TestEnumWith1AttributeUsingCodeAnalysis()
         {
-            await TestEnumsAsync(typeof(EnumWith1Attribute));
+            TestEnumsAsync(typeof(EnumWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestEnumWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestEnumWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestEnumsAsync(typeof(EnumWith2AttributesIn1AttributeGroup));
+            TestEnumsAsync(typeof(EnumWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestEnumWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestEnumWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestEnumsAsync(typeof(EnumWith2AttributesIn2AttributeGroups));
+            TestEnumsAsync(typeof(EnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestInternalEnumUsingCodeAnalysis()
+        public void TestInternalEnumUsingCodeAnalysis()
         {
-            await TestEnumsAsync(typeof(InternalEnum));
+            TestEnumsAsync(typeof(InternalEnum));
         }
 
         [TestMethod]
-        public async Task TestPublicEnumUsingCodeAnalysis()
+        public void TestPublicEnumUsingCodeAnalysis()
         {
-            await TestEnumsAsync(typeof(PublicEnum));
+            TestEnumsAsync(typeof(PublicEnum));
         }
     }
 }

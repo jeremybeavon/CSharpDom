@@ -8,57 +8,57 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_NestedStructs_Fields_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedStructWithConstFieldUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithConstFieldUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithConstField));
+            TestStructAsync(typeof(StructWithNestedStructWithConstField));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithInternalFieldUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithInternalFieldUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithInternalField));
+            TestStructAsync(typeof(StructWithNestedStructWithInternalField));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPrivateFieldUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithPrivateFieldUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPrivateField));
+            TestStructAsync(typeof(StructWithNestedStructWithPrivateField));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPublicFieldUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithPublicFieldUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPublicField));
+            TestStructAsync(typeof(StructWithNestedStructWithPublicField));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithReadOnlyFieldUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithReadOnlyFieldUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithReadOnlyField));
+            TestStructAsync(typeof(StructWithNestedStructWithReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithStaticFieldUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithStaticFieldUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithStaticField));
+            TestStructAsync(typeof(StructWithNestedStructWithStaticField));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithStaticReadOnlyFieldUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithStaticReadOnlyFieldUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithStaticReadOnlyField));
+            TestStructAsync(typeof(StructWithNestedStructWithStaticReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithStaticVolatileFieldUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithStaticVolatileFieldUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithStaticVolatileField));
+            TestStructAsync(typeof(StructWithNestedStructWithStaticVolatileField));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithVolatileFieldUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithVolatileFieldUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithVolatileField));
+            TestStructAsync(typeof(StructWithNestedStructWithVolatileField));
         }
     }
 }

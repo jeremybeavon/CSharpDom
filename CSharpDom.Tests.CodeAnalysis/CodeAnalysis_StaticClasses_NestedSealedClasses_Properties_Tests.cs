@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_StaticClasses_NestedSealedClasses_Properties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithInternalPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithInternalPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNewPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithNewPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithNewStaticPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithNewStaticPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewStaticProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithNewStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithOverridePropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithOverridePropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithOverrideProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithPrivatePropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithPrivatePropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithProtectedPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithProtectedPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithProtectedInternalPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithProtectedInternalPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithPublicPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithPublicPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPublicProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithSealedOverridePropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithSealedOverridePropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithSealedOverrideProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedSealedClassWithStaticPropertyUsingCodeAnalysis()
+        public void TestStaticClassWithNestedSealedClassWithStaticPropertyUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithStaticProperty));
+            TestStaticClassAsync(typeof(StaticClassWithNestedSealedClassWithStaticProperty));
         }
     }
 }

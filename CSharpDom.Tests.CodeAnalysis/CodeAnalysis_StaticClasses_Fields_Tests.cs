@@ -8,39 +8,39 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_StaticClasses_Fields_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithConstFieldUsingCodeAnalysis()
+        public void TestStaticClassWithConstFieldUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithConstField));
+            TestStaticClassAsync(typeof(StaticClassWithConstField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalFieldUsingCodeAnalysis()
+        public void TestStaticClassWithInternalFieldUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalField));
+            TestStaticClassAsync(typeof(StaticClassWithInternalField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateFieldUsingCodeAnalysis()
+        public void TestStaticClassWithPrivateFieldUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateField));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicFieldUsingCodeAnalysis()
+        public void TestStaticClassWithPublicFieldUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicField));
+            TestStaticClassAsync(typeof(StaticClassWithPublicField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithReadOnlyFieldUsingCodeAnalysis()
+        public void TestStaticClassWithReadOnlyFieldUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithReadOnlyField));
+            TestStaticClassAsync(typeof(StaticClassWithReadOnlyField));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithVolatileFieldUsingCodeAnalysis()
+        public void TestStaticClassWithVolatileFieldUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithVolatileField));
+            TestStaticClassAsync(typeof(StaticClassWithVolatileField));
         }
     }
 }

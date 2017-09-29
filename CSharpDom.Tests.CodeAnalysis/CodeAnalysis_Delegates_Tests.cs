@@ -8,105 +8,105 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Delegates_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestDelegateWith1AttributeUsingCodeAnalysis()
+        public void TestDelegateWith1AttributeUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWith1Attribute));
+            TestDelegatesAsync(typeof(DelegateWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestDelegateWith1GenericParameterUsingCodeAnalysis()
+        public void TestDelegateWith1GenericParameterUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWith1GenericParameter<>));
+            TestDelegatesAsync(typeof(DelegateWith1GenericParameter<>));
         }
 
         [TestMethod]
-        public async Task TestDelegateWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestDelegateWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWith2AttributesIn1AttributeGroup));
+            TestDelegatesAsync(typeof(DelegateWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestDelegateWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestDelegateWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWith2AttributesIn2AttributeGroups));
+            TestDelegatesAsync(typeof(DelegateWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestDelegateWith2GenericParametersUsingCodeAnalysis()
+        public void TestDelegateWith2GenericParametersUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWith2GenericParameters<,>));
+            TestDelegatesAsync(typeof(DelegateWith2GenericParameters<,>));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
+        public void TestDelegateWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithGenericParameterBaseClassConstraint<>));
+            TestDelegatesAsync(typeof(DelegateWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestDelegateWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestDelegatesAsync(typeof(DelegateWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestDelegateWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestDelegatesAsync(typeof(DelegateWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithGenericParameterClassConstraintUsingCodeAnalysis()
+        public void TestDelegateWithGenericParameterClassConstraintUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithGenericParameterClassConstraint<>));
+            TestDelegatesAsync(typeof(DelegateWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
+        public void TestDelegateWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithGenericParameterEmptyConstructorConstraint<>));
+            TestDelegatesAsync(typeof(DelegateWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
+        public void TestDelegateWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithGenericParameterGenericParameterConstraint<,>));
+            TestDelegatesAsync(typeof(DelegateWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
+        public void TestDelegateWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithGenericParameterInterfaceConstraint<>));
+            TestDelegatesAsync(typeof(DelegateWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithGenericParameterStructConstraintUsingCodeAnalysis()
+        public void TestDelegateWithGenericParameterStructConstraintUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithGenericParameterStructConstraint<>));
+            TestDelegatesAsync(typeof(DelegateWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestInternalDelegateUsingCodeAnalysis()
+        public void TestInternalDelegateUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(InternalDelegate));
+            TestDelegatesAsync(typeof(InternalDelegate));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithParametersWithAttributesUsingCodeAnalysis()
+        public void TestDelegateWithParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithParametersWithAttributes));
+            TestDelegatesAsync(typeof(DelegateWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestDelegateWithParametersWithModifiersUsingCodeAnalysis()
+        public void TestDelegateWithParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(DelegateWithParametersWithModifiers));
+            TestDelegatesAsync(typeof(DelegateWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestPublicDelegateUsingCodeAnalysis()
+        public void TestPublicDelegateUsingCodeAnalysis()
         {
-            await TestDelegatesAsync(typeof(PublicDelegate));
+            TestDelegatesAsync(typeof(PublicDelegate));
         }
     }
 }

@@ -8,111 +8,111 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_SealedClasses_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestSealedClassWith1AttributeUsingCodeAnalysis()
+        public void TestSealedClassWith1AttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith1GenericParameterUsingCodeAnalysis()
+        public void TestSealedClassWith1GenericParameterUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith1GenericParameter<>));
+            TestSealedClassAsync(typeof(SealedClassWith1GenericParameter<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith1ImplementedInterfaceUsingCodeAnalysis()
+        public void TestSealedClassWith1ImplementedInterfaceUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith1ImplementedInterface));
+            TestSealedClassAsync(typeof(SealedClassWith1ImplementedInterface));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith2AttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith2GenericParametersUsingCodeAnalysis()
+        public void TestSealedClassWith2GenericParametersUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith2GenericParameters<,>));
+            TestSealedClassAsync(typeof(SealedClassWith2GenericParameters<,>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWith2ImplementedInterfacesUsingCodeAnalysis()
+        public void TestSealedClassWith2ImplementedInterfacesUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWith2ImplementedInterfaces));
+            TestSealedClassAsync(typeof(SealedClassWith2ImplementedInterfaces));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithBaseClassUsingCodeAnalysis()
+        public void TestSealedClassWithBaseClassUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithBaseClass));
+            TestSealedClassAsync(typeof(SealedClassWithBaseClass));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
+        public void TestSealedClassWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterBaseClassConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestSealedClassWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestSealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterClassConstraintUsingCodeAnalysis()
+        public void TestSealedClassWithGenericParameterClassConstraintUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
+        public void TestSealedClassWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterEmptyConstructorConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
+        public void TestSealedClassWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterGenericParameterConstraint<,>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
+        public void TestSealedClassWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterInterfaceConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithGenericParameterStructConstraintUsingCodeAnalysis()
+        public void TestSealedClassWithGenericParameterStructConstraintUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithGenericParameterStructConstraint<>));
+            TestSealedClassAsync(typeof(SealedClassWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestInternalSealedClassUsingCodeAnalysis()
+        public void TestInternalSealedClassUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(InternalSealedClass));
+            TestSealedClassAsync(typeof(InternalSealedClass));
         }
 
         [TestMethod]
-        public async Task TestPublicSealedClassUsingCodeAnalysis()
+        public void TestPublicSealedClassUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(PublicSealedClass));
+            TestSealedClassAsync(typeof(PublicSealedClass));
         }
     }
 }

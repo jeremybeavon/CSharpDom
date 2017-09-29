@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_NestedAbstractClasses_Properties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithInternalPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithInternalPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithInternalProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNewPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithNewPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNewProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNewStaticPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithNewStaticPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNewStaticProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithNewVirtualPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithNewVirtualPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithNewVirtualProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithNewVirtualProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithOverridePropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithOverridePropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithOverrideProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithPrivatePropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithPrivatePropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithPrivateProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithProtectedPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithProtectedPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithProtectedInternalPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithProtectedInternalPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedInternalProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithProtectedInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithPublicPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithPublicPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithPublicProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithSealedOverridePropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithSealedOverridePropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithSealedOverrideProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithSealedOverrideProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithStaticPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithStaticPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithStaticProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithStaticProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedAbstractClassWithVirtualPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedAbstractClassWithVirtualPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedAbstractClassWithVirtualProperty));
+            TestStructAsync(typeof(StructWithNestedAbstractClassWithVirtualProperty));
         }
     }
 }

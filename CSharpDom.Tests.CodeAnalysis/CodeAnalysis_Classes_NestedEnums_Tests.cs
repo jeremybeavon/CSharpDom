@@ -8,51 +8,51 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_NestedEnums_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedEnumWith1AttributeUsingCodeAnalysis()
+        public void TestClassWithNestedEnumWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedEnumWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedEnumWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedEnumWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithNestedEnumWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedEnumWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithNestedEnumWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithNestedEnumWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedEnumWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedEnumWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivateNestedEnumUsingCodeAnalysis()
+        public void TestClassWithPrivateNestedEnumUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPrivateNestedEnum));
+            TestClassAsync(typeof(ClassWithPrivateNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedNestedEnumUsingCodeAnalysis()
+        public void TestClassWithProtectedNestedEnumUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedNestedEnum));
+            TestClassAsync(typeof(ClassWithProtectedNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalNestedEnumUsingCodeAnalysis()
+        public void TestClassWithProtectedInternalNestedEnumUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalNestedEnum));
+            TestClassAsync(typeof(ClassWithProtectedInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithInternalNestedEnumUsingCodeAnalysis()
+        public void TestClassWithInternalNestedEnumUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithInternalNestedEnum));
+            TestClassAsync(typeof(ClassWithInternalNestedEnum));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicNestedEnumUsingCodeAnalysis()
+        public void TestClassWithPublicNestedEnumUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPublicNestedEnum));
+            TestClassAsync(typeof(ClassWithPublicNestedEnum));
         }
     }
 }

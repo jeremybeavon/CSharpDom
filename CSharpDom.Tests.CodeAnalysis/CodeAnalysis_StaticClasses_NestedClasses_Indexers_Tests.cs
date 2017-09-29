@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_StaticClasses_NestedClasses_Indexers_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithIndexerWith1AccessorAttributeUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithIndexerWith1AccessorAttributeUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith1AccessorAttribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithIndexerWith1AttributeUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithIndexerWith1AttributeUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroup));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2AttributesIn1AttributeGroup));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithIndexerWith2ParametersUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithIndexerWith2ParametersUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2Parameters));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithIndexerWith2ParametersWithAttributesUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithIndexerWith2ParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithIndexerWith2ParametersWithModifiersUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithIndexerWith2ParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithInternalIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithInternalIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithInternalIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithNewIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithNewIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNewIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNewIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithNewVirtualIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithNewVirtualIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNewVirtualIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithNewVirtualIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithOverrideIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithOverrideIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithOverrideIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithPrivateIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithPrivateIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPrivateIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithProtectedIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithProtectedIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithProtectedInternalIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithProtectedInternalIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedInternalIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithPublicIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithPublicIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPublicIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithPublicIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithSealedOverrideIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithSealedOverrideIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithSealedOverrideIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithSealedOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithNestedClassWithVirtualIndexerUsingCodeAnalysis()
+        public void TestStaticClassWithNestedClassWithVirtualIndexerUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithNestedClassWithVirtualIndexer));
+            TestStaticClassAsync(typeof(StaticClassWithNestedClassWithVirtualIndexer));
         }
     }
 }

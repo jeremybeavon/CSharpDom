@@ -12,51 +12,54 @@ namespace CSharpDom.Tests.CodeAnalysis
 {
     public abstract class AbstractSolutionWithCodeAnalysisTests
     {
-        protected Task TestAbstractClassAsync(Type type)
+        protected void TestAbstractClassAsync(Type type)
         {
-            return TestType(type);
+            TestType(type);
         }
 
-        protected Task TestClassAsync(Type type)
+        protected void TestClassAsync(Type type)
         {
-            return TestType(type);
+            TestType(type);
         }
 
-        protected Task TestDelegatesAsync(Type type)
+        protected void TestDelegatesAsync(Type type)
         {
-            return TestType(type);
+            TestType(type);
         }
 
-        protected Task TestEnumsAsync(Type type)
+        protected void TestEnumsAsync(Type type)
         {
-            return TestType(type);
+            TestType(type);
         }
 
-        protected Task TestInterfacesAsync(Type type)
+        protected void TestInterfacesAsync(Type type)
         {
-            return TestType(type);
+            TestType(type);
         }
 
-        protected Task TestStaticClassAsync(Type type)
+        protected void TestStaticClassAsync(Type type)
         {
-            return TestType(type);
+            TestType(type);
         }
 
-        protected Task TestSealedClassAsync(Type type)
+        protected void TestSealedClassAsync(Type type)
         {
-            return TestType(type);
+            TestType(type);
         }
 
-        protected Task TestStructAsync(Type type)
+        protected void TestStructAsync(Type type)
         {
-            return TestType(type);
+            TestType(type);
         }
 
-        private async Task TestType(Type type)
+        private void TestType(Type type)
         {
             string expectedResult = TypeTextProvider.GetTypeText(type);
             SolutionWithCodeAnalysis solution = SolutionWithCodeAnalysis.GetSolutionForSourceCode(expectedResult);
-            LoadedDocumentWithCodeAnalysis document = await solution.Projects.First().Documents.First().LoadAsync();
+            Task<LoadedDocumentWithCodeAnalysis> documentvoid =
+                solution.Projects.First().Documents.First().LoadAsync();
+            documentvoid.Wait();
+            LoadedDocumentWithCodeAnalysis document = documentvoid.Result;
             string documentText = document.ToSourceCode();
             documentText.TrimEnd().Replace("\r", string.Empty).Should().Be(expectedResult.TrimEnd().Replace("\r", string.Empty));
         }

@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_Properties_AutoProperties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithInternalAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithInternalAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithInternalAutoProperty));
+            TestClassAsync(typeof(ClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithNewAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewAutoProperty));
+            TestClassAsync(typeof(ClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewStaticAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithNewStaticAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewStaticAutoProperty));
+            TestClassAsync(typeof(ClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewVirtualAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithNewVirtualAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewVirtualAutoProperty));
+            TestClassAsync(typeof(ClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithOverrideAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithOverrideAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithOverrideAutoProperty));
+            TestClassAsync(typeof(ClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivateAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithPrivateAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPrivateAutoProperty));
+            TestClassAsync(typeof(ClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithProtectedAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedAutoProperty));
+            TestClassAsync(typeof(ClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithProtectedInternalAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalAutoProperty));
+            TestClassAsync(typeof(ClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithPublicAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPublicAutoProperty));
+            TestClassAsync(typeof(ClassWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithSealedOverrideAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithSealedOverrideAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithSealedOverrideAutoProperty));
+            TestClassAsync(typeof(ClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithStaticAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithStaticAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithStaticAutoProperty));
+            TestClassAsync(typeof(ClassWithStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestClassWithVirtualAutoPropertyUsingCodeAnalysis()
+        public void TestClassWithVirtualAutoPropertyUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithVirtualAutoProperty));
+            TestClassAsync(typeof(ClassWithVirtualAutoProperty));
         }
     }
 }

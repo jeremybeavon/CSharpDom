@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_NestedStructs_Properties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedStructWithInternalPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithInternalPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithInternalProperty));
+            TestStructAsync(typeof(StructWithNestedStructWithInternalProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPrivatePropertyUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithPrivatePropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPrivateProperty));
+            TestStructAsync(typeof(StructWithNestedStructWithPrivateProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPublicPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithPublicPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPublicProperty));
+            TestStructAsync(typeof(StructWithNestedStructWithPublicProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithStaticPropertyUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithStaticPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithStaticProperty));
+            TestStructAsync(typeof(StructWithNestedStructWithStaticProperty));
         }
     }
 }

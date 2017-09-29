@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_SealedClasses_NestedSealedClasses_Constructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithConstructorWith1AttributeUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithConstructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithConstructorWith1ParameterUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithConstructorWith1ParameterUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith1Parameter));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith2AttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithConstructorWith2ParametersUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithConstructorWith2ParametersUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith2Parameters));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithInternalConstructorUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithInternalConstructorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithInternalConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWithParametersWithAttributes));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWithParametersWithModifiers));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithPrivateConstructorUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithPrivateConstructorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPrivateConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithProtectedConstructorUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithProtectedConstructorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedConstructor));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithProtectedInternalConstructorUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithProtectedInternalConstructorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedInternalConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithPublicConstructorUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithPublicConstructorUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicConstructor));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicConstructor));
         }
     }
 }

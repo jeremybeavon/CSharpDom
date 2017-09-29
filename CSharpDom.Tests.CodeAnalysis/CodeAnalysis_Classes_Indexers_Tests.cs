@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_Indexers_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithIndexerWith1AccessorAttributeUsingCodeAnalysis()
+        public void TestClassWithIndexerWith1AccessorAttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith1AttributeUsingCodeAnalysis()
+        public void TestClassWithIndexerWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith1Attribute));
+            TestClassAsync(typeof(ClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2AccessorAttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithIndexerWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithIndexerWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithIndexerWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2ParametersUsingCodeAnalysis()
+        public void TestClassWithIndexerWith2ParametersUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2Parameters));
+            TestClassAsync(typeof(ClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2ParametersWithAttributesUsingCodeAnalysis()
+        public void TestClassWithIndexerWith2ParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithAttributes));
+            TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithIndexerWith2ParametersWithModifiersUsingCodeAnalysis()
+        public void TestClassWithIndexerWith2ParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithModifiers));
+            TestClassAsync(typeof(ClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestClassWithInternalIndexerUsingCodeAnalysis()
+        public void TestClassWithInternalIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithInternalIndexer));
+            TestClassAsync(typeof(ClassWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewIndexerUsingCodeAnalysis()
+        public void TestClassWithNewIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewIndexer));
+            TestClassAsync(typeof(ClassWithNewIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNewVirtualIndexerUsingCodeAnalysis()
+        public void TestClassWithNewVirtualIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNewVirtualIndexer));
+            TestClassAsync(typeof(ClassWithNewVirtualIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithOverrideIndexerUsingCodeAnalysis()
+        public void TestClassWithOverrideIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithOverrideIndexer));
+            TestClassAsync(typeof(ClassWithOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithPrivateIndexerUsingCodeAnalysis()
+        public void TestClassWithPrivateIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPrivateIndexer));
+            TestClassAsync(typeof(ClassWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedIndexerUsingCodeAnalysis()
+        public void TestClassWithProtectedIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedIndexer));
+            TestClassAsync(typeof(ClassWithProtectedIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithProtectedInternalIndexerUsingCodeAnalysis()
+        public void TestClassWithProtectedInternalIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithProtectedInternalIndexer));
+            TestClassAsync(typeof(ClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithPublicIndexerUsingCodeAnalysis()
+        public void TestClassWithPublicIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithPublicIndexer));
+            TestClassAsync(typeof(ClassWithPublicIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithSealedOverrideIndexerUsingCodeAnalysis()
+        public void TestClassWithSealedOverrideIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithSealedOverrideIndexer));
+            TestClassAsync(typeof(ClassWithSealedOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithVirtualIndexerUsingCodeAnalysis()
+        public void TestClassWithVirtualIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithVirtualIndexer));
+            TestClassAsync(typeof(ClassWithVirtualIndexer));
         }
     }
 }

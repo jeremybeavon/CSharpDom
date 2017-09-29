@@ -8,105 +8,105 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWith1AttributeUsingCodeAnalysis()
+        public void TestStructWith1AttributeUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWith1Attribute));
+            TestStructAsync(typeof(StructWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWith1GenericParameterUsingCodeAnalysis()
+        public void TestStructWith1GenericParameterUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWith1GenericParameter<>));
+            TestStructAsync(typeof(StructWith1GenericParameter<>));
         }
 
         [TestMethod]
-        public async Task TestStructWith1ImplementedInterfaceUsingCodeAnalysis()
+        public void TestStructWith1ImplementedInterfaceUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWith1ImplementedInterface));
+            TestStructAsync(typeof(StructWith1ImplementedInterface));
         }
 
         [TestMethod]
-        public async Task TestStructWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStructWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWith2AttributesIn1AttributeGroup));
+            TestStructAsync(typeof(StructWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStructWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStructWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWith2GenericParametersUsingCodeAnalysis()
+        public void TestStructWith2GenericParametersUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWith2GenericParameters<,>));
+            TestStructAsync(typeof(StructWith2GenericParameters<,>));
         }
 
         [TestMethod]
-        public async Task TestStructWith2ImplementedInterfacesUsingCodeAnalysis()
+        public void TestStructWith2ImplementedInterfacesUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWith2ImplementedInterfaces));
+            TestStructAsync(typeof(StructWith2ImplementedInterfaces));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
+        public void TestStructWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterBaseClassConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterBaseClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestStructWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
+            TestStructAsync(typeof(StructWithGenericParameterClassAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestStructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
+            TestStructAsync(typeof(StructWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterClassConstraintUsingCodeAnalysis()
+        public void TestStructWithGenericParameterClassConstraintUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterClassConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterClassConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
+        public void TestStructWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterEmptyConstructorConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
+        public void TestStructWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
+            TestStructAsync(typeof(StructWithGenericParameterGenericParameterConstraint<,>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
+        public void TestStructWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterInterfaceConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterInterfaceConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestStructWithGenericParameterStructConstraintUsingCodeAnalysis()
+        public void TestStructWithGenericParameterStructConstraintUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithGenericParameterStructConstraint<>));
+            TestStructAsync(typeof(StructWithGenericParameterStructConstraint<>));
         }
 
         [TestMethod]
-        public async Task TestInternalStructUsingCodeAnalysis()
+        public void TestInternalStructUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(InternalStruct));
+            TestStructAsync(typeof(InternalStruct));
         }
 
         [TestMethod]
-        public async Task TestPublicStructUsingCodeAnalysis()
+        public void TestPublicStructUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(PublicStruct));
+            TestStructAsync(typeof(PublicStruct));
         }
     }
 }

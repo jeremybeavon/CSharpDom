@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_NestedStaticClasses_Events_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithEventWith1AttributeUsingCodeAnalysis()
+        public void TestStructWithNestedStaticClassWithEventWith1AttributeUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStructWithNestedStaticClassWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith2AttributesIn1AttributeGroup));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStructWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithEventWithGenericDelegateUsingCodeAnalysis()
+        public void TestStructWithNestedStaticClassWithEventWithGenericDelegateUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithEventWithGenericDelegate));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithInternalEventUsingCodeAnalysis()
+        public void TestStructWithNestedStaticClassWithInternalEventUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithInternalEvent));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithPrivateEventUsingCodeAnalysis()
+        public void TestStructWithNestedStaticClassWithPrivateEventUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithPrivateEvent));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStaticClassWithPublicEventUsingCodeAnalysis()
+        public void TestStructWithNestedStaticClassWithPublicEventUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStaticClassWithPublicEvent));
+            TestStructAsync(typeof(StructWithNestedStaticClassWithPublicEvent));
         }
     }
 }

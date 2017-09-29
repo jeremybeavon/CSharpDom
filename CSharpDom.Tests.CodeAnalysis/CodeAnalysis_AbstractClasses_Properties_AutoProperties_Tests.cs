@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_AbstractClasses_Properties_AutoProperties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestAbstractClassWithInternalAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithInternalAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithInternalAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithNewAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewStaticAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithNewStaticAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewStaticAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithNewVirtualAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithNewVirtualAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithNewVirtualAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithOverrideAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithOverrideAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithOverrideAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPrivateAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithPrivateAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPrivateAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithProtectedAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithProtectedInternalAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithProtectedInternalAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithPublicAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithPublicAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithPublicAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithSealedOverrideAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithSealedOverrideAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithStaticAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithStaticAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithStaticAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestAbstractClassWithVirtualAutoPropertyUsingCodeAnalysis()
+        public void TestAbstractClassWithVirtualAutoPropertyUsingCodeAnalysis()
         {
-            await TestAbstractClassAsync(typeof(AbstractClassWithVirtualAutoProperty));
+            TestAbstractClassAsync(typeof(AbstractClassWithVirtualAutoProperty));
         }
     }
 }

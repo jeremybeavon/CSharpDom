@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_SealedClasses_NestedSealedClasses_Properties_AutoProperties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithInternalAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithInternalAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithInternalAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithNewAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithNewAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithNewStaticAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithNewStaticAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewStaticAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithNewStaticAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithOverrideAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithOverrideAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithOverrideAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithPrivateAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithPrivateAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPrivateAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPrivateAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithProtectedAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithProtectedAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithProtectedInternalAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithProtectedInternalAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedInternalAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithProtectedInternalAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithPublicAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithPublicAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithPublicAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithSealedOverrideAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithSealedOverrideAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithSealedOverrideAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithSealedOverrideAutoProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedSealedClassWithStaticAutoPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedSealedClassWithStaticAutoPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithStaticAutoProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedSealedClassWithStaticAutoProperty));
         }
     }
 }

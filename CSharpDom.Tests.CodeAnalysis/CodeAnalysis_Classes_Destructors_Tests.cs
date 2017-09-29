@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_Destructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithDestructorWith1AttributeUsingCodeAnalysis()
+        public void TestClassWithDestructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithDestructorWith1Attribute));
+            TestClassAsync(typeof(ClassWithDestructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithDestructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithDestructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithDestructorWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithDestructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithDestructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithDestructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithDestructorWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithDestructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithDestructorUsingCodeAnalysis()
+        public void TestClassWithDestructorUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithDestructor));
+            TestClassAsync(typeof(ClassWithDestructor));
         }
     }
 }

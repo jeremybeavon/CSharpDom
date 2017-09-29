@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_SealedClasses_NestedAbstractClasses_Events_EventProperties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithEventPropertyWith1AccessorAttributeUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithEventPropertyWith1AccessorAttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith1AccessorAttribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithEventPropertyWith1AttributeUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithEventPropertyWith1AttributeUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith1Attribute));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn1AttributeGroup));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn2AttributeGroups));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithEventPropertyWithGenericDelegateUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithEventPropertyWithGenericDelegateUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWithGenericDelegate));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithEventPropertyWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithInternalEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithInternalEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithInternalEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithNewEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithNewEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithNewStaticEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithNewStaticEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewStaticEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewStaticEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithNewVirtualEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithNewVirtualEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewVirtualEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithNewVirtualEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithOverrideEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithOverrideEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithOverrideEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithOverrideEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithPrivateEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithPrivateEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPrivateEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPrivateEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithProtectedEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithProtectedEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithProtectedInternalEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithProtectedInternalEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedInternalEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithProtectedInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithPublicEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithPublicEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPublicEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithPublicEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithSealedOverrideEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithSealedOverrideEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithSealedOverrideEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithSealedOverrideEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithStaticEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithStaticEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithStaticEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithStaticEventProperty));
         }
 
         [TestMethod]
-        public async Task TestSealedClassWithNestedAbstractClassWithVirtualEventPropertyUsingCodeAnalysis()
+        public void TestSealedClassWithNestedAbstractClassWithVirtualEventPropertyUsingCodeAnalysis()
         {
-            await TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithVirtualEventProperty));
+            TestSealedClassAsync(typeof(SealedClassWithNestedAbstractClassWithVirtualEventProperty));
         }
     }
 }

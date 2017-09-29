@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Interfaces_Methods_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestInterfaceWithMethodWith1GenericParameterUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWith1GenericParameterUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWith1GenericParameter));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWith1GenericParameter));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWith2GenericParametersUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWith2GenericParametersUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWith2GenericParameters));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWith2GenericParameters));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodUsingCodeAnalysis()
+        public void TestInterfaceWithMethodUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethod));
+            TestInterfacesAsync(typeof(IInterfaceWithMethod));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWithGenericParameterBaseClassConstraintUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterBaseClassConstraint));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterBaseClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWithGenericParameterClassAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterClassAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraintsUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterClassAndInterfaceAndEmptyConstructorConstraints));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWithGenericParameterClassConstraintUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWithGenericParameterClassConstraintUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterClassConstraint));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterClassConstraint));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWithGenericParameterEmptyConstructorConstraintUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterEmptyConstructorConstraint));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterEmptyConstructorConstraint));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWithGenericParameterGenericParameterConstraintUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterGenericParameterConstraint));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterGenericParameterConstraint));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWithGenericParameterInterfaceConstraintUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterInterfaceConstraint));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterInterfaceConstraint));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWithGenericParameterStructConstraintUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWithGenericParameterStructConstraintUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterStructConstraint));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWithGenericParameterStructConstraint));
         }
 
         [TestMethod]
-        public async Task TestInterfaceWithMethodWithParametersWithModifiersUsingCodeAnalysis()
+        public void TestInterfaceWithMethodWithParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestInterfacesAsync(typeof(IInterfaceWithMethodWithParametersWithModifiers));
+            TestInterfacesAsync(typeof(IInterfaceWithMethodWithParametersWithModifiers));
         }
     }
 }

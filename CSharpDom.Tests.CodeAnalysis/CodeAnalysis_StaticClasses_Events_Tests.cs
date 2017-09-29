@@ -8,45 +8,45 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_StaticClasses_Events_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStaticClassWithEventWith1AttributeUsingCodeAnalysis()
+        public void TestStaticClassWithEventWith1AttributeUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventWith1Attribute));
+            TestStaticClassAsync(typeof(StaticClassWithEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStaticClassWithEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventWith2AttributesIn1AttributeGroup));
+            TestStaticClassAsync(typeof(StaticClassWithEventWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStaticClassWithEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventWith2AttributesIn2AttributeGroups));
+            TestStaticClassAsync(typeof(StaticClassWithEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithEventWithGenericDelegateUsingCodeAnalysis()
+        public void TestStaticClassWithEventWithGenericDelegateUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithEventWithGenericDelegate));
+            TestStaticClassAsync(typeof(StaticClassWithEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithInternalEventUsingCodeAnalysis()
+        public void TestStaticClassWithInternalEventUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithInternalEvent));
+            TestStaticClassAsync(typeof(StaticClassWithInternalEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPrivateEventUsingCodeAnalysis()
+        public void TestStaticClassWithPrivateEventUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPrivateEvent));
+            TestStaticClassAsync(typeof(StaticClassWithPrivateEvent));
         }
 
         [TestMethod]
-        public async Task TestStaticClassWithPublicEventUsingCodeAnalysis()
+        public void TestStaticClassWithPublicEventUsingCodeAnalysis()
         {
-            await TestStaticClassAsync(typeof(StaticClassWithPublicEvent));
+            TestStaticClassAsync(typeof(StaticClassWithPublicEvent));
         }
     }
 }

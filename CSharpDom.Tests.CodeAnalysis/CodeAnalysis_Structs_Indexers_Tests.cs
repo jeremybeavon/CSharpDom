@@ -8,21 +8,21 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_Indexers_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithInternalIndexerUsingCodeAnalysis()
+        public void TestStructWithInternalIndexerUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithInternalIndexer));
+            TestStructAsync(typeof(StructWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateIndexerUsingCodeAnalysis()
+        public void TestStructWithPrivateIndexerUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPrivateIndexer));
+            TestStructAsync(typeof(StructWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicIndexerUsingCodeAnalysis()
+        public void TestStructWithPublicIndexerUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPublicIndexer));
+            TestStructAsync(typeof(StructWithPublicIndexer));
         }
     }
 }

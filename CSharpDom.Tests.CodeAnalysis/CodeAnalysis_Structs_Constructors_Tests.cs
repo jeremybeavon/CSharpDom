@@ -8,63 +8,63 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_Constructors_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithConstructorWith1AttributeUsingCodeAnalysis()
+        public void TestStructWithConstructorWith1AttributeUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith1Attribute));
+            TestStructAsync(typeof(StructWithConstructorWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith1ParameterUsingCodeAnalysis()
+        public void TestStructWithConstructorWith1ParameterUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith1Parameter));
+            TestStructAsync(typeof(StructWithConstructorWith1Parameter));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStructWithConstructorWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith2AttributesIn1AttributeGroup));
+            TestStructAsync(typeof(StructWithConstructorWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStructWithConstructorWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithConstructorWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWith2ParametersUsingCodeAnalysis()
+        public void TestStructWithConstructorWith2ParametersUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithConstructorWith2Parameters));
+            TestStructAsync(typeof(StructWithConstructorWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestStructWithInternalConstructorUsingCodeAnalysis()
+        public void TestStructWithInternalConstructorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithInternalConstructor));
+            TestStructAsync(typeof(StructWithInternalConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
+        public void TestStructWithConstructorWithParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithConstructorWithParametersWithAttributes));
+            TestStructAsync(typeof(StructWithConstructorWithParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStructWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
+        public void TestStructWithConstructorWithParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithConstructorWithParametersWithModifiers));
+            TestStructAsync(typeof(StructWithConstructorWithParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateConstructorUsingCodeAnalysis()
+        public void TestStructWithPrivateConstructorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPrivateConstructor));
+            TestStructAsync(typeof(StructWithPrivateConstructor));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicConstructorUsingCodeAnalysis()
+        public void TestStructWithPublicConstructorUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPublicConstructor));
+            TestStructAsync(typeof(StructWithPublicConstructor));
         }
     }
 }

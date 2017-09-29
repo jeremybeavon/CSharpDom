@@ -8,27 +8,27 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_Events_EventProperties_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithInternalEventPropertyUsingCodeAnalysis()
+        public void TestStructWithInternalEventPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithInternalEventProperty));
+            TestStructAsync(typeof(StructWithInternalEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithPrivateEventPropertyUsingCodeAnalysis()
+        public void TestStructWithPrivateEventPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPrivateEventProperty));
+            TestStructAsync(typeof(StructWithPrivateEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithPublicEventPropertyUsingCodeAnalysis()
+        public void TestStructWithPublicEventPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithPublicEventProperty));
+            TestStructAsync(typeof(StructWithPublicEventProperty));
         }
 
         [TestMethod]
-        public async Task TestStructWithStaticEventPropertyUsingCodeAnalysis()
+        public void TestStructWithStaticEventPropertyUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithStaticEventProperty));
+            TestStructAsync(typeof(StructWithStaticEventProperty));
         }
     }
 }

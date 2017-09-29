@@ -8,57 +8,57 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_Events_ExplicitInterfaceEvents_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith1AccessorAttributeUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceEventWith1AccessorAttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith1AttributeUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceEventWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceEventWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceEventUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEvent));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEvent));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWithGenericDelegateUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceEventWithGenericDelegateUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericDelegate));
         }
 
         [TestMethod]
-        public async Task TestClassWithExplicitInterfaceEventWithGenericInterfaceUsingCodeAnalysis()
+        public void TestClassWithExplicitInterfaceEventWithGenericInterfaceUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
+            TestClassAsync(typeof(ClassWithExplicitInterfaceEventWithGenericInterface));
         }
     }
 }

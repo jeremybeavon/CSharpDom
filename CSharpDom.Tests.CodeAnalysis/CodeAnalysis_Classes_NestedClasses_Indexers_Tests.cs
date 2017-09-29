@@ -8,117 +8,117 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Classes_NestedClasses_Indexers_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestClassWithNestedClassWithIndexerWith1AccessorAttributeUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithIndexerWith1AccessorAttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith1AccessorAttribute));
+            TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithIndexerWith1AttributeUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithIndexerWith1AttributeUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith1Attribute));
+            TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2AttributesIn1AttributeGroup));
+            TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
+            TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithIndexerWith2ParametersUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithIndexerWith2ParametersUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2Parameters));
+            TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithIndexerWith2ParametersWithAttributesUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithIndexerWith2ParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
+            TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithIndexerWith2ParametersWithModifiersUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithIndexerWith2ParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
+            TestClassAsync(typeof(ClassWithNestedClassWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithInternalIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithInternalIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithInternalIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNewIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNewIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNewIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithNewIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithNewVirtualIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithNewVirtualIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithNewVirtualIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithNewVirtualIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithOverrideIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithOverrideIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithOverrideIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithPrivateIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithPrivateIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithPrivateIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithProtectedIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithProtectedIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithProtectedIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithProtectedIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithProtectedInternalIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithProtectedInternalIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithProtectedInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithPublicIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithPublicIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithPublicIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithPublicIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithSealedOverrideIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithSealedOverrideIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithSealedOverrideIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithSealedOverrideIndexer));
         }
 
         [TestMethod]
-        public async Task TestClassWithNestedClassWithVirtualIndexerUsingCodeAnalysis()
+        public void TestClassWithNestedClassWithVirtualIndexerUsingCodeAnalysis()
         {
-            await TestClassAsync(typeof(ClassWithNestedClassWithVirtualIndexer));
+            TestClassAsync(typeof(ClassWithNestedClassWithVirtualIndexer));
         }
     }
 }

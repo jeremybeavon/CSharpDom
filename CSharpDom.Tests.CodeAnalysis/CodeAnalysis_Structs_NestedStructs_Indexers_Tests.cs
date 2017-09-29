@@ -8,75 +8,75 @@ namespace CSharpDom.Tests.CodeAnalysis
     public sealed class CodeAnalysis_Structs_NestedStructs_Indexers_Tests : AbstractSolutionWithCodeAnalysisTests
     {
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith1AccessorAttributeUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithIndexerWith1AccessorAttributeUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith1AccessorAttribute));
+            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith1AccessorAttribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith1AttributeUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithIndexerWith1AttributeUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith1Attribute));
+            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith1Attribute));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithIndexerWith2AccessorAttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AccessorAttributesIn1AttributeGroup));
+            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AccessorAttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AccessorAttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithIndexerWith2AttributesIn1AttributeGroupUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AttributesIn1AttributeGroup));
+            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AttributesIn1AttributeGroup));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithIndexerWith2AttributesIn2AttributeGroupsUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
+            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2AttributesIn2AttributeGroups));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith2ParametersUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithIndexerWith2ParametersUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2Parameters));
+            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2Parameters));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith2ParametersWithAttributesUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithIndexerWith2ParametersWithAttributesUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2ParametersWithAttributes));
+            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2ParametersWithAttributes));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithIndexerWith2ParametersWithModifiersUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithIndexerWith2ParametersWithModifiersUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2ParametersWithModifiers));
+            TestStructAsync(typeof(StructWithNestedStructWithIndexerWith2ParametersWithModifiers));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithInternalIndexerUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithInternalIndexerUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithInternalIndexer));
+            TestStructAsync(typeof(StructWithNestedStructWithInternalIndexer));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPrivateIndexerUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithPrivateIndexerUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPrivateIndexer));
+            TestStructAsync(typeof(StructWithNestedStructWithPrivateIndexer));
         }
 
         [TestMethod]
-        public async Task TestStructWithNestedStructWithPublicIndexerUsingCodeAnalysis()
+        public void TestStructWithNestedStructWithPublicIndexerUsingCodeAnalysis()
         {
-            await TestStructAsync(typeof(StructWithNestedStructWithPublicIndexer));
+            TestStructAsync(typeof(StructWithNestedStructWithPublicIndexer));
         }
     }
 }
