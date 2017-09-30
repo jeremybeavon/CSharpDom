@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Common;
-using CSharpDom.Editable;
+﻿using CSharpDom.Editable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
-using System.Threading.Tasks;
 using Microsoft.CodeAnalysis.Text;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {

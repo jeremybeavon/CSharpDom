@@ -9,6 +9,7 @@ namespace CSharpDom.CodeGeneration.Tree
             Name = name;
             Attributes = new Collection<AttributeGroup>();
             Fields = new Collection<EnumField>();
+            Visibility = StructMemberVisibilityModifier.Private;
         }
 
         public Collection<AttributeGroup> Attributes { get; set; }

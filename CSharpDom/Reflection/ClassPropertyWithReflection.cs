@@ -10,7 +10,8 @@ namespace CSharpDom.Reflection
             AttributeWithReflection,
             ITypeWithReflection,
             ITypeReferenceWithReflection,
-            ClassAccessorWithReflection>
+            ClassAccessorWithReflection>,
+        IVisitable<IReflectionVisitor>
     {
         private readonly PropertyWithReflection property;
         private readonly IInternalTypeWithReflection declaringType;
@@ -70,6 +71,16 @@ namespace CSharpDom.Reflection
         public override ClassMemberVisibilityModifier Visibility
         {
             get { return property.PropertyInfo.ClassVisibility(); }
+        }
+
+        public void Accept(IReflectionVisitor visitor)
+        {
+            visitor.VisitClassPropertyWithReflection(this);
+        }
+
+        public void AcceptChildren(IReflectionVisitor visitor)
+        {
+            AcceptChildren(new ForwardingGenericVisitor(visitor));
         }
     }
 }

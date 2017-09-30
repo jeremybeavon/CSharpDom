@@ -11,6 +11,7 @@ namespace CSharpDom.CodeGeneration.Tree
             GenericParameters = new Collection<GenericParameter>();
             Parameters = new Collection<MethodParameter>();
             Body = new Collection<Statement>();
+            Visibility = StaticClassMemberVisibilityModifier.Public;
         }
 
         public Collection<AttributeGroup> Attributes { get; set; }

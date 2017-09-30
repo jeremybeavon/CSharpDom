@@ -98,7 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="ClassCollectionWithCodeAnalysisExtensions.cs" />
     <Compile Include="GenericParameterConstraint.cs" />
+    <Compile Include="IClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="IMemberList.generic.cs" />
     <Compile Include="InternalNestedStaticClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalNestedStaticClassFieldCollectionWithCodeAnalysis.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="InternalNestedStaticClassNestedClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalNestedStaticClassNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticTypeWithCodeAnalysis.cs" />
+    <Compile Include="IClassTypeDefinitionWithCodeAnalysis.cs" />
     <Compile Include="MemberList.generic3.cs" />
     <Compile Include="MemberListSyntax.generic.cs" />
     <Compile Include="Partial\IPartialStructTypeWithCodeAnalysis.cs" />

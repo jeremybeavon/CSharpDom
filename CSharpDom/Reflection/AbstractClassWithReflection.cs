@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses;
+using CSharpDom.Reflection.Internal;
 using System;
 using System.Collections.Generic;
 
@@ -30,8 +31,8 @@ namespace CSharpDom.Reflection
             StaticConstructorWithReflection,
             DestructorWithReflection>,
         ITypeWithReflection,
-        IHasType//,
-        //IVisitable<IReflectionVisitor>
+        IHasType,
+        IVisitable<IReflectionVisitor>
     {
         private readonly ClassWithReflection classWithReflection;
         private readonly AbstractClassEventCollectionWithReflection events;
@@ -178,14 +179,14 @@ namespace CSharpDom.Reflection
             get { return classWithReflection.Document; }
         }
         
-        /*public void Accept(IReflectionVisitor visitor)
+        public void Accept(IReflectionVisitor visitor)
         {
-            visitor.VisitClassWithReflection(this);
+            visitor.VisitAbstractClassWithReflection(this);
         }
 
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }*/
+        }
     }
 }

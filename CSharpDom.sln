@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26906.1
+VisualStudioVersion = 15.0.26923.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom", "CSharpDom\CSharpDom.csproj", "{EAA58A34-7E4B-4E20-BE3C-8D7AAC4B261B}"
 EndProject
@@ -26,6 +26,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.Tests.CodeAnalysis", "CSharpDom.Tests.CodeAnalysis\CSharpDom.Tests.CodeAnalysis.csproj", "{382A9121-81D6-47CA-A4CD-1B9730143D0E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.TestTarget.Partial", "CSharpDom.Tests.ExpectedResults\CSharpDom.TestTarget.Partial\CSharpDom.TestTarget.Partial.csproj", "{B89B360D-5888-486D-9B1B-B16C5E45713E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.TestTarget.Expressions", "CSharpDom.Tests.ExpectedResults\CSharpDom.TestTarget.Expressions\CSharpDom.TestTarget.Expressions.csproj", "{A6100681-DC9D-47D5-B8F0-3BC1C3C528FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.TestTarget.Statements", "CSharpDom.Tests.ExpectedResults\CSharpDom.TestTarget.Statements\CSharpDom.TestTarget.Statements.csproj", "{AF48772C-F6DA-4EEE-A0B3-A07A796D7B96}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{33C8EAF4-F097-4A7B-8FF9-E2ED7DAD0F80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.CodeAnalysis.VisitorGenerator", "Apps\CSharpDom.CodeAnalysis.VisitorGenerator\CSharpDom.CodeAnalysis.VisitorGenerator.csproj", "{0958DDDF-97EF-4752-82CD-DB586B4883BC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,9 +89,24 @@ Global
 		{B89B360D-5888-486D-9B1B-B16C5E45713E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B89B360D-5888-486D-9B1B-B16C5E45713E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B89B360D-5888-486D-9B1B-B16C5E45713E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6100681-DC9D-47D5-B8F0-3BC1C3C528FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6100681-DC9D-47D5-B8F0-3BC1C3C528FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6100681-DC9D-47D5-B8F0-3BC1C3C528FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6100681-DC9D-47D5-B8F0-3BC1C3C528FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF48772C-F6DA-4EEE-A0B3-A07A796D7B96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF48772C-F6DA-4EEE-A0B3-A07A796D7B96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF48772C-F6DA-4EEE-A0B3-A07A796D7B96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF48772C-F6DA-4EEE-A0B3-A07A796D7B96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0958DDDF-97EF-4752-82CD-DB586B4883BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0958DDDF-97EF-4752-82CD-DB586B4883BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0958DDDF-97EF-4752-82CD-DB586B4883BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0958DDDF-97EF-4752-82CD-DB586B4883BC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0958DDDF-97EF-4752-82CD-DB586B4883BC} = {33C8EAF4-F097-4A7B-8FF9-E2ED7DAD0F80}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58CC7564-D2F3-47B5-8DB8-26BB93131EE7}

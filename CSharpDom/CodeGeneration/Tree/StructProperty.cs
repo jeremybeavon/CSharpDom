@@ -13,6 +13,7 @@ namespace CSharpDom.CodeGeneration.Tree
             Name = name;
             Attributes = new Collection<AttributeGroup>();
             emptyAccessors = new EmptyStructPropertyAccessors();
+            Visibility = StructMemberVisibilityModifier.Public;
         }
 
         public Collection<AttributeGroup> Attributes { get; set; }

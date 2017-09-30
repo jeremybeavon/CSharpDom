@@ -8,6 +8,7 @@ namespace CSharpDom.CodeGeneration.Tree
         {
             Name = name;
             Attributes = new Collection<AttributeGroup>();
+            Visibility = ClassMemberVisibilityModifier.Public;
         }
 
         public Collection<AttributeGroup> Attributes { get; set; }

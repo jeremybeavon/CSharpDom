@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpDom.CodeAnalysis
 {
     public interface IAbstractTypeWithCodeAnalysis :
+        IClassTypeDefinitionWithCodeAnalysis,
         IAbstractType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,

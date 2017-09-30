@@ -13,7 +13,8 @@ namespace CSharpDom.CodeAnalysis
             AbstractClassWithCodeAnalysis,
             SealedClassWithCodeAnalysis,
             StaticClassWithCodeAnalysis,
-            PartialClassCollectionWithCodeAnalysis>
+            PartialClassCollectionWithCodeAnalysis>,
+        IClassCollectionWithCodeAnalysis
     {
         private readonly IMemberList members;
         private readonly ICollection<AbstractClassWithCodeAnalysis> abstractClasses;

@@ -2,9 +2,13 @@
 
 namespace CSharpDom.Reflection
 {
-    public interface IReflectionVisitor : IGenericVisitor
+    public interface IReflectionVisitor
     {
-        /*void Visit(IVisitable<IReflectionVisitor> node);
+        void Visit(IVisitable<IReflectionVisitor> node);
+
+        void VisitAbstractAccessorWithReflection(AbstractAccessorWithReflection accessor);
+
+        void VisitAbstractClassWithReflection(AbstractClassWithReflection @class);
 
         void VisitAccessorWithReflection(AccessorWithReflection accessor);
 
@@ -16,9 +20,31 @@ namespace CSharpDom.Reflection
 
         void VisitClassWithReflection(ClassWithReflection @class);
 
+        void VisitClassConstructorWithReflection(ClassConstructorWithReflection constructor);
+
+        void VisitClassEventPropertyWithReflection(ClassEventPropertyWithReflection eventProperty);
+
+        void VisitClassEventWithReflection(ClassEventWithReflection @event);
+
+        void VisitClassFieldWithReflection(ClassFieldWithReflection field);
+
+        void VisitClassIndexerWithReflection(ClassIndexerWithReflection indexer);
+
+        void VisitClassMethodWithReflection(ClassMethodWithReflection method);
+
+        void VisitClassNestedClassWithReflection(ClassNestedClassWithReflection nestedClass);
+
+        void VisitClassNestedDelegateWithReflection(ClassNestedDelegateWithReflection nestedDelegate);
+
+        void VisitClassNestedEnumWithReflection(ClassNestedEnumWithReflection nestedEnum);
+
+        void VisitClassNestedInterfaceWithReflection(ClassNestedInterfaceWithReflection @interface);
+
+        void VisitClassNestedStructWithReflection(ClassNestedStructWithReflection nestedStruct);
+
         void VisitClassReferenceWithReflection(ClassReferenceWithReflection classReference);
 
-        void VisitConstructorWithReflection(ConstructorWithReflection constructor);
+        void VisitClassPropertyWithReflection(ClassPropertyWithReflection property);
 
         void VisitConversionOperatorWithReflection(ConversionOperatorWithReflection conversionOperator);
 
@@ -34,43 +60,19 @@ namespace CSharpDom.Reflection
 
         void VisitEnumReferenceWithReflection(EnumReferenceWithReflection enumReference);
 
-        void VisitEventWithReflection(EventWithReflection @event);
-
-        void VisitEventPropertyWithReflection(ClassEventPropertyWithReflection eventProperty);
-
-        void VisitFieldWithReflection(FieldWithReflection field);
-
-        void VisitGenericParameterWithReflection(GenericParameterWithReflection genericParameter);
-
         void VisitGenericParameterDeclarationWithReflection(GenericParameterDeclarationWithReflection genericParameterDeclaration);
 
         void VisitGenericParameterReferenceWithReflection(GenericParameterReferenceWithReflection genericParameterReference);
 
-        void VisitIndexerWithReflection(IndexerWithReflection indexer);
-
         void VisitInterfaceWithReflection(InterfaceWithReflection @interface);
 
         void VisitInterfaceReferenceWithReflection(InterfaceReferenceWithReflection interfaceReference);
-        
-        void VisitMethodWithReflection(MethodWithReflection method);
 
         void VisitNamedAttributeValueWithReflection(NamedAttributeValueWithReflection namedAttributeValue);
 
         void VisitNamespaceWithReflection(NamespaceWithReflection @namespace);
 
-        void VisitNestedClassWithReflection(NestedClassWithReflection nestedClass);
-
-        void VisitNestedDelegateWithReflection(NestedDelegateWithReflection nestedDelegate);
-
-        void VisiTDestructorWithReflection(NestedDestructorWithReflection nestedDestructor);
-
-        void VisitNestedEnumWithReflection(NestedEnumWithReflection nestedEnum);
-
         void VisitNestedEnumMemberWithReflection(NestedEnumMemberWithReflection nestedEnumMember);
-
-        void VisitNestedInterfaceWithReflection(NestedInterfaceWithReflection @interface);
-
-        void VisitNestedStructWithReflection(NestedStructWithReflection nestedStruct);
 
         void VisitNestedTypeReferenceWithReflection(NestedTypeReferenceWithReflection nestedTypeReference);
 
@@ -78,14 +80,12 @@ namespace CSharpDom.Reflection
 
         void VisitParameterWithReflection(ParameterWithReflection parameter);
         
-        void VisitPropertyWithReflection(PropertyWithReflection property);
-        
         void VisitStructWithReflection(StructWithReflection @struct);
 
         void VisitStructReferenceWithReflection(StructReferenceWithReflection structReference);
 
         void VisitUnnamedAttributeValueWithReflection(UnnamedAttributeValueWithReflection unnamedAttributeValue);
 
-        void VisitUnspecifiedTypeReferenceWithReflection(UnspecifiedTypeReferenceWithReflection unspecificTypeReference);*/
+        void VisitUnspecifiedTypeReferenceWithReflection(UnspecifiedTypeReferenceWithReflection unspecificTypeReference);
     }
 }

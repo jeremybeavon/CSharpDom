@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using CSharpDom.CodeGeneration.Tree.Types;
+using CSharpDom.Text;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
@@ -11,6 +13,7 @@ namespace CSharpDom.CodeGeneration.Tree
             GenericParameters = new Collection<GenericParameter>();
             Interfaces = new Collection<InterfaceReference>();
             Body = new InterfaceBody();
+            Visibility = TypeVisibilityModifier.Public;
         }
 
         public Collection<AttributeGroup> Attributes { get; set; }
@@ -26,5 +29,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<InterfaceReference> Interfaces { get; set; }
 
         public InterfaceBody Body { get; set; }
+
+        public override string ToString()
+        {
+            return new ReadOnlyInterface(this).ToSourceCode();
+        }
     }
 }

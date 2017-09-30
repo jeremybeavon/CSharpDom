@@ -9,6 +9,7 @@ namespace CSharpDom.CodeGeneration.Tree
             Type = type;
             Attributes = new Collection<AttributeGroup>();
             Fields = new Collection<Field>();
+            Visibility = StaticClassMemberVisibilityModifier.Private;
         }
 
         public Collection<AttributeGroup> Attributes { get; set; }

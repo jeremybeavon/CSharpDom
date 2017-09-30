@@ -10,6 +10,7 @@ namespace CSharpDom.CodeGeneration.Tree
             Attributes = new Collection<AttributeGroup>();
             GenericParameters = new Collection<GenericParameter>();
             Parameters = new Collection<MethodParameter>();
+            Visibility = ClassMemberVisibilityModifier.Private;
         }
 
         public Collection<AttributeGroup> Attributes { get; set; }

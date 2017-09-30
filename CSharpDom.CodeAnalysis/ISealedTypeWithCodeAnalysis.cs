@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpDom.CodeAnalysis
 {
     public interface ISealedTypeWithCodeAnalysis :
+        IClassTypeDefinitionWithCodeAnalysis,
         ISealedType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,

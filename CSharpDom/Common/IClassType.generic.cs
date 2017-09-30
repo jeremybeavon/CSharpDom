@@ -23,6 +23,7 @@
         IClassType,
         IHasBaseClass<TClassReference>,
         IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
+        IClassTypeDefinition<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference>,
         IHasDestructor<TDestructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration

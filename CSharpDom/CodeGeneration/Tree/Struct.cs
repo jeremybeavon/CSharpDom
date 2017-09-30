@@ -11,6 +11,7 @@ namespace CSharpDom.CodeGeneration.Tree
             GenericParameters = new Collection<GenericParameter>();
             Interfaces = new Collection<InterfaceReference>();
             Body = new StructBody();
+            Visibility = TypeVisibilityModifier.Public;
         }
 
         public Collection<AttributeGroup> Attributes { get; set; }

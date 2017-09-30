@@ -1,9 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using CSharpDom.Editable;
+﻿using CSharpDom.Editable;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.MSBuild;
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -60,6 +61,14 @@ namespace CSharpDom.CodeAnalysis
                 await Task.WhenAll(documents.Select(document => document.LoadAsync())));
             loadedProject = new LoadedProjectWithCodeAnalysis(this, loadedDocuments);
             return loadedProject;
+        }
+
+        public static async Task<ProjectWithCodeAnalysis> OpenAsync(string fileName)
+        {
+            return new ProjectWithCodeAnalysis()
+            {
+                Syntax = await MSBuildWorkspace.Create().OpenProjectAsync(fileName)
+            };
         }
     }
 }

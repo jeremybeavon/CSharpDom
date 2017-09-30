@@ -34,8 +34,8 @@ namespace CSharpDom.Reflection
             DestructorWithReflection>,
         IClassTypeWithReflection,
         IInternalTypeWithReflection,
-        IHasType//,
-        //IVisitable<IReflectionVisitor>
+        IHasType,
+        IVisitable<IReflectionVisitor>
     {
         private readonly AssemblyWithReflection assembly;
         private readonly NamespaceWithReflection @namespace;
@@ -200,13 +200,7 @@ namespace CSharpDom.Reflection
             get { return hiddenMembersAnalyzer; }
         }
 
-        private DestructorWithReflection InitializeDestructor()
-        {
-            MethodInfo method = typeWithReflection.Destructor;
-            return method == null ? null : new DestructorWithReflection(this, method);
-        }
-
-        /*public void Accept(IReflectionVisitor visitor)
+        public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithReflection(this);
         }
@@ -214,6 +208,12 @@ namespace CSharpDom.Reflection
         public void AcceptChildren(IReflectionVisitor visitor)
         {
             AcceptChildren(new ForwardingGenericVisitor(visitor));
-        }*/
+        }
+
+        private DestructorWithReflection InitializeDestructor()
+        {
+            MethodInfo method = typeWithReflection.Destructor;
+            return method == null ? null : new DestructorWithReflection(this, method);
+        }
     }
 }

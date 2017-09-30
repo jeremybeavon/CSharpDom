@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpDom.CodeAnalysis.Partial
 {
     public interface ISealedPartialTypeWithCodeAnalysis :
+        IClassTypeDefinitionWithCodeAnalysis,
         ISealedType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
