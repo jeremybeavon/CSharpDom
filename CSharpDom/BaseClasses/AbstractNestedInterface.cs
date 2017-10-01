@@ -18,12 +18,12 @@ namespace CSharpDom.BaseClasses
     {
         public abstract TDeclaringType DeclaringType { get; }
         
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedInterface(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedInterfaceChildren(this, visitor);
         }

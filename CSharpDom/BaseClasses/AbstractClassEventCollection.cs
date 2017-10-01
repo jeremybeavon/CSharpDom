@@ -6,6 +6,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> :
+        AbstractGenericVisitableObject,
         IClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>
         where TEvent : IClassEvent
         where TEventProperty : IClassEventProperty
@@ -22,12 +23,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TEvent> Events { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassEventCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassEventCollectionChildren(this, visitor);
         }

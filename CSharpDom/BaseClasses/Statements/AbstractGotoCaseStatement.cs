@@ -4,16 +4,16 @@ using CSharpDom.Common.Statements;
 
 namespace CSharpDom.BaseClasses.Statements
 {
-    public abstract class AbstractGotoCaseStatement : IGotoCaseStatement
+    public abstract class AbstractGotoCaseStatement : AbstractStatement, IGotoCaseStatement
     {
         public abstract string CaseName { get; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitGotoCaseStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
         }
     }

@@ -6,6 +6,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses.Statements
 {
     public abstract class AbstractCatchStatement<TTypeReference, TStatement> :
+        AbstractStatement,
         ICatchStatement<TTypeReference, TStatement>
         where TTypeReference : ITypeReference
         where TStatement : IStatement
@@ -16,12 +17,12 @@ namespace CSharpDom.BaseClasses.Statements
 
         public abstract string VariableName { get; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitCatchStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitCatchStatementChildren(this, visitor);
         }

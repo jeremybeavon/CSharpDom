@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter> :
+        AbstractGenericVisitableObject,
         IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
@@ -21,12 +22,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract TTypeReference ReturnType { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitDelegateType(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitDelegateTypeChildren(this, visitor);
         }

@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> :
+        AbstractGenericVisitableObject,
         IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -19,12 +20,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyList<TParameter> Parameters { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitConstructor(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitConstructorChildren(this, visitor);
         }

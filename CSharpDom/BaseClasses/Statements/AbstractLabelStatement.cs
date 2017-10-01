@@ -4,16 +4,16 @@ using CSharpDom.Common.Statements;
 
 namespace CSharpDom.BaseClasses.Statements
 {
-    public abstract class AbstractLabelStatement : ILabelStatement
+    public abstract class AbstractLabelStatement : AbstractStatement, ILabelStatement
     {
         public abstract string LabelName { get; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitLabelStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
         }
     }

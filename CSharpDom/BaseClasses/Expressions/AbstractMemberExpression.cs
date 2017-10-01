@@ -3,19 +3,19 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractMemberExpression<TExpression> : IMemberExpression<TExpression>
+    public abstract class AbstractMemberExpression<TExpression> : AbstractExpression, IMemberExpression<TExpression>
         where TExpression : IExpression
     {
         public abstract string MemberName { get; }
 
         public abstract TExpression ObjectExpression { get; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitMemberExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitMemberExpressionChildren(this, visitor);
         }

@@ -5,17 +5,18 @@ using CSharpDom.Common.Expressions;
 namespace CSharpDom.BaseClasses.Statements
 {
     public abstract class AbstractExpressionStatement<TExpression> :
+        AbstractStatement,
         IExpressionStatement<TExpression>
         where TExpression : IExpression
     {
         public abstract TExpression Expression { get; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitExpressionStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
         }
     }

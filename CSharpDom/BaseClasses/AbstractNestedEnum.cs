@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> :
+        AbstractGenericVisitableObject,
         INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -20,12 +21,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract string Name { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedEnum(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedEnumChildren(this, visitor);
         }

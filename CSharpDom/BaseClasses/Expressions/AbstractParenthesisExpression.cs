@@ -4,17 +4,19 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractParenthesisExpression<TExpression> : IParenthesisExpression<TExpression>
+    public abstract class AbstractParenthesisExpression<TExpression> :
+        AbstractExpression,
+        IParenthesisExpression<TExpression>
         where TExpression : IExpression
     {
         public abstract TExpression Expression { get; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitParenthesisExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitParenthesisExpressionChildren(this, visitor);
         }

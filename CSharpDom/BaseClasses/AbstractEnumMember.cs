@@ -4,7 +4,9 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractEnumMember<TAttributeGroup, TDeclaringType> : IEnumMember<TAttributeGroup, TDeclaringType>
+    public abstract class AbstractEnumMember<TAttributeGroup, TDeclaringType> :
+        AbstractGenericVisitableObject,
+        IEnumMember<TAttributeGroup, TDeclaringType>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IEnum
     {
@@ -14,12 +16,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract string Name { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitEnumMember(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitEnumMemberChildren(this, visitor);
         }

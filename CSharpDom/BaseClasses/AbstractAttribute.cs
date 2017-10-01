@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue> :
+        AbstractGenericVisitableObject,
         IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>
         where TClassReference : IClassReference
         where TUnnamedAttributeValue : IUnnamedAttributeValue
@@ -16,12 +17,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyList<TUnnamedAttributeValue> UnnamedValues { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitAttribute(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAttributeChildren(this, visitor);
         }

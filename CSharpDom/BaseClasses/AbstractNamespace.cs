@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractNamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> :
+        AbstractGenericVisitableObject,
         INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
         where TUsingDirective : IUsingDirective
         where TNamespace : INamespace
@@ -30,12 +31,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyCollection<TUsingDirective> UsingDirectives { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNamespace(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNamespaceChildren(this, visitor);
         }

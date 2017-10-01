@@ -6,6 +6,7 @@ using CSharpDom.Common.Partial;
 namespace CSharpDom.BaseClasses.Partial
 {
     public abstract class AbstractPartialMethodImplementation<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> :
+        AbstractGenericVisitableObject,
         IPartialMethodImplementation<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
@@ -27,12 +28,12 @@ namespace CSharpDom.BaseClasses.Partial
 
         public abstract IReadOnlyList<TParameter> Parameters { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitPartialMethodImplementation(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitPartialMethodImplementationChildren(this, visitor);
         }

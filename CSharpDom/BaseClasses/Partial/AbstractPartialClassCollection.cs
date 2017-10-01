@@ -5,6 +5,7 @@ using CSharpDom.Common.Partial;
 namespace CSharpDom.BaseClasses.Partial
 {
     public abstract class AbstractPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass> :
+        AbstractGenericVisitableObject,
         IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass>
         where TClass : IClassType
         where TAbstractClass : IAbstractType
@@ -24,12 +25,12 @@ namespace CSharpDom.BaseClasses.Partial
             get { return Classes.Count + AbstractClasses.Count + SealedClasses.Count + StaticClasses.Count; }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitPartialClassCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitPartialClassCollectionChildren(this, visitor);
         }

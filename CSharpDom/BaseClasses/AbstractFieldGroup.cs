@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
+        AbstractGenericVisitableObject,
         IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -19,12 +20,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract TTypeReference FieldType { get; }
         
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitFieldGroup(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitFieldGroupChildren(this, visitor);
         }

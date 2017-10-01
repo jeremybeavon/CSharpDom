@@ -7,6 +7,7 @@ using CSharpDom.Common.Partial;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> :
+        AbstractGenericVisitableObject,
         IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
         where TClass : IClass
         where TAbstractClass : IAbstractClass
@@ -29,12 +30,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TClass> Classes { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassCollectionChildren(this, visitor);
         }

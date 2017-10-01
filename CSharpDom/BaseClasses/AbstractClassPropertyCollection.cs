@@ -6,6 +6,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractClassPropertyCollection<TProperty, TExplicitInterfaceProperty> :
+        AbstractGenericVisitableObject,
         IClassPropertyCollection<TProperty, TExplicitInterfaceProperty>
         where TProperty : IClassProperty
         where TExplicitInterfaceProperty : IExplicitInterfaceProperty
@@ -19,12 +20,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TProperty> Properties { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassPropertyCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassPropertyCollectionChildren(this, visitor);
         }

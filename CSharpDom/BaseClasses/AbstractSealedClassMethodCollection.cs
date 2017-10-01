@@ -6,6 +6,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractSealedClassMethodCollection<TMethod, TExplicitInterfaceMethod> :
+        AbstractGenericVisitableObject,
         ISealedClassMethodCollection<TMethod, TExplicitInterfaceMethod>
         where TMethod : ISealedClassMethod
         where TExplicitInterfaceMethod : IExplicitInterfaceMethod
@@ -19,12 +20,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TMethod> Methods { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitSealedClassMethodCollection(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitSealedClassMethodCollectionChildren(this, visitor);
         }

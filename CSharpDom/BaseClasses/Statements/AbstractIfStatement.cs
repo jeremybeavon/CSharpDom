@@ -5,6 +5,7 @@ using CSharpDom.Common.Expressions;
 namespace CSharpDom.BaseClasses.Statements
 {
     public abstract class AbstractIfStatement<TExpression, TStatement> :
+        AbstractStatement,
         IIfStatement<TExpression, TStatement>
         where TExpression : IExpression
         where TStatement : IStatement
@@ -15,12 +16,12 @@ namespace CSharpDom.BaseClasses.Statements
 
         public abstract TStatement ThenStatement { get; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitIfStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitIfStatementChildren(this, visitor);
         }

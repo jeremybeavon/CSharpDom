@@ -5,7 +5,9 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractStaticClassFieldCollection<TField, TConstant> : IStaticClassFieldCollection<TField, TConstant>
+    public abstract class AbstractStaticClassFieldCollection<TField, TConstant> :
+        AbstractGenericVisitableObject,
+        IStaticClassFieldCollection<TField, TConstant>
         where TField : IStaticClassField
         where TConstant : IStaticClassConstant
     {
@@ -18,12 +20,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TField> Fields { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStaticClassFieldCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStaticClassFieldCollectionChildren(this, visitor);
         }

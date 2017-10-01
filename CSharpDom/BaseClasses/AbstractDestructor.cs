@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractDestructor<TAttributeGroup, TDeclaringType, TMethodBody> :
+        AbstractGenericVisitableObject,
         IDestructor<TAttributeGroup, TDeclaringType, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
@@ -16,12 +17,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract TDeclaringType DeclaringType { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitDestructor(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitDestructor(this, visitor);
         }

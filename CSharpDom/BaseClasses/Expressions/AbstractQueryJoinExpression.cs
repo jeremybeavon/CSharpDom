@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace CSharpDom.BaseClasses.Expressions
 {
     public abstract class AbstractQueryJoinExpression<TExpression> :
+        AbstractExpression,
         IQueryJoinExpression<TExpression>
         where TExpression : IExpression
     {
@@ -18,12 +19,12 @@ namespace CSharpDom.BaseClasses.Expressions
 
         public abstract TExpression OnExpression { get; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitQueryJoinExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitQueryJoinExpressionChildren(this, visitor);
         }

@@ -4,14 +4,14 @@ using CSharpDom.Common.Statements;
 
 namespace CSharpDom.BaseClasses.Statements
 {
-    public abstract class AbstractBreakStatement : IBreakStatement
+    public abstract class AbstractBreakStatement : AbstractStatement, IBreakStatement
     {
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitBreakStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
         }
     }

@@ -5,6 +5,7 @@ using CSharpDom.Common.Expressions;
 namespace CSharpDom.BaseClasses.Statements
 {
     public abstract class AbstractDoStatement<TExpression, TStatement> :
+        AbstractStatement,
         IDoStatement<TExpression, TStatement>
         where TExpression : IExpression
         where TStatement : IStatement
@@ -13,12 +14,12 @@ namespace CSharpDom.BaseClasses.Statements
 
         public abstract TStatement Statement { get; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitDoStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitDoStatementChildren(this, visitor);
         }

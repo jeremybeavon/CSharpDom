@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
+        AbstractGenericVisitableObject,
         IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
@@ -23,12 +24,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract TAccessor SetAccessor { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitProperty(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitPropertyChildren(this, visitor);
         }

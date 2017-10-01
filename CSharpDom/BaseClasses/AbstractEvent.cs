@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference> :
+        AbstractGenericVisitableObject,
         IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
@@ -18,12 +19,12 @@ namespace CSharpDom.BaseClasses
         
         public abstract string Name { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitEvent(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitEventChildren(this, visitor);
         }

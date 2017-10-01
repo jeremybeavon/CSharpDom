@@ -3,16 +3,16 @@ using System;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractUsingDirective : IUsingDirective
+    public abstract class AbstractUsingDirective : AbstractGenericVisitableObject, IUsingDirective
     {
         public abstract string Name { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitUsingDirective(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
         }
     }

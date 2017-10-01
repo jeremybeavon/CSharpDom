@@ -4,7 +4,9 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractTernaryOperatorExpression<TExpression> : ITernaryOperatorExpression<TExpression>
+    public abstract class AbstractTernaryOperatorExpression<TExpression> :
+        AbstractExpression,
+        ITernaryOperatorExpression<TExpression>
         where TExpression : IExpression
     {
         public abstract TExpression Left { get; }
@@ -13,12 +15,12 @@ namespace CSharpDom.BaseClasses.Expressions
 
         public abstract TExpression Right { get; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitTernaryOperatorExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitTernaryOperatorExpressionChildren(this, visitor);
         }

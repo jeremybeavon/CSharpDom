@@ -17,6 +17,7 @@ namespace CSharpDom.BaseClasses
         TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
+        AbstractGenericVisitableObject,
         IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
@@ -57,12 +58,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract TNestedStructCollection Structs { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStaticType(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStaticTypeChildren(this, visitor);
         }

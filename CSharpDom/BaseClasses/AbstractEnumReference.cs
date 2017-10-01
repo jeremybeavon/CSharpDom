@@ -2,16 +2,16 @@
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractEnumReference : IEnumReference
+    public abstract class AbstractEnumReference : AbstractGenericVisitableObject, IEnumReference
     {
         public abstract string Name { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitEnumReference(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
         }
     }

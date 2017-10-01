@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractMethodBody<TStatement> : IMethodBody<TStatement>
+    public abstract class AbstractMethodBody<TStatement> : AbstractGenericVisitableObject, IMethodBody<TStatement>
     {
         public abstract IReadOnlyList<TStatement> Statements { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitMethodBody(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
         }
     }

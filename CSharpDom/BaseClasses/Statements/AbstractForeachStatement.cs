@@ -7,6 +7,7 @@ using CSharpDom.Common.Expressions;
 namespace CSharpDom.BaseClasses.Statements
 {
     public abstract class AbstractForeachStatement<TTypeReference, TExpression, TStatement> :
+        AbstractStatement,
         IForeachStatement<TTypeReference, TExpression, TStatement>
         where TTypeReference : ITypeReference
         where TExpression : IExpression
@@ -20,12 +21,12 @@ namespace CSharpDom.BaseClasses.Statements
 
         public abstract string VariableName { get; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitForeachStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitForeachStatementChildren(this, visitor);
         }

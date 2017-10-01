@@ -4,7 +4,9 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractParameter<TAttributeGroup, TTypeReference> : IParameter<TAttributeGroup, TTypeReference>
+    public abstract class AbstractParameter<TAttributeGroup, TTypeReference> :
+        AbstractGenericVisitableObject,
+        IParameter<TAttributeGroup, TTypeReference>
         where TAttributeGroup : IAttributeGroup
         where TTypeReference : ITypeReference
     {
@@ -14,12 +16,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract TTypeReference ParameterType { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitParameter(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitParameterChildren(this, visitor);
         }

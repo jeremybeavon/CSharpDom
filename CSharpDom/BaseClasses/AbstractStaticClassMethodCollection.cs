@@ -6,6 +6,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractStaticClassMethodCollection<TMethod, TExtensionMethod> :
+        AbstractGenericVisitableObject,
         IStaticClassMethodCollection<TMethod, TExtensionMethod>
         where TMethod : IStaticClassMethod
         where TExtensionMethod : IExtensionMethod
@@ -19,12 +20,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TMethod> Methods { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStaticClassMethodCollection(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStaticClassMethodCollectionChildren(this, visitor);
         }

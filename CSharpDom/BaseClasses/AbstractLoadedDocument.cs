@@ -16,6 +16,7 @@ namespace CSharpDom.BaseClasses
         TEnum,
         TInterface,
         TStructCollection> :
+        AbstractGenericVisitableObject,
         ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
         where TSolution : ISolution
         where TProject : IProject
@@ -53,12 +54,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract IReadOnlyCollection<TUsingDirective> UsingDirectives { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitLoadedDocument(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitLoadedDocumentChildren(this, visitor);
         }

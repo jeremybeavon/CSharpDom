@@ -6,6 +6,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> :
+        AbstractGenericVisitableObject,
         IClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer>
         where TIndexer : IClassIndexer
         where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
@@ -19,12 +20,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TIndexer> Indexers { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassIndexerCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassIndexerCollectionChildren(this, visitor);
         }

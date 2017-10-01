@@ -4,19 +4,11 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractAccessor<TAttributeGroup> : IAccessor<TAttributeGroup>
+    public abstract class AbstractAccessor<TAttributeGroup> :
+        AbstractGenericVisitableObject,
+        IAccessor<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
-
-        public virtual void Accept(IGenericVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void AcceptChildren(IGenericVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

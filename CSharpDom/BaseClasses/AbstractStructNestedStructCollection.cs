@@ -7,6 +7,7 @@ using CSharpDom.Common.Partial;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractStructNestedStructCollection<TStruct, TPartialStruct> :
+        AbstractGenericVisitableObject,
         IStructNestedStructCollection<TStruct, TPartialStruct>
         where TStruct : IStructNestedStruct
         where TPartialStruct : IStructNestedPartialStruct
@@ -20,12 +21,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TStruct> Structs { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStructNestedStructCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStructNestedStructCollectionChildren(this, visitor);
         }

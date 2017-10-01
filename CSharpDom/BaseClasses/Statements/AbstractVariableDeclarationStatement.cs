@@ -6,6 +6,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses.Statements
 {
     public abstract class AbstractVariableDeclarationStatement<TTypeReference, TExpression> :
+        AbstractStatement,
         IVariableDeclarationStatement<TTypeReference, TExpression>
         where TTypeReference : ITypeReference
         where TExpression : IExpression
@@ -14,12 +15,12 @@ namespace CSharpDom.BaseClasses.Statements
 
         public abstract TTypeReference Type { get; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitVariableDeclarationStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
         }
     }

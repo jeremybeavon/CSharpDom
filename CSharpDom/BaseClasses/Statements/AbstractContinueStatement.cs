@@ -4,14 +4,14 @@ using CSharpDom.Common.Statements;
 
 namespace CSharpDom.BaseClasses.Statements
 {
-    public abstract class AbstractContinueStatement : IContinueStatement
+    public abstract class AbstractContinueStatement : AbstractStatement, IContinueStatement
     {
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitContinueStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
         }
     }

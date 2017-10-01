@@ -5,6 +5,7 @@ using System.Collections.Generic;
 namespace CSharpDom.BaseClasses.Expressions
 {
     public abstract class AbstractCastExpression<TTypeReference, TExpression> :
+        AbstractExpression,
         ICastExpression<TTypeReference, TExpression>
         where TTypeReference : ITypeReference
         where TExpression : IExpression
@@ -13,12 +14,12 @@ namespace CSharpDom.BaseClasses.Expressions
 
         public abstract TTypeReference Type { get; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitCastExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitCastExpressionChildren(this, visitor);
         }

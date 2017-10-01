@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> :
+        AbstractGenericVisitableObject,
         IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>
         where TClassReference : IClassReference
         where TGenericParameterReference : IGenericParameterReference
@@ -27,12 +28,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract GenericParameterTypeConstraint TypeConstraint { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitGenericParameterDeclaration(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitGenericParameterDeclaration(this, visitor);
         }

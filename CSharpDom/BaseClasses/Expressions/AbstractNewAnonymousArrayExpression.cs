@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractNewAnonymousArrayExpression : INewAnonymousArrayExpression
+    public abstract class AbstractNewAnonymousArrayExpression : AbstractExpression, INewAnonymousArrayExpression
     {
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitNewAnonymousArrayExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
         }
     }

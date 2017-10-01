@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractStaticConstructor<TAttributeGroup, TDeclaringType, TMethodBody> :
+        AbstractGenericVisitableObject,
         IStaticConstructor<TAttributeGroup, TDeclaringType, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -16,12 +17,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract TDeclaringType DeclaringType { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStaticConstructor(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStaticConstructorChildren(this, visitor);
         }

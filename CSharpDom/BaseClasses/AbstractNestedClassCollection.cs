@@ -7,6 +7,7 @@ using CSharpDom.Common.Partial;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> :
+        AbstractGenericVisitableObject,
         INestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
         where TClass : INestedClass
         where TAbstractClass : INestedAbstractClass
@@ -29,12 +30,12 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TClass> Classes { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedClassCollection(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedClassCollectionChildren(this, visitor);
         }

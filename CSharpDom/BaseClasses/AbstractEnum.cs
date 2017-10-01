@@ -5,6 +5,7 @@ using CSharpDom.Common;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember> :
+        AbstractGenericVisitableObject,
         IEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -31,12 +32,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract TypeVisibilityModifier Visibility { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitEnum(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitEnumChildren(this, visitor);
         }

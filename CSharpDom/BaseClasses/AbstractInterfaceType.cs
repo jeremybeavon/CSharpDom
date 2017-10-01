@@ -11,6 +11,7 @@ namespace CSharpDom.BaseClasses
         TProperty,
         TIndexer,
         TMethod> :
+        AbstractGenericVisitableObject,
         IInterfaceType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration

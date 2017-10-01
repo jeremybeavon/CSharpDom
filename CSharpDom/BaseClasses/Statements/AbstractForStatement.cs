@@ -7,6 +7,7 @@ using CSharpDom.Common.Expressions;
 namespace CSharpDom.BaseClasses.Statements
 {
     public abstract class AbstractForStatement<TExpression, TForInitializerStatement, TStatement> :
+        AbstractStatement,
         IForStatement<TExpression, TForInitializerStatement, TStatement>
         where TExpression : IExpression
         where TForInitializerStatement : IForInitializerStatement
@@ -20,12 +21,12 @@ namespace CSharpDom.BaseClasses.Statements
 
         public abstract TStatement Statement { get; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitForStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitForStatementChildren(this, visitor);
         }

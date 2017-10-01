@@ -235,7 +235,9 @@
     <Compile Include="BaseClasses\AbstractUnnamedAttributeValue.cs" />
     <Compile Include="BaseClasses\AbstractUnspecifiedTypeReference.cs" />
     <Compile Include="BaseClasses\AbstractUsingDirective.cs" />
+    <Compile Include="BaseClasses\AbstractGenericVisitableObject.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractAnonymousMethodParameter.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryGroupIntoExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryOrderingExpression.cs" />
@@ -300,6 +302,7 @@
     <Compile Include="BaseClasses\Partial\AbstractStructNestedSealedPartialClass.cs" />
     <Compile Include="BaseClasses\Partial\AbstractStructNestedStaticPartialClass.cs" />
     <Compile Include="BaseClasses\Partial\AbstractStructNestedPartialStruct.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractStatement.cs" />
     <Compile Include="BaseClasses\Wrappers\StructMethodCollectionWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedStaticClassMethodCollectionWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\StaticClassMethodCollectionWrapper.cs" />

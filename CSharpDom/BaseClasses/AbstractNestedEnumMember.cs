@@ -4,6 +4,7 @@ using System.Collections.Generic;
 namespace CSharpDom.BaseClasses
 {
     public abstract class AbstractNestedEnumMember<TAttributeGroup, TDeclaringType> :
+        AbstractGenericVisitableObject,
         INestedEnumMember<TAttributeGroup, TDeclaringType>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : INestedEnum
@@ -14,12 +15,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract string Name { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedEnumMember(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedEnumMemberChildren(this, visitor);
         }

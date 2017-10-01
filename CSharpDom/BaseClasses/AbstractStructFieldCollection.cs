@@ -5,7 +5,9 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractStructFieldCollection<TField, TConstant> : IStructFieldCollection<TField, TConstant>
+    public abstract class AbstractStructFieldCollection<TField, TConstant> :
+        AbstractGenericVisitableObject,
+        IStructFieldCollection<TField, TConstant>
         where TField : IStructField
         where TConstant : IStructConstant
     {
@@ -18,14 +20,14 @@ namespace CSharpDom.BaseClasses
 
         protected abstract IReadOnlyCollection<TField> Fields { get; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStructFieldCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
-            //GenericVisitor.VisitStructFieldCollectionChildren(this, visitor);
+            GenericVisitor.VisitStructFieldCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TField> GetEnumerator()

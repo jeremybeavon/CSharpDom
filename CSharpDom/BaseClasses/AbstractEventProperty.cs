@@ -4,7 +4,8 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> : 
+    public abstract class AbstractEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> :
+        AbstractGenericVisitableObject,
         IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -27,12 +28,12 @@ namespace CSharpDom.BaseClasses
 
         public abstract TMethodBody RemoveBody { get; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitEventProperty(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitEventPropertyChildren(this, visitor);
         }
