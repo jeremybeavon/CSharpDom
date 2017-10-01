@@ -814,7 +814,6 @@
     <Compile Include="Reflection\DelegateParameterWithReflection.cs" />
     <Compile Include="SealedClassIndexerInheritanceModifier.cs" />
     <Compile Include="SealedClassMemberInheritanceModifier.cs" />
-    <Compile Include="CodeGeneration\Tree\ClassFieldModifier.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyClassCollection.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructCollection.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStructFieldCollection.cs" />
@@ -1256,7 +1255,7 @@
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStaticClassField.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStaticClassMethod.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStaticClassNestedClass.cs" />
-    <Compile Include="CodeGeneration\Tree\Types\StaticReadOnlyClassNestedDelegate.cs" />
+    <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStaticClassNestedDelegate.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStaticClassNestedEnum.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStaticClassNestedInterface.cs" />
     <Compile Include="CodeGeneration\Tree\Types\ReadOnlyStaticClassNestedStruct.cs" />

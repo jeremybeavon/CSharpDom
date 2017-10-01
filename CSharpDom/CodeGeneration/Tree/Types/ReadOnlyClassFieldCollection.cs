@@ -16,14 +16,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
             foreach (ClassField classField in body.Fields)
             {
                 ReadOnlyClassField field = new ReadOnlyClassField(classField);
-                if (classField.Modifier == FieldModifier.Constant)
-                {
-                    constants.Add(field);
-                }
-                else
-                {
-                    fields.Add(field);
-                }
+                fields.Add(field);
             }
 
             this.constants = constants;

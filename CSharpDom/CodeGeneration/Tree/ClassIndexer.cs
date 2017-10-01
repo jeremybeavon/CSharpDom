@@ -1,4 +1,6 @@
-﻿using CSharpDom.Common;
+﻿using CSharpDom.CodeGeneration.Tree.Types;
+using CSharpDom.Common;
+using CSharpDom.Text;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.CodeGeneration.Tree
@@ -76,6 +78,11 @@ namespace CSharpDom.CodeGeneration.Tree
                     emptyAccessors = null;
                 }
             }
+        }
+
+        public override string ToString()
+        {
+            return new ReadOnlyClassIndexer(this).ToSourceCode();
         }
     }
 }

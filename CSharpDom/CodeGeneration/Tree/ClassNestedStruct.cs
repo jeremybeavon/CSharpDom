@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using CSharpDom.CodeGeneration.Tree.Types;
+using CSharpDom.Text;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
@@ -27,5 +29,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<InterfaceReference> Interfaces { get; set; }
 
         public StructBody Body { get; set; }
+
+        public override string ToString()
+        {
+            return new ReadOnlyClassNestedStruct(this).ToSourceCode();
+        }
     }
 }

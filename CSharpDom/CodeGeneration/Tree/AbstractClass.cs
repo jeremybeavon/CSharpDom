@@ -30,7 +30,5 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<InterfaceReference> Interfaces { get; set; }
 
         public AbstractClassBody Body { get; set; }
-
-
     }
 }

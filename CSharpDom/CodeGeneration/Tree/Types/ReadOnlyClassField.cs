@@ -41,35 +41,7 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public ClassFieldModifier Modifier
         {
-            get
-            {
-                switch (field.Modifier)
-                {
-                    case FieldModifier.New:
-                        return ClassFieldModifier.New;
-                    case FieldModifier.NewStatic:
-                        return ClassFieldModifier.NewStaticReadOnly;
-                    case FieldModifier.NewStaticVolatile:
-                        return ClassFieldModifier.NewStaticVolatile;
-                    case FieldModifier.NewVolatile:
-                        return ClassFieldModifier.NewVolatile;
-                    case FieldModifier.None:
-                        return ClassFieldModifier.None;
-                    case FieldModifier.ReadOnly:
-                        return ClassFieldModifier.ReadOnly;
-                    case FieldModifier.Static:
-                        return ClassFieldModifier.Static;
-                    case FieldModifier.StaticReadOnly:
-                        return ClassFieldModifier.StaticReadOnly;
-                    case FieldModifier.StaticVolatile:
-                        return ClassFieldModifier.StaticVolatile;
-                    case FieldModifier.Volatile:
-                        return ClassFieldModifier.Volatile;
-                    default:
-                        throw new NotSupportedException();
-
-                }
-            }
+            get { return field.Modifier; }
         }
 
         public string Name
@@ -90,26 +62,12 @@ namespace CSharpDom.CodeGeneration.Tree.Types
 
         public void Accept(IGenericVisitor visitor)
         {
-            if (field.Modifier == FieldModifier.Constant)
-            {
-                visitor.VisitClassConstant(this);
-            }
-            else
-            {
-                visitor.VisitClassField(this);
-            }
+            visitor.VisitClassField(this);
         }
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            if (field.Modifier == FieldModifier.Constant)
-            {
-                GenericVisitor.VisitClassConstantChildren(this, visitor);
-            }
-            else
-            {
-                GenericVisitor.VisitClassFieldChildren(this, visitor);
-            }
+            GenericVisitor.VisitClassFieldChildren(this, visitor);
         }
     }
 }

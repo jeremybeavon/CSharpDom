@@ -1,10 +1,6 @@
-﻿using System.Collections.Generic;
-using CSharpDom.BaseClasses;
-using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.NotSupported;
+using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {

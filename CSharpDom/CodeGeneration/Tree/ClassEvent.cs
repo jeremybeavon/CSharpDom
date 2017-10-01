@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using CSharpDom.CodeGeneration.Tree.Types;
+using CSharpDom.Text;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
@@ -26,6 +28,11 @@ namespace CSharpDom.CodeGeneration.Tree
         internal bool IsEventProperty
         {
             get { return Accessors != null; }
+        }
+
+        public override string ToString()
+        {
+            return new ReadOnlyClassEvent(this).ToSourceCode();
         }
     }
 }

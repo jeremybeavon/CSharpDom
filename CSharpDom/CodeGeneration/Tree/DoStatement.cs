@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using CSharpDom.CodeGeneration.Tree.Statements;
+using CSharpDom.Text;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
@@ -7,5 +8,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public ExpressionStatement Condition { get; set; }
 
         public Statement Statement { get; set; }
+
+        public override string ToString()
+        {
+            return new ReadOnlyDoStatement(this).ToSourceCode();
+        }
     }
 }

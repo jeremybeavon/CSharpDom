@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using CSharpDom.CodeGeneration.Tree.Types;
+using CSharpDom.Text;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
@@ -19,5 +21,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public DelegateReference Type { get; set; }
 
         public EventAccessors Accessors { get; set; }
+
+        public override string ToString()
+        {
+            return new ReadOnlyExplicitInterfaceEvent(this).ToSourceCode();
+        }
     }
 }

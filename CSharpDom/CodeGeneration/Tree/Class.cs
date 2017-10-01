@@ -1,7 +1,6 @@
-﻿using System;
+﻿using CSharpDom.CodeGeneration.Tree.Types;
+using CSharpDom.Text;
 using System.Collections.ObjectModel;
-using CSharpDom.Common;
-using CSharpDom.NotSupported;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
@@ -30,5 +29,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<InterfaceReference> Interfaces { get; set; }
 
         public ClassBody Body { get; set; }
+
+        public override string ToString()
+        {
+            return new ReadOnlyClass(this).ToSourceCode();
+        }
     }
 }

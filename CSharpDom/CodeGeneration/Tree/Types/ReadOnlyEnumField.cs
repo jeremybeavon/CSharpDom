@@ -16,6 +16,11 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         private readonly EnumField enumField;
         private readonly bool isNested;
 
+        public ReadOnlyEnumField(EnumField enumField)
+        {
+            this.enumField = enumField;
+        }
+
         public ReadOnlyEnumField(EnumField enumField, bool isNested)
         {
             this.enumField = enumField;

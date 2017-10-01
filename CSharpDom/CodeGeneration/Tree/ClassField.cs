@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using CSharpDom.CodeGeneration.Tree.Types;
+using CSharpDom.Text;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.CodeGeneration.Tree
 {
@@ -16,10 +18,15 @@ namespace CSharpDom.CodeGeneration.Tree
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
 
-        public FieldModifier Modifier { get; set; }
+        public ClassFieldModifier Modifier { get; set; }
         
         public TypeReference Type { get; set; }
 
         public Collection<Field> Fields { get; set; }
+
+        public override string ToString()
+        {
+            return new ReadOnlyClassField(this).ToSourceCode();
+        }
     }
 }
