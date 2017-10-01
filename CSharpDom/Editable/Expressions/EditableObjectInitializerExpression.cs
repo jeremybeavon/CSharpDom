@@ -1,12 +1,13 @@
-﻿using CSharpDom.Common.Expressions;
+﻿using CSharpDom.BaseClasses.Expressions;
+using CSharpDom.Common.Expressions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System;
 using System.Linq;
 
 namespace CSharpDom.Editable.Expressions
 {
     public abstract class EditableObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer> :
+        AbstractExpression,
         IObjectInitializerExpression<TCreateObjectExpression, TExpression, TObjectInitializer>
         where TCreateObjectExpression : ICreateObjectExpression
         where TExpression : IExpression
@@ -29,12 +30,12 @@ namespace CSharpDom.Editable.Expressions
             }
         }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitObjectInitializerExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitObjectInitializerExpressionChildren(this, visitor);
         }

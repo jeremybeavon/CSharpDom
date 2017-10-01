@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Editable.Expressions
 {
-    public abstract class EditableIntegerConstantExpression : IIntegerConstantExpression
+    public abstract class EditableIntegerConstantExpression : AbstractExpression, IIntegerConstantExpression
     {
         public abstract int Constant { get; set; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitIntegerConstantExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
         }
     }

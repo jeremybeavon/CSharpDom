@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using CSharpDom.BaseClasses.Expressions;
 using CSharpDom.Common.Expressions;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable.Expressions
 {
     public abstract class EditableQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression> :
+        AbstractExpression,
         IQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression>
         where TQueryFromExpression : IQueryFromExpression
         where TQueryClauseExpression : IQueryClauseExpression
@@ -21,12 +23,12 @@ namespace CSharpDom.Editable.Expressions
             get { return new ReadOnlyCollection<TQueryClauseExpression>(Expressions); }
         }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitQueryExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitQueryExpressionChildren(this, visitor);
         }

@@ -1,10 +1,12 @@
-﻿using CSharpDom.Common;
+﻿using CSharpDom.BaseClasses.Expressions;
+using CSharpDom.Common;
 using CSharpDom.Common.Expressions;
 using System.Collections.Generic;
 
 namespace CSharpDom.Editable.Expressions
 {
     public abstract class EditableCastExpression<TTypeReference, TExpression> :
+        AbstractExpression,
         ICastExpression<TTypeReference, TExpression>
         where TTypeReference : ITypeReference
         where TExpression : IExpression
@@ -13,12 +15,12 @@ namespace CSharpDom.Editable.Expressions
 
         public abstract TTypeReference Type { get; set; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitCastExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitCastExpressionChildren(this, visitor);
         }

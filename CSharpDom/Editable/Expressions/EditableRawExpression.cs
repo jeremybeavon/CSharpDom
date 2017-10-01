@@ -1,18 +1,18 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses.Expressions;
 using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Editable.Expressions
 {
-    public abstract class EditableRawExpression : IRawExpression
+    public abstract class EditableRawExpression : AbstractExpression, IRawExpression
     {
         public abstract string Expression { get; set; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitRawExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
         }
     }

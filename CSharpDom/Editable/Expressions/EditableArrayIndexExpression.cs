@@ -1,11 +1,13 @@
-﻿using CSharpDom.Common.Expressions;
+﻿using CSharpDom.BaseClasses.Expressions;
+using CSharpDom.Common.Expressions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System;
 
 namespace CSharpDom.Editable.Expressions
 {
-    public abstract class EditableArrayIndexExpression<TExpression> : IArrayIndexExpression<TExpression>
+    public abstract class EditableArrayIndexExpression<TExpression> :
+        AbstractExpression,
+        IArrayIndexExpression<TExpression>
         where TExpression : IExpression
     {
         public abstract TExpression Array { get; set; }

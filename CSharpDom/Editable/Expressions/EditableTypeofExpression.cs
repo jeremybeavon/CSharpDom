@@ -1,21 +1,22 @@
-﻿using CSharpDom.Common;
+﻿using CSharpDom.BaseClasses.Expressions;
+using CSharpDom.Common;
 using CSharpDom.Common.Expressions;
-using System.Collections.Generic;
 
 namespace CSharpDom.Editable.Expressions
 {
     public abstract class EditableTypeofExpression<TTypeReference> :
+        AbstractExpression,
         ITypeofExpression<TTypeReference>
         where TTypeReference : ITypeReference
     {
         public abstract TTypeReference Type { get; set; }
 
-        public void Accept(IGenericExpressionVisitor visitor)
+        public override void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitTypeofExpression(this);
         }
 
-        public void AcceptChildren(IGenericExpressionVisitor visitor)
+        public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
         }
     }
