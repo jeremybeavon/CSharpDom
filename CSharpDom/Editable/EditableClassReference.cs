@@ -1,11 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableClassReference<TTypeReference> : IClassReference<TTypeReference>
+    public abstract class EditableClassReference<TTypeReference> :
+        AbstractGenericVisitableObject,
+        IClassReference<TTypeReference>
         where TTypeReference : ITypeReference
     {
         public abstract IList<TTypeReference> GenericParameters { get; set; }
@@ -17,12 +19,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TTypeReference>(GenericParameters); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassReference(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassReferenceChildren(this, visitor);
         }

@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Common.Partial;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable.Partial
 {
     public abstract class EditablePartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass> :
+        AbstractGenericVisitableObject,
         IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass>
         where TClass : IClassType
         where TAbstractClass : IAbstractType
@@ -45,12 +47,12 @@ namespace CSharpDom.Editable.Partial
             get { return Classes.Count + AbstractClasses.Count + SealedClasses.Count + StaticClasses.Count; }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitPartialClassCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitPartialClassCollectionChildren(this, visitor);
         }

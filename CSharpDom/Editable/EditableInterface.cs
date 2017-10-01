@@ -37,12 +37,12 @@ namespace CSharpDom.Editable
 
         public abstract TypeVisibilityModifier Visibility { get; set; }
         
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitInterface(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitInterfaceChildren(this, visitor);
         }

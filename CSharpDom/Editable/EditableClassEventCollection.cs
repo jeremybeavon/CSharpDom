@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> :
+        AbstractGenericVisitableObject,
         IClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>
         where TEvent : IClassEvent
         where TEventProperty : IClassEventProperty
@@ -33,12 +34,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceEvent>(ExplicitInterfaceEvents); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassEventCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassEventCollectionChildren(this, visitor);
         }

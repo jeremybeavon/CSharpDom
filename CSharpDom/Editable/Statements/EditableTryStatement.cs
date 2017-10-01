@@ -1,14 +1,13 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses.Statements;
+using CSharpDom.Common.Statements;
+using CSharpDom.Wrappers.Internal;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using CSharpDom.Common.Statements;
-using CSharpDom.Common;
-using CSharpDom.Common.Expressions;
-using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable.Statements
 {
     public abstract class EditableTryStatement<TStatement, TCatchStatement, TFinallyStatement> :
+        AbstractStatement,
         ITryStatement<TStatement, TCatchStatement, TFinallyStatement>
         where TStatement : IStatement
         where TCatchStatement : ICatchStatement
@@ -30,12 +29,12 @@ namespace CSharpDom.Editable.Statements
             get { return new ReadOnlyCollection<TStatement>(TryStatements); }
         }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitTryStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitTryStatementChildren(this, visitor);
         }

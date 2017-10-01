@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> :
+        AbstractGenericVisitableObject,
         IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -36,12 +37,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TParameter>(Parameters); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitOperatorOverload(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitOperatorOverloadChildren(this, visitor);
         }

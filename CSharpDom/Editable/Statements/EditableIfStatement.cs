@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using CSharpDom.Common.Statements;
+﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Expressions;
+using CSharpDom.Common.Statements;
 
 namespace CSharpDom.Editable.Statements
 {
     public abstract class EditableIfStatement<TExpression, TStatement> :
+        AbstractStatement,
         IIfStatement<TExpression, TStatement>
         where TExpression : IExpression
         where TStatement : IStatement
@@ -15,12 +16,12 @@ namespace CSharpDom.Editable.Statements
 
         public abstract TStatement ThenStatement { get; set; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitIfStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitIfStatementChildren(this, visitor);
         }

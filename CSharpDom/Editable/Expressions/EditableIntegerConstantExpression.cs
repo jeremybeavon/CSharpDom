@@ -1,5 +1,5 @@
-﻿using CSharpDom.Common.Expressions;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses.Expressions;
+using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Editable.Expressions
 {

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> :
+        AbstractGenericVisitableObject,
         IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -31,12 +32,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TParameter>(Parameters); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitConstructor(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitConstructorChildren(this, visitor);
         }

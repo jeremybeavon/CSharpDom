@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Statements;
 
 namespace CSharpDom.Editable.Statements
 {
-    public abstract class EditableContinueStatement : IContinueStatement
+    public abstract class EditableContinueStatement : AbstractStatement, IContinueStatement
     {
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitContinueStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
         }
     }

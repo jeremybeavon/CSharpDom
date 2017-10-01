@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableEvent<TAttributeGroup, TDeclaringType, TDelegateReference> :
+        AbstractGenericVisitableObject,
         IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
@@ -24,12 +25,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitEvent(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitEventChildren(this, visitor);
         }

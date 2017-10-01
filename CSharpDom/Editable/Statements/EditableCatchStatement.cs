@@ -1,12 +1,13 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses.Statements;
+using CSharpDom.Common;
+using CSharpDom.Common.Statements;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using CSharpDom.Common.Statements;
-using CSharpDom.Common;
 
 namespace CSharpDom.Editable.Statements
 {
     public abstract class EditableCatchStatement<TTypeReference, TStatement> :
+        AbstractStatement,
         ICatchStatement<TTypeReference, TStatement>
         where TTypeReference : ITypeReference
         where TStatement : IStatement
@@ -22,12 +23,12 @@ namespace CSharpDom.Editable.Statements
             get { return new ReadOnlyCollection<TStatement>(Statements); }
         }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitCatchStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitCatchStatementChildren(this, visitor);
         }

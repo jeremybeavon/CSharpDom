@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Common.Partial;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable.Partial
 {
     public abstract class EditablePartialMethodImplementation<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> :
+        AbstractGenericVisitableObject,
         IPartialMethodImplementation<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
@@ -41,12 +42,12 @@ namespace CSharpDom.Editable.Partial
         IReadOnlyList<TParameter> IHasParameters<TParameter>.Parameters =>
             new ReadOnlyCollection<TParameter>(Parameters);
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitPartialMethodImplementation(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitPartialMethodImplementationChildren(this, visitor);
         }

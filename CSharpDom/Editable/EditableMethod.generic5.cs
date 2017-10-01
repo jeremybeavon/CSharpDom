@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> :
+        AbstractGenericVisitableObject,
         IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
@@ -48,12 +49,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(ReturnAttributes); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitMethod(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitMethodChildren(this, visitor);
         }

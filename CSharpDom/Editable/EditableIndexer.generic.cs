@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> :
+        AbstractGenericVisitableObject,
         IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
@@ -36,12 +37,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TParameter>(Parameters); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitIndexer(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitIndexerChildren(this, visitor);
         }

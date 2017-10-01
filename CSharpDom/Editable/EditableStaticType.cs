@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
@@ -19,6 +19,7 @@ namespace CSharpDom.Editable
         TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
+        AbstractGenericVisitableObject,
         IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
@@ -87,12 +88,12 @@ namespace CSharpDom.Editable
         IReadOnlyCollection<TNestedInterface> IHasInterfaces<TNestedInterface>.Interfaces =>
             new ReadOnlyCollectionWrapper<TNestedInterface>(Interfaces);
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStaticType(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStaticTypeChildren(this, visitor);
         }

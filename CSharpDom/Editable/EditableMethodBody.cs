@@ -1,11 +1,11 @@
-﻿using CSharpDom.Common;
+﻿using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 using System.Collections.Generic;
-using System;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableMethodBody<TStatement> : IMethodBody<TStatement>
+    public abstract class EditableMethodBody<TStatement> : AbstractGenericVisitableObject, IMethodBody<TStatement>
     {
         public abstract IList<TStatement> Statements { get; set; }
 
@@ -14,12 +14,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TStatement>(Statements); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitMethodBody(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
         }
     }

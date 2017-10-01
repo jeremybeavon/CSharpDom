@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Common.Statements;
+﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common;
 using CSharpDom.Common.Expressions;
+using CSharpDom.Common.Statements;
 
 namespace CSharpDom.Editable.Statements
 {
     public abstract class EditableForeachStatement<TTypeReference, TExpression, TStatement> :
+        AbstractStatement,
         IForeachStatement<TTypeReference, TExpression, TStatement>
         where TTypeReference : ITypeReference
         where TExpression : IExpression
@@ -20,12 +20,12 @@ namespace CSharpDom.Editable.Statements
 
         public abstract string VariableName { get; set; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitForeachStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitForeachStatementChildren(this, visitor);
         }

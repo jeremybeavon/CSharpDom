@@ -1,11 +1,12 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 using System.Collections;
 using System.Collections.Generic;
-using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableNestedStaticClassMethodCollection<TMethod> :
+        AbstractGenericVisitableObject,
         INestedStaticClassMethodCollection<TMethod>
         where TMethod : IStaticClassMethod
     {
@@ -16,12 +17,12 @@ namespace CSharpDom.Editable
 
         public abstract ICollection<TMethod> Methods { get; set; }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedStaticClassMethodCollection(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedStaticClassMethodCollectionChildren(this, visitor);
         }

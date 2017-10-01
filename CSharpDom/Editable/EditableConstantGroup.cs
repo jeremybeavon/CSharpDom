@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> :
+        AbstractGenericVisitableObject,
         IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -30,12 +31,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TConstant>(Constants); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitConstantGroup(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitConstantGroupChildren(this, visitor);
         }

@@ -1,13 +1,13 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses;
+using CSharpDom.Common;
+using CSharpDom.Wrappers.Internal;
 using System.Collections;
 using System.Collections.Generic;
-using CSharpDom.Common;
-using System.Collections.ObjectModel;
-using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer> :
+        AbstractGenericVisitableObject,
         IAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer>
         where TIndexer : IClassIndexer
         where TAbstractIndexer : IAbstractIndexer
@@ -34,12 +34,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceIndexer>(ExplicitInterfaceIndexers); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitAbstractClassIndexerCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAbstractClassIndexerCollectionChildren(this, visitor);
         }

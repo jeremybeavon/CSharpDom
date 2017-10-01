@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
@@ -17,6 +17,7 @@ namespace CSharpDom.Editable
         TEnum,
         TInterface,
         TStructCollection> :
+        AbstractGenericVisitableObject,
         ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
         where TSolution : ISolution
         where TProject : IProject
@@ -87,12 +88,12 @@ namespace CSharpDom.Editable
         IReadOnlyCollection<TInterface> IHasInterfaces<TInterface>.Interfaces =>
             new ReadOnlyCollectionWrapper<TInterface>(Interfaces);
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitLoadedDocument(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitLoadedDocumentChildren(this, visitor);
         }

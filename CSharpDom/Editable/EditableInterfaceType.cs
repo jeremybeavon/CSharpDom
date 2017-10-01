@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
@@ -14,6 +14,7 @@ namespace CSharpDom.Editable
         TProperty,
         TIndexer,
         TMethod> :
+        AbstractGenericVisitableObject,
         IInterfaceType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration

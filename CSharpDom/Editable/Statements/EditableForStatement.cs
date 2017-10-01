@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Common.Statements;
-using CSharpDom.Common;
+﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Expressions;
+using CSharpDom.Common.Statements;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable.Statements
 {
     public abstract class EditableForStatement<TExpression, TForInitializerStatement, TStatement> :
+        AbstractStatement,
         IForStatement<TExpression, TForInitializerStatement, TStatement>
         where TExpression : IExpression
         where TForInitializerStatement : IForInitializerStatement
@@ -26,12 +26,12 @@ namespace CSharpDom.Editable.Statements
             get { return new ReadOnlyCollectionWrapper<TExpression>(IncrementExpressions); }
         }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitForStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitForStatementChildren(this, visitor);
         }

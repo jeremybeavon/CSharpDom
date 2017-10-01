@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableClassFieldCollection<TField, TConstant> : IClassFieldCollection<TField, TConstant>
+    public abstract class EditableClassFieldCollection<TField, TConstant> :
+        AbstractGenericVisitableObject,
+        IClassFieldCollection<TField, TConstant>
         where TField : IClassField
         where TConstant : IClassConstant
     {
@@ -24,12 +26,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TConstant>(Constants); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassFieldCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassFieldCollectionChildren(this, visitor);
         }

@@ -1,20 +1,22 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableUnnamedAttributeValue<TExpression> : IUnnamedAttributeValue<TExpression>
+    public abstract class EditableUnnamedAttributeValue<TExpression> :
+        AbstractGenericVisitableObject,
+        IUnnamedAttributeValue<TExpression>
         where TExpression : IExpression
     {
         public abstract TExpression Value { get; set; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitUnnamedAttributeValue(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
         }
     }

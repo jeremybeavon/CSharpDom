@@ -1,17 +1,18 @@
-﻿using CSharpDom.Common;
+﻿using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableEnumReference : IEnumReference
+    public abstract class EditableEnumReference : AbstractGenericVisitableObject, IEnumReference
     {
         public abstract string Name { get; set; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitEnumReference(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
         }
     }

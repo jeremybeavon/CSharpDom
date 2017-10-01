@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue> :
+        AbstractGenericVisitableObject,
         IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>
         where TClassReference : IClassReference
         where TUnnamedAttributeValue : IUnnamedAttributeValue
@@ -28,12 +29,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TUnnamedAttributeValue>(UnnamedValues); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitAttribute(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAttributeChildren(this, visitor);
         }

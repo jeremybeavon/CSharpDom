@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableAccessor<TAttributeGroup> : IAccessor<TAttributeGroup>
+    public abstract class EditableAccessor<TAttributeGroup> :
+        AbstractGenericVisitableObject,
+        IAccessor<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup
     {
         public abstract ICollection<TAttributeGroup> Attributes { get; set; }
@@ -15,12 +18,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             throw new NotImplementedException();
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             throw new NotImplementedException();
         }

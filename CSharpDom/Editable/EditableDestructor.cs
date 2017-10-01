@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableDestructor<TAttributeGroup, TDeclaringType, TMethodBody> :
+        AbstractGenericVisitableObject,
         IDestructor<TAttributeGroup, TDeclaringType, TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
@@ -22,12 +23,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitDestructor(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitDestructor(this, visitor);
         }

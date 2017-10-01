@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableClassMethodCollection<TMethod, TExplicitInterfaceMethod> :
+        AbstractGenericVisitableObject,
         IClassMethodCollection<TMethod, TExplicitInterfaceMethod>
         where TMethod : IClassMethod
         where TExplicitInterfaceMethod : IExplicitInterfaceMethod
@@ -25,12 +26,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceMethod>(ExplicitInterfaceMethods); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassMethodCollection(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassMethodCollectionChildren(this, visitor);
         }

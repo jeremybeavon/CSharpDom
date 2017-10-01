@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Common;
-using CSharpDom.Wrappers.Internal;
-using System.Collections.ObjectModel;
+﻿using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
@@ -20,12 +16,12 @@ namespace CSharpDom.Editable
     {
         public abstract TDeclaringType DeclaringType { get; set; }
         
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedInterface(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedInterfaceChildren(this, visitor);
         }

@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField> :
+        AbstractGenericVisitableObject,
         IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IType
@@ -30,12 +31,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TField>(Fields); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitFieldGroup(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitFieldGroupChildren(this, visitor);
         }

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableStaticClassMethodCollection<TMethod, TExtensionMethod> :
+        AbstractGenericVisitableObject,
         IStaticClassMethodCollection<TMethod, TExtensionMethod>
         where TMethod : IStaticClassMethod
         where TExtensionMethod : IExtensionMethod
@@ -25,12 +26,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TExtensionMethod>(ExtensionMethods); }
         }
 
-        public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitStaticClassMethodCollection(this);
         }
 
-        public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitStaticClassMethodCollectionChildren(this, visitor);
         }

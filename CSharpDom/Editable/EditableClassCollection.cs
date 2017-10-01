@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Common.Partial;
 using CSharpDom.Wrappers.Internal;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> :
+        AbstractGenericVisitableObject,
         IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
         where TClass : IClass
         where TAbstractClass : IAbstractClass
@@ -45,12 +46,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TStaticClass>(StaticClasses); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassCollection(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassCollectionChildren(this, visitor);
         }

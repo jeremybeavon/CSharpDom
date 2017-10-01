@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Statements;
 
 namespace CSharpDom.Editable.Statements
 {
-    public abstract class EditableGotoCaseStatement : IGotoCaseStatement
+    public abstract class EditableGotoCaseStatement : AbstractStatement, IGotoCaseStatement
     {
         public abstract string CaseName { get; set; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitGotoCaseStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
         }
     }

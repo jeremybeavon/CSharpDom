@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
-using CSharpDom.Common.Statements;
+﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Expressions;
+using CSharpDom.Common.Statements;
 
 namespace CSharpDom.Editable.Statements
 {
     public abstract class EditableLockStatement<TExpression, TStatement> :
+        AbstractStatement,
         ILockStatement<TExpression, TStatement>
         where TExpression : IExpression
         where TStatement : IStatement
@@ -13,12 +14,12 @@ namespace CSharpDom.Editable.Statements
 
         public abstract TStatement Statement { get; set; }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitLockStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitLockStatementChildren(this, visitor);
         }

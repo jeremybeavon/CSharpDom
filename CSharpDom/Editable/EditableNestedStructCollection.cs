@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Common.Partial;
 using CSharpDom.Wrappers.Internal;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableNestedStructCollection<TStruct, TPartialStruct> :
+        AbstractGenericVisitableObject,
         INestedStructCollection<TStruct, TPartialStruct>
         where TStruct : INestedStruct
         where TPartialStruct : INestedPartialStruct
@@ -26,12 +27,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TPartialStruct>(PartialStructs); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedStructCollection(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedStructCollectionChildren(this, visitor);
         }

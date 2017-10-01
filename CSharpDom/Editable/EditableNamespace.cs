@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableNamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> :
+        AbstractGenericVisitableObject,
         INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
         where TUsingDirective : IUsingDirective
         where TNamespace : INamespace
@@ -54,12 +55,12 @@ namespace CSharpDom.Editable
         IReadOnlyCollection<TInterface> IHasInterfaces<TInterface>.Interfaces =>
             new ReadOnlyCollectionWrapper<TInterface>(Interfaces);
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNamespace(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNamespaceChildren(this, visitor);
         }

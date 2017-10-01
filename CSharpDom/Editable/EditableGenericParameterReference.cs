@@ -1,18 +1,20 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableGenericParameterReference : IGenericParameterReference
+    public abstract class EditableGenericParameterReference : 
+        AbstractGenericVisitableObject,
+        IGenericParameterReference
     {
         public abstract string Name { get; set; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitGenericParameterReference(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
         }
     }

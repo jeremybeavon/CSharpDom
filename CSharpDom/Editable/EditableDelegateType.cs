@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter> :
+        AbstractGenericVisitableObject,
         IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
@@ -38,12 +39,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TParameter>(Parameters); }
         }
 
-         public virtual void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitDelegateType(this);
         }
 
-         public virtual void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitDelegateTypeChildren(this, visitor);
         }

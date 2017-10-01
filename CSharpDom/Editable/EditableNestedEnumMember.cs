@@ -1,11 +1,12 @@
-﻿using CSharpDom.Common;
-using System.Collections.Generic;
-using System;
+﻿using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableNestedEnumMember<TAttributeGroup, TDeclaringType> :
+        AbstractGenericVisitableObject,
         INestedEnumMember<TAttributeGroup, TDeclaringType>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : INestedEnum
@@ -21,12 +22,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNestedEnumMember(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNestedEnumMemberChildren(this, visitor);
         }

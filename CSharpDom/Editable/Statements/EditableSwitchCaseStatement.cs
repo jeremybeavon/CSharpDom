@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using CSharpDom.Common.Statements;
+﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Expressions;
+using CSharpDom.Common.Statements;
 using CSharpDom.Wrappers.Internal;
-using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable.Statements
 {
     public abstract class EditableSwitchCaseStatement<TExpression, TStatement> :
+        AbstractStatement,
         ISwitchCaseStatement<TExpression, TStatement>
         where TExpression : IExpression
         where TStatement : IStatement
@@ -26,12 +27,12 @@ namespace CSharpDom.Editable.Statements
             get { return new ReadOnlyCollection<TStatement>(Statements); }
         }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitSwitchCaseStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitSwitchCaseStatementChildren(this, visitor);
         }

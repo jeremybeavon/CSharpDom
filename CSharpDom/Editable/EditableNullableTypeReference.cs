@@ -1,20 +1,21 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableNullableTypeReference<TStructReference> :
+        AbstractGenericVisitableObject,
         INullableTypeReference<TStructReference>
         where TStructReference : IStructReference
     {
         public abstract TStructReference Type { get; set; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitNullableTypeReference(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitNullableTypeReference(this, visitor);
         }

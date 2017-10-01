@@ -1,11 +1,13 @@
-﻿using System;
+﻿using CSharpDom.BaseClasses.Statements;
+using CSharpDom.Common.Statements;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using CSharpDom.Common.Statements;
 
 namespace CSharpDom.Editable.Statements
 {
-    public abstract class EditableDefaultCaseStatement<TStatement> : IDefaultCaseStatement<TStatement>
+    public abstract class EditableDefaultCaseStatement<TStatement> :
+        AbstractStatement,
+        IDefaultCaseStatement<TStatement>
         where TStatement : IStatement
     {
         public abstract IList<TStatement> Statements { get; set; }
@@ -15,12 +17,12 @@ namespace CSharpDom.Editable.Statements
             get { return new ReadOnlyCollection<TStatement>(Statements); }
         }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitDefaultCaseStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitDefaultCaseStatementChildren(this, visitor);
         }

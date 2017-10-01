@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Statements;
 
 namespace CSharpDom.Editable.Statements
 {
-    public abstract class EditableBreakStatement : IBreakStatement
+    public abstract class EditableBreakStatement : AbstractStatement, IBreakStatement
     {
-        public void Accept(IGenericStatementVisitor visitor)
+        public override void Accept(IGenericStatementVisitor visitor)
         {
             visitor.VisitBreakStatement(this);
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
+        public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
         }
     }

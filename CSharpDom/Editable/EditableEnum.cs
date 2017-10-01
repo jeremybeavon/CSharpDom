@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
 using CSharpDom.Wrappers.Internal;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.Editable
 {
     public abstract class EditableEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember> :
+        AbstractGenericVisitableObject,
         IEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember>
         where TNamespace : INamespace
         where TDocument : IDocument
@@ -43,12 +44,12 @@ namespace CSharpDom.Editable
             get { return new ReadOnlyCollection<TEnumMember>(EnumMembers); }
         }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitEnum(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitEnumChildren(this, visitor);
         }

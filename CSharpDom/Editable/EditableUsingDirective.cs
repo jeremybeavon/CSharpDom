@@ -1,18 +1,18 @@
-﻿using CSharpDom.Common;
-using System;
+﻿using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 
 namespace CSharpDom.Editable
 {
-    public abstract class EditableUsingDirective : IUsingDirective
+    public abstract class EditableUsingDirective : AbstractGenericVisitableObject, IUsingDirective
     {
         public abstract string Name { get; set; }
 
-        public void Accept(IGenericVisitor visitor)
+        public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitUsingDirective(this);
         }
 
-        public void AcceptChildren(IGenericVisitor visitor)
+        public override void AcceptChildren(IGenericVisitor visitor)
         {
         }
     }
