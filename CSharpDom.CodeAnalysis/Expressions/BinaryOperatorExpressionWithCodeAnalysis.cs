@@ -1,4 +1,4 @@
-﻿using CSharpDom.Editable.Expressions;
+﻿using CSharpDom.BaseClasses.Editable.Expressions;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;

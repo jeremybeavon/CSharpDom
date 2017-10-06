@@ -1,5 +1,5 @@
 ﻿using System;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 

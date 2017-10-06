@@ -1,5 +1,5 @@
 ﻿using System;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using CSharpDom.Common;
@@ -127,6 +127,14 @@ namespace CSharpDom.CodeAnalysis
         internal Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> Node
         {
             get { return node; }
+        }
+
+        public override void Accept(IGenericVisitor visitor)
+        {
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
         }
     }
 }

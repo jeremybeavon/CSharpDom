@@ -1,5 +1,5 @@
 ﻿using CSharpDom.Common;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using System;
 using System.Collections.Generic;
 using System.Linq;

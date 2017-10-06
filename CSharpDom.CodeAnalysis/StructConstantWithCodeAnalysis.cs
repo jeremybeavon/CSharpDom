@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Common.Expressions;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis;

@@ -1,4 +1,4 @@
-﻿using CSharpDom.Editable;
+﻿using CSharpDom.BaseClasses.Editable;
 using System;
 using System.Collections.Generic;
 using CSharpDom.Common;

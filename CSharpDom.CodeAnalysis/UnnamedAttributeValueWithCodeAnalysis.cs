@@ -1,7 +1,7 @@
 ﻿using System;
 using CSharpDom.BaseClasses;
 using CSharpDom.Common.Expressions;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis

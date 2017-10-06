@@ -1,4 +1,4 @@
-﻿using CSharpDom.Editable;
+﻿using CSharpDom.BaseClasses.Editable;
 using CSharpDom.CodeAnalysis.Partial;
 
 namespace CSharpDom.CodeAnalysis

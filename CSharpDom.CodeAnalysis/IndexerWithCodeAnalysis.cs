@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CSharpDom.Common;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 

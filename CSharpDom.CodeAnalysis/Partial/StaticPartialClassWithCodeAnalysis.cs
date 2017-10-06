@@ -1,4 +1,4 @@
-﻿using CSharpDom.Editable.Partial;
+﻿using CSharpDom.BaseClasses.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;

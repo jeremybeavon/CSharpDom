@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using System.Reflection;
 using CSharpDom.NotSupported;
 using Microsoft.CodeAnalysis.CSharp.Syntax;

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 

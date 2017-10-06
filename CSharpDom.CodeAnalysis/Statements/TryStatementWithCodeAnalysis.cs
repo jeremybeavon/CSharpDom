@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using CSharpDom.Editable.Statements;
+using CSharpDom.BaseClasses.Editable.Statements;
 using CSharpDom.Common;
-using CSharpDom.Editable.Expressions;
+using CSharpDom.BaseClasses.Editable.Expressions;
 using CSharpDom.Wrappers.Internal;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 

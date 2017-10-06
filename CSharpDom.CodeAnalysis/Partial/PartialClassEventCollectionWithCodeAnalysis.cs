@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {

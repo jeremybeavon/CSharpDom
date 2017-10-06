@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using System.Linq;
 
 namespace CSharpDom.CodeAnalysis

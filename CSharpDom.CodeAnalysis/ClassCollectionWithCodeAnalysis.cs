@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using CSharpDom.CodeAnalysis.Partial;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;

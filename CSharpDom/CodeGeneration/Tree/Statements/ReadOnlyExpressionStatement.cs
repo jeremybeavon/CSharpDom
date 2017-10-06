@@ -1,8 +1,8 @@
-﻿using System;
-using CSharpDom.BaseClasses.Statements;
+﻿using CSharpDom.BaseClasses.Statements;
 using CSharpDom.Common.Expressions;
 using CSharpDom.Common.Statements;
 using CSharpDom.Linq.Expressions;
+using CSharpDom.Text;
 
 namespace CSharpDom.CodeGeneration.Tree.Statements
 {
@@ -55,6 +55,11 @@ namespace CSharpDom.CodeGeneration.Tree.Statements
             {
                 expression.AcceptChildren(visitor);
             }
+        }
+
+        public string ToSourceCode()
+        {
+            return ((IVisitable<IGenericExpressionVisitor>)this).ToSourceCode();
         }
     }
 }

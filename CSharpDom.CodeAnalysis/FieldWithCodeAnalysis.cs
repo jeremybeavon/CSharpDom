@@ -1,6 +1,6 @@
 ﻿using System;
 using CSharpDom.CodeAnalysis.Expressions;
-using CSharpDom.Editable;
+using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 

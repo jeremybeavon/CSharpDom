@@ -1,4 +1,4 @@
-﻿using CSharpDom.Editable;
+﻿using CSharpDom.BaseClasses.Editable;
 using CSharpDom.Common;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
