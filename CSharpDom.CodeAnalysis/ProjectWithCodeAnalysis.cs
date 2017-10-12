@@ -3,6 +3,7 @@ using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;
 using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -57,10 +58,28 @@ namespace CSharpDom.CodeAnalysis
                 return loadedProject;
             }
 
-            loadedDocuments = new List<LoadedDocumentWithCodeAnalysis>(
-                await Task.WhenAll(documents.Select(document => document.LoadAsync())));
-            loadedProject = new LoadedProjectWithCodeAnalysis(this, loadedDocuments);
+            using (CodeAnalysisSettings.TemporarilySkipRefreshes())
+            {
+                ConcurrentBag<Task<LoadedDocumentWithCodeAnalysis>> tasks =
+                    new ConcurrentBag<Task<LoadedDocumentWithCodeAnalysis>>();
+                Parallel.ForEach(documents, document => tasks.Add(document.LoadAsync()));
+                loadedDocuments = new List<LoadedDocumentWithCodeAnalysis>(await Task.WhenAll(tasks));
+                loadedProject = new LoadedProjectWithCodeAnalysis(this, loadedDocuments);
+            }
+
             return loadedProject;
+        }
+
+        public void Lock()
+        {
+            node.IsLocked = true;
+            documents.IsLocked = true;
+        }
+
+        public void Unlock()
+        {
+            node.IsLocked = true;
+            documents.IsLocked = true;
         }
 
         public static async Task<ProjectWithCodeAnalysis> OpenAsync(string fileName)

@@ -32,7 +32,14 @@ namespace CSharpDom.CodeAnalysis
         public TChildSyntax this[int index]
         {
             get { return getList(node.Syntax)[index]; }
-            set { UpdateList(childList => immutableList.Replace(childList, this[index], value)); }
+            set
+            {
+                TChildSyntax currentSyntax = this[index];
+                if (!Equals(currentSyntax, value))
+                {
+                    UpdateList(childList => immutableList.Replace(childList, currentSyntax, value));
+                }
+            }
         }
 
         public int Count

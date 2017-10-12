@@ -45,6 +45,8 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
+        public bool IsLocked { get; set; }
+
         public Guid InternalId
         {
             get { return internalId; }
@@ -53,7 +55,7 @@ namespace CSharpDom.CodeAnalysis
         public TParentNode GetParentNode<TParentNode>()
             where TParentNode : class
         {
-            if (parent != null && getSyntax() == null)
+            if (parent != null && Syntax == null)
             {
                 parent = null;
             }
@@ -121,7 +123,7 @@ namespace CSharpDom.CodeAnalysis
 
         private void RefreshSyntax()
         {
-            if (parent != null)
+            if (parent != null && (!CodeAnalysisSettings.SkipRefreshes || !IsLocked || syntax == null))
             {
                 syntax = getSyntax();
             }

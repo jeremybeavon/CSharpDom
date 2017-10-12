@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -37,6 +38,11 @@ namespace CSharpDom.CodeAnalysis
             interfaces = Members(document => document.Interfaces);
             namespaces = Members(document => document.Namespaces);
             structs = new ProjectStructCollectionWithCodeAnalysis(this);
+        }
+
+        public IEnumerable<IClassTypeDefinitionWithCodeAnalysis> AllClasses
+        {
+            get { return this.GetClassTypeDefinitions().WithType<IClassTypeDefinitionWithCodeAnalysis>(); }
         }
 
         public override ProjectClassCollectionWithCodeAnalysis Classes => classes;

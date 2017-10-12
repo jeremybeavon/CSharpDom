@@ -47,6 +47,11 @@ namespace CSharpDom.Reflection
         private readonly IReadOnlyCollection<InterfaceWithReflection> interfaces;
         private readonly StructCollectionWithReflection structs;
 
+        public AssemblyWithReflection(string assemblyFile)
+            : this(Assembly.LoadFrom(assemblyFile))
+        {
+        }
+
         public AssemblyWithReflection(Assembly assembly)
         {
             this.assembly = assembly;
@@ -69,6 +74,11 @@ namespace CSharpDom.Reflection
             classes = new ClassCollectionWithReflection(this.typeContainer);
             interfaces = this.typeContainer.Interfaces;
             structs = new StructCollectionWithReflection(this.typeContainer);
+        }
+
+        public IEnumerable<IClassTypeDefinitionWithReflection> AllClasses
+        {
+            get { return this.GetClassTypeDefinitions().WithType<IClassTypeDefinitionWithReflection>(); }
         }
 
         public override ClassCollectionWithReflection Classes

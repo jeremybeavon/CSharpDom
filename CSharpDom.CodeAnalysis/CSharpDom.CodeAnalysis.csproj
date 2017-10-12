@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
     <Compile Include="ClassCollectionWithCodeAnalysisExtensions.cs" />
+    <Compile Include="CodeAnalysisSettings.cs" />
     <Compile Include="GenericParameterConstraint.cs" />
     <Compile Include="IClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="IMemberList.generic.cs" />

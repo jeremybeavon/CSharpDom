@@ -26,7 +26,8 @@ namespace CSharpDom.Reflection
             ClassNestedInterfaceWithReflection,
             ClassNestedStructCollectionWithReflection,
             StaticConstructorWithReflection,
-            DestructorWithReflection>
+            DestructorWithReflection>,
+        IClassTypeDefinitionWithReflection
     {
         private readonly NestedSealedClassWithReflection nestedClass;
 

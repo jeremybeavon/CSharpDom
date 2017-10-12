@@ -38,7 +38,16 @@ namespace CSharpDom.CodeAnalysis
         public TChild this[int index]
         {
             get { return ChildList.ElementAt(index); }
-            set { list[list.IndexOf(toParent(this[index]))] = toParent(value); }
+            set
+            {
+                int parentIndex = list.IndexOf(toParent(this[index]));
+                if (parentIndex < 0)
+                {
+                    throw new InvalidOperationException();
+                }
+
+                list[parentIndex] = toParent(value);
+            }
         }
 
         private IEnumerable<TChild> ChildList

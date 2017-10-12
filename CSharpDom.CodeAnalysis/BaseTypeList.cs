@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -13,10 +14,15 @@ namespace CSharpDom.CodeAnalysis
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<BaseTypeSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<BaseTypeSyntax>, TParentSyntax> createList)
+            : this(ListFactory.CreateList(node, getList, createList))
+        {
+        }
+
+        private BaseTypeList(IList<BaseTypeSyntax> list)
             : base(
-                  ListFactory.CreateList(node, getList, createList),
+                  list,
                   syntax => (NameSyntax)syntax.Type,
-                  syntax => SyntaxFactory.SimpleBaseType(syntax))
+                  syntax => list.FirstOrDefault(typeSyntax => typeSyntax.Type == syntax) ?? SyntaxFactory.SimpleBaseType(syntax))
         {
         }
     }

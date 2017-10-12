@@ -33,6 +33,7 @@ namespace CSharpDom.Reflection
             StaticConstructorWithReflection,
             DestructorWithReflection>,
         IInternalTypeWithReflection,
+        IClassTypeDefinitionWithReflection,
         IHasType//,
         //IVisitable<IReflectionVisitor>
     {

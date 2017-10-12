@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
     internal interface INode<TSyntax> : IHasSyntax<TSyntax>
     {
         Guid InternalId { get; }
+
+        bool IsLocked { get; set; }
 
         TParentNode GetParentNode<TParentNode>()
             where TParentNode : class;

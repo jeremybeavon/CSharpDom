@@ -23,6 +23,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly IList<TChildNode> innerList;
         private readonly IDictionary<TChildNode, TChildSyntax> syntaxMap;
         private readonly IDictionary<TChildSyntax, IndexedItem> reverseSyntaxMap;
+        private bool isInitialized;
         private bool isRefreshList;
 
         public ImmutableListWrapper(
@@ -44,11 +45,9 @@ namespace CSharpDom.CodeAnalysis
             innerList = new List<TChildNode>();
             syntaxMap = new Dictionary<TChildNode, TChildSyntax>(this);
             reverseSyntaxMap = new Dictionary<TChildSyntax, IndexedItem>();
-            //foreach (TChildSyntax syntax in list)
-            //{
-            //    InternalAdd(factory(node.Value), syntax);
-            //}
         }
+
+        public bool IsLocked { get; set; }
 
         public int Count
         {
@@ -70,8 +69,10 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 RefreshList();
+                isRefreshList = true;
                 list[index] = value.Node.Syntax;
                 InternalSet(index, value, value.Node.Syntax);
+                isRefreshList = false;
             }
         }
         
@@ -84,29 +85,36 @@ namespace CSharpDom.CodeAnalysis
         public void Insert(int index, TChildNode item)
         {
             RefreshList();
+            isRefreshList = true;
             TChildSyntax syntax = item.Node.Syntax;
             list.Insert(index, syntax);
             InternalInsert(index, item, syntax);
+            isRefreshList = false;
         }
 
         public void RemoveAt(int index)
         {
             RefreshList();
+            isRefreshList = true;
             list.RemoveAt(index);
             InternalRemoveAt(index, innerList[index], innerList[index].Node.Syntax);
+            isRefreshList = false;
         }
 
         public void Add(TChildNode item)
         {
             RefreshList();
+            isRefreshList = true;
             TChildSyntax syntax = item.Node.Syntax;
             list.Add(syntax);
             InternalAdd(item, syntax);
+            isRefreshList = false;
         }
 
         public void Clear()
         {
             RefreshList();
+            isRefreshList = true;
             while (list.Count != 0)
             {
                 list.RemoveAt(0);
@@ -114,6 +122,7 @@ namespace CSharpDom.CodeAnalysis
             }
 
             innerList.Clear();
+            isRefreshList = false;
         }
 
         public bool Contains(TChildNode item)
@@ -131,9 +140,12 @@ namespace CSharpDom.CodeAnalysis
         public bool Remove(TChildNode item)
         {
             RefreshList();
+            isRefreshList = true;
             TChildSyntax syntax = item.Node.Syntax;
             list.Remove(syntax);
-            return InternalRemove(item, syntax);
+            bool isRemoved = InternalRemove(item, syntax);
+            isRefreshList = false;
+            return isRefreshList;
         }
 
         public IEnumerator<TChildNode> GetEnumerator()
@@ -171,7 +183,15 @@ namespace CSharpDom.CodeAnalysis
         public void SetChild(TChildNode child, TChildSyntax syntax)
         {
             RefreshList();
-            list[list.IndexOf(child.Node.Syntax)] = syntax;
+            isRefreshList = true;
+            TChildSyntax oldSyntax = child.Node.Syntax;
+            IndexedItem oldIndexedItem = reverseSyntaxMap[oldSyntax];
+            list[oldIndexedItem.Index] = syntax;
+            TChildSyntax newSyntax = list[oldIndexedItem.Index];
+            syntaxMap[child] = newSyntax;
+            reverseSyntaxMap.Remove(oldSyntax);
+            reverseSyntaxMap.Add(newSyntax, new IndexedItem(oldIndexedItem.Index, child));
+            isRefreshList = false;
         }
         
         private void InternalAdd(TChildNode item, TChildSyntax syntax)
@@ -229,7 +249,9 @@ namespace CSharpDom.CodeAnalysis
 
         private void RefreshList()
         {
-            if (isRefreshList)
+            bool isRefreshed = isRefreshList || ((CodeAnalysisSettings.SkipRefreshes || IsLocked) && isInitialized);
+            isInitialized = true;
+            if (isRefreshed)
             {
                 return;
             }
@@ -240,8 +262,7 @@ namespace CSharpDom.CodeAnalysis
             for (int index = 0; index < list.Count; index++)
             {
                 TChildSyntax syntax = list[index];
-                IndexedItem item;
-                if (!reverseSyntaxMap.TryGetValue(syntax, out item))
+                if (!reverseSyntaxMap.TryGetValue(syntax, out IndexedItem item))
                 {
                     InternalInsert(index, factory(syntax), syntax);
                 }

@@ -38,6 +38,26 @@ namespace CSharpDom.CodeAnalysis
 
         public static NameSyntax WithName(this NameSyntax syntax, string name)
         {
+            if (syntax is IdentifierNameSyntax identifier)
+            {
+                return identifier.WithIdentifier(SyntaxFactory.Identifier(name));
+            }
+
+            if (syntax is GenericNameSyntax generic)
+            {
+                return generic.WithIdentifier(SyntaxFactory.Identifier(name));
+            }
+
+            if (syntax is QualifiedNameSyntax qualifiedName)
+            {
+                return qualifiedName.WithRight(qualifiedName.Right.WithName(name) as SimpleNameSyntax);
+            }
+
+            if (syntax is AliasQualifiedNameSyntax alias)
+            {
+                return alias.WithName(alias.Name.WithName(name) as SimpleNameSyntax);
+            }
+
             return syntax;
         }
 

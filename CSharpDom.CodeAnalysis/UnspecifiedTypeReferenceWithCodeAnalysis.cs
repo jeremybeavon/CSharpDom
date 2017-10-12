@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using CSharpDom.BaseClasses.Editable;
 using System.Linq;
+using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -22,7 +24,26 @@ namespace CSharpDom.CodeAnalysis
         private readonly WrappedList<
             IInternalTypeReferenceWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis> wrappedGenericParameters;
-        
+
+        public UnspecifiedTypeReferenceWithCodeAnalysis(
+            string name,
+            params ITypeReferenceWithCodeAnalysis[] genericParameters)
+            : this()
+        {
+            if (genericParameters.Length == 0)
+            {
+                Syntax = SyntaxFactory.IdentifierName(name);
+            }
+            else
+            {
+                SeparatedSyntaxList<TypeSyntax> argumentList = SyntaxFactory.SeparatedList(
+                    genericParameters.Select(parameter => parameter.Syntax));
+                Syntax = SyntaxFactory.GenericName(
+                    SyntaxFactory.Identifier(name),
+                    SyntaxFactory.TypeArgumentList(argumentList));
+            }
+        }
+
         internal UnspecifiedTypeReferenceWithCodeAnalysis()
         {
             node = new TypeReferenceNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(this);

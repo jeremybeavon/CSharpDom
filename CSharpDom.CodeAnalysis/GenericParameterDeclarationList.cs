@@ -41,7 +41,11 @@ namespace CSharpDom.CodeAnalysis
             get { return GetSyntax(typeParameters[index]); }
             set
             {
-                throw new NotSupportedException();
+                typeParameters[index] = value.TypeParameter;
+                if (value.ConstraintClause != null)
+                {
+                    constraintClauses[index] = value.ConstraintClause;
+                }
             }
         }
 

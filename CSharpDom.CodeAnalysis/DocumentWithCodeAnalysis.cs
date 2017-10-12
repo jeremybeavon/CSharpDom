@@ -42,6 +42,12 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
+        public bool IsLocked
+        {
+            get { return node.IsLocked; }
+            set { node.IsLocked = value; }
+        }
+
         INode<Document> IHasNode<Document>.Node
         {
             get { return node; }

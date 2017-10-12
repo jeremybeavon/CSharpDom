@@ -8,7 +8,7 @@ namespace CSharpDom.Common
     {
         private readonly IList<object> classTypeDefinitions;
         private readonly bool includeNestedClasses;
-
+        
         public ClassTypeDefinitionsBuilder(IClassCollection classCollection, bool includeNestedClasses)
             : this(includeNestedClasses)
         {
@@ -21,7 +21,7 @@ namespace CSharpDom.Common
             classCollection.AcceptChildren(this);
         }
 
-        private ClassTypeDefinitionsBuilder(bool includeNestedClasses)
+        public ClassTypeDefinitionsBuilder(bool includeNestedClasses)
         {
             classTypeDefinitions = new List<object>();
             this.includeNestedClasses = includeNestedClasses;

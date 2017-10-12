@@ -1,4 +1,6 @@
-﻿namespace CSharpDom.Common
+﻿using System.Threading.Tasks;
+
+namespace CSharpDom.Common
 {
     public static class ClassCollectionExtensions
     {

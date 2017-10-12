@@ -357,6 +357,7 @@
     <Compile Include="CodeGeneration\Tree\EmptyStaticClassPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclaration.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclarationExpression.cs" />
+    <Compile Include="Common\LoadedProjectExtensions.cs" />
     <Compile Include="Common\NestedClassCollectionExtensions.cs" />
     <Compile Include="Common\ClassCollectionExtensions.cs" />
     <Compile Include="Common\Expressions\IAnonymousMethodParameter.generic.cs" />
@@ -756,6 +757,8 @@
     <Compile Include="IndexerParameterModifier.cs" />
     <Compile Include="NotSupported\ExpressionNotSupported.cs" />
     <Compile Include="AnonymousMethodParameterModifier.cs" />
+    <Compile Include="Reflection\ClassCollectionWithReflectionExtensions.cs" />
+    <Compile Include="Reflection\IClassTypeDefinitionWithReflection.cs" />
     <Compile Include="Reflection\IConstantWithReflection.cs" />
     <Compile Include="Reflection\Internal\ConstantGroupWithReflection.cs" />
     <Compile Include="Reflection\Internal\Fields.cs" />

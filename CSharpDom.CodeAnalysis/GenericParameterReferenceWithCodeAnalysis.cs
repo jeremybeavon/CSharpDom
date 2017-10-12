@@ -15,6 +15,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
 
+        public GenericParameterReferenceWithCodeAnalysis(string name)
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(name))
+        {
+        }
+
         internal GenericParameterReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
             this.typeReference = typeReference;

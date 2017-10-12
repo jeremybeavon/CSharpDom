@@ -28,7 +28,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override Document this[int index]
         {
-            get { return Syntax.Documents.ElementAt(index); }
+            get
+            {
+                Project project = Syntax;
+                return project.GetDocument(project.DocumentIds[index]);
+            }
         }
 
         public override void Add(Document item)

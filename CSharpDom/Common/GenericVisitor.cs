@@ -461,6 +461,26 @@ namespace CSharpDom.Common
             VisitIfNotNull(loadedDocument.Structs, visitor);
         }
 
+        public static void VisitLoadedProjectChildren<TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>(
+            ILoadedProject<TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> loadedProject,
+            IGenericVisitor visitor)
+            where TSolution : ISolution
+            where TProject : IProject
+            where TNamespace : INamespace
+            where TClassCollection : IClassCollection
+            where TDelegate : IDelegate
+            where TEnum : IEnum
+            where TInterface : IInterface
+            where TStructCollection : IStructCollection
+        {
+            VisitCollection(loadedProject.Namespaces, visitor);
+            VisitIfNotNull(loadedProject.Classes, visitor);
+            VisitCollection(loadedProject.Delegates, visitor);
+            VisitCollection(loadedProject.Enums, visitor);
+            VisitCollection(loadedProject.Interfaces, visitor);
+            VisitIfNotNull(loadedProject.Structs, visitor);
+        }
+
         public static void VisitMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method,
             IGenericVisitor visitor)
