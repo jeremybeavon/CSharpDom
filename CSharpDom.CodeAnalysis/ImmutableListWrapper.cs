@@ -185,12 +185,18 @@ namespace CSharpDom.CodeAnalysis
             RefreshList();
             isRefreshList = true;
             TChildSyntax oldSyntax = child.Node.Syntax;
-            IndexedItem oldIndexedItem = reverseSyntaxMap[oldSyntax];
-            list[oldIndexedItem.Index] = syntax;
-            TChildSyntax newSyntax = list[oldIndexedItem.Index];
-            syntaxMap[child] = newSyntax;
-            reverseSyntaxMap.Remove(oldSyntax);
-            reverseSyntaxMap.Add(newSyntax, new IndexedItem(oldIndexedItem.Index, child));
+            list[reverseSyntaxMap[oldSyntax].Index] = syntax;
+            syntaxMap.Clear();
+            reverseSyntaxMap.Clear();
+            int index = 0;
+            foreach (TChildSyntax newSyntax in list)
+            {
+                child = innerList[index];
+                syntaxMap.Add(child, newSyntax);
+                reverseSyntaxMap.Add(newSyntax, new IndexedItem(index, child));
+                index++;
+            }
+            
             isRefreshList = false;
         }
         

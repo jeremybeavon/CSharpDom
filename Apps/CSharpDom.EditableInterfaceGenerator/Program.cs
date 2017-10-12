@@ -53,10 +53,6 @@ namespace CSharpDom.EditableInterfaceGenerator
                     continue;
                 }
 
-                /*NamespaceDeclarationSyntax namespaceSyntax = @namespace.Syntax;
-                NameSyntax syntax1 = SyntaxFactory.IdentifierName("jbtest");
-                namespaceSyntax = namespaceSyntax.WithName(syntax1);
-                NameSyntax syntax2 = namespaceSyntax.Name;*/
                 @namespace.Name = Regex.Replace(@namespace.Name, "^CSharpDom.Common", "CSharpDom.Common.Editable");
                 string testNamespaceName = @namespace.Name;
                 InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
