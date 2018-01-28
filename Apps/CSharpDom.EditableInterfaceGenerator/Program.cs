@@ -60,7 +60,7 @@ namespace CSharpDom.EditableInterfaceGenerator
                 {
                     UsingDirectiveWithCodeAnalysis usingDirective = new UsingDirectiveWithCodeAnalysis(namespaceName);
                     List<UsingDirectiveWithCodeAnalysis> usingDirectives = loadedDocument.UsingDirectives.ToList();
-                    usingDirectives.Insert(~usingDirectives.BinarySearch(usingDirective), usingDirective);
+                    usingDirectives.Insert(~usingDirectives.BinarySearch(usingDirective, new Program()), usingDirective);
                     loadedDocument.UsingDirectives = usingDirectives;
                 }
 
