@@ -7,7 +7,7 @@ using System.Linq;
 namespace CSharpDom.CodeAnalysis
 {
     internal class SyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
-        ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
+        ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
         where TChildNode : class, IHasNode<TChildSyntax>
@@ -21,7 +21,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SyntaxList<TChildSyntax>, TParentSyntax> createList,
             Func<TChildSyntax, TChildNode> factory)
-            : base(node, ListFactory.CreateList(node, getList, createList), factory)
+            : base(node, ListFactory.CreateChildSyntaxList(node, getList, createList), factory)
         {
             this.node = node;
             this.createList = createList;

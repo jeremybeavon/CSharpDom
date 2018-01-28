@@ -1,24 +1,21 @@
-﻿using Microsoft.CodeAnalysis;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
+    internal class ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
         IList<TChildNode>,
         IEqualityComparer<TChildNode>,
-        IChildCollection<TChildNode, TChildSyntax>
+        IChildCollection<TParentSyntax, TChildNode, TChildSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
         where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : class
     {
         private readonly Node<TParentNode, TParentSyntax> node;
-        private readonly IList<TChildSyntax> list;
+        private readonly IChildSyntaxList<TParentSyntax, TChildSyntax> list;
         private readonly Func<TChildSyntax, TChildNode> factory;
         private readonly IList<TChildNode> innerList;
         private readonly IDictionary<TChildNode, TChildSyntax> syntaxMap;
@@ -26,17 +23,17 @@ namespace CSharpDom.CodeAnalysis
         private bool isInitialized;
         private bool isRefreshList;
 
-        public ImmutableListWrapper(
+        public ChildNodeList(
             Node<TParentNode, TParentSyntax> node,
-            IList<TChildSyntax> list,
+            IChildSyntaxList<TParentSyntax, TChildSyntax> list,
             Func<TChildNode> factory)
             : this(node, list, syntax => factory())
         {
         }
 
-        public ImmutableListWrapper(
+        public ChildNodeList(
             Node<TParentNode, TParentSyntax> node,
-            IList<TChildSyntax> list,
+            IChildSyntaxList<TParentSyntax, TChildSyntax> list,
             Func<TChildSyntax, TChildNode> factory)
         {
             this.node = node;
@@ -180,12 +177,12 @@ namespace CSharpDom.CodeAnalysis
             return syntaxMap[child];
         }
 
-        public void SetChild(TChildNode child, TChildSyntax syntax)
+        public TParentSyntax SetChild(TChildNode child, TChildSyntax syntax)
         {
             RefreshList();
             isRefreshList = true;
             TChildSyntax oldSyntax = child.Node.Syntax;
-            list[reverseSyntaxMap[oldSyntax].Index] = syntax;
+            TParentSyntax parentSyntax = list.Set(reverseSyntaxMap[oldSyntax].Index, syntax);
             syntaxMap.Clear();
             reverseSyntaxMap.Clear();
             int index = 0;
@@ -198,6 +195,7 @@ namespace CSharpDom.CodeAnalysis
             }
             
             isRefreshList = false;
+            return parentSyntax;
         }
         
         private void InternalAdd(TChildNode item, TChildSyntax syntax)
@@ -205,7 +203,7 @@ namespace CSharpDom.CodeAnalysis
             innerList.Add(item);
             syntaxMap.Add(item, syntax);
             reverseSyntaxMap.Add(syntax, new IndexedItem(innerList.Count - 1, item));
-            item.Node.SetParentNode<TParentNode, TParentSyntax, TChildNode>(node.Value, item, this);
+            item.Node.SetParentNode(node.Value, item, this);
         }
 
         private void InternalInsert(int index, TChildNode item, TChildSyntax syntax)
@@ -213,7 +211,7 @@ namespace CSharpDom.CodeAnalysis
             innerList.Insert(index, item);
             syntaxMap.Add(item, syntax);
             reverseSyntaxMap.Add(syntax, new IndexedItem(index, item));
-            item.Node.SetParentNode<TParentNode, TParentSyntax, TChildNode>(node.Value, item, this);
+            item.Node.SetParentNode(node.Value, item, this);
         }
 
         private void InternalClear()
@@ -250,12 +248,12 @@ namespace CSharpDom.CodeAnalysis
             syntaxMap.Add(item, syntax);
             reverseSyntaxMap.Remove(oldSyntax);
             reverseSyntaxMap.Add(syntax, new IndexedItem(index, item));
-            item.Node.SetParentNode<TParentNode, TParentSyntax, TChildNode>(node.Value, item, this);
+            item.Node.SetParentNode(node.Value, item, this);
         }
 
         private void RefreshList()
         {
-            bool isRefreshed = isRefreshList || ((CodeAnalysisSettings.SkipRefreshes || IsLocked) && isInitialized);
+            bool isRefreshed = isRefreshList || ((!CodeAnalysisSettings.AreEditsAllowed || IsLocked) && isInitialized);
             isInitialized = true;
             if (isRefreshed)
             {

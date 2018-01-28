@@ -102,6 +102,7 @@
     <Compile Include="CodeAnalysisSettings.cs" />
     <Compile Include="GenericParameterConstraint.cs" />
     <Compile Include="IClassCollectionWithCodeAnalysis.cs" />
+    <Compile Include="IChildSyntaxList.cs" />
     <Compile Include="IMemberList.generic.cs" />
     <Compile Include="InternalNestedStaticClassEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalNestedStaticClassFieldCollectionWithCodeAnalysis.cs" />
@@ -776,10 +777,10 @@
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="FilteredList.generic2.cs" />
     <Compile Include="IChildCollection.cs" />
-    <Compile Include="ImmutableListWrapper.cs" />
+    <Compile Include="ChildNodeList.cs" />
     <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />
     <Compile Include="ImmutableSeparatedSyntaxListWrapper.cs" />
-    <Compile Include="ImmutableChildListWrapper.cs" />
+    <Compile Include="ChildSyntaxList.cs" />
     <Compile Include="SealedClassEventPropertyWithCodeAnalysis.cs" />
     <Compile Include="NameSyntaxExtensions.cs" />
     <Compile Include="Node.cs" />

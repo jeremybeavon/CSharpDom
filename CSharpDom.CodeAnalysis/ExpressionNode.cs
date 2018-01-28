@@ -36,12 +36,12 @@ namespace CSharpDom.CodeAnalysis
         void INode<ExpressionSyntax>.SetParentNode<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            IChildCollection<TChildNode, ExpressionSyntax> childCollection)
+            IChildCollection<TParentSyntax, TChildNode, ExpressionSyntax> childCollection)
         {
-            SetParentNode<TParentNode, TParentSyntax, TChildNode>(
+            SetParentNode(
                 parent,
                 child,
-                new SimpleChildCollection<TChildNode, ExpressionSyntax, TSyntax>(childCollection));
+                new SimpleChildCollection<TParentSyntax, TChildNode, ExpressionSyntax, TSyntax>(childCollection));
         }
     }
 }

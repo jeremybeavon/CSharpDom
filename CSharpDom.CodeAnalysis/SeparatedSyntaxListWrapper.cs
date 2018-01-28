@@ -8,7 +8,7 @@ using System.Linq;
 namespace CSharpDom.CodeAnalysis
 {
     internal class SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
-        ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
+        ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
         where TChildNode : class, IHasNode<TChildSyntax>
@@ -22,7 +22,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
             Func<TChildSyntax, TChildNode> factory)
-            : base(node, ListFactory.CreateList(node, getList, createList), factory)
+            : base(node, ListFactory.CreateChildSyntaxList(node, getList, createList), factory)
         {
             this.node = node;
             this.createList = createList;
@@ -33,7 +33,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
             Func<TChildNode> factory)
-            : base(node, ListFactory.CreateList(node, getList, createList), factory)
+            : base(node, ListFactory.CreateChildSyntaxList(node, getList, createList), factory)
         {
             this.node = node;
             this.createList = createList;

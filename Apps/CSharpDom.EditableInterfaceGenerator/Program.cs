@@ -4,6 +4,7 @@ using CSharpDom.Text.Rules;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nito.AsyncEx;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,6 +21,11 @@ namespace CSharpDom.EditableInterfaceGenerator
             AsyncContext.Run(GenerateEditableInterfaces);
         }
 
+        private static string GetNewName(string name)
+        {
+            return Regex.Replace(name, "^I(?:Has)?", "$&Editable");
+        }
+
         private static async Task GenerateEditableInterfaces()
         {
             string baseDirectory = Path.GetFullPath(
@@ -27,13 +33,13 @@ namespace CSharpDom.EditableInterfaceGenerator
             ProjectWithCodeAnalysis project = await ProjectWithCodeAnalysis.OpenAsync(
                 Path.Combine(baseDirectory, @"CSharpDom\CSharpDom.csproj"));
             project.Lock();
-            foreach (DocumentWithCodeAnalysis document in project.Documents)
+            foreach (DocumentWithCodeAnalysis document in project.Documents.OrderBy(document => document.FullFilePath))
             {
                 document.IsLocked = true;
                 string filePath = document.FullFilePath;
                 if (!filePath.Contains(@"CSharpDom\Common") ||
                     filePath.Contains(@"CSharpDom\Common\Editable") ||
-                    filePath.Contains(@"CSharpDom\Common\IL") ||
+                    filePath.Contains(@"CSharpDom\Common\IL\") ||
                     filePath.Contains(@"CSharpDom\Common\Trivia") ||
                     !Regex.IsMatch(Path.GetFileName(filePath), "^I[A-Z]"))
                 {
@@ -42,7 +48,7 @@ namespace CSharpDom.EditableInterfaceGenerator
 
                 string destinationPath = Path.Combine(
                     Path.GetDirectoryName(filePath).Replace(@"CSharpDom\Common", @"CSharpDom\Common\Editable"),
-                    Regex.Replace(Path.GetFileName(filePath), "^I", "IEditable"));
+                    GetNewName(Path.GetFileName(filePath)));
                 if (File.Exists(destinationPath))
                 {
                     continue;
@@ -55,55 +61,62 @@ namespace CSharpDom.EditableInterfaceGenerator
                     continue;
                 }
 
+                Console.WriteLine($"Writing: {Path.GetFileName(destinationPath)}");
                 string namespaceName = @namespace.Name;
-                if (namespaceName.StartsWith("CSharpDom.Common."))
+                using (CodeAnalysisSettings.AllowEdits())
                 {
-                    UsingDirectiveWithCodeAnalysis usingDirective = new UsingDirectiveWithCodeAnalysis(namespaceName);
-                    List<UsingDirectiveWithCodeAnalysis> usingDirectives = loadedDocument.UsingDirectives.ToList();
-                    usingDirectives.Insert(~usingDirectives.BinarySearch(usingDirective, new Program()), usingDirective);
-                    loadedDocument.UsingDirectives = usingDirectives;
-                }
-
-                @namespace = loadedDocument.Namespaces.First();
-                @namespace.Name = Regex.Replace(namespaceName, "^CSharpDom.Common", "CSharpDom.Common.Editable");
-                InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
-                string interfaceName = @interface.Name;
-                List<ITypeReferenceWithCodeAnalysis> genericParameters = new List<ITypeReferenceWithCodeAnalysis>();
-                foreach (GenericParameterDeclarationWithCodeAnalysis parameter in @interface.GenericParameters)
-                {
-                    genericParameters.Add(new GenericParameterReferenceWithCodeAnalysis(parameter.Name));
-                    if (parameter.InterfaceConstraints.Count == 0)
+                    if (namespaceName.StartsWith("CSharpDom.Common."))
                     {
-                        continue;
+                        UsingDirectiveWithCodeAnalysis usingDirective = new UsingDirectiveWithCodeAnalysis(namespaceName);
+                        List<UsingDirectiveWithCodeAnalysis> usingDirectives = loadedDocument.UsingDirectives.ToList();
+                        usingDirectives.Insert(~usingDirectives.BinarySearch(usingDirective, new Program()), usingDirective);
+                        loadedDocument.UsingDirectives = usingDirectives;
                     }
 
-                    InterfaceReferenceWithCodeAnalysis constraint = parameter.InterfaceConstraints.First();
-                    constraint.Name = Regex.Replace(constraint.Name, "^I", "IEditable");
-                }
-                InterfaceReferenceWithCodeAnalysis interfaceReference = new InterfaceReferenceWithCodeAnalysis(
-                    interfaceName,
-                    genericParameters.ToArray());
-                @interface.Name = Regex.Replace(interfaceName, "^I", "IEditable");
-                foreach (InterfaceReferenceWithCodeAnalysis reference in @interface.Interfaces.ToArray())
-                {
-                    reference.Name = Regex.Replace(reference.Name, "^I", "IEditable");
+                    @namespace = loadedDocument.Namespaces.First();
+                    @namespace.Name = Regex.Replace(namespaceName, "^CSharpDom.Common", "CSharpDom.Common.Editable");
+                    InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
+                    string interfaceName = @interface.Name;
+                    List<ITypeReferenceWithCodeAnalysis> genericParameters = new List<ITypeReferenceWithCodeAnalysis>();
+                    foreach (GenericParameterDeclarationWithCodeAnalysis parameter in @interface.GenericParameters)
+                    {
+                        genericParameters.Add(new GenericParameterReferenceWithCodeAnalysis(parameter.Name));
+                        if (parameter.InterfaceConstraints.Count == 0)
+                        {
+                            continue;
+                        }
+
+                        InterfaceReferenceWithCodeAnalysis constraint = parameter.InterfaceConstraints.First();
+                        constraint.Name = GetNewName(constraint.Name);
+                    }
+                    InterfaceReferenceWithCodeAnalysis interfaceReference = new InterfaceReferenceWithCodeAnalysis(
+                        interfaceName,
+                        genericParameters.ToArray());
+                    @interface.Name = GetNewName(interfaceName);
+                    foreach (InterfaceReferenceWithCodeAnalysis reference in @interface.Interfaces.ToArray())
+                    {
+                        reference.Name = GetNewName(reference.Name);
+                    }
+
+                    @interface.Interfaces.Add(interfaceReference);
+                    foreach (InterfacePropertyWithCodeAnalysis property in @interface.Properties.ToArray())
+                    {
+                        PropertyDeclarationSyntax syntax = property.Syntax;
+                        property.Syntax = syntax.WithAccessorList(
+                            syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)));
+                        property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
+                        Console.WriteLine(property.InheritanceModifier);
+                    }
                 }
 
-                @interface.Interfaces.Add(interfaceReference);
-                foreach (InterfacePropertyWithCodeAnalysis property in @interface.Properties.ToArray())
-                {
-                    PropertyDeclarationSyntax syntax = property.Syntax;
-                    property.Syntax = syntax.WithAccessorList(
-                        syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)));
-                    property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
-                }
-
-                Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
-                const int maximumLineLength = 120;
-                string sourceCode = loadedDocument.ToSourceCode(
-                    new IndentBaseTypeListIfTooLongRule(maximumLineLength),
-                    new IndentGenericParamterDefinitionsIfTooLongRule(maximumLineLength));
-                File.WriteAllText(destinationPath, sourceCode);
+                    Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
+                    const int maximumLineLength = 120;
+                Console.WriteLine(loadedDocument.Namespaces.First().Interfaces.First().Properties.First().InheritanceModifier);
+                    string sourceCode = loadedDocument.ToSourceCode(
+                        new IndentBaseTypeListIfTooLongRule(maximumLineLength),
+                        new IndentGenericParamterDefinitionsIfTooLongRule(maximumLineLength));
+                    File.WriteAllText(destinationPath, sourceCode);
+                //}
             }
         }
 

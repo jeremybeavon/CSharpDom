@@ -5,7 +5,7 @@ using System;
 namespace CSharpDom.CodeAnalysis
 {
     internal class MemberListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
-        ImmutableListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
+        ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : TypeDeclarationSyntax
         where TChildNode : class, IHasNode<TChildSyntax>

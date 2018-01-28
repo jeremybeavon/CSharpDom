@@ -36,12 +36,12 @@ namespace CSharpDom.CodeAnalysis.Expressions
         void INode<SelectOrGroupClauseSyntax>.SetParentNode<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            IChildCollection<TChildNode, SelectOrGroupClauseSyntax> childCollection)
+            IChildCollection<TParentSyntax, TChildNode, SelectOrGroupClauseSyntax> childCollection)
         {
-            SetParentNode<TParentNode, TParentSyntax, TChildNode>(
+            SetParentNode(
                 parent,
                 child,
-                new SimpleChildCollection<TChildNode, SelectOrGroupClauseSyntax, TSyntax>(childCollection));
+                new SimpleChildCollection<TParentSyntax, TChildNode, SelectOrGroupClauseSyntax, TSyntax>(childCollection));
         }
     }
 }

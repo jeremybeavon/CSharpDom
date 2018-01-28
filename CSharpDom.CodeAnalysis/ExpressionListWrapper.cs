@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class ExpressionListWrapper<TParentNode, TParentSyntax> :
         WrappedList<IInternalExpression, IExpressionWithCodeAnalysis>,
-        IChildCollection<IInternalExpression, ExpressionSyntax>
+        IChildCollection<TParentSyntax, IInternalExpression, ExpressionSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
@@ -36,9 +36,9 @@ namespace CSharpDom.CodeAnalysis
             return list.GetChild(child);
         }
 
-        public void SetChild(IInternalExpression child, ExpressionSyntax syntax)
+        public TParentSyntax SetChild(IInternalExpression child, ExpressionSyntax syntax)
         {
-            list.SetChild(child, syntax);
+            return list.SetChild(child, syntax);
         }
 
         public void ReplaceList(IEnumerable<IExpressionWithCodeAnalysis> statement)

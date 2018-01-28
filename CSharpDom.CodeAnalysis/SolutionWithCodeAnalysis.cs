@@ -14,15 +14,15 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<Solution>
     {
         private readonly Node<SolutionWithCodeAnalysis, Solution> node;
-        private readonly ImmutableListWrapper<SolutionWithCodeAnalysis, Solution, ProjectWithCodeAnalysis, Project> projects;
+        private readonly ChildNodeList<SolutionWithCodeAnalysis, Solution, ProjectWithCodeAnalysis, Project> projects;
 
         internal SolutionWithCodeAnalysis(Solution solution)
         {
             node = new Node<SolutionWithCodeAnalysis, Solution>(this, solution);
-            projects = new ImmutableListWrapper<SolutionWithCodeAnalysis, Solution, ProjectWithCodeAnalysis, Project>(
+            projects = new ChildNodeList<SolutionWithCodeAnalysis, Solution, ProjectWithCodeAnalysis, Project>(
                 node,
                 new ProjectListWrapper(node),
-                () => new ProjectWithCodeAnalysis());
+                () => new ProjectWithCodeAnalysis(null));
         }
 
         public override ICollection<ProjectWithCodeAnalysis> Projects

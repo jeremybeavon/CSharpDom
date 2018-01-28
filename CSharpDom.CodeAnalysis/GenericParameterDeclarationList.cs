@@ -22,8 +22,8 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>> getConstraintClauses,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses)
         {
-            typeParameters = ListFactory.CreateList(node, getTypeParameters, createTypeParameters);
-            constraintClauses = ListFactory.CreateList(node, getConstraintClauses, createConstraintClauses);
+            typeParameters = ListFactory.CreateChildSyntaxList(node, getTypeParameters, createTypeParameters);
+            constraintClauses = ListFactory.CreateChildSyntaxList(node, getConstraintClauses, createConstraintClauses);
         }
 
         public int Count

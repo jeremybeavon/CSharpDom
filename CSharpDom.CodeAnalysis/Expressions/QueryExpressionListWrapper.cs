@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
 {
     internal class QueryExpressionListWrapper<TParentNode, TParentSyntax> :
         WrappedList<IInternalQueryExpression, IQueryExpressionWithCodeAnalysis>,
-        IChildCollection<IInternalQueryExpression, QueryClauseSyntax>
+        IChildCollection<TParentSyntax, IInternalQueryExpression, QueryClauseSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
@@ -36,9 +36,9 @@ namespace CSharpDom.CodeAnalysis.Expressions
             return list.GetChild(child);
         }
 
-        public void SetChild(IInternalQueryExpression child, QueryClauseSyntax syntax)
+        public TParentSyntax SetChild(IInternalQueryExpression child, QueryClauseSyntax syntax)
         {
-            list.SetChild(child, syntax);
+            return list.SetChild(child, syntax);
         }
 
         public void ReplaceList(IEnumerable<IQueryExpressionWithCodeAnalysis> statement)

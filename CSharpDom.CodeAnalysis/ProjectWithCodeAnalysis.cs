@@ -15,14 +15,14 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<Project>
     {
         private readonly Node<ProjectWithCodeAnalysis, Project> node;
-        private readonly ImmutableListWrapper<ProjectWithCodeAnalysis, Project, DocumentWithCodeAnalysis, Document> documents;
+        private readonly ChildNodeList<ProjectWithCodeAnalysis, Project, DocumentWithCodeAnalysis, Document> documents;
         private List<LoadedDocumentWithCodeAnalysis> loadedDocuments;
         private LoadedProjectWithCodeAnalysis loadedProject;
 
-        public ProjectWithCodeAnalysis()
+        internal ProjectWithCodeAnalysis(Project project)
         {
-            node = new Node<ProjectWithCodeAnalysis, Project>(this);
-            documents = new ImmutableListWrapper<ProjectWithCodeAnalysis, Project, DocumentWithCodeAnalysis, Document>(
+            node = new Node<ProjectWithCodeAnalysis, Project>(this, project);
+            documents = new ChildNodeList<ProjectWithCodeAnalysis, Project, DocumentWithCodeAnalysis, Document>(
                 node,
                 new DocumentListWrapper(node),
                 () => new DocumentWithCodeAnalysis());
@@ -58,15 +58,11 @@ namespace CSharpDom.CodeAnalysis
                 return loadedProject;
             }
 
-            using (CodeAnalysisSettings.TemporarilySkipRefreshes())
-            {
-                ConcurrentBag<Task<LoadedDocumentWithCodeAnalysis>> tasks =
-                    new ConcurrentBag<Task<LoadedDocumentWithCodeAnalysis>>();
-                Parallel.ForEach(documents, document => tasks.Add(document.LoadAsync()));
-                loadedDocuments = new List<LoadedDocumentWithCodeAnalysis>(await Task.WhenAll(tasks));
-                loadedProject = new LoadedProjectWithCodeAnalysis(this, loadedDocuments);
-            }
-
+            ConcurrentBag<Task<LoadedDocumentWithCodeAnalysis>> tasks =
+                new ConcurrentBag<Task<LoadedDocumentWithCodeAnalysis>>();
+            Parallel.ForEach(documents, document => tasks.Add(document.LoadAsync()));
+            loadedDocuments = new List<LoadedDocumentWithCodeAnalysis>(await Task.WhenAll(tasks));
+            loadedProject = new LoadedProjectWithCodeAnalysis(this, loadedDocuments);
             return loadedProject;
         }
 
@@ -84,10 +80,7 @@ namespace CSharpDom.CodeAnalysis
 
         public static async Task<ProjectWithCodeAnalysis> OpenAsync(string fileName)
         {
-            return new ProjectWithCodeAnalysis()
-            {
-                Syntax = await MSBuildWorkspace.Create().OpenProjectAsync(fileName)
-            };
+            return new ProjectWithCodeAnalysis(await MSBuildWorkspace.Create().OpenProjectAsync(fileName));
         }
     }
 }

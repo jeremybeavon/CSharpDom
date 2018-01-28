@@ -61,7 +61,15 @@ namespace CSharpDom.CodeAnalysis
 
         public void Add(TChild item)
         {
-            list.Insert(IndexOf(ChildList.Last()) + 1, toParent(item));
+            TChild lastChild = ChildList.LastOrDefault();
+            if (lastChild == null)
+            {
+                list.Add(toParent(item));
+            }
+            else
+            {
+                list.Insert(IndexOf(lastChild) + 1, toParent(item));
+            }
         }
 
         public void Clear()

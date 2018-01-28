@@ -23,12 +23,12 @@ namespace CSharpDom.CodeAnalysis
             AttributeSyntax,
             ClassReferenceWithCodeAnalysis,
             NameSyntax> attributeType;
-        private ImmutableListWrapper<
+        private ChildNodeList<
             AttributeWithCodeAnalysis,
             AttributeSyntax,
             NamedAttributeValueWithCodeAnalysis,
             AttributeArgumentSyntax> namedValues;
-        private ImmutableListWrapper<
+        private ChildNodeList<
             AttributeWithCodeAnalysis,
             AttributeSyntax,
             UnnamedAttributeValueWithCodeAnalysis,
@@ -44,11 +44,11 @@ namespace CSharpDom.CodeAnalysis
                 syntax => syntax.Name,
                 (parentSyntax, childSyntax) => parentSyntax.WithName(childSyntax));
             Func<SeparatedSyntaxList<AttributeArgumentSyntax>> getArguments = () => node.Syntax.ArgumentList?.Arguments ?? SyntaxFactory.SeparatedList<AttributeArgumentSyntax>();
-            namedValues = new ImmutableListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+            namedValues = new ChildNodeList<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
                 node,
                 new ImmutableAttributeArgumentListWrapper(getArguments, SetArguments, true),
                 () => new NamedAttributeValueWithCodeAnalysis());
-            unnamedValues = new ImmutableListWrapper<AttributeWithCodeAnalysis, AttributeSyntax, UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
+            unnamedValues = new ChildNodeList<AttributeWithCodeAnalysis, AttributeSyntax, UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
                 node,
                 new ImmutableAttributeArgumentListWrapper(getArguments, SetArguments, false),
                 () => new UnnamedAttributeValueWithCodeAnalysis());
@@ -78,12 +78,12 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
         
-        internal IChildCollection<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> NamedValueList
+        internal IChildCollection<AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> NamedValueList
         {
             get { return namedValues; }
         }
 
-        internal IChildCollection<UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> UnnamedValueList
+        internal IChildCollection<AttributeSyntax, UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> UnnamedValueList
         {
             get { return unnamedValues; }
         }

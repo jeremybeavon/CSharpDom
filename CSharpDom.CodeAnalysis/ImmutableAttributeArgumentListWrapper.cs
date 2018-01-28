@@ -3,13 +3,12 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class ImmutableAttributeArgumentListWrapper : IList<AttributeArgumentSyntax>
+    internal sealed class ImmutableAttributeArgumentListWrapper :
+        IChildSyntaxList<AttributeSyntax, AttributeArgumentSyntax>
     {
         private readonly Func<SeparatedSyntaxList<AttributeArgumentSyntax>> getList;
         private readonly Action<SeparatedSyntaxList<AttributeArgumentSyntax>> setList;
@@ -87,6 +86,11 @@ namespace CSharpDom.CodeAnalysis
         public void RemoveAt(int index)
         {
             setList(getList().RemoveAt(index));
+        }
+
+        public AttributeSyntax Set(int index, AttributeArgumentSyntax value)
+        {
+            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

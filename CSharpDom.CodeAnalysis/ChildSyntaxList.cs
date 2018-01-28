@@ -1,14 +1,12 @@
-﻿using Microsoft.CodeAnalysis;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class ImmutableChildListWrapper<TParentNode, TParentSyntax, TChildList, TChildSyntax> : IList<TChildSyntax>
+    internal sealed class ChildSyntaxList<TParentNode, TParentSyntax, TChildList, TChildSyntax> :
+        IChildSyntaxList<TParentSyntax, TChildSyntax>
         where TParentSyntax : class
         where TChildList : IReadOnlyList<TChildSyntax>
     {
@@ -17,7 +15,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Func<TParentSyntax, TChildList> getList;
         private readonly Func<TParentSyntax, TChildList, TParentSyntax> createList;
 
-        public ImmutableChildListWrapper(
+        public ChildSyntaxList(
             Node<TParentNode, TParentSyntax> node,
             IImmutableList<TChildList, TChildSyntax> immutableList,
             Func<TParentSyntax, TChildList> getList,
@@ -29,6 +27,13 @@ namespace CSharpDom.CodeAnalysis
             this.createList = createList;
         }
 
+        public int Count
+        {
+            get { return getList(node.Syntax).Count; }
+        }
+
+        public bool IsReadOnly => false;
+
         public TChildSyntax this[int index]
         {
             get { return getList(node.Syntax)[index]; }
@@ -37,24 +42,25 @@ namespace CSharpDom.CodeAnalysis
                 TChildSyntax currentSyntax = this[index];
                 if (!Equals(currentSyntax, value))
                 {
-                    UpdateList(childList => immutableList.Replace(childList, currentSyntax, value));
+                    node.Syntax = UpdateList(childList => immutableList.Replace(childList, currentSyntax, value));
                 }
             }
         }
 
-        public int Count
+        public TParentSyntax Set(int index, TChildSyntax value)
         {
-            get { return getList(node.Syntax).Count; }
-        }
+            TChildSyntax currentSyntax = this[index];
+            if (!Equals(currentSyntax, value))
+            {
+                return UpdateList(childList => immutableList.Replace(childList, currentSyntax, value));
+            }
 
-        public bool IsReadOnly
-        {
-            get { return false; }
+            return node.Syntax;
         }
 
         public void Add(TChildSyntax item)
         {
-            UpdateList(childList => immutableList.Add(childList, item));
+            node.Syntax = UpdateList(childList => immutableList.Add(childList, item));
         }
 
         public void Clear()
@@ -95,18 +101,18 @@ namespace CSharpDom.CodeAnalysis
 
         public void Insert(int index, TChildSyntax item)
         {
-            UpdateList(childList => immutableList.Insert(childList, index, item));
+            node.Syntax = UpdateList(childList => immutableList.Insert(childList, index, item));
         }
 
         public bool Remove(TChildSyntax item)
         {
-            UpdateList(childList => immutableList.Remove(childList, item));
+            node.Syntax = UpdateList(childList => immutableList.Remove(childList, item));
             return true;
         }
 
         public void RemoveAt(int index)
         {
-            UpdateList(childList => immutableList.RemoveAt(childList, index));
+            node.Syntax = UpdateList(childList => immutableList.RemoveAt(childList, index));
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -114,10 +120,10 @@ namespace CSharpDom.CodeAnalysis
             return GetEnumerator();
         }
 
-        private void UpdateList(Func<TChildList, TChildList> updateFunc)
+        private TParentSyntax UpdateList(Func<TChildList, TChildList> updateFunc)
         {
             TParentSyntax syntax = node.Syntax;
-            node.Syntax = createList(syntax, updateFunc(getList(syntax)));
+            return createList(syntax, updateFunc(getList(syntax)));
         }
     }
 }

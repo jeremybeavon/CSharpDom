@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace CSharpDom.CodeAnalysis
+﻿namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class SimpleChildCollection<TChild, TSyntax, TSyntaxSubClass> : IChildCollection<TChild, TSyntaxSubClass>
+    internal sealed class SimpleChildCollection<TParentSyntax, TChild, TSyntax, TSyntaxSubClass> :
+        IChildCollection<TParentSyntax, TChild, TSyntaxSubClass>
         where TSyntaxSubClass : TSyntax
     {
-        private readonly IChildCollection<TChild, TSyntax> childCollection;
+        private readonly IChildCollection<TParentSyntax, TChild, TSyntax> childCollection;
 
-        public SimpleChildCollection(IChildCollection<TChild, TSyntax> childCollection)
+        public SimpleChildCollection(IChildCollection<TParentSyntax, TChild, TSyntax> childCollection)
         {
             this.childCollection = childCollection;
         }
@@ -21,9 +16,9 @@ namespace CSharpDom.CodeAnalysis
             return (TSyntaxSubClass)childCollection.GetChild(child);
         }
 
-        public void SetChild(TChild child, TSyntaxSubClass syntax)
+        public TParentSyntax SetChild(TChild child, TSyntaxSubClass syntax)
         {
-            childCollection.SetChild(child, syntax);
+            return childCollection.SetChild(child, syntax);
         }
     }
 }

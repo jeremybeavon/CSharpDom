@@ -2,28 +2,28 @@
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal static class CodeAnalysisSettings
+    public static class CodeAnalysisSettings
     {
-        public static bool SkipRefreshes { get; set; }
+        internal static bool AreEditsAllowed { get; set; }
 
-        public static IDisposable TemporarilySkipRefreshes()
+        public static IDisposable AllowEdits()
         {
             return new DisposableValue();
         }
-
+        
         private sealed class DisposableValue : IDisposable
         {
-            private readonly bool skipRefreshes;
+            private readonly bool areEditsAllowed;
 
             public DisposableValue()
             {
-                skipRefreshes = SkipRefreshes;
-                SkipRefreshes = true;
+                areEditsAllowed = AreEditsAllowed;
+                AreEditsAllowed = true;
             }
 
             public void Dispose()
             {
-                SkipRefreshes = skipRefreshes;
+                AreEditsAllowed = areEditsAllowed;
             }
         }
     }

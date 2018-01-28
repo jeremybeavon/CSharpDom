@@ -8,7 +8,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeAnalysis
 {
     internal class BaseTypeListWrapper<TParentNode, TParentSyntax> :
-        ImmutableListWrapper<TParentNode, TParentSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>
+        ChildNodeList<TParentNode, TParentSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : TypeDeclarationSyntax
     {

@@ -51,7 +51,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.ToGenericParameters(),
                 (parentSyntax, childSyntax) => parentSyntax.WithGenericParameters(childSyntax),
-                () => new UnspecifiedTypeReferenceWithCodeAnalysis());
+                GetTypeReference);
             wrappedGenericParameters = new WrappedList<IInternalTypeReferenceWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>(
                 genericParameters,
                 parent => parent,
@@ -93,6 +93,13 @@ namespace CSharpDom.CodeAnalysis
         }
 
         INode<TypeSyntax> IHasNode<TypeSyntax>.Node => node;
+
+        private static IInternalTypeReferenceWithCodeAnalysis GetTypeReference(TypeSyntax syntax)
+        {
+            return syntax is PredefinedTypeSyntax ?
+                (IInternalTypeReferenceWithCodeAnalysis)new BuiltInTypeReferenceWithCodeAnalysis() :
+                new UnspecifiedTypeReferenceWithCodeAnalysis();
+        }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

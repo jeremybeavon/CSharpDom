@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeAnalysis
 {
     internal class GenericParameterDeclarationListWrapper<TParentNode, TParentSyntax> :
-        ImmutableListWrapper<
+        ChildNodeList<
             TParentNode,
             TParentSyntax,
             GenericParameterDeclarationWithCodeAnalysis,

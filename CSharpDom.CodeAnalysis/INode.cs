@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
         void SetParentNode<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            IChildCollection<TChildNode, TSyntax> getCollection)
+            IChildCollection<TParentSyntax, TChildNode, TSyntax> getCollection)
             where TParentNode : class, IHasSyntax<TParentSyntax>;
 
         void RemoveParentNode();

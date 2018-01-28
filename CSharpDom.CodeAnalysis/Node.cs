@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis
         public Node(TValue value, TSyntax syntax)
             : this(value)
         {
-            Syntax = syntax;
+            this.syntax = syntax;
         }
 
         public TValue Value { get; private set; }
@@ -34,6 +34,11 @@ namespace CSharpDom.CodeAnalysis
             }
             set
             {
+                if (!CodeAnalysisSettings.AreEditsAllowed)
+                {
+                    throw new InvalidOperationException("Edits are not allowed.");
+                }
+
                 if (syntax != value)
                 {
                     syntax = value;
@@ -93,7 +98,7 @@ namespace CSharpDom.CodeAnalysis
         public void SetParentNode<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            IChildCollection<TChildNode, TSyntax> getCollection)
+            IChildCollection<TParentSyntax, TChildNode, TSyntax> getCollection)
             where TParentNode : class, IHasSyntax<TParentSyntax>
         {
             SetParentNode(
@@ -113,21 +118,25 @@ namespace CSharpDom.CodeAnalysis
         private Func<TParentSyntax, TSyntax, TParentSyntax> CreateChildSyntax<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            IChildCollection<TChildNode, TSyntax> getCollection)
+            IChildCollection<TParentSyntax, TChildNode, TSyntax> collection)
             where TParentNode : IHasSyntax<TParentSyntax>
         {
-            return (parentSyntax, childSyntax) =>
-            {
-                getCollection.SetChild(child, childSyntax);
-                return parent.Syntax;
-            };
+            return (parentSyntax, childSyntax) => collection.SetChild(child, childSyntax);
         }
 
         private void RefreshSyntax()
         {
-            if (parent != null && ((!CodeAnalysisSettings.SkipRefreshes && !IsLocked) || syntax == null))
+            if (parent != null && ((CodeAnalysisSettings.AreEditsAllowed && !IsLocked) || syntax == null))
             {
-                syntax = getSyntax();
+                TSyntax newSyntax = getSyntax();
+                if (syntax != null && syntax != newSyntax)
+                {
+                    syntax = newSyntax;
+                }
+                else
+                {
+                    syntax = newSyntax;
+                }
             }
         }
     }

@@ -32,12 +32,12 @@ namespace CSharpDom.CodeAnalysis
         void INode<TypeSyntax>.SetParentNode<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            IChildCollection<TChildNode, TypeSyntax> getCollection)
+            IChildCollection<TParentSyntax, TChildNode, TypeSyntax> getCollection)
         {
-            SetParentNode<TParentNode, TParentSyntax, TChildNode>(
+            SetParentNode(
                 parent,
                 child,
-                new SimpleChildCollection<TChildNode, TypeSyntax, TSyntax>(getCollection));
+                new SimpleChildCollection<TParentSyntax, TChildNode, TypeSyntax, TSyntax>(getCollection));
         }
     }
 }
