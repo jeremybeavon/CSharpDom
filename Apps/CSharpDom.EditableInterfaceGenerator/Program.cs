@@ -1,4 +1,6 @@
 ﻿using CSharpDom.CodeAnalysis;
+using CSharpDom.Text;
+using CSharpDom.Text.Rules;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nito.AsyncEx;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.EditableInterfaceGenerator
 {
-    public static class Program
+    public class Program : IComparer<UsingDirectiveWithCodeAnalysis>
     {
         public static void Main(string[] args)
         {
@@ -53,8 +55,17 @@ namespace CSharpDom.EditableInterfaceGenerator
                     continue;
                 }
 
-                @namespace.Name = Regex.Replace(@namespace.Name, "^CSharpDom.Common", "CSharpDom.Common.Editable");
-                string testNamespaceName = @namespace.Name;
+                string namespaceName = @namespace.Name;
+                if (namespaceName.StartsWith("CSharpDom.Common."))
+                {
+                    UsingDirectiveWithCodeAnalysis usingDirective = new UsingDirectiveWithCodeAnalysis(namespaceName);
+                    List<UsingDirectiveWithCodeAnalysis> usingDirectives = loadedDocument.UsingDirectives.ToList();
+                    usingDirectives.Insert(~usingDirectives.BinarySearch(usingDirective), usingDirective);
+                    loadedDocument.UsingDirectives = usingDirectives;
+                }
+
+                @namespace = loadedDocument.Namespaces.First();
+                @namespace.Name = Regex.Replace(namespaceName, "^CSharpDom.Common", "CSharpDom.Common.Editable");
                 InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
                 string interfaceName = @interface.Name;
                 List<ITypeReferenceWithCodeAnalysis> genericParameters = new List<ITypeReferenceWithCodeAnalysis>();
@@ -81,16 +92,24 @@ namespace CSharpDom.EditableInterfaceGenerator
                 @interface.Interfaces.Add(interfaceReference);
                 foreach (InterfacePropertyWithCodeAnalysis property in @interface.Properties.ToArray())
                 {
-                    property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
-                    ITypeReferenceWithCodeAnalysis propertyType = property.PropertyType;
                     PropertyDeclarationSyntax syntax = property.Syntax;
                     property.Syntax = syntax.WithAccessorList(
-                        syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetKeyword)));
+                        syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)));
+                    property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
                 }
 
                 Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
-                File.WriteAllText(destinationPath, loadedDocument.Syntax.ToFullString());
+                const int maximumLineLength = 120;
+                string sourceCode = loadedDocument.ToSourceCode(
+                    new IndentBaseTypeListIfTooLongRule(maximumLineLength),
+                    new IndentGenericParamterDefinitionsIfTooLongRule(maximumLineLength));
+                File.WriteAllText(destinationPath, sourceCode);
             }
+        }
+
+        public int Compare(UsingDirectiveWithCodeAnalysis x, UsingDirectiveWithCodeAnalysis y)
+        {
+            return x.Name.CompareTo(y.Name);
         }
     }
 }

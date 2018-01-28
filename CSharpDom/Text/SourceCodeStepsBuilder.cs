@@ -176,12 +176,14 @@ namespace CSharpDom.Text
             IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> @class)
         {
             Steps.AddChildNodeStepsOnNewLines(@class.Attributes);
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginTypeDefinition);
             Steps.AddTypeVisibilityModifierSteps(@class.Visibility);
             Steps.Add(new WriteClassKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(@class.Name));
             Steps.AddGenericParameterDeclarationSteps(@class.GenericParameters);
             Steps.AddBaseClassAndImplementedInterfacesSteps(@class, @class);
+            Steps.AddPlaceholder(SourceCodePlaceholder.EndTypeDefinition);
             Steps.AddGenericParameterConstraintSteps(@class.GenericParameters);
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
@@ -590,6 +592,7 @@ namespace CSharpDom.Text
             IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
         {
             Steps.AddChildNodeStepsOnNewLines(indexer.Attributes);
+            Steps.AddInterfaceMemberInheritanceModifierSteps(indexer.InheritanceModifier);
             Steps.Add(new WriteChildNode<TTypeReference>(indexer.IndexerType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteThisKeyword());
@@ -646,8 +649,8 @@ namespace CSharpDom.Text
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
             Steps.Add(new IncrementIndent());
-            Func<AccessorFlags, SourceCodeStepsBuilder> builderFactory =
-                flags => new SourceCodeStepsBuilder(AccessorFlags.Indexer | flags, indexer.IndexerType);
+            SourceCodeStepsBuilder builderFactory(AccessorFlags flags) =>
+                new SourceCodeStepsBuilder(AccessorFlags.Indexer | flags, indexer.IndexerType);
             if (indexer.GetAccessor != null)
             {
                 Steps.Add(new WriteChildNode<TAccessor>(indexer.GetAccessor, builderFactory(AccessorFlags.Get)));
@@ -667,6 +670,7 @@ namespace CSharpDom.Text
             IInterface<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface)
         {
             Steps.AddChildNodeStepsOnNewLines(@interface.Attributes);
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginTypeDefinition);
             Steps.AddTypeVisibilityModifierSteps(@interface.Visibility);
             Steps.Add(new WriteInterfaceKeyword());
             Steps.Add(new WriteWhitespace());
@@ -676,10 +680,13 @@ namespace CSharpDom.Text
             {
                 Steps.Add(new WriteWhitespace());
                 Steps.Add(new WriteColon());
+                Steps.AddPlaceholder(SourceCodePlaceholder.BeginBaseTypeList);
                 Steps.Add(new WriteWhitespace());
                 Steps.AddCommaSeparatedChildNodeSteps(@interface.Interfaces);
+                Steps.AddPlaceholder(SourceCodePlaceholder.EndBaseTypeList);
             }
 
+            Steps.AddPlaceholder(SourceCodePlaceholder.EndTypeDefinition);
             Steps.AddGenericParameterConstraintSteps(@interface.GenericParameters);
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
@@ -744,6 +751,9 @@ namespace CSharpDom.Text
         public override void VisitInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
             IInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method)
         {
+            Steps.AddChildNodeStepsOnNewLines(method.Attributes);
+            Steps.AddChildNodeStepsOnNewLines(method.ReturnAttributes);
+            Steps.AddInterfaceMemberInheritanceModifierSteps(method.InheritanceModifier);
             Steps.Add(new WriteChildNode<TTypeReference>(method.ReturnType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(method.Name));
@@ -1288,6 +1298,8 @@ namespace CSharpDom.Text
         public override void VisitInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
             IInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
         {
+            Steps.AddChildNodeStepsOnNewLines(property.Attributes);
+            Steps.AddInterfaceMemberInheritanceModifierSteps(property.InheritanceModifier);
             Steps.Add(new WriteChildNode<TTypeReference>(property.PropertyType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(property.Name));
@@ -1338,8 +1350,8 @@ namespace CSharpDom.Text
             Steps.Add(new WriteName(property.Name));
             bool containsNewLines = false;
             List<ISourceCodeBuilderStep> steps = new List<ISourceCodeBuilderStep>();
-            Func<AccessorFlags, SourceCodeStepsBuilder> builderFactory =
-                flags => new SourceCodeStepsBuilder(AccessorFlags.Property | flags, property.PropertyType);
+            SourceCodeStepsBuilder builderFactory(AccessorFlags flags) =>
+                new SourceCodeStepsBuilder(AccessorFlags.Property | flags, property.PropertyType);
             if (property.GetAccessor != null)
             {
                 WriteChildNode<TAccessor> step = new WriteChildNode<TAccessor>(

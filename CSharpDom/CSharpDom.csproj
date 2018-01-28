@@ -2410,9 +2410,13 @@
     <Compile Include="Text\ListExtensions.cs" />
     <Compile Include="Text\AccessorFlags.cs" />
     <Compile Include="Text\NewLineLocation.cs" />
+    <Compile Include="Text\Rules\IndentGenericParamterDefinitionsIfTooLongRule.cs" />
+    <Compile Include="Text\Rules\IndentBaseTypeListIfTooLongRule.cs" />
     <Compile Include="Text\Rules\VisualStudio\IndentBlockContentsRule.cs" />
     <Compile Include="Text\Rules\VisualStudio\IndentOpenAndCloseBracesRule.cs" />
+    <Compile Include="Text\SourceCodePlaceholder.cs" />
     <Compile Include="Text\SourceCodeStatementStepsBuilder.cs" />
+    <Compile Include="Text\SourceCodeStepRange.cs" />
     <Compile Include="Text\Steps\DecrementIndent.cs" />
     <Compile Include="Text\Steps\Expressions\WriteTypeofKeyword.cs" />
     <Compile Include="Text\Steps\Expressions\WriteQuestionMark.cs" />
@@ -2442,6 +2446,7 @@
     <Compile Include="Text\Steps\Expressions\WriteExpression.cs" />
     <Compile Include="Text\Steps\IncrementIndent.cs" />
     <Compile Include="Text\SourceCodeExpressionStepsBuilder.cs" />
+    <Compile Include="Text\Steps\PlaceholderStep.cs" />
     <Compile Include="Text\Steps\Statements\WriteGotoKeyword.cs" />
     <Compile Include="Text\Steps\Statements\WriteCaseKeyword.cs" />
     <Compile Include="Text\Steps\Statements\WriteElseKeyword.cs" />
@@ -2465,6 +2470,7 @@
     <Compile Include="Text\Steps\Statements\WriteStatement.cs" />
     <Compile Include="Text\Steps\WriteAbstractKeyword.cs" />
     <Compile Include="Text\Steps\WriteAsyncKeyword.cs" />
+    <Compile Include="Text\Steps\WriteInterfaceMemberInheritanceModifier.cs" />
     <Compile Include="Text\Steps\WriteStructFieldModifier.cs" />
     <Compile Include="Text\Steps\WriteStaticClassFieldModifier.cs" />
     <Compile Include="Text\Steps\WriteSealedClassIndexerInheritanceModifier.cs" />

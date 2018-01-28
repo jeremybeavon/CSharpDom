@@ -202,18 +202,18 @@ namespace CSharpDom.CodeAnalysis
         
         private void InternalAdd(TChildNode item, TChildSyntax syntax)
         {
-            item.Node.SetParentNode<TParentNode, TParentSyntax, TChildNode>(node.Value, item, this);
             innerList.Add(item);
             syntaxMap.Add(item, syntax);
             reverseSyntaxMap.Add(syntax, new IndexedItem(innerList.Count - 1, item));
+            item.Node.SetParentNode<TParentNode, TParentSyntax, TChildNode>(node.Value, item, this);
         }
 
         private void InternalInsert(int index, TChildNode item, TChildSyntax syntax)
         {
-            item.Node.SetParentNode<TParentNode, TParentSyntax, TChildNode>(node.Value, item, this);
             innerList.Insert(index, item);
             syntaxMap.Add(item, syntax);
             reverseSyntaxMap.Add(syntax, new IndexedItem(index, item));
+            item.Node.SetParentNode<TParentNode, TParentSyntax, TChildNode>(node.Value, item, this);
         }
 
         private void InternalClear()
@@ -246,11 +246,11 @@ namespace CSharpDom.CodeAnalysis
             TChildSyntax oldSyntax = oldItem.Node.Syntax;
             oldItem.Node.RemoveParentNode();
             innerList[index] = item;
-            item.Node.SetParentNode<TParentNode, TParentSyntax, TChildNode>(node.Value, item, this);
             syntaxMap.Remove(oldItem);
             syntaxMap.Add(item, syntax);
             reverseSyntaxMap.Remove(oldSyntax);
             reverseSyntaxMap.Add(syntax, new IndexedItem(index, item));
+            item.Node.SetParentNode<TParentNode, TParentSyntax, TChildNode>(node.Value, item, this);
         }
 
         private void RefreshList()

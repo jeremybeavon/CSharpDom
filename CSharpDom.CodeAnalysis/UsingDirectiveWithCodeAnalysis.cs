@@ -11,6 +11,12 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<UsingDirectiveWithCodeAnalysis, UsingDirectiveSyntax> node;
 
+        public UsingDirectiveWithCodeAnalysis(string name)
+            : this()
+        {
+            Syntax = SyntaxFactory.UsingDirective(SyntaxFactory.ParseName(name));
+        }
+
         internal UsingDirectiveWithCodeAnalysis()
         {
             node = new Node<UsingDirectiveWithCodeAnalysis, UsingDirectiveSyntax>(this);

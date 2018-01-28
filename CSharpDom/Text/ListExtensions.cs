@@ -12,6 +12,27 @@ namespace CSharpDom.Text
 {
     public static class ListExtensions
     {
+        public static SourceCodeStepRange GetRange(
+            this List<ISourceCodeBuilderStep> steps,
+            SourceCodePlaceholder startPlaceholder,
+            SourceCodePlaceholder endPlaceholder)
+        {
+            int? startIndex = steps.FindIndex(startPlaceholder);
+            int? endIndex = steps.FindIndex(endPlaceholder);
+            if (!startIndex.HasValue && !endIndex.HasValue)
+            {
+                return null;
+            }
+
+            int length = endIndex.Value - startIndex.Value;
+            if (length <= 0)
+            {
+                return null;
+            }
+
+            return new SourceCodeStepRange(steps, steps.GetRange(startIndex.Value, length), startPlaceholder, endPlaceholder);
+        }
+
         public static void AddIfNotEmpty<TChildNode>(this List<ISourceCodeBuilderStep> steps, TChildNode childNode)
             where TChildNode : IVisitable<IGenericVisitor>
         {
@@ -35,11 +56,9 @@ namespace CSharpDom.Text
         {
             foreach (ISourceCodeBuilderStep step in steps)
             {
-                IHasSourceSourceBuilderSteps hasChildSteps = step as IHasSourceSourceBuilderSteps;
-                IHasChildNode hasChildNode = step as IHasChildNode;
                 IHasStatement hasStatement = step as IHasStatement;
                 IHasExpression hasExpression = step as IHasExpression;
-                if (hasChildNode != null)
+                if (step is IHasChildNode hasChildNode)
                 {
                     yield return new ChildSteps(hasChildNode.ChildNode, hasChildNode.Steps);
                 }
@@ -52,7 +71,7 @@ namespace CSharpDom.Text
                     yield return new ChildSteps(hasExpression.Expression, hasExpression.Steps);
                 }
 
-                if (hasChildSteps != null)
+                if (step is IHasSourceSourceBuilderSteps hasChildSteps)
                 {
                     foreach (ChildSteps childSteps in hasChildSteps.Steps.GetChildSteps())
                     {
@@ -89,9 +108,20 @@ namespace CSharpDom.Text
             return AsNullable(steps.FindIndex(GetTypePredicate(type)));
         }
 
+        public static int? FindIndex(this List<ISourceCodeBuilderStep> steps, SourceCodePlaceholder placeholder)
+        {
+            return AsNullable(steps.FindIndex(GetPlaceholderPredicate(placeholder)));
+        }
+
         public static int? FindLastIndex(this List<ISourceCodeBuilderStep> steps, Type type)
         {
             return AsNullable(steps.FindLastIndex(GetTypePredicate(type)));
+        }
+
+        public static List<ISourceCodeBuilderStep> FindFirstLine(this List<ISourceCodeBuilderStep> steps)
+        {
+            int? newLineIndex = steps.FindIndex(typeof(WriteIndentedNewLine));
+            return newLineIndex.HasValue ? steps.GetRange(0, newLineIndex.Value) : steps;
         }
 
         public static void InsertAfter(this List<ISourceCodeBuilderStep> steps, Type type, ISourceCodeBuilderStep step)
@@ -130,7 +160,24 @@ namespace CSharpDom.Text
             }
         }
 
-        internal static string ToSourceCode(this List<ISourceCodeBuilderStep> steps, params ISourceCodeStyleRule[] styleRules)
+        public static void ReplaceAll(
+            this List<ISourceCodeBuilderStep> steps,
+            Type stepType,
+            ISourceCodeBuilderStep replacementStep)
+        {
+            int index = 0;
+            foreach (ISourceCodeBuilderStep step in steps.ToArray())
+            {
+                if (DoesStepMatchType(step, stepType))
+                {
+                    steps[index] = replacementStep;
+                }
+
+                index++;
+            }
+        }
+
+        public static string ToSourceCode(this List<ISourceCodeBuilderStep> steps, params ISourceCodeStyleRule[] styleRules)
         {
             foreach (ISourceCodeStyleRule styleRule in styleRules.Where(rule => !rule.IsRuleAlreadyApplied))
             {
@@ -144,6 +191,11 @@ namespace CSharpDom.Text
             }
 
             return textBuilder.ToString();
+        }
+
+        internal static void AddPlaceholder(this List<ISourceCodeBuilderStep> steps, SourceCodePlaceholder placeholder)
+        {
+            steps.Add(new PlaceholderStep(placeholder));
         }
 
         internal static void AddRange(this List<ISourceCodeBuilderStep> steps, params ISourceCodeBuilderStep[] stepsToAdd)
@@ -263,9 +315,11 @@ namespace CSharpDom.Text
             if (genericParameters.Count != 0)
             {
                 steps.Add(new WriteStartGenericParameters());
+                steps.AddPlaceholder(SourceCodePlaceholder.BeginGenericParametersDefinition);
                 steps.AddRange(
                     genericParameters.Select(parameter => new WriteName(((IHasName)parameter).Name)),
                     () => steps.AddRange(new WriteComma(), new WriteWhitespace()));
+                steps.AddPlaceholder(SourceCodePlaceholder.EndGenericParametersDefinition);
                 steps.Add(new WriteEndGenericParameters());
             }
         }
@@ -294,6 +348,7 @@ namespace CSharpDom.Text
             {
                 steps.Add(new WriteWhitespace());
                 steps.Add(new WriteColon());
+                steps.AddPlaceholder(SourceCodePlaceholder.BeginBaseTypeList);
                 steps.Add(new WriteWhitespace());
                 steps.Add(new WriteChildNode<TClassReference>(baseClassContainer.BaseClass));
             }
@@ -304,6 +359,7 @@ namespace CSharpDom.Text
                 {
                     steps.Add(new WriteWhitespace());
                     steps.Add(new WriteColon());
+                    steps.AddPlaceholder(SourceCodePlaceholder.BeginBaseTypeList);
                     steps.Add(new WriteWhitespace());
                 }
                 else
@@ -311,8 +367,13 @@ namespace CSharpDom.Text
                     steps.Add(new WriteComma());
                     steps.Add(new WriteWhitespace());
                 }
-                               
+
                 steps.AddCommaSeparatedChildNodeSteps(implementedInterfaces.ImplementedInterfaces);
+            }
+
+            if (baseClassContainer.BaseClass != null || implementedInterfaces.ImplementedInterfaces.Count != 0)
+            {
+                steps.AddPlaceholder(SourceCodePlaceholder.EndBaseTypeList);
             }
         }
 
@@ -325,8 +386,10 @@ namespace CSharpDom.Text
             {
                 steps.Add(new WriteWhitespace());
                 steps.Add(new WriteColon());
+                steps.AddPlaceholder(SourceCodePlaceholder.BeginBaseTypeList);
                 steps.Add(new WriteWhitespace());
                 steps.AddCommaSeparatedChildNodeSteps(implementedInterfaces.ImplementedInterfaces);
+                steps.AddPlaceholder(SourceCodePlaceholder.EndBaseTypeList);
             }
         }
 
@@ -461,6 +524,19 @@ namespace CSharpDom.Text
                     break;
             }
 
+            steps.Add(new WriteWhitespace());
+        }
+
+        internal static void AddInterfaceMemberInheritanceModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            InterfaceMemberInheritanceModifier inheritanceModifer)
+        {
+            if (inheritanceModifer == InterfaceMemberInheritanceModifier.None)
+            {
+                return;
+            }
+
+            steps.Add(new WriteInterfaceMemberInheritanceModifier(inheritanceModifer));
             steps.Add(new WriteWhitespace());
         }
 
@@ -800,7 +876,17 @@ namespace CSharpDom.Text
 
         private static Predicate<ISourceCodeBuilderStep> GetTypePredicate(Type type)
         {
-            return step => type.IsAssignableFrom(step.GetType());
+            return step => DoesStepMatchType(step, type);
+        }
+
+        private static bool DoesStepMatchType(ISourceCodeBuilderStep step, Type type)
+        {
+            return type.IsAssignableFrom(step.GetType());
+        }
+
+        private static Predicate<ISourceCodeBuilderStep> GetPlaceholderPredicate(SourceCodePlaceholder placeholder)
+        {
+            return step => step is PlaceholderStep placeHolderStep && placeHolderStep.Placeholder == placeholder;
         }
 
         private static int? AsNullable(int index)

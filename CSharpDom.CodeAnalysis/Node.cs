@@ -83,7 +83,9 @@ namespace CSharpDom.CodeAnalysis
                 setSyntax = syntax => parent.Syntax = createChildSyntax(parent.Syntax, syntax);
                 if (syntax != null)
                 {
+                    IsLocked = true;
                     setSyntax(syntax);
+                    IsLocked = false;
                 }
             }
         }
@@ -123,7 +125,7 @@ namespace CSharpDom.CodeAnalysis
 
         private void RefreshSyntax()
         {
-            if (parent != null && (!CodeAnalysisSettings.SkipRefreshes || !IsLocked || syntax == null))
+            if (parent != null && ((!CodeAnalysisSettings.SkipRefreshes && !IsLocked) || syntax == null))
             {
                 syntax = getSyntax();
             }
