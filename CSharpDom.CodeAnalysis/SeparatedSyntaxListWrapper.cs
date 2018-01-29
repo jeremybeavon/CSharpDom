@@ -1,47 +1,89 @@
 ﻿using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
-        ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
-        where TParentSyntax : class
-        where TChildNode : class, IHasNode<TChildSyntax>
-        where TChildSyntax : SyntaxNode
+    internal sealed class SeparatedSyntaxListWrapper<TSyntax> : IList<TSyntax>
+        where TSyntax : SyntaxNode
     {
-        private readonly Node<TParentNode, TParentSyntax> node;
-        private readonly Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList;
+        private readonly Func<SeparatedSyntaxList<TSyntax>> getList;
+        private readonly Action<SeparatedSyntaxList<TSyntax>> setList;
 
         public SeparatedSyntaxListWrapper(
-            Node<TParentNode, TParentSyntax> node,
-            Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
-            Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
-            Func<TChildSyntax, TChildNode> factory)
-            : base(node, ListFactory.CreateChildSyntaxList(node, getList, createList), factory)
+            Func<SeparatedSyntaxList<TSyntax>> getList,
+            Action<SeparatedSyntaxList<TSyntax>> setList)
         {
-            this.node = node;
-            this.createList = createList;
+            this.getList = getList;
+            this.setList = setList;
         }
 
-        public SeparatedSyntaxListWrapper(
-            Node<TParentNode, TParentSyntax> node,
-            Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
-            Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
-            Func<TChildNode> factory)
-            : base(node, ListFactory.CreateChildSyntaxList(node, getList, createList), factory)
+        public TSyntax this[int index]
         {
-            this.node = node;
-            this.createList = createList;
+            get { return getList()[index]; }
+            set { setList(getList().Replace(this[index], value)); }
         }
 
-        public void ReplaceList(IEnumerable<TChildNode> newList)
+        public int Count
         {
-            node.Syntax = createList(node.Syntax, SyntaxFactory.SeparatedList(newList.Select(item => item.Node.Syntax)));
+            get { return getList().Count; }
+        }
+
+        public bool IsReadOnly
+        {
+            get { return false; }
+        }
+
+        public void Add(TSyntax item)
+        {
+            setList(getList().Add(item));
+        }
+
+        public void Clear()
+        {
+            throw new NotSupportedException();
+        }
+
+        public bool Contains(TSyntax item)
+        {
+            return getList().Contains(item);
+        }
+
+        public void CopyTo(TSyntax[] array, int arrayIndex)
+        {
+            throw new NotSupportedException();
+        }
+
+        public IEnumerator<TSyntax> GetEnumerator()
+        {
+            return ((IEnumerable<TSyntax>)getList()).GetEnumerator();
+        }
+
+        public int IndexOf(TSyntax item)
+        {
+            return getList().IndexOf(item);
+        }
+
+        public void Insert(int index, TSyntax item)
+        {
+            setList(getList().Insert(index, item));
+        }
+
+        public bool Remove(TSyntax item)
+        {
+            setList(getList().Remove(item));
+            return true;
+        }
+
+        public void RemoveAt(int index)
+        {
+            setList(getList().RemoveAt(index));
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
         }
     }
 }

@@ -35,7 +35,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly FilteredAttributeList moduleAttributes;
         private readonly LoadedDocumentMemberListWrapper<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax> namespaces;
         private readonly StructCollectionWithCodeAnalysis structs;
-        private readonly SyntaxListWrapper<
+        private readonly SyntaxNodeList<
             LoadedDocumentWithCodeAnalysis,
             CompilationUnitSyntax,
             UsingDirectiveWithCodeAnalysis,
@@ -66,7 +66,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 () => new NamespaceWithCodeAnalysis(document));
             structs = new StructCollectionWithCodeAnalysis(this);
-            usingDirectives = new SyntaxListWrapper<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax, UsingDirectiveWithCodeAnalysis, UsingDirectiveSyntax>(
+            usingDirectives = new SyntaxNodeList<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax, UsingDirectiveWithCodeAnalysis, UsingDirectiveSyntax>(
                 node,
                 currentSyntax => currentSyntax.Usings,
                 (parentSyntax, childSyntax) => parentSyntax.WithUsings(childSyntax),

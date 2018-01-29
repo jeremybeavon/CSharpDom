@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class ProjectListWrapper : BaseCollection<Project>, IHasSyntax<Solution>
+    internal sealed class ProjectSyntaxList : AbstractChildSyntaxCollection<Solution, Project>, IHasSyntax<Solution>
     {
         private readonly Node<SolutionWithCodeAnalysis, Solution> node;
 
-        public ProjectListWrapper(Node<SolutionWithCodeAnalysis, Solution> node)
+        public ProjectSyntaxList(Node<SolutionWithCodeAnalysis, Solution> node)
         {
             this.node = node;
         }

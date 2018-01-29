@@ -4,11 +4,12 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal abstract class BaseCollection<T> : IList<T>
+    internal abstract class AbstractChildSyntaxCollection<TParentSyntax, TChildSyntax> :
+        IChildSyntaxList<TParentSyntax, TChildSyntax>
     {
-        public abstract T this[int index] { get; }
+        public abstract TChildSyntax this[int index] { get; }
 
-        T IList<T>.this[int index]
+        TChildSyntax IList<TChildSyntax>.this[int index]
         {
             get { return this[index]; }
             set { throw new NotSupportedException(); }
@@ -21,35 +22,40 @@ namespace CSharpDom.CodeAnalysis
             get { return false; }
         }
 
-        public abstract void Add(T item);
+        public abstract void Add(TChildSyntax item);
 
         public abstract void Clear();
 
-        public virtual bool Contains(T item)
+        public virtual bool Contains(TChildSyntax item)
         {
             return this.Contains(item);
         }
 
-        public void CopyTo(T[] array, int arrayIndex)
+        public void CopyTo(TChildSyntax[] array, int arrayIndex)
         {
             throw new NotSupportedException();
         }
 
-        public abstract IEnumerator<T> GetEnumerator();
+        public abstract IEnumerator<TChildSyntax> GetEnumerator();
 
-        public int IndexOf(T item)
+        public int IndexOf(TChildSyntax item)
         {
             throw new NotSupportedException();
         }
 
-        public void Insert(int index, T item)
+        public void Insert(int index, TChildSyntax item)
         {
             throw new NotSupportedException();
         }
 
-        public abstract bool Remove(T item);
+        public abstract bool Remove(TChildSyntax item);
 
         public void RemoveAt(int index)
+        {
+            throw new NotSupportedException();
+        }
+
+        public TParentSyntax Set(int index, TChildSyntax value)
         {
             throw new NotSupportedException();
         }

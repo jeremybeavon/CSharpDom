@@ -22,7 +22,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> node;
         private readonly AttributeListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax> attributes;
         private readonly GenericParameterDeclarationListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax> genericParameters;
-        private readonly SeparatedSyntaxListWrapper<
+        private readonly SeparatedSyntaxNodeList<
             MethodWithCodeAnalysis,
             MethodDeclarationSyntax,
             MethodParameterWithCodeAnalysis,
@@ -42,7 +42,7 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
-            parameters = new SeparatedSyntaxListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax, MethodParameterWithCodeAnalysis, ParameterSyntax>(
+            parameters = new SeparatedSyntaxNodeList<MethodWithCodeAnalysis, MethodDeclarationSyntax, MethodParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),

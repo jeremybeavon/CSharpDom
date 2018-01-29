@@ -53,7 +53,9 @@ namespace CSharpDom.CodeAnalysis
             return CreateChildSyntaxList(node, new ImmutableSeparatedSyntaxList<TChildSyntax>(), getList, createList);
         }
         
-        public static IList<GenericParameterDeclarationSyntax> CreateList<TParentNode, TParentSyntax>(
+        public static IChildSyntaxList<TParentSyntax, GenericParameterDeclarationSyntax> CreateList<
+            TParentNode,
+            TParentSyntax>(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, TypeParameterListSyntax> getTypeParameters,
             Func<TParentSyntax, TypeParameterListSyntax, TParentSyntax> createTypeParameters,
@@ -69,7 +71,7 @@ namespace CSharpDom.CodeAnalysis
                 createConstraintClauses);
         }
 
-        public static SyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> CreateList<
+        public static SyntaxNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> CreateList<
             TParentNode,
             TParentSyntax,
             TChildNode,
@@ -83,10 +85,10 @@ namespace CSharpDom.CodeAnalysis
             where TChildNode : class, IHasNode<TChildSyntax>
             where TChildSyntax : SyntaxNode
         {
-            return new SyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(node, getList, createList, factory);
+            return new SyntaxNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(node, getList, createList, factory);
         }
 
-        public static SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax> CreateList<
+        public static SeparatedSyntaxNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> CreateList<
             TParentNode,
             TParentSyntax,
             TChildNode,
@@ -100,14 +102,14 @@ namespace CSharpDom.CodeAnalysis
             where TChildNode : class, IHasNode<TChildSyntax>
             where TChildSyntax : SyntaxNode
         {
-            return new SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(
+            return new SeparatedSyntaxNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(
                 node,
                 getList,
                 createList,
                 factory);
         }
 
-        public static IList<NameSyntax> CreateBaseTypeList<TParentNode, TParentSyntax>(
+        public static IChildSyntaxList<TParentSyntax, NameSyntax> CreateBaseTypeList<TParentNode, TParentSyntax>(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, BaseListSyntax, TParentSyntax> createList)
             where TParentSyntax : TypeDeclarationSyntax
@@ -118,7 +120,11 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => createList(parentSyntax, (parentSyntax.BaseList ?? SyntaxFactory.BaseList()).WithTypes(childSyntax)));
         }
 
-        public static IList<TChildSyntax> CreateFilteredList<TParentNode, TParentSyntax, TChildBaseSyntax, TChildSyntax>(
+        public static IChildSyntaxList<TParentSyntax, TChildSyntax> CreateFilteredList<
+            TParentNode,
+            TParentSyntax,
+            TChildBaseSyntax,
+            TChildSyntax>(
             Node<TParentNode, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<TChildBaseSyntax>> getList,
             Func<TParentSyntax, SyntaxList<TChildBaseSyntax>, TParentSyntax> createList,
@@ -127,7 +133,9 @@ namespace CSharpDom.CodeAnalysis
             where TChildBaseSyntax : SyntaxNode
             where TChildSyntax : TChildBaseSyntax
         {
-            return new FilteredList<TChildBaseSyntax, TChildSyntax>(CreateChildSyntaxList(node, getList, createList), filter);
+            return new FilteredChildSyntaxList<TParentSyntax, TChildBaseSyntax, TChildSyntax>(
+                CreateChildSyntaxList(node, getList, createList),
+                filter);
         }
 
         public static IList<TChild> CreateFilteredList<TParent, TChild>(IList<TParent> list, Func<TChild, bool> filter)
@@ -154,12 +162,13 @@ namespace CSharpDom.CodeAnalysis
             Func<UnspecifiedTypeReferenceWithCodeAnalysis, TChildNode> getChild)
             where TChildNode : class, IHasNode<TypeSyntax>
         {
-            IList<TypeParameterConstraintSyntax> constraintSyntaxList = CreateChildSyntaxList(
-                node,
-                syntax => syntax.Constraints,
-                (parentSyntax, childSyntax) => parentSyntax.WithConstraints(childSyntax));
-            IList<TypeConstraintSyntax> filteredConstraintSyntaxList =
-                new FilteredList<TypeParameterConstraintSyntax, TypeConstraintSyntax>(
+            IChildSyntaxList<GenericParameterDeclarationSyntax, TypeParameterConstraintSyntax> constraintSyntaxList =
+                CreateChildSyntaxList(
+                    node,
+                    syntax => syntax.Constraints,
+                    (parentSyntax, childSyntax) => parentSyntax.WithConstraints(childSyntax));
+            IChildSyntaxList<GenericParameterDeclarationSyntax, TypeConstraintSyntax> filteredConstraintSyntaxList =
+                new FilteredChildSyntaxList<GenericParameterDeclarationSyntax, TypeParameterConstraintSyntax, TypeConstraintSyntax>(
                     constraintSyntaxList,
                     syntax => filter(syntax.Type.ToName()));
             IList<GenericParameterConstraint> constraintList = CreateChildSyntaxList(

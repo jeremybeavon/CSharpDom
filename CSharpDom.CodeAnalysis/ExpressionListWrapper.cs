@@ -14,7 +14,7 @@ namespace CSharpDom.CodeAnalysis
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> list;
+        private readonly SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> list;
 
         public ExpressionListWrapper(
             Node<TParentNode, TParentSyntax> node,
@@ -25,7 +25,7 @@ namespace CSharpDom.CodeAnalysis
         }
 
         private ExpressionListWrapper(
-            SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> list)
+            SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> list)
             : base(list, parent => parent, child => child as IInternalExpression)
         {
             this.list = list;

@@ -14,7 +14,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly SyntaxListWrapper<TParentNode, TParentSyntax, IInternalQueryExpression, QueryClauseSyntax> list;
+        private readonly SyntaxNodeList<TParentNode, TParentSyntax, IInternalQueryExpression, QueryClauseSyntax> list;
 
         public QueryExpressionListWrapper(
             Node<TParentNode, TParentSyntax> node,
@@ -25,7 +25,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         private QueryExpressionListWrapper(
-            SyntaxListWrapper<TParentNode, TParentSyntax, IInternalQueryExpression, QueryClauseSyntax> list)
+            SyntaxNodeList<TParentNode, TParentSyntax, IInternalQueryExpression, QueryClauseSyntax> list)
             : base(list, parent => parent, child => child as IInternalQueryExpression)
         {
             this.list = list;

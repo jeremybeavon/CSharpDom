@@ -19,7 +19,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
             AnonymousMethodExpressionSyntax,
             BlockStatementWithCodeAnalysis,
             BlockSyntax> body;
-        private SeparatedSyntaxListWrapper<
+        private SeparatedSyntaxNodeList<
             AnonymousMethodExpressionWithCodeAnalysis,
             AnonymousMethodExpressionSyntax,
             AnonymousMethodParameterWithCodeAnalysis,
@@ -33,7 +33,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 () => new BlockStatementWithCodeAnalysis(),
                 syntax => syntax.Block,
                 (parentSyntax, childSyntax) => parentSyntax.WithBlock(childSyntax));
-            parameters = new SeparatedSyntaxListWrapper<AnonymousMethodExpressionWithCodeAnalysis, AnonymousMethodExpressionSyntax, AnonymousMethodParameterWithCodeAnalysis, ParameterSyntax>(
+            parameters = new SeparatedSyntaxNodeList<AnonymousMethodExpressionWithCodeAnalysis, AnonymousMethodExpressionSyntax, AnonymousMethodParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),

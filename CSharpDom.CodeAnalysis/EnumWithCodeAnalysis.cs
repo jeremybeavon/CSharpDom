@@ -23,7 +23,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<EnumWithCodeAnalysis, EnumDeclarationSyntax> node;
         private readonly DocumentWithCodeAnalysis document;
         private readonly AttributeListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax> attributes;
-        private readonly SeparatedSyntaxListWrapper<
+        private readonly SeparatedSyntaxNodeList<
             EnumWithCodeAnalysis,
             EnumDeclarationSyntax,
             EnumMemberWithCodeAnalysis,
@@ -37,7 +37,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
-            enumMembers = new SeparatedSyntaxListWrapper<EnumWithCodeAnalysis, EnumDeclarationSyntax, EnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(
+            enumMembers = new SeparatedSyntaxNodeList<EnumWithCodeAnalysis, EnumDeclarationSyntax, EnumMemberWithCodeAnalysis, EnumMemberDeclarationSyntax>(
                 node,
                 syntax => syntax.Members,
                 (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax),

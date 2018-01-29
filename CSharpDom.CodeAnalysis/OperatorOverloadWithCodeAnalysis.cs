@@ -50,7 +50,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> node;
         private readonly AttributeListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> attributes;
         private readonly MethodBodyNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> body;
-        private readonly SeparatedSyntaxListWrapper<
+        private readonly SeparatedSyntaxNodeList<
             OperatorOverloadWithCodeAnalysis,
             OperatorDeclarationSyntax,
             OperatorParameterWithCodeAnalysis,
@@ -69,7 +69,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.Body,
                 (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
-            parameters = new SeparatedSyntaxListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis, ParameterSyntax>(
+            parameters = new SeparatedSyntaxNodeList<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax, OperatorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),

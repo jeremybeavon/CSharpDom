@@ -16,7 +16,7 @@ namespace CSharpDom.CodeAnalysis
                                       //IVisitable<IReflectionVisitor>
     {
         private readonly TypeReferenceNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax> node;
-        private readonly SeparatedSyntaxListWrapper<
+        private readonly SeparatedSyntaxNodeList<
             UnspecifiedTypeReferenceWithCodeAnalysis,
             NameSyntax,
             IInternalTypeReferenceWithCodeAnalysis,
@@ -47,7 +47,7 @@ namespace CSharpDom.CodeAnalysis
         internal UnspecifiedTypeReferenceWithCodeAnalysis()
         {
             node = new TypeReferenceNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(this);
-            genericParameters = new SeparatedSyntaxListWrapper<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax, IInternalTypeReferenceWithCodeAnalysis, TypeSyntax>(
+            genericParameters = new SeparatedSyntaxNodeList<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax, IInternalTypeReferenceWithCodeAnalysis, TypeSyntax>(
                 node,
                 syntax => syntax.ToGenericParameters(),
                 (parentSyntax, childSyntax) => parentSyntax.WithGenericParameters(childSyntax),

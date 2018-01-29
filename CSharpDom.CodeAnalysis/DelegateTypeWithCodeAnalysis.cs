@@ -18,7 +18,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> node;
         private readonly AttributeListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> attributes;
         private readonly GenericParameterDeclarationListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> genericParameters;
-        private readonly SeparatedSyntaxListWrapper<
+        private readonly SeparatedSyntaxNodeList<
             DelegateTypeWithCodeAnalysis,
             DelegateDeclarationSyntax,
             DelegateParameterWithCodeAnalysis,
@@ -38,7 +38,7 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
-            parameters = new SeparatedSyntaxListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax, DelegateParameterWithCodeAnalysis, ParameterSyntax>(
+            parameters = new SeparatedSyntaxNodeList<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax, DelegateParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),

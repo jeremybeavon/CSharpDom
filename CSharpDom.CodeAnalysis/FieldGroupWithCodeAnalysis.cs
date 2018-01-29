@@ -18,7 +18,7 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> attributes;
-        private readonly SeparatedSyntaxListWrapper<
+        private readonly SeparatedSyntaxNodeList<
             FieldGroupWithCodeAnalysis,
             FieldDeclarationSyntax,
             FieldWithCodeAnalysis,
@@ -32,7 +32,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
-            fields = new SeparatedSyntaxListWrapper<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax, FieldWithCodeAnalysis, VariableDeclaratorSyntax>(
+            fields = new SeparatedSyntaxNodeList<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax, FieldWithCodeAnalysis, VariableDeclaratorSyntax>(
                 node,
                 syntax => syntax.Declaration.Variables,
                 (parentSyntax, childSyntax) => parentSyntax.WithDeclaration(parentSyntax.Declaration.WithVariables(childSyntax)),

@@ -67,8 +67,9 @@ namespace CSharpDom.CodeAnalysis
             {
                 RefreshList();
                 isRefreshList = true;
-                list[index] = value.Node.Syntax;
-                InternalSet(index, value, value.Node.Syntax);
+                TChildSyntax syntax = value.Node.Syntax;
+                list[index] = syntax;
+                InternalSet(index, value, syntax);
                 isRefreshList = false;
             }
         }
@@ -181,7 +182,7 @@ namespace CSharpDom.CodeAnalysis
         {
             RefreshList();
             isRefreshList = true;
-            TChildSyntax oldSyntax = child.Node.Syntax;
+            TChildSyntax oldSyntax = syntaxMap[child];
             TParentSyntax parentSyntax = list.Set(reverseSyntaxMap[oldSyntax].Index, syntax);
             syntaxMap.Clear();
             reverseSyntaxMap.Clear();
@@ -241,7 +242,7 @@ namespace CSharpDom.CodeAnalysis
         private void InternalSet(int index, TChildNode item, TChildSyntax syntax)
         {
             TChildNode oldItem = innerList[index];
-            TChildSyntax oldSyntax = oldItem.Node.Syntax;
+            TChildSyntax oldSyntax = syntaxMap[oldItem];
             oldItem.Node.RemoveParentNode();
             innerList[index] = item;
             syntaxMap.Remove(oldItem);

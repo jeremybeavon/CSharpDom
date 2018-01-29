@@ -100,6 +100,7 @@
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
     <Compile Include="ClassCollectionWithCodeAnalysisExtensions.cs" />
     <Compile Include="CodeAnalysisSettings.cs" />
+    <Compile Include="FilteredChildSyntaxList.generic.cs" />
     <Compile Include="GenericParameterConstraint.cs" />
     <Compile Include="IClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="IChildSyntaxList.cs" />
@@ -372,7 +373,7 @@
     <Compile Include="AttributeGroupWithCodeAnalysis.cs" />
     <Compile Include="AttributeListWrapper.cs" />
     <Compile Include="AttributeWithCodeAnalysis.cs" />
-    <Compile Include="BaseCollection.cs" />
+    <Compile Include="AbstractChildSyntaxCollection.cs" />
     <Compile Include="BaseTypeList.cs" />
     <Compile Include="BaseTypeListWrapper.cs" />
     <Compile Include="CachedExpressionNode.cs" />
@@ -488,7 +489,7 @@
     <Compile Include="InternalStructNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStructPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="StructReferenceWithCodeAnalysis.cs" />
-    <Compile Include="DocumentListWrapper.cs" />
+    <Compile Include="DocumentSyntaxList.cs" />
     <Compile Include="Expressions\IInternalQueryExpression.cs" />
     <Compile Include="Expressions\QueryExpressionListWrapper.cs" />
     <Compile Include="Expressions\QueryExpressionNode.cs" />
@@ -584,7 +585,7 @@
     <Compile Include="Partial\StructNestedPartialStructWithCodeAnalysis.cs" />
     <Compile Include="Partial\StructNestedSealedPartialClassWithCodeAnalysis.cs" />
     <Compile Include="Partial\StructNestedStaticPartialClassWithCodeAnalysis.cs" />
-    <Compile Include="ProjectListWrapper.cs" />
+    <Compile Include="ProjectSyntaxList.cs" />
     <Compile Include="ProjectWithCodeAnalysis.cs" />
     <Compile Include="SealedClassWithCodeAnalysis.cs" />
     <Compile Include="SimpleChildCollection.cs" />
@@ -706,6 +707,7 @@
     <Compile Include="TypeSyntaxVisitor.cs" />
     <Compile Include="UsingDirectiveWithCodeAnalysis.cs" />
     <Compile Include="VariableDeclaratorSyntaxExtensions.cs" />
+    <Compile Include="WrappedChildSyntaxList.cs" />
     <Compile Include="WrappedCollection.cs" />
     <Compile Include="WrappedList.cs" />
     <Compile Include="InterfaceMemberListWrapper.cs" />
@@ -779,13 +781,13 @@
     <Compile Include="IChildCollection.cs" />
     <Compile Include="ChildNodeList.cs" />
     <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />
-    <Compile Include="ImmutableSeparatedSyntaxListWrapper.cs" />
+    <Compile Include="SeparatedSyntaxListWrapper.cs" />
     <Compile Include="ChildSyntaxList.cs" />
     <Compile Include="SealedClassEventPropertyWithCodeAnalysis.cs" />
     <Compile Include="NameSyntaxExtensions.cs" />
     <Compile Include="Node.cs" />
-    <Compile Include="SeparatedSyntaxListWrapper.cs" />
-    <Compile Include="SyntaxListWrapper.cs" />
+    <Compile Include="SeparatedSyntaxNodeList.cs" />
+    <Compile Include="SyntaxNodeList.cs" />
     <Compile Include="IHasSyntax.cs" />
     <Compile Include="ITypeReferenceWithCodeAnalysis.cs" />
     <Compile Include="MethodBodyWithCodeAnalysis.cs" />

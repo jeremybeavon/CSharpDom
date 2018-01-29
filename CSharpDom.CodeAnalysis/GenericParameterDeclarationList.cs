@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class GenericParameterDeclarationList<TParentNode, TParentSyntax> : IList<GenericParameterDeclarationSyntax>
+    internal sealed class GenericParameterDeclarationList<TParentNode, TParentSyntax> :
+        IChildSyntaxList<TParentSyntax, GenericParameterDeclarationSyntax>
         where TParentSyntax : class
     {
         private readonly IList<TypeParameterSyntax> typeParameters;
@@ -112,6 +113,11 @@ namespace CSharpDom.CodeAnalysis
         {
             string text = syntax.Identifier.Text;
             return constraintClauses.FirstOrDefault(clause => clause.Name.Identifier.Text == text);
+        }
+
+        public TParentSyntax Set(int index, GenericParameterDeclarationSyntax value)
+        {
+            throw new NotImplementedException();
         }
     }
 }

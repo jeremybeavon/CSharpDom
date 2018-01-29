@@ -3,8 +3,6 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -14,7 +12,7 @@ namespace CSharpDom.CodeAnalysis
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly SyntaxListWrapper<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> list;
+        private readonly SyntaxNodeList<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> list;
 
         public StatementListWrapper(
             Node<TParentNode, TParentSyntax> node,
@@ -24,7 +22,7 @@ namespace CSharpDom.CodeAnalysis
         {
         }
 
-        private StatementListWrapper(SyntaxListWrapper<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> list)
+        private StatementListWrapper(SyntaxNodeList<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> list)
             : base(list, parent => parent, child => child as IInternalStatement)
         {
             this.list = list;

@@ -11,7 +11,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         IInternalQueryExpression
     {
         private readonly QueryExpressionNode<QueryOrderByExpressionWithCodeAnalysis, OrderByClauseSyntax> node;
-        private readonly SeparatedSyntaxListWrapper<
+        private readonly SeparatedSyntaxNodeList<
             QueryOrderByExpressionWithCodeAnalysis,
             OrderByClauseSyntax,
             QueryOrderingExpressionWithCodeAnalysis,
@@ -20,7 +20,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         internal QueryOrderByExpressionWithCodeAnalysis()
         {
             node = new QueryExpressionNode<QueryOrderByExpressionWithCodeAnalysis, OrderByClauseSyntax>(this);
-            orders = new SeparatedSyntaxListWrapper<QueryOrderByExpressionWithCodeAnalysis, OrderByClauseSyntax, QueryOrderingExpressionWithCodeAnalysis, OrderingSyntax>(
+            orders = new SeparatedSyntaxNodeList<QueryOrderByExpressionWithCodeAnalysis, OrderByClauseSyntax, QueryOrderingExpressionWithCodeAnalysis, OrderingSyntax>(
                 node,
                 syntax => syntax.Orderings,
                 (parentSyntax, childSyntax) => parentSyntax.WithOrderings(childSyntax),

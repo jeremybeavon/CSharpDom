@@ -21,7 +21,7 @@ namespace CSharpDom.CodeAnalysis
             node = new Node<SolutionWithCodeAnalysis, Solution>(this, solution);
             projects = new ChildNodeList<SolutionWithCodeAnalysis, Solution, ProjectWithCodeAnalysis, Project>(
                 node,
-                new ProjectListWrapper(node),
+                new ProjectSyntaxList(node),
                 () => new ProjectWithCodeAnalysis(null));
         }
 

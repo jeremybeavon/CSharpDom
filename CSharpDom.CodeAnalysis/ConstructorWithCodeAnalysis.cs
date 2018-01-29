@@ -21,7 +21,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> node;
         private readonly AttributeListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> attributes;
         private readonly MethodBodyNode<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> body;
-        private readonly SeparatedSyntaxListWrapper<
+        private readonly SeparatedSyntaxNodeList<
             ConstructorWithCodeAnalysis,
             ConstructorDeclarationSyntax,
             ConstructorParameterWithCodeAnalysis,
@@ -38,7 +38,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.Body,
                 (parentSyntax, childSyntax) => parentSyntax.WithBody(childSyntax));
-            parameters = new SeparatedSyntaxListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax, ConstructorParameterWithCodeAnalysis, ParameterSyntax>(
+            parameters = new SeparatedSyntaxNodeList<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax, ConstructorParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),

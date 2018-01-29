@@ -16,7 +16,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     {
         private readonly Guid internalId;
         private readonly StatementNode<TryStatementWithCodeAnalysis, TryStatementSyntax> node;
-        private readonly SyntaxListWrapper<
+        private readonly SyntaxNodeList<
             TryStatementWithCodeAnalysis,
             TryStatementSyntax,
             CatchStatementWithCodeAnalysis,
@@ -32,7 +32,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             internalId = Guid.NewGuid();
             node = new StatementNode<TryStatementWithCodeAnalysis, TryStatementSyntax>(this);
-            catchStatements = new SyntaxListWrapper<TryStatementWithCodeAnalysis, TryStatementSyntax, CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
+            catchStatements = new SyntaxNodeList<TryStatementWithCodeAnalysis, TryStatementSyntax, CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
                 node,
                 syntax => syntax.Catches,
                 (parentSyntax, childSyntax) => parentSyntax.WithCatches(childSyntax),

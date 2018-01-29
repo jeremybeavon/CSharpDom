@@ -25,7 +25,7 @@ namespace CSharpDom.CodeAnalysis
             AccessorWithCodeAnalysis,
             AccessorDeclarationSyntax> getAccessor;
         private readonly CachedTypeReferenceNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> indexerType;
-        private readonly SeparatedSyntaxListWrapper<
+        private readonly SeparatedSyntaxNodeList<
             IndexerWithCodeAnalysis,
             IndexerDeclarationSyntax,
             IndexerParameterWithCodeAnalysis,
@@ -48,7 +48,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.Type,
                 (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
-            parameters = new SeparatedSyntaxListWrapper<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, IndexerParameterWithCodeAnalysis, ParameterSyntax>(
+            parameters = new SeparatedSyntaxNodeList<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, IndexerParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),

@@ -14,7 +14,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list;
+        private readonly SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list;
         private readonly Func<IExpressionWithCodeAnalysis, IInternalArgument> toParent;
 
         public ArgumentListWrapper(
@@ -48,13 +48,13 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         private ArgumentListWrapper(
-            SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list)
+            SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list)
             : this(list, child => list.FirstOrDefault(parent => parent.Expression == child))
         {
         }
 
         private ArgumentListWrapper(
-            SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list,
+            SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list,
             Func<IExpressionWithCodeAnalysis, IInternalArgument> toParent)
             : base(list, parent => parent.Expression, toParent)
         {

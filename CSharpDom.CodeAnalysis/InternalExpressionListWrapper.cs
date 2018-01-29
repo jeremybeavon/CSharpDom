@@ -5,7 +5,7 @@ using Microsoft.CodeAnalysis;
 namespace CSharpDom.CodeAnalysis
 {
     internal class InternalExpressionListWrapper<TParentNode, TParentSyntax> :
-        SeparatedSyntaxListWrapper<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax>
+        SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
