@@ -13,6 +13,7 @@ namespace CSharpDom.CodeAnalysis
         IChildSyntaxList<TParentSyntax, GenericParameterDeclarationSyntax>
         where TParentSyntax : class
     {
+        private readonly Node<TParentNode, TParentSyntax> node;
         private readonly IList<TypeParameterSyntax> typeParameters;
         private readonly IList<TypeParameterConstraintClauseSyntax> constraintClauses;
 
@@ -23,6 +24,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>> getConstraintClauses,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses)
         {
+            this.node = node;
             typeParameters = ListFactory.CreateChildSyntaxList(node, getTypeParameters, createTypeParameters);
             constraintClauses = ListFactory.CreateChildSyntaxList(node, getConstraintClauses, createConstraintClauses);
         }
@@ -117,7 +119,13 @@ namespace CSharpDom.CodeAnalysis
 
         public TParentSyntax Set(int index, GenericParameterDeclarationSyntax value)
         {
-            throw new NotImplementedException();
+            if (value.ConstraintClause != null)
+            {
+                constraintClauses[index] = value.ConstraintClause;
+            }
+
+            typeParameters[index] = value.TypeParameter;
+            return node.Syntax;
         }
     }
 }

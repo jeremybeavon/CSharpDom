@@ -94,7 +94,15 @@ namespace CSharpDom.EditableInterfaceGenerator
                     @interface.Name = GetNewName(interfaceName);
                     foreach (InterfaceReferenceWithCodeAnalysis reference in @interface.Interfaces.ToArray())
                     {
-                        reference.Name = GetNewName(reference.Name);
+                        string referenceName = reference.Name;
+                        if (referenceName == "IVisitable")
+                        {
+                            reference.GenericParameters[0] = new InterfaceReferenceWithCodeAnalysis("IEditableVisitor");
+                        }
+                        else
+                        {
+                            reference.Name = GetNewName(referenceName);
+                        }
                     }
 
                     @interface.Interfaces.Add(interfaceReference);
@@ -103,6 +111,12 @@ namespace CSharpDom.EditableInterfaceGenerator
                         PropertyDeclarationSyntax syntax = property.Syntax;
                         property.Syntax = syntax.WithAccessorList(
                             syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)));
+                        ITypeReferenceWithCodeAnalysis propertyType = property.PropertyType;
+                        /*if (propertyName.StartsWith("IReadOnly"))
+                        {
+                            property.Name = propertyName.Replace("ReadOnly", string.Empty);
+                        }*/
+
                         property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
                     }
                 }
