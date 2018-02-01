@@ -34,13 +34,13 @@ namespace CSharpDom.CodeAnalysis
             }
             set
             {
-                if (!CodeAnalysisSettings.AreEditsAllowed)
-                {
-                    throw new InvalidOperationException("Edits are not allowed.");
-                }
-
                 if (syntax != value)
                 {
+                    if (!CodeAnalysisSettings.AreEditsAllowed)
+                    {
+                        throw new InvalidOperationException("Edits are not allowed.");
+                    }
+
                     syntax = value;
                     if (parent != null)
                     {
@@ -98,13 +98,13 @@ namespace CSharpDom.CodeAnalysis
         public void SetParentNode<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
             TChildNode child,
-            IChildCollection<TParentSyntax, TChildNode, TSyntax> getCollection)
+            IChildCollection<TParentSyntax, TChildNode, TSyntax> collection)
             where TParentNode : class, IHasSyntax<TParentSyntax>
         {
             SetParentNode(
                 parent,
-                syntax => getCollection.GetChild(child),
-                CreateChildSyntax<TParentNode, TParentSyntax, TChildNode>(parent, child, getCollection));
+                syntax => collection.GetChild(child),
+                (TParentSyntax parentSyntax, TSyntax childSyntax) => collection.SetChild(child, childSyntax));
         }
 
         public void RemoveParentNode()
@@ -115,15 +115,6 @@ namespace CSharpDom.CodeAnalysis
             setSyntax = null;
         }
         
-        private Func<TParentSyntax, TSyntax, TParentSyntax> CreateChildSyntax<TParentNode, TParentSyntax, TChildNode>(
-            TParentNode parent,
-            TChildNode child,
-            IChildCollection<TParentSyntax, TChildNode, TSyntax> collection)
-            where TParentNode : IHasSyntax<TParentSyntax>
-        {
-            return (parentSyntax, childSyntax) => collection.SetChild(child, childSyntax);
-        }
-
         private void RefreshSyntax()
         {
             if (parent != null && ((CodeAnalysisSettings.AreEditsAllowed && !IsLocked) || syntax == null))
