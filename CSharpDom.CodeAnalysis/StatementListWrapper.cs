@@ -7,8 +7,7 @@ using System.Linq;
 namespace CSharpDom.CodeAnalysis
 {
     internal class StatementListWrapper<TParentNode, TParentSyntax> :
-        WrappedList<IInternalStatement, IStatementWithCodeAnalysis>,
-        IChildCollection<TParentSyntax, IInternalStatement, StatementSyntax>
+        WrappedList<IInternalStatement, IStatementWithCodeAnalysis>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
@@ -27,17 +26,7 @@ namespace CSharpDom.CodeAnalysis
         {
             this.list = list;
         }
-
-        public StatementSyntax GetChild(IInternalStatement child)
-        {
-            return list.GetChild(child);
-        }
-
-        public TParentSyntax SetChild(IInternalStatement child, StatementSyntax syntax)
-        {
-            return list.SetChild(child, syntax);
-        }
-
+        
         public void ReplaceList(IEnumerable<IStatementWithCodeAnalysis> statement)
         {
             list.ReplaceList(statement.Cast<IInternalStatement>());

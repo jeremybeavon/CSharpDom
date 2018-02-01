@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 namespace CSharpDom.CodeAnalysis
 {
     internal class ExpressionListWrapper<TParentNode, TParentSyntax> :
-        WrappedList<IInternalExpression, IExpressionWithCodeAnalysis>,
-        IChildCollection<TParentSyntax, IInternalExpression, ExpressionSyntax>
+        WrappedList<IInternalExpression, IExpressionWithCodeAnalysis>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
@@ -30,17 +29,7 @@ namespace CSharpDom.CodeAnalysis
         {
             this.list = list;
         }
-
-        public ExpressionSyntax GetChild(IInternalExpression child)
-        {
-            return list.GetChild(child);
-        }
-
-        public TParentSyntax SetChild(IInternalExpression child, ExpressionSyntax syntax)
-        {
-            return list.SetChild(child, syntax);
-        }
-
+        
         public void ReplaceList(IEnumerable<IExpressionWithCodeAnalysis> statement)
         {
             list.ReplaceList(statement.Cast<IInternalExpression>());

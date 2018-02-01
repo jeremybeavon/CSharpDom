@@ -73,7 +73,6 @@ namespace CSharpDom.EditableInterfaceGenerator
                         loadedDocument.UsingDirectives = usingDirectives;
                     }
 
-                    @namespace = loadedDocument.Namespaces.First();
                     @namespace.Name = Regex.Replace(namespaceName, "^CSharpDom.Common", "CSharpDom.Common.Editable");
                     InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
                     string interfaceName = @interface.Name;
@@ -105,13 +104,12 @@ namespace CSharpDom.EditableInterfaceGenerator
                         property.Syntax = syntax.WithAccessorList(
                             syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)));
                         property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
-                        Console.WriteLine(property.InheritanceModifier);
                     }
                 }
 
                     Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
                     const int maximumLineLength = 120;
-                Console.WriteLine(loadedDocument.Namespaces.First().Interfaces.First().Properties.First().InheritanceModifier);
+                //Console.WriteLine(loadedDocument.Namespaces.First().Interfaces.First().Properties.First().InheritanceModifier);
                     string sourceCode = loadedDocument.ToSourceCode(
                         new IndentBaseTypeListIfTooLongRule(maximumLineLength),
                         new IndentGenericParamterDefinitionsIfTooLongRule(maximumLineLength));

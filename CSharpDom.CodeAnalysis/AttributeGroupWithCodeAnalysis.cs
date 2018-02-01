@@ -46,11 +46,6 @@ namespace CSharpDom.CodeAnalysis
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        internal IChildCollection<AttributeListSyntax, AttributeWithCodeAnalysis, AttributeSyntax> AttributeList
-        {
-             get { return attributes; }
-        }
         
         INode<AttributeListSyntax> IHasNode<AttributeListSyntax>.Node
         {

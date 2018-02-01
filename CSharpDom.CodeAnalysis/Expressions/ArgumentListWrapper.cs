@@ -3,14 +3,11 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     internal class ArgumentListWrapper<TParentNode, TParentSyntax> :
-        WrappedList<IInternalArgument, IExpressionWithCodeAnalysis>,
-        IChildCollection<TParentSyntax, IInternalExpression, ExpressionSyntax>
+        WrappedList<IInternalArgument, IExpressionWithCodeAnalysis>
         where TParentNode : class, IHasSyntax<TParentSyntax>
         where TParentSyntax : class
     {
@@ -61,18 +58,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
             this.list = list;
             this.toParent = toParent;
         }
-
-        public ExpressionSyntax GetChild(IInternalExpression child)
-        {
-            return list.GetChild(toParent(child)).Expression;
-        }
-
-        public TParentSyntax SetChild(IInternalExpression child, ExpressionSyntax syntax)
-        {
-            throw new NotImplementedException();
-            //return list.SetChild(toParent(child), (ArgumentSyntax)syntax);
-        }
-
+        
         public void ReplaceList(IEnumerable<IExpressionWithCodeAnalysis> statement)
         {
             list.ReplaceList(statement.Select(toParent));

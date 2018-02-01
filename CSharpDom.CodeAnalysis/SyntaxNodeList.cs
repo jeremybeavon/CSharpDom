@@ -32,8 +32,10 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SyntaxList<TChildSyntax>, TParentSyntax> createList,
             Func<TChildNode> factory)
-            : this(node, getList, createList, syntax => factory())
+            : base(node, ListFactory.CreateChildSyntaxList(node, getList, createList), factory)
         {
+            this.node = node;
+            this.createList = createList;
         }
 
         public void ReplaceList(IEnumerable<TChildNode> newList)

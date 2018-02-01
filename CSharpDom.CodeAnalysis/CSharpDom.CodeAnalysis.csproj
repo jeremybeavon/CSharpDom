@@ -114,6 +114,7 @@
     <Compile Include="IClassTypeDefinitionWithCodeAnalysis.cs" />
     <Compile Include="MemberList.generic3.cs" />
     <Compile Include="MemberListSyntax.generic.cs" />
+    <Compile Include="AbstractChildNode.cs" />
     <Compile Include="Partial\IPartialStructTypeWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassNestedAbstractPartialClassWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassNestedPartialClassCollectionWithCodeAnalysis.cs" />
@@ -588,7 +589,6 @@
     <Compile Include="ProjectSyntaxList.cs" />
     <Compile Include="ProjectWithCodeAnalysis.cs" />
     <Compile Include="SealedClassWithCodeAnalysis.cs" />
-    <Compile Include="SimpleChildCollection.cs" />
     <Compile Include="ExpressionNode.cs" />
     <Compile Include="ExpressionListWrapper.cs" />
     <Compile Include="SolutionWithCodeAnalysis.cs" />
@@ -778,7 +778,6 @@
     <Compile Include="ClassReferenceWithCodeAnalysis.cs" />
     <Compile Include="EnumerableExtensions.cs" />
     <Compile Include="FilteredList.generic2.cs" />
-    <Compile Include="IChildCollection.cs" />
     <Compile Include="ChildNodeList.cs" />
     <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />
     <Compile Include="SeparatedSyntaxListWrapper.cs" />

@@ -17,13 +17,13 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, TSyntax, TParentSyntax> createChildSyntax)
             where TParentNode : class, IHasSyntax<TParentSyntax>;
 
-        void SetParentNode<TParentNode, TParentSyntax, TChildNode>(
+        void SetParentNode<TParentNode, TParentSyntax>(
             TParentNode parent,
             int childIndex,
             Func<TParentSyntax, int, TSyntax> getChildSyntax,
             Func<TParentSyntax, int, TSyntax, TParentSyntax> createChildSyntax)
             where TParentNode : class, IHasSyntax<TParentSyntax>;
-
+        
         void RemoveParentNode();
     }
 }

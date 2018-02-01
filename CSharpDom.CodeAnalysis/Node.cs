@@ -5,17 +5,13 @@ namespace CSharpDom.CodeAnalysis
     internal class Node<TValue, TSyntax> : INode<TSyntax>
         where TSyntax : class
     {
-        private readonly Guid internalId;
         private Func<TSyntax> getSyntax;
         private Action<TSyntax> setSyntax;
         private object parent;
-        private object parentCollection;
-        private int collectionIndex;
         private TSyntax syntax;
 
         public Node(TValue value)
         {
-            internalId = Guid.NewGuid();
             Value = value;
         }
 
@@ -26,6 +22,8 @@ namespace CSharpDom.CodeAnalysis
         }
 
         public TValue Value { get; private set; }
+
+        public int Index { get; set; }
 
         public TSyntax Syntax
         {
@@ -53,12 +51,7 @@ namespace CSharpDom.CodeAnalysis
         }
 
         public bool IsLocked { get; set; }
-
-        public Guid InternalId
-        {
-            get { return internalId; }
-        }
-
+        
         public TParentNode GetParentNode<TParentNode>()
             where TParentNode : class
         {
@@ -96,17 +89,19 @@ namespace CSharpDom.CodeAnalysis
                 }
             }
         }
-        
-        public void SetParentNode<TParentNode, TParentSyntax, TChildNode>(
+
+        public void SetParentNode<TParentNode, TParentSyntax>(
             TParentNode parent,
-            TChildNode child,
-            IChildCollection<TParentSyntax, TChildNode, TSyntax> collection)
+            int childIndex,
+            Func<TParentSyntax, int, TSyntax> getChildSyntax,
+            Func<TParentSyntax, int, TSyntax, TParentSyntax> createChildSyntax)
             where TParentNode : class, IHasSyntax<TParentSyntax>
         {
-            SetParentNode(
+            Index = childIndex;
+            SetParentNode<TParentNode, TParentSyntax>(
                 parent,
-                syntax => collection.GetChild(child),
-                (TParentSyntax parentSyntax, TSyntax childSyntax) => collection.SetChild(child, childSyntax));
+                syntax => getChildSyntax(syntax, Index),
+                (parentSyntax, childSyntax) => createChildSyntax(parentSyntax, Index, childSyntax));
         }
 
         public void RemoveParentNode()
@@ -116,7 +111,7 @@ namespace CSharpDom.CodeAnalysis
             getSyntax = null;
             setSyntax = null;
         }
-        
+
         private void RefreshSyntax()
         {
             if (parent != null && ((CodeAnalysisSettings.AreEditsAllowed && !IsLocked) || syntax == null))

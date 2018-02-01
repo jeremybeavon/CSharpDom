@@ -78,16 +78,6 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
         
-        internal IChildCollection<AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> NamedValueList
-        {
-            get { return namedValues; }
-        }
-
-        internal IChildCollection<AttributeSyntax, UnnamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> UnnamedValueList
-        {
-            get { return unnamedValues; }
-        }
-
         INode<AttributeSyntax> IHasNode<AttributeSyntax>.Node
         {
             get { return node; }
