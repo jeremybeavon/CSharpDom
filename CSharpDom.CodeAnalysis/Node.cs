@@ -9,6 +9,8 @@ namespace CSharpDom.CodeAnalysis
         private Func<TSyntax> getSyntax;
         private Action<TSyntax> setSyntax;
         private object parent;
+        private object parentCollection;
+        private int collectionIndex;
         private TSyntax syntax;
 
         public Node(TValue value)

@@ -4,7 +4,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal interface INode<TSyntax> : IHasSyntax<TSyntax>
     {
-        Guid InternalId { get; }
+        int Index { get; set; }
 
         bool IsLocked { get; set; }
 
@@ -19,8 +19,9 @@ namespace CSharpDom.CodeAnalysis
 
         void SetParentNode<TParentNode, TParentSyntax, TChildNode>(
             TParentNode parent,
-            TChildNode child,
-            IChildCollection<TParentSyntax, TChildNode, TSyntax> getCollection)
+            int childIndex,
+            Func<TParentSyntax, int, TSyntax> getChildSyntax,
+            Func<TParentSyntax, int, TSyntax, TParentSyntax> createChildSyntax)
             where TParentNode : class, IHasSyntax<TParentSyntax>;
 
         void RemoveParentNode();
