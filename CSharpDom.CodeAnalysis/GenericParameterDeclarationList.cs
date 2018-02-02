@@ -44,11 +44,20 @@ namespace CSharpDom.CodeAnalysis
             get { return GetSyntax(typeParameters[index]); }
             set
             {
-                typeParameters[index] = value.TypeParameter;
                 if (value.ConstraintClause != null)
                 {
-                    constraintClauses[index] = value.ConstraintClause;
+                    int? constraintClauseIndex = GetConstraintClauseIndex(typeParameters[index]);
+                    if (constraintClauseIndex.HasValue)
+                    {
+                        constraintClauses[constraintClauseIndex.Value] = value.ConstraintClause;
+                    }
+                    else
+                    {
+                        constraintClauses.Add(value.ConstraintClause);
+                    }
                 }
+
+                typeParameters[index] = value.TypeParameter;
             }
         }
 
@@ -117,14 +126,31 @@ namespace CSharpDom.CodeAnalysis
             return constraintClauses.FirstOrDefault(clause => clause.Name.Identifier.Text == text);
         }
 
-        public TParentSyntax Set(int index, GenericParameterDeclarationSyntax value)
+        private int? GetConstraintClauseIndex(TypeParameterSyntax syntax)
         {
-            if (value.ConstraintClause != null)
+            string text = syntax.Identifier.Text;
+            int index = 0;
+            foreach (TypeParameterConstraintClauseSyntax constraintClause in constraintClauses)
             {
-                constraintClauses[index] = value.ConstraintClause;
+                if (constraintClause.Name.Identifier.Text == text)
+                {
+                    return index;
+                }
+
+                index++;
             }
 
-            typeParameters[index] = value.TypeParameter;
+            return null;
+        }
+
+        public TParentSyntax Set(int index, GenericParameterDeclarationSyntax value)
+        {
+            if (this[index] == value)
+            {
+                return node.Syntax;
+            }
+
+            this[index] = value;
             return node.Syntax;
         }
     }

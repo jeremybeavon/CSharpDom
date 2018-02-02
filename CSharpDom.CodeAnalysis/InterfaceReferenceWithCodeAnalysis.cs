@@ -59,7 +59,7 @@ namespace CSharpDom.CodeAnalysis
             get { return typeReference.Node; }
         }
 
-        INode<TypeSyntax> IHasNode<TypeSyntax>.Node => throw new NotImplementedException();
+        INode<TypeSyntax> IHasNode<TypeSyntax>.Node => typeReference.Node;
 
         TypeSyntax IHasSyntax<TypeSyntax>.Syntax
         {

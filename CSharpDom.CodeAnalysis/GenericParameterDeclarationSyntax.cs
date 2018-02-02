@@ -66,5 +66,10 @@ namespace CSharpDom.CodeAnalysis
                 TypeParameter.WithVarianceKeyword(SyntaxFactory.Token(kind)),
                 ConstraintClause);
         }
+
+        public override string ToString()
+        {
+            return typeParameter.ToString() + ";" + constraintClause?.ToString();
+        }
     }
 }

@@ -68,7 +68,9 @@ namespace CSharpDom.EditableInterfaceGenerator
                     if (namespaceName.StartsWith("CSharpDom.Common."))
                     {
                         UsingDirectiveWithCodeAnalysis usingDirective = new UsingDirectiveWithCodeAnalysis(namespaceName);
-                        List<UsingDirectiveWithCodeAnalysis> usingDirectives = loadedDocument.UsingDirectives.ToList();
+                        List<UsingDirectiveWithCodeAnalysis> usingDirectives = loadedDocument.UsingDirectives
+                            .Select(directive => { directive.Name.Replace("CSharpDom.Common.", "CSharpDom.Common.Editable."); return directive; })
+                            .ToList();
                         usingDirectives.Insert(~usingDirectives.BinarySearch(usingDirective, new Program()), usingDirective);
                         loadedDocument.UsingDirectives = usingDirectives;
                     }
@@ -81,10 +83,18 @@ namespace CSharpDom.EditableInterfaceGenerator
                     {
                         foreach (InterfaceMethodWithCodeAnalysis method in @interface.Methods)
                         {
+                            if (method.Name == "Visit")
+                            {
+                                continue;
+                            }
+
                             foreach (GenericParameterDeclarationWithCodeAnalysis parameter in method.GenericParameters)
                             {
-                                InterfaceReferenceWithCodeAnalysis constraint = parameter.InterfaceConstraints.First();
-                                constraint.Name = GetNewName(constraint.Name);
+                                InterfaceReferenceWithCodeAnalysis constraint = parameter.InterfaceConstraints.FirstOrDefault();
+                                if (constraint != null)
+                                {
+                                    constraint.Name = GetNewName(constraint.Name);
+                                }
                             }
 
                             UnspecifiedTypeReferenceWithCodeAnalysis parameterType =
@@ -128,13 +138,15 @@ namespace CSharpDom.EditableInterfaceGenerator
                             PropertyDeclarationSyntax syntax = property.Syntax;
                             property.Syntax = syntax.WithAccessorList(
                                 syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)));
-                            string propertyName = property.PropertyType.Name;
-                            if (propertyName.StartsWith("IReadOnly"))
-                            {
-                                property.Name = propertyName.Replace("ReadOnly", string.Empty);
-                            }
-
                             property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
+                            if (property.PropertyType is UnspecifiedTypeReferenceWithCodeAnalysis propertyType)
+                            {
+                                string propertyTypeName = propertyType.Name;
+                                if (propertyTypeName.StartsWith("IReadOnly"))
+                                {
+                                    propertyType.Name = propertyTypeName.Replace("ReadOnly", string.Empty);
+                                }
+                            }
                         }
                     }
                 }
