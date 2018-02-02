@@ -7,6 +7,10 @@
         BeginGenericParametersDefinition,
         EndGenericParametersDefinition,
         BeginBaseTypeList,
-        EndBaseTypeList
+        EndBaseTypeList,
+        BeginMethodDefinition,
+        EndMethodDefinition,
+        BeginMethodParametersDefinition,
+        EndMethodParametersDefintion
     }
 }

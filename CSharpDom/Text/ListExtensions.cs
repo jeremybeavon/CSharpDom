@@ -32,7 +32,7 @@ namespace CSharpDom.Text
 
             return new SourceCodeStepRange(steps, steps.GetRange(startIndex.Value, length), startPlaceholder, endPlaceholder);
         }
-
+        
         public static void AddIfNotEmpty<TChildNode>(this List<ISourceCodeBuilderStep> steps, TChildNode childNode)
             where TChildNode : IVisitable<IGenericVisitor>
         {

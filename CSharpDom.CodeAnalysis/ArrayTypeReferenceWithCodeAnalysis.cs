@@ -38,6 +38,8 @@ namespace CSharpDom.CodeAnalysis
             set { elementType.Value = value; }
         }
 
+        public string Name => ElementType.Name;
+
         public override int Dimensions
         {
             get { return node.Syntax.RankSpecifiers[index].Rank; }

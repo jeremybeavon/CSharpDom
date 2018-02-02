@@ -76,59 +76,76 @@ namespace CSharpDom.EditableInterfaceGenerator
                     @namespace.Name = Regex.Replace(namespaceName, "^CSharpDom.Common", "CSharpDom.Common.Editable");
                     InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
                     string interfaceName = @interface.Name;
-                    List<ITypeReferenceWithCodeAnalysis> genericParameters = new List<ITypeReferenceWithCodeAnalysis>();
-                    foreach (GenericParameterDeclarationWithCodeAnalysis parameter in @interface.GenericParameters)
-                    {
-                        genericParameters.Add(new GenericParameterReferenceWithCodeAnalysis(parameter.Name));
-                        if (parameter.InterfaceConstraints.Count == 0)
-                        {
-                            continue;
-                        }
-
-                        InterfaceReferenceWithCodeAnalysis constraint = parameter.InterfaceConstraints.First();
-                        constraint.Name = GetNewName(constraint.Name);
-                    }
-                    InterfaceReferenceWithCodeAnalysis interfaceReference = new InterfaceReferenceWithCodeAnalysis(
-                        interfaceName,
-                        genericParameters.ToArray());
                     @interface.Name = GetNewName(interfaceName);
-                    foreach (InterfaceReferenceWithCodeAnalysis reference in @interface.Interfaces.ToArray())
+                    if (interfaceName == "IGenericVisitor")
                     {
-                        string referenceName = reference.Name;
-                        if (referenceName == "IVisitable")
+                        foreach (InterfaceMethodWithCodeAnalysis method in @interface.Methods)
                         {
-                            reference.GenericParameters[0] = new InterfaceReferenceWithCodeAnalysis("IEditableVisitor");
-                        }
-                        else
-                        {
-                            reference.Name = GetNewName(referenceName);
+                            foreach (GenericParameterDeclarationWithCodeAnalysis parameter in method.GenericParameters)
+                            {
+                                InterfaceReferenceWithCodeAnalysis constraint = parameter.InterfaceConstraints.First();
+                                constraint.Name = GetNewName(constraint.Name);
+                            }
+
+                            UnspecifiedTypeReferenceWithCodeAnalysis parameterType =
+                                method.Parameters[0].ParameterType as UnspecifiedTypeReferenceWithCodeAnalysis;
+                            parameterType.Name = GetNewName(parameterType.Name);
                         }
                     }
-
-                    @interface.Interfaces.Add(interfaceReference);
-                    foreach (InterfacePropertyWithCodeAnalysis property in @interface.Properties.ToArray())
+                    else
                     {
-                        PropertyDeclarationSyntax syntax = property.Syntax;
-                        property.Syntax = syntax.WithAccessorList(
-                            syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)));
-                        ITypeReferenceWithCodeAnalysis propertyType = property.PropertyType;
-                        /*if (propertyName.StartsWith("IReadOnly"))
+                        List<ITypeReferenceWithCodeAnalysis> genericParameters = new List<ITypeReferenceWithCodeAnalysis>();
+                        foreach (GenericParameterDeclarationWithCodeAnalysis parameter in @interface.GenericParameters)
                         {
-                            property.Name = propertyName.Replace("ReadOnly", string.Empty);
-                        }*/
+                            genericParameters.Add(new GenericParameterReferenceWithCodeAnalysis(parameter.Name));
+                            if (parameter.InterfaceConstraints.Count == 0)
+                            {
+                                continue;
+                            }
 
-                        property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
+                            InterfaceReferenceWithCodeAnalysis constraint = parameter.InterfaceConstraints.First();
+                            constraint.Name = GetNewName(constraint.Name);
+                        }
+                        InterfaceReferenceWithCodeAnalysis interfaceReference = new InterfaceReferenceWithCodeAnalysis(
+                            interfaceName,
+                            genericParameters.ToArray());
+                        foreach (InterfaceReferenceWithCodeAnalysis reference in @interface.Interfaces.ToArray())
+                        {
+                            string referenceName = reference.Name;
+                            if (referenceName == "IVisitable")
+                            {
+                                reference.GenericParameters[0] = new InterfaceReferenceWithCodeAnalysis("IEditableVisitor");
+                            }
+                            else
+                            {
+                                reference.Name = GetNewName(referenceName);
+                            }
+                        }
+
+                        @interface.Interfaces.Add(interfaceReference);
+                        foreach (InterfacePropertyWithCodeAnalysis property in @interface.Properties.ToArray())
+                        {
+                            PropertyDeclarationSyntax syntax = property.Syntax;
+                            property.Syntax = syntax.WithAccessorList(
+                                syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)));
+                            string propertyName = property.PropertyType.Name;
+                            if (propertyName.StartsWith("IReadOnly"))
+                            {
+                                property.Name = propertyName.Replace("ReadOnly", string.Empty);
+                            }
+
+                            property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
+                        }
                     }
                 }
 
-                    Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
-                    const int maximumLineLength = 120;
-                //Console.WriteLine(loadedDocument.Namespaces.First().Interfaces.First().Properties.First().InheritanceModifier);
-                    string sourceCode = loadedDocument.ToSourceCode(
-                        new IndentBaseTypeListIfTooLongRule(maximumLineLength),
-                        new IndentGenericParamterDefinitionsIfTooLongRule(maximumLineLength));
-                    File.WriteAllText(destinationPath, sourceCode);
-                //}
+                Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
+                const int maximumLineLength = 120;
+                string sourceCode = loadedDocument.ToSourceCode(
+                    new IndentBaseTypeListIfTooLongRule(maximumLineLength),
+                    new IndentGenericParamterDefinitionsIfTooLongRule(maximumLineLength),
+                    new IndentMethodParametersIfTooLongRule(maximumLineLength));
+                File.WriteAllText(destinationPath, sourceCode);
             }
         }
 

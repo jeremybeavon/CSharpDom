@@ -2410,6 +2410,7 @@
     <Compile Include="Text\ListExtensions.cs" />
     <Compile Include="Text\AccessorFlags.cs" />
     <Compile Include="Text\NewLineLocation.cs" />
+    <Compile Include="Text\Rules\IndentMethodParametersIfTooLongRule.cs" />
     <Compile Include="Text\Rules\IndentGenericParamterDefinitionsIfTooLongRule.cs" />
     <Compile Include="Text\Rules\IndentBaseTypeListIfTooLongRule.cs" />
     <Compile Include="Text\Rules\VisualStudio\IndentBlockContentsRule.cs" />

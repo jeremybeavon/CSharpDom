@@ -753,14 +753,18 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
             Steps.AddChildNodeStepsOnNewLines(method.ReturnAttributes);
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginMethodDefinition);
             Steps.AddInterfaceMemberInheritanceModifierSteps(method.InheritanceModifier);
             Steps.Add(new WriteChildNode<TTypeReference>(method.ReturnType));
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteName(method.Name));
             Steps.AddGenericParameterDeclarationSteps(method.GenericParameters);
             Steps.Add(new WriteStartParenthesis());
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginMethodParametersDefinition);
             Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
+            Steps.AddPlaceholder(SourceCodePlaceholder.EndMethodParametersDefintion);
             Steps.Add(new WriteEndParenthesis());
+            Steps.AddPlaceholder(SourceCodePlaceholder.EndMethodDefinition);
             Steps.AddGenericParameterConstraintSteps(method.GenericParameters);
             Steps.Add(new WriteSemicolon());
         }
