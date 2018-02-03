@@ -14,7 +14,8 @@ namespace CSharpDom.CodeAnalysis
             IType,
             ITypeReferenceWithCodeAnalysis,
             FieldWithCodeAnalysis>,
-        IHasSyntax<FieldDeclarationSyntax>
+        IHasSyntax<FieldDeclarationSyntax>,
+        IHasNode<FieldDeclarationSyntax>
     {
         private readonly Node<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<FieldGroupWithCodeAnalysis, FieldDeclarationSyntax> attributes;
@@ -82,5 +83,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
+
+        INode<FieldDeclarationSyntax> IHasNode<FieldDeclarationSyntax>.Node => node;
     }
 }

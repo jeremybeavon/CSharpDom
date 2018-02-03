@@ -10,6 +10,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class NewExpressionWithCodeAnalysis :
         EditableNewExpression<ITypeReferenceWithCodeAnalysis, IExpressionWithCodeAnalysis>,
         IHasSyntax<ObjectCreationExpressionSyntax>,
+        IHasNode<ObjectCreationExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax> node;
@@ -51,6 +52,8 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
+
+        INode<ObjectCreationExpressionSyntax> IHasNode<ObjectCreationExpressionSyntax>.Node => node;
 
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {

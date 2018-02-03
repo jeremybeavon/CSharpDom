@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class TypeofExpressionWithCodeAnalysis :
         EditableTypeofExpression<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<TypeOfExpressionSyntax>,
+        IHasNode<TypeOfExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<TypeofExpressionWithCodeAnalysis, TypeOfExpressionSyntax> node;
@@ -39,6 +40,8 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
+
+        INode<TypeOfExpressionSyntax> IHasNode<TypeOfExpressionSyntax>.Node => node;
 
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {

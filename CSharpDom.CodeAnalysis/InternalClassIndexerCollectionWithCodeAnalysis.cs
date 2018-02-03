@@ -6,7 +6,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalClassIndexerCollectionWithCodeAnalysis<TClass> :
         ClassIndexerCollectionWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly ClassIndexerListWrapper<TClass, ExplicitInterfaceIndexerWithCodeAnalysis> explicitInterfaceIndexers;

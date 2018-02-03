@@ -7,7 +7,7 @@ using System.Linq;
 namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalAbstractTypeWithCodeAnalysis<TClass> : AbstractTypeWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly IMemberList members;

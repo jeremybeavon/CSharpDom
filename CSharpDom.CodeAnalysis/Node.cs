@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -25,6 +26,7 @@ namespace CSharpDom.CodeAnalysis
 
         public int Index { get; set; }
 
+        [DebuggerDisplay("Syntax: {syntax}")]
         public TSyntax Syntax
         {
             get
@@ -67,7 +69,8 @@ namespace CSharpDom.CodeAnalysis
             TParentNode parent,
             Func<TParentSyntax, TSyntax> getChildSyntax,
             Func<TParentSyntax, TSyntax, TParentSyntax> createChildSyntax)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentNode : class, IHasNode<TParentSyntax>
+            where TParentSyntax : class
         {
             if (parent == null)
             {
@@ -79,8 +82,8 @@ namespace CSharpDom.CodeAnalysis
             this.parent = parent;
             if (parent != null)
             {
-                getSyntax = () => getChildSyntax(parent.Syntax);
-                setSyntax = syntax => parent.Syntax = createChildSyntax(parent.Syntax, syntax);
+                getSyntax = () => getChildSyntax(parent.Node.Syntax);
+                setSyntax = syntax => parent.Node.Syntax = createChildSyntax(parent.Node.Syntax, syntax);
                 if (syntax != null)
                 {
                     IsLocked = true;
@@ -95,7 +98,8 @@ namespace CSharpDom.CodeAnalysis
             int childIndex,
             Func<TParentSyntax, int, TSyntax> getChildSyntax,
             Func<TParentSyntax, int, TSyntax, TParentSyntax> createChildSyntax)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentNode : class, IHasNode<TParentSyntax>
+            where TParentSyntax : class
         {
             Index = childIndex;
             SetParentNode<TParentNode, TParentSyntax>(

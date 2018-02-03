@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using CSharpDom.BaseClasses.Editable.Statements;
-using CSharpDom.Common;
-using CSharpDom.BaseClasses.Editable.Expressions;
-using CSharpDom.Wrappers.Internal;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
@@ -12,6 +8,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class TryStatementWithCodeAnalysis :
         EditableTryStatement<IStatementWithCodeAnalysis, CatchStatementWithCodeAnalysis, FinallyStatementWithCodeAnalysis>,
         IHasSyntax<TryStatementSyntax>,
+        IHasNode<TryStatementSyntax>,
         IInternalStatement
     {
         private readonly Guid internalId;
@@ -82,5 +79,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<TryStatementSyntax> IHasNode<TryStatementSyntax>.Node => node;
     }
 }

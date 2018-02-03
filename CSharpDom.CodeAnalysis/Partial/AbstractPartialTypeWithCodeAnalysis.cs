@@ -28,7 +28,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             AbstractPartialClassNestedStructCollectionWithCodeAnalysis,
             AbstractPartialClassStaticConstructorWithCodeAnalysis,
             AbstractPartialClassDestructorWithCodeAnalysis>
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalAbstractTypeWithCodeAnalysis<TClass> classType;
         private readonly IMemberList members;

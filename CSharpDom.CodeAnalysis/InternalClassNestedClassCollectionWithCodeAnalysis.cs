@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalClassNestedClassCollectionWithCodeAnalysis<TClass> :
         ClassNestedClassCollectionWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly ClassMemberListWrapper<

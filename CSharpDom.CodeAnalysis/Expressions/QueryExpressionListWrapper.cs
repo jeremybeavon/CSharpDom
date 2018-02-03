@@ -8,7 +8,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
 {
     internal class QueryExpressionListWrapper<TParentNode, TParentSyntax> :
         WrappedList<IInternalQueryExpression, IQueryExpressionWithCodeAnalysis>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly SyntaxNodeList<TParentNode, TParentSyntax, IInternalQueryExpression, QueryClauseSyntax> list;

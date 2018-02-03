@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class ReturnStatementWithCodeAnalysis :
         EditableReturnStatement<IExpressionWithCodeAnalysis>,
         IHasSyntax<ReturnStatementSyntax>,
+        IHasNode<ReturnStatementSyntax>,
         IInternalStatement
     {
         private readonly Guid internalId;
@@ -47,5 +48,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<ReturnStatementSyntax> IHasNode<ReturnStatementSyntax>.Node => node;
     }
 }

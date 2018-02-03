@@ -8,6 +8,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class QueryOrderByExpressionWithCodeAnalysis :
         EditableQueryOrderByExpression<QueryOrderingExpressionWithCodeAnalysis>,
         IHasSyntax<OrderByClauseSyntax>,
+        IHasNode<OrderByClauseSyntax>,
         IInternalQueryExpression
     {
         private readonly QueryExpressionNode<QueryOrderByExpressionWithCodeAnalysis, OrderByClauseSyntax> node;
@@ -36,5 +37,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         public OrderByClauseSyntax Syntax { get => node.Syntax; set => node.Syntax = value; }
         
         INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node => node;
+
+        INode<OrderByClauseSyntax> IHasNode<OrderByClauseSyntax>.Node => node;
     }
 }

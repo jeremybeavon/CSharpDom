@@ -8,7 +8,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 {
     internal sealed class InternalPartialStructMethodCollectionWithCodeAnalysis<TStruct> :
         PartialStructMethodCollectionWithCodeAnalysis
-        where TStruct : class, IHasSyntax<StructDeclarationSyntax>
+        where TStruct : class, IHasNode<StructDeclarationSyntax>
     {
         private readonly InternalStructTypeWithCodeAnalysis<TStruct> structType;
         private readonly StructMethodListWrapper<TStruct, StructMethodWithCodeAnalysis> methods;

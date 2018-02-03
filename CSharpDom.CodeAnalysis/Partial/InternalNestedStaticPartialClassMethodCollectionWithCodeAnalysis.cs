@@ -8,7 +8,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 {
     internal sealed class InternalNestedStaticPartialClassMethodCollectionWithCodeAnalysis<TStaticClass> :
         NestedStaticPartialClassMethodCollectionWithCodeAnalysis
-        where TStaticClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TStaticClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalNestedStaticClassWithCodeAnalysis<TStaticClass> classType;
         private readonly ClassMethodListWrapper<TStaticClass, NestedStaticClassMethodWithCodeAnalysis> methods;

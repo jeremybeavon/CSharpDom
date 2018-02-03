@@ -15,7 +15,7 @@ namespace CSharpDom.CodeAnalysis
             TParentSyntax,
             GenericParameterDeclarationWithCodeAnalysis,
             GenericParameterDeclarationSyntax>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly Node<TParentNode, TParentSyntax> node;

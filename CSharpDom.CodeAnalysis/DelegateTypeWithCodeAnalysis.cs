@@ -13,7 +13,8 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             DelegateParameterWithCodeAnalysis>,
-        IHasSyntax<DelegateDeclarationSyntax>
+        IHasSyntax<DelegateDeclarationSyntax>,
+        IHasNode<DelegateDeclarationSyntax>
     {
         private readonly Node<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> node;
         private readonly AttributeListWrapper<DelegateTypeWithCodeAnalysis, DelegateDeclarationSyntax> attributes;
@@ -89,5 +90,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
+
+        INode<DelegateDeclarationSyntax> IHasNode<DelegateDeclarationSyntax>.Node => node;
     }
 }

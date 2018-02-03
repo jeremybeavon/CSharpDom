@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalStructTypeWithCodeAnalysis<TStruct> :
         StructTypeWithCodeAnalysis
-        where TStruct : class, IHasSyntax<StructDeclarationSyntax>
+        where TStruct : class, IHasNode<StructDeclarationSyntax>
     {
         private readonly Node<TStruct, StructDeclarationSyntax> node;
         private readonly AttributeListWrapper<TStruct, StructDeclarationSyntax> attributes;

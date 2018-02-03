@@ -26,7 +26,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             PartialStructNestedInterfaceWithCodeAnalysis,
             PartialStructNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>
-        where TStruct : class, IHasSyntax<StructDeclarationSyntax>
+        where TStruct : class, IHasNode<StructDeclarationSyntax>
     {
         private readonly InternalStructTypeWithCodeAnalysis<TStruct> structType;
         private readonly IMemberList members;

@@ -15,7 +15,8 @@ namespace CSharpDom.CodeAnalysis
             ITypeReferenceWithCodeAnalysis,
             IndexerParameterWithCodeAnalysis,
             AccessorWithCodeAnalysis>,
-        IHasSyntax<IndexerDeclarationSyntax>
+        IHasSyntax<IndexerDeclarationSyntax>,
+        IHasNode<IndexerDeclarationSyntax>
     {
         private readonly Node<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> node;
         private readonly AttributeListWrapper<IndexerWithCodeAnalysis, IndexerDeclarationSyntax> attributes;
@@ -106,7 +107,9 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-        
+
+        INode<IndexerDeclarationSyntax> IHasNode<IndexerDeclarationSyntax>.Node => node;
+
         private CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax> GetAccessorNode(
             SyntaxKind kind)
         {

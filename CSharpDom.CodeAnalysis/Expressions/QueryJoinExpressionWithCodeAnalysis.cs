@@ -10,6 +10,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class QueryJoinExpressionWithCodeAnalysis :
         EditableQueryJoinExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<JoinClauseSyntax>,
+        IHasNode<JoinClauseSyntax>,
         IInternalQueryExpression
     {
         private readonly QueryExpressionNode<QueryJoinExpressionWithCodeAnalysis, JoinClauseSyntax> node;
@@ -82,5 +83,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
+
+        INode<JoinClauseSyntax> IHasNode<JoinClauseSyntax>.Node => node;
     }
 }

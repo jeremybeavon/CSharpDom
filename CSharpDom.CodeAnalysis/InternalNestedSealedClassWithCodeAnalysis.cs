@@ -7,7 +7,7 @@ using System;
 namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalNestedSealedClassWithCodeAnalysis<TClass> : NestedSealedClassWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalSealedTypeWithCodeAnalysis<TClass> classType;
 

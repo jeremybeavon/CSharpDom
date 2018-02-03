@@ -8,6 +8,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class MemberExpressionWithCodeAnalysis :
         EditableMemberExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<MemberAccessExpressionSyntax>,
+        IHasNode<MemberAccessExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<MemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax> node;
@@ -48,7 +49,9 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
-        
+
+        INode<MemberAccessExpressionSyntax> IHasNode<MemberAccessExpressionSyntax>.Node => node;
+
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {
             get { return Syntax; }

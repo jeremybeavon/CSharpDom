@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class DoStatementWithCodeAnalysis :
         EditableDoStatement<IExpressionWithCodeAnalysis, IStatementWithCodeAnalysis>,
         IHasSyntax<DoStatementSyntax>,
+        IHasNode<DoStatementSyntax>,
         IInternalStatement
     {
         private readonly Guid internalId;
@@ -58,5 +59,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<DoStatementSyntax> IHasNode<DoStatementSyntax>.Node => node;
     }
 }

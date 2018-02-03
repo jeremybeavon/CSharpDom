@@ -15,7 +15,8 @@ namespace CSharpDom.CodeAnalysis
             IBasicType,
             ITypeReferenceWithCodeAnalysis,
             AccessorWithCodeAnalysis>,
-        IHasSyntax<PropertyDeclarationSyntax>
+        IHasSyntax<PropertyDeclarationSyntax>,
+        IHasNode<PropertyDeclarationSyntax>
     {
         private readonly Node<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> node;
         private readonly AttributeListWrapper<PropertyWithCodeAnalysis, PropertyDeclarationSyntax> attributes;
@@ -92,7 +93,9 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-        
+
+        INode<PropertyDeclarationSyntax> IHasNode<PropertyDeclarationSyntax>.Node => node;
+
         private CachedChildNode<PropertyWithCodeAnalysis, PropertyDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax> GetAccessorNode(
             SyntaxKind kind)
         {

@@ -8,7 +8,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class SyntaxNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
         ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
         where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : SyntaxNode

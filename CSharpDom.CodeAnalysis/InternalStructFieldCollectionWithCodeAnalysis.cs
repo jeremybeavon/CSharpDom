@@ -8,7 +8,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalStructFieldCollectionWithCodeAnalysis<TStruct> :
         StructFieldCollectionWithCodeAnalysis
-        where TStruct : class, IHasSyntax<StructDeclarationSyntax>
+        where TStruct : class, IHasNode<StructDeclarationSyntax>
     {
         private readonly InternalStructTypeWithCodeAnalysis<TStruct> structType;
         private readonly StructTypeMemberListWrapper<

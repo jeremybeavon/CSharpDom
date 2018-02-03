@@ -24,7 +24,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             NestedStaticPartialClassNestedInterfaceWithCodeAnalysis,
             NestedStaticPartialClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalNestedStaticClassWithCodeAnalysis<TClass> classType;
         private readonly NestedStaticPartialClassNestedClassCollectionWithCodeAnalysis classes;

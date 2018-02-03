@@ -6,7 +6,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class ClassMemberListWrapper<TClass, TChildNode, TChildSyntax> :
         MemberListWrapper<TClass, ClassDeclarationSyntax, TChildNode, TChildSyntax>
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
         where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : MemberDeclarationSyntax
     {

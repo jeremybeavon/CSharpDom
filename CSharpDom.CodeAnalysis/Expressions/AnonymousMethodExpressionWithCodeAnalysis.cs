@@ -11,6 +11,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class AnonymousMethodExpressionWithCodeAnalysis :
         EditableAnonymousMethodExpression<AnonymousMethodParameterWithCodeAnalysis, BlockStatementWithCodeAnalysis>,
         IHasSyntax<AnonymousMethodExpressionSyntax>,
+        IHasNode<AnonymousMethodExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<AnonymousMethodExpressionWithCodeAnalysis, AnonymousMethodExpressionSyntax> node;
@@ -61,5 +62,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node => node;
+
+        INode<AnonymousMethodExpressionSyntax> IHasNode<AnonymousMethodExpressionSyntax>.Node => node;
     }
 }

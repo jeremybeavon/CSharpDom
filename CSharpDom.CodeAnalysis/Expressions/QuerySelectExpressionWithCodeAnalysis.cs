@@ -8,6 +8,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class QuerySelectExpressionWithCodeAnalysis : 
         EditableQuerySelectExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<SelectClauseSyntax>,
+        IHasNode<SelectClauseSyntax>,
         IInternalQueryEndExpression
     {
         private readonly QueryEndExpressionNode<QuerySelectExpressionWithCodeAnalysis, SelectClauseSyntax> node;
@@ -29,8 +30,15 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         public SelectClauseSyntax Syntax { get => node.Syntax; set => node.Syntax = value; }
-        SelectOrGroupClauseSyntax IHasSyntax<SelectOrGroupClauseSyntax>.Syntax { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
-        INode<SelectOrGroupClauseSyntax> IHasNode<SelectOrGroupClauseSyntax>.Node => throw new System.NotImplementedException();
+        SelectOrGroupClauseSyntax IHasSyntax<SelectOrGroupClauseSyntax>.Syntax
+        {
+            get => Syntax;
+            set => Syntax = (SelectClauseSyntax)value;
+        }
+
+        INode<SelectOrGroupClauseSyntax> IHasNode<SelectOrGroupClauseSyntax>.Node => node;
+
+        INode<SelectClauseSyntax> IHasNode<SelectClauseSyntax>.Node => node;
     }
 }

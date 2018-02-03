@@ -8,7 +8,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class StatementListWrapper<TParentNode, TParentSyntax> :
         WrappedList<IInternalStatement, IStatementWithCodeAnalysis>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly SyntaxNodeList<TParentNode, TParentSyntax, IInternalStatement, StatementSyntax> list;

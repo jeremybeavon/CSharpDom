@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class MethodBodyNode<TParentNode, TParentSyntax> :
         CachedChildNode<TParentNode, TParentSyntax, MethodBodyWithCodeAnalysis, BlockSyntax>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         public MethodBodyNode(

@@ -11,7 +11,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class AttributeListWrapper<TParentNode, TParentSyntax> :
         SyntaxNodeList<TParentNode, TParentSyntax, AttributeGroupWithCodeAnalysis, AttributeListSyntax>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly Node<TParentNode, TParentSyntax> node;

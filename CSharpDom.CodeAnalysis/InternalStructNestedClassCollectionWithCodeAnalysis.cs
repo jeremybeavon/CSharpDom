@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalStructNestedClassCollectionWithCodeAnalysis<TStruct> :
         StructNestedClassCollectionWithCodeAnalysis
-        where TStruct : class, IHasSyntax<StructDeclarationSyntax>
+        where TStruct : class, IHasNode<StructDeclarationSyntax>
     {
         private readonly InternalStructTypeWithCodeAnalysis<TStruct> structType;
         private readonly StructTypeMemberListWrapper<

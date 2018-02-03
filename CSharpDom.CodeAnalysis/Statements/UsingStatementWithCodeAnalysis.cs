@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class UsingStatementWithCodeAnalysis :
         EditableUsingStatement<IExpressionWithCodeAnalysis, IStatementWithCodeAnalysis>,
         IHasSyntax<UsingStatementSyntax>,
+        IHasNode<UsingStatementSyntax>,
         IInternalStatement
     {
         private readonly Guid internalId;
@@ -58,5 +59,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<UsingStatementSyntax> IHasNode<UsingStatementSyntax>.Node => node;
     }
 }

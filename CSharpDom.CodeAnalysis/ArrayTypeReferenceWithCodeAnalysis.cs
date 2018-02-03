@@ -11,6 +11,7 @@ namespace CSharpDom.CodeAnalysis
         EditableArrayTypeReference<ITypeReferenceWithCodeAnalysis>,
         ITypeReferenceWithCodeAnalysis,
         IHasSyntax<ArrayTypeSyntax>,
+        IHasNode<ArrayTypeSyntax>,
         IInternalTypeReferenceWithCodeAnalysis
     {
         private readonly TypeReferenceNode<ArrayTypeReferenceWithCodeAnalysis, ArrayTypeSyntax> node;
@@ -83,5 +84,7 @@ namespace CSharpDom.CodeAnalysis
         }
 
         INode<TypeSyntax> IHasNode<TypeSyntax>.Node => node;
+
+        INode<ArrayTypeSyntax> IHasNode<ArrayTypeSyntax>.Node => node;
     }
 }

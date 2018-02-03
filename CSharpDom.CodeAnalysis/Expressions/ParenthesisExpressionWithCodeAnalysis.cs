@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class ParenthesisExpressionWithCodeAnalysis :
         EditableParenthesisExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<ParenthesizedExpressionSyntax>,
+        IHasNode<ParenthesizedExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<ParenthesisExpressionWithCodeAnalysis, ParenthesizedExpressionSyntax> node;
@@ -39,6 +40,8 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
+
+        INode<ParenthesizedExpressionSyntax> IHasNode<ParenthesizedExpressionSyntax>.Node => node;
 
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {

@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class CastExpressionWithCodeAnalysis :
         EditableCastExpression<ITypeReferenceWithCodeAnalysis, IExpressionWithCodeAnalysis>,
         IHasSyntax<CastExpressionSyntax>,
+        IHasNode<CastExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax> node;
@@ -56,5 +57,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
+
+        INode<CastExpressionSyntax> IHasNode<CastExpressionSyntax>.Node => node;
     }
 }

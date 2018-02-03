@@ -17,7 +17,8 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             MethodParameterWithCodeAnalysis>,
-        IHasSyntax<MethodDeclarationSyntax>
+        IHasSyntax<MethodDeclarationSyntax>,
+        IHasNode<MethodDeclarationSyntax>
     {
         private readonly Node<MethodWithCodeAnalysis, MethodDeclarationSyntax> node;
         private readonly AttributeListWrapper<MethodWithCodeAnalysis, MethodDeclarationSyntax> attributes;
@@ -109,5 +110,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
+
+        INode<MethodDeclarationSyntax> IHasNode<MethodDeclarationSyntax>.Node => node;
     }
 }

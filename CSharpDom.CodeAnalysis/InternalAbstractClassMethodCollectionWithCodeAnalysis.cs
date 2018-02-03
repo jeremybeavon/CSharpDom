@@ -6,7 +6,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalAbstractClassMethodCollectionWithCodeAnalysis<TClass> :
         AbstractClassMethodCollectionWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly ClassMethodListWrapper<TClass, AbstractClassMethodWithCodeAnalysis> methods;

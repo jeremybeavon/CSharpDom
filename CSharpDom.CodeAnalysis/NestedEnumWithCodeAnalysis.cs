@@ -9,7 +9,8 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class NestedEnumWithCodeAnalysis :
         EditableNestedEnum<AttributeGroupWithCodeAnalysis, IType, NestedEnumMemberWithCodeAnalysis>,
-        IHasSyntax<EnumDeclarationSyntax>
+        IHasSyntax<EnumDeclarationSyntax>,
+        IHasNode<EnumDeclarationSyntax>
     {
         private readonly Node<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> node;
         private readonly AttributeListWrapper<NestedEnumWithCodeAnalysis, EnumDeclarationSyntax> attributes;
@@ -73,5 +74,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
+
+        INode<EnumDeclarationSyntax> IHasNode<EnumDeclarationSyntax>.Node => node;
     }
 }

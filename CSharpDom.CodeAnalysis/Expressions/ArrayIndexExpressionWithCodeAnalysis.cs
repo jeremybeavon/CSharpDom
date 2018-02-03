@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class ArrayIndexExpressionWithCodeAnalysis :
         EditableArrayIndexExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<ElementAccessExpressionSyntax>,
+        IHasNode<ElementAccessExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<ArrayIndexExpressionWithCodeAnalysis, ElementAccessExpressionSyntax> node;
@@ -53,5 +54,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node => node;
+
+        INode<ElementAccessExpressionSyntax> IHasNode<ElementAccessExpressionSyntax>.Node => node;
     }
 }

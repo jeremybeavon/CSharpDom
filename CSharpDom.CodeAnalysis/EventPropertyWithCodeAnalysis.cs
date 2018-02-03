@@ -15,7 +15,8 @@ namespace CSharpDom.CodeAnalysis
             IType,
             DelegateReferenceWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<EventDeclarationSyntax>
+        IHasSyntax<EventDeclarationSyntax>,
+        IHasNode<EventDeclarationSyntax>
     {
         private readonly Node<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> node;
         private readonly AttributeListWrapper<EventPropertyWithCodeAnalysis, EventDeclarationSyntax> addAttributes;
@@ -127,7 +128,9 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-        
+
+        INode<EventDeclarationSyntax> IHasNode<EventDeclarationSyntax>.Node => node;
+
         private static EventDeclarationSyntax CreateAccessorAttributes(
             EventDeclarationSyntax parentSyntax,
             IEnumerable<AttributeGroupWithCodeAnalysis> attributes,

@@ -6,7 +6,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalAbstractClassEventCollectionWithCodeAnalysis<TClass> :
         AbstractClassEventCollectionWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly ClassEventListWrapper<TClass, AbstractClassEventWithCodeAnalysis> events;

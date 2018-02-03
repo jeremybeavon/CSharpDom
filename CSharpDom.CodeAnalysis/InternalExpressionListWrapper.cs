@@ -6,7 +6,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class InternalExpressionListWrapper<TParentNode, TParentSyntax> :
         SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         public InternalExpressionListWrapper(

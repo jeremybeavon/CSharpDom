@@ -80,7 +80,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SyntaxList<TChildSyntax>, TParentSyntax> createList,
             Func<TChildSyntax, TChildNode> factory)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentNode : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
             where TChildNode : class, IHasNode<TChildSyntax>
             where TChildSyntax : SyntaxNode
@@ -97,7 +97,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
             Func<TChildSyntax, TChildNode> factory)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentNode : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
             where TChildNode : class, IHasNode<TChildSyntax>
             where TChildSyntax : SyntaxNode
@@ -148,7 +148,7 @@ namespace CSharpDom.CodeAnalysis
             Node<TParentNode, TParentSyntax> node,
             IChildSyntaxList<TParentSyntax, TChildSyntax> list,
             Func<TChildNode> factory)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentNode : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
             where TChildNode : class, IHasNode<TChildSyntax>
             where TChildSyntax : class

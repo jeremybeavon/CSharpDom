@@ -7,7 +7,7 @@ namespace CSharpDom.CodeAnalysis
     {
         public static TChildNode GetStaticConstructor<TParentNode, TParentSyntax, TChildNode>(
             this MemberListWrapper<TParentNode, TParentSyntax, TChildNode, ConstructorDeclarationSyntax> list)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentNode : class, IHasNode<TParentSyntax>
             where TParentSyntax : TypeDeclarationSyntax
             where TChildNode : class, IHasNode<ConstructorDeclarationSyntax>
         {
@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis
         public static void SetStaticConstructor<TParentNode, TParentSyntax, TChildNode>(
             this MemberListWrapper<TParentNode, TParentSyntax, TChildNode, ConstructorDeclarationSyntax> list,
             TChildNode constructor)
-            where TParentNode : class, IHasSyntax<TParentSyntax>
+            where TParentNode : class, IHasNode<TParentSyntax>
             where TParentSyntax : TypeDeclarationSyntax
             where TChildNode : class, IHasNode<ConstructorDeclarationSyntax>
         {

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using CSharpDom.BaseClasses.Editable.Statements;
-using CSharpDom.Common;
-using CSharpDom.BaseClasses.Editable.Expressions;
-using CSharpDom.Wrappers.Internal;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
@@ -11,6 +7,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class ForStatementWithCodeAnalysis :
         EditableForStatement<IExpressionWithCodeAnalysis, IForInitializerStatementWithCodeAnalysis, IStatementWithCodeAnalysis>,
         IHasSyntax<ForStatementSyntax>,
+        IHasNode<ForStatementSyntax>,
         IInternalStatement
     {
         private readonly StatementNode<ForStatementWithCodeAnalysis, ForStatementSyntax> node;
@@ -85,5 +82,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<ForStatementSyntax> IHasNode<ForStatementSyntax>.Node => node;
     }
 }

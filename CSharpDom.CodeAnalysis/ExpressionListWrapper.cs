@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class ExpressionListWrapper<TParentNode, TParentSyntax> :
         WrappedList<IInternalExpression, IExpressionWithCodeAnalysis>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> list;

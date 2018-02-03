@@ -7,12 +7,19 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class TernaryOperatorExpressionWithCodeAnalysis :
         EditableTernaryOperatorExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<ConditionalExpressionSyntax>,
+        IHasNode<ConditionalExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax> node;
-        private readonly CachedExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax> left;
-        private readonly CachedExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax> middle;
-        private readonly CachedExpressionNode<TernaryOperatorExpressionWithCodeAnalysis, ConditionalExpressionSyntax> right;
+        private readonly CachedExpressionNode<
+            TernaryOperatorExpressionWithCodeAnalysis,
+            ConditionalExpressionSyntax> left;
+        private readonly CachedExpressionNode<
+            TernaryOperatorExpressionWithCodeAnalysis,
+            ConditionalExpressionSyntax> middle;
+        private readonly CachedExpressionNode<
+            TernaryOperatorExpressionWithCodeAnalysis,
+            ConditionalExpressionSyntax> right;
 
         public TernaryOperatorExpressionWithCodeAnalysis()
         {
@@ -59,6 +66,8 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
+
+        INode<ConditionalExpressionSyntax> IHasNode<ConditionalExpressionSyntax>.Node => node;
 
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {

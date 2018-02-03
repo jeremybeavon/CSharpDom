@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class LockStatementWithCodeAnalysis :
         EditableLockStatement<IExpressionWithCodeAnalysis, IStatementWithCodeAnalysis>,
         IHasSyntax<LockStatementSyntax>,
+        IHasNode<LockStatementSyntax>,
         IInternalStatement
     {
         private readonly Guid internalId;
@@ -58,5 +59,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<LockStatementSyntax> IHasNode<LockStatementSyntax>.Node => node;
     }
 }

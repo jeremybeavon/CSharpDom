@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class IfStatementWithCodeAnalysis :
         EditableIfStatement<IExpressionWithCodeAnalysis, IStatementWithCodeAnalysis>,
         IHasSyntax<IfStatementSyntax>,
+        IHasNode<IfStatementSyntax>,
         IInternalStatement
     {
         private readonly Guid internalId;
@@ -69,5 +70,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<IfStatementSyntax> IHasNode<IfStatementSyntax>.Node => node;
     }
 }

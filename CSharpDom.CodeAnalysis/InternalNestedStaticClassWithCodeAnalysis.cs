@@ -10,7 +10,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalNestedStaticClassWithCodeAnalysis<TStaticClass> :
         NestedStaticClassWithCodeAnalysis
-        where TStaticClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TStaticClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly Node<TStaticClass, ClassDeclarationSyntax> node;
         private readonly AttributeListWrapper<TStaticClass, ClassDeclarationSyntax> attributes;

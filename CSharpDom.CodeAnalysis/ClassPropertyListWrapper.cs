@@ -5,7 +5,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class ClassPropertyListWrapper<TClass, TChildNode> :
         ClassMemberListWrapper<TClass, TChildNode, PropertyDeclarationSyntax>
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
         where TChildNode : class, IHasNode<PropertyDeclarationSyntax>
     {
         public ClassPropertyListWrapper(

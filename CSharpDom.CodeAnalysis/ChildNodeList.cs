@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
     internal class ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
         IList<TChildNode>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
         where TChildNode : class, IHasNode<TChildSyntax>
         where TChildSyntax : class
@@ -152,7 +151,7 @@ namespace CSharpDom.CodeAnalysis
             RefreshList();
             return innerList.GetEnumerator();
         }
-
+        
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();

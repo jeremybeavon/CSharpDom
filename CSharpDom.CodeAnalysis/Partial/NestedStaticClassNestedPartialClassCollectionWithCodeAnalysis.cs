@@ -22,7 +22,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         internal static NestedStaticClassNestedPartialClassCollectionWithCodeAnalysis Create<TStaticClass>(
             InternalNestedStaticClassWithCodeAnalysis<TStaticClass> classType)
-            where TStaticClass : class, IHasSyntax<ClassDeclarationSyntax>
+            where TStaticClass : class, IHasNode<ClassDeclarationSyntax>
         {
             var classes = new ClassMemberListWrapper<TStaticClass, NestedStaticClassNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.InternalNode,

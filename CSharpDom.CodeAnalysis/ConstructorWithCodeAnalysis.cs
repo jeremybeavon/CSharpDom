@@ -16,7 +16,8 @@ namespace CSharpDom.CodeAnalysis
             IType,
             ConstructorParameterWithCodeAnalysis,
             MethodBodyWithCodeAnalysis>,
-        IHasSyntax<ConstructorDeclarationSyntax>
+        IHasSyntax<ConstructorDeclarationSyntax>,
+        IHasNode<ConstructorDeclarationSyntax>
     {
         private readonly Node<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> node;
         private readonly AttributeListWrapper<ConstructorWithCodeAnalysis, ConstructorDeclarationSyntax> attributes;
@@ -83,5 +84,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
+
+        INode<ConstructorDeclarationSyntax> IHasNode<ConstructorDeclarationSyntax>.Node => node;
     }
 }

@@ -22,7 +22,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         internal static StructNestedPartialClassCollectionWithCodeAnalysis Create<TStruct>(
             InternalStructTypeWithCodeAnalysis<TStruct> structType)
-            where TStruct : class, IHasSyntax<StructDeclarationSyntax>
+            where TStruct : class, IHasNode<StructDeclarationSyntax>
         {
             var classes = new StructTypeMemberListWrapper<TStruct, StructNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 structType.InternalNode,

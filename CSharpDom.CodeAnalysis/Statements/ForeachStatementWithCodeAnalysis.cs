@@ -11,6 +11,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class ForeachStatementWithCodeAnalysis :
         EditableForeachStatement<ITypeReferenceWithCodeAnalysis, IExpressionWithCodeAnalysis, IStatementWithCodeAnalysis>,
         IHasSyntax<ForEachStatementSyntax>,
+        IHasNode<ForEachStatementSyntax>,
         IInternalStatement
     {
         private readonly Guid internalId;
@@ -77,5 +78,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<ForEachStatementSyntax> IHasNode<ForEachStatementSyntax>.Node => node;
     }
 }

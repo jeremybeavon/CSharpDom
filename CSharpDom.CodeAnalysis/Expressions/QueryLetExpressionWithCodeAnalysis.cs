@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class QueryLetExpressionWithCodeAnalysis :
         EditableQueryLetExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<LetClauseSyntax>,
+        IHasNode<LetClauseSyntax>,
         IInternalQueryExpression
     {
         private readonly QueryExpressionNode<QueryLetExpressionWithCodeAnalysis, LetClauseSyntax> node;
@@ -42,5 +43,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
         
         INode<QueryClauseSyntax> IHasNode<QueryClauseSyntax>.Node => node;
+
+        INode<LetClauseSyntax> IHasNode<LetClauseSyntax>.Node => node;
     }
 }

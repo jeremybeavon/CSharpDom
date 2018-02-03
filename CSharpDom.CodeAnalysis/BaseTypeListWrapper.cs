@@ -9,7 +9,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class BaseTypeListWrapper<TParentNode, TParentSyntax> :
         ChildNodeList<TParentNode, TParentSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : TypeDeclarationSyntax
     {
         private readonly Node<TParentNode, TParentSyntax> node;

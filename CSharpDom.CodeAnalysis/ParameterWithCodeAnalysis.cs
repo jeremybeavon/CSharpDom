@@ -10,7 +10,8 @@ namespace CSharpDom.CodeAnalysis
 {
     public sealed class ParameterWithCodeAnalysis :
         EditableParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
-        IHasSyntax<ParameterSyntax>//,
+        IHasSyntax<ParameterSyntax>,
+        IHasNode<ParameterSyntax>//,
         //IVisitable<IReflectionVisitor>
     {
         private readonly Node<ParameterWithCodeAnalysis, ParameterSyntax> node;
@@ -60,7 +61,9 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
-        
+
+        INode<ParameterSyntax> IHasNode<ParameterSyntax>.Node => node;
+
         private static ConversionOperatorDeclarationSyntax WithParameter(
             ConversionOperatorDeclarationSyntax parentSyntax,
             ParameterSyntax childSyntax)

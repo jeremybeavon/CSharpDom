@@ -8,7 +8,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalNestedAbstractClassWithCodeAnalysis<TClass> :
         NestedAbstractClassWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalAbstractTypeWithCodeAnalysis<TClass> classType;
 

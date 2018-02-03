@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class QueryWhereExpressionWithCodeAnalysis :
         EditableQueryWhereExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<WhereClauseSyntax>,
+        IHasNode<WhereClauseSyntax>,
         IInternalQueryExpression
     {
         private readonly QueryExpressionNode<QueryWhereExpressionWithCodeAnalysis, WhereClauseSyntax> node;
@@ -39,5 +40,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
+
+        INode<WhereClauseSyntax> IHasNode<WhereClauseSyntax>.Node => node;
     }
 }

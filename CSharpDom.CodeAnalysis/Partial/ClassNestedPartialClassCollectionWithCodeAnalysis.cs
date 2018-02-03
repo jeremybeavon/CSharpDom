@@ -1,9 +1,5 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
@@ -26,7 +22,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         internal static ClassNestedPartialClassCollectionWithCodeAnalysis Create<TClass>(
             InternalClassTypeWithCodeAnalysis<TClass> classType)
-            where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+            where TClass : class, IHasNode<ClassDeclarationSyntax>
         {
             var classes = new ClassMemberListWrapper<TClass, ClassNestedPartialClassWithCodeAnalysis, ClassDeclarationSyntax>(
                 classType.InternalNode,

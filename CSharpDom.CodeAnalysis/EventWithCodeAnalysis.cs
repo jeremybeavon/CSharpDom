@@ -13,7 +13,8 @@ namespace CSharpDom.CodeAnalysis
             AttributeGroupWithCodeAnalysis,
             IBasicType,
             DelegateReferenceWithCodeAnalysis>,
-        IHasSyntax<EventFieldDeclarationSyntax>
+        IHasSyntax<EventFieldDeclarationSyntax>,
+        IHasNode<EventFieldDeclarationSyntax>
     {
         private readonly Node<EventWithCodeAnalysis, EventFieldDeclarationSyntax> node;
         private readonly AttributeListWrapper<EventWithCodeAnalysis, EventFieldDeclarationSyntax> attributes;
@@ -82,5 +83,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return attributes; }
         }
+
+        INode<EventFieldDeclarationSyntax> IHasNode<EventFieldDeclarationSyntax>.Node => node;
     }
 }

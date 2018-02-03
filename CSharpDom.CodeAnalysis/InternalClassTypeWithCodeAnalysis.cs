@@ -8,7 +8,7 @@ using System;
 namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalClassTypeWithCodeAnalysis<TClass> : ClassTypeWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly Node<TClass, ClassDeclarationSyntax> node;
         private readonly BaseTypeListWrapper<TClass, ClassDeclarationSyntax> baseTypes;

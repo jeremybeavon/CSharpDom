@@ -6,9 +6,9 @@ using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public sealed class InternalStructPropertyCollectionWithCodeAnalysis<TStruct> :
+    internal sealed class InternalStructPropertyCollectionWithCodeAnalysis<TStruct> :
         StructPropertyCollectionWithCodeAnalysis
-        where TStruct : class, IHasSyntax<StructDeclarationSyntax>
+        where TStruct : class, IHasNode<StructDeclarationSyntax>
     {
         private readonly InternalStructTypeWithCodeAnalysis<TStruct> structType;
         private readonly StructTypeMemberListWrapper<

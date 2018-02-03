@@ -6,7 +6,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalSealedClassPropertyCollectionWithCodeAnalysis<TClass> :
         SealedClassPropertyCollectionWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly ClassPropertyListWrapper<TClass, SealedClassPropertyWithCodeAnalysis> properties;

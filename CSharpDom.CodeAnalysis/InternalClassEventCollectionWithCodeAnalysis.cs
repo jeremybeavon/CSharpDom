@@ -7,7 +7,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 namespace CSharpDom.CodeAnalysis
 {
     internal sealed class InternalClassEventCollectionWithCodeAnalysis<TClass> : ClassEventCollectionWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly ClassEventPropertyListWrapper<TClass, ClassEventPropertyWithCodeAnalysis> eventProperties;

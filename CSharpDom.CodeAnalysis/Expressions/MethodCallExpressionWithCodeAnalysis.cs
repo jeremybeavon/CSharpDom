@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class MethodCallExpressionWithCodeAnalysis :
         EditableMethodCallExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<InvocationExpressionSyntax>,
+        IHasNode<InvocationExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> node;
@@ -56,5 +57,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
+
+        INode<InvocationExpressionSyntax> IHasNode<InvocationExpressionSyntax>.Node => node;
     }
 }

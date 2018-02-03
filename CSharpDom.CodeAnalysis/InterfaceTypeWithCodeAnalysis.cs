@@ -17,7 +17,8 @@ namespace CSharpDom.CodeAnalysis
             InterfacePropertyWithCodeAnalysis,
             InterfaceIndexerWithCodeAnalysis,
             InterfaceMethodWithCodeAnalysis>,
-        IHasSyntax<InterfaceDeclarationSyntax>
+        IHasSyntax<InterfaceDeclarationSyntax>,
+        IHasNode<InterfaceDeclarationSyntax>
     {
         private readonly Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> node;
         private readonly AttributeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> attributes;
@@ -128,6 +129,8 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return node; }
         }
+
+        INode<InterfaceDeclarationSyntax> IHasNode<InterfaceDeclarationSyntax>.Node => node;
 
         public override void Accept(IGenericVisitor visitor)
         {

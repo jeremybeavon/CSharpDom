@@ -8,6 +8,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
     public sealed class AwaitExpressionWithCodeAnalysis :
         EditableAwaitExpression<IExpressionWithCodeAnalysis>,
         IHasSyntax<AwaitExpressionSyntax>,
+        IHasNode<AwaitExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<AwaitExpressionWithCodeAnalysis, AwaitExpressionSyntax> node;
@@ -44,5 +45,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             get { return node; }
         }
+
+        INode<AwaitExpressionSyntax> IHasNode<AwaitExpressionSyntax>.Node => node;
     }
 }

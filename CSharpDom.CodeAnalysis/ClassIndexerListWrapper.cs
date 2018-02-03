@@ -5,7 +5,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class ClassIndexerListWrapper<TClass, TChildNode> :
         ClassMemberListWrapper<TClass, TChildNode, IndexerDeclarationSyntax>
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
         where TChildNode : class, IHasNode<IndexerDeclarationSyntax>
     {
         public ClassIndexerListWrapper(

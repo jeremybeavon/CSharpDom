@@ -4,7 +4,7 @@ using System;
 namespace CSharpDom.CodeAnalysis
 {
     internal class CachedTypeReferenceNode<TParentNode, TParentSyntax>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly CachedChildNode<TParentNode, TParentSyntax, IInternalTypeReferenceWithCodeAnalysis, TypeSyntax> childNode;

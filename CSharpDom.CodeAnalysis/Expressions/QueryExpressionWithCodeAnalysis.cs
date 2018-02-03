@@ -14,6 +14,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
             IQueryExpressionWithCodeAnalysis,
             IQueryEndExpressionWithCodeAnalysis>,
         IHasSyntax<QueryExpressionSyntax>,
+        IHasNode<QueryExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<QueryExpressionWithCodeAnalysis, QueryExpressionSyntax> node;
@@ -73,5 +74,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax { get => Syntax; set => Syntax = (QueryExpressionSyntax)value; }
 
         INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node => node;
+
+        INode<QueryExpressionSyntax> IHasNode<QueryExpressionSyntax>.Node => node;
     }
 }

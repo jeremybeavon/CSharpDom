@@ -8,7 +8,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
 {
     internal class ArgumentListWrapper<TParentNode, TParentSyntax> :
         WrappedList<IInternalArgument, IExpressionWithCodeAnalysis>
-        where TParentNode : class, IHasSyntax<TParentSyntax>
+        where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list;

@@ -8,7 +8,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 {
     internal sealed class InternalAbstractPartialClassMethodCollectionWithCodeAnalysis<TClass> :
         AbstractPartialClassMethodCollectionWithCodeAnalysis
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly ClassMethodListWrapper<TClass, ClassMethodWithCodeAnalysis> methods;

@@ -5,7 +5,7 @@ namespace CSharpDom.CodeAnalysis
 {
     internal class ClassEventListWrapper<TClass, TChildNode> :
         ClassMemberListWrapper<TClass, TChildNode, EventFieldDeclarationSyntax>
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
         where TChildNode : class, IHasNode<EventFieldDeclarationSyntax>
     {
         public ClassEventListWrapper(

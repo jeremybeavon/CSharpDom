@@ -28,7 +28,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             SealedPartialClassNestedStructCollectionWithCodeAnalysis,
             SealedPartialClassStaticConstructorWithCodeAnalysis,
             SealedPartialClassDestructorWithCodeAnalysis>
-        where TClass : class, IHasSyntax<ClassDeclarationSyntax>
+        where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly InternalSealedTypeWithCodeAnalysis<TClass> classType;
         private readonly IMemberList members;

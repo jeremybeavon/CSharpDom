@@ -9,6 +9,7 @@ namespace CSharpDom.CodeAnalysis.Statements
     public sealed class WhileStatementWithCodeAnalysis :
         EditableWhileStatement<IExpressionWithCodeAnalysis, IStatementWithCodeAnalysis>,
         IHasSyntax<WhileStatementSyntax>,
+        IHasNode<WhileStatementSyntax>,
         IInternalStatement
     {
         private readonly Guid internalId;
@@ -58,5 +59,7 @@ namespace CSharpDom.CodeAnalysis.Statements
         {
             get { return node; }
         }
+
+        INode<WhileStatementSyntax> IHasNode<WhileStatementSyntax>.Node => node;
     }
 }
