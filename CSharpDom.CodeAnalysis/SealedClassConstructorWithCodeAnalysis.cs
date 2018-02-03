@@ -52,7 +52,7 @@ namespace CSharpDom.CodeAnalysis
         
         public override ISealedTypeWithCodeAnalysis DeclaringType
         {
-            get { return DeclaringTypeFunc?.Invoke() ?? constructor.Constructor.Node.GetParentNode<ISealedTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? constructor.Constructor.Node.GetParent<ISealedTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

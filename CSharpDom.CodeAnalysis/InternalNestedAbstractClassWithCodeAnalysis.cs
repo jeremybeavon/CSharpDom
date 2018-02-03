@@ -54,7 +54,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IType DeclaringType
         {
-            get { return classType.Type.Node.GetParentNode<IType>(); }
+            get { return classType.Type.Node.GetParent<IType>(); }
             set { throw new NotSupportedException(); }
         }
 

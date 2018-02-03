@@ -36,7 +36,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override SolutionWithCodeAnalysis Solution
         {
-            get { return node.GetParentNode<SolutionWithCodeAnalysis>(); }
+            get { return node.GetParent<SolutionWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

@@ -36,7 +36,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IInterfaceTypeWithCodeAnalysis DeclaringType
         {
-            get { return method.Node.GetParentNode<IInterfaceTypeWithCodeAnalysis>(); }
+            get { return method.Node.GetParent<IInterfaceTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

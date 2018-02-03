@@ -54,7 +54,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IAbstractTypeWithCodeAnalysis DeclaringType
         {
-            get { return method.Method.Method.Node.GetParentNode<IAbstractTypeWithCodeAnalysis>(); }
+            get { return method.Method.Method.Node.GetParent<IAbstractTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

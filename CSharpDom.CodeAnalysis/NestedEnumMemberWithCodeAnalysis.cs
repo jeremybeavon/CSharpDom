@@ -33,7 +33,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override INestedEnum DeclaringType
         {
-            get { return node.GetParentNode<INestedEnum>(); }
+            get { return node.GetParent<INestedEnum>(); }
             set { throw new NotSupportedException(); }
         }
 

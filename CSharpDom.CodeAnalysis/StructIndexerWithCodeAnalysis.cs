@@ -69,7 +69,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return DeclaringTypeFunc?.Invoke() ?? indexer.Indexer.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? indexer.Indexer.Node.GetParent<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

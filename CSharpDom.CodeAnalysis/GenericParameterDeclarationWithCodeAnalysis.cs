@@ -54,9 +54,9 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraints(SyntaxFactory.SeparatedList(childSyntax)))
             {
-                { nameof(BaseClassConstraint), () => baseClassConstraint.Select(item => item.TypeReference.Node.GetParentNode<TypeParameterConstraintSyntax>()) },
-                { nameof(GenericParameterConstraints), () => genericParameterConstraints.Select(item => item.TypeReference.Node.GetParentNode<TypeParameterConstraintSyntax>()) },
-                { nameof(InterfaceConstraints), () => interfaceConstraints.Select(item => item.TypeReference.Node.GetParentNode<TypeParameterConstraintSyntax>()) }
+                { nameof(BaseClassConstraint), () => baseClassConstraint.Select(item => item.TypeReference.Node.GetParent<TypeParameterConstraintSyntax>()) },
+                { nameof(GenericParameterConstraints), () => genericParameterConstraints.Select(item => item.TypeReference.Node.GetParent<TypeParameterConstraintSyntax>()) },
+                { nameof(InterfaceConstraints), () => interfaceConstraints.Select(item => item.TypeReference.Node.GetParent<TypeParameterConstraintSyntax>()) }
             };
         }
 

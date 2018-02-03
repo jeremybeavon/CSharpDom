@@ -45,7 +45,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override INestedStaticPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return field.Field.Node.GetParentNode<INestedStaticPartialTypeWithCodeAnalysis>(); }
+            get { return field.Field.Node.GetParent<INestedStaticPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

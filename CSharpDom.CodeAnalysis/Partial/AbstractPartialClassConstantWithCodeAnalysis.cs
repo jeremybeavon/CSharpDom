@@ -58,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         public override IAbstractPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.Constant.Constant.Node.GetParentNode<IAbstractPartialTypeWithCodeAnalysis>(); }
+            get { return constant.Constant.Constant.Node.GetParent<IAbstractPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

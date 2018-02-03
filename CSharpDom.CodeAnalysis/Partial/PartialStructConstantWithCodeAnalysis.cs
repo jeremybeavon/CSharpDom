@@ -62,7 +62,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IPartialStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.Constant.Node.GetParentNode<IPartialStructTypeWithCodeAnalysis>(); }
+            get { return constant.Constant.Node.GetParent<IPartialStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

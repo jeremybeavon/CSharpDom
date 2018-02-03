@@ -64,7 +64,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override NamespaceWithCodeAnalysis Namespace
         {
-            get { return node.GetParentNode<NamespaceWithCodeAnalysis>(); }
+            get { return node.GetParent<NamespaceWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

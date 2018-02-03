@@ -55,7 +55,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return DeclaringTypeFunc?.Invoke() ?? nestedEnum.Node.GetParentNode<IStructTypeWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? nestedEnum.Node.GetParent<IStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

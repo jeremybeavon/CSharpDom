@@ -49,7 +49,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IPartialStructTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedEnum.Enum.Node.GetParentNode<IPartialStructTypeWithCodeAnalysis>(); }
+            get { return nestedEnum.Enum.Node.GetParent<IPartialStructTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

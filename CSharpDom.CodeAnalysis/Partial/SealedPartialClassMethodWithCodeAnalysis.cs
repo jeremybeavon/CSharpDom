@@ -53,7 +53,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return Method.Method.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return Method.Method.Node.GetParent<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

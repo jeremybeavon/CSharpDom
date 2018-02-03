@@ -48,7 +48,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IType DeclaringType
         {
-            get { return indexer.Indexer.Node.GetParentNode<IType>(); }
+            get { return indexer.Indexer.Node.GetParent<IType>(); }
             set { throw new NotSupportedException(); }
         }
 

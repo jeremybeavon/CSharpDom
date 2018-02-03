@@ -31,8 +31,8 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         public override QueryIntoExpressionWithCodeAnalysis IntoExpression
         {
-            get { return node.GetParentNode<QueryBodyWithCodeAnalysis>().IntoExpression; }
-            set { node.GetParentNode<QueryBodyWithCodeAnalysis>().IntoExpression = value; }
+            get { return node.GetParent<QueryBodyWithCodeAnalysis>().IntoExpression; }
+            set { node.GetParent<QueryBodyWithCodeAnalysis>().IntoExpression = value; }
         }
 
         public SelectClauseSyntax Syntax { get => node.Syntax; set => node.Syntax = value; }

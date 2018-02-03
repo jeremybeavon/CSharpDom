@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace CSharpDom.CodeAnalysis
@@ -9,6 +10,7 @@ namespace CSharpDom.CodeAnalysis
         private Func<TSyntax> getSyntax;
         private Action<TSyntax> setSyntax;
         private object parent;
+        private INode parentNode;
         private TSyntax syntax;
 
         public Node(TValue value)
@@ -25,6 +27,8 @@ namespace CSharpDom.CodeAnalysis
         public TValue Value { get; private set; }
 
         public int Index { get; set; }
+
+        public IList<INode> ChildNodes { get; } = new List<INode>();
 
         [DebuggerDisplay("Syntax: {syntax}")]
         public TSyntax Syntax
@@ -54,7 +58,7 @@ namespace CSharpDom.CodeAnalysis
 
         public bool IsLocked { get; set; }
         
-        public TParentNode GetParentNode<TParentNode>()
+        public TParentNode GetParent<TParentNode>()
             where TParentNode : class
         {
             if (parent != null && Syntax == null)
@@ -65,69 +69,81 @@ namespace CSharpDom.CodeAnalysis
             return parent as TParentNode;
         }
 
-        public void SetParentNode<TParentNode, TParentSyntax>(
+        public void SetParent<TParentNode, TParentSyntax>(
             TParentNode parent,
             Func<TParentSyntax, TSyntax> getChildSyntax,
             Func<TParentSyntax, TSyntax, TParentSyntax> createChildSyntax)
             where TParentNode : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
         {
-            if (parent == null)
-            {
-                RefreshSyntax();
-                getSyntax = null;
-                setSyntax = null;
-            }
-
-            this.parent = parent;
-            if (parent != null)
-            {
-                getSyntax = () => getChildSyntax(parent.Node.Syntax);
-                setSyntax = syntax => parent.Node.Syntax = createChildSyntax(parent.Node.Syntax, syntax);
-                if (syntax != null)
-                {
-                    IsLocked = true;
-                    setSyntax(syntax);
-                    IsLocked = false;
-                }
-            }
+            SetParent<TParentNode, TParentSyntax>(
+                parent,
+                () => getChildSyntax(parent.Node.Syntax),
+                syntax => parent.Node.Syntax = createChildSyntax(parent.Node.Syntax, syntax));
         }
 
-        public void SetParentNode<TParentNode, TParentSyntax>(
+        public void SetParent<TParentNode, TParentSyntax>(
             TParentNode parent,
             int childIndex,
-            Func<TParentSyntax, int, TSyntax> getChildSyntax,
-            Func<TParentSyntax, int, TSyntax, TParentSyntax> createChildSyntax)
+            Func<int, TSyntax> getChildSyntax,
+            Func<int, TSyntax, TParentSyntax> createChildSyntax)
             where TParentNode : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
         {
             Index = childIndex;
-            SetParentNode<TParentNode, TParentSyntax>(
+            SetParent<TParentNode, TParentSyntax>(
                 parent,
-                syntax => getChildSyntax(syntax, Index),
-                (parentSyntax, childSyntax) => createChildSyntax(parentSyntax, Index, childSyntax));
+                () => getChildSyntax(Index),
+                syntax => parent.Node.Syntax = createChildSyntax(Index, syntax));
         }
 
         public void RemoveParentNode()
         {
             RefreshSyntax();
+            if (parentNode != null)
+            {
+                parentNode.ChildNodes.Remove(this);
+            }
+
             parent = null;
+            parentNode = null;
             getSyntax = null;
             setSyntax = null;
         }
 
-        private void RefreshSyntax()
+        public void RefreshSyntax()
         {
             if (parent != null && ((CodeAnalysisSettings.AreEditsAllowed && !IsLocked) || syntax == null))
             {
-                TSyntax newSyntax = getSyntax();
-                if (syntax != null && syntax != newSyntax)
+                syntax = getSyntax();
+            }
+        }
+
+        private void SetParent<TParentNode, TParentSyntax>(
+            TParentNode parent,
+            Func<TSyntax> getChildSyntax,
+            Action<TSyntax> setChildSyntax)
+            where TParentNode : class, IHasNode<TParentSyntax>
+            where TParentSyntax : class
+        {
+            if (parent == null)
+            {
+                RemoveParentNode();
+                return;
+            }
+
+            this.parent = parent;
+            if (parent != null)
+            {
+                parentNode = parent.Node;
+                getSyntax = getChildSyntax;
+                setSyntax = setChildSyntax;
+                parentNode.ChildNodes.Add(this);
+                if (syntax != null)
                 {
-                    syntax = newSyntax;
-                }
-                else
-                {
-                    syntax = newSyntax;
+                    IsLocked = true;
+                    setSyntax(syntax);
+                    IsLocked = false;
                 }
             }
         }

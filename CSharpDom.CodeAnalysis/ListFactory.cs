@@ -178,7 +178,7 @@ namespace CSharpDom.CodeAnalysis
             return new WrappedList<GenericParameterConstraint, TChildNode>(
                 constraintList,
                 parent => getChild(parent.Type),
-                child => child.Node.GetParentNode<GenericParameterConstraint>());
+                child => child.Node.GetParent<GenericParameterConstraint>());
         }
     }
 }

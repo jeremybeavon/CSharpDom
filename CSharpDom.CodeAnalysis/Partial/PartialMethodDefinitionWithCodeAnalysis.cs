@@ -34,7 +34,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override IClassType DeclaringType
         {
-            get { return method.Node.GetParentNode<IClassType>(); }
+            get { return method.Node.GetParent<IClassType>(); }
             set { throw new NotSupportedException(); }
         }
 

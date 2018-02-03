@@ -26,7 +26,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override ProjectWithCodeAnalysis Project
         {
-            get { return node.GetParentNode<ProjectWithCodeAnalysis>(); }
+            get { return node.GetParent<ProjectWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

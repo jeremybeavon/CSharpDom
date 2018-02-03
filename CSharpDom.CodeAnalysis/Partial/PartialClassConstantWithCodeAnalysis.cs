@@ -58,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
         
         public override IPartialClassTypeWithCodeAnalysis DeclaringType
         {
-            get { return constant.Constant.Node.GetParentNode<IPartialClassTypeWithCodeAnalysis>(); }
+            get { return constant.Constant.Node.GetParent<IPartialClassTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

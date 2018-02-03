@@ -65,7 +65,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassWithCodeAnalysis DeclaringType
         {
-            get { return DeclaringTypeFunc?.Invoke() ?? property.Property.Node.GetParentNode<StaticClassWithCodeAnalysis>(); }
+            get { return DeclaringTypeFunc?.Invoke() ?? property.Property.Node.GetParent<StaticClassWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

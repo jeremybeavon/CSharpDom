@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> :
-        IList<TChildNode>
+    internal class ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> : IList<TChildNode>, INode
         where TParentNode : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
         where TChildNode : class, IHasNode<TChildSyntax>
@@ -57,6 +56,10 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return false; }
         }
+
+        public IList<INode> ChildNodes { get; } = new List<INode>();
+
+        IList<INode> INode.ChildNodes => throw new NotImplementedException();
 
         public TChildNode this[int index]
         {
@@ -167,19 +170,24 @@ namespace CSharpDom.CodeAnalysis
             return list.Set(index, childSyntax);
         }
 
-        private void SetParentNode(TChildNode item, int initialIndex)
+        void INode.RefreshSyntax()
         {
-            item.Node.SetParentNode<TParentNode, TParentSyntax>(
+            RefreshList();
+        }
+
+        private void SetParent(TChildNode item, int initialIndex)
+        {
+            item.Node.SetParent<TParentNode, TParentSyntax>(
                 node.Value,
                 initialIndex,
-                GetChildSyntax,
-                CreateChildSyntax);
+                index => list[index],
+                list.Set);
         }
         
         private void InternalAdd(TChildNode item)
         {
             innerList.Add(item);
-            SetParentNode(item, innerList.Count - 1);
+            SetParent(item, innerList.Count - 1);
         }
 
         private void InternalInsert(int index, TChildNode item, TChildSyntax syntax)
@@ -190,7 +198,7 @@ namespace CSharpDom.CodeAnalysis
                 innerList[childIndex].Node.Index++;
             }
 
-            SetParentNode(item, index);
+            SetParent(item, index);
         }
 
         private void InternalClear()
@@ -225,7 +233,7 @@ namespace CSharpDom.CodeAnalysis
         {
             innerList[index].Node.RemoveParentNode();
             innerList[index] = item;
-            SetParentNode(item, index);
+            SetParent(item, index);
         }
 
         private void RefreshList()

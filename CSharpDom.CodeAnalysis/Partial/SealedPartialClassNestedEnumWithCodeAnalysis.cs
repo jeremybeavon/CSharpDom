@@ -47,7 +47,7 @@ namespace CSharpDom.CodeAnalysis.Partial
 
         public override ISealedPartialTypeWithCodeAnalysis DeclaringType
         {
-            get { return nestedEnum.Enum.Enum.Node.GetParentNode<ISealedPartialTypeWithCodeAnalysis>(); }
+            get { return nestedEnum.Enum.Enum.Node.GetParent<ISealedPartialTypeWithCodeAnalysis>(); }
             set { throw new NotSupportedException(); }
         }
 

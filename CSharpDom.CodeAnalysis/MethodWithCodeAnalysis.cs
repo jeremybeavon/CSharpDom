@@ -62,7 +62,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IBasicType DeclaringType
         {
-            get { return node.GetParentNode<IBasicType>(); }
+            get { return node.GetParent<IBasicType>(); }
             set { throw new NotSupportedException(); }
         }
 

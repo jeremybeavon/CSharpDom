@@ -63,10 +63,8 @@ namespace CSharpDom.EditableInterfaceGenerator
 
                 Console.WriteLine($"Writing: {Path.GetFileName(destinationPath)}");
                 string namespaceName = @namespace.Name;
-                List<string> loadedDocumentSyntax = new List<string>();
-                using (CodeAnalysisSettings.AllowEdits())
+                using (CodeAnalysisSettings.AllowEdits(loadedDocument))
                 {
-                    loadedDocumentSyntax.Add(loadedDocument.Syntax.ToString());
                     if (namespaceName.StartsWith("CSharpDom.Common."))
                     {
                         UsingDirectiveWithCodeAnalysis usingDirective = new UsingDirectiveWithCodeAnalysis(namespaceName);
@@ -77,13 +75,10 @@ namespace CSharpDom.EditableInterfaceGenerator
                         loadedDocument.UsingDirectives = usingDirectives;
                     }
 
-                    loadedDocumentSyntax.Add(loadedDocument.Syntax.ToString());
                     @namespace.Name = Regex.Replace(namespaceName, "^CSharpDom.Common", "CSharpDom.Common.Editable");
-                    loadedDocumentSyntax.Add(loadedDocument.Syntax.ToString());
                     InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
                     string interfaceName = @interface.Name;
                     @interface.Name = GetNewName(interfaceName);
-                    loadedDocumentSyntax.Add(loadedDocument.Syntax.ToString());
                     if (interfaceName == "IGenericVisitor")
                     {
                         foreach (InterfaceMethodWithCodeAnalysis method in @interface.Methods)
@@ -122,7 +117,6 @@ namespace CSharpDom.EditableInterfaceGenerator
                             constraint.Name = GetNewName(constraint.Name);
                         }
 
-                        loadedDocumentSyntax.Add(loadedDocument.Syntax.ToString());
                         InterfaceReferenceWithCodeAnalysis interfaceReference = new InterfaceReferenceWithCodeAnalysis(
                             interfaceName,
                             genericParameters.ToArray());
@@ -139,7 +133,6 @@ namespace CSharpDom.EditableInterfaceGenerator
                             }
                         }
 
-                        loadedDocumentSyntax.Add(loadedDocument.Syntax.ToString());
                         @interface.Interfaces.Add(interfaceReference);
                         foreach (InterfacePropertyWithCodeAnalysis property in @interface.Properties.ToArray())
                         {
@@ -156,8 +149,6 @@ namespace CSharpDom.EditableInterfaceGenerator
                                 }
                             }
                         }
-
-                        loadedDocumentSyntax.Add(loadedDocument.Syntax.ToString());
                     }
                 }
 

@@ -66,7 +66,7 @@ namespace CSharpDom.CodeAnalysis
             cachedChildNode = childNode;
             if (cachedChildNode != null)
             {
-                cachedChildNode.Node.SetParentNode(node.Value, getSyntax, createSyntax);
+                cachedChildNode.Node.SetParent(node.Value, getSyntax, createSyntax);
             }
         }
     }

@@ -54,7 +54,7 @@ namespace CSharpDom.CodeAnalysis
 
         public override IStaticClass DeclaringType
         {
-            get { return method.Method.Node.GetParentNode<IStaticClass>(); }
+            get { return method.Method.Node.GetParent<IStaticClass>(); }
             set { throw new NotSupportedException(); }
         }
 
