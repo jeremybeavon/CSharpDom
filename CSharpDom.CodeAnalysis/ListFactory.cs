@@ -9,18 +9,18 @@ namespace CSharpDom.CodeAnalysis
     internal static class ListFactory
     {
         public static IChildSyntaxList<TParentSyntax, TChildSyntax> CreateChildSyntaxList<
-            TParentNode,
+            TParent,
             TParentSyntax,
             TChildList,
             TChildSyntax>(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             IImmutableList<TChildList, TChildSyntax> immutableList,
             Func<TParentSyntax, TChildList> getList,
             Func<TParentSyntax, TChildList, TParentSyntax> createList)
             where TParentSyntax : class
             where TChildList : IReadOnlyList<TChildSyntax>
         {
-            return new ChildSyntaxList<TParentNode, TParentSyntax, TChildList, TChildSyntax>(
+            return new ChildSyntaxList<TParent, TParentSyntax, TChildList, TChildSyntax>(
                 node,
                 immutableList,
                 getList,
@@ -28,10 +28,10 @@ namespace CSharpDom.CodeAnalysis
         }
 
         public static IChildSyntaxList<TParentSyntax, TChildSyntax> CreateChildSyntaxList<
-            TParentNode,
+            TParent,
             TParentSyntax,
             TChildSyntax>(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SyntaxList<TChildSyntax>, TParentSyntax> createList)
             where TParentSyntax : class
@@ -41,10 +41,10 @@ namespace CSharpDom.CodeAnalysis
         }
 
         public static IChildSyntaxList<TParentSyntax, TChildSyntax> CreateChildSyntaxList<
-            TParentNode,
+            TParent,
             TParentSyntax,
             TChildSyntax>(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList)
             where TParentSyntax : class
@@ -54,16 +54,16 @@ namespace CSharpDom.CodeAnalysis
         }
         
         public static IChildSyntaxList<TParentSyntax, GenericParameterDeclarationSyntax> CreateList<
-            TParentNode,
+            TParent,
             TParentSyntax>(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, TypeParameterListSyntax> getTypeParameters,
             Func<TParentSyntax, TypeParameterListSyntax, TParentSyntax> createTypeParameters,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>> getConstraintClauses,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses)
             where TParentSyntax : class
         {
-            return new GenericParameterDeclarationList<TParentNode, TParentSyntax>(
+            return new GenericParameterDeclarationList<TParent, TParentSyntax>(
                 node,
                 syntax => getTypeParameters(syntax)?.Parameters ?? SyntaxFactory.SeparatedList<TypeParameterSyntax>(),
                 (parentSyntax, childSyntax) => createTypeParameters(parentSyntax, (getTypeParameters(parentSyntax) ?? SyntaxFactory.TypeParameterList()).WithParameters(childSyntax)),
@@ -71,61 +71,61 @@ namespace CSharpDom.CodeAnalysis
                 createConstraintClauses);
         }
 
-        public static SyntaxNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> CreateList<
-            TParentNode,
+        public static SyntaxNodeList<TParent, TParentSyntax, TChild, TChildSyntax> CreateList<
+            TParent,
             TParentSyntax,
-            TChildNode,
+            TChild,
             TChildSyntax>(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SyntaxList<TChildSyntax>, TParentSyntax> createList,
-            Func<TChildSyntax, TChildNode> factory)
-            where TParentNode : class, IHasNode<TParentSyntax>
+            Func<TChildSyntax, TChild> factory)
+            where TParent : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
-            where TChildNode : class, IHasNode<TChildSyntax>
+            where TChild : class, IHasNode<TChildSyntax>
             where TChildSyntax : SyntaxNode
         {
-            return new SyntaxNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(node, getList, createList, factory);
+            return new SyntaxNodeList<TParent, TParentSyntax, TChild, TChildSyntax>(node, getList, createList, factory);
         }
 
-        public static SeparatedSyntaxNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> CreateList<
-            TParentNode,
+        public static SeparatedSyntaxNodeList<TParent, TParentSyntax, TChild, TChildSyntax> CreateList<
+            TParent,
             TParentSyntax,
-            TChildNode,
+            TChild,
             TChildSyntax>(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<TChildSyntax>, TParentSyntax> createList,
-            Func<TChildSyntax, TChildNode> factory)
-            where TParentNode : class, IHasNode<TParentSyntax>
+            Func<TChildSyntax, TChild> factory)
+            where TParent : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
-            where TChildNode : class, IHasNode<TChildSyntax>
+            where TChild : class, IHasNode<TChildSyntax>
             where TChildSyntax : SyntaxNode
         {
-            return new SeparatedSyntaxNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(
+            return new SeparatedSyntaxNodeList<TParent, TParentSyntax, TChild, TChildSyntax>(
                 node,
                 getList,
                 createList,
                 factory);
         }
 
-        public static IChildSyntaxList<TParentSyntax, NameSyntax> CreateBaseTypeList<TParentNode, TParentSyntax>(
-            Node<TParentNode, TParentSyntax> node,
+        public static IChildSyntaxList<TParentSyntax, NameSyntax> CreateBaseTypeList<TParent, TParentSyntax>(
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, BaseListSyntax, TParentSyntax> createList)
             where TParentSyntax : TypeDeclarationSyntax
         {
-            return new BaseTypeList<TParentNode, TParentSyntax>(
+            return new BaseTypeList<TParent, TParentSyntax>(
                 node,
                 syntax => syntax?.BaseList?.Types ?? SyntaxFactory.SeparatedList<BaseTypeSyntax>(),
                 (parentSyntax, childSyntax) => createList(parentSyntax, (parentSyntax.BaseList ?? SyntaxFactory.BaseList()).WithTypes(childSyntax)));
         }
 
         public static IChildSyntaxList<TParentSyntax, TChildSyntax> CreateFilteredList<
-            TParentNode,
+            TParent,
             TParentSyntax,
             TChildBaseSyntax,
             TChildSyntax>(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<TChildBaseSyntax>> getList,
             Func<TParentSyntax, SyntaxList<TChildBaseSyntax>, TParentSyntax> createList,
             Func<TChildSyntax, bool> filter)
@@ -144,23 +144,23 @@ namespace CSharpDom.CodeAnalysis
             return new FilteredList<TParent, TChild>(list, filter);
         }
 
-        public static IList<TChildNode> CreateChildSyntaxList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(
-            Node<TParentNode, TParentSyntax> node,
+        public static IList<TChild> CreateChildSyntaxList<TParent, TParentSyntax, TChild, TChildSyntax>(
+            Node<TParent, TParentSyntax> node,
             IChildSyntaxList<TParentSyntax, TChildSyntax> list,
-            Func<TChildNode> factory)
-            where TParentNode : class, IHasNode<TParentSyntax>
+            Func<TChild> factory)
+            where TParent : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
-            where TChildNode : class, IHasNode<TChildSyntax>
+            where TChild : class, IHasNode<TChildSyntax>
             where TChildSyntax : class
         {
-            return new ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax>(node, list, factory);
+            return new ChildNodeList<TParent, TParentSyntax, TChild, TChildSyntax>(node, list, factory);
         }
 
-        public static IList<TChildNode> CreateConstraintList<TChildNode>(
+        public static IList<TChild> CreateConstraintList<TChild>(
             Node<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax> node,
             Func<string, bool> filter,
-            Func<UnspecifiedTypeReferenceWithCodeAnalysis, TChildNode> getChild)
-            where TChildNode : class, IHasNode<TypeSyntax>
+            Func<UnspecifiedTypeReferenceWithCodeAnalysis, TChild> getChild)
+            where TChild : class, IHasNode<TypeSyntax>
         {
             IChildSyntaxList<GenericParameterDeclarationSyntax, TypeParameterConstraintSyntax> constraintSyntaxList =
                 CreateChildSyntaxList(
@@ -175,7 +175,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 filteredConstraintSyntaxList,
                 () => new GenericParameterConstraint());
-            return new WrappedList<GenericParameterConstraint, TChildNode>(
+            return new WrappedList<GenericParameterConstraint, TChild>(
                 constraintList,
                 parent => getChild(parent.Type),
                 child => child.Node.GetParent<GenericParameterConstraint>());

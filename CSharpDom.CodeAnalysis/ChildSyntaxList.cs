@@ -5,18 +5,18 @@ using System.Collections;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class ChildSyntaxList<TParentNode, TParentSyntax, TChildList, TChildSyntax> :
+    internal sealed class ChildSyntaxList<TParent, TParentSyntax, TChildList, TChildSyntax> :
         IChildSyntaxList<TParentSyntax, TChildSyntax>
         where TParentSyntax : class
         where TChildList : IReadOnlyList<TChildSyntax>
     {
-        private readonly Node<TParentNode, TParentSyntax> node;
+        private readonly Node<TParent, TParentSyntax> node;
         private readonly IImmutableList<TChildList, TChildSyntax> immutableList;
         private readonly Func<TParentSyntax, TChildList> getList;
         private readonly Func<TParentSyntax, TChildList, TParentSyntax> createList;
 
         public ChildSyntaxList(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             IImmutableList<TChildList, TChildSyntax> immutableList,
             Func<TParentSyntax, TChildList> getList,
             Func<TParentSyntax, TChildList, TParentSyntax> createList)

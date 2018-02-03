@@ -2,21 +2,21 @@
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class CachedChildNode<TParentNode, TParentSyntax, TChildNode, TChildSyntax>
-        where TParentNode : class, IHasNode<TParentSyntax>
+    internal class CachedChildNode<TParent, TParentSyntax, TChild, TChildSyntax>
+        where TParent : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
-        where TChildNode : class, IHasNode<TChildSyntax>
+        where TChild : class, IHasNode<TChildSyntax>
         where TChildSyntax : class
     {
-        private readonly Node<TParentNode, TParentSyntax> node;
+        private readonly Node<TParent, TParentSyntax> node;
         private readonly Func<TParentSyntax, TChildSyntax> getSyntax;
         private readonly Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax;
-        private readonly Func<TChildSyntax, TChildNode> createChildNode;
-        private TChildNode cachedChildNode;
+        private readonly Func<TChildSyntax, TChild> createChildNode;
+        private TChild cachedChildNode;
 
         public CachedChildNode(
-            Node<TParentNode, TParentSyntax> node,
-            Func<TChildSyntax, TChildNode> createChildNode,
+            Node<TParent, TParentSyntax> node,
+            Func<TChildSyntax, TChild> createChildNode,
             Func<TParentSyntax, TChildSyntax> getSyntax,
             Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax)
         {
@@ -27,19 +27,19 @@ namespace CSharpDom.CodeAnalysis
         }
 
         public CachedChildNode(
-            Node<TParentNode, TParentSyntax> node,
-            Func<TChildNode> createChildNode,
+            Node<TParent, TParentSyntax> node,
+            Func<TChild> createChildNode,
             Func<TParentSyntax, TChildSyntax> getSyntax,
             Func<TParentSyntax, TChildSyntax, TParentSyntax> createSyntax)
             : this(node, syntax => syntax == null ? null : createChildNode(), getSyntax, createSyntax)
         {
         }
 
-        public TChildNode Value
+        public TChild Value
         {
             get
             {
-                TChildNode childNode = createChildNode(getSyntax(node.Syntax));
+                TChild childNode = createChildNode(getSyntax(node.Syntax));
                 if (cachedChildNode == null ||
                     (childNode == null && cachedChildNode != null) ||
                     (childNode != null && childNode.GetType() != cachedChildNode.GetType()))
@@ -61,7 +61,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        private void CacheChildNode(TChildNode childNode)
+        private void CacheChildNode(TChild childNode)
         {
             cachedChildNode = childNode;
             if (cachedChildNode != null)

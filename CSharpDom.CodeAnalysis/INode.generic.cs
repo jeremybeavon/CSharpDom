@@ -8,22 +8,22 @@ namespace CSharpDom.CodeAnalysis
 
         bool IsLocked { get; set; }
 
-        TParentNode GetParent<TParentNode>()
-            where TParentNode : class;
+        TParent GetParent<TParent>()
+            where TParent : class;
 
-        void SetParent<TParentNode, TParentSyntax>(
-            TParentNode parent,
+        void SetParent<TParent, TParentSyntax>(
+            TParent parent,
             Func<TParentSyntax, TSyntax> getChildSyntax,
             Func<TParentSyntax, TSyntax, TParentSyntax> createChildSyntax)
-            where TParentNode : class, IHasNode<TParentSyntax>
+            where TParent : class, IHasNode<TParentSyntax>
             where TParentSyntax : class;
 
-        void SetParent<TParentNode, TParentSyntax>(
-            TParentNode parent,
+        void SetParent<TParent, TParentSyntax>(
+            TParent parent,
             int childIndex,
             Func<int, TSyntax> getChildSyntax,
             Func<int, TSyntax, TParentSyntax> createChildSyntax)
-            where TParentNode : class, IHasNode<TParentSyntax>
+            where TParent : class, IHasNode<TParentSyntax>
             where TParentSyntax : class;
         
         void RemoveParentNode();

@@ -4,45 +4,45 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class ChildNodeList<TParentNode, TParentSyntax, TChildNode, TChildSyntax> : IList<TChildNode>, INode
-        where TParentNode : class, IHasNode<TParentSyntax>
+    internal class ChildNodeList<TParent, TParentSyntax, TChild, TChildSyntax> : IList<TChild>, INode
+        where TParent : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
-        where TChildNode : class, IHasNode<TChildSyntax>
+        where TChild : class, IHasNode<TChildSyntax>
         where TChildSyntax : class
     {
-        private readonly Node<TParentNode, TParentSyntax> node;
+        private readonly Node<TParent, TParentSyntax> node;
         private readonly IChildSyntaxList<TParentSyntax, TChildSyntax> list;
-        private readonly Func<TChildSyntax, TChildNode> factoryWithSyntax;
-        private readonly Func<TChildNode> factory;
-        private readonly IList<TChildNode> innerList;
+        private readonly Func<TChildSyntax, TChild> factoryWithSyntax;
+        private readonly Func<TChild> factory;
+        private readonly IList<TChild> innerList;
         private bool isInitialized;
         private bool isRefreshList;
 
         public ChildNodeList(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             IChildSyntaxList<TParentSyntax, TChildSyntax> list,
-            Func<TChildNode> factory)
+            Func<TChild> factory)
             : this(node, list)
         {
             this.factory = factory;
         }
 
         public ChildNodeList(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             IChildSyntaxList<TParentSyntax, TChildSyntax> list,
-            Func<TChildSyntax, TChildNode> factory)
+            Func<TChildSyntax, TChild> factory)
             : this(node, list)
         {
             factoryWithSyntax = factory;
         }
 
         private ChildNodeList(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             IChildSyntaxList<TParentSyntax, TChildSyntax> list)
         {
             this.node = node;
             this.list = list;
-            innerList = new List<TChildNode>();
+            innerList = new List<TChild>();
         }
 
         public bool IsLocked { get; set; }
@@ -61,7 +61,7 @@ namespace CSharpDom.CodeAnalysis
 
         IList<INode> INode.ChildNodes => throw new NotImplementedException();
 
-        public TChildNode this[int index]
+        public TChild this[int index]
         {
             get
             {
@@ -78,13 +78,13 @@ namespace CSharpDom.CodeAnalysis
             }
         }
         
-        public int IndexOf(TChildNode item)
+        public int IndexOf(TChild item)
         {
             RefreshList();
             return innerList.IndexOf(item);
         }
 
-        public void Insert(int index, TChildNode item)
+        public void Insert(int index, TChild item)
         {
             RefreshList();
             isRefreshList = true;
@@ -103,7 +103,7 @@ namespace CSharpDom.CodeAnalysis
             isRefreshList = false;
         }
 
-        public void Add(TChildNode item)
+        public void Add(TChild item)
         {
             RefreshList();
             isRefreshList = true;
@@ -126,19 +126,19 @@ namespace CSharpDom.CodeAnalysis
             isRefreshList = false;
         }
 
-        public bool Contains(TChildNode item)
+        public bool Contains(TChild item)
         {
             RefreshList();
             return innerList.Contains(item);
         }
 
-        public void CopyTo(TChildNode[] array, int arrayIndex)
+        public void CopyTo(TChild[] array, int arrayIndex)
         {
             RefreshList();
             innerList.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(TChildNode item)
+        public bool Remove(TChild item)
         {
             RefreshList();
             isRefreshList = true;
@@ -149,7 +149,7 @@ namespace CSharpDom.CodeAnalysis
             return isRefreshList;
         }
 
-        public IEnumerator<TChildNode> GetEnumerator()
+        public IEnumerator<TChild> GetEnumerator()
         {
             RefreshList();
             return innerList.GetEnumerator();
@@ -175,22 +175,22 @@ namespace CSharpDom.CodeAnalysis
             RefreshList();
         }
 
-        private void SetParent(TChildNode item, int initialIndex)
+        private void SetParent(TChild item, int initialIndex)
         {
-            item.Node.SetParent<TParentNode, TParentSyntax>(
+            item.Node.SetParent<TParent, TParentSyntax>(
                 node.Value,
                 initialIndex,
                 index => list[index],
                 list.Set);
         }
         
-        private void InternalAdd(TChildNode item)
+        private void InternalAdd(TChild item)
         {
             innerList.Add(item);
             SetParent(item, innerList.Count - 1);
         }
 
-        private void InternalInsert(int index, TChildNode item, TChildSyntax syntax)
+        private void InternalInsert(int index, TChild item, TChildSyntax syntax)
         {
             innerList.Insert(index, item);
             for (int childIndex = index; childIndex < innerList.Count; index++)
@@ -206,7 +206,7 @@ namespace CSharpDom.CodeAnalysis
             innerList.Clear();
         }
 
-        private bool InternalRemove(TChildNode item)
+        private bool InternalRemove(TChild item)
         {
             item.Node.RemoveParentNode();
             int index = IndexOf(item);
@@ -229,7 +229,7 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        private void InternalSet(int index, TChildNode item)
+        private void InternalSet(int index, TChild item)
         {
             innerList[index].Node.RemoveParentNode();
             innerList[index] = item;

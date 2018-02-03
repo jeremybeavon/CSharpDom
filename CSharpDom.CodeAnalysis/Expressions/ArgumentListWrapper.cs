@@ -6,16 +6,16 @@ using System.Linq;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    internal class ArgumentListWrapper<TParentNode, TParentSyntax> :
+    internal class ArgumentListWrapper<TParent, TParentSyntax> :
         WrappedList<IInternalArgument, IExpressionWithCodeAnalysis>
-        where TParentNode : class, IHasNode<TParentSyntax>
+        where TParent : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list;
+        private readonly SeparatedSyntaxNodeList<TParent, TParentSyntax, IInternalArgument, ArgumentSyntax> list;
         private readonly Func<IExpressionWithCodeAnalysis, IInternalArgument> toParent;
 
         public ArgumentListWrapper(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, ArgumentListSyntax> getList,
             Func<TParentSyntax, ArgumentListSyntax, TParentSyntax> createList)
             : this(
@@ -26,7 +26,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         public ArgumentListWrapper(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, BracketedArgumentListSyntax> getList,
             Func<TParentSyntax, BracketedArgumentListSyntax, TParentSyntax> createList)
             : this(
@@ -37,7 +37,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         private ArgumentListWrapper(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<ArgumentSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<ArgumentSyntax>, TParentSyntax> createList)
             : this(ListFactory.CreateList(node, getList, createList, ArgumentSyntaxExtensions.ToInternalArgument))
@@ -45,13 +45,13 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         private ArgumentListWrapper(
-            SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list)
+            SeparatedSyntaxNodeList<TParent, TParentSyntax, IInternalArgument, ArgumentSyntax> list)
             : this(list, child => list.FirstOrDefault(parent => parent.Expression == child))
         {
         }
 
         private ArgumentListWrapper(
-            SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalArgument, ArgumentSyntax> list,
+            SeparatedSyntaxNodeList<TParent, TParentSyntax, IInternalArgument, ArgumentSyntax> list,
             Func<IExpressionWithCodeAnalysis, IInternalArgument> toParent)
             : base(list, parent => parent.Expression, toParent)
         {

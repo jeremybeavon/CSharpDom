@@ -7,12 +7,12 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class BaseTypeList<TParentNode, TParentSyntax> :
+    internal class BaseTypeList<TParent, TParentSyntax> :
         WrappedChildSyntaxList<TParentSyntax, BaseTypeSyntax, NameSyntax>
         where TParentSyntax : TypeDeclarationSyntax
     {
         public BaseTypeList(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<BaseTypeSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<BaseTypeSyntax>, TParentSyntax> createList)
             : this(ListFactory.CreateChildSyntaxList(node, getList, createList))

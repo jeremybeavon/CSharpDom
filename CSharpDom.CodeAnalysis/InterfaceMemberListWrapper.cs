@@ -4,14 +4,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class InterfaceMemberListWrapper<TChildNode, TChildSyntax> :
-        MemberListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax, TChildNode, TChildSyntax>
-        where TChildNode : class, IHasNode<TChildSyntax>
+    internal class InterfaceMemberListWrapper<TChild, TChildSyntax> :
+        MemberListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax, TChild, TChildSyntax>
+        where TChild : class, IHasNode<TChildSyntax>
         where TChildSyntax : MemberDeclarationSyntax
     {
         public InterfaceMemberListWrapper(
             Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> node,
-            Func<TChildNode> factory) :
+            Func<TChild> factory) :
             base(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax), factory)
         {
         }

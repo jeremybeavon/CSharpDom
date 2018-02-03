@@ -19,24 +19,24 @@ namespace CSharpDom.CodeAnalysis
             set { Syntax = (TChildSyntax)value; }
         }
 
-        void INode<TSyntax>.SetParent<TParentNode, TParentSyntax>(
-            TParentNode parent,
+        void INode<TSyntax>.SetParent<TParent, TParentSyntax>(
+            TParent parent,
             Func<TParentSyntax, TSyntax> getChildSyntax,
             Func<TParentSyntax, TSyntax, TParentSyntax> createChildSyntax)
         {
-            SetParent<TParentNode, TParentSyntax>(
+            SetParent<TParent, TParentSyntax>(
                 parent,
                 parentSyntax => (TChildSyntax)getChildSyntax(parentSyntax),
                 (parentSyntax, childSyntax) => createChildSyntax(parentSyntax, childSyntax));
         }
 
-        void INode<TSyntax>.SetParent<TParentNode, TParentSyntax>(
-            TParentNode parent,
+        void INode<TSyntax>.SetParent<TParent, TParentSyntax>(
+            TParent parent,
             int childIndex,
             Func<int, TSyntax> getChildSyntax,
             Func<int, TSyntax, TParentSyntax> createChildSyntax)
         {
-            SetParent<TParentNode, TParentSyntax>(
+            SetParent<TParent, TParentSyntax>(
                 parent,
                 childIndex,
                 index => (TChildSyntax)getChildSyntax(index),

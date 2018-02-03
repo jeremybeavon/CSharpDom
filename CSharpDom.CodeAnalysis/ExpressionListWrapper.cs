@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class ExpressionListWrapper<TParentNode, TParentSyntax> :
+    internal class ExpressionListWrapper<TParent, TParentSyntax> :
         WrappedList<IInternalExpression, IExpressionWithCodeAnalysis>
-        where TParentNode : class, IHasNode<TParentSyntax>
+        where TParent : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> list;
+        private readonly SeparatedSyntaxNodeList<TParent, TParentSyntax, IInternalExpression, ExpressionSyntax> list;
 
         public ExpressionListWrapper(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<ExpressionSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<ExpressionSyntax>, TParentSyntax> createList)
             : this(ListFactory.CreateList(node, getList, createList, ExpressionSyntaxExtensions.ToInternalExpression))
@@ -24,7 +24,7 @@ namespace CSharpDom.CodeAnalysis
         }
 
         private ExpressionListWrapper(
-            SeparatedSyntaxNodeList<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> list)
+            SeparatedSyntaxNodeList<TParent, TParentSyntax, IInternalExpression, ExpressionSyntax> list)
             : base(list, parent => parent, child => child as IInternalExpression)
         {
             this.list = list;

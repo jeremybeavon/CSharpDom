@@ -4,14 +4,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class StructMethodListWrapper<TStruct, TChildNode> :
-        StructTypeMemberListWrapper<TStruct, TChildNode, MethodDeclarationSyntax>
+    internal class StructMethodListWrapper<TStruct, TChild> :
+        StructTypeMemberListWrapper<TStruct, TChild, MethodDeclarationSyntax>
         where TStruct : class, IHasNode<StructDeclarationSyntax>
-        where TChildNode : class, IHasNode<MethodDeclarationSyntax>
+        where TChild : class, IHasNode<MethodDeclarationSyntax>
     {
         public StructMethodListWrapper(
             Node<TStruct, StructDeclarationSyntax> node,
-            Func<TChildNode> factory,
+            Func<TChild> factory,
             Func<MethodDeclarationSyntax, bool> filter = null) :
             base(node, factory, filter)
         {

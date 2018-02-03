@@ -4,15 +4,15 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class ClassMemberListWrapper<TClass, TChildNode, TChildSyntax> :
-        MemberListWrapper<TClass, ClassDeclarationSyntax, TChildNode, TChildSyntax>
+    internal class ClassMemberListWrapper<TClass, TChild, TChildSyntax> :
+        MemberListWrapper<TClass, ClassDeclarationSyntax, TChild, TChildSyntax>
         where TClass : class, IHasNode<ClassDeclarationSyntax>
-        where TChildNode : class, IHasNode<TChildSyntax>
+        where TChild : class, IHasNode<TChildSyntax>
         where TChildSyntax : MemberDeclarationSyntax
     {
         public ClassMemberListWrapper(
             Node<TClass, ClassDeclarationSyntax> node,
-            Func<TChildNode> factory,
+            Func<TChild> factory,
             Func<TChildSyntax, bool> filter = null) :
             base(node, (parentSyntax, childSyntax) => parentSyntax.WithMembers(childSyntax), factory, filter)
         {

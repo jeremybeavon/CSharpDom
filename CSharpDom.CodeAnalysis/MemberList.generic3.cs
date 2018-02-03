@@ -10,18 +10,18 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class MemberList<TParentNode, TParentSyntax, TChildSyntax> :
+    internal class MemberList<TParent, TParentSyntax, TChildSyntax> :
         IEnumerable,
         IMemberList<TChildSyntax>
         where TParentSyntax : class
         where TChildSyntax : SyntaxNode
     {
-        private readonly Node<TParentNode, TParentSyntax> node;
+        private readonly Node<TParent, TParentSyntax> node;
         private readonly Func<TParentSyntax, IEnumerable<TChildSyntax>, TParentSyntax> createList;
         private readonly List<KeyValuePair<string, Func<IEnumerable<TChildSyntax>>>> list;
 
         public MemberList(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, IEnumerable<TChildSyntax>, TParentSyntax> createList)
         {
             this.node = node;

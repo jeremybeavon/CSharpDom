@@ -6,15 +6,15 @@ using System.Linq;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    internal class QueryExpressionListWrapper<TParentNode, TParentSyntax> :
+    internal class QueryExpressionListWrapper<TParent, TParentSyntax> :
         WrappedList<IInternalQueryExpression, IQueryExpressionWithCodeAnalysis>
-        where TParentNode : class, IHasNode<TParentSyntax>
+        where TParent : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly SyntaxNodeList<TParentNode, TParentSyntax, IInternalQueryExpression, QueryClauseSyntax> list;
+        private readonly SyntaxNodeList<TParent, TParentSyntax, IInternalQueryExpression, QueryClauseSyntax> list;
 
         public QueryExpressionListWrapper(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<QueryClauseSyntax>> getList,
             Func<TParentSyntax, SyntaxList<QueryClauseSyntax>, TParentSyntax> createList)
             : this(ListFactory.CreateList(node, getList, createList, QueryClauseSyntaxExtensions.ToInternalQueryExpression))
@@ -22,7 +22,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         private QueryExpressionListWrapper(
-            SyntaxNodeList<TParentNode, TParentSyntax, IInternalQueryExpression, QueryClauseSyntax> list)
+            SyntaxNodeList<TParent, TParentSyntax, IInternalQueryExpression, QueryClauseSyntax> list)
             : base(list, parent => parent, child => child as IInternalQueryExpression)
         {
             this.list = list;

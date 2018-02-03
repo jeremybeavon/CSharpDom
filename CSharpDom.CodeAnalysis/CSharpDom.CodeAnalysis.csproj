@@ -367,7 +367,6 @@
     <Compile Include="AbstractMethodWithCodeAnalysis.cs" />
     <Compile Include="AbstractPropertyWithCodeAnalysis.cs" />
     <Compile Include="AbstractTypeWithCodeAnalysis.cs" />
-    <Compile Include="AbstractWrappedNode.cs" />
     <Compile Include="AccessorListSyntaxExtensions.cs" />
     <Compile Include="AccessorWithCodeAnalysis.cs" />
     <Compile Include="AccessorWithBodyWithCodeAnalysis.cs" />

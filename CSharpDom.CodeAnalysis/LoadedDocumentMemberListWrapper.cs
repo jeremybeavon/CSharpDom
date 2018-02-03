@@ -4,14 +4,14 @@ using System;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class LoadedDocumentMemberListWrapper<TChildNode, TChildSyntax> :
-        ChildNodeList<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax, TChildNode, TChildSyntax>
-        where TChildNode : class, IHasNode<TChildSyntax>
+    internal class LoadedDocumentMemberListWrapper<TChild, TChildSyntax> :
+        ChildNodeList<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax, TChild, TChildSyntax>
+        where TChild : class, IHasNode<TChildSyntax>
         where TChildSyntax : MemberDeclarationSyntax
     {
         public LoadedDocumentMemberListWrapper(
             Node<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax> node,
-            Func<TChildNode> factory,
+            Func<TChild> factory,
             Func<TChildSyntax, bool> filter = null)
             : this(
                   node,
@@ -26,7 +26,7 @@ namespace CSharpDom.CodeAnalysis
             Node<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax> node,
             Func<CompilationUnitSyntax, SyntaxList<MemberDeclarationSyntax>> getList,
             Func<CompilationUnitSyntax, SyntaxList<MemberDeclarationSyntax>, CompilationUnitSyntax> createList,
-            Func<TChildNode> factory,
+            Func<TChild> factory,
             Func<TChildSyntax, bool> filter)
             : base(node, ListFactory.CreateFilteredList(node, getList, createList, filter), factory)
         {

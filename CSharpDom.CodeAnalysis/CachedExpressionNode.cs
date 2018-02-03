@@ -3,18 +3,18 @@ using System;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class CachedExpressionNode<TParentNode, TParentSyntax>
-        where TParentNode : class, IHasNode<TParentSyntax>
+    internal class CachedExpressionNode<TParent, TParentSyntax>
+        where TParent : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly CachedChildNode<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax> childNode;
+        private readonly CachedChildNode<TParent, TParentSyntax, IInternalExpression, ExpressionSyntax> childNode;
 
         public CachedExpressionNode(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, ExpressionSyntax> getSyntax,
             Func<TParentSyntax, ExpressionSyntax, TParentSyntax> createSyntax)
         {
-            childNode = new CachedChildNode<TParentNode, TParentSyntax, IInternalExpression, ExpressionSyntax>(
+            childNode = new CachedChildNode<TParent, TParentSyntax, IInternalExpression, ExpressionSyntax>(
                 node,
                 ExpressionSyntaxExtensions.ToInternalExpression,
                 getSyntax,

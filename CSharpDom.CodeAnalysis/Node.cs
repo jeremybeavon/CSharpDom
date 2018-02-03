@@ -58,40 +58,40 @@ namespace CSharpDom.CodeAnalysis
 
         public bool IsLocked { get; set; }
         
-        public TParentNode GetParent<TParentNode>()
-            where TParentNode : class
+        public TParent GetParent<TParent>()
+            where TParent : class
         {
             if (parent != null && Syntax == null)
             {
                 parent = null;
             }
 
-            return parent as TParentNode;
+            return parent as TParent;
         }
 
-        public void SetParent<TParentNode, TParentSyntax>(
-            TParentNode parent,
+        public void SetParent<TParent, TParentSyntax>(
+            TParent parent,
             Func<TParentSyntax, TSyntax> getChildSyntax,
             Func<TParentSyntax, TSyntax, TParentSyntax> createChildSyntax)
-            where TParentNode : class, IHasNode<TParentSyntax>
+            where TParent : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
         {
-            SetParent<TParentNode, TParentSyntax>(
+            SetParent<TParent, TParentSyntax>(
                 parent,
                 () => getChildSyntax(parent.Node.Syntax),
                 syntax => parent.Node.Syntax = createChildSyntax(parent.Node.Syntax, syntax));
         }
 
-        public void SetParent<TParentNode, TParentSyntax>(
-            TParentNode parent,
+        public void SetParent<TParent, TParentSyntax>(
+            TParent parent,
             int childIndex,
             Func<int, TSyntax> getChildSyntax,
             Func<int, TSyntax, TParentSyntax> createChildSyntax)
-            where TParentNode : class, IHasNode<TParentSyntax>
+            where TParent : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
         {
             Index = childIndex;
-            SetParent<TParentNode, TParentSyntax>(
+            SetParent<TParent, TParentSyntax>(
                 parent,
                 () => getChildSyntax(Index),
                 syntax => parent.Node.Syntax = createChildSyntax(Index, syntax));
@@ -119,11 +119,11 @@ namespace CSharpDom.CodeAnalysis
             }
         }
 
-        private void SetParent<TParentNode, TParentSyntax>(
-            TParentNode parent,
+        private void SetParent<TParent, TParentSyntax>(
+            TParent parent,
             Func<TSyntax> getChildSyntax,
             Action<TSyntax> setChildSyntax)
-            where TParentNode : class, IHasNode<TParentSyntax>
+            where TParent : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
         {
             if (parent == null)

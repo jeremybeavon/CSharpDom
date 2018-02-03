@@ -6,13 +6,13 @@ using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class MemberList<TParentNode, TParentSyntax> :
-        MemberList<TParentNode, TParentSyntax, MemberDeclarationSyntax>,
+    internal class MemberList<TParent, TParentSyntax> :
+        MemberList<TParent, TParentSyntax, MemberDeclarationSyntax>,
         IMemberList
         where TParentSyntax : class
     {
         public MemberList(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<MemberDeclarationSyntax>, TParentSyntax> createList)
             : base(node, (parentSyntax, childSyntax) => createList(parentSyntax, SyntaxFactory.List(childSyntax)))
         {

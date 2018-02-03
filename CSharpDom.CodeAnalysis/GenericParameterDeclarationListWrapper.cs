@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class GenericParameterDeclarationListWrapper<TParentNode, TParentSyntax> :
+    internal class GenericParameterDeclarationListWrapper<TParent, TParentSyntax> :
         ChildNodeList<
-            TParentNode,
+            TParent,
             TParentSyntax,
             GenericParameterDeclarationWithCodeAnalysis,
             GenericParameterDeclarationSyntax>
-        where TParentNode : class, IHasNode<TParentSyntax>
+        where TParent : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
-        private readonly Node<TParentNode, TParentSyntax> node;
+        private readonly Node<TParent, TParentSyntax> node;
         private readonly Func<TParentSyntax, TypeParameterListSyntax, TParentSyntax> createTypeParameters;
         private readonly Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses;
 
         public GenericParameterDeclarationListWrapper(
-            Node<TParentNode, TParentSyntax> node,
+            Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, TypeParameterListSyntax> getTypeParameters,
             Func<TParentSyntax, TypeParameterListSyntax, TParentSyntax> createTypeParameters,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>> getConstraintClauses,
