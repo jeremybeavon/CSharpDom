@@ -115,7 +115,7 @@ namespace CSharpDom.CodeAnalysis
         {
             return new CachedChildNode<IndexerWithCodeAnalysis, IndexerDeclarationSyntax, AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
                 node,
-                () => new AccessorWithCodeAnalysis(kind),
+                () => new AccessorWithCodeAnalysis(null),
                 syntax => GetAccessorDeclaration(syntax, kind),
                 (parentSyntax, childSyntax) => CreateAccessor(kind)(parentSyntax, childSyntax));
         }

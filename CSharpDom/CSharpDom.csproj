@@ -236,6 +236,8 @@
     <Compile Include="BaseClasses\AbstractUnspecifiedTypeReference.cs" />
     <Compile Include="BaseClasses\AbstractUsingDirective.cs" />
     <Compile Include="BaseClasses\AbstractGenericVisitableObject.cs" />
+    <Compile Include="BaseClasses\Editable\EditableVisitableObject.cs" />
+    <Compile Include="BaseClasses\Editable\Statements\EditableThrowStatement.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractAnonymousMethodParameter.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryExpression.cs" />
@@ -303,6 +305,7 @@
     <Compile Include="BaseClasses\Partial\AbstractStructNestedStaticPartialClass.cs" />
     <Compile Include="BaseClasses\Partial\AbstractStructNestedPartialStruct.cs" />
     <Compile Include="BaseClasses\Statements\AbstractStatement.cs" />
+    <Compile Include="BaseClasses\Statements\AbstractThrowStatement.cs" />
     <Compile Include="BaseClasses\Wrappers\StructMethodCollectionWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\NestedStaticClassMethodCollectionWrapper.cs" />
     <Compile Include="BaseClasses\Wrappers\StaticClassMethodCollectionWrapper.cs" />
@@ -434,6 +437,7 @@
     <Compile Include="Common\Editable\Expressions\IEditableUnaryOperatorExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableUnaryOperatorExpression.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IHasEditableObjectInitializers.cs" />
+    <Compile Include="Common\Editable\ForwardingEditableVisitor.cs" />
     <Compile Include="Common\Editable\IEditableAbstractAccessor.cs" />
     <Compile Include="Common\Editable\IEditableAbstractAccessor.generic.cs" />
     <Compile Include="Common\Editable\IEditableAbstractClass.cs" />

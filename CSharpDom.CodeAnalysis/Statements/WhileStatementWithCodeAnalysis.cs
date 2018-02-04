@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using CSharpDom.BaseClasses.Editable.Statements;
-using CSharpDom.BaseClasses.Editable.Expressions;
+﻿using CSharpDom.BaseClasses.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 
@@ -12,14 +11,20 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasNode<WhileStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<WhileStatementWithCodeAnalysis, WhileStatementSyntax> node;
         private readonly CachedExpressionNode<WhileStatementWithCodeAnalysis, WhileStatementSyntax> condition;
         private readonly CachedStatementNode<WhileStatementWithCodeAnalysis, WhileStatementSyntax> statement;
 
-        public WhileStatementWithCodeAnalysis()
+        public WhileStatementWithCodeAnalysis(
+            IExpressionWithCodeAnalysis condition,
+            IStatementWithCodeAnalysis statement)
+            : this()
         {
-            internalId = Guid.NewGuid();
+            Syntax = SyntaxFactory.WhileStatement(condition.Syntax, statement.Syntax);
+        }
+
+        internal WhileStatementWithCodeAnalysis()
+        {
             node = new StatementNode<WhileStatementWithCodeAnalysis, WhileStatementSyntax>(this);
             statement = new CachedStatementNode<WhileStatementWithCodeAnalysis, WhileStatementSyntax>(
                 node,

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using CSharpDom.BaseClasses.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
@@ -15,7 +17,13 @@ namespace CSharpDom.CodeAnalysis.Statements
         private readonly StatementNode<BlockStatementWithCodeAnalysis, BlockSyntax> node;
         private readonly StatementListWrapper<BlockStatementWithCodeAnalysis, BlockSyntax> statements;
 
-        public BlockStatementWithCodeAnalysis()
+        public BlockStatementWithCodeAnalysis(IEnumerable<IStatementWithCodeAnalysis> statements)
+            : this()
+        {
+            Syntax = SyntaxFactory.Block(statements.Select(statement => statement.Syntax));
+        }
+
+        internal BlockStatementWithCodeAnalysis()
         {
             node = new StatementNode<BlockStatementWithCodeAnalysis, BlockSyntax>(this);
             statements = new StatementListWrapper<BlockStatementWithCodeAnalysis, BlockSyntax>(

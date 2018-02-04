@@ -46,7 +46,6 @@ namespace CSharpDom.CodeAnalysis
                 { SyntaxKind.TrueKeyword, OperatorOverloadType.True }
             };
 
-        private readonly Guid internalId;
         private readonly Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> node;
         private readonly AttributeListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> attributes;
         private readonly MethodBodyNode<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax> body;
@@ -59,7 +58,6 @@ namespace CSharpDom.CodeAnalysis
         
         internal OperatorOverloadWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
             node = new Node<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(this);
             attributes = new AttributeListWrapper<OperatorOverloadWithCodeAnalysis, OperatorDeclarationSyntax>(
                 node,

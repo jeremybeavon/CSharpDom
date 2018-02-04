@@ -11,13 +11,11 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<AttributeArgumentSyntax>,
         IHasNode<AttributeArgumentSyntax>
     {
-        private readonly Guid internalId;
         private readonly Node<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> node;
         private readonly CachedExpressionNode<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax> value;
         
         internal NamedAttributeValueWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
             node = new Node<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(this);
             value = new CachedExpressionNode<NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
                 node,

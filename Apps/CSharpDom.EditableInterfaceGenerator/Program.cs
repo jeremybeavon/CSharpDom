@@ -8,7 +8,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -29,7 +28,7 @@ namespace CSharpDom.EditableInterfaceGenerator
         private static async Task GenerateEditableInterfaces()
         {
             string baseDirectory = Path.GetFullPath(
-                Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"..\..\..\.."));
+                Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), @"..\..\..\.."));
             ProjectWithCodeAnalysis project = await ProjectWithCodeAnalysis.OpenAsync(
                 Path.Combine(baseDirectory, @"CSharpDom\CSharpDom.csproj"));
             project.Lock();

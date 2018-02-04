@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using CSharpDom.BaseClasses.Editable.Statements;
-using CSharpDom.Common;
-using CSharpDom.BaseClasses.Editable.Expressions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 
@@ -14,15 +11,27 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasNode<ForEachStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<ForeachStatementWithCodeAnalysis, ForEachStatementSyntax> node;
         private readonly CachedExpressionNode<ForeachStatementWithCodeAnalysis, ForEachStatementSyntax> iterator;
         private readonly CachedStatementNode<ForeachStatementWithCodeAnalysis, ForEachStatementSyntax> statement;
         private readonly CachedTypeReferenceNode<ForeachStatementWithCodeAnalysis, ForEachStatementSyntax> type;
 
-        public ForeachStatementWithCodeAnalysis()
+        public ForeachStatementWithCodeAnalysis(
+            ITypeReferenceWithCodeAnalysis type,
+            string variableName,
+            IExpressionWithCodeAnalysis iterator,
+            IStatementWithCodeAnalysis statement)
+            : this()
         {
-            internalId = Guid.NewGuid();
+            Syntax = SyntaxFactory.ForEachStatement(
+                type.Syntax,
+                SyntaxFactory.Identifier(variableName),
+                iterator.Syntax,
+                statement.Syntax);
+        }
+
+        internal ForeachStatementWithCodeAnalysis()
+        {
             node = new StatementNode<ForeachStatementWithCodeAnalysis, ForEachStatementSyntax>(this);
             iterator = new CachedExpressionNode<ForeachStatementWithCodeAnalysis, ForEachStatementSyntax>(
                 node,

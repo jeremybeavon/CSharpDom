@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using CSharpDom.BaseClasses.Editable.Expressions;
 using CSharpDom.BaseClasses.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
@@ -11,13 +12,20 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasSyntax<ContinueStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<ContinueStatementWithCodeAnalysis, ContinueStatementSyntax> node;
 
         public ContinueStatementWithCodeAnalysis()
+            : this(SyntaxFactory.ContinueStatement())
         {
-            internalId = Guid.NewGuid();
+        }
+
+        internal ContinueStatementWithCodeAnalysis(ContinueStatementSyntax syntax)
+        {
             node = new StatementNode<ContinueStatementWithCodeAnalysis, ContinueStatementSyntax>(this);
+            if (syntax != null)
+            {
+                Syntax = syntax;
+            }
         }
 
         public ContinueStatementSyntax Syntax

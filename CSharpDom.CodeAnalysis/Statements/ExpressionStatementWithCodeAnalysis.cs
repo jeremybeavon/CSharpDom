@@ -3,6 +3,7 @@ using CSharpDom.BaseClasses.Editable.Statements;
 using CSharpDom.BaseClasses.Editable.Expressions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Statements
 {
@@ -12,13 +13,17 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasNode<ExpressionStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<ExpressionStatementWithCodeAnalysis, ExpressionStatementSyntax> node;
         private readonly CachedExpressionNode<ExpressionStatementWithCodeAnalysis, ExpressionStatementSyntax> expression;
 
-        public ExpressionStatementWithCodeAnalysis()
+        public ExpressionStatementWithCodeAnalysis(IExpressionWithCodeAnalysis expression)
+            : this()
         {
-            internalId = Guid.NewGuid();
+            Syntax = SyntaxFactory.ExpressionStatement(expression.Syntax);
+        }
+
+        internal ExpressionStatementWithCodeAnalysis()
+        {
             node = new StatementNode<ExpressionStatementWithCodeAnalysis, ExpressionStatementSyntax>(this);
             expression = new CachedExpressionNode<ExpressionStatementWithCodeAnalysis, ExpressionStatementSyntax>(
                 node,

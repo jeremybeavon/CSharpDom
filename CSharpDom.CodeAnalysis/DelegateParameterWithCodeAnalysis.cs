@@ -10,12 +10,10 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<ParameterSyntax>,
         IHasNode<ParameterSyntax>
     {
-        private readonly Guid internalId;
         private readonly ParameterWithCodeAnalysis parameter;
         
         internal DelegateParameterWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
             parameter = new ParameterWithCodeAnalysis(this);
         }
 

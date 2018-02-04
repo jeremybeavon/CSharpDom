@@ -1,10 +1,5 @@
 ﻿using CSharpDom.CodeAnalysis.Statements;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -13,11 +8,11 @@ namespace CSharpDom.CodeAnalysis
         private static readonly TypedFactory<IInternalStatement> factory = new TypedFactory<IInternalStatement>()
         {
             { typeof(BlockSyntax), () => new BlockStatementWithCodeAnalysis() },
-            { typeof(BreakStatementSyntax), () => new BreakStatementWithCodeAnalysis() },
+            { typeof(BreakStatementSyntax), () => new BreakStatementWithCodeAnalysis(null) },
             //{ typeof(CheckedStatementSyntax),  }
-            { typeof(ContinueStatementSyntax), () => new ContinueStatementWithCodeAnalysis() },
+            { typeof(ContinueStatementSyntax), () => new ContinueStatementWithCodeAnalysis(null) },
             { typeof(DoStatementSyntax), () => new DoStatementWithCodeAnalysis() },
-            { typeof(EmptyStatementSyntax), () => new EmptyStatementWithCodeAnalysis() },
+            { typeof(EmptyStatementSyntax), () => new EmptyStatementWithCodeAnalysis(null) },
             { typeof(ExpressionStatementSyntax), () => new ExpressionStatementWithCodeAnalysis() },
             //{ typeof(FixedStatementSyntax) }
             { typeof(ForEachStatementSyntax), () => new ForeachStatementWithCodeAnalysis() },

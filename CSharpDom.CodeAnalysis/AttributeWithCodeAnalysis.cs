@@ -16,7 +16,6 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<AttributeSyntax>,
         IHasNode<AttributeSyntax>
     {
-        private readonly Guid internalId;
         private readonly Node<AttributeWithCodeAnalysis, AttributeSyntax> node;
         private readonly CachedChildNode<
             AttributeWithCodeAnalysis,
@@ -36,14 +35,14 @@ namespace CSharpDom.CodeAnalysis
 
         internal AttributeWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
             node = new Node<AttributeWithCodeAnalysis, AttributeSyntax>(this);
             attributeType = new CachedChildNode<AttributeWithCodeAnalysis, AttributeSyntax, ClassReferenceWithCodeAnalysis, NameSyntax>(
                 node,
                 () => new ClassReferenceWithCodeAnalysis(new UnspecifiedTypeReferenceWithCodeAnalysis()),
                 syntax => syntax.Name,
                 (parentSyntax, childSyntax) => parentSyntax.WithName(childSyntax));
-            Func<SeparatedSyntaxList<AttributeArgumentSyntax>> getArguments = () => node.Syntax.ArgumentList?.Arguments ?? SyntaxFactory.SeparatedList<AttributeArgumentSyntax>();
+            SeparatedSyntaxList<AttributeArgumentSyntax> getArguments() =>
+                node.Syntax.ArgumentList?.Arguments ?? SyntaxFactory.SeparatedList<AttributeArgumentSyntax>();
             namedValues = new ChildNodeList<AttributeWithCodeAnalysis, AttributeSyntax, NamedAttributeValueWithCodeAnalysis, AttributeArgumentSyntax>(
                 node,
                 new ImmutableAttributeArgumentListWrapper(getArguments, SetArguments, true),

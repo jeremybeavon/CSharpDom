@@ -4,7 +4,7 @@ using System;
 
 namespace CSharpDom.Reflection.Internal
 {
-    internal class ForwardingGenericVisitor : AbstractGenericVisitor
+    internal sealed class ForwardingGenericVisitor : AbstractGenericVisitor
     {
         private readonly IReflectionVisitor visitor;
 

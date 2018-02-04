@@ -5,6 +5,8 @@ using CSharpDom.Common;
 using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
+using System.Threading.Tasks;
+using System.IO;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -185,6 +187,16 @@ namespace CSharpDom.CodeAnalysis
         INode<CompilationUnitSyntax> IHasNode<CompilationUnitSyntax>.Node
         {
             get { return node; }
+        }
+
+        public static Task<LoadedDocumentWithCodeAnalysis> LoadFromFileAsync(string fileName)
+        {
+            return LoadAsync(File.ReadAllText(fileName));
+        }
+
+        public static Task<LoadedDocumentWithCodeAnalysis> LoadAsync(string code)
+        {
+            return SolutionWithCodeAnalysis.GetSolutionForSourceCode(code).Projects.First().Documents.First().LoadAsync();
         }
     }
 }

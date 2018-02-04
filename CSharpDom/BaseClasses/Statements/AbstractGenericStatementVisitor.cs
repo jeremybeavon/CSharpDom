@@ -136,6 +136,12 @@ namespace CSharpDom.BaseClasses.Statements
             Visit(switchStatement);
         }
 
+        public virtual void VisitThrowStatement<TExpression>(IThrowStatement<TExpression> throwStatement)
+            where TExpression : IExpression
+        {
+            Visit(throwStatement);
+        }
+
         public virtual void VisitTryStatement<TStatement, TCatchStatement, TFinallyStatement>(
             ITryStatement<TStatement, TCatchStatement, TFinallyStatement> tryStatement)
             where TStatement : IStatement

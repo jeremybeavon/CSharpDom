@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using CSharpDom.BaseClasses.Editable.Statements;
-using CSharpDom.BaseClasses.Editable.Expressions;
+﻿using CSharpDom.BaseClasses.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 
@@ -12,14 +11,20 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasNode<LockStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<LockStatementWithCodeAnalysis, LockStatementSyntax> node;
         private readonly CachedExpressionNode<LockStatementWithCodeAnalysis, LockStatementSyntax> expression;
         private readonly CachedStatementNode<LockStatementWithCodeAnalysis, LockStatementSyntax> statement;
 
-        public LockStatementWithCodeAnalysis()
+        public LockStatementWithCodeAnalysis(
+            IExpressionWithCodeAnalysis expression,
+            IStatementWithCodeAnalysis statement)
+            : this()
         {
-            internalId = Guid.NewGuid();
+            Syntax = SyntaxFactory.LockStatement(expression.Syntax, statement.Syntax);
+        }
+
+        internal LockStatementWithCodeAnalysis()
+        {
             node = new StatementNode<LockStatementWithCodeAnalysis, LockStatementSyntax>(this);
             expression = new CachedExpressionNode<LockStatementWithCodeAnalysis, LockStatementSyntax>(
                 node,

@@ -1,8 +1,7 @@
 ﻿using CSharpDom.BaseClasses.Editable.Expressions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
@@ -16,7 +15,15 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private readonly CachedExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> expression;
         private readonly ArgumentListWrapper<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> parameterExpressions;
 
-        public MethodCallExpressionWithCodeAnalysis()
+        public MethodCallExpressionWithCodeAnalysis(
+            IExpressionWithCodeAnalysis expression,
+            IEnumerable<IExpressionWithCodeAnalysis> parameters)
+            : this()
+        {
+            Syntax = SyntaxFactory.InvocationExpression(expression.Syntax, parameters.ToArgumentList());
+        }
+
+        internal MethodCallExpressionWithCodeAnalysis()
         {
             node = new ExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(this);
             expression = new CachedExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(

@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.BaseClasses.Editable.Statements;
+﻿using CSharpDom.BaseClasses.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
@@ -10,13 +9,20 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasSyntax<EmptyStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<EmptyStatementWithCodeAnalysis, EmptyStatementSyntax> node;
 
         public EmptyStatementWithCodeAnalysis()
+            : this(SyntaxFactory.EmptyStatement())
         {
-            internalId = Guid.NewGuid();
+        }
+
+        internal EmptyStatementWithCodeAnalysis(EmptyStatementSyntax syntax)
+        {
             node = new StatementNode<EmptyStatementWithCodeAnalysis, EmptyStatementSyntax>(this);
+            if (syntax != null)
+            {
+                Syntax = syntax;
+            }
         }
 
         public EmptyStatementSyntax Syntax

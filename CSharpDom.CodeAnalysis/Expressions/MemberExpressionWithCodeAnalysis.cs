@@ -2,6 +2,7 @@
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
@@ -14,7 +15,18 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private readonly ExpressionNode<MemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax> node;
         private readonly CachedExpressionNode<MemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax> objectExpression;
 
-        public MemberExpressionWithCodeAnalysis()
+        public MemberExpressionWithCodeAnalysis(
+            IExpressionWithCodeAnalysis objectExpression,
+            string memberName)
+            : this()
+        {
+            Syntax = SyntaxFactory.MemberAccessExpression(
+                SyntaxKind.InvocationExpression,
+                objectExpression.Syntax,
+                SyntaxFactory.IdentifierName(memberName));
+        }
+
+        internal MemberExpressionWithCodeAnalysis()
         {
             node = new ExpressionNode<MemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax>(this);
             objectExpression = new CachedExpressionNode<MemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax>(

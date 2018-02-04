@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using CSharpDom.BaseClasses.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
@@ -11,7 +13,6 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasNode<TryStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<TryStatementWithCodeAnalysis, TryStatementSyntax> node;
         private readonly SyntaxNodeList<
             TryStatementWithCodeAnalysis,
@@ -25,9 +26,20 @@ namespace CSharpDom.CodeAnalysis.Statements
             FinallyClauseSyntax> finallyStatement;
         private readonly StatementListWrapper<TryStatementWithCodeAnalysis, TryStatementSyntax> tryStatements;
 
-        public TryStatementWithCodeAnalysis()
+        public TryStatementWithCodeAnalysis(
+            IEnumerable<IStatementWithCodeAnalysis> statements,
+            IEnumerable<CatchStatementWithCodeAnalysis> catchClauses,
+            FinallyStatementWithCodeAnalysis finallyClause)
+            : this()
         {
-            internalId = Guid.NewGuid();
+            Syntax = SyntaxFactory.TryStatement(
+                SyntaxFactory.Block(statements.Select(statement => statement.Syntax)),
+                SyntaxFactory.List(catchClauses.Select(clause => clause.Syntax)),
+                finallyClause?.Syntax);
+        }
+        
+        internal TryStatementWithCodeAnalysis()
+        {
             node = new StatementNode<TryStatementWithCodeAnalysis, TryStatementSyntax>(this);
             catchStatements = new SyntaxNodeList<TryStatementWithCodeAnalysis, TryStatementSyntax, CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
                 node,

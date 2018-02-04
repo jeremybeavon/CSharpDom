@@ -12,14 +12,12 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasSyntax<CatchClauseSyntax>,
         IHasNode<CatchClauseSyntax>
     {
-        private readonly Guid internalId;
         private readonly Node<CatchStatementWithCodeAnalysis, CatchClauseSyntax> node;
         private readonly StatementListWrapper<CatchStatementWithCodeAnalysis, CatchClauseSyntax> statements;
         private readonly CachedTypeReferenceNode<CatchStatementWithCodeAnalysis, CatchClauseSyntax> type;
 
-        public CatchStatementWithCodeAnalysis()
+        internal CatchStatementWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
             node = new Node<CatchStatementWithCodeAnalysis, CatchClauseSyntax>(this);
             statements = new StatementListWrapper<CatchStatementWithCodeAnalysis, CatchClauseSyntax>(
                 node,

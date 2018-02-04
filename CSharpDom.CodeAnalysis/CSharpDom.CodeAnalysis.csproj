@@ -480,6 +480,8 @@
     <Compile Include="InternalStaticClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticClassNestedClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticClassNestedStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Statements\StatementFactory.cs" />
+    <Compile Include="Statements\ThrowStatementWithCodeAnalysis.cs" />
     <Compile Include="StaticTypeWithCodeAnalysis.cs" />
     <Compile Include="StructDeclarationSyntaxExtensions.cs" />
     <Compile Include="InternalStructEventCollectionWithCodeAnalysis.cs" />
@@ -776,7 +778,7 @@
     <Compile Include="PropertyWithBodyWithCodeAnalysis.cs" />
     <Compile Include="ClassPropertyWithCodeAnalysis.cs" />
     <Compile Include="ClassReferenceWithCodeAnalysis.cs" />
-    <Compile Include="EnumerableExtensions.cs" />
+    <Compile Include="Expressions\EnumerableExtensions.cs" />
     <Compile Include="FilteredList.generic2.cs" />
     <Compile Include="ChildNodeList.cs" />
     <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />

@@ -71,6 +71,9 @@ namespace CSharpDom.Common.Statements
             where TSwitchCaseStatement : ISwitchCaseStatement
             where TDefaultCaseStatement : IDefaultCaseStatement;
 
+        void VisitThrowStatement<TExpression>(IThrowStatement<TExpression> throwStatement)
+            where TExpression : IExpression;
+
         void VisitTryStatement<TStatement, TCatchStatement, TFinallyStatement>(
             ITryStatement<TStatement, TCatchStatement, TFinallyStatement> tryStatement)
             where TStatement : IStatement

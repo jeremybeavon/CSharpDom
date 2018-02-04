@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using CSharpDom.BaseClasses.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
@@ -19,6 +20,19 @@ namespace CSharpDom.CodeAnalysis.Statements
             ForStatementSyntax,
             IInternalForStatementInitializer,
             VariableDeclarationSyntax> initialValueStatement;
+
+        public ForStatementWithCodeAnalysis(
+            IForInitializerStatementWithCodeAnalysis initialValue,
+            IExpressionWithCodeAnalysis condition,
+            IExpressionWithCodeAnalysis incrementExpression,
+            IStatementWithCodeAnalysis statement)
+            : this()
+        {
+            /*Syntax = SyntaxFactory.ForStatement(
+                (VariableDeclarationSyntax)initialValue.Syntax,
+                SyntaxFactory.SeparatedList(),
+                )*/
+        }
 
         internal ForStatementWithCodeAnalysis()
         {

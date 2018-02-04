@@ -1,8 +1,6 @@
-﻿using System.Collections.Generic;
-using CSharpDom.BaseClasses.Editable.Statements;
-using CSharpDom.BaseClasses.Editable.Expressions;
+﻿using CSharpDom.BaseClasses.Editable.Statements;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Statements
 {
@@ -12,15 +10,32 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasNode<IfStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<IfStatementWithCodeAnalysis, IfStatementSyntax> node;
         private readonly CachedExpressionNode<IfStatementWithCodeAnalysis, IfStatementSyntax> condition;
         private readonly CachedStatementNode<IfStatementWithCodeAnalysis, IfStatementSyntax> thenStatement;
         private readonly CachedStatementNode<IfStatementWithCodeAnalysis, IfStatementSyntax> elseStatement;
 
-        public IfStatementWithCodeAnalysis()
+        public IfStatementWithCodeAnalysis(
+            IExpressionWithCodeAnalysis condition,
+            IStatementWithCodeAnalysis thenStatement)
+            : this(condition, thenStatement, null)
         {
-            internalId = Guid.NewGuid();
+        }
+
+        public IfStatementWithCodeAnalysis(
+            IExpressionWithCodeAnalysis condition,
+            IStatementWithCodeAnalysis thenStatement,
+            IStatementWithCodeAnalysis elseStatement)
+            : this()
+        {
+            Syntax = SyntaxFactory.IfStatement(
+                condition.Syntax,
+                thenStatement.Syntax,
+                elseStatement == null ? null : SyntaxFactory.ElseClause(elseStatement.Syntax));
+        }
+
+        internal IfStatementWithCodeAnalysis()
+        {
             node = new StatementNode<IfStatementWithCodeAnalysis, IfStatementSyntax>(this);
             condition = new CachedExpressionNode<IfStatementWithCodeAnalysis, IfStatementSyntax>(
                 node,

@@ -14,22 +14,24 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<AccessorDeclarationSyntax>
     {
         private readonly Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> node;
-        private readonly SyntaxKind accessorType;
         private readonly AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> attributes;
-        
-        internal AccessorWithCodeAnalysis(AccessorType type)
-            : this(type == AccessorType.Get ? SyntaxKind.GetKeyword : SyntaxKind.SetKeyword)
+
+        public AccessorWithCodeAnalysis(AccessorType accessorType)
+            : this(SyntaxFactory.AccessorDeclaration(GetSyntax(accessorType)))
         {
         }
 
-        internal AccessorWithCodeAnalysis(SyntaxKind accessorType)
+        internal AccessorWithCodeAnalysis(AccessorDeclarationSyntax initialSyntax)
         {
             node = new Node<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(this);
-            this.accessorType = accessorType;
             attributes = new AttributeListWrapper<AccessorWithCodeAnalysis, AccessorDeclarationSyntax>(
                 node,
                 syntax => syntax.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
+            if (initialSyntax != null)
+            {
+                Syntax = initialSyntax;
+            }
         }
         
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -52,6 +54,11 @@ namespace CSharpDom.CodeAnalysis
         INode<AccessorDeclarationSyntax> IHasNode<AccessorDeclarationSyntax>.Node
         {
             get { return node; }
+        }
+
+        private static SyntaxKind GetSyntax(AccessorType accessorType)
+        {
+            return accessorType == AccessorType.Get ? SyntaxKind.GetKeyword : SyntaxKind.SetKeyword;
         }
     }
 }

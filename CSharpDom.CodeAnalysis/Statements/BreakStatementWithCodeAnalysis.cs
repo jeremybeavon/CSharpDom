@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
@@ -10,13 +11,20 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasSyntax<BreakStatementSyntax>,
         IInternalStatement
     {
-        private Guid internalId;
         private readonly StatementNode<BreakStatementWithCodeAnalysis, BreakStatementSyntax> node;
 
         public BreakStatementWithCodeAnalysis()
+            : this(SyntaxFactory.BreakStatement())
         {
-            internalId = Guid.NewGuid();
+        }
+
+        internal BreakStatementWithCodeAnalysis(BreakStatementSyntax syntax)
+        {
             node = new StatementNode<BreakStatementWithCodeAnalysis, BreakStatementSyntax>(this);
+            if (syntax != null)
+            {
+                Syntax = syntax;
+            }
         }
 
         public BreakStatementSyntax Syntax

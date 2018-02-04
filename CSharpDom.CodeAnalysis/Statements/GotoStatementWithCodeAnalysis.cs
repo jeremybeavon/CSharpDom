@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using CSharpDom.BaseClasses.Editable.Statements;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
@@ -11,12 +10,10 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasSyntax<GotoStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<GotoStatementWithCodeAnalysis, GotoStatementSyntax> node;
 
-        public GotoStatementWithCodeAnalysis()
+        internal GotoStatementWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
             node = new StatementNode<GotoStatementWithCodeAnalysis, GotoStatementSyntax>(this);
         }
 

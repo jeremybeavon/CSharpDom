@@ -30,7 +30,7 @@ namespace CSharpDom.CodeAnalysis
                 //{ typeof(ImplicitElementAccessSyntax), () => },
                 //{ typeof(InitializerExpressionSyntax), () => },
                 //{ typeof(InterpolatedStringExpressionSyntax), () => },
-                //{ typeof(InvocationExpressionSyntax), () => },
+                { typeof(InvocationExpressionSyntax), () => new MethodCallExpressionWithCodeAnalysis() },
                 //{ typeof(MakeRefExpressionSyntax), () => },
                 { typeof(MemberAccessExpressionSyntax), () => new MemberExpressionWithCodeAnalysis() },
                 //{ typeof(MemberBindingExpressionSyntax), () =>  },

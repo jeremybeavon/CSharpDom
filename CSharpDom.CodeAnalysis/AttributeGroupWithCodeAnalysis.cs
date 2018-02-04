@@ -14,7 +14,6 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<AttributeListSyntax>
     {
         private readonly Node<AttributeGroupWithCodeAnalysis, AttributeListSyntax> node;
-        private readonly Guid internalId;
         private readonly SeparatedSyntaxNodeList<
             AttributeGroupWithCodeAnalysis,
             AttributeListSyntax,
@@ -23,7 +22,6 @@ namespace CSharpDom.CodeAnalysis
         
         internal AttributeGroupWithCodeAnalysis()
         {
-            internalId = Guid.NewGuid();
             node = new Node<AttributeGroupWithCodeAnalysis, AttributeListSyntax>(this);
             attributes = new SeparatedSyntaxNodeList<AttributeGroupWithCodeAnalysis, AttributeListSyntax, AttributeWithCodeAnalysis, AttributeSyntax>(
                 node,

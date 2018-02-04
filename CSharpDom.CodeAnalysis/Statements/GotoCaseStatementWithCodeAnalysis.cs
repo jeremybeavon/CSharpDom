@@ -11,12 +11,19 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasSyntax<GotoStatementSyntax>,
         IInternalStatement
     {
-        private readonly Guid internalId;
         private readonly StatementNode<GotoCaseStatementWithCodeAnalysis, GotoStatementSyntax> node;
 
-        public GotoCaseStatementWithCodeAnalysis()
+        public GotoCaseStatementWithCodeAnalysis(string caseName)
+            : this()
         {
-            internalId = Guid.NewGuid();
+            Syntax = SyntaxFactory.GotoStatement(
+                SyntaxKind.GotoStatement,
+                SyntaxFactory.Token(SyntaxKind.CaseKeyword),
+                SyntaxFactory.IdentifierName(caseName));
+        }
+
+        internal GotoCaseStatementWithCodeAnalysis()
+        {
             node = new StatementNode<GotoCaseStatementWithCodeAnalysis, GotoStatementSyntax>(this);
         }
 

@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.CodeAnalysis.Visi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.EditableInterfaceGenerator", "Apps\CSharpDom.EditableInterfaceGenerator\CSharpDom.EditableInterfaceGenerator.csproj", "{60131F81-ADE0-42A9-B1E1-3BAFC2DED688}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.ForwardingVisitorGenerator", "Apps\CSharpDom.ForwardingVisitorGenerator\CSharpDom.ForwardingVisitorGenerator.csproj", "{EFEEE575-4802-4C68-B3A4-3219DD73B9CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{60131F81-ADE0-42A9-B1E1-3BAFC2DED688}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60131F81-ADE0-42A9-B1E1-3BAFC2DED688}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60131F81-ADE0-42A9-B1E1-3BAFC2DED688}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFEEE575-4802-4C68-B3A4-3219DD73B9CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFEEE575-4802-4C68-B3A4-3219DD73B9CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFEEE575-4802-4C68-B3A4-3219DD73B9CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFEEE575-4802-4C68-B3A4-3219DD73B9CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -114,6 +120,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{0958DDDF-97EF-4752-82CD-DB586B4883BC} = {33C8EAF4-F097-4A7B-8FF9-E2ED7DAD0F80}
 		{60131F81-ADE0-42A9-B1E1-3BAFC2DED688} = {33C8EAF4-F097-4A7B-8FF9-E2ED7DAD0F80}
+		{EFEEE575-4802-4C68-B3A4-3219DD73B9CB} = {33C8EAF4-F097-4A7B-8FF9-E2ED7DAD0F80}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {58CC7564-D2F3-47B5-8DB8-26BB93131EE7}

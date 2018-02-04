@@ -3,6 +3,7 @@ using CSharpDom.BaseClasses.Editable.Expressions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
@@ -16,7 +17,15 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private readonly CachedExpressionNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax> expression;
         private readonly CachedTypeReferenceNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax> type;
 
-        public CastExpressionWithCodeAnalysis()
+        public CastExpressionWithCodeAnalysis(
+            ITypeReferenceWithCodeAnalysis type,
+            IExpressionWithCodeAnalysis expression)
+            : this()
+        {
+            Syntax = SyntaxFactory.CastExpression(type.Syntax, expression.Syntax);
+        }
+
+        internal CastExpressionWithCodeAnalysis()
         {
             node = new ExpressionNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax>(this);
             expression = new CachedExpressionNode<CastExpressionWithCodeAnalysis, CastExpressionSyntax>(
