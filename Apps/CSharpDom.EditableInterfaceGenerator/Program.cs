@@ -65,26 +65,34 @@ namespace CSharpDom.EditableInterfaceGenerator
                 string namespaceName = @namespace.Name;
                 using (CodeAnalysisSettings.AllowEdits(loadedDocument))
                 {
+                    List<UsingDirectiveWithCodeAnalysis> usingDirectives = loadedDocument.UsingDirectives
+                        .Select(directive => { directive.Name = directive.Name.Replace("CSharpDom.Common.", "CSharpDom.Common.Editable."); return directive; })
+                        .ToList();
                     if (namespaceName.StartsWith("CSharpDom.Common."))
                     {
                         UsingDirectiveWithCodeAnalysis usingDirective = new UsingDirectiveWithCodeAnalysis(namespaceName);
-                        List<UsingDirectiveWithCodeAnalysis> usingDirectives = loadedDocument.UsingDirectives
-                            .Select(directive => { directive.Name.Replace("CSharpDom.Common.", "CSharpDom.Common.Editable."); return directive; })
-                            .ToList();
-                        usingDirectives.Insert(~usingDirectives.BinarySearch(usingDirective, new Program()), usingDirective);
-                        loadedDocument.UsingDirectives = usingDirectives;
+                        usingDirectives.Insert(
+                            ~usingDirectives.BinarySearch(usingDirective, new Program()),
+                            usingDirective);                        
                     }
 
+                    loadedDocument.UsingDirectives = usingDirectives;
                     @namespace.Name = Regex.Replace(namespaceName, "^CSharpDom.Common", "CSharpDom.Common.Editable");
                     InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
                     string interfaceName = @interface.Name;
-                    @interface.Name = GetNewName(interfaceName);
-                    if (interfaceName == "IGenericVisitor")
+                    if (Regex.IsMatch(interfaceName, "^IGeneric.*Visitor$"))
                     {
+                        destinationPath = destinationPath.Replace("Generic", "Editable");
+                        @interface.Name = interfaceName.Replace("Generic", "Editable");
                         foreach (InterfaceMethodWithCodeAnalysis method in @interface.Methods)
                         {
-                            if (method.Name == "Visit")
+                            UnspecifiedTypeReferenceWithCodeAnalysis parameterType =
+                                method.Parameters[0].ParameterType as UnspecifiedTypeReferenceWithCodeAnalysis;
+                            if (method.Name == "Visit" || method.Name == "VisitAsync")
                             {
+                                UnspecifiedTypeReferenceWithCodeAnalysis genericParameterType =
+                                    parameterType.GenericParameters[0] as UnspecifiedTypeReferenceWithCodeAnalysis;
+                                genericParameterType.Name = genericParameterType.Name.Replace("Generic", "Editable");
                                 continue;
                             }
 
@@ -97,13 +105,12 @@ namespace CSharpDom.EditableInterfaceGenerator
                                 }
                             }
 
-                            UnspecifiedTypeReferenceWithCodeAnalysis parameterType =
-                                method.Parameters[0].ParameterType as UnspecifiedTypeReferenceWithCodeAnalysis;
                             parameterType.Name = GetNewName(parameterType.Name);
                         }
                     }
                     else
                     {
+                        @interface.Name = GetNewName(interfaceName);
                         List<ITypeReferenceWithCodeAnalysis> genericParameters = new List<ITypeReferenceWithCodeAnalysis>();
                         foreach (GenericParameterDeclarationWithCodeAnalysis parameter in @interface.GenericParameters)
                         {
@@ -125,7 +132,9 @@ namespace CSharpDom.EditableInterfaceGenerator
                             string referenceName = reference.Name;
                             if (referenceName == "IVisitable")
                             {
-                                reference.GenericParameters[0] = new InterfaceReferenceWithCodeAnalysis("IEditableVisitor");
+                                UnspecifiedTypeReferenceWithCodeAnalysis genericParameterType =
+                                    reference.GenericParameters[0] as UnspecifiedTypeReferenceWithCodeAnalysis;
+                                genericParameterType.Name = genericParameterType.Name.Replace("Generic", "Editable");
                             }
                             else
                             {

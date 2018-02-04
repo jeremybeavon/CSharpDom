@@ -11,6 +11,6 @@
         BeginMethodDefinition,
         EndMethodDefinition,
         BeginMethodParametersDefinition,
-        EndMethodParametersDefintion
+        EndMethodParametersDefinition
     }
 }

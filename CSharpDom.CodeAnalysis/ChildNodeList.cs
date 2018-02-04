@@ -12,8 +12,7 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<TParent, TParentSyntax> node;
         private readonly IChildSyntaxList<TParentSyntax, TChildSyntax> list;
-        private readonly Func<TChildSyntax, TChild> factoryWithSyntax;
-        private readonly Func<TChild> factory;
+        private readonly Func<int, TChild> factory;
         private readonly IList<TChild> innerList;
         private bool isInitialized;
         private bool isRefreshList;
@@ -24,7 +23,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TChild> factory)
             : this(node, list)
         {
-            this.factory = factory;
+            this.factory = index => factory();
         }
 
         public ChildNodeList(
@@ -33,13 +32,14 @@ namespace CSharpDom.CodeAnalysis
             Func<TChildSyntax, TChild> factory)
             : this(node, list)
         {
-            factoryWithSyntax = factory;
+            this.factory = index => factory(this.list[index]);
         }
 
         private ChildNodeList(
             Node<TParent, TParentSyntax> node,
             IChildSyntaxList<TParentSyntax, TChildSyntax> list)
         {
+            node.ChildNodes.Add(this);
             this.node = node;
             this.list = list;
             innerList = new List<TChild>();
@@ -58,8 +58,6 @@ namespace CSharpDom.CodeAnalysis
         }
 
         public IList<INode> ChildNodes { get; } = new List<INode>();
-
-        IList<INode> INode.ChildNodes => throw new NotImplementedException();
 
         public TChild this[int index]
         {
@@ -175,13 +173,16 @@ namespace CSharpDom.CodeAnalysis
             RefreshList();
         }
 
+        private TChildSyntax GetChildSyntax(int index)
+        {
+            RefreshList();
+            return list[index];
+        }
+
         private void SetParent(TChild item, int initialIndex)
         {
-            item.Node.SetParent<TParent, TParentSyntax>(
-                node.Value,
-                initialIndex,
-                index => list[index],
-                list.Set);
+            item.Node.SetParent(node.Value, initialIndex, GetChildSyntax, list.Set);
+            ChildNodes.Add(item.Node);
         }
         
         private void InternalAdd(TChild item)
@@ -242,6 +243,11 @@ namespace CSharpDom.CodeAnalysis
             isInitialized = true;
             if (isRefreshed)
             {
+                if (innerList.Count != list.Count)
+                {
+                    Console.Write("Problem");
+                }
+
                 return;
             }
 
@@ -256,7 +262,7 @@ namespace CSharpDom.CodeAnalysis
             {
                 for (int index = innerList.Count; index < count; index++)
                 {
-                    InternalAdd(factory == null ? factoryWithSyntax(list[index]) : factory());
+                    InternalAdd(factory(index));
                 }
             }
             else

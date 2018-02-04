@@ -80,6 +80,10 @@ namespace CSharpDom.CodeAnalysis
                 parent,
                 () => getChildSyntax(parent.Node.Syntax),
                 syntax => parent.Node.Syntax = createChildSyntax(parent.Node.Syntax, syntax));
+            if (parentNode != null)
+            {
+                parentNode.ChildNodes.Add(this);
+            }
         }
 
         public void SetParent<TParent, TParentSyntax>(
@@ -138,7 +142,6 @@ namespace CSharpDom.CodeAnalysis
                 parentNode = parent.Node;
                 getSyntax = getChildSyntax;
                 setSyntax = setChildSyntax;
-                parentNode.ChildNodes.Add(this);
                 if (syntax != null)
                 {
                     IsLocked = true;

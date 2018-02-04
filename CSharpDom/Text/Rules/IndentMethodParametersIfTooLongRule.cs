@@ -21,16 +21,17 @@ namespace CSharpDom.Text.Rules
             {
                 SourceCodeStepRange range = methodSteps.Steps.GetRange(
                     SourceCodePlaceholder.BeginMethodParametersDefinition,
-                    SourceCodePlaceholder.BeginMethodParametersDefinition);
+                    SourceCodePlaceholder.EndMethodParametersDefinition);
                 int methodDefinitionLength = methodSteps.Steps.GetRange(
                     SourceCodePlaceholder.BeginMethodDefinition,
                     SourceCodePlaceholder.EndMethodDefinition).Range.FindFirstLine().ToSourceCode().Length;
-                if (range == null || range.Range.FindFirstLine().ToSourceCode().Length <= MaximumLineLength)
+                if (range == null || methodDefinitionLength <= MaximumLineLength)
                 {
                     continue;
                 }
 
                 range.Range.Insert(0, new IncrementIndent());
+                range.Range.Insert(1, new WriteIndentedNewLine());
                 range.Range.Add(new DecrementIndent());
                 range.Range.ReplaceAll(typeof(WriteWhitespace), new WriteIndentedNewLine());
                 range.Apply();

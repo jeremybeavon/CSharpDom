@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -28,24 +29,25 @@ namespace CSharpDom.CodeAnalysis
 
         private static void RefreshAndClearEditedNodes()
         {
-            RefreshNodes(editedNodes);
+            foreach (INode node in editedNodes)
+            {
+                RefreshNode(node);
+            }
+
             editedNodes.Clear();
         }
 
-        private static void RefreshNodes(IEnumerable<INode> nodes)
+        private static void RefreshNode(INode node)
         {
-            foreach (INode node in nodes)
+            if (node.ChildNodes.Count == 0)
             {
-                if (node.ChildNodes.Count == 0)
+                node.RefreshSyntax();
+            }
+            else
+            {
+                foreach (INode childNode in node.ChildNodes.ToArray())
                 {
-                    node.RefreshSyntax();
-                }
-                else
-                {
-                    foreach (INode childNode in node.ChildNodes)
-                    {
-                        RefreshNodes(childNode.ChildNodes);
-                    }
+                    RefreshNode(childNode);
                 }
             }
         }
@@ -53,7 +55,6 @@ namespace CSharpDom.CodeAnalysis
         private sealed class DisposableValue : IDisposable
         {
             private readonly bool areEditsAllowed;
-
 
             public DisposableValue()
             {
@@ -63,11 +64,12 @@ namespace CSharpDom.CodeAnalysis
 
             public void Dispose()
             {
-                AreEditsAllowed = areEditsAllowed;
-                if (!AreEditsAllowed)
+                if (!areEditsAllowed)
                 {
                     RefreshAndClearEditedNodes();
                 }
+
+                AreEditsAllowed = areEditsAllowed;
             }
         }
     }

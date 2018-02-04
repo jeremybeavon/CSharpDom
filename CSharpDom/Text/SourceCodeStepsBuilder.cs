@@ -762,7 +762,7 @@ namespace CSharpDom.Text
             Steps.Add(new WriteStartParenthesis());
             Steps.AddPlaceholder(SourceCodePlaceholder.BeginMethodParametersDefinition);
             Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
-            Steps.AddPlaceholder(SourceCodePlaceholder.EndMethodParametersDefintion);
+            Steps.AddPlaceholder(SourceCodePlaceholder.EndMethodParametersDefinition);
             Steps.Add(new WriteEndParenthesis());
             Steps.AddPlaceholder(SourceCodePlaceholder.EndMethodDefinition);
             Steps.AddGenericParameterConstraintSteps(method.GenericParameters);
