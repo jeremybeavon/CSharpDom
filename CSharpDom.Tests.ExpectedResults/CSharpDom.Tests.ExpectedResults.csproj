@@ -14136,9 +14136,6 @@
     <EmbeddedResource Include="CSharpDom.TestTarget.Partial\Classes\NestedStaticPartialClasses\Protected.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget.Partial\Classes\NestedStaticPartialClasses\ProtectedInternal.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget.Partial\Classes\NestedStaticPartialClasses\Public.cs" />
-    <EmbeddedResource Include="CSharpDom.TestTarget.Partial\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
-    <EmbeddedResource Include="CSharpDom.TestTarget.Partial\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
-    <EmbeddedResource Include="CSharpDom.TestTarget.Partial\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget.Partial\PartialClasses\Constructors\1Attribute.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget.Partial\PartialClasses\Constructors\1Parameter.cs" />
     <EmbeddedResource Include="CSharpDom.TestTarget.Partial\PartialClasses\Constructors\2AttributesIn1AttributeGroup.cs" />
