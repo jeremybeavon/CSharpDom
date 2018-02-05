@@ -1,6 +1,4 @@
 ﻿using CSharpDom.CodeAnalysis;
-using CSharpDom.CodeAnalysis.Statements;
-using CSharpDom.Common.Statements;
 using CSharpDom.Text;
 using CSharpDom.Text.Rules;
 using Nito.AsyncEx;
@@ -9,9 +7,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace CSharpDom.ForwardingVisitorGenerator
+namespace CSharpDom.GenericChildVisitorGenerator
 {
     public static class Program
     {
@@ -26,15 +25,17 @@ namespace CSharpDom.ForwardingVisitorGenerator
                 Path.GetDirectoryName(typeof(Program).Assembly.Location),
                 @"..\..\..\..CSharpDom\Common\Editable\ForwardingEditableVisitor.cs");
             visitorFileName = Path.GetFullPath(visitorFileName);
-            LoadedDocumentWithCodeAnalysis loadedDocument = 
+            LoadedDocumentWithCodeAnalysis loadedDocument =
                 await LoadedDocumentWithCodeAnalysis.LoadFromFileAsync(visitorFileName);
-            SealedClassWithCodeAnalysis visitorClass = loadedDocument.Classes.SealedClasses.First();
+            StaticClassWithCodeAnalysis visitorClass = loadedDocument.Classes.StaticClasses.First();
             using (CodeAnalysisSettings.AllowEdits(visitorClass))
             {
-                foreach (SealedClassMethodWithCodeAnalysis method in
-                    visitorClass.Methods.Where(method => method.Body.Statements.FirstOrDefault() is IThrowStatement))
+                foreach (StaticClassMethodWithCodeAnalysis method in
+                    visitorClass.Methods.Where(method => method.GenericParameters.LastOrDefault()?.Name != "TVisitor"))
                 {
-                    
+                    ITypeReferenceWithCodeAnalysis visitableType = method.Parameters[0].ParameterType;
+                    string newName = Regex.Replace(visitableType.Name, "^I", "T");
+                    //method.GenericParameters.Insert(0, new GenericParameterDeclarationWithCodeAnalysis())
                 }
             }
 

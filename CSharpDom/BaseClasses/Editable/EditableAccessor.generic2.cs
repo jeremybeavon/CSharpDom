@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableAccessor<TAttributeGroup, TMethodBody> :
         EditableAccessor<TAttributeGroup>,
-        IAccessor<TAttributeGroup, TMethodBody>
-        where TAttributeGroup : IAttributeGroup
-        where TMethodBody : IMethodBody
+        IEditableAccessor<TAttributeGroup, TMethodBody>
+        where TAttributeGroup : IEditableAttributeGroup
+        where TMethodBody : IEditableMethodBody
     {
         public abstract TMethodBody Body { get; set; }
 
@@ -17,9 +18,19 @@ namespace CSharpDom.BaseClasses.Editable
             visitor.VisitAccessor(this);
         }
 
+        public override void Accept(IEditableVisitor visitor)
+        {
+            visitor.VisitAccessor(this);
+        }
+
         public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAccessor(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

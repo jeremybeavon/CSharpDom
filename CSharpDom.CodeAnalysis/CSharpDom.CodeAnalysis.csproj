@@ -187,6 +187,7 @@
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
     <Compile Include="ClassCollectionWithCodeAnalysisExtensions.cs" />
     <Compile Include="CodeAnalysisSettings.cs" />
+    <Compile Include="Expressions\ExpressionFactory.cs" />
     <Compile Include="FilteredChildSyntaxList.generic.cs" />
     <Compile Include="GenericParameterConstraint.cs" />
     <Compile Include="IClassCollectionWithCodeAnalysis.cs" />
@@ -567,8 +568,10 @@
     <Compile Include="InternalStaticClassMethodCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticClassNestedClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticClassNestedStructCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Statements\LabelStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\StatementFactory.cs" />
     <Compile Include="Statements\ThrowStatementWithCodeAnalysis.cs" />
+    <Compile Include="Statements\VariableDeclarationStatementWithCodeAnalysis.cs" />
     <Compile Include="StaticTypeWithCodeAnalysis.cs" />
     <Compile Include="StructDeclarationSyntaxExtensions.cs" />
     <Compile Include="InternalStructEventCollectionWithCodeAnalysis.cs" />
@@ -792,6 +795,7 @@
     <Compile Include="StructWithCodeAnalysis.cs" />
     <Compile Include="TypedFactory.cs" />
     <Compile Include="CachedTypeReferenceNode.cs" />
+    <Compile Include="TypeReferenceFactory.cs" />
     <Compile Include="TypeReferenceNode.cs" />
     <Compile Include="TypeSyntaxVisitor.cs" />
     <Compile Include="UsingDirectiveWithCodeAnalysis.cs" />

@@ -1,9 +1,7 @@
-﻿using CSharpDom.Common;
-using CSharpDom.BaseClasses.Editable.Expressions;
+﻿using CSharpDom.BaseClasses.Editable.Expressions;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
@@ -17,7 +15,15 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private readonly ArgumentListWrapper<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax> parameters;
         private readonly CachedTypeReferenceNode<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax> type;
 
-        public NewExpressionWithCodeAnalysis()
+        public NewExpressionWithCodeAnalysis(
+            ITypeReferenceWithCodeAnalysis type,
+            IEnumerable<IExpressionWithCodeAnalysis> parameters)
+            : this()
+        {
+            Syntax = SyntaxFactory.ObjectCreationExpression(type.Syntax, parameters.ToArgumentList(), null);
+        }
+
+        internal NewExpressionWithCodeAnalysis()
         {
             node = new ExpressionNode<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax>(this);
             parameters = new ArgumentListWrapper<NewExpressionWithCodeAnalysis, ObjectCreationExpressionSyntax>(

@@ -436,7 +436,6 @@
     <Compile Include="Common\Editable\Expressions\IEditableUnaryOperatorExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableUnaryOperatorExpression.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IHasEditableObjectInitializers.cs" />
-    <Compile Include="Common\Editable\ForwardingEditableVisitor.cs" />
     <Compile Include="Common\Editable\IEditableAbstractAccessor.cs" />
     <Compile Include="Common\Editable\IEditableAbstractAccessor.generic.cs" />
     <Compile Include="Common\Editable\IEditableAbstractClass.cs" />
@@ -551,7 +550,7 @@
     <Compile Include="Common\Editable\IEditableDestructor.generic.cs" />
     <Compile Include="Common\Editable\IEditableDocument.cs" />
     <Compile Include="Common\Editable\IEditableDocument.generic.cs" />
-    <Compile Include="Common\Editable\IEditableEditableVisitor.cs" />
+    <Compile Include="Common\Editable\IEditableVisitor.cs" />
     <Compile Include="Common\Editable\IEditableEnum.cs" />
     <Compile Include="Common\Editable\IEditableEnum.generic.cs" />
     <Compile Include="Common\Editable\IEditableEnumMember.cs" />
@@ -1003,6 +1002,8 @@
     <Compile Include="Common\Editable\Statements\IEditableVariableDeclarationStatement.generic.cs" />
     <Compile Include="Common\Editable\Statements\IEditableWhileStatement.cs" />
     <Compile Include="Common\Editable\Statements\IEditableWhileStatement.generic.cs" />
+    <Compile Include="Common\GenericChildVisitor.cs" />
+    <Compile Include="Common\IInterfaceVisitor.cs" />
     <Compile Include="Common\LoadedProjectExtensions.cs" />
     <Compile Include="Common\NestedClassCollectionExtensions.cs" />
     <Compile Include="Common\ClassCollectionExtensions.cs" />
@@ -1400,6 +1401,8 @@
     <Compile Include="BaseClasses\Editable\Statements\EditableUsingStatement.cs" />
     <Compile Include="BaseClasses\Editable\Statements\EditableVariableDeclarationStatement.cs" />
     <Compile Include="BaseClasses\Editable\Statements\EditableWhileStatement.cs" />
+    <Compile Include="Common\Statements\ICheckedStatement.cs" />
+    <Compile Include="Common\Statements\ICheckedStatement.generic.cs" />
     <Compile Include="IndexerParameterModifier.cs" />
     <Compile Include="NotSupported\ExpressionNotSupported.cs" />
     <Compile Include="AnonymousMethodParameterModifier.cs" />

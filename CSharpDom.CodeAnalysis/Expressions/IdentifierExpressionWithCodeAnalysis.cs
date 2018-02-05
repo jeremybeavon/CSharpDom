@@ -14,6 +14,12 @@ namespace CSharpDom.CodeAnalysis.Expressions
     {
         private readonly ExpressionNode<IdentifierExpressionWithCodeAnalysis, IdentifierNameSyntax> node;
 
+        public IdentifierExpressionWithCodeAnalysis(string name)
+            : this()
+        {
+            Syntax = SyntaxFactory.IdentifierName(name);
+        }
+
         internal IdentifierExpressionWithCodeAnalysis()
         {
             node = new ExpressionNode<IdentifierExpressionWithCodeAnalysis, IdentifierNameSyntax>(this);

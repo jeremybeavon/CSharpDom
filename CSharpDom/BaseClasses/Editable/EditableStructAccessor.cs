@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableStructAccessor<TAttributeGroup, TMethodBody> :
         EditableAccessor<TAttributeGroup, TMethodBody>,
         IStructAccessor<TAttributeGroup, TMethodBody>
-        where TAttributeGroup : IAttributeGroup
-        where TMethodBody : IMethodBody
+        where TAttributeGroup : IEditableAttributeGroup
+        where TMethodBody : IEditableMethodBody
     {
         
         public abstract StructAccessorVisibilityModifier Visibility { get; set; }

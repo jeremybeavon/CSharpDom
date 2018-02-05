@@ -1,33 +1,35 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using CSharpDom.Editable.Statements;
-using CSharpDom.Editable.Expressions;
-using CSharpDom.Common;
-using System;
+using CSharpDom.BaseClasses.Editable.Statements;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Statements
 {
-    public sealed class VariableDeclarationStatementWithCodeAnalysis<TTypeReference, TExpression> :
-        IVariableDeclarationStatement<TTypeReference, TExpression>
-        where TTypeReference : ITypeReference
-        where TExpression : IExpression
+    public sealed class VariableDeclarationStatementWithCodeAnalysis :
+        EditableVariableDeclarationStatement<ITypeReferenceWithCodeAnalysis, IExpressionWithCodeAnalysis>,
+        IHasSyntax<LocalDeclarationStatementSyntax>,
+        IHasNode<LocalDeclarationStatementSyntax>,
+        IInternalStatement
     {
-        public abstract IList<TExpression> Expressions { get; set; }
+        private readonly StatementNode<VariableDeclarationStatementWithCodeAnalysis, LocalDeclarationStatementSyntax> node;
 
-        public abstract TTypeReference Type { get; set; }
-
-        IReadOnlyList<TExpression> IVariableDeclarationStatement<TTypeReference, TExpression>.Expressions
+        internal VariableDeclarationStatementWithCodeAnalysis()
         {
-            get { return new ReadOnlyCollection<TExpression>(Expressions); }
+            node = new StatementNode<VariableDeclarationStatementWithCodeAnalysis, LocalDeclarationStatementSyntax>(this);
         }
 
-        public void Accept(IGenericStatementVisitor visitor)
+        public override IList<IExpressionWithCodeAnalysis> Expressions { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public override ITypeReferenceWithCodeAnalysis Type { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+        public LocalDeclarationStatementSyntax Syntax { get => node.Syntax; set => node.Syntax = value; }
+
+        StatementSyntax IHasSyntax<StatementSyntax>.Syntax
         {
-            visitor.VisitVariableDeclarationStatement(this);
+            get => Syntax;
+            set => Syntax = (LocalDeclarationStatementSyntax)value;
         }
 
-        public void AcceptChildren(IGenericStatementVisitor visitor)
-        {
-        }
+        INode<StatementSyntax> IHasNode<StatementSyntax>.Node => node;
+
+        INode<LocalDeclarationStatementSyntax> IHasNode<LocalDeclarationStatementSyntax>.Node => node;
     }
 }

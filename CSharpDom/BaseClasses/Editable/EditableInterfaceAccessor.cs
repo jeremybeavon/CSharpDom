@@ -1,12 +1,13 @@
 ﻿using System;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableInterfaceAccessor<TAttributeGroup> :
         EditableAccessor<TAttributeGroup>,
         IInterfaceAccessor<TAttributeGroup>
-        where TAttributeGroup : IAttributeGroup
+        where TAttributeGroup : IEditableAttributeGroup
     {
         public override void Accept(IGenericVisitor visitor)
         {

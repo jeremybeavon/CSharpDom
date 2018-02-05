@@ -6,46 +6,82 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Common
 {
-    public static class GenericVisitor
+    public static class GenericChildVisitor
     {
-        public static void VisitAccessor<TAttributeGroup, TMethodBody>(
-            IAccessor<TAttributeGroup, TMethodBody> accessor,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TMethodBody : IMethodBody
+        public static void VisitCollection<T, TVisitor>(IReadOnlyCollection<T> collection, TVisitor visitor)
+            where T : IVisitable<TVisitor>
         {
-            GenericChildVisitor.VisitAccessor<IAccessor<TAttributeGroup, TMethodBody>, TAttributeGroup, TMethodBody, IGenericVisitor>(accessor, visitor);
-        }
-        
-        public static void VisitArrayTypeReferenceChildren<TTypeReference>(
-            IArrayTypeReference<TTypeReference> arrayTypeReference,
-            IGenericVisitor visitor)
-            where TTypeReference : ITypeReference
-        {
-            GenericChildVisitor.VisitArrayTypeReferenceChildren<IArrayTypeReference<TTypeReference>, TTypeReference, IGenericVisitor>(arrayTypeReference, visitor);
+            foreach (T item in collection)
+            {
+                item.Accept(visitor);
+            }
         }
 
-        public static void VisitAttributeGroupChildren<TAttribute>(
-            IAttributeGroup<TAttribute> attributeGroup,
-            IGenericVisitor visitor)
-            where TAttribute : IAttribute
+        public static async Task VisitCollectionAsync<T, TVisitor>(IReadOnlyCollection<T> collection, TVisitor visitor)
+            where T : IAsyncVisitable<TVisitor>
         {
-            GenericChildVisitor.VisitAttributeGroupChildren<IAttributeGroup<TAttribute>, TAttribute, IGenericVisitor>(attributeGroup, visitor);
+            foreach (T item in collection)
+            {
+                await item.AcceptAsync(visitor);
+            }
         }
 
-        public static void VisitAttributeChildren<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>(
-            IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue> attribute,
-            IGenericVisitor visitor)
-            where TClassReference : IClassReference
-            where TUnnamedAttributeValue : IUnnamedAttributeValue
-            where TNamedAttributeValue : INamedAttributeValue
+        public static void VisitIfNotNull<TVisitor>(IVisitable<TVisitor> visitable, TVisitor visitor)
         {
-            GenericChildVisitor.VisitAttributeChildren<IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>, TClassReference, TUnnamedAttributeValue, TNamedAttributeValue, IGenericVisitor>(attribute, visitor);
+            if (visitable != null)
+            {
+                visitable.Accept(visitor);
+            }
         }
 
-        public static void VisitClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> @class,
-            IGenericVisitor visitor)
+        public static void VisitAccessor<TAccessor, TAttributeGroup, TMethodBody, TVisitor>(
+            TAccessor accessor,
+            TVisitor visitor)
+            where TAccessor : IAccessor<TAttributeGroup, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
+        {
+            VisitCollection(accessor.Attributes, visitor);
+            VisitIfNotNull(accessor.Body, visitor);
+        }
+
+        public static void VisitArrayTypeReferenceChildren<TArrayTypeReference, TTypeReference, TVisitor>(
+            TArrayTypeReference arrayTypeReference,
+            TVisitor visitor)
+            where TArrayTypeReference : IArrayTypeReference<TTypeReference>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+        {
+            VisitIfNotNull(arrayTypeReference.ElementType, visitor);
+        }
+
+        public static void VisitAttributeGroupChildren<TAttributeGroup, TAttribute, TVisitor>(
+            TAttributeGroup attributeGroup,
+            TVisitor visitor)
+            where TAttributeGroup : IAttributeGroup<TAttribute>
+            where TAttribute : IAttribute, IVisitable<TVisitor>
+        {
+            VisitCollection(attributeGroup.Attributes, visitor);
+        }
+
+        public static void VisitAttributeChildren<TAttribute, TClassReference, TUnnamedAttributeValue, TNamedAttributeValue, TVisitor>(
+            TAttribute attribute,
+            TVisitor visitor)
+            where TAttribute : IAttribute<TClassReference, TUnnamedAttributeValue, TNamedAttributeValue>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TUnnamedAttributeValue : IUnnamedAttributeValue, IVisitable<TVisitor>
+            where TNamedAttributeValue : INamedAttributeValue, IVisitable<TVisitor>
+        {
+            VisitIfNotNull(attribute.AttributeType, visitor);
+            VisitCollection(attribute.UnnamedValues, visitor);
+            VisitCollection(attribute.NamedValues, visitor);
+        }
+
+        public static void VisitClassChildren<TClass, TClassType, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TClass @class,
+            Func<TClass, TClassType> wrapperFactory,
+            TVisitor visitor)
+            where TClass : IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TClassType : IClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
             where TNamespace : INamespace
             where TDocument : IDocument
             where TProject : IProject
@@ -70,36 +106,7 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
             where TDestructor : IDestructor
         {
-            GenericChildVisitor.VisitClassChildren<
-                IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>,
-                ClassTypeWrapper<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>,
-                TNamespace,
-                TDocument,
-                TProject,
-                TSolution,
-                TAttributeGroup,
-                TGenericParameter,
-                TClassReference,
-                TInterfaceReference,
-                TEventCollection,
-                TPropertyCollection,
-                TIndexerCollection,
-                TMethodCollection,
-                TFieldCollection,
-                TConstructor,
-                TOperatorOverload,
-                TConversionOperator,
-                TNestedClassCollection,
-                TNestedDelegate,
-                TNestedEnum,
-                TNestedInterface,
-                TNestedStructCollection,
-                TStaticConstructor,
-                TDestructor,
-                IGenericVisitor>(
-                @class,
-                type => new ClassTypeWrapper<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(@class),
-                visitor);
+            wrapperFactory(@class).Accept(visitor);
         }
 
         public static void VisitPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
@@ -390,7 +397,7 @@ namespace CSharpDom.Common
             VisitIfNotNull(field.FieldType, visitor);
             VisitCollection(field.Constants, visitor);
         }
-        
+
         public static void VisitGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>(
             IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> genericParameterDeclaration,
             IGenericVisitor visitor)
@@ -522,7 +529,7 @@ namespace CSharpDom.Common
             VisitIfNotNull(method.ReturnType, visitor);
             VisitCollection(method.Parameters, visitor);
         }
-        
+
         public static void VisitMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
             IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
             IGenericVisitor visitor)
@@ -1003,33 +1010,7 @@ namespace CSharpDom.Common
         {
             VisitCollection(unspecificTypeReference.GenericParameters, visitor);
         }
-
-        public static void VisitCollection<T, TVisitor>(IReadOnlyCollection<T> collection, TVisitor visitor)
-            where T : IVisitable<TVisitor>
-        {
-            foreach (T item in collection)
-            {
-                item.Accept(visitor);
-            }
-        }
-
-        public static async Task VisitCollectionAsync<T, TVisitor>(IReadOnlyCollection<T> collection, TVisitor visitor)
-            where T : IAsyncVisitable<TVisitor>
-        {
-            foreach (T item in collection)
-            {
-                await item.AcceptAsync(visitor);
-            }
-        }
-
-        public static void VisitIfNotNull<TVisitor>(IVisitable<TVisitor> visitable, TVisitor visitor)
-        {
-            if (visitable != null)
-            {
-                visitable.Accept(visitor);
-            }
-        }
-
+        
         public static void VisitTypeChildren<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
             IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> type,
             IGenericVisitor visitor)
@@ -1431,7 +1412,7 @@ namespace CSharpDom.Common
             VisitCollection(structCollection, visitor);
             VisitCollection(structCollection.PartialStructs, visitor);
         }
-        
+
         public static void VisitAbstractAccessorChildren<TAttributeGroup>(
             IAbstractAccessor<TAttributeGroup> accessor,
             IGenericVisitor visitor)

@@ -36,7 +36,7 @@ namespace CSharpDom.Reflection
 
         public void AcceptChildren(IReflectionVisitor visitor)
         {
-            AcceptChildren(new ForwardingGenericVisitor(visitor));
+            AcceptChildren(new Internal.ForwardingGenericVisitor(visitor));
         }
     }
 }
