@@ -21,7 +21,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
             : this()
         {
             Syntax = SyntaxFactory.MemberAccessExpression(
-                SyntaxKind.InvocationExpression,
+                SyntaxKind.SimpleMemberAccessExpression,
                 objectExpression.Syntax,
                 SyntaxFactory.IdentifierName(memberName));
         }
