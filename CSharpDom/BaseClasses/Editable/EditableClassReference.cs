@@ -1,14 +1,15 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableClassReference<TTypeReference> :
-        AbstractGenericVisitableObject,
-        IClassReference<TTypeReference>
-        where TTypeReference : ITypeReference
+        EditableVisitableObject,
+        IEditableClassReference<TTypeReference>
+        where TTypeReference : IEditableTypeReference
     {
         public abstract IList<TTypeReference> GenericParameters { get; set; }
 
@@ -24,9 +25,19 @@ namespace CSharpDom.BaseClasses.Editable
             visitor.VisitClassReference(this);
         }
 
+        public override void Accept(IEditableVisitor visitor)
+        {
+            visitor.VisitClassReference(this);
+        }
+
         public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitClassReferenceChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -11,10 +11,15 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<ParameterSyntax>
     {
         private readonly ParameterWithCodeAnalysis parameter;
-        
+
+        public DelegateParameterWithCodeAnalysis(ITypeReferenceWithCodeAnalysis type, string name)
+        {
+            parameter = new ParameterWithCodeAnalysis(type, name);
+        }
+
         internal DelegateParameterWithCodeAnalysis()
         {
-            parameter = new ParameterWithCodeAnalysis(this);
+            parameter = new ParameterWithCodeAnalysis();
         }
 
         public ParameterWithCodeAnalysis Parameter

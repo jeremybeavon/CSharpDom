@@ -31,6 +31,12 @@ namespace CSharpDom.CodeAnalysis
             GenericParameterDeclarationSyntax,
             TypeParameterConstraintSyntax> members;
 
+        public GenericParameterDeclarationWithCodeAnalysis(string name)
+            : this()
+        {
+            Syntax = new GenericParameterDeclarationSyntax(SyntaxFactory.TypeParameter(name), null);
+        }
+
         internal GenericParameterDeclarationWithCodeAnalysis()
         {
             node = new Node<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax>(this);

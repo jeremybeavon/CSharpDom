@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses.Expressions;
+using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,9 +7,9 @@ using System.Collections.ObjectModel;
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableArrayIndexExpression<TExpression> :
-        AbstractExpression,
-        IArrayIndexExpression<TExpression>
-        where TExpression : IExpression
+        EditableExpression,
+        IEditableArrayIndexExpression<TExpression>
+        where TExpression : IEditableExpression
     {
         public abstract TExpression Array { get; set; }
 
@@ -24,9 +25,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitArrayIndexExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitArrayIndexExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitArrayIndexExpressionChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

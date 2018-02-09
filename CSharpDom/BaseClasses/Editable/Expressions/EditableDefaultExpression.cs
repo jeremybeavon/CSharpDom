@@ -1,14 +1,13 @@
-﻿using CSharpDom.BaseClasses.Expressions;
-using CSharpDom.Common;
+﻿using CSharpDom.Common.Editable;
+using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
-using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableDefaultExpression<TTypeReference> :
-        AbstractExpression,
-        IDefaultExpression<TTypeReference>
-        where TTypeReference : ITypeReference
+        EditableExpression,
+        IEditableDefaultExpression<TTypeReference>
+        where TTypeReference : IEditableTypeReference
     {
         public abstract TTypeReference Type { get; set; }
 
@@ -17,7 +16,16 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitDefaultExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitDefaultExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
+        {
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
         {
         }
     }

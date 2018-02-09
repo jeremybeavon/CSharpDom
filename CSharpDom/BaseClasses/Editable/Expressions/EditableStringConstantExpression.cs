@@ -1,9 +1,9 @@
-﻿using CSharpDom.BaseClasses.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
-    public abstract class EditableStringConstantExpression : AbstractExpression, IStringConstantExpression
+    public abstract class EditableStringConstantExpression : EditableExpression, IEditableStringConstantExpression
     {
         public abstract string Constant { get; set; }
 
@@ -14,7 +14,16 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitStringConstantExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitStringConstantExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
+        {
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
         {
         }
     }

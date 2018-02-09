@@ -1,13 +1,13 @@
-﻿using CSharpDom.BaseClasses.Statements;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableReturnStatement<TExpression> :
-        AbstractStatement,
-        IReturnStatement<TExpression>
-        where TExpression : IExpression
+        EditableStatement,
+        IEditableReturnStatement<TExpression>
+        where TExpression : IEditableExpression
     {
         public abstract TExpression Expression { get; set; }
 
@@ -16,7 +16,16 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitReturnStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitReturnStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
+        {
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
         {
         }
     }

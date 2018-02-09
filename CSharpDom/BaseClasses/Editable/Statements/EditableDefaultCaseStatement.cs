@@ -1,4 +1,4 @@
-﻿using CSharpDom.BaseClasses.Statements;
+﻿using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,9 +6,9 @@ using System.Collections.ObjectModel;
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableDefaultCaseStatement<TStatement> :
-        AbstractStatement,
-        IDefaultCaseStatement<TStatement>
-        where TStatement : IStatement
+        EditableStatement,
+        IEditableDefaultCaseStatement<TStatement>
+        where TStatement : IEditableStatement
     {
         public abstract IList<TStatement> Statements { get; set; }
 
@@ -22,9 +22,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitDefaultCaseStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitDefaultCaseStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitDefaultCaseStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

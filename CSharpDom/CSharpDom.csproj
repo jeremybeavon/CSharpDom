@@ -236,6 +236,8 @@
     <Compile Include="BaseClasses\AbstractUsingDirective.cs" />
     <Compile Include="BaseClasses\AbstractGenericVisitableObject.cs" />
     <Compile Include="BaseClasses\Editable\EditableVisitableObject.cs" />
+    <Compile Include="BaseClasses\Editable\Expressions\EditableExpression.cs" />
+    <Compile Include="BaseClasses\Editable\Statements\EditableStatement.cs" />
     <Compile Include="BaseClasses\Editable\Statements\EditableThrowStatement.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractAnonymousMethodParameter.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractExpression.cs" />

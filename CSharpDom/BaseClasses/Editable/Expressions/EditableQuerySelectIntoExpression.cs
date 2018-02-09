@@ -1,14 +1,13 @@
-﻿using CSharpDom.Common;
+﻿using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
-using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableQuerySelectIntoExpression<TExpression, TIdentifierExpression> :
         EditableQuerySelectExpression<TExpression>,
-        IQuerySelectIntoExpression<TExpression, TIdentifierExpression>
-        where TExpression : IExpression
-        where TIdentifierExpression : IIdentifierExpression
+        IEditableQuerySelectIntoExpression<TExpression, TIdentifierExpression>
+        where TExpression : IEditableExpression
+        where TIdentifierExpression : IEditableIdentifierExpression
     {
         public abstract TIdentifierExpression IntoExpression { get; set; }
 
@@ -17,9 +16,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitQuerySelectIntoExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitQuerySelectIntoExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitQuerySelectIntoExpressionChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

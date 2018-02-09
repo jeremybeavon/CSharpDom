@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         public MethodCallExpressionWithCodeAnalysis(
             IExpressionWithCodeAnalysis expression,
-            IEnumerable<IExpressionWithCodeAnalysis> parameters)
+            params IExpressionWithCodeAnalysis[] parameters)
             : this()
         {
             Syntax = SyntaxFactory.InvocationExpression(expression.Syntax, parameters.ToArgumentList());

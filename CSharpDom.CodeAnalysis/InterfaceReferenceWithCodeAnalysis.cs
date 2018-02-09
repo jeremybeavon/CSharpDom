@@ -21,16 +21,16 @@ namespace CSharpDom.CodeAnalysis
             typeReference = new UnspecifiedTypeReferenceWithCodeAnalysis(name, genericParameters);
         }
 
-        internal InterfaceReferenceWithCodeAnalysis()
-        {
-            typeReference = new UnspecifiedTypeReferenceWithCodeAnalysis();
-        }
-
-        internal InterfaceReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
+        public InterfaceReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
             this.typeReference = typeReference;
         }
 
+        internal InterfaceReferenceWithCodeAnalysis()
+        {
+            typeReference = new UnspecifiedTypeReferenceWithCodeAnalysis();
+        }
+        
         public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters
         {
             get { return typeReference.GenericParameters; }

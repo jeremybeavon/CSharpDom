@@ -1,16 +1,16 @@
-﻿using CSharpDom.BaseClasses.Statements;
-using CSharpDom.Common;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable;
+using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableForeachStatement<TTypeReference, TExpression, TStatement> :
-        AbstractStatement,
-        IForeachStatement<TTypeReference, TExpression, TStatement>
-        where TTypeReference : ITypeReference
-        where TExpression : IExpression
-        where TStatement : IStatement
+        EditableStatement,
+        IEditableForeachStatement<TTypeReference, TExpression, TStatement>
+        where TTypeReference : IEditableTypeReference
+        where TExpression : IEditableExpression
+        where TStatement : IEditableStatement
     {
         public abstract TExpression Iterator { get; set; }
 
@@ -25,9 +25,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitForeachStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitForeachStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitForeachStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

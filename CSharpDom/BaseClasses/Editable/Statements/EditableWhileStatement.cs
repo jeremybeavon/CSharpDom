@@ -1,14 +1,14 @@
-﻿using CSharpDom.BaseClasses.Statements;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableWhileStatement<TExpression, TStatement> :
-        AbstractStatement,
-        IWhileStatement<TExpression, TStatement>
-        where TExpression : IExpression
-        where TStatement : IStatement
+        EditableStatement,
+        IEditableWhileStatement<TExpression, TStatement>
+        where TExpression : IEditableExpression
+        where TStatement : IEditableStatement
     {
         public abstract TExpression Condition { get; set; }
 
@@ -19,9 +19,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitWhileStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitWhileStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitWhileStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

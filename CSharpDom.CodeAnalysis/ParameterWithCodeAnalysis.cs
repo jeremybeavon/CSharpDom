@@ -1,28 +1,33 @@
 ﻿using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
-using System.Runtime.InteropServices;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ParameterWithCodeAnalysis :
         EditableParameter<AttributeGroupWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<ParameterSyntax>,
-        IHasNode<ParameterSyntax>//,
-        //IVisitable<IReflectionVisitor>
+        IHasNode<ParameterSyntax>
     {
         private readonly Node<ParameterWithCodeAnalysis, ParameterSyntax> node;
-        private readonly object wrapper;
         private readonly AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax> attributes;
         private readonly CachedTypeReferenceNode<ParameterWithCodeAnalysis, ParameterSyntax> parameterType;
         
-        internal ParameterWithCodeAnalysis(object parameter)
+        internal ParameterWithCodeAnalysis(ITypeReferenceWithCodeAnalysis type, string name)
+            : this()
+        {
+            Syntax = SyntaxFactory.Parameter(
+                SyntaxFactory.List<AttributeListSyntax>(),
+                SyntaxFactory.TokenList(),
+                type.Syntax,
+                SyntaxFactory.Identifier(name),
+                null);
+        }
+
+        internal ParameterWithCodeAnalysis()
         {
             node = new Node<ParameterWithCodeAnalysis, ParameterSyntax>(this);
-            wrapper = parameter;
             attributes = new AttributeListWrapper<ParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.AttributeLists,

@@ -7,7 +7,7 @@ namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableAbstractAccessor<TAttributeGroup> : 
         EditableAccessor<TAttributeGroup>,
-        IAbstractAccessor<TAttributeGroup>
+        IEditableAbstractAccessor<TAttributeGroup>
         where TAttributeGroup : IEditableAttributeGroup
     {
         public override void Accept(IGenericVisitor visitor)
@@ -18,6 +18,16 @@ namespace CSharpDom.BaseClasses.Editable
         public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAbstractAccessorChildren(this, visitor);
+        }
+
+        public override void Accept(IEditableVisitor visitor)
+        {
+            visitor.VisitAbstractAccessor(this);
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

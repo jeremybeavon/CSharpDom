@@ -1,12 +1,12 @@
-﻿using CSharpDom.BaseClasses.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableTernaryOperatorExpression<TExpression> :
-        AbstractExpression,
-        ITernaryOperatorExpression<TExpression>
-        where TExpression : IExpression
+        EditableExpression,
+        IEditableTernaryOperatorExpression<TExpression>
+        where TExpression : IEditableExpression
     {
         public abstract TExpression Left { get; set; }
 
@@ -19,9 +19,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitTernaryOperatorExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitTernaryOperatorExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitTernaryOperatorExpressionChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

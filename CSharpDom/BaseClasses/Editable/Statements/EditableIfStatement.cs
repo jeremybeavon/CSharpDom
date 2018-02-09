@@ -1,14 +1,14 @@
-﻿using CSharpDom.BaseClasses.Statements;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableIfStatement<TExpression, TStatement> :
-        AbstractStatement,
-        IIfStatement<TExpression, TStatement>
-        where TExpression : IExpression
-        where TStatement : IStatement
+        EditableStatement,
+        IEditableIfStatement<TExpression, TStatement>
+        where TExpression : IEditableExpression
+        where TStatement : IEditableStatement
     {
         public abstract TExpression Condition { get; set; }
 
@@ -21,9 +21,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitIfStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitIfStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitIfStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

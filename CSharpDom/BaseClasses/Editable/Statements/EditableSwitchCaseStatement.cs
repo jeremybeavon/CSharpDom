@@ -1,5 +1,5 @@
-﻿using CSharpDom.BaseClasses.Statements;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 using CSharpDom.Wrappers.Internal;
 using System.Collections.Generic;
@@ -8,10 +8,10 @@ using System.Collections.ObjectModel;
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableSwitchCaseStatement<TExpression, TStatement> :
-        AbstractStatement,
-        ISwitchCaseStatement<TExpression, TStatement>
-        where TExpression : IExpression
-        where TStatement : IStatement
+        EditableStatement,
+        IEditableSwitchCaseStatement<TExpression, TStatement>
+        where TExpression : IEditableExpression
+        where TStatement : IEditableStatement
     {
         public abstract ICollection<TExpression> Matches { get; set; }
 
@@ -32,9 +32,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitSwitchCaseStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitSwitchCaseStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitSwitchCaseStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

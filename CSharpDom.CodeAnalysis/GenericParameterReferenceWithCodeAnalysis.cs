@@ -8,10 +8,7 @@ namespace CSharpDom.CodeAnalysis
     public sealed class GenericParameterReferenceWithCodeAnalysis :
         EditableGenericParameterReference,
         IInternalTypeReferenceWithCodeAnalysis,
-        IHasSyntax<IdentifierNameSyntax>//,
-        //IHasNode<IdentifierNameSyntax>//,
-        //IHasNode<NameSyntax>//,
-        //IVisitable<IReflectionVisitor>
+        IHasSyntax<IdentifierNameSyntax>
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
 

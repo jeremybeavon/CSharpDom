@@ -1,8 +1,10 @@
-﻿using CSharpDom.Common.Statements;
+﻿using CSharpDom.Common.Editable.Statements;
 
 namespace CSharpDom.CodeAnalysis.Statements
 {
-    public interface IForInitializerStatementWithCodeAnalysis : IStatementWithCodeAnalysis, IForInitializerStatement
+    public interface IForInitializerStatementWithCodeAnalysis :
+        IStatementWithCodeAnalysis,
+        IEditableForInitializerStatement
     {
     }
 }

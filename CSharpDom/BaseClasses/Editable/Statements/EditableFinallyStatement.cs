@@ -1,12 +1,14 @@
-﻿using CSharpDom.BaseClasses.Statements;
+﻿using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
-    public abstract class EditableFinallyStatement<TStatement>  : AbstractStatement, IFinallyStatement<TStatement>
-        where TStatement : IStatement
+    public abstract class EditableFinallyStatement<TStatement> :
+        EditableStatement,
+        IEditableFinallyStatement<TStatement>
+        where TStatement : IEditableStatement
     {
         public abstract IList<TStatement> Statements { get; set; }
 
@@ -20,9 +22,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitFinallyStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitFinallyStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitFinallyStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

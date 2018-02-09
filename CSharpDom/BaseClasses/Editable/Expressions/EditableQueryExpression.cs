@@ -1,4 +1,4 @@
-﻿using CSharpDom.BaseClasses.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,11 +6,11 @@ using System.Collections.ObjectModel;
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression> :
-        AbstractExpression,
-        IQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression>
-        where TQueryFromExpression : IQueryFromExpression
-        where TQueryClauseExpression : IQueryClauseExpression
-        where TQueryEndExpression : IQueryEndExpression
+        EditableExpression,
+        IEditableQueryExpression<TQueryFromExpression, TQueryClauseExpression, TQueryEndExpression>
+        where TQueryFromExpression : IEditableQueryFromExpression
+        where TQueryClauseExpression : IEditableQueryClauseExpression
+        where TQueryEndExpression : IEditableQueryEndExpression
     {
         public abstract TQueryFromExpression StartExpression { get; set; }
 
@@ -28,9 +28,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitQueryExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitQueryExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitQueryExpressionChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

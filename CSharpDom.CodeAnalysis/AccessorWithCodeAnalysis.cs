@@ -1,4 +1,6 @@
 ﻿using CSharpDom.BaseClasses.Editable;
+using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
@@ -59,6 +61,26 @@ namespace CSharpDom.CodeAnalysis
         private static SyntaxKind GetSyntax(AccessorType accessorType)
         {
             return accessorType == AccessorType.Get ? SyntaxKind.GetKeyword : SyntaxKind.SetKeyword;
+        }
+
+        public override void Accept(IEditableVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Accept(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

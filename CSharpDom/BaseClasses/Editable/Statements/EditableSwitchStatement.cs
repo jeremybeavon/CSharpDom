@@ -1,5 +1,5 @@
-﻿using CSharpDom.BaseClasses.Statements;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 using CSharpDom.Wrappers.Internal;
 using System.Collections.Generic;
@@ -7,11 +7,11 @@ using System.Collections.Generic;
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableSwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement> :
-        AbstractStatement,
-        ISwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement>
-        where TExpression : IExpression
-        where TSwitchCaseStatement : ISwitchCaseStatement
-        where TDefaultCaseStatement : IDefaultCaseStatement
+        EditableStatement,
+        IEditableSwitchStatement<TExpression, TSwitchCaseStatement, TDefaultCaseStatement>
+        where TExpression : IEditableExpression
+        where TSwitchCaseStatement : IEditableSwitchCaseStatement
+        where TDefaultCaseStatement : IEditableDefaultCaseStatement
     {
         public abstract ICollection<TSwitchCaseStatement> Cases { get; set; }
 
@@ -29,9 +29,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitSwitchStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitSwitchStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitSwitchStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

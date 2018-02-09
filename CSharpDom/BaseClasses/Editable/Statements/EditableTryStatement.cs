@@ -1,4 +1,4 @@
-﻿using CSharpDom.BaseClasses.Statements;
+﻿using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 using CSharpDom.Wrappers.Internal;
 using System.Collections.Generic;
@@ -7,11 +7,11 @@ using System.Collections.ObjectModel;
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableTryStatement<TStatement, TCatchStatement, TFinallyStatement> :
-        AbstractStatement,
-        ITryStatement<TStatement, TCatchStatement, TFinallyStatement>
-        where TStatement : IStatement
-        where TCatchStatement : ICatchStatement
-        where TFinallyStatement : IFinallyStatement
+        EditableStatement,
+        IEditableTryStatement<TStatement, TCatchStatement, TFinallyStatement>
+        where TStatement : IEditableStatement
+        where TCatchStatement : IEditableCatchStatement
+        where TFinallyStatement : IEditableFinallyStatement
     {
         public abstract ICollection<TCatchStatement> CatchStatements { get; set; }
 
@@ -34,9 +34,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitTryStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitTryStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitTryStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

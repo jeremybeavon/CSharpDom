@@ -1,12 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CSharpDom.Common.Expressions;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
+using CSharpDom.Common.Editable.Expressions;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
@@ -54,7 +49,17 @@ namespace CSharpDom.CodeAnalysis.Expressions
             throw new NotSupportedException();
         }
 
+        public void Accept(IEditableExpressionVisitor visitor)
+        {
+            throw new NotSupportedException();
+        }
+
         public void AcceptChildren(IGenericExpressionVisitor visitor)
+        {
+            throw new NotSupportedException();
+        }
+
+        public void AcceptChildren(IEditableExpressionVisitor visitor)
         {
             throw new NotSupportedException();
         }

@@ -1,17 +1,16 @@
 ﻿using CSharpDom.Common.Expressions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System;
 using System.Linq;
-using CSharpDom.BaseClasses.Expressions;
+using CSharpDom.Common.Editable.Expressions;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableListInitializerExpression<TCreateListExpression, TExpression> :
-        AbstractExpression,
-        IListInitializerExpression<TCreateListExpression, TExpression>
-        where TCreateListExpression : ICreateListExpression
-        where TExpression : IExpression
+        EditableExpression,
+        IEditableListInitializerExpression<TCreateListExpression, TExpression>
+        where TCreateListExpression : IEditableCreateListExpression
+        where TExpression : IEditableExpression
     {
         public abstract TCreateListExpression CreateListExpression { get; set; }
 
@@ -31,9 +30,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitListInitializerExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitListInitializerExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitListInitializerExpressionChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

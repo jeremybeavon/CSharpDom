@@ -14,9 +14,14 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly ParameterWithCodeAnalysis parameter;
 
+        public IndexerParameterWithCodeAnalysis(ITypeReferenceWithCodeAnalysis type, string name)
+        {
+            parameter = new ParameterWithCodeAnalysis(type, name);
+        }
+
         internal IndexerParameterWithCodeAnalysis()
         {
-            parameter = new ParameterWithCodeAnalysis(this);
+            parameter = new ParameterWithCodeAnalysis();
         }
         
         public ParameterWithCodeAnalysis Parameter

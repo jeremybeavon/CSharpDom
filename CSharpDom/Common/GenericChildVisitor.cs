@@ -78,35 +78,35 @@ namespace CSharpDom.Common
 
         public static void VisitClassChildren<TClass, TClassType, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
             TClass @class,
-            Func<TClass, TClassType> wrapperFactory,
+            Func<TClass, TClassType> classTypeFactory,
             TVisitor visitor)
             where TClass : IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
             where TClassType : IClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
-            where TNamespace : INamespace
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            wrapperFactory(@class).Accept(visitor);
+            classTypeFactory(@class).Accept(visitor);
         }
 
         public static void VisitPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
@@ -263,12 +263,13 @@ namespace CSharpDom.Common
             VisitIfNotNull(destructor.Body, visitor);
         }
 
-        public static async Task VisitDocumentChildrenAsync<TProject, TSolution, TLoadedDocument>(
-            IDocument<TProject, TSolution, TLoadedDocument> document,
-            IGenericVisitor visitor)
+        public static async Task VisitDocumentChildrenAsync<TDocument, TProject, TSolution, TLoadedDocument, TVisitor>(
+            TDocument document,
+            TVisitor visitor)
+            where TDocument : IDocument<TProject, TSolution, TLoadedDocument>
             where TProject : IProject
             where TSolution : ISolution
-            where TLoadedDocument : ILoadedDocument
+            where TLoadedDocument : ILoadedDocument, IVisitable<TVisitor>
         {
             (await document.LoadAsync()).Accept(visitor);
         }
@@ -896,11 +897,12 @@ namespace CSharpDom.Common
             new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
         }
 
-        public static Task VisitProjectChildrenAsync<TSolution, TDocument, TLoadedProject>(
-            IProject<TSolution, TDocument, TLoadedProject> project,
-            IGenericVisitor visitor)
+        public static Task VisitProjectChildrenAsync<TProject, TSolution, TDocument, TLoadedProject, TVisitor>(
+            TProject project,
+            TVisitor visitor)
+            where TProject : IProject<TSolution, TDocument, TLoadedProject>
             where TSolution : ISolution
-            where TDocument : IDocument
+            where TDocument : IDocument, IAsyncVisitable<TVisitor>
             where TLoadedProject : ILoadedProject
         {
             return VisitCollectionAsync(project.Documents, visitor);
@@ -919,8 +921,11 @@ namespace CSharpDom.Common
             VisitIfNotNull(property.SetAccessor, visitor);
         }
 
-        public static async Task VisitSolutionChildrenAsync<TProject>(ISolution<TProject> solution, IGenericVisitor visitor)
-            where TProject : IProject
+        public static async Task VisitSolutionChildrenAsync<TSolution, TProject, TVisitor>(
+            TSolution solution,
+            TVisitor visitor)
+            where TSolution : ISolution<TProject>
+            where TProject : IProject, IAsyncVisitable<TVisitor>
         {
             await VisitCollectionAsync(solution.Projects, visitor);
         }

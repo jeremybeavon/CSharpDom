@@ -18,7 +18,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         public static MethodCallExpressionWithCodeAnalysis MethodCall(
             IExpressionWithCodeAnalysis expression,
-            IEnumerable<IExpressionWithCodeAnalysis> parameters)
+            params IExpressionWithCodeAnalysis[] parameters)
         {
             return new MethodCallExpressionWithCodeAnalysis(expression, parameters);
         }

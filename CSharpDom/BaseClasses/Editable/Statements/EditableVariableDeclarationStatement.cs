@@ -1,6 +1,6 @@
-﻿using CSharpDom.BaseClasses.Statements;
-using CSharpDom.Common;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable;
+using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,10 +8,10 @@ using System.Collections.ObjectModel;
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableVariableDeclarationStatement<TTypeReference, TExpression> :
-        AbstractStatement,
-        IVariableDeclarationStatement<TTypeReference, TExpression>
-        where TTypeReference : ITypeReference
-        where TExpression : IExpression
+        EditableStatement,
+        IEditableVariableDeclarationStatement<TTypeReference, TExpression>
+        where TTypeReference : IEditableTypeReference
+        where TExpression : IEditableExpression
     {
         public abstract IList<TExpression> Expressions { get; set; }
 
@@ -27,7 +27,16 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitVariableDeclarationStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitVariableDeclarationStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
+        {
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
         {
         }
     }

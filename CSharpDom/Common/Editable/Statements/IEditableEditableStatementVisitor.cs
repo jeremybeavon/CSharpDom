@@ -73,6 +73,9 @@ namespace CSharpDom.Common.Editable.Statements
             where TSwitchCaseStatement : IEditableSwitchCaseStatement
             where TDefaultCaseStatement : IEditableDefaultCaseStatement;
 
+        void VisitThrowStatement<TExpression>(IEditableThrowStatement<TExpression> throwStatement)
+            where TExpression : IEditableExpression;
+
         void VisitTryStatement<TStatement, TCatchStatement, TFinallyStatement>(
             IEditableTryStatement<TStatement, TCatchStatement, TFinallyStatement> tryStatement)
             where TStatement : IEditableStatement

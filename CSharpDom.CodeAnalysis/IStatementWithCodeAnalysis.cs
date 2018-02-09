@@ -1,9 +1,9 @@
-﻿using CSharpDom.Common.Statements;
+﻿using CSharpDom.Common.Editable.Statements;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public interface IStatementWithCodeAnalysis : IStatement, IHasSyntax<StatementSyntax>
+    public interface IStatementWithCodeAnalysis : IEditableStatement, IHasSyntax<StatementSyntax>
     {
     }
 }

@@ -1,15 +1,14 @@
 ﻿using CSharpDom.Common.Expressions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System;
-using CSharpDom.BaseClasses.Expressions;
+using CSharpDom.Common.Editable.Expressions;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableMethodCallExpression<TExpression> :
-        AbstractExpression,
-        IMethodCallExpression<TExpression>
-        where TExpression : IExpression
+        EditableExpression,
+        IEditableMethodCallExpression<TExpression>
+        where TExpression : IEditableExpression
     {
         public abstract TExpression Expression { get; set; }
 
@@ -25,9 +24,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitMethodCallExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitMethodCallExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitMethodCallExpressionChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

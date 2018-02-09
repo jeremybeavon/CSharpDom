@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableAwaitExpression<TExpression> :
-        AbstractExpression,
+        EditableExpression,
         IEditableAwaitExpression<TExpression>
         where TExpression : IEditableExpression
     {
@@ -17,7 +17,7 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitAwaitExpression(this);
         }
 
-        public void Accept(IEditableExpressionVisitor visitor)
+        public override void Accept(IEditableExpressionVisitor visitor)
         {
             visitor.VisitAwaitExpression(this);
         }
@@ -27,7 +27,7 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             GenericExpressionVisitor.VisitAwaitExpressionChildren(this, visitor);
         }
 
-        public void AcceptChildren(IEditableExpressionVisitor visitor)
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
         {
             throw new System.NotImplementedException();
         }

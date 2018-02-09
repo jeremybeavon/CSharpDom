@@ -7,7 +7,7 @@ namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableStructAccessor<TAttributeGroup, TMethodBody> :
         EditableAccessor<TAttributeGroup, TMethodBody>,
-        IStructAccessor<TAttributeGroup, TMethodBody>
+        IEditableStructAccessor<TAttributeGroup, TMethodBody>
         where TAttributeGroup : IEditableAttributeGroup
         where TMethodBody : IEditableMethodBody
     {

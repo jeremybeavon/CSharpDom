@@ -1,4 +1,4 @@
-﻿using CSharpDom.BaseClasses.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,9 +6,9 @@ using System.Collections.ObjectModel;
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableQueryOrderByExpression<TOrderingExpression> :
-        AbstractExpression,
-        IQueryOrderByExpression<TOrderingExpression>
-        where TOrderingExpression : IQueryOrderingExpression
+        EditableExpression,
+        IEditableQueryOrderByExpression<TOrderingExpression>
+        where TOrderingExpression : IEditableQueryOrderingExpression
     {
         public abstract IList<TOrderingExpression> Orders { get; set; }
 
@@ -22,9 +22,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitQueryOrderByExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitQueryOrderByExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitQueryOrderByExpressionChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using CSharpDom.BaseClasses.Statements;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 using CSharpDom.Wrappers.Internal;
 using System.Collections.Generic;
@@ -7,11 +7,11 @@ using System.Collections.Generic;
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableForStatement<TExpression, TForInitializerStatement, TStatement> :
-        AbstractStatement,
-        IForStatement<TExpression, TForInitializerStatement, TStatement>
-        where TExpression : IExpression
-        where TForInitializerStatement : IForInitializerStatement
-        where TStatement : IStatement
+        EditableStatement,
+        IEditableForStatement<TExpression, TForInitializerStatement, TStatement>
+        where TExpression : IEditableExpression
+        where TForInitializerStatement : IEditableForInitializerStatement
+        where TStatement : IEditableStatement
     {
         public abstract TExpression Condition { get; set; }
 
@@ -31,9 +31,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitForStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitForStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitForStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

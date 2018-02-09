@@ -1,13 +1,14 @@
-﻿using CSharpDom.BaseClasses.Expressions;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
+using CSharpDom.Common.Editable;
+using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableAnonymousMethodParameter<TTypeReference> :
-        AbstractExpression,
-        IAnonymousMethodParameter<TTypeReference>
-        where TTypeReference : ITypeReference
+        EditableExpression,
+        IEditableAnonymousMethodParameter<TTypeReference>
+        where TTypeReference : IEditableTypeReference
     {
         public abstract string Name { get; set; }
 
@@ -20,7 +21,16 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitAnonymousMethodParameter(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitAnonymousMethodParameter(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
+        {
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
         {
         }
     }

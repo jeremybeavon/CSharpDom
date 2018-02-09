@@ -16,5 +16,7 @@ namespace CSharpDom.BaseClasses.Editable
         {
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
         }
+
+
     }
 }

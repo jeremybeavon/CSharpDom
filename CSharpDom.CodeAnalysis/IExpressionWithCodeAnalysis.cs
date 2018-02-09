@@ -1,9 +1,9 @@
-﻿using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
-    public interface IExpressionWithCodeAnalysis : IExpression, IHasSyntax<ExpressionSyntax>
+    public interface IExpressionWithCodeAnalysis : IEditableExpression, IHasSyntax<ExpressionSyntax>
     {
     }
 }

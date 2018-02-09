@@ -1,12 +1,12 @@
-﻿using CSharpDom.BaseClasses.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableQueryGroupExpression<TExpression> :
-        AbstractExpression,
-        IQueryGroupExpression<TExpression>
-        where TExpression : IExpression
+        EditableExpression,
+        IEditableQueryGroupExpression<TExpression>
+        where TExpression : IEditableExpression
     {
         public abstract TExpression ByExpression { get; set; }
 
@@ -17,9 +17,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitQueryGroupExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitQueryGroupExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitQueryGroupExpressionChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

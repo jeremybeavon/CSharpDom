@@ -8,11 +8,18 @@ namespace CSharpDom.CodeAnalysis
     public sealed class DelegateReferenceWithCodeAnalysis :
         EditableDelegateReference<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
-        IHasNode<NameSyntax>//,
-        //IVisitable<IReflectionVisitor>
+        IHasNode<NameSyntax>,
+        IInternalTypeReferenceWithCodeAnalysis
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
-        
+
+        public DelegateReferenceWithCodeAnalysis(
+            string name,
+            params ITypeReferenceWithCodeAnalysis[] genericParameters)
+            : this(new UnspecifiedTypeReferenceWithCodeAnalysis(name, genericParameters))
+        {
+        }
+
         internal DelegateReferenceWithCodeAnalysis(UnspecifiedTypeReferenceWithCodeAnalysis typeReference)
         {
             this.typeReference = typeReference;
@@ -44,6 +51,14 @@ namespace CSharpDom.CodeAnalysis
         INode<NameSyntax> IHasNode<NameSyntax>.Node
         {
             get { return typeReference.Node; }
+        }
+
+        INode<TypeSyntax> IHasNode<TypeSyntax>.Node => typeReference.Node;
+
+        TypeSyntax IHasSyntax<TypeSyntax>.Syntax
+        {
+            get => typeReference.Syntax;
+            set => typeReference.Syntax = (NameSyntax)value;
         }
 
         /*public void Accept(IReflectionVisitor visitor)

@@ -1,11 +1,9 @@
-﻿using CSharpDom.BaseClasses.Expressions;
-using CSharpDom.Common.Editable.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
-using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
-    public abstract class EditableDoubleConstantExpression : AbstractExpression, IEditableDoubleConstantExpression
+    public abstract class EditableDoubleConstantExpression : EditableExpression, IEditableDoubleConstantExpression
     {
         public abstract double Constant { get; set; }
 
@@ -14,7 +12,7 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitDoubleConstantExpression(this);
         }
 
-        public void Accept(IEditableExpressionVisitor visitor)
+        public override void Accept(IEditableExpressionVisitor visitor)
         {
             visitor.VisitDoubleConstantExpression(this);
         }
@@ -23,7 +21,7 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
         {
         }
 
-        public void AcceptChildren(IEditableExpressionVisitor visitor)
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
         {
         }
     }

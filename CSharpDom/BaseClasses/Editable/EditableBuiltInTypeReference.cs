@@ -1,9 +1,9 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable
 {
-    public abstract class EditableBuiltInTypeReference : AbstractGenericVisitableObject, IBuiltInTypeReference
+    public abstract class EditableBuiltInTypeReference : EditableTypeReference, IEditableBuiltInTypeReference
     {
         public abstract BuiltInType Type { get; set; }
 
@@ -12,8 +12,9 @@ namespace CSharpDom.BaseClasses.Editable
             visitor.VisitBuiltInTypeReference(this);
         }
 
-        public override void AcceptChildren(IGenericVisitor visitor)
+        public override void Accept(IEditableVisitor visitor)
         {
+            visitor.VisitBuiltInTypeReference(this);
         }
     }
 }

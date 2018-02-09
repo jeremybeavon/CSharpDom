@@ -1,16 +1,16 @@
-﻿using CSharpDom.BaseClasses.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Expressions;
-using CSharpDom.Common.Statements;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableAnonymousMethodExpression<TParameter, TStatement> :
-        AbstractExpression,
-        IAnonymousMethodExpression<TParameter, TStatement>
-        where TParameter : IAnonymousMethodParameter
-        where TStatement : IStatement
+        EditableExpression,
+        IEditableAnonymousMethodExpression<TParameter, TStatement>
+        where TParameter : IEditableAnonymousMethodParameter
+        where TStatement : IEditableStatement
     {
         public abstract TStatement Body { get; set; }
 
@@ -26,7 +26,16 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitAnonymousMethodExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitAnonymousMethodExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
+        {
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
         {
         }
     }

@@ -1,10 +1,9 @@
-﻿using CSharpDom.BaseClasses.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
-using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
-    public abstract class EditableIdentifierExpression : AbstractExpression, IIdentifierExpression
+    public abstract class EditableIdentifierExpression : EditableExpression, IEditableIdentifierExpression
     {
         public abstract string Name { get; set; }
 
@@ -13,7 +12,16 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitIdentifierExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitIdentifierExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
+        {
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
         {
         }
     }

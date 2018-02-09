@@ -1,14 +1,15 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 using CSharpDom.Wrappers.Internal;
 using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableAttributeGroup<TAttribute> :
-        AbstractGenericVisitableObject,
-        IAttributeGroup<TAttribute>
-        where TAttribute : IAttribute
+        EditableVisitableObject,
+        IEditableAttributeGroup<TAttribute>
+        where TAttribute : IEditableAttribute
     {
         public abstract ICollection<TAttribute> Attributes { get; set; }
 
@@ -22,9 +23,19 @@ namespace CSharpDom.BaseClasses.Editable
             visitor.VisitAttributeGroup(this);
         }
 
+        public override void Accept(IEditableVisitor visitor)
+        {
+            visitor.VisitAttributeGroup(this);
+        }
+
         public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAttributeGroupChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

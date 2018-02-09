@@ -1,9 +1,8 @@
-﻿using CSharpDom.Common.Expressions;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using CSharpDom.Common.Editable.Expressions;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    public interface IQueryExpressionWithCodeAnalysis : IQueryClauseExpression
+    public interface IQueryExpressionWithCodeAnalysis : IEditableQueryClauseExpression
     {
     }
 }

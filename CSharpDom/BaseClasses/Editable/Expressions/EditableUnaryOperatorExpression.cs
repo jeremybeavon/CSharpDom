@@ -1,12 +1,12 @@
-﻿using CSharpDom.BaseClasses.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
 using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
     public abstract class EditableUnaryOperatorExpression<TExpression> :
-        AbstractExpression,
-        IUnaryOperatorExpression<TExpression>
-        where TExpression : IExpression
+        EditableExpression,
+        IEditableUnaryOperatorExpression<TExpression>
+        where TExpression : IEditableExpression
     {
         public abstract TExpression Operand { get; set; }
 
@@ -17,9 +17,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
             visitor.VisitUnaryOperatorExpression(this);
         }
 
+        public override void Accept(IEditableExpressionVisitor visitor)
+        {
+            visitor.VisitUnaryOperatorExpression(this);
+        }
+
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
             GenericExpressionVisitor.VisitUnaryOperatorExpressionChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableExpressionVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

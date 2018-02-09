@@ -1,14 +1,14 @@
-﻿using CSharpDom.BaseClasses.Statements;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable.Statements;
 using CSharpDom.Common.Statements;
 
 namespace CSharpDom.BaseClasses.Editable.Statements
 {
     public abstract class EditableLockStatement<TExpression, TStatement> :
-        AbstractStatement,
-        ILockStatement<TExpression, TStatement>
-        where TExpression : IExpression
-        where TStatement : IStatement
+        EditableStatement,
+        IEditableLockStatement<TExpression, TStatement>
+        where TExpression : IEditableExpression
+        where TStatement : IEditableStatement
     {
         public abstract TExpression Expression { get; set; }
 
@@ -19,9 +19,19 @@ namespace CSharpDom.BaseClasses.Editable.Statements
             visitor.VisitLockStatement(this);
         }
 
+        public override void Accept(IEditableStatementVisitor visitor)
+        {
+            visitor.VisitLockStatement(this);
+        }
+
         public override void AcceptChildren(IGenericStatementVisitor visitor)
         {
             GenericStatementVisitor.VisitLockStatementChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableStatementVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

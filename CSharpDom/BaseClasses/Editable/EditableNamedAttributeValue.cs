@@ -1,13 +1,13 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.Common;
-using CSharpDom.Common.Expressions;
+﻿using CSharpDom.Common;
+using CSharpDom.Common.Editable;
+using CSharpDom.Common.Editable.Expressions;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableNamedAttributeValue<TExpression> :
-        AbstractGenericVisitableObject,
-        INamedAttributeValue<TExpression>
-        where TExpression : IExpression
+        EditableVisitableObject,
+        IEditableNamedAttributeValue<TExpression>
+        where TExpression : IEditableExpression
     {
         public abstract string Name { get; set; }
 
@@ -18,7 +18,16 @@ namespace CSharpDom.BaseClasses.Editable
             visitor.VisitNamedAttributeValue(this);
         }
 
+        public override void Accept(IEditableVisitor visitor)
+        {
+            visitor.VisitNamedAttributeValue(this);
+        }
+
         public override void AcceptChildren(IGenericVisitor visitor)
+        {
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
         {
         }
     }
