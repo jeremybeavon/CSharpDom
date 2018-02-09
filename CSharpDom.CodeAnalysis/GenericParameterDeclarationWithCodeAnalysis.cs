@@ -44,15 +44,15 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 syntax => syntax.TypeParameter.AttributeLists,
                 (parentSyntax, childSyntax) => parentSyntax.WithAttributeLists(childSyntax));
-            baseClassConstraint = ListFactory.CreateConstraintList(
+            baseClassConstraint = CreateConstraintList(
                 node,
                 name => !interfaceMatch.IsMatch(name) && !genericParameterMatch.IsMatch(name),
                 type => new ClassReferenceWithCodeAnalysis(type));
-            genericParameterConstraints = ListFactory.CreateConstraintList(
+            genericParameterConstraints = CreateConstraintList(
                 node,
                 name => genericParameterMatch.IsMatch(name),
                 type => new GenericParameterReferenceWithCodeAnalysis(type));
-            interfaceConstraints = ListFactory.CreateConstraintList(
+            interfaceConstraints = CreateConstraintList(
                 node,
                 name => interfaceMatch.IsMatch(name),
                 type => new InterfaceReferenceWithCodeAnalysis(type));
@@ -224,6 +224,35 @@ namespace CSharpDom.CodeAnalysis
             return syntax.ClassOrStructKeyword.Kind() == SyntaxKind.ClassKeyword ?
                 GenericParameterTypeConstraint.Class :
                 GenericParameterTypeConstraint.Struct;
+        }
+
+        private static IList<TChild> CreateConstraintList<TChild>(
+            Node<GenericParameterDeclarationWithCodeAnalysis, GenericParameterDeclarationSyntax> node,
+            Func<string, bool> filter,
+            Func<UnspecifiedTypeReferenceWithCodeAnalysis, TChild> getChild)
+            where TChild : class, IHasNode<TypeSyntax>, IUnspecifiedTypeReferenceWrapper
+        {
+            IChildSyntaxList<GenericParameterDeclarationSyntax, TypeParameterConstraintSyntax> constraintSyntaxList =
+                ListFactory.CreateChildSyntaxList(
+                    node,
+                    syntax => syntax.Constraints,
+                    (parentSyntax, childSyntax) => parentSyntax.WithConstraints(childSyntax));
+            IChildSyntaxList<GenericParameterDeclarationSyntax, TypeConstraintSyntax> filteredConstraintSyntaxList =
+                new FilteredChildSyntaxList<GenericParameterDeclarationSyntax, TypeParameterConstraintSyntax, TypeConstraintSyntax>(
+                    constraintSyntaxList,
+                    syntax => filter(syntax.Type.ToName()));
+            IList<GenericParameterConstraint> constraintList = new ChildNodeList<
+                GenericParameterDeclarationWithCodeAnalysis,
+                GenericParameterDeclarationSyntax,
+                GenericParameterConstraint,
+                TypeConstraintSyntax>(
+                node,
+                filteredConstraintSyntaxList,
+                () => new GenericParameterConstraint());
+            return new WrappedList<GenericParameterConstraint, TChild>(
+                constraintList,
+                parent => getChild(parent.Type),
+                child => child.Node.GetParent<GenericParameterConstraint>() ?? new GenericParameterConstraint(child.TypeReference));
         }
     }
 }

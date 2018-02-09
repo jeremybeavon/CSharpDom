@@ -28,7 +28,7 @@ namespace CSharpDom.CodeAnalysis
             Func<NamespaceDeclarationSyntax, SyntaxList<MemberDeclarationSyntax>, NamespaceDeclarationSyntax> createList,
             Func<TChild> factory,
             Func<TChildSyntax, bool> filter)
-            : base(node, ListFactory.CreateFilteredList(node, getList, createList, filter), factory)
+            : base(node, ListFactory.CreateFilteredSyntaxList(node, getList, createList, filter), factory)
         {
         }
     }

@@ -185,11 +185,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="BaseTypeSyntaxListConversions.cs" />
     <Compile Include="ClassCollectionWithCodeAnalysisExtensions.cs" />
     <Compile Include="CodeAnalysisSettings.cs" />
     <Compile Include="Expressions\ExpressionFactory.cs" />
     <Compile Include="FilteredChildSyntaxList.generic.cs" />
     <Compile Include="GenericParameterConstraint.cs" />
+    <Compile Include="IChildSyntaxListConversions.cs" />
     <Compile Include="IClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="IChildSyntaxList.cs" />
     <Compile Include="IMemberList.generic.cs" />
@@ -201,6 +203,8 @@
     <Compile Include="InternalNestedStaticClassNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticTypeWithCodeAnalysis.cs" />
     <Compile Include="IClassTypeDefinitionWithCodeAnalysis.cs" />
+    <Compile Include="IUnspecifiedTypeReferenceWrapper.cs" />
+    <Compile Include="IWrappedListConversions.cs" />
     <Compile Include="MemberList.generic3.cs" />
     <Compile Include="MemberListSyntax.generic.cs" />
     <Compile Include="AbstractChildNode.cs" />
@@ -463,8 +467,8 @@
     <Compile Include="AttributeListWrapper.cs" />
     <Compile Include="AttributeWithCodeAnalysis.cs" />
     <Compile Include="AbstractChildSyntaxCollection.cs" />
-    <Compile Include="BaseTypeList.cs" />
-    <Compile Include="BaseTypeListWrapper.cs" />
+    <Compile Include="BaseTypeSyntaxList.cs" />
+    <Compile Include="BaseTypeNodeList.cs" />
     <Compile Include="CachedExpressionNode.cs" />
     <Compile Include="CachedStatementNode.cs" />
     <Compile Include="InternalClassPropertyCollectionWithCodeAnalysis.cs" />
@@ -795,6 +799,7 @@
     <Compile Include="StructWithCodeAnalysis.cs" />
     <Compile Include="TypedFactory.cs" />
     <Compile Include="CachedTypeReferenceNode.cs" />
+    <Compile Include="TypeParameterSyntaxListConversions.cs" />
     <Compile Include="TypeReferenceFactory.cs" />
     <Compile Include="TypeReferenceNode.cs" />
     <Compile Include="TypeSyntaxVisitor.cs" />
@@ -837,8 +842,8 @@
     <Compile Include="ConstantWithCodeAnalysis.cs" />
     <Compile Include="FieldWithCodeAnalysis.cs" />
     <Compile Include="FilteredAttributeList.cs" />
-    <Compile Include="GenericParameterDeclarationList.cs" />
-    <Compile Include="GenericParameterDeclarationListWrapper.cs" />
+    <Compile Include="GenericParameterDeclarationSyntaxList.cs" />
+    <Compile Include="GenericParameterDeclarationNodeList.cs" />
     <Compile Include="GenericParameterDeclarationSyntax.cs" />
     <Compile Include="GenericParameterDeclarationWithCodeAnalysis.cs" />
     <Compile Include="GenericParameterReferenceWithCodeAnalysis.cs" />
@@ -873,7 +878,6 @@
     <Compile Include="FilteredList.generic2.cs" />
     <Compile Include="ChildNodeList.cs" />
     <Compile Include="ImmutableAttributeArgumentListWrapper.cs" />
-    <Compile Include="SeparatedSyntaxListWrapper.cs" />
     <Compile Include="ChildSyntaxList.cs" />
     <Compile Include="SealedClassEventPropertyWithCodeAnalysis.cs" />
     <Compile Include="NameSyntaxExtensions.cs" />

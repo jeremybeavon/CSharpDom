@@ -21,6 +21,14 @@ namespace CSharpDom.CodeAnalysis
             this.toParent = toParent;
         }
 
+        public WrappedChildSyntaxList(
+            IChildSyntaxList<TParentSyntax, TChildSyntax> list,
+            IWrappedListConversions<TChildSyntax, TChildChildSyntax> conversions,
+            Func<TChildChildSyntax, bool> filter = null)
+            : this(list, conversions.ToChild, conversions.ToParent, filter)
+        {
+        }
+
         public TParentSyntax Set(int index, TChildChildSyntax value)
         {
             return list.Set(index, toParent(value));

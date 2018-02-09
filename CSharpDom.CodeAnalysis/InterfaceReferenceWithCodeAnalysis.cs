@@ -9,8 +9,8 @@ namespace CSharpDom.CodeAnalysis
         EditableInterfaceReference<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
         IHasNode<NameSyntax>,
-        IInternalTypeReferenceWithCodeAnalysis//,
-        //IVisitable<IReflectionVisitor>
+        IInternalTypeReferenceWithCodeAnalysis,
+        IUnspecifiedTypeReferenceWrapper
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
         
@@ -49,6 +49,16 @@ namespace CSharpDom.CodeAnalysis
             set { typeReference.Syntax = value; }
         }
 
+        public override int GetHashCode()
+        {
+            return typeReference.GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is InterfaceReferenceWithCodeAnalysis reference && typeReference == reference.typeReference;
+        }
+
         internal UnspecifiedTypeReferenceWithCodeAnalysis TypeReference
         {
             get { return typeReference; }
@@ -66,6 +76,8 @@ namespace CSharpDom.CodeAnalysis
             get => typeReference.Syntax;
             set => typeReference.Syntax = (NameSyntax)value;
         }
+
+        UnspecifiedTypeReferenceWithCodeAnalysis IUnspecifiedTypeReferenceWrapper.TypeReference => typeReference;
 
         /*public void Accept(IReflectionVisitor visitor)
         {

@@ -19,7 +19,7 @@ namespace CSharpDom.CodeAnalysis
             Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SeparatedSyntaxList<ExpressionSyntax>> getList,
             Func<TParentSyntax, SeparatedSyntaxList<ExpressionSyntax>, TParentSyntax> createList)
-            : this(ListFactory.CreateList(node, getList, createList, ExpressionSyntaxExtensions.ToInternalExpression))
+            : this(ListFactory.CreateNodeList(node, getList, createList, ExpressionSyntaxExtensions.ToInternalExpression))
         {
         }
 

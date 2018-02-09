@@ -1,15 +1,14 @@
 ﻿using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal sealed class GenericParameterDeclarationList<TParent, TParentSyntax> :
+    internal sealed class GenericParameterDeclarationSyntaxList<TParent, TParentSyntax> :
         IChildSyntaxList<TParentSyntax, GenericParameterDeclarationSyntax>
         where TParentSyntax : class
     {
@@ -17,15 +16,14 @@ namespace CSharpDom.CodeAnalysis
         private readonly IList<TypeParameterSyntax> typeParameters;
         private readonly IList<TypeParameterConstraintClauseSyntax> constraintClauses;
 
-        public GenericParameterDeclarationList(
+        public GenericParameterDeclarationSyntaxList(
             Node<TParent, TParentSyntax> node,
-            Func<TParentSyntax, SeparatedSyntaxList<TypeParameterSyntax>> getTypeParameters,
-            Func<TParentSyntax, SeparatedSyntaxList<TypeParameterSyntax>, TParentSyntax> createTypeParameters,
+            TypeParameterSyntaxListConversions<TParentSyntax> typeParameterConversions,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>> getConstraintClauses,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses)
         {
             this.node = node;
-            typeParameters = ListFactory.CreateChildSyntaxList(node, getTypeParameters, createTypeParameters);
+            typeParameters = ListFactory.CreateChildSyntaxList(node, typeParameterConversions);
             constraintClauses = ListFactory.CreateChildSyntaxList(node, getConstraintClauses, createConstraintClauses);
         }
 
@@ -74,14 +72,22 @@ namespace CSharpDom.CodeAnalysis
 
         public void RemoveAt(int index)
         {
-            constraintClauses.Remove(GetConstraintClause(typeParameters[index]));
+            TypeParameterConstraintClauseSyntax constraintClause = GetConstraintClause(typeParameters[index]);
+            if (constraintClause != null)
+            {
+                constraintClauses.Remove(constraintClause);
+            }
+
             typeParameters.RemoveAt(index);
         }
 
         public void Add(GenericParameterDeclarationSyntax item)
         {
             typeParameters.Add(item.TypeParameter);
-            constraintClauses.Add(item.ConstraintClause);
+            if (item.ConstraintClause != null)
+            {
+                constraintClauses.Add(item.ConstraintClause);
+            }
         }
 
         public void Clear()
@@ -92,7 +98,8 @@ namespace CSharpDom.CodeAnalysis
 
         public bool Contains(GenericParameterDeclarationSyntax item)
         {
-            return typeParameters.Contains(item.TypeParameter) && constraintClauses.Contains(item.ConstraintClause);
+            return typeParameters.Contains(item.TypeParameter) &&
+                (item.ConstraintClause == null || constraintClauses.Contains(item.ConstraintClause));
         }
 
         public void CopyTo(GenericParameterDeclarationSyntax[] array, int arrayIndex)
@@ -102,7 +109,8 @@ namespace CSharpDom.CodeAnalysis
 
         public bool Remove(GenericParameterDeclarationSyntax item)
         {
-            return typeParameters.Remove(item.TypeParameter) && constraintClauses.Remove(item.ConstraintClause);
+            return typeParameters.Remove(item.TypeParameter) &&
+                (item.ConstraintClause == null || constraintClauses.Remove(item.ConstraintClause));
         }
 
         public IEnumerator<GenericParameterDeclarationSyntax> GetEnumerator()

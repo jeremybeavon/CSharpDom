@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
             Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, SyntaxList<QueryClauseSyntax>> getList,
             Func<TParentSyntax, SyntaxList<QueryClauseSyntax>, TParentSyntax> createList)
-            : this(ListFactory.CreateList(node, getList, createList, QueryClauseSyntaxExtensions.ToInternalQueryExpression))
+            : this(ListFactory.CreateNodeList(node, getList, createList, QueryClauseSyntaxExtensions.ToInternalQueryExpression))
         {
         }
 

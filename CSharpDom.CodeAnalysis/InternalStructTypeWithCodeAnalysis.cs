@@ -30,9 +30,9 @@ namespace CSharpDom.CodeAnalysis
         private readonly StructTypeMemberListWrapper<TStruct, StructNestedEnumWithCodeAnalysis, EnumDeclarationSyntax> enums;
         private readonly StructEventCollectionWithCodeAnalysis events;
         private readonly StructFieldCollectionWithCodeAnalysis fields;
-        private readonly GenericParameterDeclarationListWrapper<TStruct, StructDeclarationSyntax> genericParameters;
+        private readonly GenericParameterDeclarationNodeList<TStruct, StructDeclarationSyntax> genericParameters;
         private readonly StructIndexerCollectionWithCodeAnalysis indexers;
-        private readonly BaseTypeListWrapper<TStruct, StructDeclarationSyntax> implementedInterfaces;
+        private readonly BaseTypeNodeList<TStruct, StructDeclarationSyntax> implementedInterfaces;
         private readonly StructTypeMemberListWrapper<
             TStruct,
             StructNestedInterfaceWithCodeAnalysis,
@@ -73,13 +73,13 @@ namespace CSharpDom.CodeAnalysis
                 () => new StructNestedEnumWithCodeAnalysis());
             events = new InternalStructEventCollectionWithCodeAnalysis<TStruct>(this);
             fields = new InternalStructFieldCollectionWithCodeAnalysis<TStruct>(this);
-            genericParameters = new GenericParameterDeclarationListWrapper<TStruct, StructDeclarationSyntax>(
+            genericParameters = new GenericParameterDeclarationNodeList<TStruct, StructDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
-            implementedInterfaces = new BaseTypeListWrapper<TStruct, StructDeclarationSyntax>(
+            implementedInterfaces = new BaseTypeNodeList<TStruct, StructDeclarationSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax));
             indexers = new InternalStructIndexerCollectionWithCodeAnalysis<TStruct>(this);

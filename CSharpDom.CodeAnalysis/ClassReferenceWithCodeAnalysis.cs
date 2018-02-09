@@ -12,7 +12,8 @@ namespace CSharpDom.CodeAnalysis
         EditableClassReference<ITypeReferenceWithCodeAnalysis>,
         IHasSyntax<NameSyntax>,
         IHasNode<NameSyntax>,
-        IInternalTypeReferenceWithCodeAnalysis
+        IInternalTypeReferenceWithCodeAnalysis,
+        IUnspecifiedTypeReferenceWrapper
         //IVisitable<IReflectionVisitor>
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
@@ -64,6 +65,8 @@ namespace CSharpDom.CodeAnalysis
             get => typeReference.Syntax;
             set => ((IInternalTypeReferenceWithCodeAnalysis)typeReference).Syntax = value;
         }
+
+        UnspecifiedTypeReferenceWithCodeAnalysis IUnspecifiedTypeReferenceWrapper.TypeReference => typeReference;
 
         /*public void Accept(IReflectionVisitor visitor)
         {

@@ -24,6 +24,14 @@ namespace CSharpDom.CodeAnalysis
             this.toParent = toParent;
             this.filter = filter;
         }
+
+        public WrappedList(
+            IList<TParent> list,
+            IWrappedListConversions<TParent, TChild> conversion,
+            Func<TChild, bool> filter = null)
+            : this(list, conversion.ToChild, conversion.ToParent, filter)
+        {
+        }
         
         public int Count
         {
@@ -113,7 +121,12 @@ namespace CSharpDom.CodeAnalysis
 
         public void Insert(int index, TChild item)
         {
-            list.Insert(IndexOf(this[index]), toParent(item));
+            if (index != Count)
+            {
+                index = IndexOf(this[index]);
+            }
+
+            list.Insert(index, toParent(item));
         }
 
         public bool Remove(TChild item)

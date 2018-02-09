@@ -27,6 +27,14 @@ namespace CSharpDom.CodeAnalysis
             this.createList = createList;
         }
 
+        public ChildSyntaxList(
+            Node<TParent, TParentSyntax> node,
+            IImmutableList<TChildList, TChildSyntax> immutableList,
+            IChildSyntaxListConversions<TParentSyntax, TChildList> conversions)
+            : this(node, immutableList, conversions.GetList, conversions.CreateList)
+        {
+        }
+
         public int Count
         {
             get { return getList(node.Syntax).Count; }

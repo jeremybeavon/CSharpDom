@@ -11,7 +11,7 @@ namespace CSharpDom.CodeAnalysis
         where TClass : class, IHasNode<ClassDeclarationSyntax>
     {
         private readonly Node<TClass, ClassDeclarationSyntax> node;
-        private readonly BaseTypeListWrapper<TClass, ClassDeclarationSyntax> baseTypes;
+        private readonly BaseTypeNodeList<TClass, ClassDeclarationSyntax> baseTypes;
         private readonly AttributeListWrapper<TClass, ClassDeclarationSyntax> attributes;
         private readonly WrappedList<InterfaceReferenceWithCodeAnalysis, ClassReferenceWithCodeAnalysis> baseClass;
         private readonly InternalClassNestedClassCollectionWithCodeAnalysis<TClass> classes;
@@ -22,7 +22,7 @@ namespace CSharpDom.CodeAnalysis
         private readonly ClassMemberListWrapper<TClass, ClassNestedEnumWithCodeAnalysis, EnumDeclarationSyntax> enums;
         private readonly InternalClassEventCollectionWithCodeAnalysis<TClass> events;
         private readonly InternalClassFieldCollectionWithCodeAnalysis<TClass> fields;
-        private readonly GenericParameterDeclarationListWrapper<TClass, ClassDeclarationSyntax> genericParameters;
+        private readonly GenericParameterDeclarationNodeList<TClass, ClassDeclarationSyntax> genericParameters;
         private readonly FilteredList<InterfaceReferenceWithCodeAnalysis> implementedInterfaces;
         private readonly InternalClassIndexerCollectionWithCodeAnalysis<TClass> indexers;
         private readonly ClassMemberListWrapper<TClass, ClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
@@ -36,7 +36,7 @@ namespace CSharpDom.CodeAnalysis
         internal InternalClassTypeWithCodeAnalysis(TClass @class)
         {
             node = new Node<TClass, ClassDeclarationSyntax>(@class);
-            baseTypes = new BaseTypeListWrapper<TClass, ClassDeclarationSyntax>(
+            baseTypes = new BaseTypeNodeList<TClass, ClassDeclarationSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax));
             attributes = new AttributeListWrapper<TClass, ClassDeclarationSyntax>(
@@ -67,7 +67,7 @@ namespace CSharpDom.CodeAnalysis
                 () => new ClassNestedEnumWithCodeAnalysis());
             events = new InternalClassEventCollectionWithCodeAnalysis<TClass>(this);
             fields = new InternalClassFieldCollectionWithCodeAnalysis<TClass>(this);
-            genericParameters = new GenericParameterDeclarationListWrapper<TClass, ClassDeclarationSyntax>(
+            genericParameters = new GenericParameterDeclarationNodeList<TClass, ClassDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),

@@ -16,7 +16,7 @@ namespace CSharpDom.CodeAnalysis
             Func<TParentSyntax, SyntaxList<MemberDeclarationSyntax>, TParentSyntax> createList,
             Func<TChild> factory,
             Func<TChildSyntax, bool> filter = null)
-            : base(node, ListFactory.CreateFilteredList(node, syntax => syntax.Members, createList, filter), factory)
+            : base(node, ListFactory.CreateFilteredSyntaxList(node, syntax => syntax.Members, createList, filter), factory)
         {
         }
     }

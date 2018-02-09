@@ -25,7 +25,7 @@ namespace CSharpDom.CodeAnalysis
             EnumDeclarationSyntax> enums;
         private readonly StaticClassEventCollectionWithCodeAnalysis events;
         private readonly StaticClassFieldCollectionWithCodeAnalysis fields;
-        private readonly GenericParameterDeclarationListWrapper<
+        private readonly GenericParameterDeclarationNodeList<
             TClass,
             ClassDeclarationSyntax> genericParameters;
         private readonly ClassMemberListWrapper<
@@ -60,7 +60,7 @@ namespace CSharpDom.CodeAnalysis
                 () => new StaticClassNestedEnumWithCodeAnalysis());
             events = new InternalStaticClassEventCollectionWithCodeAnalysis<TClass>(this);
             fields = new InternalStaticClassFieldCollectionWithCodeAnalysis<TClass>(this);
-            genericParameters = new GenericParameterDeclarationListWrapper<TClass, ClassDeclarationSyntax>(
+            genericParameters = new GenericParameterDeclarationNodeList<TClass, ClassDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),

@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class BaseTypeListWrapper<TParent, TParentSyntax> :
+    internal class BaseTypeNodeList<TParent, TParentSyntax> :
         ChildNodeList<TParent, TParentSyntax, InterfaceReferenceWithCodeAnalysis, NameSyntax>
         where TParent : class, IHasNode<TParentSyntax>
         where TParentSyntax : TypeDeclarationSyntax
@@ -15,10 +15,13 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<TParent, TParentSyntax> node;
         private readonly Func<TParentSyntax, BaseListSyntax, TParentSyntax> createList;
 
-        public BaseTypeListWrapper(
+        public BaseTypeNodeList(
             Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, BaseListSyntax, TParentSyntax> createList)
-            : base(node, ListFactory.CreateBaseTypeList(node, createList), () => new InterfaceReferenceWithCodeAnalysis())
+            : base(
+                  node,
+                  new BaseTypeSyntaxList<TParent, TParentSyntax>(node, createList),
+                  () => new InterfaceReferenceWithCodeAnalysis())
         {
             this.node = node;
             this.createList = createList;

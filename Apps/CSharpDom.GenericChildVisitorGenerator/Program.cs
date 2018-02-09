@@ -25,11 +25,11 @@ namespace CSharpDom.GenericChildVisitorGenerator
         {
             string visitorFileName = Path.Combine(
                 Path.GetDirectoryName(typeof(Program).Assembly.Location),
-                @"..\..\..\..CSharpDom\Common\GenericChildVisitor.cs");
+                @"..\..\..\..\CSharpDom\Common\GenericChildVisitor.cs");
             visitorFileName = Path.GetFullPath(visitorFileName);
             LoadedDocumentWithCodeAnalysis loadedDocument =
                 await LoadedDocumentWithCodeAnalysis.LoadFromFileAsync(visitorFileName);
-            StaticClassWithCodeAnalysis visitorClass = loadedDocument.Classes.StaticClasses.First();
+            StaticClassWithCodeAnalysis visitorClass = loadedDocument.Namespaces.First().Classes.StaticClasses.First();
             using (CodeAnalysisSettings.AllowEdits(visitorClass))
             {
                 foreach (StaticClassMethodWithCodeAnalysis method in

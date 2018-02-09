@@ -48,9 +48,25 @@ namespace CSharpDom.CodeAnalysis
             return new GenericParameterDeclarationSyntax(TypeParameter.WithAttributeLists(attributes), ConstraintClause);
         }
 
-        public GenericParameterDeclarationSyntax WithConstraints(SeparatedSyntaxList<TypeParameterConstraintSyntax> constraints)
+        public GenericParameterDeclarationSyntax WithConstraints(
+            SeparatedSyntaxList<TypeParameterConstraintSyntax> constraints)
         {
-            return new GenericParameterDeclarationSyntax(TypeParameter, ConstraintClause.WithConstraints(constraints));
+            TypeParameterConstraintClauseSyntax newConstraintClause = null;
+            if (constraints.Count != 0)
+            {
+                if (constraintClause == null)
+                {
+                    newConstraintClause = SyntaxFactory.TypeParameterConstraintClause(
+                        SyntaxFactory.IdentifierName(typeParameter.Identifier.Text),
+                        constraints);
+                }
+                else
+                {
+                    newConstraintClause = constraintClause.WithConstraints(constraints);
+                }
+            }
+
+            return new GenericParameterDeclarationSyntax(TypeParameter, newConstraintClause);
         }
 
         public GenericParameterDeclarationSyntax WithName(string name)

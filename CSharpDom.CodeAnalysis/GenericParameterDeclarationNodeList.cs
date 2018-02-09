@@ -4,12 +4,10 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
-    internal class GenericParameterDeclarationListWrapper<TParent, TParentSyntax> :
+    internal sealed class GenericParameterDeclarationNodeList<TParent, TParentSyntax> :
         ChildNodeList<
             TParent,
             TParentSyntax,
@@ -22,20 +20,33 @@ namespace CSharpDom.CodeAnalysis
         private readonly Func<TParentSyntax, TypeParameterListSyntax, TParentSyntax> createTypeParameters;
         private readonly Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses;
 
-        public GenericParameterDeclarationListWrapper(
+        public GenericParameterDeclarationNodeList(
             Node<TParent, TParentSyntax> node,
             Func<TParentSyntax, TypeParameterListSyntax> getTypeParameters,
             Func<TParentSyntax, TypeParameterListSyntax, TParentSyntax> createTypeParameters,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>> getConstraintClauses,
             Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses)
-            : base(
+            : this(
                   node,
-                  ListFactory.CreateList(node, getTypeParameters, createTypeParameters, getConstraintClauses, createConstraintClauses),
-                  () => new GenericParameterDeclarationWithCodeAnalysis())
+                  new TypeParameterSyntaxListConversions<TParentSyntax>(getTypeParameters, createTypeParameters),
+                  getConstraintClauses,
+                  createConstraintClauses)
         {
             this.node = node;
             this.createTypeParameters = createTypeParameters;
             this.createConstraintClauses = createConstraintClauses;
+        }
+
+        private GenericParameterDeclarationNodeList(
+            Node<TParent, TParentSyntax> node,
+            TypeParameterSyntaxListConversions<TParentSyntax> typeParameterConversions,
+            Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>> getConstraintClauses,
+            Func<TParentSyntax, SyntaxList<TypeParameterConstraintClauseSyntax>, TParentSyntax> createConstraintClauses)
+            : base(
+                node,
+                ListFactory.CreateChildSyntaxList(node, typeParameterConversions, getConstraintClauses, createConstraintClauses),
+                () => new GenericParameterDeclarationWithCodeAnalysis())
+        {
         }
 
         public void ReplaceList(IEnumerable<GenericParameterDeclarationWithCodeAnalysis> newList)

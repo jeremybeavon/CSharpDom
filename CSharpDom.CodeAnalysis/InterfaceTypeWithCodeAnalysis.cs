@@ -23,8 +23,8 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> node;
         private readonly AttributeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> attributes;
         private readonly InterfaceMemberListWrapper<InterfaceEventWithCodeAnalysis, EventFieldDeclarationSyntax> events;
-        private readonly GenericParameterDeclarationListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> genericParameters;
-        private readonly BaseTypeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
+        private readonly GenericParameterDeclarationNodeList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> genericParameters;
+        private readonly BaseTypeNodeList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax> interfaces;
         private readonly InterfaceMemberListWrapper<InterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax> properties;
         private readonly InterfaceMemberListWrapper<InterfaceIndexerWithCodeAnalysis, IndexerDeclarationSyntax> indexers;
         private readonly InterfaceMemberListWrapper<InterfaceMethodWithCodeAnalysis, MethodDeclarationSyntax> methods;
@@ -40,13 +40,13 @@ namespace CSharpDom.CodeAnalysis
             events = new InterfaceMemberListWrapper<InterfaceEventWithCodeAnalysis, EventFieldDeclarationSyntax>(
                 node,
                 () => new InterfaceEventWithCodeAnalysis());
-            genericParameters = new GenericParameterDeclarationListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
+            genericParameters = new GenericParameterDeclarationNodeList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 syntax => syntax.TypeParameterList,
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
-            interfaces = new BaseTypeListWrapper<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
+            interfaces = new BaseTypeNodeList<InterfaceTypeWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
                 (parentSyntax, childSyntax) => parentSyntax.WithBaseList(childSyntax));
             properties = new InterfaceMemberListWrapper<InterfacePropertyWithCodeAnalysis, PropertyDeclarationSyntax>(

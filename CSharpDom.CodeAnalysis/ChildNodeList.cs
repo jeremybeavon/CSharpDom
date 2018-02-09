@@ -88,7 +88,7 @@ namespace CSharpDom.CodeAnalysis
             isRefreshList = true;
             TChildSyntax syntax = item.Node.Syntax;
             list.Insert(index, syntax);
-            InternalInsert(index, item, syntax);
+            InternalInsert(index, item);
             isRefreshList = false;
         }
 
@@ -191,10 +191,16 @@ namespace CSharpDom.CodeAnalysis
             SetParent(item, innerList.Count - 1);
         }
 
-        private void InternalInsert(int index, TChild item, TChildSyntax syntax)
+        private void InternalInsert(int index, TChild item)
         {
+            if (index == innerList.Count)
+            {
+                InternalAdd(item);
+                return;
+            }
+
             innerList.Insert(index, item);
-            for (int childIndex = index; childIndex < innerList.Count; index++)
+            for (int childIndex = index; childIndex < innerList.Count; childIndex++)
             {
                 innerList[childIndex].Node.Index++;
             }

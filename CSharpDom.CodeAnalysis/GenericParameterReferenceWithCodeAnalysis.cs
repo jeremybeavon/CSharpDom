@@ -1,6 +1,4 @@
-﻿using System;
-using CSharpDom.BaseClasses.Editable;
-using Microsoft.CodeAnalysis.CSharp;
+﻿using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
@@ -8,7 +6,8 @@ namespace CSharpDom.CodeAnalysis
     public sealed class GenericParameterReferenceWithCodeAnalysis :
         EditableGenericParameterReference,
         IInternalTypeReferenceWithCodeAnalysis,
-        IHasSyntax<IdentifierNameSyntax>
+        IHasSyntax<IdentifierNameSyntax>,
+        IUnspecifiedTypeReferenceWrapper
     {
         private readonly UnspecifiedTypeReferenceWithCodeAnalysis typeReference;
 
@@ -47,8 +46,8 @@ namespace CSharpDom.CodeAnalysis
 
         INode<TypeSyntax> IHasNode<TypeSyntax>.Node => typeReference.Node;
 
-        //INode<NameSyntax> IHasNode<NameSyntax>.Node => throw new NotImplementedException();
-
+        UnspecifiedTypeReferenceWithCodeAnalysis IUnspecifiedTypeReferenceWrapper.TypeReference => typeReference;
+        
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitGenericParameterReferenceWithCodeAnalysis(this);
