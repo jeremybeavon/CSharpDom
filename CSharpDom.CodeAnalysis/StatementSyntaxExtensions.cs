@@ -24,7 +24,7 @@ namespace CSharpDom.CodeAnalysis
             { typeof(LockStatementSyntax), () => new LockStatementWithCodeAnalysis() },
             { typeof(ReturnStatementSyntax), () => new ReturnStatementWithCodeAnalysis() },
             //{ typeof(SwitchStatementSyntax), () => new swit }
-            //{ typeof(ThrowStatementSyntax), () => new ThrowStatementSyntax }
+            { typeof(ThrowStatementSyntax), () => new ThrowStatementWithCodeAnalysis() },
             { typeof(TryStatementSyntax), () => new TryStatementWithCodeAnalysis() },
             //{ typeof(UnsafeStatementSyntax) }
             { typeof(UsingStatementSyntax), () => new UsingStatementWithCodeAnalysis() },

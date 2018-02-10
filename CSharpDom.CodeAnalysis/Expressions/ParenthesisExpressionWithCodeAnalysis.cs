@@ -1,8 +1,6 @@
-﻿using CSharpDom.Common;
-using CSharpDom.BaseClasses.Editable.Expressions;
+﻿using CSharpDom.BaseClasses.Editable.Expressions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Collections.Generic;
-using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
@@ -15,7 +13,13 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private readonly ExpressionNode<ParenthesisExpressionWithCodeAnalysis, ParenthesizedExpressionSyntax> node;
         private readonly CachedExpressionNode<ParenthesisExpressionWithCodeAnalysis, ParenthesizedExpressionSyntax> expression;
 
-        public ParenthesisExpressionWithCodeAnalysis()
+        public ParenthesisExpressionWithCodeAnalysis(IExpressionWithCodeAnalysis expression)
+            : this()
+        {
+            Syntax = SyntaxFactory.ParenthesizedExpression(expression.Syntax);
+        }
+
+        internal ParenthesisExpressionWithCodeAnalysis()
         {
             node = new ExpressionNode<ParenthesisExpressionWithCodeAnalysis, ParenthesizedExpressionSyntax>(this);
             expression = new CachedExpressionNode<ParenthesisExpressionWithCodeAnalysis, ParenthesizedExpressionSyntax>(

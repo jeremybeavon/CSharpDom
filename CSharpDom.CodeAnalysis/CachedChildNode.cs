@@ -39,7 +39,13 @@ namespace CSharpDom.CodeAnalysis
         {
             get
             {
-                TChild childNode = createChildNode(getSyntax(node.Syntax));
+                TChildSyntax childSyntax = getSyntax(node.Syntax);
+                if (childSyntax == null)
+                {
+                    return null;
+                }
+
+                TChild childNode = createChildNode(childSyntax);
                 if (cachedChildNode == null ||
                     (childNode == null && cachedChildNode != null) ||
                     (childNode != null && childNode.GetType() != cachedChildNode.GetType()))

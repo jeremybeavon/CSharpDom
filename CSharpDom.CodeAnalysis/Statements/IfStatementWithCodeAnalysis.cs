@@ -47,7 +47,7 @@ namespace CSharpDom.CodeAnalysis.Statements
                 (parentSyntax, childSyntax) => parentSyntax.WithStatement(childSyntax));
             elseStatement = new CachedStatementNode<IfStatementWithCodeAnalysis, IfStatementSyntax>(
                 node,
-                syntax => syntax.Else.Statement,
+                syntax => syntax.Else?.Statement,
                 (parentSyntax, childSyntax) => parentSyntax.WithElse(parentSyntax.Else.WithStatement(childSyntax)));
         }
 

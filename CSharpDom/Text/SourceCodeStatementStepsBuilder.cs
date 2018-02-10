@@ -95,7 +95,6 @@ namespace CSharpDom.Text
             IForeachStatement<TTypeReference, TExpression, TStatement> foreachStatement)
         {
             Steps.Add(new WriteForeachKeyword());
-            Steps.Add(new WriteWhileKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteStartParenthesis());
             Steps.Add(new WriteChildNode<TTypeReference>(foreachStatement.Type));

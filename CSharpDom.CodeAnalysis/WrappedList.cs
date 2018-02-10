@@ -95,7 +95,16 @@ namespace CSharpDom.CodeAnalysis
 
         public void CopyTo(TChild[] array, int arrayIndex)
         {
-            throw new NotSupportedException();
+            foreach (TChild child in this)
+            {
+                if (arrayIndex >= array.Length)
+                {
+                    return;
+                }
+
+                array[arrayIndex] = child;
+                arrayIndex++;
+            }
         }
 
         public IEnumerator<TChild> GetEnumerator()

@@ -70,7 +70,7 @@ namespace CSharpDom.Text
             ISourceCodeBuilderStep accessorKeyword = accessorFlags.HasFlag(AccessorFlags.Get) ? (ISourceCodeBuilderStep)new WriteGetKeyword() : new WriteSetKeyword();
             if (accessor.Body == null)
             {
-                Steps.AddRange(accessor.Attributes.Select(attribute => new WriteChildNode<TAttributeGroup>(attribute)));
+                Steps.AddRange(accessor.Attributes.ToSteps());
                 Steps.Add(accessorKeyword);
                 Steps.Add(new WriteSemicolon());
                 return;
@@ -720,12 +720,12 @@ namespace CSharpDom.Text
             }
 
             List<ISourceCodeBuilderStep> steps = new List<ISourceCodeBuilderStep>();
-            steps.AddRange(loadedDocument.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum)));
-            steps.AddRange(loadedDocument.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)));
-            steps.AddRange(loadedDocument.Interfaces.Select(@interface => new WriteChildNode<TInterface>(@interface)));
+            steps.AddRange(loadedDocument.Enums.ToSteps());
+            steps.AddRange(loadedDocument.Delegates.ToSteps());
+            steps.AddRange(loadedDocument.Interfaces.ToSteps());
             steps.AddIfNotEmpty(loadedDocument.Structs);
             steps.AddIfNotEmpty(loadedDocument.Classes);
-            steps.AddRange(loadedDocument.Namespaces.Select(@namespace => new WriteChildNode<TNamespace>(@namespace)));
+            steps.AddRange(loadedDocument.Namespaces.ToSteps());
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
@@ -734,6 +734,7 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
             Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginMethodDefinition);
             Steps.AddClassMemberVisibilityModifierSteps(method.Visibility);
             Steps.AddClassMemberInheritanceModifierSteps(method.InheritanceModifier);
             VisitMethod(method);
@@ -743,6 +744,7 @@ namespace CSharpDom.Text
             IExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody> method)
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginMethodDefinition);
             explicitInterface = new WriteChildNode<TInterfaceReference>(method.ExplicitInterface);
             VisitMethod(method);
             explicitInterface = null;
@@ -774,6 +776,7 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
             Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginMethodDefinition);
             Steps.AddStructMemberVisibilityModifierSteps(method.Visibility);
             Steps.AddStructMemberInheritanceModifierSteps(method.InheritanceModifier);
             VisitMethod(method);
@@ -815,8 +818,11 @@ namespace CSharpDom.Text
             Steps.Add(new WriteName(method.Name));
             Steps.AddGenericParameterDeclarationSteps(method.GenericParameters);
             Steps.Add(new WriteStartParenthesis());
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginMethodParametersDefinition);
             Steps.AddCommaSeparatedChildNodeSteps(method.Parameters);
+            Steps.AddPlaceholder(SourceCodePlaceholder.EndMethodParametersDefinition);
             Steps.Add(new WriteEndParenthesis());
+            Steps.AddPlaceholder(SourceCodePlaceholder.EndMethodDefinition);
             Steps.AddGenericParameterConstraintSteps(method.GenericParameters);
             Steps.Add(new WriteIndentedNewLine());
             Steps.Add(new WriteStartBrace());
@@ -870,12 +876,12 @@ namespace CSharpDom.Text
             Steps.Add(new IncrementIndent());
             Steps.AddChildNodeStepsOnNewLines(@namespace.UsingDirectives, NewLineLocation.BeforeNode);
             List<ISourceCodeBuilderStep> steps = new List<ISourceCodeBuilderStep>();
-            steps.AddRange(@namespace.Enums.Select(@enum => (ISourceCodeBuilderStep)new WriteChildNode<TEnum>(@enum)));
-            steps.AddRange(@namespace.Delegates.Select(@delegate => new WriteChildNode<TDelegate>(@delegate)));
-            steps.AddRange(@namespace.Interfaces.Select(@interface => new WriteChildNode<TInterface>(@interface)));
+            steps.AddRange(@namespace.Enums.ToSteps());
+            steps.AddRange(@namespace.Delegates.ToSteps());
+            steps.AddRange(@namespace.Interfaces.ToSteps());
             steps.AddIfNotEmpty(@namespace.Structs);
             steps.AddIfNotEmpty(@namespace.Classes);
-            steps.AddRange(@namespace.Namespaces.Select(inner => new WriteChildNode<TNamespace>(inner)));
+            steps.AddRange(@namespace.Namespaces.ToSteps());
             if (steps.Count != 0)
             {
                 if (@namespace.UsingDirectives.Count != 0)
@@ -1424,17 +1430,17 @@ namespace CSharpDom.Text
             typeSteps.AddIfNotEmpty(type.Fields);
             typeSteps.AddIfNotEmpty(type.Events);
             typeSteps.AddIfNotNull(type.StaticConstructor);
-            typeSteps.AddRange(type.Constructors.Select(constructor => new WriteChildNode<TConstructor>(constructor)));
+            typeSteps.AddRange(type.Constructors.ToSteps());
             typeSteps.AddRange(destructorStep);
             typeSteps.AddIfNotEmpty(type.Properties);
             typeSteps.AddIfNotEmpty(type.Indexers);
             typeSteps.AddIfNotEmpty(type.Methods);
-            typeSteps.AddRange(type.ConversionOperators.Select(@operator => new WriteChildNode<TConversionOperator>(@operator)));
-            typeSteps.AddRange(type.OperatorOverloads.Select(@operator => new WriteChildNode<TOperatorOverload>(@operator)));
+            typeSteps.AddRange(type.ConversionOperators.ToSteps());
+            typeSteps.AddRange(type.OperatorOverloads.ToSteps());
             typeSteps.AddIfNotEmpty(type.Classes);
-            typeSteps.AddRange(type.Delegates.Select(@delegate => new WriteChildNode<TNestedDelegate>(@delegate)));
-            typeSteps.AddRange(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)));
-            typeSteps.AddRange(type.Interfaces.Select(@interface => new WriteChildNode<TNestedInterface>(@interface)));
+            typeSteps.AddRange(type.Delegates.ToSteps());
+            typeSteps.AddRange(type.Enums.ToSteps());
+            typeSteps.AddRange(type.Interfaces.ToSteps());
             typeSteps.AddIfNotEmpty(type.Structs);
             if (typeSteps.Any())
             {
@@ -1484,7 +1490,7 @@ namespace CSharpDom.Text
         public override void VisitAbstractAccessor<TAttributeGroup>(IAbstractAccessor<TAttributeGroup> accessor)
         {
             Steps.Add(new WriteWhitespace());
-            Steps.AddRange(accessor.Attributes.Select(attribute => new WriteChildNode<TAttributeGroup>(attribute)));
+            Steps.AddRange(accessor.Attributes.ToSteps());
             Steps.Add(accessorFlags.HasFlag(AccessorFlags.Get) ? (ISourceCodeBuilderStep)new WriteGetKeyword() : new WriteSetKeyword());
             Steps.Add(new WriteSemicolon());
         }
@@ -1524,10 +1530,10 @@ namespace CSharpDom.Text
             IAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent> eventCollection)
         {
             IEnumerable<ISourceCodeBuilderStep> steps =
-                eventCollection.Select(@event => (ISourceCodeBuilderStep)new WriteChildNode<TEvent>(@event))
-                .Concat(eventCollection.EventProperties.Select(@event => new WriteChildNode<TEventProperty>(@event)))
-                .Concat(eventCollection.ExplicitInterfaceEvents.Select(@event => new WriteChildNode<TExplicitInterfaceEvent>(@event)))
-                .Concat(eventCollection.AbstractEvents.Select(@event => new WriteChildNode<TAbstractEvent>(@event)));
+                eventCollection.ToSteps()
+                .Concat(eventCollection.EventProperties.ToSteps())
+                .Concat(eventCollection.ExplicitInterfaceEvents.ToSteps())
+                .Concat(eventCollection.AbstractEvents.ToSteps());
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
@@ -1535,9 +1541,9 @@ namespace CSharpDom.Text
             IAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer> indexerCollection)
         {
             IEnumerable<ISourceCodeBuilderStep> steps =
-                indexerCollection.Select(indexer => (ISourceCodeBuilderStep)new WriteChildNode<TIndexer>(indexer))
-                .Concat(indexerCollection.ExplicitInterfaceIndexers.Select(indexer => new WriteChildNode<TExplicitInterfaceIndexer>(indexer)))
-                .Concat(indexerCollection.AbstractIndexers.Select(indexer => new WriteChildNode<TAbstractIndexer>(indexer)));
+                indexerCollection.ToSteps()
+                .Concat(indexerCollection.ExplicitInterfaceIndexers.ToSteps())
+                .Concat(indexerCollection.AbstractIndexers.ToSteps());
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
@@ -1545,18 +1551,18 @@ namespace CSharpDom.Text
             IAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod> methodCollection)
         {
             IEnumerable<ISourceCodeBuilderStep> steps =
-                methodCollection.Select(method => (ISourceCodeBuilderStep)new WriteChildNode<TMethod>(method))
-                .Concat(methodCollection.ExplicitInterfaceMethods.Select(method => new WriteChildNode<TExplicitInterfaceMethod>(method)))
-                .Concat(methodCollection.AbstractMethods.Select(method => new WriteChildNode<TAbstractMethod>(method)));
+                methodCollection.ToSteps()
+                .Concat(methodCollection.ExplicitInterfaceMethods.ToSteps())
+                .Concat(methodCollection.AbstractMethods.ToSteps());
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
         public override void VisitAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection)
         {
             IEnumerable<ISourceCodeBuilderStep> steps =
-                propertyCollection.Select(property => (ISourceCodeBuilderStep)new WriteChildNode<TProperty>(property))
-                .Concat(propertyCollection.ExplicitInterfaceProperties.Select(property => new WriteChildNode<TExplicitInterfaceProperty>(property)))
-                .Concat(propertyCollection.AbstractProperties.Select(property => new WriteChildNode<TAbstractProperty>(property)));
+                propertyCollection.ToSteps()
+                .Concat(propertyCollection.ExplicitInterfaceProperties.ToSteps())
+                .Concat(propertyCollection.AbstractProperties.ToSteps());
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
@@ -1715,6 +1721,7 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
             Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginMethodDefinition);
             Steps.AddClassMemberVisibilityModifierSteps(method.Visibility);
             Steps.AddSealedClassMemberInheritanceModifierSteps(method.InheritanceModifier);
             VisitMethod(method);
@@ -1799,6 +1806,7 @@ namespace CSharpDom.Text
         {
             Steps.AddChildNodeStepsOnNewLines(method.Attributes);
             Steps.AddReturnAttributeNodeSteps(method.ReturnAttributes);
+            Steps.AddPlaceholder(SourceCodePlaceholder.BeginMethodDefinition);
             Steps.AddStaticClassMemberVisibilityModifierSteps(method.Visibility);
             Steps.Add(new WriteStatic());
             Steps.Add(new WriteWhitespace());
@@ -1886,12 +1894,12 @@ namespace CSharpDom.Text
             typeSteps.AddIfNotEmpty(type.Fields);
             typeSteps.AddIfNotEmpty(type.Events);
             typeSteps.AddIfNotNull(type.StaticConstructor);
-            typeSteps.AddRange(type.Properties.Select(property => new WriteChildNode<TProperty>(property)));
+            typeSteps.AddRange(type.Properties.ToSteps());
             typeSteps.AddIfNotEmpty(type.Methods);
             typeSteps.AddIfNotEmpty(type.Classes);
-            typeSteps.AddRange(type.Delegates.Select(@delegate => new WriteChildNode<TNestedDelegate>(@delegate)));
-            typeSteps.AddRange(type.Enums.Select(@enum => new WriteChildNode<TNestedEnum>(@enum)));
-            typeSteps.AddRange(type.Interfaces.Select(@interface => new WriteChildNode<TNestedInterface>(@interface)));
+            typeSteps.AddRange(type.Delegates.ToSteps());
+            typeSteps.AddRange(type.Enums.ToSteps());
+            typeSteps.AddRange(type.Interfaces.ToSteps());
             typeSteps.AddIfNotEmpty(type.Structs);
             if (typeSteps.Any())
             {
@@ -1899,6 +1907,15 @@ namespace CSharpDom.Text
             }
 
             Steps.AddRange(typeSteps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
+        }
+
+        public override void VisitStaticClassMethodCollection<TMethod, TExtensionMethod>(
+            IStaticClassMethodCollection<TMethod, TExtensionMethod> methodCollection)
+        {
+            List<ISourceCodeBuilderStep> methodSteps = new List<ISourceCodeBuilderStep>();
+            methodSteps.AddRange(methodCollection.ExtensionMethods.ToSteps());
+            methodSteps.AddRange(methodCollection.ToSteps());
+            Steps.AddRange(methodSteps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
     }
 }

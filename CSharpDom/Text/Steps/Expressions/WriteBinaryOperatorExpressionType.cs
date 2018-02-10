@@ -7,7 +7,38 @@ namespace CSharpDom.Text.Steps.Expressions
         private static readonly IDictionary<BinaryOperatorExpressionType, string> operatorTypes =
             new Dictionary<BinaryOperatorExpressionType, string>()
             {
-                { BinaryOperatorExpressionType.Assign, "=" }
+                { BinaryOperatorExpressionType.Add, "+" },
+                { BinaryOperatorExpressionType.AddAssign, "+=" },
+                { BinaryOperatorExpressionType.Assign, "=" },
+                { BinaryOperatorExpressionType.BitwiseAnd, "&" },
+                { BinaryOperatorExpressionType.BitwiseAndAssign, "&=" },
+                { BinaryOperatorExpressionType.BitwiseExclusiveOr, "^" },
+                { BinaryOperatorExpressionType.BitwiseExclusiveOrAssign, "^=" },
+                { BinaryOperatorExpressionType.BitwiseOr, "|" },
+                { BinaryOperatorExpressionType.BitwiseOrAssign, "|=" },
+                { BinaryOperatorExpressionType.Coalesce, "??" },
+                { BinaryOperatorExpressionType.Divide, "/" },
+                { BinaryOperatorExpressionType.DivideAssign, "/=" },
+                { BinaryOperatorExpressionType.Equal, "==" },
+                { BinaryOperatorExpressionType.GreaterThan, ">" },
+                { BinaryOperatorExpressionType.GreaterThanOrEqual, ">=" },
+                { BinaryOperatorExpressionType.LeftShift, "<<" },
+                { BinaryOperatorExpressionType.LeftShiftAssign, "<<=" },
+                { BinaryOperatorExpressionType.LessThan, "<" },
+                { BinaryOperatorExpressionType.LessThanOrEqual, "<=" },
+                { BinaryOperatorExpressionType.LogicalAnd, "&&" },
+                { BinaryOperatorExpressionType.LogicalOr, "||" },
+                { BinaryOperatorExpressionType.Modulo, "%" },
+                { BinaryOperatorExpressionType.ModuloAssign, "%=" },
+                { BinaryOperatorExpressionType.Multiply, "*" },
+                { BinaryOperatorExpressionType.MultiplyAssign, "*=" },
+                { BinaryOperatorExpressionType.NotEqual, "!=" },
+                { BinaryOperatorExpressionType.RightShift, ">>" },
+                { BinaryOperatorExpressionType.RightShiftAssign, ">>" },
+                { BinaryOperatorExpressionType.Subtract, "-" },
+                { BinaryOperatorExpressionType.SubtractAssign, "-=" },
+                { BinaryOperatorExpressionType.TypeAs, "as" },
+                { BinaryOperatorExpressionType.TypeIs, "is" }
             };
 
         public WriteBinaryOperatorExpressionType(BinaryOperatorExpressionType operatorType)

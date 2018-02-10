@@ -23,8 +23,9 @@ namespace CSharpDom.CodeAnalysis
             TParentSyntax parentSyntax,
             SeparatedSyntaxList<TypeParameterSyntax> childSyntax)
         {
-            return createTypeParameters(parentSyntax, (getTypeParameters(parentSyntax) ??
-                SyntaxFactory.TypeParameterList()).WithParameters(childSyntax));
+            return createTypeParameters(
+                parentSyntax,
+                (getTypeParameters(parentSyntax) ?? SyntaxFactory.TypeParameterList()).WithParameters(childSyntax));
         }
 
         public SeparatedSyntaxList<TypeParameterSyntax> GetList(TParentSyntax syntax)

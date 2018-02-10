@@ -268,14 +268,23 @@ namespace CSharpDom.CodeAnalysis
             {
                 for (int index = innerList.Count; index < count; index++)
                 {
-                    InternalAdd(factory(index));
+                    TChild child = factory(index);
+                    if (child == null)
+                    {
+                        throw new InvalidOperationException("Child cannot be null");
+                    }
+
+                    InternalAdd(child);
                 }
             }
             else
             {
                 while (innerList.Count > count)
                 {
+                    INode<TChildSyntax> node = innerList[count].Node;
+                    node.IsLocked = true;
                     InternalRemoveAt(count);
+                    node.IsLocked = false;
                 }
             }
 

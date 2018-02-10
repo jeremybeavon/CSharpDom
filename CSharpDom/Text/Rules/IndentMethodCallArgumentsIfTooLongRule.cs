@@ -1,12 +1,16 @@
-﻿using CSharpDom.Common;
-using CSharpDom.Text.Steps;
+﻿using CSharpDom.Common.Expressions;
+using CSharpDom.Common.Statements;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSharpDom.Text.Rules
 {
-    public sealed class IndentMethodParametersIfTooLongRule : ISourceCodeStyleRule
+    public sealed class IndentMethodCallArgumentsIfTooLongRule : ISourceCodeStyleRule
     {
-        public IndentMethodParametersIfTooLongRule(int maximumLineLength)
+        public IndentMethodCallArgumentsIfTooLongRule(int maximumLineLength)
         {
             MaximumLineLength = maximumLineLength;
         }
@@ -17,9 +21,10 @@ namespace CSharpDom.Text.Rules
 
         public void ApplyRule(List<ISourceCodeBuilderStep> steps)
         {
-            foreach (ChildSteps methodSteps in steps.GetChildSteps(typeof(IMethod)))
+            foreach (ChildSteps statementSteps in steps.GetChildSteps(typeof(IExpressionStatement)))
             {
-                SourceCodeStepRange range = methodSteps.Steps.GetRange(
+
+                /*SourceCodeStepRange range = methodSteps.Steps.GetRange(
                     SourceCodePlaceholder.BeginMethodParametersDefinition,
                     SourceCodePlaceholder.EndMethodParametersDefinition);
                 int methodDefinitionLength = methodSteps.Steps.GetRange(
@@ -34,8 +39,12 @@ namespace CSharpDom.Text.Rules
                 range.Range.Insert(1, new WriteIndentedNewLine());
                 range.Range.Add(new DecrementIndent());
                 range.Range.ReplaceAll(typeof(WriteWhitespace), new WriteIndentedNewLine());
-                range.Apply();
+                range.Apply();*/
             }
         }
+    }
+}
+
+    {
     }
 }

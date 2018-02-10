@@ -35,6 +35,7 @@ namespace CSharpDom.GenericChildVisitorGenerator
                 foreach (StaticClassMethodWithCodeAnalysis method in
                     visitorClass.Methods.Where(method => method.GenericParameters.LastOrDefault()?.Name != "TVisitor"))
                 {
+                    Console.WriteLine($"Editing: {method.Name}");
                     UnspecifiedTypeReferenceWithCodeAnalysis visitableType = 
                         (UnspecifiedTypeReferenceWithCodeAnalysis)method.Parameters[0].ParameterType;
                     InterfaceReferenceWithCodeAnalysis visitorType = new InterfaceReferenceWithCodeAnalysis(
@@ -82,14 +83,15 @@ namespace CSharpDom.GenericChildVisitorGenerator
                             newObjectCall.Type as UnspecifiedTypeReferenceWithCodeAnalysis;
                         string typeName = type.Name.Replace("Wrapper", string.Empty);
                         string genericTypeName = $"T{typeName}";
-                        string parameterName = $"{typeName.Substring(0).ToLower()}{typeName.Substring(1)}Factory";
+                        string parameterName = $"{typeName.Substring(0, 1).ToLower()}{typeName.Substring(1)}Factory";
                         newGenericParameter = new GenericParameterDeclarationWithCodeAnalysis(genericTypeName)
                         {
                             InterfaceConstraints =
                             {
                                 new InterfaceReferenceWithCodeAnalysis(
                                     $"I{typeName}",
-                                    type.GenericParameters.ToArray())
+                                    type.GenericParameters.ToArray()),
+                                visitorType
                             }
                         };
                         method.GenericParameters.Insert(parameterIndex, newGenericParameter);
@@ -103,7 +105,7 @@ namespace CSharpDom.GenericChildVisitorGenerator
                         method.Parameters.Insert(parameterIndex, parameter);
                         parameterIndex++;
                         memberCall.ObjectExpression = ExpressionFactory.MethodCall(
-                            ExpressionFactory.Identifier("parameterName"),
+                            ExpressionFactory.Identifier(parameterName),
                             ExpressionFactory.Identifier(method.Parameters[0].Name));
                     }
                 }

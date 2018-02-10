@@ -3,6 +3,7 @@ using CSharpDom.BaseClasses.Editable.Expressions;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
@@ -14,7 +15,13 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private readonly Node<RefExpressionWithCodeAnalysis, ArgumentSyntax> node;
         private readonly CachedExpressionNode<RefExpressionWithCodeAnalysis, ArgumentSyntax> expression;
 
-        public RefExpressionWithCodeAnalysis()
+        public RefExpressionWithCodeAnalysis(IExpressionWithCodeAnalysis expression)
+            : this()
+        {
+            Syntax = SyntaxFactory.Argument(null, SyntaxFactory.Token(SyntaxKind.RefKeyword), expression.Syntax);
+        }
+
+        internal RefExpressionWithCodeAnalysis()
         {
             node = new Node<RefExpressionWithCodeAnalysis, ArgumentSyntax>(this);
             expression = new CachedExpressionNode<RefExpressionWithCodeAnalysis, ArgumentSyntax>(

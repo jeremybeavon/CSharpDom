@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IInterfaceMethod : IInterfaceMember
+    public interface IInterfaceMethod : IMethod, IInterfaceMember
     {
     }
 }

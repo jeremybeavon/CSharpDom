@@ -1,9 +1,5 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.CodeAnalysis.CSharp;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
@@ -11,7 +7,15 @@ namespace CSharpDom.CodeAnalysis.Expressions
     {
         public static IInternalArgument ToInternalArgument(this ArgumentSyntax syntax)
         {
-            return null;
+            switch (syntax.RefOrOutKeyword.Kind())
+            {
+                case SyntaxKind.OutKeyword:
+                    return new OutExpressionWithCodeAnalysis();
+                case SyntaxKind.RefKeyword:
+                    return new RefExpressionWithCodeAnalysis();
+                default:
+                    return new ArgumentExpressionWithCodeAnalysis();
+            }
         }
     }
 }

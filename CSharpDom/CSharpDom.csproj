@@ -3052,6 +3052,7 @@
     <Compile Include="Serialization\UnnamedAttributeValue.cs" />
     <Compile Include="Serialization\UsingDirective.cs" />
     <Compile Include="Text\ChildSteps.cs" />
+    <Compile Include="Text\EnumerableExtensions.cs" />
     <Compile Include="Text\IHasChildNode.cs" />
     <Compile Include="Text\IHasExpression.cs" />
     <Compile Include="Text\IHasSourceSourceBuilderSteps.cs" />
@@ -3061,6 +3062,7 @@
     <Compile Include="Text\ListExtensions.cs" />
     <Compile Include="Text\AccessorFlags.cs" />
     <Compile Include="Text\NewLineLocation.cs" />
+    <Compile Include="Text\Rules\IndentMethodCallArgumentsIfTooLongRule.cs" />
     <Compile Include="Text\Rules\IndentMethodParametersIfTooLongRule.cs" />
     <Compile Include="Text\Rules\IndentGenericParamterDefinitionsIfTooLongRule.cs" />
     <Compile Include="Text\Rules\IndentBaseTypeListIfTooLongRule.cs" />

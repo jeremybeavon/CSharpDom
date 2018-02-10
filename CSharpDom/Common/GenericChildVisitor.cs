@@ -1,4 +1,4 @@
-﻿using CSharpDom.BaseClasses.Wrappers;
+using CSharpDom.BaseClasses.Wrappers;
 using CSharpDom.Common.Partial;
 using System;
 using System.Collections.Generic;
@@ -109,115 +109,131 @@ namespace CSharpDom.Common
             classTypeFactory(@class).Accept(visitor);
         }
 
-        public static void VisitPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> @class,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitPartialClassChildren<TPartialClass, TClass, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TPartialClass @class,
+            Func<TPartialClass, TClass> classFactory,
+            TVisitor visitor)
+            where TPartialClass : IPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TClass : IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new ClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(@class).Accept(visitor);
+            classFactory(@class).Accept(visitor);
         }
 
-        public static void VisitClassTypeChildren<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> @class,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitClassTypeChildren<TClassType, TType, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TClassType @class,
+            Func<TClassType, TType> typeFactory,
+            TVisitor visitor)
+            where TClassType : IClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TType : IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
             VisitIfNotNull(@class.BaseClass, visitor);
-            new TypeWrapper<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(@class).Accept(visitor);
+            typeFactory(@class).Accept(visitor);
             VisitIfNotNull(@class.Destructor, visitor);
         }
 
-        public static void VisitClassReferenceChildren<TTypeReference>(
-            IClassReference<TTypeReference> classReference,
-            IGenericVisitor visitor)
-            where TTypeReference : ITypeReference
+        public static void VisitClassReferenceChildren<TClassReference, TTypeReference, TVisitor>(
+            TClassReference classReference,
+            Func<TClassReference, TTypeReference> typeReferenceFactory,
+            TVisitor visitor)
+            where TClassReference : IClassReference<TTypeReference>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
             VisitCollection(classReference.GenericParameters, visitor);
-            new TypeReferenceWrapper(classReference).Accept(visitor);
+            typeReferenceFactory(classReference).Accept(visitor);
         }
 
-        public static void VisitClassConstructorChildren<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
-            IClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TParameter : IConstructorParameter
-            where TMethodBody : IMethodBody
+        public static void VisitClassConstructorChildren<TClassConstructor, TConstructor, TAttributeGroup, TDeclaringType, TParameter, TMethodBody, TVisitor>(
+            TClassConstructor constructor,
+            Func<TClassConstructor, TConstructor> constructorFactory,
+            TVisitor visitor)
+            where TClassConstructor : IClassConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
+            where TConstructor : IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TParameter : IConstructorParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new ConstructorWrapper<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(constructor).Accept(visitor);
+            constructorFactory(constructor).Accept(visitor);
         }
 
-        public static void VisitStructConstructorChildren<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
-            IStructConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TParameter : IConstructorParameter
-            where TMethodBody : IMethodBody
+        public static void VisitStructConstructorChildren<TStructConstructor, TConstructor, TAttributeGroup, TDeclaringType, TParameter, TMethodBody, TVisitor>(
+            TStructConstructor constructor,
+            Func<TStructConstructor, TConstructor> constructorFactory,
+            TVisitor visitor)
+            where TStructConstructor : IStructConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
+            where TConstructor : IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TParameter : IConstructorParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new ConstructorWrapper<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(constructor).Accept(visitor);
+            constructorFactory(constructor).Accept(visitor);
         }
 
-        public static void VisitConstructorChildren<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>(
-            IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody> constructor,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TParameter : IConstructorParameter
-            where TMethodBody : IMethodBody
+        public static void VisitConstructorChildren<TConstructor, TAttributeGroup, TDeclaringType, TParameter, TMethodBody, TVisitor>(
+            TConstructor constructor,
+            TVisitor visitor)
+            where TConstructor : IConstructor<TAttributeGroup, TDeclaringType, TParameter, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TParameter : IConstructorParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitCollection(constructor.Attributes, visitor);
             VisitCollection(constructor.Parameters, visitor);
         }
 
-        public static void VisitConversionOperatorChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
-            IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> conversionOperator,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TTypeReference : ITypeReference
-            where TParameter : IOperatorParameter
-            where TMethodBody : IMethodBody
+        public static void VisitConversionOperatorChildren<TConversionOperator, TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody, TVisitor>(
+            TConversionOperator conversionOperator,
+            TVisitor visitor)
+            where TConversionOperator : IConversionOperator<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IOperatorParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitCollection(conversionOperator.Attributes, visitor);
             VisitCollection(conversionOperator.ReturnAttributes, visitor);
@@ -226,17 +242,18 @@ namespace CSharpDom.Common
             VisitIfNotNull(conversionOperator.Body, visitor);
         }
 
-        public static void VisitDelegateChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
-            IDelegate<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter> @delegate,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitDelegateChildren<TDelegate, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter, TVisitor>(
+            TDelegate @delegate,
+            TVisitor visitor)
+            where TDelegate : IDelegate<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TTypeReference, TParameter>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IDelegateParameter
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IDelegateParameter, IVisitable<TVisitor>
         {
             VisitCollection(@delegate.Attributes, visitor);
             VisitCollection(@delegate.GenericParameters, visitor);
@@ -244,20 +261,22 @@ namespace CSharpDom.Common
             VisitCollection(@delegate.Parameters, visitor);
         }
 
-        public static void VisitDelegateReferenceChildren<TTypeReference>(
-            IDelegateReference<TTypeReference> delegateReference,
-            IGenericVisitor visitor)
-            where TTypeReference : ITypeReference
+        public static void VisitDelegateReferenceChildren<TDelegateReference, TTypeReference, TVisitor>(
+            TDelegateReference delegateReference,
+            TVisitor visitor)
+            where TDelegateReference : IDelegateReference<TTypeReference>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
             VisitCollection(delegateReference.GenericParameters, visitor);
         }
 
-        public static void VisitDestructor<TAttributeGroup, TDeclaringType, TMethodBody>(
-            IDestructor<TAttributeGroup, TDeclaringType, TMethodBody> destructor,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TMethodBody : IMethodBody
+        public static void VisitDestructor<TDestructor, TAttributeGroup, TDeclaringType, TMethodBody, TVisitor>(
+            TDestructor destructor,
+            TVisitor visitor)
+            where TDestructor : IDestructor<TAttributeGroup, TDeclaringType, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitCollection(destructor.Attributes, visitor);
             VisitIfNotNull(destructor.Body, visitor);
@@ -274,98 +293,116 @@ namespace CSharpDom.Common
             (await document.LoadAsync()).Accept(visitor);
         }
 
-        public static void VisitEnumChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember>(
-            IEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember> @enum,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitEnumChildren<TEnum, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember, TVisitor>(
+            TEnum @enum,
+            TVisitor visitor)
+            where TEnum : IEnum<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TEnumMember>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TEnumMember : IEnumMember
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TEnumMember : IEnumMember, IVisitable<TVisitor>
         {
             VisitCollection(@enum.Attributes, visitor);
             VisitCollection(@enum.EnumMembers, visitor);
         }
 
-        public static void VisitEnumMemberChildren<TAttributeGroup, TDeclaringType>(
-            IEnumMember<TAttributeGroup, TDeclaringType> enumMember,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IEnum
+        public static void VisitEnumMemberChildren<TEnumMember, TAttributeGroup, TDeclaringType, TVisitor>(
+            TEnumMember enumMember,
+            TVisitor visitor)
+            where TEnumMember : IEnumMember<TAttributeGroup, TDeclaringType>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IEnum, IVisitable<TVisitor>
         {
             VisitCollection(enumMember.Attributes, visitor);
         }
 
-        public static void VisitClassEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TDelegateReference : IDelegateReference
+        public static void VisitClassEventChildren<TClassEvent, TEvent, TAttributeGroup, TDeclaringType, TDelegateReference, TVisitor>(
+            TClassEvent @event,
+            Func<TClassEvent, TEvent> eventFactory,
+            TVisitor visitor)
+            where TClassEvent : IClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
+            where TEvent : IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
         {
-            new EventWrapper<TAttributeGroup, TDeclaringType, TDelegateReference>(@event).Accept(visitor);
+            eventFactory(@event).Accept(visitor);
         }
 
-        public static void VisitInterfaceEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IInterfaceType
-            where TDelegateReference : IDelegateReference
+        public static void VisitInterfaceEventChildren<TInterfaceEvent, TEvent, TAttributeGroup, TDeclaringType, TDelegateReference, TVisitor>(
+            TInterfaceEvent @event,
+            Func<TInterfaceEvent, TEvent> eventFactory,
+            TVisitor visitor)
+            where TInterfaceEvent : IInterfaceEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
+            where TEvent : IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IInterfaceType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
         {
-            new EventWrapper<TAttributeGroup, TDeclaringType, TDelegateReference>(@event).Accept(visitor);
+            eventFactory(@event).Accept(visitor);
         }
 
-        public static void VisitSealedClassEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            ISealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TDelegateReference : IDelegateReference
+        public static void VisitSealedClassEventChildren<TSealedClassEvent, TEvent, TAttributeGroup, TDeclaringType, TDelegateReference, TVisitor>(
+            TSealedClassEvent @event,
+            Func<TSealedClassEvent, TEvent> eventFactory,
+            TVisitor visitor)
+            where TSealedClassEvent : ISealedClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
+            where TEvent : IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : ISealedType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
         {
-            new EventWrapper<TAttributeGroup, TDeclaringType, TDelegateReference>(@event).Accept(visitor);
+            eventFactory(@event).Accept(visitor);
         }
 
-        public static void VisitStaticClassEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IStaticClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TDelegateReference : IDelegateReference
+        public static void VisitStaticClassEventChildren<TStaticClassEvent, TEvent, TAttributeGroup, TDeclaringType, TDelegateReference, TVisitor>(
+            TStaticClassEvent @event,
+            Func<TStaticClassEvent, TEvent> eventFactory,
+            TVisitor visitor)
+            where TStaticClassEvent : IStaticClassEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
+            where TEvent : IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
         {
-            new EventWrapper<TAttributeGroup, TDeclaringType, TDelegateReference>(@event).Accept(visitor);
+            eventFactory(@event).Accept(visitor);
         }
 
-        public static void VisitStructEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TDelegateReference : IDelegateReference
+        public static void VisitStructEventChildren<TStructEvent, TEvent, TAttributeGroup, TDeclaringType, TDelegateReference, TVisitor>(
+            TStructEvent @event,
+            Func<TStructEvent, TEvent> eventFactory,
+            TVisitor visitor)
+            where TStructEvent : IStructEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
+            where TEvent : IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
         {
-            new EventWrapper<TAttributeGroup, TDeclaringType, TDelegateReference>(@event).Accept(visitor);
+            eventFactory(@event).Accept(visitor);
         }
 
-        public static void VisitEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
-            where TDelegateReference : IDelegateReference
+        public static void VisitEventChildren<TEvent, TAttributeGroup, TDeclaringType, TDelegateReference, TVisitor>(
+            TEvent @event,
+            TVisitor visitor)
+            where TEvent : IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IBasicType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
         {
             VisitCollection(@event.Attributes, visitor);
-            //VisitCollection(@event.FieldAttributes, visitor);
             VisitIfNotNull(@event.EventType, visitor);
         }
 
-        public static void VisitEventPropertyChildren<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
-            IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> eventProperty,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TDelegateReference : IDelegateReference
-            where TMethodBody : IMethodBody
+        public static void VisitEventPropertyChildren<TEventProperty, TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody, TVisitor>(
+            TEventProperty eventProperty,
+            TVisitor visitor)
+            where TEventProperty : IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitCollection(eventProperty.Attributes, visitor);
             VisitIfNotNull(eventProperty.EventType, visitor);
@@ -373,39 +410,42 @@ namespace CSharpDom.Common
             VisitIfNotNull(eventProperty.RemoveBody, visitor);
         }
 
-        public static void VisitFieldGroupChildren<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
-            IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField> field,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TTypeReference : ITypeReference
-            where TField : IField
+        public static void VisitFieldGroupChildren<TFieldGroup, TAttributeGroup, TDeclaringType, TTypeReference, TField, TVisitor>(
+            TFieldGroup field,
+            TVisitor visitor)
+            where TFieldGroup : IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TField : IField, IVisitable<TVisitor>
         {
             VisitCollection(field.Attributes, visitor);
             VisitIfNotNull(field.FieldType, visitor);
             VisitCollection(field.Fields, visitor);
         }
 
-        public static void VisitConstantGroupChildren<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
-            IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> field,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TTypeReference : ITypeReference
-            where TConstant : IConstant
+        public static void VisitConstantGroupChildren<TConstantGroup, TAttributeGroup, TDeclaringType, TTypeReference, TConstant, TVisitor>(
+            TConstantGroup field,
+            TVisitor visitor)
+            where TConstantGroup : IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TConstant : IConstant, IVisitable<TVisitor>
         {
             VisitCollection(field.Attributes, visitor);
             VisitIfNotNull(field.FieldType, visitor);
             VisitCollection(field.Constants, visitor);
         }
 
-        public static void VisitGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>(
-            IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup> genericParameterDeclaration,
-            IGenericVisitor visitor)
-            where TClassReference : IClassReference
-            where TGenericParameterReference : IGenericParameterReference
-            where TInterfaceReference : IInterfaceReference
-            where TAttributeGroup : IAttributeGroup
+        public static void VisitGenericParameterDeclaration<TGenericParameterDeclaration, TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup, TVisitor>(
+            TGenericParameterDeclaration genericParameterDeclaration,
+            TVisitor visitor)
+            where TGenericParameterDeclaration : IGenericParameterDeclaration<TClassReference, TGenericParameterReference, TInterfaceReference, TAttributeGroup>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TGenericParameterReference : IGenericParameterReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
         {
             VisitCollection(genericParameterDeclaration.Attributes, visitor);
             VisitIfNotNull(genericParameterDeclaration.BaseClassConstraint, visitor);
@@ -413,14 +453,15 @@ namespace CSharpDom.Common
             VisitCollection(genericParameterDeclaration.InterfaceConstraints, visitor);
         }
 
-        public static void VisitIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
-            IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
-            where TTypeReference : ITypeReference
-            where TParameter : IIndexerParameter
-            where TAccessor : IAccessor
+        public static void VisitIndexerChildren<TIndexer, TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor, TVisitor>(
+            TIndexer indexer,
+            TVisitor visitor)
+            where TIndexer : IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IBasicType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IIndexerParameter, IVisitable<TVisitor>
+            where TAccessor : IAccessor, IVisitable<TVisitor>
         {
             VisitCollection(indexer.Attributes, visitor);
             VisitIfNotNull(indexer.IndexerType, visitor);
@@ -429,20 +470,21 @@ namespace CSharpDom.Common
             VisitIfNotNull(indexer.SetAccessor, visitor);
         }
 
-        public static void VisitInterfaceChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
-            IInterface<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitInterfaceChildren<TInterface, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TVisitor>(
+            TInterface @interface,
+            TVisitor visitor)
+            where TInterface : IInterface<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEvent : IInterfaceEvent
-            where TProperty : IInterfaceProperty
-            where TIndexer : IInterfaceIndexer
-            where TMethod : IInterfaceMethod
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEvent : IInterfaceEvent, IVisitable<TVisitor>
+            where TProperty : IInterfaceProperty, IVisitable<TVisitor>
+            where TIndexer : IInterfaceIndexer, IVisitable<TVisitor>
+            where TMethod : IInterfaceMethod, IVisitable<TVisitor>
         {
             VisitCollection(@interface.Attributes, visitor);
             VisitCollection(@interface.GenericParameters, visitor);
@@ -453,36 +495,39 @@ namespace CSharpDom.Common
             VisitCollection(@interface.Methods, visitor);
         }
 
-        public static void VisitInterfaceAccessorChildren<TAttributeGroup>(
-            IInterfaceAccessor<TAttributeGroup> accessor,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
+        public static void VisitInterfaceAccessorChildren<TInterfaceAccessor, TAttributeGroup, TVisitor>(
+            TInterfaceAccessor accessor,
+            TVisitor visitor)
+            where TInterfaceAccessor : IInterfaceAccessor<TAttributeGroup>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
         {
             VisitCollection(accessor.Attributes, visitor);
         }
 
-        public static void VisitInterfaceReferenceChildren<TTypeReference>(
-            IInterfaceReference<TTypeReference> interfaceReference,
-            IGenericVisitor visitor)
-            where TTypeReference : ITypeReference
+        public static void VisitInterfaceReferenceChildren<TInterfaceReference, TTypeReference, TVisitor>(
+            TInterfaceReference interfaceReference,
+            TVisitor visitor)
+            where TInterfaceReference : IInterfaceReference<TTypeReference>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
             VisitCollection(interfaceReference.GenericParameters, visitor);
         }
 
-        public static void VisitLoadedDocumentChildren<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>(
-            ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> loadedDocument,
-            IGenericVisitor visitor)
+        public static void VisitLoadedDocumentChildren<TLoadedDocument, TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection, TVisitor>(
+            TLoadedDocument loadedDocument,
+            TVisitor visitor)
+            where TLoadedDocument : ILoadedDocument<TSolution, TProject, TDocument, TUsingDirective, TAttributeGroup, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
             where TSolution : ISolution
             where TProject : IProject
             where TDocument : IDocument
-            where TUsingDirective : IUsingDirective
-            where TAttributeGroup : IAttributeGroup
-            where TNamespace : INamespace
-            where TClassCollection : IClassCollection
-            where TDelegate : IDelegate
-            where TEnum : IEnum
-            where TInterface : IInterface
-            where TStructCollection : IStructCollection
+            where TUsingDirective : IUsingDirective, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
+            where TClassCollection : IClassCollection, IVisitable<TVisitor>
+            where TDelegate : IDelegate, IVisitable<TVisitor>
+            where TEnum : IEnum, IVisitable<TVisitor>
+            where TInterface : IInterface, IVisitable<TVisitor>
+            where TStructCollection : IStructCollection, IVisitable<TVisitor>
         {
             VisitCollection(loadedDocument.UsingDirectives, visitor);
             VisitCollection(loadedDocument.AssemblyAttributes, visitor);
@@ -495,17 +540,18 @@ namespace CSharpDom.Common
             VisitIfNotNull(loadedDocument.Structs, visitor);
         }
 
-        public static void VisitLoadedProjectChildren<TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>(
-            ILoadedProject<TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> loadedProject,
-            IGenericVisitor visitor)
+        public static void VisitLoadedProjectChildren<TLoadedProject, TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection, TVisitor>(
+            TLoadedProject loadedProject,
+            TVisitor visitor)
+            where TLoadedProject : ILoadedProject<TSolution, TProject, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>
             where TSolution : ISolution
             where TProject : IProject
-            where TNamespace : INamespace
-            where TClassCollection : IClassCollection
-            where TDelegate : IDelegate
-            where TEnum : IEnum
-            where TInterface : IInterface
-            where TStructCollection : IStructCollection
+            where TNamespace : INamespace, IVisitable<TVisitor>
+            where TClassCollection : IClassCollection, IVisitable<TVisitor>
+            where TDelegate : IDelegate, IVisitable<TVisitor>
+            where TEnum : IEnum, IVisitable<TVisitor>
+            where TInterface : IInterface, IVisitable<TVisitor>
+            where TStructCollection : IStructCollection, IVisitable<TVisitor>
         {
             VisitCollection(loadedProject.Namespaces, visitor);
             VisitIfNotNull(loadedProject.Classes, visitor);
@@ -515,14 +561,15 @@ namespace CSharpDom.Common
             VisitIfNotNull(loadedProject.Structs, visitor);
         }
 
-        public static void VisitMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IMethodParameter
+        public static void VisitMethodChildren<TMethod, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TVisitor>(
+            TMethod method,
+            TVisitor visitor)
+            where TMethod : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IBasicType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
         {
             VisitCollection(method.Attributes, visitor);
             VisitCollection(method.ReturnAttributes, visitor);
@@ -531,27 +578,31 @@ namespace CSharpDom.Common
             VisitCollection(method.Parameters, visitor);
         }
 
-        public static void VisitMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
-            IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IMethodParameter
-            where TMethodBody : IMethodBody
+        public static void VisitMethodChildren<TMethodWithBody, TMethod, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody, TVisitor>(
+            TMethodWithBody method,
+            Func<TMethodWithBody, TMethod> methodFactory,
+            TVisitor visitor)
+            where TMethodWithBody : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>, IVisitable<TVisitor>
+            where TMethod : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new MethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(method).Accept(visitor);
+            methodFactory(method).Accept(visitor);
             VisitIfNotNull(method.Body, visitor);
         }
 
-        public static void VisitPartialMethodDefinitionChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter>(
-            IPartialMethodDefinition<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TParameter : IMethodParameter
+        public static void VisitPartialMethodDefinitionChildren<TPartialMethodDefinition, TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TVisitor>(
+            TPartialMethodDefinition method,
+            TVisitor visitor)
+            where TPartialMethodDefinition : IPartialMethodDefinition<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
         {
             VisitCollection(method.Attributes, visitor);
             VisitCollection(method.ReturnAttributes, visitor);
@@ -559,14 +610,15 @@ namespace CSharpDom.Common
             VisitCollection(method.Parameters, visitor);
         }
 
-        public static void VisitPartialMethodImplementationChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>(
-            IPartialMethodImplementation<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TParameter : IMethodParameter
-            where TMethodBody : IMethodBody
+        public static void VisitPartialMethodImplementationChildren<TPartialMethodImplementation, TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody, TVisitor>(
+            TPartialMethodImplementation method,
+            TVisitor visitor)
+            where TPartialMethodImplementation : IPartialMethodImplementation<TAttributeGroup, TDeclaringType, TGenericParameter, TParameter, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitCollection(method.Attributes, visitor);
             VisitCollection(method.ReturnAttributes, visitor);
@@ -575,92 +627,110 @@ namespace CSharpDom.Common
             VisitIfNotNull(method.Body, visitor);
         }
 
-        public static void VisitClassMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
-            IClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IMethodParameter
-            where TMethodBody : IMethodBody
+        public static void VisitClassMethodChildren<TClassMethod, TMethod, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody, TVisitor>(
+            TClassMethod method,
+            Func<TClassMethod, TMethod> methodFactory,
+            TVisitor visitor)
+            where TClassMethod : IClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>
+            where TMethod : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new MethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+            methodFactory(method).Accept(visitor);
         }
 
-        public static void VisitAbstractMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IAbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IAbstractType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IMethodParameter
+        public static void VisitAbstractMethodChildren<TAbstractMethod, TMethod, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TVisitor>(
+            TAbstractMethod method,
+            Func<TAbstractMethod, TMethod> methodFactory,
+            TVisitor visitor)
+            where TAbstractMethod : IAbstractMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
+            where TMethod : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IAbstractType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
         {
-            new MethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(method).Accept(visitor);
+            methodFactory(method).Accept(visitor);
         }
 
-        public static void VisitInterfaceMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IInterfaceType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IMethodParameter
+        public static void VisitInterfaceMethodChildren<TInterfaceMethod, TMethod, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TVisitor>(
+            TInterfaceMethod method,
+            Func<TInterfaceMethod, TMethod> methodFactory,
+            TVisitor visitor)
+            where TInterfaceMethod : IInterfaceMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
+            where TMethod : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IInterfaceType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
         {
-            new MethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(method).Accept(visitor);
+            methodFactory(method).Accept(visitor);
         }
 
-        public static void VisitSealedClassMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
-            ISealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IMethodParameter
-            where TMethodBody : IMethodBody
+        public static void VisitSealedClassMethodChildren<TSealedClassMethod, TMethod, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody, TVisitor>(
+            TSealedClassMethod method,
+            Func<TSealedClassMethod, TMethod> methodFactory,
+            TVisitor visitor)
+            where TSealedClassMethod : ISealedClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>
+            where TMethod : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : ISealedType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new MethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+            methodFactory(method).Accept(visitor);
         }
 
-        public static void VisitStaticClassMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
-            IStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IMethodParameter
-            where TMethodBody : IMethodBody
+        public static void VisitStaticClassMethodChildren<TStaticClassMethod, TMethod, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody, TVisitor>(
+            TStaticClassMethod method,
+            Func<TStaticClassMethod, TMethod> methodFactory,
+            TVisitor visitor)
+            where TStaticClassMethod : IStaticClassMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>
+            where TMethod : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new MethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+            methodFactory(method).Accept(visitor);
         }
 
-        public static void VisitStructMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
-            IStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IMethodParameter
-            where TMethodBody : IMethodBody
+        public static void VisitStructMethodChildren<TStructMethod, TMethod, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody, TVisitor>(
+            TStructMethod method,
+            Func<TStructMethod, TMethod> methodFactory,
+            TVisitor visitor)
+            where TStructMethod : IStructMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>
+            where TMethod : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new MethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+            methodFactory(method).Accept(visitor);
         }
 
-        public static void VisitNamespaceChildren<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>(
-            INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection> @namespace,
-            IGenericVisitor visitor)
-            where TUsingDirective : IUsingDirective
-            where TNamespace : INamespace
-            where TClassCollection : IClassCollection
-            where TDelegate : IDelegate
-            where TEnum : IEnum
-            where TInterface : IInterface
-            where TStructCollection : IStructCollection
+        public static void VisitNamespaceChildren<TNamespace, TUsingDirective, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection, TVisitor>(
+            TNamespace @namespace,
+            TVisitor visitor)
+            where TNamespace : INamespace<TUsingDirective, TNamespace, TClassCollection, TDelegate, TEnum, TInterface, TStructCollection>, IVisitable<TVisitor>
+            where TUsingDirective : IUsingDirective, IVisitable<TVisitor>
+            where TClassCollection : IClassCollection, IVisitable<TVisitor>
+            where TDelegate : IDelegate, IVisitable<TVisitor>
+            where TEnum : IEnum, IVisitable<TVisitor>
+            where TInterface : IInterface, IVisitable<TVisitor>
+            where TStructCollection : IStructCollection, IVisitable<TVisitor>
         {
             VisitCollection(@namespace.UsingDirectives, visitor);
             VisitCollection(@namespace.Namespaces, visitor);
@@ -671,54 +741,60 @@ namespace CSharpDom.Common
             VisitIfNotNull(@namespace.Structs, visitor);
         }
 
-        public static void VisitNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            INestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitNestedClassChildren<TNestedClass, TType, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TNestedClass nestedClass,
+            Func<TNestedClass, TType> typeFactory,
+            TVisitor visitor)
+            where TNestedClass : INestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TType : IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
             VisitIfNotNull(nestedClass.BaseClass, visitor);
-            new TypeWrapper<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
-
+            typeFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitNestedDelegateChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IDelegateParameter
+        public static void VisitNestedDelegateChildren<TNestedDelegate, TDelegateType, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TVisitor>(
+            TNestedDelegate nestedDelegate,
+            Func<TNestedDelegate, TDelegateType> delegateTypeFactory,
+            TVisitor visitor)
+            where TNestedDelegate : INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
+            where TDelegateType : IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IDelegateParameter, IVisitable<TVisitor>
         {
-            new DelegateTypeWrapper<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(nestedDelegate).Accept(visitor);
+            delegateTypeFactory(nestedDelegate).Accept(visitor);
         }
 
-        public static void VisitDelegateTypeChildren<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>(
-            IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter> @delegate,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IDelegateParameter
+        public static void VisitDelegateTypeChildren<TDelegateType, TAttributeGroup, TGenericParameter, TTypeReference, TParameter, TVisitor>(
+            TDelegateType @delegate,
+            TVisitor visitor)
+            where TDelegateType : IDelegateType<TAttributeGroup, TGenericParameter, TTypeReference, TParameter>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IDelegateParameter, IVisitable<TVisitor>
         {
             VisitCollection(@delegate.Attributes, visitor);
             VisitCollection(@delegate.GenericParameters, visitor);
@@ -726,48 +802,52 @@ namespace CSharpDom.Common
             VisitCollection(@delegate.Parameters, visitor);
         }
 
-        public static void VisiTDestructorChildren<TAttributeGroup, TDeclaringType, TMethodBody>(
-            IDestructor<TAttributeGroup, TDeclaringType, TMethodBody> nestedDestructor,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : INestedClass
-            where TMethodBody : IMethodBody
+        public static void VisiTDestructorChildren<TDestructor, TAttributeGroup, TDeclaringType, TMethodBody, TVisitor>(
+            TDestructor nestedDestructor,
+            TVisitor visitor)
+            where TDestructor : IDestructor<TAttributeGroup, TDeclaringType, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : INestedClass, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitCollection(nestedDestructor.Attributes, visitor);
             VisitIfNotNull(nestedDestructor.Body, visitor);
         }
 
-        public static void VisitNestedEnumChildren<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
-            INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TNestedEnumMember : INestedEnumMember
+        public static void VisitNestedEnumChildren<TNestedEnum, TAttributeGroup, TDeclaringType, TNestedEnumMember, TVisitor>(
+            TNestedEnum nestedEnum,
+            TVisitor visitor)
+            where TNestedEnum : INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TNestedEnumMember : INestedEnumMember, IVisitable<TVisitor>
         {
             VisitCollection(nestedEnum.Attributes, visitor);
             VisitCollection(nestedEnum.EnumMembers, visitor);
         }
 
-        public static void VisitNestedEnumMemberChildren<TAttributeGroup, TDeclaringType>(
-            INestedEnumMember<TAttributeGroup, TDeclaringType> nestedEnumMember,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : INestedEnum
+        public static void VisitNestedEnumMemberChildren<TNestedEnumMember, TAttributeGroup, TDeclaringType, TVisitor>(
+            TNestedEnumMember nestedEnumMember,
+            TVisitor visitor)
+            where TNestedEnumMember : INestedEnumMember<TAttributeGroup, TDeclaringType>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : INestedEnum, IVisitable<TVisitor>
         {
             VisitCollection(nestedEnumMember.Attributes, visitor);
         }
 
-        public static void VisitNestedInterfaceChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
-            INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEvent : IInterfaceEvent
-            where TProperty : IInterfaceProperty
-            where TIndexer : IInterfaceIndexer
-            where TMethod : IInterfaceMethod
+        public static void VisitNestedInterfaceChildren<TNestedInterface, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TVisitor>(
+            TNestedInterface @interface,
+            TVisitor visitor)
+            where TNestedInterface : INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEvent : IInterfaceEvent, IVisitable<TVisitor>
+            where TProperty : IInterfaceProperty, IVisitable<TVisitor>
+            where TIndexer : IInterfaceIndexer, IVisitable<TVisitor>
+            where TMethod : IInterfaceMethod, IVisitable<TVisitor>
         {
             VisitCollection(@interface.Interfaces, visitor);
             VisitCollection(@interface.Events, visitor);
@@ -776,56 +856,62 @@ namespace CSharpDom.Common
             VisitCollection(@interface.Methods, visitor);
         }
 
-        public static void VisitNestedStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedStruct,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitNestedStructChildren<TNestedStruct, TStructType, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TNestedStruct nestedStruct,
+            Func<TNestedStruct, TStructType> structTypeFactory,
+            TVisitor visitor)
+            where TNestedStruct : INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TStructType : IStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new StructTypeWrapper<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+            structTypeFactory(nestedStruct).Accept(visitor);
         }
 
-        public static void VisitNestedTypeReferenceChildren<TTypeReference>(
-            INestedTypeReference<TTypeReference> nestedTypeReference,
-            IGenericVisitor visitor)
-            where TTypeReference : ITypeReference
+        public static void VisitNestedTypeReferenceChildren<TNestedTypeReference, TTypeReference, TVisitor>(
+            TNestedTypeReference nestedTypeReference,
+            TVisitor visitor)
+            where TNestedTypeReference : INestedTypeReference<TTypeReference>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
             VisitIfNotNull(nestedTypeReference.Type, visitor);
             VisitIfNotNull(nestedTypeReference.NestedType, visitor);
         }
 
-        public static void VisitNullableTypeReference<TStructReference>(
-            INullableTypeReference<TStructReference> reference,
-            IGenericVisitor visitor)
-            where TStructReference : IStructReference
+        public static void VisitNullableTypeReference<TNullableTypeReference, TStructReference, TVisitor>(
+            TNullableTypeReference reference,
+            TVisitor visitor)
+            where TNullableTypeReference : INullableTypeReference<TStructReference>
+            where TStructReference : IStructReference, IVisitable<TVisitor>
         {
             VisitIfNotNull(reference.Type, visitor);
         }
 
-        public static void VisitOperatorOverloadChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>(
-            IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody> operatorOverload,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TTypeReference : ITypeReference
-            where TParameter : IOperatorParameter
-            where TMethodBody : IMethodBody
+        public static void VisitOperatorOverloadChildren<TOperatorOverload, TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody, TVisitor>(
+            TOperatorOverload operatorOverload,
+            TVisitor visitor)
+            where TOperatorOverload : IOperatorOverload<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IOperatorParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitCollection(operatorOverload.Attributes, visitor);
             VisitIfNotNull(operatorOverload.ReturnType, visitor);
@@ -833,68 +919,87 @@ namespace CSharpDom.Common
             VisitIfNotNull(operatorOverload.Body, visitor);
         }
 
-        public static void VisitParameterChildren<TAttributeGroup, TTypeReference>(
-            IParameter<TAttributeGroup, TTypeReference> parameter,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TTypeReference : ITypeReference
+        public static void VisitParameterChildren<TParameter, TAttributeGroup, TTypeReference, TVisitor>(
+            TParameter parameter,
+            TVisitor visitor)
+            where TParameter : IParameter<TAttributeGroup, TTypeReference>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
             VisitCollection(parameter.Attributes, visitor);
             VisitIfNotNull(parameter.ParameterType, visitor);
         }
 
-        public static void VisitConstructorParameterChildren<TAttributeGroup, TTypeReference>(
-            IConstructorParameter<TAttributeGroup, TTypeReference> parameter,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TTypeReference : ITypeReference
+        public static void VisitConstructorParameterChildren<TConstructorParameter, TParameter, TAttributeGroup, TTypeReference, TVisitor>(
+            TConstructorParameter parameter,
+            Func<TConstructorParameter, TParameter> parameterFactory,
+            TVisitor visitor)
+            where TConstructorParameter : IConstructorParameter<TAttributeGroup, TTypeReference>
+            where TParameter : IParameter<TAttributeGroup, TTypeReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
-            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+            parameterFactory(parameter).Accept(visitor);
         }
 
-        public static void VisitDelegateParameterChildren<TAttributeGroup, TTypeReference>(
-            IDelegateParameter<TAttributeGroup, TTypeReference> parameter,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TTypeReference : ITypeReference
+        public static void VisitDelegateParameterChildren<TDelegateParameter, TParameter, TAttributeGroup, TTypeReference, TVisitor>(
+            TDelegateParameter parameter,
+            Func<TDelegateParameter, TParameter> parameterFactory,
+            TVisitor visitor)
+            where TDelegateParameter : IDelegateParameter<TAttributeGroup, TTypeReference>
+            where TParameter : IParameter<TAttributeGroup, TTypeReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
-            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+            parameterFactory(parameter).Accept(visitor);
         }
 
-        public static void VisitExtensionParameterChildren<TAttributeGroup, TTypeReference>(
-            IExtensionParameter<TAttributeGroup, TTypeReference> parameter,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TTypeReference : ITypeReference
+        public static void VisitExtensionParameterChildren<TExtensionParameter, TParameter, TAttributeGroup, TTypeReference, TVisitor>(
+            TExtensionParameter parameter,
+            Func<TExtensionParameter, TParameter> parameterFactory,
+            TVisitor visitor)
+            where TExtensionParameter : IExtensionParameter<TAttributeGroup, TTypeReference>
+            where TParameter : IParameter<TAttributeGroup, TTypeReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
-            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+            parameterFactory(parameter).Accept(visitor);
         }
 
-        public static void VisitIndexerParameterChildren<TAttributeGroup, TTypeReference>(
-            IIndexerParameter<TAttributeGroup, TTypeReference> parameter,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TTypeReference : ITypeReference
+        public static void VisitIndexerParameterChildren<TIndexerParameter, TParameter, TAttributeGroup, TTypeReference, TVisitor>(
+            TIndexerParameter parameter,
+            Func<TIndexerParameter, TParameter> parameterFactory,
+            TVisitor visitor)
+            where TIndexerParameter : IIndexerParameter<TAttributeGroup, TTypeReference>
+            where TParameter : IParameter<TAttributeGroup, TTypeReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
-            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+            parameterFactory(parameter).Accept(visitor);
         }
 
-        public static void VisitMethodParameterChildren<TAttributeGroup, TTypeReference>(
-            IMethodParameter<TAttributeGroup, TTypeReference> parameter,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TTypeReference : ITypeReference
+        public static void VisitMethodParameterChildren<TMethodParameter, TParameter, TAttributeGroup, TTypeReference, TVisitor>(
+            TMethodParameter parameter,
+            Func<TMethodParameter, TParameter> parameterFactory,
+            TVisitor visitor)
+            where TMethodParameter : IMethodParameter<TAttributeGroup, TTypeReference>
+            where TParameter : IParameter<TAttributeGroup, TTypeReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
-            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+            parameterFactory(parameter).Accept(visitor);
         }
 
-        public static void VisitOperatorParameterChildren<TAttributeGroup, TTypeReference>(
-            IOperatorParameter<TAttributeGroup, TTypeReference> parameter,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TTypeReference : ITypeReference
+        public static void VisitOperatorParameterChildren<TOperatorParameter, TParameter, TAttributeGroup, TTypeReference, TVisitor>(
+            TOperatorParameter parameter,
+            Func<TOperatorParameter, TParameter> parameterFactory,
+            TVisitor visitor)
+            where TOperatorParameter : IOperatorParameter<TAttributeGroup, TTypeReference>
+            where TParameter : IParameter<TAttributeGroup, TTypeReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
-            new ParameterWrapper<TAttributeGroup, TTypeReference>(parameter).Accept(visitor);
+            parameterFactory(parameter).Accept(visitor);
         }
 
         public static Task VisitProjectChildrenAsync<TProject, TSolution, TDocument, TLoadedProject, TVisitor>(
@@ -908,134 +1013,143 @@ namespace CSharpDom.Common
             return VisitCollectionAsync(project.Documents, visitor);
         }
 
-        public static void VisitPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IBasicType
-            where TTypeReference : ITypeReference
-            where TAccessor : IAccessor
+        public static void VisitPropertyChildren<TProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TVisitor>(
+            TProperty property,
+            TVisitor visitor)
+            where TProperty : IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IBasicType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IAccessor, IVisitable<TVisitor>
         {
             VisitCollection(property.Attributes, visitor);
             VisitIfNotNull(property.GetAccessor, visitor);
             VisitIfNotNull(property.SetAccessor, visitor);
         }
 
-        public static async Task VisitSolutionChildrenAsync<TSolution, TProject, TVisitor>(
-            TSolution solution,
-            TVisitor visitor)
+        public static async Task VisitSolutionChildrenAsync<TSolution, TProject, TVisitor>(TSolution solution, TVisitor visitor)
             where TSolution : ISolution<TProject>
             where TProject : IProject, IAsyncVisitable<TVisitor>
         {
             await VisitCollectionAsync(solution.Projects, visitor);
         }
 
-        public static void VisitStaticConstructorChildren<TAttributeGroup, TDeclaringType, TMethodBody>(
-            IStaticConstructor<TAttributeGroup, TDeclaringType, TMethodBody> staticConstructor,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TMethodBody : IMethodBody
+        public static void VisitStaticConstructorChildren<TStaticConstructor, TAttributeGroup, TDeclaringType, TMethodBody, TVisitor>(
+            TStaticConstructor staticConstructor,
+            TVisitor visitor)
+            where TStaticConstructor : IStaticConstructor<TAttributeGroup, TDeclaringType, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitCollection(staticConstructor.Attributes, visitor);
             VisitIfNotNull(staticConstructor.Body, visitor);
         }
 
-        public static void VisitStructChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @struct,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitStructChildren<TStruct, TStructType, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStruct @struct,
+            Func<TStruct, TStructType> structTypeFactory,
+            TVisitor visitor)
+            where TStruct : IStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TStructType : IStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
             VisitCollection(@struct.Attributes, visitor);
             VisitCollection(@struct.GenericParameters, visitor);
             VisitCollection(@struct.ImplementedInterfaces, visitor);
-            VisitStructTypeChildren(@struct, visitor);
+            structTypeFactory(@struct).Accept(visitor);
         }
 
-        public static void VisitPartialStructChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IPartialStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @struct,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitPartialStructChildren<TPartialStruct, TStruct, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TPartialStruct @struct,
+            Func<TPartialStruct, TStruct> structFactory,
+            TVisitor visitor)
+            where TPartialStruct : IPartialStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TStruct : IStruct<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IPartialStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IPartialStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new StructWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(@struct).Accept(visitor);
+            structFactory(@struct).Accept(visitor);
         }
 
-        public static void VisitStructReferenceChildren<TTypeReference>(
-            IStructReference<TTypeReference> structReference,
-            IGenericVisitor visitor)
-            where TTypeReference : ITypeReference
+        public static void VisitStructReferenceChildren<TStructReference, TTypeReference, TVisitor>(
+            TStructReference structReference,
+            TVisitor visitor)
+            where TStructReference : IStructReference<TTypeReference>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
             VisitCollection(structReference.GenericParameters, visitor);
         }
 
-        public static void VisitUnspecifiedTypeReference<TTypeReference>(
-            IUnspecifiedTypeReference<TTypeReference> unspecificTypeReference,
-            IGenericVisitor visitor)
-            where TTypeReference : ITypeReference
+        public static void VisitUnspecifiedTypeReference<TUnspecifiedTypeReference, TTypeReference, TVisitor>(
+            TUnspecifiedTypeReference unspecificTypeReference,
+            TVisitor visitor)
+            where TUnspecifiedTypeReference : IUnspecifiedTypeReference<TTypeReference>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
         {
             VisitCollection(unspecificTypeReference.GenericParameters, visitor);
         }
-        
-        public static void VisitTypeChildren<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> type,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IEventCollection
-            where TPropertyCollection : IPropertyCollection
-            where TIndexerCollection : IIndexerCollection
-            where TMethodCollection : IMethodCollection
-            where TFieldCollection : IFieldCollection
-            where TConstructor : IConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : INestedClassCollection
-            where TNestedDelegate : INestedDelegate
-            where TNestedEnum : INestedEnum
-            where TNestedInterface : INestedInterface
-            where TNestedStructCollection : INestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+
+        public static void VisitTypeChildren<TType, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TType type,
+            TVisitor visitor)
+            where TType : IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : INestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : INestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : INestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : INestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : INestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
             VisitCollection(type.Attributes, visitor);
             VisitCollection(type.GenericParameters, visitor);
@@ -1056,37 +1170,41 @@ namespace CSharpDom.Common
             VisitIfNotNull(type.StaticConstructor, visitor);
         }
 
-        public static void VisitStructTypeChildren<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> type,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStructTypeChildren<TStructType, TType, TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStructType type,
+            Func<TStructType, TType> typeFactory,
+            TVisitor visitor)
+            where TStructType : IStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TType : IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new TypeWrapper<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(type).Accept(visitor);
+            typeFactory(type).Accept(visitor);
         }
 
-        public static void VisitAbstractClassEventCollectionChildren<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent>(
-            IAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent> eventCollection,
-            IGenericVisitor visitor)
-            where TEvent : IClassEvent
-            where TEventProperty : IClassEventProperty
-            where TAbstractEvent : IAbstractEvent
-            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+        public static void VisitAbstractClassEventCollectionChildren<TAbstractClassEventCollection, TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent, TVisitor>(
+            TAbstractClassEventCollection eventCollection,
+            TVisitor visitor)
+            where TAbstractClassEventCollection : IAbstractClassEventCollection<TEvent, TEventProperty, TAbstractEvent, TExplicitInterfaceEvent>
+            where TEvent : IClassEvent, IVisitable<TVisitor>
+            where TEventProperty : IClassEventProperty, IVisitable<TVisitor>
+            where TAbstractEvent : IAbstractEvent, IVisitable<TVisitor>
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent, IVisitable<TVisitor>
         {
             VisitCollection(eventCollection, visitor);
             VisitCollection(eventCollection.EventProperties, visitor);
@@ -1094,312 +1212,358 @@ namespace CSharpDom.Common
             VisitCollection(eventCollection.ExplicitInterfaceEvents, visitor);
         }
 
-        public static void VisitAbstractClassIndexerCollectionChildren<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer>(
-            IAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer> indexerCollection,
-            IGenericVisitor visitor)
-            where TIndexer : IClassIndexer
-            where TAbstractIndexer : IAbstractIndexer
-            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+        public static void VisitAbstractClassIndexerCollectionChildren<TAbstractClassIndexerCollection, TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer, TVisitor>(
+            TAbstractClassIndexerCollection indexerCollection,
+            TVisitor visitor)
+            where TAbstractClassIndexerCollection : IAbstractClassIndexerCollection<TIndexer, TAbstractIndexer, TExplicitInterfaceIndexer>
+            where TIndexer : IClassIndexer, IVisitable<TVisitor>
+            where TAbstractIndexer : IAbstractIndexer, IVisitable<TVisitor>
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer, IVisitable<TVisitor>
         {
             VisitCollection(indexerCollection, visitor);
             VisitCollection(indexerCollection.AbstractIndexers, visitor);
             VisitCollection(indexerCollection.ExplicitInterfaceIndexers, visitor);
         }
 
-        public static void VisitAbstractClassMethodCollectionChildren<TMethod, TAbstractMethod, TExplicitInterfaceMethod>(
-            IAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : IClassMethod
-            where TAbstractMethod : IAbstractMethod
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+        public static void VisitAbstractClassMethodCollectionChildren<TAbstractClassMethodCollection, TMethod, TAbstractMethod, TExplicitInterfaceMethod, TVisitor>(
+            TAbstractClassMethodCollection methodCollection,
+            TVisitor visitor)
+            where TAbstractClassMethodCollection : IAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod>
+            where TMethod : IClassMethod, IVisitable<TVisitor>
+            where TAbstractMethod : IAbstractMethod, IVisitable<TVisitor>
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod, IVisitable<TVisitor>
         {
             VisitCollection(methodCollection, visitor);
             VisitCollection(methodCollection.AbstractMethods, visitor);
             VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
         }
 
-        public static void VisitAbstractPartialClassMethodCollectionChildren<TMethod, TAbstractMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
-            IAbstractPartialClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : IClassMethod
-            where TAbstractMethod : IAbstractMethod
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
-            where TPartialMethodDefinition : IPartialMethodDefinition
-            where TPartialMethodImplementation : IPartialMethodImplementation
+        public static void VisitAbstractPartialClassMethodCollectionChildren<TAbstractPartialClassMethodCollection, TAbstractClassMethodCollection, TMethod, TAbstractMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation, TVisitor>(
+            TAbstractPartialClassMethodCollection methodCollection,
+            Func<TAbstractPartialClassMethodCollection, TAbstractClassMethodCollection> abstractClassMethodCollectionFactory,
+            TVisitor visitor)
+            where TAbstractPartialClassMethodCollection : IAbstractPartialClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>
+            where TAbstractClassMethodCollection : IAbstractClassMethodCollection<TMethod, TAbstractMethod, TExplicitInterfaceMethod>, IVisitable<TVisitor>
+            where TMethod : IClassMethod, IVisitable<TVisitor>
+            where TAbstractMethod : IAbstractMethod, IVisitable<TVisitor>
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod, IVisitable<TVisitor>
+            where TPartialMethodDefinition : IPartialMethodDefinition, IVisitable<TVisitor>
+            where TPartialMethodImplementation : IPartialMethodImplementation, IVisitable<TVisitor>
         {
-            new AbstractClassMethodCollectionWrapper<TMethod, TAbstractMethod, TExplicitInterfaceMethod>(methodCollection).Accept(visitor);
+            abstractClassMethodCollectionFactory(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
             VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
-        public static void VisitAbstractClassPropertyCollectionChildren<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(
-            IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection,
-            IGenericVisitor visitor)
-            where TProperty : IClassProperty
-            where TAbstractProperty : IAbstractProperty
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        public static void VisitAbstractClassPropertyCollectionChildren<TAbstractClassPropertyCollection, TProperty, TAbstractProperty, TExplicitInterfaceProperty, TVisitor>(
+            TAbstractClassPropertyCollection propertyCollection,
+            TVisitor visitor)
+            where TAbstractClassPropertyCollection : IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>
+            where TProperty : IClassProperty, IVisitable<TVisitor>
+            where TAbstractProperty : IAbstractProperty, IVisitable<TVisitor>
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty, IVisitable<TVisitor>
         {
             VisitCollection(propertyCollection, visitor);
             VisitCollection(propertyCollection.AbstractProperties, visitor);
             VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
         }
 
-        public static void VisitClassEventCollectionChildren<TEvent, TEventProperty, TExplicitInterfaceEvent>(
-            IClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection,
-            IGenericVisitor visitor)
-            where TEvent : IClassEvent
-            where TEventProperty : IClassEventProperty
-            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+        public static void VisitClassEventCollectionChildren<TClassEventCollection, TEvent, TEventProperty, TExplicitInterfaceEvent, TVisitor>(
+            TClassEventCollection eventCollection,
+            TVisitor visitor)
+            where TClassEventCollection : IClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>
+            where TEvent : IClassEvent, IVisitable<TVisitor>
+            where TEventProperty : IClassEventProperty, IVisitable<TVisitor>
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent, IVisitable<TVisitor>
         {
             VisitCollection(eventCollection, visitor);
             VisitCollection(eventCollection.EventProperties, visitor);
             VisitCollection(eventCollection.ExplicitInterfaceEvents, visitor);
         }
 
-        public static void VisitClassIndexerCollectionChildren<TIndexer, TExplicitInterfaceIndexer>(
-            IClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection,
-            IGenericVisitor visitor)
-            where TIndexer : IClassIndexer
-            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+        public static void VisitClassIndexerCollectionChildren<TClassIndexerCollection, TIndexer, TExplicitInterfaceIndexer, TVisitor>(
+            TClassIndexerCollection indexerCollection,
+            TVisitor visitor)
+            where TClassIndexerCollection : IClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer>
+            where TIndexer : IClassIndexer, IVisitable<TVisitor>
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer, IVisitable<TVisitor>
         {
             VisitCollection(indexerCollection, visitor);
             VisitCollection(indexerCollection.ExplicitInterfaceIndexers, visitor);
         }
 
-        public static void VisitClassMethodCollectionChildren<TMethod, TExplicitInterfaceMethod>(
-            IClassMethodCollection<TMethod, TExplicitInterfaceMethod> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : IClassMethod
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+        public static void VisitClassMethodCollectionChildren<TClassMethodCollection, TMethod, TExplicitInterfaceMethod, TVisitor>(
+            TClassMethodCollection methodCollection,
+            TVisitor visitor)
+            where TClassMethodCollection : IClassMethodCollection<TMethod, TExplicitInterfaceMethod>
+            where TMethod : IClassMethod, IVisitable<TVisitor>
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod, IVisitable<TVisitor>
         {
             VisitCollection(methodCollection, visitor);
             VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
         }
 
-        public static void VisitClassPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
-            IClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection,
-            IGenericVisitor visitor)
-            where TProperty : IClassProperty
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        public static void VisitClassPropertyCollectionChildren<TClassPropertyCollection, TProperty, TExplicitInterfaceProperty, TVisitor>(
+            TClassPropertyCollection propertyCollection,
+            TVisitor visitor)
+            where TClassPropertyCollection : IClassPropertyCollection<TProperty, TExplicitInterfaceProperty>
+            where TProperty : IClassProperty, IVisitable<TVisitor>
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty, IVisitable<TVisitor>
         {
             VisitCollection(propertyCollection, visitor);
             VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
         }
 
-        public static void VisitSealedClassEventCollectionChildren<TEvent, TEventProperty, TExplicitInterfaceEvent>(
-            ISealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection,
-            IGenericVisitor visitor)
-            where TEvent : ISealedClassEvent
-            where TEventProperty : ISealedClassEventProperty
-            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+        public static void VisitSealedClassEventCollectionChildren<TSealedClassEventCollection, TEvent, TEventProperty, TExplicitInterfaceEvent, TVisitor>(
+            TSealedClassEventCollection eventCollection,
+            TVisitor visitor)
+            where TSealedClassEventCollection : ISealedClassEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>
+            where TEvent : ISealedClassEvent, IVisitable<TVisitor>
+            where TEventProperty : ISealedClassEventProperty, IVisitable<TVisitor>
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent, IVisitable<TVisitor>
         {
             VisitCollection(eventCollection, visitor);
             VisitCollection(eventCollection.EventProperties, visitor);
             VisitCollection(eventCollection.ExplicitInterfaceEvents, visitor);
         }
 
-        public static void VisitSealedClassIndexerCollectionChildren<TIndexer, TExplicitInterfaceIndexer>(
-            ISealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection,
-            IGenericVisitor visitor)
-            where TIndexer : ISealedClassIndexer
-            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+        public static void VisitSealedClassIndexerCollectionChildren<TSealedClassIndexerCollection, TIndexer, TExplicitInterfaceIndexer, TVisitor>(
+            TSealedClassIndexerCollection indexerCollection,
+            TVisitor visitor)
+            where TSealedClassIndexerCollection : ISealedClassIndexerCollection<TIndexer, TExplicitInterfaceIndexer>
+            where TIndexer : ISealedClassIndexer, IVisitable<TVisitor>
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer, IVisitable<TVisitor>
         {
             VisitCollection(indexerCollection, visitor);
             VisitCollection(indexerCollection.ExplicitInterfaceIndexers, visitor);
         }
 
-        public static void VisitSealedClassMethodCollectionChildren<TMethod, TExplicitInterfaceMethod>(
-            ISealedClassMethodCollection<TMethod, TExplicitInterfaceMethod> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : ISealedClassMethod
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+        public static void VisitSealedClassMethodCollectionChildren<TSealedClassMethodCollection, TMethod, TExplicitInterfaceMethod, TVisitor>(
+            TSealedClassMethodCollection methodCollection,
+            TVisitor visitor)
+            where TSealedClassMethodCollection : ISealedClassMethodCollection<TMethod, TExplicitInterfaceMethod>
+            where TMethod : ISealedClassMethod, IVisitable<TVisitor>
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod, IVisitable<TVisitor>
         {
             VisitCollection(methodCollection, visitor);
             VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
         }
 
-        public static void VisitSealedPartialClassMethodCollectionChildren<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
-            ISealedPartialClassMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : ISealedClassMethod
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
-            where TPartialMethodDefinition : IPartialMethodDefinition
-            where TPartialMethodImplementation : IPartialMethodImplementation
+        public static void VisitSealedPartialClassMethodCollectionChildren<TSealedPartialClassMethodCollection, TSealedClassMethodCollection, TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation, TVisitor>(
+            TSealedPartialClassMethodCollection methodCollection,
+            Func<TSealedPartialClassMethodCollection, TSealedClassMethodCollection> sealedClassMethodCollectionFactory,
+            TVisitor visitor)
+            where TSealedPartialClassMethodCollection : ISealedPartialClassMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>
+            where TSealedClassMethodCollection : ISealedClassMethodCollection<TMethod, TExplicitInterfaceMethod>, IVisitable<TVisitor>
+            where TMethod : ISealedClassMethod, IVisitable<TVisitor>
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod, IVisitable<TVisitor>
+            where TPartialMethodDefinition : IPartialMethodDefinition, IVisitable<TVisitor>
+            where TPartialMethodImplementation : IPartialMethodImplementation, IVisitable<TVisitor>
         {
-            new SealedClassMethodCollectionWrapper<TMethod, TExplicitInterfaceMethod>(methodCollection).Accept(visitor);
+            sealedClassMethodCollectionFactory(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
             VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
-        public static void VisitSealedClassPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
-            ISealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection,
-            IGenericVisitor visitor)
-            where TProperty : ISealedClassProperty
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        public static void VisitSealedClassPropertyCollectionChildren<TSealedClassPropertyCollection, TProperty, TExplicitInterfaceProperty, TVisitor>(
+            TSealedClassPropertyCollection propertyCollection,
+            TVisitor visitor)
+            where TSealedClassPropertyCollection : ISealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty>
+            where TProperty : ISealedClassProperty, IVisitable<TVisitor>
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty, IVisitable<TVisitor>
         {
             VisitCollection(propertyCollection, visitor);
             VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
         }
 
-        public static void VisitStructEventCollectionChildren<TEvent, TEventProperty, TExplicitInterfaceEvent>(
-            IStructEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent> eventCollection,
-            IGenericVisitor visitor)
-            where TEvent : IStructEvent
-            where TEventProperty : IStructEventProperty
-            where TExplicitInterfaceEvent : IExplicitInterfaceEvent
+        public static void VisitStructEventCollectionChildren<TStructEventCollection, TEvent, TEventProperty, TExplicitInterfaceEvent, TVisitor>(
+            TStructEventCollection eventCollection,
+            TVisitor visitor)
+            where TStructEventCollection : IStructEventCollection<TEvent, TEventProperty, TExplicitInterfaceEvent>
+            where TEvent : IStructEvent, IVisitable<TVisitor>
+            where TEventProperty : IStructEventProperty, IVisitable<TVisitor>
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent, IVisitable<TVisitor>
         {
             VisitCollection(eventCollection, visitor);
             VisitCollection(eventCollection.EventProperties, visitor);
             VisitCollection(eventCollection.ExplicitInterfaceEvents, visitor);
         }
 
-        public static void VisitStructIndexerCollectionChildren<TIndexer, TExplicitInterfaceIndexer>(
-            IStructIndexerCollection<TIndexer, TExplicitInterfaceIndexer> indexerCollection,
-            IGenericVisitor visitor)
-            where TIndexer : IStructIndexer
-            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer
+        public static void VisitStructIndexerCollectionChildren<TStructIndexerCollection, TIndexer, TExplicitInterfaceIndexer, TVisitor>(
+            TStructIndexerCollection indexerCollection,
+            TVisitor visitor)
+            where TStructIndexerCollection : IStructIndexerCollection<TIndexer, TExplicitInterfaceIndexer>
+            where TIndexer : IStructIndexer, IVisitable<TVisitor>
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer, IVisitable<TVisitor>
         {
             VisitCollection(indexerCollection, visitor);
             VisitCollection(indexerCollection.ExplicitInterfaceIndexers, visitor);
         }
 
-        public static void VisitStructMethodCollectionChildren<TMethod, TExplicitInterfaceMethod>(
-            IStructMethodCollection<TMethod, TExplicitInterfaceMethod> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : IStructMethod
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
+        public static void VisitStructMethodCollectionChildren<TStructMethodCollection, TMethod, TExplicitInterfaceMethod, TVisitor>(
+            TStructMethodCollection methodCollection,
+            TVisitor visitor)
+            where TStructMethodCollection : IStructMethodCollection<TMethod, TExplicitInterfaceMethod>
+            where TMethod : IStructMethod, IVisitable<TVisitor>
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod, IVisitable<TVisitor>
         {
             VisitCollection(methodCollection, visitor);
             VisitCollection(methodCollection.ExplicitInterfaceMethods, visitor);
         }
 
-        public static void VisitPartialStructMethodCollectionChildren<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
-            IPartialStructMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : IStructMethod
-            where TExplicitInterfaceMethod : IExplicitInterfaceMethod
-            where TPartialMethodDefinition : IPartialMethodDefinition
-            where TPartialMethodImplementation : IPartialMethodImplementation
+        public static void VisitPartialStructMethodCollectionChildren<TPartialStructMethodCollection, TStructMethodCollection, TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation, TVisitor>(
+            TPartialStructMethodCollection methodCollection,
+            Func<TPartialStructMethodCollection, TStructMethodCollection> structMethodCollectionFactory,
+            TVisitor visitor)
+            where TPartialStructMethodCollection : IPartialStructMethodCollection<TMethod, TExplicitInterfaceMethod, TPartialMethodDefinition, TPartialMethodImplementation>
+            where TStructMethodCollection : IStructMethodCollection<TMethod, TExplicitInterfaceMethod>, IVisitable<TVisitor>
+            where TMethod : IStructMethod, IVisitable<TVisitor>
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod, IVisitable<TVisitor>
+            where TPartialMethodDefinition : IPartialMethodDefinition, IVisitable<TVisitor>
+            where TPartialMethodImplementation : IPartialMethodImplementation, IVisitable<TVisitor>
         {
-            new StructMethodCollectionWrapper<TMethod, TExplicitInterfaceMethod>(methodCollection).Accept(visitor);
+            structMethodCollectionFactory(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
             VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
-        public static void VisitStructPropertyCollectionChildren<TProperty, TExplicitInterfaceProperty>(
-            IStructPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection,
-            IGenericVisitor visitor)
-            where TProperty : IStructProperty
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        public static void VisitStructPropertyCollectionChildren<TStructPropertyCollection, TProperty, TExplicitInterfaceProperty, TVisitor>(
+            TStructPropertyCollection propertyCollection,
+            TVisitor visitor)
+            where TStructPropertyCollection : IStructPropertyCollection<TProperty, TExplicitInterfaceProperty>
+            where TProperty : IStructProperty, IVisitable<TVisitor>
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty, IVisitable<TVisitor>
         {
             VisitCollection(propertyCollection, visitor);
             VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
         }
 
-        public static void VisitClassFieldChildren<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
-            IClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TTypeReference : ITypeReference
-            where TField : IField
+        public static void VisitClassFieldChildren<TClassField, TFieldGroup, TAttributeGroup, TDeclaringType, TTypeReference, TField, TVisitor>(
+            TClassField field,
+            Func<TClassField, TFieldGroup> fieldGroupFactory,
+            TVisitor visitor)
+            where TClassField : IClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField>
+            where TFieldGroup : IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TField : IField, IVisitable<TVisitor>
         {
-            new FieldGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TField>(field).Accept(visitor);
+            fieldGroupFactory(field).Accept(visitor);
         }
 
-        public static void VisitStaticClassFieldChildren<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
-            IStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TTypeReference : ITypeReference
-            where TField : IField
+        public static void VisitStaticClassFieldChildren<TStaticClassField, TFieldGroup, TAttributeGroup, TDeclaringType, TTypeReference, TField, TVisitor>(
+            TStaticClassField field,
+            Func<TStaticClassField, TFieldGroup> fieldGroupFactory,
+            TVisitor visitor)
+            where TStaticClassField : IStaticClassField<TAttributeGroup, TDeclaringType, TTypeReference, TField>
+            where TFieldGroup : IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TField : IField, IVisitable<TVisitor>
         {
-            new FieldGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TField>(field).Accept(visitor);
+            fieldGroupFactory(field).Accept(visitor);
         }
 
-        public static void VisitClassConstantChildren<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
-            IClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> classConstant,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TTypeReference : ITypeReference
-            where TConstant : IConstant
+        public static void VisitClassConstantChildren<TClassConstant, TConstantGroup, TAttributeGroup, TDeclaringType, TTypeReference, TConstant, TVisitor>(
+            TClassConstant classConstant,
+            Func<TClassConstant, TConstantGroup> constantGroupFactory,
+            TVisitor visitor)
+            where TClassConstant : IClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>
+            where TConstantGroup : IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TConstant : IConstant, IVisitable<TVisitor>
         {
-            new ConstantGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(classConstant).Accept(visitor);
+            constantGroupFactory(classConstant).Accept(visitor);
         }
 
-        public static void VisitStaticClassConstantChildren<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
-            IStaticClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> classConstant,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TTypeReference : ITypeReference
-            where TConstant : IConstant
+        public static void VisitStaticClassConstantChildren<TStaticClassConstant, TConstantGroup, TAttributeGroup, TDeclaringType, TTypeReference, TConstant, TVisitor>(
+            TStaticClassConstant classConstant,
+            Func<TStaticClassConstant, TConstantGroup> constantGroupFactory,
+            TVisitor visitor)
+            where TStaticClassConstant : IStaticClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>
+            where TConstantGroup : IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TConstant : IConstant, IVisitable<TVisitor>
         {
-            new ConstantGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(classConstant).Accept(visitor);
+            constantGroupFactory(classConstant).Accept(visitor);
         }
 
-        public static void VisitClassFieldCollectionChildren<TField, TConstant>(
-            IClassFieldCollection<TField, TConstant> fieldCollection,
-            IGenericVisitor visitor)
-            where TField : IClassField
-            where TConstant : IClassConstant
-        {
-            VisitCollection(fieldCollection, visitor);
-            VisitCollection(fieldCollection.Constants, visitor);
-        }
-
-        public static void VisitStructFieldCollectionChildren<TField, TConstant>(
-            IStructFieldCollection<TField, TConstant> fieldCollection,
-            IGenericVisitor visitor)
-            where TField : IStructField
-            where TConstant : IStructConstant
-        {
-            VisitCollection(fieldCollection, visitor);
-            VisitCollection(fieldCollection.Constants, visitor);
-        }
-
-        public static void VisitStaticClassFieldCollectionChildren<TField, TConstant>(
-            IStaticClassFieldCollection<TField, TConstant> fieldCollection,
-            IGenericVisitor visitor)
-            where TField : IStaticClassField
-            where TConstant : IStaticClassConstant
+        public static void VisitClassFieldCollectionChildren<TClassFieldCollection, TField, TConstant, TVisitor>(
+            TClassFieldCollection fieldCollection,
+            TVisitor visitor)
+            where TClassFieldCollection : IClassFieldCollection<TField, TConstant>
+            where TField : IClassField, IVisitable<TVisitor>
+            where TConstant : IClassConstant, IVisitable<TVisitor>
         {
             VisitCollection(fieldCollection, visitor);
             VisitCollection(fieldCollection.Constants, visitor);
         }
 
-        public static void VisitStructFieldChildren<TAttributeGroup, TDeclaringType, TTypeReference, TField>(
-            IStructField<TAttributeGroup, TDeclaringType, TTypeReference, TField> field,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TTypeReference : ITypeReference
-            where TField : IField
+        public static void VisitStructFieldCollectionChildren<TStructFieldCollection, TField, TConstant, TVisitor>(
+            TStructFieldCollection fieldCollection,
+            TVisitor visitor)
+            where TStructFieldCollection : IStructFieldCollection<TField, TConstant>
+            where TField : IStructField, IVisitable<TVisitor>
+            where TConstant : IStructConstant, IVisitable<TVisitor>
         {
-            new FieldGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TField>(field).Accept(visitor);
+            VisitCollection(fieldCollection, visitor);
+            VisitCollection(fieldCollection.Constants, visitor);
         }
 
-        public static void VisitStructConstantChildren<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
-            IStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant> constant,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TTypeReference : ITypeReference
-            where TConstant : IConstant
+        public static void VisitStaticClassFieldCollectionChildren<TStaticClassFieldCollection, TField, TConstant, TVisitor>(
+            TStaticClassFieldCollection fieldCollection,
+            TVisitor visitor)
+            where TStaticClassFieldCollection : IStaticClassFieldCollection<TField, TConstant>
+            where TField : IStaticClassField, IVisitable<TVisitor>
+            where TConstant : IStaticClassConstant, IVisitable<TVisitor>
         {
-            new ConstantGroupWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(constant).Accept(visitor);
+            VisitCollection(fieldCollection, visitor);
+            VisitCollection(fieldCollection.Constants, visitor);
         }
 
-        public static void VisitClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
-            IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> classCollection,
-            IGenericVisitor visitor)
-            where TClass : IClass
-            where TAbstractClass : IAbstractClass
-            where TSealedClass : ISealedClass
-            where TStaticClass : IStaticClass
-            where TPartialClassCollection : IPartialClassCollection
+        public static void VisitStructFieldChildren<TStructField, TFieldGroup, TAttributeGroup, TDeclaringType, TTypeReference, TField, TVisitor>(
+            TStructField field,
+            Func<TStructField, TFieldGroup> fieldGroupFactory,
+            TVisitor visitor)
+            where TStructField : IStructField<TAttributeGroup, TDeclaringType, TTypeReference, TField>
+            where TFieldGroup : IFieldGroup<TAttributeGroup, TDeclaringType, TTypeReference, TField>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TField : IField, IVisitable<TVisitor>
+        {
+            fieldGroupFactory(field).Accept(visitor);
+        }
+
+        public static void VisitStructConstantChildren<TStructConstant, TConstantGroup, TAttributeGroup, TDeclaringType, TTypeReference, TConstant, TVisitor>(
+            TStructConstant constant,
+            Func<TStructConstant, TConstantGroup> constantGroupFactory,
+            TVisitor visitor)
+            where TStructConstant : IStructConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>
+            where TConstantGroup : IConstantGroup<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TConstant : IConstant, IVisitable<TVisitor>
+        {
+            constantGroupFactory(constant).Accept(visitor);
+        }
+
+        public static void VisitClassCollectionChildren<TClassCollection, TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection, TVisitor>(
+            TClassCollection classCollection,
+            TVisitor visitor)
+            where TClassCollection : IClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
+            where TClass : IClass, IVisitable<TVisitor>
+            where TAbstractClass : IAbstractClass, IVisitable<TVisitor>
+            where TSealedClass : ISealedClass, IVisitable<TVisitor>
+            where TStaticClass : IStaticClass, IVisitable<TVisitor>
+            where TPartialClassCollection : IPartialClassCollection, IVisitable<TVisitor>
         {
             VisitCollection(classCollection, visitor);
             VisitCollection(classCollection.AbstractClasses, visitor);
@@ -1408,171 +1572,209 @@ namespace CSharpDom.Common
             VisitIfNotNull(classCollection.PartialClasses, visitor);
         }
 
-        public static void VisitStructCollectionChildren<TStruct, TPartialStruct>(
-            IStructCollection<TStruct, TPartialStruct> structCollection,
-            IGenericVisitor visitor)
-            where TStruct : IStruct
-            where TPartialStruct : IPartialStruct
+        public static void VisitStructCollectionChildren<TStructCollection, TStruct, TPartialStruct, TVisitor>(
+            TStructCollection structCollection,
+            TVisitor visitor)
+            where TStructCollection : IStructCollection<TStruct, TPartialStruct>
+            where TStruct : IStruct, IVisitable<TVisitor>
+            where TPartialStruct : IPartialStruct, IVisitable<TVisitor>
         {
             VisitCollection(structCollection, visitor);
             VisitCollection(structCollection.PartialStructs, visitor);
         }
 
-        public static void VisitAbstractAccessorChildren<TAttributeGroup>(
-            IAbstractAccessor<TAttributeGroup> accessor,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
+        public static void VisitAbstractAccessorChildren<TAbstractAccessor, TAttributeGroup, TVisitor>(
+            TAbstractAccessor accessor,
+            TVisitor visitor)
+            where TAbstractAccessor : IAbstractAccessor<TAttributeGroup>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
         {
             VisitCollection(accessor.Attributes, visitor);
         }
 
-        public static void VisitAbstractEventChildren<TAttributeGroup, TDeclaringType, TDelegateReference>(
-            IAbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IAbstractType
-            where TDelegateReference : IDelegateReference
+        public static void VisitAbstractEventChildren<TAbstractEvent, TEvent, TAttributeGroup, TDeclaringType, TDelegateReference, TVisitor>(
+            TAbstractEvent @event,
+            Func<TAbstractEvent, TEvent> eventFactory,
+            TVisitor visitor)
+            where TAbstractEvent : IAbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference>
+            where TEvent : IEvent<TAttributeGroup, TDeclaringType, TDelegateReference>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IAbstractType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
         {
-            new EventWrapper<TAttributeGroup, TDeclaringType, TDelegateReference>(@event).Accept(visitor);
+            eventFactory(@event).Accept(visitor);
         }
 
-        public static void VisitAbstractIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
-            IAbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IAbstractType
-            where TTypeReference : ITypeReference
-            where TParameter : IIndexerParameter
-            where TAccessor : IAbstractAccessor
+        public static void VisitAbstractIndexerChildren<TAbstractIndexer, TIndexer, TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor, TVisitor>(
+            TAbstractIndexer indexer,
+            Func<TAbstractIndexer, TIndexer> indexerFactory,
+            TVisitor visitor)
+            where TAbstractIndexer : IAbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
+            where TIndexer : IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IAbstractType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IIndexerParameter, IVisitable<TVisitor>
+            where TAccessor : IAbstractAccessor, IVisitable<TVisitor>
         {
-            new IndexerWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(indexer).Accept(visitor);
+            indexerFactory(indexer).Accept(visitor);
         }
 
-        public static void VisitAbstractPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IAbstractType
-            where TTypeReference : ITypeReference
-            where TAccessor : IAbstractAccessor
+        public static void VisitAbstractPropertyChildren<TAbstractProperty, TProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TVisitor>(
+            TAbstractProperty property,
+            Func<TAbstractProperty, TProperty> propertyFactory,
+            TVisitor visitor)
+            where TAbstractProperty : IAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+            where TProperty : IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IAbstractType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IAbstractAccessor, IVisitable<TVisitor>
         {
-            new PropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(property).Accept(visitor);
+            propertyFactory(property).Accept(visitor);
         }
 
-        public static void VisitClassPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TTypeReference : ITypeReference
-            where TAccessor : IClassAccessor
+        public static void VisitClassPropertyChildren<TClassProperty, TProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TVisitor>(
+            TClassProperty property,
+            Func<TClassProperty, TProperty> propertyFactory,
+            TVisitor visitor)
+            where TClassProperty : IClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+            where TProperty : IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IClassAccessor, IVisitable<TVisitor>
         {
-            new PropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(property).Accept(visitor);
+            propertyFactory(property).Accept(visitor);
         }
 
-        public static void VisitInterfacePropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IInterfaceType
-            where TTypeReference : ITypeReference
-            where TAccessor : IInterfaceAccessor
+        public static void VisitInterfacePropertyChildren<TInterfaceProperty, TProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TVisitor>(
+            TInterfaceProperty property,
+            Func<TInterfaceProperty, TProperty> propertyFactory,
+            TVisitor visitor)
+            where TInterfaceProperty : IInterfaceProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+            where TProperty : IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IInterfaceType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IInterfaceAccessor, IVisitable<TVisitor>
         {
-            new PropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(property).Accept(visitor);
+            propertyFactory(property).Accept(visitor);
         }
 
-        public static void VisitSealedClassPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            ISealedClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TTypeReference : ITypeReference
-            where TAccessor : IClassAccessor
+        public static void VisitSealedClassPropertyChildren<TSealedClassProperty, TProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TVisitor>(
+            TSealedClassProperty property,
+            Func<TSealedClassProperty, TProperty> propertyFactory,
+            TVisitor visitor)
+            where TSealedClassProperty : ISealedClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+            where TProperty : IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : ISealedType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IClassAccessor, IVisitable<TVisitor>
         {
-            new PropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(property).Accept(visitor);
+            propertyFactory(property).Accept(visitor);
         }
 
-        public static void VisitStaticClassPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IStaticClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TTypeReference : ITypeReference
-            where TAccessor : IStaticClassAccessor
+        public static void VisitStaticClassPropertyChildren<TStaticClassProperty, TProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TVisitor>(
+            TStaticClassProperty property,
+            Func<TStaticClassProperty, TProperty> propertyFactory,
+            TVisitor visitor)
+            where TStaticClassProperty : IStaticClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+            where TProperty : IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IStaticClassAccessor, IVisitable<TVisitor>
         {
-            new PropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(property).Accept(visitor);
+            propertyFactory(property).Accept(visitor);
         }
 
-        public static void VisitStructPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(
-            IStructProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TTypeReference : ITypeReference
-            where TAccessor : IStructAccessor
+        public static void VisitStructPropertyChildren<TStructProperty, TProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TVisitor>(
+            TStructProperty property,
+            Func<TStructProperty, TProperty> propertyFactory,
+            TVisitor visitor)
+            where TStructProperty : IStructProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+            where TProperty : IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IStructAccessor, IVisitable<TVisitor>
         {
-            new PropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(property).Accept(visitor);
+            propertyFactory(property).Accept(visitor);
         }
 
-        public static void VisitExtensionMethodChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody>(
-            IExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticClass
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TExtensionParameter : IExtensionParameter
-            where TParameter : IMethodParameter
-            where TMethodBody : IMethodBody
+        public static void VisitExtensionMethodChildren<TExtensionMethod, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody, TVisitor>(
+            TExtensionMethod method,
+            TVisitor visitor)
+            where TExtensionMethod : IExtensionMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TExtensionParameter, TParameter, TMethodBody>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticClass, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TExtensionParameter : IExtensionParameter, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            throw new NotImplementedException();
+            
         }
 
-        public static void VisitNestedStructCollectionChildren<TStruct, TPartialStruct>(
-            INestedStructCollection<TStruct, TPartialStruct> structCollection,
-            IGenericVisitor visitor)
-            where TStruct : INestedStruct
-            where TPartialStruct : INestedPartialStruct
+        public static void VisitNestedStructCollectionChildren<TNestedStructCollection, TStruct, TPartialStruct, TVisitor>(
+            TNestedStructCollection structCollection,
+            TVisitor visitor)
+            where TNestedStructCollection : INestedStructCollection<TStruct, TPartialStruct>
+            where TStruct : INestedStruct, IVisitable<TVisitor>
+            where TPartialStruct : INestedPartialStruct, IVisitable<TVisitor>
         {
             VisitCollection(structCollection, visitor);
             VisitCollection(structCollection.PartialStructs, visitor);
         }
 
-        public static void VisitClassNestedStructCollectionChildren<TStruct, TPartialStruct>(
-            IClassNestedStructCollection<TStruct, TPartialStruct> structCollection,
-            IGenericVisitor visitor)
-            where TStruct : IClassNestedStruct
-            where TPartialStruct : IClassNestedPartialStruct
+        public static void VisitClassNestedStructCollectionChildren<TClassNestedStructCollection, TNestedStructCollection, TStruct, TPartialStruct, TVisitor>(
+            TClassNestedStructCollection structCollection,
+            Func<TClassNestedStructCollection, TNestedStructCollection> nestedStructCollectionFactory,
+            TVisitor visitor)
+            where TClassNestedStructCollection : IClassNestedStructCollection<TStruct, TPartialStruct>
+            where TNestedStructCollection : INestedStructCollection<TStruct, TPartialStruct>, IVisitable<TVisitor>
+            where TStruct : IClassNestedStruct, IVisitable<TVisitor>
+            where TPartialStruct : IClassNestedPartialStruct, IVisitable<TVisitor>
         {
-            new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
+            nestedStructCollectionFactory(structCollection).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedStructCollectionChildren<TStruct, TPartialStruct>(
-            IStaticClassNestedStructCollection<TStruct, TPartialStruct> structCollection,
-            IGenericVisitor visitor)
-            where TStruct : IStaticClassNestedStruct
-            where TPartialStruct : IStaticClassNestedPartialStruct
+        public static void VisitStaticClassNestedStructCollectionChildren<TStaticClassNestedStructCollection, TNestedStructCollection, TStruct, TPartialStruct, TVisitor>(
+            TStaticClassNestedStructCollection structCollection,
+            Func<TStaticClassNestedStructCollection, TNestedStructCollection> nestedStructCollectionFactory,
+            TVisitor visitor)
+            where TStaticClassNestedStructCollection : IStaticClassNestedStructCollection<TStruct, TPartialStruct>
+            where TNestedStructCollection : INestedStructCollection<TStruct, TPartialStruct>, IVisitable<TVisitor>
+            where TStruct : IStaticClassNestedStruct, IVisitable<TVisitor>
+            where TPartialStruct : IStaticClassNestedPartialStruct, IVisitable<TVisitor>
         {
-            new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
+            nestedStructCollectionFactory(structCollection).Accept(visitor);
         }
 
-        public static void VisitStructNestedStructCollectionChildren<TStruct, TPartialStruct>(
-            IStructNestedStructCollection<TStruct, TPartialStruct> structCollection,
-            IGenericVisitor visitor)
-            where TStruct : IStructNestedStruct
-            where TPartialStruct : IStructNestedPartialStruct
+        public static void VisitStructNestedStructCollectionChildren<TStructNestedStructCollection, TNestedStructCollection, TStruct, TPartialStruct, TVisitor>(
+            TStructNestedStructCollection structCollection,
+            Func<TStructNestedStructCollection, TNestedStructCollection> nestedStructCollectionFactory,
+            TVisitor visitor)
+            where TStructNestedStructCollection : IStructNestedStructCollection<TStruct, TPartialStruct>
+            where TNestedStructCollection : INestedStructCollection<TStruct, TPartialStruct>, IVisitable<TVisitor>
+            where TStruct : IStructNestedStruct, IVisitable<TVisitor>
+            where TPartialStruct : IStructNestedPartialStruct, IVisitable<TVisitor>
         {
-            new NestedStructCollectionWrapper<TStruct, TPartialStruct>(structCollection).Accept(visitor);
+            nestedStructCollectionFactory(structCollection).Accept(visitor);
         }
 
-        public static void VisitNestedClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
-            INestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> classCollection,
-            IGenericVisitor visitor)
-            where TClass : INestedClass
-            where TAbstractClass : INestedAbstractClass
-            where TSealedClass : INestedSealedClass
-            where TStaticClass : INestedStaticClass
-            where TPartialClassCollection : IPartialClassCollection
+        public static void VisitNestedClassCollectionChildren<TNestedClassCollection, TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection, TVisitor>(
+            TNestedClassCollection classCollection,
+            TVisitor visitor)
+            where TNestedClassCollection : INestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
+            where TClass : INestedClass, IVisitable<TVisitor>
+            where TAbstractClass : INestedAbstractClass, IVisitable<TVisitor>
+            where TSealedClass : INestedSealedClass, IVisitable<TVisitor>
+            where TStaticClass : INestedStaticClass, IVisitable<TVisitor>
+            where TPartialClassCollection : IPartialClassCollection, IVisitable<TVisitor>
         {
             VisitCollection(classCollection, visitor);
             VisitCollection(classCollection.AbstractClasses, visitor);
@@ -1581,57 +1783,67 @@ namespace CSharpDom.Common
             VisitIfNotNull(classCollection.PartialClasses, visitor);
         }
 
-        public static void VisitClassNestedClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
-            IClassNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> nestedClass,
-            IGenericVisitor visitor)
-            where TClass : IClassNestedClass
-            where TAbstractClass : IClassNestedAbstractClass
-            where TSealedClass : IClassNestedSealedClass
-            where TStaticClass : IClassNestedStaticClass
-            where TPartialClassCollection : IPartialClassCollection
+        public static void VisitClassNestedClassCollectionChildren<TClassNestedClassCollection, TNestedClassCollection, TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection, TVisitor>(
+            TClassNestedClassCollection nestedClass,
+            Func<TClassNestedClassCollection, TNestedClassCollection> nestedClassCollectionFactory,
+            TVisitor visitor)
+            where TClassNestedClassCollection : IClassNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
+            where TNestedClassCollection : INestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>, IVisitable<TVisitor>
+            where TClass : IClassNestedClass, IVisitable<TVisitor>
+            where TAbstractClass : IClassNestedAbstractClass, IVisitable<TVisitor>
+            where TSealedClass : IClassNestedSealedClass, IVisitable<TVisitor>
+            where TStaticClass : IClassNestedStaticClass, IVisitable<TVisitor>
+            where TPartialClassCollection : IPartialClassCollection, IVisitable<TVisitor>
         {
-            new NestedClassCollectionWrapper<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(nestedClass).Accept(visitor);
+            nestedClassCollectionFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
-            IStaticClassNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> nestedClass,
-            IGenericVisitor visitor)
-            where TClass : IStaticClassNestedClass
-            where TAbstractClass : IStaticClassNestedAbstractClass
-            where TSealedClass : IStaticClassNestedSealedClass
-            where TStaticClass : IStaticClassNestedStaticClass
-            where TPartialClassCollection : IPartialClassCollection
+        public static void VisitStaticClassNestedClassCollectionChildren<TStaticClassNestedClassCollection, TNestedClassCollection, TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection, TVisitor>(
+            TStaticClassNestedClassCollection nestedClass,
+            Func<TStaticClassNestedClassCollection, TNestedClassCollection> nestedClassCollectionFactory,
+            TVisitor visitor)
+            where TStaticClassNestedClassCollection : IStaticClassNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
+            where TNestedClassCollection : INestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>, IVisitable<TVisitor>
+            where TClass : IStaticClassNestedClass, IVisitable<TVisitor>
+            where TAbstractClass : IStaticClassNestedAbstractClass, IVisitable<TVisitor>
+            where TSealedClass : IStaticClassNestedSealedClass, IVisitable<TVisitor>
+            where TStaticClass : IStaticClassNestedStaticClass, IVisitable<TVisitor>
+            where TPartialClassCollection : IPartialClassCollection, IVisitable<TVisitor>
         {
-            new NestedClassCollectionWrapper<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(nestedClass).Accept(visitor);
+            nestedClassCollectionFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStructNestedClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(
-            IStructNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> nestedClass,
-            IGenericVisitor visitor)
-            where TClass : IStructNestedClass
-            where TAbstractClass : IStructNestedAbstractClass
-            where TSealedClass : IStructNestedSealedClass
-            where TStaticClass : IStructNestedStaticClass
-            where TPartialClassCollection : IPartialClassCollection
+        public static void VisitStructNestedClassCollectionChildren<TStructNestedClassCollection, TNestedClassCollection, TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection, TVisitor>(
+            TStructNestedClassCollection nestedClass,
+            Func<TStructNestedClassCollection, TNestedClassCollection> nestedClassCollectionFactory,
+            TVisitor visitor)
+            where TStructNestedClassCollection : IStructNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>
+            where TNestedClassCollection : INestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>, IVisitable<TVisitor>
+            where TClass : IStructNestedClass, IVisitable<TVisitor>
+            where TAbstractClass : IStructNestedAbstractClass, IVisitable<TVisitor>
+            where TSealedClass : IStructNestedSealedClass, IVisitable<TVisitor>
+            where TStaticClass : IStructNestedStaticClass, IVisitable<TVisitor>
+            where TPartialClassCollection : IPartialClassCollection, IVisitable<TVisitor>
         {
-            new NestedClassCollectionWrapper<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection>(nestedClass).Accept(visitor);
+            nestedClassCollectionFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticTypeChildren<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> type,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStaticTypeChildren<TStaticType, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStaticType type,
+            TVisitor visitor)
+            where TStaticType : IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : IStaticClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
             VisitIfNotNull(type.Events, visitor);
             VisitCollection(type.Properties, visitor);
@@ -1645,1266 +1857,1450 @@ namespace CSharpDom.Common
             VisitIfNotNull(type.StaticConstructor, visitor);
         }
 
-        public static void VisitNestedStaticClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : INestedStaticClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitNestedStaticClassChildren<TNestedStaticClass, TStaticType, TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TNestedStaticClass @class,
+            Func<TNestedStaticClass, TStaticType> staticTypeFactory,
+            TVisitor visitor)
+            where TNestedStaticClass : INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TStaticType : IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : INestedStaticClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new StaticTypeWrapper<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(@class).Accept(visitor);
+            staticTypeFactory(@class).Accept(visitor);
         }
 
-        public static void VisitClassNestedStaticClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : INestedStaticClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitClassNestedStaticClassChildren<TClassNestedStaticClass, TNestedStaticClass, TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TClassNestedStaticClass nestedClass,
+            Func<TClassNestedStaticClass, TNestedStaticClass> nestedStaticClassFactory,
+            TVisitor visitor)
+            where TClassNestedStaticClass : IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TNestedStaticClass : INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : INestedStaticClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new NestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
+            nestedStaticClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitClassNestedStaticPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : INestedStaticPartialClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitClassNestedStaticPartialClassChildren<TClassNestedStaticPartialClass, TClassNestedStaticClass, TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TClassNestedStaticPartialClass nestedClass,
+            Func<TClassNestedStaticPartialClass, TClassNestedStaticClass> classNestedStaticClassFactory,
+            TVisitor visitor)
+            where TClassNestedStaticPartialClass : IClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TClassNestedStaticClass : IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : INestedStaticPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new ClassNestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
+            classNestedStaticClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedStaticClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : INestedStaticClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStaticClassNestedStaticClassChildren<TStaticClassNestedStaticClass, TNestedStaticClass, TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStaticClassNestedStaticClass nestedClass,
+            Func<TStaticClassNestedStaticClass, TNestedStaticClass> nestedStaticClassFactory,
+            TVisitor visitor)
+            where TStaticClassNestedStaticClass : IStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TNestedStaticClass : INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : INestedStaticClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new NestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
+            nestedStaticClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedStaticPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : INestedStaticPartialClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStaticClassNestedStaticPartialClassChildren<TStaticClassNestedStaticPartialClass, TStaticClassNestedStaticClass, TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStaticClassNestedStaticPartialClass nestedClass,
+            Func<TStaticClassNestedStaticPartialClass, TStaticClassNestedStaticClass> staticClassNestedStaticClassFactory,
+            TVisitor visitor)
+            where TStaticClassNestedStaticPartialClass : IStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TStaticClassNestedStaticClass : IStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : INestedStaticPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new StaticClassNestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
+            staticClassNestedStaticClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStructNestedStaticClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : INestedStaticClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStructNestedStaticClassChildren<TStructNestedStaticClass, TNestedStaticClass, TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStructNestedStaticClass nestedClass,
+            Func<TStructNestedStaticClass, TNestedStaticClass> nestedStaticClassFactory,
+            TVisitor visitor)
+            where TStructNestedStaticClass : IStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TNestedStaticClass : INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : INestedStaticClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new NestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
+            nestedStaticClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStructNestedStaticPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : INestedStaticPartialClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStructNestedStaticPartialClassChildren<TStructNestedStaticPartialClass, TStructNestedStaticClass, TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStructNestedStaticPartialClass nestedClass,
+            Func<TStructNestedStaticPartialClass, TStructNestedStaticClass> structNestedStaticClassFactory,
+            TVisitor visitor)
+            where TStructNestedStaticPartialClass : IStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TStructNestedStaticClass : IStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : INestedStaticPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new StructNestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedClass).Accept(visitor);
+            structNestedStaticClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitClassNestedAbstractClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IAbstractClassEventCollection
-            where TPropertyCollection : IAbstractClassPropertyCollection
-            where TIndexerCollection : IAbstractClassIndexerCollection
-            where TMethodCollection : IAbstractClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitClassNestedAbstractClassChildren<TClassNestedAbstractClass, TNestedAbstractClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TClassNestedAbstractClass nestedClass,
+            Func<TClassNestedAbstractClass, TNestedAbstractClass> nestedAbstractClassFactory,
+            TVisitor visitor)
+            where TClassNestedAbstractClass : IClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TNestedAbstractClass : INestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IAbstractClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IAbstractClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IAbstractClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IAbstractClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new NestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            nestedAbstractClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitClassNestedAbstractPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IClassNestedAbstractPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IAbstractClassEventCollection
-            where TPropertyCollection : IAbstractClassPropertyCollection
-            where TIndexerCollection : IAbstractClassIndexerCollection
-            where TMethodCollection : IAbstractPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitClassNestedAbstractPartialClassChildren<TClassNestedAbstractPartialClass, TClassNestedAbstractClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TClassNestedAbstractPartialClass nestedClass,
+            Func<TClassNestedAbstractPartialClass, TClassNestedAbstractClass> classNestedAbstractClassFactory,
+            TVisitor visitor)
+            where TClassNestedAbstractPartialClass : IClassNestedAbstractPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TClassNestedAbstractClass : IClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IAbstractClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IAbstractClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IAbstractClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IAbstractPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new ClassNestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            classNestedAbstractClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedAbstractClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStaticClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IAbstractClassEventCollection
-            where TPropertyCollection : IAbstractClassPropertyCollection
-            where TIndexerCollection : IAbstractClassIndexerCollection
-            where TMethodCollection : IAbstractClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStaticClassNestedAbstractClassChildren<TStaticClassNestedAbstractClass, TNestedAbstractClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStaticClassNestedAbstractClass nestedClass,
+            Func<TStaticClassNestedAbstractClass, TNestedAbstractClass> nestedAbstractClassFactory,
+            TVisitor visitor)
+            where TStaticClassNestedAbstractClass : IStaticClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TNestedAbstractClass : INestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IAbstractClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IAbstractClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IAbstractClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IAbstractClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new NestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            nestedAbstractClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedAbstractPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStaticClassNestedAbstractPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IAbstractClassEventCollection
-            where TPropertyCollection : IAbstractClassPropertyCollection
-            where TIndexerCollection : IAbstractClassIndexerCollection
-            where TMethodCollection : IAbstractPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStaticClassNestedAbstractPartialClassChildren<TStaticClassNestedAbstractPartialClass, TStaticClassNestedAbstractClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStaticClassNestedAbstractPartialClass nestedClass,
+            Func<TStaticClassNestedAbstractPartialClass, TStaticClassNestedAbstractClass> staticClassNestedAbstractClassFactory,
+            TVisitor visitor)
+            where TStaticClassNestedAbstractPartialClass : IStaticClassNestedAbstractPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TStaticClassNestedAbstractClass : IStaticClassNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IAbstractClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IAbstractClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IAbstractClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IAbstractPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new StaticClassNestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            staticClassNestedAbstractClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStructNestedAbstractClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStructNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IAbstractClassEventCollection
-            where TPropertyCollection : IAbstractClassPropertyCollection
-            where TIndexerCollection : IAbstractClassIndexerCollection
-            where TMethodCollection : IAbstractClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStructNestedAbstractClassChildren<TStructNestedAbstractClass, TNestedAbstractClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStructNestedAbstractClass nestedClass,
+            Func<TStructNestedAbstractClass, TNestedAbstractClass> nestedAbstractClassFactory,
+            TVisitor visitor)
+            where TStructNestedAbstractClass : IStructNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TNestedAbstractClass : INestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IAbstractClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IAbstractClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IAbstractClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IAbstractClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new NestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            nestedAbstractClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStructNestedAbstractPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStructNestedAbstractPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IAbstractClassEventCollection
-            where TPropertyCollection : IAbstractClassPropertyCollection
-            where TIndexerCollection : IAbstractClassIndexerCollection
-            where TMethodCollection : IAbstractPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStructNestedAbstractPartialClassChildren<TStructNestedAbstractPartialClass, TStructNestedAbstractClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStructNestedAbstractPartialClass nestedClass,
+            Func<TStructNestedAbstractPartialClass, TStructNestedAbstractClass> structNestedAbstractClassFactory,
+            TVisitor visitor)
+            where TStructNestedAbstractPartialClass : IStructNestedAbstractPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TStructNestedAbstractClass : IStructNestedAbstractClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IAbstractClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IAbstractClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IAbstractClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IAbstractPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new StructNestedAbstractClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            structNestedAbstractClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitAbstractClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IAbstractClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> @class,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitAbstractClassChildren<TAbstractClass, TClass, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TAbstractClass @class,
+            Func<TAbstractClass, TClass> classFactory,
+            TVisitor visitor)
+            where TAbstractClass : IAbstractClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TClass : IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IAbstractClassEventCollection
-            where TPropertyCollection : IAbstractClassPropertyCollection
-            where TIndexerCollection : IAbstractClassIndexerCollection
-            where TMethodCollection : IAbstractClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IAbstractClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IAbstractClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IAbstractClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IAbstractClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new ClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(@class).Accept(visitor);
+            classFactory(@class).Accept(visitor);
         }
 
-        public static void VisitAbstractPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IAbstractPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> @class,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitAbstractPartialClassChildren<TAbstractPartialClass, TAbstractClass, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TAbstractPartialClass @class,
+            Func<TAbstractPartialClass, TAbstractClass> abstractClassFactory,
+            TVisitor visitor)
+            where TAbstractPartialClass : IAbstractPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TAbstractClass : IAbstractClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IAbstractClassEventCollection
-            where TPropertyCollection : IAbstractClassPropertyCollection
-            where TIndexerCollection : IAbstractClassIndexerCollection
-            where TMethodCollection : IAbstractPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IAbstractClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IAbstractClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IAbstractClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IAbstractPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new AbstractClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(@class).Accept(visitor);
+            abstractClassFactory(@class).Accept(visitor);
         }
 
-        public static void VisitSealedClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            ISealedClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> @class,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitSealedClassChildren<TSealedClass, TClass, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TSealedClass @class,
+            Func<TSealedClass, TClass> classFactory,
+            TVisitor visitor)
+            where TSealedClass : ISealedClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TClass : IClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : ISealedClassEventCollection
-            where TPropertyCollection : ISealedClassPropertyCollection
-            where TIndexerCollection : ISealedClassIndexerCollection
-            where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : ISealedClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : ISealedClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : ISealedClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : ISealedClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new ClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(@class).Accept(visitor);
+            classFactory(@class).Accept(visitor);
         }
 
-        public static void VisitSealedPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            ISealedPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> @class,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitSealedPartialClassChildren<TSealedPartialClass, TSealedClass, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TSealedPartialClass @class,
+            Func<TSealedPartialClass, TSealedClass> sealedClassFactory,
+            TVisitor visitor)
+            where TSealedPartialClass : ISealedPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TSealedClass : ISealedClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : ISealedClassEventCollection
-            where TPropertyCollection : ISealedClassPropertyCollection
-            where TIndexerCollection : ISealedClassIndexerCollection
-            where TMethodCollection : ISealedPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : ISealedClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : ISealedClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : ISealedClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : ISealedPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new SealedClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(@class).Accept(visitor);
+            sealedClassFactory(@class).Accept(visitor);
         }
 
-        public static void VisitStaticClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitStaticClassChildren<TStaticClass, TStaticType, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStaticClass @class,
+            Func<TStaticClass, TStaticType> staticTypeFactory,
+            TVisitor visitor)
+            where TStaticClass : IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TStaticType : IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : IStaticClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new StaticTypeWrapper<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(@class).Accept(visitor);
+            staticTypeFactory(@class).Accept(visitor);
         }
 
-        public static void VisitStaticPartialClassChildren<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class,
-            IGenericVisitor visitor)
-            where TNamespace : INamespace
+        public static void VisitStaticPartialClassChildren<TStaticPartialClass, TStaticClass, TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStaticPartialClass @class,
+            Func<TStaticPartialClass, TStaticClass> staticClassFactory,
+            TVisitor visitor)
+            where TStaticPartialClass : IStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TStaticClass : IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TNamespace : INamespace, IVisitable<TVisitor>
             where TDocument : IDocument
             where TProject : IProject
             where TSolution : ISolution
-            where TAttributeGroup : IAttributeGroup
-            where TGenericParameter : IGenericParameterDeclaration
-            where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
-            where TMethodCollection : IStaticPartialClassMethodCollection
-            where TFieldCollection : IStaticClassFieldCollection
-            where TNestedClassCollection : IStaticClassNestedClassCollection
-            where TNestedDelegate : IStaticClassNestedDelegate
-            where TNestedEnum : IStaticClassNestedEnum
-            where TNestedInterface : IStaticClassNestedInterface
-            where TNestedStructCollection : IStaticClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TEventCollection : IStaticClassEventCollection, IVisitable<TVisitor>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TMethodCollection : IStaticPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStaticClassFieldCollection, IVisitable<TVisitor>
+            where TNestedClassCollection : IStaticClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStaticClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStaticClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStaticClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStaticClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new StaticClassWrapper<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(@class).Accept(visitor);
+            staticClassFactory(@class).Accept(visitor);
         }
 
-        public static void VisitClassNestedSealedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : ISealedClassEventCollection
-            where TPropertyCollection : ISealedClassPropertyCollection
-            where TIndexerCollection : ISealedClassIndexerCollection
-            where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitClassNestedSealedClassChildren<TClassNestedSealedClass, TNestedSealedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TClassNestedSealedClass nestedClass,
+            Func<TClassNestedSealedClass, TNestedSealedClass> nestedSealedClassFactory,
+            TVisitor visitor)
+            where TClassNestedSealedClass : IClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TNestedSealedClass : INestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : ISealedClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : ISealedClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : ISealedClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : ISealedClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new NestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            nestedSealedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitClassNestedSealedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IClassNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : ISealedClassEventCollection
-            where TPropertyCollection : ISealedClassPropertyCollection
-            where TIndexerCollection : ISealedClassIndexerCollection
-            where TMethodCollection : ISealedPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitClassNestedSealedPartialClassChildren<TClassNestedSealedPartialClass, TClassNestedSealedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TClassNestedSealedPartialClass nestedClass,
+            Func<TClassNestedSealedPartialClass, TClassNestedSealedClass> classNestedSealedClassFactory,
+            TVisitor visitor)
+            where TClassNestedSealedPartialClass : IClassNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TClassNestedSealedClass : IClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : ISealedClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : ISealedClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : ISealedClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : ISealedPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new ClassNestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            classNestedSealedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedSealedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStaticClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : ISealedClassEventCollection
-            where TPropertyCollection : ISealedClassPropertyCollection
-            where TIndexerCollection : ISealedClassIndexerCollection
-            where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStaticClassNestedSealedClassChildren<TStaticClassNestedSealedClass, TNestedSealedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStaticClassNestedSealedClass nestedClass,
+            Func<TStaticClassNestedSealedClass, TNestedSealedClass> nestedSealedClassFactory,
+            TVisitor visitor)
+            where TStaticClassNestedSealedClass : IStaticClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TNestedSealedClass : INestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : ISealedClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : ISealedClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : ISealedClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : ISealedClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new NestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            nestedSealedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedSealedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStaticClassNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : ISealedClassEventCollection
-            where TPropertyCollection : ISealedClassPropertyCollection
-            where TIndexerCollection : ISealedClassIndexerCollection
-            where TMethodCollection : ISealedPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStaticClassNestedSealedPartialClassChildren<TStaticClassNestedSealedPartialClass, TStaticClassNestedSealedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStaticClassNestedSealedPartialClass nestedClass,
+            Func<TStaticClassNestedSealedPartialClass, TStaticClassNestedSealedClass> staticClassNestedSealedClassFactory,
+            TVisitor visitor)
+            where TStaticClassNestedSealedPartialClass : IStaticClassNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TStaticClassNestedSealedClass : IStaticClassNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : ISealedClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : ISealedClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : ISealedClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : ISealedPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new StaticClassNestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            staticClassNestedSealedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStructNestedSealedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStructNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : ISealedClassEventCollection
-            where TPropertyCollection : ISealedClassPropertyCollection
-            where TIndexerCollection : ISealedClassIndexerCollection
-            where TMethodCollection : ISealedClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStructNestedSealedClassChildren<TStructNestedSealedClass, TNestedSealedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStructNestedSealedClass nestedClass,
+            Func<TStructNestedSealedClass, TNestedSealedClass> nestedSealedClassFactory,
+            TVisitor visitor)
+            where TStructNestedSealedClass : IStructNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TNestedSealedClass : INestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : ISealedClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : ISealedClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : ISealedClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : ISealedClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new NestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            nestedSealedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStructNestedSealedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStructNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : ISealedClassEventCollection
-            where TPropertyCollection : ISealedClassPropertyCollection
-            where TIndexerCollection : ISealedClassIndexerCollection
-            where TMethodCollection : ISealedPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStructNestedSealedPartialClassChildren<TStructNestedSealedPartialClass, TStructNestedSealedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStructNestedSealedPartialClass nestedClass,
+            Func<TStructNestedSealedPartialClass, TStructNestedSealedClass> structNestedSealedClassFactory,
+            TVisitor visitor)
+            where TStructNestedSealedPartialClass : IStructNestedSealedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TStructNestedSealedClass : IStructNestedSealedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : ISealedClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : ISealedClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : ISealedClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : ISealedPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new StructNestedSealedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            structNestedSealedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassEventCollectionChildren<TEvent, TEventProperty>(
-            IStaticClassEventCollection<TEvent, TEventProperty> eventCollection,
-            IGenericVisitor visitor)
-            where TEvent : IStaticClassEvent
-            where TEventProperty : IStaticClassEventProperty
+        public static void VisitStaticClassEventCollectionChildren<TStaticClassEventCollection, TEvent, TEventProperty, TVisitor>(
+            TStaticClassEventCollection eventCollection,
+            TVisitor visitor)
+            where TStaticClassEventCollection : IStaticClassEventCollection<TEvent, TEventProperty>
+            where TEvent : IStaticClassEvent, IVisitable<TVisitor>
+            where TEventProperty : IStaticClassEventProperty, IVisitable<TVisitor>
         {
             VisitCollection(eventCollection, visitor);
             VisitCollection(eventCollection.EventProperties, visitor);
         }
 
-        public static void VisitStaticClassMethodCollectionChildren<TMethod, TExtensionMethod>(
-            IStaticClassMethodCollection<TMethod, TExtensionMethod> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : IStaticClassMethod
-            where TExtensionMethod : IExtensionMethod
+        public static void VisitStaticClassMethodCollectionChildren<TStaticClassMethodCollection, TMethod, TExtensionMethod, TVisitor>(
+            TStaticClassMethodCollection methodCollection,
+            TVisitor visitor)
+            where TStaticClassMethodCollection : IStaticClassMethodCollection<TMethod, TExtensionMethod>
+            where TMethod : IStaticClassMethod, IVisitable<TVisitor>
+            where TExtensionMethod : IExtensionMethod, IVisitable<TVisitor>
         {
             VisitCollection(methodCollection, visitor);
             VisitCollection(methodCollection.ExtensionMethods, visitor);
         }
 
-        public static void VisitStaticPartialClassMethodCollectionChildren<TMethod, TExtensionMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
-            IStaticPartialClassMethodCollection<TMethod, TExtensionMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : IStaticClassMethod
-            where TExtensionMethod : IExtensionMethod
-            where TPartialMethodDefinition : IPartialMethodDefinition
-            where TPartialMethodImplementation : IPartialMethodImplementation
+        public static void VisitStaticPartialClassMethodCollectionChildren<TStaticPartialClassMethodCollection, TStaticClassMethodCollection, TMethod, TExtensionMethod, TPartialMethodDefinition, TPartialMethodImplementation, TVisitor>(
+            TStaticPartialClassMethodCollection methodCollection,
+            Func<TStaticPartialClassMethodCollection, TStaticClassMethodCollection> staticClassMethodCollectionFactory,
+            TVisitor visitor)
+            where TStaticPartialClassMethodCollection : IStaticPartialClassMethodCollection<TMethod, TExtensionMethod, TPartialMethodDefinition, TPartialMethodImplementation>
+            where TStaticClassMethodCollection : IStaticClassMethodCollection<TMethod, TExtensionMethod>, IVisitable<TVisitor>
+            where TMethod : IStaticClassMethod, IVisitable<TVisitor>
+            where TExtensionMethod : IExtensionMethod, IVisitable<TVisitor>
+            where TPartialMethodDefinition : IPartialMethodDefinition, IVisitable<TVisitor>
+            where TPartialMethodImplementation : IPartialMethodImplementation, IVisitable<TVisitor>
         {
-            new StaticClassMethodCollectionWrapper<TMethod, TExtensionMethod>(methodCollection).Accept(visitor);
+            staticClassMethodCollectionFactory(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
             VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
-        public static void VisitNestedStaticClassMethodCollectionChildren<TMethod>(
-            INestedStaticClassMethodCollection<TMethod> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : IStaticClassMethod
+        public static void VisitNestedStaticClassMethodCollectionChildren<TNestedStaticClassMethodCollection, TMethod, TVisitor>(
+            TNestedStaticClassMethodCollection methodCollection,
+            TVisitor visitor)
+            where TNestedStaticClassMethodCollection : INestedStaticClassMethodCollection<TMethod>
+            where TMethod : IStaticClassMethod, IVisitable<TVisitor>
         {
             VisitCollection(methodCollection, visitor);
         }
 
-        public static void VisitNestedStaticPartialClassMethodCollectionChildren<TMethod, TPartialMethodDefinition, TPartialMethodImplementation>(
-            INestedStaticPartialClassMethodCollection<TMethod, TPartialMethodDefinition, TPartialMethodImplementation> methodCollection,
-            IGenericVisitor visitor)
-            where TMethod : IStaticClassMethod
-            where TPartialMethodDefinition : IPartialMethodDefinition
-            where TPartialMethodImplementation : IPartialMethodImplementation
+        public static void VisitNestedStaticPartialClassMethodCollectionChildren<TNestedStaticPartialClassMethodCollection, TNestedStaticClassMethodCollection, TMethod, TPartialMethodDefinition, TPartialMethodImplementation, TVisitor>(
+            TNestedStaticPartialClassMethodCollection methodCollection,
+            Func<TNestedStaticPartialClassMethodCollection, TNestedStaticClassMethodCollection> nestedStaticClassMethodCollectionFactory,
+            TVisitor visitor)
+            where TNestedStaticPartialClassMethodCollection : INestedStaticPartialClassMethodCollection<TMethod, TPartialMethodDefinition, TPartialMethodImplementation>
+            where TNestedStaticClassMethodCollection : INestedStaticClassMethodCollection<TMethod>, IVisitable<TVisitor>
+            where TMethod : IStaticClassMethod, IVisitable<TVisitor>
+            where TPartialMethodDefinition : IPartialMethodDefinition, IVisitable<TVisitor>
+            where TPartialMethodImplementation : IPartialMethodImplementation, IVisitable<TVisitor>
         {
-            new NestedStaticClassMethodCollectionWrapper<TMethod>(methodCollection).Accept(visitor);
+            nestedStaticClassMethodCollectionFactory(methodCollection).Accept(visitor);
             VisitCollection(methodCollection.PartialMethodDefinitions, visitor);
             VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
-        public static void VisitExplicitInterfacePropertyChildren<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor>(
-            IExplicitInterfaceProperty<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor> property,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TInterfaceReference : IInterfaceReference
-            where TTypeReference : ITypeReference
-            where TAccessor : IAccessor
+        public static void VisitExplicitInterfacePropertyChildren<TExplicitInterfaceProperty, TProperty, TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor, TVisitor>(
+            TExplicitInterfaceProperty property,
+            Func<TExplicitInterfaceProperty, TProperty> propertyFactory,
+            TVisitor visitor)
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor>
+            where TProperty : IProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IAccessor, IVisitable<TVisitor>
         {
             VisitIfNotNull(property.ExplicitInterface, visitor);
-            new PropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>(property).Accept(visitor);
+            propertyFactory(property).Accept(visitor);
         }
 
-        public static void VisitExplicitInterfaceEventChildren<TAttributeGroup, TDeclaringType, TInterfaceReference, TDelegateReference, TMethodBody>(
-            IExplicitInterfaceEvent<TAttributeGroup, TDeclaringType, TInterfaceReference, TDelegateReference, TMethodBody> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TInterfaceReference : IInterfaceReference
-            where TDelegateReference : IDelegateReference
-            where TMethodBody : IMethodBody
+        public static void VisitExplicitInterfaceEventChildren<TExplicitInterfaceEvent, TEventProperty, TAttributeGroup, TDeclaringType, TInterfaceReference, TDelegateReference, TMethodBody, TVisitor>(
+            TExplicitInterfaceEvent @event,
+            Func<TExplicitInterfaceEvent, TEventProperty> eventPropertyFactory,
+            TVisitor visitor)
+            where TExplicitInterfaceEvent : IExplicitInterfaceEvent<TAttributeGroup, TDeclaringType, TInterfaceReference, TDelegateReference, TMethodBody>
+            where TEventProperty : IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitIfNotNull(@event.ExplicitInterface, visitor);
-            new EventPropertyWrapper<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(@event).Accept(visitor);
+            eventPropertyFactory(@event).Accept(visitor);
         }
 
-        public static void VisitClassEventPropertyChildren<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
-            IClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TDelegateReference : IDelegateReference
-            where TMethodBody : IMethodBody
+        public static void VisitClassEventPropertyChildren<TClassEventProperty, TEventProperty, TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody, TVisitor>(
+            TClassEventProperty @event,
+            Func<TClassEventProperty, TEventProperty> eventPropertyFactory,
+            TVisitor visitor)
+            where TClassEventProperty : IClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>
+            where TEventProperty : IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new EventPropertyWrapper<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(@event).Accept(visitor);
+            eventPropertyFactory(@event).Accept(visitor);
         }
 
-        public static void VisitSealedClassEventPropertyChildren<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
-            ISealedClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TDelegateReference : IDelegateReference
-            where TMethodBody : IMethodBody
+        public static void VisitSealedClassEventPropertyChildren<TSealedClassEventProperty, TEventProperty, TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody, TVisitor>(
+            TSealedClassEventProperty @event,
+            Func<TSealedClassEventProperty, TEventProperty> eventPropertyFactory,
+            TVisitor visitor)
+            where TSealedClassEventProperty : ISealedClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>
+            where TEventProperty : IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : ISealedType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new EventPropertyWrapper<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(@event).Accept(visitor);
+            eventPropertyFactory(@event).Accept(visitor);
         }
 
-        public static void VisitStaticClassEventPropertyChildren<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
-            IStaticClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TDelegateReference : IDelegateReference
-            where TMethodBody : IMethodBody
+        public static void VisitStaticClassEventPropertyChildren<TStaticClassEventProperty, TEventProperty, TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody, TVisitor>(
+            TStaticClassEventProperty @event,
+            Func<TStaticClassEventProperty, TEventProperty> eventPropertyFactory,
+            TVisitor visitor)
+            where TStaticClassEventProperty : IStaticClassEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>
+            where TEventProperty : IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new EventPropertyWrapper<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(@event).Accept(visitor);
+            eventPropertyFactory(@event).Accept(visitor);
         }
 
-        public static void VisitStructEventPropertyChildren<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(
-            IStructEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody> @event,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TDelegateReference : IDelegateReference
-            where TMethodBody : IMethodBody
+        public static void VisitStructEventPropertyChildren<TStructEventProperty, TEventProperty, TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody, TVisitor>(
+            TStructEventProperty @event,
+            Func<TStructEventProperty, TEventProperty> eventPropertyFactory,
+            TVisitor visitor)
+            where TStructEventProperty : IStructEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>
+            where TEventProperty : IEventProperty<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TDelegateReference : IDelegateReference, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            new EventPropertyWrapper<TAttributeGroup, TDeclaringType, TDelegateReference, TMethodBody>(@event).Accept(visitor);
+            eventPropertyFactory(@event).Accept(visitor);
         }
 
-        public static void VisitExplicitInterfaceIndexerChildren<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TParameter, TAccessor>(
-            IExplicitInterfaceIndexer<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TParameter, TAccessor> indexer,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TInterfaceReference : IInterfaceReference
-            where TTypeReference : ITypeReference
-            where TParameter : IIndexerParameter
-            where TAccessor : IAccessor
+        public static void VisitExplicitInterfaceIndexerChildren<TExplicitInterfaceIndexer, TIndexer, TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TParameter, TAccessor, TVisitor>(
+            TExplicitInterfaceIndexer indexer,
+            Func<TExplicitInterfaceIndexer, TIndexer> indexerFactory,
+            TVisitor visitor)
+            where TExplicitInterfaceIndexer : IExplicitInterfaceIndexer<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TParameter, TAccessor>
+            where TIndexer : IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IIndexerParameter, IVisitable<TVisitor>
+            where TAccessor : IAccessor, IVisitable<TVisitor>
         {
             VisitIfNotNull(indexer.ExplicitInterface, visitor);
-            new IndexerWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(indexer).Accept(visitor);
+            indexerFactory(indexer).Accept(visitor);
         }
 
-        public static void VisitClassIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
-            IClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TTypeReference : ITypeReference
-            where TParameter : IIndexerParameter
-            where TAccessor : IClassAccessor
+        public static void VisitClassIndexerChildren<TClassIndexer, TIndexer, TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor, TVisitor>(
+            TClassIndexer indexer,
+            Func<TClassIndexer, TIndexer> indexerFactory,
+            TVisitor visitor)
+            where TClassIndexer : IClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
+            where TIndexer : IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IIndexerParameter, IVisitable<TVisitor>
+            where TAccessor : IClassAccessor, IVisitable<TVisitor>
         {
-            new IndexerWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(indexer).Accept(visitor);
+            indexerFactory(indexer).Accept(visitor);
         }
 
-        public static void VisitInterfaceIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
-            IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IInterfaceType
-            where TTypeReference : ITypeReference
-            where TParameter : IIndexerParameter
-            where TAccessor : IInterfaceAccessor
+        public static void VisitInterfaceIndexerChildren<TInterfaceIndexer, TIndexer, TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor, TVisitor>(
+            TInterfaceIndexer indexer,
+            Func<TInterfaceIndexer, TIndexer> indexerFactory,
+            TVisitor visitor)
+            where TInterfaceIndexer : IInterfaceIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
+            where TIndexer : IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IInterfaceType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IIndexerParameter, IVisitable<TVisitor>
+            where TAccessor : IInterfaceAccessor, IVisitable<TVisitor>
         {
-            new IndexerWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(indexer).Accept(visitor);
+            indexerFactory(indexer).Accept(visitor);
         }
 
-        public static void VisitSealedClassIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
-            ISealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : ISealedType
-            where TTypeReference : ITypeReference
-            where TParameter : IIndexerParameter
-            where TAccessor : IClassAccessor
+        public static void VisitSealedClassIndexerChildren<TSealedClassIndexer, TIndexer, TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor, TVisitor>(
+            TSealedClassIndexer indexer,
+            Func<TSealedClassIndexer, TIndexer> indexerFactory,
+            TVisitor visitor)
+            where TSealedClassIndexer : ISealedClassIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
+            where TIndexer : IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : ISealedType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IIndexerParameter, IVisitable<TVisitor>
+            where TAccessor : IClassAccessor, IVisitable<TVisitor>
         {
-            new IndexerWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(indexer).Accept(visitor);
+            indexerFactory(indexer).Accept(visitor);
         }
 
-        public static void VisitStructIndexerChildren<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(
-            IStructIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TTypeReference : ITypeReference
-            where TParameter : IIndexerParameter
-            where TAccessor : IStructAccessor
+        public static void VisitStructIndexerChildren<TStructIndexer, TIndexer, TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor, TVisitor>(
+            TStructIndexer indexer,
+            Func<TStructIndexer, TIndexer> indexerFactory,
+            TVisitor visitor)
+            where TStructIndexer : IStructIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>
+            where TIndexer : IIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IIndexerParameter, IVisitable<TVisitor>
+            where TAccessor : IStructAccessor, IVisitable<TVisitor>
         {
-            new IndexerWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor>(indexer).Accept(visitor);
+            indexerFactory(indexer).Accept(visitor);
         }
 
-        public static void VisitExplicitInterfaceMethodChildren<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody>(
-            IExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody> method,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IType
-            where TInterfaceReference : IInterfaceReference
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IMethodParameter
-            where TMethodBody : IMethodBody
+        public static void VisitExplicitInterfaceMethodChildren<TExplicitInterfaceMethod, TMethod, TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody, TVisitor>(
+            TExplicitInterfaceMethod method,
+            Func<TExplicitInterfaceMethod, TMethod> methodFactory,
+            TVisitor visitor)
+            where TExplicitInterfaceMethod : IExplicitInterfaceMethod<TAttributeGroup, TDeclaringType, TInterfaceReference, TGenericParameter, TTypeReference, TParameter, TMethodBody>, IVisitable<TVisitor>
+            where TMethod : IMethod<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IType, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IMethodParameter, IVisitable<TVisitor>
+            where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
             VisitIfNotNull(method, visitor);
-            new MethodWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TMethodBody>(method).Accept(visitor);
+            methodFactory(method).Accept(visitor);
         }
 
-        public static void VisitClassNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitClassNestedClassChildren<TClassNestedClass, TNestedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TClassNestedClass nestedClass,
+            Func<TClassNestedClass, TNestedClass> nestedClassFactory,
+            TVisitor visitor)
+            where TClassNestedClass : IClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TNestedClass : INestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new NestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            nestedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitClassNestedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IClassNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitClassNestedPartialClassChildren<TClassNestedPartialClass, TClassNestedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TClassNestedPartialClass nestedClass,
+            Func<TClassNestedPartialClass, TClassNestedClass> classNestedClassFactory,
+            TVisitor visitor)
+            where TClassNestedPartialClass : IClassNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TClassNestedClass : IClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new ClassNestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            classNestedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStaticClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStaticClassNestedClassChildren<TStaticClassNestedClass, TNestedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStaticClassNestedClass nestedClass,
+            Func<TStaticClassNestedClass, TNestedClass> nestedClassFactory,
+            TVisitor visitor)
+            where TStaticClassNestedClass : IStaticClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TNestedClass : INestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new NestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            nestedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStaticClassNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStaticClassNestedPartialClassChildren<TStaticClassNestedPartialClass, TStaticClassNestedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStaticClassNestedPartialClass nestedClass,
+            Func<TStaticClassNestedPartialClass, TStaticClassNestedClass> staticClassNestedClassFactory,
+            TVisitor visitor)
+            where TStaticClassNestedPartialClass : IStaticClassNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TStaticClassNestedClass : IStaticClassNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new StaticClassNestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            staticClassNestedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStructNestedClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStructNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStructNestedClassChildren<TStructNestedClass, TNestedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStructNestedClass nestedClass,
+            Func<TStructNestedClass, TNestedClass> nestedClassFactory,
+            TVisitor visitor)
+            where TStructNestedClass : IStructNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TNestedClass : INestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new NestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            nestedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitStructNestedPartialClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
-            IStructNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> nestedClass,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TClassReference : IClassReference
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IClassEventCollection
-            where TPropertyCollection : IClassPropertyCollection
-            where TIndexerCollection : IClassIndexerCollection
-            where TMethodCollection : IPartialClassMethodCollection
-            where TFieldCollection : IClassFieldCollection
-            where TConstructor : IClassConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IClassNestedClassCollection
-            where TNestedDelegate : IClassNestedDelegate
-            where TNestedEnum : IClassNestedEnum
-            where TNestedInterface : IClassNestedInterface
-            where TNestedStructCollection : IClassNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
-            where TDestructor : IDestructor
+        public static void VisitStructNestedPartialClassChildren<TStructNestedPartialClass, TStructNestedClass, TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor, TVisitor>(
+            TStructNestedPartialClass nestedClass,
+            Func<TStructNestedPartialClass, TStructNestedClass> structNestedClassFactory,
+            TVisitor visitor)
+            where TStructNestedPartialClass : IStructNestedPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>
+            where TStructNestedClass : IStructNestedClass<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TClassReference : IClassReference, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IClassEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IClassPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IClassIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IPartialClassMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IClassFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IClassConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IClassNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IClassNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IClassNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IClassNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IClassNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
+            where TDestructor : IDestructor, IVisitable<TVisitor>
         {
-            new StructNestedClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(nestedClass).Accept(visitor);
+            structNestedClassFactory(nestedClass).Accept(visitor);
         }
 
-        public static void VisitClassNestedDelegateChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IDelegateParameter
+        public static void VisitClassNestedDelegateChildren<TClassNestedDelegate, TNestedDelegate, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TVisitor>(
+            TClassNestedDelegate nestedDelegate,
+            Func<TClassNestedDelegate, TNestedDelegate> nestedDelegateFactory,
+            TVisitor visitor)
+            where TClassNestedDelegate : IClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
+            where TNestedDelegate : INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IDelegateParameter, IVisitable<TVisitor>
         {
-            new NestedDelegateWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(nestedDelegate).Accept(visitor);
+            nestedDelegateFactory(nestedDelegate).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedDelegateChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IStaticClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IDelegateParameter
+        public static void VisitStaticClassNestedDelegateChildren<TStaticClassNestedDelegate, TNestedDelegate, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TVisitor>(
+            TStaticClassNestedDelegate nestedDelegate,
+            Func<TStaticClassNestedDelegate, TNestedDelegate> nestedDelegateFactory,
+            TVisitor visitor)
+            where TStaticClassNestedDelegate : IStaticClassNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
+            where TNestedDelegate : INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IDelegateParameter, IVisitable<TVisitor>
         {
-            new NestedDelegateWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(nestedDelegate).Accept(visitor);
+            nestedDelegateFactory(nestedDelegate).Accept(visitor);
         }
 
-        public static void VisitStructNestedDelegateChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(
-            IStructNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter> nestedDelegate,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TTypeReference : ITypeReference
-            where TParameter : IDelegateParameter
+        public static void VisitStructNestedDelegateChildren<TStructNestedDelegate, TNestedDelegate, TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter, TVisitor>(
+            TStructNestedDelegate nestedDelegate,
+            Func<TStructNestedDelegate, TNestedDelegate> nestedDelegateFactory,
+            TVisitor visitor)
+            where TStructNestedDelegate : IStructNestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>
+            where TNestedDelegate : INestedDelegate<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TParameter : IDelegateParameter, IVisitable<TVisitor>
         {
-            new NestedDelegateWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TTypeReference, TParameter>(nestedDelegate).Accept(visitor);
+            nestedDelegateFactory(nestedDelegate).Accept(visitor);
         }
 
-        public static void VisitClassNestedEnumChildren<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
-            IClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TNestedEnumMember : INestedEnumMember
+        public static void VisitClassNestedEnumChildren<TClassNestedEnum, TNestedEnum, TAttributeGroup, TDeclaringType, TNestedEnumMember, TVisitor>(
+            TClassNestedEnum nestedEnum,
+            Func<TClassNestedEnum, TNestedEnum> nestedEnumFactory,
+            TVisitor visitor)
+            where TClassNestedEnum : IClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>
+            where TNestedEnum : INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TNestedEnumMember : INestedEnumMember, IVisitable<TVisitor>
         {
-            new NestedEnumWrapper<TAttributeGroup, TDeclaringType, TNestedEnumMember>(nestedEnum).Accept(visitor);
+            nestedEnumFactory(nestedEnum).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedEnumChildren<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
-            IStaticClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TNestedEnumMember : INestedEnumMember
+        public static void VisitStaticClassNestedEnumChildren<TStaticClassNestedEnum, TNestedEnum, TAttributeGroup, TDeclaringType, TNestedEnumMember, TVisitor>(
+            TStaticClassNestedEnum nestedEnum,
+            Func<TStaticClassNestedEnum, TNestedEnum> nestedEnumFactory,
+            TVisitor visitor)
+            where TStaticClassNestedEnum : IStaticClassNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>
+            where TNestedEnum : INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TNestedEnumMember : INestedEnumMember, IVisitable<TVisitor>
         {
-            new NestedEnumWrapper<TAttributeGroup, TDeclaringType, TNestedEnumMember>(nestedEnum).Accept(visitor);
+            nestedEnumFactory(nestedEnum).Accept(visitor);
         }
 
-        public static void VisitStructNestedEnumChildren<TAttributeGroup, TDeclaringType, TNestedEnumMember>(
-            IStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember> nestedEnum,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TNestedEnumMember : INestedEnumMember
+        public static void VisitStructNestedEnumChildren<TStructNestedEnum, TNestedEnum, TAttributeGroup, TDeclaringType, TNestedEnumMember, TVisitor>(
+            TStructNestedEnum nestedEnum,
+            Func<TStructNestedEnum, TNestedEnum> nestedEnumFactory,
+            TVisitor visitor)
+            where TStructNestedEnum : IStructNestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>
+            where TNestedEnum : INestedEnum<TAttributeGroup, TDeclaringType, TNestedEnumMember>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TNestedEnumMember : INestedEnumMember, IVisitable<TVisitor>
         {
-            new NestedEnumWrapper<TAttributeGroup, TDeclaringType, TNestedEnumMember>(nestedEnum).Accept(visitor);
+            nestedEnumFactory(nestedEnum).Accept(visitor);
         }
 
-        public static void VisitClassNestedInterfaceChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
-            IClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEvent : IInterfaceEvent
-            where TProperty : IInterfaceProperty
-            where TIndexer : IInterfaceIndexer
-            where TMethod : IInterfaceMethod
+        public static void VisitClassNestedInterfaceChildren<TClassNestedInterface, TNestedInterface, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TVisitor>(
+            TClassNestedInterface @interface,
+            Func<TClassNestedInterface, TNestedInterface> nestedInterfaceFactory,
+            TVisitor visitor)
+            where TClassNestedInterface : IClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
+            where TNestedInterface : INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEvent : IInterfaceEvent, IVisitable<TVisitor>
+            where TProperty : IInterfaceProperty, IVisitable<TVisitor>
+            where TIndexer : IInterfaceIndexer, IVisitable<TVisitor>
+            where TMethod : IInterfaceMethod, IVisitable<TVisitor>
         {
-            new NestedInterfaceWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(@interface).Accept(visitor);
+            nestedInterfaceFactory(@interface).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedInterfaceChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
-            IStaticClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEvent : IInterfaceEvent
-            where TProperty : IInterfaceProperty
-            where TIndexer : IInterfaceIndexer
-            where TMethod : IInterfaceMethod
+        public static void VisitStaticClassNestedInterfaceChildren<TStaticClassNestedInterface, TNestedInterface, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TVisitor>(
+            TStaticClassNestedInterface @interface,
+            Func<TStaticClassNestedInterface, TNestedInterface> nestedInterfaceFactory,
+            TVisitor visitor)
+            where TStaticClassNestedInterface : IStaticClassNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
+            where TNestedInterface : INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEvent : IInterfaceEvent, IVisitable<TVisitor>
+            where TProperty : IInterfaceProperty, IVisitable<TVisitor>
+            where TIndexer : IInterfaceIndexer, IVisitable<TVisitor>
+            where TMethod : IInterfaceMethod, IVisitable<TVisitor>
         {
-            new NestedInterfaceWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(@interface).Accept(visitor);
+            nestedInterfaceFactory(@interface).Accept(visitor);
         }
 
-        public static void VisitStructNestedInterfaceChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(
-            IStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> @interface,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEvent : IInterfaceEvent
-            where TProperty : IInterfaceProperty
-            where TIndexer : IInterfaceIndexer
-            where TMethod : IInterfaceMethod
+        public static void VisitStructNestedInterfaceChildren<TStructNestedInterface, TNestedInterface, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod, TVisitor>(
+            TStructNestedInterface @interface,
+            Func<TStructNestedInterface, TNestedInterface> nestedInterfaceFactory,
+            TVisitor visitor)
+            where TStructNestedInterface : IStructNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>
+            where TNestedInterface : INestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEvent : IInterfaceEvent, IVisitable<TVisitor>
+            where TProperty : IInterfaceProperty, IVisitable<TVisitor>
+            where TIndexer : IInterfaceIndexer, IVisitable<TVisitor>
+            where TMethod : IInterfaceMethod, IVisitable<TVisitor>
         {
-            new NestedInterfaceWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod>(@interface).Accept(visitor);
+            nestedInterfaceFactory(@interface).Accept(visitor);
         }
 
-        public static void VisitClassNestedStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedStruct,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitClassNestedStructChildren<TClassNestedStruct, TNestedStruct, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TClassNestedStruct nestedStruct,
+            Func<TClassNestedStruct, TNestedStruct> nestedStructFactory,
+            TVisitor visitor)
+            where TClassNestedStruct : IClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TNestedStruct : INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new NestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+            nestedStructFactory(nestedStruct).Accept(visitor);
         }
 
-        public static void VisitClassNestedPartialStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IClassNestedPartialStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedStruct,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IClassType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IPartialStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitClassNestedPartialStructChildren<TClassNestedPartialStruct, TClassNestedStruct, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TClassNestedPartialStruct nestedStruct,
+            Func<TClassNestedPartialStruct, TClassNestedStruct> classNestedStructFactory,
+            TVisitor visitor)
+            where TClassNestedPartialStruct : IClassNestedPartialStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TClassNestedStruct : IClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IPartialStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new ClassNestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+            classNestedStructFactory(nestedStruct).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedStruct,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStaticClassNestedStructChildren<TStaticClassNestedStruct, TNestedStruct, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStaticClassNestedStruct nestedStruct,
+            Func<TStaticClassNestedStruct, TNestedStruct> nestedStructFactory,
+            TVisitor visitor)
+            where TStaticClassNestedStruct : IStaticClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TNestedStruct : INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new NestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+            nestedStructFactory(nestedStruct).Accept(visitor);
         }
 
-        public static void VisitStaticClassNestedPartialStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticClassNestedPartialStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedStruct,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStaticType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IPartialStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStaticClassNestedPartialStructChildren<TStaticClassNestedPartialStruct, TStaticClassNestedStruct, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStaticClassNestedPartialStruct nestedStruct,
+            Func<TStaticClassNestedPartialStruct, TStaticClassNestedStruct> staticClassNestedStructFactory,
+            TVisitor visitor)
+            where TStaticClassNestedPartialStruct : IStaticClassNestedPartialStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TStaticClassNestedStruct : IStaticClassNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IPartialStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new StaticClassNestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+            staticClassNestedStructFactory(nestedStruct).Accept(visitor);
         }
 
-        public static void VisitStructNestedStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedStruct,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStructNestedStructChildren<TStructNestedStruct, TNestedStruct, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStructNestedStruct nestedStruct,
+            Func<TStructNestedStruct, TNestedStruct> nestedStructFactory,
+            TVisitor visitor)
+            where TStructNestedStruct : IStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TNestedStruct : INestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new NestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+            nestedStructFactory(nestedStruct).Accept(visitor);
         }
 
-        public static void VisitStructNestedPartialStructChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStructNestedPartialStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedStruct,
-            IGenericVisitor visitor)
-            where TAttributeGroup : IAttributeGroup
-            where TDeclaringType : IStructType
-            where TGenericParameter : IGenericParameterDeclaration
-            where TInterfaceReference : IInterfaceReference
-            where TEventCollection : IStructEventCollection
-            where TPropertyCollection : IStructPropertyCollection
-            where TIndexerCollection : IStructIndexerCollection
-            where TMethodCollection : IPartialStructMethodCollection
-            where TFieldCollection : IStructFieldCollection
-            where TConstructor : IStructConstructor
-            where TOperatorOverload : IOperatorOverload
-            where TConversionOperator : IConversionOperator
-            where TNestedClassCollection : IStructNestedClassCollection
-            where TNestedDelegate : IStructNestedDelegate
-            where TNestedEnum : IStructNestedEnum
-            where TNestedInterface : IStructNestedInterface
-            where TNestedStructCollection : IStructNestedStructCollection
-            where TStaticConstructor : IStaticConstructor
+        public static void VisitStructNestedPartialStructChildren<TStructNestedPartialStruct, TStructNestedStruct, TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TVisitor>(
+            TStructNestedPartialStruct nestedStruct,
+            Func<TStructNestedPartialStruct, TStructNestedStruct> structNestedStructFactory,
+            TVisitor visitor)
+            where TStructNestedPartialStruct : IStructNestedPartialStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+            where TStructNestedStruct : IStructNestedStruct<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType, IVisitable<TVisitor>
+            where TGenericParameter : IGenericParameterDeclaration, IVisitable<TVisitor>
+            where TInterfaceReference : IInterfaceReference, IVisitable<TVisitor>
+            where TEventCollection : IStructEventCollection, IVisitable<TVisitor>
+            where TPropertyCollection : IStructPropertyCollection, IVisitable<TVisitor>
+            where TIndexerCollection : IStructIndexerCollection, IVisitable<TVisitor>
+            where TMethodCollection : IPartialStructMethodCollection, IVisitable<TVisitor>
+            where TFieldCollection : IStructFieldCollection, IVisitable<TVisitor>
+            where TConstructor : IStructConstructor, IVisitable<TVisitor>
+            where TOperatorOverload : IOperatorOverload, IVisitable<TVisitor>
+            where TConversionOperator : IConversionOperator, IVisitable<TVisitor>
+            where TNestedClassCollection : IStructNestedClassCollection, IVisitable<TVisitor>
+            where TNestedDelegate : IStructNestedDelegate, IVisitable<TVisitor>
+            where TNestedEnum : IStructNestedEnum, IVisitable<TVisitor>
+            where TNestedInterface : IStructNestedInterface, IVisitable<TVisitor>
+            where TNestedStructCollection : IStructNestedStructCollection, IVisitable<TVisitor>
+            where TStaticConstructor : IStaticConstructor, IVisitable<TVisitor>
         {
-            new StructNestedStructWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(nestedStruct).Accept(visitor);
+            structNestedStructFactory(nestedStruct).Accept(visitor);
         }
 
-        public static void VisitPartialClassCollectionChildren<TClass, TAbstractClass, TSealedClass, TStaticClass>(
-            IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass> classes,
-            IGenericVisitor visitor)
-            where TClass : IClassType
-            where TAbstractClass : IAbstractType
-            where TSealedClass : ISealedType
-            where TStaticClass : IStaticType
+        public static void VisitPartialClassCollectionChildren<TPartialClassCollection, TClass, TAbstractClass, TSealedClass, TStaticClass, TVisitor>(
+            TPartialClassCollection classes,
+            TVisitor visitor)
+            where TPartialClassCollection : IPartialClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass>
+            where TClass : IClassType, IVisitable<TVisitor>
+            where TAbstractClass : IAbstractType, IVisitable<TVisitor>
+            where TSealedClass : ISealedType, IVisitable<TVisitor>
+            where TStaticClass : IStaticType, IVisitable<TVisitor>
         {
             VisitCollection(classes.Classes, visitor);
             VisitCollection(classes.AbstractClasses, visitor);

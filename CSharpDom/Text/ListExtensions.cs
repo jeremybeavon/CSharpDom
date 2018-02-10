@@ -32,7 +32,7 @@ namespace CSharpDom.Text
 
             return new SourceCodeStepRange(steps, steps.GetRange(startIndex.Value, length), startPlaceholder, endPlaceholder);
         }
-        
+
         public static void AddIfNotEmpty<TChildNode>(this List<ISourceCodeBuilderStep> steps, TChildNode childNode)
             where TChildNode : IVisitable<IGenericVisitor>
         {
@@ -737,6 +737,7 @@ namespace CSharpDom.Text
         {
             steps.Add(new WriteStartBrace());
             steps.AddIndentedStatementSteps(statements);
+            steps.Add(new WriteIndentedNewLine());
             steps.Add(new WriteEndBrace());
         }
 
@@ -745,6 +746,7 @@ namespace CSharpDom.Text
         {
             if (statement is IBlockStatement)
             {
+                steps.Add(new WriteIndentedNewLine());
                 steps.Add(new WriteStatement<TStatement>(statement));
             }
             else
@@ -868,7 +870,7 @@ namespace CSharpDom.Text
                 addAction(items.First());
                 foreach (T item in items.Skip(1))
                 {
-                    joinAction();
+                    joinAction?.Invoke();
                     addAction(item);
                 }
             }
