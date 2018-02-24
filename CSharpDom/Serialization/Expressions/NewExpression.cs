@@ -4,18 +4,18 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class NewExpression : INewExpression<TypeReference, Expression>
+    public sealed class NewExpression : INewExpression<TypeReference, Argument>
     {
         public NewExpression()
         {
-            Parameters = new List<Expression>();
+            Parameters = new List<Argument>();
         }
 
-        public List<Expression> Parameters { get; set; }
+        public List<Argument> Parameters { get; set; }
 
         public TypeReference Type { get; set; }
 
-        IReadOnlyList<Expression> INewExpression<TypeReference, Expression>.Parameters
+        IReadOnlyList<Argument> INewExpression<TypeReference, Argument>.Parameters
         {
             get { return Parameters; }
         }

@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class SealedClassPropertyCollectionWrapper : AbstractWrapper<ISealedClassPropertyCollection>, ISealedClassPropertyCollectionWrapper
+    internal sealed class SealedClassPropertyCollectionWrapper : AbstractWrapper<ISealedClassPropertyCollection>, ISealedClassPropertyCollectionWrapper
     {
         public SealedClassPropertyCollectionWrapper(ISealedClassPropertyCollection propertyCollection)
             : base(propertyCollection)

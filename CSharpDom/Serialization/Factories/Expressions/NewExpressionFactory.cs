@@ -10,11 +10,12 @@ namespace CSharpDom.Serialization.Factories.Expressions
         {
         }
 
-        public override void VisitNewExpression<TTypeReference, TExpression>(INewExpression<TTypeReference, TExpression> newExpression)
+        public override void VisitNewExpression<TTypeReference, TArgument>(
+            INewExpression<TTypeReference, TArgument> newExpression)
         {
             Value = new NewExpression()
             {
-                Parameters = newExpression.Parameters.ToExpressionListUsingFactory(),
+                Parameters = newExpression.Parameters.ToList(argument => new ArgumentFactory(argument).Value),
                 Type = new TypeReferenceFactory(newExpression.Type).Value
             };
         }

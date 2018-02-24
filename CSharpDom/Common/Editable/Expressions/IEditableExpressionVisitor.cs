@@ -7,8 +7,13 @@ namespace CSharpDom.Common.Editable.Expressions
     {
         void Visit(IVisitable<IEditableExpressionVisitor> node);
 
-        void VisitArrayIndexExpression<TExpression>(IEditableArrayIndexExpression<TExpression> arrayIndexExpression)
+        void VisitArgument<TExpression>(IEditableArgument<TExpression> argument)
             where TExpression : IEditableExpression;
+
+        void VisitArrayIndexExpression<TExpression, TArgument>(
+            IEditableArrayIndexExpression<TExpression, TArgument> arrayIndexExpression)
+            where TExpression : IEditableExpression
+            where TArgument : IEditableArgument;
 
         void VisitAwaitExpression<TExpression>(IEditableAwaitExpression<TExpression> awaitExpression)
             where TExpression : IEditableExpression;
@@ -47,8 +52,10 @@ namespace CSharpDom.Common.Editable.Expressions
         void VisitMemberExpression<TExpression>(IEditableMemberExpression<TExpression> memberExpression)
             where TExpression : IEditableExpression;
 
-        void VisitMethodCallExpression<TExpression>(IEditableMethodCallExpression<TExpression> methodCallExpression)
-            where TExpression : IEditableExpression;
+        void VisitMethodCallExpression<TExpression, TArgument>(
+            IEditableMethodCallExpression<TExpression, TArgument> methodCallExpression)
+            where TExpression : IEditableExpression
+            where TArgument : IEditableArgument;
 
         void VisitNewAnonymousArrayExpression(IEditableNewAnonymousArrayExpression newAnonymousArrayExpression);
 
@@ -59,9 +66,10 @@ namespace CSharpDom.Common.Editable.Expressions
             where TTypeReference : IEditableTypeReference
             where TExpression : IEditableExpression;
 
-        void VisitNewExpression<TTypeReference, TExpression>(IEditableNewExpression<TTypeReference, TExpression> newExpression)
+        void VisitNewExpression<TTypeReference, TArgument>(
+            IEditableNewExpression<TTypeReference, TArgument> newExpression)
             where TTypeReference : IEditableTypeReference
-            where TExpression : IEditableExpression;
+            where TArgument : IEditableArgument;
 
         void VisitNullExpression(IEditableNullExpression nullExpression);
 
@@ -71,7 +79,7 @@ namespace CSharpDom.Common.Editable.Expressions
             where TExpression : IEditableExpression
             where TObjectInitializer : IHasEditableObjectInitializers<TExpression, TObjectInitializer>;
 
-        void VisitOutExpression<TExpression>(IEditableOutExpression<TExpression> outExpression)
+        void VisitOutArgument<TExpression>(IEditableOutArgument<TExpression> outArgument)
             where TExpression : IEditableExpression;
 
         void VisitParenthesisExpression<TExpression>(IEditableParenthesisExpression<TExpression> parenthesisExpression)
@@ -120,7 +128,7 @@ namespace CSharpDom.Common.Editable.Expressions
 
         void VisitRawExpression(IEditableRawExpression rawExpression);
 
-        void VisitRefExpression<TExpression>(IEditableRefExpression<TExpression> refExpression)
+        void VisitRefArgument<TExpression>(IEditableRefArgument<TExpression> refArgument)
             where TExpression : IEditableExpression;
 
         void VisitStringConstantExpression(IEditableStringConstantExpression stringConstantExpression);
@@ -128,6 +136,8 @@ namespace CSharpDom.Common.Editable.Expressions
         void VisitTernaryOperatorExpression<TExpression>(
             IEditableTernaryOperatorExpression<TExpression> ternaryOperatorExpression)
             where TExpression : IEditableExpression;
+
+        void VisitThisExpression(IEditableThisExpression thisExpression);
 
         void VisitTypeofExpression<TTypeReference>(IEditableTypeofExpression<TTypeReference> typeofExpression)
             where TTypeReference : IEditableTypeReference;

@@ -6,7 +6,7 @@ using Microsoft.CodeAnalysis.CSharp;
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class MethodCallExpressionWithCodeAnalysis :
-        EditableMethodCallExpression<IExpressionWithCodeAnalysis>,
+        EditableMethodCallExpression<IExpressionWithCodeAnalysis, IArgumentWithCodeAnalysis>,
         IHasSyntax<InvocationExpressionSyntax>,
         IHasNode<InvocationExpressionSyntax>,
         IInternalExpression
@@ -42,7 +42,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
             set { expression.Value = value; }
         }
 
-        public override IList<IExpressionWithCodeAnalysis> ParameterExpressions
+        public override IList<IArgumentWithCodeAnalysis> Parameters
         {
             get { return parameterExpressions; }
             set { parameterExpressions.ReplaceList(value); }

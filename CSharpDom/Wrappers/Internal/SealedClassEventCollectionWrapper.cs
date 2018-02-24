@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class SealedClassEventCollectionWrapper : AbstractWrapper<ISealedClassEventCollection>, ISealedClassEventCollectionWrapper
+    internal sealed class SealedClassEventCollectionWrapper : AbstractWrapper<ISealedClassEventCollection>, ISealedClassEventCollectionWrapper
     {
         public SealedClassEventCollectionWrapper(ISealedClassEventCollection eventCollection)
             : base(eventCollection)

@@ -6,7 +6,7 @@ using System;
 namespace CSharpDom.Linq.Expressions
 {
     public sealed class DynamicMethodCallExpressionWithLinqExpressions :
-        AbstractMethodCallExpression<ILinqExpression>,
+        AbstractMethodCallExpression<ILinqExpression, ILinqExpression>,
         ILinqExpression<DynamicExpression>
     {
         //private readonly ILinqExpression expression;
@@ -22,12 +22,14 @@ namespace CSharpDom.Linq.Expressions
 
         public DynamicExpression LinqExpression { get; private set; }
 
+        public string Name { get => throw new NotSupportedException(); }
+
         public override ILinqExpression Expression
         {
             get { return null; }
         }
 
-        public override IReadOnlyList<ILinqExpression> ParameterExpressions
+        public override IReadOnlyList<ILinqExpression> Parameters
         {
             get { return parameterExpressions; }
         }

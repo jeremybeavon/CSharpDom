@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class NewExpressionWithCodeAnalysis :
-        EditableNewExpression<ITypeReferenceWithCodeAnalysis, IExpressionWithCodeAnalysis>,
+        EditableNewExpression<ITypeReferenceWithCodeAnalysis, IArgumentWithCodeAnalysis>,
         IHasSyntax<ObjectCreationExpressionSyntax>,
         IHasNode<ObjectCreationExpressionSyntax>,
         IInternalExpression
@@ -36,7 +36,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 (parentSyntax, childSyntax) => parentSyntax.WithType(childSyntax));
         }
 
-        public override IList<IExpressionWithCodeAnalysis> Parameters
+        public override IList<IArgumentWithCodeAnalysis> Parameters
         {
             get { return parameters; }
             set { parameters.ReplaceList(value); }

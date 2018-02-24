@@ -6,8 +6,13 @@ namespace CSharpDom.Common.Expressions
     {
         void Visit(IVisitable<IGenericExpressionVisitor> node);
 
-        void VisitArrayIndexExpression<TExpression>(IArrayIndexExpression<TExpression> arrayIndexExpression)
+        void VisitArgument<TExpression>(IArgument<TExpression> argument)
             where TExpression : IExpression;
+
+        void VisitArrayIndexExpression<TExpression, TArgument>(
+            IArrayIndexExpression<TExpression, TArgument> arrayIndexExpression)
+            where TExpression : IExpression
+            where TArgument : IArgument;
 
         void VisitAwaitExpression<TExpression>(IAwaitExpression<TExpression> awaitExpression)
             where TExpression : IExpression;
@@ -45,8 +50,10 @@ namespace CSharpDom.Common.Expressions
         void VisitMemberExpression<TExpression>(IMemberExpression<TExpression> memberExpression)
             where TExpression : IExpression;
 
-        void VisitMethodCallExpression<TExpression>(IMethodCallExpression<TExpression> methodCallExpression)
-            where TExpression : IExpression;
+        void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
+            where TExpression : IExpression
+            where TArgument : IArgument;
 
         void VisitNewAnonymousArrayExpression(INewAnonymousArrayExpression newAnonymousArrayExpression);
 
@@ -57,9 +64,9 @@ namespace CSharpDom.Common.Expressions
             where TTypeReference : ITypeReference
             where TExpression : IExpression;
 
-        void VisitNewExpression<TTypeReference, TExpression>(INewExpression<TTypeReference, TExpression> newExpression)
+        void VisitNewExpression<TTypeReference, TArgument>(INewExpression<TTypeReference, TArgument> newExpression)
             where TTypeReference : ITypeReference
-            where TExpression : IExpression;
+            where TArgument : IArgument;
 
         void VisitNullExpression(INullExpression nullExpression);
 
@@ -69,7 +76,7 @@ namespace CSharpDom.Common.Expressions
             where TExpression : IExpression
             where TObjectInitializer : IHasObjectInitializers<TExpression, TObjectInitializer>;
 
-        void VisitOutExpression<TExpression>(IOutExpression<TExpression> outExpression)
+        void VisitOutArgument<TExpression>(IOutArgument<TExpression> outArgument)
             where TExpression : IExpression;
 
         void VisitParenthesisExpression<TExpression>(IParenthesisExpression<TExpression> parenthesisExpression)
@@ -121,13 +128,15 @@ namespace CSharpDom.Common.Expressions
 
         void VisitRawExpression(IRawExpression rawExpression);
 
-        void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
+        void VisitRefArgument<TExpression>(IRefArgument<TExpression> refArgument)
             where TExpression : IExpression;
 
         void VisitStringConstantExpression(IStringConstantExpression stringConstantExpression);
 
         void VisitTernaryOperatorExpression<TExpression>(ITernaryOperatorExpression<TExpression> ternaryOperatorExpression)
             where TExpression : IExpression;
+
+        void VisitThisExpression(IThisExpression thisExpression);
 
         void VisitTypeofExpression<TTypeReference>(ITypeofExpression<TTypeReference> typeofExpression)
             where TTypeReference : ITypeReference;

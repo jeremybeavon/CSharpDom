@@ -4,19 +4,21 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractRefExpression<TExpression> : AbstractExpression, IRefExpression<TExpression>
+    public abstract class AbstractArgument<TExpression> : AbstractExpression, IArgument<TExpression>
         where TExpression : IExpression
     {
         public abstract TExpression Expression { get; }
 
+        public abstract string Name { get; }
+
         public override void Accept(IGenericExpressionVisitor visitor)
         {
-            visitor.VisitRefExpression(this);
+            visitor.VisitArgument(this);
         }
 
         public override void AcceptChildren(IGenericExpressionVisitor visitor)
         {
-            GenericExpressionVisitor.VisitRefExpressionChildren(this, visitor);
+            GenericExpressionVisitor.VisitArgumentChildren(this, visitor);
         }
     }
 }

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractMethodCallExpression<TExpression> : 
+    public abstract class AbstractMethodCallExpression<TExpression, TArgument> : 
         AbstractExpression,
-        IMethodCallExpression<TExpression>
+        IMethodCallExpression<TExpression, TArgument>
         where TExpression : IExpression
+        where TArgument : IArgument
     {
         public abstract TExpression Expression { get; }
-
-        public abstract IReadOnlyList<TExpression> ParameterExpressions { get; }
+        
+        public abstract IReadOnlyList<TArgument> Parameters { get; }
 
         public override void Accept(IGenericExpressionVisitor visitor)
         {

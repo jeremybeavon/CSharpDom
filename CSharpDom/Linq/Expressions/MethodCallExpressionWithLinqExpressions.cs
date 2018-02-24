@@ -1,11 +1,12 @@
 ﻿using CSharpDom.BaseClasses.Expressions;
+using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace CSharpDom.Linq.Expressions
 {
     public sealed class MethodCallExpressionWithLinqExpressions :
-        AbstractMethodCallExpression<ILinqExpression>,
+        AbstractMethodCallExpression<ILinqExpression, ILinqExpression>,
         ILinqExpression<MethodCallExpression>
     {
         private readonly ILinqExpression expression;
@@ -25,7 +26,9 @@ namespace CSharpDom.Linq.Expressions
             get { return expression; }
         }
 
-        public override IReadOnlyList<ILinqExpression> ParameterExpressions
+        public string Name { get => throw new NotSupportedException(); }
+
+        public override IReadOnlyList<ILinqExpression> Parameters
         {
             get { return parameterExpressions; }
         }

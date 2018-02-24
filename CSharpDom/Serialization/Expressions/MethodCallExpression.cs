@@ -4,20 +4,20 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class MethodCallExpression : IMethodCallExpression<Expression>
+    public sealed class MethodCallExpression : IMethodCallExpression<Expression, Argument>
     {
         public MethodCallExpression()
         {
-            ParameterExpressions = new List<Expression>();
+            Parameters = new List<Argument>();
         }
         
         public Expression Expression { get; set; }
 
-        public List<Expression> ParameterExpressions { get; set; }
+        public List<Argument> Parameters { get; set; }
 
-        IReadOnlyList<Expression> IMethodCallExpression<Expression>.ParameterExpressions
+        IReadOnlyList<Argument> IMethodCallExpression<Expression, Argument>.Parameters
         {
-            get { return ParameterExpressions; }
+            get { return Parameters; }
         }
 
         public void Accept(IGenericExpressionVisitor visitor)

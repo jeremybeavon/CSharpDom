@@ -6,7 +6,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class AbstractClassEventCollectionWrapper : AbstractWrapper<IAbstractClassEventCollection>,
+    internal sealed class AbstractClassEventCollectionWrapper : AbstractWrapper<IAbstractClassEventCollection>,
         IAbstractClassEventCollectionWrapper
     {
         private Func<IReadOnlyCollection<IAbstractEventWrapper>> abstractEvents;

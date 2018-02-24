@@ -7,12 +7,12 @@ using System.Linq;
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     internal class ArgumentListWrapper<TParent, TParentSyntax> :
-        WrappedList<IInternalArgument, IExpressionWithCodeAnalysis>
+        WrappedList<IInternalArgument, IArgumentWithCodeAnalysis>
         where TParent : class, IHasNode<TParentSyntax>
         where TParentSyntax : class
     {
         private readonly SeparatedSyntaxNodeList<TParent, TParentSyntax, IInternalArgument, ArgumentSyntax> list;
-        private readonly Func<IExpressionWithCodeAnalysis, IInternalArgument> toParent;
+        private readonly Func<IArgumentWithCodeAnalysis, IInternalArgument> toParent;
 
         public ArgumentListWrapper(
             Node<TParent, TParentSyntax> node,
@@ -52,16 +52,16 @@ namespace CSharpDom.CodeAnalysis.Expressions
 
         private ArgumentListWrapper(
             SeparatedSyntaxNodeList<TParent, TParentSyntax, IInternalArgument, ArgumentSyntax> list,
-            Func<IExpressionWithCodeAnalysis, IInternalArgument> toParent)
-            : base(list, parent => parent.Expression, toParent)
+            Func<IArgumentWithCodeAnalysis, IInternalArgument> toParent)
+            : base(list, parent => parent, toParent)
         {
             this.list = list;
             this.toParent = toParent;
         }
         
-        public void ReplaceList(IEnumerable<IExpressionWithCodeAnalysis> statement)
+        public void ReplaceList(IEnumerable<IArgumentWithCodeAnalysis> arguments)
         {
-            list.ReplaceList(statement.Select(toParent));
+            list.ReplaceList(arguments.Select(toParent));
         }
     }
 }

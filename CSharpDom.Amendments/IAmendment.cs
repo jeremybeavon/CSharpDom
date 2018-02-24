@@ -5,23 +5,25 @@ namespace CSharpDom.Amendments
 {
     public interface IAmendment
     {
-        IAmendment Before<TDelegate>(Expression<TDelegate> expression);
+        IAmendment BeforeStaticMethod<TDelegate>(Type type, Expression<TDelegate> expression);
 
-        IAmendment Before<TInstance, TDelegate>(Expression<Func<TInstance, TDelegate>> expression);
+        IAmendment BeforeInstanceMethod<TInstance, TDelegate>(Expression<Func<TInstance, TDelegate>> expression);
 
-        IAmendment Before<TInstance>(Expression<Action<TInstance, object[]>> expression);
+        IAmendment BeforeInstanceMethod<TInstance>(Expression<Action<TInstance, object[]>> expression);
 
-        IAmendment Before(Expression<Action<object[]>> expression);
+        IAmendment BeforeStaticMethod(Type type, Expression<Action<object[]>> expression);
 
-        IAmendment After<TDelegate>(Expression<TDelegate> expression);
+		IAmendment BeforeMethods(Func<ParameterExpression, ParameterExpression[], Expression> callback, params Type[] typeFilter);
+		
+        IAmendment AfterStaticMethod<TDelegate>(Expression<TDelegate> expression);
 
-        IAmendment After<TInstance, TDelegate>(Expression<Func<TInstance, TDelegate>> expression);
+        IAmendment AfterInstanceMethod<TInstance, TDelegate>(Expression<Func<TInstance, TDelegate>> expression);
 
-        IAmendment After<TInstance>(Expression<Action<TInstance, object[]>> expression);
+        IAmendment AfterInstanceMethod<TInstance>(Expression<Action<TInstance, object[]>> expression);
 
-        IAmendment After<TInstance, TReturnValue>(Expression<Func<TInstance, object[], TReturnValue>> expression);
+        IAmendment AfterInstanceMethod<TInstance, TReturnValue>(Expression<Func<TInstance, object[], TReturnValue>> expression);
 
-        IAmendment After(Expression<Action<object[]>> expression);
+        IAmendment AfterStaticMethod(Expression<Action<object[]>> expression);
 
         
     }

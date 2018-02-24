@@ -6,7 +6,7 @@ using System;
 namespace CSharpDom.Linq.Expressions
 {
     public sealed class ArrayIndexExpressionWithLinqExpressions :
-        AbstractArrayIndexExpression<ILinqExpression>,
+        AbstractArrayIndexExpression<ILinqExpression, ILinqExpression>,
         ILinqExpression<IndexExpression>
     {
         private readonly ILinqExpression array;

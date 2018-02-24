@@ -2,12 +2,12 @@
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface INewExpression<TTypeReference, TExpression> : INewExpression
+    public interface INewExpression<TTypeReference, TArgument> : INewExpression
         where TTypeReference : ITypeReference
-        where TExpression : IExpression
+        where TArgument : IArgument
     {
         TTypeReference Type { get; }
 
-        IReadOnlyList<TExpression> Parameters { get; }
+        IReadOnlyList<TArgument> Parameters { get; }
     }
 }

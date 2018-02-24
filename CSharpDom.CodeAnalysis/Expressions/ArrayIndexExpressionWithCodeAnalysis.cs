@@ -7,7 +7,7 @@ using System;
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class ArrayIndexExpressionWithCodeAnalysis :
-        EditableArrayIndexExpression<IExpressionWithCodeAnalysis>,
+        EditableArrayIndexExpression<IExpressionWithCodeAnalysis, IArgumentWithCodeAnalysis>,
         IHasSyntax<ElementAccessExpressionSyntax>,
         IHasNode<ElementAccessExpressionSyntax>,
         IInternalExpression
@@ -35,7 +35,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
             set { array.Value = value; }
         }
 
-        public override IList<IExpressionWithCodeAnalysis> Indexes
+        public override IList<IArgumentWithCodeAnalysis> Indexes
         {
             get { return indexes; }
             set { indexes.ReplaceList(value); }

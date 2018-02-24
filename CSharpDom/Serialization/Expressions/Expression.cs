@@ -60,10 +60,7 @@ namespace CSharpDom.Serialization.Expressions
 
         [DefaultValue(null)]
         public ObjectInitializerExpression ObjectInitializerExpression { get; set; }
-
-        [DefaultValue(null)]
-        public OutExpression OutExpression { get; set; }
-
+        
         [DefaultValue(null)]
         public ParenthesisExpression ParenthesisExpression { get; set; }
 
@@ -72,10 +69,7 @@ namespace CSharpDom.Serialization.Expressions
 
         [DefaultValue(null)]
         public RawExpression RawExpression { get; set; }
-
-        [DefaultValue(null)]
-        public RefExpression RefExpression { get; set; }
-
+        
         [DefaultValue(null)]
         public StringConstantExpression StringConstantExpression { get; set; }
 
@@ -110,10 +104,8 @@ namespace CSharpDom.Serialization.Expressions
                 yield return NewExpression;
                 yield return NullExpression;
                 yield return ObjectInitializerExpression;
-                yield return OutExpression;
                 yield return ParenthesisExpression;
                 yield return RawExpression;
-                yield return RefExpression;
                 yield return StringConstantExpression;
                 yield return TernaryOperatorExpression;
                 yield return TypeofExpression;

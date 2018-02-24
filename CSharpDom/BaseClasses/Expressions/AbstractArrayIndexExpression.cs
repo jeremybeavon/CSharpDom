@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractArrayIndexExpression<TExpression> :
+    public abstract class AbstractArrayIndexExpression<TExpression, TArgument> :
         AbstractExpression,
-        IArrayIndexExpression<TExpression>
+        IArrayIndexExpression<TExpression, TArgument>
         where TExpression : IExpression
+        where TArgument : IArgument
     {
         public abstract TExpression Array { get; }
 
-        public abstract IReadOnlyList<TExpression> Indexes { get; }
+        public abstract IReadOnlyList<TArgument> Indexes { get; }
 
         public override void Accept(IGenericExpressionVisitor visitor)
         {

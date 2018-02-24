@@ -19,9 +19,9 @@ namespace CSharpDom.CodeAnalysis
         private List<LoadedDocumentWithCodeAnalysis> loadedDocuments;
         private LoadedProjectWithCodeAnalysis loadedProject;
 
-        internal ProjectWithCodeAnalysis(Project project)
+        internal ProjectWithCodeAnalysis()
         {
-            node = new Node<ProjectWithCodeAnalysis, Project>(this, project);
+            node = new Node<ProjectWithCodeAnalysis, Project>(this);
             documents = new ChildNodeList<ProjectWithCodeAnalysis, Project, DocumentWithCodeAnalysis, Document>(
                 node,
                 new DocumentSyntaxList(node),
@@ -80,7 +80,10 @@ namespace CSharpDom.CodeAnalysis
 
         public static async Task<ProjectWithCodeAnalysis> OpenAsync(string fileName)
         {
-            return new ProjectWithCodeAnalysis(await MSBuildWorkspace.Create().OpenProjectAsync(fileName));
+            MSBuildWorkspace workspace = MSBuildWorkspace.Create();
+            return new SolutionWithCodeAnalysis(
+                workspace,
+                (await workspace.OpenProjectAsync(fileName)).Solution).Projects.First();
         }
     }
 }

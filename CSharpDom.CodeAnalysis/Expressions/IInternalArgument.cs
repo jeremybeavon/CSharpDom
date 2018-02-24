@@ -1,14 +1,8 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
-    internal interface IInternalArgument : IHasNode<ArgumentSyntax>
+    internal interface IInternalArgument : IArgumentWithCodeAnalysis, IHasNode<ArgumentSyntax>
     {
-        IExpressionWithCodeAnalysis Expression { get; }
     }
 }

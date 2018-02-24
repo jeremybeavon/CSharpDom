@@ -4,16 +4,16 @@ using CSharpDom.Serialization.Factories.Statements;
 
 namespace CSharpDom.Serialization.Factories.Expressions
 {
-    public sealed class RefExpressionFactory : AbstractExpressionFactory<IRefExpression, RefExpression>
+    public sealed class RefArgumentFactory : AbstractExpressionFactory<IRefArgument, RefArgument>
     {
-        public RefExpressionFactory(IRefExpression expression)
+        public RefArgumentFactory(IRefArgument expression)
             : base(expression)
         {
         }
 
-        public override void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
+        public override void VisitRefArgument<TExpression>(IRefArgument<TExpression> refExpression)
         {
-            Value = new RefExpression()
+            Value = new RefArgument()
             {
                 Expression = new ExpressionFactory(refExpression.Expression).Value
             };

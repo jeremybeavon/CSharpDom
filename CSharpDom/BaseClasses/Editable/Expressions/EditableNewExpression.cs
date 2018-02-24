@@ -6,19 +6,19 @@ using System.Collections.ObjectModel;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
-    public abstract class EditableNewExpression<TTypeReference, TExpression> :
+    public abstract class EditableNewExpression<TTypeReference, TArgument> :
         EditableExpression,
-        IEditableNewExpression<TTypeReference, TExpression>
+        IEditableNewExpression<TTypeReference, TArgument>
         where TTypeReference : IEditableTypeReference
-        where TExpression : IEditableExpression
+        where TArgument : IEditableArgument
     {
-        public abstract IList<TExpression> Parameters { get; set; }
+        public abstract IList<TArgument> Parameters { get; set; }
 
         public abstract TTypeReference Type { get; set; }
 
-        IReadOnlyList<TExpression> INewExpression<TTypeReference, TExpression>.Parameters
+        IReadOnlyList<TArgument> INewExpression<TTypeReference, TArgument>.Parameters
         {
-            get { return new ReadOnlyCollection<TExpression>(Parameters); }
+            get { return new ReadOnlyCollection<TArgument>(Parameters); }
         }
 
         public override void Accept(IGenericExpressionVisitor visitor)

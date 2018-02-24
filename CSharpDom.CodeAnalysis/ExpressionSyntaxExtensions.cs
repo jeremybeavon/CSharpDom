@@ -47,7 +47,7 @@ namespace CSharpDom.CodeAnalysis
                 //{ typeof(StackAllocArrayCreationExpressionSyntax), () => },
                 //{ typeof(SimpleLambdaExpressionSyntax), () => },
                 //{ typeof(SizeOfExpressionSyntax), () => },
-                //{ typeof(ThisExpressionSyntax), () => },
+                { typeof(ThisExpressionSyntax), () => new ThisExpressionWithCodeAnalysis(null) },
                 { typeof(TypeOfExpressionSyntax), () => new TypeofExpressionWithCodeAnalysis() },
             };
         

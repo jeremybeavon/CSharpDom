@@ -4,18 +4,18 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class ArrayIndexExpression : IArrayIndexExpression<Expression>
+    public sealed class ArrayIndexExpression : IArrayIndexExpression<Expression, Argument>
     {
         public ArrayIndexExpression()
         {
-            Indexes = new List<Expression>();
+            Indexes = new List<Argument>();
         }
 
         public Expression Array { get; set; }
 
-        public List<Expression> Indexes { get; set; }
+        public List<Argument> Indexes { get; set; }
 
-        IReadOnlyList<Expression> IArrayIndexExpression<Expression>.Indexes
+        IReadOnlyList<Argument> IArrayIndexExpression<Expression, Argument>.Indexes
         {
             get { return Indexes; }
         }

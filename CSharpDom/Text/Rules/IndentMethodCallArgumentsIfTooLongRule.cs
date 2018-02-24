@@ -44,7 +44,3 @@ namespace CSharpDom.Text.Rules
         }
     }
 }
-
-    {
-    }
-}

@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers
 {
     public interface IMethodWrapper :
-        IMethod<IAttributeGroupWrapper, ITypeWrapper, IGenericParameterWrapper, ITypeReferenceWrapper, IParameterWrapper>
+        IMethod<
+            IAttributeGroupWrapper,
+            ITypeWrapper,
+            IGenericParameterDeclarationWrapper,
+            ITypeReferenceWrapper,
+            IMethodParameterWrapper>
     {
     }
 }

@@ -11,12 +11,13 @@ namespace CSharpDom.Serialization.Factories.Expressions
         {
         }
 
-        public override void VisitArrayIndexExpression<TExpression>(IArrayIndexExpression<TExpression> arrayIndexExpression)
+        public override void VisitArrayIndexExpression<TExpression, TArgument>(
+            IArrayIndexExpression<TExpression, TArgument> arrayIndexExpression)
         {
             Value = new ArrayIndexExpression()
             {
                 Array = new ExpressionFactory(arrayIndexExpression.Array).Value,
-                Indexes = arrayIndexExpression.Indexes.ToExpressionListUsingFactory()
+                Indexes = arrayIndexExpression.Indexes.ToList(argument => new ArgumentFactory(argument).Value)
             };
         }
     }

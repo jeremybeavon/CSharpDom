@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public abstract class AbstractAsyncWrapper<TInput> : AbstractWrapper
+    internal abstract class AbstractAsyncWrapper<TInput> : AbstractWrapper
         where TInput : IAsyncVisitable<IGenericVisitor>
     {
         protected AbstractAsyncWrapper(TInput input)

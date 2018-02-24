@@ -11,12 +11,13 @@ namespace CSharpDom.Serialization.Factories.Expressions
         {
         }
 
-        public override void VisitMethodCallExpression<TExpression>(IMethodCallExpression<TExpression> methodCallExpression)
+        public override void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
         {
             Value = new MethodCallExpression()
             {
                 Expression = new ExpressionFactory(methodCallExpression.Expression).Value,
-                ParameterExpressions = methodCallExpression.ParameterExpressions.ToExpressionListUsingFactory()
+                Parameters = methodCallExpression.Parameters.ToList(argument => new ArgumentFactory(argument).Value)
             };
         }
     }

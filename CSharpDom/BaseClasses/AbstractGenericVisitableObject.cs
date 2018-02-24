@@ -4,15 +4,15 @@ using System.Text;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractGenericVisitableObject : IVisitable<IGenericVisitor>
+    public abstract class AbstractGenericVisitableObject : AbstractObjectWithSourceCode, IVisitable<IGenericVisitor>
     {
         public abstract void Accept(IGenericVisitor visitor);
 
         public abstract void AcceptChildren(IGenericVisitor visitor);
 
-        public override string ToString()
+        protected sealed override string ToSourceCodeText()
         {
-            return new StringBuilder().AppendLine(GetType().FullName + ":").Append(this.ToSourceCode()).ToString();
+            return this.ToSourceCode();
         }
     }
 }

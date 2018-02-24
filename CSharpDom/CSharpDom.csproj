@@ -62,6 +62,7 @@
     <Compile Include="BaseClasses\AbstractAbstractClass.cs" />
     <Compile Include="BaseClasses\AbstractClassType.cs" />
     <Compile Include="BaseClasses\AbstractDelegateType.cs" />
+    <Compile Include="BaseClasses\AbstractObjectWithSourceCode.cs" />
     <Compile Include="BaseClasses\AbstractStaticClassNestedClassCollection.cs" />
     <Compile Include="BaseClasses\AbstractStaticClassNestedStructCollection.cs" />
     <Compile Include="BaseClasses\AbstractSealedClassEventCollection.cs" />
@@ -236,6 +237,8 @@
     <Compile Include="BaseClasses\AbstractUsingDirective.cs" />
     <Compile Include="BaseClasses\AbstractGenericVisitableObject.cs" />
     <Compile Include="BaseClasses\Editable\EditableVisitableObject.cs" />
+    <Compile Include="BaseClasses\Editable\Expressions\EditableArgument.cs" />
+    <Compile Include="BaseClasses\Editable\Expressions\EditableThisExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableExpression.cs" />
     <Compile Include="BaseClasses\Editable\Statements\EditableStatement.cs" />
     <Compile Include="BaseClasses\Editable\Statements\EditableThrowStatement.cs" />
@@ -246,11 +249,13 @@
     <Compile Include="BaseClasses\Expressions\AbstractQueryOrderingExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQuerySelectIntoExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractRawExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractArgument.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractThisExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractUnaryOperatorExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractTypeofExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractTernaryOperatorExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractStringConstantExpression.cs" />
-    <Compile Include="BaseClasses\Expressions\AbstractRefExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractRefArgument.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryWhereExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQuerySelectExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryOrderByExpression.cs" />
@@ -259,7 +264,7 @@
     <Compile Include="BaseClasses\Expressions\AbstractQueryGroupExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryFromExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractParenthesisExpression.cs" />
-    <Compile Include="BaseClasses\Expressions\AbstractOutExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractOutArgument.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractObjectInitializerExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractNullExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractNewExpression.cs" />
@@ -361,6 +366,8 @@
     <Compile Include="CodeGeneration\Tree\EmptyStaticClassPropertyAccessors.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclaration.cs" />
     <Compile Include="CodeGeneration\Tree\Statements\ReadOnlyVariableDeclarationExpression.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableArgument.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableArgument.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableAnonymousMethodExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableAnonymousMethodExpression.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableAnonymousMethodParameter.cs" />
@@ -380,7 +387,7 @@
     <Compile Include="Common\Editable\Expressions\IEditableDefaultExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableDefaultExpression.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableDoubleConstantExpression.cs" />
-    <Compile Include="Common\Editable\Expressions\IEditableEditableExpressionVisitor.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableExpressionVisitor.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableIdentifierExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableIntegerConstantExpression.cs" />
@@ -399,8 +406,8 @@
     <Compile Include="Common\Editable\Expressions\IEditableNullExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableObjectInitializerExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableObjectInitializerExpression.generic.cs" />
-    <Compile Include="Common\Editable\Expressions\IEditableOutExpression.cs" />
-    <Compile Include="Common\Editable\Expressions\IEditableOutExpression.generic.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableOutArgument.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableOutArgument.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableParenthesisExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableParenthesisExpression.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableQueryClauseExpression.cs" />
@@ -428,11 +435,12 @@
     <Compile Include="Common\Editable\Expressions\IEditableQueryWhereExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableQueryWhereExpression.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableRawExpression.cs" />
-    <Compile Include="Common\Editable\Expressions\IEditableRefExpression.cs" />
-    <Compile Include="Common\Editable\Expressions\IEditableRefExpression.generic.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableRefArgument.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableRefArgument.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableStringConstantExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableTernaryOperatorExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableTernaryOperatorExpression.generic.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableThisExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableTypeofExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableTypeofExpression.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableUnaryOperatorExpression.cs" />
@@ -1004,6 +1012,9 @@
     <Compile Include="Common\Editable\Statements\IEditableVariableDeclarationStatement.generic.cs" />
     <Compile Include="Common\Editable\Statements\IEditableWhileStatement.cs" />
     <Compile Include="Common\Editable\Statements\IEditableWhileStatement.generic.cs" />
+    <Compile Include="Common\Expressions\IArgument.cs" />
+    <Compile Include="Common\Expressions\IArgument.generic.cs" />
+    <Compile Include="Common\Expressions\IThisExpression.cs" />
     <Compile Include="Common\GenericChildVisitor.cs" />
     <Compile Include="Common\IInterfaceVisitor.cs" />
     <Compile Include="Common\LoadedProjectExtensions.cs" />
@@ -1333,7 +1344,7 @@
     <Compile Include="BaseClasses\Editable\Expressions\EditableNewExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableNullExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableObjectInitializerExpression.cs" />
-    <Compile Include="BaseClasses\Editable\Expressions\EditableOutExpression.cs" />
+    <Compile Include="BaseClasses\Editable\Expressions\EditableOutArgument.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableParenthesisExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableQueryFromExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableQueryGroupIntoExpression.cs" />
@@ -1346,7 +1357,7 @@
     <Compile Include="BaseClasses\Editable\Expressions\EditableQuerySelectExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableQueryWhereExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableRawExpression.cs" />
-    <Compile Include="BaseClasses\Editable\Expressions\EditableRefExpression.cs" />
+    <Compile Include="BaseClasses\Editable\Expressions\EditableRefArgument.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableStringConstantExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableTernaryOperatorExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableTypeofExpression.cs" />
@@ -1632,12 +1643,14 @@
     <Compile Include="Search\FindStructByNameVisitor.cs" />
     <Compile Include="Search\FindNamespaceForStructVisitor.cs" />
     <Compile Include="Serialization\Expressions\AnonymousMethodParameter.cs" />
+    <Compile Include="Serialization\Expressions\Argument.cs" />
     <Compile Include="Serialization\Expressions\QueryEndExpression.cs" />
     <Compile Include="Serialization\Expressions\QueryExpression.cs" />
     <Compile Include="Serialization\Expressions\QueryGroupIntoExpression.cs" />
     <Compile Include="Serialization\Expressions\QueryOrderingExpression.cs" />
     <Compile Include="Serialization\Expressions\QuerySelectIntoExpression.cs" />
     <Compile Include="Serialization\Factories\Expressions\AnonymousMethodParameterFactory.cs" />
+    <Compile Include="Serialization\Factories\Expressions\ArgumentFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\QueryGroupIntoExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\QueryOrderingExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\QuerySelectIntoExpressionFactory.cs" />
@@ -1806,8 +1819,8 @@
     <Compile Include="Serialization\Expressions\QueryJoinExpression.cs" />
     <Compile Include="Serialization\Expressions\QueryGroupExpression.cs" />
     <Compile Include="Serialization\Expressions\QueryFromExpression.cs" />
-    <Compile Include="Serialization\Expressions\RefExpression.cs" />
-    <Compile Include="Serialization\Expressions\OutExpression.cs" />
+    <Compile Include="Serialization\Expressions\RefArgument.cs" />
+    <Compile Include="Serialization\Expressions\OutArgument.cs" />
     <Compile Include="Serialization\Expressions\ListInitializerExpression.cs" />
     <Compile Include="Serialization\Expressions\CreateListExpression.cs" />
     <Compile Include="Serialization\Expressions\NullExpression.cs" />
@@ -1830,7 +1843,7 @@
     <Compile Include="Serialization\Factories\Expressions\TypeofExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\TernaryOperatorExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\StringConstantExpressionFactory.cs" />
-    <Compile Include="Serialization\Factories\Expressions\RefExpressionFactory.cs" />
+    <Compile Include="Serialization\Factories\Expressions\RefArgumentFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\RawExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\QueryWhereExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\QuerySelectExpressionFactory.cs" />
@@ -1841,7 +1854,7 @@
     <Compile Include="Serialization\Factories\Expressions\QueryClauseExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\QueryFromExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\ParenthesisExpressionFactory.cs" />
-    <Compile Include="Serialization\Factories\Expressions\OutExpressionFactory.cs" />
+    <Compile Include="Serialization\Factories\Expressions\OutArgumentFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\NullExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\NewExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\Expressions\NewArrayExpressionFactory.cs" />
@@ -2353,8 +2366,8 @@
     <Compile Include="Common\Expressions\INullExpression.cs" />
     <Compile Include="Common\Expressions\IObjectInitializerExpression.cs" />
     <Compile Include="Common\Expressions\IObjectInitializerExpression.generic.cs" />
-    <Compile Include="Common\Expressions\IOutExpression.cs" />
-    <Compile Include="Common\Expressions\IOutExpression.generic.cs" />
+    <Compile Include="Common\Expressions\IOutArgument.cs" />
+    <Compile Include="Common\Expressions\IOutArgument.generic.cs" />
     <Compile Include="Common\Expressions\IParenthesisExpression.cs" />
     <Compile Include="Common\Expressions\IParenthesisExpression.generic.cs" />
     <Compile Include="Common\Expressions\IQueryClauseExpression.cs" />
@@ -2372,8 +2385,8 @@
     <Compile Include="Common\Expressions\IQuerySelectExpression.generic.cs" />
     <Compile Include="Common\Expressions\IQueryWhereExpression.cs" />
     <Compile Include="Common\Expressions\IQueryWhereExpression.generic.cs" />
-    <Compile Include="Common\Expressions\IRefExpression.cs" />
-    <Compile Include="Common\Expressions\IRefExpression.generic.cs" />
+    <Compile Include="Common\Expressions\IRefArgument.cs" />
+    <Compile Include="Common\Expressions\IRefArgument.generic.cs" />
     <Compile Include="Common\Expressions\IStringConstantExpression.cs" />
     <Compile Include="Common\Expressions\ITernaryOperatorExpression.cs" />
     <Compile Include="Common\Expressions\ITernaryOperatorExpression.generic.cs" />
@@ -3278,6 +3291,7 @@
     <Compile Include="UnaryOperatorExpressionType.cs" />
     <Compile Include="Wrappers\IAccessorWrapper.cs" />
     <Compile Include="Wrappers\IInterfaceTypeWrapper.cs" />
+    <Compile Include="Wrappers\IMethodWrapper.cs" />
     <Compile Include="Wrappers\Internal\AbstractAccessorWrapper.cs" />
     <Compile Include="Wrappers\Internal\AbstractAsyncWrapper.cs" />
     <Compile Include="Wrappers\Internal\AbstractClassEventCollectionWrapper.cs" />

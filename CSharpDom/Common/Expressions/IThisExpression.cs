@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common.Expressions
 {
-    public interface IOutExpression : IExpression
+    public interface IThisExpression : IExpression
     {
     }
 }

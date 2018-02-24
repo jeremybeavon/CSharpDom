@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common.Expressions
 {
-    public interface IRefExpression<TExpression> : IRefExpression
+    public interface IArgument<TExpression> : IArgument, IHasName
         where TExpression : IExpression
     {
         TExpression Expression { get; }

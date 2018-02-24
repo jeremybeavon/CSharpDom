@@ -6,7 +6,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class ClassPropertyCollectionWrapper : AbstractWrapper<IClassPropertyCollection>, IClassPropertyCollectionWrapper
+    internal sealed class ClassPropertyCollectionWrapper : AbstractWrapper<IClassPropertyCollection>, IClassPropertyCollectionWrapper
     {
         private Func<int> count;
         private Func<IReadOnlyCollection<IExplicitInterfacePropertyWrapper>> explicitInterfaceProperties;

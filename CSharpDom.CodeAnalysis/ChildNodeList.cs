@@ -141,10 +141,10 @@ namespace CSharpDom.CodeAnalysis
             RefreshList();
             isRefreshList = true;
             TChildSyntax syntax = item.Node.Syntax;
-            list.Remove(syntax);
             bool isRemoved = InternalRemove(item);
+            list.Remove(syntax);
             isRefreshList = false;
-            return isRefreshList;
+            return isRemoved;
         }
 
         public IEnumerator<TChild> GetEnumerator()
@@ -215,7 +215,6 @@ namespace CSharpDom.CodeAnalysis
 
         private bool InternalRemove(TChild item)
         {
-            item.Node.RemoveParentNode();
             int index = IndexOf(item);
             if (index < 0)
             {
@@ -249,16 +248,15 @@ namespace CSharpDom.CodeAnalysis
             isInitialized = true;
             if (isRefreshed)
             {
-                if (innerList.Count != list.Count)
+                /*if (innerList.Count != list.Count)
                 {
                     Console.Write("Problem");
-                }
-
+                }*/
                 return;
             }
 
             int count = list.Count;
-            if (innerList.Count == list.Count)
+            if (innerList.Count == count)
             {
                 return;
             }

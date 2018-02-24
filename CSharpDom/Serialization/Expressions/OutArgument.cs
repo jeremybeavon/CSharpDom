@@ -4,18 +4,20 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class RefExpression : IRefExpression<Expression>
+    public sealed class OutArgument : IOutArgument<Expression>
     {
         public Expression Expression { get; set; }
 
+        public string Name { get; set; }
+
         public void Accept(IGenericExpressionVisitor visitor)
         {
-            visitor.VisitRefExpression(this);
+            visitor.VisitOutArgument(this);
         }
 
         public void AcceptChildren(IGenericExpressionVisitor visitor)
         {
-            GenericExpressionVisitor.VisitRefExpressionChildren(this, visitor);
+            GenericExpressionVisitor.VisitOutArgumentChildren(this, visitor);
         }
     }
 }

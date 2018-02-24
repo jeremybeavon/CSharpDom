@@ -10,11 +10,11 @@ namespace CSharpDom.CodeAnalysis.Expressions
             switch (syntax.RefOrOutKeyword.Kind())
             {
                 case SyntaxKind.OutKeyword:
-                    return new OutExpressionWithCodeAnalysis();
+                    return new OutArgumentWithCodeAnalysis();
                 case SyntaxKind.RefKeyword:
-                    return new RefExpressionWithCodeAnalysis();
+                    return new RefArgumentWithCodeAnalysis();
                 default:
-                    return new ArgumentExpressionWithCodeAnalysis();
+                    return new ArgumentWithCodeAnalysis();
             }
         }
     }

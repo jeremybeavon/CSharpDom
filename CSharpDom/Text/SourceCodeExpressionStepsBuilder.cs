@@ -2,11 +2,12 @@
 using CSharpDom.Common.Expressions;
 using CSharpDom.Text.Steps;
 using CSharpDom.Text.Steps.Expressions;
+using System;
 using System.Collections.Generic;
 
 namespace CSharpDom.Text
 {
-    public class SourceCodeExpressionStepsBuilder : AbstractGenericExpressionVisitor, IHasSourceSourceBuilderSteps
+    public sealed class SourceCodeExpressionStepsBuilder : AbstractGenericExpressionVisitor, IHasSourceSourceBuilderSteps
     {
         public SourceCodeExpressionStepsBuilder()
         {
@@ -15,7 +16,25 @@ namespace CSharpDom.Text
 
         public List<ISourceCodeBuilderStep> Steps { get; private set; }
 
-        public override void VisitArrayIndexExpression<TExpression>(IArrayIndexExpression<TExpression> arrayIndexExpression)
+        public override void Visit(IVisitable<IGenericExpressionVisitor> node)
+        {
+            throw new InvalidOperationException();
+        }
+
+        public override void VisitArgument<TExpression>(IArgument<TExpression> argument)
+        {
+            if (!string.IsNullOrWhiteSpace(argument.Name))
+            {
+                Steps.Add(new WriteName(argument.Name));
+                Steps.Add(new WriteColon());
+                Steps.Add(new WriteWhitespace());
+            }
+
+            Steps.Add(new WriteExpression<TExpression>(argument.Expression));
+        }
+
+        public override void VisitArrayIndexExpression<TExpression, TArgument>(
+            IArrayIndexExpression<TExpression, TArgument> arrayIndexExpression)
         {
             Steps.Add(new WriteExpression<TExpression>(arrayIndexExpression.Array));
             Steps.Add(new WriteStartBracket());
@@ -92,11 +111,12 @@ namespace CSharpDom.Text
             Steps.Add(new WriteName(memberExpression.MemberName));
         }
 
-        public override void VisitMethodCallExpression<TExpression>(IMethodCallExpression<TExpression> methodCallExpression)
+        public override void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
         {
             Steps.Add(new WriteExpression<TExpression>(methodCallExpression.Expression));
             Steps.Add(new WriteStartParenthesis());
-            Steps.AddCommaSeparatedExpressionSteps(methodCallExpression.ParameterExpressions);
+            Steps.AddCommaSeparatedExpressionSteps(methodCallExpression.Parameters);
             Steps.Add(new WriteEndParenthesis());
         }
 
@@ -165,11 +185,11 @@ namespace CSharpDom.Text
             Steps.AddObjectInitializerSteps(objectInitializerExpression);
         }
 
-        public override void VisitOutExpression<TExpression>(IOutExpression<TExpression> outExpression)
+        public override void VisitOutArgument<TExpression>(IOutArgument<TExpression> outArgument)
         {
             Steps.Add(new WriteMethodParameterModifier(ParameterModifier.Out));
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteExpression<TExpression>(outExpression.Expression));
+            Steps.Add(new WriteExpression<TExpression>(outArgument.Expression));
         }
 
         public override void VisitParenthesisExpression<TExpression>(IParenthesisExpression<TExpression> parenthesisExpression)
@@ -311,11 +331,11 @@ namespace CSharpDom.Text
             Steps.Add(new WriteRawValue(rawExpression.Expression));
         }
 
-        public override void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
+        public override void VisitRefArgument<TExpression>(IRefArgument<TExpression> refArgument)
         {
             Steps.Add(new WriteMethodParameterModifier(ParameterModifier.Ref));
             Steps.Add(new WriteWhitespace());
-            Steps.Add(new WriteExpression<TExpression>(refExpression.Expression));
+            Steps.Add(new WriteExpression<TExpression>(refArgument.Expression));
         }
 
         public override void VisitStringConstantExpression(IStringConstantExpression stringConstantExpression)
@@ -343,6 +363,11 @@ namespace CSharpDom.Text
             Steps.Add(new WriteColon());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteExpression<TExpression>(ternaryOperatorExpression.Right));
+        }
+
+        public override void VisitThisExpression(IThisExpression thisExpression)
+        {
+            Steps.Add(new WriteThisKeyword());
         }
 
         public override void VisitTypeofExpression<TTypeReference>(ITypeofExpression<TTypeReference> typeofExpression)

@@ -4,15 +4,15 @@ using System.Text;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractExpression : IVisitable<IGenericExpressionVisitor>
+    public abstract class AbstractExpression : AbstractObjectWithSourceCode, IVisitable<IGenericExpressionVisitor>
     {
         public abstract void Accept(IGenericExpressionVisitor visitor);
 
         public abstract void AcceptChildren(IGenericExpressionVisitor visitor);
 
-        public override string ToString()
+        protected sealed override string ToSourceCodeText()
         {
-            return new StringBuilder().AppendLine(GetType().FullName + ":").Append(this.ToSourceCode()).ToString();
+            return this.ToSourceCode();
         }
     }
 }

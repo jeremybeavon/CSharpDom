@@ -3,16 +3,16 @@ using CSharpDom.Serialization.Expressions;
 
 namespace CSharpDom.Serialization.Factories.Expressions
 {
-    public sealed class OutExpressionFactory : AbstractExpressionFactory<IOutExpression, OutExpression>
+    public sealed class OutArgumentFactory : AbstractExpressionFactory<IOutArgument, OutArgument>
     {
-        public OutExpressionFactory(IOutExpression expression)
+        public OutArgumentFactory(IOutArgument expression)
             : base(expression)
         {
         }
 
-        public override void VisitOutExpression<TExpression>(IOutExpression<TExpression> outExpression)
+        public override void VisitOutArgument<TExpression>(IOutArgument<TExpression> outExpression)
         {
-            Value = new OutExpression()
+            Value = new OutArgument()
             {
                 Expression = new ExpressionFactory(outExpression.Expression).Value
             };

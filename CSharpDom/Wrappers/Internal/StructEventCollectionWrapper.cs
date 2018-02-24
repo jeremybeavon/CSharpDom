@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class StructEventCollectionWrapper : AbstractWrapper<IStructEventCollection>, IStructEventCollectionWrapper
+    internal sealed class StructEventCollectionWrapper : AbstractWrapper<IStructEventCollection>, IStructEventCollectionWrapper
     {
         public StructEventCollectionWrapper(IStructEventCollection eventCollection)
             : base(eventCollection)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class ReadOnlyCollectionWrapper<T> : IReadOnlyCollection<T>
+    internal sealed class ReadOnlyCollectionWrapper<T> : IReadOnlyCollection<T>
     {
         private readonly ICollection<T> input;
 

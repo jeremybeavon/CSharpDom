@@ -31,7 +31,7 @@ namespace CSharpDom.CodeGeneration.Tree.Builder
         {
             Namespace properties;
             ObjectInitializerExpression expression = CreateExpression(typeof(Namespace));
-            expression.CreateObjectExpression.NewExpression.Parameters.Add(CreateExpression(@namespace.Name));
+            expression.CreateObjectExpression.NewExpression.Parameters.Add(CreateArgument(@namespace.Name));
             expression.Members.AddIfNotNull(nameof(properties.Classes), @namespace.Classes);
             UseExpression(expression);
         }
@@ -41,7 +41,7 @@ namespace CSharpDom.CodeGeneration.Tree.Builder
         {
             Class properties;
             ObjectInitializerExpression expression = CreateExpression(typeof(Class));
-            expression.CreateObjectExpression.NewExpression.Parameters.Add(CreateExpression(@class.Name));
+            expression.CreateObjectExpression.NewExpression.Parameters.Add(CreateArgument(@class.Name));
             expression.Members.AddIfNotNull(nameof(properties.Visibility), @class.Visibility);
             expression.Members.AddIfNotNull(nameof(properties.GenericParameters), @class.GenericParameters);
             expression.Members.AddIfNotNull(nameof(properties.BaseClass), @class.BaseClass);
@@ -76,7 +76,7 @@ namespace CSharpDom.CodeGeneration.Tree.Builder
         {
             ClassMethod properties;
             ObjectInitializerExpression expression = CreateExpression(typeof(ClassMethod));
-            expression.CreateObjectExpression.NewExpression.Parameters.Add(CreateExpression(method.Name));
+            expression.CreateObjectExpression.NewExpression.Parameters.Add(CreateArgument(method.Name));
             expression.Members.AddIfNotNull(nameof(properties.Visibility), method.Visibility);
             expression.Members.AddIfNotNull(nameof(properties.InheritanceModifier), method.InheritanceModifier);
             expression.Members.AddIfNotNull(nameof(properties.IsAsync), method.IsAsync);
@@ -104,6 +104,14 @@ namespace CSharpDom.CodeGeneration.Tree.Builder
                     ObjectInitializerExpression = expression
                 };
             }
+        }
+
+        internal static Argument CreateArgument(string text)
+        {
+            return new Argument()
+            {
+                Expression = CreateExpression(text)
+            };
         }
 
         internal static Expression CreateExpression(string text)

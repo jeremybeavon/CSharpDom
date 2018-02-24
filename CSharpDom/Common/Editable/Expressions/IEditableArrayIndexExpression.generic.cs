@@ -3,13 +3,14 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Common.Editable.Expressions
 {
-    public interface IEditableArrayIndexExpression<TExpression> :
+    public interface IEditableArrayIndexExpression<TExpression, TArgument> :
         IEditableArrayIndexExpression,
-        IArrayIndexExpression<TExpression>
+        IArrayIndexExpression<TExpression, TArgument>
         where TExpression : IEditableExpression
+        where TArgument : IEditableArgument
     {
         new TExpression Array { get; set; }
 
-        new IList<TExpression> Indexes { get; set; }
+        new IList<TArgument> Indexes { get; set; }
     }
 }

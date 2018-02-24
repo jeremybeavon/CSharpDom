@@ -24,8 +24,8 @@ namespace CSharpDom.Serialization.Factories.Expressions
             };
         }
 
-        public override void VisitArrayIndexExpression<TExpression>(
-            IArrayIndexExpression<TExpression> arrayIndexExpression)
+        public override void VisitArrayIndexExpression<TExpression, TArgument>(
+            IArrayIndexExpression<TExpression, TArgument> arrayIndexExpression)
         {
             Value = new Expression()
             {
@@ -112,8 +112,8 @@ namespace CSharpDom.Serialization.Factories.Expressions
             };
         }
 
-        public override void VisitMethodCallExpression<TExpression>(
-            IMethodCallExpression<TExpression> methodCallExpression)
+        public override void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
         {
             Value = new Expression()
             {
@@ -163,14 +163,6 @@ namespace CSharpDom.Serialization.Factories.Expressions
             };
         }
         
-        public override void VisitOutExpression<TExpression>(IOutExpression<TExpression> outExpression)
-        {
-            Value = new Expression()
-            {
-                OutExpression = new OutExpressionFactory(outExpression).Value
-            };
-        }
-
         public override void VisitParenthesisExpression<TExpression>(
             IParenthesisExpression<TExpression> parenthesisExpression)
         {
@@ -187,15 +179,7 @@ namespace CSharpDom.Serialization.Factories.Expressions
                 RawExpression = new RawExpressionFactory(rawExpression).Value
             };
         }
-
-        public override void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
-        {
-            Value = new Expression()
-            {
-                RefExpression = new RefExpressionFactory(refExpression).Value
-            };
-        }
-
+        
         public override void VisitStringConstantExpression(IStringConstantExpression stringConstantExpression)
         {
             Value = new Expression()

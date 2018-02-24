@@ -189,6 +189,8 @@
     <Compile Include="ClassCollectionWithCodeAnalysisExtensions.cs" />
     <Compile Include="CodeAnalysisSettings.cs" />
     <Compile Include="Expressions\ExpressionFactory.cs" />
+    <Compile Include="Expressions\IArgumentWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\ThisExpressionWithCodeAnalysis.cs" />
     <Compile Include="FilteredChildSyntaxList.generic.cs" />
     <Compile Include="GenericParameterConstraint.cs" />
     <Compile Include="IChildSyntaxListConversions.cs" />
@@ -596,7 +598,7 @@
     <Compile Include="Expressions\QueryFromExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\QueryJoinExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\QueryWhereExpressionWithCodeAnalysis.cs" />
-    <Compile Include="Expressions\RefExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\RefArgumentWithCodeAnalysis.cs" />
     <Compile Include="Expressions\TernaryOperatorExpressionWithCodeAnalysis.cs" />
     <Compile Include="IMemberList.cs" />
     <Compile Include="LoadedDocumentMemberListWrapper.cs" />
@@ -620,7 +622,7 @@
     <Compile Include="EnumReferenceWithCodeAnalysis.cs" />
     <Compile Include="EnumWithCodeAnalysis.cs" />
     <Compile Include="ExpressionSyntaxExtensions.cs" />
-    <Compile Include="Expressions\ArgumentExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\ArgumentWithCodeAnalysis.cs" />
     <Compile Include="Expressions\ArgumentSyntaxExtensions.cs" />
     <Compile Include="Expressions\AwaitExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\CastExpressionWithCodeAnalysis.cs" />
@@ -631,7 +633,7 @@
     <Compile Include="Expressions\MemberExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\MethodCallExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\NewExpressionWithCodeAnalysis.cs" />
-    <Compile Include="Expressions\OutExpressionWithCodeAnalysis.cs" />
+    <Compile Include="Expressions\OutArgumentWithCodeAnalysis.cs" />
     <Compile Include="Expressions\ParenthesisExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\TypeofExpressionWithCodeAnalysis.cs" />
     <Compile Include="Expressions\UnaryOperatorExpressionWithCodeAnalysis.cs" />

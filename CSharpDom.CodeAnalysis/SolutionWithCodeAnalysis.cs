@@ -16,13 +16,13 @@ namespace CSharpDom.CodeAnalysis
         private readonly Node<SolutionWithCodeAnalysis, Solution> node;
         private readonly ChildNodeList<SolutionWithCodeAnalysis, Solution, ProjectWithCodeAnalysis, Project> projects;
 
-        internal SolutionWithCodeAnalysis(Solution solution)
+        internal SolutionWithCodeAnalysis(Workspace workspace, Solution solution)
         {
             node = new Node<SolutionWithCodeAnalysis, Solution>(this, solution);
             projects = new ChildNodeList<SolutionWithCodeAnalysis, Solution, ProjectWithCodeAnalysis, Project>(
                 node,
                 new ProjectSyntaxList(node),
-                () => new ProjectWithCodeAnalysis(null));
+                () => new ProjectWithCodeAnalysis());
         }
 
         public override ICollection<ProjectWithCodeAnalysis> Projects
@@ -37,6 +37,8 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
+        public Workspace Workspace { get; private set; }
+
         INode<Solution> IHasNode<Solution>.Node
         {
             get { return node; }
@@ -44,7 +46,8 @@ namespace CSharpDom.CodeAnalysis
 
         public static async Task<SolutionWithCodeAnalysis> OpenAsync(string fileName)
         {
-            return new SolutionWithCodeAnalysis(await MSBuildWorkspace.Create().OpenSolutionAsync(fileName));
+            MSBuildWorkspace workspace = MSBuildWorkspace.Create();
+            return new SolutionWithCodeAnalysis(workspace, await workspace.OpenSolutionAsync(fileName));
         }
 
         public static SolutionWithCodeAnalysis GetSolutionForSourceCode(string code)
@@ -60,7 +63,7 @@ namespace CSharpDom.CodeAnalysis
             SolutionInfo solutionInfo = SolutionInfo.Create(solutionId, version, projects: new ProjectInfo[] { projectInfo });
             AdhocWorkspace workspace = new AdhocWorkspace();
             workspace.AddSolution(solutionInfo);
-            return new SolutionWithCodeAnalysis(workspace.CurrentSolution);
+            return new SolutionWithCodeAnalysis(workspace, workspace.CurrentSolution);
         }
     }
 }

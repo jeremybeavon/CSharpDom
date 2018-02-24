@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class StructMethodCollectionWrapper : AbstractWrapper<IStructMethodCollection>, IStructMethodCollectionWrapper
+    internal sealed class StructMethodCollectionWrapper : AbstractWrapper<IStructMethodCollection>, IStructMethodCollectionWrapper
     {
         public StructMethodCollectionWrapper(IStructMethodCollection methodCollection)
             : base(methodCollection)

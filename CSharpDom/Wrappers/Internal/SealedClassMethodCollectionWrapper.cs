@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class SealedClassMethodCollectionWrapper : AbstractWrapper<ISealedClassMethodCollection>, ISealedClassMethodCollectionWrapper
+    internal sealed class SealedClassMethodCollectionWrapper : AbstractWrapper<ISealedClassMethodCollection>, ISealedClassMethodCollectionWrapper
     {
         public SealedClassMethodCollectionWrapper(ISealedClassMethodCollection methodCollection)
             : base(methodCollection)

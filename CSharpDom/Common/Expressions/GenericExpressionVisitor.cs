@@ -5,10 +5,19 @@ namespace CSharpDom.Common.Expressions
 {
     public static class GenericExpressionVisitor
     {
-        public static void VisitArrayIndexExpressionChildren<TExpression>(
-            IArrayIndexExpression<TExpression> arrayIndexExpression,
+        public static void VisitArgumentChildren<TExpression>(
+            IArgument<TExpression> argument,
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
+        {
+            VisitIfNotNull(argument.Expression, visitor);
+        }
+
+        public static void VisitArrayIndexExpressionChildren<TExpression, TArgument>(
+            IArrayIndexExpression<TExpression, TArgument> arrayIndexExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+            where TArgument : IArgument
         {
             VisitIfNotNull(arrayIndexExpression.Array, visitor);
             VisitCollection(arrayIndexExpression.Indexes, visitor);
@@ -70,13 +79,14 @@ namespace CSharpDom.Common.Expressions
             VisitIfNotNull(memberExpression.ObjectExpression, visitor);
         }
 
-        public static void VisitMethodCallExpressionChildren<TExpression>(
-            IMethodCallExpression<TExpression> methodCallExpression,
+        public static void VisitMethodCallExpressionChildren<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression,
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
+            where TArgument : IArgument
         {
             VisitIfNotNull(methodCallExpression.Expression, visitor);
-            VisitCollection(methodCallExpression.ParameterExpressions, visitor);
+            VisitCollection(methodCallExpression.Parameters, visitor);
         }
 
         public static void VisitNewArrayExpressionChildren<TTypeReference, TExpression>(
@@ -88,11 +98,11 @@ namespace CSharpDom.Common.Expressions
             VisitCollection(newArrayExpression.InitialSizeExpressions, visitor);
         }
 
-        public static void VisitNewExpressionChildren<TTypeReference, TExpression>(
-            INewExpression<TTypeReference, TExpression> newExpression,
+        public static void VisitNewExpressionChildren<TTypeReference, TArgument>(
+            INewExpression<TTypeReference, TArgument> newExpression,
             IGenericExpressionVisitor visitor)
             where TTypeReference : ITypeReference
-            where TExpression : IExpression
+            where TArgument : IArgument
         {
             VisitCollection(newExpression.Parameters, visitor);
         }
@@ -116,12 +126,12 @@ namespace CSharpDom.Common.Expressions
             }
         }
 
-        public static void VisitOutExpressionChildren<TExpression>(
-            IOutExpression<TExpression> outExpression,
+        public static void VisitOutArgumentChildren<TExpression>(
+            IOutArgument<TExpression> outArgument,
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
         {
-            VisitIfNotNull(outExpression.Expression, visitor);
+            VisitIfNotNull(outArgument.Expression, visitor);
         }
 
         public static void VisitParenthesisExpressionChildren<TExpression>(
@@ -231,12 +241,12 @@ namespace CSharpDom.Common.Expressions
             VisitIfNotNull(queryWhereExpression.Expression, visitor);
         }
 
-        public static void VisitRefExpressionChildren<TExpression>(
-            IRefExpression<TExpression> refExpression,
+        public static void VisitRefArgumentChildren<TExpression>(
+            IRefArgument<TExpression> refArgument,
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
         {
-            VisitIfNotNull(refExpression, visitor);
+            VisitIfNotNull(refArgument.Expression, visitor);
         }
         
         public static void VisitTernaryOperatorExpressionChildren<TExpression>(

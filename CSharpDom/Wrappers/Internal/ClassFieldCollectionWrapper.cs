@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class ClassFieldCollectionWrapper : AbstractWrapper<IClassFieldCollection>, IClassFieldCollectionWrapper
+    internal sealed class ClassFieldCollectionWrapper : AbstractWrapper<IClassFieldCollection>, IClassFieldCollectionWrapper
     {
         public ClassFieldCollectionWrapper(IClassFieldCollection fieldCollection)
             : base(fieldCollection)

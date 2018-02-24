@@ -1,5 +1,4 @@
-﻿using CSharpDom.BaseClasses;
-using CSharpDom.Common;
+﻿using CSharpDom.Common;
 using System;
 
 namespace CSharpDom.Wrappers.Internal

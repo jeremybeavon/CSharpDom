@@ -2,11 +2,12 @@
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface IMethodCallExpression<TExpression> : IMethodCallExpression
+    public interface IMethodCallExpression<TExpression, TArgument> : IMethodCallExpression
         where TExpression : IExpression
+        where TArgument : IArgument
     {
         TExpression Expression { get; }
 
-        IReadOnlyList<TExpression> ParameterExpressions { get; }
+        IReadOnlyList<TArgument> Parameters { get; }
     }
 }

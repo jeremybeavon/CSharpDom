@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Expressions
 {
-    public abstract class AbstractNewExpression<TTypeReference, TExpression> :
+    public abstract class AbstractNewExpression<TTypeReference, TArgument> :
         AbstractExpression,
-        INewExpression<TTypeReference, TExpression>
+        INewExpression<TTypeReference, TArgument>
         where TTypeReference : ITypeReference
-        where TExpression : IExpression
+        where TArgument : IArgument
     {
-        public abstract IReadOnlyList<TExpression> Parameters { get; }
+        public abstract IReadOnlyList<TArgument> Parameters { get; }
 
         public abstract TTypeReference Type { get; }
 

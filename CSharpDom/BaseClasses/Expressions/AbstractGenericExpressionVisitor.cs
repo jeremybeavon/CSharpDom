@@ -11,8 +11,10 @@ namespace CSharpDom.BaseClasses.Expressions
             node.AcceptChildren(this);
         }
 
-        public virtual void VisitArrayIndexExpression<TExpression>(IArrayIndexExpression<TExpression> arrayIndexExpression)
+        public virtual void VisitArrayIndexExpression<TExpression, TArgument>(
+            IArrayIndexExpression<TExpression, TArgument> arrayIndexExpression)
             where TExpression : IExpression
+            where TArgument : IArgument
         {
             Visit(arrayIndexExpression);
         }
@@ -81,8 +83,10 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(memberExpression);
         }
 
-        public virtual void VisitMethodCallExpression<TExpression>(IMethodCallExpression<TExpression> methodCallExpression)
+        public virtual void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
             where TExpression : IExpression
+            where TArgument : IArgument
         {
             Visit(methodCallExpression);
         }
@@ -105,10 +109,10 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(newArrayExpression);
         }
 
-        public virtual void VisitNewExpression<TTypeReference, TExpression>(
-            INewExpression<TTypeReference, TExpression> newExpression)
+        public virtual void VisitNewExpression<TTypeReference, TArgument>(
+            INewExpression<TTypeReference, TArgument> newExpression)
             where TTypeReference : ITypeReference
-            where TExpression : IExpression
+            where TArgument : IArgument
         {
             Visit(newExpression);
         }
@@ -127,10 +131,10 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(objectInitializerExpression);
         }
 
-        public virtual void VisitOutExpression<TExpression>(IOutExpression<TExpression> outExpression)
+        public virtual void VisitOutArgument<TExpression>(IOutArgument<TExpression> outArgument)
             where TExpression : IExpression
         {
-            Visit(outExpression);
+            Visit(outArgument);
         }
 
         public virtual void VisitParenthesisExpression<TExpression>(IParenthesisExpression<TExpression> parenthesisExpression)
@@ -186,10 +190,10 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(rawExpression);
         }
 
-        public virtual void VisitRefExpression<TExpression>(IRefExpression<TExpression> refExpression)
+        public virtual void VisitRefArgument<TExpression>(IRefArgument<TExpression> refArgument)
             where TExpression : IExpression
         {
-            Visit(refExpression);
+            Visit(refArgument.Expression);
         }
 
         public virtual void VisitStringConstantExpression(IStringConstantExpression stringConstantExpression)
@@ -259,6 +263,17 @@ namespace CSharpDom.BaseClasses.Expressions
             where TQueryEndExpression : IQueryEndExpression
         {
             Visit(queryExpression);
+        }
+
+        public virtual void VisitThisExpression(IThisExpression thisExpression)
+        {
+            Visit(thisExpression);
+        }
+
+        public virtual void VisitArgument<TExpression>(IArgument<TExpression> argument)
+            where TExpression : IExpression
+        {
+            Visit(argument);
         }
     }
 }

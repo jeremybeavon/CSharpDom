@@ -5,18 +5,19 @@ using CSharpDom.Common.Editable.Expressions;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
-    public abstract class EditableMethodCallExpression<TExpression> :
+    public abstract class EditableMethodCallExpression<TExpression, TArgument> :
         EditableExpression,
-        IEditableMethodCallExpression<TExpression>
+        IEditableMethodCallExpression<TExpression, TArgument>
         where TExpression : IEditableExpression
+        where TArgument : IEditableArgument
     {
         public abstract TExpression Expression { get; set; }
 
-        public abstract IList<TExpression> ParameterExpressions { get; set; }
+        public abstract IList<TArgument> Parameters { get; set; }
 
-        IReadOnlyList<TExpression> IMethodCallExpression<TExpression>.ParameterExpressions
+        IReadOnlyList<TArgument> IMethodCallExpression<TExpression, TArgument>.Parameters
         {
-            get { return new ReadOnlyCollection<TExpression>(ParameterExpressions); }
+            get { return new ReadOnlyCollection<TArgument>(Parameters); }
         }
 
         public override void Accept(IGenericExpressionVisitor visitor)

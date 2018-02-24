@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class AbstractClassIndexerCollectionWrapper : AbstractWrapper<IAbstractClassIndexerCollection>,
+    internal sealed class AbstractClassIndexerCollectionWrapper : AbstractWrapper<IAbstractClassIndexerCollection>,
         IAbstractClassIndexerCollectionWrapper
     {
         public AbstractClassIndexerCollectionWrapper(IAbstractClassIndexerCollection indexerCollection)

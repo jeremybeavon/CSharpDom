@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Common.Editable.Expressions
 {
-    public interface IEditableNewExpression<TTypeReference, TExpression> :
+    public interface IEditableNewExpression<TTypeReference, TArgument> :
         IEditableNewExpression,
-        INewExpression<TTypeReference, TExpression>
+        INewExpression<TTypeReference, TArgument>
         where TTypeReference : IEditableTypeReference
-        where TExpression : IEditableExpression
+        where TArgument : IEditableArgument
     {
         new TTypeReference Type { get; set; }
 
-        new IList<TExpression> Parameters { get; set; }
+        new IList<TArgument> Parameters { get; set; }
     }
 }

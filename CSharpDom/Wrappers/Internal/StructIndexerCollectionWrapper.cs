@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class StructIndexerCollectionWrapper : AbstractWrapper<IStructIndexerCollection>, IStructIndexerCollectionWrapper
+    internal sealed class StructIndexerCollectionWrapper : AbstractWrapper<IStructIndexerCollection>, IStructIndexerCollectionWrapper
     {
         public StructIndexerCollectionWrapper(IStructIndexerCollection indexerCollection)
             : base(indexerCollection)

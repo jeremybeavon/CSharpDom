@@ -82,7 +82,7 @@ namespace CSharpDom.CodeAnalysis
 
         public void Clear()
         {
-            foreach (TParent item in list)
+            foreach (TParent item in list.ToArray())
             {
                 list.Remove(item);
             }

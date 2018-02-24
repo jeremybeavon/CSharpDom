@@ -5,7 +5,7 @@ using CSharpDom.Common;
 
 namespace CSharpDom.Wrappers.Internal
 {
-    public class NestedStaticClassMethodCollectionWrapper : AbstractWrapper<INestedStaticClassMethodCollection>,
+    internal sealed class NestedStaticClassMethodCollectionWrapper : AbstractWrapper<INestedStaticClassMethodCollection>,
         INestedStaticClassMethodCollectionWrapper
     {
         public NestedStaticClassMethodCollectionWrapper(INestedStaticClassMethodCollection methodCollection)
