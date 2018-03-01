@@ -115,7 +115,7 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
-        public IReadOnlyCollection<IStaticClassPropertyWrapper> Properties
+        public IStaticClassPropertyCollectionWrapper Properties
         {
             get
             {

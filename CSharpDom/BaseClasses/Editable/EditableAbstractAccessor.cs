@@ -10,6 +10,8 @@ namespace CSharpDom.BaseClasses.Editable
         IEditableAbstractAccessor<TAttributeGroup>
         where TAttributeGroup : IEditableAttributeGroup
     {
+        public abstract AbstractAccessorVisibilityModifier Visibility { get; }
+
         public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitAbstractAccessor(this);

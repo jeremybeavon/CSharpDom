@@ -14,7 +14,7 @@ namespace CSharpDom.Reflection
     {
         private readonly AccessorWithReflection accessor;
 
-        internal AbstractAccessorWithReflection(IHasClassMemberVisibilityModifier parentVisibility, AccessorWithReflection accessor)
+        internal AbstractAccessorWithReflection(IHasAbstractMemberVisibilityModifier parentVisibility, AccessorWithReflection accessor)
         {
             this.accessor = accessor;
         }
@@ -28,7 +28,9 @@ namespace CSharpDom.Reflection
         {
             get { return accessor.MethodInfo; }
         }
-        
+
+        public override AbstractAccessorVisibilityModifier Visibility => throw new System.NotImplementedException();
+
         public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitAbstractAccessorWithReflection(this);

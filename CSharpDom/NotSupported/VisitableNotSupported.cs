@@ -6,7 +6,8 @@ namespace CSharpDom.NotSupported
     public class VisitableNotSupported<TVisitor> :
         IVisitable<TVisitor>,
         IHasClassMemberVisibilityModifier,
-        IHasStructMemberVisibilityModifier
+        IHasStructMemberVisibilityModifier,
+        IHasStaticClassMemberVisibilityModifier
     {
         public ClassMemberVisibilityModifier Visibility
         {
@@ -17,6 +18,9 @@ namespace CSharpDom.NotSupported
         {
             get { throw new NotSupportedException(); }
         }
+
+        StaticClassMemberVisibilityModifier IHasStaticClassMemberVisibilityModifier.Visibility =>
+            throw new NotSupportedException();
 
         public void Accept(TVisitor visitor)
         {

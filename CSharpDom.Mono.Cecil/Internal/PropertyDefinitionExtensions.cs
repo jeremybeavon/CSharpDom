@@ -24,6 +24,23 @@ namespace CSharpDom.Mono.Cecil.Internal
             return setVisibility.Value;
         }
 
+        public static AbstractMemberVisibilityModifier AbstractClassVisibility(this PropertyDefinition property)
+        {
+            switch (property.ClassVisibility())
+            {
+                case ClassMemberVisibilityModifier.Public:
+                    return AbstractMemberVisibilityModifier.Public;
+                case ClassMemberVisibilityModifier.Internal:
+                    return AbstractMemberVisibilityModifier.Internal;
+                case ClassMemberVisibilityModifier.ProtectedInternal:
+                    return AbstractMemberVisibilityModifier.ProtectedInternal;
+                case ClassMemberVisibilityModifier.Protected:
+                    return AbstractMemberVisibilityModifier.Protected;
+                default:
+                    return AbstractMemberVisibilityModifier.None;
+            }
+        }
+
         public static StaticClassMemberVisibilityModifier StaticClassVisibility(this PropertyDefinition property)
         {
             StaticClassMemberVisibilityModifier? getVisibility = StaticClassVisibility(property.GetMethod);

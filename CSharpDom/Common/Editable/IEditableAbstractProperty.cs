@@ -1,6 +1,6 @@
 namespace CSharpDom.Common.Editable
 {
-    public interface IEditableAbstractProperty : IEditableClassMember, IEditableProperty, IAbstractProperty
+    public interface IEditableAbstractProperty : IEditableAbstractMember, IEditableProperty, IAbstractProperty
     {
     }
 }

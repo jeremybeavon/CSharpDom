@@ -14,7 +14,7 @@ namespace CSharpDom.Serialization
             AttributeGroup,
             GenericParameterDeclaration,
             StaticClassEventCollection,
-            StaticClassProperty,
+            StaticClassPropertyCollection,
             StaticClassMethodCollection,
             StaticClassFieldCollection,
             StaticClassNestedClassCollection,
@@ -35,7 +35,7 @@ namespace CSharpDom.Serialization
             GenericParameters = new List<GenericParameterDeclaration>();
             Interfaces = new List<StaticClassNestedInterface>();
             Methods = new StaticClassMethodCollection();
-            Properties = new List<StaticClassProperty>();
+            Properties = new StaticClassPropertyCollection();
             Structs = new StaticClassNestedStructCollection();
         }
 
@@ -43,7 +43,7 @@ namespace CSharpDom.Serialization
         
         public StaticClassMethodCollection Methods { get; set; }
 
-        public List<StaticClassProperty> Properties { get; set; }
+        public StaticClassPropertyCollection Properties { get; set; }
 
         public List<AttributeGroup> Attributes { get; set; }
 
@@ -108,12 +108,7 @@ namespace CSharpDom.Serialization
         {
             get { return GenericParameters; }
         }
-
-        IReadOnlyCollection<StaticClassProperty> IHasProperties<StaticClassProperty>.Properties
-        {
-            get { return Properties; }
-        }
-
+        
         IReadOnlyCollection<StaticClassNestedInterface> IHasInterfaces<StaticClassNestedInterface>.Interfaces => Interfaces;
 
         public void Accept(IGenericVisitor visitor)

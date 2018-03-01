@@ -10,7 +10,7 @@ namespace CSharpDom.BaseClasses.Editable
         TAttributeGroup,
         TGenericParameter,
         TEventCollection,
-        TProperty,
+        TPropertyCollection,
         TMethodCollection,
         TFieldCollection,
         TNestedClassCollection,
@@ -20,11 +20,11 @@ namespace CSharpDom.BaseClasses.Editable
         TNestedStructCollection,
         TStaticConstructor> :
         AbstractGenericVisitableObject,
-        IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+        IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
-        where TProperty : IStaticClassProperty
+        where TPropertyCollection : IStaticClassPropertyCollection
         where TMethodCollection : IStaticClassMethodCollection
         where TFieldCollection : IStaticClassFieldCollection
         where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -54,7 +54,7 @@ namespace CSharpDom.BaseClasses.Editable
 
         public abstract string Name { get; set; }
 
-        public abstract ICollection<TProperty> Properties { get; set; }
+        public abstract TPropertyCollection Properties { get; set; }
 
         public abstract TStaticConstructor StaticConstructor { get; set; }
 
@@ -79,12 +79,7 @@ namespace CSharpDom.BaseClasses.Editable
         {
             get { return new ReadOnlyCollection<TGenericParameter>(GenericParameters); }
         }
-
-        IReadOnlyCollection<TProperty> IHasProperties<TProperty>.Properties
-        {
-            get { return new ReadOnlyCollectionWrapper<TProperty>(Properties); }
-        }
-
+        
         IReadOnlyCollection<TNestedInterface> IHasInterfaces<TNestedInterface>.Interfaces =>
             new ReadOnlyCollectionWrapper<TNestedInterface>(Interfaces);
 

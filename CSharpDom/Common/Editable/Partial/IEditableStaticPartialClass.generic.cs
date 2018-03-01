@@ -2,10 +2,10 @@ using CSharpDom.Common.Partial;
 
 namespace CSharpDom.Common.Editable.Partial
 {
-    public interface IEditableStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> :
+    public interface IEditableStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> :
         IEditableStaticPartialClass,
-        IEditableStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
-        IStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+        IEditableStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
+        IStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TNamespace : IEditableNamespace
         where TDocument : IEditableDocument
         where TProject : IEditableProject
@@ -13,7 +13,7 @@ namespace CSharpDom.Common.Editable.Partial
         where TAttributeGroup : IEditableAttributeGroup
         where TGenericParameter : IEditableGenericParameterDeclaration
         where TEventCollection : IEditableStaticClassEventCollection
-        where TProperty : IEditableStaticClassProperty
+        where TPropertyCollection : IEditableStaticClassPropertyCollection
         where TMethodCollection : IEditableStaticPartialClassMethodCollection
         where TFieldCollection : IEditableStaticClassFieldCollection
         where TNestedClassCollection : IEditableStaticClassNestedClassCollection

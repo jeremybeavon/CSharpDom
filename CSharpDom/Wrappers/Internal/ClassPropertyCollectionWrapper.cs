@@ -27,6 +27,10 @@ namespace CSharpDom.Wrappers.Internal
             get { return explicitInterfaceProperties(); }
         }
 
+        public IReadOnlyCollection<IClassAutoPropertyWrapper> AutoProperties => throw new NotImplementedException();
+
+        public IReadOnlyCollection<IClassLambdaPropertyWrapper> LambdaProperties => throw new NotImplementedException();
+
         public void Accept(IGenericVisitor visitor)
         {
             visitor.VisitClassPropertyCollection(this);
@@ -42,8 +46,8 @@ namespace CSharpDom.Wrappers.Internal
             return properties();
         }
 
-        public override void VisitClassPropertyCollection<TProperty, TExplicitInterfaceProperty>(
-            IClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
+        public override void VisitClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>(
+            IClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty> propertyCollection)
         {
             count = () => propertyCollection.Count;
             explicitInterfaceProperties = () => new ReadOnlyCollectionWrapper<TExplicitInterfaceProperty, IExplicitInterfacePropertyWrapper>(

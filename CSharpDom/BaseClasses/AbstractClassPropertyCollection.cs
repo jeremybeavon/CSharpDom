@@ -5,10 +5,12 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses
 {
-    public abstract class AbstractClassPropertyCollection<TProperty, TExplicitInterfaceProperty> :
+    public abstract class AbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty> :
         AbstractGenericVisitableObject,
-        IClassPropertyCollection<TProperty, TExplicitInterfaceProperty>
+        IClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>
         where TProperty : IClassProperty
+        where TAutoProperty : IClassAutoProperty
+        where TLambdaProperty : IClassLambdaProperty
         where TExplicitInterfaceProperty : IExplicitInterfaceProperty
     {
         public int Count
@@ -17,6 +19,10 @@ namespace CSharpDom.BaseClasses
         }
 
         public abstract IReadOnlyCollection<TExplicitInterfaceProperty> ExplicitInterfaceProperties { get; }
+
+        public abstract IReadOnlyCollection<TAutoProperty> AutoProperties { get; }
+
+        public abstract IReadOnlyCollection<TLambdaProperty> LambdaProperties { get; }
 
         protected abstract IReadOnlyCollection<TProperty> Properties { get; }
 

@@ -12,7 +12,7 @@ namespace CSharpDom.Mono.Cecil
             ITypeWithMonoCecil,
             GenericParameterDeclarationWithMonoCecil,
             StaticClassEventCollectionWithMonoCecil,
-            StaticClassPropertyWithMonoCecil,
+            StaticClassPropertyCollectionWithMonoCecil,
             NestedStaticClassMethodCollectionWithMonoCecil,
             StaticClassFieldCollectionWithMonoCecil,
             StaticClassNestedClassCollectionWithMonoCecil,
@@ -84,7 +84,7 @@ namespace CSharpDom.Mono.Cecil
             get { return nestedClass.Name; }
         }
         
-        public override IReadOnlyCollection<StaticClassPropertyWithMonoCecil> Properties
+        public override StaticClassPropertyCollectionWithMonoCecil Properties
         {
             get { return nestedClass.Properties; }
         }

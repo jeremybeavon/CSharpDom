@@ -241,7 +241,6 @@
     <Compile Include="Internal\SealedClassNestedStructCollection.cs" />
     <Compile Include="Internal\SealedTypeWithMonoCecil.cs" />
     <Compile Include="Internal\SolutionWithMonoCecil.cs" />
-    <Compile Include="Internal\StaticClassPropertyCollectionWithMonoCecil.cs" />
     <Compile Include="Internal\StaticTypeWithMonoCecil.cs" />
     <Compile Include="Internal\StructTypeWithMonoCecil.cs" />
     <Compile Include="Internal\TypeClassification.cs" />
@@ -269,6 +268,7 @@
     <Compile Include="SealedClassIndexerWithMonoCecil.cs" />
     <Compile Include="SealedClassMethodCollectionWithMonoCecil.cs" />
     <Compile Include="SealedClassMethodWithMonoCecil.cs" />
+    <Compile Include="StaticClassPropertyCollectionWithMonoCecil.cs" />
     <Compile Include="SealedClassPropertyCollectionWithMonoCecil.cs" />
     <Compile Include="SealedClassPropertyWithMonoCecil.cs" />
     <Compile Include="SealedClassWithMonoCecil.cs" />

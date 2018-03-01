@@ -26,7 +26,7 @@ namespace CSharpDom.Serialization
 
         public AbstractAccessor SetAccessor { get; set; }
 
-        public ClassMemberVisibilityModifier Visibility { get; set; }
+        public AbstractMemberVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

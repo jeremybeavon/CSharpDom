@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableStaticClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
         EditableProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
-        IStaticClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
-        where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IStaticType
-        where TTypeReference : ITypeReference
-        where TAccessor : IStaticClassAccessor
+        IEditableStaticClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+        where TAttributeGroup : IEditableAttributeGroup
+        where TDeclaringType : IEditableStaticType
+        where TTypeReference : IEditableTypeReference
+        where TAccessor : IEditableStaticClassAccessor
     {
         public abstract StaticClassMemberVisibilityModifier Visibility { get; set; }
 

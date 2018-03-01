@@ -63,9 +63,9 @@ namespace CSharpDom.Mono.Cecil
             get { return setAccessor; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
-            get { return property.PropertyDefinition.ClassVisibility(); }
+            get { return property.PropertyDefinition.AbstractClassVisibility(); }
         }
     }
 }

@@ -40,9 +40,9 @@ namespace CSharpDom.Reflection
             get { return @event.Name; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
-            get { return @event.EventInfo.AddMethod.ClassVisibility(); }
+            get { return @event.EventInfo.AddMethod.AbstractClassVisibility(); }
         }
     }
 }

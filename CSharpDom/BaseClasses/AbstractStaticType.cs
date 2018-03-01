@@ -8,7 +8,7 @@ namespace CSharpDom.BaseClasses
         TAttributeGroup,
         TGenericParameter,
         TEventCollection,
-        TProperty,
+        TPropertyCollection,
         TMethodCollection,
         TFieldCollection,
         TNestedClassCollection,
@@ -18,11 +18,11 @@ namespace CSharpDom.BaseClasses
         TNestedStructCollection,
         TStaticConstructor> :
         AbstractGenericVisitableObject,
-        IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+        IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
-        where TProperty : IStaticClassProperty
+        where TPropertyCollection : IStaticClassPropertyCollection
         where TMethodCollection : IStaticClassMethodCollection
         where TFieldCollection : IStaticClassFieldCollection
         where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -52,7 +52,7 @@ namespace CSharpDom.BaseClasses
 
         public abstract string Name { get; }
 
-        public abstract IReadOnlyCollection<TProperty> Properties { get; }
+        public abstract TPropertyCollection Properties { get; }
 
         public abstract TStaticConstructor StaticConstructor { get; }
 

@@ -9,6 +9,8 @@ namespace CSharpDom.BaseClasses
         IAbstractAccessor<TAttributeGroup>
         where TAttributeGroup : IAttributeGroup
     {
+        public abstract AbstractAccessorVisibilityModifier Visibility { get; }
+
         public override void Accept(IGenericVisitor visitor)
         {
             visitor.VisitAbstractAccessor(this);

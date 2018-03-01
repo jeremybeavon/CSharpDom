@@ -362,7 +362,7 @@ namespace CSharpDom.Text
         public override void VisitAbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference>(
             IAbstractEvent<TAttributeGroup, TDeclaringType, TDelegateReference> @event)
         {
-            Steps.AddClassMemberVisibilityModifierSteps(@event.Visibility);
+            Steps.AddAbstractMemberVisibilityModifierSteps(@event.Visibility);
             Steps.Add(new WriteAbstractKeyword());
             Steps.Add(new WriteWhitespace());
             VisitEvent(@event);
@@ -564,7 +564,7 @@ namespace CSharpDom.Text
             IAbstractIndexer<TAttributeGroup, TDeclaringType, TTypeReference, TParameter, TAccessor> indexer)
         {
             Steps.AddChildNodeStepsOnNewLines(indexer.Attributes);
-            Steps.AddClassMemberVisibilityModifierSteps(indexer.Visibility);
+            Steps.AddAbstractMemberVisibilityModifierSteps(indexer.Visibility);
             Steps.Add(new WriteAbstractKeyword());
             Steps.Add(new WriteWhitespace());
             VisitIndexer(indexer);
@@ -984,8 +984,8 @@ namespace CSharpDom.Text
             Steps.Add(new WriteEndBrace());
         }
 
-        public override void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        public override void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
         {
             Steps.AddChildNodeStepsOnNewLines(nestedClass.Attributes);
             Steps.AddClassMemberVisibilityModifierSteps(nestedClass.Visibility);
@@ -1259,7 +1259,7 @@ namespace CSharpDom.Text
             IAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> property)
         {
             Steps.AddChildNodeStepsOnNewLines(property.Attributes);
-            Steps.AddClassMemberVisibilityModifierSteps(property.Visibility);
+            Steps.AddAbstractMemberVisibilityModifierSteps(property.Visibility);
             Steps.Add(new WriteAbstractKeyword());
             Steps.Add(new WriteWhitespace());
             Steps.Add(new WriteChildNode<TTypeReference>(property.PropertyType));
@@ -1894,7 +1894,7 @@ namespace CSharpDom.Text
             typeSteps.AddIfNotEmpty(type.Fields);
             typeSteps.AddIfNotEmpty(type.Events);
             typeSteps.AddIfNotNull(type.StaticConstructor);
-            typeSteps.AddRange(type.Properties.ToSteps());
+            typeSteps.AddIfNotNull(type.Properties);
             typeSteps.AddIfNotEmpty(type.Methods);
             typeSteps.AddIfNotEmpty(type.Classes);
             typeSteps.AddRange(type.Delegates.ToSteps());

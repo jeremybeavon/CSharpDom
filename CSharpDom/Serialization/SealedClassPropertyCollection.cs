@@ -6,11 +6,17 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class SealedClassPropertyCollection :
-        ISealedClassPropertyCollection<SealedClassProperty, ExplicitInterfaceProperty>
+        ISealedClassPropertyCollection<
+            SealedClassProperty,
+            SealedClassAutoProperty,
+            SealedClassLambdaProperty,
+            ExplicitInterfaceProperty>
     {
         public SealedClassPropertyCollection()
         {
             Properties = new List<SealedClassProperty>();
+            AutoProperties = new List<SealedClassAutoProperty>();
+            LambdaProperties = new List<SealedClassLambdaProperty>();
             ExplicitInterfaceProperties = new List<ExplicitInterfaceProperty>();
         }
 
@@ -21,12 +27,20 @@ namespace CSharpDom.Serialization
             get { return Properties.Count + ExplicitInterfaceProperties.Count; }
         }
 
+        public List<SealedClassAutoProperty> AutoProperties { get; set; }
+
+        public List<SealedClassLambdaProperty> LambdaProperties { get; set; }
+
         public List<ExplicitInterfaceProperty> ExplicitInterfaceProperties { get; set; }
         
         IReadOnlyCollection<ExplicitInterfaceProperty> IHasExplicitInterfaceProperties<ExplicitInterfaceProperty>.ExplicitInterfaceProperties
         {
             get { return ExplicitInterfaceProperties; }
         }
+
+        IReadOnlyCollection<SealedClassAutoProperty> IHasAutoProperties<SealedClassAutoProperty>.AutoProperties => throw new NotImplementedException();
+
+        IReadOnlyCollection<SealedClassLambdaProperty> IHasLambdaProperties<SealedClassLambdaProperty>.LambdaProperties => throw new NotImplementedException();
 
         public void Accept(IGenericVisitor visitor)
         {

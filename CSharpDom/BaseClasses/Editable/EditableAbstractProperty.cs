@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
         EditableProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
-        IAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
-        where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IAbstractType
-        where TTypeReference : ITypeReference
-        where TAccessor : IAbstractAccessor
+        IEditableAbstractProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+        where TAttributeGroup : IEditableAttributeGroup
+        where TDeclaringType : IEditableAbstractType
+        where TTypeReference : IEditableTypeReference
+        where TAccessor : IEditableAbstractAccessor
     {
-        public abstract ClassMemberVisibilityModifier Visibility { get; set; }
+        public abstract AbstractMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

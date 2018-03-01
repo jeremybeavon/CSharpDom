@@ -6,11 +6,17 @@ using CSharpDom.Common;
 namespace CSharpDom.Serialization
 {
     public sealed class StructPropertyCollection :
-        IStructPropertyCollection<StructProperty, ExplicitInterfaceProperty>
+        IStructPropertyCollection<
+            StructProperty,
+            StructAutoProperty,
+            StructLambdaProperty,
+            ExplicitInterfaceProperty>
     {
         public StructPropertyCollection()
         {
             Properties = new List<StructProperty>();
+            AutoProperties = new List<StructAutoProperty>();
+            LambdaProperties = new List<StructLambdaProperty>();
             ExplicitInterfaceProperties = new List<ExplicitInterfaceProperty>();
         }
 
@@ -18,8 +24,12 @@ namespace CSharpDom.Serialization
         
         public int Count
         {
-            get { return Properties.Count + ExplicitInterfaceProperties.Count; }
+            get { return Properties.Count + AutoProperties.Count + LambdaProperties.Count + ExplicitInterfaceProperties.Count; }
         }
+
+        public List<StructAutoProperty> AutoProperties { get; set; }
+
+        public List<StructLambdaProperty> LambdaProperties { get; set; }
 
         public List<ExplicitInterfaceProperty> ExplicitInterfaceProperties { get; set; }
         
@@ -27,6 +37,10 @@ namespace CSharpDom.Serialization
         {
             get { return ExplicitInterfaceProperties; }
         }
+
+        IReadOnlyCollection<StructAutoProperty> IHasAutoProperties<StructAutoProperty>.AutoProperties => AutoProperties;
+
+        IReadOnlyCollection<StructLambdaProperty> IHasLambdaProperties<StructLambdaProperty>.LambdaProperties => LambdaProperties;
 
         public void Accept(IGenericVisitor visitor)
         {

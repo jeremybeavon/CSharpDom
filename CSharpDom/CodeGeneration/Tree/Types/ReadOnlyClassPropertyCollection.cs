@@ -5,9 +5,15 @@ using CSharpDom.BaseClasses;
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
     public sealed class ReadOnlyClassPropertyCollection :
-        AbstractClassPropertyCollection<ReadOnlyClassProperty, ReadOnlyExplicitInterfaceProperty>
+        AbstractClassPropertyCollection<
+            ReadOnlyClassProperty,
+            ReadOnlyClassAutoProperty,
+            ReadOnlyClassLambdaProperty,
+            ReadOnlyExplicitInterfaceProperty>
     {
         private readonly IReadOnlyCollection<ReadOnlyClassProperty> properties;
+        //private readonly IReadOnlyCollection<ReadOnlyClassAutoProperty> autoProperties;
+        //private readonly IReadOnlyCollection<ReadOnlyClassLambdaProperty> lambdaProperties;
         private readonly IReadOnlyCollection<ReadOnlyExplicitInterfaceProperty> explicitInterfaceProperties;
 
         public ReadOnlyClassPropertyCollection(ClassBody body)
@@ -20,6 +26,10 @@ namespace CSharpDom.CodeGeneration.Tree.Types
         {
             get { return explicitInterfaceProperties; }
         }
+
+        public override IReadOnlyCollection<ReadOnlyClassAutoProperty> AutoProperties => throw new NotImplementedException();
+
+        public override IReadOnlyCollection<ReadOnlyClassLambdaProperty> LambdaProperties => throw new NotImplementedException();
 
         protected override IReadOnlyCollection<ReadOnlyClassProperty> Properties
         {

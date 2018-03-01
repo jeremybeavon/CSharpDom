@@ -1079,8 +1079,8 @@ namespace CSharpDom.BaseClasses
             Visit(@class);
         }
         
-        public virtual void VisitStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
+        public virtual void VisitStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
             where TNamespace : INamespace
             where TDocument : IDocument
             where TProject : IProject
@@ -1088,7 +1088,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : IStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -1442,13 +1442,13 @@ namespace CSharpDom.BaseClasses
             Visit(nestedClass);
         }
 
-        public virtual void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        public virtual void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -1468,15 +1468,7 @@ namespace CSharpDom.BaseClasses
         {
             Visit(structCollection);
         }
-
-        public virtual void VisitClassPropertyCollection<TProperty, TExplicitInterfaceProperty>(
-            IClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
-            where TProperty : IClassProperty
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-        {
-            Visit(propertyCollection);
-        }
-
+        
         public virtual void VisitClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
             IClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor> @class)
             where TAttributeGroup : IAttributeGroup
@@ -1597,13 +1589,13 @@ namespace CSharpDom.BaseClasses
             Visit(nestedClass);
         }
 
-        public virtual void VisitNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
+        public virtual void VisitNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            INestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IType
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -1647,14 +1639,6 @@ namespace CSharpDom.BaseClasses
             where TExplicitInterfaceMethod : IExplicitInterfaceMethod
         {
             Visit(methodCollection);
-        }
-        
-        public virtual void VisitSealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty>(
-            ISealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
-            where TProperty : ISealedClassProperty
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-        {
-            Visit(propertyCollection);
         }
         
         public virtual void VisitStaticClassConstant<TAttributeGroup, TDeclaringType, TTypeReference, TConstant>(
@@ -1866,13 +1850,13 @@ namespace CSharpDom.BaseClasses
             Visit(nestedStruct);
         }
 
-        public virtual void VisitStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        public virtual void VisitStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -1892,15 +1876,7 @@ namespace CSharpDom.BaseClasses
         {
             Visit(structCollection);
         }
-
-        public virtual void VisitStructPropertyCollection<TProperty, TExplicitInterfaceProperty>(
-            IStructPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
-            where TProperty : IStructProperty
-            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
-        {
-            Visit(propertyCollection);
-        }
-
+        
         public virtual void VisitStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
             IStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> type)
             where TAttributeGroup : IAttributeGroup
@@ -2020,13 +1996,13 @@ namespace CSharpDom.BaseClasses
             Visit(method);
         }
 
-        public virtual void VisitStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        public virtual void VisitStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStaticType
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : INestedStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -2039,12 +2015,12 @@ namespace CSharpDom.BaseClasses
             Visit(nestedClass);
         }
 
-        public virtual void VisitStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> type)
+        public virtual void VisitStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> type)
             where TAttributeGroup : IAttributeGroup
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : IStaticClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -2259,8 +2235,8 @@ namespace CSharpDom.BaseClasses
             Visit(@class);
         }
 
-        public virtual void VisitStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
+        public virtual void VisitStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
             where TNamespace : INamespace
             where TDocument : IDocument
             where TProject : IProject
@@ -2268,7 +2244,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : IStaticPartialClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -2460,13 +2436,13 @@ namespace CSharpDom.BaseClasses
             Visit(nestedClass);
         }
 
-        public virtual void VisitClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        public virtual void VisitClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClassType
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : INestedStaticPartialClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -2479,13 +2455,13 @@ namespace CSharpDom.BaseClasses
             Visit(nestedClass);
         }
 
-        public virtual void VisitStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        public virtual void VisitStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStaticType
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : INestedStaticPartialClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -2602,13 +2578,13 @@ namespace CSharpDom.BaseClasses
             Visit(nestedStruct);
         }
 
-        public virtual void VisitStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        public virtual void VisitStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStructType
             where TGenericParameter : IGenericParameterDeclaration
             where TEventCollection : IStaticClassEventCollection
-            where TProperty : IStaticClassProperty
+            where TPropertyCollection : IStaticClassPropertyCollection
             where TMethodCollection : INestedStaticPartialClassMethodCollection
             where TFieldCollection : IStaticClassFieldCollection
             where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -2678,6 +2654,137 @@ namespace CSharpDom.BaseClasses
             where TStaticClass : IStaticType
         {
             Visit(classes);
+        }
+
+        public virtual void VisitClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>(IClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty> propertyCollection)
+            where TProperty : IClassProperty
+            where TAutoProperty : IClassAutoProperty
+            where TLambdaProperty : IClassLambdaProperty
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        {
+            Visit(propertyCollection);
+        }
+
+        public virtual void VisitSealedClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>(ISealedClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty> propertyCollection)
+            where TProperty : ISealedClassProperty
+            where TAutoProperty : ISealedClassAutoProperty
+            where TLambdaProperty : ISealedClassLambdaProperty
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        {
+            Visit(propertyCollection);
+        }
+
+        public virtual void VisitStructPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>(IStructPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty> propertyCollection)
+            where TProperty : IStructProperty
+            where TAutoProperty : IStructAutoProperty
+            where TLambdaProperty : IStructLambdaProperty
+            where TExplicitInterfaceProperty : IExplicitInterfaceProperty
+        {
+            Visit(propertyCollection);
+        }
+
+        public virtual void VisitAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IBasicType
+            where TTypeReference : ITypeReference
+            where TAccessor : IAccessor
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IBasicType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(IClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TTypeReference : ITypeReference
+            where TAccessor : IClassAccessor
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(IClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitSealedClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(ISealedClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TTypeReference : ITypeReference
+            where TAccessor : IClassAccessor
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitSealedClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(ISealedClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitStaticClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(IStaticClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TTypeReference : ITypeReference
+            where TAccessor : IStaticClassAccessor
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitStaticClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(IStaticClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitStructAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(IStructAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference
+            where TAccessor : IStructAccessor
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitStructLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(IStructLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            Visit(property);
+        }
+
+        public virtual void VisitStaticClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty>(
+            IStaticClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty> propertyCollection)
+            where TProperty : IStaticClassProperty
+            where TAutoProperty : IStaticClassAutoProperty
+            where TLambdaProperty : IStaticClassLambdaProperty
+        {
+            Visit(propertyCollection);
         }
     }
 }

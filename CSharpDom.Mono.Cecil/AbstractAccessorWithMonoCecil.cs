@@ -17,7 +17,7 @@ namespace CSharpDom.Mono.Cecil
     {
         private readonly AccessorWithMonoCecil accessor;
 
-        internal AbstractAccessorWithMonoCecil(IHasClassMemberVisibilityModifier parentVisibility, AccessorWithMonoCecil accessor)
+        internal AbstractAccessorWithMonoCecil(IHasAbstractMemberVisibilityModifier parentVisibility, AccessorWithMonoCecil accessor)
         {
             this.accessor = accessor;
         }
@@ -31,7 +31,9 @@ namespace CSharpDom.Mono.Cecil
         {
             get { return accessor.MethodDefinition; }
         }
-        
+
+        public override AbstractAccessorVisibilityModifier Visibility => throw new NotImplementedException();
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitAccessorWithMonoCecil(this);

@@ -43,7 +43,7 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
-        public ClassMemberVisibilityModifier Visibility
+        public AbstractMemberVisibilityModifier Visibility
         {
             get
             {

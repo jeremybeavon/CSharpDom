@@ -34,6 +34,31 @@ namespace CSharpDom.Reflection.Internal
             return ClassMemberVisibilityModifier.None;
         }
 
+        public static AbstractMemberVisibilityModifier AbstractClassVisibility(this MethodBase method)
+        {
+            if (method.IsPublic)
+            {
+                return AbstractMemberVisibilityModifier.Public;
+            }
+
+            if (method.IsAssembly)
+            {
+                return AbstractMemberVisibilityModifier.Internal;
+            }
+
+            if (method.IsFamilyOrAssembly)
+            {
+                return AbstractMemberVisibilityModifier.ProtectedInternal;
+            }
+
+            if (method.IsFamily)
+            {
+                return AbstractMemberVisibilityModifier.Protected;
+            }
+
+            return AbstractMemberVisibilityModifier.None;
+        }
+
         public static StructMemberVisibilityModifier StructVisibility(this MethodBase method)
         {
             if (method.IsPublic)

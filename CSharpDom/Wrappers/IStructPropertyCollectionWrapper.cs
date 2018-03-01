@@ -6,7 +6,11 @@ using CSharpDom.Common;
 namespace CSharpDom.Wrappers
 {
     public interface IStructPropertyCollectionWrapper :
-        IStructPropertyCollection<IStructPropertyWrapper, IExplicitInterfacePropertyWrapper>
+        IStructPropertyCollection<
+            IStructPropertyWrapper,
+            IStructAutoPropertyWrapper,
+            IStructLambdaPropertyWrapper,
+            IExplicitInterfacePropertyWrapper>
     {
     }
 }

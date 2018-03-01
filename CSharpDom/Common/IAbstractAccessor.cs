@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IAbstractAccessor : IVisitable<IGenericVisitor>, IAccessor
+    public interface IAbstractAccessor : IVisitable<IGenericVisitor>, IAccessor, IHasAbstractAccessorVisibilityModifier
     {
     }
 }

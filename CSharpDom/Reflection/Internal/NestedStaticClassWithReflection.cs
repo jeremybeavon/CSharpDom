@@ -12,7 +12,7 @@ namespace CSharpDom.Reflection.Internal
             ITypeWithReflection,
             GenericParameterDeclarationWithReflection,
             StaticClassEventCollectionWithReflection,
-            StaticClassPropertyWithReflection,
+            StaticClassPropertyCollectionWithReflection,
             NestedStaticClassMethodCollectionWithReflection,
             StaticClassFieldCollectionWithReflection,
             StaticClassNestedClassCollectionWithReflection,
@@ -95,7 +95,7 @@ namespace CSharpDom.Reflection.Internal
             get { return type.Name(); }
         }
 
-        public override IReadOnlyCollection<StaticClassPropertyWithReflection> Properties
+        public override StaticClassPropertyCollectionWithReflection Properties
         {
             get { return typeWithReflection.Properties; }
         }

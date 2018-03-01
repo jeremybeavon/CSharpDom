@@ -131,6 +131,8 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
+        IStaticClassPropertyCollectionWrapper IHasPropertyCollection<IStaticClassPropertyCollectionWrapper>.Properties => throw new NotImplementedException();
+
         public void Accept(IGenericVisitor visitor)
         {
             throw new NotImplementedException();

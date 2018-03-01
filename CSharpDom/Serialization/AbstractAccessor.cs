@@ -13,7 +13,7 @@ namespace CSharpDom.Serialization
 
         public List<AttributeGroup> Attributes { get; set; }
 
-        public ClassMemberVisibilityModifier Visibility { get; set; }
+        public AbstractAccessorVisibilityModifier Visibility { get; set; }
 
         IReadOnlyCollection<AttributeGroup> IHasAttributes<AttributeGroup>.Attributes
         {

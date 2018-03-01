@@ -4,14 +4,14 @@ using CSharpDom.Common;
 
 namespace CSharpDom.BaseClasses.Wrappers
 {
-    public sealed class ClassNestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> :
-        AbstractClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
-        IWrapper<IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>>
+    public sealed class ClassNestedStaticClassWrapper<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> :
+        AbstractClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
+        IWrapper<IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>>
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
         where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
-        where TProperty : IStaticClassProperty
+        where TPropertyCollection : IStaticClassPropertyCollection
         where TMethodCollection : INestedStaticClassMethodCollection
         where TFieldCollection : IStaticClassFieldCollection
         where TNestedClassCollection : IStaticClassNestedClassCollection
@@ -21,7 +21,7 @@ namespace CSharpDom.BaseClasses.Wrappers
         where TNestedStructCollection : IStaticClassNestedStructCollection
         where TStaticConstructor : IStaticConstructor
     {
-        public ClassNestedStaticClassWrapper(IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
+        public ClassNestedStaticClassWrapper(IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
         {
             WrappedObject = @class;
         }
@@ -86,12 +86,12 @@ namespace CSharpDom.BaseClasses.Wrappers
             get { return WrappedObject.Structs; }
         }
         
-        public IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> WrappedObject { get; private set; }
+        public IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> WrappedObject { get; private set; }
 
         public override ClassMemberVisibilityModifier Visibility => WrappedObject.Visibility;
 
         public override TDeclaringType DeclaringType => WrappedObject.DeclaringType;
 
-        public override IReadOnlyCollection<TProperty> Properties => WrappedObject.Properties;
+        public override TPropertyCollection Properties => WrappedObject.Properties;
     }
 }

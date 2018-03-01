@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable
 {
@@ -11,12 +12,12 @@ namespace CSharpDom.BaseClasses.Editable
         TTypeReference,
         TAccessor> :
         EditableProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
-        IExplicitInterfaceProperty<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor>
-        where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IType
-        where TInterfaceReference : IInterfaceReference
-        where TTypeReference : ITypeReference
-        where TAccessor : IAccessor
+        IEditableExplicitInterfaceProperty<TAttributeGroup, TDeclaringType, TInterfaceReference, TTypeReference, TAccessor>
+        where TAttributeGroup : IEditableAttributeGroup
+        where TDeclaringType : IEditableType
+        where TInterfaceReference : IEditableInterfaceReference
+        where TTypeReference : IEditableTypeReference
+        where TAccessor : IEditableAccessor
     {
         public abstract TInterfaceReference ExplicitInterface { get; set; }
 

@@ -12,7 +12,7 @@ namespace CSharpDom.BaseClasses
         TAttributeGroup,
         TGenericParameter,
         TEventCollection,
-        TProperty,
+        TPropertyCollection,
         TMethodCollection,
         TFieldCollection,
         TNestedClassCollection,
@@ -21,8 +21,8 @@ namespace CSharpDom.BaseClasses
         TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
-        AbstractStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
-        IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+        AbstractStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
+        IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TNamespace : INamespace
         where TDocument : IDocument
         where TProject : IProject
@@ -30,7 +30,7 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
-        where TProperty : IStaticClassProperty
+        where TPropertyCollection : IStaticClassPropertyCollection
         where TMethodCollection : IStaticClassMethodCollection
         where TFieldCollection : IStaticClassFieldCollection
         where TNestedClassCollection : IStaticClassNestedClassCollection

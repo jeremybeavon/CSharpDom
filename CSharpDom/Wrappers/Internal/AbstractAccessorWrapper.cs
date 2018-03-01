@@ -18,6 +18,8 @@ namespace CSharpDom.Wrappers.Internal
             get { return attributes(); }
         }
 
+        public AbstractAccessorVisibilityModifier Visibility => throw new NotImplementedException();
+
         public void Accept(IGenericVisitor visitor)
         {
             visitor.VisitAbstractAccessor(this);

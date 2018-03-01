@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
         EditableProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
-        IClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
-        where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : IClassType
-        where TTypeReference : ITypeReference
-        where TAccessor : IClassAccessor
+        IEditableClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+        where TAttributeGroup : IEditableAttributeGroup
+        where TDeclaringType : IEditableClassType
+        where TTypeReference : IEditableTypeReference
+        where TAccessor : IEditableClassAccessor
     {
         public abstract ClassMemberInheritanceModifier InheritanceModifier { get; set; }
 

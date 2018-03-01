@@ -13,7 +13,7 @@ namespace CSharpDom.BaseClasses.Editable
         where TTypeReference : ITypeReference
         where TParameter : IMethodParameter
     {
-        public abstract ClassMemberVisibilityModifier Visibility { get; set; }
+        public abstract AbstractMemberVisibilityModifier Visibility { get; set; }
 
         public override void Accept(IGenericVisitor visitor)
         {

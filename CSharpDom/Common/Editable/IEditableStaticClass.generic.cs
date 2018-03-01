@@ -1,14 +1,14 @@
 namespace CSharpDom.Common.Editable
 {
-    public interface IEditableStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> :
+    public interface IEditableStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> :
         IEditableStaticClass,
         IHasEditableTypeVisibilityModifier,
         IHasEditableNamespace<TNamespace>,
         IHasEditableDocument<TDocument>,
         IHasEditableProject<TProject>,
         IHasEditableSolution<TSolution>,
-        IEditableStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
-        IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
+        IEditableStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>,
+        IStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TNamespace : IEditableNamespace
         where TDocument : IEditableDocument
         where TProject : IEditableProject
@@ -16,7 +16,7 @@ namespace CSharpDom.Common.Editable
         where TAttributeGroup : IEditableAttributeGroup
         where TGenericParameter : IEditableGenericParameterDeclaration
         where TEventCollection : IEditableStaticClassEventCollection
-        where TProperty : IEditableStaticClassProperty
+        where TPropertyCollection : IEditableStaticClassPropertyCollection
         where TMethodCollection : IEditableStaticClassMethodCollection
         where TFieldCollection : IEditableStaticClassFieldCollection
         where TNestedClassCollection : IEditableStaticClassNestedClassCollection

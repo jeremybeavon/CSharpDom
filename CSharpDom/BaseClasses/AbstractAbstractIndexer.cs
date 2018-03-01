@@ -13,7 +13,7 @@ namespace CSharpDom.BaseClasses
         where TParameter : IIndexerParameter
         where TAccessor : IAbstractAccessor
     {
-        public abstract ClassMemberVisibilityModifier Visibility { get; }
+        public abstract AbstractMemberVisibilityModifier Visibility { get; }
 
         public override void Accept(IGenericVisitor visitor)
         {

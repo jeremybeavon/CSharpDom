@@ -1,6 +1,6 @@
 namespace CSharpDom.Common.Editable
 {
-    public interface IEditableAbstractIndexer : IEditableClassMember, IEditableIndexer, IAbstractIndexer
+    public interface IEditableAbstractIndexer : IEditableAbstractMember, IEditableIndexer, IAbstractIndexer
     {
     }
 }

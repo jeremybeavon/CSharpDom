@@ -131,6 +131,8 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
+        IStaticClassPropertyCollectionWrapper IHasPropertyCollection<IStaticClassPropertyCollectionWrapper>.Properties => throw new NotImplementedException();
+
         public void Accept(IGenericVisitor visitor)
         {
             throw new NotImplementedException();
@@ -139,11 +141,6 @@ namespace CSharpDom.Wrappers.Internal
         public void AcceptChildren(IGenericVisitor visitor)
         {
             throw new NotImplementedException();
-        }
-
-        public override void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
-        {
         }
     }
 }

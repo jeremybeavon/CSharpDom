@@ -9,7 +9,7 @@ namespace CSharpDom.Wrappers
             IAttributeGroupWrapper,
             IGenericParameterDeclarationWrapper,
             IStaticClassEventCollectionWrapper,
-            IStaticClassPropertyWrapper,
+            IStaticClassPropertyCollectionWrapper,
             IStaticClassMethodCollectionWrapper,
             IStaticClassFieldCollectionWrapper,
             IStaticClassNestedClassCollectionWrapper,

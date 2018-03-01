@@ -454,6 +454,29 @@ namespace CSharpDom.Text
             }
         }
 
+        internal static void AddAbstractMemberVisibilityModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            AbstractMemberVisibilityModifier visibility)
+        {
+            if (visibility == AbstractMemberVisibilityModifier.None)
+            {
+                return;
+            }
+
+            if (visibility == AbstractMemberVisibilityModifier.ProtectedInternal)
+            {
+                steps.Add(new WriteAbstractMemberVisibilityModifier(AbstractMemberVisibilityModifier.Protected));
+                steps.Add(new WriteWhitespace());
+                steps.Add(new WriteAbstractMemberVisibilityModifier(AbstractMemberVisibilityModifier.Internal));
+                steps.Add(new WriteWhitespace());
+            }
+            else
+            {
+                steps.Add(new WriteAbstractMemberVisibilityModifier(visibility));
+                steps.Add(new WriteWhitespace());
+            }
+        }
+
         internal static void AddStaticClassMemberVisibilityModifierSteps(
             this List<ISourceCodeBuilderStep> steps,
             StaticClassMemberVisibilityModifier visibility)

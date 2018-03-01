@@ -9,6 +9,8 @@ namespace CSharpDom.CodeGeneration.Tree
             Fields = new Collection<StructField>();
             Events = new Collection<StructEvent>();
             Properties = new Collection<StructProperty>();
+            AutoProperties = new Collection<StructAutoProperty>();
+            LambdaProperties = new Collection<StructLambdaProperty>();
             Indexers = new Collection<StructIndexer>();
             Methods = new Collection<StructMethod>();
             UnaryOperators = new Collection<UnaryOperator>();
@@ -30,6 +32,10 @@ namespace CSharpDom.CodeGeneration.Tree
         public Collection<StructEvent> Events { get; set; }
 
         public Collection<StructProperty> Properties { get; set; }
+
+        public Collection<StructAutoProperty> AutoProperties { get; set; }
+
+        public Collection<StructLambdaProperty> LambdaProperties { get; set; }
 
         public Collection<StructIndexer> Indexers { get; set; }
 

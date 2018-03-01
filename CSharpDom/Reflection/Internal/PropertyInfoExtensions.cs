@@ -23,6 +23,23 @@ namespace CSharpDom.Reflection.Internal
             return setVisibility.Value;
         }
 
+        public static AbstractMemberVisibilityModifier AbstractClassVisibility(this PropertyInfo property)
+        {
+            switch (property.ClassVisibility())
+            {
+                case ClassMemberVisibilityModifier.Public:
+                    return AbstractMemberVisibilityModifier.Public;
+                case ClassMemberVisibilityModifier.Internal:
+                    return AbstractMemberVisibilityModifier.Internal;
+                case ClassMemberVisibilityModifier.ProtectedInternal:
+                    return AbstractMemberVisibilityModifier.ProtectedInternal;
+                case ClassMemberVisibilityModifier.Protected:
+                    return AbstractMemberVisibilityModifier.Protected;
+                default:
+                    return AbstractMemberVisibilityModifier.None;
+            }
+        }
+
         public static StaticClassMemberVisibilityModifier StaticClassVisibility(this PropertyInfo property)
         {
             StaticClassMemberVisibilityModifier? getVisibility = StaticClassVisibility(property.GetMethod);
@@ -121,6 +138,11 @@ namespace CSharpDom.Reflection.Internal
         internal static MethodInfo Method(this PropertyInfo property)
         {
             return property.GetMethod ?? property.SetMethod;
+        }
+
+        private static AbstractMemberVisibilityModifier? AbstractClassVisibility(MethodInfo method)
+        {
+            return method == null ? (AbstractMemberVisibilityModifier?)null : method.AbstractClassVisibility();
         }
 
         private static ClassMemberVisibilityModifier? ClassVisibility(MethodInfo method)

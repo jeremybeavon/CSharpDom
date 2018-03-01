@@ -28,6 +28,10 @@ namespace CSharpDom.Wrappers.Internal
             }
         }
 
+        public IReadOnlyCollection<ISealedClassAutoPropertyWrapper> AutoProperties => throw new NotImplementedException();
+
+        public IReadOnlyCollection<ISealedClassLambdaPropertyWrapper> LambdaProperties => throw new NotImplementedException();
+
         public void Accept(IGenericVisitor visitor)
         {
             throw new NotImplementedException();
@@ -43,9 +47,10 @@ namespace CSharpDom.Wrappers.Internal
             throw new NotImplementedException();
         }
 
-        public override void VisitSealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty>(
-            ISealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
+        public override void VisitSealedClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>(
+            ISealedClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty> propertyCollection)
         {
+            throw new NotImplementedException();
         }
 
         IEnumerator IEnumerable.GetEnumerator()

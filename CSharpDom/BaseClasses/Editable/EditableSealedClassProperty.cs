@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable
 {
     public abstract class EditableSealedClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor> :
         EditableProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>,
-        ISealedClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
-        where TAttributeGroup : IAttributeGroup
-        where TDeclaringType : ISealedType
-        where TTypeReference : ITypeReference
-        where TAccessor : IClassAccessor
+        IEditableSealedClassProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor>
+        where TAttributeGroup : IEditableAttributeGroup
+        where TDeclaringType : IEditableSealedType
+        where TTypeReference : IEditableTypeReference
+        where TAccessor : IEditableClassAccessor
     {
         public abstract SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
 

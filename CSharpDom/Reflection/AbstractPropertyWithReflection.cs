@@ -62,9 +62,9 @@ namespace CSharpDom.Reflection
             get { return setAccessor; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
-            get { return property.PropertyInfo.ClassVisibility(); }
+            get { return property.PropertyInfo.AbstractClassVisibility(); }
         }
     }
 }

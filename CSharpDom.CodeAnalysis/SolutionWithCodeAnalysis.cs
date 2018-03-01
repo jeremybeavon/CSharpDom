@@ -37,7 +37,7 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = value; }
         }
 
-        public Workspace Workspace { get; private set; }
+        public Workspace Workspace { get => Syntax.Workspace; }
 
         INode<Solution> IHasNode<Solution>.Node
         {
@@ -46,7 +46,8 @@ namespace CSharpDom.CodeAnalysis
 
         public static async Task<SolutionWithCodeAnalysis> OpenAsync(string fileName)
         {
-            MSBuildWorkspace workspace = MSBuildWorkspace.Create();
+            MSBuildWorkspace workspace = MSBuildWorkspace.Create(
+                new Dictionary<string, string>() { { "NuGetRestoreTargets", @"C:\Program Files (x86)\Microsoft Visual Studio\Preview\Community\Common7\IDE\CommonExtensions\Microsoft\NuGet\NuGet.targets" } });
             return new SolutionWithCodeAnalysis(workspace, await workspace.OpenSolutionAsync(fileName));
         }
 

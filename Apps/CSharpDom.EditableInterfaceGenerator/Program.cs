@@ -13,6 +13,10 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.EditableInterfaceGenerator
 {
+	public sealed class InterfaceTest : CSharpDom.Wrappers.IAbstractPropertyWrapper
+	{
+	}
+	
     public class Program : IComparer<UsingDirectiveWithCodeAnalysis>
     {
         public static void Main(string[] args)

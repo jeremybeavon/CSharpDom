@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common
 {
-    public interface IAbstractProperty : IClassMember, IProperty
+    public interface IAbstractProperty : IAbstractMember, IProperty
     {
     }
 }

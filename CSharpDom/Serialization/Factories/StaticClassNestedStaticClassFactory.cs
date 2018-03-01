@@ -24,7 +24,7 @@ namespace CSharpDom.Serialization.Factories
                 Interfaces = nestedClass.Interfaces.ToList(@interface => new StaticClassNestedInterfaceFactory(@interface).Value),
                 Methods = new NestedStaticClassMethodCollectionFactory(nestedClass.Methods).Value,
                 Name = nestedClass.Name,
-                Properties = nestedClass.Properties.ToList(property => new StaticClassPropertyFactory(property).Value),
+                Properties = new StaticClassPropertyCollectionFactory(nestedClass.Properties).Value,
                 StaticConstructor = new StaticConstructorFactory(nestedClass.StaticConstructor).Value,
                 Structs = new StaticClassNestedStructCollectionFactory(nestedClass.Structs).Value,
                 Visibility = nestedClass.Visibility

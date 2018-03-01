@@ -4,7 +4,7 @@
         TAttributeGroup,
         TGenericParameter,
         TEventCollection,
-        TProperty,
+        TPropertyCollection,
         TMethodCollection,
         TFieldCollection,
         TNestedClassCollection,
@@ -18,7 +18,7 @@
         IHasAttributes<TAttributeGroup>,
         IHasGenericParameters<TGenericParameter>,
         IHasEventCollection<TEventCollection>,
-        IHasProperties<TProperty>,
+        IHasPropertyCollection<TPropertyCollection>,
         IHasMethodCollection<TMethodCollection>,
         IHasFieldCollection<TFieldCollection>,
         IHasClassCollection<TNestedClassCollection>,
@@ -30,7 +30,7 @@
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
         where TEventCollection : IStaticClassEventCollection
-        where TProperty : IStaticClassProperty
+        where TPropertyCollection : IStaticClassPropertyCollection
         where TMethodCollection : IStaticClassMethodCollection
         where TFieldCollection : IStaticClassFieldCollection
         where TNestedClassCollection : IStaticClassNestedClassCollection

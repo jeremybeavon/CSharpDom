@@ -10,7 +10,7 @@ namespace CSharpDom.Wrappers
             ITypeWrapper,
             IGenericParameterDeclarationWrapper,
             IStaticClassEventCollectionWrapper,
-            IStaticClassPropertyWrapper,
+            IStaticClassPropertyCollectionWrapper,
             INestedStaticClassMethodCollectionWrapper,
             IStaticClassFieldCollectionWrapper,
             IStaticClassNestedClassCollectionWrapper,

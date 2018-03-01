@@ -8,14 +8,14 @@ namespace CSharpDom.CodeGeneration.Tree
         {
             Name = name;
             Attributes = new Collection<AttributeGroup>();
-            Visibility = ClassMemberVisibilityModifier.Public;
+            Visibility = AbstractMemberVisibilityModifier.Public;
         }
 
         public Collection<AttributeGroup> Attributes { get; set; }
 
         public string Name { get; set; }
 
-        public ClassMemberVisibilityModifier Visibility { get; set; }
+        public AbstractMemberVisibilityModifier Visibility { get; set; }
         
         public DelegateReference Type { get; set; }
 

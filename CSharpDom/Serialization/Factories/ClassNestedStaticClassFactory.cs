@@ -9,8 +9,8 @@ namespace CSharpDom.Serialization.Factories
         {
         }
 
-        public override void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        public override void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
         {
             Value = new ClassNestedStaticClass()
             {
@@ -24,7 +24,7 @@ namespace CSharpDom.Serialization.Factories
                 Interfaces = nestedClass.Interfaces.ToList(@interface => new StaticClassNestedInterfaceFactory(@interface).Value),
                 Methods = new NestedStaticClassMethodCollectionFactory(nestedClass.Methods).Value,
                 Name = nestedClass.Name,
-                Properties = nestedClass.Properties.ToList(property => new StaticClassPropertyFactory(property).Value),
+                Properties = new StaticClassPropertyCollectionFactory(nestedClass.Properties).Value,
                 StaticConstructor = new StaticConstructorFactory(nestedClass.StaticConstructor).Value,
                 Structs = new StaticClassNestedStructCollectionFactory(nestedClass.Structs).Value,
                 Visibility = nestedClass.Visibility

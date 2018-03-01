@@ -6,10 +6,16 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Editable
 {
-    public abstract class EditableStructPropertyCollection<TProperty, TExplicitInterfaceProperty> :
+    public abstract class EditableStructPropertyCollection<
+        TProperty,
+        TAutoProperty,
+        TLambdaProperty,
+        TExplicitInterfaceProperty> :
         AbstractGenericVisitableObject,
-        IStructPropertyCollection<TProperty, TExplicitInterfaceProperty>
+        IStructPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>
         where TProperty : IStructProperty
+        where TAutoProperty : IStructAutoProperty
+        where TLambdaProperty : IStructLambdaProperty
         where TExplicitInterfaceProperty : IExplicitInterfaceProperty
     {
         public int Count
@@ -20,6 +26,10 @@ namespace CSharpDom.BaseClasses.Editable
         public abstract ICollection<TExplicitInterfaceProperty> ExplicitInterfaceProperties { get; set; }
 
         public abstract ICollection<TProperty> Properties { get; set; }
+
+        public abstract IReadOnlyCollection<TAutoProperty> AutoProperties { get; }
+
+        public abstract IReadOnlyCollection<TLambdaProperty> LambdaProperties { get; }
 
         IReadOnlyCollection<TExplicitInterfaceProperty> IHasExplicitInterfaceProperties<TExplicitInterfaceProperty>.ExplicitInterfaceProperties
         {

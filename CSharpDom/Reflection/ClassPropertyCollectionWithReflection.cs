@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using CSharpDom.BaseClasses;
+using CSharpDom.NotSupported;
 using CSharpDom.Reflection.Internal;
 
 namespace CSharpDom.Reflection
 {
     public sealed class ClassPropertyCollectionWithReflection :
-        AbstractClassPropertyCollection<ClassPropertyWithReflection, ExplicitInterfacePropertyWithReflection>
+        AbstractClassPropertyCollection<
+            ClassPropertyWithReflection,
+            PropertyNotSupported,
+            PropertyNotSupported,
+            ExplicitInterfacePropertyWithReflection>
     {
         private readonly ClassTypeWithReflection typeWithReflection;
 
@@ -19,6 +24,10 @@ namespace CSharpDom.Reflection
         {
             get { return typeWithReflection.PropertyCollection.Properties.ExplicitInterfacePropertiesWithReflection; }
         }
+
+        public override IReadOnlyCollection<PropertyNotSupported> AutoProperties => new PropertyNotSupported[0];
+
+        public override IReadOnlyCollection<PropertyNotSupported> LambdaProperties => new PropertyNotSupported[0];
 
         protected override IReadOnlyCollection<ClassPropertyWithReflection> Properties
         {

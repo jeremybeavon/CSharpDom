@@ -715,8 +715,8 @@ namespace CSharpDom.Common.Editable
             where TDeclaringType : IEditableType
             where TMethodBody : IEditableMethodBody;
 
-        void VisitStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
+        void VisitStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
             where TNamespace : IEditableNamespace
             where TDocument : IEditableDocument
             where TProject : IEditableProject
@@ -724,7 +724,7 @@ namespace CSharpDom.Common.Editable
             where TAttributeGroup : IEditableAttributeGroup
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableStaticClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection
@@ -734,8 +734,8 @@ namespace CSharpDom.Common.Editable
             where TNestedStructCollection : IEditableStaticClassNestedStructCollection
             where TStaticConstructor : IEditableStaticConstructor;
 
-        void VisitStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
+        void VisitStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableStaticPartialClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
             where TNamespace : IEditableNamespace
             where TDocument : IEditableDocument
             where TProject : IEditableProject
@@ -743,7 +743,7 @@ namespace CSharpDom.Common.Editable
             where TAttributeGroup : IEditableAttributeGroup
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableStaticPartialClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection
@@ -1450,13 +1450,13 @@ namespace CSharpDom.Common.Editable
             where TStaticConstructor : IEditableStaticConstructor
             where TDestructor : IEditableDestructor;
 
-        void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        void VisitClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IEditableAttributeGroup
             where TDeclaringType : IEditableClassType
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableNestedStaticClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection
@@ -1466,13 +1466,13 @@ namespace CSharpDom.Common.Editable
             where TNestedStructCollection : IEditableStaticClassNestedStructCollection
             where TStaticConstructor : IEditableStaticConstructor;
 
-        void VisitClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        void VisitClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IEditableAttributeGroup
             where TDeclaringType : IEditableClassType
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableNestedStaticPartialClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection
@@ -1482,13 +1482,13 @@ namespace CSharpDom.Common.Editable
             where TNestedStructCollection : IEditableStaticClassNestedStructCollection
             where TStaticConstructor : IEditableStaticConstructor;
 
-        void VisitStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        void VisitStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableStaticClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IEditableAttributeGroup
             where TDeclaringType : IEditableStaticType
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableNestedStaticClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection
@@ -1498,13 +1498,13 @@ namespace CSharpDom.Common.Editable
             where TNestedStructCollection : IEditableStaticClassNestedStructCollection
             where TStaticConstructor : IEditableStaticConstructor;
 
-        void VisitStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        void VisitStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableStaticClassNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IEditableAttributeGroup
             where TDeclaringType : IEditableStaticType
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableNestedStaticPartialClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection
@@ -1519,9 +1519,11 @@ namespace CSharpDom.Common.Editable
             where TStruct : IEditableClassNestedStruct
             where TPartialStruct : IEditableClassNestedPartialStruct;
 
-        void VisitClassPropertyCollection<TProperty, TExplicitInterfaceProperty>(
-            IEditableClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
+        void VisitClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>(
+            IEditableClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty> propertyCollection)
             where TProperty : IEditableClassProperty
+            where TAutoProperty : IEditableClassAutoProperty
+            where TLambdaProperty : IEditableClassLambdaProperty
             where TExplicitInterfaceProperty : IEditableExplicitInterfaceProperty;
 
         void VisitClassType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
@@ -1620,13 +1622,13 @@ namespace CSharpDom.Common.Editable
             where TStaticConstructor : IEditableStaticConstructor
             where TDestructor : IEditableDestructor;
 
-        void VisitNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
+        void VisitNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> @class)
             where TAttributeGroup : IEditableAttributeGroup
             where TDeclaringType : IEditableType
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableNestedStaticClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection
@@ -1664,9 +1666,11 @@ namespace CSharpDom.Common.Editable
             where TPartialMethodDefinition : IEditablePartialMethodDefinition
             where TPartialMethodImplementation : IEditablePartialMethodImplementation;
 
-        void VisitSealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty>(
-            IEditableSealedClassPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
+        void VisitSealedClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>(
+            IEditableSealedClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty> propertyCollection)
             where TProperty : IEditableSealedClassProperty
+            where TAutoProperty : IEditableSealedClassAutoProperty
+            where TLambdaProperty : IEditableSealedClassLambdaProperty
             where TExplicitInterfaceProperty : IEditableExplicitInterfaceProperty;
 
         void VisitSealedType<TAttributeGroup, TGenericParameter, TClassReference, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, TDestructor>(
@@ -1957,13 +1961,13 @@ namespace CSharpDom.Common.Editable
             where TStaticConstructor : IEditableStaticConstructor
             where TDestructor : IEditableDestructor;
 
-        void VisitStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        void VisitStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableStructNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IEditableAttributeGroup
             where TDeclaringType : IEditableStructType
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableNestedStaticClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection
@@ -1973,13 +1977,13 @@ namespace CSharpDom.Common.Editable
             where TNestedStructCollection : IEditableStaticClassNestedStructCollection
             where TStaticConstructor : IEditableStaticConstructor;
 
-        void VisitStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
+        void VisitStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableStructNestedStaticPartialClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> nestedClass)
             where TAttributeGroup : IEditableAttributeGroup
             where TDeclaringType : IEditableStructType
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableNestedStaticPartialClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection
@@ -1994,9 +1998,11 @@ namespace CSharpDom.Common.Editable
             where TStruct : IEditableStructNestedStruct
             where TPartialStruct : IEditableStructNestedPartialStruct;
 
-        void VisitStructPropertyCollection<TProperty, TExplicitInterfaceProperty>(
-            IEditableStructPropertyCollection<TProperty, TExplicitInterfaceProperty> propertyCollection)
+        void VisitStructPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>(
+            IEditableStructPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty> propertyCollection)
             where TProperty : IEditableStructProperty
+            where TAutoProperty : IEditableStructAutoProperty
+            where TLambdaProperty : IEditableStructLambdaProperty
             where TExplicitInterfaceProperty : IEditableExplicitInterfaceProperty;
 
         void VisitStructType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
@@ -2036,12 +2042,12 @@ namespace CSharpDom.Common.Editable
             where TParameter : IEditableMethodParameter
             where TMethodBody : IEditableMethodBody;
 
-        void VisitStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
-            IEditableStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TProperty, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> type)
+        void VisitStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
+            IEditableStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> type)
             where TAttributeGroup : IEditableAttributeGroup
             where TGenericParameter : IEditableGenericParameterDeclaration
             where TEventCollection : IEditableStaticClassEventCollection
-            where TProperty : IEditableStaticClassProperty
+            where TPropertyCollection : IEditableStaticClassPropertyCollection
             where TMethodCollection : IEditableStaticClassMethodCollection
             where TFieldCollection : IEditableStaticClassFieldCollection
             where TNestedClassCollection : IEditableStaticClassNestedClassCollection

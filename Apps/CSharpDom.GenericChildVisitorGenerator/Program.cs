@@ -27,11 +27,29 @@ namespace CSharpDom.GenericChildVisitorGenerator
     {
         public static void Main(string[] args)
         {
-            AsyncContext.Run(GenerateWrapperImplementations);
+            Environment.SetEnvironmentVariable(
+                "MSBUILD_EXE_PATH",
+                @"C:\Program Files (x86)\Microsoft Visual Studio\Preview\Community\MSBuild\15.0\Bin\MSBuild.exe");
+            foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "Microsoft.Build*.dll"))
+            {
+                File.Delete(file);
+            }
+
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            AsyncContext.Run(LoadImplementInterfaceAsync);
+        }
+
+        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            string file = Path.Combine(
+                @"C:\Program Files (x86)\Microsoft Visual Studio\Preview\Community\MSBuild\15.0\Bin",
+                new AssemblyName(args.Name).Name + ".dll");
+            return File.Exists(file) ? Assembly.LoadFrom(file) : null;
         }
 
         private static async Task GenerateWrapperImplementations()
         {
+
             string baseDirectory = Path.GetFullPath(
                 Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), @"..\..\..\.."));
             ProjectWithCodeAnalysis project = await ProjectWithCodeAnalysis.OpenAsync(
