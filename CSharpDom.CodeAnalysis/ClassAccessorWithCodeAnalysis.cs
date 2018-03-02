@@ -37,43 +37,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override ClassAccessorVisibilityModifier Visibility
         {
-            get
-            {
-                switch (Syntax.Modifiers.ToClassMemberVisibilityModifier())
-                {
-                    case ClassMemberVisibilityModifier.Internal:
-                        return ClassAccessorVisibilityModifier.Internal;
-                    case ClassMemberVisibilityModifier.ProtectedInternal:
-                        return ClassAccessorVisibilityModifier.ProtectedInternal;
-                    case ClassMemberVisibilityModifier.Protected:
-                        return ClassAccessorVisibilityModifier.Protected;
-                    case ClassMemberVisibilityModifier.Private:
-                        return ClassAccessorVisibilityModifier.Private;
-                }
-
-                return ClassAccessorVisibilityModifier.None;
-            }
+            get { return Syntax.Modifiers.ToClassAccessorVisibilityModifier(); }
             set
             {
-                ClassMemberVisibilityModifier modifier = ClassMemberVisibilityModifier.None;
-                switch (value)
-                {
-                    case ClassAccessorVisibilityModifier.Internal:
-                        modifier = ClassMemberVisibilityModifier.Internal;
-                        break;
-                    case ClassAccessorVisibilityModifier.ProtectedInternal:
-                        modifier = ClassMemberVisibilityModifier.ProtectedInternal;
-                        break;
-                    case ClassAccessorVisibilityModifier.Protected:
-                        modifier = ClassMemberVisibilityModifier.Protected;
-                        break;
-                    case ClassAccessorVisibilityModifier.Private:
-                        modifier = ClassMemberVisibilityModifier.Private;
-                        break;
-                }
-
                 AccessorDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(modifier));
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassAccessorVisibilityModifier(value));
             }
         }
         

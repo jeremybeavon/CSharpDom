@@ -1,11 +1,14 @@
 ﻿using CSharpDom.BaseClasses;
+using CSharpDom.Common;
 using CSharpDom.NotSupported;
 using System;
 using System.Collections.Generic;
 
 namespace CSharpDom.CodeGeneration.Tree.Types
 {
-    public sealed class ReadOnlyClassAccessor : AbstractClassAccessor<AttributeGroupNotSupported, ReadOnlyMethodBody>
+    public sealed class ReadOnlyClassAccessor :
+        AbstractClassAccessor<AttributeGroupNotSupported, ReadOnlyMethodBody>,
+        IClassAutoPropertyAccessor<AttributeGroupNotSupported>
     {
         private readonly ClassAccessorVisibilityModifier visibility;
         private readonly ReadOnlyMethodBody body;

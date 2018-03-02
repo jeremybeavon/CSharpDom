@@ -11,7 +11,7 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStaticType
         where TTypeReference : ITypeReference
-        where TAccessor : IStaticClassAccessor
+        where TAccessor : IStaticClassAutoPropertyAccessor
         where TExpression : IExpression
     {
         public abstract StaticClassMemberVisibilityModifier Visibility { get; }

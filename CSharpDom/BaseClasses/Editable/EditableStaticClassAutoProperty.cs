@@ -12,7 +12,7 @@ namespace CSharpDom.BaseClasses.Editable
         where TAttributeGroup : IEditableAttributeGroup
         where TDeclaringType : IEditableStaticType
         where TTypeReference : IEditableTypeReference
-        where TAccessor : IEditableStaticClassAccessor
+        where TAccessor : IEditableStaticClassAutoPropertyAccessor
         where TExpression : IEditableExpression
     {
         public abstract StaticClassMemberVisibilityModifier Visibility { get; set; }

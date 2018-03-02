@@ -16,12 +16,12 @@ namespace CSharpDom.Serialization.Factories
             Value = new StructAutoProperty()
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
-                GetAccessor = new StructAccessorFactory(property.GetAccessor).Value,
+                GetAccessor = new StructAutoPropertyAccessorFactory(property.GetAccessor).Value,
                 InheritanceModifier = property.InheritanceModifier,
                 InitialValue = new ExpressionFactory(property.InitialValue).Value,
                 Name = property.Name,
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value,
-                SetAccessor = new StructAccessorFactory(property.SetAccessor).Value,
+                SetAccessor = new StructAutoPropertyAccessorFactory(property.SetAccessor).Value,
                 Visibility = property.Visibility
             };
         }

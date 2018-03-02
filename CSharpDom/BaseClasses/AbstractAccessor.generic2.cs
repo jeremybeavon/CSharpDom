@@ -19,7 +19,7 @@ namespace CSharpDom.BaseClasses
 
         public override void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitAccessor(this, visitor);
+            GenericVisitor.VisitAccessorChildren(this, visitor);
         }
     }
 }

@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using CSharpDom.Common;
-using CSharpDom.BaseClasses.Editable;
+﻿using CSharpDom.BaseClasses.Editable;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis;
+using System.Collections.Generic;
 
 namespace CSharpDom.CodeAnalysis
 {

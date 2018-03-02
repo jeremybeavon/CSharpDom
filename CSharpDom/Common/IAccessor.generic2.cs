@@ -2,7 +2,7 @@
 {
     public interface IAccessor<TAttributeGroup, TMethodBody> :
         IAccessor,
-        IHasAttributes<TAttributeGroup>,
+        IAccessor<TAttributeGroup>,
         IHasBody<TMethodBody>
         where TAttributeGroup : IAttributeGroup
         where TMethodBody : IMethodBody

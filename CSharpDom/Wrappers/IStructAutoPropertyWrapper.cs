@@ -6,7 +6,12 @@ using CSharpDom.Common.Expressions;
 namespace CSharpDom.Wrappers
 {
     public interface IStructAutoPropertyWrapper :
-        IStructAutoProperty<IAttributeGroupWrapper, IStructTypeWrapper, ITypeReferenceWrapper, IStructAccessorWrapper, IExpression>
+        IStructAutoProperty<
+            IAttributeGroupWrapper,
+            IStructTypeWrapper,
+            ITypeReferenceWrapper,
+            IStructAutoPropertyAccessorWrapper,
+            IExpression>
     {
     }
 }

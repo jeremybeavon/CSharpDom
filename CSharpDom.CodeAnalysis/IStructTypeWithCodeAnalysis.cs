@@ -1,8 +1,10 @@
 ﻿using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.CodeAnalysis
 {
     public interface IStructTypeWithCodeAnalysis :
+        IEditableStructType,
         IStructType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,

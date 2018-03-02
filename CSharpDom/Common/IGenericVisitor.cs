@@ -129,6 +129,9 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TMethodBody : IMethodBody;
 
+        void VisitAccessor<TAttributeGroup>(IAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup;
+
         Task VisitAsync(IAsyncVisitable<IGenericVisitor> node);
 
         void VisitArrayTypeReference<TTypeReference>(IArrayTypeReference<TTypeReference> arrayTypeReference)
@@ -2070,7 +2073,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TTypeReference : ITypeReference
-            where TAccessor : IAccessor
+            where TAccessor : IAutoPropertyAccessor
             where TExpression : IExpression;
 
         void VisitLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
@@ -2085,7 +2088,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClassType
             where TTypeReference : ITypeReference
-            where TAccessor : IClassAccessor
+            where TAccessor : IClassAutoPropertyAccessor
             where TExpression : IExpression;
 
         void VisitClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
@@ -2100,7 +2103,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : ISealedType
             where TTypeReference : ITypeReference
-            where TAccessor : IClassAccessor
+            where TAccessor : IClassAutoPropertyAccessor
             where TExpression : IExpression;
 
         void VisitSealedClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
@@ -2115,7 +2118,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStaticType
             where TTypeReference : ITypeReference
-            where TAccessor : IStaticClassAccessor
+            where TAccessor : IStaticClassAutoPropertyAccessor
             where TExpression : IExpression;
 
         void VisitStaticClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
@@ -2130,7 +2133,7 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStructType
             where TTypeReference : ITypeReference
-            where TAccessor : IStructAccessor
+            where TAccessor : IStructAutoPropertyAccessor
             where TExpression : IExpression;
 
         void VisitStructLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
@@ -2145,5 +2148,18 @@ namespace CSharpDom.Common
             where TProperty : IStaticClassProperty
             where TAutoProperty : IStaticClassAutoProperty
             where TLambdaProperty : IStaticClassLambdaProperty;
+
+        void VisitAutoPropertyAccessor<TAttributeGroup>(IAutoPropertyAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup;
+
+        void VisitClassAutoPropertyAccessor<TAttributeGroup>(IClassAutoPropertyAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup;
+
+        void VisitStaticClassAutoPropertyAccessor<TAttributeGroup>(
+            IStaticClassAutoPropertyAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup;
+
+        void VisitStructAutoPropertyAccessor<TAttributeGroup>(IStructAutoPropertyAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup;
     }
 }

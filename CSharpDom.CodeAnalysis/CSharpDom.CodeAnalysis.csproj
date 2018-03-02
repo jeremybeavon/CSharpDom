@@ -185,7 +185,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="AutoPropertyAccessorWithCodeAnalysis.cs" />
+    <Compile Include="LambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="BaseTypeSyntaxListConversions.cs" />
+    <Compile Include="AutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="ClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="SealedClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="StructAutoPropertyAccessorWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassAutoPropertyAccessorWithCodeAnalysis.cs" />
+    <Compile Include="ClassAutoPropertyAccessorWithCodeAnalysis.cs" />
     <Compile Include="ClassCollectionWithCodeAnalysisExtensions.cs" />
     <Compile Include="CodeAnalysisSettings.cs" />
     <Compile Include="Expressions\ExpressionFactory.cs" />
@@ -587,6 +597,7 @@
     <Compile Include="InternalStructNestedClassCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStructNestedStructCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStructPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StructAutoPropertyWithCodeAnalysis.cs" />
     <Compile Include="StructReferenceWithCodeAnalysis.cs" />
     <Compile Include="DocumentSyntaxList.cs" />
     <Compile Include="Expressions\IInternalQueryExpression.cs" />

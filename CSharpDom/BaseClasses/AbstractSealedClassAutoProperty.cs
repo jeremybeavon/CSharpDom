@@ -11,7 +11,7 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : ISealedType
         where TTypeReference : ITypeReference
-        where TAccessor : IClassAccessor
+        where TAccessor : IClassAutoPropertyAccessor
         where TExpression : IExpression
     {
         public abstract SealedClassMemberInheritanceModifier InheritanceModifier { get; }

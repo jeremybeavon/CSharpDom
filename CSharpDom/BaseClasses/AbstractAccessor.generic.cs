@@ -10,5 +10,15 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
     {
         public abstract IReadOnlyCollection<TAttributeGroup> Attributes { get; }
+
+        public override void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitAccessor(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitAccessorChildren(this, visitor);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace CSharpDom.Serialization
             AttributeGroup,
             ISealedType,
             TypeReference,
-            ClassAccessor,
+            ClassAutoPropertyAccessor,
             Expression>
     {
         public SealedClassAutoProperty()
@@ -25,7 +25,7 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public ClassAccessor GetAccessor { get; set; }
+        public ClassAutoPropertyAccessor GetAccessor { get; set; }
 
         public SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }
 
@@ -33,7 +33,7 @@ namespace CSharpDom.Serialization
 
         public TypeReference PropertyType { get; set; }
 
-        public ClassAccessor SetAccessor { get; set; }
+        public ClassAutoPropertyAccessor SetAccessor { get; set; }
 
         public ClassMemberVisibilityModifier Visibility { get; set; }
 

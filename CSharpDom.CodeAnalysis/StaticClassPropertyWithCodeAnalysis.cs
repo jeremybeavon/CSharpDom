@@ -71,7 +71,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassAccessorWithCodeAnalysis GetAccessor
         {
-            get { return new StaticClassAccessorWithCodeAnalysis(property.GetAccessor); }
+            get
+            {
+                AccessorWithBodyWithCodeAnalysis accessor = property.GetAccessor;
+                return accessor == null ? null : new StaticClassAccessorWithCodeAnalysis(accessor);
+            }
             set { property.GetAccessor = value?.Accessor; }
         }
 
@@ -89,7 +93,11 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassAccessorWithCodeAnalysis SetAccessor
         {
-            get { return new StaticClassAccessorWithCodeAnalysis(property.SetAccessor); }
+            get
+            {
+                AccessorWithBodyWithCodeAnalysis accessor = property.SetAccessor;
+                return accessor == null ? null : new StaticClassAccessorWithCodeAnalysis(accessor);
+            }
             set { property.SetAccessor = value?.Accessor; }
         }
 

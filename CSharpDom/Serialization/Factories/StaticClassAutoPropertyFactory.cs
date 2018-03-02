@@ -16,11 +16,11 @@ namespace CSharpDom.Serialization.Factories
             Value = new StaticClassAutoProperty()
             {
                 Attributes = property.Attributes.ToAttributeListUsingFactory(),
-                GetAccessor = new StaticClassAccessorFactory(property.GetAccessor).Value,
+                GetAccessor = new StaticClassAutoPropertyAccessorFactory(property.GetAccessor).Value,
                 InitialValue = new ExpressionFactory(property.InitialValue).Value,
                 Name = property.Name,
                 PropertyType = new TypeReferenceFactory(property.PropertyType).Value,
-                SetAccessor = new StaticClassAccessorFactory(property.SetAccessor).Value,
+                SetAccessor = new StaticClassAutoPropertyAccessorFactory(property.SetAccessor).Value,
                 Visibility = property.Visibility
             };
         }

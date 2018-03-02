@@ -11,7 +11,7 @@ namespace CSharpDom.Common.Editable
         where TAttributeGroup : IEditableAttributeGroup
         where TDeclaringType : IEditableStructType
         where TTypeReference : IEditableTypeReference
-        where TAccessor : IEditableStructAccessor
+        where TAccessor : IEditableStructAutoPropertyAccessor
         where TExpression : IEditableExpression
     {
     }

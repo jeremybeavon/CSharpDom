@@ -20,9 +20,19 @@ namespace CSharpDom.BaseClasses.Editable
             visitor.VisitAbstractProperty(this);
         }
 
+        public override void Accept(IEditableVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
         public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitAbstractPropertyChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
+        {
+            throw new NotImplementedException();
         }
     }
 }

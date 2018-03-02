@@ -8,15 +8,26 @@ namespace CSharpDom.Common
 {
     public static class GenericVisitor
     {
-        public static void VisitAccessor<TAttributeGroup, TMethodBody>(
+        public static void VisitAccessorChildren<TAttributeGroup, TMethodBody>(
             IAccessor<TAttributeGroup, TMethodBody> accessor,
             IGenericVisitor visitor)
             where TAttributeGroup : IAttributeGroup
             where TMethodBody : IMethodBody
         {
-            GenericChildVisitor.VisitAccessor<IAccessor<TAttributeGroup, TMethodBody>, TAttributeGroup, TMethodBody, IGenericVisitor>(accessor, visitor);
+            GenericChildVisitor.VisitAccessorChildren<IAccessor<TAttributeGroup, TMethodBody>, IAccessor<TAttributeGroup>, TAttributeGroup, TMethodBody, IGenericVisitor>(
+                accessor,
+                accessor2 => new AccessorWrapper<TAttributeGroup>(accessor2),
+                visitor);
         }
-        
+
+        public static void VisitAccessorChildren<TAttributeGroup>(
+            IAccessor<TAttributeGroup> accessor,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            GenericChildVisitor.VisitAccessorChildren<IAccessor<TAttributeGroup>, TAttributeGroup, IGenericVisitor>(accessor, visitor);
+        }
+
         public static void VisitArrayTypeReferenceChildren<TTypeReference>(
             IArrayTypeReference<TTypeReference> arrayTypeReference,
             IGenericVisitor visitor)
@@ -2910,6 +2921,50 @@ namespace CSharpDom.Common
             VisitCollection(classes.AbstractClasses, visitor);
             VisitCollection(classes.SealedClasses, visitor);
             VisitCollection(classes.StaticClasses, visitor);
+        }
+
+        public static void VisitAutoPropertyAccessorChildren<TAttributeGroup>(
+            IAutoPropertyAccessor<TAttributeGroup> accessor,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            GenericChildVisitor.VisitAutoPropertyAccessorChildren<IAutoPropertyAccessor<TAttributeGroup>, IAccessor<TAttributeGroup>, TAttributeGroup, IGenericVisitor>(
+                accessor,
+                autoPropertyAccessor => new AccessorWrapper<TAttributeGroup>(autoPropertyAccessor),
+                visitor);
+        }
+
+        public static void VisitClassAutoPropertyAccessorChildren<TAttributeGroup>(
+            IClassAutoPropertyAccessor<TAttributeGroup> accessor,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            GenericChildVisitor.VisitClassAutoPropertyAccessorChildren<IClassAutoPropertyAccessor<TAttributeGroup>, IAutoPropertyAccessor<TAttributeGroup>, TAttributeGroup, IGenericVisitor>(
+                accessor,
+                autoPropertyAccessor => new AutoPropertyAccessorWrapper<TAttributeGroup>(autoPropertyAccessor),
+                visitor);
+        }
+
+        public static void VisitStaticClassAutoPropertyAccessorChildren<TAttributeGroup>(
+            IStaticClassAutoPropertyAccessor<TAttributeGroup> accessor,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            GenericChildVisitor.VisitStaticClassAutoPropertyAccessorChildren<IStaticClassAutoPropertyAccessor<TAttributeGroup>, IAutoPropertyAccessor<TAttributeGroup>, TAttributeGroup, IGenericVisitor>(
+                accessor,
+                autoPropertyAccessor => new AutoPropertyAccessorWrapper<TAttributeGroup>(autoPropertyAccessor),
+                visitor);
+        }
+
+        public static void VisitStructAutoPropertyAccessorChildren<TAttributeGroup>(
+            IStructAutoPropertyAccessor<TAttributeGroup> accessor,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            GenericChildVisitor.VisitStructAutoPropertyAccessorChildren<IStructAutoPropertyAccessor<TAttributeGroup>, IAutoPropertyAccessor<TAttributeGroup>, TAttributeGroup, IGenericVisitor>(
+                accessor,
+                autoPropertyAccessor => new AutoPropertyAccessorWrapper<TAttributeGroup>(autoPropertyAccessor),
+                visitor);
         }
     }
 }

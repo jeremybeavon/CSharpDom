@@ -1,18 +1,16 @@
 ﻿using CSharpDom.Common;
 using CSharpDom.BaseClasses.Editable;
-using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class PropertyWithBodyWithCodeAnalysis :
         EditableProperty<
             AttributeGroupWithCodeAnalysis,
-            IBasicType,
+            IEditableBasicType,
             ITypeReferenceWithCodeAnalysis,
             AccessorWithBodyWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>
@@ -35,7 +33,7 @@ namespace CSharpDom.CodeAnalysis
             set { property.Attributes = value; }
         }
 
-        public override IBasicType DeclaringType
+        public override IEditableBasicType DeclaringType
         {
             get { return property.DeclaringType; }
             set { throw new NotSupportedException(); }

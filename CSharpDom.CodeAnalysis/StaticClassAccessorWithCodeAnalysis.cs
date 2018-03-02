@@ -31,38 +31,14 @@ namespace CSharpDom.CodeAnalysis
 
         public override StaticClassAccessorVisibilityModifier Visibility
         {
-            get
-            {
-                switch (Syntax.Modifiers.ToClassMemberVisibilityModifier())
-                {
-                    case ClassMemberVisibilityModifier.Internal:
-                        return StaticClassAccessorVisibilityModifier.Internal;
-                    case ClassMemberVisibilityModifier.None:
-                        return StaticClassAccessorVisibilityModifier.None;
-                    case ClassMemberVisibilityModifier.Private:
-                        return StaticClassAccessorVisibilityModifier.Private;
-                    default:
-                        throw new NotSupportedException();
-                }
-            }
+            get { return Syntax.Modifiers.ToStaticClassAccessorVisibilityModifier(); }
             set
             {
-                ClassMemberVisibilityModifier modifier = ClassMemberVisibilityModifier.None;
-                switch (value)
-                {
-                    case StaticClassAccessorVisibilityModifier.Internal:
-                        modifier = ClassMemberVisibilityModifier.Internal;
-                        break;
-                    case StaticClassAccessorVisibilityModifier.Private:
-                        modifier = ClassMemberVisibilityModifier.Private;
-                        break;
-                }
-
                 AccessorDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(modifier));
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithStaticClassAccessorVisibilityModifier(value));
             }
         }
-        
+
         public override MethodBodyWithCodeAnalysis Body
         {
             get { return accessor.Body; }

@@ -34,15 +34,26 @@ namespace CSharpDom.Common
             }
         }
 
-        public static void VisitAccessor<TAccessor, TAttributeGroup, TMethodBody, TVisitor>(
+        public static void VisitAccessorChildren<TAccessor, TBaseAccessor, TAttributeGroup, TMethodBody, TVisitor>(
             TAccessor accessor,
+            Func<TAccessor, TBaseAccessor> accessorFactory,
             TVisitor visitor)
             where TAccessor : IAccessor<TAttributeGroup, TMethodBody>
+            where TBaseAccessor : IAccessor<TAttributeGroup>, IVisitable<TVisitor>
             where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
             where TMethodBody : IMethodBody, IVisitable<TVisitor>
         {
-            VisitCollection(accessor.Attributes, visitor);
+            accessorFactory(accessor).Accept(visitor);
             VisitIfNotNull(accessor.Body, visitor);
+        }
+
+        public static void VisitAccessorChildren<TAccessor, TAttributeGroup, TVisitor>(
+            TAccessor accessor,
+            TVisitor visitor)
+            where TAccessor : IAccessor<TAttributeGroup>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+        {
+            VisitCollection(accessor.Attributes, visitor);
         }
 
         public static void VisitArrayTypeReferenceChildren<TArrayTypeReference, TTypeReference, TVisitor>(
@@ -3312,6 +3323,50 @@ namespace CSharpDom.Common
             VisitCollection(classes.AbstractClasses, visitor);
             VisitCollection(classes.SealedClasses, visitor);
             VisitCollection(classes.StaticClasses, visitor);
+        }
+
+        public static void VisitAutoPropertyAccessorChildren<TAutoPropertyAccessor, TAccessor, TAttributeGroup, TVisitor>(
+            TAutoPropertyAccessor accessor,
+            Func<TAutoPropertyAccessor, TAccessor> accessorFactory,
+            TVisitor visitor)
+            where TAutoPropertyAccessor : IAutoPropertyAccessor<TAttributeGroup>
+            where TAccessor : IAccessor<TAttributeGroup>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+        {
+            accessorFactory(accessor).Accept(visitor);
+        }
+
+        public static void VisitClassAutoPropertyAccessorChildren<TClassAutoPropertyAccessor, TAutoPropertyAccessor, TAttributeGroup, TVisitor>(
+            TClassAutoPropertyAccessor accessor,
+            Func<TClassAutoPropertyAccessor, TAutoPropertyAccessor> autoPropertyAccessorFactory,
+            TVisitor visitor)
+            where TClassAutoPropertyAccessor : IClassAutoPropertyAccessor<TAttributeGroup>
+            where TAutoPropertyAccessor : IAutoPropertyAccessor<TAttributeGroup>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+        {
+            autoPropertyAccessorFactory(accessor).Accept(visitor);
+        }
+
+        public static void VisitStaticClassAutoPropertyAccessorChildren<TStaticClassAutoPropertyAccessor, TAutoPropertyAccessor, TAttributeGroup, TVisitor>(
+            TStaticClassAutoPropertyAccessor accessor,
+            Func<TStaticClassAutoPropertyAccessor, TAutoPropertyAccessor> autoPropertyAccessorFactory,
+            TVisitor visitor)
+            where TStaticClassAutoPropertyAccessor : IStaticClassAutoPropertyAccessor<TAttributeGroup>
+            where TAutoPropertyAccessor : IAutoPropertyAccessor<TAttributeGroup>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+        {
+            autoPropertyAccessorFactory(accessor).Accept(visitor);
+        }
+
+        public static void VisitStructAutoPropertyAccessorChildren<TStructAutoPropertyAccessor, TAutoPropertyAccessor, TAttributeGroup, TVisitor>(
+            TStructAutoPropertyAccessor accessor,
+            Func<TStructAutoPropertyAccessor, TAutoPropertyAccessor> autoPropertyAccessorFactory,
+            TVisitor visitor)
+            where TStructAutoPropertyAccessor : IStructAutoPropertyAccessor<TAttributeGroup>
+            where TAutoPropertyAccessor : IAutoPropertyAccessor<TAttributeGroup>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+        {
+            autoPropertyAccessorFactory(accessor).Accept(visitor);
         }
     }
 }

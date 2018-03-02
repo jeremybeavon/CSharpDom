@@ -223,6 +223,109 @@ namespace CSharpDom.CodeAnalysis
             return tokens;
         }
 
+        public static ClassAccessorVisibilityModifier ToClassAccessorVisibilityModifier(this SyntaxTokenList modifiers)
+        {
+            switch (modifiers.ToClassMemberVisibilityModifier())
+            {
+                case ClassMemberVisibilityModifier.Internal:
+                    return ClassAccessorVisibilityModifier.Internal;
+                case ClassMemberVisibilityModifier.ProtectedInternal:
+                    return ClassAccessorVisibilityModifier.ProtectedInternal;
+                case ClassMemberVisibilityModifier.Protected:
+                    return ClassAccessorVisibilityModifier.Protected;
+                case ClassMemberVisibilityModifier.Private:
+                    return ClassAccessorVisibilityModifier.Private;
+            }
+
+            return ClassAccessorVisibilityModifier.None;
+        }
+
+        public static SyntaxTokenList WithClassAccessorVisibilityModifier(
+            this SyntaxTokenList tokens,
+            ClassAccessorVisibilityModifier modifier)
+        {
+            ClassMemberVisibilityModifier memberModifier = ClassMemberVisibilityModifier.None;
+            switch (modifier)
+            {
+                case ClassAccessorVisibilityModifier.Internal:
+                    memberModifier = ClassMemberVisibilityModifier.Internal;
+                    break;
+                case ClassAccessorVisibilityModifier.ProtectedInternal:
+                    memberModifier = ClassMemberVisibilityModifier.ProtectedInternal;
+                    break;
+                case ClassAccessorVisibilityModifier.Protected:
+                    memberModifier = ClassMemberVisibilityModifier.Protected;
+                    break;
+                case ClassAccessorVisibilityModifier.Private:
+                    memberModifier = ClassMemberVisibilityModifier.Private;
+                    break;
+            }
+
+            return tokens.WithClassMemberVisibilityModifier(memberModifier);
+        }
+
+        public static StaticClassAccessorVisibilityModifier ToStaticClassAccessorVisibilityModifier(this SyntaxTokenList modifiers)
+        {
+            switch (modifiers.ToClassMemberVisibilityModifier())
+            {
+                case ClassMemberVisibilityModifier.Internal:
+                    return StaticClassAccessorVisibilityModifier.Internal;
+                case ClassMemberVisibilityModifier.Private:
+                    return StaticClassAccessorVisibilityModifier.Private;
+            }
+
+            return StaticClassAccessorVisibilityModifier.None;
+        }
+
+        public static SyntaxTokenList WithStaticClassAccessorVisibilityModifier(
+            this SyntaxTokenList tokens,
+            StaticClassAccessorVisibilityModifier modifier)
+        {
+            ClassMemberVisibilityModifier memberModifier = ClassMemberVisibilityModifier.None;
+            switch (modifier)
+            {
+                case StaticClassAccessorVisibilityModifier.Internal:
+                    memberModifier = ClassMemberVisibilityModifier.Internal;
+                    break;
+                case StaticClassAccessorVisibilityModifier.Private:
+                    memberModifier = ClassMemberVisibilityModifier.Private;
+                    break;
+            }
+
+            return tokens.WithClassMemberVisibilityModifier(memberModifier);
+        }
+
+        public static StructAccessorVisibilityModifier ToStructAccessorVisibilityModifier(this SyntaxTokenList modifiers)
+        {
+            switch (modifiers.ToClassMemberVisibilityModifier())
+            {
+                case ClassMemberVisibilityModifier.Internal:
+                    return StructAccessorVisibilityModifier.Internal;
+                case ClassMemberVisibilityModifier.Private:
+                    return StructAccessorVisibilityModifier.Private;
+            }
+
+            return StructAccessorVisibilityModifier.None;
+        }
+
+        public static SyntaxTokenList WithStructAccessorVisibilityModifier(
+            this SyntaxTokenList tokens,
+            StructAccessorVisibilityModifier modifier)
+        {
+            ClassMemberVisibilityModifier memberModifier = ClassMemberVisibilityModifier.None;
+            switch (modifier)
+            {
+                case StructAccessorVisibilityModifier.Internal:
+                    memberModifier = ClassMemberVisibilityModifier.Internal;
+                    break;
+                case StructAccessorVisibilityModifier.Private:
+                    memberModifier = ClassMemberVisibilityModifier.Private;
+                    break;
+            }
+
+            return tokens.WithClassMemberVisibilityModifier(memberModifier);
+        }
+
         public static ClassMemberInheritanceModifier ToClassMemberInheritanceModifier(this SyntaxTokenList modifiers)
         {
             if (modifiers.Any(SyntaxKind.SealedKeyword))

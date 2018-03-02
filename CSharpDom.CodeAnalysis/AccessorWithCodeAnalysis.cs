@@ -62,25 +62,5 @@ namespace CSharpDom.CodeAnalysis
         {
             return accessorType == AccessorType.Get ? SyntaxKind.GetKeyword : SyntaxKind.SetKeyword;
         }
-
-        public override void Accept(IEditableVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void Accept(IGenericVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void AcceptChildren(IEditableVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public override void AcceptChildren(IGenericVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

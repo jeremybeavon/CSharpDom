@@ -25,7 +25,7 @@ namespace CSharpDom.BaseClasses.Editable
 
         public override void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitAccessor(this, visitor);
+            GenericVisitor.VisitAccessorChildren(this, visitor);
         }
 
         public override void AcceptChildren(IEditableVisitor visitor)

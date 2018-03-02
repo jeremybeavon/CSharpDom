@@ -29,7 +29,7 @@ namespace CSharpDom.Serialization
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            GenericVisitor.VisitAccessor(this, visitor);
+            GenericVisitor.VisitAccessorChildren(this, visitor);
         }
     }
 }

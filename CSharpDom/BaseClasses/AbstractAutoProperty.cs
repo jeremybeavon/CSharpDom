@@ -11,7 +11,7 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IBasicType
         where TTypeReference : ITypeReference
-        where TAccessor : IAccessor
+        where TAccessor : IAutoPropertyAccessor
         where TExpression : IExpression
     {
         public abstract TExpression InitialValue { get; }

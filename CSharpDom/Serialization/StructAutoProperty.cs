@@ -10,7 +10,7 @@ namespace CSharpDom.Serialization
             AttributeGroup,
             IStructType,
             TypeReference,
-            StructAccessor,
+            StructAutoPropertyAccessor,
             Expression>
     {
         public StructAutoProperty()
@@ -25,7 +25,7 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public StructAccessor GetAccessor { get; set; }
+        public StructAutoPropertyAccessor GetAccessor { get; set; }
 
         public StructMemberInheritanceModifier InheritanceModifier { get; set; }
 
@@ -33,7 +33,7 @@ namespace CSharpDom.Serialization
 
         public TypeReference PropertyType { get; set; }
 
-        public StructAccessor SetAccessor { get; set; }
+        public StructAutoPropertyAccessor SetAccessor { get; set; }
 
         public StructMemberVisibilityModifier Visibility { get; set; }
 

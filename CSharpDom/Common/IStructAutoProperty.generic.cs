@@ -9,7 +9,7 @@ namespace CSharpDom.Common
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IStructType
         where TTypeReference : ITypeReference
-        where TAccessor : IStructAccessor
+        where TAccessor : IStructAutoPropertyAccessor
         where TExpression : IExpression
     {
     }

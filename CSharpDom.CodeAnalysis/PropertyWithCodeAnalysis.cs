@@ -6,13 +6,14 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class PropertyWithCodeAnalysis :
         EditableProperty<
             AttributeGroupWithCodeAnalysis,
-            IBasicType,
+            IEditableBasicType,
             ITypeReferenceWithCodeAnalysis,
             AccessorWithCodeAnalysis>,
         IHasSyntax<PropertyDeclarationSyntax>,
@@ -53,9 +54,9 @@ namespace CSharpDom.CodeAnalysis
             set { attributes.ReplaceList(value); }
         }
 
-        public override IBasicType DeclaringType
+        public override IEditableBasicType DeclaringType
         {
-            get { return node.GetParent<IBasicType>(); }
+            get { return node.GetParent<IEditableBasicType>(); }
             set { throw new NotSupportedException(); }
         }
 

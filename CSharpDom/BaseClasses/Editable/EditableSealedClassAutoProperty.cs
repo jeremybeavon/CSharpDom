@@ -12,7 +12,7 @@ namespace CSharpDom.BaseClasses.Editable
         where TAttributeGroup : IEditableAttributeGroup
         where TDeclaringType : IEditableSealedType
         where TTypeReference : IEditableTypeReference
-        where TAccessor : IEditableClassAccessor
+        where TAccessor : IEditableClassAutoPropertyAccessor
         where TExpression : IEditableExpression
     {
         public abstract SealedClassMemberInheritanceModifier InheritanceModifier { get; set; }

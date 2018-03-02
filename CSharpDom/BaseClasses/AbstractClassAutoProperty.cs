@@ -11,7 +11,7 @@ namespace CSharpDom.BaseClasses
         where TAttributeGroup : IAttributeGroup
         where TDeclaringType : IClassType
         where TTypeReference : ITypeReference
-        where TAccessor : IClassAccessor
+        where TAccessor : IClassAutoPropertyAccessor
         where TExpression : IExpression
     {
         public abstract ClassMemberInheritanceModifier InheritanceModifier { get; }

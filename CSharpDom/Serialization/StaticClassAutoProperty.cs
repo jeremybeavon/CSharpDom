@@ -10,7 +10,7 @@ namespace CSharpDom.Serialization
             AttributeGroup,
             IStaticType,
             TypeReference,
-            StaticClassAccessor,
+            StaticClassAutoPropertyAccessor,
             Expression>
     {
         public StaticClassAutoProperty()
@@ -25,13 +25,13 @@ namespace CSharpDom.Serialization
             get { return null; }
         }
 
-        public StaticClassAccessor GetAccessor { get; set; }
+        public StaticClassAutoPropertyAccessor GetAccessor { get; set; }
         
         public string Name { get; set; }
 
         public TypeReference PropertyType { get; set; }
 
-        public StaticClassAccessor SetAccessor { get; set; }
+        public StaticClassAutoPropertyAccessor SetAccessor { get; set; }
 
         public StaticClassMemberVisibilityModifier Visibility { get; set; }
 

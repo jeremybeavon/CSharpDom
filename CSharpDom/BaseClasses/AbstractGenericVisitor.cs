@@ -2687,7 +2687,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IBasicType
             where TTypeReference : ITypeReference
-            where TAccessor : IAccessor
+            where TAccessor : IAutoPropertyAccessor
             where TExpression : IExpression
         {
             Visit(property);
@@ -2706,7 +2706,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IClassType
             where TTypeReference : ITypeReference
-            where TAccessor : IClassAccessor
+            where TAccessor : IClassAutoPropertyAccessor
             where TExpression : IExpression
         {
             Visit(property);
@@ -2725,7 +2725,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : ISealedType
             where TTypeReference : ITypeReference
-            where TAccessor : IClassAccessor
+            where TAccessor : IClassAutoPropertyAccessor
             where TExpression : IExpression
         {
             Visit(property);
@@ -2744,7 +2744,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStaticType
             where TTypeReference : ITypeReference
-            where TAccessor : IStaticClassAccessor
+            where TAccessor : IStaticClassAutoPropertyAccessor
             where TExpression : IExpression
         {
             Visit(property);
@@ -2763,7 +2763,7 @@ namespace CSharpDom.BaseClasses
             where TAttributeGroup : IAttributeGroup
             where TDeclaringType : IStructType
             where TTypeReference : ITypeReference
-            where TAccessor : IStructAccessor
+            where TAccessor : IStructAutoPropertyAccessor
             where TExpression : IExpression
         {
             Visit(property);
@@ -2785,6 +2785,39 @@ namespace CSharpDom.BaseClasses
             where TLambdaProperty : IStaticClassLambdaProperty
         {
             Visit(propertyCollection);
+        }
+
+        public virtual void VisitAutoPropertyAccessor<TAttributeGroup>(IAutoPropertyAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            Visit(accessor);
+        }
+
+        public virtual void VisitClassAutoPropertyAccessor<TAttributeGroup>(
+            IClassAutoPropertyAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            Visit(accessor);
+        }
+
+        public virtual void VisitStaticClassAutoPropertyAccessor<TAttributeGroup>(
+            IStaticClassAutoPropertyAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            Visit(accessor);
+        }
+
+        public virtual void VisitStructAutoPropertyAccessor<TAttributeGroup>(
+            IStructAutoPropertyAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            Visit(accessor);
+        }
+
+        public virtual void VisitAccessor<TAttributeGroup>(IAccessor<TAttributeGroup> accessor)
+            where TAttributeGroup : IAttributeGroup
+        {
+            Visit(accessor);
         }
     }
 }

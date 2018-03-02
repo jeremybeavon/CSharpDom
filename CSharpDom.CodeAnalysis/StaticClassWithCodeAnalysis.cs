@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses.Editable;
+using CSharpDom.Common.Editable;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
@@ -25,6 +26,7 @@ namespace CSharpDom.CodeAnalysis
             StaticClassNestedInterfaceWithCodeAnalysis,
             StaticClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
+        IEditableStaticClass,
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>
@@ -167,7 +169,17 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Members; }
         }
-        
+
+        public void Accept(IEditableVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AcceptChildren(IEditableVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithCodeAnalysis(this);

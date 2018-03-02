@@ -17,6 +17,24 @@ namespace CSharpDom.BaseClasses.Editable
             get { return new ReadOnlyCollectionWrapper<TAttributeGroup>(Attributes); }
         }
 
+        public override void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitAccessor(this);
+        }
 
+        public override void Accept(IEditableVisitor visitor)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitAccessorChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
