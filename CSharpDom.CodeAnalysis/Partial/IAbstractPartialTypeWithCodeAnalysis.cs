@@ -1,9 +1,11 @@
 ﻿using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
     public interface IAbstractPartialTypeWithCodeAnalysis :
+        IEditableAbstractType,
         IClassTypeDefinitionWithCodeAnalysis,
         IAbstractType<
             AttributeGroupWithCodeAnalysis,

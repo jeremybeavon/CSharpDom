@@ -1266,15 +1266,19 @@ namespace CSharpDom.Common
             VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
-        public static void VisitAbstractClassPropertyCollectionChildren<TAbstractClassPropertyCollection, TProperty, TAbstractProperty, TExplicitInterfaceProperty, TVisitor>(
+        public static void VisitAbstractClassPropertyCollectionChildren<TAbstractClassPropertyCollection, TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty, TVisitor>(
             TAbstractClassPropertyCollection propertyCollection,
             TVisitor visitor)
-            where TAbstractClassPropertyCollection : IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>
+            where TAbstractClassPropertyCollection : IAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty>
             where TProperty : IClassProperty, IVisitable<TVisitor>
+            where TAutoProperty : IClassAutoProperty, IVisitable<TVisitor>
+            where TLambdaProperty : IClassLambdaProperty, IVisitable<TVisitor>
             where TAbstractProperty : IAbstractProperty, IVisitable<TVisitor>
             where TExplicitInterfaceProperty : IExplicitInterfaceProperty, IVisitable<TVisitor>
         {
             VisitCollection(propertyCollection, visitor);
+            VisitCollection(propertyCollection.AutoProperties, visitor);
+            VisitCollection(propertyCollection.LambdaProperties, visitor);
             VisitCollection(propertyCollection.AbstractProperties, visitor);
             VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
         }

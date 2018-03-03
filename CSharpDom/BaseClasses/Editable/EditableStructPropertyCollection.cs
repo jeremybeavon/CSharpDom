@@ -27,14 +27,20 @@ namespace CSharpDom.BaseClasses.Editable
 
         public abstract ICollection<TProperty> Properties { get; set; }
 
-        public abstract IReadOnlyCollection<TAutoProperty> AutoProperties { get; }
+        public abstract ICollection<TAutoProperty> AutoProperties { get; set; }
 
-        public abstract IReadOnlyCollection<TLambdaProperty> LambdaProperties { get; }
+        public abstract ICollection<TLambdaProperty> LambdaProperties { get; set; }
 
         IReadOnlyCollection<TExplicitInterfaceProperty> IHasExplicitInterfaceProperties<TExplicitInterfaceProperty>.ExplicitInterfaceProperties
         {
             get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceProperty>(ExplicitInterfaceProperties); }
         }
+
+        IReadOnlyCollection<TAutoProperty> IHasAutoProperties<TAutoProperty>.AutoProperties =>
+            new ReadOnlyCollectionWrapper<TAutoProperty>(AutoProperties);
+
+        IReadOnlyCollection<TLambdaProperty> IHasLambdaProperties<TLambdaProperty>.LambdaProperties =>
+            new ReadOnlyCollectionWrapper<TLambdaProperty>(LambdaProperties);
 
         public override void Accept(IGenericVisitor visitor)
         {

@@ -4,13 +4,14 @@ using System.Linq;
 using CSharpDom.Common;
 using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.CodeAnalysis
 {
     public sealed class ExplicitInterfacePropertyWithCodeAnalysis :
         EditableExplicitInterfaceProperty<
             AttributeGroupWithCodeAnalysis,
-            IType,
+            IEditableType,
             InterfaceReferenceWithCodeAnalysis,
             ITypeReferenceWithCodeAnalysis,
             AccessorWithBodyWithCodeAnalysis>,
@@ -45,9 +46,9 @@ namespace CSharpDom.CodeAnalysis
             set { property.Attributes = value; }
         }
 
-        public override IType DeclaringType
+        public override IEditableType DeclaringType
         {
-            get { return property.Property.Node.GetParent<IType>(); }
+            get { return property.Property.Node.GetParent<IEditableType>(); }
             set { throw new NotSupportedException(); }
         }
 

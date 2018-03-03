@@ -32,9 +32,9 @@ namespace CSharpDom.CodeAnalysis.Partial
             property.DeclaringTypeFunc = () => DeclaringType.Class;
         }
         
-        public PropertyWithCodeAnalysis Property
+        public AbstractPropertyWithCodeAnalysis Property
         {
-            get { return property.Property; }
+            get { return property; }
         }
 
         public override ICollection<AttributeGroupWithCodeAnalysis> Attributes
@@ -79,15 +79,10 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { property.Syntax = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
             get { return property.Visibility; }
             set { property.Visibility = value; }
-        }
-
-        internal AbstractPropertyWithCodeAnalysis InternalProperty
-        {
-            get { return property; }
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
     public interface IPartialStructTypeWithCodeAnalysis :
+        IEditableStructType,
         IStructType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,

@@ -99,9 +99,9 @@ namespace CSharpDom.CodeAnalysis
             set { property.Syntax = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            get { return Syntax.Modifiers.ToAbstractMemberVisibilityModifier(); }
             set
             {
                 PropertyDeclarationSyntax syntax = Syntax;

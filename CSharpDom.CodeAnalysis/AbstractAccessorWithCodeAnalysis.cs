@@ -39,7 +39,9 @@ namespace CSharpDom.CodeAnalysis
             get { return accessor.Syntax; }
             set { accessor.Syntax = value; }
         }
-        
+
+        public override AbstractAccessorVisibilityModifier Visibility => throw new NotImplementedException();
+
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitAccessorWithCodeAnalysis(this);

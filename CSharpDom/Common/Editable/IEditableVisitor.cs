@@ -90,9 +90,11 @@ namespace CSharpDom.Common.Editable
             where TPartialMethodDefinition : IEditablePartialMethodDefinition
             where TPartialMethodImplementation : IEditablePartialMethodImplementation;
 
-        void VisitAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(
-            IEditableAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection)
+        void VisitAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty>(
+            IEditableAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection)
             where TProperty : IEditableClassProperty
+            where TAutoProperty : IEditableClassAutoProperty
+            where TLambdaProperty : IEditableClassLambdaProperty
             where TAbstractProperty : IEditableAbstractProperty
             where TExplicitInterfaceProperty : IEditableExplicitInterfaceProperty;
 

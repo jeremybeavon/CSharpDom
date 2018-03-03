@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses.Editable.Partial;
+using CSharpDom.Common.Editable.Partial;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
@@ -25,6 +26,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticPartialClassNestedInterfaceWithCodeAnalysis,
             StaticPartialClassNestedStructCollectionWithCodeAnalysis,
             StaticConstructorWithCodeAnalysis>,
+        IEditableStaticPartialClass,
         IHasSyntax<ClassDeclarationSyntax>,
         IHasNode<ClassDeclarationSyntax>//,
         //IVisitable<IReflectionVisitor>

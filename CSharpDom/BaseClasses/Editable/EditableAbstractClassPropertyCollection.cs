@@ -6,10 +6,17 @@ using System.Collections.Generic;
 
 namespace CSharpDom.BaseClasses.Editable
 {
-    public abstract class EditableAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> :
+    public abstract class EditableAbstractClassPropertyCollection<
+        TProperty,
+        TAutoProperty,
+        TLambdaProperty,
+        TAbstractProperty,
+        TExplicitInterfaceProperty> :
         AbstractGenericVisitableObject,
-        IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>
+        IAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty>
         where TProperty : IClassProperty
+        where TAutoProperty : IClassAutoProperty
+        where TLambdaProperty : IClassLambdaProperty
         where TAbstractProperty : IAbstractProperty
         where TExplicitInterfaceProperty : IExplicitInterfaceProperty
     {
@@ -24,6 +31,10 @@ namespace CSharpDom.BaseClasses.Editable
 
         public abstract ICollection<TProperty> Properties { get; set; }
 
+        public abstract ICollection<TAutoProperty> AutoProperties { get; set; }
+
+        public abstract ICollection<TLambdaProperty> LambdaProperties { get; set; }
+
         IReadOnlyCollection<TAbstractProperty> IHasAbstractProperties<TAbstractProperty>.AbstractProperties
         {
             get { return new ReadOnlyCollectionWrapper<TAbstractProperty>(AbstractProperties); }
@@ -33,6 +44,12 @@ namespace CSharpDom.BaseClasses.Editable
         {
             get { return new ReadOnlyCollectionWrapper<TExplicitInterfaceProperty>(ExplicitInterfaceProperties); }
         }
+
+        IReadOnlyCollection<TAutoProperty> IHasAutoProperties<TAutoProperty>.AutoProperties =>
+            new ReadOnlyCollectionWrapper<TAutoProperty>(AutoProperties);
+
+        IReadOnlyCollection<TLambdaProperty> IHasLambdaProperties<TLambdaProperty>.LambdaProperties =>
+            new ReadOnlyCollectionWrapper<TLambdaProperty>(LambdaProperties);
 
         public override void Accept(IGenericVisitor visitor)
         {

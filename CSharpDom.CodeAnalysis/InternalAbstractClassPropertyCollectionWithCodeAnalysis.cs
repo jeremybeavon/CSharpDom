@@ -10,19 +10,31 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly InternalClassTypeWithCodeAnalysis<TClass> classType;
         private readonly ClassPropertyListWrapper<TClass, AbstractClassPropertyWithCodeAnalysis> properties;
+        private readonly ClassPropertyListWrapper<TClass, AbstractClassAutoPropertyWithCodeAnalysis> autoProperties;
+        private readonly ClassPropertyListWrapper<TClass, AbstractClassLambdaPropertyWithCodeAnalysis> lambdaProperties;
         private readonly ClassPropertyListWrapper<TClass, AbstractPropertyWithCodeAnalysis> abstractProperties;
 
-        internal InternalAbstractClassPropertyCollectionWithCodeAnalysis(InternalClassTypeWithCodeAnalysis<TClass> classType)
+        internal InternalAbstractClassPropertyCollectionWithCodeAnalysis(
+            InternalClassTypeWithCodeAnalysis<TClass> classType)
         {
             this.classType = classType;
             properties = new ClassPropertyListWrapper<TClass, AbstractClassPropertyWithCodeAnalysis>(
                 classType.InternalNode,
                 () => new AbstractClassPropertyWithCodeAnalysis(),
-                syntax => syntax.ExplicitInterfaceSpecifier == null && !syntax.Modifiers.IsAbstract());
+                syntax => syntax.IsProperty());
+            autoProperties = new ClassPropertyListWrapper<TClass, AbstractClassAutoPropertyWithCodeAnalysis>(
+                classType.InternalNode,
+                () => new AbstractClassAutoPropertyWithCodeAnalysis(),
+                syntax => syntax.IsAutoProperty() && !syntax.Modifiers.IsAbstract());
+            lambdaProperties = new ClassPropertyListWrapper<TClass, AbstractClassLambdaPropertyWithCodeAnalysis>(
+                classType.InternalNode,
+                () => new AbstractClassLambdaPropertyWithCodeAnalysis(),
+                syntax => syntax.IsLambdaProperty());
             abstractProperties = new ClassPropertyListWrapper<TClass, AbstractPropertyWithCodeAnalysis>(
                 classType.InternalNode,
                 () => new AbstractPropertyWithCodeAnalysis(),
                 syntax => syntax.Modifiers.IsAbstract());
+
         }
 
         public override ICollection<AbstractPropertyWithCodeAnalysis> AbstractProperties
@@ -41,6 +53,18 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return properties; }
             set { classType.Members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }
+        }
+
+        public override ICollection<AbstractClassAutoPropertyWithCodeAnalysis> AutoProperties
+        {
+            get { return autoProperties; }
+            set { classType.Members.CombineList(nameof(AutoProperties), value.Select(item => item.Syntax)); }
+        }
+
+        public override ICollection<AbstractClassLambdaPropertyWithCodeAnalysis> LambdaProperties
+        {
+            get { return lambdaProperties; }
+            set { classType.Members.CombineList(nameof(LambdaProperties), value.Select(item => item.Syntax)); }
         }
     }
 }

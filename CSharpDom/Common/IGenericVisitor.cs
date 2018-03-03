@@ -90,9 +90,11 @@ namespace CSharpDom.Common
             where TPartialMethodDefinition : IPartialMethodDefinition
             where TPartialMethodImplementation : IPartialMethodImplementation;
 
-        void VisitAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(
-            IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection)
+        void VisitAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty>(
+            IAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection)
             where TProperty : IClassProperty
+            where TAutoProperty : IClassAutoProperty
+            where TLambdaProperty : IClassLambdaProperty
             where TAbstractProperty : IAbstractProperty
             where TExplicitInterfaceProperty : IExplicitInterfaceProperty;
 

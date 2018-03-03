@@ -1,10 +1,5 @@
 ﻿using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -13,7 +8,7 @@ namespace CSharpDom.CodeAnalysis
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
-            StaticClassPropertyWithCodeAnalysis,
+            StaticClassPropertyCollectionWithCodeAnalysis,
             StaticClassMethodCollectionWithCodeAnalysis,
             StaticClassFieldCollectionWithCodeAnalysis,
             StaticClassNestedClassCollectionWithCodeAnalysis,

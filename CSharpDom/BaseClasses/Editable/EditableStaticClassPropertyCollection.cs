@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using CSharpDom.Common;
 using CSharpDom.Common.Editable;
+using CSharpDom.Wrappers.Internal;
 
 namespace CSharpDom.BaseClasses.Editable
 {
-    public abstract class AbstractStaticClassPropertyCollection<
+    public abstract class EditableStaticClassPropertyCollection<
         TProperty,
         TAutoProperty,
         TLambdaProperty> :
@@ -29,9 +30,11 @@ namespace CSharpDom.BaseClasses.Editable
 
         protected abstract ICollection<TProperty> Properties { get; set; }
 
-        IReadOnlyCollection<TAutoProperty> IHasAutoProperties<TAutoProperty>.AutoProperties => throw new NotImplementedException();
+        IReadOnlyCollection<TAutoProperty> IHasAutoProperties<TAutoProperty>.AutoProperties =>
+            new ReadOnlyCollectionWrapper<TAutoProperty>(AutoProperties);
 
-        IReadOnlyCollection<TLambdaProperty> IHasLambdaProperties<TLambdaProperty>.LambdaProperties => throw new NotImplementedException();
+        IReadOnlyCollection<TLambdaProperty> IHasLambdaProperties<TLambdaProperty>.LambdaProperties =>
+            new ReadOnlyCollectionWrapper<TLambdaProperty>(LambdaProperties);
 
         public override void Accept(IGenericVisitor visitor)
         {
@@ -39,6 +42,16 @@ namespace CSharpDom.BaseClasses.Editable
         }
 
         public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Accept(IEditableVisitor visitor)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
         {
             throw new NotImplementedException();
         }

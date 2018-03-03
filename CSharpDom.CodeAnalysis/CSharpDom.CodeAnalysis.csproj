@@ -185,13 +185,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractAccessorWithCodeAnalysis.cs" />
+    <Compile Include="AbstractClassLambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="AutoPropertyAccessorWithCodeAnalysis.cs" />
+    <Compile Include="ClassLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="InternalNestedStaticClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="InternalStaticClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="NestedStaticClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="NestedStaticClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="NestedStaticClassLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\AbstractPartialClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\AbstractPartialClassLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\PartialClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\PartialClassLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\NestedStaticPartialClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\NestedStaticPartialClassLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\SealedPartialClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\SealedPartialClassLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\StaticPartialClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\StaticPartialClassLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\PartialStructAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\PartialStructLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="StructPropertyListWrapper.cs" />
     <Compile Include="LambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="BaseTypeSyntaxListConversions.cs" />
     <Compile Include="AutoPropertyWithCodeAnalysis.cs" />
     <Compile Include="AbstractClassAutoPropertyWithCodeAnalysis.cs" />
     <Compile Include="ClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="PropertyDeclarationSyntaxExtensions.cs" />
+    <Compile Include="SealedClassLambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="SealedClassAutoPropertyWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="StaticClassLambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="StaticClassAutoPropertyWithCodeAnalysis.cs" />
     <Compile Include="StructAutoPropertyAccessorWithCodeAnalysis.cs" />
     <Compile Include="StaticClassAutoPropertyAccessorWithCodeAnalysis.cs" />
@@ -589,6 +613,7 @@
     <Compile Include="Statements\ThrowStatementWithCodeAnalysis.cs" />
     <Compile Include="Statements\VariableDeclarationStatementWithCodeAnalysis.cs" />
     <Compile Include="StaticTypeWithCodeAnalysis.cs" />
+    <Compile Include="StructLambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="StructDeclarationSyntaxExtensions.cs" />
     <Compile Include="InternalStructEventCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStructFieldCollectionWithCodeAnalysis.cs" />

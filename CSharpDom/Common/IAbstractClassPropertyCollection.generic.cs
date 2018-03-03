@@ -2,12 +2,18 @@
 
 namespace CSharpDom.Common
 {
-    public interface IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> :
+    public interface IAbstractClassPropertyCollection<
+        TProperty, 
+        TAutoProperty,
+        TLambdaProperty,
+        TAbstractProperty,
+        TExplicitInterfaceProperty> :
         IAbstractClassPropertyCollection,
-        IReadOnlyCollection<TProperty>,
-        IHasAbstractProperties<TAbstractProperty>,
-        IHasExplicitInterfaceProperties<TExplicitInterfaceProperty>
+        IClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>,
+        IHasAbstractProperties<TAbstractProperty>
         where TProperty : IClassProperty
+        where TAutoProperty : IClassAutoProperty
+        where TLambdaProperty : IClassLambdaProperty
         where TAbstractProperty : IAbstractProperty
         where TExplicitInterfaceProperty : IExplicitInterfaceProperty
     {

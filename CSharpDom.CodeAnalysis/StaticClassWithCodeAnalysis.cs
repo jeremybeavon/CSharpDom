@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticClassEventCollectionWithCodeAnalysis,
-            StaticClassPropertyWithCodeAnalysis,
+            StaticClassPropertyCollectionWithCodeAnalysis,
             StaticClassMethodCollectionWithCodeAnalysis,
             StaticClassFieldCollectionWithCodeAnalysis,
             StaticClassNestedClassCollectionWithCodeAnalysis,
@@ -100,7 +100,7 @@ namespace CSharpDom.CodeAnalysis
             set { classType.Name = value; }
         }
 
-        public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
+        public override StaticClassPropertyCollectionWithCodeAnalysis Properties
         {
             get { return classType.Properties; }
             set { classType.Properties = value; }

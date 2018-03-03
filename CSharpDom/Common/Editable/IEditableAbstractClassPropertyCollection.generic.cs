@@ -2,13 +2,19 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Common.Editable
 {
-    public interface IEditableAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> :
+    public interface IEditableAbstractClassPropertyCollection<
+        TProperty,
+        TAutoProperty,
+        TLambdaProperty,
+        TAbstractProperty,
+        TExplicitInterfaceProperty> :
         IEditableAbstractClassPropertyCollection,
-        ICollection<TProperty>,
+        IEditableClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TExplicitInterfaceProperty>,
         IHasEditableAbstractProperties<TAbstractProperty>,
-        IHasEditableExplicitInterfaceProperties<TExplicitInterfaceProperty>,
-        IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>
+        IAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty>
         where TProperty : IEditableClassProperty
+        where TAutoProperty : IEditableClassAutoProperty
+        where TLambdaProperty : IEditableClassLambdaProperty
         where TAbstractProperty : IEditableAbstractProperty
         where TExplicitInterfaceProperty : IEditableExplicitInterfaceProperty
     {

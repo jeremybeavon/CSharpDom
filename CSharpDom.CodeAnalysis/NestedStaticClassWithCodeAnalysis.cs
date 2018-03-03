@@ -12,7 +12,7 @@ namespace CSharpDom.CodeAnalysis
             IType,
             GenericParameterDeclarationWithCodeAnalysis,
             NestedStaticClassEventCollectionWithCodeAnalysis,
-            NestedStaticClassPropertyWithCodeAnalysis,
+            NestedStaticClassPropertyCollectionWithCodeAnalysis,
             NestedStaticClassMethodCollectionWithCodeAnalysis,
             NestedStaticClassFieldCollectionWithCodeAnalysis,
             NestedStaticClassNestedClassCollectionWithCodeAnalysis,

@@ -90,10 +90,5 @@ namespace CSharpDom.CodeAnalysis.Partial
             get { return property.Visibility; }
             set { property.Visibility = value; }
         }
-        
-        internal AbstractClassPropertyWithCodeAnalysis InternalProperty
-        {
-            get { return property; }
-        }
     }
 }

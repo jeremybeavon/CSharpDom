@@ -1,5 +1,6 @@
 ﻿using CSharpDom.BaseClasses;
 using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 using CSharpDom.Wrappers.Internal;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,7 +25,7 @@ namespace CSharpDom.BaseClasses.Editable
         TNestedInterface,
         TNestedStructCollection,
         TStaticConstructor> :
-        AbstractGenericVisitableObject,
+        EditableVisitableObject,
         IType<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>
         where TAttributeGroup : IAttributeGroup
         where TGenericParameter : IGenericParameterDeclaration
@@ -128,9 +129,19 @@ namespace CSharpDom.BaseClasses.Editable
             visitor.VisitType(this);
         }
 
+        public override void Accept(IEditableVisitor visitor)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override void AcceptChildren(IGenericVisitor visitor)
         {
             GenericVisitor.VisitTypeChildren(this, visitor);
+        }
+
+        public override void AcceptChildren(IEditableVisitor visitor)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

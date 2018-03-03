@@ -1557,10 +1557,13 @@ namespace CSharpDom.Text
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));
         }
 
-        public override void VisitAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection)
+        public override void VisitAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty>(
+            IAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection)
         {
             IEnumerable<ISourceCodeBuilderStep> steps =
                 propertyCollection.ToSteps()
+                .Concat(propertyCollection.AutoProperties.ToSteps())
+                .Concat(propertyCollection.LambdaProperties.ToSteps())
                 .Concat(propertyCollection.ExplicitInterfaceProperties.ToSteps())
                 .Concat(propertyCollection.AbstractProperties.ToSteps());
             Steps.AddRange(steps, () => Steps.AddRange(new WriteNewLine(), new WriteIndentedNewLine()));

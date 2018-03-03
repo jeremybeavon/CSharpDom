@@ -1131,14 +1131,18 @@ namespace CSharpDom.Common
             VisitCollection(methodCollection.PartialMethodImplementations, visitor);
         }
 
-        public static void VisitAbstractClassPropertyCollectionChildren<TProperty, TAbstractProperty, TExplicitInterfaceProperty>(
-            IAbstractClassPropertyCollection<TProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection,
+        public static void VisitAbstractClassPropertyCollectionChildren<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty>(
+            IAbstractClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty, TAbstractProperty, TExplicitInterfaceProperty> propertyCollection,
             IGenericVisitor visitor)
             where TProperty : IClassProperty
+            where TAutoProperty : IClassAutoProperty
+            where TLambdaProperty : IClassLambdaProperty
             where TAbstractProperty : IAbstractProperty
             where TExplicitInterfaceProperty : IExplicitInterfaceProperty
         {
             VisitCollection(propertyCollection, visitor);
+            VisitCollection(propertyCollection.AutoProperties, visitor);
+            VisitCollection(propertyCollection.LambdaProperties, visitor);
             VisitCollection(propertyCollection.AbstractProperties, visitor);
             VisitCollection(propertyCollection.ExplicitInterfaceProperties, visitor);
         }

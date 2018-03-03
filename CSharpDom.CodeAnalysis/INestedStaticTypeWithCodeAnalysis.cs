@@ -1,14 +1,16 @@
 ﻿using CSharpDom.Common;
+using CSharpDom.Common.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CSharpDom.CodeAnalysis
 {
     public interface INestedStaticTypeWithCodeAnalysis :
+        IEditableStaticType,
         IStaticType<
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             NestedStaticClassEventCollectionWithCodeAnalysis,
-            NestedStaticClassPropertyWithCodeAnalysis,
+            NestedStaticClassPropertyCollectionWithCodeAnalysis,
             NestedStaticClassMethodCollectionWithCodeAnalysis,
             NestedStaticClassFieldCollectionWithCodeAnalysis,
             NestedStaticClassNestedClassCollectionWithCodeAnalysis,
