@@ -100,13 +100,13 @@ namespace CSharpDom.CodeAnalysis
             set { method.Syntax = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            get { return Syntax.Modifiers.ToAbstractMemberVisibilityModifier(); }
             set
             {
                 MethodDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithAbstractMemberVisibilityModifier(value));
             }
         }
         

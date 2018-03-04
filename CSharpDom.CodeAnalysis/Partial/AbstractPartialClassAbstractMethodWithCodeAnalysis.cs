@@ -85,7 +85,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { method.Syntax = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
             get { return method.Visibility; }
             set { method.Visibility = value; }

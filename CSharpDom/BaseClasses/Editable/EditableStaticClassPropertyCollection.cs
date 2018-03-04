@@ -28,7 +28,7 @@ namespace CSharpDom.BaseClasses.Editable
 
         public bool IsReadOnly => false;
 
-        protected abstract ICollection<TProperty> Properties { get; set; }
+        public abstract ICollection<TProperty> Properties { get; set; }
 
         IReadOnlyCollection<TAutoProperty> IHasAutoProperties<TAutoProperty>.AutoProperties =>
             new ReadOnlyCollectionWrapper<TAutoProperty>(AutoProperties);

@@ -19,7 +19,7 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly LambdaPropertyWithCodeAnalysis property;
         
-        internal StaticClassLambdaPropertyWithCodeAnalysis()
+        internal NestedStaticClassLambdaPropertyWithCodeAnalysis()
         {
             property = new LambdaPropertyWithCodeAnalysis();
         }

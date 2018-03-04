@@ -10,13 +10,13 @@ namespace CSharpDom.CodeAnalysis.Partial
         NestedStaticPartialClassMethodCollectionWithCodeAnalysis
         where TStaticClass : class, IHasNode<ClassDeclarationSyntax>
     {
-        private readonly InternalNestedStaticClassWithCodeAnalysis<TStaticClass> classType;
+        private readonly InternalNestedStaticPartialClassWithCodeAnalysis<TStaticClass> classType;
         private readonly ClassMethodListWrapper<TStaticClass, NestedStaticClassMethodWithCodeAnalysis> methods;
         private readonly ClassMethodListWrapper<TStaticClass, PartialMethodDefinitionWithCodeAnalysis> partialMethodDefinitions;
         private readonly ClassMethodListWrapper<TStaticClass, PartialMethodImplementationWithCodeAnalysis> partialMethodImplementations;
 
         internal InternalNestedStaticPartialClassMethodCollectionWithCodeAnalysis(
-            InternalNestedStaticClassWithCodeAnalysis<TStaticClass> classType)
+            InternalNestedStaticPartialClassWithCodeAnalysis<TStaticClass> classType)
         {
             this.classType = classType;
             methods = new ClassMethodListWrapper<TStaticClass, NestedStaticClassMethodWithCodeAnalysis>(

@@ -31,7 +31,7 @@ namespace CSharpDom.CodeAnalysis
                 syntax => syntax.IsLambdaProperty());
         }
         
-        protected override ICollection<NestedStaticClassPropertyWithCodeAnalysis> Properties
+        public override ICollection<NestedStaticClassPropertyWithCodeAnalysis> Properties
         {
             get { return properties; }
             set { classType.Members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }

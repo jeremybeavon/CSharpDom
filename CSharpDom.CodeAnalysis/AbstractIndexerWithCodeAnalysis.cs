@@ -95,13 +95,13 @@ namespace CSharpDom.CodeAnalysis
             set { indexer.SetAccessor = value?.Accessor; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            get { return Syntax.Modifiers.ToAbstractMemberVisibilityModifier(); }
             set
             {
                 IndexerDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithAbstractMemberVisibilityModifier(value));
             }
         }
 

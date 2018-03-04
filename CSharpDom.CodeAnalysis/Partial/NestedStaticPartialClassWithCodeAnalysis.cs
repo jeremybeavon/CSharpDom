@@ -1,13 +1,18 @@
 ﻿using CSharpDom.Common;
-using CSharpDom.Common.Editable;
+using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CSharpDom.CodeAnalysis.Partial
 {
-    public interface INestedStaticPartialTypeWithCodeAnalysis :
-        IEditableStaticType,
-        IStaticType<
+    public abstract class NestedStaticPartialClassWithCodeAnalysis :
+        EditableNestedStaticClass<
             AttributeGroupWithCodeAnalysis,
+            IType,
             GenericParameterDeclarationWithCodeAnalysis,
             NestedStaticPartialClassEventCollectionWithCodeAnalysis,
             NestedStaticPartialClassPropertyCollectionWithCodeAnalysis,
@@ -21,6 +26,6 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticConstructorWithCodeAnalysis>,
         IHasSyntax<ClassDeclarationSyntax>
     {
-        INestedStaticTypeWithCodeAnalysis Class { get; }
+        public abstract ClassDeclarationSyntax Syntax { get; set; }
     }
 }

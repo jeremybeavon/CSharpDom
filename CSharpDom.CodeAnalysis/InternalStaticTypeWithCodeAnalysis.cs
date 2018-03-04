@@ -33,10 +33,7 @@ namespace CSharpDom.CodeAnalysis
             StaticClassNestedInterfaceWithCodeAnalysis,
             InterfaceDeclarationSyntax> interfaces;
         private readonly StaticClassMethodCollectionWithCodeAnalysis methods;
-        private readonly ClassMemberListWrapper<
-            TClass,
-            StaticClassPropertyWithCodeAnalysis,
-            PropertyDeclarationSyntax> properties;
+        private readonly StaticClassPropertyCollectionWithCodeAnalysis properties;
         private readonly ClassMemberListWrapper<
             TClass,
             StaticConstructorWithCodeAnalysis,
@@ -70,9 +67,7 @@ namespace CSharpDom.CodeAnalysis
                 node,
                 () => new StaticClassNestedInterfaceWithCodeAnalysis());
             methods = new InternalStaticClassMethodCollectionWithCodeAnalysis<TClass>(this);
-            properties = new ClassMemberListWrapper<TClass, StaticClassPropertyWithCodeAnalysis, PropertyDeclarationSyntax>(
-                node,
-                () => new StaticClassPropertyWithCodeAnalysis());
+            properties = new InternalStaticClassPropertyCollectionWithCodeAnalysis<TClass>(this);
             staticConstructor = new ClassMemberListWrapper<TClass, StaticConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
                 () => new StaticConstructorWithCodeAnalysis());
@@ -176,7 +171,7 @@ namespace CSharpDom.CodeAnalysis
             set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
         }
 
-        public override ICollection<StaticClassPropertyWithCodeAnalysis> Properties
+        public override StaticClassPropertyCollectionWithCodeAnalysis Properties
         {
             get { return properties; }
             set { members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }

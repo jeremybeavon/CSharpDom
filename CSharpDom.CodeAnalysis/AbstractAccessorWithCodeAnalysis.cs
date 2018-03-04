@@ -40,7 +40,42 @@ namespace CSharpDom.CodeAnalysis
             set { accessor.Syntax = value; }
         }
 
-        public override AbstractAccessorVisibilityModifier Visibility => throw new NotImplementedException();
+        public override AbstractAccessorVisibilityModifier Visibility
+        {
+            get
+            {
+                switch (Syntax.Modifiers.ToClassAccessorVisibilityModifier())
+                {
+                    case ClassAccessorVisibilityModifier.Internal:
+                        return AbstractAccessorVisibilityModifier.Internal;
+                    case ClassAccessorVisibilityModifier.ProtectedInternal:
+                        return AbstractAccessorVisibilityModifier.ProtectedInternal;
+                    case ClassAccessorVisibilityModifier.Protected:
+                        return AbstractAccessorVisibilityModifier.Protected;
+                    default:
+                        return AbstractAccessorVisibilityModifier.None;
+                }
+            }
+            set
+            {
+                ClassAccessorVisibilityModifier modifier = ClassAccessorVisibilityModifier.None;
+                switch (value)
+                {
+                    case AbstractAccessorVisibilityModifier.Internal:
+                        modifier = ClassAccessorVisibilityModifier.Internal;
+                        break;
+                    case AbstractAccessorVisibilityModifier.ProtectedInternal:
+                        modifier = ClassAccessorVisibilityModifier.ProtectedInternal;
+                        break;
+                    case AbstractAccessorVisibilityModifier.Protected:
+                        modifier = ClassAccessorVisibilityModifier.Protected;
+                        break;
+                }
+
+                AccessorDeclarationSyntax syntax = Syntax;
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassAccessorVisibilityModifier(modifier));
+            }
+        }
 
         /*public void Accept(IReflectionVisitor visitor)
         {

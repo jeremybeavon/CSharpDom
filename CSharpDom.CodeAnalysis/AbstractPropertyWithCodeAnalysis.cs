@@ -105,7 +105,7 @@ namespace CSharpDom.CodeAnalysis
             set
             {
                 PropertyDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithAbstractMemberVisibilityModifier(value));
             }
         }
         

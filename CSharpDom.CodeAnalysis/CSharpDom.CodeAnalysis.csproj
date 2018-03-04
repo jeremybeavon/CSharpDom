@@ -195,12 +195,15 @@
     <Compile Include="NestedStaticClassLambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="Partial\AbstractPartialClassAutoPropertyWithCodeAnalysis.cs" />
     <Compile Include="Partial\AbstractPartialClassLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\NestedStaticPartialClassWithCodeAnalysis.cs" />
     <Compile Include="Partial\PartialClassAutoPropertyWithCodeAnalysis.cs" />
     <Compile Include="Partial\PartialClassLambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassAutoPropertyWithCodeAnalysis.cs" />
     <Compile Include="Partial\NestedStaticPartialClassLambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="Partial\SealedPartialClassAutoPropertyWithCodeAnalysis.cs" />
     <Compile Include="Partial\SealedPartialClassLambdaPropertyWithCodeAnalysis.cs" />
+    <Compile Include="Partial\NestedStaticPartialClassPropertyCollectionWithCodeAnalysis.cs" />
+    <Compile Include="Partial\StaticPartialClassPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="Partial\StaticPartialClassAutoPropertyWithCodeAnalysis.cs" />
     <Compile Include="Partial\StaticPartialClassLambdaPropertyWithCodeAnalysis.cs" />
     <Compile Include="Partial\PartialStructAutoPropertyWithCodeAnalysis.cs" />

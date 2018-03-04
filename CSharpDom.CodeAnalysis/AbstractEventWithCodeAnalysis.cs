@@ -65,13 +65,13 @@ namespace CSharpDom.CodeAnalysis
             set { @event.Name = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
-            get { return Syntax.Modifiers.ToClassMemberVisibilityModifier(); }
+            get { return Syntax.Modifiers.ToAbstractMemberVisibilityModifier(); }
             set
             {
                 EventFieldDeclarationSyntax syntax = Syntax;
-                Syntax = syntax.WithModifiers(syntax.Modifiers.WithClassMemberVisibilityModifier(value));
+                Syntax = syntax.WithModifiers(syntax.Modifiers.WithAbstractMemberVisibilityModifier(value));
             }
         }
 

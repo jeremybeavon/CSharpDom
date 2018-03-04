@@ -223,6 +223,47 @@ namespace CSharpDom.CodeAnalysis
             return tokens;
         }
 
+        public static AbstractMemberVisibilityModifier ToAbstractMemberVisibilityModifier(this SyntaxTokenList modifiers)
+        {
+            switch (modifiers.ToClassMemberVisibilityModifier())
+            {
+                case ClassMemberVisibilityModifier.Public:
+                    return AbstractMemberVisibilityModifier.Public;
+                case ClassMemberVisibilityModifier.Internal:
+                    return AbstractMemberVisibilityModifier.Internal;
+                case ClassMemberVisibilityModifier.ProtectedInternal:
+                    return AbstractMemberVisibilityModifier.ProtectedInternal;
+                case ClassMemberVisibilityModifier.Protected:
+                    return AbstractMemberVisibilityModifier.Protected;
+            }
+
+            return AbstractMemberVisibilityModifier.None;
+        }
+
+        public static SyntaxTokenList WithAbstractMemberVisibilityModifier(
+            this SyntaxTokenList tokens,
+            AbstractMemberVisibilityModifier modifier)
+        {
+            ClassMemberVisibilityModifier memberModifier = ClassMemberVisibilityModifier.None;
+            switch (modifier)
+            {
+                case AbstractMemberVisibilityModifier.Public:
+                    memberModifier = ClassMemberVisibilityModifier.Public;
+                    break;
+                case AbstractMemberVisibilityModifier.Internal:
+                    memberModifier = ClassMemberVisibilityModifier.Internal;
+                    break;
+                case AbstractMemberVisibilityModifier.ProtectedInternal:
+                    memberModifier = ClassMemberVisibilityModifier.ProtectedInternal;
+                    break;
+                case AbstractMemberVisibilityModifier.Protected:
+                    memberModifier = ClassMemberVisibilityModifier.Protected;
+                    break;
+            }
+
+            return tokens.WithClassMemberVisibilityModifier(memberModifier);
+        }
+
         public static ClassAccessorVisibilityModifier ToClassAccessorVisibilityModifier(this SyntaxTokenList modifiers)
         {
             switch (modifiers.ToClassMemberVisibilityModifier())

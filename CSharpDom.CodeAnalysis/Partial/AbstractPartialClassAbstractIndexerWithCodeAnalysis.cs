@@ -73,7 +73,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { indexer.SetAccessor = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
             get { return indexer.Visibility; }
             set { indexer.Visibility = value; }

@@ -13,7 +13,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             INestedStaticTypeWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             NestedStaticPartialClassEventCollectionWithCodeAnalysis,
-            NestedStaticPartialClassPropertyWithCodeAnalysis,
+            NestedStaticPartialClassPropertyCollectionWithCodeAnalysis,
             NestedStaticPartialClassMethodCollectionWithCodeAnalysis,
             NestedStaticPartialClassFieldCollectionWithCodeAnalysis,
             NestedStaticPartialClassNestedClassCollectionWithCodeAnalysis,
@@ -119,7 +119,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { classType.Name = value; }
         }
 
-        public override ICollection<NestedStaticPartialClassPropertyWithCodeAnalysis> Properties
+        public override NestedStaticPartialClassPropertyCollectionWithCodeAnalysis Properties
         {
             get { return partialType.Properties; }
             set { partialType.Properties = value; }

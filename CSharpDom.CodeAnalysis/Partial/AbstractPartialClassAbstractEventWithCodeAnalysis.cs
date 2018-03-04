@@ -58,7 +58,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { @event.Name = value; }
         }
 
-        public override ClassMemberVisibilityModifier Visibility
+        public override AbstractMemberVisibilityModifier Visibility
         {
             get { return @event.Visibility; }
             set { @event.Visibility = value; }

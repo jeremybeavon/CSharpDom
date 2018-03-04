@@ -17,7 +17,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             AttributeGroupWithCodeAnalysis,
             GenericParameterDeclarationWithCodeAnalysis,
             StaticPartialClassEventCollectionWithCodeAnalysis,
-            StaticPartialClassPropertyWithCodeAnalysis,
+            StaticPartialClassPropertyCollectionWithCodeAnalysis,
             StaticPartialClassMethodCollectionWithCodeAnalysis,
             StaticPartialClassFieldCollectionWithCodeAnalysis,
             StaticPartialClassNestedClassCollectionWithCodeAnalysis,
@@ -46,9 +46,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             StaticClassNestedInterfaceWithCodeAnalysis,
             StaticPartialClassNestedInterfaceWithCodeAnalysis> interfaces;
         private readonly StaticPartialClassMethodCollectionWithCodeAnalysis methods;
-        private readonly WrappedCollection<
-            StaticClassPropertyWithCodeAnalysis,
-            StaticPartialClassPropertyWithCodeAnalysis> properties;
+        private readonly StaticPartialClassPropertyCollectionWithCodeAnalysis properties;
         private readonly StaticPartialClassNestedStructCollectionWithCodeAnalysis structs;
         private readonly IMemberList members;
 
@@ -76,11 +74,7 @@ namespace CSharpDom.CodeAnalysis.Partial
                 child => child.Interface,
                 value => classType.Interfaces = value);
             methods = new StaticPartialClassMethodCollectionWithCodeAnalysis(type);
-            properties = new WrappedCollection<StaticClassPropertyWithCodeAnalysis, StaticPartialClassPropertyWithCodeAnalysis>(
-                classType.Properties,
-                parent => new StaticPartialClassPropertyWithCodeAnalysis(parent),
-                child => child.Property,
-                value => classType.Properties = value);
+            properties = new StaticPartialClassPropertyCollectionWithCodeAnalysis(classType.Properties);
             structs = new StaticPartialClassNestedStructCollectionWithCodeAnalysis(classType.Structs);
             members = type.Members;
         }
@@ -172,7 +166,7 @@ namespace CSharpDom.CodeAnalysis.Partial
             set { Syntax = Syntax.WithIdentifier(SyntaxFactory.Identifier(value)); }
         }
 
-        public override ICollection<StaticPartialClassPropertyWithCodeAnalysis> Properties
+        public override StaticPartialClassPropertyCollectionWithCodeAnalysis Properties
         {
             get { return properties; }
             set { members.CombineList(nameof(Properties), value.Select(item => item.Syntax)); }

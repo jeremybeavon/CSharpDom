@@ -169,17 +169,7 @@ namespace CSharpDom.CodeAnalysis
         {
             get { return classType.Members; }
         }
-
-        public void Accept(IEditableVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void AcceptChildren(IEditableVisitor visitor)
-        {
-            throw new NotImplementedException();
-        }
-
+        
         /*public void Accept(IReflectionVisitor visitor)
         {
             visitor.VisitClassWithCodeAnalysis(this);
