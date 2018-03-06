@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Reflection;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -12,6 +13,7 @@ namespace CSharpDom.CodeAnalysis
         private object parent;
         private INode parentNode;
         private TSyntax syntax;
+        private int index;
 
         public Node(TValue value)
         {
@@ -26,7 +28,19 @@ namespace CSharpDom.CodeAnalysis
 
         public TValue Value { get; private set; }
 
-        public int Index { get; set; }
+        public int Index
+        {
+            get => index;
+            set
+            {
+                if (CodeAnalysisLogger.LogDebugMessages)
+                {
+                    LogDebugMessage($"set_Index: oldIndex={index}, newIndex={value}");
+                }
+
+                index = value;
+            }
+        }
 
         public IList<INode> ChildNodes { get; } = new List<INode>();
 
@@ -45,6 +59,12 @@ namespace CSharpDom.CodeAnalysis
                     if (!CodeAnalysisSettings.AreEditsAllowed)
                     {
                         throw new InvalidOperationException("Edits are not allowed.");
+                    }
+
+                    if (CodeAnalysisLogger.LogDebugMessages)
+                    {
+                        LogDebugMessage(
+                            $"set_Syntax: oldSyntax={syntax}, newSyntax={value}");
                     }
 
                     syntax = value;
@@ -94,11 +114,18 @@ namespace CSharpDom.CodeAnalysis
             where TParent : class, IHasNode<TParentSyntax>
             where TParentSyntax : class
         {
-            Index = childIndex;
+            if (CodeAnalysisLogger.LogDebugMessages)
+            {
+                Type[] genericArguments = MethodBase.GetCurrentMethod().GetGenericArguments();
+                LogDebugMessage(
+                    $"SetParent<{genericArguments[0].Name}, {genericArguments[1].Name}>: Index={childIndex}");
+            }
+
+            index = childIndex;
             SetParent<TParent, TParentSyntax>(
                 parent,
-                () => getChildSyntax(Index),
-                syntax => parent.Node.Syntax = createChildSyntax(Index, syntax));
+                () => getChildSyntax(index),
+                syntax => parent.Node.Syntax = createChildSyntax(index, syntax));
         }
 
         public void RemoveParentNode()
@@ -119,7 +146,13 @@ namespace CSharpDom.CodeAnalysis
         {
             if (parent != null && ((CodeAnalysisSettings.AreEditsAllowed && !IsLocked) || syntax == null))
             {
+                TSyntax oldSyntax = syntax;
                 syntax = getSyntax();
+                if (CodeAnalysisLogger.LogDebugMessages && oldSyntax != syntax)
+                {
+                    LogDebugMessage(
+                        $"RefreshSyntax: oldSyntax={oldSyntax}, newSyntax={syntax}");
+                }
             }
         }
 
@@ -149,6 +182,13 @@ namespace CSharpDom.CodeAnalysis
                     IsLocked = false;
                 }
             }
+        }
+
+        private void LogDebugMessage(string message)
+        {
+            Type[] genericArguments = GetType().GetGenericArguments();
+            string prefix = $"Node<{genericArguments[0].Name}, {genericArguments[1].Name}>.";
+            CodeAnalysisLogger.LogDebugMessage(prefix + message);
         }
     }
 }

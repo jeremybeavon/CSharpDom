@@ -4,6 +4,14 @@ namespace CSharpDom.CodeAnalysis.Expressions
 {
     public static class ExpressionFactory
     {
+        public static BinaryOperatorExpressionWithCodeAnalysis Binary(
+            IExpressionWithCodeAnalysis left,
+            BinaryOperatorExpressionType @operator,
+            IExpressionWithCodeAnalysis right)
+        {
+            return new BinaryOperatorExpressionWithCodeAnalysis(left, @operator, right);
+        }
+
         public static CastExpressionWithCodeAnalysis Cast(
             ITypeReferenceWithCodeAnalysis type,
             IExpressionWithCodeAnalysis expression)
@@ -14,6 +22,13 @@ namespace CSharpDom.CodeAnalysis.Expressions
         public static IdentifierExpressionWithCodeAnalysis Identifier(string name)
         {
             return new IdentifierExpressionWithCodeAnalysis(name);
+        }
+
+        public static MemberExpressionWithCodeAnalysis Member(
+            IExpressionWithCodeAnalysis objectExpression,
+            string memberName)
+        {
+            return new MemberExpressionWithCodeAnalysis(objectExpression, memberName);
         }
 
         public static MethodCallExpressionWithCodeAnalysis MethodCall(

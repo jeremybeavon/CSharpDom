@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses.Editable;
+using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 
@@ -10,6 +11,11 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly AccessorWithCodeAnalysis accessor;
         private readonly MethodBodyNode<AccessorWithCodeAnalysis, AccessorDeclarationSyntax> body;
+
+        public AccessorWithBodyWithCodeAnalysis(AccessorType accessorType, MethodBodyWithCodeAnalysis body)
+            : this(new AccessorWithCodeAnalysis(SyntaxFactory.AccessorDeclaration(AccessorWithCodeAnalysis.GetSyntax(accessorType), body.Syntax)))
+        {
+        }
 
         internal AccessorWithBodyWithCodeAnalysis(AccessorWithCodeAnalysis accessor)
         {

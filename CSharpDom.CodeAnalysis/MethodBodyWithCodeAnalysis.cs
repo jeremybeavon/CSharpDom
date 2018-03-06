@@ -2,6 +2,8 @@
 using CSharpDom.BaseClasses.Editable;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
+using Microsoft.CodeAnalysis.CSharp;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -11,6 +13,12 @@ namespace CSharpDom.CodeAnalysis
         IHasNode<BlockSyntax>
     {
         private readonly BlockStatementWithCodeAnalysis block;
+
+        public MethodBodyWithCodeAnalysis(params IStatementWithCodeAnalysis[] statements)
+            : this()
+        {
+            Syntax = SyntaxFactory.Block(statements.Select(statement => statement.Syntax));
+        }
 
         internal MethodBodyWithCodeAnalysis()
         {

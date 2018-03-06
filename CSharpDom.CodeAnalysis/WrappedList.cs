@@ -82,6 +82,7 @@ namespace CSharpDom.CodeAnalysis
 
         public void Clear()
         {
+            LogDebugMessage("Clear");
             foreach (TParent item in list.ToArray())
             {
                 list.Remove(item);
@@ -152,6 +153,18 @@ namespace CSharpDom.CodeAnalysis
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        private void LogDebugMessage(string message)
+        {
+            if (!CodeAnalysisLogger.LogDebugMessages)
+            {
+                return;
+            }
+
+            string genericArguments = string.Join(", ", GetType().GetGenericArguments().Select(type => type.Name));
+            string prefix = $"WrappedList<{genericArguments}>.";
+            CodeAnalysisLogger.LogDebugMessage(prefix + message);
         }
     }
 }

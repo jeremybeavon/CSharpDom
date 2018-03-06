@@ -80,7 +80,7 @@ namespace CSharpDom.CodeAnalysis
 
         public static async Task<ProjectWithCodeAnalysis> OpenAsync(string fileName)
         {
-            MSBuildWorkspace workspace = MSBuildWorkspace.Create();
+            MSBuildWorkspace workspace = CodeAnalysisWorkspace.Create();
             return new SolutionWithCodeAnalysis(
                 workspace,
                 (await workspace.OpenProjectAsync(fileName)).Solution).Projects.First();

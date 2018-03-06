@@ -39,7 +39,11 @@ namespace CSharpDom.CodeAnalysis
             set { elementType.Value = value; }
         }
 
-        public string Name => ElementType.Name;
+        public string Name
+        {
+            get => ElementType.Name;
+            set => ElementType.Name = value;
+        }
 
         public override int Dimensions
         {

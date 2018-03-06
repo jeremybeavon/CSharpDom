@@ -58,7 +58,7 @@ namespace CSharpDom.CodeAnalysis
             get { return node; }
         }
 
-        private static SyntaxKind GetSyntax(AccessorType accessorType)
+        internal static SyntaxKind GetSyntax(AccessorType accessorType)
         {
             return accessorType == AccessorType.Get ? SyntaxKind.GetKeyword : SyntaxKind.SetKeyword;
         }

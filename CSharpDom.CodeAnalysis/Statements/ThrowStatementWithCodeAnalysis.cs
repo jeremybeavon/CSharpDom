@@ -13,7 +13,6 @@ namespace CSharpDom.CodeAnalysis.Statements
         IHasNode<ThrowStatementSyntax>,
         IInternalStatement
     {
-        public static bool stop;
         private readonly StatementNode<ThrowStatementWithCodeAnalysis, ThrowStatementSyntax> node;
         private readonly CachedExpressionNode<ThrowStatementWithCodeAnalysis, ThrowStatementSyntax> expression;
 
@@ -25,10 +24,6 @@ namespace CSharpDom.CodeAnalysis.Statements
 
         internal ThrowStatementWithCodeAnalysis()
         {
-            if (stop)
-            {
-
-            }
             node = new StatementNode<ThrowStatementWithCodeAnalysis, ThrowStatementSyntax>(this);
             expression = new CachedExpressionNode<ThrowStatementWithCodeAnalysis, ThrowStatementSyntax>(
                 node,

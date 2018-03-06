@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.EditableInterface
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.GenericChildVisitorGenerator", "Apps\CSharpDom.GenericChildVisitorGenerator\CSharpDom.GenericChildVisitorGenerator.csproj", "{E7E4A642-8D96-4A97-9838-94578A7AD81A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSharpDom.Generator", "CSharpDom.Generator\CSharpDom.Generator.csproj", "{6B95A18E-8B54-47D1-A672-7A837CA183CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{E7E4A642-8D96-4A97-9838-94578A7AD81A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7E4A642-8D96-4A97-9838-94578A7AD81A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7E4A642-8D96-4A97-9838-94578A7AD81A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B95A18E-8B54-47D1-A672-7A837CA183CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B95A18E-8B54-47D1-A672-7A837CA183CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B95A18E-8B54-47D1-A672-7A837CA183CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B95A18E-8B54-47D1-A672-7A837CA183CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

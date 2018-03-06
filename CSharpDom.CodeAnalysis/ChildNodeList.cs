@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -49,7 +50,12 @@ namespace CSharpDom.CodeAnalysis
 
         public int Count
         {
-            get { return list.Count; }
+            get
+            {
+                LogDebugMessage("Count");
+                RefreshList();
+                return innerList.Count;
+            }
         }
 
         public bool IsReadOnly
@@ -63,11 +69,21 @@ namespace CSharpDom.CodeAnalysis
         {
             get
             {
+                if (CodeAnalysisLogger.LogDebugMessages)
+                {
+                    LogDebugMessage($"this[{index}]");
+                }
+
                 RefreshList();
                 return innerList[index];
             }
             set
             {
+                if (CodeAnalysisLogger.LogDebugMessages)
+                {
+                    LogDebugMessage($"this[{index}] = {value?.GetHashCode()}");
+                }
+
                 RefreshList();
                 isRefreshList = true;
                 list[index] = value.Node.Syntax;
@@ -78,12 +94,18 @@ namespace CSharpDom.CodeAnalysis
         
         public int IndexOf(TChild item)
         {
+            LogDebugMessage("IndexOf");
             RefreshList();
             return innerList.IndexOf(item);
         }
 
         public void Insert(int index, TChild item)
         {
+            if (CodeAnalysisLogger.LogDebugMessages)
+            {
+                LogDebugMessage($"Insert: index={index}, item={item?.GetHashCode()}");
+            }
+
             RefreshList();
             isRefreshList = true;
             TChildSyntax syntax = item.Node.Syntax;
@@ -94,15 +116,25 @@ namespace CSharpDom.CodeAnalysis
 
         public void RemoveAt(int index)
         {
+            if (CodeAnalysisLogger.LogDebugMessages)
+            {
+                LogDebugMessage($"RemoveAt: index={index}");
+            }
+
             RefreshList();
             isRefreshList = true;
-            list.RemoveAt(index);
             InternalRemoveAt(index);
+            list.RemoveAt(index);
             isRefreshList = false;
         }
 
         public void Add(TChild item)
         {
+            if (CodeAnalysisLogger.LogDebugMessages)
+            {
+                LogDebugMessage($"Insert: item={item?.GetHashCode()}");
+            }
+
             RefreshList();
             isRefreshList = true;
             list.Add(item.Node.Syntax);
@@ -112,6 +144,7 @@ namespace CSharpDom.CodeAnalysis
 
         public void Clear()
         {
+            LogDebugMessage("Clear");
             RefreshList();
             isRefreshList = true;
             while (list.Count != 0)
@@ -126,18 +159,29 @@ namespace CSharpDom.CodeAnalysis
 
         public bool Contains(TChild item)
         {
+            if (CodeAnalysisLogger.LogDebugMessages)
+            {
+                LogDebugMessage($"Contains: item={item?.GetHashCode()}");
+            }
+
             RefreshList();
             return innerList.Contains(item);
         }
 
         public void CopyTo(TChild[] array, int arrayIndex)
         {
+            LogDebugMessage("CopyTo");
             RefreshList();
             innerList.CopyTo(array, arrayIndex);
         }
 
         public bool Remove(TChild item)
         {
+            if (CodeAnalysisLogger.LogDebugMessages)
+            {
+                LogDebugMessage($"Remove: item={item?.GetHashCode()}");
+            }
+
             RefreshList();
             isRefreshList = true;
             TChildSyntax syntax = item.Node.Syntax;
@@ -149,6 +193,7 @@ namespace CSharpDom.CodeAnalysis
 
         public IEnumerator<TChild> GetEnumerator()
         {
+            LogDebugMessage("GetEnumerator");
             RefreshList();
             return innerList.GetEnumerator();
         }
@@ -158,16 +203,6 @@ namespace CSharpDom.CodeAnalysis
             return GetEnumerator();
         }
         
-        public TChildSyntax GetChildSyntax(TParentSyntax parentSyntax, int index)
-        {
-            return list[index];
-        }
-
-        public TParentSyntax CreateChildSyntax(TParentSyntax parentSyntax, int index, TChildSyntax childSyntax)
-        {
-            return list.Set(index, childSyntax);
-        }
-
         void INode.RefreshSyntax()
         {
             RefreshList();
@@ -248,10 +283,6 @@ namespace CSharpDom.CodeAnalysis
             isInitialized = true;
             if (isRefreshed)
             {
-                /*if (innerList.Count != list.Count)
-                {
-                    Console.Write("Problem");
-                }*/
                 return;
             }
 
@@ -259,6 +290,11 @@ namespace CSharpDom.CodeAnalysis
             if (innerList.Count == count)
             {
                 return;
+            }
+
+            if (CodeAnalysisLogger.LogDebugMessages)
+            {
+                LogDebugMessage($"RefreshList: listCount={count}, innerListCount={innerList.Count}");
             }
 
             isRefreshList = true;
@@ -287,6 +323,18 @@ namespace CSharpDom.CodeAnalysis
             }
 
             isRefreshList = false;
+        }
+
+        private void LogDebugMessage(string message)
+        {
+            if (!CodeAnalysisLogger.LogDebugMessages)
+            {
+                return;
+            }
+
+            string genericArguments = string.Join(", ", GetType().GetGenericArguments().Select(type => type.Name));
+            string prefix = $"ChildNodeList<{genericArguments}>.";
+            CodeAnalysisLogger.LogDebugMessage(prefix + message);
         }
     }
 }

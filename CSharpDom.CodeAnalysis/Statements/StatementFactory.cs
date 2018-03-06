@@ -35,6 +35,11 @@ namespace CSharpDom.CodeAnalysis.Statements
             return new EmptyStatementWithCodeAnalysis();
         }
 
+        public static ExpressionStatementWithCodeAnalysis Expression(IExpressionWithCodeAnalysis expression)
+        {
+            return new ExpressionStatementWithCodeAnalysis(expression);
+        }
+
         public static ForeachStatementWithCodeAnalysis ForEach(
             ITypeReferenceWithCodeAnalysis type,
             string variableName,

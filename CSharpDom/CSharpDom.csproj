@@ -1094,6 +1094,8 @@
     <Compile Include="Common\Expressions\IArgument.cs" />
     <Compile Include="Common\Expressions\IArgument.generic.cs" />
     <Compile Include="Common\Expressions\IThisExpression.cs" />
+    <Compile Include="Common\Expressions\IThrowExpression.cs" />
+    <Compile Include="Common\Expressions\IThrowExpression.generic.cs" />
     <Compile Include="Common\GenericChildVisitor.cs" />
     <Compile Include="Common\IAbstractMember.cs" />
     <Compile Include="Common\IAutoPropertyAccessor.cs" />
@@ -1532,6 +1534,7 @@
     <Compile Include="Common\Statements\ICheckedStatement.cs" />
     <Compile Include="Common\Statements\ICheckedStatement.generic.cs" />
     <Compile Include="IndexerParameterModifier.cs" />
+    <Compile Include="NameComparer.cs" />
     <Compile Include="NotSupported\ExpressionNotSupported.cs" />
     <Compile Include="AnonymousMethodParameterModifier.cs" />
     <Compile Include="Reflection\ClassCollectionWithReflectionExtensions.cs" />
@@ -3774,6 +3777,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="BaseClasses\Editable\Wrappers\" />
     <Folder Include="BaseClasses\Trivia\" />
     <Folder Include="CodeDom\" />
     <Folder Include="ComponentModel\" />

@@ -1,11 +1,10 @@
 ﻿using CSharpDom.CodeAnalysis;
+using CSharpDom.CodeAnalysis.Expressions;
+using CSharpDom.CodeAnalysis.Statements;
 using CSharpDom.Text;
 using CSharpDom.Text.Rules;
-using Microsoft.CodeAnalysis.CSharp;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Nito.AsyncEx;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -13,23 +12,19 @@ using System.Threading.Tasks;
 
 namespace CSharpDom.EditableInterfaceGenerator
 {
-	public sealed class InterfaceTest : CSharpDom.Wrappers.IAbstractPropertyWrapper
-	{
-	}
-	
-    public class Program : IComparer<UsingDirectiveWithCodeAnalysis>
+    public static class Program
     {
         public static void Main(string[] args)
         {
-            AsyncContext.Run(GenerateEditableInterfaces);
+            AsyncContext.Run(GenerateEditableWrappers);
         }
 
         private static string GetNewName(string name)
         {
-            return Regex.Replace(name, "^I(?:Has)?", "$&Editable");
+            return "Editable" + name;
         }
 
-        private static async Task GenerateEditableInterfaces()
+        private static async Task GenerateEditableWrappers()
         {
             string baseDirectory = Path.GetFullPath(
                 Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), @"..\..\..\.."));
@@ -40,18 +35,14 @@ namespace CSharpDom.EditableInterfaceGenerator
             {
                 document.IsLocked = true;
                 string filePath = document.FullFilePath;
-                if (!filePath.Contains(@"CSharpDom\Common") ||
-                    filePath.Contains(@"CSharpDom\Common\Editable") ||
-                    filePath.Contains(@"CSharpDom\Common\IL\") ||
-                    filePath.Contains(@"CSharpDom\Common\Trivia") ||
-                    !Regex.IsMatch(Path.GetFileName(filePath), "^I[A-Z]"))
+                if (!filePath.Contains(@"CSharpDom\BaseClasses\Wrappers"))
                 {
                     continue;
                 }
 
-                string destinationPath = Path.Combine(
-                    Path.GetDirectoryName(filePath).Replace(@"CSharpDom\Common", @"CSharpDom\Common\Editable"),
-                    GetNewName(Path.GetFileName(filePath)));
+                string newDirectory = Path.GetDirectoryName(filePath)
+                    .Replace(@"CSharpDom\BaseClasses\Wrappers", @"CSharpDom\BaseClasses\Editable\Wrappers");
+                string destinationPath = Path.Combine(newDirectory, GetNewName(Path.GetFileName(filePath)));
                 if (File.Exists(destinationPath))
                 {
                     continue;
@@ -59,31 +50,72 @@ namespace CSharpDom.EditableInterfaceGenerator
 
                 LoadedDocumentWithCodeAnalysis loadedDocument = await document.LoadAsync();
                 NamespaceWithCodeAnalysis @namespace = loadedDocument.Namespaces.First();
-                if (@namespace.Interfaces.Count == 0)
-                {
-                    continue;
-                }
-
                 Console.WriteLine($"Writing: {Path.GetFileName(destinationPath)}");
                 string namespaceName = @namespace.Name;
                 using (CodeAnalysisSettings.AllowEdits(loadedDocument))
                 {
-                    List<UsingDirectiveWithCodeAnalysis> usingDirectives = loadedDocument.UsingDirectives
-                        .Select(directive => { directive.Name = directive.Name.Replace("CSharpDom.Common.", "CSharpDom.Common.Editable."); return directive; })
-                        .ToList();
-                    if (namespaceName.StartsWith("CSharpDom.Common."))
+                    foreach (UsingDirectiveWithCodeAnalysis directive in loadedDocument.UsingDirectives)
                     {
-                        UsingDirectiveWithCodeAnalysis usingDirective = new UsingDirectiveWithCodeAnalysis(namespaceName);
-                        usingDirectives.Insert(
-                            ~usingDirectives.BinarySearch(usingDirective, new Program()),
-                            usingDirective);                        
+                        directive.Name = directive.Name.Replace("CSharpDom.Common.", "CSharpDom.Common.Editable.");
                     }
 
-                    loadedDocument.UsingDirectives = usingDirectives;
-                    @namespace.Name = Regex.Replace(namespaceName, "^CSharpDom.Common", "CSharpDom.Common.Editable");
-                    InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
-                    string interfaceName = @interface.Name;
-                    if (Regex.IsMatch(interfaceName, "^IGeneric.*Visitor$"))
+                    @namespace.Name = "CSharpDom.BaseClasses.Editable.Wrappers";
+                    SealedClassWithCodeAnalysis @class = @namespace.Classes.SealedClasses.First();
+                    @class.Name = "Editable" + @class.Name;
+                    @class.BaseClass.Name = Regex.Replace(@class.BaseClass.Name, "^Abstract", "Editable");
+                    ITypeReferenceWithCodeAnalysis interfaceReference =
+                        @class.ImplementedInterfaces.First().GenericParameters[0];
+                    interfaceReference.Name = Regex.Replace(interfaceReference.Name, "^IAbstract", "IEditable");
+                    foreach (GenericParameterDeclarationWithCodeAnalysis genericParameter in @class.GenericParameters)
+                    {
+                        InterfaceReferenceWithCodeAnalysis constraint = genericParameter.InterfaceConstraints.First();
+                        constraint.Name = Regex.Replace(constraint.Name, "^I", "IEditable");
+                    }
+
+                    ITypeReferenceWithCodeAnalysis constructorParameterType =
+                        @class.Constructors.First().Parameters[0].ParameterType;
+                    constructorParameterType.Name = Regex.Replace(constructorParameterType.Name, "^I", "IEditable");
+                    foreach (SealedClassPropertyWithCodeAnalysis property in @class.Properties)
+                    {
+                        string propertyName = property.Name;
+                        if (propertyName == "WrappedObject")
+                        {
+                            continue;
+                        }
+
+                        IExpressionWithCodeAnalysis expression = ExpressionFactory.Binary(
+                            ExpressionFactory.Member(ExpressionFactory.Identifier("WrappedObject"), propertyName),
+                            BinaryOperatorExpressionType.Assign,
+                            ExpressionFactory.Identifier("value"));
+                        property.SetAccessor = new ClassAccessorWithCodeAnalysis(
+                            AccessorType.Set,
+                            new MethodBodyWithCodeAnalysis(StatementFactory.Expression(expression)));
+                    }
+
+                    foreach (SealedClassAutoPropertyWithCodeAnalysis property in @class.Properties.AutoProperties)
+                    {
+                        if (property.Name == "WrappedObject")
+                        {
+                            property.PropertyType.Name = Regex.Replace(property.PropertyType.Name, "^I", "IEditable");
+                            break;
+                        }
+                    }
+
+                    Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
+                    const int maximumLineLength = 120;
+                    string sourceCode = loadedDocument.ToSourceCode(
+                        new IndentBaseTypeListIfTooLongRule(maximumLineLength),
+                        new IndentGenericParamterDefinitionsIfTooLongRule(maximumLineLength),
+                        new IndentMethodParametersIfTooLongRule(maximumLineLength));
+                    File.WriteAllText(destinationPath, sourceCode);
+                }
+            }
+        }
+    }
+}
+
+/*
+ * if (Regex.IsMatch(interfaceName, "^IGeneric.*Visitor-$"))
                     {
                         destinationPath = destinationPath.Replace("Generic", "Editable");
                         @interface.Name = interfaceName.Replace("Generic", "Editable");
@@ -111,72 +143,4 @@ namespace CSharpDom.EditableInterfaceGenerator
                             parameterType.Name = GetNewName(parameterType.Name);
                         }
                     }
-                    else
-                    {
-                        @interface.Name = GetNewName(interfaceName);
-                        List<ITypeReferenceWithCodeAnalysis> genericParameters = new List<ITypeReferenceWithCodeAnalysis>();
-                        foreach (GenericParameterDeclarationWithCodeAnalysis parameter in @interface.GenericParameters)
-                        {
-                            genericParameters.Add(new GenericParameterReferenceWithCodeAnalysis(parameter.Name));
-                            if (parameter.InterfaceConstraints.Count == 0)
-                            {
-                                continue;
-                            }
-
-                            InterfaceReferenceWithCodeAnalysis constraint = parameter.InterfaceConstraints.First();
-                            constraint.Name = GetNewName(constraint.Name);
-                        }
-
-                        InterfaceReferenceWithCodeAnalysis interfaceReference = new InterfaceReferenceWithCodeAnalysis(
-                            interfaceName,
-                            genericParameters.ToArray());
-                        foreach (InterfaceReferenceWithCodeAnalysis reference in @interface.Interfaces.ToArray())
-                        {
-                            string referenceName = reference.Name;
-                            if (referenceName == "IVisitable")
-                            {
-                                UnspecifiedTypeReferenceWithCodeAnalysis genericParameterType =
-                                    reference.GenericParameters[0] as UnspecifiedTypeReferenceWithCodeAnalysis;
-                                genericParameterType.Name = genericParameterType.Name.Replace("Generic", "Editable");
-                            }
-                            else
-                            {
-                                reference.Name = GetNewName(referenceName);
-                            }
-                        }
-
-                        @interface.Interfaces.Add(interfaceReference);
-                        foreach (InterfacePropertyWithCodeAnalysis property in @interface.Properties.ToArray())
-                        {
-                            PropertyDeclarationSyntax syntax = property.Syntax;
-                            property.Syntax = syntax.WithAccessorList(
-                                syntax.AccessorList.AddAccessors(SyntaxFactory.AccessorDeclaration(SyntaxKind.SetAccessorDeclaration)));
-                            property.InheritanceModifier = InterfaceMemberInheritanceModifier.New;
-                            if (property.PropertyType is UnspecifiedTypeReferenceWithCodeAnalysis propertyType)
-                            {
-                                string propertyTypeName = propertyType.Name;
-                                if (propertyTypeName.StartsWith("IReadOnly"))
-                                {
-                                    propertyType.Name = propertyTypeName.Replace("ReadOnly", string.Empty);
-                                }
-                            }
-                        }
-                    }
-                }
-
-                Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
-                const int maximumLineLength = 120;
-                string sourceCode = loadedDocument.ToSourceCode(
-                    new IndentBaseTypeListIfTooLongRule(maximumLineLength),
-                    new IndentGenericParamterDefinitionsIfTooLongRule(maximumLineLength),
-                    new IndentMethodParametersIfTooLongRule(maximumLineLength));
-                File.WriteAllText(destinationPath, sourceCode);
-            }
-        }
-
-        public int Compare(UsingDirectiveWithCodeAnalysis x, UsingDirectiveWithCodeAnalysis y)
-        {
-            return x.Name.CompareTo(y.Name);
-        }
-    }
-}
+*/

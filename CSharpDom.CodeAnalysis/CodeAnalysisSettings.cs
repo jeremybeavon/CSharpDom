@@ -8,6 +8,8 @@ namespace CSharpDom.CodeAnalysis
     {
         private static readonly ISet<INode> editedNodes = new HashSet<INode>();
 
+        public static string MsBuildExePath { get; set; }
+
         internal static bool AreEditsAllowed { get; set; }
 
         public static IDisposable AllowEdits<TSyntax>(params IHasSyntax<TSyntax>[] editableObjects)

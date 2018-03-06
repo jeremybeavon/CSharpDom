@@ -1,25 +1,21 @@
 ﻿using CSharpDom.CodeAnalysis;
-using CSharpDom.CodeAnalysis.Statements;
 using CSharpDom.CodeAnalysis.Expressions;
+using CSharpDom.CodeAnalysis.Statements;
 using CSharpDom.Text;
 using CSharpDom.Text.Rules;
+using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.CodeActions;
+using Microsoft.CodeAnalysis.CodeFixes;
 using Nito.AsyncEx;
 using System;
 using System.Collections.Generic;
+using System.Composition.Hosting;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.ComponentModel.Composition.Hosting;
 using System.Reflection;
-using Microsoft.CodeAnalysis.CodeFixes;
-using System.Composition.Hosting;
-using System.Composition.Convention;
-using Microsoft.CodeAnalysis.CodeActions;
-using Microsoft.CodeAnalysis;
+using System.Text.RegularExpressions;
 using System.Threading;
-using Microsoft.CodeAnalysis.Editing;
+using System.Threading.Tasks;
 
 namespace CSharpDom.GenericChildVisitorGenerator
 {
@@ -27,29 +23,11 @@ namespace CSharpDom.GenericChildVisitorGenerator
     {
         public static void Main(string[] args)
         {
-            Environment.SetEnvironmentVariable(
-                "MSBUILD_EXE_PATH",
-                @"C:\Program Files (x86)\Microsoft Visual Studio\Preview\Community\MSBuild\15.0\Bin\MSBuild.exe");
-            foreach (string file in Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "Microsoft.Build*.dll"))
-            {
-                File.Delete(file);
-            }
-
-            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-            AsyncContext.Run(LoadImplementInterfaceAsync);
+            AsyncContext.Run(GenerateWrapperImplementations);
         }
-
-        private static Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
-        {
-            string file = Path.Combine(
-                @"C:\Program Files (x86)\Microsoft Visual Studio\Preview\Community\MSBuild\15.0\Bin",
-                new AssemblyName(args.Name).Name + ".dll");
-            return File.Exists(file) ? Assembly.LoadFrom(file) : null;
-        }
-
+        
         private static async Task GenerateWrapperImplementations()
         {
-
             string baseDirectory = Path.GetFullPath(
                 Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), @"..\..\..\.."));
             ProjectWithCodeAnalysis project = await ProjectWithCodeAnalysis.OpenAsync(
@@ -83,11 +61,9 @@ namespace CSharpDom.GenericChildVisitorGenerator
                             fieldName);
                         @class.Fields.Fields.Add(field);
                         IList<IStatementWithCodeAnalysis> statements = property.GetAccessor.Body.Statements;
-                        ThrowStatementWithCodeAnalysis.stop = true;
                         statements.Clear();
                         statements.Add(
                             StatementFactory.Return(ExpressionFactory.MethodCall(ExpressionFactory.Identifier(fieldName))));
-                        ThrowStatementWithCodeAnalysis.stop = false;
                     }
                 }
 
@@ -131,7 +107,7 @@ namespace CSharpDom.GenericChildVisitorGenerator
             var operations = await actions[0].GetOperationsAsync(CancellationToken.None);
             foreach (var operation in operations)
             {
-                operation.Apply(solution.Workspace, CancellationToken.None);
+                operation.Apply(solution.Syntax.Workspace, CancellationToken.None);
             }
             actions.GetHashCode();
         }

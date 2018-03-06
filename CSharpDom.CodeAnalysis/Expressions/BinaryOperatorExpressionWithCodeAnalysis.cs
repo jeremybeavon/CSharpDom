@@ -61,6 +61,17 @@ namespace CSharpDom.CodeAnalysis.Expressions
             BinaryOperatorExpressionWithCodeAnalysis,
             ExpressionSyntax> right;
 
+        public BinaryOperatorExpressionWithCodeAnalysis(
+            IExpressionWithCodeAnalysis left,
+            BinaryOperatorExpressionType @operator,
+            IExpressionWithCodeAnalysis right)
+            : this()
+        {
+            Syntax = operatorMap.ContainsKey(@operator) ?
+                (ExpressionSyntax)SyntaxFactory.BinaryExpression(operatorMap[@operator], left.Syntax, right.Syntax) :
+                SyntaxFactory.AssignmentExpression(assignmentOperatorMap[@operator], left.Syntax, right.Syntax);
+        }
+
         internal BinaryOperatorExpressionWithCodeAnalysis()
         {
             node = new ExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, ExpressionSyntax>(this);

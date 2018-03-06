@@ -52,7 +52,11 @@ namespace CSharpDom.CodeAnalysis
             set { node.Syntax = node.Syntax.WithKeyword(SyntaxFactory.Token(map.First(entry => entry.Value == value).Key)); }
         }
 
-        public string Name => node.Syntax.ToString();
+        public string Name
+        {
+            get => node.Syntax.ToString();
+            set => throw new NotImplementedException();
+        }
 
         TypeSyntax IHasSyntax<TypeSyntax>.Syntax
         {

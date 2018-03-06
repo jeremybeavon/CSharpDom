@@ -4,6 +4,7 @@ using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.CSharp;
 using System.Collections.Generic;
 using System;
+using System.Text.RegularExpressions;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -47,7 +48,7 @@ namespace CSharpDom.CodeAnalysis
                 baseTypes,
                 @interface => new ClassReferenceWithCodeAnalysis(@interface.TypeReference),
                 newClass => new InterfaceReferenceWithCodeAnalysis(newClass.TypeReference),
-                classToFilter => false);
+                classToFilter => !Regex.IsMatch(classToFilter.Name, "^I[A-Z]"));
             classes = new InternalClassNestedClassCollectionWithCodeAnalysis<TClass>(this);
             constructors = new ClassMemberListWrapper<TClass, ClassConstructorWithCodeAnalysis, ConstructorDeclarationSyntax>(
                 node,
@@ -73,7 +74,9 @@ namespace CSharpDom.CodeAnalysis
                 (parentSyntax, childSyntax) => parentSyntax.WithTypeParameterList(childSyntax),
                 syntax => syntax.ConstraintClauses,
                 (parentSyntax, childSyntax) => parentSyntax.WithConstraintClauses(childSyntax));
-            implementedInterfaces = new FilteredList<InterfaceReferenceWithCodeAnalysis>(baseTypes);
+            implementedInterfaces = new FilteredList<InterfaceReferenceWithCodeAnalysis>(
+                baseTypes,
+                @interface => Regex.IsMatch(@interface.Name, "^I[A-Z]"));
             indexers = new InternalClassIndexerCollectionWithCodeAnalysis<TClass>(this);
             interfaces = new ClassMemberListWrapper<TClass, ClassNestedInterfaceWithCodeAnalysis, InterfaceDeclarationSyntax>(
                 node,
