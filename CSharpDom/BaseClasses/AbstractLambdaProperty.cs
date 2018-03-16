@@ -22,5 +22,15 @@ namespace CSharpDom.BaseClasses
         public abstract TTypeReference PropertyType { get; }
 
         public abstract TExpression LambdaExpression { get; }
+
+        public override void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitLambdaProperty(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitLambdaPropertyChildren(this, visitor);
+        }
     }
 }

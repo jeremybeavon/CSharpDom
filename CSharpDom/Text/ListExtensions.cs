@@ -418,10 +418,10 @@ namespace CSharpDom.Text
             where TMethod : IInterfaceMethod
         {
             ISourceCodeBuilderStep[] typeSteps =
-                type.Events.Select(@event => (ISourceCodeBuilderStep)new WriteChildNode<TEvent>(@event))
-                .Concat(type.Properties.Select(property => new WriteChildNode<TProperty>(property)))
-                .Concat(type.Indexers.Select(indexer => new WriteChildNode<TIndexer>(indexer)))
-                .Concat(type.Methods.Select(method => new WriteChildNode<TMethod>(method)))
+                type.Events.ToSteps()
+                .Concat(type.Properties.ToSteps())
+                .Concat(type.Indexers.ToSteps())
+                .Concat(type.Methods.ToSteps())
                 .ToArray();
             if (typeSteps.Length != 0)
             {
@@ -500,6 +500,78 @@ namespace CSharpDom.Text
             }
 
             steps.Add(new WriteStructMemberVisibilityModifier(visibility));
+            steps.Add(new WriteWhitespace());
+        }
+
+        internal static void AddClassAccessorVisibilityModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            ClassAccessorVisibilityModifier visibility)
+        {
+            if (visibility == ClassAccessorVisibilityModifier.None)
+            {
+                return;
+            }
+
+            if (visibility == ClassAccessorVisibilityModifier.ProtectedInternal)
+            {
+                steps.Add(new WriteClassAccessorVisibilityModifier(ClassAccessorVisibilityModifier.Protected));
+                steps.Add(new WriteWhitespace());
+                steps.Add(new WriteClassAccessorVisibilityModifier(ClassAccessorVisibilityModifier.Internal));
+                steps.Add(new WriteWhitespace());
+            }
+            else
+            {
+                steps.Add(new WriteClassAccessorVisibilityModifier(visibility));
+                steps.Add(new WriteWhitespace());
+            }
+        }
+
+        internal static void AddAbstractAccessorVisibilityModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            AbstractAccessorVisibilityModifier visibility)
+        {
+            if (visibility == AbstractAccessorVisibilityModifier.None)
+            {
+                return;
+            }
+
+            if (visibility == AbstractAccessorVisibilityModifier.ProtectedInternal)
+            {
+                steps.Add(new WriteAbstractAccessorVisibilityModifier(AbstractAccessorVisibilityModifier.Protected));
+                steps.Add(new WriteWhitespace());
+                steps.Add(new WriteAbstractAccessorVisibilityModifier(AbstractAccessorVisibilityModifier.Internal));
+                steps.Add(new WriteWhitespace());
+            }
+            else
+            {
+                steps.Add(new WriteAbstractAccessorVisibilityModifier(visibility));
+                steps.Add(new WriteWhitespace());
+            }
+        }
+
+        internal static void AddStaticClassAccessorVisibilityModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            StaticClassAccessorVisibilityModifier visibility)
+        {
+            if (visibility == StaticClassAccessorVisibilityModifier.None)
+            {
+                return;
+            }
+
+            steps.Add(new WriteStaticClassAccessorVisibilityModifier(visibility));
+            steps.Add(new WriteWhitespace());
+        }
+
+        internal static void AddStructAccessorVisibilityModifierSteps(
+            this List<ISourceCodeBuilderStep> steps,
+            StructAccessorVisibilityModifier visibility)
+        {
+            if (visibility == StructAccessorVisibilityModifier.None)
+            {
+                return;
+            }
+
+            steps.Add(new WriteStructAccessorVisibilityModifier(visibility));
             steps.Add(new WriteWhitespace());
         }
 

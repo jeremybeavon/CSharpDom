@@ -1,0 +1,25 @@
+using CSharpDom.Common;
+using CSharpDom.Common.Editable;
+using System;
+using System.Collections.Generic;
+
+namespace CSharpDom.BaseClasses.Editable.Wrappers
+{
+    public sealed class EditableClassMethodCollectionWrapper<TMethod, TExplicitInterfaceMethod> :
+        EditableClassMethodCollection<TMethod, TExplicitInterfaceMethod>,
+        IWrapper<IEditableClassMethodCollection<TMethod, TExplicitInterfaceMethod>>
+        where TMethod : IEditableClassMethod
+        where TExplicitInterfaceMethod : IEditableExplicitInterfaceMethod
+    {
+        public EditableClassMethodCollectionWrapper(IEditableClassMethodCollection<TMethod, TExplicitInterfaceMethod> methods)
+        {
+            WrappedObject = methods;
+        }
+
+        public IEditableClassMethodCollection<TMethod, TExplicitInterfaceMethod> WrappedObject { get; private set; }
+
+        public override IReadOnlyCollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods => WrappedObject.ExplicitInterfaceMethods;
+
+        protected override IReadOnlyCollection<TMethod> Methods => WrappedObject;
+    }
+}

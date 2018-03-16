@@ -56,16 +56,20 @@ namespace CSharpDom.EditableInterfaceGenerator
                 {
                     foreach (UsingDirectiveWithCodeAnalysis directive in loadedDocument.UsingDirectives)
                     {
-                        directive.Name = directive.Name.Replace("CSharpDom.Common.", "CSharpDom.Common.Editable.");
+                        directive.Name = directive.Name.Replace("CSharpDom.Common", "CSharpDom.Common.Editable");
                     }
 
+                    loadedDocument.UsingDirectives.Add(new UsingDirectiveWithCodeAnalysis("CSharpDom.Common"));
+                    loadedDocument.UsingDirectives = loadedDocument.UsingDirectives
+                        .OrderBy(directive => directive.Name)
+                        .ToArray();
                     @namespace.Name = "CSharpDom.BaseClasses.Editable.Wrappers";
                     SealedClassWithCodeAnalysis @class = @namespace.Classes.SealedClasses.First();
                     @class.Name = "Editable" + @class.Name;
                     @class.BaseClass.Name = Regex.Replace(@class.BaseClass.Name, "^Abstract", "Editable");
                     ITypeReferenceWithCodeAnalysis interfaceReference =
                         @class.ImplementedInterfaces.First().GenericParameters[0];
-                    interfaceReference.Name = Regex.Replace(interfaceReference.Name, "^IAbstract", "IEditable");
+                    interfaceReference.Name = Regex.Replace(interfaceReference.Name, "^I", "IEditable");
                     foreach (GenericParameterDeclarationWithCodeAnalysis genericParameter in @class.GenericParameters)
                     {
                         InterfaceReferenceWithCodeAnalysis constraint = genericParameter.InterfaceConstraints.First();
@@ -75,12 +79,30 @@ namespace CSharpDom.EditableInterfaceGenerator
                     ITypeReferenceWithCodeAnalysis constructorParameterType =
                         @class.Constructors.First().Parameters[0].ParameterType;
                     constructorParameterType.Name = Regex.Replace(constructorParameterType.Name, "^I", "IEditable");
+                    foreach (SealedClassAutoPropertyWithCodeAnalysis property in @class.Properties.AutoProperties)
+                    {
+                        if (property.Name == "WrappedObject")
+                        {
+                            //CodeAnalysisLogger.StartLoggingDebugMessages();
+                            property.PropertyType.Name = Regex.Replace(property.PropertyType.Name, "^I", "IEditable");
+                            //string[] logMessages = CodeAnalysisLogger.GetDebugLogMessages();
+                            //CodeAnalysisLogger.StopLoggingDebugMessages();
+                            break;
+                        }
+                    }
+
                     foreach (SealedClassPropertyWithCodeAnalysis property in @class.Properties)
                     {
                         string propertyName = property.Name;
                         if (propertyName == "WrappedObject")
                         {
                             continue;
+                        }
+
+                        string propertyTypeName = property.PropertyType.Name;
+                        if (propertyTypeName.Contains("ReadOnly"))
+                        {
+                            property.PropertyType.Name = propertyTypeName.Replace("ReadOnly", string.Empty);
                         }
 
                         IExpressionWithCodeAnalysis expression = ExpressionFactory.Binary(
@@ -90,15 +112,6 @@ namespace CSharpDom.EditableInterfaceGenerator
                         property.SetAccessor = new ClassAccessorWithCodeAnalysis(
                             AccessorType.Set,
                             new MethodBodyWithCodeAnalysis(StatementFactory.Expression(expression)));
-                    }
-
-                    foreach (SealedClassAutoPropertyWithCodeAnalysis property in @class.Properties.AutoProperties)
-                    {
-                        if (property.Name == "WrappedObject")
-                        {
-                            property.PropertyType.Name = Regex.Replace(property.PropertyType.Name, "^I", "IEditable");
-                            break;
-                        }
                     }
 
                     Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));

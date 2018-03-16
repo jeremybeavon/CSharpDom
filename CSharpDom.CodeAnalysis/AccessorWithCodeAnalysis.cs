@@ -1,12 +1,7 @@
 ﻿using CSharpDom.BaseClasses.Editable;
-using CSharpDom.Common;
-using CSharpDom.Common.Editable;
-using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -60,7 +55,9 @@ namespace CSharpDom.CodeAnalysis
 
         internal static SyntaxKind GetSyntax(AccessorType accessorType)
         {
-            return accessorType == AccessorType.Get ? SyntaxKind.GetKeyword : SyntaxKind.SetKeyword;
+            return accessorType == AccessorType.Get ?
+                SyntaxKind.GetAccessorDeclaration :
+                SyntaxKind.SetAccessorDeclaration;
         }
     }
 }

@@ -53,6 +53,21 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 { BinaryOperatorExpressionType.RightShiftAssign, SyntaxKind.GreaterThanGreaterThanEqualsToken },
                 { BinaryOperatorExpressionType.SubtractAssign, SyntaxKind.MinusEqualsToken }
             };
+        private static readonly Dictionary<BinaryOperatorExpressionType, SyntaxKind> assignmentExpressionSyntaxKinds =
+            new Dictionary<BinaryOperatorExpressionType, SyntaxKind>()
+            {
+                { BinaryOperatorExpressionType.AddAssign, SyntaxKind.AddAssignmentExpression },
+                { BinaryOperatorExpressionType.Assign, SyntaxKind.SimpleAssignmentExpression },
+                { BinaryOperatorExpressionType.BitwiseAndAssign, SyntaxKind.AndAssignmentExpression },
+                { BinaryOperatorExpressionType.BitwiseExclusiveOrAssign, SyntaxKind.ExclusiveOrAssignmentExpression },
+                { BinaryOperatorExpressionType.BitwiseOrAssign, SyntaxKind.OrAssignmentExpression },
+                { BinaryOperatorExpressionType.DivideAssign, SyntaxKind.DivideAssignmentExpression },
+                { BinaryOperatorExpressionType.LeftShiftAssign, SyntaxKind.LeftShiftAssignmentExpression },
+                { BinaryOperatorExpressionType.ModuloAssign, SyntaxKind.ModuloAssignmentExpression },
+                { BinaryOperatorExpressionType.MultiplyAssign, SyntaxKind.MultiplyAssignmentExpression },
+                { BinaryOperatorExpressionType.RightShiftAssign, SyntaxKind.RightShiftAssignmentExpression },
+                { BinaryOperatorExpressionType.SubtractAssign, SyntaxKind.SubtractAssignmentExpression }
+            };
         private readonly ExpressionNode<BinaryOperatorExpressionWithCodeAnalysis, ExpressionSyntax> node;
         private readonly CachedExpressionNode<
             BinaryOperatorExpressionWithCodeAnalysis,
@@ -69,7 +84,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         {
             Syntax = operatorMap.ContainsKey(@operator) ?
                 (ExpressionSyntax)SyntaxFactory.BinaryExpression(operatorMap[@operator], left.Syntax, right.Syntax) :
-                SyntaxFactory.AssignmentExpression(assignmentOperatorMap[@operator], left.Syntax, right.Syntax);
+                SyntaxFactory.AssignmentExpression(assignmentExpressionSyntaxKinds[@operator], left.Syntax, right.Syntax);
         }
 
         internal BinaryOperatorExpressionWithCodeAnalysis()

@@ -1,4 +1,5 @@
 using CSharpDom.BaseClasses.Wrappers;
+using CSharpDom.Common.Expressions;
 using CSharpDom.Common.Partial;
 using System;
 using System.Collections.Generic;
@@ -3371,6 +3372,164 @@ namespace CSharpDom.Common
             where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
         {
             autoPropertyAccessorFactory(accessor).Accept(visitor);
+        }
+
+        public static void VisitAutoPropertyChildren<TAutoProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, TVisitor>(
+            TAutoProperty property,
+            TVisitor visitor)
+            where TAutoProperty : IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IBasicType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IAutoPropertyAccessor, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            VisitCollection(property.Attributes, visitor);
+            VisitIfNotNull(property.PropertyType, visitor);
+            VisitIfNotNull(property.GetAccessor, visitor);
+            VisitIfNotNull(property.SetAccessor, visitor);
+        }
+
+        public static void VisitLambdaPropertyChildren<TLambdaProperty, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, TVisitor>(
+            TLambdaProperty property,
+            TVisitor visitor)
+            where TLambdaProperty : ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IBasicType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            VisitCollection(property.Attributes, visitor);
+            VisitIfNotNull(property.PropertyType, visitor);
+        }
+
+        public static void VisitClassAutoPropertyChildren<TClassAutoProperty, TAutoProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, TVisitor>(
+            TClassAutoProperty property,
+            Func<TClassAutoProperty, TAutoProperty> autoPropertyFunc,
+            TVisitor visitor)
+            where TClassAutoProperty : IClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>
+            where TAutoProperty : IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IClassAutoPropertyAccessor, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            autoPropertyFunc(property).Accept(visitor);
+        }
+
+        public static void VisitClassLambdaPropertyChildren<TClassLambdaProperty, TLambdaProperty, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, TVisitor>(
+            TClassLambdaProperty property,
+            Func<TClassLambdaProperty, TLambdaProperty> lamdbaPropertyFunc,
+            TVisitor visitor)
+            where TClassLambdaProperty : IClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>
+            where TLambdaProperty : ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IClassType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            lamdbaPropertyFunc(property).Accept(visitor);
+        }
+
+        public static void VisitSealedClassAutoPropertyChildren<TSealedClassAutoProperty, TAutoProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, TVisitor>(
+            TSealedClassAutoProperty property,
+            Func<TSealedClassAutoProperty, TAutoProperty> autoPropertyFunc,
+            TVisitor visitor)
+            where TSealedClassAutoProperty : ISealedClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>
+            where TAutoProperty : IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : ISealedType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IClassAutoPropertyAccessor, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            autoPropertyFunc(property).Accept(visitor);
+        }
+
+        public static void VisitSealedClassLambdaPropertyChildren<TSealedClassLambdaProperty, TLambdaProperty, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, TVisitor>(
+            TSealedClassLambdaProperty property,
+            Func<TSealedClassLambdaProperty, TLambdaProperty> lamdbaPropertyFunc,
+            TVisitor visitor)
+            where TSealedClassLambdaProperty : ISealedClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>
+            where TLambdaProperty : ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : ISealedType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            lamdbaPropertyFunc(property).Accept(visitor);
+        }
+
+        public static void VisitStaticClassAutoPropertyChildren<TStaticClassAutoProperty, TAutoProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, TVisitor>(
+            TStaticClassAutoProperty property,
+            Func<TStaticClassAutoProperty, TAutoProperty> autoPropertyFunc,
+            TVisitor visitor)
+            where TStaticClassAutoProperty : IStaticClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>
+            where TAutoProperty : IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IStaticClassAutoPropertyAccessor, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            autoPropertyFunc(property).Accept(visitor);
+        }
+
+        public static void VisitStaticClassLambdaPropertyChildren<TStaticClassLambdaProperty, TLambdaProperty, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, TVisitor>(
+            TStaticClassLambdaProperty property,
+            Func<TStaticClassLambdaProperty, TLambdaProperty> lamdbaPropertyFunc,
+            TVisitor visitor)
+            where TStaticClassLambdaProperty : IStaticClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>
+            where TLambdaProperty : ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStaticType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            lamdbaPropertyFunc(property).Accept(visitor);
+        }
+
+        public static void VisitStructAutoPropertyChildren<TStructAutoProperty, TAutoProperty, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, TVisitor>(
+            TStructAutoProperty property,
+            Func<TStructAutoProperty, TAutoProperty> autoPropertyFunc,
+            TVisitor visitor)
+            where TStructAutoProperty : IStructAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>
+            where TAutoProperty : IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TAccessor : IStructAutoPropertyAccessor, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            autoPropertyFunc(property).Accept(visitor);
+        }
+
+        public static void VisitStructLambdaPropertyChildren<TStructLambdaProperty, TLambdaProperty, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, TVisitor>(
+            TStructLambdaProperty property,
+            Func<TStructLambdaProperty, TLambdaProperty> lamdbaPropertyFunc,
+            TVisitor visitor)
+            where TStructLambdaProperty : IStructLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>
+            where TLambdaProperty : ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, IVisitable<TVisitor>
+            where TAttributeGroup : IAttributeGroup, IVisitable<TVisitor>
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference, IVisitable<TVisitor>
+            where TExpression : IExpression
+        {
+            lamdbaPropertyFunc(property).Accept(visitor);
+        }
+
+        public static void VisitStaticClassPropertyCollectionChildren<TStaticClassPropertyCollection, TProperty, TAutoProperty, TLambdaProperty, TVisitor>(
+            TStaticClassPropertyCollection propertyCollection,
+            TVisitor visitor)
+            where TStaticClassPropertyCollection : IStaticClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty>
+            where TProperty : IStaticClassProperty, IVisitable<TVisitor>
+            where TAutoProperty : IStaticClassAutoProperty, IVisitable<TVisitor>
+            where TLambdaProperty : IStaticClassLambdaProperty, IVisitable<TVisitor>
+        {
+            VisitCollection(propertyCollection, visitor);
+            VisitCollection(propertyCollection.AutoProperties, visitor);
+            VisitCollection(propertyCollection.LambdaProperties, visitor);
         }
     }
 }

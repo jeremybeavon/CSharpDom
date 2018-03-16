@@ -33,7 +33,7 @@ namespace CSharpDom.BaseClasses
 
         public override void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitStaticClassPropertyCollectionChildren(this, visitor);
         }
 
         public IEnumerator<TProperty> GetEnumerator()

@@ -31,7 +31,13 @@ namespace CSharpDom.CodeAnalysis
 
         public TParentSyntax Set(int index, TChildChildSyntax value)
         {
-            return list.Set(index, toParent(value));
+            int parentIndex = list.IndexOf(toParent(this[index]));
+            if (parentIndex < 0)
+            {
+                throw new InvalidOperationException();
+            }
+
+            return list.Set(parentIndex, toParent(value));
         }
     }
 }

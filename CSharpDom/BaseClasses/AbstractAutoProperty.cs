@@ -15,5 +15,15 @@ namespace CSharpDom.BaseClasses
         where TExpression : IExpression
     {
         public abstract TExpression InitialValue { get; }
+
+        public override void Accept(IGenericVisitor visitor)
+        {
+            visitor.VisitAutoProperty(this);
+        }
+
+        public override void AcceptChildren(IGenericVisitor visitor)
+        {
+            GenericVisitor.VisitAutoPropertyChildren(this, visitor);
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace CSharpDom.BaseClasses
 
         public override void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitStaticClassAutoPropertyChildren(this, visitor);
         }
     }
 }

@@ -21,12 +21,12 @@ namespace CSharpDom.CodeAnalysis
             SyntaxList<AccessorDeclarationSyntax>? newList = null;
             if (childSyntax == null)
             {
-                if (childSyntax != null)
+                if (oldChildSyntax != null)
                 {
                     newList = parentSyntax.Accessors.Remove(oldChildSyntax);
                 }
             }
-            else if (childSyntax == null)
+            else if (oldChildSyntax == null)
             {
                 newList = parentSyntax.Accessors.Add(childSyntax);
             }

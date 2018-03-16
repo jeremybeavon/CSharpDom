@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses.Wrappers;
+using CSharpDom.Common.Expressions;
 using CSharpDom.Common.Partial;
 using System;
 using System.Collections.Generic;
@@ -1648,16 +1649,9 @@ namespace CSharpDom.Common
             where TNestedStructCollection : IStaticClassNestedStructCollection
             where TStaticConstructor : IStaticConstructor
         {
-            VisitIfNotNull(type.Events, visitor);
-            VisitIfNotNull(type.Properties, visitor);
-            VisitIfNotNull(type.Methods, visitor);
-            VisitIfNotNull(type.Fields, visitor);
-            VisitIfNotNull(type.Classes, visitor);
-            VisitCollection(type.Delegates, visitor);
-            VisitCollection(type.Enums, visitor);
-            VisitCollection(type.Interfaces, visitor);
-            VisitIfNotNull(type.Structs, visitor);
-            VisitIfNotNull(type.StaticConstructor, visitor);
+            GenericChildVisitor.VisitStaticTypeChildren<IStaticType<TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor, IGenericVisitor>(
+                type,
+                visitor);
         }
 
         public static void VisitNestedStaticClassChildren<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(
@@ -2968,6 +2962,161 @@ namespace CSharpDom.Common
             GenericChildVisitor.VisitStructAutoPropertyAccessorChildren<IStructAutoPropertyAccessor<TAttributeGroup>, IAutoPropertyAccessor<TAttributeGroup>, TAttributeGroup, IGenericVisitor>(
                 accessor,
                 autoPropertyAccessor => new AutoPropertyAccessorWrapper<TAttributeGroup>(autoPropertyAccessor),
+                visitor);
+        }
+
+        public static void VisitAutoPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(
+            IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IBasicType
+            where TTypeReference : ITypeReference
+            where TAccessor : IAutoPropertyAccessor
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitAutoPropertyChildren<IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, IGenericVisitor>(
+                property,
+                visitor);
+        }
+
+        public static void VisitLambdaPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
+            ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IBasicType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitLambdaPropertyChildren<ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, IGenericVisitor>(
+                property,
+                visitor);
+        }
+
+        public static void VisitClassAutoPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(
+            IClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TTypeReference : ITypeReference
+            where TAccessor : IClassAutoPropertyAccessor
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitClassAutoPropertyChildren<IClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, IGenericVisitor>(
+                property,
+                autoProperty => new AutoPropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(autoProperty),
+                visitor);
+        }
+
+        public static void VisitClassLambdaPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
+            IClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IClassType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitClassLambdaPropertyChildren<IClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, IGenericVisitor>(
+                property,
+                lambdaProperty => new LambdaPropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(lambdaProperty),
+                visitor);
+        }
+
+        public static void VisitSealedClassAutoPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(
+            ISealedClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TTypeReference : ITypeReference
+            where TAccessor : IClassAutoPropertyAccessor
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitSealedClassAutoPropertyChildren<ISealedClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, IGenericVisitor>(
+                property,
+                autoProperty => new AutoPropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(autoProperty),
+                visitor);
+        }
+
+        public static void VisitSealedClassLambdaPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
+            ISealedClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : ISealedType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitSealedClassLambdaPropertyChildren<ISealedClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, IGenericVisitor>(
+                property,
+                lambdaProperty => new LambdaPropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(lambdaProperty),
+                visitor);
+        }
+
+        public static void VisitStaticClassAutoPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(
+            IStaticClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TTypeReference : ITypeReference
+            where TAccessor : IStaticClassAutoPropertyAccessor
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitStaticClassAutoPropertyChildren<IStaticClassAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, IGenericVisitor>(
+                property,
+                autoProperty => new AutoPropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(autoProperty),
+                visitor);
+        }
+
+        public static void VisitStaticClassLambdaPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
+            IStaticClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStaticType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitStaticClassLambdaPropertyChildren<IStaticClassLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, IGenericVisitor>(
+                property,
+                lambdaProperty => new LambdaPropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(lambdaProperty),
+                visitor);
+        }
+
+        public static void VisitStructAutoPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(
+            IStructAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference
+            where TAccessor : IStructAutoPropertyAccessor
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitStructAutoPropertyChildren<IStructAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, IAutoProperty<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression, IGenericVisitor>(
+                property,
+                autoProperty => new AutoPropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TAccessor, TExpression>(autoProperty),
+                visitor);
+        }
+
+        public static void VisitStructLambdaPropertyChildren<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(
+            IStructLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> property,
+            IGenericVisitor visitor)
+            where TAttributeGroup : IAttributeGroup
+            where TDeclaringType : IStructType
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression
+        {
+            GenericChildVisitor.VisitStructLambdaPropertyChildren<IStructLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, ILambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>, TAttributeGroup, TDeclaringType, TTypeReference, TExpression, IGenericVisitor>(
+                property,
+                lambdaProperty => new LambdaPropertyWrapper<TAttributeGroup, TDeclaringType, TTypeReference, TExpression>(lambdaProperty),
+                visitor);
+        }
+
+        public static void VisitStaticClassPropertyCollectionChildren<TProperty, TAutoProperty, TLambdaProperty>(
+            IStaticClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty> propertyCollection,
+            IGenericVisitor visitor)
+            where TProperty : IStaticClassProperty
+            where TAutoProperty : IStaticClassAutoProperty
+            where TLambdaProperty : IStaticClassLambdaProperty
+        {
+            GenericChildVisitor.VisitStaticClassPropertyCollectionChildren<IStaticClassPropertyCollection<TProperty, TAutoProperty, TLambdaProperty>, TProperty, TAutoProperty, TLambdaProperty, IGenericVisitor>(
+                propertyCollection,
                 visitor);
         }
     }
