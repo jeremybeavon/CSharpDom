@@ -1,26 +1,20 @@
 ﻿using CSharpDom.CodeAnalysis.Statements;
 using CSharpDom.BaseClasses.Editable.Expressions;
-using CSharpDom.BaseClasses.Editable.Statements;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class AnonymousMethodExpressionWithCodeAnalysis :
-        EditableAnonymousMethodExpression<AnonymousMethodParameterWithCodeAnalysis, BlockStatementWithCodeAnalysis>,
+        EditableAnonymousMethodExpression<AnonymousMethodParameterWithCodeAnalysis, IStatementWithCodeAnalysis>,
         IHasSyntax<AnonymousMethodExpressionSyntax>,
         IHasNode<AnonymousMethodExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<AnonymousMethodExpressionWithCodeAnalysis, AnonymousMethodExpressionSyntax> node;
-        private readonly CachedChildNode<
-            AnonymousMethodExpressionWithCodeAnalysis,
-            AnonymousMethodExpressionSyntax,
-            BlockStatementWithCodeAnalysis,
-            BlockSyntax> body;
-        private SeparatedSyntaxNodeList<
+        private readonly StatementListWrapper<AnonymousMethodExpressionWithCodeAnalysis, AnonymousMethodExpressionSyntax> statements;
+        private readonly SeparatedSyntaxNodeList<
             AnonymousMethodExpressionWithCodeAnalysis,
             AnonymousMethodExpressionSyntax,
             AnonymousMethodParameterWithCodeAnalysis,
@@ -29,22 +23,27 @@ namespace CSharpDom.CodeAnalysis.Expressions
         internal AnonymousMethodExpressionWithCodeAnalysis()
         {
             node = new ExpressionNode<AnonymousMethodExpressionWithCodeAnalysis, AnonymousMethodExpressionSyntax>(this);
-            body = new CachedChildNode<AnonymousMethodExpressionWithCodeAnalysis, AnonymousMethodExpressionSyntax, BlockStatementWithCodeAnalysis, BlockSyntax>(
-                node,
-                () => new BlockStatementWithCodeAnalysis(),
-                syntax => syntax.Block,
-                (parentSyntax, childSyntax) => parentSyntax.WithBlock(childSyntax));
             parameters = new SeparatedSyntaxNodeList<AnonymousMethodExpressionWithCodeAnalysis, AnonymousMethodExpressionSyntax, AnonymousMethodParameterWithCodeAnalysis, ParameterSyntax>(
                 node,
                 syntax => syntax.ParameterList.Parameters,
                 (parentSyntax, childSyntax) => parentSyntax.WithParameterList(parentSyntax.ParameterList.WithParameters(childSyntax)),
                 () => new AnonymousMethodParameterWithCodeAnalysis());
+            statements = new StatementListWrapper<AnonymousMethodExpressionWithCodeAnalysis, AnonymousMethodExpressionSyntax>(
+                node,
+                syntax => syntax.Block.Statements,
+                (parentSyntax, childSyntax) => parentSyntax.WithBlock(parentSyntax.Block.WithStatements(childSyntax)));
         }
 
-        public override BlockStatementWithCodeAnalysis Body
+        public override bool IsAsync
         {
-            get { return body.Value; }
-            set { body.Value = value; }
+            get => Syntax.AsyncKeyword.Kind() == SyntaxKind.AsyncKeyword;
+            set => Syntax = Syntax.WithAsyncKeyword(SyntaxFactory.Token(value ? SyntaxKind.AsyncKeyword : SyntaxKind.None));
+        }
+
+        public override IList<IStatementWithCodeAnalysis> Statements
+        {
+            get => statements;
+            set => statements.ReplaceList(value);
         }
 
         public override IList<AnonymousMethodParameterWithCodeAnalysis> Parameters

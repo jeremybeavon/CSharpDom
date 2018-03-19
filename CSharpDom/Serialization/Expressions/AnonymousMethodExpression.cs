@@ -13,7 +13,9 @@ namespace CSharpDom.Serialization.Expressions
             Parameters = new List<AnonymousMethodParameter>();
         }
 
-        public Statement Body { get; set; }
+        public bool IsAsync { get; set; }
+
+        public List<Statement> Statements { get; set; }
 
         public List<AnonymousMethodParameter> Parameters { get; set; }
 
@@ -21,6 +23,8 @@ namespace CSharpDom.Serialization.Expressions
         {
             get { return Parameters; }
         }
+
+        IReadOnlyList<Statement> IAnonymousMethodExpression<AnonymousMethodParameter, Statement>.Statements => Statements;
 
         public void Accept(IGenericExpressionVisitor visitor)
         {

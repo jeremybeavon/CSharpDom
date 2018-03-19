@@ -11,9 +11,11 @@ namespace CSharpDom.BaseClasses.Expressions
         where TParameter : IAnonymousMethodParameter
         where TStatement : IStatement
     {
-        public abstract TStatement Body { get; }
-
         public abstract IReadOnlyList<TParameter> Parameters { get; }
+
+        public abstract IReadOnlyList<TStatement> Statements { get; }
+
+        public abstract bool IsAsync { get; }
 
         public override void Accept(IGenericExpressionVisitor visitor)
         {

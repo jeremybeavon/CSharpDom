@@ -18,8 +18,16 @@ namespace CSharpDom.BaseClasses.Editable.Wrappers
 
         public IEditableSealedClassMethodCollection<TMethod, TExplicitInterfaceMethod> WrappedObject { get; private set; }
 
-        public override IReadOnlyCollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods => WrappedObject.ExplicitInterfaceMethods;
+        public override ICollection<TExplicitInterfaceMethod> ExplicitInterfaceMethods
+        {
+            get => WrappedObject.ExplicitInterfaceMethods;
+            set => WrappedObject.ExplicitInterfaceMethods = value;
+        }
 
-        protected override IReadOnlyCollection<TMethod> Methods => WrappedObject;
+        public override ICollection<TMethod> Methods
+        {
+            get => WrappedObject;
+            set => throw new NotImplementedException();
+        }
     }
 }

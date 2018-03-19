@@ -134,6 +134,10 @@ namespace CSharpDom.BaseClasses.Editable.Wrappers
 
         public IEditableStaticClass<TNamespace, TDocument, TProject, TSolution, TAttributeGroup, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> WrappedObject { get; private set; }
 
-        public override TPropertyCollection Properties => WrappedObject.Properties;
+        public override TPropertyCollection Properties
+        {
+            get => WrappedObject.Properties;
+            set => WrappedObject.Properties = value;
+        }
     }
 }

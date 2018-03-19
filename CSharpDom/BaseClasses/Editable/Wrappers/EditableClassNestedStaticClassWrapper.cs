@@ -101,10 +101,22 @@ namespace CSharpDom.BaseClasses.Editable.Wrappers
 
         public IEditableClassNestedStaticClass<TAttributeGroup, TDeclaringType, TGenericParameter, TEventCollection, TPropertyCollection, TMethodCollection, TFieldCollection, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor> WrappedObject { get; private set; }
 
-        public override ClassMemberVisibilityModifier Visibility => WrappedObject.Visibility;
+        public override ClassMemberVisibilityModifier Visibility
+        {
+            get => WrappedObject.Visibility;
+            set => WrappedObject.Visibility = value;
+        }
 
-        public override TDeclaringType DeclaringType => WrappedObject.DeclaringType;
+        public override TDeclaringType DeclaringType
+        {
+            get => WrappedObject.DeclaringType;
+            set => WrappedObject.DeclaringType = value;
+        }
 
-        public override TPropertyCollection Properties => WrappedObject.Properties;
+        public override TPropertyCollection Properties
+        {
+            get => WrappedObject.Properties;
+            set => WrappedObject.Properties = value;
+        }
     }
 }

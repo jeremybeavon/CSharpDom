@@ -6,12 +6,13 @@ namespace CSharpDom.Common.Editable.Expressions
 {
     public interface IEditableAnonymousMethodExpression<TParameter, TStatement> :
         IEditableAnonymousMethodExpression,
-        IAnonymousMethodExpression<TParameter, TStatement>
+        IAnonymousMethodExpression<TParameter, TStatement>,
+        IHasEditableAsync
         where TParameter : IEditableAnonymousMethodParameter
         where TStatement : IEditableStatement
     {
         new IList<TParameter> Parameters { get; set; }
 
-        new TStatement Body { get; set; }
+        new IList<TStatement> Statements { get; set; }
     }
 }

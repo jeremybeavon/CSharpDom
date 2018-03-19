@@ -141,6 +141,7 @@ namespace CSharpDom.Common
             where TStaticConstructor : IStaticConstructor
             where TDestructor : IDestructor
         {
+
             VisitIfNotNull(@class.BaseClass, visitor);
             new TypeWrapper<TAttributeGroup, TGenericParameter, TInterfaceReference, TEventCollection, TPropertyCollection, TIndexerCollection, TMethodCollection, TFieldCollection, TConstructor, TOperatorOverload, TConversionOperator, TNestedClassCollection, TNestedDelegate, TNestedEnum, TNestedInterface, TNestedStructCollection, TStaticConstructor>(@class).Accept(visitor);
             VisitIfNotNull(@class.Destructor, visitor);

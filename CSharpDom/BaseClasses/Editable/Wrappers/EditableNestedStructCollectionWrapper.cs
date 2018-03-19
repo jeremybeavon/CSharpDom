@@ -23,10 +23,10 @@ namespace CSharpDom.BaseClasses.Editable.Wrappers
             set { WrappedObject.PartialStructs = value; }
         }
 
-        protected override ICollection<TStruct> Structs
+        public override ICollection<TStruct> Structs
         {
             get { return WrappedObject; }
-            set { WrappedObject.Structs = value; }
+            set { throw new NotImplementedException(); }
         }
 
         public IEditableNestedStructCollection<TStruct, TPartialStruct> WrappedObject { get; private set; }

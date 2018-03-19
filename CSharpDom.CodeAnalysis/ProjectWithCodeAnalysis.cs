@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace CSharpDom.CodeAnalysis
 {
@@ -65,6 +66,14 @@ namespace CSharpDom.CodeAnalysis
             loadedProject = new LoadedProjectWithCodeAnalysis(this, loadedDocuments);
             return loadedProject;
         }
+
+        /*public DocumentWithCodeAnalysis AddDocument(string filePath, LoadedDocumentWithCodeAnalysis document)
+        {
+            Document newDocument = Syntax.AddDocument(
+                Path.GetFileNameWithoutExtension(filePath),
+                document.Syntax,
+                )
+        }*/
 
         public void Lock()
         {

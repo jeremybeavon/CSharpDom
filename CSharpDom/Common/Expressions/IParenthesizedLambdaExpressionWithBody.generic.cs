@@ -3,7 +3,9 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface IAnonymousMethodExpression<TParameter, TStatement> : IAnonymousMethodExpression, IHasAsync
+    public interface IParenthesizedLambdaExpressionWithBody<TParameter, TStatement> :
+        IParenthesizedLambdaExpressionWithBody,
+        IHasAsync
         where TParameter : IAnonymousMethodParameter
         where TStatement : IStatement
     {

@@ -78,6 +78,10 @@ namespace CSharpDom.BaseClasses.Editable.Wrappers
 
         public IEditableNestedInterface<TAttributeGroup, TDeclaringType, TGenericParameter, TInterfaceReference, TEvent, TProperty, TIndexer, TMethod> WrappedObject { get; private set; }
 
-        public override bool IsPartial => WrappedObject.IsPartial;
+        public override bool IsPartial
+        {
+            get => WrappedObject.IsPartial;
+            set => WrappedObject.IsPartial = value;
+        }
     }
 }

@@ -44,10 +44,10 @@ namespace CSharpDom.BaseClasses.Editable.Wrappers
             set { WrappedObject.StaticClasses = value; }
         }
 
-        protected override ICollection<TClass> Classes
+        public override ICollection<TClass> Classes
         {
             get { return WrappedObject; }
-            set { WrappedObject.Classes = value; }
+            set { throw new NotImplementedException(); }
         }
 
         public IEditableNestedClassCollection<TClass, TAbstractClass, TSealedClass, TStaticClass, TPartialClassCollection> WrappedObject { get; private set; }

@@ -24,6 +24,10 @@ namespace CSharpDom.BaseClasses.Editable.Wrappers
             set => WrappedObject.ExplicitInterfaceMethods = value;
         }
 
-        protected override IReadOnlyCollection<TMethod> Methods => WrappedObject;
+        public override ICollection<TMethod> Methods
+        {
+            get => WrappedObject;
+            set => throw new NotImplementedException();
+        }
     }
 }

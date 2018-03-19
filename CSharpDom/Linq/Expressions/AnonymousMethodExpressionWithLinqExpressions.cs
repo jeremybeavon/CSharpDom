@@ -5,7 +5,7 @@ using System;
 
 namespace CSharpDom.Linq.Expressions
 {
-    public sealed class AnonymousMethodExpressionWithLinqExpressions<TDelegate> :
+    /*public sealed class AnonymousMethodExpressionWithLinqExpressions<TDelegate> :
         AbstractAnonymousMethodExpression<ParameterWithLinqExpressions, ILinqStatement>,
         ILinqExpression<LambdaExpression>,
         ILinqExpression<Expression<TDelegate>>
@@ -41,5 +41,5 @@ namespace CSharpDom.Linq.Expressions
         {
             get { return Expression; }
         }
-    }
+    }*/
 }

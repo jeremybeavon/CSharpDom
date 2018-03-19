@@ -139,7 +139,7 @@ namespace CSharpDom.Linq.Expressions
 
         protected override Expression VisitLambda<T>(Expression<T> node)
         {
-            expression = new AnonymousMethodExpressionWithLinqExpressions<T>(node);
+            //expression = new AnonymousMethodExpressionWithLinqExpressions<T>(node);
             return node;
         }
 

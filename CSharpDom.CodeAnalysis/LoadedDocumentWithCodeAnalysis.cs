@@ -26,7 +26,7 @@ namespace CSharpDom.CodeAnalysis
         IHasSyntax<CompilationUnitSyntax>,
         IHasNode<CompilationUnitSyntax>
     {
-        private readonly DocumentWithCodeAnalysis document;
+        private DocumentWithCodeAnalysis document;
         private readonly Node<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax> node;
         private readonly AttributeListWrapper<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax> attributes;
         private readonly FilteredAttributeList assemblyAttributes;
@@ -43,6 +43,11 @@ namespace CSharpDom.CodeAnalysis
             UsingDirectiveWithCodeAnalysis,
             UsingDirectiveSyntax> usingDirectives;
         private readonly MemberList<LoadedDocumentWithCodeAnalysis, CompilationUnitSyntax> members;
+
+        public LoadedDocumentWithCodeAnalysis()
+            : this(null, SyntaxFactory.CompilationUnit())
+        {
+        }
 
         internal LoadedDocumentWithCodeAnalysis(DocumentWithCodeAnalysis document, CompilationUnitSyntax syntax)
         {

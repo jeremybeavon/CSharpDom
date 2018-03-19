@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface IAnonymousMethodExpression<TParameter, TStatement> : IAnonymousMethodExpression, IHasAsync
+    public interface IParenthesizedLambdaExpression<TParameter, TExpression> : IParenthesizedLambdaExpression, IHasAsync
         where TParameter : IAnonymousMethodParameter
-        where TStatement : IStatement
+        where TExpression : IExpression
     {
         IReadOnlyList<TParameter> Parameters { get; }
 
-        IReadOnlyList<TStatement> Statements { get; }
+        TExpression Expression { get; }
     }
 }

@@ -12,14 +12,19 @@ namespace CSharpDom.BaseClasses.Editable.Expressions
         where TParameter : IEditableAnonymousMethodParameter
         where TStatement : IEditableStatement
     {
-        public abstract TStatement Body { get; set; }
-
         public abstract IList<TParameter> Parameters { get; set; }
+
+        public abstract IList<TStatement> Statements { get; set; }
+
+        public abstract bool IsAsync { get; set; }
 
         IReadOnlyList<TParameter> IAnonymousMethodExpression<TParameter, TStatement>.Parameters
         {
             get { return new ReadOnlyCollection<TParameter>(Parameters); }
         }
+
+        IReadOnlyList<TStatement> IAnonymousMethodExpression<TParameter, TStatement>.Statements =>
+            new ReadOnlyCollection<TStatement>(Statements);
 
         public override void Accept(IGenericExpressionVisitor visitor)
         {

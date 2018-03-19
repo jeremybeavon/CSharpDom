@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace CSharpDom.Common.Expressions
 {
-    public interface IAnonymousMethodExpression<TParameter, TStatement> : IAnonymousMethodExpression, IHasAsync
-        where TParameter : IAnonymousMethodParameter
+    public interface ILambdaExpressionWithBody<TStatement> : ILambdaExpressionWithBody, IHasAsync
         where TStatement : IStatement
     {
-        IReadOnlyList<TParameter> Parameters { get; }
+        string ParameterName { get; }
 
         IReadOnlyList<TStatement> Statements { get; }
     }

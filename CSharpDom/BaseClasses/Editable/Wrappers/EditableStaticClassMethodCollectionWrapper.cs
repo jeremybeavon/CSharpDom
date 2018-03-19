@@ -18,8 +18,16 @@ namespace CSharpDom.BaseClasses.Editable.Wrappers
 
         public IEditableStaticClassMethodCollection<TMethod, TExtensionMethod> WrappedObject { get; private set; }
 
-        public override IReadOnlyCollection<TExtensionMethod> ExtensionMethods => WrappedObject.ExtensionMethods;
+        public override ICollection<TExtensionMethod> ExtensionMethods
+        {
+            get => WrappedObject.ExtensionMethods;
+            set => WrappedObject.ExtensionMethods = value;
+        }
 
-        protected override IReadOnlyCollection<TMethod> Methods => WrappedObject;
+        public override ICollection<TMethod> Methods
+        {
+            get => WrappedObject;
+            set => throw new NotImplementedException();
+        }
     }
 }

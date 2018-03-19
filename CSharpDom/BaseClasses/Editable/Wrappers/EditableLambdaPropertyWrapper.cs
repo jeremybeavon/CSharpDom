@@ -45,6 +45,10 @@ namespace CSharpDom.BaseClasses.Editable.Wrappers
 
         public IEditableLambdaProperty<TAttributeGroup, TDeclaringType, TTypeReference, TExpression> WrappedObject { get; private set; }
 
-        public override TExpression LambdaExpression => WrappedObject.LambdaExpression;
+        public override TExpression LambdaExpression
+        {
+            get => WrappedObject.LambdaExpression;
+            set => WrappedObject.LambdaExpression = value;
+        }
     }
 }

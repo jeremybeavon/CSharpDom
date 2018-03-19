@@ -26,6 +26,30 @@ namespace CSharpDom.GenericChildVisitorGenerator
             AsyncContext.Run(GenerateWrapperImplementations);
         }
         
+        private static async Task EditGenericVisitor()
+        {
+            string baseDirectory = Path.GetFullPath(
+                Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), @"..\..\..\.."));
+            LoadedDocumentWithCodeAnalysis document = await LoadedDocumentWithCodeAnalysis.LoadFromFileAsync(
+                Path.Combine(baseDirectory, @"CSharpDom\Common\GenericVisitor.cs"));
+            foreach (StaticClassMethodWithCodeAnalysis method in 
+                document.Namespaces.First().Classes.StaticClasses.First().Methods)
+            {
+                IList<IStatementWithCodeAnalysis> statements = method.Body.Statements;
+                if (statements.Count == 1 &&
+                    statements[0] is ExpressionStatementWithCodeAnalysis expressionStatement &&
+                    expressionStatement.Expression is MethodCallExpressionWithCodeAnalysis methodCall &&
+                    methodCall.Expression is MemberExpressionWithCodeAnalysis member &&
+                    member.ObjectExpression is IdentifierExpressionWithCodeAnalysis identifier &&
+                    identifier.Name == "GenericChildVisitor")
+                {
+                    continue;
+                }
+
+                statements.Clear();
+            }
+        }
+
         private static async Task GenerateWrapperImplementations()
         {
             string baseDirectory = Path.GetFullPath(
