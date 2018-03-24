@@ -36,6 +36,12 @@ namespace CSharpDom.CodeAnalysis
             UsingDirectiveSyntax> usingDirectives;
         private readonly MemberList<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax> members;
 
+        public NamespaceWithCodeAnalysis(DocumentWithCodeAnalysis document, string name)
+            : this(document)
+        {
+            Syntax = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(name));
+        }
+
         internal NamespaceWithCodeAnalysis(DocumentWithCodeAnalysis document)
         {
             node = new Node<NamespaceWithCodeAnalysis, NamespaceDeclarationSyntax>(this);

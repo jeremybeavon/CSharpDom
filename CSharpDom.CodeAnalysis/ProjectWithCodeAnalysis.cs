@@ -67,13 +67,21 @@ namespace CSharpDom.CodeAnalysis
             return loadedProject;
         }
 
-        /*public DocumentWithCodeAnalysis AddDocument(string filePath, LoadedDocumentWithCodeAnalysis document)
+        public DocumentWithCodeAnalysis AddDocument(string filePath, LoadedDocumentWithCodeAnalysis document)
         {
+            string[] projectFolders =
+                new Uri(Path.GetDirectoryName(filePath))
+                .MakeRelativeUri(new Uri(Path.GetDirectoryName(Syntax.FilePath)))
+                .ToString()
+                .Split('\\');
             Document newDocument = Syntax.AddDocument(
                 Path.GetFileNameWithoutExtension(filePath),
                 document.Syntax,
-                )
-        }*/
+                projectFolders,
+                Path.GetFileName(filePath));
+            Syntax = newDocument.Project;
+            return new DocumentWithCodeAnalysis(newDocument);
+        }
 
         public void Lock()
         {

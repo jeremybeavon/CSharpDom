@@ -13,7 +13,12 @@ namespace CSharpDom.CodeAnalysis
     {
         private readonly Node<DocumentWithCodeAnalysis, Document> node;
 
-        public DocumentWithCodeAnalysis()
+        internal DocumentWithCodeAnalysis(Document document)
+        {
+            node = new Node<DocumentWithCodeAnalysis, Document>(this, document);
+        }
+
+        internal DocumentWithCodeAnalysis()
         {
             node = new Node<DocumentWithCodeAnalysis, Document>(this);
         }

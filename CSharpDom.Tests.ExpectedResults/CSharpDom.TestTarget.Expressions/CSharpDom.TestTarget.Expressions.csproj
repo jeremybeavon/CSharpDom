@@ -40,6 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnonymousMethodExpression.cs" />
+    <Compile Include="ArrayIndexExpression.cs" />
+    <Compile Include="AwaitExpression.cs" />
+    <Compile Include="BinaryOperatorExpression.cs" />
+    <Compile Include="NullExpression.cs" />
+    <Compile Include="MethodCallExpression.cs" />
+    <Compile Include="MemberExpression.cs" />
+    <Compile Include="IntegerConstantExpression.cs" />
+    <Compile Include="IdentifierExpression.cs" />
+    <Compile Include="DoubleConstantExpression.cs" />
+    <Compile Include="DefaultExpression.cs" />
+    <Compile Include="CastExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -40,7 +40,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockStatement.cs" />
+    <Compile Include="ContinueStatement.cs" />
+    <Compile Include="BreakStatement.cs" />
+    <Compile Include="WhileStatement.cs" />
+    <Compile Include="DoStatement.cs" />
+    <Compile Include="EmptyStatement.cs" />
+    <Compile Include="ExpressionStatement.cs" />
+    <Compile Include="ForeachStatement.cs" />
+    <Compile Include="ForStatement.cs" />
+    <Compile Include="GotoCaseStatement.cs" />
+    <Compile Include="GotoStatement.cs" />
+    <Compile Include="LockStatement.cs" />
+    <Compile Include="StatementException3.cs" />
+    <Compile Include="StatementException2.cs" />
+    <Compile Include="StatementException.cs" />
+    <Compile Include="ThrowStatement.cs" />
+    <Compile Include="ReturnStatement.cs" />
+    <Compile Include="StatementExtensions.cs" />
+    <Compile Include="IfStatement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SwitchStatement.cs" />
+    <Compile Include="TryStatement.cs" />
+    <Compile Include="UsingStatement.cs" />
+    <Compile Include="VariableDeclarationStatement.cs" />
+    <Compile Include="YieldReturnStatement.cs" />
+    <Compile Include="YieldBreakStatement.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

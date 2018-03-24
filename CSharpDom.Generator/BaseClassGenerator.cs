@@ -25,7 +25,13 @@ namespace CSharpDom.Generator
 
             LoadedDocumentWithCodeAnalysis loadedDocument = await document.LoadAsync();
             NamespaceWithCodeAnalysis @namespace = loadedDocument.Namespaces.First();
-            if (@namespace.Interfaces.Count == 0 && @namespace.Interfaces.First().GenericParameters.Count > 0)
+            if (@namespace.Interfaces.Count == 0)
+            {
+                return;
+            }
+
+            InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
+            if (@interface.GenericParameters.Count == 0)
             {
                 return;
             }
@@ -34,14 +40,35 @@ namespace CSharpDom.Generator
             string namespaceName = @namespace.Name;
             using (CodeAnalysisSettings.AllowEdits(loadedDocument))
             {
-                //EditUsingDirectives(loadedDocument, namespaceName);
-                @namespace.Name = Regex.Replace(namespaceName, "^CSharpDom.Common", "CSharpDom.Common.Editable");
-                InterfaceWithCodeAnalysis @interface = @namespace.Interfaces.First();
-                string interfaceName = @interface.Name;
-                @interface.Name = GetNewName(interfaceName);
-                //List<ITypeReferenceWithCodeAnalysis> genericParameters = EditInterfaceGenericParameters(@interface);
-                //EditInterfaceBaseInterfaces(@interface, interfaceName, genericParameters);
-                //EditInterfaceProperties(@interface);
+                LoadedDocumentWithCodeAnalysis newDocument = new LoadedDocumentWithCodeAnalysis();
+                newDocument.UsingDirectives.Add(new UsingDirectiveWithCodeAnalysis(namespaceName));
+                DocumentWithCodeAnalysis baseClassDocument = document.Project.AddDocument(
+                    destinationPath,
+                    newDocument);
+                NamespaceWithCodeAnalysis newNamespace = new NamespaceWithCodeAnalysis(
+                    baseClassDocument,
+                    namespaceName.Replace("Common", "BaseClasses"));
+                AbstractClassWithCodeAnalysis baseClass = new AbstractClassWithCodeAnalysis(
+                    baseClassDocument,
+                    TypeVisibilityModifier.Public,
+                    GetNewName(@interface.Name))
+                {
+                    GenericParameters = @interface.GenericParameters,
+                    BaseClass = new ClassReferenceWithCodeAnalysis("AbstractExpression")
+                };
+                ITypeReferenceWithCodeAnalysis[] implementedInterfaceGenericParameters =
+                    @interface.GenericParameters
+                   .Select(parameter => new GenericParameterReferenceWithCodeAnalysis(parameter.Name))
+                   .ToArray();
+                baseClass.ImplementedInterfaces.Add(
+                    new InterfaceReferenceWithCodeAnalysis(@interface.Name, implementedInterfaceGenericParameters));
+                newNamespace.Classes.AbstractClasses.Add(baseClass);
+                newDocument.Namespaces.Add(newNamespace);
+                await baseClass.ImplementInterface(@class => @class.ImplementedInterfaces.First(), baseClassDocument);
+                foreach (AbstractClassPropertyWithCodeAnalysis property in baseClass.Properties)
+                {
+
+                }
             }
 
             Directory.CreateDirectory(Path.GetDirectoryName(destinationPath));
