@@ -198,6 +198,8 @@
     <Compile Include="CodeAnalysisCodeFixProvider.cs" />
     <Compile Include="CodeAnalysisLogger.cs" />
     <Compile Include="CodeAnalysisWorkspace.cs" />
+    <Compile Include="GenericParameterList.cs" />
+    <Compile Include="GenericParameterNodeList.cs" />
     <Compile Include="InternalNestedStaticClassPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="InternalStaticClassPropertyCollectionWithCodeAnalysis.cs" />
     <Compile Include="NestedStaticClassPropertyCollectionWithCodeAnalysis.cs" />

@@ -1,4 +1,5 @@
 ﻿using CSharpDom.BaseClasses.Expressions;
+using CSharpDom.Reflection;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -6,7 +7,7 @@ using System.Linq.Expressions;
 namespace CSharpDom.Linq.Expressions
 {
     public sealed class DelegateMethodCallExpressionWithLinqExpressions :
-        AbstractMethodCallExpression<ILinqExpression, ILinqExpression>,
+        AbstractMethodCallExpression<ILinqExpression, ITypeReferenceWithReflection, ILinqExpression>,
         ILinqExpression<InvocationExpression>
     {
         private readonly ILinqExpression expression;
@@ -32,6 +33,9 @@ namespace CSharpDom.Linq.Expressions
         {
             get { return parameterExpressions; }
         }
+
+        public override IReadOnlyList<ITypeReferenceWithReflection> GenericParameters =>
+            new ITypeReferenceWithReflection[0];
 
         Expression ILinqExpression.Expression
         {

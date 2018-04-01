@@ -2,23 +2,30 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using CSharpDom.Common.Editable.Expressions;
+using CSharpDom.Common.Editable;
 
 namespace CSharpDom.BaseClasses.Editable.Expressions
 {
-    public abstract class EditableMethodCallExpression<TExpression, TArgument> :
+    public abstract class EditableMethodCallExpression<TExpression, TTypeReference, TArgument> :
         EditableExpression,
-        IEditableMethodCallExpression<TExpression, TArgument>
+        IEditableMethodCallExpression<TExpression, TTypeReference, TArgument>
         where TExpression : IEditableExpression
+        where TTypeReference : IEditableTypeReference
         where TArgument : IEditableArgument
     {
         public abstract TExpression Expression { get; set; }
 
         public abstract IList<TArgument> Parameters { get; set; }
 
-        IReadOnlyList<TArgument> IMethodCallExpression<TExpression, TArgument>.Parameters
+        public abstract IList<TTypeReference> GenericParameters { get; set; }
+
+        IReadOnlyList<TArgument> IMethodCallExpression<TExpression, TTypeReference, TArgument>.Parameters
         {
             get { return new ReadOnlyCollection<TArgument>(Parameters); }
         }
+
+        IReadOnlyList<TTypeReference> IMethodCallExpression<TExpression, TTypeReference, TArgument>.GenericParameters =>
+            new ReadOnlyCollection<TTypeReference>(GenericParameters);
 
         public override void Accept(IGenericExpressionVisitor visitor)
         {

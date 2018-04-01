@@ -52,9 +52,10 @@ namespace CSharpDom.Common.Editable.Expressions
         void VisitMemberExpression<TExpression>(IEditableMemberExpression<TExpression> memberExpression)
             where TExpression : IEditableExpression;
 
-        void VisitMethodCallExpression<TExpression, TArgument>(
-            IEditableMethodCallExpression<TExpression, TArgument> methodCallExpression)
+        void VisitMethodCallExpression<TExpression, TTypeReference, TArgument>(
+            IEditableMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression)
             where TExpression : IEditableExpression
+            where TTypeReference : IEditableTypeReference
             where TArgument : IEditableArgument;
 
         void VisitNewAnonymousArrayExpression(IEditableNewAnonymousArrayExpression newAnonymousArrayExpression);

@@ -10,7 +10,7 @@ namespace CSharpDom.Common.Expressions
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
         {
-            VisitIfNotNull(argument.Expression, visitor);
+            GenericExpressionChildVisitor.VisitArgumentChildren<IArgument<TExpression>, TExpression, IGenericExpressionVisitor>(argument, visitor);
         }
 
         public static void VisitArrayIndexExpressionChildren<TExpression, TArgument>(
@@ -58,6 +58,14 @@ namespace CSharpDom.Common.Expressions
             VisitCollection(anonymousMethodExpression.Parameters, visitor);
         }
 
+        public static void VisitLambdaExpressionChildren<TExpression>(
+            ILambdaExpression<TExpression> lambdaExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IExpression
+        {
+            VisitIfNotNull(lambdaExpression.Expression, visitor);
+        }
+
         public static void VisitListInitializerExpressionChildren<TCreateListExpression, TExpression>(
             IListInitializerExpression<TCreateListExpression, TExpression> listInitializerExpression,
             IGenericExpressionVisitor visitor)
@@ -79,14 +87,14 @@ namespace CSharpDom.Common.Expressions
             VisitIfNotNull(memberExpression.ObjectExpression, visitor);
         }
 
-        public static void VisitMethodCallExpressionChildren<TExpression, TArgument>(
-            IMethodCallExpression<TExpression, TArgument> methodCallExpression,
+        public static void VisitMethodCallExpressionChildren<TExpression, TTypeReference, TArgument>(
+            IMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression,
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
+            where TTypeReference : ITypeReference
             where TArgument : IArgument
         {
-            VisitIfNotNull(methodCallExpression.Expression, visitor);
-            VisitCollection(methodCallExpression.Parameters, visitor);
+            GenericExpressionChildVisitor.VisitMethodCallExpressionChildren<IMethodCallExpression<TExpression, TTypeReference, TArgument>, TExpression, TTypeReference, TArgument, IGenericExpressionVisitor>(methodCallExpression, visitor);
         }
 
         public static void VisitNewArrayExpressionChildren<TTypeReference, TExpression>(

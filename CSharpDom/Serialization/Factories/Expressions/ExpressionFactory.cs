@@ -112,8 +112,8 @@ namespace CSharpDom.Serialization.Factories.Expressions
             };
         }
 
-        public override void VisitMethodCallExpression<TExpression, TArgument>(
-            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
+        public override void VisitMethodCallExpression<TExpression, TTypeReference, TArgument>(
+            IMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression)
         {
             Value = new Expression()
             {

@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System;
+using CSharpDom.Reflection;
 
 namespace CSharpDom.Linq.Expressions
 {
     public sealed class DynamicMethodCallExpressionWithLinqExpressions :
-        AbstractMethodCallExpression<ILinqExpression, ILinqExpression>,
+        AbstractMethodCallExpression<ILinqExpression, ITypeReferenceWithReflection, ILinqExpression>,
         ILinqExpression<DynamicExpression>
     {
         //private readonly ILinqExpression expression;
@@ -33,6 +34,8 @@ namespace CSharpDom.Linq.Expressions
         {
             get { return parameterExpressions; }
         }
+
+        public override IReadOnlyList<ITypeReferenceWithReflection> GenericParameters => throw new NotImplementedException();
 
         Expression ILinqExpression.Expression
         {

@@ -16,15 +16,10 @@ namespace CSharpDom.CodeAnalysis
                                       //IVisitable<IReflectionVisitor>
     {
         private readonly TypeReferenceNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax> node;
-        private readonly SeparatedSyntaxNodeList<
+        private readonly GenericParameterList<
             UnspecifiedTypeReferenceWithCodeAnalysis,
-            NameSyntax,
-            IInternalTypeReferenceWithCodeAnalysis,
-            TypeSyntax> genericParameters;
-        private readonly WrappedList<
-            IInternalTypeReferenceWithCodeAnalysis,
-            ITypeReferenceWithCodeAnalysis> wrappedGenericParameters;
-
+            NameSyntax> genericParameters;
+        
         public UnspecifiedTypeReferenceWithCodeAnalysis(
             string name,
             params ITypeReferenceWithCodeAnalysis[] genericParameters)
@@ -47,21 +42,16 @@ namespace CSharpDom.CodeAnalysis
         internal UnspecifiedTypeReferenceWithCodeAnalysis()
         {
             node = new TypeReferenceNode<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(this);
-            genericParameters = new SeparatedSyntaxNodeList<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax, IInternalTypeReferenceWithCodeAnalysis, TypeSyntax>(
+            genericParameters = new GenericParameterList<UnspecifiedTypeReferenceWithCodeAnalysis, NameSyntax>(
                 node,
-                syntax => syntax.ToGenericParameters(),
-                (parentSyntax, childSyntax) => parentSyntax.WithGenericParameters(childSyntax),
-                GetTypeReference);
-            wrappedGenericParameters = new WrappedList<IInternalTypeReferenceWithCodeAnalysis, ITypeReferenceWithCodeAnalysis>(
-                genericParameters,
-                parent => parent,
-                child => (IInternalTypeReferenceWithCodeAnalysis)child);
+                syntax => syntax,
+                (parentSyntax, childSyntax) => childSyntax);
         }
 
         public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters
         {
-            get { return wrappedGenericParameters; }
-            set { genericParameters.ReplaceList(value.Cast<IInternalTypeReferenceWithCodeAnalysis>()); }
+            get { return genericParameters; }
+            set { genericParameters.ReplaceList(value); }
         }
 
         public override string Name
@@ -94,7 +84,7 @@ namespace CSharpDom.CodeAnalysis
 
         INode<TypeSyntax> IHasNode<TypeSyntax>.Node => node;
 
-        private static IInternalTypeReferenceWithCodeAnalysis GetTypeReference(TypeSyntax syntax)
+        internal static IInternalTypeReferenceWithCodeAnalysis GetTypeReference(TypeSyntax syntax)
         {
             return syntax is PredefinedTypeSyntax ?
                 (IInternalTypeReferenceWithCodeAnalysis)new BuiltInTypeReferenceWithCodeAnalysis() :

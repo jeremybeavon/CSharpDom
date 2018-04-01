@@ -42,6 +42,9 @@ namespace CSharpDom.Common.Expressions
             IAnonymousMethodParameter<TTypeReference> anonymousMethodParameter)
             where TTypeReference : ITypeReference;
 
+        void VisitLambdaExpression<TExpression>(ILambdaExpression<TExpression> lambdaExpression)
+            where TExpression : IExpression;
+
         void VisitListInitializerExpression<TCreateListExpression, TExpression>(
             IListInitializerExpression<TCreateListExpression, TExpression> listInitializerExpression)
             where TCreateListExpression : ICreateListExpression
@@ -50,9 +53,10 @@ namespace CSharpDom.Common.Expressions
         void VisitMemberExpression<TExpression>(IMemberExpression<TExpression> memberExpression)
             where TExpression : IExpression;
 
-        void VisitMethodCallExpression<TExpression, TArgument>(
-            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
+        void VisitMethodCallExpression<TExpression, TTypeReference, TArgument>(
+            IMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression)
             where TExpression : IExpression
+            where TTypeReference : ITypeReference
             where TArgument : IArgument;
 
         void VisitNewAnonymousArrayExpression(INewAnonymousArrayExpression newAnonymousArrayExpression);

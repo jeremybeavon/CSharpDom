@@ -1,18 +1,21 @@
 ﻿using CSharpDom.BaseClasses.Editable.Expressions;
+using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Collections.Generic;
 using Microsoft.CodeAnalysis.CSharp;
+using System;
 
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class MethodCallExpressionWithCodeAnalysis :
-        EditableMethodCallExpression<IExpressionWithCodeAnalysis, IArgumentWithCodeAnalysis>,
+        EditableMethodCallExpression<IExpressionWithCodeAnalysis, ITypeReferenceWithCodeAnalysis, IArgumentWithCodeAnalysis>,
         IHasSyntax<InvocationExpressionSyntax>,
         IHasNode<InvocationExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> node;
         private readonly CachedExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> expression;
+        private readonly GenericParameterList<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> genericParameters;
         private readonly ArgumentListWrapper<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> parameterExpressions;
 
         public MethodCallExpressionWithCodeAnalysis(
@@ -29,6 +32,10 @@ namespace CSharpDom.CodeAnalysis.Expressions
             expression = new CachedExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(
                 node,
                 syntax => syntax.Expression,
+                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
+            genericParameters = new GenericParameterList<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(
+                node,
+                syntax => syntax.Expression as NameSyntax,
                 (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
             parameterExpressions = new ArgumentListWrapper<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(
                 node,
@@ -54,6 +61,12 @@ namespace CSharpDom.CodeAnalysis.Expressions
             set { node.Syntax = value; }
         }
 
+        public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters
+        {
+            get => genericParameters;
+            set => genericParameters.ReplaceList(value);
+        }
+
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {
             get { return Syntax; }
@@ -66,5 +79,23 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         INode<InvocationExpressionSyntax> IHasNode<InvocationExpressionSyntax>.Node => node;
+
+        private static InvocationExpressionSyntax WithGenericParameters(
+            InvocationExpressionSyntax parentSyntax,
+            SeparatedSyntaxList<TypeSyntax> childSyntax)
+        {
+            ExpressionSyntax expression = parentSyntax.Expression;
+            if (expression is GenericNameSyntax genericNameSyntax && childSyntax.Count == 0)
+            {
+                return parentSyntax.WithExpression(SyntaxFactory.IdentifierName(genericNameSyntax.Identifier));
+            }
+
+            if (expression is NameSyntax nameSyntax)
+            {
+                return parentSyntax.WithExpression(nameSyntax.WithGenericParameters(childSyntax));
+            }
+
+            throw new NotSupportedException();
+        }
     }
 }

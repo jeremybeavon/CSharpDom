@@ -23,7 +23,7 @@ namespace CSharpDom.GenericChildVisitorGenerator
     {
         public static void Main(string[] args)
         {
-            AsyncContext.Run(GenerateWrapperImplementations);
+            AsyncContext.Run(EditGenericVisitor);
         }
         
         private static async Task EditGenericVisitor()
@@ -31,7 +31,7 @@ namespace CSharpDom.GenericChildVisitorGenerator
             string baseDirectory = Path.GetFullPath(
                 Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), @"..\..\..\.."));
             LoadedDocumentWithCodeAnalysis document = await LoadedDocumentWithCodeAnalysis.LoadFromFileAsync(
-                Path.Combine(baseDirectory, @"CSharpDom\Common\GenericVisitor.cs"));
+                Path.Combine(baseDirectory, @"CSharpDom\Common\Expressions\GenericExpressionVisitor.cs"));
             foreach (StaticClassMethodWithCodeAnalysis method in 
                 document.Namespaces.First().Classes.StaticClasses.First().Methods)
             {
@@ -41,12 +41,15 @@ namespace CSharpDom.GenericChildVisitorGenerator
                     expressionStatement.Expression is MethodCallExpressionWithCodeAnalysis methodCall &&
                     methodCall.Expression is MemberExpressionWithCodeAnalysis member &&
                     member.ObjectExpression is IdentifierExpressionWithCodeAnalysis identifier &&
-                    identifier.Name == "GenericChildVisitor")
+                    identifier.Name == "GenericExpressionChildVisitor")
                 {
                     continue;
                 }
 
-                statements.Clear();
+                //statements.Clear();
+                /*IExpressionWithCodeAnalysis expression = ExpressionFactory.MethodCall(
+                    ExpressionFactory.Member(ExpressionFactory.Identifier("GenericChildVisitor"), method.Name));
+                statements.Add(StatementFactory.Expression(expression));*/
             }
         }
 
@@ -140,7 +143,7 @@ namespace CSharpDom.GenericChildVisitorGenerator
         {
             string visitorFileName = Path.Combine(
                 Path.GetDirectoryName(typeof(Program).Assembly.Location),
-                @"..\..\..\..\CSharpDom\Common\GenericChildVisitor.cs");
+                @"..\..\..\..\CSharpDom\Common\Statements\GenericStatementChildVisitor.cs");
             visitorFileName = Path.GetFullPath(visitorFileName);
             LoadedDocumentWithCodeAnalysis loadedDocument =
                 await LoadedDocumentWithCodeAnalysis.LoadFromFileAsync(visitorFileName);

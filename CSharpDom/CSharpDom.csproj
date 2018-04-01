@@ -332,6 +332,7 @@
     <Compile Include="BaseClasses\Editable\Wrappers\EditableTypeWrapper.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractAnonymousMethodParameter.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractLambdaExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryGroupIntoExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryOrderingExpression.cs" />
@@ -1149,6 +1150,7 @@
     <Compile Include="Common\Editable\Statements\IEditableVariableDeclarationStatement.generic.cs" />
     <Compile Include="Common\Editable\Statements\IEditableWhileStatement.cs" />
     <Compile Include="Common\Editable\Statements\IEditableWhileStatement.generic.cs" />
+    <Compile Include="Common\Expressions\GenericExpressionChildVisitor.cs" />
     <Compile Include="Common\Expressions\IParenthesizedLambdaExpression.cs" />
     <Compile Include="Common\Expressions\IParenthesizedLambdaExpression.generic.cs" />
     <Compile Include="Common\Expressions\IParenthesizedLambdaExpressionWithBody.cs" />
@@ -1597,6 +1599,7 @@
     <Compile Include="BaseClasses\Editable\Statements\EditableUsingStatement.cs" />
     <Compile Include="BaseClasses\Editable\Statements\EditableVariableDeclarationStatement.cs" />
     <Compile Include="BaseClasses\Editable\Statements\EditableWhileStatement.cs" />
+    <Compile Include="Common\Statements\GenericStatementChildVisitor.cs" />
     <Compile Include="Common\Statements\IYieldReturnStatement.cs" />
     <Compile Include="Common\Statements\IYieldReturnStatement.generic.cs" />
     <Compile Include="Common\Statements\IYieldBreakStatement.cs" />
