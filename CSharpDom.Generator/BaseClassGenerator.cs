@@ -64,7 +64,7 @@ namespace CSharpDom.Generator
                     new InterfaceReferenceWithCodeAnalysis(@interface.Name, implementedInterfaceGenericParameters));
                 newNamespace.Classes.AbstractClasses.Add(baseClass);
                 newDocument.Namespaces.Add(newNamespace);
-                await baseClass.ImplementInterface(@class => @class.ImplementedInterfaces.First(), baseClassDocument);
+                await baseClass.ImplementInterfaceAsync(@class => @class.ImplementedInterfaces.First(), baseClassDocument);
                 foreach (AbstractClassPropertyWithCodeAnalysis property in baseClass.Properties)
                 {
 

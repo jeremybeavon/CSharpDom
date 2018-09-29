@@ -22,7 +22,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
         private readonly ArgumentListWrapper<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> parameterExpressions;
 
         public MethodCallExpressionWithCodeAnalysis(
-            IExpressionWithCodeAnalysis expression,
+            IGenericExpressionWithCodeAnalysis expression,
             params IExpressionWithCodeAnalysis[] parameters)
             : this()
         {
@@ -41,6 +41,15 @@ namespace CSharpDom.CodeAnalysis.Expressions
             string methodName,
             params IExpressionWithCodeAnalysis[] parameters)
             : this(new MemberExpressionWithCodeAnalysis(expression, methodName), parameters)
+        {
+        }
+
+        public MethodCallExpressionWithCodeAnalysis(
+            IExpressionWithCodeAnalysis expression,
+            string methodName,
+            IEnumerable<ITypeReferenceWithCodeAnalysis> genericParameters,
+            params IExpressionWithCodeAnalysis[] parameters)
+            : this(new GenericMemberExpressionWithCodeAnalysis(expression, methodName, genericParameters), parameters)
         {
         }
 

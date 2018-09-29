@@ -23,7 +23,7 @@ namespace CSharpDom.GenericChildVisitorGenerator
     {
         public static void Main(string[] args)
         {
-            AsyncContext.Run(EditGenericVisitor);
+            AsyncContext.Run(GenerateWrapperImplementations);
         }
         
         private static async Task EditGenericVisitor()
@@ -57,8 +57,9 @@ namespace CSharpDom.GenericChildVisitorGenerator
         {
             string baseDirectory = Path.GetFullPath(
                 Path.Combine(Path.GetDirectoryName(typeof(Program).Assembly.Location), @"..\..\..\.."));
-            ProjectWithCodeAnalysis project = await ProjectWithCodeAnalysis.OpenAsync(
-                Path.Combine(baseDirectory, @"CSharpDom\CSharpDom.csproj"));
+            SolutionWithCodeAnalysis solution = await SolutionWithCodeAnalysis.OpenAsync(
+                Path.Combine(baseDirectory, @"CSharpDom.sln"));
+            ProjectWithCodeAnalysis project = solution.Projects.First(p => p.Syntax.Name == "CSharpDom");
             project.Lock();
             foreach (DocumentWithCodeAnalysis document in project.Documents
                 .Where(document => document.FullFilePath.Contains(@"CSharpDom\Wrappers\Internal"))

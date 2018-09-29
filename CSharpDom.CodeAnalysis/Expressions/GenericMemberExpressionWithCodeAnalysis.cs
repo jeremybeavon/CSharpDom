@@ -13,13 +13,20 @@ namespace CSharpDom.CodeAnalysis.Expressions
         IHasNode<MemberAccessExpressionSyntax>,
         IInternalGenericExpression
     {
-        private readonly GenericExpressionNode<GenericMemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax> node;
-        private readonly CachedExpressionNode<GenericMemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax> objectExpression;
+        private readonly GenericExpressionNode<
+            GenericMemberExpressionWithCodeAnalysis,
+            MemberAccessExpressionSyntax> node;
+        private readonly CachedExpressionNode<
+            GenericMemberExpressionWithCodeAnalysis,
+            MemberAccessExpressionSyntax> objectExpression;
+        private readonly GenericParameterList<
+            GenericMemberExpressionWithCodeAnalysis,
+            MemberAccessExpressionSyntax> genericParameters;
 
         public GenericMemberExpressionWithCodeAnalysis(
             IExpressionWithCodeAnalysis objectExpression,
             string memberName,
-            params ITypeReferenceWithCodeAnalysis[] genericParameters)
+            IEnumerable<ITypeReferenceWithCodeAnalysis> genericParameters)
             : this()
         {
             SeparatedSyntaxList<TypeSyntax> argumentList = SyntaxFactory.SeparatedList(
@@ -33,6 +40,14 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 name);
         }
 
+        public GenericMemberExpressionWithCodeAnalysis(
+            IExpressionWithCodeAnalysis objectExpression,
+            string memberName,
+            params ITypeReferenceWithCodeAnalysis[] genericParameters)
+            : this(objectExpression, memberName, (IEnumerable<ITypeReferenceWithCodeAnalysis>)genericParameters)
+        {
+        }
+
         internal GenericMemberExpressionWithCodeAnalysis()
         {
             node = new GenericExpressionNode<GenericMemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax>(this);
@@ -40,6 +55,10 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 node,
                 syntax => syntax.Expression,
                 (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
+            genericParameters = new GenericParameterList<GenericMemberExpressionWithCodeAnalysis, MemberAccessExpressionSyntax>(
+                node,
+                syntax => syntax.Name,
+                (parentSyntax, childSyntax) => parentSyntax.WithName((SimpleNameSyntax)childSyntax));
         }
 
         public override string MemberName
@@ -64,7 +83,11 @@ namespace CSharpDom.CodeAnalysis.Expressions
             set { node.Syntax = value; }
         }
 
-        public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+        public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters
+        {
+            get => genericParameters;
+            set => genericParameters.ReplaceList(value);
+        }
 
         INode<ExpressionSyntax> IHasNode<ExpressionSyntax>.Node
         {

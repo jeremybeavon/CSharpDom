@@ -2035,7 +2035,7 @@ namespace CSharpDom.Text
             typeSteps.AddIfNotEmpty(type.Fields);
             typeSteps.AddIfNotEmpty(type.Events);
             typeSteps.AddIfNotNull(type.StaticConstructor);
-            typeSteps.AddIfNotNull(type.Properties);
+            typeSteps.AddIfNotEmpty(type.Properties);
             typeSteps.AddIfNotEmpty(type.Methods);
             typeSteps.AddIfNotEmpty(type.Classes);
             typeSteps.AddRange(type.Delegates.ToSteps());

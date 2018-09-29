@@ -13,7 +13,7 @@ namespace CSharpDom.CodeAnalysis
     {
         private const string ImplementInterfaceName = "ImplementInterface";
 
-        public static async Task ImplementInterface(
+        public static async Task ImplementInterfaceAsync(
             this IClassTypeDefinitionWithCodeAnalysis definition,
             Func<IClassTypeDefinitionWithCodeAnalysis, InterfaceReferenceWithCodeAnalysis> reference,
             DocumentWithCodeAnalysis document)

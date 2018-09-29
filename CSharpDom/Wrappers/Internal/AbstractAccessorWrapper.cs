@@ -7,6 +7,7 @@ namespace CSharpDom.Wrappers.Internal
     internal sealed class AbstractAccessorWrapper : AbstractWrapper<IAbstractAccessor>, IAbstractAccessorWrapper
     {
         private Func<IReadOnlyCollection<IAttributeGroupWrapper>> attributes;
+        private Func<AbstractAccessorVisibilityModifier> visibility;
 
         public AbstractAccessorWrapper(IAbstractAccessor accessor)
             : base(accessor)
@@ -18,7 +19,7 @@ namespace CSharpDom.Wrappers.Internal
             get { return attributes(); }
         }
 
-        public AbstractAccessorVisibilityModifier Visibility => throw new NotImplementedException();
+        public AbstractAccessorVisibilityModifier Visibility => visibility();
 
         public void Accept(IGenericVisitor visitor)
         {
@@ -34,6 +35,7 @@ namespace CSharpDom.Wrappers.Internal
             IAbstractAccessor<TAttributeGroup> accessor)
         {
             attributes = accessor.Attributes.WrapAttributes();
+            visibility = () => accessor.Visibility;
         }
     }
 }
