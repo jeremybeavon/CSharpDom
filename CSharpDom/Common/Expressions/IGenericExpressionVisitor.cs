@@ -50,13 +50,17 @@ namespace CSharpDom.Common.Expressions
             where TCreateListExpression : ICreateListExpression
             where TExpression : IExpression;
 
+        void VisitGenericMemberExpression<TExpression, TTypeReference>(
+            IGenericMemberExpression<TExpression, TTypeReference> memberExpression)
+            where TExpression : IExpression
+            where TTypeReference : ITypeReference;
+
         void VisitMemberExpression<TExpression>(IMemberExpression<TExpression> memberExpression)
             where TExpression : IExpression;
 
-        void VisitMethodCallExpression<TExpression, TTypeReference, TArgument>(
-            IMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression)
-            where TExpression : IExpression
-            where TTypeReference : ITypeReference
+        void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
+            where TExpression : IGenericExpression
             where TArgument : IArgument;
 
         void VisitNewAnonymousArrayExpression(INewAnonymousArrayExpression newAnonymousArrayExpression);

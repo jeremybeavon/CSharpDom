@@ -18,7 +18,7 @@ namespace CSharpDom.Serialization.Factories.Expressions
 
         public TOutput Value { get; protected set; }
 
-        public sealed override void Visit(IVisitable<IGenericExpressionVisitor> node)
+        public override void Visit(IVisitable<IGenericExpressionVisitor> node)
         {
             throw new InvalidOperationException();
         }

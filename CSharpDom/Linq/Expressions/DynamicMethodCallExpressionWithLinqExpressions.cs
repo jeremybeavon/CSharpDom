@@ -7,7 +7,7 @@ using CSharpDom.Reflection;
 namespace CSharpDom.Linq.Expressions
 {
     public sealed class DynamicMethodCallExpressionWithLinqExpressions :
-        AbstractMethodCallExpression<ILinqExpression, ITypeReferenceWithReflection, ILinqExpression>,
+        AbstractMethodCallExpression<ILinqExpression, ILinqExpression>,
         ILinqExpression<DynamicExpression>
     {
         //private readonly ILinqExpression expression;
@@ -34,9 +34,7 @@ namespace CSharpDom.Linq.Expressions
         {
             get { return parameterExpressions; }
         }
-
-        public override IReadOnlyList<ITypeReferenceWithReflection> GenericParameters => throw new NotImplementedException();
-
+        
         Expression ILinqExpression.Expression
         {
             get { return LinqExpression; }

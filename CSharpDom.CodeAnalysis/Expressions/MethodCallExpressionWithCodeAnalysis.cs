@@ -8,14 +8,17 @@ using System;
 namespace CSharpDom.CodeAnalysis.Expressions
 {
     public sealed class MethodCallExpressionWithCodeAnalysis :
-        EditableMethodCallExpression<IExpressionWithCodeAnalysis, ITypeReferenceWithCodeAnalysis, IArgumentWithCodeAnalysis>,
+        EditableMethodCallExpression<IGenericExpressionWithCodeAnalysis, IArgumentWithCodeAnalysis>,
         IHasSyntax<InvocationExpressionSyntax>,
         IHasNode<InvocationExpressionSyntax>,
         IInternalExpression
     {
         private readonly ExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> node;
-        private readonly CachedExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> expression;
-        private readonly GenericParameterList<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> genericParameters;
+        private readonly CachedChildNode<
+            MethodCallExpressionWithCodeAnalysis,
+            InvocationExpressionSyntax,
+            IInternalGenericExpression,
+            ExpressionSyntax> expression;
         private readonly ArgumentListWrapper<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax> parameterExpressions;
 
         public MethodCallExpressionWithCodeAnalysis(
@@ -26,16 +29,28 @@ namespace CSharpDom.CodeAnalysis.Expressions
             Syntax = SyntaxFactory.InvocationExpression(expression.Syntax, parameters.ToArgumentList());
         }
 
+        public MethodCallExpressionWithCodeAnalysis(
+            string methodName,
+            params IExpressionWithCodeAnalysis[] parameters)
+            : this(new IdentifierExpressionWithCodeAnalysis(methodName), parameters)
+        {
+        }
+
+        public MethodCallExpressionWithCodeAnalysis(
+            IExpressionWithCodeAnalysis expression,
+            string methodName,
+            params IExpressionWithCodeAnalysis[] parameters)
+            : this(new MemberExpressionWithCodeAnalysis(expression, methodName), parameters)
+        {
+        }
+
         internal MethodCallExpressionWithCodeAnalysis()
         {
             node = new ExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(this);
-            expression = new CachedExpressionNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(
+            expression = new CachedChildNode<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax, IInternalGenericExpression, ExpressionSyntax>(
                 node,
+                ToInternalGenericExpression,
                 syntax => syntax.Expression,
-                (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
-            genericParameters = new GenericParameterList<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(
-                node,
-                syntax => syntax.Expression as NameSyntax,
                 (parentSyntax, childSyntax) => parentSyntax.WithExpression(childSyntax));
             parameterExpressions = new ArgumentListWrapper<MethodCallExpressionWithCodeAnalysis, InvocationExpressionSyntax>(
                 node,
@@ -43,10 +58,10 @@ namespace CSharpDom.CodeAnalysis.Expressions
                 (parentSyntax, childSyntax) => parentSyntax.WithArgumentList(childSyntax));
         }
 
-        public override IExpressionWithCodeAnalysis Expression
+        public override IGenericExpressionWithCodeAnalysis Expression
         {
             get { return expression.Value; }
-            set { expression.Value = value; }
+            set { expression.Value = (IInternalGenericExpression)value; }
         }
 
         public override IList<IArgumentWithCodeAnalysis> Parameters
@@ -60,13 +75,7 @@ namespace CSharpDom.CodeAnalysis.Expressions
             get { return node.Syntax; }
             set { node.Syntax = value; }
         }
-
-        public override IList<ITypeReferenceWithCodeAnalysis> GenericParameters
-        {
-            get => genericParameters;
-            set => genericParameters.ReplaceList(value);
-        }
-
+        
         ExpressionSyntax IHasSyntax<ExpressionSyntax>.Syntax
         {
             get { return Syntax; }
@@ -79,23 +88,12 @@ namespace CSharpDom.CodeAnalysis.Expressions
         }
 
         INode<InvocationExpressionSyntax> IHasNode<InvocationExpressionSyntax>.Node => node;
-
-        private static InvocationExpressionSyntax WithGenericParameters(
-            InvocationExpressionSyntax parentSyntax,
-            SeparatedSyntaxList<TypeSyntax> childSyntax)
+        
+        private static IInternalGenericExpression ToInternalGenericExpression(ExpressionSyntax syntax)
         {
-            ExpressionSyntax expression = parentSyntax.Expression;
-            if (expression is GenericNameSyntax genericNameSyntax && childSyntax.Count == 0)
-            {
-                return parentSyntax.WithExpression(SyntaxFactory.IdentifierName(genericNameSyntax.Identifier));
-            }
-
-            if (expression is NameSyntax nameSyntax)
-            {
-                return parentSyntax.WithExpression(nameSyntax.WithGenericParameters(childSyntax));
-            }
-
-            throw new NotSupportedException();
+            return syntax is MemberAccessExpressionSyntax member && member.Name is GenericNameSyntax ?
+                (IInternalGenericExpression)new GenericMemberExpressionWithCodeAnalysis() :
+                syntax.ToInternalExpression();
         }
     }
 }

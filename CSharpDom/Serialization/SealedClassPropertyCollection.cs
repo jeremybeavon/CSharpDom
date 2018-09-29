@@ -38,9 +38,9 @@ namespace CSharpDom.Serialization
             get { return ExplicitInterfaceProperties; }
         }
 
-        IReadOnlyCollection<SealedClassAutoProperty> IHasAutoProperties<SealedClassAutoProperty>.AutoProperties => throw new NotImplementedException();
+        IReadOnlyCollection<SealedClassAutoProperty> IHasAutoProperties<SealedClassAutoProperty>.AutoProperties => AutoProperties;
 
-        IReadOnlyCollection<SealedClassLambdaProperty> IHasLambdaProperties<SealedClassLambdaProperty>.LambdaProperties => throw new NotImplementedException();
+        IReadOnlyCollection<SealedClassLambdaProperty> IHasLambdaProperties<SealedClassLambdaProperty>.LambdaProperties => LambdaProperties;
 
         public void Accept(IGenericVisitor visitor)
         {

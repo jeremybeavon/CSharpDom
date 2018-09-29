@@ -1,6 +1,5 @@
 ﻿using CSharpDom.Common.Expressions;
 using CSharpDom.Serialization.Expressions;
-using CSharpDom.Serialization.Factories.Statements;
 
 namespace CSharpDom.Serialization.Factories.Expressions
 {
@@ -11,13 +10,12 @@ namespace CSharpDom.Serialization.Factories.Expressions
         {
         }
 
-        public override void VisitMethodCallExpression<TExpression, TTypeReference, TArgument>(
-            IMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression)
+        public override void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
         {
             Value = new MethodCallExpression()
             {
-                Expression = new ExpressionFactory(methodCallExpression.Expression).Value,
-                GenericParameters = methodCallExpression.GenericParameters.ToGenericParameterListUsingFactory(),
+                Expression = new GenericExpressionFactory(methodCallExpression.Expression).Value,
                 Parameters = methodCallExpression.Parameters.ToList(argument => new ArgumentFactory(argument).Value)
             };
         }

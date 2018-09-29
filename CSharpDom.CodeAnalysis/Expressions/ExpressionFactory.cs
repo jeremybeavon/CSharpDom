@@ -31,11 +31,27 @@ namespace CSharpDom.CodeAnalysis.Expressions
             return new MemberExpressionWithCodeAnalysis(objectExpression, memberName);
         }
 
+        /*public static MethodCallExpressionWithCodeAnalysis GenericMethodCall(
+            string methodName,
+            IEnumerable<ITypeReferenceWithCodeAnalysis> genericParameters,
+            params IExpressionWithCodeAnalysis parameters)
+        {
+            return new MethodCallExpressionWithCodeAnalysis(
+                Identifier(methodName),)
+        }*/
+
         public static MethodCallExpressionWithCodeAnalysis MethodCall(
             IExpressionWithCodeAnalysis expression,
             params IExpressionWithCodeAnalysis[] parameters)
         {
             return new MethodCallExpressionWithCodeAnalysis(expression, parameters);
+        }
+
+        public static MethodCallExpressionWithCodeAnalysis MethodCall(
+            string methodName,
+            params IExpressionWithCodeAnalysis[] parameters)
+        {
+            return new MethodCallExpressionWithCodeAnalysis(methodName, parameters);
         }
 
         public static NewExpressionWithCodeAnalysis New(

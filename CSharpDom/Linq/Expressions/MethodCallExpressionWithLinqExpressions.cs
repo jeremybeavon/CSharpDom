@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 namespace CSharpDom.Linq.Expressions
 {
     public sealed class MethodCallExpressionWithLinqExpressions :
-        AbstractMethodCallExpression<ILinqExpression, ITypeReferenceWithReflection, ILinqExpression>,
+        AbstractMethodCallExpression<ILinqExpression, ILinqExpression>,
         ILinqExpression<MethodCallExpression>
     {
         private readonly ILinqExpression expression;
@@ -33,9 +33,7 @@ namespace CSharpDom.Linq.Expressions
         {
             get { return parameterExpressions; }
         }
-
-        public override IReadOnlyList<ITypeReferenceWithReflection> GenericParameters => throw new NotImplementedException();
-
+        
         Expression ILinqExpression.Expression
         {
             get { return LinqExpression; }

@@ -84,17 +84,25 @@ namespace CSharpDom.Common.Expressions
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
         {
-            VisitIfNotNull(memberExpression.ObjectExpression, visitor);
+            GenericExpressionChildVisitor.VisitMemberExpressionChildren<IMemberExpression<TExpression>, TExpression, IGenericExpressionVisitor>(memberExpression, visitor);
         }
 
-        public static void VisitMethodCallExpressionChildren<TExpression, TTypeReference, TArgument>(
-            IMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression,
+        public static void VisitGenericMemberExpressionChildren<TExpression, TTypeReference>(
+            IGenericMemberExpression<TExpression, TTypeReference> memberExpression,
             IGenericExpressionVisitor visitor)
             where TExpression : IExpression
             where TTypeReference : ITypeReference
+        {
+            GenericExpressionChildVisitor.VisitGenericMemberExpressionChildren<IGenericMemberExpression<TExpression, TTypeReference>, TExpression, TTypeReference, IGenericExpressionVisitor>(memberExpression, visitor);
+        }
+
+        public static void VisitMethodCallExpressionChildren<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression,
+            IGenericExpressionVisitor visitor)
+            where TExpression : IGenericExpression
             where TArgument : IArgument
         {
-            GenericExpressionChildVisitor.VisitMethodCallExpressionChildren<IMethodCallExpression<TExpression, TTypeReference, TArgument>, TExpression, TTypeReference, TArgument, IGenericExpressionVisitor>(methodCallExpression, visitor);
+            GenericExpressionChildVisitor.VisitMethodCallExpressionChildren<IMethodCallExpression<TExpression, TArgument>, TExpression, TArgument, IGenericExpressionVisitor>(methodCallExpression, visitor);
         }
 
         public static void VisitNewArrayExpressionChildren<TTypeReference, TExpression>(

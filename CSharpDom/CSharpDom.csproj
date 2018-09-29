@@ -270,6 +270,7 @@
     <Compile Include="BaseClasses\Editable\EditableStructLambdaProperty.cs" />
     <Compile Include="BaseClasses\Editable\EditableVisitableObject.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableArgument.cs" />
+    <Compile Include="BaseClasses\Editable\Expressions\EditableGenericMemberExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableThisExpression.cs" />
     <Compile Include="BaseClasses\Editable\Expressions\EditableExpression.cs" />
     <Compile Include="BaseClasses\Editable\Statements\EditableStatement.cs" />
@@ -333,6 +334,7 @@
     <Compile Include="BaseClasses\Expressions\AbstractAnonymousMethodParameter.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractLambdaExpression.cs" />
+    <Compile Include="BaseClasses\Expressions\AbstractGenericMemberExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryGroupIntoExpression.cs" />
     <Compile Include="BaseClasses\Expressions\AbstractQueryOrderingExpression.cs" />
@@ -547,6 +549,9 @@
     <Compile Include="Common\Editable\Expressions\IEditableTypeofExpression.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableUnaryOperatorExpression.cs" />
     <Compile Include="Common\Editable\Expressions\IEditableUnaryOperatorExpression.generic.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableGenericExpression.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableGenericMemberExpression.cs" />
+    <Compile Include="Common\Editable\Expressions\IEditableGenericMemberExpression.generic.cs" />
     <Compile Include="Common\Editable\Expressions\IHasEditableObjectInitializers.cs" />
     <Compile Include="Common\Editable\IEditableAutoPropertyAccessor.cs" />
     <Compile Include="Common\Editable\IEditableAutoPropertyAccessor.generic.cs" />
@@ -1151,6 +1156,9 @@
     <Compile Include="Common\Editable\Statements\IEditableWhileStatement.cs" />
     <Compile Include="Common\Editable\Statements\IEditableWhileStatement.generic.cs" />
     <Compile Include="Common\Expressions\GenericExpressionChildVisitor.cs" />
+    <Compile Include="Common\Expressions\IGenericExpression.cs" />
+    <Compile Include="Common\Expressions\IGenericMemberExpression.cs" />
+    <Compile Include="Common\Expressions\IGenericMemberExpression.generic.cs" />
     <Compile Include="Common\Expressions\IParenthesizedLambdaExpression.cs" />
     <Compile Include="Common\Expressions\IParenthesizedLambdaExpression.generic.cs" />
     <Compile Include="Common\Expressions\IParenthesizedLambdaExpressionWithBody.cs" />
@@ -1833,6 +1841,10 @@
     <Compile Include="Search\FindStructByNameVisitor.cs" />
     <Compile Include="Search\FindNamespaceForStructVisitor.cs" />
     <Compile Include="Serialization\ClassAutoPropertyAccessor.cs" />
+    <Compile Include="Serialization\Expressions\GenericExpression.cs" />
+    <Compile Include="Serialization\Expressions\GenericMemberExpression.cs" />
+    <Compile Include="Serialization\Factories\Expressions\GenericExpressionFactory.cs" />
+    <Compile Include="Serialization\Factories\Expressions\GenericMemberExpressionFactory.cs" />
     <Compile Include="Serialization\Factories\StaticClassAutoPropertyAccessorFactory.cs" />
     <Compile Include="Serialization\Factories\ClassAutoPropertyAccessorFactory.cs" />
     <Compile Include="Serialization\Factories\StructAutoPropertyAccessorFactory.cs" />

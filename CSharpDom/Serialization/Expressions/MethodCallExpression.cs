@@ -4,27 +4,22 @@ using CSharpDom.Common.Expressions;
 
 namespace CSharpDom.Serialization.Expressions
 {
-    public sealed class MethodCallExpression : IMethodCallExpression<Expression, TypeReference, Argument>
+    public sealed class MethodCallExpression : IMethodCallExpression<GenericExpression, Argument>
     {
         public MethodCallExpression()
         {
             Parameters = new List<Argument>();
         }
         
-        public Expression Expression { get; set; }
-
-        public List<TypeReference> GenericParameters { get; set; }
+        public GenericExpression Expression { get; set; }
 
         public List<Argument> Parameters { get; set; }
 
-        IReadOnlyList<Argument> IMethodCallExpression<Expression, TypeReference, Argument>.Parameters
+        IReadOnlyList<Argument> IMethodCallExpression<GenericExpression, Argument>.Parameters
         {
             get { return Parameters; }
         }
-
-        IReadOnlyList<TypeReference> IMethodCallExpression<Expression, TypeReference, Argument>.GenericParameters =>
-            GenericParameters;
-
+        
         public void Accept(IGenericExpressionVisitor visitor)
         {
             visitor.VisitMethodCallExpression(this);

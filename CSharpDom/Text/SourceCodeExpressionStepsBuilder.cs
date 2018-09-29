@@ -111,15 +111,10 @@ namespace CSharpDom.Text
             Steps.Add(new WriteName(memberExpression.MemberName));
         }
 
-        public override void VisitMethodCallExpression<TExpression, TTypeReference, TArgument>(
-            IMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression)
+        public override void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
         {
             Steps.Add(new WriteExpression<TExpression>(methodCallExpression.Expression));
-            if (methodCallExpression.GenericParameters.Count != 0)
-            {
-                Steps.AddGenericParameterSteps(methodCallExpression.GenericParameters);
-            }
-
             Steps.Add(new WriteStartParenthesis());
             Steps.AddCommaSeparatedExpressionSteps(methodCallExpression.Parameters);
             Steps.Add(new WriteEndParenthesis());

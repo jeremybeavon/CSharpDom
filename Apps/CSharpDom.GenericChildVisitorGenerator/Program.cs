@@ -47,9 +47,9 @@ namespace CSharpDom.GenericChildVisitorGenerator
                 }
 
                 //statements.Clear();
-                /*IExpressionWithCodeAnalysis expression = ExpressionFactory.MethodCall(
+                IExpressionWithCodeAnalysis expression = ExpressionFactory.MethodCall(
                     ExpressionFactory.Member(ExpressionFactory.Identifier("GenericChildVisitor"), method.Name));
-                statements.Add(StatementFactory.Expression(expression));*/
+                statements.Add(StatementFactory.Expression(expression));
             }
         }
 

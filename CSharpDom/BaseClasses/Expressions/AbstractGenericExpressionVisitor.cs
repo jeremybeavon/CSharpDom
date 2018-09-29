@@ -83,10 +83,9 @@ namespace CSharpDom.BaseClasses.Expressions
             Visit(memberExpression);
         }
 
-        public virtual void VisitMethodCallExpression<TExpression, TTypeReference, TArgument>(
-            IMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression)
-            where TExpression : IExpression
-            where TTypeReference : ITypeReference
+        public virtual void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
+            where TExpression : IGenericExpression
             where TArgument : IArgument
         {
             Visit(methodCallExpression);
@@ -281,6 +280,14 @@ namespace CSharpDom.BaseClasses.Expressions
             where TExpression : IExpression
         {
             Visit(lambdaExpression);
+        }
+
+        public virtual void VisitGenericMemberExpression<TExpression, TTypeReference>(
+            IGenericMemberExpression<TExpression, TTypeReference> memberExpression)
+            where TExpression : IExpression
+            where TTypeReference : ITypeReference
+        {
+            Visit(memberExpression);
         }
     }
 }

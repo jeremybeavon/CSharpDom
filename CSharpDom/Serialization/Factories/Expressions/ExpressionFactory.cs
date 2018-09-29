@@ -1,10 +1,5 @@
 ﻿using CSharpDom.Common.Expressions;
 using CSharpDom.Serialization.Expressions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CSharpDom.Serialization.Factories.Expressions
 {
@@ -112,8 +107,8 @@ namespace CSharpDom.Serialization.Factories.Expressions
             };
         }
 
-        public override void VisitMethodCallExpression<TExpression, TTypeReference, TArgument>(
-            IMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression)
+        public override void VisitMethodCallExpression<TExpression, TArgument>(
+            IMethodCallExpression<TExpression, TArgument> methodCallExpression)
         {
             Value = new Expression()
             {

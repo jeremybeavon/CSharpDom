@@ -35,12 +35,12 @@ namespace CSharpDom.Serialization
 
         public void Accept(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            visitor.VisitStaticClassPropertyCollection(this);
         }
 
         public void AcceptChildren(IGenericVisitor visitor)
         {
-            throw new NotImplementedException();
+            GenericVisitor.VisitStaticClassPropertyCollectionChildren(this, visitor);
         }
 
         public IEnumerator<StaticClassProperty> GetEnumerator()

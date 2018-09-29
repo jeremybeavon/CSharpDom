@@ -1,6 +1,6 @@
 ﻿namespace CSharpDom.Common.Expressions
 {
-    public interface IExpression : IVisitable<IGenericExpressionVisitor>
+    public interface IExpression : IVisitable<IGenericExpressionVisitor>, IGenericExpression
     {
     }
 }

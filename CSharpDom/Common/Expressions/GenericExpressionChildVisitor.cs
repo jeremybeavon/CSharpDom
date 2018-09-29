@@ -85,6 +85,16 @@ namespace CSharpDom.Common.Expressions
             }
         }
 
+        public static void VisitGenericMemberExpressionChildren<TGenericMemberExpression, TExpression, TTypeReference, TVisitor>(
+            TGenericMemberExpression memberExpression,
+            TVisitor visitor)
+            where TGenericMemberExpression : IGenericMemberExpression<TExpression, TTypeReference>
+            where TTypeReference : ITypeReference
+            where TExpression : IExpression, IVisitable<TVisitor>
+        {
+            VisitIfNotNull(memberExpression.ObjectExpression, visitor);
+        }
+
         public static void VisitMemberExpressionChildren<TMemberExpression, TExpression, TVisitor>(
             TMemberExpression memberExpression,
             TVisitor visitor)
@@ -94,12 +104,11 @@ namespace CSharpDom.Common.Expressions
             VisitIfNotNull(memberExpression.ObjectExpression, visitor);
         }
 
-        public static void VisitMethodCallExpressionChildren<TMethodCallExpression, TExpression, TTypeReference, TArgument, TVisitor>(
+        public static void VisitMethodCallExpressionChildren<TMethodCallExpression, TExpression, TArgument, TVisitor>(
             TMethodCallExpression methodCallExpression,
             TVisitor visitor)
-            where TMethodCallExpression : IMethodCallExpression<TExpression, TTypeReference, TArgument>
-            where TExpression : IExpression, IVisitable<TVisitor>
-            where TTypeReference : ITypeReference
+            where TMethodCallExpression : IMethodCallExpression<TExpression, TArgument>
+            where TExpression : IGenericExpression, IVisitable<TVisitor>
             where TArgument : IArgument, IVisitable<TVisitor>
         {
             VisitIfNotNull(methodCallExpression.Expression, visitor);

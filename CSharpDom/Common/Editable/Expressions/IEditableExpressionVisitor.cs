@@ -49,13 +49,17 @@ namespace CSharpDom.Common.Editable.Expressions
             where TCreateListExpression : IEditableCreateListExpression
             where TExpression : IEditableExpression;
 
+        void VisitGenericMemberExpression<TExpression, TTypeReference>(
+            IEditableGenericMemberExpression<TExpression, TTypeReference> memberExpression)
+            where TExpression : IEditableExpression
+            where TTypeReference : IEditableTypeReference;
+
         void VisitMemberExpression<TExpression>(IEditableMemberExpression<TExpression> memberExpression)
             where TExpression : IEditableExpression;
 
-        void VisitMethodCallExpression<TExpression, TTypeReference, TArgument>(
-            IEditableMethodCallExpression<TExpression, TTypeReference, TArgument> methodCallExpression)
-            where TExpression : IEditableExpression
-            where TTypeReference : IEditableTypeReference
+        void VisitMethodCallExpression<TExpression, TArgument>(
+            IEditableMethodCallExpression<TExpression, TArgument> methodCallExpression)
+            where TExpression : IEditableGenericExpression
             where TArgument : IEditableArgument;
 
         void VisitNewAnonymousArrayExpression(IEditableNewAnonymousArrayExpression newAnonymousArrayExpression);
